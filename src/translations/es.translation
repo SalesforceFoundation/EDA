@@ -33,7 +33,7 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label>No se puede eliminar el registro porque existen registros secundarios. Elimine los secundarios primero.</label>
+        <label>Este registro no puede eliminarse porque tiene uno o más registros relacionados asociados con él. Elimine primero los registros asociados y luego elimine este registro. Para determinar qué registros deben eliminarse primero, haga clic en la ficha Relacionado. Si no ve registros relacionados o no puede eliminarlos, póngase en contacto con su administrador del sistema.</label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -61,23 +61,23 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
-        <label><!-- MultipleCourseConnection --></label>
+        <label>Hay más de una Conexión de curso asociada con este Contacto y esta Oferta de curso. Especifique la Conexión de curso que represente la inscripción del estudiante en esta Oferta de curso para esta Evaluación de periodo.</label>
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoContactCOFound --></label>
+        <label>No se ha especificado el Contacto y la Oferta de curso o no coinciden con la Conexión de curso. Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso de modo que se pueda guardar este registro con los datos correctos.</label>
         <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoCourseConnection --></label>
+        <label>No hay ninguna Conexión de curso asociada con este Contacto y esta Oferta de curso. Si este estudiante está inscrito en esta Oferta de curso, cree una Conexión de curso.</label>
         <name>NoCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoDataMatch --></label>
+        <label>El Contacto y la Oferta de curso no coinciden con la Conexión de curso. Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso de modo que se pueda guardar este registro con los datos correctos.</label>
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoFieldsPopulated --></label>
+        <label>Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso.</label>
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
@@ -85,7 +85,7 @@
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <label><!-- OnlyCourseConnectionPopulated --></label>
+        <label>No hay ningún Contacto u Oferta de curso asociado con esta Conexión de curso. Seleccione una Conexión de curso válida.</label>
         <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
@@ -493,6 +493,14 @@
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgCourseConnBackFillError --></label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillSuccess --></label>
+        <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
         <label>El trabajo de Apex por lotes procesó {0} lotes con {1} fallos.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -529,7 +537,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <label>Activar funciones de teléfono de preferencia mejoradas:</label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -617,7 +625,7 @@
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <label>Sincroniza el campo Teléfono de preferencia con el campo Teléfono estándar del contacto y valida que el valor en Teléfono de preferencia existe y tiene un valor.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>

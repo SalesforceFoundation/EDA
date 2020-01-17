@@ -8,5 +8,13 @@
         	<members>Case.Behavior Management</members>
         	<name>BusinessProcess</name>
 	</types>
+    <types>
+        <members>Case-ca</members>
+        <members>Case-en_GB</members>
+        <members>Case-es_MX</members>
+        <members>Case-es</members>
+        <members>Case-fr</members>
+        <name>CustomObjectTranslation</name>
+    </types>
   	<version>45.0</version>
 </Package>

@@ -31,9 +31,9 @@
     <customLabels>
         <label><!-- Cannot Change Contact And Course Offering --></label>
         <name>CannotChangeContactAndCourseOffering</name>
-    </customLabels>  
+    </customLabels>
     <customLabels>
-        <label>Record cannot be deleted because children records exist. Delete children first.</label>
+        <label>This record can&apos;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&apos;t see related records, or if you&apos;re unable to delete them, contact your System Administrator for assistance.</label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -53,7 +53,7 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
-        <label>Invalid filter field value defined for </label>
+        <label>Invalid filter field value defined for</label>
         <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
@@ -61,23 +61,23 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
-        <label><!-- MultipleCourseConnection --></label>
+        <label>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrolment in this Course Offering for this Term Grade.</label>
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoContactCOFound --></label>
+        <label>The Contact and Course Offering are not specified or don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</label>
         <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoCourseConnection --></label>
+        <label>There is no Course Connection associated with this Contact and Course Offering. If this student is enrolled in this Course Offering, create a Course Connection.</label>
         <name>NoCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoDataMatch --></label>
+        <label>The Contact and Course Offering don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</label>
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoFieldsPopulated --></label>
+        <label>Either specify only a Course Connection or both a Contact and a Course Offering.</label>
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
@@ -85,7 +85,7 @@
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <label><!-- OnlyCourseConnectionPopulated --></label>
+        <label>There is no Contact or Course Offering associated with this Course Connection. Choose a valid Course Connection.</label>
         <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
@@ -493,6 +493,14 @@
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgCourseConnBackFillError --></label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillSuccess --></label>
+        <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
         <label>The batch Apex job processed {0} batches with {1} failures.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -529,7 +537,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <label>Enable Enhanced Preferred Phone Functionality:</label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -617,7 +625,7 @@
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <label>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>

@@ -1,10 +1,10 @@
 /*
     Copyright (c) 2011, Salesforce.org
     All rights reserved.
-    
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-    
+
     * Redistributions of source code must retain the above copyright
       notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
@@ -13,18 +13,18 @@
     * Neither the name of Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
- 
+
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
-    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
-    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
-    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
-    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
-    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
@@ -32,7 +32,7 @@
 * @date 2011 (1.x)
 * @group Utilities
 * @group-content ../../ApexDocContent/Utilities.htm
-* @description Provides automated generation of unit test data for tests throughout the org 
+* @description Provides automated generation of unit test data for tests throughout the org
 */
 @isTest
 public class UTIL_UnitTestData_TEST {
@@ -40,7 +40,7 @@ public class UTIL_UnitTestData_TEST {
     public static List<SObject> sObjectsToUpdate;
 
     /*********************************************************************************************************
-    * @description Provides a simple TDTM implementation that does nothing unless the static List of 
+    * @description Provides a simple TDTM implementation that does nothing unless the static List of
     * sObjectsToUpdate is not null.
     * The main purpose of this test TDTM class is to test re-entrancy scenarios that might result from a custom
     * TDTM class. For example, the AFFL_AccRecordType_TEST class uses this class as an AfterInsert and AfterUpdate
@@ -56,7 +56,7 @@ public class UTIL_UnitTestData_TEST {
         * @param objResult the describe for the SObject.
         * @return dmlWrapper
         ********************************************************************************************************/
-        public override TDTM_Runnable.DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
+        public override TDTM_Runnable.DmlWrapper run(List<SObject> newList, List<SObject> oldList,
                                                     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
             UTIL_Debug.debug('****Entered the Test_TDTM Trigger');
             if (sObjectsToUpdate != null) {
@@ -66,17 +66,17 @@ public class UTIL_UnitTestData_TEST {
             return new TDTM_Runnable.DmlWrapper();
         }
     }
-    
+
     public static Contact getContact() {
-    	Contact contact =  new Contact(FirstName = 'Test', LastName = 'Testerson' + Datetime.now().getTime(), 
-    	                   WorkEmail__c = 'fakeemail@salesforce.org', Preferred_Email__c = 'Work Email', 
+    	Contact contact =  new Contact(FirstName = 'Test', LastName = 'Testerson' + Datetime.now().getTime(),
+    	                   WorkEmail__c = 'fakeemail@salesforce.org', Preferred_Email__c = 'Work Email',
     	                   WorkPhone__c = '206-777-8888', PreferredPhone__c = 'Work Phone',OtherCity = 'Seattle');
     	Database.DMLOptions dmo = new Database.DMLOptions();
         dmo.DuplicateRuleHeader.AllowSave = true;
         contact.setOptions(dmo);
         return contact;
     }
-    
+
     /*********************************************************************************************************
     * @description Gets a Unique Contact for testing based on the parameter.
     * @param n An integer to create unique Contact records.
@@ -84,18 +84,18 @@ public class UTIL_UnitTestData_TEST {
     **********************************************************************************************************/
 
     public static Contact getUniqueContact(Integer n) {
-    	Contact contact =  new Contact(FirstName = 'TestNew'+n, LastName = 'LastNew'+n , 
+    	Contact contact =  new Contact(FirstName = 'TestNew'+n, LastName = 'LastNew'+n ,
     	                   Email = 'last'+n+'@sfdo.com', Phone = '979578'+n);
     	Database.DMLOptions dmo = new Database.DMLOptions();
         dmo.DuplicateRuleHeader.AllowSave = true;
         contact.setOptions(dmo);
         return contact;
     }
-    
+
     public static List<Contact> getMultipleTestContacts(Integer n) {
         List<contact> ContactsToAdd = new List<contact>();
         for(Integer i=0; i<n; i++) {
-            Contact newCon = new Contact(FirstName = i + 'Test' + i, LastName = i + 'Contact_forTests' + i, WorkEmail__c = 'fakeemail' + i + '@salesforce.org', 
+            Contact newCon = new Contact(FirstName = i + 'Test' + i, LastName = i + 'Contact_forTests' + i, WorkEmail__c = 'fakeemail' + i + '@salesforce.org',
                              Preferred_Email__c = 'Work Email', WorkPhone__c = i + '06-777-888' + i, PreferredPhone__c = 'Work Phone', OtherCity = 'Seattle');
             Database.DMLOptions dmo = new Database.DMLOptions();
             dmo.DuplicateRuleHeader.AllowSave = true;
@@ -120,18 +120,18 @@ public class UTIL_UnitTestData_TEST {
     public static User createNewUserForTests(String strUsername) {
 
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
-        User u;	
+        User u;
         // to work around mixed DML errors during tests, you must create user account in its own transaction. got this
         // hack from the web.
-        System.runAs ( new User(Id = UserInfo.getUserId()) ) {        
-	        u = new User(alias = 'jsmith', email='jsmith@acme.com', emailencodingkey='UTF-8', lastname='Smith', 
-	            languagelocalekey='en_US', localesidkey='en_US', profileid = p.Id, timezonesidkey='America/Los_Angeles', 
+        System.runAs ( new User(Id = UserInfo.getUserId()) ) {
+	        u = new User(alias = 'jsmith', email='jsmith@acme.com', emailencodingkey='UTF-8', lastname='Smith',
+	            languagelocalekey='en_US', localesidkey='en_US', profileid = p.Id, timezonesidkey='America/Los_Angeles',
 	            username=strUsername);
 	        insert u;
         }
         return u;
     }
-    
+
     /*********************************************************************************************************
     * @description Initializes (but not inserts) N new Address objects.
     * @param addrCount the number of Address objects to create
@@ -149,28 +149,28 @@ public class UTIL_UnitTestData_TEST {
             addr.MailingCountry__c = 'United States';
             addr.Geolocation__Latitude__s = 47.6097;
             addr.Geolocation__Longitude__s = -122.3331;
-            addrs.add(addr);            
+            addrs.add(addr);
         }
         return addrs;
     }
-    
+
     /*********************************************************************************************************
     * @description Sets up common test data for Account Addresses tests.
     * @param accCount Number of Accounts to create.
     * @param recTypeID The record type to use when creating Accounts.
     * @return The instance of AccsWithAddrs inner class with lists of Accounts and Address__c objects
-    **********************************************************************************************************/    
-    public static AccsWithAddrs createTestAccsAddrs(Integer accCount, String recTypeID) { 
+    **********************************************************************************************************/
+    public static AccsWithAddrs createTestAccsAddrs(Integer accCount, String recTypeID) {
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
-        
+
         AccsWithAddrs accsAddrs = new AccsWithAddrs();
         //instantiate accounts
         accsAddrs.accs = getMultipleTestAccounts(accCount, recTypeID);
-        insert accsAddrs.accs;      
-        
+        insert accsAddrs.accs;
+
         //instantiate addresses
         accsAddrs.addrs = getMultipleTestAddresses(accCount);
-        
+
         //link addresses with accounts and make them default
         for(Integer i = 0; i < accCount; i++) {
             accsAddrs.addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
@@ -178,7 +178,7 @@ public class UTIL_UnitTestData_TEST {
         }
         //insert addresses
         insert accsAddrs.addrs;
-        
+
         //link accounts with addresses and copy address info to accounts
         for(Integer i = 0; i < accCount; i++) {
             accsAddrs.accs[i].Current_Address__c = accsAddrs.addrs[i].Id;
@@ -194,36 +194,36 @@ public class UTIL_UnitTestData_TEST {
 
         //clear our triggers recursion prevention since we are starting a new test
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        
+
         return accsAddrs;
     }
-    
+
     /*********************************************************************************************************
     * @description Groups a list of Accounts and a list of Addresses so they can be returned from a method together.
-    **********************************************************************************************************/ 
+    **********************************************************************************************************/
     public class AccsWithAddrs {
         public List<Account> accs { public get; public set; }
         public List<Address__c> addrs { public get; public set; }
     }
-    
+
     /*********************************************************************************************************
     * @description Sets up common test data for Contact Addresses tests.
     * @param contactCount Number of Contacts to create.
     * @return The instance of ContactsWithAddrs inner class with lists of Contacts and Address__c objects
-    **********************************************************************************************************/  
+    **********************************************************************************************************/
     public static ContactsWithAddrs createTestContactsAddrs(Integer contactCount) {
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
-        
-        ContactsWithAddrs contactsAddrs = new ContactsWithAddrs();        
+
+        ContactsWithAddrs contactsAddrs = new ContactsWithAddrs();
         //instantiate contacts
         contactsAddrs.contacts = getMultipleTestContacts(contactCount);
         Database.DMLOptions dmo = new Database.DMLOptions();
         dmo.DuplicateRuleHeader.AllowSave = true;
         Database.insert(contactsAddrs.contacts, dmo);
-        
+
         //instantiate addresses
         contactsAddrs.addrs = getMultipleTestAddresses(contactCount);
-        
+
         //link addresses with contacts and make them default
         for(Integer i = 0; i < contactCount; i++) {
             contactsAddrs.addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
@@ -231,7 +231,7 @@ public class UTIL_UnitTestData_TEST {
         }
         //insert addresses
         insert contactsAddrs.addrs;
-        
+
        //link contacts with addresses and copy address info to contacts
         for(Integer i = 0; i < contactCount; i++) {
             contactsAddrs.contacts[i].Current_Address__c = contactsAddrs.addrs[i].Id;
@@ -244,21 +244,21 @@ public class UTIL_UnitTestData_TEST {
             contactsAddrs.contacts[i].MailingLongitude = contactsAddrs.addrs[i].Geolocation__Longitude__s;
         }
         update contactsAddrs.contacts;
-        
+
         //clear our triggers recursion prevention since we are starting a new test
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        
+
         return contactsAddrs;
     }
-    
+
     /*********************************************************************************************************
     * @description Groups a list of Contacts and a list of Addresses so they can be returned from a method together.
-    **********************************************************************************************************/ 
+    **********************************************************************************************************/
     public class ContactsWithAddrs {
         public List<Contact> contacts { public get; public set; }
         public List<Address__c> addrs { public get; public set; }
     }
-    
+
     /*********************************************************************************************************
     * @description Sets up common test data for the Address tests.
     *    - this will create & insert N household Accounts, each with M contacts
@@ -270,37 +270,37 @@ public class UTIL_UnitTestData_TEST {
     **********************************************************************************************************/
     public static ContactsAccsWithAddrs createTestConsAccsAddrs(Integer accCount, Integer contactCount, String recTypeID) {
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
-        
+
         ContactsAccsWithAddrs consAccsAddrs = new ContactsAccsWithAddrs();
         consAccsAddrs.contacts = getMultipleTestContacts(accCount * contactCount);
         consAccsAddrs.accs = getMultipleTestAccounts(accCount, recTypeID);
         insert consAccsAddrs.accs;
-        
+
         // link contacts with accounts
         for(Integer i = 0; i < accCount; i++) {
             for(Integer j = 0; j < contactCount; j++) {
                 consAccsAddrs.contacts[ (i * contactCount) + j].AccountId = consAccsAddrs.accs[i].Id;
             }
         }
-        insert consAccsAddrs.contacts; 
-        
+        insert consAccsAddrs.contacts;
+
         /* With accCount = 2, contactCount = 2
             i = 0, j = 0 => contact0 parent is account0
             i = 0, j = 1 => contact1 parent is account0
             i = 1, j = 0 => contact2 parent is account1
             i = 1, j = 1 => contact3 parent is account1
-        */       
-        
+        */
+
         //instantiate addresses
         consAccsAddrs.addrs = getMultipleTestAddresses(accCount);
-        
+
         //link addresses with accounts and make them default
         for(Integer i = 0; i < accCount; i++) {
             consAccsAddrs.addrs[i].Parent_Account__c = consAccsAddrs.accs[i].Id;
             consAccsAddrs.addrs[i].Default_Address__c = true;
         }
         insert consAccsAddrs.addrs;
-        
+
         //link accounts with addresses and copy address info to accounts
         for(Integer i = 0; i < accCount; i++) {
             consAccsAddrs.accs[i].Current_Address__c = consAccsAddrs.addrs[i].ID;
@@ -313,7 +313,7 @@ public class UTIL_UnitTestData_TEST {
             consAccsAddrs.accs[i].BillingLongitude = consAccsAddrs.addrs[i].Geolocation__Longitude__s;
         }
         update  consAccsAddrs.accs;
-        
+
         // link contacts with addresses and copy address info to contacts
         for(Integer i = 0; i < accCount; i++) {
             Account parentAcc = consAccsAddrs.accs[i];
@@ -330,17 +330,17 @@ public class UTIL_UnitTestData_TEST {
             }
         }
         update consAccsAddrs.contacts;
-        
+
         // clear our triggers recursion prevention since we are starting a new test
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        
+
         return consAccsAddrs;
     }
-    
+
     /*********************************************************************************************************
-    * @description Groups a list of Accounts, a list of Contacts, and a list of Addresses so they can be returned 
+    * @description Groups a list of Accounts, a list of Contacts, and a list of Addresses so they can be returned
     * from a method together.
-    **********************************************************************************************************/ 
+    **********************************************************************************************************/
     // TODO - possible tech debt: can we get rid of the other two public inner classes and just use this one?
     public class ContactsAccsWithAddrs {
         public List<Account> accs { public get; public set; }
@@ -366,7 +366,7 @@ public class UTIL_UnitTestData_TEST {
         }
         return errors;
     }
-  
+
     /*********************************************************************************************************
     * @description Get a single Program Plan
     **********************************************************************************************************/
@@ -386,7 +386,7 @@ public class UTIL_UnitTestData_TEST {
             programPlans.add(getProgramPlan());
         }
         return programPlans;
-    } 
+    }
 
     /*********************************************************************************************************
     * @description Get a single Plan Requirement
@@ -431,7 +431,7 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*******************************************************************************************************
-    * @description Inserts a new Language record for testing. 
+    * @description Inserts a new Language record for testing.
     * @param name The name of the Language record.
     * @return The inserted Language record.
     ********************************************************************************************************/
@@ -442,14 +442,14 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*******************************************************************************************************
-    * @description Inserts a new Contact Language record for testing. 
+    * @description Inserts a new Contact Language record for testing.
     * @param languageId The Language associated to the Contact Language record.
     * @param contactId The Contact associated to the Contact Language record.
     * @param isPrimaryLanguage Signifies whether or not the Contact Language should be marked as the Primary Language.
     * @return The inserted Contact Language record.
     ********************************************************************************************************/
     public static Contact_Language__c createContactLanguage(Id languageId, Id contactId, Boolean isPrimaryLanguage) {
-        Contact_Language__c contactLanguageToInsert = 
+        Contact_Language__c contactLanguageToInsert =
             new Contact_Language__c(Language__c = languageId, Contact__c = contactId, Primary_Language__c = isPrimaryLanguage);
         insert contactLanguageToInsert;
         return contactLanguageToInsert;
@@ -471,7 +471,7 @@ public class UTIL_UnitTestData_TEST {
     /*********************************************************************************************************
     * @description Gets a TermGrade with Term and Course Connection for testing.
     * @param termID Term to associate Term Grade with.
-    * @param courseConnectionId CourseConnection to associate Term Grade with. 
+    * @param courseConnectionId CourseConnection to associate Term Grade with.
     * @return The Term Grade record.
     **********************************************************************************************************/
     public static Term_Grade__c getTermGradeWTermCourseConn(Id termID, Id courseConnectionId) {
@@ -495,7 +495,7 @@ public class UTIL_UnitTestData_TEST {
             acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID())[0];
             insert acct;
         }
-        
+
         if (courseId == null) {
             Course__c course = new Course__c(Name = 'ECON 101', Account__c = acct.Id);
             insert course;
@@ -526,7 +526,7 @@ public class UTIL_UnitTestData_TEST {
 
         return timeBlock;
     }
-    
+
     /*********************************************************************************************************
     * @description Gets a Course Connection for testing.
     * @return The Course Connection record.
@@ -544,12 +544,12 @@ public class UTIL_UnitTestData_TEST {
     **********************************************************************************************************/
     public static Course_Enrollment__c getCourseConnection(Id contactId, Id courseOfferingId) {
         Course_Enrollment__c courseConnection = new Course_Enrollment__c(
-            Contact__c = contactId, 
+            Contact__c = contactId,
             Course_Offering__c = courseOfferingId
         );
         return courseConnection;
     }
-    
+
     /*********************************************************************************************************
     * @description Gets a Term Grade for testing.
     * @param contactId The Contact of the Course Term Grade.
@@ -559,13 +559,13 @@ public class UTIL_UnitTestData_TEST {
     **********************************************************************************************************/
     public static Term_Grade__c getTermGrade(Id contactId, Id courseOfferingId, Id courseConnectionId) {
         Term_Grade__c termGrade = new Term_Grade__c(
-            Contact__c = contactId, 
+            Contact__c = contactId,
             Course_Offering__c = courseOfferingId,
             Course_Connection__c = courseConnectionId
         );
         return termGrade;
     }
-    
+
     /*********************************************************************************************************
     * @description Gets a Attendance Event for testing.
     * @return The Attendance Event record.
@@ -600,16 +600,16 @@ public class UTIL_UnitTestData_TEST {
         Facility__c facility = new Facility__c(Name = 'Test Facility ' + Datetime.now().getTime());
         return facility;
     }
-    
+
     /*********************************************************************************************************
     * @description Creates fake Ids for given sObject.
     * @return The fake Id.
     **********************************************************************************************************/
     static Integer s_num = 1;
-    
+
     public static String getFakeId(Schema.SObjectType sot) {
       String result = String.valueOf(s_num++);
-      return sot.getDescribe().getKeyPrefix() + 
+      return sot.getDescribe().getKeyPrefix() +
          '0'.repeat(12-result.length()) + result;
    }
 }

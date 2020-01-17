@@ -33,7 +33,7 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label>Impossible de supprimer l&apos;enregistrement, car des enregistrements enfants existent. Supprimez d&apos;abord les enregistrements enfants.</label>
+        <label>Cet enregistrement ne peut pas être supprimé car il est associé à un ou plusieurs enregistrements associés. Supprimez d’abord les enregistrements associés, puis supprimez cet enregistrement. Pour déterminer quels enregistrements doivent être enregistrés en premier, cliquez sur l’onglet Associé. Si vous ne voyez pas d’enregistrements associés, ou si vous ne parvenez pas à les supprimer, contactez votre administrateur système pour obtenir de l’aide.</label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -61,23 +61,23 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
-        <label><!-- MultipleCourseConnection --></label>
+        <label>Plusieurs inscriptions à des modules sont associées à ce contact et à ce choix de modules. Spécifiez l&apos;inscription à un module qui représente l’inscription de l’étudiant à ce choix de module pour cette note de la période.</label>
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoContactCOFound --></label>
+        <label>Le contact et l’offre de cours ne sont pas spécifiés ou ne correspondent pas à la connexion de cours. Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
         <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoCourseConnection --></label>
+        <label>Aucune connexion de cours n’est associée à ce contact et à cette offre de cours. Si l’étudiant est inscrit à cette offre de cours, créez une connexion de cours.</label>
         <name>NoCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoDataMatch --></label>
+        <label>Le contact et l’offre de cours ne correspondent pas à la connexion de cours. Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoFieldsPopulated --></label>
+        <label>Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours.</label>
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
@@ -85,7 +85,7 @@
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <label><!-- OnlyCourseConnectionPopulated --></label>
+        <label>Aucun contact ou offre de cours n’est associé à cette connexion de cours. Choisissez une connexion de cours valide.</label>
         <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
@@ -245,7 +245,7 @@
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Le format utilisé pour nommer les comptes du foyer.</label>
+        <label>Le format utilisé pour nommer les comptes de foyer.</label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -489,8 +489,16 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Contacts avec plusieurs adresses activés :</label>
+        <label>Contacts avec plusieurs adresses activées :</label>
         <name>stgContactMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillError --></label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillSuccess --></label>
+        <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
         <label>La tâche Apex par lot a traité {0} lots avec {1} échecs.</label>
@@ -529,7 +537,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <label>Activer les fonctionnalités améliorées de téléphone préféré :</label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -601,7 +609,7 @@
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label>La valeur de statut définie dans l&apos;affiliation créée lors de l&apos;inscription au programme.</label>
+        <label>La valeur de Statut définie dans l&apos;affiliation créée lors de l&apos;inscription au programme.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
@@ -617,7 +625,7 @@
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <label>Synchronisez le champ Téléphone préféré avec le champ Téléphone standard du contact et vérifiez que la valeur dans Téléphone préféré existe et a une valeur.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -625,7 +633,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>Le Remplissage des connexions aux cours doit être utilisé uniquement lors de l&apos;activation initiale des Connexions au cours, et seulement dans les organisations dans lesquelles des Offres de cours et des Connexions aux cours (inscriptions) existaient avant l&apos;activation de la fonctionnalité. Le Remplissage convertit tous les contacts répertoriés en tant que professeurs dans une Connexion au cours (inscription) ou une Offre de cours en Type d&apos;enregistrement de professeur par défaut. Le Remplissage convertit ensuite les Contacts des Connexions aux cours (inscriptions) restantes en Type d&apos;enregistrement d&apos;étudiant actif par défaut.</label>
+        <label>Le remplissage des choix de modules doit être utilisé uniquement lors de l&apos;activation initiale des Inscriptions à des modules, et seulement dans les organisations dans lesquelles des Choix de modules et des Inscriptions à des modules existaient avant l&apos;activation de la fonctionnalité. Le remplissage convertit tous les contacts répertoriés en tant que professeur dans une inscription à un module ou un choix de module en type d&apos;enregistrement Professeur par défaut. Le remplissage convertit ensuite les Contacts des Inscriptions à des modules restantes en Type d&apos;enregistrement Étudiant actif par défaut.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -649,23 +657,23 @@
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour un membre professeur.</label>
+        <label>Le type d&apos;enregistrement par défaut lors de la création d&apos;inscriptions à des modules pour un membre professeur.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour des étudiants actifs.</label>
+        <label>Le type d&apos;enregistrement par défaut lors de la création d&apos;inscriptions à des modules pour des étudiants actifs.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label>Vous devez activer les Connexions aux cours avant d&apos;exécuter le Remplissage des connexions aux cours.</label>
+        <label>Vous devez activer les Inscriptions à des modules avant d&apos;exécuter le Remplissage des inscriptions à des modules.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Vous devez activer les Connexions aux cours avant de modifier les types d&apos;enregistrement.</label>
+        <label>Vous devez activer les Inscriptions à des modules avant de modifier les types d&apos;enregistrement.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Les Connexions aux cours associent un contact à une offre de cours. L&apos;activation de cette case permet de choisir la création de la connexion pour un étudiant ou pour un professeur (les deux types d&apos;enregistrement par défaut). Une fois cette case sélectionnée, vous devez définir un Type d&apos;enregistrement d&apos;étudiant actif par défaut et un Type d&apos;enregistrement de professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, il est vivement recommandé d&apos;exécuter le Remplissage dans votre organisation.</label>
+        <label>Les Inscriptions à des modules associent un contact à un choix de modules. L&apos;activation de cette case permet de créer l&apos;inscription pour un étudiant ou pour un professeur (les deux types d&apos;enregistrement par défaut). Une fois cette case sélectionnée, vous devez définir un Type d&apos;enregistrement Étudiant actif par défaut et un Type d&apos;enregistrement Professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, il est vivement recommandé d&apos;exécuter le Remplissage dans votre organisation.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
@@ -701,7 +709,7 @@
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label>Une fois sélectionnées, les exigences du plan peuvent spécifier un plan du prog. ou une EP parente, mais pas les deux. Si vous spécifiez un plan du prog. et une EP parente, un message d’erreur empêchera leur enregi. jusqu’à ce qu’un seul soit sélectionné.</label>
+        <label>Une fois sélectionnées, les exigences du plan peuvent spécifier un plan de programme ou une exigence de plan parente, mais pas les deux. Si vous spécifiez les deux, un message d’erreur empêche leur enregistrement jusqu&apos;à ce qu&apos;un seul soit sélectionné.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -769,7 +777,7 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
-        <label>Sélectionnez un champ pour le téléphone préféré afin de copier la valeur lorsque le champ téléphone standard n’a pas de valeur, ou que plusieurs champs Téléphone sont définis.</label>
+        <label>Sélectionnez un champ pour le téléphone préféré afin de copier la valeur lorsque le champ Téléphone standard n’a pas de valeur, ou lorsque plusieurs champs Téléphone sont définis.</label>
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
@@ -789,7 +797,7 @@
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label>Envoyer les notifications d&apos;erreur :</label>
+        <label>Envoyer des notifications d&apos;erreur :</label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
@@ -825,11 +833,11 @@
         <name>stgTabBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Cours</label>
+        <label>Modules</label>
         <name>stgTabCourse</name>
     </customLabels>
     <customLabels>
-        <label>Connexions aux cours</label>
+        <label>Inscriptions aux modules</label>
         <name>stgTabCourseConn</name>
     </customLabels>
     <customLabels>
@@ -873,7 +881,7 @@
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Cours : migration des données de description</label>
+        <label>Modules : migration des données de description</label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>

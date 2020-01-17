@@ -3471,21 +3471,21 @@
         <help>¿Cuál teléfono debe ser el usado para la mayoría de las comunicaciones con este contacto?</help>
         <label>Teléfono elegido</label>
         <name>PreferredPhone__c</name>
-        <picklistValues>
-            <masterLabel>Home</masterLabel>
-            <translation>Teléfono particular</translation>
+        <picklistValues>	
+            <masterLabel>Home</masterLabel>	
+            <translation>Teléfono particular</translation>	
         </picklistValues>
-        <picklistValues>
-            <masterLabel>Mobile</masterLabel>
-            <translation>Teléfono móvil</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Otro teléfono</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Work</masterLabel>
-            <translation>Teléfono laboral</translation>
+        <picklistValues>	
+            <masterLabel>Mobile</masterLabel>	
+            <translation>Teléfono móvil</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Other</masterLabel>	
+            <translation>Otro teléfono</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Teléfono laboral</translation>	
         </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>
@@ -3508,17 +3508,17 @@
         <help>¿Cuál correo electrónico debe ser el usado para la mayoría de las comunicaciones con este contacto?</help>
         <label>Correo electrónico elegido</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>
-            <masterLabel>Alternate</masterLabel>
-            <translation>Correo electrónico alternativo</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>University</masterLabel>
-            <translation>Correo electrónico de la universidad</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Work</masterLabel>
-            <translation>Correo electrónico laboral</translation>
+        <picklistValues>	
+            <masterLabel>Alternate</masterLabel>	
+            <translation>Correo electrónico alternativo</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>University</masterLabel>	
+            <translation>Correo electrónico de la universidad</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Correo electrónico laboral</translation>	
         </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
