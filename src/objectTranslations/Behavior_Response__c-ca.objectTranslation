@@ -9,77 +9,77 @@
         <value><!-- Behavior Response --></value>
     </caseValues>
     <fields>
-        <help><!-- The system-generated number associated with this event. Format: BI-{0000}. --></help>
-        <label><!-- Behavior Involvement --></label>
+        <help>El número generat pel sistema associat a aquest esdeveniment. Format: BI-{0000}.</help>
+        <label>Implicació de comportament</label>
         <name>Behavior_Involvement__c</name>
-        <relationshipLabel><!-- Behavior Responses --></relationshipLabel>
+        <relationshipLabel>Resposta de comportament</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The recipient of this response. --></help>
-        <label><!-- Contact --></label>
+        <help>El destinatari d&apos;aquesta resposta.</help>
+        <label>Contacte</label>
         <name>Contact__c</name>
     </fields>
     <fields>
-        <help><!-- A description of the Behavior Response. --></help>
-        <label><!-- Description --></label>
+        <help>Una descripció de la resposta al comportament.</help>
+        <label>Descripció</label>
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- The date when the response ends. --></help>
-        <label><!-- End Date --></label>
+        <help>Data en què finalitza la resposta.</help>
+        <label>Data de finalització</label>
         <name>End_Date__c</name>
     </fields>
     <fields>
-        <help><!-- The date when the response starts. --></help>
-        <label><!-- Start Date --></label>
+        <help>Data en què s&apos;inicia la resposta.</help>
+        <label>Data d&apos;inici</label>
         <name>Start_Date__c</name>
     </fields>
     <fields>
-        <help><!-- The status of the response taken. --></help>
-        <label><!-- Status --></label>
+        <help>L&apos;estat de la resposta adoptada.</help>
+        <label>Estat</label>
         <name>Status__c</name>
         <picklistValues>
             <masterLabel>Completed</masterLabel>
-            <translation><!-- Completed --></translation>
+            <translation>Completada</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
+            <translation>En progrés</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
+            <translation>Altres</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Postponed</masterLabel>
-            <translation><!-- Postponed --></translation>
+            <translation>Posposada</translation>
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The type of response taken. --></help>
-        <label><!-- Type --></label>
+        <help>El tipus de resposta adoptada.</help>
+        <label>Tipus</label>
         <name>Type__c</name>
         <picklistValues>
             <masterLabel>Academic Probation</masterLabel>
-            <translation><!-- Academic Probation --></translation>
+            <translation>Període de prova acadèmica</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Expulsion</masterLabel>
-            <translation><!-- Expulsion --></translation>
+            <translation>Expulsió</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
+            <translation>Altres</translation>
         </picklistValues>
     </fields>
     <gender><!-- Feminine --></gender>
     <layouts>
         <layout>EDA Behavior Response Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label>Enllaços personalitzats</label>
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Behavior Response Name --></nameFieldLabel>
+    <nameFieldLabel>Nom de la resposta de comportament</nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>
