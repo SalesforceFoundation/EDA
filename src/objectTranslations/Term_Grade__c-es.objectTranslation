@@ -9,22 +9,22 @@
         <value>Evaluaciones de periodo</value>
     </caseValues>
     <fields>
-      <help><!-- The student for whom the grade is being recorded. --></help>
-      <label><!-- Contact --></label>
-      <name>Contact__c</name>
-      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+        <help>El estudiante para el que se está registrando la evaluación. Cuando se deja en blanco, Contacto se cumplimenta automáticamente desde la Conexión de curso válida al guardar.</help>
+        <label>Contacto</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
     </fields>
     <fields>
-        <help>La clase en que el estudiante recibió este evaluación.</help>
+        <help>La clase en la que el estudiante recibió esta evaluación. Contacto y Oferta de curso en Evaluación de periodo debe coincidir con Contacto y Oferta de curso en el registro Conexión de curso</help>
         <label>Enlace de cursos</label>
         <name>Course_Connection__c</name>
         <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
     </fields>
     <fields>
-      <help><!-- The Course Offering associated with the grade being recorded. --></help>
-      <label><!-- Course Offering --></label>
-      <name>Course_Offering__c</name>
-      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+        <help>La Oferta de curso asociada con la evaluación que se está registrando. Cuando se deja en blanco, Oferta de curso se cumplimenta automáticamente desde la Conexión de curso válida al guardar.</help>
+        <label>Oferta de curso</label>
+        <name>Course_Offering__c</name>
+        <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
     </fields>
     <fields>
         <help>El número de créditos intentados para este curso y periodo de evaluación.</help>

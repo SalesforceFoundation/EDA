@@ -9,24 +9,25 @@
         <value>Course Connections</value>
     </caseValues>
     <fields>
-        <help><!-- The Academic Program the student is enrolled in. --></help>
+        <help><!-- The Academic Program that the Contact is associated with. --></help>
         <label><!-- Contact&apos;s Academic Program --></label>
         <name>Account__c</name>
         <relationshipLabel><!-- Course Connections --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation. --></help>
         <label><!-- Affiliation --></label>
         <name>Affiliation__c</name>
         <relationshipLabel><!-- Course Connection --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The student taking the course. --></help>
+        <help><!-- The Contact connected to the Course Offering, for example a student or faculty member. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Course Connections --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term. --></help>
+        <help><!-- Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term. --></help>
         <label><!-- Course Offering ID --></label>
         <name>Course_Offering__c</name>
         <relationshipLabel><!-- Course Connection --></relationshipLabel>

@@ -12,5 +12,13 @@
       <members>%%%NAMESPACE%%%Course_Enrollment__c.Default</members>
       <name>RecordType</name>
   </types>
+  <types>
+    <members>%%%NAMESPACE%%%Course_Enrollment__c-ca</members>
+    <members>%%%NAMESPACE%%%Course_Enrollment__c-en_GB</members>
+    <members>%%%NAMESPACE%%%Course_Enrollment__c-es_MX</members>
+    <members>%%%NAMESPACE%%%Course_Enrollment__c-es</members>
+    <members>%%%NAMESPACE%%%Course_Enrollment__c-fr</members>
+    <name>CustomObjectTranslation</name>
+  </types>
   <version>45.0</version>
 </Package>

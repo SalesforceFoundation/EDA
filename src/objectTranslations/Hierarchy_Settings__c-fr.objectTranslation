@@ -79,7 +79,7 @@
         <name>Affl_ProgEnroll_Set_Role__c</name>
     </fields>
     <fields>
-        <help>La valeur de statut définie dans l&apos;affiliation créée lors de l&apos;inscription au programme.</help>
+        <help>La valeur de Statut définie dans l&apos;affiliation créée lors de l&apos;inscription au programme.</help>
         <label>Statut affiliation qd inscr. prog. créée</label>
         <name>Affl_ProgEnroll_Status_Map__c</name>
     </fields>
@@ -123,7 +123,7 @@
         <name>Disable_Preferred_Phone_Enforcement__c</name>
     </fields>
     <fields>
-        <label>Activer les connexions aux cours</label>
+        <label>Activer les inscriptions à des modules</label>
         <name>Enable_Course_Connections__c</name>
     </fields>
     <fields>
@@ -132,8 +132,8 @@
         <name>Enable_Debug__c</name>
     </fields>
     <fields>
-        <help><!-- Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value. --></help>
-        <label><!-- Enable New Preferred Phone Sync --></label>
+        <help>Synchronisez le champ Téléphone préféré avec le champ Téléphone standard du contact et vérifiez que la valeur dans Téléphone préféré existe et a une valeur.</help>
+        <label>Activer nouv. synchr. téléphone préféré</label>
         <name>Enable_New_Preferred_Phone_Sync__c</name>
     </fields>
     <fields>
@@ -171,6 +171,42 @@
         <name>Preferred_Phone_Selection__c</name>
     </fields>
     <fields>
+        <label><!-- Prevent Account Deletion --></label>
+        <name>Prevent_Account_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Behavior Involvement Deletion --></label>
+        <name>Prevent_Behavior_Involvement_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Case Deletion --></label>
+        <name>Prevent_Case_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Contact Deletion --></label>
+        <name>Prevent_Contact_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Course Connection Deletion --></label>
+        <name>Prevent_Course_Connection_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Course Offering Deletion --></label>
+        <name>Prevent_Course_Offering_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Plan Requirement Deletion --></label>
+        <name>Prevent_Plan_Requirement_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Program Plan Deletion --></label>
+        <name>Prevent_Program_Plan_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Term Deletion --></label>
+        <name>Prevent_Term_Deletion__c</name>
+    </fields>
+    <fields>
         <help>Détermine la méthode de génération de la relation réciproque. Elle correspond à un paramètre de liste qui utilise des paramètres personnalisés par sexe ou à une inversion de valeur (de « Parent-Enfant » à « Enfant-Parent »)</help>
         <label>Méthode de réciprocité</label>
         <name>Reciprocal_Method__c</name>
@@ -200,7 +236,7 @@
         <name>Student_RecType__c</name>
     </fields>
     <fields>
-        <help>Une fois sélectionnées, les exigences du plan peuvent spécifier un plan du prog. ou une EP parente, mais pas les deux. Si vous spécifiez un plan du prog. et une EP parente, un message d’erreur empêchera leur enregi. jusqu’à ce qu’un seul soit sélectionné.</help>
+        <help>Une fois sélectionnées, les exigences du plan peuvent spécifier un plan de programme ou une exigence de plan parente, mais pas les deux. Si vous spécifiez les deux, un message d’erreur empêche leur enregistrement jusqu&apos;à ce qu&apos;un seul soit sélectionné.</help>
         <label>Valider plan prog. pour EP imbriquée</label>
         <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
