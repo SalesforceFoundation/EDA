@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Oferta de curso</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Ofertas de curso</value>
+    </caseValues>
+    <fields>
+        <label>Capacidad</label>
+        <name>Capacity__c</name>
+    </fields>
+    <fields>
+        <label>Curso</label>
+        <name>Course__c</name>
+        <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Fecha de Finalización</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>La instalación asociada con la oferta de curso.</help>
+        <label>Instalación</label>
+        <name>Facility__c</name>
+        <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Facultad principal</label>
+        <name>Faculty__c</name>
+        <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Id. de Sección</label>
+        <name>Section_ID__c</name>
+    </fields>
+    <fields>
+        <label>Fecha de Inicio</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label>Plazo</label>
+        <name>Term__c</name>
+        <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Bloque de tiempo</label>
+        <name>Time_Block__c</name>
+        <relationshipLabel>Bloques de tiempo</relationshipLabel>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Course Offering Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Id. de Oferta de curso</nameFieldLabel>
+</CustomObjectTranslation>

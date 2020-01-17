@@ -132,8 +132,8 @@
         <name>Enable_Debug__c</name>
     </fields>
     <fields>
-        <help><!-- Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value. --></help>
-        <label><!-- Enable New Preferred Phone Sync --></label>
+        <help>Sincroniza el campo Teléfono de preferencia con el campo Teléfono estándar del contacto y valida que el valor en Teléfono de preferencia existe y tiene un valor.</help>
+        <label>Activar sincr nuevo teléfono preferencia</label>
         <name>Enable_New_Preferred_Phone_Sync__c</name>
     </fields>
     <fields>
@@ -169,6 +169,42 @@
         <help>Seleccione un teléfono preferido cuando se ejecute el trabajo por lotes.</help>
         <label>Selección de teléfono preferido</label>
         <name>Preferred_Phone_Selection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Account Deletion --></label>
+        <name>Prevent_Account_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Behavior Involvement Deletion --></label>
+        <name>Prevent_Behavior_Involvement_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Case Deletion --></label>
+        <name>Prevent_Case_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Contact Deletion --></label>
+        <name>Prevent_Contact_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Course Connection Deletion --></label>
+        <name>Prevent_Course_Connection_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Course Offering Deletion --></label>
+        <name>Prevent_Course_Offering_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Plan Requirement Deletion --></label>
+        <name>Prevent_Plan_Requirement_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Program Plan Deletion --></label>
+        <name>Prevent_Program_Plan_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Term Deletion --></label>
+        <name>Prevent_Term_Deletion__c</name>
     </fields>
     <fields>
         <help>Determina el método utilizado para generar la relación de reciprocidad. Configuración de lista que utiliza parámetros personalizados por género o Inversión de valor, que invierte el tipo si procede (&quot;Principal-Secundario&quot; a &quot;Secundario-Principal&quot;).</help>

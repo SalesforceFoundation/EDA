@@ -132,8 +132,8 @@
         <name>Enable_Debug__c</name>
     </fields>
     <fields>
-        <help><!-- Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value. --></help>
-        <label><!-- Enable New Preferred Phone Sync --></label>
+        <help>Sincronitza el camp del telèfon preferit amb el camp de telèfon estàndard del contacte i valida que el valor del telèfon preferent existeixi i que tingui un valor.</help>
+        <label>Activa la nova funcionalitat de telèfon preferit:</label>
         <name>Enable_New_Preferred_Phone_Sync__c</name>
     </fields>
     <fields>
@@ -169,6 +169,42 @@
         <help>Seleccioneu un telèfon preferent desitjat quan s&apos;executi la tasca per lots.</help>
         <label>Selecció de telèfon preferit</label>
         <name>Preferred_Phone_Selection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Account Deletion --></label>
+        <name>Prevent_Account_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Behavior Involvement Deletion --></label>
+        <name>Prevent_Behavior_Involvement_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Case Deletion --></label>
+        <name>Prevent_Case_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Contact Deletion --></label>
+        <name>Prevent_Contact_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Course Connection Deletion --></label>
+        <name>Prevent_Course_Connection_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Course Offering Deletion --></label>
+        <name>Prevent_Course_Offering_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Plan Requirement Deletion --></label>
+        <name>Prevent_Plan_Requirement_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Program Plan Deletion --></label>
+        <name>Prevent_Program_Plan_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prevent Term Deletion --></label>
+        <name>Prevent_Term_Deletion__c</name>
     </fields>
     <fields>
         <help>Determina el mètode utilitzat per generar la relació recíproca. Configuració de la llista que utilitza la configuració personalitzada per sexe, o la inversió de valor, que inverteix el tipus, si escau (&quot;Principal-Derivat&quot; a &quot;Derivat-Principal&quot;)</help>
