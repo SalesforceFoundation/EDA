@@ -845,6 +845,7 @@
         <members>Application__c-en_GB</members>
         <members>Application__c-en_US</members>
         <members>Application__c-es</members>
+        <members>Application__c-es_MX</members>
         <members>Application__c-fr</members>
         <members>Attendance_Event__c-ca</members>
         <members>Attendance_Event__c-en_GB</members>
@@ -986,11 +987,13 @@
         <members>Test_Score__c-en_GB</members>
         <members>Test_Score__c-en_US</members>
         <members>Test_Score__c-es</members>
+        <members>Test_Score__c-es_MX</members>
         <members>Test_Score__c-fr</members>
         <members>Test__c-ca</members>
         <members>Test__c-en_GB</members>
         <members>Test__c-en_US</members>
         <members>Test__c-es</members>
+        <members>Test__c-es_MX</members>
         <members>Test__c-fr</members>
         <members>Time_Block__c-ca</members>
         <members>Time_Block__c-en_GB</members>
