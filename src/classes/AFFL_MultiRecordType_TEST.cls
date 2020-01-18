@@ -570,15 +570,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
     public static void bulkAffiliationUpdates() { 
         
         setup();
-        
-        // Insert Mappings
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic Program', Primary_Affl_Field__c = 'Primary Academic Program'));
-        insert mappings;
-        
-        Id accRecTypeID = UTIL_Describe_API.getAcademicAccRecTypeID();
-        
+               
 	    List<Account> accList = new List<Account>();
+
         // Insert a Business Account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
         accList.add(bizAcc);
@@ -587,11 +581,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Account hhAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, householdRecTypeID)[0];
         accList.add(hhAcc);
         
-        // Insert an Accademic Account
-        Account acadAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, accRecTypeID)[0];
-        accList.add(acadAcc1);
-        insert accList;
-
         // Insert multiple contacts
         List<Contact> conList = UTIL_UnitTestData_Test.getMultipleTestContacts(3);
         insert conList;
@@ -613,18 +602,18 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Contact contact2 = UTIL_UnitTestData_API.getContact();
         insert contact2;
         
-        // Insert 1 non-primary business affiliation
+        // Insert 1 non-primary business affiliation and 1 primary house hold affiliation
         List<Affiliation__c> newAfflList = new List<Affiliation__c>();
         Affiliation__c afflBizAcc = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, bizAcc.Id, False);
-        Affiliation__c afflAcad = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, acadAcc1.Id, TRUE);
+        Affiliation__c afflAcad = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, TRUE);
         newAfflList.add(afflBizAcc);
         newAfflList.add(afflAcad);
         insert newAfflList;
         
-        // Ensure Primary Organization is NULL
-        Contact con = [SELECT Id, Primary_Organization__c, Primary_Academic_Program__c FROM Contact WHERE Id = :contact2.Id];
+        // Ensure Primary Organization is NULL and household affiliation is populated
+        Contact con = [SELECT Id, Primary_Organization__c, Primary_Household__c FROM Contact WHERE Id = :contact2.Id];
         System.assertEquals(NULL, con.Primary_Organization__c);
-        System.assertEquals(acadAcc1.Id ,con.Primary_Academic_Program__c);
+        System.assertEquals(hhAcc.Id ,con.Primary_Household__c);
         
         // Insert Affiliations on the Contacts with the same Account as the Primary Organization
         // Change the Primary Academic Affiliation to non-primary
@@ -634,14 +623,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
                 Affiliation__c affl1 = UTIL_UnitTestData_TEST.getAffiliation(each.Id, bizAcc.Id, True);
                 afflListNew.add(affl1);
             }
-            Affiliation__c afflhh = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, True);
             Affiliation__c afflBiz = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, bizAcc.Id, True);
-            afflListNew.add(afflhh);
+            Affiliation__c hhAffl1 = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, TRUE);
+            Affiliation__c hhAffl2 = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, False);
+            afflListNew.add(hhAffl1);
+            afflListNew.add(hhAffl2);
             afflListNew.add(afflBiz);
         
-            Affiliation__c afflPrimaryAcad = [SELECT Id, Primary__c from Affiliation__c WHERE Id =:afflAcad.Id];
-            afflPrimaryAcad.Primary__c = False;
-            afflListNew.add(afflPrimaryAcad);
             upsert afflListNew;
         test.stopTest();
         
@@ -650,10 +638,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
             System.assertEquals(bizAcc.Id, eachContact.Primary_Organization__c);    
         }
         
-        // Ensure Primary Household is populated and Primary Academic Program is cleared on another Contact
-        Contact conAfterUpdate = [SELECT Id, Primary_Household__c, Primary_Academic_Program__c FROM Contact WHERE Id = :contact2.Id];
+        // Ensure Primary Household and Primary Business Organization  are populated
+        Contact conAfterUpdate = [SELECT Id, Primary_Household__c FROM Contact WHERE Id = :contact2.Id];
         System.assertEquals(hhAcc.Id, conAfterUpdate.Primary_Household__c);
-        System.assertEquals(NULL, conAfterUpdate.Primary_Academic_Program__c);
     }  		
 
 	 // Test the usage of custom API field name for affiliation mapping for multi-language support
