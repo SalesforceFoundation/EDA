@@ -109,11 +109,10 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
                     }
 
                     // AFTER UPDATE - Runs when AFTER UPDATE Code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)
-					// And when BEFORE INSERT code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update) so that values
-					// populated in BEFORE INSERT is not getting over-written in AFTER UPDATE
+                    // And when BEFORE INSERT code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary) so that values
+                    // populated in BEFORE INSERT is not getting over-written in AFTER UPDATE
                     if (triggerAction == TDTM_Runnable.Action.AfterUpdate 
-                        && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)
-                        && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
+                        && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)) {
                         Affiliation__c afflOld = (Affiliation__c)oldlist[i];
 
                         //If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
@@ -121,7 +120,8 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
                                 && !affl.Primary__c
                                 && lookupFieldAPIName != null
                                 && relatedContact.get(lookupFieldAPIName) == affl.Account__c) {
-                            if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
+                            if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)													
+                               && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
                                 relatedContact.put(lookupFieldAPIName, null);
                                 dmlWrapper.objectsToUpdate.add(relatedContact);
                             }

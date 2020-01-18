@@ -105,6 +105,11 @@ public class UTIL_UnitTestData_TEST {
         return ContactsToAdd;
     }
 
+    public static Affiliation__c getAffiliation(Id contactId, Id accountId, Boolean primary) { 
+        Affiliation__c affl = new Affiliation__c(Contact__c = ContactId, Account__c = AccountId, Primary__c = Primary);
+        return affl;
+    }
+
     public static List<Account> getMultipleTestAccounts(Integer n, ID recTypeId) {
         List<Account> AcctsToAdd = new List<Account>();
         for(Integer i=0; i<n; i++) {
