@@ -602,7 +602,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Contact contact2 = UTIL_UnitTestData_API.getContact();
         insert contact2;
         
-        // Insert 1 non-primary business affiliation and 1 primary house hold affiliation
+        // Insert 1 non-primary business affiliation and 1 primary household affiliation
         List<Affiliation__c> newAfflList = new List<Affiliation__c>();
         Affiliation__c afflBizAcc = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, bizAcc.Id, False);
         Affiliation__c afflAcad = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, TRUE);
@@ -638,7 +638,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
             System.assertEquals(bizAcc.Id, eachContact.Primary_Organization__c);    
         }
         
-        // Ensure Primary Household and Primary Business Organization  are populated
+        // Ensure Primary Household are populated
         Contact conAfterUpdate = [SELECT Id, Primary_Household__c FROM Contact WHERE Id = :contact2.Id];
         System.assertEquals(hhAcc.Id, conAfterUpdate.Primary_Household__c);
     }  		
