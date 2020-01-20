@@ -45,8 +45,12 @@ public with sharing class CENR_AcademicProgram_TEST {
   	@isTest
   	public static void testBulkInserts() {
     	STG_InstallScript.insertMappings();
-      	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-          												Populate_Affil_on_Student_Couse_Cxn__c = true));
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
+                										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+														Populate_Affil_on_Student_Couse_Cxn__c = true,
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()
+            )
+        );
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
@@ -95,8 +99,10 @@ public with sharing class CENR_AcademicProgram_TEST {
   	@isTest
   	public static void testBulkInsertWithAffiliationLookupDisabled() {
     	STG_InstallScript.insertMappings();
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-      													Populate_Affil_on_Student_Couse_Cxn__c = false));
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
+                										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+														Populate_Affil_on_Student_Couse_Cxn__c = false,
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()
 
       	List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
@@ -146,8 +152,10 @@ public with sharing class CENR_AcademicProgram_TEST {
   	@isTest
   	public static void testBulkUpdates() {
     	STG_InstallScript.insertMappings();
-      	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-          												Populate_Affil_on_Student_Couse_Cxn__c = true));
+      	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
+                										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+														Populate_Affil_on_Student_Couse_Cxn__c = true,
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
@@ -207,8 +215,10 @@ public with sharing class CENR_AcademicProgram_TEST {
   	@isTest
   	public static void testBulkUpdatesWithAffiliationLookupDisabled() {
     	STG_InstallScript.insertMappings();
-      	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-          												Populate_Affil_on_Student_Couse_Cxn__c = false));
+      	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = false,
+                										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+														Populate_Affil_on_Student_Couse_Cxn__c = true,
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
