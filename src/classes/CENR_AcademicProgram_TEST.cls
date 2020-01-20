@@ -73,10 +73,18 @@ public with sharing class CENR_AcademicProgram_TEST {
         insert pEnrolls;
 
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
-        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)
-        };
+        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
+            /*new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
+            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)*/
+        for (Integer i = 0; i<2; i++) {
+			Course_Enrollment__c ccon = new Course_Enrollment__c(
+				Contact__c = contacts[i].Id,
+				Program_Enrollment__c = pEnrolls[i].Id,
+				Course_Offering__c = cOffering.Id
+			);
+			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
+			cEnrolls.add(ccon);
+		}
 
         Test.startTest();
         insert cEnrolls;
@@ -125,10 +133,18 @@ public with sharing class CENR_AcademicProgram_TEST {
         insert pEnrolls;
 
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
-        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)
-        };
+        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
+            /*new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
+            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)*/
+        for (Integer i = 0; i<2; i++) {
+			Course_Enrollment__c ccon = new Course_Enrollment__c(
+				Contact__c = contacts[i].Id,
+				Program_Enrollment__c = pEnrolls[i].Id,
+				Course_Offering__c = cOffering.Id
+			);
+			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
+			cEnrolls.add(ccon);
+		}
 
       	Test.startTest();
       	insert cEnrolls;
@@ -178,11 +194,18 @@ public with sharing class CENR_AcademicProgram_TEST {
         insert pEnrolls;
 
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
-        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Contact__c = contacts[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)
-        };
-        insert cEnrolls;
+        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
+            /*new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
+            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)*/
+        for (Integer i = 0; i<2; i++) {
+			Course_Enrollment__c ccon = new Course_Enrollment__c(
+				Contact__c = contacts[i].Id,
+				Program_Enrollment__c = pEnrolls[i].Id,
+				Course_Offering__c = cOffering.Id
+			);
+			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
+			cEnrolls.add(ccon);
+		}
 
         List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
                                                               FROM Course_Enrollment__c
@@ -241,11 +264,18 @@ public with sharing class CENR_AcademicProgram_TEST {
         insert pEnrolls;
 
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
-        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Contact__c = contacts[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)
-        };
-        insert cEnrolls;
+        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
+            /*new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
+            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)*/
+        for (Integer i = 0; i<2; i++) {
+			Course_Enrollment__c ccon = new Course_Enrollment__c(
+				Contact__c = contacts[i].Id,
+				Program_Enrollment__c = pEnrolls[i].Id,
+				Course_Offering__c = cOffering.Id
+			);
+			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
+			cEnrolls.add(ccon);
+		}
 
         List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
                                                               FROM Course_Enrollment__c
