@@ -2,20 +2,20 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>Offre de cours</value>
+        <value>Choix de module</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Offres de cours</value>
+        <value>Choix de modules</value>
     </caseValues>
     <fields>
         <label>Capacité</label>
         <name>Capacity__c</name>
     </fields>
     <fields>
-        <label>Cours</label>
+        <label>Modules</label>
         <name>Course__c</name>
-        <relationshipLabel>Offres de cours</relationshipLabel>
+        <relationshipLabel>Choix de modules</relationshipLabel>
     </fields>
     <fields>
         <label>Date de fin</label>
@@ -25,12 +25,12 @@
         <help>L&apos;établissement associé à cette offre de cours.</help>
         <label>Établissement</label>
         <name>Facility__c</name>
-        <relationshipLabel>Offres de cours</relationshipLabel>
+        <relationshipLabel>Choix de modules</relationshipLabel>
     </fields>
     <fields>
         <label>Professeur principal</label>
         <name>Faculty__c</name>
-        <relationshipLabel>Offres de cours</relationshipLabel>
+        <relationshipLabel>Choix de modules</relationshipLabel>
     </fields>
     <fields>
         <label>ID de section</label>
@@ -41,9 +41,9 @@
         <name>Start_Date__c</name>
     </fields>
     <fields>
-        <label>Durée</label>
+        <label>Période</label>
         <name>Term__c</name>
-        <relationshipLabel>Offres de cours</relationshipLabel>
+        <relationshipLabel>Choix de modules</relationshipLabel>
     </fields>
     <fields>
         <label>Bloc de temps</label>
