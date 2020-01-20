@@ -4,7 +4,7 @@
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
   @Group              :
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 1/20/2020, 10:42:57 AM
+  @Last Modified On   : 1/20/2020, 1:52:30 PM
   @Modification Log   :
   Ver       Date            Author      		    Modification
   1.0    11/18/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
@@ -54,7 +54,6 @@
     </ul>
 
     <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
-
       <span class="{!and(not(v.isView), not(v.hierarchySettings.Enable_Course_Connections__c)) ? '' : 'slds-hide ' }">
         <div class="slds-m-bottom--medium">
           <div class="slds-notify_container">
@@ -89,6 +88,7 @@
           <div class="slds-col slds-size--1-of-1">
             <ui:outputText value="{!$Label.c.stgHelpEnableCourseConnections}" class="slds-text-body--small" />
           </div>
+
           <div class="slds-col slds-grid slds-m-top--medium">
             <div class="slds-col slds-size--1-of-2">
                 {!$Label.c.stgDefaultStudentTypeTitle}
@@ -129,11 +129,19 @@
 
           <div class="slds-col slds-grid slds-m-top--medium">
         	<div class="slds-col slds-size--1-of-2">
-                {!$Label.c.stgAutoPopulateAffiliationTitle}
-                <div class="slds-col slds-size--1-of-1">
-            		<ui:outputText value="{!$Label.c.stgHelpPopulateAffiliationOnStudentCourseConnection}" class="slds-text-body--small" />
-          		</div>
-
+                <div class="slds-col slds-grid slds-size--1-of-1">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgPopulateAffiliationOnStudentCourseConnectionTitle}" />
+                    </div>
+                </div>
+                <br></br>
+                <div class="slds-col">
+                    {!$Label.c.stgPopulateAffiliationOnStudentCourseConnectionTitle2}
+                    <br></br>
+                    <div class="slds-col">
+                    	<ui:outputText value="{!$Label.c.stgHelpPopulateAffiliationOnStudentCourseConnection}" class="slds-text-body--small" />
+                	</div>
+                </div>
             </div>
 
             <div class="slds-col slds-size--1-of-2">
@@ -150,9 +158,7 @@
               		</aura:if>
             	</label>
           	</div>
-
-          </div>
-
+        </div>
       </div>
     </div>
 
@@ -175,13 +181,11 @@
           <ui:outputText value="{!$Label.c.stgTitleCourseConnectionBackfill}" class="slds-text-body--small" />
         </div>
       </div>
-
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-1">
           <ui:outputText value="{!$Label.c.stgHelpCourseConnBackfillDescription}" class="slds-text-body--small" />
         </div>
       </div>
-
       <div class="slds-grid slds-grid--align-center">
         <div>
           <label class="slds-checkbox">
@@ -192,47 +196,16 @@
           </label>
         </div>
       </div>
-
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
           <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="{!$Label.c.stgBtnRunBackfill}" press="{!c.startBackfill}"/>
         </div>
       </div>
-
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
           <ui:outputText value="{!v.startBackfillMessage}" class="slds-text-body--small" />
         </div>
       </div>
-
-      <hr/>
-
-      <div class="slds-grid slds-wrap">
-		<div class="slds-col slds-size--1-of-2">
-                {!$Label.c.stgAffiliationBackfillTitle}
-                <div class="slds-col slds-size--1-of-1">
-            		<ui:outputText value="{!$Label.c.stgAffiliationBackfillDesc}" class="slds-text-body--small" />
-          		</div>
-         </div>
-
-         <div class="slds-grid slds-grid--align-center slds-m-top--medium">
-               	<lightning:button
-                                  label="Run Affiliation Backfill"
-                                  title="backfillAffiliation"
-                                  onclick="{!c.handleAffiliationBackfill}"/>
-
-
-         </div>
-      </div>
-
-      <div class="slds-align_absolute-center">
-
-      	<ui:outputText value="{!v.startBackfillMessageForAffiliation}" class="slds-text-body--small" />
-
-      </div>
-
-
     </div>
-
   </div>
 </aura:component>

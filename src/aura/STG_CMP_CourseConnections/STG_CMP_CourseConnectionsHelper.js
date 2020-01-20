@@ -31,17 +31,16 @@
     action.setCallback(this, function(response) {
         if(response.getState() === "SUCCESS") {
             var successMessage = $A.get("$Label.c.stgCourseConnBackFillSuccess");
-            component.set('v.startBackfillMessage', successMessage);           
+            component.set('v.startBackfillMessage', successMessage);
             component.set('v.backFillToastIcon', 'success');
             component.set('v.backFillToastClass', 'slds-notify slds-notify_toast slds-theme_success');
             var tst = component.find("backFillToast");
             $A.util.removeClass(tst, "slds-hide");
             $A.util.addClass(tst, "slds-show");
-        
             window.setTimeout(
                 $A.getCallback(function() {
                 $A.util.removeClass(tst, "slds-show");
-                $A.util.addClass(tst, "slds-hide");    
+                $A.util.addClass(tst, "slds-hide");
                 }), 5000
             );
 
@@ -57,43 +56,18 @@
               window.setTimeout(
                   $A.getCallback(function() {
                   $A.util.removeClass(tst, "slds-show");
-                  $A.util.addClass(tst, "slds-hide");    
+                  $A.util.addClass(tst, "slds-hide");
                   }), 5000
               );
           }
     });
     $A.enqueueAction(action);
   },
-  
+
   closeBackFillToast: function(component) {
     var tst = component.find("backFillToast");
     $A.util.removeClass(tst, "slds-show");
     $A.util.addClass(tst, "slds-hide");
   },
-  
-  handleAffiliationBackfill : function(component, event, helper) {
-      console.log('affiliationBackfill HS -->'); 
-     var action = component.get("c.executeAffiliationBackfillOnCourseConnection"); 
-     action.setCallback(this, function(response) {
-     	if(response.getState() === "SUCCESS") {
-           	var toast = component.find("successToast"); 
-        	$A.util.removeClass(toast,'slds-hide');
-        	$A.util.addClass(toast, 'slds-show'); 
 
-            console.log('affiliationBackfill HS SUCCES -->'); 
-          	//component.set('v.startBackfillMessageForAffiliation', 'Backfill was successfully started.');
-        } else if(response.getState() === "ERROR") {
-            console.log('affiliationBackfill HS ERROR -->'); 
-          component.set('v.startBackfillMessageForAffiliation', 'There was an error when starting the backfill.');
-      }
-      });
-      $A.enqueueAction(action);
-  }, 
-    
-  closeToast: function(component) {
-        var tst = component.find("successToast");
-        $A.util.removeClass(tst, "slds-show");
-        $A.util.addClass(tst, "slds-hide");
-  },
-    
 })

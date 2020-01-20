@@ -800,14 +800,6 @@
         <value>Auto-Enrollment Status</value>
     </labels>
     <labels>
-        <fullName>stgAutoPopulateAffiliationTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgAutoPopulateAffiliationTitle</shortDescription>
-        <value>Populate Affiliation on Student Course Connections:</value>
-    </labels>
-    <labels>
         <fullName>stgBackfillQueuedEmailSent</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1453,7 +1445,8 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpPopulateAffiliationOnStudentCourseConnection</shortDescription>
-        <value>When a new Student Course Connection is created for a Contact that has an Affiliation record, enabling this checkbox matches the Affiliation to the Program Enrollment associated to the new Student Course Connection. If enabling this feature for the first time in an existing org, it is highly recommended that you run the Backfill in your org.</value>
+        <value>Copy Affiliation from Program Enrollment on Course Connections
+        If selected, and the Course Connection has a value in the Program Enrollment lookup field, copy the Program Enrollment&apos;s Affiliation to the Course Connection&apos;s Affiiliation lookup field. If you&apos;re enabling this feature for the first time in an existing org, we highly recommend that you run the Affiliations Backfill.</value>
     </labels>
     <labels>
         <fullName>stgHelpRelAutoCreatedDup</fullName>
@@ -1557,7 +1550,15 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgPopulateAffiliationOnStudentCourseConnectionTitle</shortDescription>
-        <value>Populate Affiliation on Student Course Connections:</value>
+        <value>Populate Affiliation FIELD on Student Course Connections from Program Enrollment</value>
+    </labels>
+    <labels>
+        <fullName>stgPopulateAffiliationOnStudentCourseConnectionTitle2</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgPopulateAffiliationOnStudentCourseConnectionTitle2</shortDescription>
+        <value>Copy Affiliation from Program Enrollment on Course Connections</value>
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
