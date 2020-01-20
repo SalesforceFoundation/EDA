@@ -2,16 +2,16 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>Durée</value>
+        <value>Période</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Durées</value>
+        <value>Périodes</value>
     </caseValues>
     <fields>
         <label>Compte</label>
         <name>Account__c</name>
-        <relationshipLabel>Durées</relationshipLabel>
+        <relationshipLabel>Périodes</relationshipLabel>
     </fields>
     <fields>
         <label>Date de fin</label>
@@ -26,9 +26,9 @@
         <name>Instructional_Days__c</name>
     </fields>
     <fields>
-        <label>Durée parente</label>
+        <label>Période parente</label>
         <name>Parent_Term__c</name>
-        <relationshipLabel>Durées</relationshipLabel>
+        <relationshipLabel>Périodes</relationshipLabel>
     </fields>
     <fields>
         <label>Date de début</label>
@@ -39,7 +39,7 @@
         <name>Type__c</name>
         <picklistValues>
             <masterLabel>Part of Term</masterLabel>
-            <translation>Partie de la durée</translation>
+            <translation>Partie de la période</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Quarter</masterLabel>
@@ -62,6 +62,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel>Nom de la durée</nameFieldLabel>
+    <nameFieldLabel>Nom de la période</nameFieldLabel>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

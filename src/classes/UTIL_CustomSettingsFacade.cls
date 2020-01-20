@@ -159,7 +159,11 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Validate_Program_Plan_for_Nested_PR__c = mySettings.Validate_Program_Plan_for_Nested_PR__c;
         settings.Preferred_Phone_Selection__c = mySettings.Preferred_Phone_Selection__c;
         settings.Household_Other_Name_Setting__c = mySettings.Household_Other_Name_Setting__c;
+<<<<<<< HEAD
         settings.Prevent_Contact_Deletion__c = mySettings.Prevent_Contact_Deletion__c;
+=======
+        settings.Prevent_Course_Connection_Deletion__c = mySettings.Prevent_Course_Connection_Deletion__c;
+>>>>>>> 11e3c4008807dc59d4a5f2502d2a1a45480915fd
         orgSettings = settings;
         return settings;
     }

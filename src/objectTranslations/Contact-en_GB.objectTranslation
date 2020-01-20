@@ -3471,21 +3471,21 @@
         <help>Which phone number should be used for most communications involving this Contact?</help>
         <label>Preferred Phone</label>
         <name>PreferredPhone__c</name>
-        <picklistValues>
-            <masterLabel>Home</masterLabel>
-            <translation>Home Phone</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Mobile</masterLabel>
-            <translation>Mobile Phone</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Other Phone</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Work</masterLabel>
-            <translation>Work Phone</translation>
+        <picklistValues>	
+            <masterLabel>Home</masterLabel>	
+            <translation>Home Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Mobile</masterLabel>	
+            <translation>Mobile Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Other</masterLabel>	
+            <translation>Other Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Work Phone</translation>	
         </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>
@@ -3508,17 +3508,17 @@
         <help>Which email should be used for most communications involving this Contact?</help>
         <label>Preferred Email</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>
-            <masterLabel>Alternate</masterLabel>
-            <translation>Alternate Email</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>University</masterLabel>
-            <translation>University Email</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Work</masterLabel>
-            <translation>Work Email</translation>
+        <picklistValues>	
+            <masterLabel>Alternate</masterLabel>	
+            <translation>Alternate Email</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>University</masterLabel>	
+            <translation>University Email</translation>	
+        </picklistValues>	
+            <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Work Email</translation>	
         </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
@@ -3532,6 +3532,11 @@
             <masterLabel>Work Email</masterLabel>
             <translation>Work Email</translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Primary Academic Program --></label>
+        <name>Primary_Academic_Program__c</name>
+        <relationshipLabel><!-- Students --></relationshipLabel>
     </fields>
     <fields>
         <help>Which type of address is the mailing address?</help>
@@ -3549,6 +3554,16 @@
             <masterLabel>Work</masterLabel>
             <translation>Work</translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Primary Department --></label>
+        <name>Primary_Department__c</name>
+        <relationshipLabel><!-- Department Members --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary Educational Institution --></label>
+        <name>Primary_Educational_Institution__c</name>
+        <relationshipLabel><!-- Institution Members --></relationshipLabel>
     </fields>
     <fields>
         <label>Primary Household</label>

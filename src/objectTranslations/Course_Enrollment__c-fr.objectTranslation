@@ -2,19 +2,20 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>Connexion au cours</value>
+        <value>Inscription à un module</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Connexions au cours</value>
+        <value>Inscriptions à des modules</value>
     </caseValues>
     <fields>
         <help>Le programme académique auquel l&apos;étudiant est inscrit.</help>
         <label>Programme académique du contact</label>
         <name>Account__c</name>
-        <relationshipLabel>Connexions aux cours</relationshipLabel>
+        <relationshipLabel>Inscriptions aux modules</relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation. --></help>
         <label>Affiliation</label>
         <name>Affiliation__c</name>
         <relationshipLabel>Connexion au cours</relationshipLabel>
@@ -23,10 +24,10 @@
         <help>L&apos;étudiant inscrit au cours.</help>
         <label>Contact</label>
         <name>Contact__c</name>
-        <relationshipLabel>Connexions aux cours</relationshipLabel>
+        <relationshipLabel>Inscriptions aux modules</relationshipLabel>
     </fields>
     <fields>
-        <help>L&apos;offre de cours à laquelle l&apos;étudiant est inscrit. Le cours est offert pour une durée spécifique.</help>
+        <help>Le choix du module auquel l&apos;étudiant est inscrit. Le module est offert pour une période spécifique.</help>
         <label>ID d&apos;offre de cours</label>
         <name>Course_Offering__c</name>
         <relationshipLabel>Connexion au cours</relationshipLabel>
@@ -52,7 +53,7 @@
         <help>Le numéro d&apos;enregistrement d&apos;inscription au programme auquel l&apos;étudiant est inscrit. Associe un étudiant à un programme académique.</help>
         <label>ID d&apos;inscription au programme</label>
         <name>Program_Enrollment__c</name>
-        <relationshipLabel>Connexions aux cours</relationshipLabel>
+        <relationshipLabel>Inscriptions aux modules</relationshipLabel>
     </fields>
     <fields>
         <help>Représente le statut de connexion au cours.</help>
@@ -75,6 +76,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel>ID de connexion au cours</nameFieldLabel>
+    <nameFieldLabel>ID d&apos;inscriptions aux modules</nameFieldLabel>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
