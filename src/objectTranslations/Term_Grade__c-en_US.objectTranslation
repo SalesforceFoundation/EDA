@@ -9,19 +9,19 @@
         <value>Term Grades</value>
     </caseValues>
     <fields>
-        <help><!-- The student for whom the grade is being recorded. --></help>
+        <help><!-- The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The class in which the student received this grade. --></help>
+        <help><!-- The class in which the student received this grade. The Contact and Course Offering on Term Grade must match the Contact and Course Offering on the Course Connection record. --></help>
         <label><!-- Course Connection --></label>
         <name>Course_Connection__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The Course Offering associated with the grade being recorded. --></help>
+        <help><!-- The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save. --></help>
         <label><!-- Course Offering --></label>
         <name>Course_Offering__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>

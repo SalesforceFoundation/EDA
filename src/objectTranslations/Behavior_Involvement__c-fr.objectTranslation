@@ -9,55 +9,55 @@
         <value><!-- Behavior Involvement --></value>
     </caseValues>
     <fields>
-        <help><!-- The Case that represents the event being reported. --></help>
-        <label><!-- Case --></label>
+        <help>La requête qui représente l’événement signalé.</help>
+        <label>Requête</label>
         <name>Case__c</name>
-        <relationshipLabel><!-- Behavior Involvements --></relationshipLabel>
+        <relationshipLabel>Implications du comportement</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The student or faculty Contact who was directly involved in the event. --></help>
-        <label><!-- Contact --></label>
+        <help>Le contact de la faculté ou l’étudiant directement impliqué dans l’événement.</help>
+        <label>Contact</label>
         <name>Contact__c</name>
-        <relationshipLabel><!-- Behavior Involvements --></relationshipLabel>
+        <relationshipLabel>Implications du comportement</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- A description of a person&apos;s involvement in a behavior event. --></help>
-        <label><!-- Description --></label>
+        <help>Une description de l’implication d&apos;une personne dans un événement lié à un comportement.</help>
+        <label>Description</label>
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- The role this person played in the event. --></help>
-        <label><!-- Role --></label>
+        <help>Le rôle que cette personne a joué dans l’événement.</help>
+        <label>Rôle</label>
         <name>Role__c</name>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
+            <translation>Autre</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Perpetrator</masterLabel>
-            <translation><!-- Perpetrator --></translation>
+            <translation>Auteur</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Reporter</masterLabel>
-            <translation><!-- Reporter --></translation>
+            <translation>Informateur</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Victim</masterLabel>
-            <translation><!-- Victim --></translation>
+            <translation>Victime</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Witness</masterLabel>
-            <translation><!-- Witness --></translation>
+            <translation>Témoin</translation>
         </picklistValues>
     </fields>
     <gender><!-- Masculine --></gender>
     <layouts>
         <layout>EDA Behavior Involvement Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label>Liens personnalisés</label>
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Behavior Involvement Name --></nameFieldLabel>
+    <nameFieldLabel>Nom de l’implication du comportement</nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

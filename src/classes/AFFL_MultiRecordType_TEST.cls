@@ -475,7 +475,158 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         System.assertEquals(0, allAffiliationList.size()); 
 
-	}	
+	}
+
+/*********************************************************************************************************
+* @description
+* This method ensures concurrent updates to multiple affiliation records as Primary populates correct  
+* Primary fields on related Contact
+*/
+    @isTest
+    public static void multipleAffiliationUpdates() {        
+
+        setup();
+        
+        // Insert Accounts       
+        Account bizAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account hhAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, householdRecTypeID)[0];
+        Account hhAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, householdRecTypeID)[0];
+
+        insert new Account[] {bizAcc1, bizAcc2, hhAcc1, hhAcc2};
+                
+        // Insert a Contact
+        Contact contact1 = UTIL_UnitTestData_API.getContact();
+        Contact contact2 = UTIL_UnitTestData_API.getContact();
+        insert new Contact[] {contact1, contact2};
+
+        //Insert primary and non-primary Affiliations
+        Affiliation__c affl1 = UTIL_UnitTestData_TEST.getAffiliation(contact1.Id, bizAcc1.Id, True);
+        Affiliation__c affl2 = UTIL_UnitTestData_TEST.getAffiliation(contact1.Id, bizAcc2.Id, False);
+        Affiliation__c affl3 = UTIL_UnitTestData_TEST.getAffiliation(contact1.Id, hhAcc1.Id, True);
+        Affiliation__c affl4 = UTIL_UnitTestData_TEST.getAffiliation(contact1.Id, hhAcc2.Id, False);
+        
+        Affiliation__c affl5 = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, bizAcc1.Id, True);
+        Affiliation__c affl6 = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, bizAcc2.Id, False);
+        Affiliation__c affl7 = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc1.Id, True);
+        Affiliation__c affl8 = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc2.Id, False);
+        
+        insert new Affiliation__c[] {affl1, affl2, affl3, affl4,
+                                     affl5, affl6, affl7, affl8};
+        
+        for (Contact eachCon: [SELECT Id, Primary_Organization__c, Primary_Household__c FROM Contact]) {
+        
+            // Ensure Primary fields on Contact are populated
+        	System.assertEquals(eachCon.Primary_Organization__c, bizAcc1.Id);
+        	System.assertEquals(eachCon.Primary_Household__c, hhAcc1.Id);
+        }
+        // Make non-primary Affliations as primary
+        Test.startTest();
+            List<Affiliation__c> afflList = new List<Affiliation__c>();
+            for (Affiliation__c eachAffl : [SELECT Id, Primary__c FROM Affiliation__c WHERE Primary__c = False]) {
+                eachAffl.Primary__c = True;
+                afflList.add(eachAffl);           
+            }
+            if (afflList.size() > 0) {
+                update afflList;
+            }
+        Test.stopTest();
+        
+        for (contact conAfterUpdate : [SELECT Id, Primary_Organization__c, Primary_Household__c FROM Contact]) {       
+			// Ensure Primary fields on Contact are populated with new Accounts
+        	System.assertEquals(conAfterUpdate.Primary_Organization__c, bizAcc2.Id);
+        	System.assertEquals(conAfterUpdate.Primary_Household__c, hhAcc2.Id);
+        }
+		// Ensure old Affliations are made non-primary
+        for (Affiliation__c eachAffl : [SELECT Id, Primary__c FROM Affiliation__c WHERE (Contact__c = :contact1.Id OR Contact__c = :contact2.Id) AND 
+                                        (Account__c = :bizAcc1.Id OR
+                                         Account__c = :hhAcc1.Id )]) {                                       
+            System.assertEquals(eachAffl.Primary__c, False);                                                                       
+        }                                   
+    }
+	
+/*********************************************************************************************************
+* @description
+* This bulk test method ensures Multiple affiliations to the same Business Organization don't
+* prevent Primary fields on Contacts from updating
+*/
+
+    @isTest
+    public static void bulkAffiliationUpdates() { 
+        
+        setup();
+               
+	    List<Account> accList = new List<Account>();
+
+        // Insert a Business Account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        accList.add(bizAcc);
+        
+        // Insert a Household Account
+        Account hhAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, householdRecTypeID)[0];
+        accList.add(hhAcc);
+        
+        // Insert multiple contacts
+        List<Contact> conList = UTIL_UnitTestData_Test.getMultipleTestContacts(3);
+        insert conList;
+        
+        // Insert 3 Primay Business Affiliations
+        List<Affiliation__c> afflList = new List<Affiliation__c>();
+        for (Contact each: conList) {
+            Affiliation__c affl = UTIL_UnitTestData_TEST.getAffiliation(each.Id, bizAcc.Id, True);
+            afflList.add(affl);
+        }
+        insert afflList;
+        
+        // Verify Primary Buisness Organization is populated on the Contact
+        for (Contact eachContact : [SELECT Id, Primary_Organization__c FROM Contact]) {
+            System.assertEquals(bizAcc.Id, eachContact.Primary_Organization__c);    
+        }
+        
+        // Insert a contact
+        Contact contact2 = UTIL_UnitTestData_API.getContact();
+        insert contact2;
+        
+        // Insert 1 non-primary business affiliation and 1 primary household affiliation
+        List<Affiliation__c> newAfflList = new List<Affiliation__c>();
+        Affiliation__c afflBizAcc = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, bizAcc.Id, False);
+        Affiliation__c afflAcad = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, TRUE);
+        newAfflList.add(afflBizAcc);
+        newAfflList.add(afflAcad);
+        insert newAfflList;
+        
+        // Ensure Primary Organization is NULL and household affiliation is populated
+        Contact con = [SELECT Id, Primary_Organization__c, Primary_Household__c FROM Contact WHERE Id = :contact2.Id];
+        System.assertEquals(NULL, con.Primary_Organization__c);
+        System.assertEquals(hhAcc.Id ,con.Primary_Household__c);
+        
+        // Insert Affiliations on the Contacts with the same Account as the Primary Organization
+        // Change the Primary Academic Affiliation to non-primary
+        test.startTest();
+            List<Affiliation__c> afflListNew = new List<Affiliation__c>();
+            for (Contact each: conList) {
+                Affiliation__c affl1 = UTIL_UnitTestData_TEST.getAffiliation(each.Id, bizAcc.Id, True);
+                afflListNew.add(affl1);
+            }
+            Affiliation__c afflBiz = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, bizAcc.Id, True);
+            Affiliation__c hhAffl1 = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, TRUE);
+            Affiliation__c hhAffl2 = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, False);
+            afflListNew.add(hhAffl1);
+            afflListNew.add(hhAffl2);
+            afflListNew.add(afflBiz);
+        
+            upsert afflListNew;
+        test.stopTest();
+        
+        // Verify Primary Buisness Organization on Contacts are not erased         
+        for (Contact eachContact : [SELECT Id, Primary_Organization__c FROM Contact]) {
+            System.assertEquals(bizAcc.Id, eachContact.Primary_Organization__c);    
+        }
+        
+        // Ensure Primary Household are populated
+        Contact conAfterUpdate = [SELECT Id, Primary_Household__c FROM Contact WHERE Id = :contact2.Id];
+        System.assertEquals(hhAcc.Id, conAfterUpdate.Primary_Household__c);
+    }  		
 
 	 // Test the usage of custom API field name for affiliation mapping for multi-language support
     

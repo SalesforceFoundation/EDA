@@ -976,6 +976,22 @@
         <value>Contact Multi-Addresses Enabled:</value>
     </labels>
     <labels>
+        <fullName>stgCourseConnBackFillError</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgCourseConnBackFillError</shortDescription>
+        <value>There was an error when starting the backfill.</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseConnBackFillSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgCourseConnBackFillSuccess</shortDescription>
+        <value>The backfill was queued successfully.</value>
+    </labels>
+    <labels>
         <fullName>stgCourseDescriptionCopyEmailBody</fullName>
         <categories>Courses</categories>
         <language>en_US</language>
