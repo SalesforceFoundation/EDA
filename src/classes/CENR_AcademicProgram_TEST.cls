@@ -48,9 +48,7 @@ public with sharing class CENR_AcademicProgram_TEST {
 		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
                 										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
 														Populate_Affil_on_Student_Couse_Cxn__c = true,
-                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()
-            )
-        );
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
@@ -102,7 +100,7 @@ public with sharing class CENR_AcademicProgram_TEST {
 		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
                 										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
 														Populate_Affil_on_Student_Couse_Cxn__c = false,
-                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
       	List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
