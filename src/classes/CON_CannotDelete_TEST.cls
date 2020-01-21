@@ -1291,6 +1291,79 @@ private with sharing class CON_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and if
+    * one of the Contact record has child records associated to it, then it should be deleted. The Contact record
+    * that do not have any child related records should not be deleted.
+    */
+    @isTest
+    private static void cannotDeleteSomeContacts() {
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                         (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                          Prevent_Contact_Deletion__c = true));
+
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        insert contacts;
+
+        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        insert term;
+
+        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        insert course;
+
+        Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[1].Id);
+        insert affilliation;
+
+        Application__c applicant = new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[1].Id);
+        insert applicant;
+
+        Attendance_Event__c attendance = new Attendance_Event__c(Date__c = System.today(), Contact__c = contacts[1].Id);
+        insert attendance;
+
+        Id credentialRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Credential').getRecordTypeId();
+        Attribute__c credentialAttribute = new Attribute__c(Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId);
+        insert credentialAttribute;
+
+        Case caseRecord = new Case(ContactId = contacts[1].Id, AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now());
+        insert caseRecord;
+
+       	Language__c language = new Language__c(Name = 'Spanish');
+        insert language;
+
+        Contact_Language__c contactLanguage = new Contact_Language__c(Contact__c = contacts[1].Id, Language__c = language.Id);
+        insert contactLanguage;
+
+        Course_Offering__c courseOffering = new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id);
+        insert courseOffering;
+
+		Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.Id, Contact__c = contacts[1].Id);
+        insert termGrade;
+
+        Course_Enrollment__c courseCxn = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id);
+        insert courseCxn;
+
+        Program_Enrollment__c programEnrollment = new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id);
+        insert programEnrollment;
+
+        Test__c testRecord = new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id);
+        insert testRecord;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(contacts, false);
+        Test.stopTest();
+
+        //Verify that 1 of the Contact records was deleted
+        List<Contact> returnContacts = [SELECT Id
+                                        FROM Contact
+                                        WHERE Id IN :contacts];
+        System.assertEquals(true, results[0].success);
+        System.assertEquals(false, results[1].success);
+        System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
+    }
+
+    /*********************************************************************************************************
     * @description Test method to test if Prevent_Contact_Deletion__c is disabled in Hierarchy Settings,and the
     * Contact record has different child records associated to it,then it can be deleted.
     */
@@ -1398,5 +1471,75 @@ private with sharing class CON_CannotDelete_TEST {
                                         FROM Contact
                                         WHERE Id IN :contacts];
         System.assertEquals(0, returnContacts.size());
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to test if Prevent_Contact_Deletion__c is disabled in Hierarchy Settings, and if
+    * one of the Contact record has child records associated to it, then it should be deleted. The Contact record
+    * that do not have any child related records should be deleted.
+    */
+    @isTest
+    private static void canDeleteAllContacts() {
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                         (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                          Prevent_Contact_Deletion__c = false));
+
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        insert contacts;
+
+        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        insert term;
+
+        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        insert course;
+
+        Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[1].Id);
+        insert affilliation;
+
+        Application__c applicant = new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[1].Id);
+        insert applicant;
+
+        Attendance_Event__c attendance = new Attendance_Event__c(Date__c = System.today(), Contact__c = contacts[1].Id);
+        insert attendance;
+
+        Id credentialRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Credential').getRecordTypeId();
+        Attribute__c credentialAttribute = new Attribute__c(Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId);
+        insert credentialAttribute;
+
+       	Language__c language = new Language__c(Name = 'Spanish');
+        insert language;
+
+        Contact_Language__c contactLanguage = new Contact_Language__c(Contact__c = contacts[1].Id, Language__c = language.Id);
+        insert contactLanguage;
+
+        Course_Offering__c courseOffering = new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id);
+        insert courseOffering;
+
+		Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.Id, Contact__c = contacts[1].Id);
+        insert termGrade;
+
+        Course_Enrollment__c courseCxn = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id);
+        insert courseCxn;
+
+        Program_Enrollment__c programEnrollment = new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id);
+        insert programEnrollment;
+
+        Test__c testRecord = new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id);
+        insert testRecord;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(contacts, false);
+        Test.stopTest();
+
+        //Verify that all of the Contact records was deleted
+        List<Contact> returnContacts = [SELECT Id
+                                        FROM Contact
+                                        WHERE Id IN :contacts];
+        System.assertEquals(0, returnContacts.size());
+        System.assertEquals(true, results[0].success);
+        System.assertEquals(true, results[1].success);
     }
 }
