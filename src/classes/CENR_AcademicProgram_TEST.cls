@@ -74,8 +74,6 @@ public with sharing class CENR_AcademicProgram_TEST {
 
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
         List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
-            /*new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)*/
         for (Integer i = 0; i<2; i++) {
 			Course_Enrollment__c ccon = new Course_Enrollment__c(
 				Contact__c = contacts[i].Id,
@@ -91,8 +89,8 @@ public with sharing class CENR_AcademicProgram_TEST {
         Test.stopTest();
 
         List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
-                                                              FROM Course_Enrollment__c
-                                                              WHERE ID IN :cEnrolls];
+                                                              	FROM Course_Enrollment__c
+                                                              	WHERE ID IN :cEnrolls];
         System.assertEquals(academicProgram.Id, returnCourseEnrollments[0].Account__c);
         System.assertNotEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
     }
@@ -134,8 +132,6 @@ public with sharing class CENR_AcademicProgram_TEST {
 
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
         List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
-            /*new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)*/
         for (Integer i = 0; i<2; i++) {
 			Course_Enrollment__c ccon = new Course_Enrollment__c(
 				Contact__c = contacts[i].Id,
@@ -151,8 +147,8 @@ public with sharing class CENR_AcademicProgram_TEST {
       	Test.stopTest();
 
       	List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
-                                                              FROM Course_Enrollment__c
-                                                              WHERE ID IN :cEnrolls];
+                                                              	FROM Course_Enrollment__c
+                                                              	WHERE ID IN :cEnrolls];
       	System.assertEquals(academicProgram.Id, returnCourseEnrollments[1].Account__c);
       	System.assertEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
   	}
@@ -195,21 +191,19 @@ public with sharing class CENR_AcademicProgram_TEST {
 
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
         List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
-            /*new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)*/
         for (Integer i = 0; i<2; i++) {
 			Course_Enrollment__c ccon = new Course_Enrollment__c(
 				Contact__c = contacts[i].Id,
-				Program_Enrollment__c = pEnrolls[i].Id,
 				Course_Offering__c = cOffering.Id
 			);
 			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
 			cEnrolls.add(ccon);
 		}
+        insert cEnrolls;
 
         List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
-                                                              FROM Course_Enrollment__c
-                                                              WHERE ID IN :cEnrolls];
+                                                              	FROM Course_Enrollment__c
+                                                              	WHERE ID IN :cEnrolls];
         System.assertEquals(NULL, returnCourseEnrollments[0].Account__c);
         System.assertEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
 
@@ -221,8 +215,8 @@ public with sharing class CENR_AcademicProgram_TEST {
         Test.stopTest();
 
         List<Course_Enrollment__c> returnCEnrollments = [SELECT Account__c, Affiliation__c
-                                                              FROM Course_Enrollment__c
-                                                              WHERE ID IN :cEnrolls];
+                                                            FROM Course_Enrollment__c
+                                                            WHERE ID IN :cEnrolls];
         System.assertEquals(academicProgram.Id, returnCEnrollments[0].Account__c);
         System.assertNotEquals(NULL, returnCEnrollments[0].Affiliation__c);
     }
@@ -238,7 +232,7 @@ public with sharing class CENR_AcademicProgram_TEST {
     	STG_InstallScript.insertMappings();
       	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = false,
                 										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														Populate_Affil_on_Student_Couse_Cxn__c = true,
+														Populate_Affil_on_Student_Couse_Cxn__c = false,
                 										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
@@ -265,21 +259,19 @@ public with sharing class CENR_AcademicProgram_TEST {
 
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
         List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
-            /*new Course_Enrollment__c(Contact__c = contacts[0].Id, Program_Enrollment__c = pEnrolls[0].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Program_Enrollment__c = pEnrolls[1].Id, Course_Offering__c = cOffering.Id, RecordTypeId = studentCourseCxnRecTypeId)*/
         for (Integer i = 0; i<2; i++) {
 			Course_Enrollment__c ccon = new Course_Enrollment__c(
 				Contact__c = contacts[i].Id,
-				Program_Enrollment__c = pEnrolls[i].Id,
 				Course_Offering__c = cOffering.Id
 			);
 			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
 			cEnrolls.add(ccon);
 		}
+		insert cEnrolls;
 
         List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
-                                                              FROM Course_Enrollment__c
-                                                              WHERE ID IN :cEnrolls];
+                                                            	FROM Course_Enrollment__c
+                                                              	WHERE ID IN :cEnrolls];
         System.assertEquals(NULL, returnCourseEnrollments[0].Account__c);
         System.assertEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
 
@@ -291,8 +283,8 @@ public with sharing class CENR_AcademicProgram_TEST {
         Test.stopTest();
 
         List<Course_Enrollment__c> returnCEnrollments = [SELECT Account__c, Affiliation__c
-                                                              FROM Course_Enrollment__c
-                                                              WHERE ID IN :cEnrolls];
+                                                        	FROM Course_Enrollment__c
+                                                            WHERE ID IN :cEnrolls];
         System.assertEquals(academicProgram.Id, returnCEnrollments[0].Account__c);
         System.assertEquals(NULL, returnCEnrollments[0].Affiliation__c);
     }
