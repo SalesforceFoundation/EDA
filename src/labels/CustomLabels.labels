@@ -1429,8 +1429,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpPopulateAffiliationOnStudentCourseConnection</shortDescription>
-        <value>Copy Affiliation from Program Enrollment on Course Connections
-        If selected, and the Course Connection has a value in the Program Enrollment lookup field, copy the Program Enrollment&apos;s Affiliation to the Course Connection&apos;s Affiiliation lookup field. If you&apos;re enabling this feature for the first time in an existing org, we highly recommend that you run the Affiliations Backfill.</value>
+        <value>If selected, and the Course Connection has a value in the Program Enrollment lookup field, copy the Program Enrollment&apos;s Affiliation to the Course Connection&apos;s Affiiliation lookup field. If you&apos;re enabling this feature for the first time in an existing org, we highly recommend that you run the Affiliations Backfill.</value>
     </labels>
     <labels>
         <fullName>stgHelpRelAutoCreatedDup</fullName>
