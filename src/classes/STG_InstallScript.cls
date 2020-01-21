@@ -250,8 +250,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @return void
     */
     global static void disableAutoPopulationOfAffilOnStudentCourseCxn(Version previousVersion) {
-        if(previousVersion != null && previousVersion.compareTo(new Version(1,89)) < 0) {
-            UTIL_Debug.debug('***Upgrading to version 1.89');
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,92)) < 0) {
+            UTIL_Debug.debug('***Upgrading to version 1.92');
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
             if(orgSettings.Populate_Affil_on_Student_Couse_Cxn__c == null || orgSettings.Disable_Preferred_Phone_Enforcement__c == true) {
                 orgSettings.Populate_Affil_on_Student_Couse_Cxn__c = false;

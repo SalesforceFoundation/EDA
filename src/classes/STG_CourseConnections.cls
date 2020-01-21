@@ -44,6 +44,7 @@ public class STG_CourseConnections {
         Id ApexJobId = Database.executeBatch(batch, 200);
         return ApexJobId;
     }
+
     /***********************************************************************************************
     * @description Enqueues and returns a Job Id for existing Student Course Connections
     * with missing Affiliation backfill.

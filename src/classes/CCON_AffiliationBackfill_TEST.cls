@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019, Salesforce.org
+    Copyright (c) 2020, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2019
+* @date 2020
 * @group Course Enrollments
 * @group-content ../../ApexDocContent/CourseEnrollments.htm
 * @description Tests class for backfilling Affiliation on Student Course Connection.
