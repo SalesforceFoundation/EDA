@@ -656,22 +656,6 @@
         <value>Administrative Account Record Type:</value>
     </labels>
     <labels>
-        <fullName>stgAffiliationBackfillDesc</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgAffiliationBackfillDesc</shortDescription>
-        <value>This backfill allows you to auto-populate the Affiliation field on existing Student Course Connection records with the Affiliation that connects it to an Academic Program. If the Course Connection isn't affiliated with an Academic Program, the field on existing Student Course Connections won&apos;t auto-populate.</value>
-    </labels>
-    <labels>
-        <fullName>stgAffiliationBackfillTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgAffiliationBackfillTitle</shortDescription>
-        <value>Affiliation Backfill on Student Course Connection:</value>
-    </labels>
-    <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
