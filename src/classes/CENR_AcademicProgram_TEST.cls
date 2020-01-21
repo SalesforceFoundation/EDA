@@ -36,19 +36,19 @@
 */
 @isTest
 public with sharing class CENR_AcademicProgram_TEST {
-    /*******************************************************************************************************
-    * @description This tests when multiple Student Course Connection records are inserted and
-	  * Populate_Affil_on_Student_Couse_Cxn__c is enabled, Affiliation lookup field on Student Course Connection
-	  * should be populated if the Student Course Connection record has a Program Enrollment with an Affiliation
-	  * record associated to the Program Enrollment.
+   	/*******************************************************************************************************
+  	* @description This tests when multiple Student Course Connection records are inserted and
+	* Populate_Affil_on_Student_Couse_Cxn__c is enabled, Affiliation lookup field on Student Course Connection
+	* should be populated if the Student Course Connection record has a Program Enrollment with an Affiliation
+	* record associated to the Program Enrollment.
   	********************************************************************************************************/
   	@isTest
   	public static void testBulkInserts() {
     	STG_InstallScript.insertMappings();
-		  UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
-                										                  Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														                          Populate_Affil_on_Student_Couse_Cxn__c = true,
-                										                  Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
+                										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+														Populate_Affil_on_Student_Couse_Cxn__c = true,
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
@@ -57,12 +57,14 @@ public with sharing class CENR_AcademicProgram_TEST {
         Account department = new Account(Name = 'Biology Department', RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
         insert new Account[]{academicProgram, department};
 
-        Affiliation__c affil = new Affiliation__c(Contact__c = c.Id, Account__c = department.Id);
-        insert affil;
+        Course__c course = new Course__c(Account__c = department.Id);
+        insert course;
 
-        Program_Enrollment__c pEnroll = new Program_Enrollment__c(Contact__c = c.Id, Account__c = academicProgram.Id,
-                                                                Affiliation__c = affil.Id);
-        insert pEnroll;
+        Term__c term = new Term__c(Account__c = department.Id);
+        insert term;
+
+        Course_Offering__c cOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
+        insert cOffering;
 
         List<Program_Enrollment__c> pEnrolls = new List<Program_Enrollment__c>{
         	new Program_Enrollment__c(Contact__c = contacts[0].Id, Account__c = academicProgram.Id),
@@ -73,39 +75,38 @@ public with sharing class CENR_AcademicProgram_TEST {
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
         List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
         for (Integer i = 0; i<2; i++) {
-			         Course_Enrollment__c ccon = new Course_Enrollment__c(
-				          Contact__c = contacts[i].Id,
-                  Program_Enrollment__c pEnrolls[i].Id, 
-				          Course_Offering__c = cOffering.Id
-			          );
-			      ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
-			      cEnrolls.add(ccon);
-            
-		    }
-      
+			Course_Enrollment__c ccon = new Course_Enrollment__c(
+				Contact__c = contacts[i].Id,
+				Program_Enrollment__c = pEnrolls[i].Id,
+				Course_Offering__c = cOffering.Id
+			);
+			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
+			cEnrolls.add(ccon);
+		}
+
         Test.startTest();
         insert cEnrolls;
         Test.stopTest();
 
         List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
-                                                              	FROM Course_Enrollment__c
-                                                              	WHERE ID IN :cEnrolls];
+                                                              FROM Course_Enrollment__c
+                                                              WHERE ID IN :cEnrolls];
         System.assertEquals(academicProgram.Id, returnCourseEnrollments[0].Account__c);
         System.assertNotEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
     }
 
     /*******************************************************************************************************
   	* @description This tests when mutilple Student Course Connection are inserted and
-	  * Populate_Affil_on_Student_Couse_Cxn__c is disabled, Affiliation lookup field on Student Course Connection
-	  * should not be populated even if the Student Course Connection has a Program Enrollment with Affiliation.
+	* Populate_Affil_on_Student_Couse_Cxn__c is disabled, Affiliation lookup field on Student Course Connection
+	* should not be populated even if the Student Course Connection has a Program Enrollment with Affiliation.
   	********************************************************************************************************/
   	@isTest
   	public static void testBulkInsertWithAffiliationLookupDisabled() {
     	STG_InstallScript.insertMappings();
-		  UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
-                										                  Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														                          Populate_Affil_on_Student_Couse_Cxn__c = false,
-                										                  Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
+                										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+														Populate_Affil_on_Student_Couse_Cxn__c = false,
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
       	List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
@@ -132,39 +133,39 @@ public with sharing class CENR_AcademicProgram_TEST {
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
         List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
         for (Integer i = 0; i<2; i++) {
-			        Course_Enrollment__c ccon = new Course_Enrollment__c(
-				        Contact__c = contacts[i].Id,
-                Program_Enrollment__c pEnrolls[i].Id, 
-				        Course_Offering__c = cOffering.Id
-			        );
-			      ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
-			      cEnrolls.add(ccon);
-		    }
-      
+			Course_Enrollment__c ccon = new Course_Enrollment__c(
+				Contact__c = contacts[i].Id,
+				Program_Enrollment__c = pEnrolls[i].Id,
+				Course_Offering__c = cOffering.Id
+			);
+			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
+			cEnrolls.add(ccon);
+		}
+
       	Test.startTest();
       	insert cEnrolls;
       	Test.stopTest();
 
       	List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
-                                                              	FROM Course_Enrollment__c
-                                                              	WHERE ID IN :cEnrolls];
+                                                              FROM Course_Enrollment__c
+                                                              WHERE ID IN :cEnrolls];
       	System.assertEquals(academicProgram.Id, returnCourseEnrollments[1].Account__c);
       	System.assertEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
   	}
 
     /*******************************************************************************************************
   	* @description This tests when Populate_Affil_on_Student_Couse_Cxn__c is enabled, and  multiple existing
-	  * Student Course Connection records are updated with Program Enrollment records and these
-	  * Program Enrollment records have Affiliation records, the existing Student Course Connection's
-	  * Affiliation and Account lookup fields should be updated.
+	* Student Course Connection records are updated with Program Enrollment records and these
+	* Program Enrollment records have Affiliation records, the existing Student Course Connection's
+	* Affiliation and Account lookup fields should be updated.
   	********************************************************************************************************/
   	@isTest
   	public static void testBulkUpdates() {
-    	  STG_InstallScript.insertMappings();
+    	STG_InstallScript.insertMappings();
       	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
-                										                    Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														                            Populate_Affil_on_Student_Couse_Cxn__c = true,
-                										                    Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
+                										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+														Populate_Affil_on_Student_Couse_Cxn__c = true,
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
@@ -183,7 +184,7 @@ public with sharing class CENR_AcademicProgram_TEST {
         insert cOffering;
 
         List<Program_Enrollment__c> pEnrolls = new List<Program_Enrollment__c>{
-            new Program_Enrollment__c(Contact__c = contacts[0].Id, Account__c = academicProgram.Id),
+        	new Program_Enrollment__c(Contact__c = contacts[0].Id, Account__c = academicProgram.Id),
             new Program_Enrollment__c(Contact__c = contacts[1].Id, Account__c = academicProgram.Id)
         };
         insert pEnrolls;
@@ -191,18 +192,86 @@ public with sharing class CENR_AcademicProgram_TEST {
         Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
         List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
         for (Integer i = 0; i<2; i++) {
-			      Course_Enrollment__c ccon = new Course_Enrollment__c(
-				        Contact__c = contacts[i].Id,
-				        Course_Offering__c = cOffering.Id
-			      );
-			      ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
-			      cEnrolls.add(ccon);
-		     }
+			Course_Enrollment__c ccon = new Course_Enrollment__c(
+				Contact__c = contacts[i].Id,
+				Course_Offering__c = cOffering.Id
+			);
+			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
+			cEnrolls.add(ccon);
+		}
         insert cEnrolls;
 
         List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
-                                                              	FROM Course_Enrollment__c
-                                                              	WHERE ID IN :cEnrolls];
+                                                              FROM Course_Enrollment__c
+                                                              WHERE ID IN :cEnrolls];
+        System.assertEquals(NULL, returnCourseEnrollments[0].Account__c);
+        System.assertEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
+
+        cEnrolls[0].Program_Enrollment__c = pEnrolls[0].Id;
+        cEnrolls[1].Program_Enrollment__c = pEnrolls[1].Id;
+
+        Test.startTest();
+        update cEnrolls;
+        Test.stopTest();
+
+        List<Course_Enrollment__c> returnCEnrollments = [SELECT Account__c, Affiliation__c
+                                                              FROM Course_Enrollment__c
+                                                              WHERE ID IN :cEnrolls];
+        System.assertEquals(academicProgram.Id, returnCEnrollments[0].Account__c);
+        System.assertNotEquals(NULL, returnCEnrollments[0].Affiliation__c);
+    }
+
+    /*******************************************************************************************************
+  	* @description This tests when Populate_Affil_on_Student_Couse_Cxn__c is disabled, and  multiple existing
+	* Student Course Connection records are updated with Program Enrollment records and these
+	* Program Enrollment records have Affiliation records, the existing Student Course Connection's
+	* Affiliation lookup fields should not be updated.
+  	********************************************************************************************************/
+  	@isTest
+  	public static void testBulkUpdatesWithAffiliationLookupDisabled() {
+    	STG_InstallScript.insertMappings();
+      	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = false,
+                										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+														Populate_Affil_on_Student_Couse_Cxn__c = false,
+                										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
+
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        insert contacts;
+
+        Account academicProgram = new Account(Name = 'BS in Biology', RecordTypeId = UTIL_Describe.getAcademicAccRecTypeID());
+        Account department = new Account(Name = 'Biology Department', RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
+        insert new Account[]{academicProgram, department};
+
+        Course__c course = new Course__c(Account__c = department.Id);
+        insert course;
+
+        Term__c term = new Term__c(Account__c = department.Id);
+        insert term;
+
+        Course_Offering__c cOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
+        insert cOffering;
+
+        List<Program_Enrollment__c> pEnrolls = new List<Program_Enrollment__c>{
+        	new Program_Enrollment__c(Contact__c = contacts[0].Id, Account__c = academicProgram.Id),
+            new Program_Enrollment__c(Contact__c = contacts[1].Id, Account__c = academicProgram.Id)
+        };
+        insert pEnrolls;
+
+        Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
+        for (Integer i = 0; i<2; i++) {
+			Course_Enrollment__c ccon = new Course_Enrollment__c(
+				Contact__c = contacts[i].Id,
+				Course_Offering__c = cOffering.Id
+			);
+			ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
+			cEnrolls.add(ccon);
+		}
+		insert cEnrolls;
+
+        List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
+                                                              FROM Course_Enrollment__c
+                                                              WHERE ID IN :cEnrolls];
         System.assertEquals(NULL, returnCourseEnrollments[0].Account__c);
         System.assertEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
 
@@ -215,74 +284,6 @@ public with sharing class CENR_AcademicProgram_TEST {
 
         List<Course_Enrollment__c> returnCEnrollments = [SELECT Account__c, Affiliation__c
                                                             FROM Course_Enrollment__c
-                                                            WHERE ID IN :cEnrolls];
-        System.assertEquals(academicProgram.Id, returnCEnrollments[0].Account__c);
-        System.assertNotEquals(NULL, returnCEnrollments[0].Affiliation__c);
-    }
-
-    /*******************************************************************************************************
-  	* @description This tests when Populate_Affil_on_Student_Couse_Cxn__c is disabled, and  multiple existing
-	  * Student Course Connection records are updated with Program Enrollment records and these
-	  * Program Enrollment records have Affiliation records, the existing Student Course Connection's
-	  * Affiliation lookup fields should not be updated.
-  	********************************************************************************************************/
-  	@isTest
-  	public static void testBulkUpdatesWithAffiliationLookupDisabled() {
-    	  STG_InstallScript.insertMappings();
-      	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = false,
-                										                    Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														                            Populate_Affil_on_Student_Couse_Cxn__c = false,
-                										                    Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
-
-        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
-        insert contacts;
-
-        Account academicProgram = new Account(Name = 'BS in Biology', RecordTypeId = UTIL_Describe.getAcademicAccRecTypeID());
-        Account department = new Account(Name = 'Biology Department', RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
-        insert new Account[]{academicProgram, department};
-
-        Course__c course = new Course__c(Account__c = department.Id);
-        insert course;
-
-        Term__c term = new Term__c(Account__c = department.Id);
-        insert term;
-
-        Course_Offering__c cOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
-        insert cOffering;
-
-        List<Program_Enrollment__c> pEnrolls = new List<Program_Enrollment__c>{
-        	  new Program_Enrollment__c(Contact__c = contacts[0].Id, Account__c = academicProgram.Id),
-            new Program_Enrollment__c(Contact__c = contacts[1].Id, Account__c = academicProgram.Id)
-        };
-        insert pEnrolls;
-
-        Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
-        List<Course_Enrollment__c> cEnrolls = new List<Course_Enrollment__c>();
-        for (Integer i = 0; i<2; i++) {
-			        Course_Enrollment__c ccon = new Course_Enrollment__c(
-				        Contact__c = contacts[i].Id,
-				        Course_Offering__c = cOffering.Id
-			        );
-			      ccon.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
-			      cEnrolls.add(ccon);
-		    }
-		    insert cEnrolls;
-
-        List<Course_Enrollment__c> returnCourseEnrollments = [SELECT Account__c, Affiliation__c
-                                                            	FROM Course_Enrollment__c
-                                                              	WHERE ID IN :cEnrolls];
-        System.assertEquals(NULL, returnCourseEnrollments[0].Account__c);
-        System.assertEquals(NULL, returnCourseEnrollments[0].Affiliation__c);
-
-        cEnrolls[0].Program_Enrollment__c = pEnrolls[0].Id;
-        cEnrolls[1].Program_Enrollment__c = pEnrolls[1].Id;
-
-        Test.startTest();
-        update cEnrolls;
-        Test.stopTest();
-
-        List<Course_Enrollment__c> returnCEnrollments = [SELECT Account__c, Affiliation__c
-                                                        	FROM Course_Enrollment__c
                                                             WHERE ID IN :cEnrolls];
         System.assertEquals(academicProgram.Id, returnCEnrollments[0].Account__c);
         System.assertEquals(NULL, returnCEnrollments[0].Affiliation__c);

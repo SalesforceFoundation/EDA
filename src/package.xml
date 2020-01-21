@@ -654,7 +654,6 @@
         <members>stgAutoEnrollment</members>
         <members>stgAutoEnrollmentRole</members>
         <members>stgAutoEnrollmentStatus</members>
-        <members>stgAutoPopulateAffiliationTitle</members>
         <members>stgBackfillQueuedEmailSent</members>
         <members>stgBeforeRunBackfill</members>
         <members>stgBtnAddMapping</members>

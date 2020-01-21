@@ -1,3 +1,14 @@
+<!--
+  @File Name          : STG_CMP_CourseConnections.cmp
+  @Description        :
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              :
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 1/21/2020, 2:34:16 PM
+  @Modification Log   :
+  Ver       Date            Author      		    Modification
+  1.0    1/21/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
 <aura:component extends="c:STG_CMP_Base" controller="STG_CourseConnections">
 
   <aura:attribute name="courseConnectionRecTypes" type="Map" />
@@ -131,10 +142,6 @@
                     	<ui:outputText value="{!$Label.c.stgHelpPopulateAffiliationOnStudentCourseConnection}" class="slds-text-body--small" />
                 	</div>
                 </div>
-                {!$Label.c.stgAutoPopulateAffiliationTitle}
-                <div class="slds-col slds-size--1-of-1">
-            		<ui:outputText value="{!$Label.c.stgHelpPopulateAffiliationOnStudentCourseConnection}" class="slds-text-body--small" />
-          		</div>
             </div>
 
             <div class="slds-col slds-size--1-of-2">
@@ -152,8 +159,6 @@
             	</label>
           	</div>
         </div>
-
-          </div>
       </div>
     </div>
 
@@ -176,13 +181,11 @@
           <ui:outputText value="{!$Label.c.stgTitleCourseConnectionBackfill}" class="slds-text-body--small" />
         </div>
       </div>
-
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-1">
           <ui:outputText value="{!$Label.c.stgHelpCourseConnBackfillDescription}" class="slds-text-body--small" />
         </div>
       </div>
-
       <div class="slds-grid slds-grid--align-center">
         <div>
           <label class="slds-checkbox">
@@ -193,45 +196,18 @@
           </label>
         </div>
       </div>
-
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
           <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="{!$Label.c.stgBtnRunBackfill}" press="{!c.startBackfill}"/>
         </div>
       </div>
-     
-     <div class="slds-grid slds-grid--align-center slds-m-top--medium">
+      <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
           <ui:outputText value="{!v.startBackfillMessage}" class="slds-text-body--small" />
         </div>
       </div>
 
       <hr/>
-
-      <div class="slds-grid slds-wrap">
-		<div class="slds-col slds-size--1-of-2">
-                {!$Label.c.stgAffiliationBackfillTitle}
-                <div class="slds-col slds-size--1-of-1">
-            		<ui:outputText value="{!$Label.c.stgAffiliationBackfillDesc}" class="slds-text-body--small" />
-          		</div>
-         </div>
-
-         <div class="slds-grid slds-grid--align-center slds-m-top--medium">
-               	<lightning:button
-                                  label="Run Affiliation Backfill"
-                                  title="backfillAffiliation"
-                                  onclick="{!c.handleAffiliationBackfill}"/>
-
-
-         </div>
-      </div>
-
-      <div class="slds-align_absolute-center">
-
-      	<ui:outputText value="{!v.startBackfillMessageForAffiliation}" class="slds-text-body--small" />
-
-      </div>
     </div>
-
   </div>
 </aura:component>
