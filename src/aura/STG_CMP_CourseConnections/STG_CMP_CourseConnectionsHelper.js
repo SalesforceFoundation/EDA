@@ -69,5 +69,4 @@
     $A.util.removeClass(tst, "slds-show");
     $A.util.addClass(tst, "slds-hide");
   },
-
 })
