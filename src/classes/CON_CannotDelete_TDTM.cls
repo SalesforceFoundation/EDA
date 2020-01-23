@@ -67,7 +67,6 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
                         	(SELECT ID FROM Contact.Contact_Languages__r LIMIT 1),
                         	(SELECT ID FROM Contact.Courses_Taught__r LIMIT 1),
                         	(SELECT ID FROM Contact.Program_Enrollments__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Relationships__r LIMIT 1),
                         	(SELECT ID FROM Contact.Student_Course_Enrollments__r LIMIT 1),
                         	(SELECT ID FROM Contact.Term_Grades__r LIMIT 1),
                         	(SELECT ID FROM Contact.Tests__r LIMIT 1)
@@ -95,7 +94,6 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
                 c.Attendance_Events__r.size() > 0 || c.Attributes__r.size () > 0 ||
                 c.Behavior_Involvements__r.size() > 0 || c.Contact_Languages__r.size() > 0 ||
 				c.Courses_Taught__r.size() > 0 || c.Program_Enrollments__r.size() > 0 ||
-				c.Relationships__r.size() > 0 || c.Student_Course_Enrollments__r.size() > 0 ||
-				c.Term_Grades__r.size() > 0 || c.Tests__r.size() > 0);
+				c.Student_Course_Enrollments__r.size() > 0 || c.Term_Grades__r.size() > 0 || c.Tests__r.size() > 0);
    }
 }
