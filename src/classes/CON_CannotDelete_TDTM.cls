@@ -89,10 +89,10 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
    * @return Boolean.
    ********************************************************************************************************/
    private static Boolean hasChildRecords(Contact c) {
-       return (c.Addresses__r.size() > 0 || c.Affl_Accounts__r.size() > 0 ||
+    	return (c.Addresses__r.size() > 0 || c.Affl_Accounts__r.size() > 0 ||
             	c.Applications_Applicant__r.size() > 0  || c.Applications_Preparer__r.size() > 0 ||
-                c.Attendance_Events__r.size() > 0 || c.Attributes__r.size () > 0 ||
-                c.Behavior_Involvements__r.size() > 0 || c.Contact_Languages__r.size() > 0 ||
+            	c.Attendance_Events__r.size() > 0 || c.Attributes__r.size () > 0 ||
+            	c.Behavior_Involvements__r.size() > 0 || c.Contact_Languages__r.size() > 0 ||
 				c.Courses_Taught__r.size() > 0 || c.Program_Enrollments__r.size() > 0 ||
 				c.Student_Course_Enrollments__r.size() > 0 || c.Term_Grades__r.size() > 0 || c.Tests__r.size() > 0);
    }
