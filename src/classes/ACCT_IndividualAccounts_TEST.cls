@@ -1891,12 +1891,11 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test Method to test whether Account Name is renamed appropriately if current users's
-    * language is not set to English. This also test if Prefixes are appropriately stripped out of the
-    * Account format so that it doesn't duplicate the prefix in the Account rename.
+    * @description Test Method to test whether Account Name is renamed appropriately if Prefix is not
+    * surrounded in curly braces.
     */
     @isTest
-    private static void testPrefixAndNonEnglishLanguage(){
+    private static void testBulkPrefix(){
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      	Household_Account_Naming_Format__c = 'Foyer {!LastName} ({!{!FirstName}})',
                                                      	Automatic_Household_Naming__c = true));
