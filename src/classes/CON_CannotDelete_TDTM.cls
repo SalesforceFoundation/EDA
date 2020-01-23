@@ -58,27 +58,27 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isConDeletionPreventionEnabled) {
             for (Contact c : [SELECT ID,
                             (SELECT ID FROM Contact.Addresses__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Affl_Accounts__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Applications_Applicant__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Applications_Preparer__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Attendance_Events__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Attributes__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Behavior_Involvements__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Contact_Languages__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Courses_Taught__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Program_Enrollments__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Student_Course_Enrollments__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Term_Grades__r LIMIT 1),
-                        	(SELECT ID FROM Contact.Tests__r LIMIT 1)
-                        	FROM Contact
-                        	WHERE ID IN :oldlist])
+                            (SELECT ID FROM Contact.Affl_Accounts__r LIMIT 1),
+                            (SELECT ID FROM Contact.Applications_Applicant__r LIMIT 1),
+                            (SELECT ID FROM Contact.Applications_Preparer__r LIMIT 1),
+                            (SELECT ID FROM Contact.Attendance_Events__r LIMIT 1),
+                            (SELECT ID FROM Contact.Attributes__r LIMIT 1),
+                            (SELECT ID FROM Contact.Behavior_Involvements__r LIMIT 1),
+                            (SELECT ID FROM Contact.Contact_Languages__r LIMIT 1),
+                            (SELECT ID FROM Contact.Courses_Taught__r LIMIT 1),
+                            (SELECT ID FROM Contact.Program_Enrollments__r LIMIT 1),
+                            (SELECT ID FROM Contact.Student_Course_Enrollments__r LIMIT 1),
+                            (SELECT ID FROM Contact.Term_Grades__r LIMIT 1),
+                            (SELECT ID FROM Contact.Tests__r LIMIT 1)
+                            FROM Contact
+                            WHERE ID IN :oldlist])
             {
-        		if (hasChildRecords(c)) {
-                	Contact contactInContext = oldmap.get(c.ID);
+                if (hasChildRecords(c)) {
+                    Contact contactInContext = oldmap.get(c.ID);
                     contactInContext.addError(Label.CannotDelete);
-            	}
-        	}
-      	}
+                }
+            }
+        }
 
       return new DmlWrapper();
    }
@@ -89,11 +89,11 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
    * @return Boolean.
    ********************************************************************************************************/
    private static Boolean hasChildRecords(Contact c) {
-    	return (c.Addresses__r.size() > 0 || c.Affl_Accounts__r.size() > 0 ||
-            	c.Applications_Applicant__r.size() > 0  || c.Applications_Preparer__r.size() > 0 ||
-            	c.Attendance_Events__r.size() > 0 || c.Attributes__r.size () > 0 ||
-            	c.Behavior_Involvements__r.size() > 0 || c.Contact_Languages__r.size() > 0 ||
-				c.Courses_Taught__r.size() > 0 || c.Program_Enrollments__r.size() > 0 ||
-				c.Student_Course_Enrollments__r.size() > 0 || c.Term_Grades__r.size() > 0 || c.Tests__r.size() > 0);
+        return (c.Addresses__r.size() > 0 || c.Affl_Accounts__r.size() > 0 ||
+                c.Applications_Applicant__r.size() > 0  || c.Applications_Preparer__r.size() > 0 ||
+                c.Attendance_Events__r.size() > 0 || c.Attributes__r.size () > 0 ||
+                c.Behavior_Involvements__r.size() > 0 || c.Contact_Languages__r.size() > 0 ||
+                c.Courses_Taught__r.size() > 0 || c.Program_Enrollments__r.size() > 0 ||
+                c.Student_Course_Enrollments__r.size() > 0 || c.Term_Grades__r.size() > 0 || c.Tests__r.size() > 0);
    }
 }
