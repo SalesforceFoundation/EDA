@@ -31,7 +31,6 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
-        <members>CCON_AffiliationBackfill_BATCH</members>
         <members>CCON_AffiliationBackfill_TEST</members>
         <members>CCON_CannotDelete_TDTM</members>
         <members>CCON_CannotDelete_TEST</members>
