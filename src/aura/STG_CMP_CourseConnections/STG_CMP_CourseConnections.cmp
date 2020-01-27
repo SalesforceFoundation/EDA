@@ -1,7 +1,17 @@
+<!--
+  @File Name          : STG_CMP_CourseConnections.cmp
+  @Description        :
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              :
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 1/27/2020, 3:12:34 PM
+  @Modification Log   :
+  Ver       Date            Author      		    Modification
+  1.0    1/21/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
 <aura:component extends="c:STG_CMP_Base" controller="STG_CourseConnections">
 
   <aura:attribute name="courseConnectionRecTypes" type="Map" />
-
   <aura:attribute name="studentRecTypeId" type="String" />
   <aura:attribute name="facultyRecTypeId" type="String" />
   <aura:attribute name="studentRecTypeName" type="String" />
@@ -11,7 +21,7 @@
   <aura:attribute name="startBackfillMessage" type="String" default="" />
   <aura:attribute name="backFillToastIcon" type="String" default="" />
   <aura:attribute name="backFillToastClass" type="String" default="" />
-  
+
   <div class="slds-hide" id="backFillToast" aura:id="backFillToast">
       <div class="slds-box">
           <div class="slds-notify_container slds-notify_container--inline">
@@ -31,7 +41,7 @@
               </div>
           </div>
       </div>
-  </div>  
+  </div>
 
   <div id="relTabs" class="slds-tabs--scoped">
     <ul class="slds-tabs--scoped__nav" role="tablist">
@@ -44,7 +54,6 @@
     </ul>
 
     <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
-
       <span class="{!and(not(v.isView), not(v.hierarchySettings.Enable_Course_Connections__c)) ? '' : 'slds-hide ' }">
         <div class="slds-m-bottom--medium">
           <div class="slds-notify_container">
@@ -79,6 +88,7 @@
           <div class="slds-col slds-size--1-of-1">
             <ui:outputText value="{!$Label.c.stgHelpEnableCourseConnections}" class="slds-text-body--small" />
           </div>
+
           <div class="slds-col slds-grid slds-m-top--medium">
             <div class="slds-col slds-size--1-of-2">
                 {!$Label.c.stgDefaultStudentTypeTitle}
@@ -116,6 +126,8 @@
           <div class="slds-col slds-size--1-of-1">
             <ui:outputText value="{!$Label.c.stgHelpDefaultFacultyType}" class="slds-text-body--small" />
           </div>
+
+
       </div>
     </div>
 
@@ -132,6 +144,7 @@
           </div>
         </div>
       </span>
+
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-1">
           <ui:outputText value="{!$Label.c.stgTitleCourseConnectionBackfill}" class="slds-text-body--small" />
@@ -156,6 +169,28 @@
         <div>
           <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="{!$Label.c.stgBtnRunBackfill}" press="{!c.startBackfill}"/>
         </div>
+      </div>
+      <div class="slds-grid slds-grid--align-center slds-m-top--medium">
+        <div>
+          <ui:outputText value="{!v.startBackfillMessage}" class="slds-text-body--small" />
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="slds-grid slds-wrap">
+		<div class="slds-col slds-size--1-of-2">
+                {!$Label.c.stgTitleAffiliationBackfill}
+                <div class="slds-col slds-size--1-of-1">
+            		<ui:outputText value="{!$Label.c.stgAffiliationBackfillDesc}" class="slds-text-body--small" />
+          		</div>
+         </div>
+         <div class="slds-grid slds-grid--align-center slds-m-top--medium">
+               	<lightning:button
+                                  label="Run Affiliation Backfill"
+                                  title="backfillAffiliation"
+                                  onclick="{!c.handleAffiliationBackfill}"/>
+         </div>
       </div>
     </div>
   </div>

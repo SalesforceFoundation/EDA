@@ -35,9 +35,26 @@
 */
 @isTest
 public with sharing class STG_CourseConnections_TEST {
+    /*********************************************************************************************************
+    * @description Tests if backfill of Course Connection batch class is successfully run.
+    */
     @isTest
     public static void checkGetEnqueueCourseConnectionsBackfill() {
         Id apexJobId = STG_CourseConnections.getEnqueueCourseConnectionsBackfill();
+        System.assertNotEquals(null, apexJobId);
+    }
+
+    /*********************************************************************************************************
+    * @description Tests if backfill of Affiliation on Student Course Connection batch class is successfully run.
+    */
+    @isTest
+    public static void checkExecuteAffiliationBackfillOnCourseConnection() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        												Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            											Enable_Course_Connections__c = true,
+        												Populate_Affil_on_Student_Couse_Cxn__c = true
+        												));
+        Id apexJobId = STG_CourseConnections.executeAffiliationBackfillOnCourseConnection();
         System.assertNotEquals(null, apexJobId);
     }
 }
