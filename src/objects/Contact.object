@@ -4696,6 +4696,11 @@
                     <label>Home</label>
                 </value>
                 <value>
+                    <fullName>Vacation Residence</fullName>
+                    <default>false</default>
+                    <label>Vacation Residence</label>
+                </value>
+                <value>
                     <fullName>Work</fullName>
                     <default>false</default>
                     <label>Work</label>
