@@ -1,14 +1,3 @@
-<!--
-  @File Name          : STG_CMP_CourseConnections.cmp
-  @Description        : 
-  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Group              : 
-  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 1/28/2020, 12:22:45 PM
-  @Modification Log   : 
-  Ver       Date            Author      		    Modification
-  1.0    1/28/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
--->
 <aura:component extends="c:STG_CMP_Base" controller="STG_CourseConnections">
   <aura:attribute name="courseConnectionRecTypes" type="Map" />
   <aura:attribute name="studentRecTypeId" type="String" />
