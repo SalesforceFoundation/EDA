@@ -114,8 +114,6 @@
           <div class="slds-col slds-size--1-of-1">
             <ui:outputText value="{!$Label.c.stgHelpDefaultFacultyType}" class="slds-text-body--small" />
           </div>
-
-
       </div>
     </div>
 
