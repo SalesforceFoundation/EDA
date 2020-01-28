@@ -45,31 +45,24 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
     }
 
     public void execute(Database.BatchableContext bc, List<Account> returnAccounts){
-        Set<Id> primaryConId = new Set<Id>();
       	List<Account> accountsToRename = new List<Account>();
         List<Contact> contactsToProcess = new List<Contact>();
 
         if (returnAccounts.size() > 0) {
-            for (Account a : returnAccounts) {
-                if (a.Primary_Contact__c != NULL) {
-                    primaryConId.add(a.Primary_Contact__c);
-                }
+            for (Account a : [SELECT Id,
+                             (SELECT Id, AccountId, FirstName, LastName, Salutation FROM Contacts)
+                              FROM Account WHERE Id IN :returnAccounts])
+        	{
+                contactsToProcess.add(a.Contacts);
             }
+        }
 
-            if (primaryConId.size() > 0) {
-                contactsToProcess = [SELECT Id, FirstName, LastName,
-                                     Salutation, AccountId
-                                     FROM Contact
-                                     WHERE Id IN :primaryConId];
-                for (Account a : returnAccounts) {
-                	a.Name = UTIL_ACCT_Naming.updateName(contactsToProcess);
-                    accountsToRename.add(a);
-                }
-            }
+        if (contactsToProcess.size() > 0) {
+            accountsToRename = UTIL_ACCT_Naming.updateAdminAccountsName(contactsToProcess);
+        }
 
-            if (accountsToRename.size() > 0) {
-                Database.update(accountsToRename);
-            }
+        if (accountsToRename.size() > 0) {
+            Database.update(accountsToRename);
         }
     }
 
