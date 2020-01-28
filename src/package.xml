@@ -442,7 +442,7 @@
         <members>Hierarchy_Settings__c.Household_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
         <members>Hierarchy_Settings__c.Household_Other_Name_Setting__c</members>
-        <members>Hierarchy_Settings__c.Populate_Affil_on_Student_Couse_Cxn__c</members>
+        <members>Hierarchy_Settings__c.Populate_Affil_on_Student_Course_Cxn__c</members>
         <members>Hierarchy_Settings__c.Preferred_Phone_Selection__c</members>
         <members>Hierarchy_Settings__c.Prevent_Account_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Behavior_Involvement_Deletion__c</members>

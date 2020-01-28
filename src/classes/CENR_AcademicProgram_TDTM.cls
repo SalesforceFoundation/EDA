@@ -69,7 +69,7 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     * @return Boolean.
     ********************************************************************************************************/
     private Boolean checkAffiliationEnabled() {
-        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Couse_Cxn__c ;
+        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Course_Cxn__c ;
     }
 
 	/*******************************************************************************************************

@@ -38,7 +38,7 @@
 public with sharing class CENR_AcademicProgram_TEST {
    	/*******************************************************************************************************
   	* @description This tests when multiple Student Course Connection records are inserted and
-	* Populate_Affil_on_Student_Couse_Cxn__c is enabled, Affiliation lookup field on Student Course Connection
+	* Populate_Affil_on_Student_Course_Cxn__c is enabled, Affiliation lookup field on Student Course Connection
 	* should be populated if the Student Course Connection record has a Program Enrollment with an Affiliation
 	* record associated to the Program Enrollment.
   	********************************************************************************************************/
@@ -47,7 +47,7 @@ public with sharing class CENR_AcademicProgram_TEST {
     	STG_InstallScript.insertMappings();
 		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
                 										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														Populate_Affil_on_Student_Couse_Cxn__c = true,
+														Populate_Affil_on_Student_Course_Cxn__c = true,
                 										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
@@ -97,7 +97,7 @@ public with sharing class CENR_AcademicProgram_TEST {
 
     /*******************************************************************************************************
   	* @description This tests when mutilple Student Course Connection are inserted and
-	* Populate_Affil_on_Student_Couse_Cxn__c is disabled, Affiliation lookup field on Student Course Connection
+	* Populate_Affil_on_Student_Course_Cxn__c is disabled, Affiliation lookup field on Student Course Connection
 	* should not be populated even if the Student Course Connection has a Program Enrollment with Affiliation.
   	********************************************************************************************************/
   	@isTest
@@ -105,7 +105,7 @@ public with sharing class CENR_AcademicProgram_TEST {
     	STG_InstallScript.insertMappings();
 		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
                 										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														Populate_Affil_on_Student_Couse_Cxn__c = false,
+														Populate_Affil_on_Student_Course_Cxn__c = false,
                 										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
       	List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
@@ -154,7 +154,7 @@ public with sharing class CENR_AcademicProgram_TEST {
   	}
 
     /*******************************************************************************************************
-  	* @description This tests when Populate_Affil_on_Student_Couse_Cxn__c is enabled, and  multiple existing
+  	* @description This tests when Populate_Affil_on_Student_Course_Cxn__c is enabled, and  multiple existing
 	* Student Course Connection records are updated with Program Enrollment records and these
 	* Program Enrollment records have Affiliation records, the existing Student Course Connection's
 	* Affiliation and Account lookup fields should be updated.
@@ -164,7 +164,7 @@ public with sharing class CENR_AcademicProgram_TEST {
     	STG_InstallScript.insertMappings();
       	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = true,
                 										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														Populate_Affil_on_Student_Couse_Cxn__c = true,
+														Populate_Affil_on_Student_Course_Cxn__c = true,
                 										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
@@ -222,7 +222,7 @@ public with sharing class CENR_AcademicProgram_TEST {
     }
 
     /*******************************************************************************************************
-  	* @description This tests when Populate_Affil_on_Student_Couse_Cxn__c is disabled, and  multiple existing
+  	* @description This tests when Populate_Affil_on_Student_Course_Cxn__c is disabled, and  multiple existing
 	* Student Course Connection records are updated with Program Enrollment records and these
 	* Program Enrollment records have Affiliation records, the existing Student Course Connection's
 	* Affiliation lookup fields should not be updated.
@@ -232,7 +232,7 @@ public with sharing class CENR_AcademicProgram_TEST {
     	STG_InstallScript.insertMappings();
       	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Enable_Course_Connections__c = false,
                 										Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-														Populate_Affil_on_Student_Couse_Cxn__c = false,
+														Populate_Affil_on_Student_Course_Cxn__c = false,
                 										Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
