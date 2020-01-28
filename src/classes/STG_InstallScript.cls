@@ -239,8 +239,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
     */
     global static void enableAutoPopulationOfAffilOnStudentCourseCxn() {
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
-        if (orgSettings.Populate_Affil_on_Student_Couse_Cxn__c == null || orgSettings.Populate_Affil_on_Student_Couse_Cxn__c != true) {
-            orgSettings.Populate_Affil_on_Student_Couse_Cxn__c = true;
+        if (orgSettings.Populate_Affil_on_Student_Course_Cxn__c == null || orgSettings.Populate_Affil_on_Student_Course_Cxn__c != true) {
+            orgSettings.Populate_Affil_on_Student_Course_Cxn__c = true;
         }
         upsert orgSettings;
     }
@@ -253,8 +253,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
         if(previousVersion != null && previousVersion.compareTo(new Version(1,94)) < 0) {
             UTIL_Debug.debug('***Upgrading to version 1.94');
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
-            if(orgSettings.Populate_Affil_on_Student_Couse_Cxn__c == null || orgSettings.Disable_Preferred_Phone_Enforcement__c == true) {
-                orgSettings.Populate_Affil_on_Student_Couse_Cxn__c = false;
+            if (orgSettings.Populate_Affil_on_Student_Course_Cxn__c == null || orgSettings.Populate_Affil_on_Student_Course_Cxn__c == true) {
+                orgSettings.Populate_Affil_on_Student_Course_Cxn__c = false;
             }
             upsert orgSettings;
         }
