@@ -35,7 +35,7 @@
 * @description This is a batch class that backfills existing Student Course Connection with missing Affiliation.
 */
 public class CCON_AffiliationBackfill_BATCH implements Database.Batchable<SObject>{
-    //Test test
+
     public Database.Querylocator start(Database.BatchableContext bc) {
         Id studentCCRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Student_RecType__c;
         String query = 'SELECT Id, Program_Enrollment__c, Affiliation__c ' +
@@ -60,8 +60,8 @@ public class CCON_AffiliationBackfill_BATCH implements Database.Batchable<SObjec
 
             if (pEnrollmentID.size () > 0) {
                 List<Program_Enrollment__c> queryPE = [SELECT Id, Affiliation__c, Account__c
-                                                  FROM Program_Enrollment__c
-                                                  WHERE Id = :pEnrollmentID];
+                                                    FROM Program_Enrollment__c
+                                                    WHERE Id = :pEnrollmentID];
                 Map<Id, Program_Enrollment__c> pEnrollmentsMap = new Map<Id, Program_Enrollment__c>(queryPE);
 
                 for (Course_Enrollment__c courseEnroll : returnCourseEnrollments) {

@@ -1,16 +1,15 @@
 <!--
   @File Name          : STG_CMP_CourseConnections.cmp
-  @Description        :
+  @Description        : 
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Group              :
+  @Group              : 
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 1/27/2020, 3:12:34 PM
-  @Modification Log   :
+  @Last Modified On   : 1/28/2020, 12:22:45 PM
+  @Modification Log   : 
   Ver       Date            Author      		    Modification
-  1.0    1/21/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+  1.0    1/28/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
 -->
 <aura:component extends="c:STG_CMP_Base" controller="STG_CourseConnections">
-
   <aura:attribute name="courseConnectionRecTypes" type="Map" />
   <aura:attribute name="studentRecTypeId" type="String" />
   <aura:attribute name="facultyRecTypeId" type="String" />
@@ -179,7 +178,7 @@
       <hr/>
 
       <div class="slds-grid slds-wrap">
-		<div class="slds-col slds-size--1-of-2">
+		  <div class="slds-col slds-size--1-of-2">
                 {!$Label.c.stgTitleAffiliationBackfill}
                 <div class="slds-col slds-size--1-of-1">
             		<ui:outputText value="{!$Label.c.stgAffiliationBackfillDesc}" class="slds-text-body--small" />

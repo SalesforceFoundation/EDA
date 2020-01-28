@@ -65,7 +65,6 @@
   },
 
   handleAffiliationBackfill : function(component, event, helper) {
-      console.log('affiliationBackfill HS -->');
      var action = component.get("c.executeAffiliationBackfillOnCourseConnection");
      action.setCallback(this, function(response) {
      	if(response.getState() === "SUCCESS") {
