@@ -52,7 +52,7 @@ public with sharing class STG_CourseConnections_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
         												Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             											Enable_Course_Connections__c = true,
-        												Populate_Affil_on_Student_Couse_Cxn__c = true
+        												Populate_Affil_on_Student_Course_Cxn__c = true
         												));
         Id apexJobId = STG_CourseConnections.executeAffiliationBackfillOnCourseConnection();
         System.assertNotEquals(null, apexJobId);
