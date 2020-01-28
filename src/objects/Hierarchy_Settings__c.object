@@ -344,6 +344,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Populate_Affil_on_Student_Course_Cxn__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If enabled, the Affiliation field on new Student Course Connection records automatically syncs with the Affiliation record associated with the Program Enrollment on the Student Course Connection.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If enabled, the Affiliation field on new Student Course Connection records automatically syncs with the Affiliation record associated with the Program Enrollment on the Student Course Connection.</inlineHelpText>
+        <label>Populate Affil on Student Course Cxn</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Preferred_Phone_Selection__c</fullName>
         <description>To select a desired Preferred Phone when Phone clean up Batch job runs</description>
         <externalId>false</externalId>

@@ -55,7 +55,7 @@ public class CCON_AffiliationBackfill_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
-                Populate_Affil_on_Student_Couse_Cxn__c = false,
+                Populate_Affil_on_Student_Course_Cxn__c = false,
                 Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()
             )
         );
@@ -156,7 +156,7 @@ public class CCON_AffiliationBackfill_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
-                Populate_Affil_on_Student_Couse_Cxn__c  = true,
+                Populate_Affil_on_Student_Course_Cxn__c = true,
                 Faculty_RecType__c = UTIL_Describe_API.getFacultyConnectionRecType(),
                 Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()
             )
