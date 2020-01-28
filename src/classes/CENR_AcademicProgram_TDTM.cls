@@ -82,16 +82,16 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     * @return Boolean.
     ********************************************************************************************************/
     private void handleBeforeTrigger(List<Course_Enrollment__c> newCourseEnrollments, List<Course_Enrollment__c> oldCourseEnrollments,
-                                     TDTM_Runnable.Action triggerAction, Boolean affiliationIsEnabled) {
+                        TDTM_Runnable.Action triggerAction, Boolean affiliationIsEnabled) {
         Set<Id> pEnrollIDsToQuery = new Set<Id>();
         List<Program_Enrollment__c> pEnrollments = new List<Program_Enrollment__c>();
 
         if (newCourseEnrollments.size() > 0 && newCourseEnrollments != NULL) {
-            for (Integer i = 0; i < newCourseEnrollments.size(); i++) {
-                Course_Enrollment__c enroll = (Course_Enrollment__c)newCourseEnrollments[i];
+
+            for (Course_Enrollment__c ce : newCourseEnrollments) {
                 //Get the ID of each parent Program Enrollment
-                if (enroll.Program_Enrollment__c != null) {
-                    pEnrollIDsToQuery.add(enroll.Program_Enrollment__c);
+           		if (ce.Program_Enrollment__c != null) {
+                    pEnrollIDsToQuery.add(ce.Program_Enrollment__c);
                 }
             }
 
@@ -103,15 +103,23 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
                 Map<Id, Program_Enrollment__c> pEnrollmentsMap = new Map<Id, Program_Enrollment__c>(pEnrollments);
                 Course_Enrollment__c enroll = (Course_Enrollment__c)newCourseEnrollments[i];
 
+                Boolean isBeforeUpdate;
+
                 //BEFORE INSERT
                 if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-                    processBeforeInsert(enroll, pEnrollmentsMap, affiliationIsEnabled);
+                    isBeforeUpdate = FALSE;
+                    if (enroll.Program_Enrollment__c != NULL) {
+                        assignAccountAndAffiliation (pEnrollmentsMap, enroll, NULL, affiliationIsEnabled, isBeforeUpdate);
+                    }
                 }
 
                 //BEFORE UPDATE
                 if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+                    isBeforeUpdate = TRUE;
                     Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldCourseEnrollments[i];
-                    processBeforeUpdate(enroll, oldEnroll, pEnrollmentsMap, affiliationIsEnabled);
+                    if (oldEnroll.Program_Enrollment__c == NULL && enroll.Program_Enrollment__c != NULL) {
+                        assignAccountAndAffiliation (pEnrollmentsMap, enroll, oldEnroll, affiliationIsEnabled, isBeforeUpdate);
+                    }
                 }
             }
         }
@@ -134,41 +142,30 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description This method handles specifically beforeInsert processes.
-    * @param enroll is the Course Connection from trigger new.
+    * @description This method handles specifically populates Account__c and Affiliation__c from
+    * Program Enrollment on Student Course Connection.
     * @param pEnrollmentsMap is a map of Program Enrollment Id's to Program Enrollment records.
-    * @param affiliationIsEnabled is a boolean that denotes if auto population of Affiliation on
-    * Student Course Connection is enabled in org.
-    ********************************************************************************************************/
-    private void processBeforeInsert(Course_Enrollment__c enroll, Map<Id, Program_Enrollment__c> pEnrollmentsMap,
-                                    Boolean affiliationIsEnabled) {
-        if(enroll.Program_Enrollment__c != null) {
-            Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
-            if (pEnroll != null) {
-                enroll.Account__c = pEnroll.Account__c;
-                if (affiliationIsEnabled) {
-                    enroll.Affiliation__c = pEnroll.Affiliation__c;
-                }
-            }
-        }
-    }
-
-	/*******************************************************************************************************
-    * @description This method handles specifically beforeUpdate processes.
     * @param enroll is the Course Connection from trigger new.
     * @param oldEnroll is the Course Connection from trigger old.
-    * @param pEnrollmentsMap is a map of Program Enrollment Id's to Program Enrollment records.
     * @param affiliationIsEnabled is a boolean that denotes if auto population of Affiliation on
     * Student Course Connection is enabled in org.
+    * @param isBeforeUpdate is a boolean that denotes if the current triggerAction is beforeUpdate.
     ********************************************************************************************************/
-    private void processBeforeUpdate(Course_Enrollment__c enroll, Course_Enrollment__c oldEnroll,
-                                     Map<Id, Program_Enrollment__c> pEnrollmentsMap, Boolean affiliationIsEnabled) {
-        if(oldEnroll.Program_Enrollment__c == null && enroll.Program_Enrollment__c != null) {
+    private void assignAccountAndAffiliation(Map<Id, Program_Enrollment__c> pEnrollmentsMap, Course_Enrollment__c enroll, Course_Enrollment__c oldEnroll,
+    										    Boolean affiliationIsEnabled, Boolean isBeforeUpdate)
+    {
+        if (!pEnrollmentsMap.isEmpty()) {
             Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
-            if (pEnroll != null) {
+            if (pEnroll != NULL) {
                 enroll.Account__c = pEnroll.Account__c;
                 if (affiliationIsEnabled) {
-                    enroll.Affiliation__c = pEnroll.Affiliation__c;
+                    if (isBeforeUpdate) {
+                        if (oldEnroll.Affiliation__c == NULL) {
+                            enroll.Affiliation__c = pEnroll.Affiliation__c;
+                        }
+                    } else {
+                        enroll.Affiliation__c = pEnroll.Affiliation__c;
+                    }
                 }
             }
         }
