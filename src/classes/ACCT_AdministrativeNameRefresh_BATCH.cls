@@ -37,25 +37,19 @@
 public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<SObject>{
 
     public Database.Querylocator start(Database.BatchableContext bc) {
-        System.debug('ACCT_AdminBATCH Method -->');
         Id adminRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Administrative').getRecordTypeId();
-        System.debug('ACCT_AdminBATCH RecordType -->' + adminRecordTypeId);
         String query = 'SELECT Id, RecordTypeId, Primary_Contact__c ' +
             		    'FROM Account ' +
             		    'WHERE RecordTypeId = :adminRecordTypeId' ;
-        System.debug('ACCT_AdminBATCH Method -->' + query);
         return Database.getQueryLocator(query);
     }
 
     public void execute(Database.BatchableContext bc, List<Account> returnAccounts){
-        System.debug('ACCT_AdminBATCH Main -->' + returnAccounts);
         Set<Id> primaryConId = new Set<Id>();
       	List<Account> accountsToRename = new List<Account>();
         List<Contact> contactsToProcess = new List<Contact>();
 
         if (returnAccounts.size() > 0) {
-            System.debug('ACCT_AdminBATCH Main Method -->' + returnAccounts);
-
             for (Account a : returnAccounts) {
                 if (a.Primary_Contact__c != NULL) {
                     primaryConId.add(a.Primary_Contact__c);
@@ -74,7 +68,6 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
             }
 
             if (accountsToRename.size() > 0) {
-                System.debug('ACCT_AdminBATCH accListBatchUpdate -->' + accountsToRename);
                 Database.update(accountsToRename);
             }
         }
