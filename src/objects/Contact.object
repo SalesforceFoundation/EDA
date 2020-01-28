@@ -4531,6 +4531,11 @@
                     <label>Home</label>
                 </value>
                 <value>
+                    <fullName>Vacation Residence</fullName>
+                    <default>false</default>
+                    <label>Vacation Residence</label>
+                </value>
+                <value>
                     <fullName>Work</fullName>
                     <default>false</default>
                     <label>Work</label>
@@ -4691,6 +4696,11 @@
                     <label>Home</label>
                 </value>
                 <value>
+                    <fullName>Vacation Residence</fullName>
+                    <default>false</default>
+                    <label>Vacation Residence</label>
+                </value>
+                <value>
                     <fullName>Work</fullName>
                     <default>false</default>
                     <label>Work</label>
@@ -4751,17 +4761,17 @@
         <externalId>false</externalId>
         <formula>if(
     ISPICKVAL(Primary_Address_Type__c,&quot;Work&quot;),
-    if(ISBLANK(MailingStreet) , &quot;&quot; , MailingStreet &amp; &quot;, &quot;) &amp; 
-    if(ISBLANK(MailingCity) , &quot;&quot; , MailingCity &amp; &quot;, &quot;) &amp; 
-    if(ISBLANK(MailingState) , &quot;&quot; , MailingState &amp; &quot; &quot;) &amp; 
-    if(ISBLANK(MailingPostalCode) , &quot;&quot; , MailingPostalCode) &amp; 
+    if(ISBLANK(MailingStreet) , &quot;&quot; , MailingStreet &amp; &quot;, &quot;) &amp;
+    if(ISBLANK(MailingCity) , &quot;&quot; , MailingCity &amp; &quot;, &quot;) &amp;
+    if(ISBLANK(MailingState) , &quot;&quot; , MailingState &amp; &quot; &quot;) &amp;
+    if(ISBLANK(MailingPostalCode) , &quot;&quot; , MailingPostalCode) &amp;
     If(ISBLANK(MailingCountry ) , &quot;&quot; , &quot;, &quot; &amp; MailingCountry)
     ,
     if(ISPICKVAL(Secondary_Address_Type__c,&quot;Work&quot;),
-    if(ISBLANK(OtherStreet) , &quot;&quot; , OtherStreet &amp; &quot;, &quot;) &amp; 
-    if(ISBLANK(OtherCity) , &quot;&quot; , OtherCity &amp; &quot;, &quot;) &amp; 
-    if(ISBLANK(OtherState) , &quot;&quot; , OtherState &amp; &quot; &quot;) &amp; 
-    if(ISBLANK(OtherPostalCode) , &quot;&quot; , OtherPostalCode) &amp; 
+    if(ISBLANK(OtherStreet) , &quot;&quot; , OtherStreet &amp; &quot;, &quot;) &amp;
+    if(ISBLANK(OtherCity) , &quot;&quot; , OtherCity &amp; &quot;, &quot;) &amp;
+    if(ISBLANK(OtherState) , &quot;&quot; , OtherState &amp; &quot; &quot;) &amp;
+    if(ISBLANK(OtherPostalCode) , &quot;&quot; , OtherPostalCode) &amp;
     If(ISBLANK(OtherCountry ) , &quot;&quot; , &quot;, &quot; &amp; OtherCountry)
     ,
     &quot;&quot;)
