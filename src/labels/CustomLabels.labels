@@ -492,7 +492,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>hhFamily</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
         <value>Family</value>
     </labels>
     <labels>
@@ -500,7 +500,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameAdminAcc</shortDescription>
+        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
         <value>{!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -508,7 +508,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameFamily</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
         <value>{!LastName} Family</value>
     </labels>
     <labels>
@@ -516,7 +516,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameFirstNameAdminAcc</shortDescription>
+        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Administrative Account</value>
     </labels>
     <labels>
@@ -524,7 +524,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameFirstNameFamily</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format.</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Family</value>
     </labels>
     <labels>
@@ -532,7 +532,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameFirstNameHH</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Household</value>
     </labels>
     <labels>
@@ -540,7 +540,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameHH</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
         <value>{!LastName} Household</value>
     </labels>
     <labels>
@@ -548,7 +548,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>nestedPlanRequirementPPExp</shortDescription>
+        <shortDescription>Err msg when Plan Requirement has both parent Plan Requirement and Program Plan</shortDescription>
         <value>Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.</value>
     </labels>
     <labels>
@@ -564,31 +564,31 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No Affiliation Mappings</shortDescription>
-        <value>No Affiliation Mappings to display. Try creating new ones using the form below.</value>
+        <shortDescription>Empty state message for Affiliation Mappings</shortDescription>
+        <value>No Affiliation Mappings have been created. Use the form below to create a new Affiliation Mapping.</value>
     </labels>
     <labels>
         <fullName>noAutoCreateSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No Auto Create Settings</shortDescription>
-        <value>No Auto-Create Settings to display. Try creating new ones using the form below.</value>
+        <shortDescription>Empty state message for Auto-Create Settings</shortDescription>
+        <value>No Auto-Create Settings have been defined. Use the form below to create a new Auto-Create Setting.</value>
     </labels>
     <labels>
         <fullName>noRecSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No Reciprocal Settings</shortDescription>
-        <value>No Reciprocal Settings to display. Try creating new ones using the form below.</value>
+        <shortDescription>Empty state message for Reciprocal Settings </shortDescription>
+        <value>No Reciprocal Settings have been defined. Use the form below to create a new Reciprocal Setting.</value>
     </labels>
     <labels>
         <fullName>preferredBatchDefaultEmail</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>preferredBatchDefaultEmail</shortDescription>
+        <shortDescription>Email value used in Preferred Email logic</shortDescription>
         <value>Email (standard)</value>
     </labels>
     <labels>
@@ -604,39 +604,39 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgAccModelTitle</shortDescription>
-        <value>Default Account Model:</value>
+        <shortDescription>Field label for Account model </shortDescription>
+        <value>Default Account Model</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeSupportsHHAddress</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAccountRecordTypeSupportsHHAddress</shortDescription>
-        <value>Household Account Record Type:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Household Account Record Type</value>
     </labels>
     <labels>
         <fullName>stgAccountTypesMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAccountTypesMultiAddressesEnabled</shortDescription>
-        <value>Account Types with Multi-Addresses Enabled:</value>
+        <shortDescription>Field label for multi address functionality Settings</shortDescription>
+        <value>Account Types with Multi-Addresses Enabled</value>
     </labels>
     <labels>
         <fullName>stgAccoutTypesWithoutContactsDelete</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAccoutTypesWithoutContactsDelete</shortDescription>
-        <value>Account Types without Contacts to Delete:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Account Types without Contacts to Delete</value>
     </labels>
     <labels>
         <fullName>stgAddHispanicOrLatinoPicklistValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAddHispanicOrLatinoPicklistValue</shortDescription>
+        <shortDescription>Instructions for Ethnicity and Race Backfill</shortDescription>
         <value>Add &quot;Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
@@ -644,7 +644,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAddNotHispanicOrLatinoPicklistValue</shortDescription>
+        <shortDescription>Instructions for Ethnicity and Race Backfill</shortDescription>
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
@@ -652,32 +652,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAdminAccountRecordType</shortDescription>
-        <value>Administrative Account Record Type:</value>
+        <shortDescription>Field label for Account record types Setting</shortDescription>
+        <value>Administrative Account Record Type</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflCopyProgramEnrollmentEndDate</shortDescription>
-        <value>Copy Affiliation End Date from Program Enrollment:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Copy Affiliation End Date from Program Enrollment</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentStartDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflCopyProgramEnrollmentStartDate</shortDescription>
-        <value>Copy Affiliation Start Date from Program Enrollment:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Copy Affiliation Start Date from Program Enrollment</value>
     </labels>
     <labels>
         <fullName>stgAfflDeleteProgramEnrollment</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflDeleteProgramEnrollment</shortDescription>
-        <value>Status Specified for Affiliations Not Deleted:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Status for Affiliations Not Deleted</value>
     </labels>
     <labels>
         <fullName>stgAfflNotInserted</fullName>
@@ -692,63 +692,63 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflProgEnrollDeleteRelated</shortDescription>
-        <value>Delete Related Affiliation When Deleting Program Enrollment:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Delete Related Affiliation When Deleting Program Enrollment</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflProgEnrollSetRole</shortDescription>
-        <value>Specify Role for Created Affiliations:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Specify Role for Created Affiliations</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRoleValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflProgEnrollSetRoleValue</shortDescription>
-        <value>Role Specified for Created Affiliations:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Role for Created Affiliations</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetStatusValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflProgEnrollSetStatusValue</shortDescription>
-        <value>Status Specified for Created Affiliations:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Status for Created Affiliations</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfterRunBackfill</shortDescription>
-        <value>After you run the Backfill:</value>
+        <shortDescription>Label for Accounts and Contacts Backfill</shortDescription>
+        <value>After Running the Backfill</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteEnterChatterGroupName</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoCompleteEnterChatterGroupName</shortDescription>
-        <value>Enter Chatter Group name to search</value>
+        <shortDescription>Ghost text in Error Notification Recipients field System Settings</shortDescription>
+        <value>Start typing Chatter Group name to search.</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteEnterUserName</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoCompleteEnterUserName</shortDescription>
-        <value>Enter User name to search</value>
+        <shortDescription>Ghost text in Error Notification Recipients field System Settings</shortDescription>
+        <value>Start typing User name to search.</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteSelectChatterGroup</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoCompleteSelectChatterGroup</shortDescription>
+        <shortDescription>Field label for System Settings</shortDescription>
         <value>Select Chatter Group</value>
     </labels>
     <labels>
@@ -756,7 +756,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoCompleteSelectUser</shortDescription>
+        <shortDescription>Field label for System Settings</shortDescription>
         <value>Select User</value>
     </labels>
     <labels>
@@ -764,7 +764,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoEnrollment</shortDescription>
+        <shortDescription>Field label for Affiliation Mappings Settings</shortDescription>
         <value>Auto-Enrollment</value>
     </labels>
     <labels>
@@ -772,7 +772,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoEnrollmentRole</shortDescription>
+        <shortDescription>Column header for Affiliation Mappings Settings</shortDescription>
         <value>Auto-Enrollment Role</value>
     </labels>
     <labels>
@@ -780,7 +780,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoEnrollmentStatus</shortDescription>
+        <shortDescription>Column header for Affiliation Mappings Settings</shortDescription>
         <value>Auto-Enrollment Status</value>
     </labels>
     <labels>
@@ -788,7 +788,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBackfillQueuedEmailSent</shortDescription>
+        <shortDescription>Confirmation message for backfill</shortDescription>
         <value>The backfill was queued successfully. An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
@@ -796,15 +796,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBeforeRunBackfill</shortDescription>
-        <value>Before you run the Backfill:</value>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
+        <value>Before Running the Backfill</value>
     </labels>
     <labels>
         <fullName>stgBtnAddMapping</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnAddMapping</shortDescription>
+        <shortDescription>Button label for Affiliation Mappings Settings</shortDescription>
         <value>Add Mapping</value>
     </labels>
     <labels>
@@ -812,7 +812,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnAddSetting</shortDescription>
+        <shortDescription>Button label for Reciprocal Relationships Settings</shortDescription>
         <value>Add Setting</value>
     </labels>
     <labels>
@@ -820,7 +820,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnCancel</shortDescription>
+        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
         <value>Cancel</value>
     </labels>
     <labels>
@@ -828,7 +828,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnEdit</shortDescription>
+        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
         <value>Edit</value>
     </labels>
     <labels>
@@ -836,7 +836,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnRunBackfill</shortDescription>
+        <shortDescription>Button label for Course Connections Settings</shortDescription>
         <value>Run Backfill</value>
     </labels>
     <labels>
@@ -844,7 +844,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnRunCopy</shortDescription>
+        <shortDescription>Button label for Courses Settings</shortDescription>
         <value>Run Copy</value>
     </labels>
     <labels>
@@ -852,7 +852,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnSave</shortDescription>
+        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
         <value>Save</value>
     </labels>
     <labels>
@@ -860,15 +860,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgCleanupQueuedEmailSent</shortDescription>
-        <value>The Cleanup was queued successfully. An email will be sent at the completion of the batch.</value>
+        <shortDescription>Confirmation msg for Run Cleanup on Accts and Contacts</shortDescription>
+        <value>The Cleanup was queued successfully. An email will be sent when the batch is completed.</value>
     </labels>
     <labels>
         <fullName>stgColAccountRecordType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColAccountRecordType</shortDescription>
+        <shortDescription>Col header and label for Affiliation Mappings Settings</shortDescription>
         <value>Account Record Type</value>
     </labels>
     <labels>
@@ -876,7 +876,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColActive</shortDescription>
+        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
         <value>Active</value>
     </labels>
     <labels>
@@ -884,7 +884,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColCampTypes</shortDescription>
+        <shortDescription>Field label for Relationship Auotcreation Settings</shortDescription>
         <value>Campaign Types</value>
     </labels>
     <labels>
@@ -892,7 +892,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColContactPrimaryAfflField</shortDescription>
+        <shortDescription>Col header for Affiliation Mappings Settings</shortDescription> 
         <value>Contact Primary Affl Field</value>
     </labels>
     <labels>
@@ -900,7 +900,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColFemale</shortDescription>
+        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
         <value>Female</value>
     </labels>
     <labels>
@@ -908,15 +908,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColField</shortDescription>
-        <value>Field</value>
+        <shortDescription>Col header and field label for Relationships Autocreate Settings</shortDescription>
+        <value>Field Label</value>
     </labels>
     <labels>
         <fullName>stgColMale</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColMale</shortDescription>
+        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
         <value>Male</value>
     </labels>
     <labels>
@@ -924,7 +924,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColNeutral</shortDescription>
+        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
         <value>Neutral</value>
     </labels>
     <labels>
@@ -932,15 +932,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColObject</shortDescription>
-        <value>Object</value>
+        <shortDescription>Col header and field label for Relationships  Autocreation Settings</shortDescription>
+        <value>Object API Name</value>
     </labels>
     <labels>
         <fullName>stgColRelType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColRelType</shortDescription>
+        <shortDescription>Col header and field label for Relationships  Autocreation Settings</shortDescription>
         <value>Relationship Type</value>
     </labels>
     <labels>
@@ -948,7 +948,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColRole</shortDescription>
+        <shortDescription>Field label for Affiliation Mappings Settings</shortDescription>
         <value>Role</value>
     </labels>
     <labels>
@@ -956,7 +956,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColStatus</shortDescription>
+        <shortDescription>Field label for Affiliation Mappings Settings</shortDescription>
         <value>Status</value>
     </labels>
     <labels>
@@ -964,16 +964,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgConfirmReadyRunBackfill</shortDescription>
-        <value>I understand and am ready to run Backfill</value>
+        <shortDescription>Confirm ready to run Backfill msg</shortDescription>
+        <value>I understand and am ready to run Backfill.</value>
     </labels>
     <labels>
         <fullName>stgContactMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgContactMultiAddressesEnabled</shortDescription>
-        <value>Contact Multi-Addresses Enabled:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Contact Multi-Addresses Enabled</value>
     </labels>
     <labels>
         <fullName>stgCourseConnBackFillError</fullName>
