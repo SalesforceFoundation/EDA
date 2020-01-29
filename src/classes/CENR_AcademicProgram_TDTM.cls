@@ -69,7 +69,7 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     * @return Boolean.
     ********************************************************************************************************/
     private Boolean checkAffiliationEnabled() {
-        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Course_Cxn__c ;
+        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Couse_Cxn__c ;
     }
 
 	/*******************************************************************************************************
@@ -83,47 +83,64 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
     private void handleBeforeTrigger(List<Course_Enrollment__c> newCourseEnrollments, List<Course_Enrollment__c> oldCourseEnrollments,
                         TDTM_Runnable.Action triggerAction, Boolean affiliationIsEnabled) {
-        Set<Id> pEnrollIDsToQuery = new Set<Id>();
         List<Program_Enrollment__c> pEnrollments = new List<Program_Enrollment__c>();
 
         if (newCourseEnrollments.size() > 0 && newCourseEnrollments != NULL) {
 
-            for (Course_Enrollment__c ce : newCourseEnrollments) {
-                //Get the ID of each parent Program Enrollment
-           		if (ce.Program_Enrollment__c != null) {
-                    pEnrollIDsToQuery.add(ce.Program_Enrollment__c);
-                }
-            }
-
-            if (pEnrollIDsToQuery.size() > 0) {
-                pEnrollments = queryProgramEnrollments(pEnrollIDsToQuery);
-            }
+            pEnrollments = getProgramEnrollments(newCourseEnrollments);
 
             for (Integer i = 0; i < newCourseEnrollments.size(); i++) {
                 Map<Id, Program_Enrollment__c> pEnrollmentsMap = new Map<Id, Program_Enrollment__c>(pEnrollments);
                 Course_Enrollment__c enroll = (Course_Enrollment__c)newCourseEnrollments[i];
 
-                Boolean isBeforeUpdate;
+                if(!pEnrollmentsMap.isEmpty()) {
+                    Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
 
-                //BEFORE INSERT
-                if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-                    isBeforeUpdate = FALSE;
-                    if (enroll.Program_Enrollment__c != NULL) {
-                        assignAccountAndAffiliation (pEnrollmentsMap, enroll, NULL, affiliationIsEnabled, isBeforeUpdate);
-                    }
-                }
+                    enroll = assignRequiredValues(enroll, pEnroll);
 
-                //BEFORE UPDATE
-                if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    isBeforeUpdate = TRUE;
-                    Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldCourseEnrollments[i];
-                    if (oldEnroll.Program_Enrollment__c == NULL && enroll.Program_Enrollment__c != NULL) {
-                        assignAccountAndAffiliation (pEnrollmentsMap, enroll, oldEnroll, affiliationIsEnabled, isBeforeUpdate);
+                    if(affiliationIsEnabled) {
+                        //BEFORE INSERT
+                        if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+                            if (enroll.Program_Enrollment__c != NULL) {
+                                assignAccountAndAffiliation(enroll, pEnroll, NULL, triggerAction);
+                            }
+                        }
+
+                        //BEFORE UPDATE
+                        if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+                            Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldCourseEnrollments[i];
+                            if (oldEnroll.Program_Enrollment__c == NULL && enroll.Program_Enrollment__c != NULL) {
+                                assignAccountAndAffiliation(enroll, pEnroll, oldEnroll, triggerAction);
+                            }
+                        }
+
                     }
                 }
             }
         }
     }
+
+    /*******************************************************************************************************
+    * @description
+    ********************************************************************************************************/
+    private List<Program_Enrollment__c> getProgramEnrollments(List<Course_Enrollment__c> newCourseEnrollments) {
+        Set<Id> pEnrollIDsToQuery = new Set<Id>();
+
+        for (Course_Enrollment__c ce : newCourseEnrollments) {
+            //Get the ID of each parent Program Enrollment
+            if (ce.Program_Enrollment__c != null) {
+                pEnrollIDsToQuery.add(ce.Program_Enrollment__c);
+            }
+        }
+
+        if (pEnrollIDsToQuery.size() > 0) {
+            return queryProgramEnrollments(pEnrollIDsToQuery);
+        } else {
+            return new List<Program_Enrollment__c>(); //return empty list
+        }
+
+    }
+    
 
     /*******************************************************************************************************
     * @description This method queries all Program Enrollments associated to the new
@@ -151,23 +168,27 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     * Student Course Connection is enabled in org.
     * @param isBeforeUpdate is a boolean that denotes if the current triggerAction is beforeUpdate.
     ********************************************************************************************************/
-    private void assignAccountAndAffiliation(Map<Id, Program_Enrollment__c> pEnrollmentsMap, Course_Enrollment__c enroll, Course_Enrollment__c oldEnroll,
-    										    Boolean affiliationIsEnabled, Boolean isBeforeUpdate)
-    {
-        if (!pEnrollmentsMap.isEmpty()) {
-            Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
-            if (pEnroll != NULL) {
-                enroll.Account__c = pEnroll.Account__c;
-                if (affiliationIsEnabled) {
-                    if (isBeforeUpdate) {
-                        if (oldEnroll.Affiliation__c == NULL) {
-                            enroll.Affiliation__c = pEnroll.Affiliation__c;
-                        }
-                    } else {
-                        enroll.Affiliation__c = pEnroll.Affiliation__c;
-                    }
-                }
+    private void assignAccountAndAffiliation(Course_Enrollment__c enroll, Program_Enrollment__c pEnroll, 
+                                            Course_Enrollment__c oldEnroll, TDTM_Runnable.Action triggerAction) {
+        if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+            if (oldEnroll.Affiliation__c == NULL) {
+                enroll.Affiliation__c = pEnroll.Affiliation__c;
             }
+        } else {
+            enroll.Affiliation__c = pEnroll.Affiliation__c;
         }
     }
+
+    /**
+    * @description
+    */
+    private Course_Enrollment__c assignRequiredValues(Course_Enrollment__c enr, Program_Enrollment__c pEnr) {
+        if (pEnr != NULL) {
+            enr.Account__c = pEnr.Account__c;
+        }
+
+        return enr;
+    
+    }
+
 }
