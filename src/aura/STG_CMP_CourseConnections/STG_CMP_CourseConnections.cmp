@@ -137,10 +137,10 @@
             	<label class="slds-checkbox">
               		<aura:if isTrue="{!v.isView}">
                   		<span style="margin-right: 8px">
-                      		<ui:outputCheckbox value="{!v.hierarchySettings.Populate_Affil_on_Student_Couse_Cxn__c}" class="slds-checkbox course-cons-outputcheck" />
+                      		<ui:outputCheckbox value="{!v.hierarchySettings.Populate_Affil_on_Student_Course_Cxn__c}" class="slds-checkbox course-cons-outputcheck" />
                   		</span>
               		<aura:set attribute="else">
-                  		<ui:inputCheckbox value="{!v.hierarchySettings.Populate_Affil_on_Student_Couse_Cxn__c}" class="slds-checkbox course-cons-inputcheck"
+                  		<ui:inputCheckbox value="{!v.hierarchySettings.Populate_Affil_on_Student_Course_Cxn__c}" class="slds-checkbox course-cons-inputcheck"
                                     aura:id="affiliationCheckbox" text="" />
                   		<span class="slds-checkbox--faux"></span>
               		</aura:set>

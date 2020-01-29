@@ -35,7 +35,6 @@
 * @description Automatically populates the Academic Program field in a Course Enrollment.
 */
 public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
-
     /*******************************************************************************************************
     * @description Updates key affiliation lookups on contact, and any other primary affiliation
     * of the new type.
@@ -69,7 +68,7 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     * @return Boolean.
     ********************************************************************************************************/
     private Boolean checkAffiliationEnabled() {
-        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Couse_Cxn__c ;
+        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Course_Cxn__c ;
     }
 
 	/*******************************************************************************************************
@@ -86,7 +85,6 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
         List<Program_Enrollment__c> pEnrollments = new List<Program_Enrollment__c>();
 
         if (newCourseEnrollments.size() > 0 && newCourseEnrollments != NULL) {
-
             pEnrollments = getProgramEnrollments(newCourseEnrollments);
 
             for (Integer i = 0; i < newCourseEnrollments.size(); i++) {
@@ -113,7 +111,6 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
                                 assignAccountAndAffiliation(enroll, pEnroll, oldEnroll, triggerAction);
                             }
                         }
-
                     }
                 }
             }
@@ -121,7 +118,9 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description
+    * @description This method retrieves the Program Enrollment record from the Student Course Connection.
+    * @param newCourseEnrollments is a list of Course Connections from trigger new.
+    * @return List.
     ********************************************************************************************************/
     private List<Program_Enrollment__c> getProgramEnrollments(List<Course_Enrollment__c> newCourseEnrollments) {
         Set<Id> pEnrollIDsToQuery = new Set<Id>();
@@ -136,11 +135,10 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
         if (pEnrollIDsToQuery.size() > 0) {
             return queryProgramEnrollments(pEnrollIDsToQuery);
         } else {
-            return new List<Program_Enrollment__c>(); //return empty list
+            //Returns empty list
+            return new List<Program_Enrollment__c>();
         }
-
     }
-    
 
     /*******************************************************************************************************
     * @description This method queries all Program Enrollments associated to the new
@@ -161,14 +159,12 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description This method handles specifically populates Account__c and Affiliation__c from
     * Program Enrollment on Student Course Connection.
-    * @param pEnrollmentsMap is a map of Program Enrollment Id's to Program Enrollment records.
     * @param enroll is the Course Connection from trigger new.
+    * @param pEnroll is the Program Enrollment associated to the Student Course Connection.
     * @param oldEnroll is the Course Connection from trigger old.
-    * @param affiliationIsEnabled is a boolean that denotes if auto population of Affiliation on
-    * Student Course Connection is enabled in org.
-    * @param isBeforeUpdate is a boolean that denotes if the current triggerAction is beforeUpdate.
+    * @param triggerAction is the current trigger action.
     ********************************************************************************************************/
-    private void assignAccountAndAffiliation(Course_Enrollment__c enroll, Program_Enrollment__c pEnroll, 
+    private void assignAccountAndAffiliation(Course_Enrollment__c enroll, Program_Enrollment__c pEnroll,
                                             Course_Enrollment__c oldEnroll, TDTM_Runnable.Action triggerAction) {
         if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
             if (oldEnroll.Affiliation__c == NULL) {
@@ -179,16 +175,16 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
         }
     }
 
-    /**
-    * @description
-    */
+    /********************************************************************************************************
+    * @description This method prepopulates the Account lookup field on the Student Course Connection.
+    * @param enr is the current Student Course Connection record.
+    * @param pEnr is the Program Enrollment record associated to the current Student Course Connection.
+    * @return the current Student Course Connection record.
+    ********************************************************************************************************/
     private Course_Enrollment__c assignRequiredValues(Course_Enrollment__c enr, Program_Enrollment__c pEnr) {
         if (pEnr != NULL) {
             enr.Account__c = pEnr.Account__c;
         }
-
         return enr;
-    
     }
-
 }
