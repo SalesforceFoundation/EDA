@@ -42,7 +42,7 @@ public class CCON_AffiliationBackfill_BATCH implements Database.Batchable<SObjec
                         'FROM Course_Enrollment__c ' +
             			'WHERE Affiliation__c = NULL AND Program_Enrollment__c != NULL AND RecordTypeId = :studentCCRecordTypeId';
 
-        return Database.getQueryLocator(query);
+        return Database.getQueryLocator(String.escapeSingleQuotes(query));
     }
 
     public void execute(Database.BatchableContext bc, List<Course_Enrollment__c> returnCourseEnrollments){
