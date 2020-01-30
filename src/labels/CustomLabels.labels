@@ -270,7 +270,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
-        <value>Address records should only be created as children of Account or Contact.</value>
+        <value>Address records can only be associated with Accounts or Contacts.</value>
     </labels>
     <labels>
         <fullName>addrNotEnabledAccount</fullName>
