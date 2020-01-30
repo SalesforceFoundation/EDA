@@ -30,7 +30,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Autocreate relationship error msg</shortDescription>
-        <valueThere's an invalid autocreate relationship setting configured in EDA Settings | Relationships | Autocreation. Delete or edit the invalid setting, then try again.</value>
+        <value>There's an invalid autocreate relationship setting configured in EDA Settings | Relationships | Autocreation. Delete or edit the invalid setting, then try again.</value>
     </labels>
     <labels>
         <fullName>BatchJobRunningProblem</fullName>
