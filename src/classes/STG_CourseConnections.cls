@@ -53,13 +53,12 @@ public class STG_CourseConnections {
     @AuraEnabled
     public static Id executeAffiliationBackfillOnCourseConnection() {
         Id jobId;
-        Boolean courseConnectionEnabled = UTIL_CustomSettingsFacade.getSettings().Enable_Course_Connections__c;
-        if (courseConnectionEnabled) {
+        Boolean affiliationEnabled = UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Course_Cxn__c;
+        if (affiliationEnabled) {
             CCON_AffiliationBackfill_BATCH batch = new CCON_AffiliationBackfill_BATCH();
         	Id ApexJobId = Database.executeBatch(batch, 200);
             jobId = ApexJobId;
         }
         return jobId;
     }
-
 }
