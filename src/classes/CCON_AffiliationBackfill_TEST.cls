@@ -60,13 +60,16 @@ public class CCON_AffiliationBackfill_TEST {
             )
         );
 
+        System.assertNotEquals(null, UTIL_Describe_API.getStudentConnectionRecType());
+        System.debug(UTIL_Describe_API.getStudentConnectionRecType());
+
         // Create university
         university = new Account(Name = 'Advanced University');
         insert university;
 
         // Create Biology department
         biologyDept = new Account(Name = 'Biology Department', Parent = university);
-		insert biologyDept;
+        insert biologyDept;
 
         // Create Term
         term = new Term__c(Account__c = university.Id, Start_Date__c = System.today() + 5, End_Date__c = System.today() + 90);
@@ -89,7 +92,7 @@ public class CCON_AffiliationBackfill_TEST {
         insert studentContacts;
 
         offeringsList = new List<Course_Offering__c>();
-		createCourseOffering(biologyCourse, term);
+        createCourseOffering(biologyCourse, term);
         insert offeringsList;
 
         programEnrollments = new List<Program_Enrollment__c>();
@@ -168,7 +171,7 @@ public class CCON_AffiliationBackfill_TEST {
         List<Course_Enrollment__c> studentConnections = [SELECT Id, Program_Enrollment__c, Affiliation__c, Contact__c
                                                          FROM Course_Enrollment__c
                                                          WHERE Affiliation__c = NULL AND Program_Enrollment__c != NULL
-														 AND Contact__c = :studentContacts];
+                                                         AND Contact__c = :studentContacts];
 
         for (Course_Enrollment__c studentCE : studentConnections) {
             System.assertEquals(NULL, studentCE.Affiliation__c);
