@@ -51,8 +51,7 @@ public class CCON_AffiliationBackfill_BATCH implements Database.Batchable<SObjec
 
         if (returnCourseEnrollments.size () > 0) {
 
-            for (Integer i = 0; i < returnCourseEnrollments.size(); i++) {
-                Course_Enrollment__c enroll = returnCourseEnrollments[i];
+            for (Course_Enrollment__c enroll : returnCourseEnrollments) {
                 if (enroll.Program_Enrollment__c != NULL) {
                     pEnrollmentID.add(enroll.Program_Enrollment__c);
                 }

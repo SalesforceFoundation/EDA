@@ -1141,7 +1141,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAffilBackfill</shortDescription>
-        <value>Only use Affiliation Backfill when enabling [Name of the EDA Setting here] for the first time, and only in orgs where Course Connections (Enrollments) existed before enabling the feature.
+        <value>Only use Affiliation Backfill when enabling "Populate Affiliation on Student Course Connection" for the first time, and only in orgs where Course Connections (Enrollments) existed before enabling the feature.
 
         This backfill allows you to auto-populate the Affiliation field on existing Student Course Connection records with the Affiliation that connects it to an Academic Program. If the Course Connection isn&apos;t affiliated with an Academic Program, the field on existing Student Course Connections won&apos;t auto-populate.</value>
     </labels>
