@@ -332,6 +332,11 @@ public class UTIL_ACCT_Naming {
                 acctNameFormat = strNameSpec.left(indexAfterLastParenthesis+1);
             }
 
+            //Remove prefix from acctNameFormat so that it doesn't cause a duplicate of Prefix on rename
+            if (namePrefix != ''){
+                acctNameFormat = acctNameFormat.subString(indexFirstParenthesis);
+            }
+
             //Retrieve  FirstNameSpec ie. {!FirstName}
             String strFirstName = cleanFirstNameFormat(acctNameFormat);
 
