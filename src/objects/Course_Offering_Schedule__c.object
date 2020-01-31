@@ -55,7 +55,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Course_Offering__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>The Course Offering to which this record belongs.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Course Offering to which this record belongs.</inlineHelpText>
