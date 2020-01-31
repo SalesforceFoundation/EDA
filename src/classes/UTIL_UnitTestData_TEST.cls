@@ -520,6 +520,18 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Inserts a new Course Offering Schedule record for testing.
+    * @param courseOfferingId The Course Offering Id to which the Course Offering Schedule will be associated.
+    * @return The inserted Course Offering Schedule record.
+    **********************************************************************************************************/
+    public static Course_Offering_Schedule__c createCourseOfferingSchedule(Id courseOfferingId) {
+        Course_Offering_Schedule__c courseOfferingSchedule = new Course_Offering_Schedule__c(
+            Course_Offering__c = courseOfferingId
+        );
+        return courseOfferingSchedule;
+    }
+
+    /*********************************************************************************************************
     * @description Inserts a new Time Block record for testing.
     * @param startTime The Start Time for the Time Block.
     * @param endTime The End Time for the Time Block.
