@@ -168,6 +168,14 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         			String fieldName = contactLabelNames.get(fieldLabel);
         			return fieldName;
         		}
+            } else if(Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName) != null) {
+                ID rcId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
+                String recTypeLabel = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName).getName();
+                if(rcId == recordTypeId) {
+                    String fieldLabel = accRecTypeToContactLabel.get(recTypeLabel);
+        			String fieldName = contactLabelNames.get(fieldLabel);
+        			return fieldName;
+                }
             }else{
                 //Setup null pointer error message
                 String[] params = new String[]{
