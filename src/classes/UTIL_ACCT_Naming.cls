@@ -370,7 +370,7 @@ public class UTIL_ACCT_Naming {
                 nameFormat.addAll(cleanNameFormat(firstNameSpec));
             }
 
-            if (fullNameSpec != null){
+            if (fullNameSpec != null) {
                 nameFormat.addAll(cleanNameFormat(fullNameSpec));
             }
 
