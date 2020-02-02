@@ -85,14 +85,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Contact> oldContacts = (List<Contact>)oldlist;
         this.triggerAction = triggerAction;
         DmlWrapper dmlWrapper = new DmlWrapper();
-        Id accountId;
-
+        Map<Id,Integer> accountIdNumOfCons = new Map<Id, Integer>();
 
         //Requery Contacts to include Account information
         if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             if (newContacts.size() > 0) {
                 newContacts = queryContacts(newContacts);
-                accountId = retrieveAccountId(newContacts);
             }
         }
 
@@ -102,19 +100,22 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
             !recursionAfterInsertCheck) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
-            }
+            handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, NULL);
+        }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             !recursionAfterUpdateCheck) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
-            }
+            //Retrieves a map of AccountIds to the number of Contacts associated to the
+            //Account that is not marked deceased or Excluded_from_Household_Naming__c
+            accountIdNumOfCons = retrieveAccountIds(newContacts);
+            handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountIdNumOfCons);
+        }
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
             !recursionAfterDeleteCheck) {
-                accountId = retrieveAccountId(oldContacts);
-                handlesAfterDelete(oldContacts, accountId);
-            }
+            accountIdNumOfCons = retrieveAccountIds(oldContacts);
+            handlesAfterDelete(oldContacts, accountIdNumOfCons);
+        }
 
         dmlWrapper = null;
         return dmlWrapper;
@@ -160,7 +161,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                            'MailingPostalCode, MailingCountry, MailingLatitude, ' +
                            'MailingLongitude, OtherStreet, OtherCity, ' +
                            'OtherState, OtherPostalCode, OtherCountry, ' +
-                           'OtherLatitude, OtherLongitude, Exclude_from_Household_Name__c,';
+                           'OtherLatitude, OtherLongitude, Deceased__c, Exclude_from_Household_Name__c,';
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             dynamicSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
@@ -178,17 +179,32 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Retrieves the AccountId
+    * @description Retrieves the AccountIds and number of Contacts associated to the Account that is not
+    * marked as Deceased or Excluded_from_hHousehold_Name__c.
     * @param newContacts is a list of Contacts from trigger new.
     * @return Id.
     */
-    private Id retrieveAccountId(List<Contact> newContacts) {
-        Id accountId;
+    private Map<Id,Integer> retrieveAccountIds(List<Contact> newContacts) {
+        Map<Id,Integer> accountIdNumOfCons = new Map<Id, Integer>();
+        List<Id> accountIds = new List<Id>();
+
         for (Contact c : newContacts) {
-            accountId = c.AccountId;
+            if (c.AccountId != NULL){
+                accountIds.add(c.AccountId);
+            }
         }
 
-        return accountId;
+        AggregateResult[] groupAccountIdNumOfCon = [SELECT AccountId, Count(Id)
+                                                   FROM Contact
+                                                   WHERE AccountId = :accountIds AND
+                                                   (Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE)
+                                                   Group By AccountId];
+
+        for(AggregateResult ar : groupAccountIdNumOfCon) {
+            accountIdNumOfCons.put((Id)ar.get('AccountId'), (Integer)ar.get('expr0'));
+        }
+
+        return accountIdNumOfCons;
     }
 
     /*******************************************************************************************************
@@ -197,14 +213,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param newContacts a list of Contacts from trigger new.
     * @param oldContacts a list of Contacts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    * @param accountId is the AccountId of Contact.
+    * @param accountIdNumOfCons is a map of AccountIds to the number of Contacts that are associated to the
+    * Account that are not marked deceased or Excluded_from_Household_Naming__c.
     */
-    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction, Id accountId) {
+    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction, Map<Id,Integer> accountIdNumOfCons) {
         List<Contact> contactsNeedAccounts = new List<Contact>();
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
-
-        Integer numOfContactsLeft = checkContactState(accountId);
 
         Integer conProcessed = 0;
         for (Contact c : newContacts) {
@@ -216,23 +231,32 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //AFTER INSERT
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+                
                 if(insertWrapper == null) {
                     insertWrapper = new HandleInsertWrapperLogic();
-                } 
-
-                insertWrapper.handleInsertData(c);
+                }
                 
+                insertWrapper.handleInsertData(c);
             }
 
             //AFTER UPDATE
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                
                 if(updateWrapper == null) {
                     updateWrapper = new HandleUpdateWrapperLogic();
                 }
 
-                updateWrapper.handleUpdateData(c, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
+                //Checks if the current Contact's AccountId matches the
+               	//AccountId in the map. If it does, assign the number of
+               	//Contacts left that are not deceased or Excluded_from_Household_Naming__c
+                Integer numOfContactsLeft = 0;
+                if (accountIdNumOfCons.containsKey(c.AccountId)) {
+                    numOfContactsLeft = accountIdNumOfCons.get(c.AccountId);
+                }
                 
+                updateWrapper.handleUpdateData(c, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
             }
+            
             conProcessed += 1;
         }
 
@@ -251,20 +275,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         handleInsertProcessing(insertWrapper, contactsNeedAccounts);
         handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
-    }
-
-    /********************************************************************************************************
-    * @description This method checks if there are any Contacts associated to the Account that is not
-    * marked deceased and excluded from household name.
-    * @param accountId is the AccountId of Contact.
-    */
-    private Integer checkContactState(Id accountId) {
-        Integer numOfContacts = [SELECT Count()
-        						FROM Contact
-                                WHERE AccountId = :accountId
-                                AND Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE];
-
-        return numOfContacts;
     }
 
     /*******************************************************************************************************
@@ -304,6 +314,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     private void handleInsertProcessing(HandleInsertWrapperLogic insertWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
+
         //Creates new Account
         if (contactsNeedAccounts.size() > 0) {
             UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
@@ -334,8 +345,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public Map<Id,Id> contactIdAccountIdNewOppsToMove = new Map<Id,Id>();
         public Map<Id,Id> contactIdAccountIdOldOppsToMove = new Map<Id,Id>();
         public Map<Id,Contact> contactIdContactOwnerChange = new Map<Id,Contact>();
-        public Set<Id> accountIdToRename = new Set<Id>();
-        public List<Id> accountIdToUpdate = new List<Id>();
+        public Set<Id> accountIdsToRename = new Set<Id>();
+        public List<Id> accountIdsToUpdate = new List<Id>();
         public List<Contact> contactsChangedLastName = new List<Contact>();
 
         private HandleUpdateWrapperLogic() {
@@ -347,39 +358,40 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         * @param c is a Contact record from trigger new.
         * @param oldContact is a Contact from trigger old.
         * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-        * @param numOfContactsLeft is an interger that represents the number of non deceased Contacts associated
-        * with the Account.
-        */    
-        private void handleUpdateData(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {    
+        * @param numOfContactsLeft is an interger that represents the number of non deceased Contacts or Contacts
+        * that are not marked "Excluded_from_Household_Naming__c" associated with the Account.
+        */
+        private void handleUpdateData(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {
             Boolean conAccountIdNotNull = (c.AccountId != NULL);
             Boolean oldConAccountIdNotNull = (oldContact.AccountId != NULL);
             Boolean conOwnerChanged = (c.OwnerId != oldContact.OwnerId);
             Boolean conLastNameChanged = (c.LastName != oldContact.LastName);
             Boolean conFirstNameChanged = (c.FirstName != oldContact.FirstName);
             Boolean conExcludeFromHHNameChanged = (c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c);
+            Boolean conDeceasedHasChanged = (c.Deceased__c != oldContact.Deceased__c);
 
-            //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
+            //If Account has changed: (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContact.AccountId) {
-                if(conAccountIdNotNull) {
-                    accountIdToUpdate.add(c.AccountId);
+                if (conAccountIdNotNull) {
+                    accountIdsToUpdate.add(c.AccountId);
                     contactIdAccountIdNewOppsToMove.put(c.Id, c.AccountId);
 
                     if (checkHouseholdNaming(c.Account.RecordTypeId)) {
-                        accountIdToRename.add(c.AccountId);
+                        accountIdsToRename.add(c.AccountId);
 
-                        if(oldConAccountIdNotNull) {
-                            accountIdToRename.add(oldContact.AccountId);
+                        if (oldConAccountIdNotNull) {
+                            accountIdsToRename.add(oldContact.AccountId);
                         }
                     }
                 }  else {
                     if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == TRUE) {
-                        accountIdToRename.add(oldContact.AccountId);
+                        accountIdsToRename.add(oldContact.AccountId);
                     }
                 }
 
                 //Old HH Accounts that don't get deleted still need to have name redone
                 if (oldConAccountIdNotNull) {
-                    accountIdToupdate.add(oldContact.AccountId);
+                    accountIdsToUpdate.add(oldContact.AccountId);
                     contactIdAccountIdOldOppsToMove.put(c.Id, oldContact.AccountId);
                 }
             }
@@ -394,16 +406,18 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 contactsChangedLastName.add(c);
             }
 
-
-            //If Contact Name or Exclude_from_Household_Name__c value has changed
-            if ((conLastNameChanged ||
-                 conFirstNameChanged ||
-                 conExcludeFromHHNameChanged) &&
-                 numOfContactsLeft != 0 &&
-                 conAccountIdNotNull &&
-                 checkHouseholdNaming(c.Account.RecordTypeId))
-            {
-                accountIdToRename.add(c.AccountId);
+            //If Contact Name or Exclude_from_Household_Name__c or Deceased value has changed
+            //and numOfContactsLeft is not 0, rename the Account record
+            if (conAccountIdNotNull && checkHouseholdNaming(c.Account.RecordTypeId)) {
+                if (((conLastNameChanged ||
+                    conFirstNameChanged ||
+                    conExcludeFromHHNameChanged ||
+                    conDeceasedHasChanged) &&
+                 	numOfContactsLeft != 0)
+                   )
+                {
+                	accountIdsToRename.add(c.AccountId);
+                }
             }
         }
     }
@@ -426,13 +440,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 
             //Updates Household Account name
-            if (updateWrapper.accountIdToRename.size() > 0) {
-                UTIL_ACCT_Naming.updateHHAccountsName(updateWrapper.accountIdToRename);
+            if (updateWrapper.accountIdsToRename.size() > 0) {
+                UTIL_ACCT_Naming.updateHHAccountsName(updateWrapper.accountIdsToRename);
             }
 
             //Updates existing Account Primary Contact
-            if (updateWrapper.accountIdToUpdate.size() > 0) {
-                updateParentAcc(updateWrapper.accountIdToUpdate, dmlWrapper);
+            if (updateWrapper.accountIdsToUpdate.size() > 0) {
+                updateParentAcc(updateWrapper.accountIdsToUpdate, dmlWrapper);
             }
 
             //Updates Account Owner to match Contact Owner change
@@ -459,56 +473,51 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description Processes after delete logic.
     * @param oldContacts is a list of Contacts from trigger old.
-    * @param accountId is the AccountId of Contact.
+    * @param accountIdNumOfCons is a map of AccountIds to the number of Contacts associated with the Account
+    * that are not marked deceased or Excluded_from_Household_Naming__c.
     */
-    private void handlesAfterDelete(List<Contact> oldContacts, Id accountId) {
+    private void handlesAfterDelete(List<Contact> oldContacts, Map<Id, Integer> accountIdNumOfCons) {
         List<Contact> contactAccountDelete = new List<Contact>();
         List<Account> relatedAccounts = new List<Account>();
         Set<Id> accountIdsToRename = new Set<Id>();
         Set<Id> relatedAccountIds = new Set<Id>();
 
-        Integer numOfContactsLeft = checkContactState(accountId);
-        Id accRecordTypeId = returnAccountRecordTypeId(accountId);
+        Integer numOfContactsLeft = 0;
 
         for (Contact c : oldContacts) {
-            if (numOfContactsLeft == 0) {
-                if (checkHouseholdNaming(accRecordTypeId)) {
-                    if (c.AccountId != accountId) {
-                    	contactAccountDelete.add(c);
-                    	relatedAccountIds.add(c.AccountId);
-                	}
-                } else {
-                    contactAccountDelete.add(c);
-                	relatedAccountIds.add(c.AccountId);
+            //Checks if there are any Contacts associated to the Contact that are not
+            //marked deceased or Excluded_from_Household_Naming__c.
+            if (c.AccountId != NULL){
+                if (accountIdNumOfCons.containsKey(c.AccountId)){
+                    numOfContactsLeft = accountIdNumOfCons.get(c.AccountId);
                 }
-            } else {
+            }
+
+            //If there are no Contacts left associated to the Account, delete the Account
+            if (numOfContactsLeft == 0) {
                 contactAccountDelete.add(c);
+            } else {
+                //If there are Contacts that are not deceased or
+                //marked Excluded_from_Household_naming, then add to the list to rename
                 relatedAccountIds.add(c.AccountId);
             }
 
         }
 
-        //Requery to retrieve correct Account value
+        //Requery to retrieve Account recordType
         relatedAccounts = [SELECT Id, RecordTypeID
                            FROM Account
                            WHERE Id IN :relatedAccountIds];
 
         for (Account account : relatedAccounts) {
+            //If the Account RecordType is Household, add to the
+            //list to rename the Account name
             if (checkHouseholdNaming(account.RecordTypeID)) {
                 accountIdsToRename.add(account.Id);
             }
         }
 
         handleDeleteProcessing(accountIdsToRename, contactAccountDelete);
-    }
-
-    /*******************************************************************************************************
-    * @description This method retrieves the recordTypeId of the Account.
-  	* @param accountId is the Id of the Account.
-	* @return Id.
-    */
-    private Id returnAccountRecordTypeId(Id accountId) {
-        return [SELECT Id, RecordTypeId FROM Account WHERE Id = :accountId].RecordTypeId;
     }
 
     /*******************************************************************************************************
@@ -819,7 +828,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Deletes the accounts for contacts that have been deleted if they are empty (no ops, no hh members).
+    * @description Deletes the Accounts for Contacts that have been deleted if the Accounts
+    * are empty (no ops, no hh members).
     * @param contactAccountDelete the list of Contacts that need to be considered.
     * @param dmlWrapper to hold the Accounts that needs update.
     */
