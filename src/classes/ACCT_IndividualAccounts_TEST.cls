@@ -646,16 +646,13 @@ private class ACCT_IndividualAccounts_TEST {
 
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
-
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
         con2.Exclude_From_Household_Name__c = false;
         update con2;
-
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
-
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' ' + andConnector + ' ' + con2.FirstName + ' ' + con2.LastName + ' Household', assertAccount.Name);
     }
@@ -840,8 +837,10 @@ private class ACCT_IndividualAccounts_TEST {
         delete con;
         Test.stopTest();
 
+
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
+
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals('James Bond Household', assertAccount.Name);
     }
@@ -1670,6 +1669,149 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Test Method to check if multiple Contacts are marked deceased, Account names are updated
+    * properly.
+    */
+    @isTest
+    public static void contactMarkedDeceasedBulked() {
+         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
+                                                     Automatic_Household_Naming__c = true));
+
+        List<Contact> newContacts = UTIL_UnitTestData_API.getMultipleTestContacts(5);
+        for (Integer i = 0; i<newContacts.size(); i++) {
+            for (Contact c : newContacts) {
+            	c.FirstName = 'ConFirstName ' + i;
+                c.LastName = 'ConLastName ' + i;
+            }
+        }
+        insert newContacts;
+
+        List<Contact> requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id IN :newContacts];
+
+        List<Id> accountIds = new List<Id>();
+
+        for (Contact cAccountId : requeryInsertedCon) {
+            accountIds.add(cAccountId.Id);
+        }
+
+        List<Account> accounts = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id IN :accountIds];
+
+        List<Contact> addSecondContacts = new List<Contact>();
+        for (Integer i = 0; i<accounts.size(); i++){
+            Contact con2 = new Contact(
+                AccountId = accounts[i].Id,
+                FirstName = 'ConSecondName ' + i,
+                LastName = 'ConLastName ' + i
+            );
+            addSecondContacts.add(con2);
+        }
+        insert addSecondContacts;
+
+        List<Contact> addThirdContacts = new List<Contact>();
+        for (Integer i = 0; i<accounts.size(); i++){
+            Contact con3 = new Contact(
+                AccountId = accounts[i].Id,
+                FirstName = 'ConThirdName ' + i,
+                LastName = 'ConLastName ' + i
+            );
+            addThirdContacts.add(con3);
+        }
+        insert addThirdContacts;
+
+        List<Contact> returnSecondContacts = [SELECT Id, FirstName, Deceased__c
+                                             FROM Contact
+                                             WHERE FirstName LIKE 'ConSecondName%'];
+        for (Contact con : returnSecondContacts) {
+            con.Deceased__c = true;
+        }
+
+        Test.startTest();
+        update returnSecondContacts;
+        Test.stopTest();
+
+
+        List<Account> returnAccounts = [SELECT Id, Name
+                                       FROM Account
+                                       WHERE Id IN :accounts];
+
+        for (Integer i = 0; i<returnAccounts.size(); i++){
+                String FirstName1= 'ConFirstName ' + i;
+                String FirstName3= 'ConThirdName ' + i;
+                String LastName = 'ConLastName ' + i;
+
+            	System.assertEquals(LastName + ' (' + FirstName1 + ' and ' +
+                					FirstName3 + ') ' + ' Household', returnAccounts[i].Name);
+        }
+
+        List<Contact> returnThirdContacts = [SELECT Id, FirstName, Deceased__c
+                                             FROM Contact
+                                             WHERE FirstName LIKE 'ConThirdName%'];
+
+        for (Contact conThree : returnThirdContacts) {
+            conThree.Deceased__c = true;
+        }
+
+        update returnThirdContacts;
+
+        List<Account> returnAccounts2 = [SELECT Id, Name
+                                       FROM Account
+                                       WHERE Id IN :accounts];
+
+        for (Integer i = 0; i<returnAccounts2.size(); i++){
+                String FirstName1= 'ConFirstName ' + i;
+                String LastName = 'ConLastName ' + i;
+
+            	System.assertEquals(LastName + ' (' + FirstName1 + ') ' + ' Household', returnAccounts[i].Name);
+        }
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to check if multiple Contacts from different Accounts are updated, and the
+    * updates made on the Contacts are different, the Accounts names should be updated appropriately.
+    */
+    @isTest
+    public static void contactMarkedDeceasedandNonDeceased(){
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
+                                                     Automatic_Household_Naming__c = true));
+
+        List<Contact> newContacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+        newContacts[0].FirstName = 'Joe';
+        newContacts[0].LastName = 'Wagon';
+        newContacts[1].FirstName = 'Lilian';
+        newContacts[1].LastName = 'Watts';
+        insert newContacts;
+
+        List<Contact> requeryInsertedCon = [SELECT Id, FirstName, LastName, AccountId, Account.Name
+                                      		FROM Contact
+                                      		WHERE Id IN :newContacts];
+
+        requeryInsertedCon[0].Deceased__c = true;
+        requeryInsertedCon[1].FirstName = 'Betty';
+
+        Test.startTest();
+        update requeryInsertedCon;
+        Test.stopTest();
+
+        List<Contact> returnContacts = [SELECT Id, AccountId, Account.Name,
+                                        FirstName, LastName
+                                        FROM Contact
+                                        WHERE Id IN :newContacts];
+
+        System.assertEquals(returnContacts[0].LastName + ' (' + returnContacts[0].FirstName + ') ' + 'Household',
+                            returnContacts[0].Account.Name);
+        System.assertEquals(returnContacts[1].LastName + ' (' + returnContacts[1].FirstName + ') ' + 'Household',
+                            returnContacts[1].Account.Name);
+    }
+
+    /*********************************************************************************************************
     * @description Test Method to test if all Contacts associated to the Account are deceased, do not update
     * the Account's Name to "Household".
     */
@@ -1787,7 +1929,6 @@ private class ACCT_IndividualAccounts_TEST {
                                  FROM Account
                                  WHERE Id = :a.Id];
         System.assertEquals('Thomas Household', returnAccount.Name);
-
     }
 
     /*********************************************************************************************************
