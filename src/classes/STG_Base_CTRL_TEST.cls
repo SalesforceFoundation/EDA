@@ -67,12 +67,12 @@ private class STG_Base_CTRL_TEST {
         List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
         afflMappings.add(
         	new Affl_Mappings__c(
-        		Name = 'edu',
-        		Account_Record_Type__c = 'educational institution',
-            	Primary_Affl_Field__c = 'primary educational institution',
-            	Auto_Program_Enrollment__c = true,
-            	Auto_Program_Enrollment_Role__c = 'student',
-            	Auto_Program_Enrollment_Status__c = 'current'
+        	    Name = 'edu',
+        	    Account_Record_Type__c = 'educational institution',
+                Primary_Affl_Field__c = 'primary educational institution',
+                Auto_Program_Enrollment__c = true,
+                Auto_Program_Enrollment_Role__c = 'student',
+                Auto_Program_Enrollment_Status__c = 'current'
             )
         );
 

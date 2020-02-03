@@ -2,6 +2,8 @@
     init : function(component) {
         //Retrieving hierarchy settings
         this.getHierarchySettings(component);
+        this.getAdminAccNameFormatOptions(component);
+        this.getHHAccNameFormatOptions(component);
 
         // since we can't call this.processTabs(component, 'afflTabBtn') from here
         // well process the tabs manually here.
@@ -381,6 +383,29 @@
         }else{
             return false;
         }
+    },
+
+    getAdminAccNameFormatOptions : function(component) {
+        var adminAccNameFormatOptions = [];
+        var prefix = component.get("v.namespacePrefix");
+        adminAccNameFormatOptions.push($A.get("$Label.c.lastNameAdminAcc"));
+        adminAccNameFormatOptions.push($A.get("$Label.c.firstNameLastNameAdminACC"));
+        adminAccNameFormatOptions.push($A.get("$Label.c.lastNameFirstNameAdminAcc"));
+        adminAccNameFormatOptions.push($A.get("$Label.c.acctNamingOther"));
+        component.set("v.adminAccNameFormatOptions", adminAccNameFormatOptions);
+    },
+
+    getHHAccNameFormatOptions : function(component) {
+        var hhNameFormatOptions = [];
+        var prefix = component.get("v.namespacePrefix");
+        hhNameFormatOptions.push($A.get("$Label.c.lastNameHH"));
+        hhNameFormatOptions.push($A.get("$Label.c.lastNameFirstNameHH"));
+        hhNameFormatOptions.push($A.get("$Label.c.firstNameLastNameHH"));
+        hhNameFormatOptions.push($A.get("$Label.c.lastNameFamily"));
+        hhNameFormatOptions.push($A.get("$Label.c.lastNameFirstNameFamily"));
+        hhNameFormatOptions.push($A.get("$Label.c.firstNameLastNameFamily"));
+        hhNameFormatOptions.push($A.get("$Label.c.acctNamingOther"));
+        component.set("v.hhNameFormatOptions", hhNameFormatOptions);
     }
 
 })

@@ -41,7 +41,7 @@ public class ACCT_HouseholdNameRefresh_BATCH implements Database.Batchable<SObje
         String query = 'SELECT Id ' +
                         'FROM Account ' +
             	        'WHERE RecordTypeId = :hhRecordTypeId' ;
-        return Database.getQueryLocator(query);
+        return Database.getQueryLocator(String.escapeSingleQuotes(query));
     }
 
     public void execute(Database.BatchableContext bc, List<Account> returnAccounts){

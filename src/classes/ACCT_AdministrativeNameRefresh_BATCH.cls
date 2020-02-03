@@ -41,7 +41,7 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
         String query = 'SELECT Id, RecordTypeId, Primary_Contact__c ' +
             		    'FROM Account ' +
             		    'WHERE RecordTypeId = :adminRecordTypeId' ;
-        return Database.getQueryLocator(query);
+        return Database.getQueryLocator(String.escapeSingleQuotes(query));
     }
 
     public void execute(Database.BatchableContext bc, List<Account> returnAccounts){
