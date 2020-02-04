@@ -68,6 +68,11 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @description List of primary affiliation lookup fields names on Contact.
     ********************************************************************************************************/
     public List<String> primaryAfflFieldNames;
+
+    /*******************************************************************************************************
+    * @description Map of Account Record Type Label to API
+    ********************************************************************************************************/
+    public Map<String, String> accRecTypeLabelToAPI;
     
     /*******************************************************************************************************
     * @description Constructor that initializes class properties.
@@ -84,6 +89,9 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		
 		//Affiliation Account-record-type-to-Contact-field mappings.
 		populateMaps();
+
+        // Map of Account RecordType Label To API
+        accRecTypeLabelToAPI = getAccRecTypeLabelToAPIMap();
 		
 		//List of primary affiliation lookup fields labels.
 		List<String> primaryAfflFieldLabels = accRecTypeToContactLabel.values();
@@ -111,6 +119,15 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     	Map<String, String> labelsnames = new Map<String, String>();
 		for(SObjectField field : cf) {
 			labelsnames.put(field.getDescribe().getLabel(), field.getDescribe().getName());
+		}
+		return labelsnames;
+    }
+    
+    // @Desription Returns a Map of Record type label to its API
+    private Map<String, String> getAccRecTypeLabelToAPIMap() {
+    	Map<String, String> labelsnames = new Map<String, String>();
+		for (RecordType field : [SELECT  Name, DeveloperName FROM RecordType Where SobjectType = 'Account']) {
+			labelsnames.put(field.Name, field.DeveloperName);
 		}
 		return labelsnames;
     }
@@ -159,24 +176,22 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @return String The name of the key affiliation Contact field.
     ********************************************************************************************************/
 	public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
-		for(String recTypeName : accRecTypeToContactLabel.keySet()) {
-            if (Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName) != null)
-            {
+		for (String recTypeName : accRecTypeToContactLabel.keySet()) {
+            if (Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName) != null) {
         		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
-        		if(rcId == recordTypeId) {
+        		if (rcId == recordTypeId) {
         			String fieldLabel = accRecTypeToContactLabel.get(recTypeName);
         			String fieldName = contactLabelNames.get(fieldLabel);
         			return fieldName;
         		}
-            } else if(Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName) != null) {
+            } else if (Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName) != null) {
                 ID rcId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
-                String recTypeLabel = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName).getName();
                 if(rcId == recordTypeId) {
-                    String fieldLabel = accRecTypeToContactLabel.get(recTypeLabel);
+                    String fieldLabel = accRecTypeToContactLabel.get(recTypeName);
         			String fieldName = contactLabelNames.get(fieldLabel);
         			return fieldName;
                 }
-            }else{
+            } else {
                 //Setup null pointer error message
                 String[] params = new String[]{
                     recTypeName
