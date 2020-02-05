@@ -1428,23 +1428,23 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpRelAutoCreatedDup</shortDescription>
-        <value>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts. Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</value>
+        <shortDescription>Info text for Relationships Settings</shortDescription>
+        <value>Auto-created Relationships are deduplicated by default to prevent duplicate Relationship records from being created between two Contacts. Select "Allow Auto-Created Duplicate Relations" to disable this behavior and allow multiple Relationships of the same type between two Contacts.</value>
     </labels>
     <labels>
         <fullName>stgHelpRelReciprocalMethod</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpRelReciprocalMethod</shortDescription>
-        <value>Determines method used to generate the reciprocal relationship. Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;).</value>
+        <shortDescription>Info text for Relationships Settings</shortDescription>
+        <value>The method used to populate the type field when creating a Reciprocal Relationship. "List Setting" uses the custom settings defined on the Reciprocal Relationships tab with male, female, and neutral values. "Value Inversion" inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
     </labels>
     <labels>
         <fullName>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>Remove all picklist values from the Ethnicity field except for &quot;Hispanic or Latino&quot; and &quot;Not Hispanic or Latino.&quot; We recommend that you replace each removed value with one of the remaining valid values, rather than deleting them outright from existing records. As of EDA version 1.28, the only valid Ethnicity values are &quot;Not Hispanic or Latino&quot; and &quot;Hispanic or Latino.&quot;</value>
     </labels>
     <labels>
@@ -1452,7 +1452,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpSimpleAddrChangeIsUpdate</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
     </labels>
     <labels>
@@ -1460,23 +1460,23 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpStoreErrorsOn</shortDescription>
-        <value>Check this if you&apos;d like errors to be stored in the database.</value>
+        <shortDescription>Info text for System Settings</shortDescription>
+        <value>When selected, errors are stored in a custom Error object. You can create a tab for the Errors object to view a list of all stored errors.</value>
     </labels>
     <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpUpdateReportIfDependenciesEthnicity</shortDescription>
-        <value>If you had dependencies that relied on the previous values in the Ethnicity field, such as in reports, update them.</value>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
+        <value>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</value>
     </labels>
     <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgNestedPlanRequirementPP</shortDescription>
+        <shortDescription>Field label for Program Plans Settings</shortDescription>
         <value>Validate Program Plan for Nested Plan Requirements</value>
     </labels>
     <labels>
@@ -1484,7 +1484,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgNewAfflMapping</shortDescription>
+        <shortDescription>Section header for Affiliation Mappings Settings</shortDescription>
         <value>New Affiliation Mapping</value>
     </labels>
     <labels>
@@ -1492,7 +1492,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgOptAllSysAdmins</shortDescription>
+        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
         <value>All Sys Admins</value>
     </labels>
     <labels>
@@ -1500,7 +1500,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgOptChatterGroup</shortDescription>
+        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
         <value>Chatter Group</value>
     </labels>
     <labels>
@@ -1508,7 +1508,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgOptSelect</shortDescription>
+        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
         <value>Select...</value>
     </labels>
     <labels>
@@ -1516,7 +1516,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgOptUser</shortDescription>
+        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
         <value>User</value>
     </labels>
     <labels>
@@ -1524,7 +1524,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting Preferred Email Batch Email Body</shortDescription>
+        <shortDescription>Body of email after Run Cleanup for preferred email/phone</shortDescription>
         <value>The batch Apex job processed {0} records with {1} failures.</value>
     </labels>
     <labels>
@@ -1532,7 +1532,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting Preferred Email batch Subject</shortDescription>
+        <shortDescription>Subject of email after Run Cleanup for preferred email/phone</shortDescription>
         <value>Preferred Email/Phone Job completed with a status of:</value>
     </labels>
     <labels>
@@ -1540,7 +1540,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgPreferredEmailDataCleanup</shortDescription>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Preferred Email/Phone Data Cleanup:</value>
     </labels>
     <labels>
@@ -1564,7 +1564,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRunCleanUpEnableFirstTime</shortDescription>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
     </labels>
     <labels>
@@ -1572,47 +1572,47 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSaveSettings</shortDescription>
-        <value>Settings Saved Successfully.</value>
+        <shortDescription>Confirmation msg for Settings Save action</shortDescription>
+        <value>Settings successfully saved.</value>
     </labels>
     <labels>
         <fullName>stgSelectReciType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSelectReciType</shortDescription>
-        <value>Select recipient type</value>
+        <shortDescription>Field label for error notification recipients</shortDescription>
+        <value>Select recipient type:</value>
     </labels>
     <labels>
         <fullName>stgSendErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgSendErrorsTitle</shortDescription>
-        <value>Send Error Notifications:</value>
+        <shortDescription>Field label for error notifications</shortDescription>
+        <value>Send Error Notifications</value>
     </labels>
     <labels>
         <fullName>stgSimpleAddressChangeUpdate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSimpleAddressChangeUpdate</shortDescription>
-        <value>Simple Address Change Treated as Update:</value>
+        <shortDescription>Field label for Address mgmt Setting</shortDescription>
+        <value>Simple Address Change Treated as Update</value>
     </labels>
     <labels>
         <fullName>stgStoreErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgStoreErrorsTitle</shortDescription>
-        <value>Store Errors:</value>
+        <shortDescription>Field label for err storage setting</shortDescription>
+        <value>Store Errors</value>
     </labels>
     <labels>
         <fullName>stgSuccess</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgSuccess</shortDescription>
+        <shortDescription>Confirmation toast displayed in multiple places</shortDescription>
         <value>Success</value>
     </labels>
     <labels>
@@ -1620,7 +1620,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabAccCont</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Accounts and Contacts</value>
     </labels>
     <labels>
@@ -1628,7 +1628,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabAffl</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Affiliations</value>
     </labels>
     <labels>
@@ -1636,7 +1636,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabAfflMappings</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Affiliation Mappings</value>
     </labels>
     <labels>
@@ -1644,7 +1644,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabAutocreation</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Autocreation</value>
     </labels>
     <labels>
@@ -1652,7 +1652,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabBackfill</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Backfill</value>
     </labels>
     <labels>
@@ -1660,7 +1660,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabCourse</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Courses</value>
     </labels>
     <labels>
@@ -1668,7 +1668,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabCourseConn</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Course Connections</value>
     </labels>
     <labels>
@@ -1676,7 +1676,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabName</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Name</value>
     </labels>
     <labels>
@@ -1684,15 +1684,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabPrimaryAfflField</shortDescription>
-        <value>Primary Affl Field</value>
+        <shortDescription>Settings tab name</shortDescription>
+        <value>Contact Primary Affl Field</value>
     </labels>
     <labels>
         <fullName>stgTabProgramPlan</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabProgramPlan</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Program Plans</value>
     </labels>
     <labels>
@@ -1700,7 +1700,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabReciprocalSettings</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Reciprocal Settings</value>
     </labels>
     <labels>
@@ -1708,7 +1708,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabRel</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Relationships</value>
     </labels>
     <labels>
@@ -1716,7 +1716,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabSettings</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Settings</value>
     </labels>
     <labels>
@@ -1724,7 +1724,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabSystem</shortDescription>
+       <shortDescription>Settings tab name</shortDescription>
         <value>System</value>
     </labels>
     <labels>
@@ -1732,15 +1732,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleAllowAutocreatedDuplicateRel</shortDescription>
-        <value>Allow Auto-Created Duplicate Relations:</value>
+        <shortDescription>Title for Reciprocal Relationships info text</shortDescription>
+        <value>Allow Auto-Created Duplicate Relations</value>
     </labels>
     <labels>
         <fullName>stgTitleAppwideSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleAppwideSettings</shortDescription>
+        <shortDescription>Header panel text below EDA Settings title</shortDescription>
         <value>App-wide Settings</value>
     </labels>
     <labels>
@@ -1748,15 +1748,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleCourseConnectionBackfill</shortDescription>
-        <value>Course Connection Backfill:</value>
+        <shortDescription>Title of info text</shortDescription>
+        <value>Course Connection Backfill</value>
     </labels>
     <labels>
         <fullName>stgTitleCoursesDescriptionDataMigration</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleCoursesDescriptionDataMigration</shortDescription>
+        <shortDescription>Title of info text for Course description data migration</shortDescription>
         <value>Courses: Description Data Migration</value>
     </labels>
     <labels>
@@ -1764,7 +1764,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleHEDAConfig</shortDescription>
+        <shortDescription>Header panel title text</shortDescription>
         <value>Configuration</value>
     </labels>
     <labels>
@@ -1772,7 +1772,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleHEDASettings</shortDescription>
+        <shortDescription>Settings title text</shortDescription>
         <value>EDA Settings</value>
     </labels>
     <labels>
@@ -1780,7 +1780,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleNewAutocreateSetting</shortDescription>
+        <shortDescription>Section header for auto-create relationships</shortDescription>
         <value>New Auto-Create Setting</value>
     </labels>
     <labels>
@@ -1788,7 +1788,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleNewReciSetting</shortDescription>
+        <shortDescription>Section header for Reciprocal Relationships</shortDescription>
         <value>New Reciprocal Setting</value>
     </labels>
     <labels>
@@ -1796,8 +1796,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleReciMethod</shortDescription>
-        <value>Reciprocal Method:</value>
+        <shortDescription>Title for Reciprocal Relationships info text</shortDescription>
+        <value>Reciprocal Method</value>
     </labels>
     <labels>
         <fullName>stgToastError</fullName>
@@ -1812,7 +1812,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>timeBlockEndTimeMismatch</shortDescription>
+        <shortDescription>Err msg on Course Offering</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its End Time doesn&apos;t match the End Time of its associated Time Block. Either edit the End Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
     <labels>
@@ -1820,7 +1820,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>timeBlockStartTimeMismatch</shortDescription>
+        <shortDescription>Err msg on Course Offering</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
 </CustomLabels>
