@@ -40,12 +40,7 @@
             var toast = component.find("hhSuccessToast"); 
         	$A.util.removeClass(toast,'slds-hide');
             $A.util.addClass(toast, 'slds-show'); 
-        } else if (state ==="INCOMPLETE") {
-            console.log('InsideHelperforHandleRefresh Incomplete'); 
-        } else if (state ==="ERROR") {
-            console.log('InsideHelperforHandleRefresh ERROR'); 
-        }
-        }); 
+        }}); 
         
         $A.enqueueAction(action); 
     },
@@ -58,12 +53,7 @@
             var toast = component.find("adminSuccessToast"); 
         	$A.util.removeClass(toast,'slds-hide');
             $A.util.addClass(toast, 'slds-show'); 
-        } else if (state ==="INCOMPLETE") {
-            console.log('InsideHelperforHandleRefresh Incomplete'); 
-        } else if (state ==="ERROR") {
-            console.log('InsideHelperforHandleRefresh ERROR'); 
-        }
-        }); 
+        }}); 
         
         $A.enqueueAction(action);	    
     },
