@@ -286,7 +286,13 @@ public with sharing class STG_Base_CTRL {
     */
     @AuraEnabled
     public static Id executeRefreshHouseholdAccountBatch() {
-        System.debug('STG_Base_CTRL executeAccountNameRefreshBatch Method -->');
+        Boolean automaticHHNamingEnabled = UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c;
+		if (!automaticHHNamingEnabled) {
+            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+           	orgSettings.Automatic_Household_Naming__c = TRUE;
+            update orgSettings; 
+        }
+        
         ACCT_HouseholdNameRefresh_BATCH accountRefresh = new ACCT_HouseholdNameRefresh_BATCH();
         Id jobId = Database.executeBatch( accountRefresh , 200 );
         if(jobId == null) {
@@ -304,7 +310,6 @@ public with sharing class STG_Base_CTRL {
     */
     @AuraEnabled
     public static Id executeRefreshAdminAccountBatch() {
-        System.debug('STG_Base_CTRL executeRefreshAdminAccountBatch Method -->');
         ACCT_AdministrativeNameRefresh_BATCH accountRefresh = new ACCT_AdministrativeNameRefresh_BATCH();
         Id jobId = Database.executeBatch( accountRefresh , 200 );
         if(jobId == null) {

@@ -34,10 +34,10 @@
 @isTest
 public class ACCT_HouseholdNameRefresh_TEST {
     /*******************************************************************************************************
-    * @description test that the refresh household account name functionality is working properly.
+    * @description Test that the refresh household account name functionality is working properly.
     */
     @isTest
-    private static void refreshHouseHoldAccountNamesAutomaticHHNameEnabled() {
+    private static void refreshHouseHoldAccountNamesAutomaticHHName() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                 										Household_Account_Naming_Format__c = '{!LastName} Household',
                                                         Automatic_Household_Naming__c = TRUE));
@@ -78,59 +78,6 @@ public class ACCT_HouseholdNameRefresh_TEST {
                                        WHERE Id IN :dedupedAccountIds];
         System.assertEquals(contacts[0].LastName + ' ' + 'Household', returnAccounts[0].Name);
         System.assertEquals(contacts[1].LastName + ' ' + 'Household', returnAccounts[1].Name);
-
-    }
-
-    /*******************************************************************************************************
-    * @description test that the (1)refresh household account name functionality is working properly
-    * (2) if Household Account Naming is disabled, if the refresh household account name button is clicked,
-    * that the Household Account Naming checkbox is enabled in EDA Setting.
-    */
-    @isTest
-    private static void refreshHouseHoldAccountNamesAutomaticHHNameDisabled() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                										Household_Account_Naming_Format__c = '{!LastName} Household',
-                                                        Automatic_Household_Naming__c = FALSE));
-
-        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
-        contacts[0].LastName = 'Wells';
-        contacts[0].FirstName = 'Tommy';
-        contacts[1].LastName = 'Jones';
-        contacts[1].FirstName = 'Betty';
-        insert contacts;
-
-        Set<Id> accountIds = new Set<Id>();
-        for (Contact c : [SELECT Id, AccountId FROM Contact WHERE Id IN :contacts]) {
-            accountIds.add(c.AccountId);
-        }
-
-        List<Id> dedupedAccountIds = new List<Id>();
-        if (accountIds.size() > 0) {
-            dedupedAccountIds.addAll(accountIds);
-        }
-        List<Account> queryAccounts = [SELECT Id, Name, RecordTypeId, RecordType.Name
-                                      FROM Account
-                                      WHERE Id IN :dedupedAccountIds];
-        queryAccounts[0].Name = 'Tommy Wells Household';
-        queryAccounts[1].Name = 'Betty Jones Household';
-        update queryAccounts;
-
-        System.assertEquals(contacts[0].FirstName + ' ' + contacts[0].LastName + ' ' + 'Household', queryAccounts[0].Name);
-        System.assertEquals(contacts[1].FirstName + ' ' + contacts[1].LastName + ' ' + 'Household', queryAccounts[1].Name);
-
-        Test.startTest();
-        ACCT_HouseholdNameRefresh_BATCH batch = new ACCT_HouseholdNameRefresh_BATCH();
-        Id apexJobId = Database.executeBatch(batch, 200);
-        Test.stopTest();
-
-        List<Account> returnAccounts = [SELECT Id, Name
-                                       FROM Account
-                                       WHERE Id IN :dedupedAccountIds];
-        System.assertEquals(contacts[0].LastName + ' ' + 'Household', returnAccounts[0].Name);
-        System.assertEquals(contacts[1].LastName + ' ' + 'Household', returnAccounts[1].Name);
-
-        Boolean automaticHHNameEnabled = UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c;
-        System.assertEquals(TRUE, automaticHHNameEnabled);
 
     }
 }

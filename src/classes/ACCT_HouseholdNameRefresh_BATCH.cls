@@ -46,13 +46,7 @@ public class ACCT_HouseholdNameRefresh_BATCH implements Database.Batchable<SObje
 
     public void execute(Database.BatchableContext bc, List<Account> returnAccounts){
         Set<Id> dedupedAccountIds = new Set<Id>();
-		Boolean automaticHHNamingEnabled = UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c;
-
-        if (!automaticHHNamingEnabled) {
-            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
-           	orgSettings.Automatic_Household_Naming__c = TRUE;
-        }
-
+		
         if (returnAccounts.size() > 0) {
             for (Account a : returnAccounts) {
                 dedupedAccountIds.add(a.Id);

@@ -247,12 +247,17 @@ private class STG_Base_CTRL_TEST {
     */
     @isTest
     public static void checkRefreshHouseholdAccountBatch() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
         												Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
             											Household_Account_Naming_Format__c = '{!LastName} Household'
         												));
+        insert hs; 
+        
         Id apexJobId = STG_Base_CTRL.executeRefreshHouseholdAccountBatch();
         System.assertNotEquals(null, apexJobId);
+        
+        Boolean automaticHHNameEnabled = UTIL_CustomSettingsFacade.getSettingsForTests(hs).Automatic_Household_Naming__c;
+        System.assertEquals(TRUE, automaticHHNameEnabled);
     }
 
     /*********************************************************************************************************

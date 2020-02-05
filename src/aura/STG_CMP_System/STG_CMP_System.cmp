@@ -10,7 +10,9 @@
     <aura:attribute name="hhNameFormat" type="String" />
     <aura:attribute name="adminOtherDisplay" type="Boolean" />
     <aura:attribute name="hhOtherDisplay" type="Boolean" />
-
+    <aura:attribute name="adminAccNameFormatOptions" type="String[]"/>
+	<aura:attribute name="hhNameFormatOptions" type="String[]"/> 
+    
 	<div aura:id="hhSuccessToast" class="slds-hide">
         <div class="slds-box">
             <div class="slds-notify_container slds-notify_container--inline">
@@ -238,6 +240,8 @@
                         namespacePrefix="{!v.namespacePrefix}"
                         otherDisplay="{!v.adminOtherDisplay}"
                         otherSetting="{!v.hierarchySettings.Admin_Other_Name_Setting__c}"
+                        adminAccNameFormatOptions="{!v.adminAccNameFormatOptions}"
+                        hhNameFormatOptions="{!v.hhNameFormatOptions}"    
                     />
                 </div>
 
@@ -304,6 +308,8 @@
                         namespacePrefix="{!v.namespacePrefix}"
                         otherDisplay="{!v.hhOtherDisplay}"
                         otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
+                        adminAccNameFormatOptions="{!v.adminAccNameFormatOptions}"
+                        hhNameFormatOptions="{!v.hhNameFormatOptions}"                     
                     />
                 </div>
 
