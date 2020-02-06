@@ -42,6 +42,7 @@ To create an org that has been push upgraded from the latest release ("Existing 
 
 -   **`execute_install_apex`:** Runs most of the install script methods from STG<sub>InstallScript</sub> class.
 -   **`delete_dev_config`:** Deploys metadata found under `unpackaged/config/dev_delete` Removes the Record type visibilities, page layout assignments Required to remove an installed beta.
+-   **`upgraded_org`** Simulates an org that has been push-upgraded to the latest releases of EDA and underlying dependencies.
 
 ## Unpackaged Metadata
 
