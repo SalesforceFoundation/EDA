@@ -276,6 +276,21 @@ global class UTIL_Describe_API {
     global static String getStudentConnectionRecType() {
         return UTIL_Describe.getStudentConnectionRecType();
     }
-    
 
+    /*******************************************************************************************************
+     * @description Returns the ID of the Credential Attribute record type, if it exists.
+     * @return String The ID of the Credential Attribute record type as a String.
+     */
+    global static String getCredentialAttributeRecType() {
+        return UTIL_Describe.getCredentialAttributeRecType();
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Student Characteristic Attibute record type, if it exists.
+     * @return String The ID of the Student Characteristic Attibute record type as a String.
+     */
+    global static String getStudentCharacteristicAttributeRecType() {
+        return UTIL_Describe.getStudentCharacteristicAttributeRecType();
+    }
+    
 }
