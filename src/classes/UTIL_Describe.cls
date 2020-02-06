@@ -846,8 +846,8 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-     * @description Returns the ID of the Student Characteristic record type, if it exists.
-     * @return String The ID of the Student Characteristic record type as a String.
+     * @description Returns the ID of the Student Characteristic Attribute record type, if it exists.
+     * @return String The ID of the Student Characteristic Attribute record type as a String.
      */
     public static String getStudentCharacteristicAttributeRecType() {
         Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Attribute__c'));
