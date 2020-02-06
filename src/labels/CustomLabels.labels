@@ -334,7 +334,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Info text under Admin Acct Name Format field label</shortDescription>
-        <value>The name format EDA uses for auto-created Administrative Accounts.</value>
+        <value>The name format used for auto-created Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>afflAccountNoRecordType</fullName>
@@ -374,7 +374,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Info text for the Enable Record Type Validation setting for Affilliations</shortDescription>
-        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, EDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
+        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, the Account is required to have a record type and all Account Record Type values must be correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
     </labels>
     <labels>
         <fullName>automaticHHNaming</fullName>
@@ -414,7 +414,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>The Filter Field value names a duplicate of an EDA field. Specify a non-duplicate field. Otherwise, we filter using the value in the EDA field. If you choose the latter option, acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
+        <value>The Filter Field value names a duplicate of a product field. Specify a non-duplicate field. Otherwise, we filter using the value in the product field. If you choose the latter option, acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
     </labels>
     <labels>
         <fullName>exceptionRequiredField</fullName>
@@ -1141,7 +1141,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Info text for Affiliations Settings</shortDescription>
-        <value>If selected, EDA copies the Program Enrollment End Date to the End Date on new Affiliation records. Otherwise, EDA leaves the Affiliation End Date blank.</value>
+        <value>If selected, the Program Enrollment End Date is copied to the End Date on new Affiliation records. Otherwise, the Affiliation End Date is left blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
@@ -1149,7 +1149,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Info text for Affiliations Settings</shortDescription>
-        <value>If selected, EDA copies the Program Enrollment Start Date to the Strat Date on new Affiliation records. Otherwise, EDA leaves the Affiliation Start Date blank.</value>
+        <value>If selected, the Program Enrollment Start Date is copied to the Start Date on new Affiliation records. Otherwise, the Affiliation Start Date is left blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
@@ -1165,7 +1165,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Info text for Affiliations Settings</shortDescription>
-        <value>When a Program Enrollment record is created without an existing Affiliation, EDA creates an Affiliation record with the values specified below.</value>
+        <value>When a Program Enrollment record is created without an existing Affiliation, create an Affiliation record with the values specified below.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollment</fullName>
@@ -1189,7 +1189,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Info text for how Program Enrollment delete affects Affiliation</shortDescription>
-        <value>Specify below how you want EDA to handle related Affiliation records for deleted Program Enrollments. EDA can either delete the related Affiliation record, or update its Status.</value>
+        <value>Specify below how you want Affiliation records for deleted Program Enrollments to be handled. The related Affiliation record can either be deleted, or have its Status updated.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetRole</fullName>
@@ -1357,7 +1357,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Select to disable the EDA error handling framework.</value>
+        <value>Select to disable the product's error handling framework.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyOn</fullName>
@@ -1365,7 +1365,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>If selected, EDA posts notifications for EDA-generated errors.</value>
+        <value>If selected, notifications are posted for product-generated errors.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyTo</fullName>
@@ -1381,7 +1381,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before EDA added the Race field and removed values from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
+        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before the Race field was added and values were removed from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
