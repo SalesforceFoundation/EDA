@@ -604,11 +604,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 Account a = new Account(
                     Phone = c.Phone,
                     Fax = c.Fax,
-                    OwnerId = c.OwnerId
+                    OwnerId = c.OwnerId,
+                    RecordTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c
                 );
 
                 if (defaultRecTypeID != NULL) {
-                    a.Name = UTIL_ACCT_Naming.updateName(new List<Contact>{c});
+                    a.Name = UTIL_ACCT_Naming.updateNameFromContact(new List<Contact>{c}, a);
                 }
 
                 //Sets the Contact as the primary Contact for the newly created Account
