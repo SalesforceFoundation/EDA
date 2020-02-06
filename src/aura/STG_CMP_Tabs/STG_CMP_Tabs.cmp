@@ -35,7 +35,7 @@
     <aura:attribute name="adminOtherDisplay" type="Boolean"/> 
     <aura:attribute name="hhOtherDisplay" type="Boolean"/> 
     <aura:attribute name="adminAccNameFormatOptions" type="String[]"/>
-	<aura:attribute name="hhNameFormatOptions" type="String[]"/> 
+    <aura:attribute name="hhNameFormatOptions" type="String[]"/> 
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
 
