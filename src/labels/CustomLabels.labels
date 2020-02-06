@@ -1804,7 +1804,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgToastError</shortDescription>
+        <shortDescription>Error msg used throughout Settings</shortDescription>
         <value>Error</value>
     </labels>
     <labels>
