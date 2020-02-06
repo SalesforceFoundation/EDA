@@ -80,12 +80,11 @@ public class UTIL_ACCT_Naming {
         for (Account acc: [SELECT Id, Name, RecordTypeId,
                                   (SELECT Id, LastName, Salutation, FirstName, Account.RecordTypeId 
                                   FROM Contacts 
-                                  WHERE AccountId IN :accountIdPrimaryContactId.keySet()) //i think tihs line is superfluous...
+                                  WHERE AccountId IN :accountIdPrimaryContactId.keySet())
                            FROM Account 
                            WHERE Id IN :accountIdPrimaryContactId.keySet()])
         {
             if (acc.RecordTypeId == adminAccountRecordTypeId) {
-                //acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
                 acc.Name = UTIL_ACCT_Naming.updateName(acc);
                 accountsToUpdate.add(acc);
             }
@@ -106,9 +105,6 @@ public class UTIL_ACCT_Naming {
         //Loop through accountsToRename and modify the name accordingly
         if (accountsToRename.size() > 0) {
             for (Account acc : accountsToRename) {
-                //acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
-                //consider passing in the ACCOUNT here NOT just the contacts...
-                //that way we can act on a given account with the singular usage of NameSpec
                 acc.Name = UTIL_ACCT_Naming.updateName(acc);
             }
         }
@@ -162,17 +158,13 @@ public class UTIL_ACCT_Naming {
         String finalAccountName;
 
         accountNamingFormat = checkAccountFormat(acc);
-        //NameSpec ns;
         List<Contact> returnSortedContacts = sortContacts(acc.Contacts);
 
         if (accountNamingFormat != NULL) {
             NameSpec ns = new NameSpec(accountNamingFormat);
             finalAccountName = buildAccountName(returnSortedContacts, ns);
-            //finalAccountName = buildAccountName(returnSortedContacts);
-
         } else {
             finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
-            //finalAccountName = defaultAccountName(returnSortedContacts);
         }
 
         return finalAccountName;
@@ -188,13 +180,10 @@ public class UTIL_ACCT_Naming {
         String finalAccountName;
 
         accountNamingFormat = checkAccountFormat(acc);
-
-        NameSpec ns;
-
         List<Contact> returnSortedContacts = sortContacts(cons);
 
         if (accountNamingFormat != NULL) {
-            ns = new NameSpec(accountNamingFormat);
+            NameSpec ns = new NameSpec(accountNamingFormat);
             finalAccountName = buildAccountName(returnSortedContacts, ns);
         } else {
             finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
@@ -203,34 +192,6 @@ public class UTIL_ACCT_Naming {
         return finalAccountName;
     }
 
-
-    /*******************************************************************************************************
-    * @description Main method that determines how the Account name should be updated.
-    * @param cons a set of Contacts whose Account needs Name update.
-    * @return String.
-    RLH
-    public static String updateName(List<Contact> cons) {
-        String accountNamingFormat;
-        String finalAccountName;
-
-        //accountNamingFormat = checkAccountFormat();
-
-        //NameSpec ns;
-
-        List<Contact> returnSortedContacts = sortContacts(cons);
-
-        if (accountNamingFormat != NULL) {
-            //ns = new NameSpec(accountNamingFormat);
-            //finalAccountName = buildAccountName(returnSortedContacts, ns);
-            finalAccountName = buildAccountName(returnSortedContacts);
-
-        } else {
-            //finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
-            finalAccountName = defaultAccountName(returnSortedContacts);
-        }
-
-        return finalAccountName;
-    }
 
     /*******************************************************************************************************
     * @description This checks and returns the current Account Model and Account name format.
@@ -258,31 +219,6 @@ public class UTIL_ACCT_Naming {
         return accountNamingFormat;
     }
 
-    /*******************************************************************************************************
-    * @description This checks and returns the current Account Model and Account name format.
-    * @return String.
-    
-    private static String checkAccountFormat(Contact con) {
-        String accountNamingFormat;
-
-        if (con.Account.RecordTypeId == hhAccountRecordTypeId) {
-
-            accountNamingFormat = hhNameFormat;
-
-            if (accountNamingFormat == Label.acctNamingOther) {
-                accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
-            }
-        } else if (con.Account.RecordTypeId == adminAccountRecordTypeId) {
-
-            accountNamingFormat = aaNameFormat;
-
-            if (accountNamingFormat == Label.acctNamingOther) {
-                accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Other_Name_Setting__c;
-            }
-        }
-
-        return accountNamingFormat;
-    }
 
     /*******************************************************************************************************
     * @description This calls the UTIL_SortContact to sort Contacts in alphabetical order.
@@ -347,49 +283,6 @@ public class UTIL_ACCT_Naming {
         return finalAccountName;
     }
 
-    /*******************************************************************************************************
-    * @description This sets the default Account name for each respective Account model.
-    * @param cons a list of Contacts whose Account needs Name update.
-    * @param accountNamingFormat is a string of the Account name format currently set in the org.
-    * @return String.
-    RLH
-    private static String defaultAccountName(List<Contact> cons) {
-        Set<String> householdLastNames = new Set<String>();
-        String finalAccountName;
-        String name = '';
-        String strAnd = ' ' + Label.defaultNamingConnector + ' ';
-        Integer counter = 0;
-
-        for (Contact con : cons) {
-            if (con.Account.RecordTypeId == hhAccountRecordTypeId) {
-                householdLastNames.add(con.LastName);
-            } else if (con.Account.RecordTypeId == adminAccountRecordTypeId) {
-                finalAccountName = con.LastName + ' ' + System.label.DefaultAdminName;
-                break;
-            } else {
-                finalAccountName = con.LastName + ' ' + System.label.DefaultAccountName;
-                break;
-            }
-        }
-
-        if (householdLastNames.size() > 0) {
-            for (String lastName : householdLastNames) {
-                name += lastName;
-                counter++;
-                if (counter < householdLastNames.size()) {
-                    name += strAnd;
-                }
-            }
-            // we don't need to do this check because we are in fact working
-            //with HH names if we are in this loop: householdLastName > 0
-            //this list only gets populated when the RT is of household -- RLH
-            //if (checkAccountFormat(con) == hhNameFormat) {
-                finalAccountName =  name + ' ' + System.label.DefaultHouseholdName;
-            //}
-        }
-
-        return finalAccountName;
-    }*/
 
     /*******************************************************************************************************
     * @description Given a NameSpec and a list of Contacts (assumed from a single household),
@@ -469,98 +362,6 @@ public class UTIL_ACCT_Naming {
 
         return ns.namePrefix + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
     }
-
-    /*******************************************************************************************************
-    * @description Given a NameSpec and a list of Contacts (assumed from a single household),
-    * return the formated Account name.
-    * This can be used for any of the household strings (name, formal greeting, informal greeting).
-    * @param cons is the list of Contacts
-    * @param ns the NameSpec class
-    * return String.
-    
-    private static String buildAccountName(List<Contact> cons) {
-        Set<String> processedLastNames = new Set<String>();
-        List<String> finalAccountName = new String[0];
-        String salutationSpec = '';
-        Integer conSize = cons.size();
-        //Boolean isSalutationFormat = ns.salutationSpec == '' ? False : True;
-        //Boolean lastNameOnFullNameSpec = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
-        //Boolean lastNameOnlyFormat = !lastNameOnFullNameSpec && ns.returnNameFormat().size() == 1;
-        //Boolean lastNameNotIncludedInFormat = ns.acctNameFormat.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
-        NameSpec ns;
-
-
-        for (Integer i = 0, next = 0; i < conSize; i = next) {
-            String lastName = cons[i].LastName;
-            next = i + 1;
-
-            //get the naming format for each con
-            String accountNamingFormat = checkAccountFormat(cons[i]);
-            ns = new NameSpec(accountNamingFormat);
-            //I suspect this is going to be an issue here...RLH
-            Boolean isSalutationFormat = ns.salutationSpec == '' ? False : True;
-            Boolean lastNameOnFullNameSpec = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
-            Boolean lastNameOnlyFormat = !lastNameOnFullNameSpec && ns.returnNameFormat().size() == 1;
-            Boolean lastNameNotIncludedInFormat = ns.acctNameFormat.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
-
-            if (lastNameOnlyFormat && processedLastNames.contains(lastName)) {
-                continue;
-            }
-
-            //Adds the lastName
-            processedLastNames.add(lastName);
-
-            //Retrieves Salutation
-            List<String> additionalSalutations = new List<String>();
-            if (isSalutationFormat) {
-                salutationSpec = stringConNames(cons[i], ns.salutationSpec);
-            }
-
-            //Retrieves value of FirstName
-            String firstName = stringConNames(cons[i], ns.firstNameSpec);
-
-            //Retrieves additional Salutations/FirstNames if there are multiple Contact with same last name OR
-            //if Contacts do not have same last name && the Account name format is not set to process {!LastName}.
-            List<String> additionalFirstNames = new List<String>();
-
-            for (; next < conSize && (lastNameOnFullNameSpec || cons[next].LastName == lastName); next++) {
-
-                if (isSalutationFormat) {
-                    String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
-                    if (nextSalutation != '') {
-                        additionalSalutations.add(nextSalutation);
-                    }
-                }
-                if (!lastNameNotIncludedInFormat) {
-                    String nextFName = stringConNames(cons[next], ns.firstNameSpec);
-                    if (nextFName != '') {
-                        additionalFirstNames.add(nextFname);
-                    }
-                }
-
-                //This is critical if the current Account name format is not set to process {!LastName}, then
-                //all Contacts inserted will enter this loop and will need to stop the iteration of next so
-                //that the next Contact will enter the outer loop. In short, this helps prevent deduplication
-                //of Contacts on the Account name.
-                if (lastNameNotIncludedInFormat) {
-                    break;
-                }
-
-            }
-
-            //Put together the Account name
-            String name = processName(cons[i], lastName, firstName, salutationSpec, additionalFirstNames,
-                                      additionalSalutations, ns);
-
-            if (String.isNotBlank(name)) {
-                finalAccountName.add(name);
-            }
-
-        }
-
-        return ns.namePrefix + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
-        
-    }*/
 
     private static String chLToken = '{!';
     private static String chRToken = '}';
@@ -795,7 +596,7 @@ public class UTIL_ACCT_Naming {
         return name;
     }
 
-        /*******************************************************************************************************
+    /*******************************************************************************************************
     * @description Class that supports the parsing of Account name format set in the current org and Account model.
     * NameSpec looks like: Prefix {LastName} {{FirstName}} Suffix
     * firstNameSpec is a combo of fields and literals like: {Salutation} {FirstName} Family
