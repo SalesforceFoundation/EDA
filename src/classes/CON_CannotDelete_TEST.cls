@@ -225,7 +225,7 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Id credentialRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Credential').getRecordTypeId();
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
         List<Attribute__c> credentialsAttributes = new List<Attribute__c>{
             new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId),
             new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId)
@@ -261,7 +261,7 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Id studentCharRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Student Characteristic').getRecordTypeId();
+        Id studentCharRecTypeId = UTIL_Describe_API.getStudentCharacteristicAttributeRecType();
         List<Attribute__c> studentCharAttributes = new List<Attribute__c>{
             new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = studentCharRecTypeId),
             new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = studentCharRecTypeId)
@@ -426,7 +426,7 @@ private with sharing class CON_CannotDelete_TEST {
         Course_Offering__c courseOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
         insert courseOffering;
 
-        Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+        Id studentCourseCxnRecTypeId = UTIL_Describe_API.getStudentConnectionRecType();
         List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
             new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id),
             new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id)
@@ -471,7 +471,7 @@ private with sharing class CON_CannotDelete_TEST {
         Course_Offering__c courseOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
         insert courseOffering;
 
-        Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Faculty').getRecordTypeId();
+        Id studentCourseCxnRecTypeId = UTIL_Describe_API.getFacultyConnectionRecType();
         List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
             new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id),
             new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id)
@@ -797,7 +797,7 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Id credentialRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Credential').getRecordTypeId();
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
         List<Attribute__c> credentialsAttributes = new List<Attribute__c>{
             new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId),
             new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId)
@@ -833,7 +833,7 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Id studentCharRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Student Characteristic').getRecordTypeId();
+        Id studentCharRecTypeId = UTIL_Describe_API.getStudentCharacteristicAttributeRecType();
         List<Attribute__c> studentCharAttributes = new List<Attribute__c>{
             new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = studentCharRecTypeId),
             new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = studentCharRecTypeId)
@@ -999,7 +999,7 @@ private with sharing class CON_CannotDelete_TEST {
         Course_Offering__c courseOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
         insert courseOffering;
 
-        Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+        Id studentCourseCxnRecTypeId = UTIL_Describe_API.getStudentConnectionRecType();
         List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
             new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id),
             new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id)
@@ -1044,7 +1044,7 @@ private with sharing class CON_CannotDelete_TEST {
         Course_Offering__c courseOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
         insert courseOffering;
 
-        Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Faculty').getRecordTypeId();
+        Id studentCourseCxnRecTypeId = UTIL_Describe_API.getFacultyConnectionRecType();
         List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
             new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id),
             new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id)
@@ -1222,7 +1222,7 @@ private with sharing class CON_CannotDelete_TEST {
         };
         insert attendanceEvents;
 
-        Id credentialRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Credential').getRecordTypeId();
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
         List<Attribute__c> credentialsAttributes = new List<Attribute__c>{
             new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId),
             new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId)
@@ -1256,7 +1256,7 @@ private with sharing class CON_CannotDelete_TEST {
         };
         insert termGrades;
 
-        Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+        Id studentCourseCxnRecTypeId = UTIL_Describe_API.getStudentConnectionRecType();
         List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
             new Course_Enrollment__c(Course_Offering__c = courseOfferings[0].Id, Status__c = 'Current', Contact__c = contacts[0].Id),
             new Course_Enrollment__c(Course_Offering__c = courseOfferings[1].Id, Status__c = 'Current', Contact__c = contacts[1].Id)
@@ -1322,7 +1322,7 @@ private with sharing class CON_CannotDelete_TEST {
         Attendance_Event__c attendance = new Attendance_Event__c(Date__c = System.today(), Contact__c = contacts[1].Id);
         insert attendance;
 
-        Id credentialRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Credential').getRecordTypeId();
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
         Attribute__c credentialAttribute = new Attribute__c(Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId);
         insert credentialAttribute;
 
@@ -1403,7 +1403,7 @@ private with sharing class CON_CannotDelete_TEST {
         };
         insert attendanceEvents;
 
-        Id credentialRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Credential').getRecordTypeId();
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
         List<Attribute__c> credentialsAttributes = new List<Attribute__c>{
             new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId),
             new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId)
@@ -1443,7 +1443,7 @@ private with sharing class CON_CannotDelete_TEST {
         };
         insert termGrades;
 
-        Id studentCourseCxnRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+        Id studentCourseCxnRecTypeId = UTIL_Describe_API.getStudentConnectionRecType();
         List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
             new Course_Enrollment__c(Course_Offering__c = courseOfferings[0].Id, Status__c = 'Current', Contact__c = contacts[0].Id),
             new Course_Enrollment__c(Course_Offering__c = courseOfferings[1].Id, Status__c = 'Current', Contact__c = contacts[1].Id)
@@ -1505,7 +1505,7 @@ private with sharing class CON_CannotDelete_TEST {
         Attendance_Event__c attendance = new Attendance_Event__c(Date__c = System.today(), Contact__c = contacts[1].Id);
         insert attendance;
 
-        Id credentialRecTypeId = Schema.SObjectType.Attribute__c.getRecordTypeInfosByName().get('Credential').getRecordTypeId();
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
         Attribute__c credentialAttribute = new Attribute__c(Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId);
         insert credentialAttribute;
 
