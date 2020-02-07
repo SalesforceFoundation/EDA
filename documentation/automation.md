@@ -37,6 +37,7 @@ To create an org that has been push upgraded from the latest release ("Existing 
 
 -   **`edaectomy`:** Removes configuration and unmanaged metadata.
 -   **`setup_encryption`:** Sets up Shield Platform Encryption in the target Org. It is recommended that this flow be run in developer scratch orgs only.
+-   **`upgraded_org`** Simulates an org that has been push-upgraded to the latest releases of EDA and underlying dependencies.
 
 ### Tasks
 
