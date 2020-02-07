@@ -620,9 +620,9 @@ public class UTIL_UnitTestData_TEST {
     
     /*********************************************************************************************************
     * @description Gets an Application for testing.
-    @Params appyingTo The Id of the Account 
-    @params student The Id of the Contact
-    @params terms the Id of the Term
+    * @Params appyingTo The Id of the Account 
+    * @params student The Id of the Contact
+    * @params terms the Id of the Term
     * @return The Application record.
     **********************************************************************************************************/
     public static Application__c getApplication(Id appyingTo, Id student, Id term) {
