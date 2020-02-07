@@ -197,7 +197,7 @@ private class TERM_CannotDelete_TEST {
         
         // Ensure only 1 Term is deleted
         List<Term__c> termsAfterDelete = [SELECT Id FROM TERM__c];
-        System.assertEquals(1, termsAfterDelete.size());       
+        System.assertEquals(4, termsAfterDelete.size());       
     }
 
     /*********************************************************************************************************
