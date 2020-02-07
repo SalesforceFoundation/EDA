@@ -80,7 +80,8 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
            			  String lookupFieldAPIName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
 
                		Affiliation__c afflOld;
-               		String lookupFieldLabelOrAPIOld, lookupFieldAPINameOld;
+               		String lookupFieldLabelOrAPIOld;
+                    String lookupFieldAPINameOld;
                		if(oldlist[i] != null) {
                    		afflOld = (Affiliation__c)oldlist[i];
                    		lookupFieldLabelOrAPIOld = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
@@ -119,8 +120,6 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                        		}
                        		dmlWrapper.objectsToUpdate.add(relatedContact);
 
-                       		  //afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
-                           	//AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
                        	}
                         
                         //ACCOUNT FIELD CLEARED - the matching primary field in Contact needs to be cleared.
