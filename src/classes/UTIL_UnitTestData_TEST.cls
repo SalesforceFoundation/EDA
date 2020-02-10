@@ -617,6 +617,35 @@ public class UTIL_UnitTestData_TEST {
         Facility__c facility = new Facility__c(Name = 'Test Facility ' + Datetime.now().getTime());
         return facility;
     }
+    
+    /*********************************************************************************************************
+    * @description Gets a Case record for testing based on the parameter
+    * @param student The Contact record to associate the Case with
+    * @param category The case Category
+    * @Param status The status of the Case
+    * @return The Case record
+    **********************************************************************************************************/
+
+    public static Case getCase(Id student, String category, String status) {
+    	Case caseRecord =  new Case(ContactId = student, Occurrence_Date__c = Date.today(),
+    	                             Category__c = category, Status = status);
+        return caseRecord;
+    }
+    
+    /*********************************************************************************************************
+    * @description Gets a Behavior Involvement record for testing based on the parameter
+    * @param student The Contact record to associate the Beahvior Involvement with
+    * @param caseId The Case record to assocaite the Beahvior Involvement with
+    * @param role The role of the Student involved
+    * @return The Behavior Involvement record
+    **********************************************************************************************************/
+
+    public static Behavior_Involvement__c getBehaviorInvolvementRecord(Id student, Id caseId, String role) {
+    	Behavior_Involvement__c behavInvolvement =  new Behavior_Involvement__c(Contact__c = student,
+                                                                                Case__c = caseId,
+                                                                                Role__c = role);
+        return behavInvolvement;
+    }
 
     /*********************************************************************************************************
     * @description Creates fake Ids for given sObject.
