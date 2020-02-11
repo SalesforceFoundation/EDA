@@ -605,7 +605,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     Phone = c.Phone,
                     Fax = c.Fax,
                     OwnerId = c.OwnerId,
-                    RecordTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c
+                    RecordTypeId = defaultRecTypeId
                 );
 
                 if (defaultRecTypeID != NULL) {
@@ -619,11 +619,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
                         Advancement_Info.getApiHEDA().primaryContact(a, c.Id);
                     }
-                }
-
-                //Gives it the default record type selected in the settings
-                if (defaultRecTypeID != null) {
-                    a.RecordTypeID = defaultRecTypeID;
                 }
 
                 //Additional logic check for HH Account recordType
