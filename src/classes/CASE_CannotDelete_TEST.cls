@@ -82,7 +82,7 @@ private class CASE_CannotDelete_TEST {
 
         Test.startTest();
             List<Case> casesToDelete = [SELECT Id FROM Case];
-            Database.DeleteResult[] results = Database.delete(casesToDelete, false);
+            Database.DeleteResult[] results = Database.delete(casesToDelete, FALSE);
         Test.stopTest();
 
         // Ensure no Cases are deleted
@@ -95,11 +95,11 @@ private class CASE_CannotDelete_TEST {
     */
     @isTest
     static void testCaseDeleteSettingOff() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Case_Deletion__c = False));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Case_Deletion__c = FALSE));
 
         Test.startTest();
             List<Case> casesToDelete = [SELECT Id FROM Case];
-            Database.DeleteResult[] results = Database.delete(casesToDelete, false);
+            Database.DeleteResult[] results = Database.delete(casesToDelete, FALSE);
         Test.stopTest();
 
         // Ensure all Cases are deleted
