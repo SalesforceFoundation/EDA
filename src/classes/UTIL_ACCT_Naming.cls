@@ -150,7 +150,7 @@ public class UTIL_ACCT_Naming {
 
     /*******************************************************************************************************
     * @description Main method that determines how the Account name should be updated.
-    * @param acc an account with a set of Contacts to be used in the naming of the account.
+    * @param accWithContacts an account with a set of Contacts to be used in the naming of the account.
     * @return String.
     */
     public static String updateName(Account accWithContacts) {
