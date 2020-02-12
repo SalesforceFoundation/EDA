@@ -216,7 +216,8 @@ class EDA(object):
     def select_relatedlist(self, title):
         """click on the related list to open it"""
         locator = eda_lex_locators["record"]["related"]["title"].format(title)
-        self.selenium.get_webelement(locator).click()
+        element = self.selenium.driver.find_element_by_xpath(locator)
+        self.selenium.driver.execute_script('arguments[0].click()', element)
 
     def verify_contact_roles(self, **kwargs):
         """"""

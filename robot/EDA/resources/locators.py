@@ -43,7 +43,7 @@ eda_lex_locators = {
             "button": "//article[contains(@class, 'forceRelatedListCardDesktop')][.//img][.//span[@title='{}']]//a[@title='{}']",
             "check_occurence": '//h2/a/span[@title="{}"]/following-sibling::span[text()=" ({})"]',
             "drop-down": '//div[contains(@class, "slds-card")]/header[.//span[@title="{}"]]/parent::*/div/div/div/a[contains(@class, "slds-button")]',
-            "title": '//div[contains(@class, "slds-card")]/header[.//span[@title="{}"]]',
+            "title": '//div[contains(@class, "slds-grid")]/header//a[./span[text()="{}"]]',
         },
     },
     "object": {
@@ -246,7 +246,7 @@ eda_lex_locators = {
     "account_list": '//tbody/tr/th[.//span[contains(@class, "slds-grid")]]/descendant::a[text()="{}"]',
     "dd_options": '//*[@id="p3"]/option[text()="{}"]',
     "related_list_items": '//div[@class = "forceRelatedListContainer"][.//a[contains(@class, "slds-card")]]//span[text() = "{}"]/ancestor::div[contains(@class, "slds-card")]/following-sibling::div[contains(@class, "slds-card")][.//div[contains(@class, "outputLookupContainer")]]//a[text()="{}"]',
-    "header_field_value": '//li[contains(@class,"slds-page-header__detail")]//div//span[contains(@title,"{}")]/following-sibling::div/div/div/a[contains(text(), "{}")]',
+    "header_field_value": '//*[contains(@class, "slds-page-header__detail")][.//*[@title="{}"]]//*[text()="{}"]',
     "header_datepicker": '//li[contains(@class, "slds-page-header__detail")][.//p[contains(@class, "slds-text-heading--label")][@title="{}"]]//*[@class="uiOutputDate"]',
     "affiliated_contacts": '//div[@class = "forceRelatedListContainer"][.//a[contains(@class, "slds-card")]]//span[text() = "{}"]/ancestor::div[contains(@class, "slds-card")]/following-sibling::div[contains(@class, "slds-card")]//tbody//td/span[text()="{}"]/../following-sibling::td/span[text()="{}"]',
     "detail_page": {

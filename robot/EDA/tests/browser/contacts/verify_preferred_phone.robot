@@ -21,23 +21,21 @@ Suite Teardown  Run keywords
 *** Test Cases ***
 Verify basic preferred phone functionality
     [tags]                          unstable
-    Current page should be                  Home
-    ...                                     Contacts
+    Current page should be                  Details             Contact
 
     Open EDA Settings Tab menu item
     Enable enchanced checkbox
     Clear the disable preferred phone enforcement
     Shift to default content
 
-    Go To Object Home                       Contact
-    Select contact                          ${CONTACT.FirstName}
-    ...                                     ${CONTACT.LastName}
+    Go To Page                    Listing                       Contact
+    Click Link                    ${CONTACT.FirstName} ${CONTACT.LastName}
+    Current page should be                  Details             Contact
     Validate preferred phone form
 
 Verify disable preferred phone enforcement
     [tags]                          unstable
-    Current page should be                  Home
-    ...                                     Contacts
+    Current page should be                  Details             Contact
 
     # Using 2 phone fields
     #
@@ -54,10 +52,9 @@ Verify disable preferred phone enforcement
     Shift to default content
 
     Create next contact
-    Go To Object Home                       Contact
+    Go To Page                    Listing                       Contact
     Add home phone and work phone to contact
-    ...                                     ${CONTACT2.FirstName}
-    ...                                     ${CONTACT2.LastName}
+    ...                                     ${CONTACT2.FirstName} ${CONTACT2.LastName}
     ...                                     False 
 
     # Negative Scenario
@@ -79,7 +76,7 @@ Verify disable preferred phone enforcement
 
 Verify batch functionality of preferred phone
     [tags]                          unstable
-    Current page should be                  Home           Contacts
+    Current page should be                  Details           Contact
 
     # Verify the EDA Setting 'Disable Preferred Phone enforcement'
     
