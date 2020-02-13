@@ -604,11 +604,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 Account a = new Account(
                     Phone = c.Phone,
                     Fax = c.Fax,
-                    OwnerId = c.OwnerId
+                    OwnerId = c.OwnerId,
+                    RecordTypeId = defaultRecTypeId
                 );
 
                 if (defaultRecTypeID != NULL) {
-                    a.Name = UTIL_ACCT_Naming.updateName(new List<Contact>{c});
+                    a.Name = UTIL_ACCT_Naming.updateNameFromContact(new List<Contact>{c}, a);
                 }
 
                 //Sets the Contact as the primary Contact for the newly created Account
@@ -618,11 +619,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
                         Advancement_Info.getApiHEDA().primaryContact(a, c.Id);
                     }
-                }
-
-                //Gives it the default record type selected in the settings
-                if (defaultRecTypeID != null) {
-                    a.RecordTypeID = defaultRecTypeID;
                 }
 
                 //Additional logic check for HH Account recordType
@@ -890,6 +886,5 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         return (accRecordTypeId != null &&
                 accRecordTypeId == userDefinedHHRecordTypeId &&
                 UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true);
-
     }
 }
