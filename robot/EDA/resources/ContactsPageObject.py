@@ -362,23 +362,27 @@ class ContactDetailPage(DetailPage):
         self.builtin.log("Run Cleanup executed")
         return
 
-    def Add_home_phone_to_contact_and_verify(self, FirstName, LastName):
+    def Add_home_phone_to_contact_and_verify(self, name):
         """ Open the contact details and add a home phone and save
             Verify that the home phone is NOT copied to Phone field
             and that the 'Preferred Phone' is set to None
         """
-        self.select_contact(FirstName, LastName)
+        self.selenium.click_link(name)
+        self.salesforce.click_object_button("Edit")
+        self.salesforce.wait_until_modal_is_open()
+        
+#         self.select_contact(FirstName, LastName)
         # Navigate to Detail tab
-        self.open_item(
-            contacts_locators["details_tab"], 
-            "Details tab not found on contact", 
-            False
-        )
-        self.open_item(
-            contacts_locators["edit_contact"], 
-            "Edit button not found on contact", 
-            False
-        )
+#         self.open_item(
+#             contacts_locators["details_tab"], 
+#             "Details tab not found on contact", 
+#             False
+#         )
+#         self.open_item(
+#             contacts_locators["edit_contact"], 
+#             "Edit button not found on contact", 
+#             False
+#         )
         self.place_in_view(contacts_locators["phone_home"])
         self.selenium.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight)"
@@ -403,18 +407,20 @@ class ContactDetailPage(DetailPage):
             and save.
         """
         self.selenium.click_link(name)
+        self.salesforce.click_object_button("Edit")
+        self.salesforce.wait_until_modal_is_open()
 #         self.select_contact(FirstName, LastName)
         # Navigate to Detail tab
-        self.open_item(
-            contacts_locators["details_tab"], 
-            "Details tab not found on contact", 
-            True
-        )
-        self.open_item(
-            contacts_locators["edit_contact"], 
-            "Edit button not found on contact", 
-            False
-        )
+#         self.open_item(
+#             contacts_locators["details_tab"], 
+#             "Details tab not found on contact", 
+#             True
+#         )
+#         self.open_item(
+#             contacts_locators["edit_contact"], 
+#             "Edit button not found on contact", 
+#             False
+#         )
         self.place_in_view(contacts_locators["phone_home"])
         self.selenium.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight)"

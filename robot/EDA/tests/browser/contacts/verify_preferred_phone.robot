@@ -70,8 +70,7 @@ Verify disable preferred phone enforcement
     Create third contact
     Go To Object Home                       Contact
     Add home phone and work phone to contact
-    ...                                     ${CONTACT3.FirstName}
-    ...                                     ${CONTACT3.LastName}
+    ...                                     ${CONTACT3.FirstName} ${CONTACT3.LastName}
     ...                                     True 
 
 Verify batch functionality of preferred phone
@@ -99,8 +98,7 @@ Verify batch functionality of preferred phone
     
     # Note:  look in ContactsPageObject.py to see that the following
     #        test does indeed verify the phone numbers
-    Add home phone to contact and verify    ${CONTACT4.FirstName}
-    ...                                     ${CONTACT4.LastName}
+    Add home phone to contact and verify    ${CONTACT4.FirstName} ${CONTACT4.LastName}
 
     # Now we'll reconfigure the EDA Setting
     # and run another test to check 'Run Cleanup'
