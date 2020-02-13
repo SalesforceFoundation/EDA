@@ -78,11 +78,14 @@ public class UTIL_ACCT_Naming {
         }
 
         for (Account acc: [SELECT Id, Name, RecordTypeId,
-                           (SELECT Id, LastName, Salutation, FirstName FROM Contacts WHERE AccountId IN :accountIdPrimaryContactId.keySet())
-                           FROM Account WHERE Id IN :accountIdPrimaryContactId.keySet()])
+                                  (SELECT Id, LastName, Salutation, FirstName, Account.RecordTypeId 
+                                  FROM Contacts 
+                                  WHERE AccountId IN :accountIdPrimaryContactId.keySet())
+                           FROM Account 
+                           WHERE Id IN :accountIdPrimaryContactId.keySet()])
         {
             if (acc.RecordTypeId == adminAccountRecordTypeId) {
-                acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
+                acc.Name = UTIL_ACCT_Naming.updateName(acc);
                 accountsToUpdate.add(acc);
             }
         }
@@ -99,15 +102,14 @@ public class UTIL_ACCT_Naming {
         List<Account> accountsToRename = new List<Account>();
 
         accountsToRename = queryContacts(accIdsToRename);
-
         //Loop through accountsToRename and modify the name accordingly
         if (accountsToRename.size() > 0) {
             for (Account acc : accountsToRename) {
-                acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
+                acc.Name = UTIL_ACCT_Naming.updateName(acc);
             }
         }
 
-        //For now, we use direct DML statement to avoid duplicate id issue
+        //For now, we use direct DML statement to avoid duplicate Id issue
         update accountsToRename;
     }
 
@@ -122,7 +124,7 @@ public class UTIL_ACCT_Naming {
         String sortByFirstName = 'FirstName';
 
         //Build dynamic query string
-        String dynamicSoql = 'SELECT id, RecordTypeId, ';
+        String dynamicSoql = 'SELECT Id, RecordTypeId, ';
         dynamicSoql += '(SELECT Id, AccountId,' +
             'Account.RecordTypeID, ' +
             'Account.Primary_Contact__c, Account.Name,' +
@@ -130,19 +132,15 @@ public class UTIL_ACCT_Naming {
             'MailingStreet, MailingCity, MailingState, ' +
             'MailingPostalCode, MailingCountry, MailingLatitude, ' +
             'MailingLongitude, OtherStreet, OtherCity, OtherState, ' +
-            'OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, ';
+            'OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, ' +
+            'Phone, Fax';
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
-            dynamicSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
+            dynamicSoql += ', MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode';
         }
 
-        if (defaultRecTypeId == hhAccountRecordTypeId) {
-            dynamicSoql += 'Phone, Fax FROM Contacts WHERE Exclude_from_Household_Name__c != true)';
-        } else {
-            dynamicSoql += 'FROM Contacts)';
-        }
-
-        dynamicSoql += 'FROM Account WHERE Id IN :accIdsToRename';
+        dynamicSoql += ' FROM Contacts WHERE Exclude_from_Household_Name__c != true AND Deceased__c != true)';
+        dynamicSoql += ' FROM Account WHERE Id IN :accIdsToRename';
 
         //Re-query to get correct Account values (and all the other fields we will look at)
         returnedContacts = database.query(String.escapeSingleQuotes(dynamicSoql));
@@ -152,46 +150,68 @@ public class UTIL_ACCT_Naming {
 
     /*******************************************************************************************************
     * @description Main method that determines how the Account name should be updated.
-    * @param cons a set of Contacts whose Account needs Name update.
+    * @param accWithContacts an account with a set of Contacts to be used in the naming of the account.
     * @return String.
     */
-    public static String updateName(List<Contact> cons) {
+    public static String updateName(Account accWithContacts) {
+        if(accWithContacts.Contacts.isEmpty() || accWithContacts.Contacts == null) {
+            return '';
+        }
+
         String accountNamingFormat;
         String finalAccountName;
 
-        accountNamingFormat = checkAccountFormat();
-
-        NameSpec ns;
-
-        List<Contact> returnSortedContacts = sortContacts(cons);
+        accountNamingFormat = checkAccountFormat(accWithContacts);
+        List<Contact> returnSortedContacts = sortContacts(accWithContacts.Contacts);
 
         if (accountNamingFormat != NULL) {
-            ns = new NameSpec(accountNamingFormat);
+            NameSpec ns = new NameSpec(accountNamingFormat);
             finalAccountName = buildAccountName(returnSortedContacts, ns);
-
         } else {
             finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
-
         }
 
         return finalAccountName;
     }
 
     /*******************************************************************************************************
+    * @description Main method that determines how the Account name should be updated.
+    * @param cons a set of Contacts whose Account needs Name update.
+    * @return String.
+    */
+    public static String updateNameFromContact(List<Contact> cons, Account acc) {
+        String accountNamingFormat;
+        String finalAccountName;
+
+        accountNamingFormat = checkAccountFormat(acc);
+        List<Contact> returnSortedContacts = sortContacts(cons);
+
+        if (accountNamingFormat != NULL) {
+            NameSpec ns = new NameSpec(accountNamingFormat);
+            finalAccountName = buildAccountName(returnSortedContacts, ns);
+        } else {
+            finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
+        }
+
+        return finalAccountName;
+    }
+
+
+    /*******************************************************************************************************
     * @description This checks and returns the current Account Model and Account name format.
     * @return String.
     */
-    private static String checkAccountFormat() {
+    private static String checkAccountFormat(Account acc) {
         String accountNamingFormat;
 
-        if (defaultRecTypeId == hhAccountRecordTypeId) {
+        if (acc.RecordTypeId == hhAccountRecordTypeId) {
 
             accountNamingFormat = hhNameFormat;
 
             if (accountNamingFormat == Label.acctNamingOther) {
                 accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
             }
-        } else if (defaultRecTypeId == adminAccountRecordTypeId) {
+        } else if (acc.RecordTypeId == adminAccountRecordTypeId) {
 
             accountNamingFormat = aaNameFormat;
 
@@ -202,6 +222,7 @@ public class UTIL_ACCT_Naming {
 
         return accountNamingFormat;
     }
+
 
     /*******************************************************************************************************
     * @description This calls the UTIL_SortContact to sort Contacts in alphabetical order.
@@ -266,192 +287,6 @@ public class UTIL_ACCT_Naming {
         return finalAccountName;
     }
 
-    private static String chLToken = '{!';
-    private static String chRToken = '}';
-    private static Boolean setFNSpec = false;
-
-    /*******************************************************************************************************
-    * @description Class that supports the parsing of Account name format set in the current org and Account model.
-    * NameSpec looks like: Prefix {LastName} {{FirstName}} Suffix
-    * firstNameSpec is a combo of fields and literals like: {Salutation} {FirstName} Family
-    * @return NameSpec.
-    */
-    private class NameSpec {
-        private String namePrefix { get; set; }
-        private String nameSuffix { get; set; }
-        private String firstNameSpec { get; set; }
-        private String fullNameSpec { get; set; }
-        private String andConnector { get; set; }
-        private string acctNameFormat { get; set; }
-        private String salutationSpec {get; set; }
-
-        /*******************************************************************************************************
-        * @description NameSpec Constructor
-        * @param accountNamingFormat is a string of the Account name format currently set in the org.
-        */
-        private NameSpec(String accountNamingFormat) {
-            String strNameSpec;
-
-            if (accountNamingFormat != NULL) {
-                strNameSpec = String.valueOf(accountNamingFormat);
-                parseNameSpec(strNameSpec);
-            }
-        }
-
-        /*******************************************************************************************************
-        * @description Given the strNameSpec string value, parse out its constituent parts, and sets them in the class.
-        * @param strNameSpec a string value of the Account name format. ie. {!FirstName} {!LastName} Family.
-        */
-        private void parseNameSpec(String strNameSpec) {
-            namePrefix = '';
-            nameSuffix = '';
-            firstNameSpec = '';
-            fullNameSpec = '';
-            andConnector = ' ' + Label.defaultNamingConnector + ' ';
-
-            if (strNameSpec == NULL) {
-                return;
-            }
-
-            Integer indexFirstParenthesis = strNameSpec.indexOf(chLToken);
-            Integer indexAfterLastParenthesis = strNameSpec.lastIndexOf(chRToken);
-
-            //Retrieve Prefix without the token
-            if (indexFirstParenthesis > 0) {
-                namePrefix = strNameSpec.left(indexFirstParenthesis);
-                acctNameFormat = strNameSpec.subString(indexFirstParenthesis);
-            }
-
-            //Retrieve Suffix without the token
-            if (indexAfterLastParenthesis > 0) {
-                while (indexAfterLastParenthesis < strNameSpec.length()-1 &&
-                       strNameSpec.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' ') {
-                           indexAfterLastParenthesis++;
-                       }
-                nameSuffix = strNameSpec.subString(indexAfterLastParenthesis+1);
-                acctNameFormat = strNameSpec.left(indexAfterLastParenthesis+1);
-            }
-
-            //Remove prefix from acctNameFormat so that it doesn't cause a duplicate of Prefix on rename
-            if (namePrefix != ''){
-                acctNameFormat = acctNameFormat.subString(indexFirstParenthesis);
-            }
-
-            //Retrieve  FirstNameSpec ie. {!FirstName}
-            String strFirstName = cleanFirstNameFormat(acctNameFormat);
-
-            //Retrieve Salutation
-            salutationSpec = cleanSalutationFormat(acctNameFormat);
-
-            Integer indexOfLeft = strFirstName.indexOf(chLToken);
-            Integer indexOfRight = strFirstName.lastIndexOf(chRToken);
-
-            //Retrieve full Account name format with a token
-            if (indexOfLeft >= 0 && indexOfRight > 0) {
-                fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
-                //Do a check if it's {!{!FirstName}} instead of {!FirstName}
-                if (setFNSpec) {
-                    firstNameSpec = strFirstName.subString(indexOfLeft + chLToken.length(), indexOfRight);
-                } else {
-                    firstNameSpec =  strFirstName;
-                }
-            } else {
-                fullNameSpec = acctNameFormat;
-            }
-        }
-
-        /*******************************************************************************************************
-        * @description Returns a set of all field names in all parts of the namespec without token.
-        * @return string
-        */
-        public Set<String> returnNameFormat() {
-            Set<String> nameFormat = new Set<String>();
-
-            if (firstNameSpec != null) {
-                nameFormat.addAll(cleanNameFormat(firstNameSpec));
-            }
-
-            if (fullNameSpec != null) {
-                nameFormat.addAll(cleanNameFormat(fullNameSpec));
-            }
-
-            nameFormat.add('LastName');
-            return nameFormat;
-        }
-
-    }
-
-    /*******************************************************************************************************
-    * @description Returns a set of clean field names from the NameSpec.
-    * ie. {!LastName} {!FirstName} Family -> "LastName" "FirstName"
-    * @param firstNameSpec is a string {!FirstName}
-    * @return String.
-    */
-    private static Set<String> cleanNameFormat(String firstNameSpec) {
-        Set<String> nameFormat = new Set<String>();
-
-        // First, instantiate a new Pattern object looking for {...} without any nested {'s.
-        Pattern myPattern = Pattern.compile('\\{![^\\{!]*\\}');
-        // Then instantiate a new Matcher object
-        Matcher myMatcher = myPattern.matcher(firstNameSpec);
-
-        while (MyMatcher.find()) {
-            // get the fieldname without the {!}'s
-            string strField = firstNameSpec.substring(myMatcher.start() + chLToken.length(), myMatcher.end()-chRToken.length());
-            nameFormat.add(strField.trim());
-        }
-        return nameFormat;
-    }
-
-    /*******************************************************************************************************
-    * @description Given an Account name format, returns the salutation demarcated by an outer {!} specified in the string.
-    * @param acctNameFormat is a string of the Account name format currently set in the org.
-    * @return String.
-    */
-    private static String cleanSalutationFormat(String acctNameFormat) {
-        String regexPattern = '(?:^|\\W)Salutation(?:$|\\W)';
-        Pattern myPattern = Pattern.compile(regexPattern);
-        Matcher myMatcher = myPattern.matcher(acctNameFormat);
-
-        if (myMatcher.find()) {
-            return acctNameFormat.subString(myMatcher.start()-1, myMatcher.end());
-        } else {
-            return '';
-        }
-
-    }
-
-    /*******************************************************************************************************
-    * @description Given an Account name format, return the FirstName demarcated by an outer {!} specified in the string.
-    * @param acctNameFormat is a string of the Account name format currently set in the org.
-    * @return String.
-    */
-    private static String cleanFirstNameFormat(String acctNameFormat) {
-        String firstNameFormat = '';
-
-        //Checks {!FirstName}
-        String regexPattern = '(?:^|\\W)FirstName(?:$|\\W)';
-        Pattern myPattern = Pattern.compile(regexPattern);
-        Matcher myMatcher = myPattern.matcher(acctNameFormat);
-
-        //Checks {!{!FirstName}}
-        String regexPatternDoubleToken = '\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}';
-        Pattern myPatternDoubleTokenCheck = Pattern.compile(regexPatternDoubleToken);
-        Matcher myMatcherDoubleTokenCheck = myPatternDoubleTokenCheck.matcher(acctNameFormat);
-
-        if (myMatcherDoubleTokenCheck.find()) {
-            //If it finds {!{!FirstName}}
-            setFNSpec = true;
-            firstNameFormat = acctNameFormat.subString(myMatcherDoubleTokenCheck.start(), myMatcherDoubleTokenCheck.end());
-        } else if (myMatcher.find()) {
-            //If it finds  {!FirstName}
-            firstNameFormat = acctNameFormat.subString(myMatcher.start()-1, myMatcher.end());
-        } else {
-            firstNameFormat = '';
-        }
-
-        return firstNameFormat;
-    }
 
     /*******************************************************************************************************
     * @description Given a NameSpec and a list of Contacts (assumed from a single household),
@@ -531,6 +366,83 @@ public class UTIL_ACCT_Naming {
 
         return ns.namePrefix + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
     }
+
+    private static String chLToken = '{!';
+    private static String chRToken = '}';
+    private static Boolean setFNSpec = false;
+
+    /*******************************************************************************************************
+    * @description Returns a set of clean field names from the NameSpec.
+    * ie. {!LastName} {!FirstName} Family -> "LastName" "FirstName"
+    * @param firstNameSpec is a string {!FirstName}
+    * @return String.
+    */
+    private static Set<String> cleanNameFormat(String firstNameSpec) {
+        Set<String> nameFormat = new Set<String>();
+
+        // First, instantiate a new Pattern object looking for {...} without any nested {'s.
+        Pattern myPattern = Pattern.compile('\\{![^\\{!]*\\}');
+        // Then instantiate a new Matcher object
+        Matcher myMatcher = myPattern.matcher(firstNameSpec);
+
+        while (MyMatcher.find()) {
+            // get the fieldname without the {!}'s
+            string strField = firstNameSpec.substring(myMatcher.start() + chLToken.length(), myMatcher.end()-chRToken.length());
+            nameFormat.add(strField.trim());
+        }
+        return nameFormat;
+    }
+
+    /*******************************************************************************************************
+    * @description Given an Account name format, returns the salutation demarcated by an outer {!} specified in the string.
+    * @param acctNameFormat is a string of the Account name format currently set in the org.
+    * @return String.
+    */
+    private static String cleanSalutationFormat(String acctNameFormat) {
+        String regexPattern = '(?:^|\\W)Salutation(?:$|\\W)';
+        Pattern myPattern = Pattern.compile(regexPattern);
+        Matcher myMatcher = myPattern.matcher(acctNameFormat);
+
+        if (myMatcher.find()) {
+            return acctNameFormat.subString(myMatcher.start()-1, myMatcher.end());
+        } else {
+            return '';
+        }
+
+    }
+
+    /*******************************************************************************************************
+    * @description Given an Account name format, return the FirstName demarcated by an outer {!} specified in the string.
+    * @param acctNameFormat is a string of the Account name format currently set in the org.
+    * @return String.
+    */
+    private static String cleanFirstNameFormat(String acctNameFormat) {
+        String firstNameFormat = '';
+
+        //Checks {!FirstName}
+        String regexPattern = '(?:^|\\W)FirstName(?:$|\\W)';
+        Pattern myPattern = Pattern.compile(regexPattern);
+        Matcher myMatcher = myPattern.matcher(acctNameFormat);
+
+        //Checks {!{!FirstName}}
+        String regexPatternDoubleToken = '\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}';
+        Pattern myPatternDoubleTokenCheck = Pattern.compile(regexPatternDoubleToken);
+        Matcher myMatcherDoubleTokenCheck = myPatternDoubleTokenCheck.matcher(acctNameFormat);
+
+        if (myMatcherDoubleTokenCheck.find()) {
+            //If it finds {!{!FirstName}}
+            setFNSpec = true;
+            firstNameFormat = acctNameFormat.subString(myMatcherDoubleTokenCheck.start(), myMatcherDoubleTokenCheck.end());
+        } else if (myMatcher.find()) {
+            //If it finds  {!FirstName}
+            firstNameFormat = acctNameFormat.subString(myMatcher.start()-1, myMatcher.end());
+        } else {
+            firstNameFormat = '';
+        }
+
+        return firstNameFormat;
+    }
+
 
     /*******************************************************************************************************
     * @description This method is reponsbile for concatenating all additional Salutations, FirstNames, and LastName
@@ -686,5 +598,116 @@ public class UTIL_ACCT_Naming {
         }
 
         return name;
+    }
+
+    /*******************************************************************************************************
+    * @description Class that supports the parsing of Account name format set in the current org and Account model.
+    * NameSpec looks like: Prefix {LastName} {{FirstName}} Suffix
+    * firstNameSpec is a combo of fields and literals like: {Salutation} {FirstName} Family
+    * @return NameSpec.
+    */
+    private class NameSpec {
+        private String namePrefix { get; set; }
+        private String nameSuffix { get; set; }
+        private String firstNameSpec { get; set; }
+        private String fullNameSpec { get; set; }
+        private String andConnector { get; set; }
+        private string acctNameFormat { get; set; }
+        private String salutationSpec {get; set; }
+
+        /*******************************************************************************************************
+        * @description NameSpec Constructor
+        * @param accountNamingFormat is a string of the Account name format currently set in the org.
+        */
+        private NameSpec(String accountNamingFormat) {
+            String strNameSpec;
+
+            if (accountNamingFormat != NULL) {
+                strNameSpec = String.valueOf(accountNamingFormat);
+                parseNameSpec(strNameSpec);
+            }
+        }
+
+        /*******************************************************************************************************
+        * @description Given the strNameSpec string value, parse out its constituent parts, and sets them in the class.
+        * @param strNameSpec a string value of the Account name format. ie. {!FirstName} {!LastName} Family.
+        */
+        private void parseNameSpec(String strNameSpec) {
+            namePrefix = '';
+            nameSuffix = '';
+            firstNameSpec = '';
+            fullNameSpec = '';
+            andConnector = ' ' + Label.defaultNamingConnector + ' ';
+
+            if (strNameSpec == NULL) {
+                return;
+            }
+
+            Integer indexFirstParenthesis = strNameSpec.indexOf(chLToken);
+            Integer indexAfterLastParenthesis = strNameSpec.lastIndexOf(chRToken);
+
+            //Retrieve Prefix without the token
+            if (indexFirstParenthesis > 0) {
+                namePrefix = strNameSpec.left(indexFirstParenthesis);
+                acctNameFormat = strNameSpec.subString(indexFirstParenthesis);
+            }
+
+            //Retrieve Suffix without the token
+            if (indexAfterLastParenthesis > 0) {
+                while (indexAfterLastParenthesis < strNameSpec.length()-1 &&
+                       strNameSpec.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' ') {
+                           indexAfterLastParenthesis++;
+                       }
+                nameSuffix = strNameSpec.subString(indexAfterLastParenthesis+1);
+                acctNameFormat = strNameSpec.left(indexAfterLastParenthesis+1);
+            }
+
+            //Remove prefix from acctNameFormat so that it doesn't cause a duplicate of Prefix on rename
+            if (namePrefix != ''){
+                acctNameFormat = acctNameFormat.subString(indexFirstParenthesis);
+            }
+
+            //Retrieve  FirstNameSpec ie. {!FirstName}
+            String strFirstName = cleanFirstNameFormat(acctNameFormat);
+
+            //Retrieve Salutation
+            salutationSpec = cleanSalutationFormat(acctNameFormat);
+
+            Integer indexOfLeft = strFirstName.indexOf(chLToken);
+            Integer indexOfRight = strFirstName.lastIndexOf(chRToken);
+
+            //Retrieve full Account name format with a token
+            if (indexOfLeft >= 0 && indexOfRight > 0) {
+                fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
+                //Do a check if it's {!{!FirstName}} instead of {!FirstName}
+                if (setFNSpec) {
+                    firstNameSpec = strFirstName.subString(indexOfLeft + chLToken.length(), indexOfRight);
+                } else {
+                    firstNameSpec =  strFirstName;
+                }
+            } else {
+                fullNameSpec = acctNameFormat;
+            }
+        }
+
+        /*******************************************************************************************************
+        * @description Returns a set of all field names in all parts of the namespec without token.
+        * @return string
+        */
+        public Set<String> returnNameFormat() {
+            Set<String> nameFormat = new Set<String>();
+
+            if (firstNameSpec != null) {
+                nameFormat.addAll(cleanNameFormat(firstNameSpec));
+            }
+
+            if (fullNameSpec != null) {
+                nameFormat.addAll(cleanNameFormat(fullNameSpec));
+            }
+
+            nameFormat.add('LastName');
+            return nameFormat;
+        }
+
     }
 }
