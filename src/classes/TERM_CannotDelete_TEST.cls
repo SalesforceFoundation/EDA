@@ -99,7 +99,7 @@ private class TERM_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description TTests the deletion of Term with Course Offering and Term Grade when “Prevent Term Deletion” is disabled. 
+    * @description Tests the deletion of Term with Course Offering and Term Grade when “Prevent Term Deletion” is disabled. 
     */
     @isTest 
     static void testDeleteTermsWithTermGradesSettingOff() {  
