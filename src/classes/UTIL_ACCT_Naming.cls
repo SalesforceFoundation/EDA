@@ -150,15 +150,19 @@ public class UTIL_ACCT_Naming {
 
     /*******************************************************************************************************
     * @description Main method that determines how the Account name should be updated.
-    * @param cons a set of Contacts whose Account needs Name update.
+    * @param accWithContacts an account with a set of Contacts to be used in the naming of the account.
     * @return String.
     */
-    public static String updateName(Account acc) {
+    public static String updateName(Account accWithContacts) {
+        if(accWithContacts.Contacts.isEmpty() || accWithContacts.Contacts == null) {
+            return '';
+        }
+
         String accountNamingFormat;
         String finalAccountName;
 
-        accountNamingFormat = checkAccountFormat(acc);
-        List<Contact> returnSortedContacts = sortContacts(acc.Contacts);
+        accountNamingFormat = checkAccountFormat(accWithContacts);
+        List<Contact> returnSortedContacts = sortContacts(accWithContacts.Contacts);
 
         if (accountNamingFormat != NULL) {
             NameSpec ns = new NameSpec(accountNamingFormat);
