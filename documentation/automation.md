@@ -23,6 +23,15 @@ Regression testing the latest beta:
     cci flow run regression_org 
     cci org browser <orgname>
 
+Regression Testing a Net New Org:
+    git checkout master
+    git pull
+    cci org scratch release <ORG> --default
+    cci flow run install_beta
+    cci task run execute_qa_apex -o managed True -o namespaced False
+    cci task run deploy_qa_config -o unmanaged False
+    cci org browser <ORG>
+
 To create an org that has been push upgraded from the latest release ("Existing Org"):
 
     git checkout master
