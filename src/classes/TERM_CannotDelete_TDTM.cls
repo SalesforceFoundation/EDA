@@ -32,7 +32,8 @@
 * @date 2019
 * @group Terms
 * @group-content ../../ApexDocContent/Terms.htm
-* @description This class prevents Term records from being deleted if it has any Term Grade associations. 
+* @description This class prevents Term records from being deleted if it has any Term Grade 
+* or Course Offering or Application associations. 
 */
 public with sharing class TERM_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
@@ -58,12 +59,12 @@ public with sharing class TERM_CannotDelete_TDTM extends TDTM_Runnable {
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for (Term__c term : [SELECT Id, 
-                                        (SELECT Id 
-                                        FROM Term_Grades__r 
-                                        LIMIT 1) 
-                                FROM Term__c 
+                                        (SELECT Id FROM Term_Grades__r LIMIT 1), 
+                                         (SELECT ID FROM Applications__r LIMIT 1),
+                                          (SELECT ID FROM Course_Offerings__r LIMIT 1)
+                                FROM Term__c
                                 WHERE Id IN :oldlist]) {
-                if (term.Term_Grades__r.size() > 0) {
+                if (term.Term_Grades__r.size() > 0 || term.Applications__r.size() > 0 || term.Course_Offerings__r.size() > 0) {
                     Term__c termInContext = oldmap.get(term.Id);
                     termInContext.addError(Label.CannotDelete);
                 }
