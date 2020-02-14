@@ -823,4 +823,46 @@ public class UTIL_Describe {
 
         return recTypeId;
     }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Credential Attribute record type, if it exists.
+     * @return String The ID of the Credential Attribute record type as a String.
+     */
+    public static String getCredentialAttributeRecType() {
+        Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Attribute__c'));
+        String recTypeId = recTypes.get('Credential');
+
+        if(Test.isRunningTest() && String.isBlank(recTypeId)) {
+            if (String.isBlank(recTypeId)) {
+                if(recTypes.values().size() > 1) {
+                    return recTypes.values()[1];
+                } else {
+                    return null;
+                }
+            }
+        }
+
+        return recTypeId;
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Student Characteristic Attribute record type, if it exists.
+     * @return String The ID of the Student Characteristic Attribute record type as a String.
+     */
+    public static String getStudentCharacteristicAttributeRecType() {
+        Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Attribute__c'));
+        String recTypeId = recTypes.get('Student_Characteristic');
+       
+        if(Test.isRunningTest() && String.isBlank(recTypeId)) {          
+            if (String.isBlank(recTypeId)) {
+                if(recTypes.values().size() > 1) {
+                    return recTypes.values()[1];
+                } else {
+                    return null;
+                }
+            }
+        }
+
+        return recTypeId;
+    }
 }
