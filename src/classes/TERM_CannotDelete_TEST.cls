@@ -49,8 +49,8 @@ private class TERM_CannotDelete_TEST {
         insert term;
     }
     
-    /*********************************************************************************************************
-    * @description Test deletion of Terms with Term Grades
+    /*******************************************************************************************************************
+    * @description Tests the deletion of Term with Course Offering and Term Grade when “Prevent Term Deletion” is enabled. 
     */
     @isTest 
     static void testDeleteTermsWithTermGrades() {
@@ -83,7 +83,8 @@ private class TERM_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test deletion of Terms with no Term Grades
+    * @description Tests the deletion of Term without any related child records (Course Offering, Term Grade, 
+    * and Application) when “Prevent Term Deletion” is disabled. 
     */
     @isTest 
     static void testDeleteTermsWithNoTermGrades() {          
@@ -98,7 +99,7 @@ private class TERM_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test deletion of Terms with Term Grades and preventing deletion setting is turned off
+    * @description TTests the deletion of Term with Course Offering and Term Grade when “Prevent Term Deletion” is disabled. 
     */
     @isTest 
     static void testDeleteTermsWithTermGradesSettingOff() {  
@@ -130,7 +131,8 @@ private class TERM_CannotDelete_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Test deletion of Terms with Term Grades and preventing deletion setting is turned off
+    * @description Bulk test deletion of Term records with Course Offering, Term Grade, Application when 
+    * “Prevent Term Deletion” is enabled. 
     */
     @isTest 
     static void testBulkDeleteSettingOn() {  
@@ -201,7 +203,7 @@ private class TERM_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test deletion of Terms with Term Grades and preventing deletion setting is turned off
+    * @description Bulk test deletion of Term records with Course Offering, Term Grade, Application when “Prevent Term Deletion” is disabled. 
     */
     @isTest 
     static void testBulkDeleteSettingOff() {  
