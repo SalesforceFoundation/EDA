@@ -85,7 +85,7 @@ public class UTIL_ACCT_Naming {
                            WHERE Id IN :accountIdPrimaryContactId.keySet()])
         {
             if (acc.RecordTypeId == adminAccountRecordTypeId) {
-                acc.Name = UTIL_ACCT_Naming.updateName(acc);
+                acc.Name = UTIL_ACCT_Naming.updateNameFromContact(acc.Contacts, acc);
                 accountsToUpdate.add(acc);
             }
         }
@@ -94,7 +94,7 @@ public class UTIL_ACCT_Naming {
     }
 
     /*******************************************************************************************************
-    * @description Update Account names if any changes made to Contacts' names or a new Contacts is linked the account
+    * @description Update household Account names if any changes made to Contacts' names or a new Contacts is linked the account
     * @param accIdsToRename a set of AccountIds whose name need to be updated.
     * @return void.
     */
@@ -105,7 +105,7 @@ public class UTIL_ACCT_Naming {
         //Loop through accountsToRename and modify the name accordingly
         if (accountsToRename.size() > 0) {
             for (Account acc : accountsToRename) {
-                acc.Name = UTIL_ACCT_Naming.updateName(acc);
+                acc.Name = UTIL_ACCT_Naming.updateNameFromContact(acc.Contacts, acc);
             }
         }
 
@@ -150,33 +150,8 @@ public class UTIL_ACCT_Naming {
 
     /*******************************************************************************************************
     * @description Main method that determines how the Account name should be updated.
-    * @param accWithContacts an account with a set of Contacts to be used in the naming of the account.
-    * @return String.
-    */
-    public static String updateName(Account accWithContacts) {
-        if(accWithContacts.Contacts.isEmpty() || accWithContacts.Contacts == null) {
-            return '';
-        }
-
-        String accountNamingFormat;
-        String finalAccountName;
-
-        accountNamingFormat = checkAccountFormat(accWithContacts);
-        List<Contact> returnSortedContacts = sortContacts(accWithContacts.Contacts);
-
-        if (accountNamingFormat != NULL) {
-            NameSpec ns = new NameSpec(accountNamingFormat);
-            finalAccountName = buildAccountName(returnSortedContacts, ns);
-        } else {
-            finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
-        }
-
-        return finalAccountName;
-    }
-
-    /*******************************************************************************************************
-    * @description Main method that determines how the Account name should be updated.
     * @param cons a set of Contacts whose Account needs Name update.
+    * @param acc is the Account record. 
     * @return String.
     */
     public static String updateNameFromContact(List<Contact> cons, Account acc) {
@@ -196,7 +171,6 @@ public class UTIL_ACCT_Naming {
         return finalAccountName;
     }
 
-
     /*******************************************************************************************************
     * @description This checks and returns the current Account Model and Account name format.
     * @return String.
@@ -205,24 +179,19 @@ public class UTIL_ACCT_Naming {
         String accountNamingFormat;
 
         if (acc.RecordTypeId == hhAccountRecordTypeId) {
-
             accountNamingFormat = hhNameFormat;
-
             if (accountNamingFormat == Label.acctNamingOther) {
                 accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
             }
         } else if (acc.RecordTypeId == adminAccountRecordTypeId) {
-
             accountNamingFormat = aaNameFormat;
-
             if (accountNamingFormat == Label.acctNamingOther) {
                 accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Other_Name_Setting__c;
             }
         }
-
+        
         return accountNamingFormat;
     }
-
 
     /*******************************************************************************************************
     * @description This calls the UTIL_SortContact to sort Contacts in alphabetical order.
@@ -286,7 +255,6 @@ public class UTIL_ACCT_Naming {
 
         return finalAccountName;
     }
-
 
     /*******************************************************************************************************
     * @description Given a NameSpec and a list of Contacts (assumed from a single household),
@@ -442,7 +410,6 @@ public class UTIL_ACCT_Naming {
 
         return firstNameFormat;
     }
-
 
     /*******************************************************************************************************
     * @description This method is reponsbile for concatenating all additional Salutations, FirstNames, and LastName
@@ -708,6 +675,5 @@ public class UTIL_ACCT_Naming {
             nameFormat.add('LastName');
             return nameFormat;
         }
-
     }
 }
