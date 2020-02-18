@@ -645,6 +645,15 @@ public class UTIL_UnitTestData_TEST {
                                                                                 Case__c = caseId,
                                                                                 Role__c = role);
         return behavInvolvement;
+    * @description Gets an Application for testing.
+    * @Params appyingTo The Id of the Account 
+    * @params student The Id of the Contact
+    * @params terms the Id of the Term
+    * @return The Application record.
+    **********************************************************************************************************/
+    public static Application__c getApplication(Id appyingTo, Id student, Id term) {
+        Application__c application = new Application__c(Applying_To__c = appyingTo, Applicant__c = student, Term__c = term);
+        return application;
     }
 
     /*********************************************************************************************************
