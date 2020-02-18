@@ -163,6 +163,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Prevent_Course_Offering_Deletion__c = mySettings.Prevent_Course_Offering_Deletion__c;
         settings.Prevent_Course_Connection_Deletion__c = mySettings.Prevent_Course_Connection_Deletion__c;
         settings.Populate_Affil_on_Student_Course_Cxn__c = mySettings.Populate_Affil_on_Student_Course_Cxn__c;
+        settings.Prevent_Term_Deletion__c = mySettings.Prevent_Term_Deletion__c;
         orgSettings = settings;
         return settings;
     }
