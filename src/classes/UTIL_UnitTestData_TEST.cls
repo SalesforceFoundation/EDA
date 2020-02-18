@@ -645,6 +645,9 @@ public class UTIL_UnitTestData_TEST {
                                                                                 Case__c = caseId,
                                                                                 Role__c = role);
         return behavInvolvement;
+    }
+    
+    /**********************************************************************************************************    
     * @description Gets an Application for testing.
     * @Params appyingTo The Id of the Account 
     * @params student The Id of the Contact
