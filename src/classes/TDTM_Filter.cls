@@ -79,19 +79,25 @@ public class TDTM_Filter {
     * @return FilteredLists An instance of the wrapper object that contains the filtered newList and oldList.
     */
     public FilteredLists filter() {
+        System.debug('TDTMFiltered FilteredList Method -->');
     	try {
     		filterField = tdtmToken.filterField;
+            System.debug('TDTMFiltered FilteredList filteredField -->' + filterField);
     		if(filterField != null) {
 	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
 	        	    filterByRelationship();
 	        	} else { //No need to break down the field condition
 	        	    if(filterField.endsWith('__c')) {
+                        System.debug('TDTMFiltered FilteredList -->'); 
 	        	        fieldName = handleNamespace(filterField);
+                        System.debug('TDTMFiltered FilteredList fieldName -->' + fieldName); 
 	        	    } else {
 	        	        fieldName = filterField;
 	        	    }
 	        	    filterByField();
+                    System.debug('TDTMFiltered FilteredList after filterbyField  -->'); 
 	        	}
+                System.debug('TDTMFiltered FilteredList filtered  -->' + filtered); 
 	        	return filtered;
 	    	}
     	} catch(Exception e) {
@@ -107,6 +113,7 @@ public class TDTM_Filter {
     * @return String the filter field with correct namespace based on existing filter logic
     */
     public String handleNamespace(string filterField) {
+        System.debug('TDTMFiltered handleNamespace Method  -->' + filterField); 
         String theFilter = '';
         String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
         // If the filter has the EDA namespace, then we need to add EDA namespace again. Adding the namespace the second time will break the filter. 
@@ -121,7 +128,7 @@ public class TDTM_Filter {
                 theFilter = UTIL_Namespace.StrTokenRemoveNSPrefix(theFilter);
             }
         }
-
+		System.debug('TDTMFiltered handleNamespace  -->' + theFilter); 
         return theFilter;
     }
     
@@ -129,7 +136,8 @@ public class TDTM_Filter {
     * @description Filters newList and oldList based on the value of a related field.
     * @return void 
     */
-    private void filterByRelationship() {        
+    private void filterByRelationship() {     
+        System.debug('TDTMFiltered filterByRelationship Method -->' ); 
         List<SObject> newListRelatedFields = queryRelatedFields(newList);
         
         List<String> filterFullChain = (filterField.split('\\.', 0)); //separate cross object references, i.e. account.name   
@@ -163,6 +171,7 @@ public class TDTM_Filter {
     * @return void
     */
     private void addErrorToAll() {
+        System.debug('TDTMFiltered addErrorToAll Method  -->' ); 
         for(Integer i = 0; i < newList.size(); i++) {
             UTIL_Debug.debug('****Invalid filter error added in TDTM_Filter');
             newList[i].addError(Label.InvalidFilter + ' ' + tdtmToken.className);
@@ -180,6 +189,7 @@ public class TDTM_Filter {
     * @return SObjectField The field to filter on as SObjectField.
     */
     private SObjectField getSObjectFilterField(String parentObjectName) {
+        System.debug('TDTMFiltered getSObjectFilterField  -->' ); 
         UTIL_Debug.debug('****Bottom child: ' + fieldName);
         UTIL_Debug.debug('****Bottom parent: ' + parentObjectName);
         SObjectField field = getSOField(parentObjectName, fieldName);
@@ -210,6 +220,7 @@ public class TDTM_Filter {
     * @objectChainIndex The index of the element in the chain to inspect.  
     */
     private ChainLink findValidObjectInChain(Integer objectChainIndex) {
+        System.debug('TDTMFiltered findValidObjectInChain Method  -->'); 
         SObjectField field;
         if(objectChainIndex == 0) {
             UTIL_Debug.debug('****Top child: ' + filterObjectChain[objectChainIndex]);
@@ -249,6 +260,7 @@ public class TDTM_Filter {
     * @return String The name of the object referenced by child, if any. 
     */
     private String getObjectTypeReferenced(String parent, String child) {
+        System.debug('TDTMFiltered getObjectTypeReferenced Method  -->');
         String objPointingTo;
         DescribeSObjectResult objectDescribe;
         try {
@@ -283,6 +295,7 @@ public class TDTM_Filter {
     * @return SObjectField The field we are looking for.
     */
     private SObjectField getSOField(String parentObjectName, String fieldName) {
+        System.debug('TDTMFiltered getSOField Method  -->');
         parentObjectName = fromRtoC(parentObjectName);  
         fieldName = fromRtoC(fieldName);
         UTIL_Debug.debug('****Parent in getSOField: ' + parentObjectName); 
@@ -313,6 +326,7 @@ public class TDTM_Filter {
     * @return SObjectField The field we are looking for.
     */
     private SObjectField getSOFieldHelper(String parentObjectName, String fieldName) {
+        System.debug('TDTMFiltered getSOFieldHelper Method  -->');
         DescribeSObjectResult objectDescribe = UTIL_Describe.getObjectDescribe(parentObjectName);
         if(objectDescribe != null) {
             Map<String, SObjectField> fieldsMap = objectDescribe.fields.getMap();
@@ -329,6 +343,7 @@ public class TDTM_Filter {
     * @return String The object name, if the name of a custom relationship was passed. 
     */
     private String fromRtoC(String fieldName) {
+        System.debug('TDTMFiltered fromRtoC Method  -->');
         //Remove custom field/object suffix
         if(fieldName.endsWith('__r') || fieldName.endsWith('__c')) {
             String suffix;
@@ -362,6 +377,7 @@ public class TDTM_Filter {
     * newList or oldList.
     */
     private List<SObject> queryRelatedFields(List<SObject> compList) {
+        System.debug('TDTMFiltered queryRelatedFields Method  -->');
         List<SObject> withRelatedFields = new List<SObject>(); //We don't want to modify the original list, but use a new one instead.
         if(compList != null) {
 	        Map<ID, SObject> compMap = new Map<ID, SObject>(compList);
@@ -383,11 +399,14 @@ public class TDTM_Filter {
     * @return FilteredLists An instance of the wrapper object that contains the filtered newList and oldList. 
     */
     private void filterByField() {
+        System.debug('TDTMFiltered filterByField Method  -->');
         //get field type
         SObjectField field = describeObj.fields.getMap().get(fieldName);
+        System.debug('TDTMFiltered filterByField field  -->' + field);
         UTIL_Debug.debug('****Field in object: ' + field);
         if(field != null) { //the field name is valid!
             filterValue = getFilter(field);
+            System.debug('TDTMFiltered filterByField filterValue  -->' + filterValue);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
             filterByCondition(null);
         } else {
@@ -401,6 +420,7 @@ public class TDTM_Filter {
     * @return Object The value to compare against when filtering, already in the correct type. 
     */
     private Object getFilter(SObjectField field) {
+        System.debug('TDTMFiltered getFilter Method  -->');
         //let's find the field type
         DisplayType fieldType = field.getDescribe().getType();
         UTIL_Debug.debug('****Filter field type: ' + fieldType);
@@ -435,16 +455,27 @@ public class TDTM_Filter {
     * but containing only the fields defined in the query condition. In the same order as newList.
     * @return void 
     */
-    private void filterByCondition(List<SObject> newListRelatedFields) {
+    private List<SObject> filterByCondition(List<SObject> newListRelatedFields) {
+        System.debug('TDTMFiltered filterByCondition Method  -->');
+        List<SObject> filteredList = new List<SObject>(); 
         if(filterObjectChain.size() == 0) { //The field in in the same object the trigger fires on
             //Only need newList to decide if a record meets trigger handler filter value
-            filterList(newList, newList, filtered.newList);
-            filterList(oldList, newList, filtered.oldList);
+            System.debug('TDTMFiltered filterByCondition newListRelatedFields -->' + newListRelatedFields); 
+            System.debug('TDTMFiltered filterByCondition newList -->' + newList); 
+            System.debug('TDTMFiltered filterByCondition oldlist -->' + oldList); 
+            filteredList = filterList(newList, newList, filtered.newList); //null, null, () 
+            System.debug('TDTMFiltered filterByCondition oldlistfirst -->' + oldList); 
+            System.debug('TDTMFiltered filterByCondition newList -->' + newList); 
+            System.debug('TDTMFiltered filterByCondition filteredOldList -->' + filtered.oldList); 
+            filteredList = filterList(oldList, newList, filtered.oldList); //Address record, null, () 
+            return filteredList; 
         } else { //The field is in a related object
+            System.debug('TDTMFiltered filterByCondition ELSE -->'); 
             filterListByRelatedField(newListRelatedFields, newList, filtered.newList);
             //Only need newListRelatedFields to decide if a record meets trigger handler filter value
             filterListByRelatedField(newListRelatedFields, oldList, filtered.oldList);
         }
+        return filteredList; 
     }
     
     /*******************************************************************************************************
@@ -459,6 +490,7 @@ public class TDTM_Filter {
     */
     private void filterListByRelatedField(List<SObject> listWithRelatedFields, List<SObject> originalList, 
     List<SObject> filteredList) {
+        System.debug('TDTMFiltered filterListByRelatedField Method -->'); 
         if(listWithRelatedFields != null && listWithRelatedFields.size() > 0) {
             for(Integer i = 0; i < listWithRelatedFields.size(); i++) {
                 SObject o = listWithRelatedFields[i];
@@ -501,14 +533,23 @@ public class TDTM_Filter {
     * @param filteredList The resulting filtered list.
     * @return void 
     */
-    private void filterList(List<SObject> listToFilter, List<SObject> newList, List<SObject> filteredList) {
+    private List<SObject> filterList(List<SObject> listToFilter, List<SObject> newList, List<SObject> filteredList) {
+        System.debug('TDTMFiltered filterList Method -->' + listToFilter); 
+        System.debug('TDTMFiltered filterList newList -->' + newList); 
+        System.debug('TDTMFiltered filterList filteredList -->' + filteredList); 
+        
         if(listToFilter != null && listToFilter.size() > 0) {
+            System.debug('TDTMFiltered filterList IfEntry -->' + listToFilter); 
             for(integer i=0; i<listToFilter.size();i++) {
+                System.debug('TDTMFiltered filterList ifLoop -->' + listToFilter);
                 if(newList[i].get(fieldName) != filterValue) {
+                    System.debug('TDTMFiltered filterList IFStatement -->');
                     filteredList.add(listToFilter[i]);
+                    System.debug('TDTMFiltered filterList filteredList -->' + filteredList);
                 }
             }
         } 
+        return filteredList; 
     }
     
     /*******************************************************************************************************

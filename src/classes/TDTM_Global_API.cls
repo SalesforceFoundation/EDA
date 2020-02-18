@@ -58,6 +58,7 @@ global class TDTM_Global_API {
     Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
         
+        System.debug('TDTMGlobal API Run Method -->' + describeObj); 
         TDTM_TriggerHandler.run(isBefore, isAfter, isInsert, isUpdate, isDelete, isUnDelete, newList, oldList, describeObj);
     }
     
@@ -69,6 +70,7 @@ global class TDTM_Global_API {
     * @return List<TdtmToken> List of trigger handler tokens with the default values. 
     *********************************************************************************************************/
     global static List<TdtmToken> getTdtmConfig() {
+        System.debug('TDTMGlobal API getTdtmConfig Method -->');
         return TDTM_Config.getTdtmConfig();
     }
 
@@ -77,6 +79,7 @@ global class TDTM_Global_API {
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values. 
     *********************************************************************************************************/
     global static List<TdtmToken> getDefaultTdtmConfig() {
+        System.debug('TDTMGlobal API getDefaultTdtmConfig Method -->');
         return TDTM_Config.getDefaultTdtmConfig();
     }
 
@@ -86,6 +89,7 @@ global class TDTM_Global_API {
     * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens) {
+        System.debug('TDTMGlobal API setTdtmConfig Method 1 -->' + tokens);
         TDTM_Manager manager = new TDTM_Manager(null);
         Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tokens);
         manager.updateDefaultTdtmConfig( tokenSet );
@@ -97,6 +101,7 @@ global class TDTM_Global_API {
     * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens,String namespace) {
+        System.debug('TDTMGlobal API setTdtmConfig Method 2 -->' + tokens);
         TDTM_Manager manager = new TDTM_Manager(namespace);
         Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tokens);
         manager.updateDefaultTdtmConfig( tokenSet );
@@ -193,6 +198,7 @@ global class TDTM_Global_API {
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder) {
             this(className, targetObject, actions, Decimal.valueOf(loadOrder));
+            System.debug('TDTMGlobal API TdtmTOken Method Depracated 1 -->');
         }
 
         /********************************************************************************************************
@@ -212,6 +218,7 @@ global class TDTM_Global_API {
             this.active = true;
             this.async = false;
             this.userManaged = false;
+            System.debug('TDTMGlobal API TdtmTOken Method Depracated 2-->');
         }
 
         /********************************************************************************************************
@@ -229,6 +236,7 @@ global class TDTM_Global_API {
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
             this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null, null);
+            System.debug('TDTMGlobal API TdtmTOken Method Depracated 3-->');
         }
 
         /********************************************************************************************************
@@ -247,6 +255,7 @@ global class TDTM_Global_API {
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
             this(className, targetObject, actions, loadOrder, active, async, filterField, filterValue, userManaged, ownedByNamespace, null);
+            System.debug('TDTMGlobal API TdtmTOken Method Depracated 4-->');
         }
 
         /********************************************************************************************************
@@ -264,6 +273,8 @@ global class TDTM_Global_API {
         * @param usernamesToExclude The token's usernames-to-excluded field.
         *********************************************************************************************************/
         global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace, String usernamesToExclude) {
+            System.debug('TDTMGlobal API TdtmTOken Method Not Depracated usernamesToExclude -->' + usernamesToExclude); 
+            System.debug('TDTMGlobal API TdtmTOken Method Not Depracated filterField -->' + filterField); 
             this.className = className;
             this.targetObject = targetObject;
             this.actions = actions;
@@ -276,6 +287,8 @@ global class TDTM_Global_API {
             this.userManaged = userManaged;
             this.ownedByNamespace = ownedByNamespace;
             this.usernamesToExclude = usernamesToExclude;
+            
+            System.debug('TDTMGlobal API TdtmTOken Method Not Depracated -->'); 
         }
 
         /********************************************************************************************************
@@ -296,14 +309,17 @@ global class TDTM_Global_API {
         /********************************************************************************************************
         * @description Equals implementation. Leaving out Managed Field we dont want it in the comparison if the field has been updated.
         *********************************************************************************************************/
-        global Boolean equals(Object o) {           
+        global Boolean equals(Object o) {  
+            
+            System.debug('TDTMGlobal API equals Method -->' + 0); 
             // Support API versions 31 and lower with null check
             if ( (o == null) || !(o instanceof TdtmToken) ) {
                return false;
             }
 
             TdtmToken t = (TdtmToken)o;
-
+			System.debug('TDTMGlobal API equals Method -->' + t); 
+            
             // Compare all fields
             if (
                 this.className == t.className 
@@ -327,6 +343,7 @@ global class TDTM_Global_API {
         * @description Hash Code implementation 
         *********************************************************************************************************/
         global Integer hashCode() {
+            System.debug('TDTMGlobal API Hash Method -->'); 
             return (
                 31 
                 * targetObject.hashCode() 
@@ -337,6 +354,7 @@ global class TDTM_Global_API {
         * @description compareTo implementation for sorting
         *********************************************************************************************************/
         global Integer compareTo(Object obj) {
+            System.debug('TDTMGlobal API compareTo Method -->'); 
             TdtmToken token = (TdtmToken)(obj);
 
             if (this.loadOrder > token.loadOrder) {
