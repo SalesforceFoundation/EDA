@@ -1,54 +1,54 @@
 @isTest	
 public class ADDR_Addresses_TEST {
+  
 	@isTest
-    public static void deleteAddress() {
+    public static void deleteAddressTest() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                                                                                Contacts_Addresses_Enabled__c = true));
         
-        //Create the triggerHandler record with no filter value 
-        Trigger_Handler__c th = new Trigger_Handler__c(
-            Class__c = 'ADDR_Addresses_TDTM', 
-            Trigger_Action__c = 'BeforeInsert; BeforeUpdate; AfterInsert; AfterUpdate; AfterDelete',
-            Active__c = TRUE,
-            Object__c = 'Address__c',
-            Load_Order__c = 1,
-            Owned_by_Namespace__c = 'hed'
-        ); 
+        //Retrieves the defaultTDTMconfig 
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig(); 
         
-        insert th; 
- 
-        Contact con = UTIL_UnitTestData_API.getContact();
-        insert con;
+        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
+        List<Contact> contacts = contactsAddrs.contacts; 
         
-        Address__c address = new Address__c (Parent_Contact__c = con.Id, Default_Address__c = true, MailingStreet__c = '1 Summer St', MailingCity__c = 'Brooklyn'); 
-        insert address; 
+        //Update address
+        for (Integer i = 0; i < contactsAddrs.addrs.size(); i++) {
+            Address__c addr = contactsAddrs.addrs[i];
+            if (i == 1) {
+                addr.MailingCity__c = 'Brooklyn' + i;
+            }
+        }
+         
+        update contactsAddrs.addrs;
         
-        con.MailingCity = address.MailingCity__c;
-        con.Current_Address__c = address.Id; 
-        update con; 
+		List<Address__c> addresses = contactsAddrs.addrs;
         
-        Contact c = [SELECT Id, Current_Address__c, MailingCity FROM Contact WHERE Id = :con.Id]; 
-        System.assertEquals(address.Id, c.Current_Address__c);
-        System.assertEquals(address.MailingCity__c, c.MailingCity);
+        List<Contact> cons = [SELECT Id, Current_Address__c, MailingCity FROM Contact WHERE Id IN :contacts]; 
+        System.assertEquals(2, cons.size()); 
+        System.assertEquals(addresses[0].Id, cons[0].Current_Address__c);
+        System.assertEquals(addresses[0].MailingCity__c, cons[0].MailingCity);
         
-        //Update the triggerHandler filter value 
-        th.Filter_Field__c = 'MailingCity__c';
-        th.Filter_Value__c = 'Brooklyn';
-        update th; 
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'ADDR_Addresses_TDTM') {
+		        token.filterField = 'MailingCity__c';
+                token.filterValue = 'Brooklyn1';
+            }
+		}
         
-        Trigger_Handler__c returnTH = [SELECT Id, Filter_Value__c, Filter_Field__c FROM Trigger_Handler__c WHERE Id = :th.Id]; 
-        System.assertNOTEquals(NULL, returnTH.Filter_Field__c);
-        System.assertNOTEquals(NULL, returnTH.Filter_Value__c);
-        System.debug('returnTH -->' + returnTH); 
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         Test.startTest();
-        delete address; 
+        delete addresses; 
         Test.stopTest(); 
         
-        Contact returnCon = [SELECT Id, Current_Address__c, MailingCity, MailingAddress FROM Contact WHERE Id = :con.Id];
-        System.debug('returnCon -->' + returnCon);
-        System.assertNOTEquals(NULL, returnCon.MailingAddress);
-        System.assertEquals(NULL, returnCon.Current_Address__c);
-
+        List<Address__c> returnAddresses = [SELECT Id FROM Address__c WHERE Id IN :addresses]; 
+        System.assertEquals(0, returnAddresses.size()); 
+        
+        List<Contact> returnCons = [SELECT Id, Current_Address__c, MailingCity, MailingAddress FROM Contact WHERE Id IN :contacts];
+        System.debug('TestClass returnCon -->' + returnCons);
+        System.assertNOTEquals(NULL, returnCons[1].MailingAddress);
+        System.assertEquals(NULL, returnCons[1].Current_Address__c);
+        
     }
 }

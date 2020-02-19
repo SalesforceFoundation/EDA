@@ -542,10 +542,21 @@ public class TDTM_Filter {
             System.debug('TDTMFiltered filterList IfEntry -->' + listToFilter); 
             for(integer i=0; i<listToFilter.size();i++) {
                 System.debug('TDTMFiltered filterList ifLoop -->' + listToFilter);
-                if(newList[i].get(fieldName) != filterValue) {
-                    System.debug('TDTMFiltered filterList IFStatement -->');
-                    filteredList.add(listToFilter[i]);
-                    System.debug('TDTMFiltered filterList filteredList -->' + filteredList);
+                
+                if (newList != null && newList.size() > 0) {
+                    System.debug('TDTMFiltered filterList newListIFNotBlank -->');
+                    if(newList[i].get(fieldName) != filterValue) {
+                    	System.debug('TDTMFiltered filterList newListIF -->');
+                    	filteredList.add(listToFilter[i]);
+                    	System.debug('TDTMFiltered filterList newListIF -->' + filteredList);
+                	}
+                } else {
+                    System.debug('TDTMFiltered filterList newListIFISBlank -->');
+                    if(listToFilter[i].get(fieldName) != filterValue) {
+                    	System.debug('TDTMFiltered filterList listToFilterIF -->');
+                    	filteredList.add(listToFilter[i]);
+                    	System.debug('TDTMFiltered filterList listToFilterIF -->' + filteredList);
+                	}
                 }
             }
         } 
