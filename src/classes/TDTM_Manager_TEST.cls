@@ -583,16 +583,7 @@ private class TDTM_Manager_TEST {
 		User testUserDisabled = UTIL_UnitTestData_API.createNewUserForTests('excludedUser@gmail.com');
 
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
-		/*
-        //Disabling class that creates reciprocal relationships
-        for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.className == 'TERM_CannotDelete_TDTM') {
-                token.profilestoexclude = 'Standard User';
-            }
-        }
 		
-        TDTM_Global_API.setTdtmConfig(tokens);
-		*/
 		// Insert Account
         List<Account> academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID());
         insert academicAccount;
