@@ -462,19 +462,80 @@ private class TDTM_Manager_TEST {
 
 	}
 
-	//Test to make sure trigger handler is skipped if usernames_to_excluded contains multiple certain usernames
+	// Test to make sure trigger handler is skipped if Profiles To Exclude has a profile name
 	@isTest
-	public static void excludeSingleProfile() {
+	public static void excludeSingleProfileSingleDelete() {
+
+        User testUserDisabled = UTIL_UnitTestData_API.createNewUserForTests('excludedUser@gmail.com');
+
+        // We are running as the testUserDisabled here as the Profile is cached in TDTM_config and if System.runAs
+        // is run after setting TDTM config then System Administrator Profile is cached.
+        System.runAs(testUserDisabled) {
+        	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
+            
+			List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
+
+        	//  Add 'Standard User Profile' to profiles to exclude
+        	for(TDTM_Global_API.TdtmToken token : tokens) {
+            	if(token.className == 'TERM_CannotDelete_TDTM') {
+                	token.profilesToExclude = 'Standard User';
+            	}
+        	}
+
+        	TDTM_Global_API.setTdtmConfig(tokens);
+
+			// Insert Account
+        	List<Account> academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID());	
+        	insert academicAccount;
+
+        	// Insert Term
+        	Term__c term = UTIL_UnitTestData_TEST.getTerm(academicAccount[0].Id, 'Spring 20');
+        	insert term;
+
+        	// Insert Course Offering
+        	Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, term.Id);
+
+        	// Insert Contact
+        	Contact student = UTIL_UnitTestData_TEST.getContact();  
+        	insert student;
+
+        	// Insert Course Connection
+        	Course_Enrollment__c courseConnection = UTIL_UnitTestData_TEST.getCourseConnection(student.Id, courseOffering.Id);
+        	insert courseConnection;
+
+        	// Insert Term Grade
+        	Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGradeWTermCourseConn(term.Id, courseConnection.Id);
+        	insert termGrade;
+
+			Test.startTest();
+				delete term;
+            Test.stopTest();
+        }
+        
+        // The term should be deleted
+        List<Term__c> afterDelete2 = [SELECT id FROM Term__c];
+        System.assertEquals(0, afterDelete2.size());
+		
+	}
+    
+    // Negative test to make sure adding a value to 'Profiles to Exclude' doesn't affect the functionality for other profiles
+	@isTest
+	public static void excludeProfileDeletionNegativeTest() {
         
 		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
 
 		User testUserDisabled = UTIL_UnitTestData_API.createNewUserForTests('excludedUser@gmail.com');
         
-		//Populate the Usernames_to_Exclude__c value of the trigger handler
-		Trigger_Handler__c handler = new Trigger_Handler__c(
-				Active__c = true, Asynchronous__c = false, Class__c = 'TERM_CannotDelete_TDTM', Load_Order__c = 3, 
-                Object__c = 'Term__c', Trigger_Action__c = 'BeforeDelete', Profiles_to_Exclude__c = 'Standard User');
-		insert handler;
+		List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
+     
+        //  Add 'Standard User Profile' to profiles to exclude
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+           	if(token.className == 'TERM_CannotDelete_TDTM') {
+               	token.profilesToExclude = 'Standard User';
+           	}
+       	}
+       
+       	TDTM_Global_API.setTdtmConfig(tokens);
 
 		// Insert Account
         List<Account> academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID());
@@ -499,28 +560,89 @@ private class TDTM_Manager_TEST {
         Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGradeWTermCourseConn(term.Id, courseConnection.Id);
         insert termGrade;
         
+        Test.startTest();
+        	// delete as system admin
+			try {
+               	delete term;   
+        	} catch (Exception error) {
+            	System.assert(error.getMessage().contains(Label.CannotDelete));      
+        	  }
+        Test.stopTest();
+        
+        // The term should not be deleted
+        List<Term__c> afterDelete2 = [SELECT id FROM Term__c];
+        System.assertEquals(1, afterDelete2.size());
+	}
+
+    // Test Profile Exclusion logic for Admins
+	@isTest
+	public static void excludeAdminProfile() {
+
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
+
+		User testUserDisabled = UTIL_UnitTestData_API.createNewUserForTests('excludedUser@gmail.com');
+
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
+		/*
+        //Disabling class that creates reciprocal relationships
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'TERM_CannotDelete_TDTM') {
+                token.profilestoexclude = 'Standard User';
+            }
+        }
+		
+        TDTM_Global_API.setTdtmConfig(tokens);
+		*/
+		// Insert Account
+        List<Account> academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID());
+        insert academicAccount;
+
+        // Insert Term
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(academicAccount[0].Id, 'Spring 20');
+        insert term;
+
+        // Insert Course Offering
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, term.Id);
+
+        // Insert Contact
+        Contact student = UTIL_UnitTestData_TEST.getContact();  
+        insert student;
+
+        // Insert Course Connection
+        Course_Enrollment__c courseConnection = UTIL_UnitTestData_TEST.getCourseConnection(student.Id, courseOffering.Id);
+        insert courseConnection;
+
+        // Insert Term Grade
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGradeWTermCourseConn(term.Id, courseConnection.Id);
+        insert termGrade;
+
         try {
                delete term;   
         } catch (Exception error) {
             System.assert(error.getMessage().contains(Label.CannotDelete));      
         }
-        
+
+        // The Term should not be deleted as System Admin is not Excluded 
         List<Term__c> afterDelete1 = [SELECT id FROM Term__c];
         System.assertEquals(1, afterDelete1.size());
-        /*
-        handler.Profiles_to_Exclude__c = 'System Administrator';
-        update handler;
-        */
+        
+        //Disabling class that creates reciprocal relationships
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'TERM_CannotDelete_TDTM') {
+                token.profilestoexclude = 'System Administrator';
+            }
+        }
+        
+        TDTM_Global_API.setTdtmConfig(tokens);
+        
         // Delete the term as a Standard User Profiles
 		Test.startTest();
-		    System.runAs(testUserDisabled) {
-			   delete term;
-		    }
+		    delete term;
 		Test.stopTest();
         
+		// The Term should not be deleted as System Admin is Excluded
         List<Term__c> afterDelete2 = [SELECT id FROM Term__c];
         System.assertEquals(0, afterDelete2.size());
-
 	}
 
 }

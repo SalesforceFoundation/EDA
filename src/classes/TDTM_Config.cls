@@ -48,6 +48,11 @@ public class TDTM_Config {
     *********************************************************************************************************/
     private static Integer rowCount;
 
+    /*******************************************************************************************************
+    * @description Profile Name of the Current User
+    *********************************************************************************************************/
+    public static String currentUserProfile;
+
     /********************************************************************************************************
     * @description Returns the TDTM configuration. If no configuration is currently set, it will return
     * the default configuration without setting it. The configuration returned has not yet been inserted in the
@@ -144,18 +149,13 @@ public class TDTM_Config {
         //Get the name of profileId.
         String currentUserProfile = getcurrentUserProfile(currentUserProfileId);
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
+			
             //Get a list of excluded usernames in lowercase
-            Set<String> excludedUserNamesLowercase = new Set<String>();
-            Set<String> excludedUserNames = (token.usernamesToExclude != null ?
-                    new Set<String>(token.usernamesToExclude.split('\\s*;\\s*')) : new Set<String>());
-            for (String username : excludedUserNames) {
-                excludedUserNamesLowercase.add(username.toLowerCase());
-            }
-
+            Set<String> excludedUserNamesLowercase = TDTM_ExcludedUserNames.userNamesToExclude(token);
+            
             //Get a list of excluded profiles
-            Set<String> excludedProfiles = (token.profilesToExclude != null ?
-            new Set<String>(token.profilesToExclude.split('\\s*;\\s*')) : new Set<String>());
-
+            Set<String> excludedProfiles = TDTM_ExcludedProfiles.profilesToExclude(token);
+            
             //Filtering those active by object and action.
             //Actions should not be null, otherwise it will throw null pointer exception. We might need to create a WI to do more validation on insert/update Trigger Handler
             if(token.active && token.targetObject == objectName
@@ -172,13 +172,12 @@ public class TDTM_Config {
 
         return objectTokens;
     }
-    /*******************************************************************************************************
-    * @description Returns Profile name of the current user
-    * @param currentUserProfileId Id of the current user profile
-    * @return currentUserProfile Profile Name of the current user
-    *********************************************************************************************************/
 
-    public static String currentUserProfile;
+    /*******************************************************************************************************
+    * @description Returns the Profile of the Current User
+    * @param currentUserProfileId Profile Id of the  Current User
+    * @return currentUserProfile Profile Name of the Current User
+    *********************************************************************************************************/
 	public static String getcurrentUserProfile(Id currentUserProfileId) {
     	if (currentUserProfile == null) {
         	currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
