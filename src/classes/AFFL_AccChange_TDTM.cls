@@ -72,15 +72,24 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                 Integer i = 0;
                 for (SObject so : newlist) {
                		Affiliation__c affl = (Affiliation__c)so;
-               		String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-           			String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
+               		String lookupLabelOrAPIName = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+                  if (lookupLabelOrAPIName == NULL) {
+                      String affiliationTypeAPI = afflMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
+                      lookupLabelOrAPIName = afflMapper.accRecTypeToContactLabel.get(affiliationTypeAPI);
+                  }
+           			  String lookupFieldAPIName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
 
                		Affiliation__c afflOld;
-               		String lookupFieldLabelOld, lookupFieldNameOld;
+               		String lookupFieldLabelOrAPIOld;
+                    String lookupFieldAPINameOld;
                		if(oldlist[i] != null) {
                    		afflOld = (Affiliation__c)oldlist[i];
-                   		lookupFieldLabelOld = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
-                   		lookupFieldNameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOld);
+                   		lookupFieldLabelOrAPIOld = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
+                        if (lookupFieldLabelOrAPIOld == NULL) {
+                            String affiliationTypeAPI = afflMapper.accRecTypeLabelToAPI.get(afflOld.Affiliation_Type__c);
+                            lookupFieldLabelOrAPIOld = afflMapper.accRecTypeToContactLabel.get(affiliationTypeAPI);
+                        }
+                   		lookupFieldAPINameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOrAPIOld);
                		}
 
                		if (isAfflTypeEnforced == true) {
@@ -95,29 +104,27 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
                    		//ACCOUNT FIELD CHANGED
                    		if(affl.Primary__c && affl.Account__c != null && afflOld.Account__c != null
-                       		&& affl.Account__c != afflOld.Account__c && lookupFieldName != null) {
+                       		&& affl.Account__c != afflOld.Account__c && lookupFieldAPIName != null) {
 
                        		if(affl.Affiliation_Type__c == afflOld.Affiliation_Type__c) {
                            		//If the primary affl now points to an Account of the same type, update the
                            		//same primary field in Contact.
-                           		relatedContact.put(lookupFieldName, affl.Account__c);
+                           		relatedContact.put(lookupFieldAPIName, affl.Account__c);
                        		} else {
                            		//If the primary affl now points to an Account of different type, clear the old
                            		//primary field in Contact and populate the matching new field.
-                           		if (lookupFieldNameOld != null) {
-                               		relatedContact.put(lookupFieldNameOld, null);
-                               		relatedContact.put(lookupFieldName, affl.Account__c);
+                           		if (lookupFieldAPINameOld != null) {
+                               		relatedContact.put(lookupFieldAPINameOld, null);
+                               		relatedContact.put(lookupFieldAPIName, affl.Account__c);
                            		}
                        		}
                        		dmlWrapper.objectsToUpdate.add(relatedContact);
 
-                       		//afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
-                           	//AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
                        	}
-
-                       	//ACCOUNT FIELD CLEARED - the matching primary field in Contact needs to be cleared.
-                       	if(affl.Primary__c && afflOld.Account__c != null && affl.Account__c == null && lookupFieldNameOld != null) {
-                           	relatedContact.put(lookupFieldNameOld, null);
+                        
+                        //ACCOUNT FIELD CLEARED - the matching primary field in Contact needs to be cleared.
+                       	if(affl.Primary__c && afflOld.Account__c != null && affl.Account__c == null && lookupFieldAPINameOld != null) {
+                           	relatedContact.put(lookupFieldAPINameOld, null);
                            	dmlWrapper.objectsToUpdate.add(relatedContact);
                        	}
                        	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccChange_TDTM, true);
