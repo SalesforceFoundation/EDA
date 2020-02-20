@@ -464,7 +464,7 @@ private class TDTM_Manager_TEST {
 
 	// Test to make sure trigger handler is skipped if Profiles To Exclude has a profile name
 	@isTest
-	public static void excludeSingleProfileSingleDelete() {
+	public static void excludeProfileDeleteTest() {
 
         User testUserDisabled = UTIL_UnitTestData_API.createNewUserForTests('excludedUser@gmail.com');
 
