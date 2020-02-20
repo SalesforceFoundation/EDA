@@ -45,6 +45,8 @@ public with sharing class AFFL_AccRecordType_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         STG_InstallScript.insertMappings();
+        RecordType univ = [SELECT Id, Name FROM RecordType WHERE DeveloperName = 'University_Department'];
+        System.assertNotEquals(null, univ, 'University_Department Record Type was not found');
         
         orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
