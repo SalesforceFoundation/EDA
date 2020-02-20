@@ -37,11 +37,11 @@
 */
 public with sharing class AFFL_MultiRecordTypeMapper {
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
     * @description Map of Contact field names to Contact field labels.
     ********************************************************************************************************/
-	public Map<String, String> contactLabelNames;
-		
+    public Map<String, String> contactLabelNames;
+        
     /*******************************************************************************************************
     * @description Affiliation Account-record-type-to-Contact-field mappings.
     ********************************************************************************************************/
@@ -59,116 +59,139 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     ********************************************************************************************************/
     public List<String> accountRecordTypes;
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
     * @description List of valid account record types in mappings.
     ********************************************************************************************************/
-	public List<String> validAccRecordTypesInMappings;
+    public List<String> validAccRecordTypesInMappings;
 
     /*******************************************************************************************************
     * @description List of primary affiliation lookup fields names on Contact.
     ********************************************************************************************************/
     public List<String> primaryAfflFieldNames;
+
+    /*******************************************************************************************************
+    * @description Map of Account Record Type Label to API
+    ********************************************************************************************************/
+    public Map<String, String> accRecTypeLabelToAPI;
     
     /*******************************************************************************************************
     * @description Constructor that initializes class properties.
     ********************************************************************************************************/
     public AFFL_MultiRecordTypeMapper() {
-    	//List of Contact field names.
-		List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
-		
-		//Map of Contact field labels to Contact field Names.
-		contactLabelNames = getContactLabelsNamesMap(contactFields);
-		
-		//List of primary affiliation lookup fields names.
-		List<String> contactFieldNames = contactLabelNames.values();
-		
-		//Affiliation Account-record-type-to-Contact-field mappings.
-		populateMaps();
-		
-		//List of primary affiliation lookup fields labels.
-		List<String> primaryAfflFieldLabels = accRecTypeToContactLabel.values();
-		
-		//List of primary affiliation Contact fields.
-		List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldLabels);
+        //List of Contact field names.
+        List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
+        
+        //Map of Contact field labels to Contact field Names.
+        contactLabelNames = getContactLabelsNamesMap(contactFields);
+        
+        //List of primary affiliation lookup fields names.
+        List<String> contactFieldNames = contactLabelNames.values();
+        
+        //Affiliation Account-record-type-to-Contact-field mappings.
+        populateMaps();
 
-		//List of Valid Account Record types in mappings
-		validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accountRecordTypes);
+        // Map of Account RecordType Label To API
+        accRecTypeLabelToAPI = getAccRecTypeLabelToAPIMap();
+        
+        //List of primary affiliation lookup fields labels.
+        List<String> primaryAfflFieldLabels = accRecTypeToContactLabel.values();
+        
+        //List of primary affiliation Contact fields.
+        List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldLabels);
+
+        //List of Valid Account Record types in mappings
+        validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accountRecordTypes);
 
         //List of Valid Primary Contact Fields in mappings
         List<String> validContactAfflFields = getValidAfflFields(contactFields, primaryAfflFieldLabels);
         
-		//Check if any mismatch in mappings
-		if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c
-				&& (primaryAfflFieldLabels.size() != validContactAfflFields.size()
-					|| accountRecordTypes.size() != validAccRecordTypesInMappings.size())) {
-			throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-		}
+        //Check if any mismatch in mappings
+        if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c
+                && (primaryAfflFieldLabels.size() != validContactAfflFields.size()
+                    || accountRecordTypes.size() != validAccRecordTypesInMappings.size())) {
+            throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+        }
 
-		UTIL_Debug.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
+        UTIL_Debug.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
     }
     
     private Map<String, String> getContactLabelsNamesMap(List<SObjectField> cf) {
-    	Map<String, String> labelsnames = new Map<String, String>();
-		for(SObjectField field : cf) {
-			labelsnames.put(field.getDescribe().getLabel(), field.getDescribe().getName());
-		}
-		return labelsnames;
+        Map<String, String> labelsnames = new Map<String, String>();
+        for(SObjectField field : cf) {
+            labelsnames.put(field.getDescribe().getLabel(), field.getDescribe().getName());
+        }
+        return labelsnames;
+    }
+    
+    // @Desription Returns a Map of Record type label to its API
+    private Map<String, String> getAccRecTypeLabelToAPIMap() {
+        Map<String, String> labelsnames = new Map<String, String>();
+        for (RecordType field : [SELECT  Name, DeveloperName FROM RecordType Where SobjectType = 'Account']) {
+            labelsnames.put(field.Name, field.DeveloperName);
+        }
+        return labelsnames;
     }
     
     private void populateMaps() {
-    	accRecTypeToContactLabel = new Map<String, String>();
-    	accTypeToEnrollCreate = new Map<String, Boolean>();
-    	accTypeToEnrollCreateRole = new Map<String, String>();
-    	accTypeToEnrollCreateStatus = new Map<String, String>();
+        accRecTypeToContactLabel = new Map<String, String>();
+        accTypeToEnrollCreate = new Map<String, Boolean>();
+        accTypeToEnrollCreateRole = new Map<String, String>();
+        accTypeToEnrollCreateStatus = new Map<String, String>();
         accountRecordTypes = new List<String>();
 
-		//Put affl mappings in a map.
-		for(Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-			if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
-				accRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
-				accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
-				accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
-				accTypeToEnrollCreateStatus.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Status__c);
+        //Put affl mappings in a map.
+        for(Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
+            if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
+                accRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
+                accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
+                accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
+                accTypeToEnrollCreateStatus.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Status__c);
                 accountRecordTypes.add(mapping.Account_Record_Type__c);
             }
-		}
-	}
-	
-	/***************************************************************************************************************
+        }
+    }
+    
+    /***************************************************************************************************************
     * @description Returns those fields from the provided list that are in the provided list of labels or API names. 
     * @param contactFields List of fields on Contact.
     * @param primaryAfflFieldLabels List of field labels or API Names.
     * @return List<SObjectField> List of fields in object that are in the provided list of labels or API names.
     ****************************************************************************************************************/
-	private List<SObjectField> getPrimaryAfflFields(List<SObjectField> contactFields, List<String> primaryAfflFieldLabelsOrAPINames) {
-		Set<String> primaryAfflFieldLabelsOrAPIs = new Set<String>(primaryAfflFieldLabelsOrAPINames);
-		List<SObjectField> primaryFields = new List<SObjectField>();
-		primaryAfflFieldNames = new List<String>();
-		for(SObjectField field : contactFields) {
-			if (primaryAfflFieldLabelsOrAPIs.contains(field.getDescribe().getLabel()) || primaryAfflFieldLabelsOrAPIs.contains(field.getDescribe().getName())) {
-				primaryAfflFieldNames.add(field.getDescribe().getName());
-				primaryFields.add(field);
-			}
-		}
-		return primaryFields;
-	}
-	
-	/*******************************************************************************************************
+    private List<SObjectField> getPrimaryAfflFields(List<SObjectField> contactFields, List<String> primaryAfflFieldLabelsOrAPINames) {
+        Set<String> primaryAfflFieldLabelsOrAPIs = new Set<String>(primaryAfflFieldLabelsOrAPINames);
+        List<SObjectField> primaryFields = new List<SObjectField>();
+        primaryAfflFieldNames = new List<String>();
+        for(SObjectField field : contactFields) {
+            if (primaryAfflFieldLabelsOrAPIs.contains(field.getDescribe().getLabel()) || primaryAfflFieldLabelsOrAPIs.contains(field.getDescribe().getName())) {
+                primaryAfflFieldNames.add(field.getDescribe().getName());
+                primaryFields.add(field);
+            }
+        }
+        return primaryFields;
+    }
+    
+    /*******************************************************************************************************
     * @description Returns the name of the key affiliation Contact field that matches the Account record type provided.
     * @param recordTypeId The ID of an Account record type.
     * @return String The name of the key affiliation Contact field.
     ********************************************************************************************************/
-	public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
-		for(String recTypeName : accRecTypeToContactLabel.keySet()) {
-            if (Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName) != null)
-            {
-        		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
-        		if(rcId == recordTypeId) {
-        			String fieldLabel = accRecTypeToContactLabel.get(recTypeName);
-        			String fieldName = contactLabelNames.get(fieldLabel);
-        			return fieldName;
-        		}
-            }else{
+    public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
+        for (String recTypeName : accRecTypeToContactLabel.keySet()) {
+            if (Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName) != null) {
+                ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
+                if (rcId == recordTypeId) {
+                    String fieldLabel = accRecTypeToContactLabel.get(recTypeName);
+                    String fieldName = contactLabelNames.get(fieldLabel);
+                    return fieldName;
+                }
+            } else if (Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName) != null) {
+                ID rcId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
+                if(rcId == recordTypeId) {
+                    String fieldLabel = accRecTypeToContactLabel.get(recTypeName);
+                    String fieldName = contactLabelNames.get(fieldLabel);
+                    return fieldName;
+                }
+            } else {
                 //Setup null pointer error message
                 String[] params = new String[]{
                     recTypeName
@@ -176,8 +199,8 @@ public with sharing class AFFL_MultiRecordTypeMapper {
                 String nullPointerMsg = String.format(Label.afflNullPointerError, params);
                 throw new AfflNullPointerException(nullPointerMsg);
             }
-		}
-		return null;
+        }
+        return null;
     }
     
     public class AfflNullPointerException extends Exception {}
@@ -191,34 +214,34 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     public Boolean needsProgramEnrollment(Affiliation__c affl) {
         Boolean autoEnrollment = false;
         String autoRole, autoStatus;
-    	if(affl.Affiliation_Type__c != null) {
-    	    if(accTypeToEnrollCreate.get(affl.Affiliation_Type__c) != null) {
-    	       autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
-    	    }
-    	    autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
-    	    autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
-    	}
-    	if(autoEnrollment && affl != null && affl.Role__c != null && autoRole == affl.Role__c && affl.Status__c != null 
-    	&& autoStatus == affl.Status__c) { 
-    	   return true;
-    	}
-    	return false;
+        if(affl.Affiliation_Type__c != null) {
+            if(accTypeToEnrollCreate.get(affl.Affiliation_Type__c) != null) {
+               autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
+            }
+            autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
+            autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
+        }
+        if(autoEnrollment && affl != null && affl.Role__c != null && autoRole == affl.Role__c && affl.Status__c != null 
+        && autoStatus == affl.Status__c) { 
+           return true;
+        }
+        return false;
     }
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
     * @description Returns valid record types in Account Record type and contact primary field mapping.
     * @param accRecordTypesInMappings List of record types in mapping.
     * @return List<String> List of Valid record types in mapping.
     ********************************************************************************************************/
-	private List<String> getValidAccRecordTypesInMappings(List<String> accRecordTypesInMappings) {
-		List<String> validAccRecordTypesInMappings = new List<String>();
-		for (String accRecordTypesInMapping : accRecordTypesInMappings) {
-			if (SObjectType.Account.getRecordTypeInfosByName().containsKey(accRecordTypesInMapping)) {
-				validAccRecordTypesInMappings.add(accRecordTypesInMapping);
-			}
-		}
-		return validAccRecordTypesInMappings;
-	}
+    private List<String> getValidAccRecordTypesInMappings(List<String> accRecordTypesInMappings) {
+        List<String> validAccRecordTypesInMappings = new List<String>();
+        for (String accRecordTypesInMapping : accRecordTypesInMappings) {
+            if (SObjectType.Account.getRecordTypeInfosByName().containsKey(accRecordTypesInMapping)) {
+                validAccRecordTypesInMappings.add(accRecordTypesInMapping);
+            }
+        }
+        return validAccRecordTypesInMappings;
+    }
 
     /*******************************************************************************************************
     * @description Returns valid contact primary affiliation fields from mappings
