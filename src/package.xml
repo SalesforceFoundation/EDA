@@ -31,6 +31,8 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>CASE_CannotDelete_TDTM</members>
+        <members>CASE_CannotDelete_TEST</members>
         <members>CCON_CannotDelete_TDTM</members>
         <members>CCON_CannotDelete_TEST</members>
         <members>CCON_ConnectionBackfill_BATCH</members>

@@ -162,6 +162,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Prevent_Contact_Deletion__c = mySettings.Prevent_Contact_Deletion__c;
         settings.Prevent_Course_Offering_Deletion__c = mySettings.Prevent_Course_Offering_Deletion__c;
         settings.Prevent_Course_Connection_Deletion__c = mySettings.Prevent_Course_Connection_Deletion__c;
+        settings.Prevent_Case_Deletion__c = mySettings.Prevent_Case_Deletion__c;
         settings.Prevent_Term_Deletion__c = mySettings.Prevent_Term_Deletion__c;
         orgSettings = settings;
         return settings;
