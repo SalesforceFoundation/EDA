@@ -56,33 +56,23 @@ public class TDTM_TriggerHandler {
     public static void run(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate,
     Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
-		
-        System.debug('TDTMTriggerHandler run Method -->' + describeObj); 
+                
         try {
             TDTM_Runnable.Action thisAction = TDTM_TriggerActionHelper.determineTriggerAction(isBefore, 
                                                           isAfter, isInsert, isUpdate, isDelete, isUnDelete);
             UTIL_Debug.debugWithInfo('****ACTION: ' + thisAction + ' on ' + describeObj.getLabel());
-        	System.debug('TDTMTriggerHandler run thisAction -->' + thisAction); 
-            
+        
             TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
             
             // Get the classes to run. Note that we are using the local object name, so it works for managed and unmanaged objects.
             List<TDTM_Global_API.TdtmToken> classesToCall = TDTM_Config.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
             UTIL_Debug.debug('****Classes To Call on ' + thisAction + ' for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
-            System.debug('TDTMTriggerHandler run classesToCall -->' + classesToCall); 
             
             if(classesToCall != null && classesToCall.size() > 0) {
-                System.debug('TDTMTriggerHandler run classesToCall -->' + classesToCall); 
-
                 //Run the relevant classes
                 for (TDTM_Global_API.TdtmToken classToCall : classesToCall) {
-                    
                     TDTM_Runnable.DmlWrapper dmlWrapperLocal = new TDTM_Runnable.DmlWrapper();
-                    System.debug('TDTMTriggerHandler run dmlWrapperLocal B4-->'); 
-                    
                     dmlWrapperLocal = runClass(classToCall, newList, oldList, thisAction, describeObj);
-                    System.debug('TDTMTriggerHandler run dmlWrapperLocal -->' + dmlWrapperLocal); 
-                    
                     if(dmlWrapperLocal != null) {
                         if(dmlWrapperLocal.objectsToInsert != null && !dmlWrapperLocal.objectsToInsert.isEmpty())
                             dmlWrapper.objectsToInsert.addAll(dmlWrapperLocal.objectsToInsert);
@@ -92,8 +82,7 @@ public class TDTM_TriggerHandler {
                             dmlWrapper.objectsToDelete.addAll(dmlWrapperLocal.objectsToDelete);
                         if(dmlWrapperLocal.objectsToUndelete != null && !dmlWrapperLocal.objectsToUndelete.isEmpty())
                             dmlWrapper.objectsToUndelete.addAll(dmlWrapperLocal.objectsToUndelete);
-                    }  
-                    
+                    }          
                     UTIL_Debug.debugWithInfo('****Finished executing: ' + classToCall.className);
                 }
                              
@@ -128,65 +117,43 @@ public class TDTM_TriggerHandler {
     private static TDTM_Runnable.DmlWrapper runClass(TDTM_Global_API.TdtmToken tdtmToken, List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
                 
-        System.debug('TDTMTriggerHandler runClass Method -->' + tdtmToken); 
         if(tdtmToken.className != null) {
-            //if (tdtmToken.filterField == null) {
-            System.debug('TDTMTriggerHandler runClass tdtmToken.className -->' + tdtmToken.className); //It finds ADDR_Addresses_TDTM 
             Type classType = Type.forName(tdtmToken.className);
-            System.debug('TDTMTriggerHandler runClass classType -->' + classType); 
-            	if(classType != null) {     
-                	System.debug('TDTMTriggerHandler runClass classTypeNotNULL -->' + classType); 
-                	Object classInstance = classType.newInstance();
+            
+            if(classType != null) {     
+                Object classInstance = classType.newInstance();
                 
-                	//The objects we create dynamically need to implement the TDTM_Runnable interface
-                	if(classInstance instanceof TDTM_Runnable) {
-                    	TDTM_Runnable classToRunInstance = (TDTM_Runnable)classInstance;
+                //The objects we create dynamically need to implement the TDTM_Runnable interface
+                if(classInstance instanceof TDTM_Runnable) {
+                    TDTM_Runnable classToRunInstance = (TDTM_Runnable)classInstance;
                     
                     //A class can only run asynchronously (calling a future) if we have the ids of the
                     //records we want to affect. This means we can only run it for after in insert. 
                     //Also,a future cannot be called from a future or batch method.
-                    	if(tdtmToken.async && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
-                        	UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.className);
-                        	System.debug('TDTMTriggerHandler runClass runAsyncIF -->' ); 
-                        	runAsync(classToRunInstance, tdtmToken.className, newList, oldList, thisAction, describeObj);
-                    	} else {
-                        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.className);
+                    if(tdtmToken.async && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
+                        UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.className);
+                        runAsync(classToRunInstance, tdtmToken.className, newList, oldList, thisAction, describeObj);
+                    } else {
+                        UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.className);
                         
-                        	TDTM_Filter filter = new TDTM_Filter(tdtmToken, newList, oldList, describeObj);
-                        	System.debug('TDTMTriggerHandler runClass filter -->' + filter);
-                        	//System.assertNotEquals(NULL, filter); 	
-                        	TDTM_Filter.FilteredLists filtered = filter.filter();
-                        	System.debug('TDTMTriggerHandler runClass filtered -->' + filtered);
-                        	//System.assertNotEquals(NULL, filtered); 
+                        TDTM_Filter filter = new TDTM_Filter(tdtmToken, newList, oldList, describeObj);
+                        TDTM_Filter.FilteredLists filtered = filter.filter();
                         
-                        	if(filtered != null) {
-                            	System.debug('TDTMTriggerHandler runClass filtered -->' + filtered);
-                            	return classToRunInstance.run(filtered.newList, filtered.oldList, thisAction, describeObj);
-                        	} else {
-                            	System.debug('TDTMTriggerHandler runClass filteredNULL-->' + filtered);
-                            	System.debug('TDTMTriggerHandler runClass filteredNULL newList -->' + newList);
-                            	System.debug('TDTMTriggerHandler runClass filteredNULL oldList -->' + oldList);
-                            	System.debug('TDTMTriggerHandler runClass filteredNULL thisAction -->' + thisAction);
-                            	System.debug('TDTMTriggerHandler runClass filteredNULL describeObj -->' + describeObj);
-                            	return classToRunInstance.run(newList, oldList, thisAction, describeObj);
-                        	}
-	
-                    	}
-						System.debug('TDTMTriggerHandler runClass filteredFail -->'); 
-                    
-                	} else {
-                    	UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
-                	}
-            	} else {
-                	UTIL_Debug.debug(LoggingLevel.WARN, '****ClassType was null.');
-            	}
-        	//}
-
+                        if(filtered != null) {
+                            return classToRunInstance.run(filtered.newList, filtered.oldList, thisAction, describeObj);
+                        } else {
+                            return classToRunInstance.run(newList, oldList, thisAction, describeObj);
+                        }
+                    }
+                } else {
+                    UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
+                }
+            } else {
+                UTIL_Debug.debug(LoggingLevel.WARN, '****ClassType was null.');
+            }
         } else {
             UTIL_Debug.debug(LoggingLevel.WARN, '****ClassToCall was null');
         }
-
-        System.debug('TDTMTriggerHandler runClass return check -->'); 
         return null;
     }
     

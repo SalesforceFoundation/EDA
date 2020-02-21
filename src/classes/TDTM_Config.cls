@@ -56,47 +56,32 @@ public class TDTM_Config {
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values.
     *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getTdtmConfig() {
-        System.debug('TDTMConfig getTDTMConfig Method -->'); 
         if(tdtmTokensCache != null && tdtmTokensCache.size() > 0) {
-            System.debug('TDTMConfig getTDTMConfig NotNull -->' + tdtmTokensCache); 
-            //Enters here on AfterDelete action. It does find the ADDR_Addresses_TDTM class as the value of tdtmTokensCache
             return tdtmTokensCache;
         }
 
         List<TDTM_Global_API.TdtmToken> tokens  = new List<TDTM_Global_API.TdtmToken>();
 
         if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
-            System.debug('TDTMConfig getTDTMConfig InsideAdvancement -->'); 
             //If Advancement is installed and enabled, Using Adv config
             tokens = Advancement_Info.getApiHEDA().getDefaultTdtmConfigTokens();
-            System.debug('TDTMConfig getTDTMConfig InsideAdvancement -->' + tokens); 
-            
+
         } else {
-            List<Trigger_Handler__c> tdtmConfig = [SELECT Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
-                    							   Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, 
-                                                   Owned_by_Namespace__c , Usernames_to_Exclude__c 
-                                                   FROM Trigger_Handler__c];
-            
-            System.debug('TDTMConfig tdtmConfig -->'+ tdtmConfig); //This is returning nothing in the debug logs 
-            
+            List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
+                    Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c , Usernames_to_Exclude__c from Trigger_Handler__c];
             // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
             // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
             if(tdtmConfig.size() == 0) {
-                System.debug('TDTMConfig tdtmConfig2 -->'+ tdtmConfig); 
                 tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
-                System.debug('TDTMConfig tdtmConfig3 -->'+ tdtmConfig);
             }
 
             for(Trigger_Handler__c handler : tdtmConfig) {
-                System.debug('TDTMConfig tdtmConfig Loop -->');
                 tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c,
                         handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c,
-                        handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c, 
-                                                         handler.Usernames_to_Exclude__c));
-                System.debug('TDTMConfig tdtmConfig tokens -->' + tokens);
+                        handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c, handler.Usernames_to_Exclude__c));
             }
         }
-		System.debug('TDTMConfig tdtmConfig tokens -->' + tokens);
+
         tdtmTokensCache = tokens;
         return tokens;
     }
@@ -107,17 +92,16 @@ public class TDTM_Config {
     *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfig() {
         //Removed tdtmTokensCache here since this method suppose to always return default TDTM from TDTM_DefaultConfig. We do not need to cache it since there is no query in this method. Also, it should not shared the same cached tokens with getTdtmConfig method.
-		System.debug('TDTMConfig getDefaultTdtmConfig Method -->'); 
+
         List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
 
         List<Trigger_Handler__c> existingHandlers = TDTM_DefaultConfig.getDefaultRecords();
-        System.debug('TDTMConfig getDefaultTdtmConfig existingHandlers -->' + existingHandlers); 
         for(Trigger_Handler__c handler : existingHandlers) {
             tokens.add(
                 new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c, handler.Usernames_to_Exclude__c )
             );
-            System.debug('TDTMConfig getDefaultTdtmConfig tokens -->' + tokens); 
         }
+
 
         return tokens;
     }
@@ -145,49 +129,32 @@ public class TDTM_Config {
     * @return List<DTM_Global_API.TdtmToken> List of trigger handlers to call, sorted by load order.
     *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getClassesToCallForObject(String objectName, TDTM_Runnable.Action action) {
-		System.debug('TDTMConfig getClassesToCallForObject Method -->'); 
-        
+
         //Getting the TDTM configuration and storing it in the cache.
         List<TDTM_Global_API.TdtmToken> tdtmTokens = getTdtmConfig();
-        System.debug('TDTMConfig getClassesToCallForObject tdtmTokens -->' + tdtmTokens); 
-        
         List<TDTM_Global_API.TdtmToken> objectTokens = new List<TDTM_Global_API.TdtmToken>();
         //Get current username
         String currUserName = UserInfo.getUserName();
-        
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
             //Get a list of excluded usernames in lowercase
             Set<String> excludedUserNamesLowercase = new Set<String>();
             Set<String> excludedUserNames = (token.usernamesToExclude != null ?
                     new Set<String>(token.usernamesToExclude.split('\\s*;\\s*')) : new Set<String>());
-           	Boolean filterFieldIsEmpty = (token.filterField == null ? True : False); 
-             
-			System.debug('TDTMConfig getClassesToCallForObject action -->' + action);  
-            System.debug('TDTMConfig getClassesToCallForObject token.filterField -->' + token.filterField); 
-			System.debug('TDTMConfig getClassesToCallForObject excludedUserNames -->' + excludedUserNames); 
             for (String username : excludedUserNames) {
                 excludedUserNamesLowercase.add(username.toLowerCase());
-                System.debug('TDTMConfig getClassesToCallForObject excludedUserNamesLowercase -->' + excludedUserNamesLowercase); 
             }
             //Filtering those active by object and action.
             //Actions should not be null, otherwise it will throw null pointer exception. We might need to create a WI to do more validation on insert/update Trigger Handler
-            System.debug('TDTMConfig getClassesToCallForObject token -->' + token); 
-            System.debug('TDTMConfig getClassesToCallForObject tokenActive -->' + token.active); 
-            System.debug('TDTMConfig getClassesToCallForObject tokenObject -->' + token.targetObject); 
-            if(token.active && 
-               token.targetObject == objectName && 
-               token.actions != null && 
-               token.actions.contains(action.Name()) && 
-               //filterFieldIsEmpty && 
-               !excludedUserNamesLowercase.contains(currUsername)
-              ) {
+            if(token.active && token.targetObject == objectName
+                    && token.actions != null
+                    && token.actions.contains(action.Name())
+                    && !excludedUserNamesLowercase.contains(currUsername)) {
                 objectTokens.add(token);
             }
         }
 
         // Order by loadOrder
         objectTokens.sort();
-		System.debug('TDTMConfig getClassesToCallForObject objectTokens -->' + objectTokens); 
 
         return objectTokens;
     }
