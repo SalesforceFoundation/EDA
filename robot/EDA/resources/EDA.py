@@ -527,3 +527,7 @@ class EDA(object):
         if capture_screen:
             self.selenium.capture_page_screenshot()
 
+    def verify_app_exists(self,app):
+        """Verifies that the given app is present in the app launcher"""
+        locator=eda_lex_locators["eda_settings"]["app_tile"].format(app)
+        self.selenium.wait_until_page_contains_element(locator,timeout=60,error=f'{app} did not open in 1 min')

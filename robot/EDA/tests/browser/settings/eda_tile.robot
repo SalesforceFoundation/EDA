@@ -13,6 +13,6 @@ Verify EDA Tile
     Open App Launcher
 
     # Check for EDA Tile
-    Wait for locator           eda_settings.eda_tile
+    Verify App Exists    EDA
 
 
