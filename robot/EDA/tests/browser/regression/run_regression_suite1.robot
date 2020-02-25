@@ -70,9 +70,9 @@ Verify Affiliations, Program Enrollments and No Duplicates
 
     ${pe_new_button} =  Get Eda Locator     contact.program_enrollment_new_button
     Scroll Element Into View                ${pe_new_button}
-
-    Wait for Locator                        contact.program_enrollment_new_button
-    Click on Element                        contact.program_enrollment_new_button
+    Click Related List Button               Program Enrollments    New 
+    # Wait for Locator                        contact.program_enrollment_new_button
+    # Click on Element                        contact.program_enrollment_new_button
 
     Wait for Locator                        programenrollment_account
     Populate Field                          Program    robotTestLastName Academic Account - this is just a robot test string
@@ -117,10 +117,10 @@ Verify Affiliations, Program Enrollments and No Duplicates
 Create A New Program Plan
     [tags]                                  unstable
 
-    Open App Launcher
-    Wait for Locator                        program_plans.program_plan1
-    Click on Element                        program_plans.program_plan1
-
+    # Open App Launcher
+    # Wait for Locator                        program_plans.program_plan1
+    # Click on Element                        program_plans.program_plan1
+    Select App Launcher Tab                 Program Plans
     Click Object Button                     New
     Wait for Locator                        program_plans.pp_name
 
@@ -130,9 +130,10 @@ Create A New Program Plan
 Create A Course Offering
     [tags]                                  unstable
 
-    Open App Launcher
-    Wait for Locator                        course_offering.main_tab
-    Click on Element                        course_offering.main_tab
+    # Open App Launcher
+    # Wait for Locator                        course_offering.main_tab
+    # Click on Element                        course_offering.main_tab
+    Select App Launcher Tab                 Course Offerings
     Click Object Button                     New
 
     Wait for Locator                        course_offering.search_courses

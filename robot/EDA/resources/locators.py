@@ -10,6 +10,10 @@ eda_lex_locators = {
         "input1": "//label[text()='{}']/following::input",
         "input2": "//input[@type='text' and @data-name='{}']"
     },
+    'tabs':{   
+        'tab': "//div[@class='uiTabBar']/ul[@class='tabs__nav']/li[contains(@class,'uiTabItem')]/a[@class='tabHeader']/span[contains(text(), '{}')]",
+        'spl-tab':"//div[@class='slds-tabs_default']//ul[@class='slds-tabs_default__nav']/li[contains(@class,'slds-tabs_default__item')]/a[text()= '{}']",
+    },
     "listbox": {
         "title": "//label[contains(text(), '{}')]/following::input[contains(@class, 'slds-input slds-combobox__input') and @role='textbox']",
         "value": "//*[contains(@class, 'slds-listbox__option') and @data-value='{}']",
@@ -117,7 +121,7 @@ eda_lex_locators = {
         "batch_processing": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td[text()='Processing'])[1]",
         "just_batch": "(//td/following-sibling::td[text()='Batch Apex'])[1]",
         "batch_watch": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
-        "wait_frame": "//iframe[contains(@title,'Apex Jobs ~ Salesforce')]",
+        "wait_frame": "//iframe[contains(@title,'Apex Jobs ~ Salesforce - Developer Edition')]",
         "wait_loc_text": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
         "new_account": "//span[@title='New Account']",
         "affiliated_accounts": "//span[@title='Affiliated Accounts']",
