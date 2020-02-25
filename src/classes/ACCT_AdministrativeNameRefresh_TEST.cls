@@ -33,14 +33,14 @@
 */
 @isTest
 public class ACCT_AdministrativeNameRefresh_TEST {
-	/*******************************************************************************************************
-    * @description test that the refresh administrative account name functionality is working properly.
+    /*******************************************************************************************************
+    * @description Tests that the refresh Administrative Account name functionality is working properly if 
+    * there are multiple Admin Account.
     */
     @isTest
     private static void refreshAdministrativeAccountNames() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                										Admin_Account_Naming_Format__c = '{!LastName} Administrative Account'
-                                                        ));
+                                                        Admin_Account_Naming_Format__c = '{!LastName} Administrative Account'));
 
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         contacts[0].LastName = 'Wells';
@@ -78,6 +78,63 @@ public class ACCT_AdministrativeNameRefresh_TEST {
                                        WHERE Id IN :dedupedAccountIds];
         System.assertEquals(contacts[0].LastName + ' ' + 'Administrative Account', returnAccounts[0].Name);
         System.assertEquals(contacts[1].LastName + ' ' + 'Administrative Account', returnAccounts[1].Name);
+    }
+    
+    /*******************************************************************************************************
+    * @description Tests that the refresh Administrative Account name functionality is working properly if 
+    * there are multiple Admin Account, and each Admin Account have more than one Contact assocaited
+    * to it. The Admin Account should be renamed based on the Primary Contact. 
+    */    
+    @isTest
+     private static void multipleContactsOnAdminAccount() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                                                        Admin_Account_Naming_Format__c = '{!LastName} Administrative Account'));
+        
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+        contacts[0].LastName = 'Wells';
+        contacts[0].FirstName = 'Tommy';
+        contacts[1].LastName = 'White';
+        contacts[1].FirstName = 'Betty';
+        insert contacts;
+        
+        List<Contact> cons = [SELECT Id, AccountId 
+                              FROM Contact
+                              WHERE Id IN :contacts]; 
+    
+        Set<Id> accountIds = new Set<Id>(); 
+        for (Contact c : cons) {
+            accountIds.add(c.AccountId); 
+        } 
+        
+        List<Account> accounts = [SELECT Id
+                                  FROM Account 
+                                  WHERE Id IN :accountIds]; 
+        accounts[0].Name = 'Tommy Wells Account';
+        accounts[1].Name = 'Betty White Account';
+        update accounts;
+        
+        System.assertEquals(contacts[0].FirstName + ' ' + contacts[0].LastName + ' ' + 'Account', accounts[0].Name);
+        System.assertEquals(contacts[1].FirstName + ' ' + contacts[1].LastName + ' ' + 'Account', accounts[1].Name);
+        
+        List<Contact> addContacts = new List<Contact>{
+            new Contact (AccountId = accounts[0].Id, LastName = 'Wells', FirstName = 'Abby'),
+            new Contact (AccountId = accounts[1].Id, LastName = 'White', FirstName = 'Lily')
+        };
+        insert addContacts;
+        
+        List<Account> queryAccounts = [SELECT Id, Name
+                                       FROM Account
+                                       WHERE Id IN :accounts]; 
 
+        Test.startTest();
+        ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
+        Id apexJobId = Database.executeBatch(batch, 200);
+        Test.stopTest();
+
+        List<Account> returnAccounts = [SELECT Id, Name
+                                       FROM Account
+                                       WHERE Id IN :accounts];
+        System.assertEquals(contacts[0].LastName + ' ' + 'Administrative Account', returnAccounts[0].Name);
+        System.assertEquals(contacts[1].LastName + ' ' + 'Administrative Account', returnAccounts[1].Name);
     }
 }

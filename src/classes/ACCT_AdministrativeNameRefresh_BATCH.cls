@@ -49,11 +49,15 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
         List<Contact> contactsToProcess = new List<Contact>();
 
         if (returnAccounts.size() > 0) {
-            for (Account a : [SELECT Id, RecordTypeId,
-                             (SELECT Id, AccountId, Account.RecordTypeId, FirstName, LastName, Salutation FROM Contacts)
-                              FROM Account WHERE Id IN :returnAccounts])
-        	{
-                contactsToProcess.add(a.Contacts);
+            for (Account a : returnAccounts) {
+                if (a.Primary_Contact__c != NULL) {
+                    primaryCons.add(a.Primary_Contact__c); 
+                }
+            }
+            if (primaryCons.size() > 0) {
+                contactsToProcess = [SELECT Id, AccountId, Account.RecordTypeId, FirstName, LastName, Salutation 
+                                     FROM Contact
+                                     WHERE Id IN :primaryCons]; 
             }
         }
 

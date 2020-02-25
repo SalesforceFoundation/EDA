@@ -267,7 +267,7 @@ private class STG_Base_CTRL_TEST {
     public static void checkRefreshAdministrativeAccountBatch() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
         												Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            											Household_Account_Naming_Format__c = '{!LastName} Administrative'
+            											Admin_Account_Naming_Format__c = '{!LastName} Administrative'
         												));
         Id apexJobId = STG_Base_CTRL.executeRefreshAdminAccountBatch();
         System.assertNotEquals(null, apexJobId);
