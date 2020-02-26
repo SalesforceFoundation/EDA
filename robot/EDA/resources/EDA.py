@@ -12,6 +12,7 @@ from selenium.webdriver.common.keys import Keys
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.webdriver.common.keys import Keys
+from cumulusci.robotframework.utils import capture_screenshot_on_error
 
 
 @selenium_retry
@@ -216,7 +217,8 @@ class EDA(object):
     def select_relatedlist(self, title):
         """click on the related list to open it"""
         locator = eda_lex_locators["record"]["related"]["title"].format(title)
-        self.selenium.get_webelement(locator).click()
+        element = self.selenium.driver.find_element_by_xpath(locator)
+        self.selenium.driver.execute_script('arguments[0].click()', element)
 
     def verify_contact_roles(self, **kwargs):
         """"""
@@ -481,26 +483,51 @@ class EDA(object):
             error="Cannot find the panel tab: " + tab
         )
         self.selenium.click_element(eda_lex_locators["choose_tab"].format(tab))
-
-    def select_tab(self, tab):
-        """ Select tab - as passed in to the function
-            tab is a label on menu item, and not a locator.
+        
+        
+    @capture_screenshot_on_error    
+    def select_tab(self, title):
+        """ Switch between different tabs on a record page like Related, Details, News, Activity and Chatter
+            Pass title of the tab
         """
-        locator_menu = eda_lex_locators["tab_menu"].format(tab)
-        element_menu = self.selenium.driver.find_element_by_xpath(locator_menu)
-        locator_tab = eda_lex_locators["tab_tab"].format(tab)
-        self.selenium.wait_until_page_contains_element(
-            locator_menu,
-            error="Contact tab unavailable"
-        )
-        # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
-        self.selenium.driver.execute_script("arguments[0].click()", element_menu)
-        time.sleep(1)
+        tab_found = False
+        locators = eda_lex_locators["tabs"].values()
+        for i in locators:
+            locator = i.format(title)
+            if self.check_if_element_exists(locator):
+                print(locator)
+                buttons = self.selenium.get_webelements(locator)
+                for button in buttons:
+                    print(button)
+                    if button.is_displayed():
+                        print("button displayed is {}".format(button))
+                        self.salesforce._focus(button)
+                        button.click()
+                        time.sleep(5)
+                        tab_found = True
+                        break
 
-        # Sometimes, single click fails. Hence an additional condition to click on it again
-        if not self.check_if_element_exists(locator_tab):
-            self.selenium.driver.execute_script("arguments[0].click()", element_menu)
-            time.sleep(1)
+        assert tab_found, "tab not found"        
+
+#     def select_tab(self, tab):
+#         """ Select tab - as passed in to the function
+#             tab is a label on menu item, and not a locator.
+#         """
+#         locator_menu = eda_lex_locators["tab_menu"].format(tab)
+#         element_menu = self.selenium.driver.find_element_by_xpath(locator_menu)
+#         locator_tab = eda_lex_locators["tab_tab"].format(tab)
+#         self.selenium.wait_until_page_contains_element(
+#             locator_menu,
+#             error="Contact tab unavailable"
+#         )
+#         # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
+#         self.selenium.driver.execute_script("arguments[0].click()", element_menu)
+#         time.sleep(1)
+# 
+#         # Sometimes, single click fails. Hence an additional condition to click on it again
+#         if not self.check_if_element_exists(locator_tab):
+#             self.selenium.driver.execute_script("arguments[0].click()", element_menu)
+#             time.sleep(1)
 
     def shift_to_default_content(self):
         """ Returns to main content, and out of iframe """
@@ -526,3 +553,7 @@ class EDA(object):
         if capture_screen:
             self.selenium.capture_page_screenshot()
 
+    def verify_app_exists(self,app):
+        """Verifies that the given app is present in the app launcher"""
+        locator=eda_lex_locators["eda_settings"]["app_tile"].format(app)
+        self.selenium.wait_until_page_contains_element(locator,timeout=60,error=f'{app} did not open in 1 min')
