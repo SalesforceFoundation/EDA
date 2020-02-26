@@ -57,9 +57,7 @@ Create A Contact
 
     ${pe_new_button} =  Get Eda Locator    contact.program_enrollment_new_button
     Scroll Element Into View                ${pe_new_button}
-
-    Wait for Locator                        contact.program_enrollment_new_button
-    Click on Element                        contact.program_enrollment_new_button
+    Click Related List Button               Program Enrollments     New
 
     Wait for Locator                        programenrollment_account
     Populate Field                          Program    robotTestLastName Academic Account - this is just a robot test string
