@@ -29,16 +29,11 @@ Suite Teardown  Run keywords
 *** Test Cases ***
 Verify affiliations with contacts
     [tags]                          unstable
+    Go To Page                              Listing                       Contact
+    Click Link                              ${CONTACT.FirstName} ${CONTACT.LastName}
+    Current page should be                  Details                       Contact
+    Click Related List Button               Affiliated Accounts           New
 
-    Current page should be                  Home
-    ...                                     Contacts
-
-    Go To Object Home                       Contact
-    Select contact                          ${CONTACT.FirstName}
-    ...                                     ${CONTACT.LastName}
-
-    Wait for Locator                        eda_settings.affiliations_new
-    Click on Element                        eda_settings.affiliations_new
     
     Wait for Locator                        eda_settings.new_account
     Click on Element                        eda_settings.new_account
@@ -59,9 +54,9 @@ Verify affiliations with contacts
     Wait for Locator                        new_program_enrollment_save_button
     Click on Element                        new_program_enrollment_save_button
     Close toast message
-
-    Wait for Locator                        eda_settings.affiliated_accounts
-    Click on Element                        eda_settings.affiliated_accounts
+    Select RelatedList                      Affiliated Accounts
+    # Wait for Locator                        eda_settings.affiliated_accounts
+    # Click on Element                        eda_settings.affiliated_accounts
 
     Wait for Locator                        eda_settings.affiliation_match
 

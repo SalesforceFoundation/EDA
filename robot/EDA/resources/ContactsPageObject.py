@@ -2,8 +2,8 @@ import datetime
 import logging
 import time
 import pytz
-
-from cumulusci.robotframework.pageobjects import BasePage
+from cumulusci.robotframework.pageobjects import ListingPage
+from cumulusci.robotframework.pageobjects import DetailPage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import contacts_locators
 from locators import eda_lex_locators
@@ -15,9 +15,28 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-@pageobject("Home", "Contacts")
-class ContactsHomePage(BasePage):
-    object_name = None
+@pageobject("Listing", "Contact")
+class ContactsListingPage(ListingPage):
+    object_name = "Contact"
+    
+    def _is_current_page(self):
+        """ Verify we are on the Contact detail page
+            by verifying that the url contains '/view'
+        """
+        
+        self.selenium.wait_until_location_contains("/lightning/o/Contact/",message="Current page is not a Contact listing view") 
+    
+    
+@pageobject("Details", "Contact")
+class ContactDetailPage(DetailPage):
+    object_name = "Contact"
+
+    def _is_current_page(self):
+        """ Verify we are on the Contact detail page
+            by verifying that the url contains '/view'
+        """
+        self.selenium.wait_until_location_contains("/view", timeout=60, message="Detail page did not load in 1 min")
+        self.selenium.location_should_contain("/lightning/r/Contact/",message="Current page is not a Contact record detail view")    
 
     @property
     def eda(self):
@@ -90,18 +109,8 @@ class ContactsHomePage(BasePage):
 
     def validate_preferred_phone_form(self):
         """ Test the preferred phone fields and functionality """
-
-        self.selenium.wait_until_page_contains_element(
-            contacts_locators["edit_contact"], 
-            timeout=60,
-            error="Edit button not found for Contact"
-        )
-        self.open_item(
-            contacts_locators["edit_contact"], 
-            "Edit button not found for Contact", 
-            False
-        )
-
+        self.salesforce.click_object_button("Edit")
+        self.salesforce.wait_until_modal_is_open()
         self.selenium.driver.execute_script(
             "arguments[0].scrollIntoView()", 
             self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone"])
@@ -342,23 +351,14 @@ class ContactsHomePage(BasePage):
         self.builtin.log("Run Cleanup executed")
         return
 
-    def Add_home_phone_to_contact_and_verify(self, FirstName, LastName):
+    def Add_home_phone_to_contact_and_verify(self, name):
         """ Open the contact details and add a home phone and save
             Verify that the home phone is NOT copied to Phone field
             and that the 'Preferred Phone' is set to None
         """
-        self.select_contact(FirstName, LastName)
-        # Navigate to Detail tab
-        self.open_item(
-            contacts_locators["details_tab"], 
-            "Details tab not found on contact", 
-            False
-        )
-        self.open_item(
-            contacts_locators["edit_contact"], 
-            "Edit button not found on contact", 
-            False
-        )
+        self.selenium.click_link(name)
+        self.salesforce.click_object_button("Edit")
+        self.salesforce.wait_until_modal_is_open()
         self.place_in_view(contacts_locators["phone_home"])
         self.selenium.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight)"
@@ -378,22 +378,25 @@ class ContactsHomePage(BasePage):
         self._check_if_element_exists(contacts_locators["phone_verify_has_number"])
         return
 
-    def Add_home_phone_and_work_phone_to_contact(self, FirstName, LastName, checked):
+    def Add_home_phone_and_work_phone_to_contact(self, name, checked):
         """ Open the contact details and add a home phone and office phone
             and save.
         """
-        self.select_contact(FirstName, LastName)
+        self.selenium.click_link(name)
+        self.salesforce.click_object_button("Edit")
+        self.salesforce.wait_until_modal_is_open()
+#         self.select_contact(FirstName, LastName)
         # Navigate to Detail tab
-        self.open_item(
-            contacts_locators["details_tab"], 
-            "Details tab not found on contact", 
-            True
-        )
-        self.open_item(
-            contacts_locators["edit_contact"], 
-            "Edit button not found on contact", 
-            False
-        )
+#         self.open_item(
+#             contacts_locators["details_tab"], 
+#             "Details tab not found on contact", 
+#             True
+#         )
+#         self.open_item(
+#             contacts_locators["edit_contact"], 
+#             "Edit button not found on contact", 
+#             False
+#         )
         self.place_in_view(contacts_locators["phone_home"])
         self.selenium.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight)"
