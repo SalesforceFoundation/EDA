@@ -69,6 +69,7 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The organization this person is affiliated with.</description>
         <externalId>false</externalId>
         <inlineHelpText>The organization this person is affiliated with.</inlineHelpText>
         <label>Organization</label>
@@ -83,6 +84,7 @@
     <fields>
         <fullName>Affiliation_Type__c</fullName>
         <externalId>false</externalId>
+        <description>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</description>
         <inlineHelpText>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</inlineHelpText>
         <formula>Account__r.RecordType.Name</formula>
         <label>Affiliation Type</label>
@@ -95,6 +97,7 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The person affiliated with this organization.</description>
         <externalId>false</externalId>
         <inlineHelpText>The person affiliated with this organization.</inlineHelpText>
         <label>Contact</label>
@@ -109,7 +112,8 @@
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText> Details of how the person and organization are affiliated.</inlineHelpText>
+        <description>Details of how the person and organization are affiliated.</description>
+        <inlineHelpText>Details of how the person and organization are affiliated.</inlineHelpText>
         <label>Description</label>
         <length>32000</length>
         <trackHistory>false</trackHistory>
@@ -120,6 +124,7 @@
     <fields>
         <fullName>EndDate__c</fullName>
         <externalId>false</externalId>
+        <description>The date this Affiliation ended or will end.</description>
         <inlineHelpText>The date this Affiliation ended or will end.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
@@ -130,6 +135,7 @@
     <fields>
         <fullName>Primary__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates whether this is the main Affiliation for this person. If selected, the organization name is stored in the relevant Primary Affiliation field on the Contact record.</description>
         <externalId>false</externalId>
         <inlineHelpText>Indicates whether this is the main Affiliation for this person. If selected, the organization name is stored in the relevant Primary Affiliation field on the Contact record.</inlineHelpText>
         <label>Primary</label>
@@ -140,6 +146,7 @@
     <fields>
         <fullName>Role__c</fullName>
         <externalId>false</externalId>
+        <description>The role this person has with the organization.</description>
         <inlineHelpText>The role this person has with the organization.</inlineHelpText>
         <label>Role</label>
         <required>false</required>
@@ -180,7 +187,8 @@
     <fields>
         <fullName>StartDate__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The date this person became affiliated with this organization.</inlineHelpText>
+        <description>The date this person became affiliated with this organization in this Role.</description>
+        <inlineHelpText>The date this person became affiliated with this organization in this Role.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -190,6 +198,7 @@
     <fields>
         <fullName>Status__c</fullName>
         <externalId>false</externalId>
+        <description>Indicates whether this is a current or former Affiliation.</description>
         <inlineHelpText>Indicates whether this is a current or former Affiliation.</inlineHelpText>
         <label>Status</label>
         <required>false</required>
