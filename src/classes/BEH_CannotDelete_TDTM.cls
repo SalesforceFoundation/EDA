@@ -43,10 +43,10 @@ public with sharing class BEH_CannotDelete_TDTM extends TDTM_Runnable{
     /*******************************************************************************************************
      * @description Stops a Behavior Involvement from being deleted
      * if it has any associated Behavior Response. 
-     * @param listNew the list of Course Offering from trigger new.
-     * @param listOld the list of Course Offering from trigger old.
+     * @param listNew the list of Behavior Involvement from trigger new.
+     * @param listOld the list of Behavior Involvement from trigger old.
      * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-     * @param objResult the describe for Course Offering
+     * @param objResult the describe for Behavior Involvement
      * @return dmlWrapper.
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
