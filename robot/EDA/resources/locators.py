@@ -10,6 +10,10 @@ eda_lex_locators = {
         "input1": "//label[text()='{}']/following::input",
         "input2": "//input[@type='text' and @data-name='{}']"
     },
+    'tabs':{   
+        'tab': "//div[@class='uiTabBar']/ul[@class='tabs__nav']/li[contains(@class,'uiTabItem')]/a[@class='tabHeader']/span[contains(text(), '{}')]",
+        'spl-tab':"//div[@class='slds-tabs_default']//ul[@class='slds-tabs_default__nav']/li[contains(@class,'slds-tabs_default__item')]/a[text()= '{}']",
+    },
     "listbox": {
         "title": "//label[contains(text(), '{}')]/following::input[contains(@class, 'slds-input slds-combobox__input') and @role='textbox']",
         "value": "//*[contains(@class, 'slds-listbox__option') and @data-value='{}']",
@@ -43,7 +47,7 @@ eda_lex_locators = {
             "button": "//article[contains(@class, 'forceRelatedListCardDesktop')][.//img][.//span[@title='{}']]//a[@title='{}']",
             "check_occurence": '//h2/a/span[@title="{}"]/following-sibling::span[text()=" ({})"]',
             "drop-down": '//div[contains(@class, "slds-card")]/header[.//span[@title="{}"]]/parent::*/div/div/div/a[contains(@class, "slds-button")]',
-            "title": '//div[contains(@class, "slds-card")]/header[.//span[@title="{}"]]',
+            "title": '//div[contains(@class, "slds-grid")]/header//a[./span[text()="{}"]]',
         },
     },
     "object": {
@@ -117,7 +121,7 @@ eda_lex_locators = {
         "batch_processing": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td[text()='Processing'])[1]",
         "just_batch": "(//td/following-sibling::td[text()='Batch Apex'])[1]",
         "batch_watch": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
-        "wait_frame": "//iframe[contains(@title,'Apex Jobs ~ Salesforce')]",
+        "wait_frame": "//iframe[contains(@title,'Apex Jobs ~ Salesforce - Developer Edition')]",
         "wait_loc_text": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
         "new_account": "//span[@title='New Account']",
         "affiliated_accounts": "//span[@title='Affiliated Accounts']",
@@ -148,7 +152,7 @@ eda_lex_locators = {
         "affiliations_former": "//div/div/following::div/span[text()='Former']",
         "affiliations_student": "(//div/div/span[@class='uiOutputText' and text()='Role Specified for Created Affiliations: ']/following::div[@class='slds-col slds-size--1-of-2'])[1]/span[text()='Student']",
         "affiliations_current": "//div/div/following::div[@class='slds-col slds-size--1-of-2']/span[text()='Current']",
-        "eda_tile": "//div[@class='slds-app-launcher__tile-body']//a[contains(text(),'EDA')]",
+        "app_tile": "//one-app-launcher-modal//one-app-launcher-app-tile//a[.='{}']",
     },
     "tabs": {
         "accountsandcontacts" : "//a[contains(text(),'Accounts and Contacts')]",
@@ -246,7 +250,7 @@ eda_lex_locators = {
     "account_list": '//tbody/tr/th[.//span[contains(@class, "slds-grid")]]/descendant::a[text()="{}"]',
     "dd_options": '//*[@id="p3"]/option[text()="{}"]',
     "related_list_items": '//div[@class = "forceRelatedListContainer"][.//a[contains(@class, "slds-card")]]//span[text() = "{}"]/ancestor::div[contains(@class, "slds-card")]/following-sibling::div[contains(@class, "slds-card")][.//div[contains(@class, "outputLookupContainer")]]//a[text()="{}"]',
-    "header_field_value": '//li[contains(@class,"slds-page-header__detail")]//div//span[contains(@title,"{}")]/following-sibling::div/div/div/a[contains(text(), "{}")]',
+    "header_field_value": '//*[contains(@class, "slds-page-header__detail")][.//*[@title="{}"]]//*[text()="{}"]',
     "header_datepicker": '//li[contains(@class, "slds-page-header__detail")][.//p[contains(@class, "slds-text-heading--label")][@title="{}"]]//*[@class="uiOutputDate"]',
     "affiliated_contacts": '//div[@class = "forceRelatedListContainer"][.//a[contains(@class, "slds-card")]]//span[text() = "{}"]/ancestor::div[contains(@class, "slds-card")]/following-sibling::div[contains(@class, "slds-card")]//tbody//td/span[text()="{}"]/../following-sibling::td/span[text()="{}"]',
     "detail_page": {
@@ -282,7 +286,7 @@ contacts_locators = {
     "edit_contact": "//div[contains(@class,'windowViewMode-normal')]/descendant::div//a[@title='Edit']//div[@title='Edit']",
     "preferred_phone": "//span//span[contains(text(),'Preferred Phone')]",
     "preferred_phone_home_dropdown": "//span//span[contains(text(),'Preferred Phone')]/following::span/following::a",
-    "preferred_tab": "//div[@class='select-options']/descendant::a[@title='Home']",
+    "preferred_tab": "//div[@class='select-options']/descendant::a[@title='Home Phone']",
     "home_phone": "//input[@type='tel']/preceding-sibling::label/span[contains(text(),'Phone')]",
     "phone_verify_has_number": "(//div//span[text()='Phone']/../following-sibling::div//span[not( text()='123-123-1234')])[1]",
     "preferred_error_message": "//li[contains(text(), 'The phone selected for Preferred Phone can')]",
