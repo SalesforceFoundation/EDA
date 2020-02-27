@@ -66,33 +66,59 @@ public class UTIL_ACCT_Naming {
     */
     public static List<Account> updateAdminAccountsName(List<Contact> contactsChangedLastName) {
         List<Account> accountsToUpdate = new List<Account>();
-        Map<Id, List<Contact>> accountIdPrimaryContactId = new Map<Id, List<Contact>>();
+        List<Account> accounts = new List<Account>(); 
+        Set<Id> accountIds = new Set<Id>(); 
+        Map<Account, Id> accountIdPrimaryContactId = new Map<Account, Id>();
 
+        //Retrieve the AccountId from the Contact 
         for (Contact con : contactsChangedLastName) {
-            if (accountIdPrimaryContactId.containsKey(con.AccountId)) {
-                accountIdPrimaryContactId.get(con.AccountId).add(con);
-            } else {
-                accountIdPrimaryContactId.put(con.AccountId, new List<Contact> {con});
+            if (con.AccountId != NULL) {
+                accountIds.add(con.AccountId); 
             }
-
         }
-
-        for (Account acc: [SELECT Id, Name, RecordTypeId,
-                                  (SELECT Id, LastName, Salutation, FirstName, Account.RecordTypeId 
-                                  FROM Contacts 
-                                  WHERE AccountId IN :accountIdPrimaryContactId.keySet())
-                           FROM Account 
-                           WHERE Id IN :accountIdPrimaryContactId.keySet()])
+        
+        //Retrieve the Primary_Contact__c from Account record
+        if (accountIds.size() > 0) {
+            accounts = retrievePrimaryContactFromAccount(accountIds); 
+        }
+        
+        
+        //Set the Account and Primary ContactId to the map 
+        if (accounts.size() > 0) {
+            for (Account a : accounts) {
+                if (a.Primary_Contact__c != NULL) {
+                	accountIdPrimaryContactId.put(a, a.Primary_Contact__c);
+                }
+            }
+        }
+        
+        for (Account acc : [SELECT Id, Name, RecordTypeId,
+                           (SELECT Id, FirstName, LastName, Salutation, AccountId, Account.RecordTypeId
+                            FROM Contacts 
+                            WHERE Id IN :accountIdPrimaryContactId.values())
+                            FROM Account
+                            WHERE Id IN :accountIds]) 
         {
             if (acc.RecordTypeId == adminAccountRecordTypeId) {
-                acc.Name = UTIL_ACCT_Naming.updateNameFromContact(acc.Contacts, acc);
+            	acc.Name = UTIL_ACCT_Naming.updateNameFromContact(acc.Contacts, acc);
                 accountsToUpdate.add(acc);
             }
         }
 
         return accountsToUpdate;
     }
-
+    
+    /*******************************************************************************************************
+    * @description queries the Account record with the Primary Contact associated to it. 
+    * @param accountIds the Ids of the Account record to query
+    * @return List<Account>.
+    */
+    private static List<Account> retrievePrimaryContactFromAccount(Set<Id> accountIds) {
+        return [SELECT Id, Primary_Contact__c, RecordTypeId
+                FROM Account
+                WHERE Id IN :accountIds];
+    }
+    
     /*******************************************************************************************************
     * @description Update household Account names if any changes made to Contacts' names or a new Contacts is linked the account
     * @param accIdsToRename a set of AccountIds whose name need to be updated.
