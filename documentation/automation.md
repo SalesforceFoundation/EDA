@@ -27,12 +27,10 @@ Regression Testing a Net New Org:
     git checkout master
     git pull
     cci org scratch release <ORG> --default
-    cci flow run install_beta
-    cci task run execute_qa_apex -o managed True -o namespaced False
-    cci task run deploy_qa_config -o unmanaged False
+    cci flow run new_org
     cci org browser <ORG>
 
-To create an org that has been push upgraded from the latest release ("Existing Org"):
+Testing an org that has been push upgraded from the latest release and has received the latest managed package from EDA (Represents an "Existing Org"):
 
     git checkout master
     git pull
@@ -46,6 +44,7 @@ To create an org that has been push upgraded from the latest release ("Existing 
 
 -   **`edaectomy`:** Removes configuration and unmanaged metadata.
 -   **`setup_encryption`:** Sets up Shield Platform Encryption in the target Org. It is recommended that this flow be run in developer scratch orgs only.
+-   **`new_org`** Simulates an org that has been given the latest beta releases of EDA and underlying dependencies.
 -   **`upgraded_org`** Simulates an org that has been push-upgraded to the latest releases of EDA and underlying dependencies.
 
 ### Tasks
