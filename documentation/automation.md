@@ -27,9 +27,9 @@ Regression Testing a Net New Org:
 
     git checkout master
     git pull
-    cci org scratch release <ORG> --default
+    cci org scratch release <orgname> --default
     cci flow run new_org
-    cci org browser <ORG>
+    cci org browser <orgname>
 
 Testing an org that has been push upgraded from the latest release and has received the latest managed package from EDA (Represents an "Existing Org"):
 
