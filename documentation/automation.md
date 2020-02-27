@@ -24,6 +24,7 @@ Regression testing the latest beta:
     cci org browser <orgname>
 
 Regression Testing a Net New Org:
+
     git checkout master
     git pull
     cci org scratch release <ORG> --default
