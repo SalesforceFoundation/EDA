@@ -44,7 +44,7 @@ Testing an org that has been push upgraded from the latest release and has recei
 
 -   **`edaectomy`:** Removes configuration and unmanaged metadata.
 -   **`setup_encryption`:** Sets up Shield Platform Encryption in the target Org. It is recommended that this flow be run in developer scratch orgs only.
--   **`new_org`** Simulates an org that has been given the latest beta releases of EDA and underlying dependencies.
+-   **`new_org`** Simulates an org that has been given the latest beta release of EDA and underlying dependencies.
 -   **`upgraded_org`** Simulates an org that has been push-upgraded to the latest releases of EDA and underlying dependencies.
 
 ### Tasks
