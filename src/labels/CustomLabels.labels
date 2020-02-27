@@ -390,7 +390,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>automaticHHNamingHelpText</shortDescription>
-        <value>Enables automatic renaming of Household Accounts, based on the names of Contacts in the Household. If enabled, we automatically rename Household Accounts when a new Contact is added to the Household or an existing Contact is renamed, deleted, or moved to another Household.</value>
+        <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is renamed or moved to another Household Account. Uses the naming format specified in Household Account Name Format.</value>
     </labels>
     <labels>
         <fullName>defaultNamingConnector</fullName>
@@ -485,7 +485,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>hhAccNameFormatHelpText</shortDescription>
-        <value>The format used for naming Household Accounts.</value>
+        <value>The naming format used for newly created Household Accounts and Accounts that are renamed when the Automatically Rename Household Accounts setting is selected.</value>
     </labels>
     <labels>
         <fullName>hhFamily</fullName>
@@ -1557,14 +1557,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgRefreshAdminAcctNameDesc</shortDescription>
-        <value>Warning: Clicking this button will activate Automatic Account Naming, and populate your existing Administrative Names according to the format you&apos;ve chosen.
-
-        Before starting this process, we recommend disabling the following when they affect Administrative Accounts:
-        - Custom Validation Rules
-        - Workflow Rules
-        - Process Builder
-        - Visual Workflows
-        - Custom Triggers</value>
+        <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change.Before you proceed, disable any automation that references Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameTitle</fullName>
@@ -1580,14 +1573,8 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgRefreshHHAcctNameDesc</shortDescription>
-        <value>Warning: Clicking this button will activate Automatic Account Naming, and populate your existing Households Names according to the format you&apos;ve chosen.
-
-        Before starting this process, we recommend disabling the following when they affect Households Accounts:
-        - Custom Validation Rules
-        - Workflow Rules
-        - Process Builder
-        - Visual Workflows
-        - Custom Triggers</value>
+        <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change.
+        Before you proceed, disable any automation that references Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameTitle</fullName>

@@ -267,7 +267,30 @@
               	</div>
 
                 <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
+                
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
+                </div>
 
+                <div class="slds-col slds-size--1-of-2">
+                    <c:CMP_Acc_Naming_Dropdown
+                        class="household-account-naming"
+                        isView="{!v.isView}"
+                        setting="{!v.hierarchySettings.Household_Account_Naming_Format__c}"
+                        nameFormat="{!v.hhNameFormat}"
+                        targetSetting="Household_Account_Naming_Format__c"
+                        namespacePrefix="{!v.namespacePrefix}"
+                        otherDisplay="{!v.hhOtherDisplay}"
+                        otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
+                        adminAccNameFormatOptions="{!v.adminAccNameFormatOptions}"
+                        hhNameFormatOptions="{!v.hhNameFormatOptions}"                     
+                    />
+                </div>
+
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.hhAccNameFormatHelpText}" class="slds-text-body--small" />
+                </div>
+                
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.automaticHHNaming}" />
                 </div>
@@ -292,29 +315,6 @@
 
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.automaticHHNamingHelpText}" class="slds-text-body--small" />
-                </div>
-
-                <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
-                </div>
-
-                <div class="slds-col slds-size--1-of-2">
-                    <c:CMP_Acc_Naming_Dropdown
-                        class="household-account-naming"
-                        isView="{!v.isView}"
-                        setting="{!v.hierarchySettings.Household_Account_Naming_Format__c}"
-                        nameFormat="{!v.hhNameFormat}"
-                        targetSetting="Household_Account_Naming_Format__c"
-                        namespacePrefix="{!v.namespacePrefix}"
-                        otherDisplay="{!v.hhOtherDisplay}"
-                        otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
-                        adminAccNameFormatOptions="{!v.adminAccNameFormatOptions}"
-                        hhNameFormatOptions="{!v.hhNameFormatOptions}"                     
-                    />
-                </div>
-
-                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-                    <ui:outputText value="{!$Label.c.hhAccNameFormatHelpText}" class="slds-text-body--small" />
                 </div>
 
                 <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
