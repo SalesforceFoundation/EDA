@@ -1310,13 +1310,19 @@ private class ACCT_IndividualAccounts_TEST {
         update cons;
         Test.stopTest();
 
-        //Account name should now be named for the contact that belongs to it
-        List<Account> johnsonAccount = [SELECT Id, Name FROM Account WHERE Name = 'Jenny Johnson Household'];
-        System.assertEquals(1, johnsonAccount.size(), 'number of accounts after name update does not match expected value of 1');
-        System.assertEquals('Jenny Johnson Household', johnsonAccount[0].Name, 'account name does not match expected name');
-        List<Account> smithAccount = [SELECT Id, Name FROM Account WHERE Name = 'Samantha Smith Household'];
-        System.assertEquals(1, smithAccount.size(), 'number of accounts after name update does not match expected value of 1');
-        System.assertEquals('Samantha Smith Household', smithAccount[0].Name, 'account name does not match expected name');
+        List<Contact> returnContacts = [SELECT Id, AccountId, Account.Name, LastName
+                                        FROM Contact
+                                        WHERE Id IN :cons];
+        System.assertEquals(2, returnContacts.size()); 
+        
+        Map<String, String> lastNameByAccountName = new Map<String, String>(); 
+        for (Contact c : returnContacts) {
+            if (c.AccountId != NULL) {
+                lastNameByAccountName.put(c.LastName, c.Account.Name); 
+            }
+        }
+		System.assertEquals('Jenny Johnson Household', lastNameByAccountName.get('Johnson')); 
+		System.assertEquals('Samantha Smith Household', lastNameByAccountName.get('Smith')); 
     }
 
     /*********************************************************************************************************
