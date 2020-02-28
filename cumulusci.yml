@@ -125,7 +125,7 @@ tasks:
         options:
             command: 'force:data:record:create -s TenantSecret -v "Description=test"'
 
-    platformencryption_deploy_field_configuration:
+    platformencryption_deploy_encrypted_fields:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/platformencryption_fields
