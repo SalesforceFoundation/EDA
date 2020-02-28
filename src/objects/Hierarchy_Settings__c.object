@@ -193,7 +193,7 @@
         <description>If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings.</description>
         <externalId>false</externalId>
         <inlineHelpText>If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings.</inlineHelpText>
-        <label>Automatic Household Naming</label>
+        <label>Automatically Rename Household Accounts</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
