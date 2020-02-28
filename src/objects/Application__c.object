@@ -169,9 +169,9 @@
     </fields>
     <fields>
         <fullName>Application_Type__c</fullName>
-        <description>The type of program or track the applicant is applying to. For example, Undergraduate, Graduate, or Transfer.</description>
+        <description>The type of program or track the applicant is applying to.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The type of program or track the applicant is applying to. For example, Undergraduate, Graduate, or Transfer.</inlineHelpText>
+        <inlineHelpText>The type of program or track the applicant is applying to.</inlineHelpText>
         <label>Application Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
