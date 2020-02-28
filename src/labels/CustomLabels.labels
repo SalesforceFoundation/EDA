@@ -382,7 +382,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>automaticHHNaming</shortDescription>
-        <value>Automatic Household Naming:</value>
+        <value>Automatically Rename Household Accounts:</value>
     </labels>
     <labels>
         <fullName>automaticHHNamingHelpText</fullName>
