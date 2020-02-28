@@ -97,6 +97,40 @@ tasks:
                 - EinsteinAnalyticsPlusAdmin
                 - EinsteinAnalyticsPlusUser
 
+
+    platformencryption_deploy_permset:
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/config/platformencryption_permset
+            namespace_inject: $project_config.project__package__namespace
+
+    platformencryption_assign_permset:
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                PermissionSet p = [
+                    SELECT Id, Name
+                    FROM PermissionSet
+                    WHERE Name = 'Encryption'
+                ];
+
+                insert new PermissionSetAssignment(
+                    PermissionSetId = p.Id,
+                    AssigneeId = UserInfo.getUserId()
+                );
+
+    platformencryption_create_tenant_secret:
+        description: 'Create a placeholder Tenant Secret to use Platform Encryption'
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
+        options:
+            command: 'force:data:record:create -s TenantSecret -v "Description=test"'
+
+    platformencryption_deploy_field_configuration:
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/config/platformencryption_fields
+            namespace_inject: $project_config.project__package__namespace
+
     retrieve_config_dev:
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
@@ -198,6 +232,18 @@ flows:
                     namespaced_org: True
                     skip_record_types: True
 
+    config_platformencryption:
+        description: 'Configure Platform Encryption org to encrypt standard fields'
+        steps:
+            1:
+                task: platformencryption_deploy_permset
+            2:
+                task: platformencryption_assign_permset
+            3:
+                task: platformencryption_create_tenant_secret
+            4:
+                task: platformencryption_deploy_field_configuration
+
     config_qa:
         # descripton: Configure an org for use as a QA org after package metadata is deployed.
         steps:
@@ -240,7 +286,7 @@ flows:
                         namespaced_org: True
 
     upgraded_org:
-        description: Simulate an org that has been push-upgraded to the latest releases of EDA and any dependencies.
+        description: Simulate an org that has been push-upgraded to the latest release of EDA and any dependencies.
         steps:
             1:
                 flow: latest_release:dependencies
@@ -254,7 +300,20 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
-
+    new_org:
+        description: Creates a regression which represents the installation of a brand new customer.
+        steps:
+            1:
+                flow: install_beta
+            2:
+                task: execute_qa_apex
+                options:
+                    managed: True
+                    namespaced: True
+            3:
+                task: deploy_qa_config
+                options:
+                    unmanaged: False
 
 services:
     mockaroo:

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>BillingAddress</fullName>
+        <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>Name</fullName>
+        <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
+        <trackFeedHistory>true</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>Website</fullName>
+        <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+</CustomObject>

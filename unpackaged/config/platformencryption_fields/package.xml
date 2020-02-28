@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Account.BillingAddress</members>
+        <members>Account.Name</members>
+        <members>Account.Website</members>
+        <members>Contact.MailingAddress</members>
+        <members>Contact.Name</members>
+        <members>Contact.OtherAddress</members>
+        <members>Contact.Title</members>
+        <name>CustomField</name>
+    </types>
+    <version>46.0</version>
+</Package>
