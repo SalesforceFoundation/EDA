@@ -75,7 +75,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The type of program or track the applicant is applying to. For example, Undergraduate, Graduate, or Transfer. --></help>
+        <help><!-- The type of program or track the applicant is applying to.--></help>
         <label><!-- Application Type --></label>
         <name>Application_Type__c</name>
         <picklistValues>
