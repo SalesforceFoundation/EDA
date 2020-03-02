@@ -110,9 +110,9 @@
     </fields>
     <fields>
         <fullName>Object_Type__c</fullName>
-        <description>Type of object on which the error occurred, if known.</description>
+        <description>The object on which the error occurred, if known.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Type of object on which the error occurred, if known.</inlineHelpText>
+        <inlineHelpText>The object on which the error occurred, if known.</inlineHelpText>
         <label>Object Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
