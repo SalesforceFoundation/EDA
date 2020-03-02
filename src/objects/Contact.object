@@ -4786,7 +4786,7 @@
     </fields>
     <fields>
         <fullName>Work_Address__c</fullName>
-        <description>If you've set "Work" to be the Primary Address type, the Work Address is populated with the Mailing Address values. If you've set "Work" to be the Secondary Address type, the Work Address is populated with the "Other Address" values. This field is read-only.</description>
+        <description>If you've set "Work" as the Primary Address type, the Work Address is populated with the Mailing Address values. If "Work" is the Secondary Address type, the Work Address is populated with the "Other Address" values. This field is read-only.</description>
         <externalId>false</externalId>
         <formula>if(
     ISPICKVAL(Primary_Address_Type__c,&quot;Work&quot;),
