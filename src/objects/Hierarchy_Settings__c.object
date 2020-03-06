@@ -482,9 +482,9 @@
     <fields>
         <fullName>Simple_Address_Change_Treated_as_Update__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</description>
+        <description>When enabled, changes to single Contact or Account address fields are treated as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</inlineHelpText>
+        <inlineHelpText>When enabled, changes to single Contact or Account address fields are treated as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</inlineHelpText>
         <label>Simple Address Change Treated as Update</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -492,9 +492,9 @@
     <fields>
         <fullName>Store_Errors_On__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>Flag that indicates whether errors are going to be stored in the database.</description>
+        <description>Enable this feature to store errors.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Check this if you&apos;d like errors to be stored in the database.</inlineHelpText>
+        <inlineHelpText>Enable this feature to store errors.</inlineHelpText>
         <label>Store Errors</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
