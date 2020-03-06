@@ -1,6 +1,6 @@
 from pathlib import Path
 from cumulusci.core.utils import process_bool_arg
-from cumulusci.tasks.salesforce import UpdateAdminProfile as BaseUpdateAdminProfile
+from .legacy_update_profile import UpdateAdminProfile as BaseUpdateAdminProfile
 from cumulusci.utils import findReplace
 from cumulusci.utils import findReplaceRegex
 
