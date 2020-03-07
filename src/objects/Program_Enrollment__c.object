@@ -68,9 +68,9 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The program the student is enrolled in.</description>
+        <description>The Program the student is enrolled in.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
+        <inlineHelpText>The Program the student is enrolled in.</inlineHelpText>
         <label>Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
@@ -82,6 +82,8 @@
     <fields>
         <fullName>Admission_Date__c</fullName>
         <externalId>false</externalId>
+        <description>The date the student was admitted to the Program.</description>
+        <inlineHelpText>The date the student was admitted to the Program.</inlineHelpText>
         <label>Admission Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -90,9 +92,9 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>The Contact-Account relationship this academic information is related to.</description>
+        <description>This field is auto-populated with the Affiliation record that represents the student's enrollment in this Program. </description>
         <externalId>false</externalId>
-        <inlineHelpText>The Contact-Account relationship this academic information is related to.</inlineHelpText>
+        <inlineHelpText>This field is auto-populated with the Affiliation record that represents the student's enrollment in this Program. </inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
@@ -104,6 +106,8 @@
     <fields>
         <fullName>Application_Submitted_Date__c</fullName>
         <externalId>false</externalId>
+        <description>The date the student applied for admission to the Program.</description>
+        <inlineHelpText>The date the student applied for admission to the Program.</inlineHelpText>
         <label>Application Submitted Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -112,6 +116,8 @@
     <fields>
         <fullName>Class_Standing__c</fullName>
         <externalId>false</externalId>
+        <description>The student's level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</description>
+        <inlineHelpText>The student's level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</inlineHelpText>
         <label>Class Standing</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -145,9 +151,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The parent Contact.</description>
+        <description>The student enrolled in this Program.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The parent Contact.</inlineHelpText>
+        <inlineHelpText>The student enrolled in this Program.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
