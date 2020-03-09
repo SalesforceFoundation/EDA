@@ -487,15 +487,16 @@ public class ADDR_Addresses_TEST {
     */  
     @isTest
     private static void afterDeleteWithParentAccount() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+        String hhRecordTypeId = UTIL_Describe_API.getHhAccRecTypeID();
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = hhRecordTypeId,
                                                                                Contacts_Addresses_Enabled__c = true,
-                                                                               Household_Addresses_RecType__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                                                                               Accounts_Addresses_Enabled__c = UTIL_Describe_API.getHhAccRecTypeID()));
+                                                                               Household_Addresses_RecType__c = hhRecordTypeId,
+                                                                               Accounts_Addresses_Enabled__c = hhRecordTypeId));
         
         //Retrieves the defaultTDTMConfig
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig(); 
         
-        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getHhAccRecTypeID());
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, hhRecordTypeId);
         insert accounts; 
         
         List<Contact> addContacts = new List<Contact>{
