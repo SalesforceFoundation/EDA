@@ -6,16 +6,28 @@ Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-Validate Edit Mode For Accounts and Contacts, Settings
+Validate Edit Mode For Accounts and Contacts Settings
     [tags]                          unstable
     Go To Eda Settings
     Wait for Locator            	tabs.accountsandcontacts
     Click on Element                tabs.accountsandcontacts
+    # Click on Tab                  Accounts and Contacts
+    # in this method, add page logic
+         # Click on checkbox or unclick checkbox - pass action into method
+             # validate if box is checked, if checked, catch error and move on,
+             # if unchecked, check, move on
+         # continue for each element on page
 
     Wait for Locator                account_types.edit
     Click on Element                account_types.edit
 
-    # Check everything
+    # Check everything   
+    FOR    ${account}     IN      @{account_types}
+            Wait for Locator        ${account}
+            Click on Element        ${account}
+    END  
+
+'''
     Wait for Locator                account_types.administrative
     Click on Element                account_types.administrative
 
@@ -39,12 +51,14 @@ Validate Edit Mode For Accounts and Contacts, Settings
 
     Wait for Locator                account_types.university 
     Click on Element                account_types.university 
-
+'''
+ 
+    # Click Button                  Save (in page object for this test)
     Click on Element                account_types.save
-    Close toast message
+    # Close toast message (part of save and close)
 
-    Wait for Locator                account_types.edit
-    Click on Element                account_types.edit
+        # Wait for Locator                account_types.edit
+        # Click on Element                account_types.edit
 
     # Uncheck everything
     Wait for Locator                account_types.administrative
