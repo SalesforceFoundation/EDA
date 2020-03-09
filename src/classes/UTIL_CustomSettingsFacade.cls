@@ -165,6 +165,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Populate_Affil_on_Student_Course_Cxn__c = mySettings.Populate_Affil_on_Student_Course_Cxn__c;
         settings.Prevent_Case_Deletion__c = mySettings.Prevent_Case_Deletion__c;
         settings.Prevent_Term_Deletion__c = mySettings.Prevent_Term_Deletion__c;
+        settings.Prevent_Behavior_Involvement_Deletion__c = mySettings.Prevent_Behavior_Involvement_Deletion__c;
         orgSettings = settings;
         return settings;
     }

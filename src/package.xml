@@ -33,6 +33,8 @@
         <members>Advancement_Info</members>
         <members>CCON_AffiliationBackfill_BATCH</members>
         <members>CCON_AffiliationBackfill_TEST</members>
+        <members>BEH_CannotDelete_TDTM</members>
+        <members>BEH_CannotDelete_TEST</members>
         <members>CASE_CannotDelete_TDTM</members>
         <members>CASE_CannotDelete_TEST</members>
         <members>CCON_CannotDelete_TDTM</members>
