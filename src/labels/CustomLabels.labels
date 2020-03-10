@@ -1654,7 +1654,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgSuccessAdminAccountNameRefresh</shortDescription>
-        <value>Refreshing Admininistrative Account names was successfully started!
+        <value>The Administrative Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
@@ -1663,7 +1663,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgSuccessHHAccountNameRefresh</shortDescription>
-        <value>Refreshing Household Account names was successfully started!
+        <value>The Household Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>

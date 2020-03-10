@@ -13,7 +13,7 @@
     <aura:attribute name="adminAccNameFormatOptions" type="String[]"/>
 	<aura:attribute name="hhNameFormatOptions" type="String[]"/> 
     
-	<div aura:id="hhSuccessToast" class="slds-hide">
+	<div aura:id="hhSuccessToast" id="hhSuccessToast" class="slds-hide">
         <div class="slds-box">
             <div class="slds-notify_container slds-notify_container--inline">
                 <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div aura:id="adminSuccessToast" class="slds-hide">
+    <div aura:id="adminSuccessToast" id="adminSuccessToast" class="slds-hide">
         <div class="slds-box">
             <div class="slds-notify_container slds-notify_container--inline">
                 <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
