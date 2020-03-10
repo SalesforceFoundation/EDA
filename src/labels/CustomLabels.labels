@@ -390,7 +390,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>automaticHHNamingHelpText</shortDescription>
-        <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is renamed or moved to another Household Account. Uses the naming format specified in Household Account Name Format.</value>
+        <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
     </labels>
     <labels>
         <fullName>defaultNamingConnector</fullName>
