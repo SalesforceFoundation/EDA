@@ -40,6 +40,16 @@
                 var toast = component.find("hhSuccessToast"); 
                 $A.util.removeClass(toast,'slds-hide');
                 $A.util.addClass(toast, 'slds-show'); 
+                
+                var tst = component.find("hhSuccessToast");
+            	$A.util.removeClass(tst, "slds-hide");
+            	$A.util.addClass(tst, "slds-show");
+        
+            	window.setTimeout(
+                $A.getCallback(function() {
+                $A.util.removeClass(tst, "slds-show");
+                $A.util.addClass(tst, "slds-hide");    
+                }), 5000);
             }
         }); 
         
@@ -54,6 +64,16 @@
                 var toast = component.find("adminSuccessToast"); 
                 $A.util.removeClass(toast,'slds-hide');
                 $A.util.addClass(toast, 'slds-show'); 
+                
+                var tst = component.find("adminSuccessToast");
+            	$A.util.removeClass(tst, "slds-hide");
+            	$A.util.addClass(tst, "slds-show");
+        
+            	window.setTimeout(
+                $A.getCallback(function() {
+                $A.util.removeClass(tst, "slds-show");
+                $A.util.addClass(tst, "slds-hide");    
+                }), 5000);
             }
         }); 
         
