@@ -148,13 +148,15 @@ public class TDTM_Config {
         Id currentUserProfileId = UserInfo.getProfileId();
         //Get the name of profileId.
         String currentUserProfile = getcurrentUserProfile(currentUserProfileId);
+        String currentUserProfileLowerCase =  currentUserProfile.toLowerCase();
+
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
-			
+            
             //Get a list of excluded usernames in lowercase
             Set<String> excludedUserNamesLowercase = TDTM_ExcludedUserNames.userNamesToExclude(token);
             
             //Get a list of excluded profiles
-            Set<String> excludedProfiles = TDTM_ExcludedProfiles.profilesToExclude(token);
+            Set<String> excludedProfilesLowerCase = TDTM_ExcludedProfiles.profilesToExclude(token);
             
             //Filtering those active by object and action.
             //Actions should not be null, otherwise it will throw null pointer exception. We might need to create a WI to do more validation on insert/update Trigger Handler
@@ -162,7 +164,7 @@ public class TDTM_Config {
                     && token.actions != null
                     && token.actions.contains(action.Name())
                     && !excludedUserNamesLowercase.contains(currUsername)
-                    && !excludedProfiles.contains(currentUserProfile)) {
+                    && !excludedProfilesLowerCase.contains(currentUserProfileLowerCase)) {
                 objectTokens.add(token);
             }
         }
@@ -178,10 +180,10 @@ public class TDTM_Config {
     * @param currentUserProfileId Profile Id of the  Current User
     * @return currentUserProfile Profile Name of the Current User
     *********************************************************************************************************/
-	public static String getcurrentUserProfile(Id currentUserProfileId) {
-    	if (currentUserProfile == null) {
-        	currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
-    	}
-    	return currentUserProfile;
-	}
+    public static String getcurrentUserProfile(Id currentUserProfileId) {
+        if (currentUserProfile == null) {
+            currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
+        }
+        return currentUserProfile;
+    }
 }

@@ -608,7 +608,7 @@ private class TDTM_Manager_TEST {
         insert termGrade;
 
         try {
-               delete term;   
+               delete term;
         } catch (Exception error) {
             System.assert(error.getMessage().contains(Label.CannotDelete));      
         }
@@ -616,11 +616,11 @@ private class TDTM_Manager_TEST {
         // The Term should not be deleted as System Admin is not Excluded 
         List<Term__c> afterDelete1 = [SELECT id FROM Term__c];
         System.assertEquals(1, afterDelete1.size());
-        
+
         //Disabling class that creates reciprocal relationships
         for(TDTM_Global_API.TdtmToken token : tokens) {
             if(token.className == 'TERM_CannotDelete_TDTM') {
-                token.profilestoexclude = 'System Administrator';
+                token.profilestoexclude = 'system administrator';
             }
         }
         
@@ -665,7 +665,7 @@ private class TDTM_Manager_TEST {
             // Add 'Standard User' Profile to profiles to exclude
             for(TDTM_Global_API.TdtmToken token : tokens) {
                 if(token.className == 'TERM_CannotDelete_TDTM') {
-                    token.profilesToExclude = 'Usuario estándar';
+                    token.profilesToExclude = 'usuario estándar';
                 }
             }
         

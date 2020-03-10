@@ -33,7 +33,7 @@
  * @date 2020
  * @group TDTM
  * @group-content ../../ApexDocContent/TDTM.htm
- * @description A Class to return the Excluded Profiles listed in TDTM Trigger Handler Records
+ * @description A Class to return the Excluded Profiles listed in TDTM Trigger Handler Records in lower case
  */
 
 public class TDTM_ExcludedProfiles {
@@ -41,9 +41,14 @@ public class TDTM_ExcludedProfiles {
     public Static Set<String> profilesToExclude(TDTM_Global_API.TdtmToken token) {
       
         //Get a list of excluded profiles
+        Set<String> excludedProfilesLowercase = new Set<String>();
         Set<String> excludedProfiles = (token.profilesToExclude != null ?
         new Set<String>(token.profilesToExclude.split('\\s*;\\s*')) : new Set<String>());
 
-        return excludedProfiles;
+        for (String profile : excludedProfiles) {
+            excludedProfilesLowercase.add(profile.toLowerCase());
+        }
+
+        return excludedProfilesLowercase;
     }
 }
