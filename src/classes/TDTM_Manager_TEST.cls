@@ -478,7 +478,7 @@ private class TDTM_Manager_TEST {
             //  Add 'Standard User Profile' to profiles to exclude
             for(TDTM_Global_API.TdtmToken token : tokens) {
                 if(token.className == 'TERM_CannotDelete_TDTM') {
-                    token.profilesToExclude = 'Standard User';
+                    token.profilesToExclude = 'standard User';
                 }
             }
 
@@ -531,7 +531,7 @@ private class TDTM_Manager_TEST {
         //  Add 'Standard User Profile' to profiles to exclude
         for(TDTM_Global_API.TdtmToken token : tokens) {
                if(token.className == 'TERM_CannotDelete_TDTM') {
-                   token.profilesToExclude = 'Standard User';
+                   token.profilesToExclude = 'standard user';
                }
            }
        
@@ -620,7 +620,7 @@ private class TDTM_Manager_TEST {
         //Disabling class that creates reciprocal relationships
         for(TDTM_Global_API.TdtmToken token : tokens) {
             if(token.className == 'TERM_CannotDelete_TDTM') {
-                token.profilestoexclude = 'system administrator';
+                token.profilestoexclude = 'SYSTEM ADMINISTRATOR';
             }
         }
         
@@ -665,7 +665,7 @@ private class TDTM_Manager_TEST {
             // Add 'Standard User' Profile to profiles to exclude
             for(TDTM_Global_API.TdtmToken token : tokens) {
                 if(token.className == 'TERM_CannotDelete_TDTM') {
-                    token.profilesToExclude = 'usuario estándar';
+                    token.profilesToExclude = 'USUARIO estándar';
                 }
             }
         
