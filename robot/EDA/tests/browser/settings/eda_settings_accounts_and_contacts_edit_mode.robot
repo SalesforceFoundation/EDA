@@ -5,7 +5,7 @@ Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
 *** Keywords ***
-Test Checkboxes
+Test Checkbox
     [Arguments]                     ${account_label}
     Wait for Locator                account_types.account_checkbox    ${account_label}
     Click on element                account_types.account_checkbox    ${account_label}
@@ -31,13 +31,13 @@ Validate Edit Mode For Accounts and Contacts Settings
     Click on Element                account_types.administrative
 
 Click Checkboxes
-    Test Checkboxes                 Academic Program
-    Test Checkboxes                 Administrative
-    Test Checkboxes                 Business Organization
-    Test Checkboxes                 Educational Institution
-    Test Checkboxes                 Household Account
-    Test Checkboxes                 Sports Organization
-    Test Checkboxes                 University Department
+    Test Checkbox                   Academic Program
+    Test Checkbox                  Administrative
+    Test Checkbox                   Business Organization
+    Test Checkbox                   Educational Institution
+    Test Checkbox                   Household Account
+    Test Checkbox                   Sports Organization
+    Test Checkbox                   University Department
     
     Click on Element                account_types.save
     Close toast message
@@ -49,13 +49,13 @@ Unclick Checkboxes
     Wait for Locator                account_types.administrative
     Click on Element                account_types.administrative
 
-    Test Checkboxes                 Academic Program
-    Test Checkboxes                 Administrative
-    Test Checkboxes                 Business Organization
-    Test Checkboxes                 Educational Institution
-    Test Checkboxes                 Household Account
-    Test Checkboxes                 Sports Organization
-    Test Checkboxes                 University Department
+    Test Checkbox                   Academic Program
+    Test Checkbox                   Administrative
+    Test Checkbox                   Business Organization
+    Test Checkbox                   Educational Institution
+    Test Checkbox                   Household Account
+    Test Checkbox                   Sports Organization
+    Test Checkbox                   University Department
 
     Wait for Locator                account_types.save
     Click on Element                account_types.save
