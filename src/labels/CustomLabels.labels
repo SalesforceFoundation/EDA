@@ -1557,7 +1557,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgRefreshAdminAcctNameDesc</shortDescription>
-        <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that references Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+        <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameTitle</fullName>
@@ -1573,7 +1573,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgRefreshHHAcctNameDesc</shortDescription>
-        <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that references Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+        <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameTitle</fullName>
