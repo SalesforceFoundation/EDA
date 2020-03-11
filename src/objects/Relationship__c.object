@@ -155,7 +155,6 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <description>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</description>
         <inlineHelpText>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</inlineHelpText>
         <externalId>false</externalId>
-        <inlineHelpText>System field that indicates if this Relationship was created automatically as the reciprocal to another Relationships.</inlineHelpText>
         <label>_SYSTEM: SystemCreated</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
