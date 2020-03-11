@@ -155,6 +155,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Status_Map__c= mySettings.Affl_ProgEnroll_Status_Map__c;
         settings.Affiliation_Record_Type_Enforced__c = mySettings.Affiliation_Record_Type_Enforced__c;
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
+        settings.Admin_Account_Naming_Format__c = mySettings.Admin_Account_Naming_Format__c;
         settings.Default_Contact_Language_Fluency__c = mySettings.Default_Contact_Language_Fluency__c;
         settings.Validate_Program_Plan_for_Nested_PR__c = mySettings.Validate_Program_Plan_for_Nested_PR__c;
         settings.Preferred_Phone_Selection__c = mySettings.Preferred_Phone_Selection__c;

@@ -39,8 +39,8 @@ public with sharing class STG_Base_CTRL {
     public Boolean hasPerm {get;set;} // Permission check
 
     /*******************************************************************************************
-    * @description Constructor that sets boolean value to determine is User can access Settings page 
-    */ 	
+    * @description Constructor that sets boolean value to determine is User can access Settings page
+    */
 	public STG_Base_CTRL() {
         User user = [SELECT Profile.PermissionsCustomizeApplication FROM User where Id = :UserInfo.getUserId()];
         this.hasPerm = user.Profile.PermissionsCustomizeApplication;
@@ -279,5 +279,45 @@ public with sharing class STG_Base_CTRL {
             return jobId;
         }
     }
-       
+
+    /*******************************************************************************************************
+    * @description Executes Batch to refresh all Household Account Names.
+    * @return Id of Batch Job
+    */
+    @AuraEnabled
+    public static Id executeRefreshHouseholdAccountBatch() {
+        Boolean automaticHHNamingEnabled = UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c;
+		if (!automaticHHNamingEnabled) {
+            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+           	orgSettings.Automatic_Household_Naming__c = TRUE;
+            update orgSettings; 
+        }
+        
+        ACCT_HouseholdNameRefresh_BATCH accountRefresh = new ACCT_HouseholdNameRefresh_BATCH();
+        Id jobId = Database.executeBatch( accountRefresh , 200 );
+        if(jobId == null) {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        } else {
+            return jobId;
+        }
+
+
+    }
+
+    /*******************************************************************************************************
+    * @description Executes Batch to refresh all Administrative Account Names.
+    * @return Id of Batch Job
+    */
+    @AuraEnabled
+    public static Id executeRefreshAdminAccountBatch() {
+        ACCT_AdministrativeNameRefresh_BATCH accountRefresh = new ACCT_AdministrativeNameRefresh_BATCH();
+        Id jobId = Database.executeBatch( accountRefresh , 200 );
+        if(jobId == null) {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        } else {
+            return jobId;
+        }
+
+    }
+
 }
