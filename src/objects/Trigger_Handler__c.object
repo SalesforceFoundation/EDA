@@ -203,9 +203,9 @@
     <fields>
         <fullName>User_Managed__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The record is managed by the user and updates won&apos;t be pushed to it.</description>
+        <description>When selected, EDA will no longer push updates to this Trigger Handler. Select this option if you've made changes that you don't want EDA to overwrite.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Check it if you intent to manage the record yourself. Be aware that updates to the package won&apos;t update the record.</inlineHelpText>
+        <inlineHelpText>When selected, EDA will no longer push updates to this Trigger Handler. Select this option if you've made changes that you don't want EDA to overwrite.</inlineHelpText>
         <label>User Managed</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
