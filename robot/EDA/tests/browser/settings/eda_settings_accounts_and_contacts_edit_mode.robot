@@ -31,14 +31,19 @@ Validate Edit Mode For Accounts and Contacts Settings
     Click on Element                account_types.administrative
 
 Click Checkboxes
+    [Setup]  Run keywords
+    ...  Go to EDA Settings
+    ...  AND  Click on element  tabs.accountsandcontacts
+    ...  AND  Click on element  account_types.edit
+
     Test Checkbox                   Academic Program
-    Test Checkbox                  Administrative
+    Test Checkbox                   Administrative
     Test Checkbox                   Business Organization
     Test Checkbox                   Educational Institution
     Test Checkbox                   Household Account
     Test Checkbox                   Sports Organization
     Test Checkbox                   University Department
-    
+
     Click on Element                account_types.save
     Close toast message
 
@@ -59,5 +64,3 @@ Unclick Checkboxes
 
     Wait for Locator                account_types.save
     Click on Element                account_types.save
-
-
