@@ -280,10 +280,12 @@ class EDA(object):
         self.builtin.log("Timed out waiting for window with title " + title)
         return window_found
 
+    @capture_screenshot_on_error
     def wait_for_locator(self, path, *args, **kwargs):
         main_loc = self.get_eda_locator(path,*args, **kwargs)
         self.selenium.wait_until_element_is_visible(main_loc)
 
+    @capture_screenshot_on_error
     def click_on_element(self,path, *args, **kwargs):
         main_loc = self.get_eda_locator(path,*args, **kwargs)
         self.selenium.wait_until_element_is_visible(main_loc)
