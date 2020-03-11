@@ -2,29 +2,22 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
     <aura:attribute name="save" type="Boolean" default="true"/>
-
     <aura:attribute name="defaultContactLanguageFluencyValue" type="String" />
     <aura:attribute name="defaultContactLanguageFluencyLabel" type="String" />
     <aura:attribute name="fluencyPicklistEntries" type="Map" />
     <aura:attribute name="preferredPhonePicklistEntries" type="Map" />
     <aura:attribute name="defaultPreferredPhoneValue" type="String" />
     <aura:attribute name="defaultPreferredPhoneLabel" type="String" />
-   
-	
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="courseConnectionRecTypes" type="Map" />
-
     <aura:attribute name="accRecTypeId" type="String" />
     <aura:attribute name="accRecTypeName" type="String" />
-
     <aura:attribute name="householdRecTypeId" type="String" />
     <aura:attribute name="householdRecTypeName" type="String" />
     <aura:attribute name="adminAccRecTypeId" type="String" />
     <aura:attribute name="adminAccRecTypeName" type="String" />
-
     <aura:attribute name="accTypesToDeleteSelected" type="String[]" />
     <aura:attribute name="accTypesAddrSelected" type="Object[]" />
-
     <aura:attribute name="studentRecTypeId" type="String" />
     <aura:attribute name="facultyRecTypeId" type="String" />
     <aura:attribute name="studentRecTypeName" type="String" />
@@ -37,14 +30,12 @@
     <aura:attribute name="affiliationStatusDeleteMapValue" type="String" />
     <aura:attribute name="affiliationStatusDeleteMapLabel" type="String" />
     <aura:attribute name="affiliationStatusPicklistEntries" type="Map" />
-
     <aura:attribute name="adminNameFormat" type="String" />
     <aura:attribute name="hhNameFormat" type="String" />
     <aura:attribute name="adminOtherDisplay" type="Boolean"/> 
     <aura:attribute name="hhOtherDisplay" type="Boolean"/> 
     <aura:attribute name="adminAccNameFormatOptions" type="String[]"/>
-    <aura:attribute name="hhNameFormatOptions" type="String[]"/>
-
+    <aura:attribute name="hhNameFormatOptions" type="String[]"/> 
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
 
@@ -127,7 +118,7 @@
         <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
                 accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" accRecTypeName="{!v.accRecTypeName}"  
-                hhNameFormat="{!v.hhNameFormat}" adminNameFormat="{!v.adminNameFormat}" adminOtherDisplay="{!v.adminOtherDisplay}" hhOtherDisplay="{!v.hhOtherDisplay}" 
+                hhNameFormat="{!v.hhNameFormat}" adminNameFormat="{!v.adminNameFormat}" adminOtherDisplay="{!v.adminOtherDisplay}" hhOtherDisplay="{!v.hhOtherDisplay}"
                 adminAccNameFormatOptions="{!v.adminAccNameFormatOptions}" hhNameFormatOptions="{!v.hhNameFormatOptions}"/>
         </div>
     </div>
