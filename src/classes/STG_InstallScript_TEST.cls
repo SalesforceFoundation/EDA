@@ -65,6 +65,9 @@ public with sharing class STG_InstallScript_TEST {
         // Verify defaults are set on install
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
         System.assertEquals(Label.stgFluent, orgSettings.Default_Contact_Language_Fluency__c);
+
+        System.assertEquals(true, orgSettings.Prevent_Program_Plan_Deletion__c,
+            'Expected Prevent Program Plan Deletion Hierarchy custom setting is enabled on install.');
         
         System.assertEquals(true, orgSettings.Enable_New_Preferred_Phone_Sync__c,
             'Expected the new Preferred Phone sync to be enabled on install.');
@@ -374,5 +377,27 @@ public with sharing class STG_InstallScript_TEST {
             'Expected the Preferred Phone enforcement to be disabled.');
         System.assertEquals(false, updatedSettings.Enable_New_Preferred_Phone_Sync__c, 
             'Expected the new Preferred Phone sync to be disabled.');
+    }
+
+    /*********************************************************************************************************
+    * @description Tests enabling Prevent Deletion Hierarchy Custom Settings when upgraded from 1.94
+    *********************************************************************************************************/
+    @isTest
+    private static void enablePreventDeletionHierarchyCustomSettigsOnUpgrade() {
+        
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        
+        System.assertEquals(false, orgSettings.Prevent_Program_Plan_Deletion__c,
+            'Expected Prevent Program Plan Deletion Hierarchy Custom setting is disbaled before upgrade.');
+        
+        // Run the install script for orgs using HEDA 1.94
+        Test.startTest();
+            Test.testInstall(new STG_InstallScript(), new Version(1,94), true);
+        Test.stopTest();
+        
+        Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
+        
+        System.assertEquals(true, updatedSettings.Prevent_Program_Plan_Deletion__c,
+            'Expected Prevent Program Plan Deletion Hierarchy Custom setting is enabled.');
     }
 }
