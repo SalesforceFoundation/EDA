@@ -136,16 +136,11 @@ class EDASettingsPage(ListingPage):
         self.selenium.click_element(affiliations_locators["button_save_affiliation"])
         self.eda.close_toast_message()
 
-    def Click_button_on_location(self, button, page):
+    def Click_button(self, button):
         """ Select the specified button from the page that is specified """
         self.selenium.wait_until_page_contains_element(
-            page,
+            button,
             timeout=60
-        )
-        self.open_item(
-            page,
-            "Cannot find {} ".format(page), 
-            True
         )
         self.selenium.click_button(button)
 
