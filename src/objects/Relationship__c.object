@@ -135,7 +135,7 @@
     </fields>
     <fields>
         <fullName>Relationship_Explanation__c</fullName>
-        <description>Text formula that constructs a sentence explaining the relationship between the two Contacts</description
+        <description>Text formula that constructs a sentence explaining the relationship between the two Contacts</description>
         <inlineHelpText>A sentence that clarifies who's who in the Relationship. For example, &quot;&apos;s &quot; Joe Ada is Sara Cordova's employer.&quot;&apos;s &quot; This field is read-only.</inlineHelpText>
         <externalId>false</externalId>
         <formula>TEXT(RelatedContact__r.Salutation) + &quot; &quot; + RelatedContact__r.FirstName + &quot; &quot; + RelatedContact__r.LastName
