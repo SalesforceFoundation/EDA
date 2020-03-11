@@ -1,0 +1,17 @@
+.THIS #hhSuccessToast .slds-notify__close .slds-icon{
+    fill: #ffffff;
+    border: 1px solid #bdbdbd;
+}
+
+.THIS #hhSuccessToast .slds-icon{
+    fill: #ffffff
+}
+
+.THIS #adminSuccessToast .slds-notify__close .slds-icon{
+    fill: #ffffff;
+    border: 1px solid #bdbdbd;
+}
+
+.THIS #adminSuccessToast .slds-icon{
+    fill: #ffffff
+}
