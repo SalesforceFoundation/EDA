@@ -457,9 +457,9 @@
     </fields>
     <fields>
         <fullName>Relationship_Name_Field_Id__c</fullName>
-        <description>The ID of the Name field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button.  Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
+        <description>This field is currently not used in EDA.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
+        <inlineHelpText>This field is currently not used in EDA.</inlineHelpText>
         <label>Relationship Name Field Id</label>
         <length>25</length>
         <required>false</required>
@@ -469,9 +469,9 @@
     </fields>
     <fields>
         <fullName>Relationship_Name_Id_Field_Id__c</fullName>
-        <description>The ID of the Name Id field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button. Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
+        <description>This field is currently not used in EDA.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
+        <inlineHelpText>This field is currently not used in EDA.</inlineHelpText>
         <label>Relationship Name Id Field Id</label>
         <length>25</length>
         <required>false</required>
