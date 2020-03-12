@@ -41,12 +41,16 @@ Testing an org that has been push upgraded from the latest release and has recei
 
 ## Utility Tasks and Flows
 
-### Flows
-
 -   **`edaectomy`:** Removes configuration and unmanaged metadata.
+
 -   **`setup_encryption`:** Sets up Shield Platform Encryption in the target Org. It is recommended that this flow be run in developer scratch orgs only.
--   **`new_org`** Simulates an org that has been given the latest beta release of EDA and underlying dependencies.
--   **`upgraded_org`** Simulates an org that has been push-upgraded to the latest releases of EDA and underlying dependencies.
+
+-   **`regression_org`** 
+simulates an org with the last production version of K-12 Kit upgraded with the latest Beta releases of K-12 Kit and its dependencies (EDA). Use this when you want a fully configured regression testing environment.
+
+-   **`net_new_org`** simulates the creation of a new K-12 Kit org for a new customer with the latest betas of K-12 Kit and dependencies. Use this when you want to test in an environment that matches a new installation.
+
+-   **`upgraded_org`** simulates a push upgrade of K-12 Kit  and dependencies to existing customer orgs. This means all push-upgradable components have been updated, but only the unpackaged metadata from the previous version will exist in the org. Use this when you want to see what steps are required for existing customers to use new functionality.
 
 ### Tasks
 

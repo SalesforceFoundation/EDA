@@ -254,7 +254,7 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
-    new_org:
+    net_new_org:
         description: Creates a regression which represents the installation of a brand new customer.
         steps:
             1:
