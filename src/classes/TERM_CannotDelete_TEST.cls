@@ -298,7 +298,7 @@ private class TERM_CannotDelete_TEST {
         term2.Parent_Term__c = term1.Id;
         insert term2;
        
-       // ensure the Parent Term is not deleted
+        // ensure the Parent Term is not deleted
         try {
             Test.startTest();
                 List<Term__c> termsToDelete = [SELECT Id FROM TERM__c];
