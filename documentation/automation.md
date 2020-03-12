@@ -10,6 +10,8 @@
 | Regression                | `regression_org`     | `release`        | ✔       |           |
 | Regression (Push Upgrade) | `upgraded_org`       | `release`        | ✔       |           |
 | Latest Trial Template     | N/A                  | `trial`          | ✔       |           |
+| Upgraded Org              | `upgraded_org`       | `release`        | ✔       |           |
+| Net New Org               | `net_new_org`        | `release`        | ✔       |           |
 
 ### Testing Scenarios
 
