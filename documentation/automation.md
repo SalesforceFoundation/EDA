@@ -28,7 +28,7 @@ Regression Testing a Net New Org:
     git checkout master
     git pull
     cci org scratch release <orgname> --default
-    cci flow run new_org
+    cci flow run net_new_org
     cci org browser <orgname>
 
 Testing an org that has been push upgraded from the latest release and has received the latest managed package from EDA (Represents an "Existing Org"):
@@ -55,6 +55,7 @@ simulates an org with the last production version of K-12 Kit upgraded with the 
 ### Tasks
 
 -   **`execute_install_apex`:** Runs most of the install script methods from STG<sub>InstallScript</sub> class.
+
 -   **`delete_dev_config`:** Deploys metadata found under `unpackaged/config/dev_delete` Removes the Record type visibilities, page layout assignments Required to remove an installed beta.
 
 ## Unpackaged Metadata
