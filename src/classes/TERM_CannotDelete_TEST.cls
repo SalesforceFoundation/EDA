@@ -283,6 +283,9 @@ private class TERM_CannotDelete_TEST {
     */
     @isTest
     static void testDeleteTermsWithTerms() {
+        
+        // Enable Prevent Term Deletion Cusotm Settings
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
 
         // Insert Account
         List<Account> academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID());
@@ -290,17 +293,24 @@ private class TERM_CannotDelete_TEST {
 
         Term__c term1 = [SELECT Id, Parent_Term__c FROM TERM__c];
 
-        // Insert Term
+        // Insert Term2 with Term1 as the Parent Term
         Term__c term2 = UTIL_UnitTestData_TEST.getTerm(academicAccount[0].Id, 'Fall 19');
         term2.Parent_Term__c = term1.Id;
         insert term2;
-
+       
+       // ensure the Parent Term is not deleted
         try {
             Test.startTest();
-                delete term2;
+                List<Term__c> termsToDelete = [SELECT Id FROM TERM__c];
+                Database.DeleteResult[] results = Database.delete(termsToDelete, false);
             Test.stopTest();
         } catch (Exception error) {
             System.assert(error.getMessage().contains(Label.CannotDelete));
         }
+
+        // ensure only term2 is deleted
+        List<Term__c> termsAfterDelete = [SELECT Id FROM TERM__c];
+        System.assertEquals(1, termsAfterDelete.size());
+        System.assertEquals(term1.Id, termsAfterDelete[0].Id);
     }
 }

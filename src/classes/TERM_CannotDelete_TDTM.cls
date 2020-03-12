@@ -33,7 +33,7 @@
 * @group Terms
 * @group-content ../../ApexDocContent/Terms.htm
 * @description This class prevents Term records from being deleted if it has any Term Grade
-* or Course Offering or Application or Term  associations.
+* or Course Offering or Application or Term associations.
 */
 public with sharing class TERM_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
