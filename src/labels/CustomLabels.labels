@@ -382,7 +382,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>automaticHHNaming</shortDescription>
-        <value>Automatic Household Naming:</value>
+        <value>Automatically Rename Household Accounts:</value>
     </labels>
     <labels>
         <fullName>automaticHHNamingHelpText</fullName>
@@ -390,7 +390,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>automaticHHNamingHelpText</shortDescription>
-        <value>Enables automatic renaming of Household Accounts, based on the names of Contacts in the Household. If enabled, we automatically rename Household Accounts when a new Contact is added to the Household or an existing Contact is renamed, deleted, or moved to another Household.</value>
+        <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
     </labels>
     <labels>
         <fullName>defaultNamingConnector</fullName>
@@ -1552,6 +1552,38 @@
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
     </labels>
     <labels>
+        <fullName>stgRefreshAdminAcctNameDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRefreshAdminAcctNameDesc</shortDescription>
+        <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminAcctNameTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRefreshAdminAcctNameTitle</shortDescription>
+        <value>Refresh All Administrative Account Names:</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHHAcctNameDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRefreshHHAcctNameDesc</shortDescription>
+        <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHHAcctNameTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRefreshHHAcctNameTitle</shortDescription>
+        <value>Refresh All Household Account Names:</value>
+    </labels>
+    <labels>
         <fullName>stgRunCleanUp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1614,6 +1646,24 @@
         <protected>false</protected>
         <shortDescription>stgSuccess</shortDescription>
         <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>stgSuccessAdminAccountNameRefresh</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgSuccessAdminAccountNameRefresh</shortDescription>
+        <value>The Administrative Account naming refresh was queued successfully.
+        An email will be sent at the completion of the batch.</value>
+    </labels>
+    <labels>
+        <fullName>stgSuccessHHAccountNameRefresh</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgSuccessHHAccountNameRefresh</shortDescription>
+        <value>The Household Account naming refresh was queued successfully.
+        An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>

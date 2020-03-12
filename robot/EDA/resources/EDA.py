@@ -110,7 +110,7 @@ class EDA(object):
         self.builtin.log("locator for select_tab is: " + locator , "INFO")
 
         self.selenium.wait_until_page_contains_element(
-            locator, 
+            locator,
             timeout=60,
             error="List header '{}' is not available on the page".format(title)
         )
@@ -250,13 +250,13 @@ class EDA(object):
         """ Returns a rendered locator string from the eda_lex_locators
             dictionary.  This can be useful if you want to use an element in
             a different way than the built in keywords allow.
-        """ 
+        """
         locator = eda_lex_locators
         for key in path.split('.'):
             locator = locator[key]
         main_loc = locator.format(*args, **kwargs)
-        return main_loc   
-        
+        return main_loc
+
     def wait_for_new_window(self, title):
         """ Waits for specified window to be available
             by checking every 1 seconds for 25 times
@@ -280,10 +280,12 @@ class EDA(object):
         self.builtin.log("Timed out waiting for window with title " + title)
         return window_found
 
+    @capture_screenshot_on_error
     def wait_for_locator(self, path, *args, **kwargs):
-        main_loc = self.get_eda_locator(path,*args, **kwargs)    
+        main_loc = self.get_eda_locator(path,*args, **kwargs)
         self.selenium.wait_until_element_is_visible(main_loc)
-            
+
+    @capture_screenshot_on_error
     def click_on_element(self,path, *args, **kwargs):
         main_loc = self.get_eda_locator(path,*args, **kwargs)
         self.selenium.wait_until_element_is_visible(main_loc)
@@ -293,9 +295,9 @@ class EDA(object):
         main_loc = self.get_eda_locator(path,*args, **kwargs)
         self.selenium.wait_until_element_is_visible(main_loc)
         # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
-                
+
         self.selenium.driver.execute_script(
-            "arguments[0].click()", 
+            "arguments[0].click()",
             self.selenium.driver.find_element_by_xpath(main_loc))
         time.sleep(1)
 
@@ -435,7 +437,7 @@ class EDA(object):
         return main_loc
 
     def select_navigation_tab(self, tab):
-        """ Selects navigation tab - as passed in to the function 
+        """ Selects navigation tab - as passed in to the function
             tab is not a locator, but is a label on a tab.
         """
         locator_menu = eda_lex_locators["navigation_menu"]
@@ -460,32 +462,32 @@ class EDA(object):
         self.selenium.click_element(locator_tab)
 
     def open_panel_tab(self,tab):
-        """ Opens specific panel tab, as passed in to function 
+        """ Opens specific panel tab, as passed in to function
             Note:  this is a label on a menu item, and not a locator
         """
         self.selenium.wait_until_page_contains_element(
-            eda_lex_locators["panel_tab_lookup"].format(tab), 
+            eda_lex_locators["panel_tab_lookup"].format(tab),
             timeout=60,
             error="Cannot find the panel tab: " + tab
         )
         self.selenium.driver.execute_script(
-            "arguments[0].click()", 
+            "arguments[0].click()",
             self.selenium.driver.find_element_by_xpath(eda_lex_locators["panel_tab_lookup"].format(tab))
-        )        
+        )
 
     def choose_panel_tab(self,tab):
         """ Opens panel tab - as passed in to the function
             tab is a label on menu item, and not a locator.
         """
         self.selenium.wait_until_page_contains_element(
-            eda_lex_locators["choose_tab"].format(tab), 
+            eda_lex_locators["choose_tab"].format(tab),
             timeout=60,
             error="Cannot find the panel tab: " + tab
         )
         self.selenium.click_element(eda_lex_locators["choose_tab"].format(tab))
-        
-        
-    @capture_screenshot_on_error    
+
+
+    @capture_screenshot_on_error
     def select_tab(self, title):
         """ Switch between different tabs on a record page like Related, Details, News, Activity and Chatter
             Pass title of the tab
@@ -507,7 +509,7 @@ class EDA(object):
                         tab_found = True
                         break
 
-        assert tab_found, "tab not found"        
+        assert tab_found, "tab not found"
 
 #     def select_tab(self, tab):
 #         """ Select tab - as passed in to the function
@@ -523,7 +525,7 @@ class EDA(object):
 #         # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
 #         self.selenium.driver.execute_script("arguments[0].click()", element_menu)
 #         time.sleep(1)
-# 
+#
 #         # Sometimes, single click fails. Hence an additional condition to click on it again
 #         if not self.check_if_element_exists(locator_tab):
 #             self.selenium.driver.execute_script("arguments[0].click()", element_menu)
@@ -545,7 +547,7 @@ class EDA(object):
     def open_custom_settings(self, title, error_message, capture_screen):
         """ Performs a wait until the element shows on the page, and clicks the element """
         self.selenium.wait_until_page_contains_element(
-            eda_lex_locators["custom_settings_title"].format(title), 
+            eda_lex_locators["custom_settings_title"].format(title),
             timeout=60,
             error=error_message
         )
