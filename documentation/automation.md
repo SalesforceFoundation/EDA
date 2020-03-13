@@ -17,7 +17,7 @@
 
 #### Regression testing
 
-Regression testing the latest beta:
+Regression Testing EDA Beta on an Upgraded Org with All Metadata Configurations:
 
     git checkout master
     git pull
@@ -25,7 +25,7 @@ Regression testing the latest beta:
     cci flow run regression_org 
     cci org browser <orgname>
 
-Regression Testing a Net New Org:
+Regression Testing EDA Beta on a Net-New Org:
 
     git checkout master
     git pull
@@ -33,7 +33,7 @@ Regression Testing a Net New Org:
     cci flow run net_new_org
     cci org browser <orgname>
 
-Testing an org that has been push upgraded from the latest release and has received the latest managed package from EDA (Represents an "Existing Org"):
+Regression Testing EDA Beta an Existing Customer Org:
 
     git checkout master
     git pull
