@@ -50,9 +50,9 @@ Testing an org that has been push upgraded from the latest release and has recei
 -   **`regression_org`** 
 simulates an org with the last production version of EDA upgraded with the latest Beta releases of EDA and its dependencies. Use this when you want a fully configured regression testing environment.
 
--   **`net_new_org`** simulates the creation of a new EDA org for a new customer with the latest betas of EDA  and dependencies. Use this when you want to test in an environment that matches a new installation.
+-   **`net_new_org`** Simulates the creation of a new EDA org for a new customer, installing the latest beta of EDA and dependencies. Use this when you want a fully configured regression environment that matches a new installation.
 
--   **`upgraded_org`** simulates a push upgrade of EDA  and dependencies to existing customer orgs. This means all push-upgradable components have been updated, but only the unpackaged metadata from the previous version will exist in the org. Use this when you want to see what steps are required for existing customers to use new functionality.
+-   **`upgraded_org`** Simulates a push upgrade of EDA and dependencies to existing customer orgs, from the latest production release to the current beta. This means all push-upgradable components have been updated, but only the unpackaged metadata from the previous version will exist in the org (and not the unpackaged metadata from the current beta.) Use this when you want to see which manual configuration steps are required in order for existing customers to use new functionality.
 
 ### Tasks
 
