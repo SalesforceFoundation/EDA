@@ -47,8 +47,7 @@ Testing an org that has been push upgraded from the latest release and has recei
 
 -   **`setup_encryption`:** Sets up Shield Platform Encryption in the target Org. It is recommended that this flow be run in developer scratch orgs only.
 
--   **`regression_org`** 
-simulates an org with the last production version of EDA upgraded with the latest Beta releases of EDA and its dependencies. Use this when you want a fully configured regression testing environment.
+-   **`regression_org`** Simulates an EDA org upgraded from the latest production release to the current beta and its dependencies, using the unpackaged metadata from the current beta. Use this when you want an upgraded org without needing to make any manual configurations.
 
 -   **`net_new_org`** Simulates the creation of a new EDA org for a new customer, installing the latest beta of EDA and dependencies. Use this when you want a fully configured regression environment that matches a new installation.
 
