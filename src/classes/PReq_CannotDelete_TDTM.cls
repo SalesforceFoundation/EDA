@@ -35,30 +35,39 @@
 * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
 */
 public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
-    /*******************************************************************************************************
-    * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
-    * @param listNew the list of Plan Requirement from trigger new.
-    * @param listOld the list of Plan Requirement from trigger old.
-    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    * @param objResult the describe for Plan Requirement
-    * @return dmlWrapper.
-    ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
-        TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+  /*******************************************************************************************************
+  * @description Get the setting of preventing Account deletion
+  */
+  private static Boolean enabledPreventPlanRequirementDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Plan_Requirement_Deletion__c;
+  
+  /*******************************************************************************************************
+  * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
+  * @param listNew the list of Plan Requirement from trigger new.
+  * @param listOld the list of Plan Requirement from trigger old.
+  * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+  * @param objResult the describe for Plan Requirement
+  * @return dmlWrapper.
+  ********************************************************************************************************/
+  public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+                                 TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+    
+      if (!enabledPreventPlanRequirementDeletion) {
+        return new DmlWrapper(); 
+      }
+                                     
+      Map<ID, Plan_Requirement__c> oldmap = new Map<ID, Plan_Requirement__c>((List<Plan_Requirement__c>)oldlist);
 
-        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
-
-        if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            for (Plan_Requirement__c planReq : [SELECT ID,
-                                                        (SELECT ID FROM Plan_Requirements__r LIMIT 1)
-                                                    FROM Plan_Requirement__c
-                                                    WHERE ID in :oldlist]) {
-                if(planReq.Plan_Requirements__r.size() > 0 ) {
-                    Plan_Requirement__c planReqInContext = (Plan_Requirement__c)oldmap.get(planReq.ID);
-                    planReqInContext.addError(Label.CannotDelete);
-                }
-            }
-        }
-        return new DmlWrapper();
-    }
+      if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
+          for (Plan_Requirement__c planReq : [SELECT ID,
+                                               (SELECT ID FROM Plan_Requirements__r LIMIT 1)
+                                              FROM Plan_Requirement__c
+                                              WHERE ID IN :oldlist]) {
+              if(planReq.Plan_Requirements__r.size() > 0 ) {
+                  Plan_Requirement__c planReqInContext = oldmap.get(planReq.ID);
+                  planReqInContext.addError(Label.CannotDelete);
+              }
+          }
+      }
+      return new DmlWrapper();
+  }
 }
