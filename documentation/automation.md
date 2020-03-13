@@ -25,7 +25,7 @@
     cci flow run regression_org 
     cci org browser <orgname>
 
-Regression Testing EDA Beta on a Net-New Org:
+##### Regression Testing EDA Beta on a Net-New Org:
 
     git checkout master
     git pull
