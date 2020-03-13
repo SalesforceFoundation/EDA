@@ -33,7 +33,7 @@
     cci flow run net_new_org
     cci org browser <orgname>
 
-Regression Testing EDA Beta on an Existing Customer Org:
+##### Regression Testing EDA Beta on an Existing Customer Org:
 
     git checkout master
     git pull
