@@ -197,7 +197,7 @@ private class TERM_CannotDelete_TEST {
 
         Test.startTest();
             List<Term__c> termsToDelete = [SELECT Id FROM TERM__c];
-            Database.DeleteResult[] results = Database.delete(termsToDelete, false);
+            Database.DeleteResult[] results = Database.delete(termsToDelete, FALSE);
         Test.stopTest();
 
         // Ensure only 1 Term is deleted
@@ -210,7 +210,7 @@ private class TERM_CannotDelete_TEST {
     */
     @isTest 
     static void testBulkDeleteSettingOff() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = False));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = FALSE));
 
         Account academicAccount = [Select Id FROM Account LIMIT 1];
 
@@ -270,7 +270,7 @@ private class TERM_CannotDelete_TEST {
 
         Test.startTest();
             List<Term__c> termsToDelete = [SELECT Id FROM TERM__c];
-            Database.DeleteResult[] results = Database.delete(termsToDelete, false);
+            Database.DeleteResult[] results = Database.delete(termsToDelete, FALSE);
         Test.stopTest();
 
         // Ensure all Terms are deleted
@@ -298,11 +298,15 @@ private class TERM_CannotDelete_TEST {
         term2.Parent_Term__c = term1.Id;
         insert term2;
        
+       // Ensure there are 2 terms
+        List<Term__c> termsBeforeDelete = [SELECT Id FROM TERM__c];
+        System.assertEquals(2, termsBeforeDelete.size());
+
         // Ensure the Parent Term is not deleted
         try {
             Test.startTest();
-                List<Term__c> termsToDelete = [SELECT Id FROM TERM__c];
-                Database.DeleteResult[] results = Database.delete(termsToDelete, false);
+                List<Term__c> termsToDelete = [SELECT Id FROM TERM__c ORDER BY Name ASC];
+                Database.DeleteResult[] results = Database.delete(termsToDelete, FALSE);
             Test.stopTest();
         } catch (Exception error) {
             System.assert(error.getMessage().contains(Label.CannotDelete));
