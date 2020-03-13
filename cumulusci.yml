@@ -240,7 +240,7 @@ flows:
                         namespaced_org: True
 
     upgraded_org:
-        description: Simulate an org that has been push-upgraded to the latest releases of EDA and any dependencies.
+        description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
         steps:
             1:
                 flow: latest_release:dependencies
@@ -254,7 +254,20 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
-
+    net_new_org:
+        description: Simulates an EDA installation for a new customer. Installs the latest beta and dependencies.
+        steps:
+            1:
+                flow: install_beta
+            2:
+                task: execute_qa_apex
+                options:
+                    managed: True
+                    namespaced: True
+            3:
+                task: deploy_qa_config
+                options:
+                    unmanaged: False
 
 services:
     mockaroo:
