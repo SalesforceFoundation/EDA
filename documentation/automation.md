@@ -17,7 +17,7 @@
 
 #### Regression testing
 
-Regression Testing EDA Beta on an Upgraded Org with All Metadata Configurations:
+##### Regression Testing EDA Beta on an Upgraded Org with All Metadata Configurations:
 
     git checkout master
     git pull
