@@ -627,7 +627,7 @@ private class TDTM_Manager_TEST {
             }
         }
         
-        System.assertEquals(NULL, tokenFound);
+        System.assertNotEquals(NULL, tokenFound);
         
         tokenFound.profilestoexclude = 'SYSTEM ADMINISTRATOR';
         
