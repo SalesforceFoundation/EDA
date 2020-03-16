@@ -48,6 +48,11 @@ public class TDTM_Config {
     *********************************************************************************************************/
     private static Integer rowCount;
 
+    /*******************************************************************************************************
+    * @description Profile Name of the Current User
+    *********************************************************************************************************/
+    public static String currentUserProfile;
+
     /********************************************************************************************************
     * @description Returns the TDTM configuration. If no configuration is currently set, it will return
     * the default configuration without setting it. The configuration returned has not yet been inserted in the
@@ -68,7 +73,8 @@ public class TDTM_Config {
 
         } else {
             List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
-                    Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c , Usernames_to_Exclude__c from Trigger_Handler__c];
+                    Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c , Usernames_to_Exclude__c,
+                    Profiles_to_Exclude__c from Trigger_Handler__c];
             // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
             // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
             if(tdtmConfig.size() == 0) {
@@ -78,7 +84,8 @@ public class TDTM_Config {
             for(Trigger_Handler__c handler : tdtmConfig) {
                 tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c,
                         handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c,
-                        handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c, handler.Usernames_to_Exclude__c));
+                        handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c,
+                        handler.Usernames_to_Exclude__c, handler.Profiles_to_Exclude__c));
             }
         }
 
@@ -98,10 +105,12 @@ public class TDTM_Config {
         List<Trigger_Handler__c> existingHandlers = TDTM_DefaultConfig.getDefaultRecords();
         for(Trigger_Handler__c handler : existingHandlers) {
             tokens.add(
-                new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c, handler.Usernames_to_Exclude__c )
+                new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c,
+                                              handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c,
+                                              handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c,
+                                              handler.Owned_by_Namespace__c, handler.Usernames_to_Exclude__c, handler.Profiles_to_Exclude__c)
             );
         }
-
 
         return tokens;
     }
@@ -135,20 +144,27 @@ public class TDTM_Config {
         List<TDTM_Global_API.TdtmToken> objectTokens = new List<TDTM_Global_API.TdtmToken>();
         //Get current username
         String currUserName = UserInfo.getUserName();
+        //Get current user's profile id
+        Id currentUserProfileId = UserInfo.getProfileId();
+        //Get the name of profileId.
+        String currentUserProfile = getcurrentUserProfile(currentUserProfileId);
+        String currentUserProfileLowerCase =  currentUserProfile.toLowerCase();
+
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
+            
             //Get a list of excluded usernames in lowercase
-            Set<String> excludedUserNamesLowercase = new Set<String>();
-            Set<String> excludedUserNames = (token.usernamesToExclude != null ?
-                    new Set<String>(token.usernamesToExclude.split('\\s*;\\s*')) : new Set<String>());
-            for (String username : excludedUserNames) {
-                excludedUserNamesLowercase.add(username.toLowerCase());
-            }
+            Set<String> excludedUserNamesLowercase = TDTM_ExcludedUserNames.userNamesToExclude(token);
+            
+            //Get a list of excluded profiles
+            Set<String> excludedProfilesLowerCase = TDTM_ExcludedProfiles.profilesToExclude(token);
+            
             //Filtering those active by object and action.
             //Actions should not be null, otherwise it will throw null pointer exception. We might need to create a WI to do more validation on insert/update Trigger Handler
             if(token.active && token.targetObject == objectName
                     && token.actions != null
                     && token.actions.contains(action.Name())
-                    && !excludedUserNamesLowercase.contains(currUsername)) {
+                    && !excludedUserNamesLowercase.contains(currUsername)
+                    && !excludedProfilesLowerCase.contains(currentUserProfileLowerCase)) {
                 objectTokens.add(token);
             }
         }
@@ -157,5 +173,17 @@ public class TDTM_Config {
         objectTokens.sort();
 
         return objectTokens;
+    }
+
+    /*******************************************************************************************************
+    * @description Returns the Profile of the Current User
+    * @param currentUserProfileId Profile Id of the  Current User
+    * @return currentUserProfile Profile Name of the Current User
+    *********************************************************************************************************/
+    public static String getcurrentUserProfile(Id currentUserProfileId) {
+        if (currentUserProfile == null) {
+            currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
+        }
+        return currentUserProfile;
     }
 }
