@@ -614,21 +614,34 @@ private class TDTM_Manager_TEST {
         // The Term should not be deleted as System Admin is not Excluded 
         List<Term__c> afterDelete1 = [SELECT id FROM Term__c];
         System.assertEquals(1, afterDelete1.size());
-
-        Boolean canNotDeleteTokenFound = False;
-        for(TDTM_Global_API.TdtmToken token : tokens) {
+		
+        //Set<String> excludedProfiles;
+        //String excludedProfilesToLower;
+        
+        TDTM_Global_API.TdtmToken tokenFound;
+        for (TDTM_Global_API.TdtmToken token : tokens) {
             if(token.className == 'TERM_CannotDelete_TDTM') {
-                token.profilestoexclude = 'SYSTEM ADMINISTRATOR';
-                canNotDeleteTokenFound = True;
+                
+                tokenFound = token;
+                
             }
         }
-        System.assertEquals(True, canNotDeleteTokenFound);
+        
+        System.assertEquals(NULL, tokenFound);
+        
+        tokenFound.profilestoexclude = 'SYSTEM ADMINISTRATOR';
+        
+        Set<String> excludedProfiles = TDTM_ExcludedProfiles.profilesToExclude(tokenFound);
+        List<String> excludedProfilesList = new List<String>(excludedProfiles);
+        String excludedProfilesToLower = excludedProfilesList[0];
+               
+        System.assertEquals('system administrator', excludedProfilesToLower);
 
         // Make sure System Admin is current user profile
         Id currentUserProfileId = UserInfo.getProfileId();
         String currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
         System.assertEquals('System Administrator', currentUserProfile);
-        System.assertEquals('SYSTEM ADMINISTRATOR', currentUserProfile);
+       
 
         TDTM_Global_API.setTdtmConfig(tokens);
         
@@ -641,6 +654,7 @@ private class TDTM_Manager_TEST {
         List<Term__c> afterDelete2 = [SELECT id FROM Term__c];
         System.assertEquals(0, afterDelete2.size());
     }
+
 
     //Test to make sure trigger handler is skipped if Profiles to exclude works for translation
     @isTest
