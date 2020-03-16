@@ -628,6 +628,7 @@ private class TDTM_Manager_TEST {
         Id currentUserProfileId = UserInfo.getProfileId();
         String currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
         System.assertEquals('System Administrator', currentUserProfile);
+        System.assertEquals('SYSTEM ADMINISTRATOR', currentUserProfile);
 
         TDTM_Global_API.setTdtmConfig(tokens);
         
