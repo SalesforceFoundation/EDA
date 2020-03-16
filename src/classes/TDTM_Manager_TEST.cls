@@ -580,8 +580,6 @@ private class TDTM_Manager_TEST {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
 
-        User testUserDisabled = UTIL_UnitTestData_API.createNewUserForTests('excludedUser@gmail.com');
-
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
         
         // Insert Account
@@ -617,13 +615,20 @@ private class TDTM_Manager_TEST {
         List<Term__c> afterDelete1 = [SELECT id FROM Term__c];
         System.assertEquals(1, afterDelete1.size());
 
-        //Disabling class that creates reciprocal relationships
+        Boolean canNotDeleteTokenFound = False;
         for(TDTM_Global_API.TdtmToken token : tokens) {
             if(token.className == 'TERM_CannotDelete_TDTM') {
                 token.profilestoexclude = 'SYSTEM ADMINISTRATOR';
+                canNotDeleteTokenFound = True;
             }
         }
-        
+        System.assertEquals(True, canNotDeleteTokenFound);
+
+        // Make sure System Admin is current user profile
+        Id currentUserProfileId = UserInfo.getProfileId();
+        String currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
+        System.assertEquals('System Administrator', currentUserProfile);
+
         TDTM_Global_API.setTdtmConfig(tokens);
         
         // Delete the term as a Standard User Profiles
@@ -631,7 +636,7 @@ private class TDTM_Manager_TEST {
             delete term;
         Test.stopTest();
         
-        // The Term should not be deleted as System Admin is Excluded
+        // The Term should be deleted as System Admin is Excluded
         List<Term__c> afterDelete2 = [SELECT id FROM Term__c];
         System.assertEquals(0, afterDelete2.size());
     }
@@ -641,7 +646,7 @@ private class TDTM_Manager_TEST {
     public static void excludeProfileSpanish() {
         
         // Get the Standard User Profile
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
+        Profile p = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
         
         // Create a new User with Spanish Language, Locale and above Profile
         User excludedProfileUser;
