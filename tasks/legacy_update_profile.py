@@ -9,6 +9,24 @@ from cumulusci.tasks.salesforce import Deploy
 from cumulusci.utils import CUMULUSCI_PATH
 from cumulusci.utils import elementtree_parse_file
 
+DEFAULT_XML = """<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>*</members>
+        <members>Account</members>
+        <members>Campaign</members>
+        <members>CampaignMember</members>
+        <members>Contact</members>
+        <members>Lead</members>
+        <members>Opportunity</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <version>39.0</version>
+</Package>"""
+
 
 class UpdateProfile(Deploy):
     name = "UpdateProfile"
@@ -76,11 +94,13 @@ class UpdateProfile(Deploy):
         self.deploy_dir.mkdir()
 
     def _get_retrieve_package_xml_content(self):
-        path = self.options.get("package_xml") or os.path.join(
-            CUMULUSCI_PATH, "cumulusci", "files", "admin_profile.xml"
-        )
-        with open(path, "r") as f:
-            package_xml_content = f.read()
+        path = self.options.get("package_xml", "")
+
+        if path:
+            with open(path, "r") as f:
+                package_xml_content = f.read()
+        else:
+            package_xml_content = DEFAULT_XML
 
         package_xml_content = package_xml_content.format(
             **self.namespace_prefixes, profile_name=self.profile_name
