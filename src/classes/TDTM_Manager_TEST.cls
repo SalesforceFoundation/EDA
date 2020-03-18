@@ -574,11 +574,10 @@ private class TDTM_Manager_TEST {
         System.assertEquals(1, afterDelete2.size());
     }
 
-
+    /*
     //Test to make sure trigger handler is skipped if Profiles to exclude works for translation
     @isTest
     public static void excludeProfileSpanish() {
-        
         // Get the Standard User Profile
         Profile p = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
         
@@ -622,7 +621,7 @@ private class TDTM_Manager_TEST {
             Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, term.Id);
         
             // Insert Contact
-            Contact student = UTIL_UnitTestData_TEST.getContact();  
+            Contact student = UTIL_UnitTestData_TEST.getUniqueContact(1);  
             insert student;
         
             // Insert Course Connection
@@ -642,5 +641,5 @@ private class TDTM_Manager_TEST {
             System.assertEquals(0, afterDelete.size());
         }
     }
-    
+    */
 }
