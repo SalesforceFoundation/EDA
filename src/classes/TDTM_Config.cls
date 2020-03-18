@@ -51,7 +51,7 @@ public class TDTM_Config {
     /*******************************************************************************************************
     * @description Profile Name of the Current User
     *********************************************************************************************************/
-    public static String currentUserProfile;
+    public static String currentUserProfileLowerCase;
 
     /********************************************************************************************************
     * @description Returns the TDTM configuration. If no configuration is currently set, it will return
@@ -144,11 +144,15 @@ public class TDTM_Config {
         List<TDTM_Global_API.TdtmToken> objectTokens = new List<TDTM_Global_API.TdtmToken>();
         //Get current username
         String currUserName = UserInfo.getUserName();
+
         //Get current user's profile id
-        Id currentUserProfileId = UserInfo.getProfileId();
-        //Get the name of profileId.
-        String currentUserProfile = getcurrentUserProfile(currentUserProfileId);
-        String currentUserProfileLowerCase =  currentUserProfile.toLowerCase();
+        try {
+            Id currentUserProfileId = UserInfo.getProfileId();
+            //Get the name of profileId.
+            currentUserProfileLowerCase = getcurrentUserProfileLowerCase(currentUserProfileId);
+        } catch(Exception e) {
+            currentUserProfileLowerCase = null;
+        }
 
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
             
@@ -180,10 +184,10 @@ public class TDTM_Config {
     * @param currentUserProfileId Profile Id of the  Current User
     * @return currentUserProfile Profile Name of the Current User
     *********************************************************************************************************/
-    public static String getcurrentUserProfile(Id currentUserProfileId) {
-        if (currentUserProfile == null) {
-            currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
+    public static String getcurrentUserProfileLowerCase(Id currentUserProfileId) {
+        if (currentUserProfileLowerCase == null) {
+            currentUserProfileLowerCase = [SELECT Id, Name FROM Profile WHERE Id = :currentUserProfileId].Name.toLowerCase();
         }
-        return currentUserProfile;
+        return currentUserProfileLowerCase;
     }
 }
