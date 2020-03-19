@@ -146,8 +146,7 @@ private class TERM_CannotDelete_TEST {
 
         Term__c term2 = UTIL_UnitTestData_TEST.getTerm(academicAccount.Id, 'Spring 18');
         Term__c term3 = UTIL_UnitTestData_TEST.getTerm(academicAccount.Id, 'Spring 19');
-        Term__c term4 = UTIL_UnitTestData_TEST.getTerm(academicAccount.Id, 'Spring 21');
-        term4.Parent_Term__c = term1.Id;
+        Term__c term4 = UTIL_UnitTestData_TEST.getTerm(academicAccount.Id, 'Winter 21');
         Term__c term5 = UTIL_UnitTestData_TEST.getTerm(academicAccount.Id, 'Spring 21');
         term5.Parent_Term__c = term1.Id;
         Term__c term6 = UTIL_UnitTestData_TEST.getTerm(academicAccount.Id, 'Spring 22');
@@ -156,8 +155,13 @@ private class TERM_CannotDelete_TEST {
         termsToInsert.add(term3);
         termsToInsert.add(term4);
         termsToInsert.add(term5);
+        termsToInsert.add(term6);
 
         insert termsToInsert;
+        
+        // Ensure there are 6 terms
+        List<Term__c> termsBeforeDelete = [SELECT Id FROM TERM__c];
+        System.assertEquals(6, termsBeforeDelete.size());
 
         // Insert Contact
         Contact student = UTIL_UnitTestData_TEST.getContact();
@@ -196,13 +200,14 @@ private class TERM_CannotDelete_TEST {
         insert applicaitonsToInsert;
 
         Test.startTest();
-            List<Term__c> termsToDelete = [SELECT Id FROM TERM__c];
+            List<Term__c> termsToDelete = [SELECT Id FROM TERM__c WHERE Id != :term5.Id];
+            System.assertEquals(5, termsToDelete.size());
             Database.DeleteResult[] results = Database.delete(termsToDelete, FALSE);
         Test.stopTest();
 
-        // Ensure only 1 Term is deleted
+        // Ensure only 6 Term is deleted
         List<Term__c> termsAfterDelete = [SELECT Id FROM TERM__c];
-        System.assertEquals(4, termsAfterDelete.size());
+        System.assertEquals(5, termsAfterDelete.size());
     }
 
     /**********************************************************************************************************************************************
@@ -290,31 +295,35 @@ private class TERM_CannotDelete_TEST {
         // Insert Account
         List<Account> academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID());
         insert academicAccount;
-
+        
+        // Get term1
         Term__c term1 = [SELECT Id, Parent_Term__c FROM TERM__c];
 
-        // Insert Term2 with Term1 as the Parent Term
+        // Insert Term2 and Term3
+        List<Term__c> termsToInsert = new  List<Term__c>();
         Term__c term2 = UTIL_UnitTestData_TEST.getTerm(academicAccount[0].Id, 'Fall 19');
-        term2.Parent_Term__c = term1.Id;
-        insert term2;
+        Term__c term3 = UTIL_UnitTestData_TEST.getTerm(academicAccount[0].Id, 'Fall 18');
+        termsToInsert.add(term2);
+        termsToInsert.add(term3);
+        insert termsToInsert;
+        
+        // Make term2 parent of term3
+        term3.Parent_Term__c = term2.Id;
+        update term3;
        
-       // Ensure there are 2 terms
+        // Ensure there are 3 terms
         List<Term__c> termsBeforeDelete = [SELECT Id FROM TERM__c];
-        System.assertEquals(2, termsBeforeDelete.size());
+        System.assertEquals(3, termsBeforeDelete.size());
 
-        // Ensure the Parent Term is not deleted
-        try {
-            Test.startTest();
-                List<Term__c> termsToDelete = [SELECT Id FROM TERM__c ORDER BY Name ASC];
-                Database.DeleteResult[] results = Database.delete(termsToDelete, FALSE);
-            Test.stopTest();
-        } catch (Exception error) {
-            System.assert(error.getMessage().contains(Label.CannotDelete));
-        }
+        // Test deleting Term1 and Term2
+        Test.startTest();
+            List<Term__c> termsToDelete = [SELECT Id FROM TERM__c WHERE Id != :term3.Id];
+            System.assertEquals(2, termsToDelete.size());
+            Database.DeleteResult[] results = Database.delete(termsToDelete, FALSE);
+        Test.stopTest();
 
-        // Ensure only term2 is deleted
+        // Ensure only term1 is deleted
         List<Term__c> termsAfterDelete = [SELECT Id FROM TERM__c];
-        System.assertEquals(1, termsAfterDelete.size());
-        System.assertEquals(term1.Id, termsAfterDelete[0].Id);
+        System.assertEquals(2, termsAfterDelete.size());
     }
 }
