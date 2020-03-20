@@ -62,7 +62,7 @@ public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
                                                (SELECT ID FROM Plan_Requirements__r LIMIT 1)
                                               FROM Plan_Requirement__c
                                               WHERE ID IN :oldlist]) {
-              if(hasChildRecords) {
+              if(hasChildRecords(pr)) {
                   Plan_Requirement__c planReqInContext = oldmap.get(planReq.ID);
                   planReqInContext.addError(Label.CannotDelete);
               }
