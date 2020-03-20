@@ -77,6 +77,6 @@ public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
    * @return Boolean.
    ********************************************************************************************************/
     private static Boolean hasChildRecords(Plan_Requirement__c pr) {
-        return (pr.Plan_Requirments__r.size() > 0);
+        return (pr.Plan_Requirements__r.size() > 0);
     }
 }
