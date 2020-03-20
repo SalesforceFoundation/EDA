@@ -62,7 +62,7 @@ public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
                                                (SELECT ID FROM Plan_Requirements__r LIMIT 1)
                                               FROM Plan_Requirement__c
                                               WHERE ID IN :oldlist]) {
-              if(planReq.Plan_Requirements__r.size() > 0 ) {
+              if(hasChildRecords) {
                   Plan_Requirement__c planReqInContext = oldmap.get(planReq.ID);
                   planReqInContext.addError(Label.CannotDelete);
               }
@@ -70,4 +70,13 @@ public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
       }
       return new DmlWrapper();
   }
+  
+   /*******************************************************************************************************
+   * @description Evaluates whether the Plan Requirement has any child related records.
+   * @param pr is the current Plan Requirement record.
+   * @return Boolean.
+   ********************************************************************************************************/
+    private static Boolean hasChildRecords(Plan_Requirement__c pr) {
+        return (pr.Plan_Requirments__r.size() > 0);
+    }
 }
