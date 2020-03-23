@@ -128,10 +128,10 @@
     </fields>
     <fields>
         <fullName>Course_Name__c</fullName>
-        <description>The name of the Course in which the student was tardy or absent (read-only.)</description>
+        <description>The name of the Course in which the student was tardy or absent (read-only).</description>
         <externalId>false</externalId>
         <formula>Course_Connection__r.Course_Offering__r.Course__r.Name</formula>
-        <inlineHelpText>The name of the Course in which the student was tardy or absent (read-only.)</inlineHelpText>
+        <inlineHelpText>The name of the Course in which the student was tardy or absent (read-only).</inlineHelpText>
         <label>Course Name</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
