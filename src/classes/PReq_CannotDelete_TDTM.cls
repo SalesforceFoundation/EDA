@@ -51,11 +51,11 @@ public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
                                  TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
-      if (!enabledPreventPlanRequirementDeletion) {
-        return new DmlWrapper(); 
-      }
+        if (!enabledPreventPlanRequirementDeletion) {
+            return new DmlWrapper(); 
+        }
                                      
-      Map<ID, Plan_Requirement__c> oldmap = new Map<ID, Plan_Requirement__c>((List<Plan_Requirement__c>)oldlist);
+        Map<ID, Plan_Requirement__c> oldmap = new Map<ID, Plan_Requirement__c>((List<Plan_Requirement__c>)oldlist);
 
       if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
           for (Plan_Requirement__c planReq : [SELECT ID,
