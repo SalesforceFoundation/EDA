@@ -187,8 +187,8 @@
     <fields>
         <fullName>StartDate__c</fullName>
         <externalId>false</externalId>
-        <description>The date this person became affiliated with this organization in this Role.</description>
-        <inlineHelpText>The date this person became affiliated with this organization in this Role.</inlineHelpText>
+        <description>The date this person became affiliated with this organization.</description>
+        <inlineHelpText>The date this person became affiliated with this organization.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
