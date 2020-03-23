@@ -145,6 +145,11 @@
                     <label>Admit</label>
                 </value>
                 <value>
+                    <fullName>Admit with Conditions</fullName>
+                    <default>false</default>
+                    <label>Admit with Conditions</label>
+                </value>
+                <value>
                     <fullName>Deny</fullName>
                     <default>false</default>
                     <label>Deny</label>
