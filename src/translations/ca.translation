@@ -213,6 +213,34 @@
         <name>duplicateWithHEDAField</name>
     </customLabels>
     <customLabels>
+        <label>Accés insuficient per crear camps.</label>
+        <name>errorInsufficientFieldCreateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Accés insuficient per llegir camps.</label>
+        <name>errorInsufficientFieldReadAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Accés insuficient per actualitzar camps.</label>
+        <name>errorInsufficientFieldUpdateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Accés insuficient per crear objectes.</label>
+        <name>errorInsufficientObjectCreateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Accés insuficient per suprimir objectes.</label>
+        <name>errorInsufficientObjectDeleteAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Accés insuficient per editar objectes.</label>
+        <name>errorInsufficientObjectEditAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Accés insuficient per llegir objectes.</label>
+        <name>errorInsufficientObjectReadAccess</name>
+    </customLabels>
+    <customLabels>
         <label>No s&apos;estableix un camp obligatori. Aquest camp podria ser d&apos;aquest registre o d&apos;un registre relacionat.</label>
         <name>exceptionRequiredField</name>
     </customLabels>

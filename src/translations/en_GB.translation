@@ -49,6 +49,34 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
+        <label>Insufficient field create access.</label>
+        <name>errorInsufficientFieldCreateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Insufficient field read access.</label>
+        <name>errorInsufficientFieldReadAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Insufficient field update access.</label>
+        <name>errorInsufficientFieldUpdateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Insufficient field create access.</label>
+        <name>errorInsufficientObjectCreateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Insufficient field delete access.</label>
+        <name>errorInsufficientObjectDeleteAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Insufficient field edit access.</label>
+        <name>errorInsufficientObjectEditAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Insufficient field read access.</label>
+        <name>errorInsufficientObjectReadAccess</name>
+    </customLabels>
+    <customLabels>
         <label>Female</label>
         <name>Female</name>
     </customLabels>

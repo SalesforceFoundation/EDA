@@ -49,6 +49,34 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
+        <label>Acceso de creación de campo insuficiente.</label>
+        <name>errorInsufficientFieldCreateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Acceso de lectura de campo insuficiente.</label>
+        <name>errorInsufficientFieldReadAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Acceso de actualización de campo insuficiente.</label>
+        <name>errorInsufficientFieldUpdateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Acceso de creación de objeto insuficiente.</label>
+        <name>errorInsufficientObjectCreateAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Acceso de eliminación de objeto insuficiente.</label>
+        <name>errorInsufficientObjectDeleteAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Acceso de modificación de objeto insuficiente.</label>
+        <name>errorInsufficientObjectEditAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Acceso de lectura de objeto insuficiente.</label>
+        <name>errorInsufficientObjectReadAccess</name>
+    </customLabels>
+    <customLabels>
         <label>Femenino</label>
         <name>Female</name>
     </customLabels>
