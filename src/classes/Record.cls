@@ -29,9 +29,8 @@ R
 */
 /**
 * @author Salesforce.org
-* @date 2019
-* @group 
-* @group-content ../../ApexDocContent/.htm
+* @date 2020
+* @group Utilities
 * @description 
 */
 public virtual with sharing class Record {
