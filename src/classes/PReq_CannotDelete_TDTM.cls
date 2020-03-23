@@ -35,20 +35,20 @@
 * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
 */
 public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
-  /*******************************************************************************************************
-  * @description Get the setting of preventing Account deletion
-  */
-  private static Boolean enabledPreventPlanRequirementDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Plan_Requirement_Deletion__c;
+    /*******************************************************************************************************
+    * @description Get the setting of preventing Account deletion
+    */
+    private static Boolean enabledPreventPlanRequirementDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Plan_Requirement_Deletion__c;
   
-  /*******************************************************************************************************
-  * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
-  * @param listNew the list of Plan Requirement from trigger new.
-  * @param listOld the list of Plan Requirement from trigger old.
-  * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-  * @param objResult the describe for Plan Requirement
-  * @return dmlWrapper.
-  ********************************************************************************************************/
-  public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+    /*******************************************************************************************************
+    * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
+    * @param listNew the list of Plan Requirement from trigger new.
+    * @param listOld the list of Plan Requirement from trigger old.
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+    * @param objResult the describe for Plan Requirement
+    * @return dmlWrapper.
+    ********************************************************************************************************/
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
                                  TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
       if (!enabledPreventPlanRequirementDeletion) {
