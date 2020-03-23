@@ -42,6 +42,10 @@
             <translation><!-- Admit --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Admit with Conditions</masterLabel>
+            <translation><!-- Admit with Conditions --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Declined Offer</masterLabel>
             <translation><!-- Declined Offer --></translation>
         </picklistValues>
