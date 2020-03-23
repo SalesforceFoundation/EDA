@@ -417,6 +417,62 @@
         <value>The Filter Field value names a duplicate of an EDA field. We will filter according to the value in the EDA field. To proceed with saving this record, either specify a non-duplicate field or acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
     </labels>
     <labels>
+        <fullName>errorInsufficientFieldCreateAccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error insufficient field create access.</shortDescription>
+        <value>Insufficient field create access.</value>
+    </labels>
+    <labels>
+        <fullName>errorInsufficientFieldReadAccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error insufficient field read access.</shortDescription>
+        <value>Insufficient field read access.</value>
+    </labels>
+    <labels>
+        <fullName>errorInsufficientFieldUpdateAccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error insufficient field update access.</shortDescription>
+        <value>Insufficient field update access.</value>
+    </labels>
+    <labels>
+        <fullName>errorInsufficientObjectCreateAccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error insufficient object create access.</shortDescription>
+        <value>Insufficient object create access.</value>
+    </labels>
+    <labels>
+        <fullName>errorInsufficientObjectDeleteAccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error insufficient object delete access.</shortDescription>
+        <value>Insufficient object delete access.</value>
+    </labels>
+    <labels>
+        <fullName>errorInsufficientObjectEditAccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error insufficient object edit access.</shortDescription>
+        <value>Insufficient object edit access.</value>
+    </labels>
+    <labels>
+        <fullName>errorInsufficientObjectReadAccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error insufficient object read access.</shortDescription>
+        <value>Insufficient object read access.</value>
+    </labels>
+    <labels>
         <fullName>exceptionRequiredField</fullName>
         <categories>Error</categories>
         <language>en_US</language>
