@@ -57,25 +57,25 @@ public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
                                      
         Map<ID, Plan_Requirement__c> oldmap = new Map<ID, Plan_Requirement__c>((List<Plan_Requirement__c>)oldlist);
 
-      if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-          for (Plan_Requirement__c planReq : [SELECT ID,
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
+            for (Plan_Requirement__c planReq : [SELECT ID,
                                                (SELECT ID FROM Plan_Requirements__r LIMIT 1)
                                               FROM Plan_Requirement__c
                                               WHERE ID IN :oldlist]) {
-              if(hasChildRecords(planReq)) {
-                  Plan_Requirement__c planReqInContext = oldmap.get(planReq.ID);
-                  planReqInContext.addError(Label.CannotDelete);
-              }
-          }
+                if(hasChildRecords(planReq)) {
+                    Plan_Requirement__c planReqInContext = oldmap.get(planReq.ID);
+                    planReqInContext.addError(Label.CannotDelete);
+                }
+            }
+        }
+        return new DmlWrapper();
       }
-      return new DmlWrapper();
-  }
   
-   /*******************************************************************************************************
-   * @description Evaluates whether the Plan Requirement has any child related records.
-   * @param pr is the current Plan Requirement record.
-   * @return Boolean.
-   ********************************************************************************************************/
+    /*******************************************************************************************************
+    * @description Evaluates whether the Plan Requirement has any child related records.
+    * @param pr is the current Plan Requirement record.
+    * @return Boolean.
+    ********************************************************************************************************/
     private static Boolean hasChildRecords(Plan_Requirement__c pr) {
         return (pr.Plan_Requirements__r.size() > 0);
     }
