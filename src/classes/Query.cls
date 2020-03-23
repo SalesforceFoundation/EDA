@@ -34,6 +34,7 @@
 * @description Dynamic query class
 */
 public virtual inherited sharing class Query {
+
     @TestVisible
     private Object tmp0, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9,
         tmp10, tmp11, tmp12, tmp13, tmp14, tmp15, tmp16, tmp17, tmp18, tmp19;
@@ -48,7 +49,6 @@ public virtual inherited sharing class Query {
 
     private Schema.SObjectType objectType;
 
-    @TestVisible
     @TestVisible
     private List<Condition> conditions;
 
