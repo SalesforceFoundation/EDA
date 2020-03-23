@@ -34,7 +34,7 @@
 * @description Test class for DML class.
 */
 @isTest
-private with sharing class DML_Test {
+private with sharing class DML_TEST {
 
     @ isTest
     private static void testDelete() {

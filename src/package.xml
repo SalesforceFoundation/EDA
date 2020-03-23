@@ -79,6 +79,10 @@
         <members>COS_StartEndTime_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
+        <members>CrudFlsService</members>
+        <members>CrudFlsService_TEST</members>
+        <members>DML</members>
+        <members>DML_TEST</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
@@ -102,11 +106,14 @@
         <members>PREQ_PreventPPlanParent_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
+        <members>Query</members>
+        <members>Query_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>Record</members>
         <members>STG_Base_CTRL</members>
         <members>STG_Base_CTRL_TEST</members>
         <members>STG_CourseConnections</members>
@@ -616,6 +623,13 @@
         <members>defaultNamingConnector</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
+        <members>errorInsufficientFieldCreateAccess</members>
+        <members>errorInsufficientFieldReadAccess</members>
+        <members>errorInsufficientFieldUpdateAccess</members>
+        <members>errorInsufficientObjectCreateAccess</members>
+        <members>errorInsufficientObjectDeleteAccess</members>
+        <members>errorInsufficientObjectEditAccess</members>
+        <members>errorInsufficientObjectReadAccess</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
         <members>fieldWithHEDANamespace</members>
