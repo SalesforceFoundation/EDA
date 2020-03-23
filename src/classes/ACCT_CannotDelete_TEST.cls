@@ -272,12 +272,8 @@ public with sharing class ACCT_CannotDelete_TEST {
         }; 
         insert terms; 
         
-        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>(); 
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(courses[0].Id, terms[0].Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(courses[1].Id, terms[1].Id); 
-        courseOfferings.add(courseOffering1);
-        courseOfferings.add(courseOffering2);
-        insert courseOfferings; 
         
         List<Course_Enrollment__c> courseEnrollments = new List<Course_Enrollment__c>(); 
         Course_Enrollment__c courseConnection1 = UTIL_UnitTestData_TEST.getCourseConnection(newContacts[0].Id, courseOffering1.Id); 
