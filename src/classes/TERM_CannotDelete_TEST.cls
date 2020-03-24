@@ -283,8 +283,8 @@ private class TERM_CannotDelete_TEST {
         System.assertEquals(0, termsAfterDelete.size());
     }
 
-    /*********************************************************************************************************
-    * @description Tests the deletion of Term with Term as child record
+    /***********************************************************************************************************
+    * @description Tests the deletion of Term with Term as child record when "Prevent Term Deletion" is enabled
     */
     @isTest
     static void testDeleteTermsWithTerms() {
