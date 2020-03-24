@@ -4441,8 +4441,8 @@
     <fields>
         <fullName>Naming_Exclusions__c</fullName>
         <externalId>false</externalId>
-        <description>Selecting the Household Name option excludes this Contact from the Household Name. NOTE: the Household Formal Greeting and Household Informal Greeting options are not currently tied to existing product functionality.</description>
-        <inlineHelpText>Selecting the Household Name option excludes this Contact from the Household Name. NOTE: the Household Formal Greeting and Household Informal Greeting options are not currently tied to existing product functionality.</inlineHelpText>
+        <description>Selecting the Household Name option excludes this Contact from the Household Name. NOTE: The Household Formal Greeting and Household Informal Greeting options are not currently tied to existing product functionality.</description>
+        <inlineHelpText>Selecting the Household Name option excludes this Contact from the Household Name. NOTE: The Household Formal Greeting and Household Informal Greeting options are not currently tied to existing product functionality.</inlineHelpText>
         <label>Naming Exclusions</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4615,8 +4615,8 @@
         <fullName>Race__c</fullName>
         <externalId>false</externalId>
         <label>Race</label>
-        <description>Select the race(s) this person uses to describe themselves.</description>
-        <inlineHelpText>Select the race(s) this person uses to describe themselves.</inlineHelpText>
+        <description>Select the race(s) this person uses to describe themself.</description>
+        <inlineHelpText>Select the race(s) this person uses to describe themself.</inlineHelpText>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>MultiselectPicklist</type>
@@ -4814,9 +4814,9 @@
     <fields>
         <fullName>is_Address_Override__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>When selected, this Contact's address will not be synced with the Household Default or Seasonal Address. Use this to maintain a separate Mailing Address for this particular Contact. (Applies to Household Contacts only.)</description>
+        <description>When selected, this Contact's address won't be synced with the Household Default or Seasonal Address. Use this to maintain a separate Mailing Address for this particular Contact. (Applies to Household Contacts only.)</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, this Contact's address will not be synced with the Household Default or Seasonal Address. Use this to maintain a separate Mailing Address for this particular Contact. (Applies to Household Contacts only.)</inlineHelpText>
+        <inlineHelpText>When selected, this Contact's address won't be synced with the Household Default or Seasonal Address. Use this to maintain a separate Mailing Address for this particular Contact. (Applies to Household Contacts only.)</inlineHelpText>
         <label>Do Not Automatically Update</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
