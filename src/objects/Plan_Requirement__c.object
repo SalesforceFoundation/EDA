@@ -54,7 +54,7 @@
         <label>HEDA Plan Requirement Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>This object will be the various course requirements that would need to be met to achieve the particular Program Plan</description>
+    <description>The various course requirements for completing a Program Plan.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
