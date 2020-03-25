@@ -118,9 +118,9 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <description>Select "Current" if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise select "Archived."</description>
+        <description>Select "Current" if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise, select "Archived."</description>
         <externalId>false</externalId>
-        <inlineHelpText>Select "Current" if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise select "Archived."</inlineHelpText>
+        <inlineHelpText>Select "Current" if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise, select "Archived."</inlineHelpText>
         <label>Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
