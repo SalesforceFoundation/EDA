@@ -17,9 +17,9 @@
     </fields>
     <fields>
         <fullName>Accounts_Addresses_Enabled__c</fullName>
-        <description>Record Types of those Accounts that should have multi-addresses enabled.</description>
+        <description>The record types of Accounts that should have multi-addresses enabled.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Record Types of those Accounts that should have multi-addresses enabled.</inlineHelpText>
+        <inlineHelpText>The record types of Accounts that should have multi-addresses enabled.</inlineHelpText>
         <label>Multi-Address Accounts</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -235,9 +235,9 @@
     <fields>
         <fullName>Disable_Preferred_Email_Enforcement__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>When selected, the requirements for the Preferred Email field on Contact are not enforced.</description>
+        <description>Disable the enforcement of the Preferred Email field for Contact.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, the requirements for the Preferred Email field on Contact are not enforced.</inlineHelpText>
+        <inlineHelpText>Select to disable the enforcement of the Preferred Email field for Contacts.</inlineHelpText>
         <label>Disable Preferred Email Enforcement</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -247,7 +247,7 @@
         <defaultValue>false</defaultValue>
         <description>Disable the enforcement of the Preferred Phone field for Contact.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Select this box to disable the enforcement of the Preferred Phone field for Contacts.</inlineHelpText>
+        <inlineHelpText>Select to disable the enforcement of the Preferred Phone field for Contacts.</inlineHelpText>
         <label>Disable Preferred Phone Enforcement</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -275,9 +275,9 @@
     <fields>
         <fullName>Enable_New_Preferred_Phone_Sync__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Turns on the Preferred Phone functionality that was released in EDA 1.82. This functionality syncs the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</description>
+        <description>Turns on the Preferred Phone functionality that was released in EDA 1.82. This functionality syncs the Preferred Phone field to the Contact&apos;s standard Phone field and validates that the value in Preferred Phone exists and has a value.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</inlineHelpText>
+        <inlineHelpText>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validates that the value in Preferred Phone exists and has a value.</inlineHelpText>
         <label>Enable New Preferred Phone Sync</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -341,8 +341,8 @@
     <fields>
         <fullName>Household_Other_Name_Setting__c</fullName>
         <externalId>false</externalId>
-        <description>Stores other info about the Household Account naming format.</description>
-        <inlineHelpText>Stores other info about the Household Account naming format.</inlineHelpText>
+        <description>Stores other information about the Household Account naming format.</description>
+        <inlineHelpText>Stores other information about the Household Account naming format.</inlineHelpText>
         <label>Household Other Name Setting</label>
         <length>255</length>
         <required>false</required>
@@ -352,9 +352,9 @@
     </fields>
     <fields>
         <fullName>Preferred_Phone_Selection__c</fullName>
-        <description>To select a desired Preferred Phone when Phone clean up Batch job runs</description>
+        <description>Select a desired Preferred Phone when the Data Cleanup batch job runs.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Select a desired Preferred Phone when the Batch Job runs.</inlineHelpText>
+        <inlineHelpText>Select a desired Preferred Phone when the Data Cleanup batch job runs.</inlineHelpText>
         <label>Preferred Phone Selection</label>
         <length>255</length>
         <required>false</required>
@@ -445,9 +445,9 @@
     </fields>
     <fields>
         <fullName>Reciprocal_Method__c</fullName>
-        <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
+        <description>Determines the method used to generate the reciprocal relationship. Use List Setting to use custom settings by gender. Use Value Inversion to invert the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</inlineHelpText>
+        <inlineHelpText>Determines the method used to generate the reciprocal relationship. Use List Setting to use custom settings by gender. Use Value Inversion to invert the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</inlineHelpText>
         <label>Reciprocal Method</label>
         <length>255</length>
         <required>false</required>
@@ -457,9 +457,9 @@
     </fields>
     <fields>
         <fullName>Relationship_Name_Field_Id__c</fullName>
-        <description>This field is currently not used in EDA.</description>
+        <description>This field is currently not used.</description>
         <externalId>false</externalId>
-        <inlineHelpText>This field is currently not used in EDA.</inlineHelpText>
+        <inlineHelpText>This field is currently not used.</inlineHelpText>
         <label>Relationship Name Field Id</label>
         <length>25</length>
         <required>false</required>
@@ -469,9 +469,9 @@
     </fields>
     <fields>
         <fullName>Relationship_Name_Id_Field_Id__c</fullName>
-        <description>This field is currently not used in EDA.</description>
+        <description>This field is currently not used.</description>
         <externalId>false</externalId>
-        <inlineHelpText>This field is currently not used in EDA.</inlineHelpText>
+        <inlineHelpText>This field is currently not used.</inlineHelpText>
         <label>Relationship Name Id Field Id</label>
         <length>25</length>
         <required>false</required>
@@ -482,9 +482,9 @@
     <fields>
         <fullName>Simple_Address_Change_Treated_as_Update__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>When enabled, changes to single Contact or Account address fields are treated as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</description>
+        <description>When enabled, changes to single address fields on Contact or Account are treated as updates to the existing address (for example, no new Address object is created). White space and case changes are treated as updates.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When enabled, changes to single Contact or Account address fields are treated as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</inlineHelpText>
+        <inlineHelpText>When enabled, changes to single address fields on Contact or Account are treated as updates to the existing address (for example, no new Address object is created). White space and case changes are treated as updates.</inlineHelpText>
         <label>Simple Address Change Treated as Update</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -513,9 +513,9 @@
     <fields>
         <fullName>Validate_Program_Plan_for_Nested_PR__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</description>
+        <description>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, an error message prevents saving until only one is selected.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</inlineHelpText>
+        <inlineHelpText>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message prevents saving until only one is selected.</inlineHelpText>
         <label>Validate Program Plan for Nested PR</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
