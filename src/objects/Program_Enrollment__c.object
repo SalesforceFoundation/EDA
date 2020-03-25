@@ -56,7 +56,7 @@
         <label>HEDA Program Enrollment Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Contains details about the relationship a student Contact has with a Department or School (the degree-granting Account type for the educational institution).</description>
+    <description>A student Contact's enrollment in an academic program offered by a Department or School (the degree-granting Account type for the educational institution).</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -165,8 +165,8 @@
     <fields>
         <fullName>Credits_Attempted__c</fullName>
         <externalId>false</externalId>
-        <description>The number of credits the student has tried to complete to date. This includes credits in progress as well as failed courses for which no credit was received.</description>
-        <inlineHelpText>The number of credits the student has tried to complete to date. This includes credits in progress as well as failed courses for which no credit was received.</inlineHelpText>
+        <description>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</description>
+        <inlineHelpText>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</inlineHelpText>
         <label>Credits Attempted</label>
         <precision>6</precision>
         <required>false</required>
