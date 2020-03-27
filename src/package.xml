@@ -120,7 +120,6 @@
         <members>TDTM_Config</members>
         <members>TDTM_DMLgt200_TEST</members>
         <members>TDTM_DefaultConfig</members>
-        <members>TDTM_ExcludedProfiles</members>
         <members>TDTM_ExcludedUserNames</members>
         <members>TDTM_Filter</members>
         <members>TDTM_Filter_TEST</members>
@@ -557,7 +556,6 @@
         <members>Trigger_Handler__c.Load_Order__c</members>
         <members>Trigger_Handler__c.Object__c</members>
         <members>Trigger_Handler__c.Owned_by_Namespace__c</members>
-        <members>Trigger_Handler__c.Profiles_to_Exclude__c</members>
         <members>Trigger_Handler__c.Trigger_Action__c</members>
         <members>Trigger_Handler__c.User_Managed__c</members>
         <members>Trigger_Handler__c.Usernames_to_Exclude__c</members>
