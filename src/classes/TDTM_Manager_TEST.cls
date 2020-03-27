@@ -471,19 +471,39 @@ private class TDTM_Manager_TEST {
         // We are running as the testUserDisabled here as the Profile is cached in TDTM_config and if System.runAs
         // is run after setting TDTM config then System Administrator Profile is cached.
         System.runAs(testUserDisabled) {
+            
+            // Make sure 'standard User' is current user profile
+            Id currentUserProfileId = UserInfo.getProfileId();
+            String currentUserProfile = [SELECT Id, Name FROM Profile WHERE  Id = :currentUserProfileId].Name;
+            System.assertEquals('Standard User', currentUserProfile);
+           
             UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
             
             List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
-
-            //  Add 'Standard User Profile' to profiles to exclude
-            for(TDTM_Global_API.TdtmToken token : tokens) {
-                if(token.className == 'TERM_CannotDelete_TDTM') {
-                    token.profilesToExclude = 'standard User';
+            TDTM_Global_API.TdtmToken tokenFound;
+            
+            //  Add 'Standard User' Profile to profiles to exclude
+            for (TDTM_Global_API.TdtmToken token : tokens) {
+                if (token.className == 'TERM_CannotDelete_TDTM') {
+                    tokenFound = token;
                 }
             }
+            // Make sure 'TERM_CannotDelete_TDTM' exists
+            System.assertNotEquals(NULL, tokenFound);
 
+            tokenFound.profilestoExclude = 'standard User';
             TDTM_Global_API.setTdtmConfig(tokens);
-
+            
+            // Make sure profilesToExclude method works as expected
+            Set<String> excludedProfiles = TDTM_ExcludedProfiles.profilesToExclude(tokenFound);
+            List<String> excludedProfilesList = new List<String>(excludedProfiles);
+            String excludedProfilesToLower = excludedProfilesList[0];
+            System.assertEquals('standard user', excludedProfilesToLower);
+            
+            // Make sure getcurrentUserProfileLowerCase profile works as expected
+            String cuurentUserProfileInLower = TDTM_Config.getcurrentUserProfileLowerCase(currentUserProfileId);
+            System.assertEquals('standard user', excludedProfilesToLower);
+            
             // Insert Account
             List<Account> academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID());	
             insert academicAccount;
