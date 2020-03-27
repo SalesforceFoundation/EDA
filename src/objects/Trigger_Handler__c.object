@@ -149,17 +149,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Profiles_to_Exclude__c</fullName>
-        <description>Semicolon separated list of Salesforce user profiles that this trigger will NOT run for. Leave blank to run for all users.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Semicolon separated list of Salesforce user profiles that this trigger will NOT run for. Leave blank to run for all users.</inlineHelpText>
-        <label>Profiles to Exclude</label>
-        <length>131072</length>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
         <fullName>Trigger_Action__c</fullName>
         <description>Trigger Action in which this module should fire</description>
         <externalId>false</externalId>
