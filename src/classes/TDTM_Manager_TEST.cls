@@ -461,7 +461,8 @@ private class TDTM_Manager_TEST {
         system.assertNotEquals(null, assertCon3.AccountId);
 
     }
-
+    
+     /*
     // Test to make sure trigger handler is skipped if Profiles To Exclude has a profile name
     @isTest
     public static void excludeProfileDeleteTest() {
@@ -574,7 +575,7 @@ private class TDTM_Manager_TEST {
         System.assertEquals(1, afterDelete2.size());
     }
 
-    /*
+   
     //Test to make sure trigger handler is skipped if Profiles to exclude works for translation
     @isTest
     public static void excludeProfileSpanish() {

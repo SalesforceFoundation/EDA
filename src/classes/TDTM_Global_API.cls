@@ -184,9 +184,9 @@ global class TDTM_Global_API {
 
         /********************************************************************************************************
         * @description Semicolon separated list of Salesforce Profiles that this trigger will NOT run for.
-        *
-        *********************************************************************************************************/
         global String profilesToExclude { get; set; }
+        *********************************************************************************************************/
+       
 
         /********************************************************************************************************
         * @description DEPRECATED Constructor. Simpler version accepting Integer for Load Order. It assumes default values for 
@@ -298,7 +298,7 @@ global class TDTM_Global_API {
         * @param ownedByNamespace The token's owned-by-namespace flag.
         * @param usernamesToExclude The token's usernames-to-excluded field.
         * @param profilesToExclude The token's profiles-to-excluded field.
-        *********************************************************************************************************/
+        
         global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active,
                          Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace,
                          String usernamesToExclude, String profilesToExclude) {
@@ -316,6 +316,7 @@ global class TDTM_Global_API {
             this.usernamesToExclude = usernamesToExclude;
             this.profilesToExclude = profilesToExclude;
         }
+        *********************************************************************************************************/
 
         /********************************************************************************************************
         * @description Compares a Set of TDTM Tokens and returns the matching item if found. Returns NULL if not match is found.
@@ -355,7 +356,7 @@ global class TDTM_Global_API {
                 && this.filterValue == t.filterValue 
                 && this.ownedByNamespace == t.ownedByNamespace
                 && this.usernamesToExclude == t.usernamesToExclude
-                && this.profilesToExclude == t.profilesToExclude
+                //&& this.profilesToExclude == t.profilesToExclude
             ) {
                 return true;
             }
