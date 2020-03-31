@@ -82,9 +82,9 @@ public class TDTM_Filter {
         try {
             filterField = tdtmToken.filterField;
             if(filterField != null) {
-                if(filterField.contains('.')) { //If the field to filter on is made of relationships
+                if(filterField.contains('.')) { 
                     filterByRelationship();
-                } else { //No need to break down the field condition
+                } else { 
                     if(filterField.endsWith('__c')) {
                         fieldName = handleNamespace(filterField);
                     } else {
