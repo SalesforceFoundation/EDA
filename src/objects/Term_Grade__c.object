@@ -135,7 +135,7 @@
     </fields>
     <fields>
         <fullName>Numerical_Grade__c</fullName>
-        <description>The numerical grade the student earned for this course, which can be based on any non-percentage number.</description>
+        <description>If your school uses numeric grades, enter the numeric grade the student earned.</description>
         <externalId>false</externalId>
         <inlineHelpText>If your school uses numeric grades, enter the numeric grade the student earned.</inlineHelpText>
         <label>Numerical Grade</label>
@@ -148,7 +148,7 @@
     </fields>
     <fields>
         <fullName>Percent_Grade__c</fullName>
-        <description>The percentage grade the student earned for this course.</description>
+        <description>If your school grades on a percentage basis, enter the percentage grade the student earned.</description>
         <externalId>false</externalId>
         <inlineHelpText>If your school grades on a percentage basis, enter the percentage grade the student earned.</inlineHelpText>
         <label>Percent Grade</label>
@@ -196,7 +196,7 @@
     </fields>
     <fields>
         <fullName>Term_Grade_Type__c</fullName>
-        <description>The type of term or grading period for which this grade is being recorded.</description>
+        <description>The type of grading period that this grade is for, for example, Mid-Term Grade, Final Grade, Exam Grade, Grading Period.</description>
         <externalId>false</externalId>
         <inlineHelpText>The type of grading period that this grade is for, for example, Mid-Term Grade, Final Grade, Exam Grade, Grading Period.</inlineHelpText>
         <label>Term Grade Type</label>
