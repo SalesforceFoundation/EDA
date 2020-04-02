@@ -123,10 +123,7 @@
                         <ui:outputText value="{!$Label.c.stgPopulateAffiliationOnStudentCourseConnectionTitle}" />
                     </div>
                 </div>
-                <br></br>
                 <div class="slds-col">
-                    {!$Label.c.stgPopulateAffiliationOnStudentCourseConnectionTitle2}
-                    <br></br>
                     <div class="slds-col">
                     	<ui:outputText value="{!$Label.c.stgHelpPopulateAffiliationOnStudentCourseConnection}" class="slds-text-body--small" />
                 	</div>

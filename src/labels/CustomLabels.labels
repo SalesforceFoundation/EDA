@@ -1429,7 +1429,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpPopulateAffiliationOnStudentCourseConnection</shortDescription>
-        <value>If selected, and the Course Connection has a value in the Program Enrollment lookup field, copy the Program Enrollment&apos;s Affiliation to the Course Connection&apos;s Affiiliation lookup field. If you&apos;re enabling this feature for the first time in an existing org, we highly recommend that you run the Affiliations Backfill.</value>
+        <value>If selected, populate this field with the Affiliation ID associated with the Program Enrollment ID on the Course Connection record. If no Program Enrollment ID is chosen, Affiliation is left blank. After enabling this feature for the first time in an existing org, we highly recommend that you run the Affiliations Backfill.</value>
     </labels>
     <labels>
         <fullName>stgHelpRelAutoCreatedDup</fullName>
@@ -1533,15 +1533,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgPopulateAffiliationOnStudentCourseConnectionTitle</shortDescription>
-        <value>Populate Affiliation FIELD on Student Course Connections from Program Enrollment</value>
-    </labels>
-    <labels>
-        <fullName>stgPopulateAffiliationOnStudentCourseConnectionTitle2</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgPopulateAffiliationOnStudentCourseConnectionTitle2</shortDescription>
-        <value>Copy Affiliation from Program Enrollment on Course Connections</value>
+        <value>Auto-populate the Affiliation field on Student Course Connections</value>
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
