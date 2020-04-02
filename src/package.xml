@@ -755,7 +755,6 @@
         <members>stgOptSelect</members>
         <members>stgOptUser</members>
         <members>stgPopulateAffiliationOnStudentCourseConnectionTitle</members>
-        <members>stgPopulateAffiliationOnStudentCourseConnectionTitle2</members>
         <members>stgPreferredEmailBatchEmailBody</members>
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>

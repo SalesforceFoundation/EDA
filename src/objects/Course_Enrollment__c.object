@@ -71,7 +71,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Academic Program that the Contact is associated with.</description>
         <externalId>false</externalId>
-        <inlineHelpText>For students, populated by this Course Connectiont&apos;s Program Enrollment ID or left blank if no ID exists. For faculty, populated by the Affiliation that links the Contact to the Course Offeringt&apos;s Account. If no Affiliation exists, one&apos;s created/added here.</inlineHelpText>
+        <inlineHelpText>For students, populated by this Course Connection&apos;s Program Enrollment ID or left blank if no ID exists. For faculty, populated by the Affiliation that links the Contact to the Course Offering&apos;s Account. If no Affiliation exists, one&apos;s created/added here.</inlineHelpText>
         <label>Contact&apos;s Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Course Connections</relationshipLabel>
@@ -85,7 +85,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</description>
         <externalId>false</externalId>
-        <inlineHelpText>For students, populated by this Course Connection&apos;s Program Enrollment ID or left blank if no ID exists.For faculty, populated by the Affiliation that links the Contact to the Course Offering&apos;s Account. If no Affiliation exists, one&apos;s created/added here.</inlineHelpText>
+        <inlineHelpText>For students, populated by this Course Connection&apos;s Program Enrollment ID or left blank if no ID exists. For faculty, populated by the Affiliation that links the Contact to the Course Offering&apos;s Account. If no Affiliation exists, one&apos;s created/added here.</inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
         <relationshipLabel>Course Connection</relationshipLabel>
