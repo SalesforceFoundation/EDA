@@ -203,16 +203,16 @@
     <fields>
         <fullName>User_Managed__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>When selected, EDA will no longer push updates to this Trigger Handler. Select this option if you've made changes that you don't want EDA to overwrite.</description>
+        <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you've made changes that you don't want us to overwrite.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, EDA will no longer push updates to this Trigger Handler. Select this option if you've made changes that you don't want EDA to overwrite.</inlineHelpText>
+        <inlineHelpText>When selected, we no longer push updates to this Trigger Handler. Select this option if you've made changes that you don't want us to overwrite.</inlineHelpText>
         <label>User Managed</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Usernames_to_Exclude__c</fullName>
-        <description>Semicolon separated list of Salesforce usernames that this trigger will NOT run for.</description>
+        <description>Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users.</description>
         <externalId>false</externalId>
         <inlineHelpText>Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users.</inlineHelpText>
         <label>Usernames to Exclude</label>
