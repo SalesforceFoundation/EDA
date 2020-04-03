@@ -1533,7 +1533,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgPopulateAffiliationOnStudentCourseConnectionTitle</shortDescription>
-        <value>Auto-populate the Affiliation field on Student Course Connections</value>
+        <value>Autopopulate the Affiliation field on Student Course Connections</value>
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
