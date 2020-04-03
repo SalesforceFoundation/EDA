@@ -79,14 +79,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @return dmlWrapper.
     */
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
-                                   TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult)
-    {
+                                   TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         List<Contact> newContacts = (List<Contact>)newlist;
         List<Contact> oldContacts = (List<Contact>)oldlist;
         this.triggerAction = triggerAction;
         DmlWrapper dmlWrapper = new DmlWrapper();
         Map<Id,Integer> accountIdNumOfCons = new Map<Id, Integer>();
-
+        
         //Requery Contacts to include Account information
         if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             if (newContacts.size() > 0) {
@@ -430,7 +429,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     private void handleUpdateProcessing(HandleUpdateWrapperLogic updateWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
-
+        Map<Id, sObject> idToSObjectTobeUpdated = new Map<Id, sObject>();
+        List<sObject> duplicateOccurence = new List<sObject>();
+		
         //Creates new Account
         if (contactsNeedAccounts.size() > 0) {
             UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
@@ -449,27 +450,43 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 updateParentAcc(updateWrapper.accountIdsToUpdate, dmlWrapper);
             }
 
-            //Updates Account Owner to match Contact Owner change
-            if (updateWrapper.contactIdContactOwnerChange.size() > 0) {
-                updateOwners(updateWrapper.contactIdContactOwnerChange, dmlWrapper);
-            }
-
             //Inject Adv logic to handle moving opportunity
             if (updateWrapper.contactIdAccountIdNewOppsToMove.size() > 0 && Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
                 Advancement_Info.getApiHEDA().moveOppsToContactAccount(updateWrapper.contactIdAccountIdNewOppsToMove, updateWrapper.contactIdAccountIdOldOppsToMove);
             }
+            
+            //Updates Account Owner to match Contact Owner change
+            if (updateWrapper.contactIdContactOwnerChange.size() > 0) {
+                idToSObjectTobeUpdated = updateOwners(updateWrapper.contactIdContactOwnerChange, dmlWrapper, idToSObjectTobeUpdated);
+            }
 
             //Updates Admin Account Name
             if (updateWrapper.contactsChangedLastName.size() > 0) {
-                dmlWrapper.objectsToUpdate.addAll((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(updateWrapper.contactsChangedLastName));
+                //dmlWrapper.objectsToUpdate.addAll((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(updateWrapper.contactsChangedLastName));
+                
+                for (SObject each: ((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(updateWrapper.contactsChangedLastName))) {
+                    if (idToSObjectTobeUpdated.keySet().contains(each.Id)) {
+                        duplicateOccurence.add(each);
+                        duplicateOccurence.add(idToSObjectTobeUpdated.get(each.Id));
+                    }
+                    else {
+                        idToSObjectTobeUpdated.put(each.Id, each);
+                    }
+                }
+                if (duplicateOccurence.size() > 0) {
+                    List<sObject> nonDuplicateList = MergeRecordsService.mergeDuplicateRecords(duplicateOccurence);
+                    idToSObjectTobeUpdated.putAll(nonDuplicateList);
+                }
             }
 
+            dmlWrapper.objectsToUpdate.addAll(idToSObjectTobeUpdated.values());
+            
             TDTM_TriggerHandler.processDML(dmlWrapper, true);
             updateRecursionFlag();
 
         }
     }
-
+    
     /*******************************************************************************************************
     * @description Processes after delete logic.
     * @param oldContacts is a list of Contacts from trigger old.
@@ -779,12 +796,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param contactOwnerChange a map of Contact Id to Contact, for the contacts to consider.
     * @param dmlWrapper to hold the Contacts that need update.
     */
-    private void updateOwners(Map<Id,Contact> contactOwnerChange, DmlWrapper dmlWrapper) {
+    private Map<Id, sObject> updateOwners(Map<Id,Contact> contactOwnerChange, DmlWrapper dmlWrapper, Map<Id, SObject> idToSObjectTobeUpdated) {
         List<Account> accountsToUpdate = new List<Account>();
         Set<Id> contactsAccountId = new Set<Id>();
 
         if (contactOwnerChange.size() == 0) {
-            return;
+            return NULL;
         }
 
         for (Contact con : contactOwnerChange.values()) {
@@ -804,8 +821,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
 
             if (accHasContact && accHasPrimaryContact &&
-                accRecordTypeIsNotNull && accRecordTypeHHOrAdmin)
-            {
+                accRecordTypeIsNotNull && accRecordTypeHHOrAdmin) {
                 Contact c = contactOwnerChange.get(acc.Primary_Contact__c);
                 Id ownerIdContact = (c != NULL ? c.OwnerId : NULL);
 				Boolean accOwnerHasChanged = (acc.OwnerId != ownerIdContact);
@@ -819,8 +835,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         if (accountsToUpdate.size() > 0) {
-            dmlWrapper.objectsToUpdate.addAll((List<SObject>)accountsToUpdate);
+            idToSObjectTobeUpdated.putAll((List<SObject>)accountsToUpdate);
         }
+
+        return idToSObjectTobeUpdated;
     }
 
     /*******************************************************************************************************
