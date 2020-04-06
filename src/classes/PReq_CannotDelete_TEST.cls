@@ -36,33 +36,111 @@
 */
 @isTest
 public with sharing class PReq_CannotDelete_TEST {
-
+    /*********************************************************************************************************
+    * @description Retrieves the Business Account record type Id. 
+    */
+    public static String bizAccRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID(); 
+    
+    /*********************************************************************************************************
+    * @description Test method to test if Prevent_Plan_Requirement_Deletion__c is enabled in Hierarchy Settings, 
+    * and Plan Requirement has a Plan Requirement record associated to it, then it cannot be deleted.
+    */
     @isTest
     public static void pReqCannotDeleteWithPlanRequirement() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                         (Account_Processor__c = bizAccRecordTypeId,
+                                                          Prevent_Plan_Requirement_Deletion__c = TRUE));
+        
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
         insert pPlans;
+        
+        List<Plan_Requirement__c> parentPReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
+        insert parentPReqs; 
+        
+        List<Plan_Requirement__c> childrenPReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
+        childrenPReqs[0].Plan_Requirement__c = parentPReqs[0].Id;
+        childrenPReqs[1].Plan_Requirement__c = parentPReqs[1].Id;
+        insert childrenPReqs; 
 
-        List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
-        for (Plan_Requirement__c pr : prs) {
-            pr.Program_Plan__c = pPlans[0].Id;
-        }
-        insert prs;
-
-        Test.startTest();
-        Plan_Requirement__c newPr = UTIL_UnitTestData_TEST.getPlanRequirement();
-        newPr.Program_Plan__c = pPlans[0].Id;
-        newPr.Plan_Requirement__c = prs[0].Id;
-        insert newPr;
-        List<Plan_Requirement__c> prsToDelete = new List<Plan_Requirement__c>();
-        prsToDelete.add(prs[0]);
-        Database.DeleteResult[] results = Database.delete(prsToDelete, false);
+        Test.startTest(); 
+        Database.DeleteResult[] results = Database.delete(parentPReqs, false);
         Test.stopTest();
 
         //Verify Plan Requirement was not successfully deleted
-        List<Plan_Requirement__c> assertPReqs = [select ID from Plan_Requirement__c];
-        System.assertEquals(3, assertPReqs.size());
-
+        List<Plan_Requirement__c> returnParentPReqs = [SELECT ID
+                                                       FROM Plan_Requirement__c
+                                                       WHERE ID IN :parentPReqs];
+        System.assertEquals(2, returnParentPReqs.size());
         System.assertEquals(false, results[0].success);
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
+    }
+    
+    /*********************************************************************************************************
+    * @description Test method to test if Prevent_Plan_Requirement_Deletion__c is enabled in Hierarchy Settings, 
+    * and if some Plan Requirement records do not have Plan Requirement child records, then the Plan Requirement
+    * record can be deleted. 
+    */
+    @isTest
+    public static void pReqCanDeleteSomePlanRequirement() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                         (Account_Processor__c = bizAccRecordTypeId,
+                                                          Prevent_Plan_Requirement_Deletion__c = TRUE));
+        
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
+        insert pPlans;
+        
+        List<Plan_Requirement__c> parentPReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
+        insert parentPReqs; 
+       
+        List<Plan_Requirement__c> childrenPReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
+        childrenPReqs[0].Plan_Requirement__c = parentPReqs[0].Id;
+        insert childrenPReqs; 
+
+        Test.startTest(); 
+        Database.DeleteResult[] results = Database.delete(parentPReqs, false);
+        Test.stopTest();
+
+        //Verify Plan Requirement was not successfully deleted
+        List<Plan_Requirement__c> returnParentPReqs = [SELECT ID
+                                                       FROM Plan_Requirement__c
+                                                       WHERE ID IN :parentPReqs];
+        
+        System.assertEquals(1, returnParentPReqs.size());
+        System.assertEquals(true, results[1].success);
+        System.assertEquals(false, results[0].success);
+        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
+    }
+    
+    /*********************************************************************************************************
+    * @description Test method to test if Prevent_Plan_Requirement_Deletion__c is disabled in Hierarchy Settings, 
+    * and Plan Requirement has a Plan Requirement record associated to it, then it can be deleted.
+    */
+    @isTest
+    public static void pReqCanDeleteWithPlanRequirement() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                         (Account_Processor__c = bizAccRecordTypeId,
+                                                          Prevent_Plan_Requirement_Deletion__c = FALSE));
+        
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
+        insert pPlans;
+        
+        List<Plan_Requirement__c> parentPReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
+        insert parentPReqs; 
+        
+        List<Plan_Requirement__c> childrenPReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
+        childrenPReqs[0].Plan_Requirement__c = parentPReqs[0].Id;
+        childrenPReqs[1].Plan_Requirement__c = parentPReqs[1].Id;
+        insert childrenPReqs; 
+
+        Test.startTest(); 
+        Database.DeleteResult[] results = Database.delete(parentPReqs, false);
+        Test.stopTest();
+
+        //Verify Plan Requirement was not successfully deleted
+        List<Plan_Requirement__c> returnParentPReqs = [SELECT ID
+                                                       FROM Plan_Requirement__c
+                                                       WHERE ID IN :parentPReqs];
+        System.assertEquals(0, returnParentPReqs.size());
+        System.assertEquals(true, results[0].success);
     }
 }
