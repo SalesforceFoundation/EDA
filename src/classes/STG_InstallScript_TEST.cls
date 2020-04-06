@@ -65,7 +65,8 @@ public with sharing class STG_InstallScript_TEST {
         // Verify defaults are set on install
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
         System.assertEquals(Label.stgFluent, orgSettings.Default_Contact_Language_Fluency__c);
-        
+        System.assertEquals(true, orgSettings.Prevent_Plan_Requirement_Deletion__c,
+            'Expected Prevent Plan Requirement Deletion Hierarchy custom setting is enabled on install.');
         System.assertEquals(true, orgSettings.Enable_New_Preferred_Phone_Sync__c,
             'Expected the new Preferred Phone sync to be enabled on install.');
         System.assertEquals(false, orgSettings.Disable_Preferred_Phone_Enforcement__c,
