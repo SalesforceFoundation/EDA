@@ -4,12 +4,19 @@ Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
+*** Keywords ***
+Test Checkbox
+    [Arguments]                     ${account_label}
+    Wait for Locator                account_types.account_checkbox    ${account_label}
+    Click on element                account_types.account_checkbox    ${account_label}
+
 *** Test Cases ***
 
 Test EDA System Settings
-    Go To Eda Settings
-    Wait For Locator                    eda_settings.system_tab
-    Click On Element                    eda_settings.system_tab
+    [Setup]  Run keywords
+    ...  Go to EDA Settings
+    ...  AND    Wait For Locator        eda_settings.system_tab
+    ...  AND    Click On Element        eda_settings.system_tab
 
 
     # Default Account Model

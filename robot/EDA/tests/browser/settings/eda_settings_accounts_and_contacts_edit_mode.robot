@@ -1,6 +1,8 @@
 *** Settings ***
 
 Resource        robot/EDA/resources/EDA.robot
+Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/SettingsPageObject.py
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
@@ -14,15 +16,10 @@ Test Checkbox
 
 Validate Edit Mode For Accounts and Contacts Settings
     [tags]                          unstable
-    Go To Eda Settings
+    Go to page                      Custom      HEDA_Settings
+    
     Wait for Locator            	tabs.accountsandcontacts
     Click on Element                tabs.accountsandcontacts
-    # Click on Tab                  Accounts and Contacts
-    # in this method, add page logic
-         # Click on checkbox or unclick checkbox - pass action into method
-             # validate if box is checked, if checked, catch error and move on,
-             # if unchecked, check, move on
-         # continue for each element on page
 
     Wait for Locator                account_types.edit
     Click on Element                account_types.edit
@@ -32,7 +29,7 @@ Validate Edit Mode For Accounts and Contacts Settings
 
 Click Checkboxes
     [Setup]  Run keywords
-    ...  Go to EDA Settings
+    ...  Go to page                 Custom     HEDA_Settings
     ...  AND  Click on element  tabs.accountsandcontacts
     ...  AND  Click on element  account_types.edit
 
@@ -48,9 +45,8 @@ Click Checkboxes
     Close toast message
 
 Unclick Checkboxes
-    Wait for Locator                account_types.edit
-    Click on Element                account_types.edit
 
+    Click on Element                account_types.edit
     Wait for Locator                account_types.administrative
     Click on Element                account_types.administrative
 

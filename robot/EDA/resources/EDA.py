@@ -559,3 +559,32 @@ class EDA(object):
         """Verifies that the given app is present in the app launcher"""
         locator=eda_lex_locators["eda_settings"]["app_tile"].format(app)
         self.selenium.wait_until_page_contains_element(locator,timeout=60,error=f'{app} did not open in 1 min')
+
+    @capture_screenshot_on_error 
+    def checkbox_status(self,cbx_name,status):
+        """verifies if the specified checkbox is with expected status in readonly mode"""
+        locator=locator(cbx_name,status)
+        self.selenium.page_should_contain_element(locator)
+
+    def choose_frame(self, value):
+        """Returns the first displayed iframe on the page with the given name or title"""
+        locator = eda_lex_locators['frame'].format(value,value,value)
+        frames = self.selenium.get_webelements(locator)
+        self.selenium.capture_page_screenshot()
+        print(f'list of frames {frames}')
+        for frame in frames:
+            print(f'inside for loop for {frame}')
+            self.selenium.capture_page_screenshot()
+            if frame.is_displayed():
+                try:
+                    print("inside try")
+                    self.selenium.select_frame(frame)
+                except NoSuchWindowException:
+                    print("inside except")
+                    self.builtin.log("caught NoSuchWindowException;trying gain..","WARN")
+                    time.sleep(.5)
+                    self.selenium.select_frame(frame)
+                return frame
+        raise Exception('unable to find visible iframe with title "{}"'.format(value))
+
+
