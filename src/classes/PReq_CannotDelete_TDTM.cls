@@ -36,6 +36,11 @@
 */
 public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
+    * @description Get the setting of preventing Account deletion
+    */
+    private static Boolean enabledPreventPlanRequirementDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Plan_Requirement_Deletion__c;
+  
+    /*******************************************************************************************************
     * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
     * @param listNew the list of Plan Requirement from trigger new.
     * @param listOld the list of Plan Requirement from trigger old.
@@ -43,22 +48,35 @@ public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
     * @param objResult the describe for Plan Requirement
     * @return dmlWrapper.
     ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
-        TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-
-        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+                                 TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+    
+        if (!enabledPreventPlanRequirementDeletion) {
+            return new DmlWrapper(); 
+        }
+                                     
+        Map<ID, Plan_Requirement__c> oldmap = new Map<ID, Plan_Requirement__c>((List<Plan_Requirement__c>)oldlist);
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for (Plan_Requirement__c planReq : [SELECT ID,
-                                                        (SELECT ID FROM Plan_Requirements__r LIMIT 1)
-                                                    FROM Plan_Requirement__c
-                                                    WHERE ID in :oldlist]) {
-                if(planReq.Plan_Requirements__r.size() > 0 ) {
-                    Plan_Requirement__c planReqInContext = (Plan_Requirement__c)oldmap.get(planReq.ID);
+                                               (SELECT ID FROM Plan_Requirements__r LIMIT 1)
+                                              FROM Plan_Requirement__c
+                                              WHERE ID IN :oldlist]) {
+                if(hasChildRecords(planReq)) {
+                    Plan_Requirement__c planReqInContext = oldmap.get(planReq.ID);
                     planReqInContext.addError(Label.CannotDelete);
                 }
             }
         }
         return new DmlWrapper();
+      }
+  
+    /*******************************************************************************************************
+    * @description Evaluates whether the Plan Requirement has any child related records.
+    * @param pr is the current Plan Requirement record.
+    * @return Boolean.
+    ********************************************************************************************************/
+    private static Boolean hasChildRecords(Plan_Requirement__c pr) {
+        return (pr.Plan_Requirements__r.size() > 0);
     }
 }
