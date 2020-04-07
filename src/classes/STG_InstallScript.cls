@@ -58,9 +58,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
             // Format existing contact email addresses
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
-            
+
             // Enable Prevent deletion Custom Settings
-            enablePreventDeletionHierarchyCustomSettings(NULL); 
+            enablePreventDeletionHierarchyCustomSettings(NULL);
 
         //Updates, manual or pushed by publisher.
         } else if(context.isUpgrade() || context.isPush()) {
@@ -69,13 +69,15 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
             disablePreferredEmailEnforcement(previousVersion);
 
-            disablePreferredPhoneEnforcement(previousVersion);            
+            disablePreferredPhoneEnforcement(previousVersion);
 
             populateAdminRecordTypeSetting(previousVersion);
 
             setDefaultContactLanguageFluency(previousVersion);
-            
+
             enablePreventDeletionHierarchyCustomSettings(previousVersion);
+
+            enablePreventPPlanDeletionHierarchyCustomSettings(previousVersion);      
 
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
                 // We need to handle a special case to populate the Owned_by_Namespace__c field for EDA Orgs before 1.38.
@@ -343,14 +345,26 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @return void
     */
     global static void enablePreventDeletionHierarchyCustomSettings(Version previousVersion) {
-        if ((previousVersion == NULL) || (previousVersion != NULL && previousVersion.compareTo(new Version(1,95)) < 0)) {
+        if ((previousVersion == null) || (previousVersion != null && previousVersion.compareTo(new Version(1,95)) < 0)) {
             UTIL_Debug.debug('***Upgrading to version 1.95 or new installs');
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
-            if (orgSettings.Prevent_Plan_Requirement_Deletion__c == NULL || orgSettings.Prevent_Plan_Requirement_Deletion__c != TRUE) {
-                orgSettings.Prevent_Plan_Requirement_Deletion__c = TRUE;
-            }     
-            if (orgSettings.Prevent_Program_Plan_Deletion__c == NULL || orgSettings.Prevent_Program_Plan_Deletion__c != TRUE) {
-                orgSettings.Prevent_Program_Plan_Deletion__c = TRUE;
+            if (orgSettings.Prevent_Plan_Requirement_Deletion__c == null || orgSettings.Prevent_Plan_Requirement_Deletion__c != true) {
+                orgSettings.Prevent_Plan_Requirement_Deletion__c = true;
+            }
+            upsert orgSettings;
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Enables prevent deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
+    * @return void
+    */
+    global static void enablePreventPPlanDeletionHierarchyCustomSettings(Version previousVersion) {
+        if ((previousVersion != null && previousVersion.compareTo(new Version(1,95)) < 0)) {
+            UTIL_Debug.debug('***Upgrading to version 1.95 or new installs');
+            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();   
+            if (orgSettings.Prevent_Program_Plan_Deletion__c == null || orgSettings.Prevent_Program_Plan_Deletion__c != true) {
+                orgSettings.Prevent_Program_Plan_Deletion__c = true;
             }
             upsert orgSettings;
         }
