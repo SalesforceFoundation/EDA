@@ -457,26 +457,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             //Updates Account Owner to match Contact Owner change
             if (updateWrapper.contactIdContactOwnerChange.size() > 0) {
-                idToSObjectTobeUpdated = updateOwners(updateWrapper.contactIdContactOwnerChange, dmlWrapper, idToSObjectTobeUpdated);
+                idToSObjectTobeUpdated = updateOwners(updateWrapper.contactIdContactOwnerChange, dmlWrapper);
             }
 
             //Updates Admin Account Name
             if (updateWrapper.contactsChangedLastName.size() > 0) {
-                //dmlWrapper.objectsToUpdate.addAll((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(updateWrapper.contactsChangedLastName));
-                
-                for (SObject each: ((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(updateWrapper.contactsChangedLastName))) {
-                    if (idToSObjectTobeUpdated.keySet().contains(each.Id)) {
-                        duplicateOccurence.add(each);
-                        duplicateOccurence.add(idToSObjectTobeUpdated.get(each.Id));
-                    }
-                    else {
-                        idToSObjectTobeUpdated.put(each.Id, each);
-                    }
-                }
-                if (duplicateOccurence.size() > 0) {
-                    List<sObject> nonDuplicateList = MergeRecordsService.mergeDuplicateRecords(duplicateOccurence);
-                    idToSObjectTobeUpdated.putAll(nonDuplicateList);
-                }
+                idToSObjectTobeUpdated = adminAccountsToUpdate(idToSObjectTobeUpdated, updateWrapper);
             }
 
             dmlWrapper.objectsToUpdate.addAll(idToSObjectTobeUpdated.values());
@@ -485,6 +471,33 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             updateRecursionFlag();
 
         }
+    }
+
+    /******************************************************************************************************************************
+    * @description Collects all the Admin accounts to be updated and merges any records with same id in idToSObjectTobeUpdated map
+    * @param idToSObjectTobeUpdated A map of Id to Sobjects that needs to be updated
+    * @param updateWrapper contains the collections processed from after update context
+    * returns idToSObjectRecords
+    */
+    private Map<Id, sObject> adminAccountsToUpdate(Map<Id, sObject> idToSObjectTobeUpdated, HandleUpdateWrapperLogic updateWrapper) {
+
+        List<sObject> duplicateOccurence = new List<sObject>();
+        Map<Id, sObject> idToSObjectRecords = new Map<Id, sObject>(idToSObjectTobeUpdated);
+
+        for (SObject each: ((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(updateWrapper.contactsChangedLastName))) {
+            if (idToSObjectRecords != NULL && idToSObjectRecords.size() > 0 && idToSObjectRecords.keySet().contains(each.Id)) {
+                duplicateOccurence.add(each);
+                duplicateOccurence.add(idToSObjectRecords.get(each.Id));
+            }
+            else {
+                idToSObjectRecords.put(each.Id, each);
+            }
+         }
+         if (duplicateOccurence.size() > 0) {
+             List<sObject> nonDuplicateList = MergeRecordsService.mergeDuplicateRecords(duplicateOccurence);
+             idToSObjectRecords.putAll(nonDuplicateList);
+         }
+        return idToSObjectRecords;
     }
     
     /*******************************************************************************************************
@@ -796,12 +809,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param contactOwnerChange a map of Contact Id to Contact, for the contacts to consider.
     * @param dmlWrapper to hold the Contacts that need update.
     */
-    private Map<Id, sObject> updateOwners(Map<Id,Contact> contactOwnerChange, DmlWrapper dmlWrapper, Map<Id, SObject> idToSObjectTobeUpdated) {
+    private Map<Id, sObject> updateOwners(Map<Id,Contact> contactOwnerChange, DmlWrapper dmlWrapper) {
+
         List<Account> accountsToUpdate = new List<Account>();
         Set<Id> contactsAccountId = new Set<Id>();
+        Map<Id, sObject> idToSObjectRecords = new Map<Id, sObject>();
 
         if (contactOwnerChange.size() == 0) {
-            return NULL;
+            return idToSObjectRecords;
         }
 
         for (Contact con : contactOwnerChange.values()) {
@@ -835,10 +850,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         if (accountsToUpdate.size() > 0) {
-            idToSObjectTobeUpdated.putAll((List<SObject>)accountsToUpdate);
+            idToSObjectRecords.putAll((List<SObject>)accountsToUpdate);
         }
 
-        return idToSObjectTobeUpdated;
+        return idToSObjectRecords;
     }
 
     /*******************************************************************************************************
