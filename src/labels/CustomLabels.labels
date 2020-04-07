@@ -261,7 +261,7 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Exception error msg for an invalid external call.</shortDescription>
+        <shortDescription>Exception error message for an invalid external call.</shortDescription>
         <value>Invalid call. This function is reserved for Salesforce use.</value>
     </labels>
     <labels>
