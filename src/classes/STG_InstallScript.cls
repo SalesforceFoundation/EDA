@@ -77,8 +77,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
             
             enablePreventDeletionHierarchyCustomSettings(previousVersion);
 
-            enablePreventDeletionHierarchyCustomSettings(previousVersion); 
-
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
                 // We need to handle a special case to populate the Owned_by_Namespace__c field for EDA Orgs before 1.38.
                 populateNamespaceHandlers();
