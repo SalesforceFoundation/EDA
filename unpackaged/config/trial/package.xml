@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- <types>
+        <name>CustomField</name>
+    </types> -->
+    <types>
+        <members>Address__c</members>
+        <members>Affiliation__c</members>
+        <members>Affl_Mappings__c</members>
+        <members>Application__c</members>
+        <members>Attendance_Event__c</members>
+        <members>Attribute__c</members>
+        <members>Behavior_Involvement__c</members>
+        <members>Behavior_Response__c</members>
+        <members>Contact_Language__c</members>
+        <members>Course_Enrollment__c</members>
+        <members>Course_Offering_Schedule__c</members>
+        <members>Course_Offering__c</members>
+        <members>Course__c</members>
+        <members>Error__c</members>
+        <members>Facility__c</members>
+        <members>Hierarchy_Settings__c</members>
+        <members>Language__c</members>
+        <members>Plan_Requirement__c</members>
+        <members>Program_Enrollment__c</members>
+        <members>Program_Plan__c</members>
+        <members>Relationship_Auto_Create__c</members>
+        <members>Relationship_Lookup__c</members>
+        <members>Relationship__c</members>
+        <members>Term_Grade__c</members>
+        <members>Term__c</members>
+        <members>Test_Score__c</members>
+        <members>Test__c</members>
+        <members>Time_Block__c</members>
+        <members>Trigger_Handler__c</members>
+        <name>CustomObject</name>
+    </types>
+    <!-- <types>
+        <name>Dashboard</name>
+    </types> -->
+    <types>
+        <members>*</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Account-HEDA Household Layout</members>
+        <members>Account-HEDA Organization Layout</members>
+        <members>Address__c-HEDA Address Layout</members>
+        <members>Affiliation__c-HEDA Affiliation Layout</members>
+        <members>Application__c-EDA Application Layout</members>
+        <members>Attendance_Event__c-EDA Attendance Event Layout</members>
+        <members>Attribute__c-EDA Credential Layout</members>
+        <members>Attribute__c-EDA Student Characteristic Layout</members>
+        <members>Behavior_Involvement__c-EDA Behavior Involvement Layout</members>
+        <members>Behavior_Response__c-EDA Behavior Response Layout</members>
+        <members>Case-EDA Incident Layout</members>
+        <members>Contact-HEDA Contact Layout</members>
+        <members>Contact_Language__c-HEDA Contact Language Layout</members>
+        <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
+        <members>Course_Offering_Schedule__c-EDA Course Offering Schedule Layout</members>
+        <members>Course_Offering__c-HEDA Course Offering Layout</members>
+        <members>Course__c-HEDA Course Layout</members>
+        <members>Error__c-HEDA Error Layout</members>
+        <members>Facility__c-HEDA Facility Layout</members>
+        <members>Language__c-HEDA Language Layout</members>
+        <members>Plan_Requirement__c-HEDA Plan Requirement Layout</members>
+        <members>Program_Enrollment__c-HEDA Program Enrollment Layout</members>
+        <members>Program_Plan__c-HEDA Program Plan Layout</members>
+        <members>Relationship__c-HEDA Relationship Layout</members>
+        <members>Term_Grade__c-HEDA Term Grade Layout</members>
+        <members>Term__c-HEDA Term Layout</members>
+        <members>Test_Score__c-EDA Test Score Layout</members>
+        <members>Test__c-EDA Test Layout</members>
+        <members>Time_Block__c-EDA Time Block Layout</members>
+        <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Address__c.All</members>
+        <members>Affiliation__c.All</members>
+        <members>Application__c.All</members>
+        <members>Attendance_Event__c.All</members>
+        <members>Attribute__c.All</members>
+        <members>Behavior_Involvement__c.All</members>
+        <members>Behavior_Response__c.All</members>
+        <members>Contact_Language__c.All</members>
+        <members>Course_Enrollment__c.All</members>
+        <members>Course_Offering_Schedule__c.All</members>
+        <members>Course_Offering__c.All</members>
+        <members>Course__c.All</members>
+        <members>Facility__c.All</members>
+        <members>Language__c.All</members>
+        <members>Plan_Requirement__c.All</members>
+        <members>Program_Enrollment__c.All</members>
+        <members>Program_Plan__c.All</members>
+        <members>Program_Plan__c.Primary_Program_Plan</members>
+        <members>Relationship__c.All</members>
+        <members>Term_Grade__c.All</members>
+        <members>Term__c.All</members>
+        <members>Test_Score__c.All</members>
+        <members>Test__c.All</members>
+        <members>Time_Block__c.All</members>
+        <members>Trigger_Handler__c.All</members>
+        <members>Trigger_Handler__c.All_Main_Fields</members>
+        <name>ListView</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>Account.Current_Address__c</members>
+        <members>Account.Primary_Contact__c</members>
+        <members>Case.Category__c</members>
+        <members>Case.Location__c</members>
+        <members>Case.Occurrence_Date__c</members>
+        <members>Contact.Primary_Language__c</members>
+        <members>Contact.Religion__c</members>
+        <members>Contact.Secondary_Address_Type__c</members>
+        <members>Contact.Social_Security_Number__c</members>
+        <members>Contact.AlternateEmail__c</members>
+        <members>Contact.Chosen_Full_Name__c</members>
+        <members>Contact.Citizenship__c</members>
+        <members>Contact.Current_Address__c</members>
+        <members>Contact.Deceased__c</members>
+        <members>Contact.Do_Not_Contact__c</members>
+        <members>Contact.Dual_Citizenship__c</members>
+        <members>Contact.Ethnicity__c</members>
+        <members>Contact.Exclude_from_Household_Formal_Greeting__c</members>
+        <members>Contact.Exclude_from_Household_Informal_Greeting__c</members>
+        <members>Contact.Exclude_from_Household_Name__c</members>
+        <members>Contact.FERPA__c</members>
+        <members>Contact.Financial_Aid_Applicant__c</members>
+        <members>Contact.Gender__c</members>
+        <members>Contact.HIPAA_Detail__c</members>
+        <members>Contact.HIPAA__c</members>
+        <members>Contact.Military_Background__c</members>
+        <members>Contact.Military_Service__c</members>
+        <members>Contact.Naming_Exclusions__c</members>
+        <members>Contact.PreferredPhone__c</members>
+        <members>Contact.Preferred_Email__c</members>
+        <members>Contact.Primary_Address_Type__c</members>
+        <members>Contact.Primary_Household__c</members>
+        <members>Contact.Primary_Organization__c</members>
+        <members>Contact.Race__c</members>
+        <members>Contact.UniversityEmail__c</members>
+        <members>Contact.WorkEmail__c</members>
+        <members>Contact.WorkPhone__c</members>
+        <members>Contact.Work_Address__c</members>
+        <members>Contact.is_Address_Override__c</members>
+        <members>Contact.Country_of_Origin__c</members>
+        <members>Relationship__c.Relationship_Explanation__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CompactLayout</name>
+    </types>
+    <types>
+        <members>Account.HH_Account</members>
+        <members>Contact.Faculty</members>
+        <members>Contact.Guardian</members>
+        <members>Contact.Student</members>
+        <members>Attribute__c.Credential</members>
+        <members>Attribute__c.Student_Characteristic</members>
+        <members>Course_Enrollment__c.Faculty</members>
+        <members>Course_Enrollment__c.Student</members>
+        <name>RecordType</name>
+    </types>
+    <!-- <types>
+        <name>Report</name>
+    </types> -->
+    <version>45.0</version>
+</Package>

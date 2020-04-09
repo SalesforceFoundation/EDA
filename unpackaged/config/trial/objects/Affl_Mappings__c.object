@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Account_Record_Type__c</fullName>
+        <description>The Account Record Type label.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Account Record Type label.</inlineHelpText>
+        <label>Account Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auto_Program_Enrollment_Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Auto Enrollment Role</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auto_Program_Enrollment_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Auto Enrollment Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auto_Program_Enrollment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type.</inlineHelpText>
+        <label>Auto Enrollment</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Affl_Field__c</fullName>
+        <description>The label of the lookup field or the API name of the lookup field in Contact that points to the primary Account of the specified Record Type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The label of the lookup field or the API name of the lookup field in Contact that points to the primary Account of the specified Record Type.</inlineHelpText>
+        <label>Primary Affl Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Affl Mappings</label>
+    <visibility>Public</visibility>
+</CustomObject>
