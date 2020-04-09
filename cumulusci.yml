@@ -78,6 +78,7 @@ tasks:
                 STG_InstallScript.insertRelationshipLookups();
                 TDTM_Global_API.setTdtmConfig(TDTM_Global_API.getDefaultTdtmConfig(), 'hed');
                 STG_InstallScript.enablePreferredPhoneSync();
+                STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL); 
 
     execute_qa_apex:
         description: Runs anonymous apex for qa to configure settings.
@@ -286,7 +287,7 @@ flows:
                         namespaced_org: True
 
     upgraded_org:
-        description: Simulate an org that has been push-upgraded to the latest release of EDA and any dependencies.
+        description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
         steps:
             1:
                 flow: latest_release:dependencies
@@ -300,8 +301,8 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
-    new_org:
-        description: Creates a regression which represents the installation of a brand new customer.
+    net_new_org:
+        description: Simulates an EDA installation for a new customer. Installs the latest beta and dependencies.
         steps:
             1:
                 flow: install_beta
