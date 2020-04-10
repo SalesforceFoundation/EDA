@@ -78,7 +78,7 @@ tasks:
                 STG_InstallScript.insertRelationshipLookups();
                 TDTM_Global_API.setTdtmConfig(TDTM_Global_API.getDefaultTdtmConfig(), 'hed');
                 STG_InstallScript.enablePreferredPhoneSync();
-                STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL); 
+                STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
 
     execute_qa_apex:
         description: Runs anonymous apex for qa to configure settings.
