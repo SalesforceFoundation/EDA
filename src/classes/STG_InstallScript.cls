@@ -74,8 +74,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
             populateAdminRecordTypeSetting(previousVersion);
 
             setDefaultContactLanguageFluency(previousVersion);
-
-            enablePreventDeletionHierarchyCustomSettings(previousVersion); 
+            
+            enablePreventDeletionHierarchyCustomSettings(previousVersion);
 
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
                 // We need to handle a special case to populate the Owned_by_Namespace__c field for EDA Orgs before 1.38.
@@ -347,6 +347,10 @@ global without sharing class STG_InstallScript implements InstallHandler {
         if ((previousVersion == NULL) || (previousVersion != null && previousVersion.compareTo(new Version(1,95)) < 0)) {
             UTIL_Debug.debug('***Upgrading to version 1.95 or new installs');
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+            
+            if (orgSettings.Prevent_Account_Deletion__c == null || orgSettings.Prevent_Account_Deletion__c != true) {
+                orgSettings.Prevent_Account_Deletion__c = true; 
+            }
             if (orgSettings.Prevent_Plan_Requirement_Deletion__c == null || orgSettings.Prevent_Plan_Requirement_Deletion__c != true) {
                 orgSettings.Prevent_Plan_Requirement_Deletion__c = true; 
             }
