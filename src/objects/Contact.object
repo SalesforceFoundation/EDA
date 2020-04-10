@@ -4399,8 +4399,8 @@
     <fields>
         <fullName>HIPAA_Detail__c</fullName>
         <externalId>false</externalId>
-        <description>The details of this student's medical information that are protected by Health Insurance Portability and Accountability Act standards. May require restricted field visibility so that only authorized users can view.</description>
-        <inlineHelpText>The details of this person's medical information that are protected by Health Insurance Portability and Accountability Act standards.</inlineHelpText>
+        <description>Can be used to store information about the student Contact, such as the names of related Contacts authorized to communicate about the student. May require restricted field visibility so that only authorized users can view.</description>
+        <inlineHelpText>Information about this person, such as the names of related Contacts authorized to communicate about the person.</inlineHelpText>
         <label>HIPAA Detail</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4410,8 +4410,8 @@
     <fields>
         <fullName>HIPAA__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicate whether this person's record includes medical information protected by Health Insurance Portability and Accountability Act standards, for example, disability verification.</description>
-        <inlineHelpText>Indicate whether this person's record includes medical information protected by Health Insurance Portability and Accountability Act standards, for example, disability verification.</inlineHelpText>
+        <description>Can be used to indicate that the student Contact's record is subject to Health Insurance Portability and Accountability Act requirements, without displaying the details of that information.</description>
+        <inlineHelpText>Indicates whether this person's record is subject to Health Insurance Portability and Accountability Act standards.</inlineHelpText>
         <externalId>false</externalId>
         <label>HIPAA</label>
         <trackFeedHistory>false</trackFeedHistory>
