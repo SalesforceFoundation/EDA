@@ -32,14 +32,20 @@
 * @date 2016
 * @group Accounts
 * @group-content ../../ApexDocContent/Accounts.htm
-* @description Stops an Account from being deleted if it has any Affiliation, 
-* Program Enrollment or Course Enrollment children. 
+* @description Stops an Account from being deleted if it has any Address, Affiliation, 
+* Attribute, Course, Contact(Household), Contact(Business Organization), Course Connection, 
+* Facility, Program Enrollment, Program Plan, Term, or Time Block child records. 
 */
 public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
-
     /*******************************************************************************************************
-    * @description Stops an Account from being deleted if it has any Affiliation, 
-    * Program Enrollment or Course Enrollment children.
+    * @description Get the setting of preventing Account deletion
+    */
+    private static Boolean enabledPreventAccountDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Account_Deletion__c;
+    
+    /*******************************************************************************************************
+    * @description Stops an Account from being deleted if it has any Address, Affiliation, 
+    * Attribute, Course, Contact(Household), Contact(Business Organization), Course Connection, 
+    * Facility, Program Enrollment, Program Plan, Term, or Time Block child records. 
     * @param listNew the list of Accounts from trigger new. 
     * @param listOld the list of Accounts from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
@@ -48,26 +54,47 @@ public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-
-        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
+        
+        if (!enabledPreventAccountDeletion) {
+            return new DmlWrapper(); 
+        }
+        
+        Map<ID, Account> oldmap = new Map<ID, Account>((List<Account>)oldList);
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-                        
-            for (Account a : [select ID, (select ID from Account.Affl_Contacts__r LIMIT 1), 
-                                         (select ID from Account.Program_Enrollments__r LIMIT 1), 
-                                         (select ID from Account.Course_Enrollments__r LIMIT 1),
-                                         (select ID from Account.Program_Plans__r LIMIT 1)
-                                         from Account where ID in :oldlist]) {
+            for (Account a : [SELECT ID, 
+                                (SELECT ID FROM Account.Addresses__r LIMIT 1),
+                                (SELECT ID FROM Account.Affl_Contacts__r LIMIT 1), 
+                                (SELECT ID FROM Account.Attributes__r LIMIT 1), 
+                                (SELECT ID FROM Account.Courses__r LIMIT 1), 
+                                (SELECT ID FROM Account.Course_Enrollments__r LIMIT 1),
+                                (SELECT ID FROM Account.Facilities__r LIMIT 1),
+                                (SELECT ID FROM Account.Household_Members__r LIMIT 1),
+                                (SELECT ID FROM Account.Organization_Members__r LIMIT 1),
+                                (SELECT ID FROM Account.Program_Enrollments__r LIMIT 1), 
+                                (SELECT ID FROM Account.Program_Plans__r LIMIT 1),
+                                (SELECT ID FROM Account.Terms__r LIMIT 1),
+                                (SELECT ID FROM Account.Time_Blocks__r LIMIT 1)
+                                FROM Account WHERE ID in :oldlist]) {
                 
-                if(a.Affl_Contacts__r.size() > 0 || a.Program_Enrollments__r.size() > 0 
-                || a.Course_Enrollments__r.size() > 0 || a.Program_Plans__r.size() > 0) {
-
-                    Account accountInContext = (Account)oldmap.get(a.ID);
+                if (hasChildRecords(a)) {
+                    Account accountInContext = oldMap.get(a.ID);
                     accountInContext.addError(Label.CannotDelete);
                 }
             }     
         }
-        
         return new DmlWrapper();
+    }
+    
+    /*******************************************************************************************************
+     * @description Evaluates whether the Account has any child related records.
+     * @param a is the current Account record.
+     * @return Boolean.
+     ********************************************************************************************************/
+    private static Boolean hasChildRecords(Account a) {
+        return (a.Addresses__r.size() > 0 || a.Affl_Contacts__r.size() > 0 || a.Attributes__r.size() > 0 ||
+            a.Courses__r.size() > 0 || a.Course_Enrollments__r.size() > 0 || a.Facilities__r.size() > 0 ||
+            a.Household_Members__r.size() > 0 || a.Organization_Members__r.size() > 0 || a.Program_Enrollments__r.size() > 0 || 
+            a.Program_Plans__r.size() > 0 || a.Terms__r.size() > 0 || a.Time_Blocks__r.size() > 0); 
     }
 }
