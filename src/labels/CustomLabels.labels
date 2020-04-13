@@ -5,7 +5,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Mapped Primary Affiliations.</shortDescription>
+        <shortDescription>Info text for Mapped Primary Affiliations</shortDescription>
         <value>Mapped Primary Affiliations appear in a special Primary Affiliations section on the Contact record. The value set as Primary for an Account Record Type appears in the corresponding fields on the Contact record, as defined below. For more information, see the</value>
     </labels>
     <labels>
@@ -13,7 +13,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for deleting Affiliations related to deleted Program Enrollments.</shortDescription>
+        <shortDescription>Info text for deleting Affiliations related to deleted Program Enrollments</shortDescription>
         <value>If selected, when deleting a Program Enrollment, delete its related Affiliation. Otherwise, keep the Affiliation and set its Status to the value defined in Status for Affiliations Not Deleted.</value>
     </labels>
     <labels>
@@ -21,7 +21,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Course Connection and Attendance Event mismatch error message.</shortDescription>
+        <shortDescription>Course Connection and Attendance Event mismatch error message</shortDescription>
         <value>Specify a Course Connection that has the same Contact as you specified for this Attendance Event.</value>
     </labels>
     <labels>
@@ -29,7 +29,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Autocreate relationship error message.</shortDescription>
+        <shortDescription>Autocreate relationship error message</shortDescription>
         <value>There's an invalid autocreate relationship setting configured in EDA Settings | Relationships | Autocreation. Delete or edit the invalid setting, then try again.</value>
     </labels>
     <labels>
@@ -37,7 +37,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Batch message when there's a problem starting.</shortDescription>
+        <shortDescription>Batch message when there's a problem starting</shortDescription>
         <value>There was a problem starting the Batch.</value>
     </labels>
     <labels>
@@ -45,7 +45,7 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
+        <shortDescription>Error message for TDTM filtering functionality</shortDescription>
         <value>Set the Filter field, or both the Filter field and Filter value.</value>
     </labels>
     <labels>
@@ -61,7 +61,7 @@
         <categories>Contacts, Accounts</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error message when deleting a record with child records.</shortDescription>
+        <shortDescription>Error message when deleting a record with child records</shortDescription>
         <value>This record can't be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don't see related records, or if you're unable to delete them, contact your System Administrator for assistance.</value>
     </labels>
     <labels>
@@ -69,7 +69,7 @@
         <categories>Account Naming</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Default text appended to Contact's last name for Acct Name (not HH or Admin).</shortDescription>
+        <shortDescription>Default text appended to Contact's last name for Acct Name (not HH or Admin)</shortDescription>
         <value>Account</value>
     </labels>
     <labels>
@@ -77,7 +77,7 @@
         <categories>Account Naming</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Default Administrative Account Name.</shortDescription>
+        <shortDescription>Default Administrative Account Name</shortDescription>
         <value>Administrative Account</value>
     </labels>
     <labels>
@@ -85,7 +85,7 @@
         <categories>Account Naming</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Default Household Name.</shortDescription>
+        <shortDescription>Default Household Name</shortDescription>
         <value>Household</value>
     </labels>
     <labels>
@@ -93,7 +93,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Column heading for Reciprocal Relationships.</shortDescription>
+        <shortDescription>Column heading for Reciprocal Relationships</shortDescription>
         <value>Female</value>
     </labels>
     <labels>
@@ -101,7 +101,7 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
+        <shortDescription>Error message for TDTM filtering functionality</shortDescription>
         <value>The field entered as the Filter Field isn't valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field's API name, and omit any EDA namespace prefix ("hed__").</value>
     </labels>
     <labels>
@@ -109,7 +109,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Column heading for Reciprocal Relationships settings.</shortDescription>
+        <shortDescription>Column heading for Reciprocal Relationships settings</shortDescription>
         <value>Male</value>
     </labels>
     <labels>
@@ -157,7 +157,7 @@
         <categories>Picklist Options</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Provides a blank value option to custom built picklists.</shortDescription>
+        <shortDescription>Provides a blank value option to custom built picklists</shortDescription>
         <value>--None--</value>
     </labels>
     <labels>
@@ -173,7 +173,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when an invalid value is selected in Preferred Email.</shortDescription>
+        <shortDescription>Error when an invalid value is selected in Preferred Email</shortDescription>
         <value>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</value>
     </labels>
     <labels>
@@ -181,7 +181,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when the value of the email field selected in Preferred Email is null.</shortDescription>
+        <shortDescription>Error when the value of the email field selected in Preferred Email is null</shortDescription>
         <value>The email field you selected in Preferred Email is blank. Either choose a different Preferred Email, or add a value for that email field.</value>
     </labels>
     <labels>
@@ -189,7 +189,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Preferred Email Required Error.</shortDescription>
+        <shortDescription>Preferred Email Required Error</shortDescription>
         <value>Tell us which email is preferred.</value>
     </labels>
     <labels>
@@ -221,7 +221,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>The verb in the Relationship Explanation sentence.</shortDescription>
+        <shortDescription>The verb in the Relationship Explanation sentence</shortDescription>
         <value>is</value>
     </labels>
     <labels>
@@ -229,7 +229,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Word separator when the Reciprocal Method setting is set to "Value Inversion."</shortDescription>
+        <shortDescription>Word separator when the Reciprocal Method setting is set to "Value Inversion"</shortDescription>
         <value>-</value>
     </labels>
     <labels>
@@ -237,7 +237,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Relationships Auto Creation: what they are and how to create them.</shortDescription>
+        <shortDescription>Info text for Relationships Auto Creation: what they are and how to create them</shortDescription>
         <value>Auto-Create settings let you define when a Relationship record is automatically created between a Contact and a Campaign Member, based on a custom lookup field on one of the two objects. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationship between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
     </labels>
     <labels>
@@ -253,7 +253,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Admin and Household Account Name Format fields.</shortDescription>
+        <shortDescription>Picklist value for Admin and Household Account Name Format fields</shortDescription>
         <value>Other</value>
     </labels>
     <labels>
@@ -261,7 +261,7 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Exception error message for an invalid external call.</shortDescription>
+        <shortDescription>Exception error message for an invalid external call</shortDescription>
         <value>Invalid call. This function is reserved for Salesforce use.</value>
     </labels>
     <labels>
