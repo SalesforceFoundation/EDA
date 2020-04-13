@@ -3,7 +3,7 @@
   "label" : "Education Cloud: Recruiting",
   "name" : "RA_Program_Enrollment",
   "description" : "The Recruiting and Admissions template allows you to quickly create insightful dashboards to help you better understand your recruiting and admissions data. Requires EDA.",
-  "assetVersion" : 48.0,
+  "assetVersion" : 46.0,
   "variableDefinition" : "variables.json",
   "uiDefinition" : "ui.json",
   "rules" : [
