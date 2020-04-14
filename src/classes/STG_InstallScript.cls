@@ -351,6 +351,10 @@ global without sharing class STG_InstallScript implements InstallHandler {
         if ((previousVersion == null) || (previousVersion != null && previousVersion.compareTo(new Version(1,95)) < 0)) {
             UTIL_Debug.debug('***Upgrading to version 1.95 or new installs');
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+            
+            if (orgSettings.Prevent_Account_Deletion__c == null || orgSettings.Prevent_Account_Deletion__c != true) {
+                orgSettings.Prevent_Account_Deletion__c = true; 
+            }
             if (orgSettings.Prevent_Plan_Requirement_Deletion__c == null || orgSettings.Prevent_Plan_Requirement_Deletion__c != true) {
                 orgSettings.Prevent_Plan_Requirement_Deletion__c = true;
             }
