@@ -59,7 +59,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
 
-            // Enable Prevent Account Deletion Custom Settings
+            // Enable Prevent Account Deletion and Prevent Plan Requirement Deletion Custom Settings
             enablePreventDeletionHierarchyCustomSettings(NULL);
 
             // Enable Prevent Program Plan Deletion Custom Settings
@@ -77,9 +77,11 @@ global without sharing class STG_InstallScript implements InstallHandler {
             populateAdminRecordTypeSetting(previousVersion);
 
             setDefaultContactLanguageFluency(previousVersion);
-
+            
+            // Enable Prevent Account Deletion and Prevent Plan Requirement Deletion Custom Settings
             enablePreventDeletionHierarchyCustomSettings(previousVersion);
-
+            
+            // Enable Prevent Program Plan Deletion Custom Settings
             enablePreventPPlanDeletionHierarchyCustomSettings(previousVersion);      
 
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
@@ -343,8 +345,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
         }
     }
     
-    /***********************************************************************************************************************************
-    * @description Enables Prevent Account Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
+    /************************************************************************************************************************************************************************
+    * @description Enables Prevent Account Deletion and Plan Requirement Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
     * @return void
     */
     global static void enablePreventDeletionHierarchyCustomSettings(Version previousVersion) {
@@ -362,8 +364,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
         }
     }
 
-    /**************************************************************************************************************************
-    * @description Enables prevent deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.96
+    /*****************************************************************************************************************************************
+    * @description Enables Prevent Program Plan Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.96
     * @return void
     */
     global static void enablePreventPPlanDeletionHierarchyCustomSettings(Version previousVersion) {
