@@ -40,7 +40,7 @@ tasks:
         class_path: tasks.inject_value.InjectMetaDataValue
         options:
             path: unpackaged/
-            find: API_VERSION_NUMBER
+            find: ${API_VERSION_NUMBER}
 
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
