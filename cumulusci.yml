@@ -21,6 +21,27 @@ sources:
         release: latest
 
 tasks:
+    inject_value:
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
+        class_path: tasks.inject_value.InjectMetaDataValue
+        options:
+            path: src/
+            find: ${API_VERSION_NUMBER}
+
+    inject_value_sfdx:
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
+        class_path: tasks.inject_value.InjectMetaDataValue
+        options:
+            path: sfdx-project.json
+            find: ${API_VERSION_NUMBER}
+
+    inject_value_unpackaged:
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
+        class_path: tasks.inject_value.InjectMetaDataValue
+        options:
+            path: unpackaged/
+            find: API_VERSION_NUMBER
+
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -224,6 +245,7 @@ flows:
                 options:
                     unmanaged: False
 
+
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
         steps:
@@ -239,6 +261,14 @@ flows:
                 options:
                     update_admin_profile:
                         namespaced_org: True
+    dependencies:
+        steps:
+            0.1:
+                task: inject_value
+            0.2:
+                task: inject_value_unpackaged
+            0.3:
+                task: inject_value_sfdx
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.

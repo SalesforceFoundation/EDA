@@ -6,5 +6,5 @@
     }
   ],
   "namespace": "hed",
-  "sourceApiVersion": "48.0"
+  "sourceApiVersion": "${API_VERSION_NUMBER}"
 }

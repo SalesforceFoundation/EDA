@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
   <types>
-      <members>%%%NAMESPACE%%%Course_Enrollment__c.Student</members>
-      <name>RecordType</name>
+    <members>%%%NAMESPACE%%%Course_Enrollment__c.Student</members>
+    <name>RecordType</name>
   </types>
   <types>
-      <members>%%%NAMESPACE%%%Course_Enrollment__c.Faculty</members>
-      <name>RecordType</name>
+    <members>%%%NAMESPACE%%%Course_Enrollment__c.Faculty</members>
+    <name>RecordType</name>
   </types>
   <types>
-      <members>%%%NAMESPACE%%%Course_Enrollment__c.Default</members>
-      <name>RecordType</name>
+    <members>%%%NAMESPACE%%%Course_Enrollment__c.Default</members>
+    <name>RecordType</name>
   </types>
   <types>
     <members>%%%NAMESPACE%%%Course_Enrollment__c-ca</members>
@@ -20,5 +20,5 @@
     <members>%%%NAMESPACE%%%Course_Enrollment__c-fr</members>
     <name>CustomObjectTranslation</name>
   </types>
-  <version>48.0</version>
+  <version>${API_VERSION_NUMBER}</version>
 </Package>

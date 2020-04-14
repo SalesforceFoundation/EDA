@@ -9,24 +9,6 @@ from cumulusci.tasks.salesforce import Deploy
 from cumulusci.utils import CUMULUSCI_PATH
 from cumulusci.utils import elementtree_parse_file
 
-DEFAULT_XML = """<Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>*</members>
-        <members>Account</members>
-        <members>Campaign</members>
-        <members>CampaignMember</members>
-        <members>Contact</members>
-        <members>Lead</members>
-        <members>Opportunity</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>Admin</members>
-        <name>Profile</name>
-    </types>
-    <version>48.0</version>
-</Package>"""
-
 
 class UpdateProfile(Deploy):
     name = "UpdateProfile"
@@ -95,7 +77,23 @@ class UpdateProfile(Deploy):
 
     def _get_retrieve_package_xml_content(self):
         path = self.options.get("package_xml", "")
-
+        DEFAULT_XML = f"""<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>*</members>
+        <members>Account</members>
+        <members>Campaign</members>
+        <members>CampaignMember</members>
+        <members>Contact</members>
+        <members>Lead</members>
+        <members>Opportunity</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <version>{self.project_config.project__package__api_version}</version>
+</Package>"""
         if path:
             with open(path, "r") as f:
                 package_xml_content = f.read()
@@ -211,8 +209,9 @@ class UpdateProfile(Deploy):
             elem.find("sf:visibility", self.namespaces).text = "DefaultOn"
 
     def _get_deploy_package_xml_content(self):
+        print(self.project_config.project__package__api_version)
         return f"""<?xml version="1.0" encoding="UTF-8"?><Package xmlns="http://soap.sforce.com/2006/04/metadata">
-        <types><members>{self.profile_name}</members><name>Profile</name></types><version>48.0</version></Package>
+        <types><members>{self.profile_name}</members><name>Profile</name></types><version>{self.project_config.project__package__api_version}</version></Package>
         """
 
     def _deploy_metadata(self):
