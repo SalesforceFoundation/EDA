@@ -170,6 +170,19 @@ flows:
             2:
                 task: uninstall_packaged
 
+    beta_dependencies:
+        steps:
+            2:
+                task: inject_value
+            3:
+                task: inject_value_unpackaged
+            4:
+                task: inject_value_sfdx
+            5:
+                task: deploy_pre
+                options:
+                    path: unpackaged/pre
+
     config_apextest:
         # description: Configure an org to run apex tests after package metadata is deployed.
         steps:
@@ -263,12 +276,17 @@ flows:
                         namespaced_org: True
     dependencies:
         steps:
-            0.1:
+            2:
                 task: inject_value
-            0.2:
+            3:
                 task: inject_value_unpackaged
-            0.3:
+            4:
                 task: inject_value_sfdx
+            5:
+                task: deploy_pre
+                options:
+                    path: unpackaged/pre
+                    
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
