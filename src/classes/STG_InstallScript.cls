@@ -59,7 +59,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
 
-            // Enable Prevent deletion Custom Settings
+            // Enable Prevent Account Deletion Custom Settings
             enablePreventDeletionHierarchyCustomSettings(NULL);
 
             // Enable Prevent Program Plan Deletion Custom Settings
@@ -343,8 +343,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
         }
     }
     
-    /**************************************************************************************************************************
-    * @description Enables prevent deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
+    /***********************************************************************************************************************************
+    * @description Enables Prevent Account Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
     * @return void
     */
     global static void enablePreventDeletionHierarchyCustomSettings(Version previousVersion) {
