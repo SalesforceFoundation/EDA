@@ -62,6 +62,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
             // Enable Prevent deletion Custom Settings
             enablePreventDeletionHierarchyCustomSettings(NULL);
 
+            // Enable Prevent Program Plan Deletion Custom Settings
+            enablePreventPPlanDeletionHierarchyCustomSettings(NULL);
+
         //Updates, manual or pushed by publisher.
         } else if(context.isUpgrade() || context.isPush()) {
 
@@ -356,12 +359,12 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
 
     /**************************************************************************************************************************
-    * @description Enables prevent deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
+    * @description Enables prevent deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.96
     * @return void
     */
     global static void enablePreventPPlanDeletionHierarchyCustomSettings(Version previousVersion) {
-        if ((previousVersion != null && previousVersion.compareTo(new Version(1,95)) < 0)) {
-            UTIL_Debug.debug('***Upgrading to version 1.95 or new installs');
+        if ((previousVersion == null) || (previousVersion != null && previousVersion.compareTo(new Version(1,96)) < 0)) {
+            UTIL_Debug.debug('***Upgrading to version 1.96 or new installs');
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();   
             if (orgSettings.Prevent_Program_Plan_Deletion__c == null || orgSettings.Prevent_Program_Plan_Deletion__c != true) {
                 orgSettings.Prevent_Program_Plan_Deletion__c = true;

@@ -381,20 +381,20 @@ public with sharing class STG_InstallScript_TEST {
             'Expected the new Preferred Phone sync to be disabled.');
     }
 
-    /*********************************************************************************************************
-    * @description Tests enabling Prevent Deletion Hierarchy Custom Settings when upgraded from 1.94
-    *********************************************************************************************************/
+    /************************************************************************************************************
+    * @description Tests enabling Prevent Program Plan Deletion Hierarchy Custom Settings when upgraded from 1.95
+    *************************************************************************************************************/
     @isTest
-    private static void enablePreventDeletionHierarchyCustomSettigsOnUpgrade() {
+    private static void enablePreventPPlanDeletionHierarchyCustomSettigsOnUpgrade() {
         
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
         
         System.assertEquals(false, orgSettings.Prevent_Program_Plan_Deletion__c,
             'Expected Prevent Program Plan Deletion Hierarchy Custom setting is disbaled before upgrade.');
         
-        // Run the install script for orgs using HEDA 1.94
+        // Run the install script for orgs using HEDA 1.95
         Test.startTest();
-            Test.testInstall(new STG_InstallScript(), new Version(1,94), true);
+            Test.testInstall(new STG_InstallScript(), new Version(1,95), true);
         Test.stopTest();
         
         Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();

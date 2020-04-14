@@ -114,7 +114,6 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Affiliation_Record_Type_Enforced__c = false;
         hs.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
         hs.Default_Contact_Language_Fluency__c = Label.stgFluent;
-        hs.Prevent_Program_Plan_Deletion__c = true;
     }
 
     /*******************************************************************************************************
