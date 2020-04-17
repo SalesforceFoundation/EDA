@@ -233,10 +233,12 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @param accRecordTypesInMappings List of record types in mapping.
     * @return List<String> List of Valid record types in mapping.
     ********************************************************************************************************/
+    @testVisible
     private List<String> getValidAccRecordTypesInMappings(List<String> accRecordTypesInMappings) {
         List<String> validAccRecordTypesInMappings = new List<String>();
         for (String accRecordTypesInMapping : accRecordTypesInMappings) {
-            if (SObjectType.Account.getRecordTypeInfosByName().containsKey(accRecordTypesInMapping)) {
+            if (SObjectType.Account.getRecordTypeInfosByName().containsKey(accRecordTypesInMapping)
+                 || SObjectType.Account.getRecordTypeInfosByDeveloperName().containsKey(accRecordTypesInMapping)) {
                 validAccRecordTypesInMappings.add(accRecordTypesInMapping);
             }
         }

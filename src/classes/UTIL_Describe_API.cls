@@ -292,5 +292,14 @@ global class UTIL_Describe_API {
     global static String getStudentCharacteristicAttributeRecType() {
         return UTIL_Describe.getStudentCharacteristicAttributeRecType();
     }
-    
+
+    /*******************************************************************************************************
+    * @description Gets the Account Record Type Developer Name from Name
+    * @param recTypeName Record Type Name of the Account
+    * @return string The Record Type Developer Name associated with the Account's Name
+    */
+    global static string getAccRecTypeDevNameFromName(String recTypeName) {
+        return UTIL_Describe.getAccRecTypeDevNameFromName(recTypeName);
+    }
+
 }

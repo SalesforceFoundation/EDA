@@ -865,4 +865,21 @@ public class UTIL_Describe {
 
         return recTypeId;
     }
+
+    /*******************************************************************************************************
+    * @description Gets the Account Record Type Developer Name from Name
+    * @param recTypeName Record Type Name of the Account
+    * @return string The Record Type Developer Name associated with the Account's Name
+    */
+    public static string getAccRecTypeDevNameFromName(String accRecTypeName) {
+
+        String accRecTypeDevName;
+        try {
+             accRecTypeDevName = Schema.SObjectType.Account.getRecordTypeInfosByName().get(accRecTypeName).getDeveloperName();
+        } catch (Exception ex) {
+            accRecTypeDevName = '';
+        }
+
+        return accRecTypeDevName;
+    }
 }
