@@ -24,7 +24,7 @@ DEFAULT_XML = """<Package xmlns="http://soap.sforce.com/2006/04/metadata">
         <members>Admin</members>
         <name>Profile</name>
     </types>
-    <version>39.0</version>
+    <version>48.0</version>
 </Package>"""
 
 
@@ -212,7 +212,7 @@ class UpdateProfile(Deploy):
 
     def _get_deploy_package_xml_content(self):
         return f"""<?xml version="1.0" encoding="UTF-8"?><Package xmlns="http://soap.sforce.com/2006/04/metadata">
-        <types><members>{self.profile_name}</members><name>Profile</name></types><version>39.0</version></Package>
+        <types><members>{self.profile_name}</members><name>Profile</name></types><version>48.0</version></Package>
         """
 
     def _deploy_metadata(self):
