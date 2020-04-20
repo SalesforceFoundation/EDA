@@ -4,7 +4,7 @@ project:
     package:
         name: EDA
         namespace: hed
-        api_version: 45.0
+        api_version: 48.0
         install_class: STG_InstallScript
     git:
         prefix_release: rel/
