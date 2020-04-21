@@ -86,6 +86,13 @@
         <members>Attribute__c-EDA Credential Layout</members>
         <members>Attribute__c-EDA Student Characteristic Layout</members>
         <members>Behavior_Involvement__c-EDA Behavior Involvement Layout</members>
+        <members>Behavior_Response__c-EDA Behavior Response Layout</members>
+        <members>Case-EDA Incident Layout</members>
+        <members>Contact_Language__c-HEDA Contact Language Layout</members>
+        <members>Course__c-HEDA Course Layout</members>
+        <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
+        <members>Course_Offering__c-HEDA Course Offering Layout</members>
+        <members>Course_Offering_Schedule__c-EDA Course Offering Schedule Layout</members>
         <name>Layout</name>
     </types>
     <types>
