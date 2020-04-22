@@ -117,7 +117,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>MultipleCourseConnection</shortDescription>
+        <shortDescription>Error when multiple Course Connections exist</shortDescription>
         <value>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrollment in this Course Offering for this Term Grade.</value>
     </labels>
     <labels>
@@ -125,7 +125,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>NoContactCOFound</shortDescription>
+        <shortDescription>Error when Contact and Course Offering don't match</shortDescription>
         <value>The Contact and Course Offering are not specified or don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
@@ -133,7 +133,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>NoCourseConnection</shortDescription>
+        <shortDescription>Error when no Course Connection found</shortDescription>
         <value>There is no Course Connection associated with this Contact and Course Offering. If this student is enrolled in this Course Offering, create a Course Connection.</value>
     </labels>
     <labels>
@@ -141,7 +141,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>NoDataMatch</shortDescription>
+        <shortDescription>Error when Contact and Course Offering don't match</shortDescription>
         <value>The Contact and Course Offering don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
@@ -149,7 +149,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>NoFieldsPopulated</shortDescription>
+        <shortDescription>Error when required fields aren't populated</shortDescription>
         <value>Either specify only a Course Connection or both a Contact and a Course Offering.</value>
     </labels>
     <labels>
@@ -165,7 +165,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>OnlyCourseConnectionPopulated</shortDescription>
+        <shortDescription>Error when invalid Course Connection selected</shortDescription>
         <value>There is no Contact or Course Offering associated with this Course Connection. Choose a valid Course Connection.</value>
     </labels>
     <labels>
@@ -189,15 +189,15 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Preferred Email Required Error</shortDescription>
-        <value>Tell us which email is preferred.</value>
+        <shortDescription>Error when Preferred Email is blank</shortDescription>
+        <value>Select a value for Preferred Email.</value>
     </labels>
     <labels>
         <fullName>PreferredPhoneMatchMustExist</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PreferredPhoneMatchMustExist</shortDescription>
+        <shortDescription>Error when Preferred Phone value doesn't exist</shortDescription>
         <value>We can&apos;t find the Phone specified in Preferred Phone. Make sure that you&apos;re entering the field label of an existing custom Phone field.</value>
     </labels>
     <labels>
@@ -205,7 +205,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PreferredPhoneMatchNotNull</shortDescription>
+        <shortDescription>Error when value for phone field in Preferred Phone is blank.</shortDescription>
         <value>The phone selected for Preferred Phone can&apos;t be blank.</value>
     </labels>
     <labels>
@@ -213,8 +213,8 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PreferredPhoneRequiredError</shortDescription>
-        <value>Tell us which Phone is preferred.</value>
+        <shortDescription>Error when Preferred Phone is blank.</shortDescription>
+        <value>Select a value for Preferred Phone.</value>
     </labels>
     <labels>
         <fullName>Relationship_Explanation_Connector</fullName>
@@ -245,8 +245,8 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>RelationshipsLookupDescription</shortDescription>
-        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
+        <shortDescription>Info text for Reciprocal Relationships Settings</shortDescription>
+        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, since a father is related to his son, there should be an additional record showing the son related back to his father. You can specify the Type value for the Name, and what the reciprocal value should be based on the gender of the connecting Contact. You can define male, female, and neutral values for each reciprocal setting..</value>
     </labels>
     <labels>
         <fullName>acctNamingOther</fullName>
@@ -269,7 +269,7 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
+        <shortDescription>Error - DEPRECATED</shortDescription>
         <value>Address records can only be associated with Accounts or Contacts.</value>
     </labels>
     <labels>
@@ -389,7 +389,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>automaticHHNamingHelpText</shortDescription>
+        <shortDescription>Info text for Automatic Household Naming</shortDescription>
         <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
     </labels>
     <labels>
@@ -588,7 +588,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Email value used in Preferred Email logic</shortDescription>
+        <shortDescription>Value used in Preferred Email logic</shortDescription>
         <value>Email (standard)</value>
     </labels>
     <labels>
@@ -596,7 +596,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>preferredBatchDefaultPhone</shortDescription>
+        <shortDescription>Value used in Preferred Phone logic</shortDescription>
         <value>Phone (standard)</value>
     </labels>
     <labels>
@@ -684,7 +684,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflNotInserted</shortDescription>
+        <shortDescription>Error when record type is already used in existing Affl Mapping</shortDescription>
         <value>We can&apos;t map this Affiliation because it references a record type that is already referenced by another Affiliation Mapping. If you want to add this mapping so the Affiliation is translated, click Edit to modify the existing mapping. Then, specify the field API name under Contact Primary Affl Field. Do not change the name specified for Account Record Type.</value>
     </labels>
     <labels>
@@ -980,7 +980,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgCourseConnBackFillError</shortDescription>
+        <shortDescription>Error when starting Course Connection backfill</shortDescription>
         <value>There was an error when starting the backfill.</value>
     </labels>
     <labels>
@@ -988,7 +988,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgCourseConnBackFillSuccess</shortDescription>
+        <shortDescription>Success message for Course Connection backfill</shortDescription>
         <value>The backfill was queued successfully.</value>
     </labels>
     <labels>
@@ -1052,8 +1052,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgDisablePreferredPhoneEnforcement</shortDescription>
-        <value>Disable Preferred Phone enforcement:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Disable Preferred Phone Enforcement</value>
     </labels>
     <labels>
         <fullName>stgEnableCourseConnectionsTitle</fullName>
@@ -1068,8 +1068,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgEnablePreferredPhoneSync</shortDescription>
-        <value>Enable Enhanced Preferred Phone Functionality:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Enable Enhanced Preferred Phone Functionality</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
@@ -1236,7 +1236,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpContactPreferredPhone</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>Do not require Contacts to have a Preferred Phone.</value>
     </labels>
     <labels>
@@ -1244,7 +1244,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpContactPreferredPhoneSync</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</value>
     </labels>
     <labels>
@@ -1556,7 +1556,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRefreshAdminAcctNameDesc</shortDescription>
+        <shortDescription>Warning for Refresh Admin Account Names</shortDescription>
         <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
@@ -1564,15 +1564,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRefreshAdminAcctNameTitle</shortDescription>
-        <value>Refresh All Administrative Account Names:</value>
+        <shortDescription>Field label for System Settings</shortDescription>
+        <value>Refresh All Administrative Account Names</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRefreshHHAcctNameDesc</shortDescription>
+        <shortDescription>Warning for Refresh Household Account Names</shortDescription>
         <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
@@ -1580,8 +1580,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRefreshHHAcctNameTitle</shortDescription>
-        <value>Refresh All Household Account Names:</value>
+        <shortDescription>Field label for System Settings</shortDescription>
+        <value>Refresh All Household Account Names</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>
@@ -1652,7 +1652,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSuccessAdminAccountNameRefresh</shortDescription>
+        <shortDescription>Success message for Admin Account naming refresh</shortDescription>
         <value>The Administrative Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</value>
     </labels>
@@ -1661,7 +1661,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSuccessHHAccountNameRefresh</shortDescription>
+        <shortDescription>Success message for Household Account naming refresh</shortDescription>
         <value>The Household Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</value>
     </labels>
