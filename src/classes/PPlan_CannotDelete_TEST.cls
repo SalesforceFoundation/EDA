@@ -113,6 +113,9 @@ public with sharing class PPlan_CannotDelete_TEST {
     @isTest
     public static void pPlanCannotDeleteWProgramEnrollmentsAndPlanReq() {
         
+        // Disable Custom Settings
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Program_Plan_Deletion__c = FALSE));
+
         // Insert Account
         List<Account> academicPrograms = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAcademicAccRecTypeID());
         insert academicPrograms;
