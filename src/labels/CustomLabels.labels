@@ -349,7 +349,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when Affiliation created and record type issue in Affiliation Mappings</shortDesc'sription>
+        <shortDescription>Error when Affiliation created and record type issue in Affiliation Mappings</shortDescsription>
         <value>We can&apos;t save this record because of an Account record type error in Affiliation Mappings. Ask your administrator to verify that Account Record Types are correctly mapped to Contact Primary Affiliations.</value>
     </labels>
     <labels>
