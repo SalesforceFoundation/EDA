@@ -29,7 +29,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Autocreate relationship error message</shortDescription>
+        <shortDescription>Error when invalid autocreate relationship configured</shortDescription>
         <value>There's an invalid autocreate relationship setting configured in EDA Settings | Relationships | Autocreation. Delete or edit the invalid setting, then try again.</value>
     </labels>
     <labels>
@@ -61,7 +61,7 @@
         <categories>Contacts, Accounts</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error message when deleting a record with child records</shortDescription>
+        <shortDescription>Error when deleting a record with child records</shortDescription>
         <value>This record can't be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don't see related records, or if you're unable to delete them, contact your System Administrator for assistance.</value>
     </labels>
     <labels>
@@ -261,7 +261,7 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Exception error message for an invalid external call</shortDescription>
+        <shortDescription>Exception error for an invalid external call</shortDescription>
         <value>Invalid call. This function is reserved for Salesforce use.</value>
     </labels>
     <labels>
@@ -277,7 +277,7 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error msg: save Addr record tied to Account RT without Multi-Addresses enabled</shortDescription>
+        <shortDescription>Error when Addr record tied to Account RT without Multi-Addresses enabled</shortDescription>
         <value>The ability to add multiple addresses is disabled for this Account record type. To enable it, go to EDA Settings, click on Accounts and Contacts, and select the appropriate checkbox next to Account Types with Multi-Addresses Enabled.</value>
     </labels>
     <labels>
@@ -285,7 +285,7 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg: save Addr record tied to Contact when Contact Multi-Addresses disabled</shortDescription>
+        <shortDescription>Error when Addr record tied to Contact and Contact Multi-Addresses disabled</shortDescription>
         <value>The ability to add multiple addresses is disabled for Contacts. To enable it, go to EDA Settings, click on Accounts and Contacts, then select the Contact Multi-Addresses Enabled checkbox.</value>
     </labels>
     <labels>
@@ -293,7 +293,7 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Err msg when multiple seasonal Addr records have overlapping dates</shortDescription>
+        <shortDescription>Error when multiple seasonal Addr records have overlapping dates</shortDescription>
         <value>There's an existing Address record for this Account or Contact with seasonal start and end dates that overlap the seasonal dates for this record. Adjust the seasonal dates so that they don't overlap with the other Address record.</value>
     </labels>
     <labels>
@@ -301,7 +301,7 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error msg when some but not all start and end date fields have values</shortDescription>
+        <shortDescription>Error when some but not all start and end date fields have values</shortDescription>
         <value>An address can't have partial Seasonal Start and End Dates. Either enter values for all of the Seasonal Start and End date fields, or leave all of them blank.</value>
     </labels>
     <labels>
@@ -309,7 +309,7 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error msg when some but not all start and end date fields have values</shortDescription>
+        <shortDescription>Error when some but not all start and end date fields have values</shortDescription>
         <value>An address can't have partial Seasonal Start and End Dates. Either enter values for all of the Seasonal Start and End date fields, or leave all of them blank.</value>
     </labels>
     <labels>
@@ -317,7 +317,7 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error msg: save Addr record with a parent object other than Account or Contact</shortDescription>
+        <shortDescription>Error when Addr record has a parent object other than Account or Contact</shortDescription>
         <value>Address records can only be associated with Accounts or Contacts.</value>
     </labels>
     <labels>
@@ -341,7 +341,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg for Affiliation creation for Acct with no record type</shortDescription>
+        <shortDescription>Error when Affiliation created for Acct with no record type</shortDescription>
         <value>We can&apos;t create this Affiliation because the specified Account doesn&apos;t have a record type.</value>
     </labels>
     <labels>
@@ -349,7 +349,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg for Affiliation creation when there's a mapping error</shortDescription>
+        <shortDescription>Error when Affiliation created and record type issue in Affiliation Mappings</shortDesc'sription>
         <value>We can&apos;t save this record because of an Account record type error in Affiliation Mappings. Ask your administrator to verify that Account Record Types are correctly mapped to Contact Primary Affiliations.</value>
     </labels>
     <labels>
@@ -357,7 +357,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg for Affiliation creation when Acct RT doesn't exist</shortDescription>
+        <shortDescription>Error when Affiliation created and Acct RT doesn't exist</shortDescription>
         <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in Affiliation Mappings.</value>
     </labels>
     <labels>
@@ -381,8 +381,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>automaticHHNaming</shortDescription>
-        <value>Automatically Rename Household Accounts:</value>
+        <shortDescription>Field label for Automatic HH Naming</shortDescription>
+        <value>Automatically Rename Household Accounts</value>
     </labels>
     <labels>
         <fullName>automaticHHNamingHelpText</fullName>
@@ -421,7 +421,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg for missing required field value</shortDescription>
+        <shortDescription>Error when missing required field value</shortDescription>
         <value>A blank required field is preventing this record from being saved. The required field could be on this record, or on a record related by a lookup value.</value>
     </labels>
     <labels>
@@ -429,7 +429,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg for validation rule exceptions</shortDescription>
+        <shortDescription>Error when validation rule prevents processing</shortDescription>
         <value>A validation rule is preventing this record from being processed. The validation rule might be on this record, or on a related record that's being updated. VALIDATION MESSAGE: </value>
     </labels>
     <labels>
@@ -468,7 +468,7 @@
         <fullName>giftProcessingConfigException</fullName>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg for invalid Gift Processing config</shortDescription>
+        <shortDescription>Error when Gift Processing config is invalid</shortDescription>
         <value>You are trying to access Gift Processing without the required configuration information. Contact your administrator for help.</value>
     </labels>
     <labels>
@@ -548,7 +548,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg when Plan Requirement has both parent Plan Requirement and Program Plan</shortDescription>
+        <shortDescription>Error when Plan Requirement has both parent Plan Requirement and Program Plan</shortDescription>
         <value>Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.</value>
     </labels>
     <labels>
@@ -1324,7 +1324,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg for Course Connections Settings</shortDescription>
+        <shortDescription>Error when Enable Course Connections field isn't selected</shortDescription>
         <value>You must enable Course Connections before running the Course Connections Backfill.</value>
     </labels>
     <labels>
@@ -1332,7 +1332,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg for Course Connections Settings</shortDescription>
+        <shortDescription>Error when Enable Course Connections Field isn't selected</shortDescription>
         <value>You must enable Course Connections before editing record types.</value>
     </labels>
     <labels>
@@ -1636,7 +1636,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for err storage setting</shortDescription>
+        <shortDescription>Field label for error storage setting</shortDescription>
         <value>Store Errors</value>
     </labels>
     <labels>
@@ -1862,7 +1862,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg on Course Offering</shortDescription>
+        <shortDescription>Error when End Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its End Time doesn&apos;t match the End Time of its associated Time Block. Either edit the End Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
     <labels>
@@ -1870,7 +1870,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Err msg on Course Offering</shortDescription>
+        <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
 </CustomLabels>
