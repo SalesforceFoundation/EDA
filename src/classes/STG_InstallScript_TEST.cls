@@ -34,8 +34,8 @@
 @isTest
 public with sharing class STG_InstallScript_TEST {
 
-	@isTest
-	public static void onInstall() {
+    @isTest
+    public static void onInstall() {
         Contact cont = new Contact(
             FirstName = 'Joe',
             LastName = 'Test',
@@ -47,7 +47,7 @@ public with sharing class STG_InstallScript_TEST {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true); // back on for install script
 
         Test.startTest();
-		//Run the install script
+        //Run the install script
         Test.testInstall(new STG_InstallScript(), null);
         Test.stopTest();
 
@@ -83,7 +83,7 @@ public with sharing class STG_InstallScript_TEST {
         System.assertEquals(cont2.AlternateEmail__c, cont2.Email);
 
         System.assertEquals(false, STG_InstallScript.sendTelemetryDataMethodCalled, 'Did not expect the EDA Telemetry data method to be called on install.');
-	}
+    }
 
     @isTest
     public static void tdtmPushWithNamespace() {
@@ -278,7 +278,7 @@ public with sharing class STG_InstallScript_TEST {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, true);
         insert cont;
         // back on for install script
-		TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
 
         Contact contWithoutAccId = [SELECT AccountId FROM Contact WHERE Id = :cont.Id];        
         System.assertEquals(null, contWithoutAccId.AccountId);
@@ -388,20 +388,60 @@ public with sharing class STG_InstallScript_TEST {
     *************************************************************************************************************/
     @isTest
     private static void enablePreventPPlanDeletionHierarchyCustomSettigsOnUpgrade() {
-        
+
+        // Disable Prevent Program Plan Deletion Hierarchy Custom Settings
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
-        
-        System.assertEquals(false, orgSettings.Prevent_Program_Plan_Deletion__c,
-            'Expected Prevent Program Plan Deletion Hierarchy Custom setting is disbaled before upgrade.');
-        
+        orgSettings.Prevent_Program_Plan_Deletion__c = false;
+        upsert orgSettings;
+
         // Run the install script for orgs using HEDA 1.95
         Test.startTest();
             Test.testInstall(new STG_InstallScript(), new Version(1,95), true);
         Test.stopTest();
-        
+
         Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
-        
-        System.assertEquals(true, updatedSettings.Prevent_Program_Plan_Deletion__c,
+
+        System.assertEquals(True, updatedSettings.Prevent_Program_Plan_Deletion__c,
             'Expected Prevent Program Plan Deletion Hierarchy Custom setting is enabled.');
+    }
+
+    /************************************************************************************************************
+    * @description Tests newInstallOrPushUpgrade method of STG_InstallScript for new installs
+    *************************************************************************************************************/
+    @isTest
+    private static void testNewInstall() {
+        Test.startTest();
+            Boolean newInstall = STG_InstallScript.newInstallOrPushUpgrade(Null, new Version(1,96));
+        Test.stopTest();
+        
+        // Ensure new Install
+        System.assertEquals(true, newInstall);
+
+    }
+
+    /***********************************************************************************************************************************
+    * @description Tests newInstallOrPushUpgrade method of STG_InstallScript by comparing previous version (1.95) with new version(1.96)
+    ************************************************************************************************************************************/
+    @isTest
+    private static void testPushUpgradePositive() {
+        Test.startTest();
+            Boolean newInstall = STG_InstallScript.newInstallOrPushUpgrade(new Version(1,95), new Version(1,96));
+        Test.stopTest();
+        
+        // Ensure push upgrade
+        System.assertEquals(true, newInstall);
+    }
+
+    /****************************************************************************************************************************
+    * @description A negative test for newInstallOrPushUpgrade method of STG_InstallScript by comparing previous version (1.97)
+    * which is greater than new version (1.96)
+    ******************************************************************************************************************************/
+    @isTest
+    private static void testPushUpgradeNegative() {
+        Test.startTest();
+            Boolean newInstall = STG_InstallScript.newInstallOrPushUpgrade(new Version(1,97), new Version(1,96));
+        Test.stopTest();
+
+        System.assertEquals(false, newInstall);
     }
 }

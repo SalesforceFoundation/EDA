@@ -64,8 +64,8 @@ public with sharing class PPlan_CannotDelete_TDTM extends TDTM_Runnable {
                                                         (SELECT ID FROM Program_Enrollments__r LIMIT 1)
                                                 FROM Program_Plan__c
                                                 WHERE ID IN :oldlist]) {
-                if (programPlan.Plan_Requirements__r.size() > 0
-                    || programPlan.Program_Enrollments__r.size() > 0) {
+                if (programPlan.Plan_Requirements__r.isEmpty() == false
+                    || programPlan.Program_Enrollments__r.isEmpty() == false) {
                     Program_Plan__c programplanInContext = (Program_Plan__c)oldmap.get(programPlan.ID);
                     programplanInContext.addError(Label.CannotDelete);
                 }

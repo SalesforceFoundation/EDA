@@ -62,9 +62,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
             // Enable Prevent Account Deletion and Prevent Plan Requirement Deletion Custom Settings
             enablePreventDeletionHierarchyCustomSettings(NULL);
 
-            // Enable Prevent Program Plan Deletion Custom Settings
-            enablePreventPPlanDeletionHierarchyCustomSettings(NULL);
-
         //Updates, manual or pushed by publisher.
         } else if(context.isUpgrade() || context.isPush()) {
 
@@ -79,10 +76,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             setDefaultContactLanguageFluency(previousVersion);
             
             // Enable Prevent Account Deletion and Prevent Plan Requirement Deletion Custom Settings
-            enablePreventDeletionHierarchyCustomSettings(previousVersion);
-            
-            // Enable Prevent Program Plan Deletion Custom Settings
-            enablePreventPPlanDeletionHierarchyCustomSettings(previousVersion);      
+            enablePreventDeletionHierarchyCustomSettings(previousVersion);     
 
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
                 // We need to handle a special case to populate the Owned_by_Namespace__c field for EDA Orgs before 1.38.
@@ -344,38 +338,62 @@ global without sharing class STG_InstallScript implements InstallHandler {
             UTIL_OrgTelemetry.dispatchTelemetryBatchJob();
         }
     }
-    
-    /************************************************************************************************************************************************************************
-    * @description Enables Prevent Account Deletion and Plan Requirement Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
+
+    /*********************************************************************************************************
+    * @description Enables Prevent Hierarchy Custom Settings for new installs and push upgrades
     * @return void
     */
     global static void enablePreventDeletionHierarchyCustomSettings(Version previousVersion) {
-        if ((previousVersion == null) || (previousVersion != null && previousVersion.compareTo(new Version(1,95)) < 0)) {
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        Boolean isNewInstallOrPushUpgradedTo195 = newInstallOrPushUpgrade(previousVersion, new Version(1,95));
+        Boolean isNewInstallOrPushUpgradedTo196 = newInstallOrPushUpgrade(previousVersion, new Version(1,96));
+        if (isNewInstallOrPushUpgradedTo195) {
             UTIL_Debug.debug('***Upgrading to version 1.95 or new installs');
-            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
-            
-            if (orgSettings.Prevent_Account_Deletion__c == null || orgSettings.Prevent_Account_Deletion__c != true) {
-                orgSettings.Prevent_Account_Deletion__c = true; 
-            }
-            if (orgSettings.Prevent_Plan_Requirement_Deletion__c == null || orgSettings.Prevent_Plan_Requirement_Deletion__c != true) {
-                orgSettings.Prevent_Plan_Requirement_Deletion__c = true;
-            }
-            upsert orgSettings;
+            orgSettings = enablePreventForAccountsAndPlanRequirement();
         }
+        if (isNewInstallOrPushUpgradedTo196) {
+            UTIL_Debug.debug('***Upgrading to version 1.96 or new installs');
+            orgSettings = enablePreventPPlanDeletionHierarchyCustomSettings();
+        }
+        upsert orgSettings;
     }
+
+    /*****************************************************************************************************************************************************************
+    * @description Enables Prevent Account Deletion and Plan Requirement Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
+    * @return void
+    */
+    global static Hierarchy_Settings__c enablePreventForAccountsAndPlanRequirement() {
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        if (orgSettings.Prevent_Account_Deletion__c == null || orgSettings.Prevent_Account_Deletion__c != true) {
+            orgSettings.Prevent_Account_Deletion__c = true;
+        }
+        if (orgSettings.Prevent_Plan_Requirement_Deletion__c == null || orgSettings.Prevent_Plan_Requirement_Deletion__c != true) {
+            orgSettings.Prevent_Plan_Requirement_Deletion__c = true;
+        }
+        return orgSettings;
+    }    
 
     /*****************************************************************************************************************************************
     * @description Enables Prevent Program Plan Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.96
     * @return void
     */
-    global static void enablePreventPPlanDeletionHierarchyCustomSettings(Version previousVersion) {
-        if ((previousVersion == null) || (previousVersion != null && previousVersion.compareTo(new Version(1,96)) < 0)) {
-            UTIL_Debug.debug('***Upgrading to version 1.96 or new installs');
-            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();   
-            if (orgSettings.Prevent_Program_Plan_Deletion__c == null || orgSettings.Prevent_Program_Plan_Deletion__c != true) {
-                orgSettings.Prevent_Program_Plan_Deletion__c = true;
-            }
-            upsert orgSettings;
+    global static Hierarchy_Settings__c enablePreventPPlanDeletionHierarchyCustomSettings() {
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        if (orgSettings.Prevent_Program_Plan_Deletion__c == null || orgSettings.Prevent_Program_Plan_Deletion__c != true) {
+            orgSettings.Prevent_Program_Plan_Deletion__c = true;
         }
+        return orgSettings;
+    }
+
+    /*****************************************************************************************************************************************
+    * @description Method to check if the package is being newly installed or push upgraded to a particular version
+    * @return true if it is either a new install or push upgraded to certain version else return false
+    */
+    @testVisible
+    private static boolean newInstallOrPushUpgrade(Version previousVersion, Version newVersion) {
+        if (previousVersion == null || previousVersion.compareTo(newVersion) < 0) {
+            return true;
+        }
+        return false;
     }
 }
