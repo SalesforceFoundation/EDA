@@ -108,7 +108,7 @@ public with sharing class PPlan_CannotDelete_TEST {
     }
     /*********************************************************************************************************
     * @description Tests the deletion of Program Enrollments with Program Enrollment and Plan Requirement
-    * as related child records and when “Prevent Program Plan Deletion” is disbaled.
+    * as related child records and when “Prevent Program Plan Deletion” is disabled.
     */
     @isTest
     public static void pPlanCannotDeleteWProgramEnrollmentsAndPlanReq() {
