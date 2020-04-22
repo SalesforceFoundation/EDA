@@ -59,7 +59,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
 
-            // Enable Prevent Account Deletion and Prevent Plan Requirement Deletion Custom Settings
+            // Enable Prevent Deletion Hierarchy Custom Settings
             enablePreventDeletionHierarchyCustomSettings(NULL);
 
         //Updates, manual or pushed by publisher.
