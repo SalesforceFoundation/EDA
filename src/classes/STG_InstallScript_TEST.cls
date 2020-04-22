@@ -401,8 +401,52 @@ public with sharing class STG_InstallScript_TEST {
 
         Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
 
-        System.assertEquals(True, updatedSettings.Prevent_Program_Plan_Deletion__c,
-            'Expected Prevent Program Plan Deletion Hierarchy Custom setting is enabled.');
+        System.assertEquals(true, updatedSettings.Prevent_Program_Plan_Deletion__c,
+            'Expected Prevent Program Plan Deletion Hierarchy Custom setting is enabled');
+    }
+    
+    /************************************************************************************************************
+    * @description Tests enabling Account Deletion Hierarchy Custom Settings when upgraded from 1.94
+    *************************************************************************************************************/
+    @isTest
+    private static void enablePreventAccountDeletionHierarchyCustomSettigsOnUpgrade() {
+
+        // Disable Prevent Account Deletion Hierarchy Custom Settings
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        orgSettings.Prevent_Account_Deletion__c = false;
+        upsert orgSettings;
+
+        // Run the install script for orgs using HEDA 1.94
+        Test.startTest();
+            Test.testInstall(new STG_InstallScript(), new Version(1,94), true);
+        Test.stopTest();
+
+        Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
+
+        System.assertEquals(true, updatedSettings.Prevent_Account_Deletion__c,
+            'Expected Prevent Account Deletion Hierarchy Custom setting is enabled');
+    }
+    
+    /************************************************************************************************************
+    * @description Tests enabling Plan Requirement Deletion Hierarchy Custom Settings when upgraded from 1.94
+    *************************************************************************************************************/
+    @isTest
+    private static void enablePreventPlanReqDeletionHierarchyCustomSettigsOnUpgrade() {
+
+        // Disable Prevent Plan Requirement Deletion Deletion Hierarchy Custom Settings
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        orgSettings.Prevent_Plan_Requirement_Deletion__c = false;
+        upsert orgSettings;
+
+        // Run the install script for orgs using HEDA 1.94
+        Test.startTest();
+            Test.testInstall(new STG_InstallScript(), new Version(1,94), true);
+        Test.stopTest();
+
+        Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
+
+        System.assertEquals(true, updatedSettings.Prevent_Plan_Requirement_Deletion__c,
+            'Expected Prevent Plan Requirement Deletion Hierarchy Custom setting is enabled');
     }
 
     /************************************************************************************************************
@@ -411,12 +455,11 @@ public with sharing class STG_InstallScript_TEST {
     @isTest
     private static void testNewInstall() {
         Test.startTest();
-            Boolean newInstall = STG_InstallScript.newInstallOrPushUpgrade(Null, new Version(1,96));
+            Boolean newInstall = STG_InstallScript.isNewInstallOrPushUpgrade(Null, new Version(1,96));
         Test.stopTest();
         
         // Ensure new Install
-        System.assertEquals(true, newInstall);
-
+        System.assertEquals(true, newInstall, 'Expected to return true for New Installs');
     }
 
     /***********************************************************************************************************************************
@@ -425,11 +468,11 @@ public with sharing class STG_InstallScript_TEST {
     @isTest
     private static void testPushUpgradePositive() {
         Test.startTest();
-            Boolean newInstall = STG_InstallScript.newInstallOrPushUpgrade(new Version(1,95), new Version(1,96));
+            Boolean newInstall = STG_InstallScript.isNewInstallOrPushUpgrade(new Version(1,95), new Version(1,96));
         Test.stopTest();
         
         // Ensure push upgrade
-        System.assertEquals(true, newInstall);
+        System.assertEquals(true, newInstall, 'Expected to return true for Push Upgrades');
     }
 
     /****************************************************************************************************************************
@@ -439,9 +482,67 @@ public with sharing class STG_InstallScript_TEST {
     @isTest
     private static void testPushUpgradeNegative() {
         Test.startTest();
-            Boolean newInstall = STG_InstallScript.newInstallOrPushUpgrade(new Version(1,97), new Version(1,96));
+            Boolean newInstall = STG_InstallScript.isNewInstallOrPushUpgrade(new Version(1,97), new Version(1,96));
         Test.stopTest();
 
-        System.assertEquals(false, newInstall);
+        System.assertEquals(false, newInstall, 'expected to return false neither new install nor push updated');
+    }
+
+    /****************************************************************************************************************************
+    * @description Test for enablePreventPPlanDeletionHierarchyCustomSettings method of STG_InstallScript.cls
+    ******************************************************************************************************************************/
+    @isTest
+    private static void testEnablePreventPPlanDeletionHierarchyCustomSettingsMethod() {
+        // Disable Prevent Program Plan Deletion Hierarchy Custom Settings
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        orgSettings.Prevent_Program_Plan_Deletion__c = false;
+        upsert orgSettings;
+
+        Test.startTest();
+            Hierarchy_Settings__c hierachySettings = STG_InstallScript.enablePreventPPlanDeletionHierarchyCustomSettings();
+        Test.stopTest();
+
+        // Ensure Prevent Program Plan Deletion Hierarchy Settings is enabled
+        System.assertEquals(true, hierachySettings.Prevent_Program_Plan_Deletion__c,
+        'Expected Prevent Program Plan Deletion Hierarchy Custom setting is enabled');
+    }
+
+    /************************************************************************************************************
+    * @description Test for enableAccountDeletionHierarchyCustomSettigs method of STG_InstallScript.cls
+    *************************************************************************************************************/
+    @isTest
+    private static void testEnableAccountDeletionHierarchyCustomSettigsMethod() {
+
+        // Disable Prevent Account Deletion Hierarchy Custom Settings
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        orgSettings.Prevent_Account_Deletion__c = false;
+        upsert orgSettings;
+
+        Test.startTest();
+            Hierarchy_Settings__c hierachySettings = STG_InstallScript.enablePreventAccountDeletionHierarchyCustomSettings();
+        Test.stopTest();
+
+        System.assertEquals(true, hierachySettings.Prevent_Account_Deletion__c,
+            'Expected Account Deletion Hierarchy Custom setting is enabled');
+
+    }
+    
+    /************************************************************************************************************
+    * @description Test for enablePreventPlanReqDeletionHierarchyCustomSettigs method of STG_InstallScript.cls
+    *************************************************************************************************************/
+    @isTest
+    private static void testEnablenablePreventPlanReqDeletionHierarchyCustomSettigsMethod() {
+
+        // Disable Prevent Plan Requirement Deletion Hierarchy Custom Settings
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        orgSettings.Prevent_Plan_Requirement_Deletion__c = false;
+        upsert orgSettings;
+
+        Test.startTest();
+            Hierarchy_Settings__c hierachySettings = STG_InstallScript.enablePreventPlanRequirementDeletionHierarchyCustomSettings(orgSettings);
+        Test.stopTest();
+
+        System.assertEquals(true, hierachySettings.Prevent_Plan_Requirement_Deletion__c,
+            'Expected Prevent Plan Requirement Deletion Hierarchy Custom setting is enabled');
     }
 }

@@ -339,17 +339,18 @@ global without sharing class STG_InstallScript implements InstallHandler {
         }
     }
 
-    /*********************************************************************************************************
+    /**************************************************************************************************************
     * @description Enables Prevent Hierarchy Custom Settings for new installs and push upgrades
     * @return void
     */
     global static void enablePreventDeletionHierarchyCustomSettings(Version previousVersion) {
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
-        Boolean isNewInstallOrPushUpgradedTo195 = newInstallOrPushUpgrade(previousVersion, new Version(1,95));
-        Boolean isNewInstallOrPushUpgradedTo196 = newInstallOrPushUpgrade(previousVersion, new Version(1,96));
+        Boolean isNewInstallOrPushUpgradedTo195 = isNewInstallOrPushUpgrade(previousVersion, new Version(1,95));
+        Boolean isNewInstallOrPushUpgradedTo196 = isNewInstallOrPushUpgrade(previousVersion, new Version(1,96));
         if (isNewInstallOrPushUpgradedTo195) {
             UTIL_Debug.debug('***Upgrading to version 1.95 or new installs');
-            orgSettings = enablePreventForAccountsAndPlanRequirement();
+            orgSettings = enablePreventAccountDeletionHierarchyCustomSettings();
+            orgSettings = enablePreventPlanRequirementDeletionHierarchyCustomSettings(orgSettings);
         }
         if (isNewInstallOrPushUpgradedTo196) {
             UTIL_Debug.debug('***Upgrading to version 1.96 or new installs');
@@ -358,23 +359,32 @@ global without sharing class STG_InstallScript implements InstallHandler {
         upsert orgSettings;
     }
 
-    /*****************************************************************************************************************************************************************
-    * @description Enables Prevent Account Deletion and Plan Requirement Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.95
+    /*****************************************************************************************************************************
+    * @description Enables Prevent Account Deletion on Hierarchy Custom Settings for new installs and when upgrading to 1.95
     * @return void
     */
-    global static Hierarchy_Settings__c enablePreventForAccountsAndPlanRequirement() {
+    global static Hierarchy_Settings__c enablePreventAccountDeletionHierarchyCustomSettings() {
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
         if (orgSettings.Prevent_Account_Deletion__c == null || orgSettings.Prevent_Account_Deletion__c != true) {
             orgSettings.Prevent_Account_Deletion__c = true;
         }
-        if (orgSettings.Prevent_Plan_Requirement_Deletion__c == null || orgSettings.Prevent_Plan_Requirement_Deletion__c != true) {
-            orgSettings.Prevent_Plan_Requirement_Deletion__c = true;
-        }
         return orgSettings;
-    }    
+    }
 
-    /*****************************************************************************************************************************************
-    * @description Enables Prevent Program Plan Deletion by default on Hierarchy Custom Settings for new installs and when upgrading to 1.96
+    /**************************************************************************************************************************
+    * @description Enables Plan Requirement Deletion on Hierarchy Custom Settings for new installs and when upgrading to 1.95
+    * @return void
+    */
+    global static Hierarchy_Settings__c enablePreventPlanRequirementDeletionHierarchyCustomSettings(Hierarchy_Settings__c hierarchySettings) {
+ 
+        if (hierarchySettings.Prevent_Plan_Requirement_Deletion__c == null || hierarchySettings.Prevent_Plan_Requirement_Deletion__c != true) {
+            hierarchySettings.Prevent_Plan_Requirement_Deletion__c = true;
+        }
+        return hierarchySettings;
+    }
+
+    /********************************************************************************************************************************
+    * @description Enables Prevent Program Plan Deletion on Hierarchy Custom Settings for new installs and when upgrading to 1.96
     * @return void
     */
     global static Hierarchy_Settings__c enablePreventPPlanDeletionHierarchyCustomSettings() {
@@ -385,12 +395,12 @@ global without sharing class STG_InstallScript implements InstallHandler {
         return orgSettings;
     }
 
-    /*****************************************************************************************************************************************
+    /********************************************************************************************************************************
     * @description Method to check if the package is being newly installed or push upgraded to a particular version
     * @return true if it is either a new install or push upgraded to certain version else return false
     */
     @testVisible
-    private static boolean newInstallOrPushUpgrade(Version previousVersion, Version newVersion) {
+    private static boolean isNewInstallOrPushUpgrade(Version previousVersion, Version newVersion) {
         if (previousVersion == null || previousVersion.compareTo(newVersion) < 0) {
             return true;
         }
