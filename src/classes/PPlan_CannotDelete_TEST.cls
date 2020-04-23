@@ -36,12 +36,22 @@
 */
 @isTest
 public with sharing class PPlan_CannotDelete_TEST {
-
+    
+    /*********************************************************************************************************
+    * @description Tests the deletion of Program Plan with Plan Requirement as related child records
+    * and when “Prevent Program Plan Deletion” is enabled.
+    */
     @isTest
     public static void pPlanCannotDeleteWithPlanRequirement() {
+        
+        // Enable Custom Settings
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Program_Plan_Deletion__c = TRUE));
+        
+        // Insert Program Plan
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
         insert pPlans;
-
+       
+       // Insert Plan Requirement
         List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
         for (Plan_Requirement__c pr : prs) {
             pr.Program_Plan__c = pPlans[0].Id;
@@ -49,7 +59,7 @@ public with sharing class PPlan_CannotDelete_TEST {
         insert prs;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(pPlans, false);
+            Database.DeleteResult[] results = Database.delete(pPlans, false);
         Test.stopTest();
 
         //Verify pPlan was not successfully deleted
@@ -59,15 +69,26 @@ public with sharing class PPlan_CannotDelete_TEST {
         System.assertEquals(false, results[0].success);
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
-
+    
+    /*********************************************************************************************************
+    * @description Tests the deletion of Program Enrollments with Program Enrollment as related child records
+    * and when “Prevent Program Plan Deletion” is enabled.
+    */
     @isTest
     public static void pPlanCannotDeleteWithProgramEnrollments() {
+        
+        // Enable Custom Settings
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Program_Plan_Deletion__c = TRUE));
+        
+        // Insert Account
         List<Account> academicPrograms = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAcademicAccRecTypeID());
         insert academicPrograms;
-
+        
+        // Insert Program Plan
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
         insert pPlans;
-
+        
+        // Insert Plan Enrollment
         List<Program_Enrollment__c> pes = UTIL_UnitTestData_TEST.getMultipleTestProgramEnrollments(2, academicPrograms[0].Id);
         for (Program_Enrollment__c pe : pes) {
             pe.Program_Plan__c = pPlans[0].Id;
@@ -75,7 +96,7 @@ public with sharing class PPlan_CannotDelete_TEST {
         insert pes;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(pPlans, false);
+            Database.DeleteResult[] results = Database.delete(pPlans, false);
         Test.stopTest();
 
         //Verify pPlan was not successfully deleted
@@ -84,5 +105,45 @@ public with sharing class PPlan_CannotDelete_TEST {
 
         System.assertEquals(false, results[0].success);
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
+    }
+    /*********************************************************************************************************
+    * @description Tests the deletion of Program Enrollments with Program Enrollment and Plan Requirement
+    * as related child records and when “Prevent Program Plan Deletion” is disabled.
+    */
+    @isTest
+    public static void pPlanCannotDeleteWProgramEnrollmentsAndPlanReq() {
+        
+        // Disable Custom Settings
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Program_Plan_Deletion__c = FALSE));
+
+        // Insert Account
+        List<Account> academicPrograms = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAcademicAccRecTypeID());
+        insert academicPrograms;
+        
+        // Insert Program plan
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
+        insert pPlans;
+        
+        // Insert Program Enrollment
+        List<Program_Enrollment__c> pes = UTIL_UnitTestData_TEST.getMultipleTestProgramEnrollments(2, academicPrograms[0].Id);
+        for (Program_Enrollment__c pe : pes) {
+            pe.Program_Plan__c = pPlans[0].Id;
+        }
+        insert pes;
+        
+        // Insert Plan Requirement
+        List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
+        for (Plan_Requirement__c pr : prs) {
+            pr.Program_Plan__c = pPlans[0].Id;
+        }
+        insert prs;
+    
+        Test.startTest();
+           delete pPlans;
+        Test.stopTest();    
+        
+        //Verify pPlan was successfully deleted
+        List<Program_Plan__c> assertPps = [select ID from Program_Plan__c];
+        System.assertEquals(0, assertPps.size());
     }
 }
