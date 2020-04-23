@@ -35,6 +35,10 @@
 * @description Stops an Program Plan from being deleted if it links to any Plan Requirement or Program Enrollment
 */
 public with sharing class PPlan_CannotDelete_TDTM extends TDTM_Runnable {
+    /*******************************************************************************************************
+    * @description Get the setting of preventing Program Plan deletion
+    */
+    private static Boolean enabledPreventProgramPlanDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Program_Plan_Deletion__c;
 
     /*******************************************************************************************************
     * @description Stops an Program Plan from being deleted if it links to any Plan Requirement or Program Enrollment
@@ -46,19 +50,22 @@ public with sharing class PPlan_CannotDelete_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
             TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+        
+        // return if Program Plan Deletion is not enabled
+        if (!enabledPreventProgramPlanDeletion) {
+            return new DmlWrapper();
+        }
 
         Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-
             for (Program_Plan__c programPlan : [SELECT ID,
                                                         (SELECT ID FROM Plan_Requirements__r LIMIT 1),
                                                         (SELECT ID FROM Program_Enrollments__r LIMIT 1)
                                                 FROM Program_Plan__c
                                                 WHERE ID IN :oldlist]) {
-
-                if(programPlan.Plan_Requirements__r.size() > 0
-                    || programPlan.Program_Enrollments__r.size() > 0) {
+                if (programPlan.Plan_Requirements__r.isEmpty() == false
+                    || programPlan.Program_Enrollments__r.isEmpty() == false) {
                     Program_Plan__c programplanInContext = (Program_Plan__c)oldmap.get(programPlan.ID);
                     programplanInContext.addError(Label.CannotDelete);
                 }
