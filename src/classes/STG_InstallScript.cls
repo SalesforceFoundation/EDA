@@ -363,7 +363,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @description Enables Prevent Account Deletion on Hierarchy Custom Settings for new installs and when upgrading to 1.95
     * @return void
     */
-    global static Hierarchy_Settings__c enablePreventAccountDeletionHierarchyCustomSettings() {
+    @testVisible
+    private static Hierarchy_Settings__c enablePreventAccountDeletionHierarchyCustomSettings() {
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
         if (orgSettings.Prevent_Account_Deletion__c == null || orgSettings.Prevent_Account_Deletion__c != true) {
             orgSettings.Prevent_Account_Deletion__c = true;
@@ -375,7 +376,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @description Enables Plan Requirement Deletion on Hierarchy Custom Settings for new installs and when upgrading to 1.95
     * @return void
     */
-    global static Hierarchy_Settings__c enablePreventPlanRequirementDeletionHierarchyCustomSettings(Hierarchy_Settings__c hierarchySettings) {
+    @testVisible
+    private static Hierarchy_Settings__c enablePreventPlanRequirementDeletionHierarchyCustomSettings(Hierarchy_Settings__c hierarchySettings) {
  
         if (hierarchySettings.Prevent_Plan_Requirement_Deletion__c == null || hierarchySettings.Prevent_Plan_Requirement_Deletion__c != true) {
             hierarchySettings.Prevent_Plan_Requirement_Deletion__c = true;
@@ -387,7 +389,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @description Enables Prevent Program Plan Deletion on Hierarchy Custom Settings for new installs and when upgrading to 1.96
     * @return void
     */
-    global static Hierarchy_Settings__c enablePreventPPlanDeletionHierarchyCustomSettings() {
+    @testVisible
+    private static Hierarchy_Settings__c enablePreventPPlanDeletionHierarchyCustomSettings() {
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
         if (orgSettings.Prevent_Program_Plan_Deletion__c == null || orgSettings.Prevent_Program_Plan_Deletion__c != true) {
             orgSettings.Prevent_Program_Plan_Deletion__c = true;
