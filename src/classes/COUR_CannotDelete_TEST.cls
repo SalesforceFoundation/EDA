@@ -41,7 +41,7 @@ public class COUR_CannotDelete_TEST {
     */
     public static String adminAccRecTypeId = UTIL_Describe.getAdminAccRecTypeID(); 
     
-	/*********************************************************************************************************
+    /*********************************************************************************************************
     * @description Test method to test if Prevent_Course_Deletion__c is enabled in Hierarchy Settings, and
     * Course has a Course Offering record associated to it, then it cannot be deleted.
     */
@@ -80,7 +80,7 @@ public class COUR_CannotDelete_TEST {
         List<Course__c> returnCourses = [SELECT Id
                                   FROM Course__c
                                   WHERE Id IN :courses]; 
-		System.assertEquals(2, returnCourses.size());
+        System.assertEquals(2, returnCourses.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);  
     }
     

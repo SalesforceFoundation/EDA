@@ -60,10 +60,10 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
       
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for (Course__c c : [SELECT ID,
-                            (SELECT ID FROM Course__c.Course_Offerings__r LIMIT 1),
-                     		(SELECT ID FROM Course__c.Plan_Requirements__r LIMIT 1)
-                            FROM Course__c
-                            WHERE ID IN :oldlist])
+                                (SELECT ID FROM Course__c.Course_Offerings__r LIMIT 1),
+                                (SELECT ID FROM Course__c.Plan_Requirements__r LIMIT 1)
+                                FROM Course__c
+                                WHERE ID IN :oldlist])
             {
                 if (hasChildRecords(c)) {
                     Course__c courseInContext = oldmap.get(c.ID);
