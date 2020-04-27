@@ -77,6 +77,8 @@
         <members>CON_PrimaryLanguage_TEST</members>
         <members>COS_StartEndTime_TDTM</members>
         <members>COS_StartEndTime_TEST</members>
+        <members>COUR_CannotDelete_TDTM</members>
+        <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
         <members>ERR_AsyncErrors</members>
