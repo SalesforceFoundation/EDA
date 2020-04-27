@@ -32,10 +32,10 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Test class for ChildRelationshipNamesService class
+* @description Test class for SRVC_ChildRelationshipNames class
 */
 @isTest
-private class ChildRelationshipNamesService_TEST {
+private class SRVC_ChildRelationshipNames_TEST {
     
     @TestSetup
     private static void testSetup() {
@@ -56,7 +56,7 @@ private class ChildRelationshipNamesService_TEST {
         Test.startTest();
             String sObjectName = accts[0].Id.getSObjectType().getDescribe().getName();
             Schema.SObjectType sObjectType = Schema.getGlobalDescribe().get(sObjectName);
-            List<String> allCHildRelationshipNames = ChildRelationshipNamesService.findAllChildRelationshipNames(sObjectType);
+            List<String> allCHildRelationshipNames = SRVC_ChildRelationshipNames.findAllChildRelationshipNames(sObjectType);
         Test.stopTest();
         
         System.assert(allCHildRelationshipNames != NULL);

@@ -31,7 +31,7 @@
 * @group-content ../../ApexDocContent/
 * @description Finds all the chilld relationship names for a particular SobjectType
 */
-public class ChildRelationshipNamesService {
+public class SRVC_ChildRelationshipNames {
     /******************************************************************************************************
     @description This method returns all the Child Relationship Names for a particular sObject
     @params sObjectName The object to find all the Child Relationships for

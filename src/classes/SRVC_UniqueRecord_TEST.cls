@@ -32,10 +32,10 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Test class for MergeRecordsService
+* @description Test class for SRVC_UniqueRecord
 */
 @isTest
-private class MergeRecordsService_TEST {
+private class SRVC_UniqueRecord_TEST {
     // Test merging of records
     @isTest
     private static void testMergeRecordsMethod() {
@@ -74,7 +74,7 @@ private class MergeRecordsService_TEST {
 
         System.assertEquals(5, duplicateList.size());
         Test.startTest();
-            List<SObject> mergedList = MergeRecordsService.mergeDuplicateRecords(duplicateList);
+            List<SObject> mergedList = SRVC_UniqueRecord.getUniqueRecords(duplicateList);
         Test.stopTest();
         
         // Ensure records are merged

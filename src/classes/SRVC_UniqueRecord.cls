@@ -29,16 +29,16 @@
 * @date 2020
 * @group
 * @group-content ../../ApexDocContent/
-* @description Merges records for a particular sObject Type having Ids
+* @description Combines records for a particular sObject Type having Ids and returns unique records
 */
-public class MergeRecordsService {
+public class SRVC_UniqueRecord {
     /******************************************************************************************************
-    @description This method merges records in a given list with same Id into a single record
+    @description Combines record instances with same ID into one
     @params listToCheck The list of records to be checked and merged
     @return finalResults The list of merged records
     ********************************************************************************************************/
     @TestVisible
-    public static List<SObject> mergeDuplicateRecords(List<SObject> listToCheck) {
+    public static List<SObject> getUniqueRecords(List<SObject> listToCheck) {
         
         Map<Id, SObject> idToRecord = new Map<Id, SObject>();
         List<SObject> uniqueRecords = new List<SObject>();
@@ -54,7 +54,7 @@ public class MergeRecordsService {
         if(listToCheck != NULL && listToCheck.size() > 1) {
             sObjectName = listToCheck[0].Id.getSObjectType().getDescribe().getName();
             sObjectType = Schema.getGlobalDescribe().get(sObjectName);
-            childObjectNames = ChildRelationshipNamesService.findAllChildRelationshipNames(sObjectType);
+            childObjectNames = SRVC_ChildRelationshipNames.findAllChildRelationshipNames(sObjectType);
         }
         
         for (Sobject record: listToCheck) {
