@@ -14,6 +14,8 @@
         <members>ADDR_Addresses_TDTM</members>
         <members>ADDR_Addresses_UTIL</members>
         <members>ADDR_AdminAcc_TEST</members>
+        <members>ADDR_CannotDelete_TDTM</members>
+        <members>ADDR_CannotDelete_TDTM_TEST</members>
         <members>ADDR_Contact_TDTM</members>
         <members>ADDR_Contact_TEST</members>
         <members>ADDR_HouseholdAcc_TEST</members>
