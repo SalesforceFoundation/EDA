@@ -366,7 +366,7 @@
     </fields>
     <fields>
         <fullName>Prevent_Address_Deletion__c</fullName>
-        <defaultValue>true</defaultValue>
+        <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
         <label>Prevent Address Deletion</label>
