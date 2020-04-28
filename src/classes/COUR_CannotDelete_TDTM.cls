@@ -59,14 +59,14 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
       	Map<Id, Course__c> oldMap = new Map<Id, Course__c>((List<Course__c>)oldList);
       
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            for (Course__c c : [SELECT ID,
+            for (Course__c course : [SELECT ID,
                                 (SELECT ID FROM Course__c.Course_Offerings__r LIMIT 1),
                                 (SELECT ID FROM Course__c.Plan_Requirements__r LIMIT 1)
                                 FROM Course__c
                                 WHERE ID IN :oldlist])
             {
-                if (hasChildRecords(c)) {
-                    Course__c courseInContext = oldmap.get(c.ID);
+                if (hasChildRecords(course)) {
+                    Course__c courseInContext = oldmap.get(course.ID);
                     courseInContext.addError(Label.CannotDelete);
                 }
             }
@@ -77,10 +77,11 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
    * @description Evaluates whether the Course has any child related records.
-   * @param c is the current Course record.
+   * @param course is the current Course record.
    * @return Boolean.
    ********************************************************************************************************/
-   private static Boolean hasChildRecords(Course__c c) {
-        return (!c.Course_Offerings__r.isEmpty() || !c.Plan_Requirements__r.isEmpty());
+   @testVisible
+   private Boolean hasChildRecords(Course__c course) {
+        return (!course.Course_Offerings__r.isEmpty() || !course.Plan_Requirements__r.isEmpty());
    }
 }
