@@ -160,6 +160,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Validate_Program_Plan_for_Nested_PR__c = mySettings.Validate_Program_Plan_for_Nested_PR__c;
         settings.Preferred_Phone_Selection__c = mySettings.Preferred_Phone_Selection__c;
         settings.Household_Other_Name_Setting__c = mySettings.Household_Other_Name_Setting__c;
+        settings.Prevent_Address_Deletion__c = mySettings.Prevent_Address_Deletion__c;
         settings.Prevent_Contact_Deletion__c = mySettings.Prevent_Contact_Deletion__c;
         settings.Prevent_Course_Offering_Deletion__c = mySettings.Prevent_Course_Offering_Deletion__c;
         settings.Prevent_Course_Connection_Deletion__c = mySettings.Prevent_Course_Connection_Deletion__c;
