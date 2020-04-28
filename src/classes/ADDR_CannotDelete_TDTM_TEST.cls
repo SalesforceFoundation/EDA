@@ -44,7 +44,7 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
 
     /*********************************************************************************************************
     * @description Test method to test that when Prevent_Address_Deletion__c is enabled in Hierarchy Settings, and
-    * Address has an Account record associated to it, the Address record cannot be deleted.
+    * Address has a child Account record associated to it, the Address record cannot be deleted.
     */
     @isTest 
     public static void addrCannotDeleteWithAccount() {
@@ -72,10 +72,17 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
                                         FROM Address__c
                                         WHERE Id IN :returnNewAddresses];
 
-        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
         System.assertEquals(returnNewAddresses.size(), returnAddresses.size());
+
+        for (Database.DeleteResult result : results){
+            System.assertEquals(Label.CannotDelete, result.errors[0].message);
+        }
     }
 
+    /*********************************************************************************************************
+    * @description Test method to test that when Prevent_Address_Deletion__c is enabled in Hierarchy Settings, and
+    * Address has a child Contact record associated to it, the Address record cannot be deleted.
+    */
     @isTest
     public static void addrCannotDeleteWithContact(){
         Integer recordCount = 10;
@@ -101,13 +108,17 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
                                         FROM Address__c
                                         WHERE Id IN :returnNewAddresses];
 
-        //System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
         System.assertEquals(returnNewAddresses.size(), returnAddresses.size());
+
         for (Database.DeleteResult result : results){
             System.assertEquals(Label.CannotDelete, result.errors[0].message);
         }
     }
 
+    /*********************************************************************************************************
+    * @description Test method to test that when Prevent_Address_Deletion__c is disabled in Hierarchy Settings, 
+    * and Address has a child Account record associated to it, the Address record can be deleted.
+    */
     @isTest
     public static void addrCanDeleteWithAccount(){
         Integer recordCount = 10;
@@ -140,6 +151,10 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
         }
     }
 
+    /*********************************************************************************************************
+    * @description Test method to test that when Prevent_Address_Deletion__c is disabled in Hierarchy Settings, 
+    * and Address has a child Contact record associated to it, the Address record can be deleted.
+    */
     @isTest
     public static void addrCanDeleteWithContact(){
         Integer recordCount = 10;
@@ -174,6 +189,10 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
         
     }
 
+    /*********************************************************************************************************
+    * @description Test method to test that when Prevent_Address_Deletion__c is enabled in Hierarchy Settings, 
+    * and Address does not have a child Account or Contact record associated to it, the Address record can be deleted.
+    */
     @isTest
     public static void addressCanDeleteWithoutChildrenPreventDeleteOn(){
         Integer recordCount = 10;
@@ -216,6 +235,10 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
         }
     }
 
+    /*********************************************************************************************************
+    * @description Test method to test that when Prevent_Address_Deletion__c is disabled in Hierarchy Settings, 
+    * and Address does not have a child Account or Contact record associated to it, the Address record can be deleted.
+    */
     @isTest
     public static void addressCanDeleteWithoutChildrenPreventDeleteOff(){
         Integer recordCount = 10;
