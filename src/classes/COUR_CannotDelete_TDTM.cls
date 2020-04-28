@@ -52,7 +52,7 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 		
-        if (!enabledPreventCourseDeletion) {
+        if (!COUR_CannotDelete_TDTM.enabledPreventCourseDeletion) {
             return new DmlWrapper(); 
         }
         
@@ -60,12 +60,12 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
       
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for (Course__c course : [SELECT ID,
-                                (SELECT ID FROM Course__c.Course_Offerings__r LIMIT 1),
-                                (SELECT ID FROM Course__c.Plan_Requirements__r LIMIT 1)
-                                FROM Course__c
-                                WHERE ID IN :oldlist])
+                            (SELECT ID FROM Course__c.Course_Offerings__r LIMIT 1),
+                     		(SELECT ID FROM Course__c.Plan_Requirements__r LIMIT 1)
+                            FROM Course__c
+                            WHERE ID IN :oldlist])
             {
-                if (hasChildRecords(course)) {
+                if (this.hasChildRecords(course)) {
                     Course__c courseInContext = oldmap.get(course.ID);
                     courseInContext.addError(Label.CannotDelete);
                 }
@@ -82,6 +82,6 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
    ********************************************************************************************************/
    @testVisible
    private Boolean hasChildRecords(Course__c course) {
-        return (!course.Course_Offerings__r.isEmpty() || !course.Plan_Requirements__r.isEmpty());
+   		return (!course.Course_Offerings__r.isEmpty() || !course.Plan_Requirements__r.isEmpty());
    }
 }
