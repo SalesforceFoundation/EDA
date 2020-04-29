@@ -64,6 +64,15 @@ global class UTIL_Describe_API {
     }
 
     /*******************************************************************************************************
+    * @descriptionReturns SObjectType for a given SObject
+    * @param objectName The name of the object to find the type for
+    * @return Schema.SObjectType of the object
+    */
+    global static Schema.SObjectType getSObjectType(String objectName) {
+        return UTIL_Describe.getSObjectType(objectName);
+    }
+
+    /*******************************************************************************************************
     * @description Compares Id to verify object type
     * @param salesforceId of the object
     * @param objectName
@@ -193,8 +202,8 @@ global class UTIL_Describe_API {
      * @return Map<String, Id> Map of DeveloperName-to-ID of available record types for object specified.
      */
     global static Map<String, Id> getRecTypesMapByDevName(String objectName) {
-	    return UTIL_Describe.getRecTypesMapByDevName(objectName);
-	}
+        return UTIL_Describe.getRecTypesMapByDevName(objectName);
+    }
 
     /*******************************************************************************************************
      * @description Returns a map of active, user-available RecordType IDs for a given SObjectType,
@@ -204,7 +213,7 @@ global class UTIL_Describe_API {
      */
     @AuraEnabled
     global static Map<String, Id> getRecTypesMapByName(String objectName) {
-	    return UTIL_Describe.getRecTypesMapByName(objectName);        
+        return UTIL_Describe.getRecTypesMapByName(objectName);        
     }
 
     /*******************************************************************************************************
@@ -217,32 +226,32 @@ global class UTIL_Describe_API {
      */
     @AuraEnabled
     global static Map<String, String> getPicklistActiveValuesMap(String objectName, String fieldName) {
-	    return UTIL_Describe.getPicklistActiveValuesMap(objectName, fieldName);        
+        return UTIL_Describe.getPicklistActiveValuesMap(objectName, fieldName);        
     }
 
     /*******************************************************************************************************
      * @description Returns the ID of the Administrative Account record type, if it exists.
      * @return String The ID of the Administrative Account record type as a String.
      */
-	global static String getAdminAccRecTypeID() {
-	    return UTIL_Describe.getAdminAccRecTypeID();
-	}
+    global static String getAdminAccRecTypeID() {
+        return UTIL_Describe.getAdminAccRecTypeID();
+    }
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
      * @description Returns the ID of the Household Account record type, if it exists.
      * @return String The ID of the Household Account record type as a String.
      */
-	global static String getHhAccRecTypeID() {
-	    return UTIL_Describe.getHhAccRecTypeID();
-	}
+    global static String getHhAccRecTypeID() {
+        return UTIL_Describe.getHhAccRecTypeID();
+    }
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
      * @description Returns the ID of the Business Account record type, if it exists.
      * @return String The ID of the Business Account record type as a String.
      */
-	global static String getBizAccRecTypeID() {
-	    return UTIL_Describe.getBizAccRecTypeID();
-	}
+    global static String getBizAccRecTypeID() {
+        return UTIL_Describe.getBizAccRecTypeID();
+    }
 
     /*******************************************************************************************************
      * @description Returns the ID of the Academic Program record type, if it exists.

@@ -29,28 +29,27 @@
 * @date 2020
 * @group
 * @group-content ../../ApexDocContent/
-* @description Finds all the chilld relationship names for a particular SobjectType
+* @description Finds all the child relationship names for a given SobjectType
 */
 public class SRVC_ChildRelationshipNames {
     /******************************************************************************************************
-    @description This method returns all the Child Relationship Names for a particular sObject
-    @params sObjectName The object to find all the Child Relationships for
-    @return childFields The list of Child Relationship names
+    @description This method returns all the Child Relationship Names for a given sObject type
+    @params sObjectTypeName The sObject type to find all the Child Relationship Names for
+    @return childRelationshipNames The list of Child Relationship Names
     ********************************************************************************************************/
-    @TestVisible
-    public static List<String> findAllChildRelationshipNames(SobjectType sObjectName) {
-        List<String> childFields = new List<String>();
+    public static List<String> findAllChildRelationshipNames(SobjectType sObjectTypeName) {
+        List<String> childRelationshipNames = new List<String>();
         try {
-             DescribeSObjectResult describe = sObjectName.getDescribe();
-             for (Schema.ChildRelationship child : describe.getChildRelationships()) {
-                 if (child != NULL && child.getRelationshipName() != NULL) {
-                     childFields.add(child.getRelationshipName());
+             DescribeSObjectResult describe = sObjectTypeName.getDescribe();
+             for (Schema.ChildRelationship childRelationship : describe.getChildRelationships()) {
+                 if (childRelationship != NULL && childRelationship.getRelationshipName() != NULL) {
+                     childRelationshipNames.add(childRelationship.getRelationshipName());
                  }
-             }    
+             }
         } catch (Exception ex) {
-            return NULL;  
+            return NULL;
          }
-              
-        return childFields;    
+
+        return childRelationshipNames;
     }
 }

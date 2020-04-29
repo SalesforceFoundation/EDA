@@ -155,6 +155,15 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
+    * @description Returns object describe data.
+    * @param objectName the name of the object to lookup
+    * @return Schema.DescribeSObjectResult of the object
+    */
+    public static Schema.SObjectType getSObjectType(String objectName) {
+       return Schema.getGlobalDescribe().get(objectName);
+    }
+
+    /******************************************************************************************************
     * @description Returns new object of given type.
     * @param objectName the name of the object to create
     * @return the new SObject
@@ -295,7 +304,7 @@ public class UTIL_Describe {
 
         for(String fieldLabel: allFields.keySet()) {
             Schema.DescribeFieldResult field = allFields.get(fieldLabel);
-     		
+             
             if (String.valueOf( field.getType() ) == type) {
                 fields.put(field.getName(), field );
             }
@@ -523,18 +532,18 @@ public class UTIL_Describe {
      *****/
     @AuraEnabled
     public static Map<String, String> getFieldsOfTypeAura(String objectName, String type) {
-		
+
         //API name and Schema of field
         Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
         Map<String, String> fields = new Map<String, String>();
         for(String fieldAPI: allFields.keySet()) {
             Schema.DescribeFieldResult field = allFields.get(fieldAPI);
-     
+
             if (String.valueOf( field.getType() ) == type) {
                  fields.put(field.getLabel(), fieldAPI);
             }
         }
-	
+
         return fields;
     }
     
@@ -697,16 +706,16 @@ public class UTIL_Describe {
         }
     }
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
      * @description Returns the ID of the Business Account record type, if it exists.
      * @return String The ID of the Business Account record type as a String.
      */
-	public static String getBizAccRecTypeID() {
-	    String recTypeId = getRecTypesMapByDevName('Account').get('Business_Organization');
+    public static String getBizAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('Business_Organization');
 
-	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
 
-	        if(getRecTypesMapByDevName('Account').values().size() > 2) {
+            if(getRecTypesMapByDevName('Account').values().size() > 2) {
                 return getRecTypesMapByDevName('Account').values()[2];
             } else {
                 return null;

@@ -30,37 +30,30 @@
 /**
 * @author Salesforce.org
 * @date 2020
-* @group 
+* @group
 * @group-content ../../ApexDocContent/
 * @description Test class for SRVC_ChildRelationshipNames class
 */
 @isTest
 private class SRVC_ChildRelationshipNames_TEST {
-    
-    @TestSetup
-    private static void testSetup() {
-    
-        // Insert Account
-        String acctName = 'Test Account 000';
-        List<Account> acctList = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID());
-        acctList[0].Name = acctName;
-        insert acctList[0];
-        
-    }
-    
-    // Test retrieval of child relationship names for Account
+
+    // Test for childRelationshipNamesService functionality
     @isTest
-    private static void testChildRelationshipNamesService() {
-    
-        List<Account> accts = [SELECT Id FROM Account];
+    private static void childRelationshipNamesServiceTest() {
+
+        // Insert Account
+        Account adminAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+        adminAccount.Name = 'Test Account 000';
+        insert adminAccount;
+
         Test.startTest();
-            String sObjectName = accts[0].Id.getSObjectType().getDescribe().getName();
-            Schema.SObjectType sObjectType = Schema.getGlobalDescribe().get(sObjectName);
-            List<String> allCHildRelationshipNames = SRVC_ChildRelationshipNames.findAllChildRelationshipNames(sObjectType);
+            String sObjectName = adminAccount.Id.getSObjectType().getDescribe().getName();
+            Schema.SObjectType sObjectType = UTIL_Describe_API.getSObjectType(sObjectName);
+            List<String> allChildRelationshipNames = SRVC_ChildRelationshipNames.findAllChildRelationshipNames(sObjectType);
         Test.stopTest();
-        
-        System.assert(allCHildRelationshipNames != NULL);
-        System.assert(allCHildRelationshipNames.size() != 0);
-        System.assert(allCHildRelationshipNames.contains('Contacts'));
-    }    
+
+        System.assert(allChildRelationshipNames != NULL);
+        System.assert(allChildRelationshipNames.size() != 0);
+        System.assert(allChildRelationshipNames.contains('Contacts'));
+    }
 }
