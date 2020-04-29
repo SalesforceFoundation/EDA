@@ -36,12 +36,12 @@
 */
 
 @isTest
-private class ADDR_CannotDelete_TDTM_TEST {
+private class ADDR_CannotDelete_TEST {
     /*********************************************************************************************************
     * @description Retrieves the record type Ids for Household and Administrator Accounts. 
     */
-    private static String hhAccRecordType = UTIL_Describe_API.getHhAccRecTypeID(); 
-    private static String adminAccRecordType = UTIL_Describe_API.getAdminAccRecTypeID();
+    public static String hhAccRecordTypeID = UTIL_Describe.getHhAccRecTypeID(); 
+    public static String adminAccRecordTypeID = UTIL_Describe.getAdminAccRecTypeID();
 
 
     /*********************************************************************************************************
@@ -53,28 +53,23 @@ private class ADDR_CannotDelete_TDTM_TEST {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = hhAccRecordType,
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
                                                             Prevent_Address_Deletion__c = TRUE));
 
-        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithChildAccount = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, hhAccRecordType);
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, 
+                                                                                                                ADDR_CannotDelete_TEST.hhAccRecordTypeID);
 
-        List<Account> returnNewAccounts = addrsWithChildAccount.accs; 
-        List<Address__c> returnNewAddresses = addrsWithChildAccount.addrs; 
-        System.assertEquals(recordCount, returnNewAddresses.size());
-
-        for (Integer count = 0; count < returnNewAddresses.size(); count++){
-            System.assertEquals(returnNewAddresses[count].Id, returnNewAccounts[count].Current_Address__c);
-        }
+        List<Address__c> addrsWithChildAccount = addrsWithRelatedAcc.addrs; 
         
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(returnNewAddresses, false);
+        Database.DeleteResult[] results = Database.delete(addrsWithChildAccount, false);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [SELECT Id
                                         FROM Address__c
-                                        WHERE Id IN :returnNewAddresses];
+                                        WHERE Id IN :addrsWithChildAccount];
 
-        System.assertEquals(returnNewAddresses.size(), returnAddresses.size());
+        System.assertEquals(addrsWithChildAccount.size(), returnAddresses.size());
 
         for (Database.DeleteResult result : results){
             System.assertEquals(Label.CannotDelete, result.errors[0].message);
@@ -92,25 +87,19 @@ private class ADDR_CannotDelete_TDTM_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Address_Deletion__c = TRUE));
 
-        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithChildContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(recordCount);
+        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(recordCount);
 
-        List<Contact> returnNewContacts = addrsWithChildContact.contacts; 
-        List<Address__c> returnNewAddresses = addrsWithChildContact.addrs; 
-        System.assertEquals(recordCount, returnNewAddresses.size());
+        List<Address__c> addrsWithChildContact = addrsWithRelatedContact.addrs; 
 
-        for (Integer count = 0; count < returnNewAddresses.size(); count++){
-            System.assertEquals(returnNewAddresses[count].Id, returnNewContacts[count].Current_Address__c);
-        }
-        
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(returnNewAddresses, false);
+        Database.DeleteResult[] results = Database.delete(addrsWithChildContact, false);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [SELECT Id
                                         FROM Address__c
-                                        WHERE Id IN :returnNewAddresses];
+                                        WHERE Id IN :addrsWithChildContact];
 
-        System.assertEquals(returnNewAddresses.size(), returnAddresses.size());
+        System.assertEquals(addrsWithChildContact.size(), returnAddresses.size());
 
         for (Database.DeleteResult result : results){
             System.assertEquals(Label.CannotDelete, result.errors[0].message);
@@ -126,28 +115,24 @@ private class ADDR_CannotDelete_TDTM_TEST {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = adminAccRecordType,
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.adminAccRecordTypeID,
                                                             Prevent_Address_Deletion__c = FALSE));
 
-        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithChildAccount = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, adminAccRecordType);
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, 
+                                                                                                                ADDR_CannotDelete_TEST.adminAccRecordTypeID);
 
-        List<Account> returnNewAccounts = addrsWithChildAccount.accs; 
-        List<Address__c> returnNewAddresses = addrsWithChildAccount.addrs; 
-        System.assertEquals(recordCount, returnNewAddresses.size());
+        List<Address__c> addrsWithChildAccount = addrsWithRelatedAcc.addrs; 
 
-        for (Integer count = 0; count < returnNewAddresses.size(); count++){
-            System.assertEquals(returnNewAddresses[count].Id, returnNewAccounts[count].Current_Address__c);
-        }
-        
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(returnNewAddresses, false);
+        Database.DeleteResult[] results = Database.delete(addrsWithChildAccount, false);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [SELECT Id
                                         FROM Address__c
-                                        WHERE Id IN :returnNewAddresses];
+                                        WHERE Id IN :addrsWithChildAccount];
 
         System.assert(returnAddresses.isEmpty());
+
         for (Database.DeleteResult result : results){
             System.assertEquals(TRUE, result.isSuccess());
         }
@@ -164,23 +149,17 @@ private class ADDR_CannotDelete_TDTM_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Address_Deletion__c = FALSE));
 
-        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithChildContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(recordCount);
+        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(recordCount);
 
-        List<Contact> returnNewContacts = addrsWithChildContact.contacts; 
-        List<Address__c> returnNewAddresses = addrsWithChildContact.addrs; 
-        System.assertEquals(recordCount, returnNewAddresses.size());
-
-        for (Integer count = 0; count < returnNewAddresses.size(); count++){
-            System.assertEquals(returnNewAddresses[count].Id, returnNewContacts[count].Current_Address__c);
-        }
+        List<Address__c> addrsWithChildContact = addrsWithRelatedContact.addrs; 
         
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(returnNewAddresses, false);
+        Database.DeleteResult[] results = Database.delete(addrsWithChildContact, false);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [SELECT Id
                                         FROM Address__c
-                                        WHERE Id IN :returnNewAddresses];
+                                        WHERE Id IN :addrsWithChildContact];
 
         
         System.assert(returnAddresses.isEmpty());
@@ -200,11 +179,11 @@ private class ADDR_CannotDelete_TDTM_TEST {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = adminAccRecordType,
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.adminAccRecordTypeID,
                                                             Prevent_Address_Deletion__c = TRUE));
 
         
-        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, adminAccRecordType);
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, ADDR_CannotDelete_TEST.adminAccRecordTypeID);
         insert accounts;
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
@@ -246,11 +225,11 @@ private class ADDR_CannotDelete_TDTM_TEST {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = hhAccRecordType,
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
                                                             Prevent_Address_Deletion__c = FALSE));
 
         
-        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, hhAccRecordType);
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, ADDR_CannotDelete_TEST.hhAccRecordTypeID);
         insert accounts;
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
