@@ -51,19 +51,19 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-		
+
         if (!COUR_CannotDelete_TDTM.enabledPreventCourseDeletion) {
             return new DmlWrapper(); 
         }
-        
-      	Map<Id, Course__c> oldMap = new Map<Id, Course__c>((List<Course__c>)oldList);
-      
+
+        Map<Id, Course__c> oldMap = new Map<Id, Course__c>((List<Course__c>)oldList);
+
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for (Course__c course : [SELECT ID,
-                            (SELECT ID FROM Course__c.Course_Offerings__r LIMIT 1),
-                     		(SELECT ID FROM Course__c.Plan_Requirements__r LIMIT 1)
-                            FROM Course__c
-                            WHERE ID IN :oldlist])
+                        (SELECT ID FROM Course__c.Course_Offerings__r LIMIT 1),
+                        (SELECT ID FROM Course__c.Plan_Requirements__r LIMIT 1)
+                        FROM Course__c
+                        WHERE ID IN :oldlist])
             {
                 if (this.hasChildRecords(course)) {
                     Course__c courseInContext = oldmap.get(course.ID);
@@ -72,16 +72,16 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
             }
         }
 
-      return new DmlWrapper();
-   }
+    return new DmlWrapper();
+    }
 
    /*******************************************************************************************************
    * @description Evaluates whether the Course has any child related records.
    * @param course is the current Course record.
    * @return Boolean.
    ********************************************************************************************************/
-   @testVisible
-   private Boolean hasChildRecords(Course__c course) {
-   		return (!course.Course_Offerings__r.isEmpty() || !course.Plan_Requirements__r.isEmpty());
-   }
+    @testVisible
+    private Boolean hasChildRecords(Course__c course) {
+        return (!course.Course_Offerings__r.isEmpty() || !course.Plan_Requirements__r.isEmpty());
+    }
 }

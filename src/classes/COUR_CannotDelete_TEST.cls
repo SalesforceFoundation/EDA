@@ -48,39 +48,39 @@ private class COUR_CannotDelete_TEST {
     @isTest
     public static void cannotDeleteCourseWithCourseOffering() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = True));
-        
+                                                (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                Prevent_Course_Deletion__c = True));
+
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
         //in EDA Settings) to create a new method to retrieve the Universtiy_Department Account
         //record type in UTIL_Describe. 
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, COUR_CannotDelete_TEST.adminAccRecTypeId); 
         insert accounts; 
-        
-        List<Course__c> courses = new List<Course__c>{
+
+        List<Course__c> courses = new List<Course__c> {
             new Course__c (Name = 'Course1', Account__c  = accounts[0].Id),
             new Course__c (Name = 'Course2', Account__c  = accounts[0].Id)
         };        
         insert courses; 
-        
-        List<Term__c> terms = new List<Term__c>{
+
+        List<Term__c> terms = new List<Term__c> {
             new Term__c(Name = 'Fall', Account__c = accounts[0].Id),
             new Term__c(Name = 'Spring', Account__c = accounts[0].Id)  
         }; 
         insert terms; 
-        
+
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(courses[0].Id, terms[0].Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(courses[1].Id, terms[1].Id);
-        
+
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(courses, false);
         Test.stopTest();
-        
+
         List<Course__c> returnCourses = [SELECT Id
                                         FROM Course__c
                                         WHERE Id IN :courses]; 
-		System.assertEquals(2, returnCourses.size());
+        System.assertEquals(2, returnCourses.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);  
     }
     
@@ -91,79 +91,79 @@ private class COUR_CannotDelete_TEST {
     @isTest
     public static void cannotDeleteCourseWithPlanRequirements() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = True));
-        
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = True));
+
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
         //in EDA Settings) to create a new method to retrieve the Universtiy_Department Account
         //record type in UTIL_Describe. 
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, COUR_CannotDelete_TEST.adminAccRecTypeId); 
         insert accounts; 
-        
-        List<Course__c> courses = new List<Course__c>{
+
+        List<Course__c> courses = new List<Course__c> {
             new Course__c (Name = 'Course1', Account__c  = accounts[0].Id),
             new Course__c (Name = 'Course2', Account__c  = accounts[0].Id)
         };        
         insert courses; 
-        
+
         List<Plan_Requirement__c> planReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
         planReqs[0].Course__c = courses[0].Id;
         planReqs[1].Course__c = courses[1].Id;
         insert planReqs; 
-        
+
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(courses, false);
         Test.stopTest();
-        
+
         List<Course__c> returnCourses = [SELECT Id
                                         FROM Course__c
                                         WHERE Id IN :courses]; 
         System.assertEquals(2, returnCourses.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);  
     }
-    
+
     /*********************************************************************************************************
     * @description Test method to test if Prevent_Course_Deletion__c is enabled in Hierarchy Settings, and
     * Courses have a Course Offering and Plan Requirement record associated to it, then it cannot be deleted.
     */
     @isTest
     public static void cannotDeleteCourseWithChildRecords() {
-    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = True));
-        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = True));
+
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
         //in EDA Settings) to create a new method to retrieve the Universtiy_Department Account
         //record type in UTIL_Describe. 
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, COUR_CannotDelete_TEST.adminAccRecTypeId); 
         insert accounts; 
-        
+
         List<Course__c> courses = new List<Course__c>{
             new Course__c (Name = 'Course1', Account__c  = accounts[0].Id),
             new Course__c (Name = 'Course2', Account__c  = accounts[0].Id)
         };        
         insert courses; 
-        
+
         List<Term__c> terms = new List<Term__c>{
             new Term__c(Name = 'Fall', Account__c = accounts[0].Id),
             new Term__c(Name = 'Spring', Account__c = accounts[0].Id)  
         }; 
         insert terms; 
-        
+
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(courses[0].Id, terms[0].Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(courses[1].Id, terms[1].Id); 
-        
+
         List<Plan_Requirement__c> planReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
         planReqs[0].Course__c = courses[0].Id;
         planReqs[1].Course__c = courses[1].Id;
         insert planReqs; 
-        
+
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(courses, false);
         Test.stopTest();
-        
+
         List<Course__c> returnCourses = [SELECT Id
                                         FROM Course__c
                                         WHERE Id IN :courses]; 
@@ -177,39 +177,39 @@ private class COUR_CannotDelete_TEST {
     */
     @isTest
     public static void cannotDeleteCourseWithSomeChildRecords() {
-    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = True));
-        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = True));
+
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
         //in EDA Settings) to create a new method to retrieve the Universtiy_Department Account
         //record type in UTIL_Describe. 
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, COUR_CannotDelete_TEST.adminAccRecTypeId); 
         insert accounts; 
-        
+
         List<Course__c> courses = new List<Course__c>{
             new Course__c (Name = 'Course1', Account__c  = accounts[0].Id),
             new Course__c (Name = 'Course2', Account__c  = accounts[0].Id)
         };        
         insert courses; 
-        
+
         List<Term__c> terms = new List<Term__c>{
             new Term__c(Name = 'Fall', Account__c = accounts[0].Id),
             new Term__c(Name = 'Spring', Account__c = accounts[0].Id)  
         }; 
         insert terms; 
-        
+
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(courses[0].Id, terms[0].Id); 
-        
+
         List<Plan_Requirement__c> planReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(1); 
         planReqs[0].Course__c = courses[0].Id;
         insert planReqs; 
-        
+
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(courses, false);
         Test.stopTest();
-        
+
         List<Course__c> returnCourses = [SELECT Id
                                         FROM Course__c
                                         WHERE Id IN :courses]; 
@@ -223,35 +223,35 @@ private class COUR_CannotDelete_TEST {
     @isTest
     public static void canDeleteCourseWithCourseOffering() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = False));
-        
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = False));
+
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
         //in EDA Settings) to create a new method to retrieve the Universtiy_Department Account
         //record type in UTIL_Describe. 
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, COUR_CannotDelete_TEST.adminAccRecTypeId); 
         insert accounts; 
-        
+
         List<Course__c> courses = new List<Course__c>{
             new Course__c (Name = 'Course1', Account__c  = accounts[0].Id),
             new Course__c (Name = 'Course2', Account__c  = accounts[0].Id)
         };        
         insert courses; 
-        
+
         List<Term__c> terms = new List<Term__c>{
             new Term__c(Name = 'Fall', Account__c = accounts[0].Id),
             new Term__c(Name = 'Spring', Account__c = accounts[0].Id)  
         }; 
         insert terms; 
-        
+
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(courses[0].Id, terms[0].Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(courses[1].Id, terms[1].Id);
-        
+
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(courses, false);
         Test.stopTest();
-        
+
         List<Course__c> returnCourses = [SELECT Id
                                         FROM Course__c
                                         WHERE Id IN :courses]; 
@@ -265,34 +265,34 @@ private class COUR_CannotDelete_TEST {
     @isTest
     public static void canDeleteCourseWithPlanRequirements() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = False));
-        
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = False));
+
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
         //in EDA Settings) to create a new method to retrieve the Universtiy_Department Account
         //record type in UTIL_Describe. 
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, COUR_CannotDelete_TEST.adminAccRecTypeId); 
         insert accounts; 
-        
+
         List<Course__c> courses = new List<Course__c>{
             new Course__c (Name = 'Course1', Account__c  = accounts[0].Id),
             new Course__c (Name = 'Course2', Account__c  = accounts[0].Id)
         };        
         insert courses; 
-        
+
         List<Plan_Requirement__c> planReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
         planReqs[0].Course__c = courses[0].Id;
         planReqs[1].Course__c = courses[1].Id;
         insert planReqs; 
-        
+
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(courses, false);
         Test.stopTest();
-        
+
         List<Course__c> returnCourses = [SELECT Id
-                                  FROM Course__c
-                                  WHERE Id IN :courses]; 
+                                        FROM Course__c
+                                        WHERE Id IN :courses]; 
         System.assertEquals(0, returnCourses.size());
     }
     
@@ -302,41 +302,41 @@ private class COUR_CannotDelete_TEST {
     */
     @isTest
     public static void canDeleteCourseWithChildRecords() {
-    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = False));
-        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = False));
+
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
         //in EDA Settings) to create a new method to retrieve the Universtiy_Department Account
         //record type in UTIL_Describe. 
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, COUR_CannotDelete_TEST.adminAccRecTypeId); 
         insert accounts; 
-        
+
         List<Course__c> courses = new List<Course__c>{
             new Course__c (Name = 'Course1', Account__c  = accounts[0].Id),
             new Course__c (Name = 'Course2', Account__c  = accounts[0].Id)
         };        
         insert courses; 
-        
+
         List<Term__c> terms = new List<Term__c>{
             new Term__c(Name = 'Fall', Account__c = accounts[0].Id),
             new Term__c(Name = 'Spring', Account__c = accounts[0].Id)  
         }; 
         insert terms; 
-        
+
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(courses[0].Id, terms[0].Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(courses[1].Id, terms[1].Id); 
-        
+
         List<Plan_Requirement__c> planReqs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2); 
         planReqs[0].Course__c = courses[0].Id;
         planReqs[1].Course__c = courses[1].Id;
         insert planReqs; 
-        
+
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(courses, false);
         Test.stopTest();
-        
+
         List<Course__c> returnCourses = [SELECT Id
                                         FROM Course__c
                                         WHERE Id IN :courses]; 
@@ -349,10 +349,10 @@ private class COUR_CannotDelete_TEST {
     */
     @isTest
     public static void canDeleteCourseWithSomeChildRecords() {
-    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = False));
-        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = False));
+            
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
         //in EDA Settings) to create a new method to retrieve the Universtiy_Department Account
@@ -394,8 +394,8 @@ private class COUR_CannotDelete_TEST {
     @isTest
     public static void testCourseHasChildRecords() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = True));
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = True));
         
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
@@ -425,17 +425,17 @@ private class COUR_CannotDelete_TEST {
         insert planReqs; 
         
         List<Course__c> returnCourses = [SELECT Id,
-                                        (SELECT ID, Name FROM Course_Offerings__r LIMIT 1),
-                     				    (SELECT ID, Name FROM Plan_Requirements__r LIMIT 1)
+                                        (SELECT Id, Name FROM Course_Offerings__r LIMIT 1),
+                                        (SELECT Id, Name FROM Plan_Requirements__r LIMIT 1)
                                         FROM Course__c
-                                        WHERE ID IN :courses]; 
+                                        WHERE Id IN :courses]; 
         
         Boolean checkRelatedRecords; 
         COUR_CannotDelete_TDTM myClass = new COUR_CannotDelete_TDTM();
         
         for (Course__c cour : returnCourses) {
-             checkRelatedRecords = myClass.hasChildRecords(cour); 
-             System.assertEquals(True, checkRelatedRecords); 
+            checkRelatedRecords = myClass.hasChildRecords(cour); 
+            System.assertEquals(True, checkRelatedRecords); 
         }
     }
 	
@@ -445,8 +445,8 @@ private class COUR_CannotDelete_TEST {
     @isTest
     public static void testCourseHasNoChildRecords() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
-                                                            Prevent_Course_Deletion__c = True));
+                                                        (Account_Processor__c = COUR_CannotDelete_TEST.adminAccRecTypeId,
+                                                        Prevent_Course_Deletion__c = True));
         
         //We're using "Administrative" record type for this new Account since
         //we're not ready (we need to determine how best to handle retrieving recordTypeIds that are not
@@ -461,17 +461,17 @@ private class COUR_CannotDelete_TEST {
         };        
         insert courses; 
         List<Course__c> returnCourses = [SELECT Id,
-                                        (SELECT ID, Name FROM Course_Offerings__r LIMIT 1),
-                     				    (SELECT ID, Name FROM Plan_Requirements__r LIMIT 1)
+                                        (SELECT Id, Name FROM Course_Offerings__r LIMIT 1),
+                                        (SELECT Id, Name FROM Plan_Requirements__r LIMIT 1)
                                         FROM Course__c
-                                        WHERE ID IN :courses]; 
+                                        WHERE Id IN :courses]; 
         
         Boolean checkRelatedRecords; 
         COUR_CannotDelete_TDTM myClass = new COUR_CannotDelete_TDTM();
         
         for (Course__c cour : returnCourses) {
-             checkRelatedRecords = myClass.hasChildRecords(cour); 
-             System.assertEquals(False, checkRelatedRecords); 
+            checkRelatedRecords = myClass.hasChildRecords(cour); 
+            System.assertEquals(False, checkRelatedRecords); 
         }
     }
 }
