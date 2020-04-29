@@ -41,7 +41,7 @@ private class COUR_CannotDelete_TEST {
     */
     public static String adminAccRecTypeId = UTIL_Describe.getAdminAccRecTypeID(); 
     
-	/*********************************************************************************************************
+    /*********************************************************************************************************
     * @description Test method to test if Prevent_Course_Deletion__c is enabled in Hierarchy Settings, and
     * Course has a Course Offering record associated to it, then it cannot be deleted.
     */
@@ -388,7 +388,7 @@ private class COUR_CannotDelete_TEST {
         System.assertEquals(0, returnCourses.size());
     }
     
-	/*********************************************************************************************************
+    /*********************************************************************************************************
     * @description Tests the hasChildRecords method that the Course record has child records. 
     */
     @isTest
