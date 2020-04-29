@@ -42,8 +42,8 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     
     /*******************************************************************************************************
     * @description Stops an Address from being deleted if it has any Account or Contact child records. 
-    * @param listNew the list of Addresses from trigger new. 
-    * @param listOld the list of Addresses from trigger old. 
+    * @param newlist the list of Addresses from trigger new. 
+    * @param oldlist the list of Addresses from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
     * @param objResult the describe for Addresses 
     * @return dmlWrapper.  
@@ -58,15 +58,15 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
         Map<ID, Address__c> oldmap = new Map<ID, Address__c>((List<Address__c>)oldList);
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            for (Address__c a : [
+            for (Address__c addr : [
                                     SELECT Id, 
                                         (SELECT Id FROM Address__c.Accounts__r LIMIT 1),
                                         (SELECT Id FROM Address__c.Contacts1__r LIMIT 1)
-                                    FROM Address__c WHERE ID in :oldlist
+                                    FROM Address__c WHERE Id IN :oldlist
                                     
                                 ]) {
                 
-                if (hasChildRecords(a)) {
+                if (hasChildRecords(addr)) {
                     Address__c addressInContext = oldMap.get(a.ID);
                     addressInContext.addError(Label.CannotDelete);
                 }
@@ -78,12 +78,13 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     
     /*******************************************************************************************************
      * @description Evaluates whether the Address has any child (Account or Contact) related records.
-     * @param a is the current Address record.
+     * @param addr is the current Address record.
      * @return Boolean.
      ********************************************************************************************************/
-    private static Boolean hasChildRecords(Address__c a) {
+    @TestVisible
+    private Boolean hasChildRecords(Address__c addr) {
         
-        return ( a.Accounts__r.size() > 0 || a.Contacts1__r.size() > 0 ); 
+        return ( addr.Accounts__r.size() > 0 || addr.Contacts1__r.size() > 0 ); 
     
     }
 }

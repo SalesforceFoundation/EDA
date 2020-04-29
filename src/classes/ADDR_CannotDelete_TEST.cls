@@ -59,7 +59,7 @@ private class ADDR_CannotDelete_TEST {
         List<Address__c> addrsWithChildAccount = addrsWithRelatedAcc.addrs; 
         
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(addrsWithChildAccount, false);
+        Database.DeleteResult[] results = Database.delete(addrsWithChildAccount, FALSE);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [
@@ -90,7 +90,7 @@ private class ADDR_CannotDelete_TEST {
         List<Address__c> addrsWithChildContact = addrsWithRelatedContact.addrs; 
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(addrsWithChildContact, false);
+        Database.DeleteResult[] results = Database.delete(addrsWithChildContact, FALSE);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [
@@ -122,7 +122,7 @@ private class ADDR_CannotDelete_TEST {
         List<Address__c> addrsWithChildAccount = addrsWithRelatedAcc.addrs; 
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(addrsWithChildAccount, false);
+        Database.DeleteResult[] results = Database.delete(addrsWithChildAccount, FALSE);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [
@@ -152,7 +152,7 @@ private class ADDR_CannotDelete_TEST {
         List<Address__c> addrsWithChildContact = addrsWithRelatedContact.addrs; 
         
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(addrsWithChildContact, false);
+        Database.DeleteResult[] results = Database.delete(addrsWithChildContact, FALSE);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [
@@ -200,7 +200,7 @@ private class ADDR_CannotDelete_TEST {
         insert addresses;
         
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(addresses, false);
+        Database.DeleteResult[] results = Database.delete(addresses, FALSE);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [
@@ -247,7 +247,7 @@ private class ADDR_CannotDelete_TEST {
         insert addresses;
         
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(addresses, false);
+        Database.DeleteResult[] results = Database.delete(addresses, FALSE);
         Test.stopTest();
 
         List<Address__c> returnAddresses = [
