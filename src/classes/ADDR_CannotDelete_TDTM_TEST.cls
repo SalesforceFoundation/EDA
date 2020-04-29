@@ -38,9 +38,11 @@
 @isTest
 public with sharing class ADDR_CannotDelete_TDTM_TEST {
     /*********************************************************************************************************
-    * @description Retrieves the Business Account record type Id. 
+    * @description Retrieves the record type Ids for Household and Administrator Accounts. 
     */
-    public static String bizAccRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID(); 
+    public static String hhAccRecordType = UTIL_Describe_API.getHhAccRecTypeID(); 
+    public static String adminAccRecordType = UTIL_Describe_API.getAdminAccRecTypeID();
+
 
     /*********************************************************************************************************
     * @description Test method to test that when Prevent_Address_Deletion__c is enabled in Hierarchy Settings, and
@@ -51,10 +53,10 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = bizAccRecordTypeId,
+                                                            (Account_Processor__c = hhAccRecordType,
                                                             Prevent_Address_Deletion__c = TRUE));
 
-        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithChildAccount = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, bizAccRecordTypeId);
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithChildAccount = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, hhAccRecordType);
 
         List<Account> returnNewAccounts = addrsWithChildAccount.accs; 
         List<Address__c> returnNewAddresses = addrsWithChildAccount.addrs; 
@@ -124,10 +126,10 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = bizAccRecordTypeId,
+                                                            (Account_Processor__c = adminAccRecordType,
                                                             Prevent_Address_Deletion__c = FALSE));
 
-        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithChildAccount = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, bizAccRecordTypeId);
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithChildAccount = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, adminAccRecordType);
 
         List<Account> returnNewAccounts = addrsWithChildAccount.accs; 
         List<Address__c> returnNewAddresses = addrsWithChildAccount.addrs; 
@@ -198,11 +200,11 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = bizAccRecordTypeId,
+                                                            (Account_Processor__c = adminAccRecordType,
                                                             Prevent_Address_Deletion__c = TRUE));
 
         
-        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, bizAccRecordTypeId);
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, adminAccRecordType);
         insert accounts;
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
@@ -244,11 +246,11 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = bizAccRecordTypeId,
+                                                            (Account_Processor__c = hhAccRecordType,
                                                             Prevent_Address_Deletion__c = FALSE));
 
         
-        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, bizAccRecordTypeId);
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, hhAccRecordType);
         insert accounts;
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
