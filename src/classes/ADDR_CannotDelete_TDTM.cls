@@ -58,10 +58,13 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
         Map<ID, Address__c> oldmap = new Map<ID, Address__c>((List<Address__c>)oldList);
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            for (Address__c a : [SELECT ID, 
-                                    (SELECT ID FROM Address__c.Accounts__r LIMIT 1),
-                                    (SELECT ID FROM Address__c.Contacts1__r LIMIT 1)
-                                FROM Address__c WHERE ID in :oldlist]) {
+            for (Address__c a : [
+                                    SELECT Id, 
+                                        (SELECT Id FROM Address__c.Accounts__r LIMIT 1),
+                                        (SELECT Id FROM Address__c.Contacts1__r LIMIT 1)
+                                    FROM Address__c WHERE ID in :oldlist
+                                    
+                                ]) {
                 
                 if (hasChildRecords(a)) {
                     Address__c addressInContext = oldMap.get(a.ID);

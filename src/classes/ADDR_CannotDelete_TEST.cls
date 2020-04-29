@@ -43,21 +43,18 @@ private class ADDR_CannotDelete_TEST {
     public static String hhAccRecordTypeID = UTIL_Describe.getHhAccRecTypeID(); 
     public static String adminAccRecordTypeID = UTIL_Describe.getAdminAccRecTypeID();
 
-
     /*********************************************************************************************************
     * @description Test method to test that when Prevent_Address_Deletion__c is enabled in Hierarchy Settings, and
     * Address has a child Account record associated to it, the Address record cannot be deleted.
     */
     @isTest 
     private static void addrCannotDeleteWithAccount() {
-        Integer recordCount = 10;
-        
+                
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
                                                             Prevent_Address_Deletion__c = TRUE));
 
-        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, 
-                                                                                                                ADDR_CannotDelete_TEST.hhAccRecordTypeID);
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(5, ADDR_CannotDelete_TEST.hhAccRecordTypeID);
 
         List<Address__c> addrsWithChildAccount = addrsWithRelatedAcc.addrs; 
         
@@ -65,13 +62,15 @@ private class ADDR_CannotDelete_TEST {
         Database.DeleteResult[] results = Database.delete(addrsWithChildAccount, false);
         Test.stopTest();
 
-        List<Address__c> returnAddresses = [SELECT Id
-                                        FROM Address__c
-                                        WHERE Id IN :addrsWithChildAccount];
+        List<Address__c> returnAddresses = [
+            SELECT Id
+            FROM Address__c
+            WHERE Id IN :addrsWithChildAccount
+        ];
 
         System.assertEquals(addrsWithChildAccount.size(), returnAddresses.size());
 
-        for (Database.DeleteResult result : results){
+        for (Database.DeleteResult result : results) {
             System.assertEquals(Label.CannotDelete, result.errors[0].message);
         }
     }
@@ -81,13 +80,12 @@ private class ADDR_CannotDelete_TEST {
     * Address has a child Contact record associated to it, the Address record cannot be deleted.
     */
     @isTest
-    private static void addrCannotDeleteWithContact(){
-        Integer recordCount = 10;
-        
+    private static void addrCannotDeleteWithContact() { 
+                
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Prevent_Address_Deletion__c = TRUE));
+                                                        (Prevent_Address_Deletion__c = TRUE));
 
-        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(recordCount);
+        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(5);
 
         List<Address__c> addrsWithChildContact = addrsWithRelatedContact.addrs; 
 
@@ -95,13 +93,15 @@ private class ADDR_CannotDelete_TEST {
         Database.DeleteResult[] results = Database.delete(addrsWithChildContact, false);
         Test.stopTest();
 
-        List<Address__c> returnAddresses = [SELECT Id
-                                        FROM Address__c
-                                        WHERE Id IN :addrsWithChildContact];
+        List<Address__c> returnAddresses = [
+            SELECT Id
+            FROM Address__c
+            WHERE Id IN :addrsWithChildContact
+        ];
 
         System.assertEquals(addrsWithChildContact.size(), returnAddresses.size());
 
-        for (Database.DeleteResult result : results){
+        for (Database.DeleteResult result : results) {
             System.assertEquals(Label.CannotDelete, result.errors[0].message);
         }
     }
@@ -111,15 +111,13 @@ private class ADDR_CannotDelete_TEST {
     * and Address has a child Account record associated to it, the Address record can be deleted.
     */
     @isTest
-    private static void addrCanDeleteWithAccount(){
-        Integer recordCount = 10;
-        
+    private static void addrCanDeleteWithAccount() {
+                
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.adminAccRecordTypeID,
                                                             Prevent_Address_Deletion__c = FALSE));
 
-        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(recordCount, 
-                                                                                                                ADDR_CannotDelete_TEST.adminAccRecordTypeID);
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(5, ADDR_CannotDelete_TEST.adminAccRecordTypeID);
 
         List<Address__c> addrsWithChildAccount = addrsWithRelatedAcc.addrs; 
 
@@ -127,13 +125,14 @@ private class ADDR_CannotDelete_TEST {
         Database.DeleteResult[] results = Database.delete(addrsWithChildAccount, false);
         Test.stopTest();
 
-        List<Address__c> returnAddresses = [SELECT Id
-                                        FROM Address__c
-                                        WHERE Id IN :addrsWithChildAccount];
+        List<Address__c> returnAddresses = [
+            SELECT Id
+            FROM Address__c
+            WHERE Id IN :addrsWithChildAccount];
 
         System.assert(returnAddresses.isEmpty());
 
-        for (Database.DeleteResult result : results){
+        for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
         }
     }
@@ -143,13 +142,12 @@ private class ADDR_CannotDelete_TEST {
     * and Address has a child Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    private static void addrCanDeleteWithContact(){
-        Integer recordCount = 10;
+    private static void addrCanDeleteWithContact() {
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Address_Deletion__c = FALSE));
 
-        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(recordCount);
+        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(5);
 
         List<Address__c> addrsWithChildContact = addrsWithRelatedContact.addrs; 
         
@@ -157,17 +155,18 @@ private class ADDR_CannotDelete_TEST {
         Database.DeleteResult[] results = Database.delete(addrsWithChildContact, false);
         Test.stopTest();
 
-        List<Address__c> returnAddresses = [SELECT Id
-                                        FROM Address__c
-                                        WHERE Id IN :addrsWithChildContact];
+        List<Address__c> returnAddresses = [
+            SELECT Id
+            FROM Address__c
+            WHERE Id IN :addrsWithChildContact
+        ];
 
         
         System.assert(returnAddresses.isEmpty());
 
-        for (Database.DeleteResult result : results){
+        for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
         }
-        
     }
 
     /*********************************************************************************************************
@@ -175,9 +174,8 @@ private class ADDR_CannotDelete_TEST {
     * and Address does not have a child Account or Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    private static void addressCanDeleteWithoutChildrenPreventDeleteOn(){
-        Integer recordCount = 10;
-        
+    private static void addressCanDeleteWithoutChildrenPreventDeleteOn() {
+                
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.adminAccRecordTypeID,
                                                             Prevent_Address_Deletion__c = TRUE));
@@ -189,13 +187,13 @@ private class ADDR_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
         insert contacts;
 
-        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(recordCount);
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(6);
 
-        for (Integer index = 0; index < recordCount/2; index++){
+        for (Integer index = 0; index < 3; index++) {
             addresses[index].Parent_Account__c = accounts[0].Id;
         }
 
-        for (Integer index = recordCount/2; index < recordCount; index++){
+        for (Integer index = 3; index < 6; index++) {
             addresses[index].Parent_Contact__c = contacts[0].Id;
         }
         
@@ -205,13 +203,15 @@ private class ADDR_CannotDelete_TEST {
         Database.DeleteResult[] results = Database.delete(addresses, false);
         Test.stopTest();
 
-        List<Address__c> returnAddresses = [SELECT Id
-                                        FROM Address__c
-                                        WHERE Id IN :addresses];
+        List<Address__c> returnAddresses = [
+            SELECT Id
+            FROM Address__c
+            WHERE Id IN :addresses
+        ];
 
         System.assert(returnAddresses.isEmpty());
 
-        for (Database.DeleteResult result : results){
+        for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
         }
     }
@@ -221,9 +221,8 @@ private class ADDR_CannotDelete_TEST {
     * and Address does not have a child Account or Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    private static void addressCanDeleteWithoutChildrenPreventDeleteOff(){
-        Integer recordCount = 10;
-        
+    private static void addressCanDeleteWithoutChildrenPreventDeleteOff() {
+            
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
                                                             Prevent_Address_Deletion__c = FALSE));
@@ -235,13 +234,13 @@ private class ADDR_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
         insert contacts;
 
-        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(recordCount);
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(6);
 
-        for (Integer index = 0; index < recordCount/2; index++){
+        for (Integer index = 0; index < 3; index++) {
             addresses[index].Parent_Account__c = accounts[0].Id;
         }
 
-        for (Integer index = recordCount/2; index < recordCount; index++){
+        for (Integer index = 3; index < 6; index++) {
             addresses[index].Parent_Contact__c = contacts[0].Id;
         }
         
@@ -251,13 +250,15 @@ private class ADDR_CannotDelete_TEST {
         Database.DeleteResult[] results = Database.delete(addresses, false);
         Test.stopTest();
 
-        List<Address__c> returnAddresses = [SELECT Id
-                                        FROM Address__c
-                                        WHERE Id IN :addresses];
+        List<Address__c> returnAddresses = [
+            SELECT Id
+            FROM Address__c
+            WHERE Id IN :addresses
+        ];
 
         System.assert(returnAddresses.isEmpty());
 
-        for (Database.DeleteResult result : results){
+        for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
         }
     }
