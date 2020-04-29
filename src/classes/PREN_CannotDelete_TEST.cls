@@ -50,7 +50,7 @@ private class PREN_CannotDelete_TEST {
     * @description Test method to test if Prevent_Program_Enrollment_Deletion__c is enabled in Hierarchy Settings, and
     * Program Enrollment has a Course Connection record associated to it, then it cannot be deleted.
     */
-	@isTest
+    @isTest
     public static void cannotDeleteProgramEnrollmentWithCourseConn(){
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                         (Account_Processor__c = PREN_CannotDelete_TEST.adminAccRecTypeId,
@@ -98,7 +98,7 @@ private class PREN_CannotDelete_TEST {
     * @description Test method to test if Prevent_Program_Enrollment_Deletion__c is disabled in Hierarchy Settings, and
     * Program Enrollment has a Course Connection record associated to it, then it can be deleted.
     */
-	@isTest
+    @isTest
     public static void canDeleteProgramEnrollmentWithCourseConn(){
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                         (Account_Processor__c = PREN_CannotDelete_TEST.adminAccRecTypeId,
@@ -144,7 +144,7 @@ private class PREN_CannotDelete_TEST {
     /*********************************************************************************************************
     * @description Tests the hasChildRecords method that the Program Enrollment record has child records. 
     */
-	@isTest
+    @isTest
     public static void testProgramEnrollmentHasChildRecords(){
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                         (Account_Processor__c = PREN_CannotDelete_TEST.adminAccRecTypeId,
@@ -191,7 +191,7 @@ private class PREN_CannotDelete_TEST {
     /*********************************************************************************************************
     * @description Tests the hasChildRecords method that the Program Enrollment record has no child records. 
     */
-	@isTest
+    @isTest
     public static void testProgramEnrollmentHasNoChildRecords(){
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                         (Account_Processor__c = PREN_CannotDelete_TEST.adminAccRecTypeId,

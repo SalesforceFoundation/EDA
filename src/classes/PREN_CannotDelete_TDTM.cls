@@ -75,10 +75,10 @@ public with sharing class PREN_CannotDelete_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-     * @description Evaluates whether the Program Enrollment has any child related records.
-     * @param programEnrollment is the current Program Enrollment record.
-     * @return Boolean.
-     ********************************************************************************************************/
+    * @description Evaluates whether the Program Enrollment has any child related records.
+    * @param programEnrollment is the current Program Enrollment record.
+    * @return Boolean.
+    ********************************************************************************************************/
     @testVisible
     private Boolean hasChildRecords(Program_Enrollment__c programEnrollment) {
         return (!programEnrollment.Course_Enrollments__r.isEmpty());
