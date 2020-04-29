@@ -59,8 +59,8 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for (Address__c a : [SELECT ID, 
-                                (SELECT ID FROM Address__c.Accounts__r LIMIT 1),
-                                (SELECT ID FROM Address__c.Contacts1__r LIMIT 1)
+                                    (SELECT ID FROM Address__c.Accounts__r LIMIT 1),
+                                    (SELECT ID FROM Address__c.Contacts1__r LIMIT 1)
                                 FROM Address__c WHERE ID in :oldlist]) {
                 
                 if (hasChildRecords(a)) {
@@ -69,6 +69,7 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
                 }
             }     
         }
+
         return new DmlWrapper();
     }
     
@@ -78,6 +79,8 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
      * @return Boolean.
      ********************************************************************************************************/
     private static Boolean hasChildRecords(Address__c a) {
+        
         return ( a.Accounts__r.size() > 0 || a.Contacts1__r.size() > 0 ); 
+    
     }
 }

@@ -36,12 +36,12 @@
 */
 
 @isTest
-public with sharing class ADDR_CannotDelete_TDTM_TEST {
+private class ADDR_CannotDelete_TDTM_TEST {
     /*********************************************************************************************************
     * @description Retrieves the record type Ids for Household and Administrator Accounts. 
     */
-    public static String hhAccRecordType = UTIL_Describe_API.getHhAccRecTypeID(); 
-    public static String adminAccRecordType = UTIL_Describe_API.getAdminAccRecTypeID();
+    private static String hhAccRecordType = UTIL_Describe_API.getHhAccRecTypeID(); 
+    private static String adminAccRecordType = UTIL_Describe_API.getAdminAccRecTypeID();
 
 
     /*********************************************************************************************************
@@ -49,7 +49,7 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
     * Address has a child Account record associated to it, the Address record cannot be deleted.
     */
     @isTest 
-    public static void addrCannotDeleteWithAccount() {
+    private static void addrCannotDeleteWithAccount() {
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -86,7 +86,7 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
     * Address has a child Contact record associated to it, the Address record cannot be deleted.
     */
     @isTest
-    public static void addrCannotDeleteWithContact(){
+    private static void addrCannotDeleteWithContact(){
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -122,7 +122,7 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
     * and Address has a child Account record associated to it, the Address record can be deleted.
     */
     @isTest
-    public static void addrCanDeleteWithAccount(){
+    private static void addrCanDeleteWithAccount(){
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -158,7 +158,7 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
     * and Address has a child Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    public static void addrCanDeleteWithContact(){
+    private static void addrCanDeleteWithContact(){
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -196,7 +196,7 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
     * and Address does not have a child Account or Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    public static void addressCanDeleteWithoutChildrenPreventDeleteOn(){
+    private static void addressCanDeleteWithoutChildrenPreventDeleteOn(){
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -242,7 +242,7 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
     * and Address does not have a child Account or Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    public static void addressCanDeleteWithoutChildrenPreventDeleteOff(){
+    private static void addressCanDeleteWithoutChildrenPreventDeleteOff(){
         Integer recordCount = 10;
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -282,6 +282,4 @@ public with sharing class ADDR_CannotDelete_TDTM_TEST {
             System.assertEquals(TRUE, result.isSuccess());
         }
     }
-
-
 }
