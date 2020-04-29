@@ -36,7 +36,7 @@
 */
 public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
-    * @description Get the setting of preventing Account deletion
+    * @description Get the setting of preventing Address deletion
     */
     private static Boolean enabledPreventAddressDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Address_Deletion__c;
     
@@ -73,8 +73,8 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     }
     
     /*******************************************************************************************************
-     * @description Evaluates whether the Account has any child related records.
-     * @param a is the current Account record.
+     * @description Evaluates whether the Address has any child (Account or Contact) related records.
+     * @param a is the current Address record.
      * @return Boolean.
      ********************************************************************************************************/
     private static Boolean hasChildRecords(Address__c a) {
