@@ -430,12 +430,9 @@ private class COUR_CannotDelete_TEST {
                                         FROM Course__c
                                         WHERE Id IN :courses]; 
         
-        Boolean checkRelatedRecords; 
         COUR_CannotDelete_TDTM myClass = new COUR_CannotDelete_TDTM();
-        
-        for (Course__c cour : returnCourses) {
-            checkRelatedRecords = myClass.hasChildRecords(cour); 
-            System.assertEquals(True, checkRelatedRecords); 
+        for (Course__c cour : returnCourses) { 
+            System.assertEquals(True, myClass.hasChildRecords(cour)); 
         }
     }
 	
@@ -460,18 +457,16 @@ private class COUR_CannotDelete_TEST {
             new Course__c (Name = 'Course2', Account__c  = accounts[0].Id)
         };        
         insert courses; 
+        
         List<Course__c> returnCourses = [SELECT Id,
                                         (SELECT Id, Name FROM Course_Offerings__r LIMIT 1),
                                         (SELECT Id, Name FROM Plan_Requirements__r LIMIT 1)
                                         FROM Course__c
                                         WHERE Id IN :courses]; 
         
-        Boolean checkRelatedRecords; 
         COUR_CannotDelete_TDTM myClass = new COUR_CannotDelete_TDTM();
-        
         for (Course__c cour : returnCourses) {
-            checkRelatedRecords = myClass.hasChildRecords(cour); 
-            System.assertEquals(False, checkRelatedRecords); 
+            System.assertEquals(False, myClass.hasChildRecords(cour)); 
         }
     }
 }
