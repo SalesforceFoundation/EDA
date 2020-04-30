@@ -46,7 +46,7 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     * @param oldlist the list of Addresses from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
     * @param objResult the describe for Addresses 
-    * @return dmlWrapper.  
+    * @return DmlWrapper.  
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
