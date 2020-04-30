@@ -66,8 +66,8 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
                                     
                                 ]) {
                 
-                if (hasChildRecords(addr)) {
-                    Address__c addressInContext = oldMap.get(a.ID);
+                if (this.hasChildRecords(addr)) {
+                    Address__c addressInContext = oldMap.get(addr.ID);
                     addressInContext.addError(Label.CannotDelete);
                 }
             }     
@@ -81,7 +81,7 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
      * @param addr is the current Address record.
      * @return Boolean.
      ********************************************************************************************************/
-    @TestVisible
+    @testVisible
     private Boolean hasChildRecords(Address__c addr) {
         
         return ( addr.Accounts__r.size() > 0 || addr.Contacts1__r.size() > 0 ); 

@@ -107,6 +107,41 @@ private class ADDR_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Test method to test that when Prevent_Address_Deletion__c is enabled in Hierarchy Settings, and
+    * Address has both Account and Contact child records associated to it, the Address record cannot be deleted.
+    */
+    @isTest 
+    private static void addrCannotDeleteWithAccountAndContact() {
+                
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
+                                                            Prevent_Address_Deletion__c = TRUE));
+
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(5, ADDR_CannotDelete_TEST.hhAccRecordTypeID);
+        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(5);
+
+        List<Address__c> addrsWithChildRecords = new List<Address__c>();
+        addrsWithChildRecords.addAll(addrsWithRelatedAcc.addrs); 
+        addrsWithChildRecords.addAll(addrsWithRelatedContact.addrs);
+        
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(addrsWithChildRecords, FALSE);
+        Test.stopTest();
+
+        List<Address__c> returnAddresses = [
+            SELECT Id
+            FROM Address__c
+            WHERE Id IN :addrsWithChildRecords
+        ];
+
+        System.assertEquals(addrsWithChildRecords.size(), returnAddresses.size());
+
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(Label.CannotDelete, result.errors[0].message);
+        }
+    }
+
+    /*********************************************************************************************************
     * @description Test method to test that when Prevent_Address_Deletion__c is disabled in Hierarchy Settings, 
     * and Address has a child Account record associated to it, the Address record can be deleted.
     */
@@ -162,6 +197,41 @@ private class ADDR_CannotDelete_TEST {
         ];
 
         
+        System.assert(returnAddresses.isEmpty());
+
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(TRUE, result.isSuccess());
+        }
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to test that when Prevent_Address_Deletion__c is disabled in Hierarchy Settings,
+    * and Address has both Account and Contact child records associated to it, the Address record can be deleted.
+    */
+    @isTest 
+    private static void addrCanDeleteWithAccountAndContact() {
+                
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
+                                                            Prevent_Address_Deletion__c = FALSE));
+
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(5, ADDR_CannotDelete_TEST.hhAccRecordTypeID);
+        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(5);
+
+        List<Address__c> addrsWithChildRecords = new List<Address__c>();
+        addrsWithChildRecords.addAll(addrsWithRelatedAcc.addrs); 
+        addrsWithChildRecords.addAll(addrsWithRelatedContact.addrs);
+        
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(addrsWithChildRecords, FALSE);
+        Test.stopTest();
+
+        List<Address__c> returnAddresses = [
+            SELECT Id
+            FROM Address__c
+            WHERE Id IN :addrsWithChildRecords
+        ];
+
         System.assert(returnAddresses.isEmpty());
 
         for (Database.DeleteResult result : results) {
@@ -260,6 +330,125 @@ private class ADDR_CannotDelete_TEST {
 
         for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
+        }
+    }
+
+    /*********************************************************************************************************
+    * @description Test method for the hasChildRecords() method in ADDR_CannotDelete_TDTM to test that TRUE is
+    * returned when an Address record has child records of only type Contact.
+    */
+    @isTest
+    private static void testAddrHasChildContactRecordsIsTrue() {
+
+        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(5);
+
+        List<Address__c> addrsWithChildContact = addrsWithRelatedContact.addrs; 
+
+        List<Address__c> returnAddresses = [
+            SELECT Id, 
+                (SELECT Id FROM Address__c.Contacts1__r)
+            FROM Address__c
+            WHERE Id IN :addrsWithChildContact
+        ];
+
+        ADDR_CannotDelete_TDTM addrCannotDeleteClass = new ADDR_CannotDelete_TDTM();
+
+        for (Address__c addr : returnAddresses) {
+            System.assert(addrCannotDeleteClass.hasChildRecords(addr) == TRUE);
+        }
+    }
+
+    /*********************************************************************************************************
+    * @description Test method for the hasChildRecords() method in ADDR_CannotDelete_TDTM to test that TRUE is
+    * returned when an Address record has child records of only type Account.
+    */
+    @isTest
+    private static void testAddrHasChildAccountRecordsIsTrue() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
+                                                            Prevent_Address_Deletion__c = TRUE));
+
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(5, ADDR_CannotDelete_TEST.hhAccRecordTypeID);
+        
+        List<Address__c> addrsWithChildAcc = addrsWithRelatedAcc.addrs; 
+
+        List<Address__c> returnAddresses = [
+            SELECT Id, 
+                (SELECT Id FROM Address__c.Accounts__r)
+            FROM Address__c
+            WHERE Id IN :addrsWithChildAcc
+        ];
+
+        ADDR_CannotDelete_TDTM addrCannotDeleteClass = new ADDR_CannotDelete_TDTM();
+
+        for (Address__c addr : returnAddresses) {
+            System.assert(addrCannotDeleteClass.hasChildRecords(addr) == TRUE);
+        }
+    }
+
+    /*********************************************************************************************************
+    * @description Test method for the hasChildRecords() method in ADDR_CannotDelete_TDTM to test that TRUE is
+    * returned when an Address record has both Contact and Account child records.
+    */
+    @isTest
+    private static void testAddrHasChildRecordsIsTrue() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
+                                                            Prevent_Address_Deletion__c = TRUE));
+
+        UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(5, ADDR_CannotDelete_TEST.hhAccRecordTypeID);
+        UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(5);
+
+        List<Address__c> addrsWithChildRecords = new List<Address__c>();
+        addrsWithChildRecords.addAll(addrsWithRelatedAcc.addrs); 
+        addrsWithChildRecords.addAll(addrsWithRelatedContact.addrs);
+
+        List<Address__c> returnAddresses = [
+            SELECT Id, 
+                (SELECT Id FROM Address__c.Contacts1__r),
+                (SELECT Id FROM Address__c.Accounts__r)
+            FROM Address__c
+            WHERE Id IN :addrsWithChildRecords
+        ];
+
+        ADDR_CannotDelete_TDTM addrCannotDeleteClass = new ADDR_CannotDelete_TDTM();
+        
+        for (Address__c addr : returnAddresses) {
+            System.assert(addrCannotDeleteClass.hasChildRecords(addr) == TRUE);
+        }
+    }
+
+    /*********************************************************************************************************
+    * @description Test method for the hasChildRecords() method in ADDR_CannotDelete_TDTM to test that FALSE
+    * is returned for an Address record with no child records.
+    */
+    @isTest
+    private static void testAddrHasChildRecordsIsFalse() {
+
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(5);
+
+        for (Integer index = 0; index < 5; index++) {
+            addresses[index].Parent_Contact__c = contacts[0].Id;
+        }
+        
+        insert addresses;
+
+        List<Address__c> returnAddresses = [
+            SELECT Id, 
+                (SELECT Id FROM Address__c.Contacts1__r)
+            FROM Address__c
+            WHERE Id IN :addresses
+        ];
+
+        ADDR_CannotDelete_TDTM addrCannotDeleteClass = new ADDR_CannotDelete_TDTM();
+
+        for (Address__c addr : returnAddresses) {
+            System.assert(addrCannotDeleteClass.hasChildRecords(addr) == FALSE);
         }
     }
 }
