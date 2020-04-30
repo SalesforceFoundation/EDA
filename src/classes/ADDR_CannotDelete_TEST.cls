@@ -366,8 +366,7 @@ private class ADDR_CannotDelete_TEST {
     private static void testAddrHasChildAccountRecordsIsTrue() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
-                                                            Prevent_Address_Deletion__c = TRUE));
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID));
 
         UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(5, ADDR_CannotDelete_TEST.hhAccRecordTypeID);
         
@@ -395,8 +394,7 @@ private class ADDR_CannotDelete_TEST {
     private static void testAddrHasChildRecordsIsTrue() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
-                                                            Prevent_Address_Deletion__c = TRUE));
+                                                            (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID));
 
         UTIL_UnitTestData_TEST.AccsWithAddrs addrsWithRelatedAcc = UTIL_UnitTestData_TEST.createTestAccsAddrs(5, ADDR_CannotDelete_TEST.hhAccRecordTypeID);
         UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(5);
