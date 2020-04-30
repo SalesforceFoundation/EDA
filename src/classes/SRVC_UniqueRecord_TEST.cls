@@ -118,7 +118,7 @@ private class SRVC_UniqueRecord_TEST {
          insert accounts;
 
          Test.startTest();
-            Map<Id, SObject> idToNewSObject = SRVC_UniqueRecord.createIdToSObjectMap(accounts);
+            Map<Id, SObject> idToNewSObject = SRVC_UniqueRecord.createIdToNewSObjectMap(accounts);
          Test.stopTest();
 
          // Ensure map has 3 entries
@@ -165,7 +165,7 @@ private class SRVC_UniqueRecord_TEST {
         duplicateList.add(duplicateAccount3);
 
         List<String> childRelationshipNames = SRVC_UniqueRecord.getChildRelationshipNames(duplicateAccount1);
-        Map<Id, SObject> idToNewSObject = SRVC_UniqueRecord.createIdToSObjectMap(duplicateList);
+        Map<Id, SObject> idToNewSObject = SRVC_UniqueRecord.createIdToNewSObjectMap(duplicateList);
 
        Test.startTest();
             List<SObject> uniqueList = SRVC_UniqueRecord.getUniqueRecordList(duplicateList, childRelationshipNames, idToNewSObject);
