@@ -75,11 +75,11 @@ public with sharing class COUR_CannotDelete_TDTM extends TDTM_Runnable {
     return new DmlWrapper();
     }
 
-   /*******************************************************************************************************
-   * @description Evaluates whether the Course has any child related records.
-   * @param course is the current Course record.
-   * @return Boolean.
-   ********************************************************************************************************/
+    /*******************************************************************************************************
+    * @description Evaluates whether the Course has any child related records.
+    * @param course is the current Course record.
+    * @return Boolean.
+    ********************************************************************************************************/
     @testVisible
     private Boolean hasChildRecords(Course__c course) {
         return (!course.Course_Offerings__r.isEmpty() || !course.Plan_Requirements__r.isEmpty());
