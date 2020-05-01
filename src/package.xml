@@ -143,6 +143,7 @@
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
         <members>TST_CannotDelete_TDTM</members>
+        <members>TST_CannotDelete_TEST</members>
         <members>UTIL_ACCT_Naming</members>
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_CustomSettingsFacade_TEST</members>
