@@ -36,10 +36,55 @@
 */
 @isTest
 private class SRVC_UniqueRecord_TEST {
-    
+
     // Test for Unique Record Functionlaity
     @isTest
-    private static void uniqueRecordFunctionalityTest() {
+    private static void uniqueRecordFunctionalityWithRelatedRecordsTest() {
+
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        testContact.HIPAA__c = TRUE;
+        insert testContact;
+
+        List<SObject> duplicateList = new List<SObject>();
+
+        Account parentAccount = [SELECT Id, (SELECT Id, HIPAA__c FROM Contacts) FROM Account];
+        System.assert(parentAccount.Contacts != NULL);
+        System.assertEquals(TRUE, parentAccount.Contacts[0].HIPAA__c);
+
+        Account duplicateAccount1 = new Account();
+        duplicateAccount1.Id = parentAccount.Id;
+        duplicateAccount1.Phone = '123';
+        duplicateList.add(duplicateAccount1);
+
+        Account duplicateAccount2 = new Account();
+        duplicateAccount2.Id = parentAccount.Id;
+        duplicateAccount2.website = '123@sf.com';
+        duplicateList.add(duplicateAccount2);
+
+        Account duplicateAccount3 = new Account();
+        duplicateAccount3.Id = parentAccount.Id;
+        duplicateAccount3.description = 'test description';
+        duplicateList.add(duplicateAccount3);
+
+        System.assertEquals(3, duplicateList.size());
+        Test.startTest();
+            List<SObject> uniqueList = SRVC_UniqueRecord.getUniqueRecords(duplicateList);
+        Test.stopTest();
+
+        // Ensure records are merged
+        System.assertEquals(1, uniqueList.size());
+
+        Account uniqueAccount = (Account)uniqueList[0];
+
+        System.assertEquals(parentAccount.Id, uniqueAccount.Id);
+        System.assertEquals('test description', uniqueAccount.description);
+        System.assertEquals('123@sf.com', uniqueAccount.website);
+        System.assertEquals('123', uniqueAccount.Phone);
+
+    }
+    // Test for Unique Record Functionlaity
+    @isTest
+    private static void uniqueRecordFunctionalityWithNoRelatedRecordsTest() {
 
         Contact testContact1 = UTIL_UnitTestData_TEST.getContact();
         insert testContact1;
@@ -50,38 +95,33 @@ private class SRVC_UniqueRecord_TEST {
         duplicateCon1.Id = testContact1.Id;
         duplicateCon1.firstName = 'Doe';
         duplicateList.add(duplicateCon1);
-  
+
         Contact duplicateCon2 = new Contact();
         duplicateCon2.Id = testContact1.Id;
         duplicateCon2.lastName = 'Night';
         duplicateList.add(duplicateCon2);
 
-        Account parentAccount = [SELECT Id from Account];
+        Contact duplicateCon3 = new Contact();
+        duplicateCon3.Id = testContact1.Id;
+        duplicateCon3.HIPAA__c = TRUE;
+        duplicateList.add(duplicateCon3);
 
-        Account duplicateAccount1 = new Account();
-        duplicateAccount1.Id = parentAccount.Id;
-        duplicateAccount1.Phone = '123';
-        duplicateList.add(duplicateAccount1);
-  
-        Account duplicateAccount2 = new Account();
-        duplicateAccount2.Id = parentAccount.Id;
-        duplicateAccount2.website = '123@sf.com';
-        duplicateList.add(duplicateAccount2);
-  
-        Account duplicateAccount3 = new Account();
-        duplicateAccount3.Id = parentAccount.Id;
-        duplicateAccount3.description = 'test description';
-        duplicateList.add(duplicateAccount3);
+        System.assertEquals(3, duplicateList.size());
 
-        System.assertEquals(5, duplicateList.size());
         Test.startTest();
             List<SObject> uniqueList = SRVC_UniqueRecord.getUniqueRecords(duplicateList);
         Test.stopTest();
-  
-        // Ensure records are merged
-        System.assertEquals(2, uniqueList.size());
 
-    }
+        // Ensure records are merged
+        System.assertEquals(1, uniqueList.size());
+
+        Contact uniqueContact = (Contact)uniqueList[0];
+
+        System.assertEquals('Doe', uniqueContact.firstName);
+        System.assertEquals('Night', uniqueContact.lastName);
+        System.assertEquals(TRUE, uniqueContact.HIPAA__c);
+        
+    } 
 
     // NULL test for Unique Record Functionlaity
     @isTest
@@ -110,7 +150,7 @@ private class SRVC_UniqueRecord_TEST {
         // Ensure empty list is returned
         System.assertEquals(1, uniqueList.size());
     }
-    
+
     // Test for createIdToSObjectMap method of SRVC_UniqueRecord class
     @isTest
     private static void createIdToSObjectMapTest() {
@@ -124,7 +164,7 @@ private class SRVC_UniqueRecord_TEST {
          // Ensure map has 3 entries
          System.assertEquals(3, idToNewSObject.size());
     }
-    
+
     // Test for getChildRelationshipNames method of SRVC_UniqueRecord class
     @isTest
     private static void getChildRelationshipNamesTest() {
@@ -139,7 +179,7 @@ private class SRVC_UniqueRecord_TEST {
         System.assert(childRelationshipNames.size() != 0);
         System.assert(childRelationshipNames.contains('Contacts'));
     }
-    
+
     // Test for getUniqueRecordList method of SRVC_UniqueRecord class
     @isTest
     private static void getUniqueRecordListTest() {

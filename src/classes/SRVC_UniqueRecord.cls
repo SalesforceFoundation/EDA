@@ -40,18 +40,18 @@ public class SRVC_UniqueRecord {
     @TestVisible
     public static List<SObject> getUniqueRecords(List<SObject> listToCheck) {
 
-        // If list is NULL or Empty return a new instance of list
+        // If listToCheck is NULL or Empty, return a new instance of list
         if (listToCheck == NULL || listToCheck.isEmpty()) {
             return new List<SObject>();
         }
 
-        // If list has only one entry, return the list
+        // If listToCheck has only one entry, return the list
         if (listToCheck.size() == 1) {
             return listToCheck;
         }
 
-        // Create an Id to Sobject map
-        Map<Id, SObject> idToNewSObjectRecord = SRVC_UniqueRecord.createIdToNewSObjectMap(listToCheck); 
+        // Create an Id to a New SObject Record map
+        Map<Id, SObject> idToNewSObjectRecord = SRVC_UniqueRecord.createIdToNewSObjectMap(listToCheck);
 
         // Get the list of all ChildRelationshipNames for the given SObject record
         List<String> childRelationshipNames = SRVC_UniqueRecord.getChildRelationshipNames(listToCheck[0]);
