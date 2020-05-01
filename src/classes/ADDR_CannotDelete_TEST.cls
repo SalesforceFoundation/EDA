@@ -325,7 +325,7 @@ private class ADDR_CannotDelete_TEST {
             WHERE Id IN :addresses
         ];
 
-        System.assert(returnAddresses.isEmpty());
+        System.assertEquals(TRUE, returnAddresses.isEmpty());
 
         for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
