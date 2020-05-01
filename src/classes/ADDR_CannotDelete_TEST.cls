@@ -165,7 +165,7 @@ private class ADDR_CannotDelete_TEST {
             FROM Address__c
             WHERE Id IN :addrsWithChildAccount];
 
-        System.assert(returnAddresses.isEmpty());
+        System.assertEquals(TRUE, returnAddresses.isEmpty());
 
         for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
@@ -196,8 +196,7 @@ private class ADDR_CannotDelete_TEST {
             WHERE Id IN :addrsWithChildContact
         ];
 
-        
-        System.assert(returnAddresses.isEmpty());
+        System.assertEquals(TRUE, returnAddresses.isEmpty());
 
         for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
@@ -232,7 +231,7 @@ private class ADDR_CannotDelete_TEST {
             WHERE Id IN :addrsWithChildRecords
         ];
 
-        System.assert(returnAddresses.isEmpty());
+        System.assertEquals(TRUE, returnAddresses.isEmpty());
 
         for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
@@ -279,7 +278,7 @@ private class ADDR_CannotDelete_TEST {
             WHERE Id IN :addresses
         ];
 
-        System.assert(returnAddresses.isEmpty());
+        System.assertEquals(TRUE, returnAddresses.isEmpty());
 
         for (Database.DeleteResult result : results) {
             System.assertEquals(TRUE, result.isSuccess());
@@ -354,7 +353,7 @@ private class ADDR_CannotDelete_TEST {
         ADDR_CannotDelete_TDTM addrCannotDeleteClass = new ADDR_CannotDelete_TDTM();
 
         for (Address__c addr : returnAddresses) {
-            System.assert(addrCannotDeleteClass.hasChildRecords(addr) == TRUE);
+            System.assertEquals(TRUE, addrCannotDeleteClass.hasChildRecords(addr));
         }
     }
 
@@ -382,7 +381,7 @@ private class ADDR_CannotDelete_TEST {
         ADDR_CannotDelete_TDTM addrCannotDeleteClass = new ADDR_CannotDelete_TDTM();
 
         for (Address__c addr : returnAddresses) {
-            System.assert(addrCannotDeleteClass.hasChildRecords(addr) == TRUE);
+            System.assertEquals(TRUE, addrCannotDeleteClass.hasChildRecords(addr));
         }
     }
 
@@ -414,7 +413,7 @@ private class ADDR_CannotDelete_TEST {
         ADDR_CannotDelete_TDTM addrCannotDeleteClass = new ADDR_CannotDelete_TDTM();
         
         for (Address__c addr : returnAddresses) {
-            System.assert(addrCannotDeleteClass.hasChildRecords(addr) == TRUE);
+            System.assertEquals(TRUE, addrCannotDeleteClass.hasChildRecords(addr));
         }
     }
 
@@ -446,7 +445,7 @@ private class ADDR_CannotDelete_TEST {
         ADDR_CannotDelete_TDTM addrCannotDeleteClass = new ADDR_CannotDelete_TDTM();
 
         for (Address__c addr : returnAddresses) {
-            System.assert(addrCannotDeleteClass.hasChildRecords(addr) == FALSE);
+            System.assertEquals(FALSE, addrCannotDeleteClass.hasChildRecords(addr));
         }
     }
 }

@@ -84,7 +84,7 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     @testVisible
     private Boolean hasChildRecords(Address__c addr) {
         
-        return ( addr.Accounts__r.isEmpty() || addr.Contacts1__r.isEmpty() ); 
+        return ( addr.Accounts__r.isEmpty() == FALSE || addr.Contacts1__r.isEmpty() == FALSE ); 
     
     }
 }
