@@ -51,7 +51,7 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         
-        if (!enabledPreventAddressDeletion) {
+        if (!ADDR_CannotDelete_TDTM.enabledPreventAddressDeletion) {
             return new DmlWrapper(); 
         }
         
@@ -84,7 +84,7 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     @testVisible
     private Boolean hasChildRecords(Address__c addr) {
         
-        return ( addr.Accounts__r.size() > 0 || addr.Contacts1__r.size() > 0 ); 
+        return ( addr.Accounts__r.isEmpty() || addr.Contacts1__r.isEmpty() ); 
     
     }
 }
