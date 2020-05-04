@@ -48,7 +48,7 @@ private class ADDR_CannotDelete_TEST {
     * Address has a child Account record associated to it, the Address record cannot be deleted.
     */
     @isTest 
-    private static void addrCannotDeleteWithAccount() {
+    private static void cannotDeleteWithAccount() {
                 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
@@ -80,7 +80,7 @@ private class ADDR_CannotDelete_TEST {
     * Address has a child Contact record associated to it, the Address record cannot be deleted.
     */
     @isTest
-    private static void addrCannotDeleteWithContact() { 
+    private static void cannotDeleteWithContact() { 
                 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                         (Prevent_Address_Deletion__c = TRUE));
@@ -111,7 +111,7 @@ private class ADDR_CannotDelete_TEST {
     * Address has both Account and Contact child records associated to it, the Address record cannot be deleted.
     */
     @isTest 
-    private static void addrCannotDeleteWithAccountAndContact() {
+    private static void cannotDeleteWithAccountAndContact() {
                 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
@@ -146,7 +146,7 @@ private class ADDR_CannotDelete_TEST {
     * and Address has a child Account record associated to it, the Address record can be deleted.
     */
     @isTest
-    private static void addrCanDeleteWithAccount() {
+    private static void canDeleteWithAccount() {
                 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.adminAccRecordTypeID,
@@ -177,7 +177,7 @@ private class ADDR_CannotDelete_TEST {
     * and Address has a child Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    private static void addrCanDeleteWithContact() {
+    private static void canDeleteWithContact() {
         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Address_Deletion__c = FALSE));
@@ -208,7 +208,7 @@ private class ADDR_CannotDelete_TEST {
     * and Address has both Account and Contact child records associated to it, the Address record can be deleted.
     */
     @isTest 
-    private static void addrCanDeleteWithAccountAndContact() {
+    private static void canDeleteWithAccountAndContact() {
                 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
@@ -243,7 +243,7 @@ private class ADDR_CannotDelete_TEST {
     * and Address does not have a child Account or Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    private static void addressCanDeleteWithoutChildrenPreventDeleteOn() {
+    private static void canDeleteWithoutChildrenPreventDeleteOn() {
                 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.adminAccRecordTypeID,
@@ -290,7 +290,7 @@ private class ADDR_CannotDelete_TEST {
     * and Address does not have a child Account or Contact record associated to it, the Address record can be deleted.
     */
     @isTest
-    private static void addressCanDeleteWithoutChildrenPreventDeleteOff() {
+    private static void canDeleteWithoutChildrenPreventDeleteOff() {
             
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID,
@@ -337,7 +337,7 @@ private class ADDR_CannotDelete_TEST {
     * returned when an Address record has child records of only type Contact.
     */
     @isTest
-    private static void testAddrHasChildContactRecordsIsTrue() {
+    private static void hasChildContactRecordsIsTrue() {
 
         UTIL_UnitTestData_TEST.ContactsWithAddrs addrsWithRelatedContact = UTIL_UnitTestData_TEST.createTestContactsAddrs(5);
 
@@ -362,7 +362,7 @@ private class ADDR_CannotDelete_TEST {
     * returned when an Address record has child records of only type Account.
     */
     @isTest
-    private static void testAddrHasChildAccountRecordsIsTrue() {
+    private static void hasChildAccountRecordsIsTrue() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID));
@@ -390,7 +390,7 @@ private class ADDR_CannotDelete_TEST {
     * returned when an Address record has both Contact and Account child records.
     */
     @isTest
-    private static void testAddrHasChildRecordsIsTrue() {
+    private static void hasChildContactAndAccountRecordsIsTrue() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = ADDR_CannotDelete_TEST.hhAccRecordTypeID));
@@ -422,7 +422,7 @@ private class ADDR_CannotDelete_TEST {
     * is returned for an Address record with no child records.
     */
     @isTest
-    private static void testAddrHasChildRecordsIsFalse() {
+    private static void hasChildRecordsIsFalse() {
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
         insert contacts;
