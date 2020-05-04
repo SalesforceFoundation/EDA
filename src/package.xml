@@ -115,6 +115,8 @@
         <members>STG_Courses_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
+        <members>TB_CannotDelete_TDTM</members>
+        <members>TB_CannotDelete_TEST</members>
         <members>TB_StartEndTime_TDTM</members>
         <members>TB_StartEndTime_TEST</members>
         <members>TDTM_Config</members>
@@ -469,6 +471,7 @@
         <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
         <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
         <members>Hierarchy_Settings__c.Student_RecType__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Time_Block_Deletion__c</members>
         <members>Hierarchy_Settings__c.Validate_Program_Plan_for_Nested_PR__c</members>
         <members>Plan_Requirement__c.Category__c</members>
         <members>Plan_Requirement__c.Course__c</members>
