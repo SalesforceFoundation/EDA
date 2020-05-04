@@ -40,11 +40,11 @@
 private class TST_CannotDelete_TEST {
 
     /*********************************************************************************************************
-    * @description Test method to test that when Prevent_Test_Deletion__c is enabled in Hierarchy Settings, and
-    * Test has a child Test Score record associated to it, the Test record cannot be deleted.
+    * @description Test method to test that when Prevent_Test_Deletion__c is enabled in Hierarchy Settings and
+    * Test has a child Test Score record associated with it, the Test record cannot be deleted.
     */
     @isTest 
-    private static void tstCannotDeleteWithChildPreventOn() {
+    private static void cannotDeleteWithChildPreventDeleteOn() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Test_Deletion__c = TRUE));
 
@@ -83,11 +83,11 @@ private class TST_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test method to test that when Prevent_Test_Deletion__c is enabled in Hierarchy Settings, and
+    * @description Test method to test that when Prevent_Test_Deletion__c is enabled in Hierarchy Settings and
     * Test is not associated with any child Test Score records, the Test record can be deleted.
     */
     @isTest 
-    private static void tstCanDeleteWithoutChildPreventOn() {
+    private static void canDeleteWithoutChildPreventDeleteOn() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Test_Deletion__c = TRUE));
 
@@ -119,11 +119,11 @@ private class TST_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test method to test that when Prevent_Test_Deletion__c is disabled in Hierarchy Settings, and
+    * @description Test method to test that when Prevent_Test_Deletion__c is disabled in Hierarchy Settings and
     * Test has a child Test Score record associated to it, the Test record can be deleted.
     */
     @isTest 
-    private static void tstCanDeleteWithChildPreventOff() {
+    private static void canDeleteWithChildPreventDeleteOff() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Test_Deletion__c = FALSE));
 
@@ -162,11 +162,11 @@ private class TST_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test method to test that when Prevent_Test_Deletion__c is disabled in Hierarchy Settings, and
+    * @description Test method to test that when Prevent_Test_Deletion__c is disabled in Hierarchy Settings and
     * Test is not associated with any child Test Score records, the Test record can be deleted.
     */
     @isTest 
-    private static void tstCanDeleteWithoutChildPreventOff() {
+    private static void canDeleteWithoutChildPreventDeleteOff() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Test_Deletion__c = FALSE));
 
@@ -202,7 +202,7 @@ private class TST_CannotDelete_TEST {
     * is returned for a Test record with Test Score child records.
     */
     @isTest
-    private static void testTstHasChildRecordsIsTrue() {
+    private static void hasChildRecordsIsTrue() {
         
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
         insert contacts;
@@ -240,7 +240,7 @@ private class TST_CannotDelete_TEST {
     * is returned for a Test record with no child records.
     */
     @isTest
-    private static void testTstHasChildRecordsIsFalse() {
+    private static void hasChildRecordsIsFalse() {
         
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
         insert contacts;
