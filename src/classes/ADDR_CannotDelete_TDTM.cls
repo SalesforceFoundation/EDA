@@ -51,7 +51,7 @@ public with sharing class ADDR_CannotDelete_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         
-        if (!ADDR_CannotDelete_TDTM.enabledPreventAddressDeletion) {
+        if (ADDR_CannotDelete_TDTM.enabledPreventAddressDeletion == FALSE) {
             return new DmlWrapper(); 
         }
         
