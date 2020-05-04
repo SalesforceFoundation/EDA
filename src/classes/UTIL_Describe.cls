@@ -154,14 +154,6 @@ public class UTIL_Describe {
         }
     }
 
-    /*******************************************************************************************************
-    * @description Returns object describe data.
-    * @param objectName the name of the object to lookup
-    * @return Schema.DescribeSObjectResult of the object
-    */
-    public static Schema.SObjectType getSObjectType(String objectName) {
-       return Schema.getGlobalDescribe().get(objectName);
-    }
 
     /******************************************************************************************************
     * @description Returns new object of given type.
@@ -873,5 +865,25 @@ public class UTIL_Describe {
         }
 
         return recTypeId;
+    }
+
+    /*******************************************************************************************************
+    * @description Returns the list of all Child Relationship Name for a given Sobject Type
+    * @return List of all the child Relationship Names
+    */
+    public static List<String> getAllChildRelationshipNames(SobjectType sObjectTypeName) {
+        List<String> childRelationshipNames = new List<String>();
+        try {
+             DescribeSObjectResult describe = sObjectTypeName.getDescribe();
+             for (Schema.ChildRelationship childRelationship : describe.getChildRelationships()) {
+                 if (childRelationship != NULL && childRelationship.getRelationshipName() != NULL) {
+                     childRelationshipNames.add(childRelationship.getRelationshipName());
+                 }
+             }
+        } catch (Exception ex) {
+            return NULL;
+         }
+
+        return childRelationshipNames;
     }
 }

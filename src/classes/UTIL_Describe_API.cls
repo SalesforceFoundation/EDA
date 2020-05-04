@@ -64,15 +64,6 @@ global class UTIL_Describe_API {
     }
 
     /*******************************************************************************************************
-    * @descriptionReturns SObjectType for a given SObject
-    * @param objectName The name of the object to find the type for
-    * @return Schema.SObjectType of the object
-    */
-    global static Schema.SObjectType getSObjectType(String objectName) {
-        return UTIL_Describe.getSObjectType(objectName);
-    }
-
-    /*******************************************************************************************************
     * @description Compares Id to verify object type
     * @param salesforceId of the object
     * @param objectName
@@ -300,6 +291,14 @@ global class UTIL_Describe_API {
      */
     global static String getStudentCharacteristicAttributeRecType() {
         return UTIL_Describe.getStudentCharacteristicAttributeRecType();
+    }
+
+    /*******************************************************************************************************
+    * @description Returns the list of all Child Relationship Name for a given Sobject Type
+    * @return List of all the child Relationship Names
+    */
+    global static List<String> getAllChildRelationshipNames(SobjectType sObjectTypeName) {
+        return UTIL_Describe.getAllChildRelationshipNames(sObjectTypeName);
     }
     
 }

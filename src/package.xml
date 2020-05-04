@@ -107,8 +107,6 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
-        <members>SRVC_ChildRelationshipNames</members>
-        <members>SRVC_ChildRelationshipNames_TEST</members>
         <members>SRVC_UniqueRecord</members>
         <members>SRVC_UniqueRecord_TEST</members>
         <members>STG_Base_CTRL</members>

@@ -68,7 +68,8 @@ private class SRVC_UniqueRecord_TEST {
 
         System.assertEquals(3, duplicateList.size());
         Test.startTest();
-            List<SObject> uniqueList = SRVC_UniqueRecord.getUniqueRecords(duplicateList);
+            SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+            List<SObject> uniqueList = uniqueRecordService.getUniqueRecords(duplicateList);
         Test.stopTest();
 
         // Ensure records are merged
@@ -109,7 +110,8 @@ private class SRVC_UniqueRecord_TEST {
         System.assertEquals(3, duplicateList.size());
 
         Test.startTest();
-            List<SObject> uniqueList = SRVC_UniqueRecord.getUniqueRecords(duplicateList);
+            SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+            List<SObject> uniqueList = uniqueRecordService.getUniqueRecords(duplicateList);
         Test.stopTest();
 
         // Ensure records are merged
@@ -125,14 +127,15 @@ private class SRVC_UniqueRecord_TEST {
 
     // NULL test for Unique Record Functionlaity
     @isTest
-    private static void getUniqueRecordsEmptyTest() {
+    private static void getUniqueRecordsNULLTest() {
 
         Test.startTest();
-            List<SObject> uniqueList = SRVC_UniqueRecord.getUniqueRecords(NULL);
+            SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+            List<SObject> uniqueList = uniqueRecordService.getUniqueRecords(NULL);
         Test.stopTest();
 
         // Ensure empty list is returned
-        System.assertEquals(0, uniqueList.size());
+        System.assertEquals(NULL, uniqueList);
 
     }
 
@@ -144,11 +147,27 @@ private class SRVC_UniqueRecord_TEST {
         insert accounts;
 
         Test.startTest();
-            List<SObject> uniqueList = SRVC_UniqueRecord.getUniqueRecords(accounts);
+            SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+            List<SObject> uniqueList = uniqueRecordService.getUniqueRecords(accounts);
         Test.stopTest();
 
         // Ensure empty list is returned
         System.assertEquals(1, uniqueList.size());
+    }
+
+    // NULL test for Unique Record Functionlaity with empty list
+    @isTest
+    private static void getUniqueRecordsEmptyTest() {
+
+        Test.startTest();
+            SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+            List<Account> accounts = new List<Account>();
+            List<SObject> uniqueList = uniqueRecordService.getUniqueRecords(accounts);
+        Test.stopTest();
+
+        // Ensure empty list is returned
+        System.assertEquals(0, uniqueList.size());
+
     }
 
     // Test for createIdToSObjectMap method of SRVC_UniqueRecord class
@@ -158,7 +177,8 @@ private class SRVC_UniqueRecord_TEST {
          insert accounts;
 
          Test.startTest();
-            Map<Id, SObject> idToNewSObject = SRVC_UniqueRecord.createIdToNewSObjectMap(accounts);
+            SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+            Map<Id, SObject> idToNewSObject = uniqueRecordService.createIdToNewSObjectMap(accounts);
          Test.stopTest();
 
          // Ensure map has 3 entries
@@ -173,7 +193,8 @@ private class SRVC_UniqueRecord_TEST {
         insert acc;
 
         Test.startTest();
-            List<String> childRelationshipNames = SRVC_UniqueRecord.getChildRelationshipNames(acc);
+            SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+            List<String> childRelationshipNames = uniqueRecordService.getChildRelationshipNames(acc);
         Test.stopTest();
 
         System.assert(childRelationshipNames.size() != 0);
@@ -204,11 +225,13 @@ private class SRVC_UniqueRecord_TEST {
         duplicateAccount3.description = 'test description';
         duplicateList.add(duplicateAccount3);
 
-        List<String> childRelationshipNames = SRVC_UniqueRecord.getChildRelationshipNames(duplicateAccount1);
-        Map<Id, SObject> idToNewSObject = SRVC_UniqueRecord.createIdToNewSObjectMap(duplicateList);
+        SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+
+        List<String> childRelationshipNames = uniqueRecordService.getChildRelationshipNames(duplicateAccount1);
+        Map<Id, SObject> idToNewSObject = uniqueRecordService.createIdToNewSObjectMap(duplicateList);
 
        Test.startTest();
-            List<SObject> uniqueList = SRVC_UniqueRecord.getUniqueRecordList(duplicateList, childRelationshipNames, idToNewSObject);
+            List<SObject> uniqueList = uniqueRecordService.getUniqueRecordList(duplicateList, childRelationshipNames, idToNewSObject);
        Test.stopTest();
 
        System.assertEquals(1, uniqueList.size());

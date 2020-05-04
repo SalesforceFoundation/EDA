@@ -494,7 +494,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
          }
          if (duplicateOccurence.size() > 0) {
-             List<sObject> nonDuplicateList = SRVC_UniqueRecord.getUniqueRecords(duplicateOccurence);
+             SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
+             List<sObject> nonDuplicateList = uniqueRecordService.getUniqueRecords(duplicateOccurence);
              idToSObjectRecords.putAll(nonDuplicateList);
          }
         return idToSObjectRecords;

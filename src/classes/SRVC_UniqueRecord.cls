@@ -37,27 +37,25 @@ public class SRVC_UniqueRecord {
     @params listToCheck The list of records to be checked and made unique
     @return finalResults The list of merged records
     *****************************************************************************************************************/
-    @TestVisible
-    public static List<SObject> getUniqueRecords(List<SObject> listToCheck) {
-
-        // If listToCheck is NULL or Empty, return a new instance of list
-        if (listToCheck == NULL || listToCheck.isEmpty()) {
-            return new List<SObject>();
-        }
+    public List<SObject> getUniqueRecords(List<SObject> listToCheck) {
+        
+        // Constructor
 
         // If listToCheck has only one entry, return the list
-        if (listToCheck.size() == 1) {
+        if (listToCheck == NULL || listToCheck.size() <= 1) {
             return listToCheck;
         }
 
         // Create an Id to a New SObject Record map
-        Map<Id, SObject> idToNewSObjectRecord = SRVC_UniqueRecord.createIdToNewSObjectMap(listToCheck);
+        Map<Id, SObject> idToNewSObjectRecord = this.createIdToNewSObjectMap(listToCheck);
 
         // Get the list of all ChildRelationshipNames for the given SObject record
-        List<String> childRelationshipNames = SRVC_UniqueRecord.getChildRelationshipNames(listToCheck[0]);
+        List<String> childRelationshipNames = this.getChildRelationshipNames(listToCheck[0]);
+
+        // map with sobjectType as key and list of child rel names as values
 
         // Return the list of unique records
-        return SRVC_UniqueRecord.getUniqueRecordList(listToCheck, childRelationshipNames, idToNewSObjectRecord);
+        return this.getUniqueRecordList(listToCheck, childRelationshipNames, idToNewSObjectRecord);
     }
 
     /******************************************************************************************************
@@ -66,24 +64,23 @@ public class SRVC_UniqueRecord {
     @return idToSObjectRecordNew A map of id to record for the given sObject records
     ********************************************************************************************************/
     @TestVisible
-    private static Map<Id, SObject> createIdToNewSObjectMap(List<SObject> sObjectRecords) {
+    private Map<Id, SObject> createIdToNewSObjectMap(List<SObject> sObjectRecords) {
         Map<Id, SObject> idToSObjectRecordNew = new Map<Id, SObject>();
         for(SObject record: sObjectRecords) {
             idToSObjectRecordNew.put(record.Id, record.getSObjectType().newSobject(record.Id));
         }
         return idToSObjectRecordNew;
     }
-
+    // map of id to soBJect, list of rejected sobject (no ids) - new class
     /*******************************************************************************************************************************************
     @description Returns a list of all the ChildRelationshipNames based on the sObject type for a given record of sObject
     @params listToCheck The sObject record to find the childrelationship names for
     @return SRVC_ChildRelationshipNames.findAllChildRelationshipNames(sObjectType) A list of all the ChildRelationshipNames for the given record
     *********************************************************************************************************************************************/
     @TestVisible
-    private static List<String> getChildRelationshipNames(SObject sObjectRecord) {
-       String sObjectName = sObjectRecord.Id.getSObjectType().getDescribe().getName();
-       Schema.SObjectType sObjectType = UTIL_Describe_API.getSObjectType(SObjectName);
-       return SRVC_ChildRelationshipNames.findAllChildRelationshipNames(sObjectType);
+    private List<String> getChildRelationshipNames(SObject sObjectRecord) {
+       Schema.SObjectType sObjectType = sObjectRecord.getSObjectType();
+       return UTIL_Describe_API.getAllChildRelationshipNames(sObjectType);
     }
 
     /******************************************************************************************************
@@ -94,7 +91,7 @@ public class SRVC_UniqueRecord {
     @return uniqueRecords A list of unique records
     ********************************************************************************************************/
     @TestVisible
-    private static List<SObject> getUniqueRecordList(List<SObject> sObjectRecords, List<String> allChildRelationshipNames, Map<Id, SObject> idToSObjectRecord) {
+    private List<SObject> getUniqueRecordList(List<SObject> sObjectRecords, List<String> allChildRelationshipNames, Map<Id, SObject> idToSObjectRecord) {
         List<SObject> uniqueRecords = new List<SObject>();
         for (Sobject record: sObjectRecords) {
             Map<String, Object> fieldNameToValues = record.getPopulatedFieldsAsMap();
