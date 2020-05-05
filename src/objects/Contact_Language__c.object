@@ -46,17 +46,8 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>HEDA_Contact_Language_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>HEDA_Contact_Language_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>Language__c</fields>
-        <fields>Fluency__c</fields>
-        <fields>Primary_Language__c</fields>
-        <label>HEDA Contact Language Compact Layout</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Joins a Language and a Contact to store details about a Contact&apos;s language fluency.</description>
+    <description>Joins a Language and a Contact to store details about a Contact&#39;s language fluency.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -65,6 +56,24 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Contact Language</label>
+    <nameField>
+        <displayFormat>CL-{000000}</displayFormat>
+        <label>Contact Language Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Contact Languages</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Language__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Language__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Language__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contact__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Language__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
     <fields>
         <fullName>Contact__c</fullName>
         <description>The person who speaks this language.</description>
@@ -135,27 +144,18 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <label>Contact Language</label>
+    <compactLayouts>
+        <fullName>HEDA_Contact_Language_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Language__c</fields>
+        <fields>Fluency__c</fields>
+        <fields>Primary_Language__c</fields>
+        <label>HEDA Contact Language Compact Layout</label>
+    </compactLayouts>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>CL-{000000}</displayFormat>
-        <label>Contact Language Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Contact Languages</pluralLabel>
-    <searchLayouts>
-        <customTabListAdditionalFields>Language__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>Language__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Language__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Contact__c</lookupPhoneDialogsAdditionalFields>
-        <searchResultsAdditionalFields>Language__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

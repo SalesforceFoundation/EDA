@@ -8,29 +8,29 @@
         <plural>true</plural>
         <value><!-- Affl Mappings --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
-        <help>L&apos;étiquette du type d&apos;enregistrement de compte.</help>
-        <label>Type d&apos;enregistrement de compte</label>
+        <help>L&#39;étiquette du type d&#39;enregistrement de compte.</help>
+        <label>Type d&#39;enregistrement de compte</label>
         <name>Account_Record_Type__c</name>
     </fields>
     <fields>
-        <label>Rôle d&apos;inscription automatique</label>
+        <label>Rôle d&#39;inscription automatique</label>
         <name>Auto_Program_Enrollment_Role__c</name>
     </fields>
     <fields>
-        <label>Statut d&apos;inscription automatique</label>
+        <label>Statut d&#39;inscription automatique</label>
         <name>Auto_Program_Enrollment_Status__c</name>
     </fields>
     <fields>
-        <help>Si cette case est cochée, un enregistrement Inscription au programme est automatiquement créé lorsque l&apos;utilisateur crée une affiliation avec un compte de ce type.</help>
+        <help>Si cette case est cochée, un enregistrement Inscription au programme est automatiquement créé lorsque l&#39;utilisateur crée une affiliation avec un compte de ce type.</help>
         <label>Inscription automatique</label>
         <name>Auto_Program_Enrollment__c</name>
     </fields>
     <fields>
-        <help>L&apos;étiquette du champ de référence du contact qui pointe vers le compte principal du type d&apos;enregistrement spécifié.</help>
-        <label>Champ d&apos;affiliation principal</label>
+        <help>L&#39;étiquette du champ de référence du contact qui pointe vers le compte principal du type d&#39;enregistrement spécifié.</help>
+        <label>Champ d&#39;affiliation principal</label>
         <name>Primary_Affl_Field__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

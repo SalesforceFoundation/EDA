@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Cursos</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Course Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre del curso</nameFieldLabel>
     <fields>
         <label>Departamento</label>
         <name>Account__c</name>
@@ -29,13 +38,4 @@
         <label>Descripción ampliada</label>
         <name>Extended_Description__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Course Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre del curso</nameFieldLabel>
 </CustomObjectTranslation>

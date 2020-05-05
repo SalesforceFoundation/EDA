@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Contact Layout</layout>
+        <sections>
+            <label>Informació addicional</label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label>Preferències de comunicació</label>
+            <section>Communication Preferences</section>
+        </sections>
+        <sections>
+            <label>Dades de contacte</label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label>Afiliacions primàries</label>
+            <section>Primary Affiliations</section>
+        </sections>
+    </layouts>
     <fields>
         <help>El correu electrònic alternatiu és un correu electrònic opcional no inclòs en altres camps de correu electrònic.</help>
         <label>Correu electrònic alternatiu</label>
@@ -143,7 +162,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>British Indian Ocean Territory (the)</masterLabel>
-            <translation>Territori Britànic de l&apos;Oceà Índic</translation>
+            <translation>Territori Britànic de l&#39;Oceà Índic</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Brunei Darussalam</masterLabel>
@@ -266,8 +285,8 @@
             <translation>Txecoslovàquia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Costa d&apos;Ivori</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Costa d&#39;Ivori</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -479,7 +498,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Iran (Islamic Republic of)</masterLabel>
-            <translation>Iran (República Islàmica de l&apos;Iran)</translation>
+            <translation>Iran (República Islàmica de l&#39;Iran)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Iraq</masterLabel>
@@ -534,7 +553,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>Corea (República Democràtica Popular de Corea)</translation>
         </picklistValues>
         <picklistValues>
@@ -550,7 +569,7 @@
             <translation>Kirguizistan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>República Democràtica Popular de Laos (la)</translation>
         </picklistValues>
         <picklistValues>
@@ -1047,7 +1066,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United States of America (the)</masterLabel>
-            <translation>Estats Units d&apos;Amèrica (els)</translation>
+            <translation>Estats Units d&#39;Amèrica (els)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
@@ -1131,7 +1150,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>País d&apos;origen</label>
+        <label>País d&#39;origen</label>
         <name>Country_of_Origin__c</name>
         <picklistValues>
             <masterLabel>Afghanistan</masterLabel>
@@ -1263,7 +1282,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>British Indian Ocean Territory (the)</masterLabel>
-            <translation>Territori Britànic de l&apos;Oceà Índic</translation>
+            <translation>Territori Britànic de l&#39;Oceà Índic</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Brunei Darussalam</masterLabel>
@@ -1386,8 +1405,8 @@
             <translation>Txecoslovàquia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Costa d&apos;Ivori</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Costa d&#39;Ivori</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -1599,7 +1618,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Iran (Islamic Republic of)</masterLabel>
-            <translation>Iran (República Islàmica de l&apos;Iran)</translation>
+            <translation>Iran (República Islàmica de l&#39;Iran)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Iraq</masterLabel>
@@ -1654,7 +1673,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>Corea (República Democràtica Popular de Corea)</translation>
         </picklistValues>
         <picklistValues>
@@ -1670,7 +1689,7 @@
             <translation>Kirguizistan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>República Democràtica Popular de Laos (la)</translation>
         </picklistValues>
         <picklistValues>
@@ -2167,7 +2186,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United States of America (the)</masterLabel>
-            <translation>Estats Units d&apos;Amèrica (els)</translation>
+            <translation>Estats Units d&#39;Amèrica (els)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
@@ -2251,7 +2270,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>L&apos;adreça actual que consta als camps de correu del contacte.</help>
+        <help>L&#39;adreça actual que consta als camps de correu del contacte.</help>
         <label>Adreça actual</label>
         <name>Current_Address__c</name>
         <relationshipLabel>Contactes (adreça actual)</relationshipLabel>
@@ -2400,7 +2419,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>British Indian Ocean Territory (the)</masterLabel>
-            <translation>Territori Britànic de l&apos;Oceà Índic</translation>
+            <translation>Territori Britànic de l&#39;Oceà Índic</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Brunei Darussalam</masterLabel>
@@ -2523,8 +2542,8 @@
             <translation>Txecoslovàquia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Costa d&apos;Ivori</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Costa d&#39;Ivori</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -2736,7 +2755,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Iran (Islamic Republic of)</masterLabel>
-            <translation>Iran (República Islàmica de l&apos;Iran)</translation>
+            <translation>Iran (República Islàmica de l&#39;Iran)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Iraq</masterLabel>
@@ -2791,7 +2810,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>Corea (República Democràtica Popular de Corea)</translation>
         </picklistValues>
         <picklistValues>
@@ -2807,7 +2826,7 @@
             <translation>Kirguizistan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>República Democràtica Popular de Laos (la)</translation>
         </picklistValues>
         <picklistValues>
@@ -3304,7 +3323,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United States of America (the)</masterLabel>
-            <translation>Estats Units d&apos;Amèrica (els)</translation>
+            <translation>Estats Units d&#39;Amèrica (els)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
@@ -3400,17 +3419,17 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>Si marques aquesta casella s&apos;exclou aquest contacte de la Salutació formal de la llar.</help>
+        <help>Si marques aquesta casella s&#39;exclou aquest contacte de la Salutació formal de la llar.</help>
         <label>Exclou de la salutació formal de la llar</label>
         <name>Exclude_from_Household_Formal_Greeting__c</name>
     </fields>
     <fields>
-        <help>Si marques aquesta casella s&apos;exclou aquest contacte de la Salutació informal de la llar.</help>
+        <help>Si marques aquesta casella s&#39;exclou aquest contacte de la Salutació informal de la llar.</help>
         <label>Exclou de la salutació informal de la llar</label>
         <name>Exclude_from_Household_Informal_Greeting__c</name>
     </fields>
     <fields>
-        <help>Si marques aquesta casella s&apos;exclou aquest contacte del Nom de la llar.</help>
+        <help>Si marques aquesta casella s&#39;exclou aquest contacte del Nom de la llar.</help>
         <label>Exclou del nom de la llar</label>
         <name>Exclude_from_Household_Name__c</name>
     </fields>
@@ -3419,7 +3438,7 @@
         <name>FERPA__c</name>
     </fields>
     <fields>
-        <label>Sol·licitant d&apos;ajuda financera</label>
+        <label>Sol·licitant d&#39;ajuda financera</label>
         <name>Financial_Aid_Applicant__c</name>
     </fields>
     <fields>
@@ -3451,7 +3470,7 @@
         <name>Military_Service__c</name>
     </fields>
     <fields>
-        <help>Determina a quins noms de les famílies no s&apos;inclou aquest contacte com a part.</help>
+        <help>Determina a quins noms de les famílies no s&#39;inclou aquest contacte com a part.</help>
         <label>Exclusions de nomenaments</label>
         <name>Naming_Exclusions__c</name>
         <picklistValues>
@@ -3468,24 +3487,24 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>Quin número de telèfon s&apos;hauria d&apos;utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
+        <help>Quin número de telèfon s&#39;hauria d&#39;utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
         <label>Telèfon preferit</label>
         <name>PreferredPhone__c</name>
         <picklistValues>
-            <masterLabel>Home</masterLabel>	
+            <masterLabel>Home</masterLabel>
             <translation>Home Phone</translation>
-        </picklistValues>    
-        <picklistValues>	
-            <masterLabel>Mobile</masterLabel>	
-            <translation>Mobile Phone</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Other</masterLabel>	
-            <translation>Other Phone</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Telèfon de la feina</translation>	
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile</masterLabel>
+            <translation>Mobile Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Other Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work</masterLabel>
+            <translation>Telèfon de la feina</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>
@@ -3505,20 +3524,20 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>Quin correu electrònic s&apos;hauria d&apos;utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
+        <help>Quin correu electrònic s&#39;hauria d&#39;utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
         <label>Correu preferit</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>	
-            <masterLabel>Alternate</masterLabel>	
-            <translation>Correu electrònic alternatiu</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>University</masterLabel>	
-            <translation>Correu electrònic universitari</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Correu electrònic de la feina</translation>	
+        <picklistValues>
+            <masterLabel>Alternate</masterLabel>
+            <translation>Correu electrònic alternatiu</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University</masterLabel>
+            <translation>Correu electrònic universitari</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work</masterLabel>
+            <translation>Correu electrònic de la feina</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
@@ -3534,8 +3553,8 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>Quin tipus d&apos;adreça és l&apos;adreça de correu?</help>
-        <label>Tipus d&apos;adreça primari</label>
+        <help>Quin tipus d&#39;adreça és l&#39;adreça de correu?</help>
+        <label>Tipus d&#39;adreça primari</label>
         <name>Primary_Address_Type__c</name>
         <picklistValues>
             <masterLabel>Home</masterLabel>
@@ -3571,7 +3590,7 @@
         <name>Race__c</name>
         <picklistValues>
             <masterLabel>American Indian or Alaska Native</masterLabel>
-            <translation>Indi americà o nadiu d&apos;Alaska</translation>
+            <translation>Indi americà o nadiu d&#39;Alaska</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Asian</masterLabel>
@@ -3587,7 +3606,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Native Hawaiian or Other Pacific Islander</masterLabel>
-            <translation>Nadiu hawaià o illenc d&apos;una altra illa del pacífic</translation>
+            <translation>Nadiu hawaià o illenc d&#39;una altra illa del pacífic</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>White</masterLabel>
@@ -3627,8 +3646,8 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>Quin tipus d&apos;adreça és l&apos;altra adreça?</help>
-        <label>Tipus d&apos;adreça secundària</label>
+        <help>Quin tipus d&#39;adreça és l&#39;altra adreça?</help>
+        <label>Tipus d&#39;adreça secundària</label>
         <name>Secondary_Address_Type__c</name>
         <picklistValues>
             <masterLabel>Home</masterLabel>
@@ -3663,32 +3682,13 @@
         <name>WorkPhone__c</name>
     </fields>
     <fields>
-        <help>Fórmula: si el tipus d&apos;adreça principal és Feina, l&apos;adreça de correu postal. Si el tipus d&apos;adreça secundària és Feina, l&apos;altra adreça.</help>
+        <help>Fórmula: si el tipus d&#39;adreça principal és Feina, l&#39;adreça de correu postal. Si el tipus d&#39;adreça secundària és Feina, l&#39;altra adreça.</help>
         <label>Direcció de la feina</label>
         <name>Work_Address__c</name>
     </fields>
     <fields>
-        <help>Si està marcada, l&apos;adreça actual del contacte substitueix qualsevol adreça nova o estacional. (S’utilitza només per a contactes domèstics.)</help>
+        <help>Si està marcada, l&#39;adreça actual del contacte substitueix qualsevol adreça nova o estacional. (S’utilitza només per a contactes domèstics.)</help>
         <label>No actualitzis automàticament</label>
         <name>is_Address_Override__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Contact Layout</layout>
-        <sections>
-            <label>Informació addicional</label>
-            <section>Additional Information</section>
-        </sections>
-        <sections>
-            <label>Preferències de comunicació</label>
-            <section>Communication Preferences</section>
-        </sections>
-        <sections>
-            <label>Dades de contacte</label>
-            <section>Contact Details</section>
-        </sections>
-        <sections>
-            <label>Afiliacions primàries</label>
-            <section>Primary Affiliations</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

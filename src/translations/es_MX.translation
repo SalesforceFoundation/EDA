@@ -121,7 +121,7 @@
         <name>Relationship_Split</name>
     </customLabels>
     <customLabels>
-        <label>Las relaciones automáticas le permiten identificar sus propios campos de búsqueda personalizados en los objetos Contacto o Miembro de campaña que desencadenan la creación de un nuevo tipo de relación de su elección. Por ejemplo, una búsqueda de &apos;Referencia&apos; desde Miembro de campaña a Contacto podría crear relaciones &apos;Referencia&apos; y &apos;Mediador&apos; entre los dos contactos. (Tenga en cuenta que esta función no está disponible para los objetos Prospecto o Miembro de campaña que hacen referencia a Prospectos.)</label>
+        <label>Las relaciones automáticas le permiten identificar sus propios campos de búsqueda personalizados en los objetos Contacto o Miembro de campaña que desencadenan la creación de un nuevo tipo de relación de su elección. Por ejemplo, una búsqueda de &#39;Referencia&#39; desde Miembro de campaña a Contacto podría crear relaciones &#39;Referencia&#39; y &#39;Mediador&#39; entre los dos contactos. (Tenga en cuenta que esta función no está disponible para los objetos Prospecto o Miembro de campaña que hacen referencia a Prospectos.)</label>
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
@@ -681,7 +681,7 @@
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label>Puede enviar notificaciones de email a todos los administradores del sistema, un solo usuario o u grupo de Chatter. Los valores válidos son &apos;Todos los administradores del sistema&apos;, el Id. de un usuario en su organización o el Id. de un grupo de Chatter. Solo puede ingresar un valor.</label>
+        <label>Puede enviar notificaciones de email a todos los administradores del sistema, un solo usuario o u grupo de Chatter. Los valores válidos son &#39;Todos los administradores del sistema&#39;, el Id. de un usuario en su organización o el Id. de un grupo de Chatter. Solo puede ingresar un valor.</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>

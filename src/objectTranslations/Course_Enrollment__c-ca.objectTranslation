@@ -8,8 +8,18 @@
         <plural>true</plural>
         <value><!-- Course Connection --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID de connexió del curs</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
-        <help>El programa acadèmic en què està inscrit l&apos;estudiant.</help>
+        <help>El programa acadèmic en què està inscrit l&#39;estudiant.</help>
         <label>Programa acadèmic del contacte</label>
         <name>Account__c</name>
         <relationshipLabel>Connexions del curs</relationshipLabel>
@@ -21,19 +31,19 @@
         <relationshipLabel>Connexió del curs</relationshipLabel>
     </fields>
     <fields>
-        <help>L&apos;alumne que cursa el curs.</help>
+        <help>L&#39;alumne que cursa el curs.</help>
         <label>Contacte</label>
         <name>Contact__c</name>
         <relationshipLabel>Connexions del curs</relationshipLabel>
     </fields>
     <fields>
-        <help>L&apos;oferta de curs a la qual està inscrit l&apos;estudiant. És un curs ofert en un termini específic.</help>
-        <label>ID d&apos;oferta del curs</label>
+        <help>L&#39;oferta de curs a la qual està inscrit l&#39;estudiant. És un curs ofert en un termini específic.</help>
+        <label>ID d&#39;oferta del curs</label>
         <name>Course_Offering__c</name>
         <relationshipLabel>Connexió del curs</relationshipLabel>
     </fields>
     <fields>
-        <label>Crèdits als quals s&apos;ha assistit</label>
+        <label>Crèdits als quals s&#39;ha assistit</label>
         <name>Credits_Attempted__c</name>
     </fields>
     <fields>
@@ -50,13 +60,13 @@
         <name>Primary__c</name>
     </fields>
     <fields>
-        <help>El número de registre d&apos;inscripció al programa en què està inscrit l&apos;alumne. Enllaça un estudiant amb un programa acadèmic.</help>
-        <label>ID d&apos;inscripció del programa</label>
+        <help>El número de registre d&#39;inscripció al programa en què està inscrit l&#39;alumne. Enllaça un estudiant amb un programa acadèmic.</help>
+        <label>ID d&#39;inscripció del programa</label>
         <name>Program_Enrollment__c</name>
         <relationshipLabel>Connexions del curs</relationshipLabel>
     </fields>
     <fields>
-        <help>Representa l&apos;estat de connexió del curs.</help>
+        <help>Representa l&#39;estat de connexió del curs.</help>
         <label>Estat</label>
         <name>Status__c</name>
         <picklistValues>
@@ -68,14 +78,4 @@
             <translation>Antic</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID de connexió del curs</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

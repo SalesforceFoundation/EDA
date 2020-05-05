@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Term Grade --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de qualificació del període</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>L’alumne per al qual es registra la qualificació. Quan es deixa en blanc, el Contacte es copia automàticament de la connexió de curs vàlida en desar-lo.</help>
         <label>Contacte</label>
@@ -15,20 +25,20 @@
         <relationshipLabel>Qualificacions del període</relationshipLabel>
     </fields>
     <fields>
-        <help>La classe en què l&apos;estudiant ha rebut aquesta qualificació. El contacte i l’oferta curs de la qualificació del període ha de coincidir amb el contacte i l’oferta de curs del registre de connexió del curs.</help>
+        <help>La classe en què l&#39;estudiant ha rebut aquesta qualificació. El contacte i l’oferta curs de la qualificació del període ha de coincidir amb el contacte i l’oferta de curs del registre de connexió del curs.</help>
         <label>Connexió del curs</label>
         <name>Course_Connection__c</name>
         <relationshipLabel>Qualificacions del període</relationshipLabel>
     </fields>
     <fields>
-        <help>Oferta de curs associada al registre de la qualificació. Quan es deixa en blanc, l&apos;oferta de curs es copia automàticament de la connexió de curs vàlida.</help>
+        <help>Oferta de curs associada al registre de la qualificació. Quan es deixa en blanc, l&#39;oferta de curs es copia automàticament de la connexió de curs vàlida.</help>
         <label>Oferta de curs</label>
         <name>Course_Offering__c</name>
         <relationshipLabel>Qualificacions del període</relationshipLabel>
     </fields>
     <fields>
         <help>El nombre de crèdits intentats per a aquest curs i període de qualificació.</help>
-        <label>Crèdits als quals s&apos;ha assistit</label>
+        <label>Crèdits als quals s&#39;ha assistit</label>
         <name>Credits_Attempted__c</name>
     </fields>
     <fields>
@@ -78,7 +88,7 @@
         <name>Term_Grade_Type__c</name>
         <picklistValues>
             <masterLabel>Exam Grade</masterLabel>
-            <translation>Qualificació d&apos;examen</translation>
+            <translation>Qualificació d&#39;examen</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Final Grade</masterLabel>
@@ -99,14 +109,4 @@
         <name>Term__c</name>
         <relationshipLabel>Qualificacions del període</relationshipLabel>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Term Grade Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de qualificació del període</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

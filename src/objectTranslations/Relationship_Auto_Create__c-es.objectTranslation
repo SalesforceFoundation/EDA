@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value><!-- Relationship Auto-Create --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
     <fields>
         <help>Tipos de campaña aptos para la creación automática de este miembro de campaña. (Estará en blanco para la creación automática de contactos)</help>
         <label>Tipos de campaña</label>
@@ -28,5 +29,4 @@
         <label>Tipo de relación</label>
         <name>Relationship_Type__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
 </CustomObjectTranslation>

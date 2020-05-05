@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value><!-- Behavior Response --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
+    <layouts>
+        <layout>EDA Behavior Response Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de respuesta de comportamiento</nameFieldLabel>
     <fields>
         <help>El número generado por el sistema asociado con este evento. Formato: BI-{0000}.</help>
         <label>Implicación de comportamiento</label>
@@ -72,13 +81,4 @@
             <translation>Otro</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>EDA Behavior Response Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de respuesta de comportamiento</nameFieldLabel>
 </CustomObjectTranslation>

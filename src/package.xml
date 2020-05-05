@@ -256,6 +256,7 @@
         <members>Account.Current_Address__c</members>
         <members>Account.Primary_Contact__c</members>
         <members>Address__c.Address_Type__c</members>
+        <members>Address__c.County__c</members>
         <members>Address__c.Default_Address__c</members>
         <members>Address__c.Formula_MailingAddress__c</members>
         <members>Address__c.Formula_MailingStreetAddress__c</members>
@@ -1146,6 +1147,13 @@
         <members>Trigger_Handler__c.All</members>
         <members>Trigger_Handler__c.All_Main_Fields</members>
         <name>ListView</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <members>Custom%3A Marketing Profile</members>
+        <members>Custom%3A Sales Profile</members>
+        <members>Custom%3A Support Profile</members>
+        <name>Profile</name>
     </types>
     <types>
         <members>Attribute__c.Credential</members>

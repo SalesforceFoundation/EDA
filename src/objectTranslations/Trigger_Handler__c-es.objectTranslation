@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Controladores de desencadenador</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Trigger Handler Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de controlador de desencadenador</nameFieldLabel>
     <fields>
         <help>Indica que este módulo es activo</help>
         <label>Activo</label>
@@ -90,13 +99,4 @@
         <label>Nombres de usuario para excluir</label>
         <name>Usernames_to_Exclude__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Trigger Handler Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de controlador de desencadenador</nameFieldLabel>
 </CustomObjectTranslation>

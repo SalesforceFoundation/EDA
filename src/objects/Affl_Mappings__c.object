@@ -2,6 +2,8 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
     <enableFeeds>false</enableFeeds>
+    <label>Affl Mappings</label>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Account_Record_Type__c</fullName>
         <description>The Account Record Type label.</description>
@@ -56,6 +58,4 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Affl Mappings</label>
-    <visibility>Public</visibility>
 </CustomObject>

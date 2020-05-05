@@ -8,6 +8,19 @@
         <plural>true</plural>
         <value>Course Offering Schedules</value>
     </caseValues>
+    <layouts>
+        <layout>EDA Course Offering Schedule Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Days of Week</label>
+            <section>Days of Week</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Course Offering Schedule Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>The Course Offering to which this record belongs.</help>
         <label>Course Offering</label>
@@ -64,17 +77,4 @@
         <label>Wednesday</label>
         <name>Wednesday__c</name>
     </fields>
-    <layouts>
-        <layout>EDA Course Offering Schedule Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Days of Week</label>
-            <section>Days of Week</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Course Offering Schedule Name</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

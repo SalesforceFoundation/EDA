@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <compactLayouts>
-        <fullName>HEDA_Contact_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>AccountId</fields>
-        <fields>Birthdate</fields>
-        <fields>FERPA__c</fields>
-        <label>HEDA Contact Compact Layout</label>
-    </compactLayouts>
     <fields>
         <fullName>AlternateEmail__c</fullName>
         <description>Alternate Email is an optional email not captured in other email fields.</description>
@@ -332,9 +324,9 @@
                     <label>Costa Rica</label>
                 </value>
                 <value>
-                    <fullName>Côte d&apos;Ivoire</fullName>
+                    <fullName>Côte d&#39;Ivoire</fullName>
                     <default>false</default>
-                    <label>Côte d&apos;Ivoire</label>
+                    <label>Côte d&#39;Ivoire</label>
                 </value>
                 <value>
                     <fullName>Croatia</fullName>
@@ -697,9 +689,9 @@
                     <label>Kiribati</label>
                 </value>
                 <value>
-                    <fullName>Korea (the Democratic People&apos;s Republic of)</fullName>
+                    <fullName>Korea (the Democratic People&#39;s Republic of)</fullName>
                     <default>false</default>
-                    <label>Korea (the Democratic People&apos;s Republic of)</label>
+                    <label>Korea (the Democratic People&#39;s Republic of)</label>
                 </value>
                 <value>
                     <fullName>Korea (the Republic of)</fullName>
@@ -717,9 +709,9 @@
                     <label>Kyrgyzstan</label>
                 </value>
                 <value>
-                    <fullName>Lao People&apos;s Democratic Republic (the)</fullName>
+                    <fullName>Lao People&#39;s Democratic Republic (the)</fullName>
                     <default>false</default>
-                    <label>Lao People&apos;s Democratic Republic (the)</label>
+                    <label>Lao People&#39;s Democratic Republic (the)</label>
                 </value>
                 <value>
                     <fullName>Latvia</fullName>
@@ -1740,9 +1732,9 @@
                     <label>Costa Rica</label>
                 </value>
                 <value>
-                    <fullName>Côte d&apos;Ivoire</fullName>
+                    <fullName>Côte d&#39;Ivoire</fullName>
                     <default>false</default>
-                    <label>Côte d&apos;Ivoire</label>
+                    <label>Côte d&#39;Ivoire</label>
                 </value>
                 <value>
                     <fullName>Croatia</fullName>
@@ -2105,9 +2097,9 @@
                     <label>Kiribati</label>
                 </value>
                 <value>
-                    <fullName>Korea (the Democratic People&apos;s Republic of)</fullName>
+                    <fullName>Korea (the Democratic People&#39;s Republic of)</fullName>
                     <default>false</default>
-                    <label>Korea (the Democratic People&apos;s Republic of)</label>
+                    <label>Korea (the Democratic People&#39;s Republic of)</label>
                 </value>
                 <value>
                     <fullName>Korea (the Republic of)</fullName>
@@ -2125,9 +2117,9 @@
                     <label>Kyrgyzstan</label>
                 </value>
                 <value>
-                    <fullName>Lao People&apos;s Democratic Republic (the)</fullName>
+                    <fullName>Lao People&#39;s Democratic Republic (the)</fullName>
                     <default>false</default>
-                    <label>Lao People&apos;s Democratic Republic (the)</label>
+                    <label>Lao People&#39;s Democratic Republic (the)</label>
                 </value>
                 <value>
                     <fullName>Latvia</fullName>
@@ -2850,9 +2842,9 @@
     <fields>
         <fullName>Current_Address__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The current Address that the Contact&apos;s mailing fields are filled with.</description>
+        <description>The current Address that the Contact&#39;s mailing fields are filled with.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The current Address that the Contact&apos;s mailing fields are filled with.</inlineHelpText>
+        <inlineHelpText>The current Address that the Contact&#39;s mailing fields are filled with.</inlineHelpText>
         <label>Current Address</label>
         <referenceTo>Address__c</referenceTo>
         <relationshipLabel>Contacts (Current Address)</relationshipLabel>
@@ -3185,9 +3177,9 @@
                     <label>Costa Rica</label>
                 </value>
                 <value>
-                    <fullName>Côte d&apos;Ivoire</fullName>
+                    <fullName>Côte d&#39;Ivoire</fullName>
                     <default>false</default>
-                    <label>Côte d&apos;Ivoire</label>
+                    <label>Côte d&#39;Ivoire</label>
                 </value>
                 <value>
                     <fullName>Croatia</fullName>
@@ -3550,9 +3542,9 @@
                     <label>Kiribati</label>
                 </value>
                 <value>
-                    <fullName>Korea (the Democratic People&apos;s Republic of)</fullName>
+                    <fullName>Korea (the Democratic People&#39;s Republic of)</fullName>
                     <default>false</default>
-                    <label>Korea (the Democratic People&apos;s Republic of)</label>
+                    <label>Korea (the Democratic People&#39;s Republic of)</label>
                 </value>
                 <value>
                     <fullName>Korea (the Republic of)</fullName>
@@ -3570,9 +3562,9 @@
                     <label>Kyrgyzstan</label>
                 </value>
                 <value>
-                    <fullName>Lao People&apos;s Democratic Republic (the)</fullName>
+                    <fullName>Lao People&#39;s Democratic Republic (the)</fullName>
                     <default>false</default>
-                    <label>Lao People&apos;s Democratic Republic (the)</label>
+                    <label>Lao People&#39;s Democratic Republic (the)</label>
                 </value>
                 <value>
                     <fullName>Latvia</fullName>
@@ -4747,9 +4739,9 @@
     </fields>
     <fields>
         <fullName>WorkPhone__c</fullName>
-        <description>See &apos;Preferred Phone&apos; field.</description>
+        <description>See &#39;Preferred Phone&#39; field.</description>
         <externalId>false</externalId>
-        <inlineHelpText>See &apos;Preferred Phone&apos; field.</inlineHelpText>
+        <inlineHelpText>See &#39;Preferred Phone&#39; field.</inlineHelpText>
         <label>Work Phone</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4785,11 +4777,19 @@
     <fields>
         <fullName>is_Address_Override__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</description>
+        <description>If checked, the Contact&#39;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</inlineHelpText>
+        <inlineHelpText>If checked, the Contact&#39;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</inlineHelpText>
         <label>Do Not Automatically Update</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
+    <compactLayouts>
+        <fullName>HEDA_Contact_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>AccountId</fields>
+        <fields>Birthdate</fields>
+        <fields>FERPA__c</fields>
+        <label>HEDA Contact Compact Layout</label>
+    </compactLayouts>
 </CustomObject>

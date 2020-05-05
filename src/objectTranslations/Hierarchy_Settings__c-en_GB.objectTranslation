@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value><!-- Hierarchy Settings --></value>
     </caseValues>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</help>
         <label>Account Processor</label>
@@ -49,22 +50,22 @@
         <name>Affiliation_Record_Type_Enforced__c</name>
     </fields>
     <fields>
-        <help>Indicates whether to set the End Date of the Affiliation created with a Program Enrolment. If enabled, set the End Date to the Program Enrolment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</help>
+        <help>Indicates whether to set the End Date of the Affiliation created with a Program Enrolment. If enabled, set the End Date to the Program Enrolment&#39;s End Date. If disabled, don&#39;t specify the Affiliation&#39;s End Date.</help>
         <label>Affil End Date Copy from Prog Enrol</label>
         <name>Affl_ProgEnroll_Copy_End_Date__c</name>
     </fields>
     <fields>
-        <help>Indicates whether to set the Start Date of the Affiliation created with a Program Enrolment. If enabled, set the Start Date to the Program Enrolment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</help>
+        <help>Indicates whether to set the Start Date of the Affiliation created with a Program Enrolment. If enabled, set the Start Date to the Program Enrolment&#39;s Start Date. If disabled, don&#39;t specify the Affiliation&#39;s Start Date.</help>
         <label>Affil Start Date Copy from Prog Enrol</label>
         <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     </fields>
     <fields>
-        <help>If the related setting, Affil Delete When Delete Prog Enrol, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrolment is deleted.</help>
+        <help>If the related setting, Affil Delete When Delete Prog Enrol, is disabled, this setting specifies the value to set for the Affiliation&#39;s Status, when its related Program Enrolment is deleted.</help>
         <label>Affil Status When Delete Prog Enrol</label>
         <name>Affl_ProgEnroll_Del_Status__c</name>
     </fields>
     <fields>
-        <help>Indicates whether to delete an Affiliation when its related Program Enrolment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enrol.</help>
+        <help>Indicates whether to delete an Affiliation when its related Program Enrolment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&#39;s Status to the value specified in the related setting, Affil Status When Delete Prog Enrol.</help>
         <label>Affil Delete When Delete Prog Enrol</label>
         <name>Affl_ProgEnroll_Del__c</name>
     </fields>
@@ -74,7 +75,7 @@
         <name>Affl_ProgEnroll_Role_Map__c</name>
     </fields>
     <fields>
-        <help>Indicates whether to specify a Role for the Affiliation created with a Program Enrolment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enrol. If disabled, don&apos;t specify a Role.</help>
+        <help>Indicates whether to specify a Role for the Affiliation created with a Program Enrolment. If enabled, set the Affiliation&#39;s Role to the value specified in the related setting, Affil Role When Create Prog Enrol. If disabled, don&#39;t specify a Role.</help>
         <label>Affil Set Role When Create Prog Enrol</label>
         <name>Affl_ProgEnroll_Set_Role__c</name>
     </fields>
@@ -108,7 +109,7 @@
         <name>Default_Contact_Language_Fluency__c</name>
     </fields>
     <fields>
-        <help>If checked, EDA&apos;s error handling framework is disabled.</help>
+        <help>If checked, EDA&#39;s error handling framework is disabled.</help>
         <label>Disable Error Handling</label>
         <name>Disable_Error_Handling__c</name>
     </fields>
@@ -132,12 +133,12 @@
         <name>Enable_Debug__c</name>
     </fields>
     <fields>
-        <help>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</help>
+        <help>Sync the Preferred Phone field to the Contact&#39;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</help>
         <label>Enable New Preferred Phone Sync</label>
         <name>Enable_New_Preferred_Phone_Sync__c</name>
     </fields>
     <fields>
-        <help>Check this if you&apos;d like the system to post notifications for certain type of errors.</help>
+        <help>Check this if you&#39;d like the system to post notifications for certain type of errors.</help>
         <label>Error Notifications</label>
         <name>Error_Notifications_On__c</name>
     </fields>
@@ -227,7 +228,7 @@
         <name>Simple_Address_Change_Treated_as_Update__c</name>
     </fields>
     <fields>
-        <help>Check this if you&apos;d like errors to be stored in the database.</help>
+        <help>Check this if you&#39;d like errors to be stored in the database.</help>
         <label>Store Errors</label>
         <name>Store_Errors_On__c</name>
     </fields>
@@ -240,5 +241,4 @@
         <label>Validate Program Plan for Nested PR</label>
         <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

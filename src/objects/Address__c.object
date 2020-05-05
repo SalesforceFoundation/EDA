@@ -46,15 +46,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>HEDA_Address_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>HEDA_Address_Compact_Layout</fullName>
-        <fields>Formula_MailingAddress__c</fields>
-        <fields>Seasonal_Start_Day__c</fields>
-        <fields>Seasonal_Start_Month__c</fields>
-        <fields>Seasonal_End_Day__c</fields>
-        <fields>Seasonal_End_Month__c</fields>
-        <label>HEDA Address Compact Layout</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Stores address information. To support multiple and seasonal addresses.</description>
     <enableActivities>false</enableActivities>
@@ -65,6 +56,27 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Address</label>
+    <nameField>
+        <displayFormat>A-{00000}</displayFormat>
+        <label>Address ID</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Addresses</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Formula_MailingAddress__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Parent_Account__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Address_Type__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Formula_MailingAddress__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Parent_Account__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Address_Type__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Formula_MailingAddress__c</searchFilterFields>
+        <searchFilterFields>Parent_Account__c</searchFilterFields>
+        <searchFilterFields>Address_Type__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
     <fields>
         <fullName>Address_Type__c</fullName>
         <externalId>false</externalId>
@@ -98,6 +110,17 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>County__c</fullName>
+        <externalId>false</externalId>
+        <label>County</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Default_Address__c</fullName>
@@ -785,30 +808,18 @@ MailingPostalCode__c
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <label>Address</label>
+    <compactLayouts>
+        <fullName>HEDA_Address_Compact_Layout</fullName>
+        <fields>Formula_MailingAddress__c</fields>
+        <fields>Seasonal_Start_Day__c</fields>
+        <fields>Seasonal_Start_Month__c</fields>
+        <fields>Seasonal_End_Day__c</fields>
+        <fields>Seasonal_End_Month__c</fields>
+        <label>HEDA Address Compact Layout</label>
+    </compactLayouts>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>A-{00000}</displayFormat>
-        <label>Address ID</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Addresses</pluralLabel>
-    <searchLayouts>
-        <lookupDialogsAdditionalFields>Formula_MailingAddress__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Parent_Account__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Address_Type__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Formula_MailingAddress__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Parent_Account__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Address_Type__c</lookupPhoneDialogsAdditionalFields>
-        <searchFilterFields>Formula_MailingAddress__c</searchFilterFields>
-        <searchFilterFields>Parent_Account__c</searchFilterFields>
-        <searchFilterFields>Address_Type__c</searchFilterFields>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
-    <startsWith>Vowel</startsWith>
 </CustomObject>

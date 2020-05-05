@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Plans de programme</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du plan du programme</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>Cliquez pour rechercher un compte (souvent un programme académique) à associer au plan du programme.</help>
         <label>Compte</label>
@@ -25,7 +35,7 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
-        <help>Case à cocher indiquant que ce plan doit être attribué à l&apos;étudiant lors de la création d&apos;une inscription au programme.</help>
+        <help>Case à cocher indiquant que ce plan doit être attribué à l&#39;étudiant lors de la création d&#39;une inscription au programme.</help>
         <label>Principal</label>
         <name>Is_Primary__c</name>
     </fields>
@@ -48,7 +58,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>Spécifiez le nombre total de crédits qu&apos;un étudiant doit obtenir pour satisfaire ce plan de programme.</help>
+        <help>Spécifiez le nombre total de crédits qu&#39;un étudiant doit obtenir pour satisfaire ce plan de programme.</help>
         <label>Nombre total de crédit requis</label>
         <name>Total_Required_Credits__c</name>
     </fields>
@@ -57,14 +67,4 @@
         <label>Version</label>
         <name>Version__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Program Plan Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom du plan du programme</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

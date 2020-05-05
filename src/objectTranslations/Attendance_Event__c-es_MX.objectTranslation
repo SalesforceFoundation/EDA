@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Eventos de asistencia</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de evento de asistencia</nameFieldLabel>
     <fields>
         <help>Para eventos retrasados, la hora a la que llegó el estudiante.</help>
         <label>Hora de llegada</label>
@@ -97,13 +106,4 @@
         <label>No justificada</label>
         <name>Unexcused__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>EDA Attendance Event Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de evento de asistencia</nameFieldLabel>
 </CustomObjectTranslation>

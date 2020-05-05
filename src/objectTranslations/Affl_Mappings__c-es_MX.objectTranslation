@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value><!-- Affl Mappings --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
     <fields>
         <help>La etiqueta Tipo de registro de cuenta</help>
         <label>Tipo de registro de cuenta</label>
@@ -31,5 +32,4 @@
         <label>Campo de afiliación principal</label>
         <name>Primary_Affl_Field__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
 </CustomObjectTranslation>

@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Errors</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Error Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Error Number</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>Context that generated the error, if known.</help>
         <label>Context Type</label>
@@ -53,13 +62,4 @@
         <label>Stack Trace</label>
         <name>Stack_Trace__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Error Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Error Number</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

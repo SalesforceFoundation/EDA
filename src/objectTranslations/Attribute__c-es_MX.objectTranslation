@@ -8,6 +8,32 @@
         <plural>true</plural>
         <value>Atributos</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de atributo</nameFieldLabel>
+    <recordTypes>
+        <description>Permite a las instituciones educativas realizar un seguimiento de las licencias, certificaciones o aprobaciones obtenidas por la plantilla o los estudiantes.</description>
+        <label>Credencial</label>
+        <name>Credential</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Permite a las instituciones educativas realizar un seguimiento de características importantes de estudiantes que podrían afectar a la educación de los estudiantes.</description>
+        <label>Característica del estudiante</label>
+        <name>Student_Characteristic</name>
+    </recordTypes>
     <fields>
         <help>La agencia que proporcionó o certificó la credencial.</help>
         <label>Agencia</label>
@@ -190,30 +216,4 @@
             <translation>Sociología</translation>
         </picklistValues>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>EDA Credential Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>EDA Student Characteristic Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de atributo</nameFieldLabel>
-    <recordTypes>
-        <description>Permite a las instituciones educativas realizar un seguimiento de las licencias, certificaciones o aprobaciones obtenidas por la plantilla o los estudiantes.</description>
-        <label>Credencial</label>
-        <name>Credential</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Permite a las instituciones educativas realizar un seguimiento de características importantes de estudiantes que podrían afectar a la educación de los estudiantes.</description>
-        <label>Característica del estudiante</label>
-        <name>Student_Characteristic</name>
-    </recordTypes>
 </CustomObjectTranslation>

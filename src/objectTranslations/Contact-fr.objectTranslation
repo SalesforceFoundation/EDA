@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Contact Layout</layout>
+        <sections>
+            <label>Informations supplémentaires</label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label>Préférences de communication</label>
+            <section>Communication Preferences</section>
+        </sections>
+        <sections>
+            <label>Détails du contact</label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label>Affiliations principales</label>
+            <section>Primary Affiliations</section>
+        </sections>
+    </layouts>
     <fields>
-        <help>E-mail alternatif est une adresse e-mail facultative qui n&apos;est pas capturée dans d&apos;autres champs de messagerie.</help>
+        <help>E-mail alternatif est une adresse e-mail facultative qui n&#39;est pas capturée dans d&#39;autres champs de messagerie.</help>
         <label>E-mail alternatif</label>
         <name>AlternateEmail__c</name>
     </fields>
@@ -143,7 +162,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>British Indian Ocean Territory (the)</masterLabel>
-            <translation>Territoire britannique de l&apos;océan Indien (Le)</translation>
+            <translation>Territoire britannique de l&#39;océan Indien (Le)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Brunei Darussalam</masterLabel>
@@ -266,8 +285,8 @@
             <translation>Tchécoslovaquie</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Côte d&apos;Ivoire</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Côte d&#39;Ivoire</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -534,7 +553,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>Corée (La république démocratique populaire de)</translation>
         </picklistValues>
         <picklistValues>
@@ -550,7 +569,7 @@
             <translation>Kirghizistan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>République démocratique populaire lao (La)</translation>
         </picklistValues>
         <picklistValues>
@@ -1039,7 +1058,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom of Great Britain and Northern Ireland (the)</masterLabel>
-            <translation>Royaume-Uni de Grande-Bretagne et d&apos;Irlande du Nord (Le)</translation>
+            <translation>Royaume-Uni de Grande-Bretagne et d&#39;Irlande du Nord (Le)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United States Minor Outlying Islands (the)</masterLabel>
@@ -1047,7 +1066,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United States of America (the)</masterLabel>
-            <translation>États-Unis d&apos;Amérique (Les)</translation>
+            <translation>États-Unis d&#39;Amérique (Les)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
@@ -1131,7 +1150,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Pays d&apos;origine</label>
+        <label>Pays d&#39;origine</label>
         <name>Country_of_Origin__c</name>
         <picklistValues>
             <masterLabel>Afghanistan</masterLabel>
@@ -1263,7 +1282,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>British Indian Ocean Territory (the)</masterLabel>
-            <translation>Territoire britannique de l&apos;océan Indien (Le)</translation>
+            <translation>Territoire britannique de l&#39;océan Indien (Le)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Brunei Darussalam</masterLabel>
@@ -1386,8 +1405,8 @@
             <translation>Tchécoslovaquie</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Côte d&apos;Ivoire</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Côte d&#39;Ivoire</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -1654,7 +1673,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>Corée (La république démocratique populaire de)</translation>
         </picklistValues>
         <picklistValues>
@@ -1670,7 +1689,7 @@
             <translation>Kirghizistan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>République démocratique populaire lao (La)</translation>
         </picklistValues>
         <picklistValues>
@@ -2159,7 +2178,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom of Great Britain and Northern Ireland (the)</masterLabel>
-            <translation>Royaume-Uni de Grande-Bretagne et d&apos;Irlande du Nord (Le)</translation>
+            <translation>Royaume-Uni de Grande-Bretagne et d&#39;Irlande du Nord (Le)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United States Minor Outlying Islands (the)</masterLabel>
@@ -2167,7 +2186,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United States of America (the)</masterLabel>
-            <translation>États-Unis d&apos;Amérique (Les)</translation>
+            <translation>États-Unis d&#39;Amérique (Les)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
@@ -2251,7 +2270,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>L’adresse actuellement renseignée dans les champs d&apos;adresse du contact.</help>
+        <help>L’adresse actuellement renseignée dans les champs d&#39;adresse du contact.</help>
         <label>Adresse actuelle</label>
         <name>Current_Address__c</name>
         <relationshipLabel>Contacts (adresse actuelle)</relationshipLabel>
@@ -2400,7 +2419,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>British Indian Ocean Territory (the)</masterLabel>
-            <translation>Territoire britannique de l&apos;océan Indien (Le)</translation>
+            <translation>Territoire britannique de l&#39;océan Indien (Le)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Brunei Darussalam</masterLabel>
@@ -2523,8 +2542,8 @@
             <translation>Tchécoslovaquie</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Côte d&apos;Ivoire</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Côte d&#39;Ivoire</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -2791,7 +2810,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>Corée (La république démocratique populaire de)</translation>
         </picklistValues>
         <picklistValues>
@@ -2807,7 +2826,7 @@
             <translation>Kirghizistan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>République démocratique populaire lao (La)</translation>
         </picklistValues>
         <picklistValues>
@@ -3296,7 +3315,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom of Great Britain and Northern Ireland (the)</masterLabel>
-            <translation>Royaume-Uni de Grande-Bretagne et d&apos;Irlande du Nord (Le)</translation>
+            <translation>Royaume-Uni de Grande-Bretagne et d&#39;Irlande du Nord (Le)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United States Minor Outlying Islands (the)</masterLabel>
@@ -3304,7 +3323,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>United States of America (the)</masterLabel>
-            <translation>États-Unis d&apos;Amérique (Les)</translation>
+            <translation>États-Unis d&#39;Amérique (Les)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
@@ -3435,7 +3454,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Détails de la loi HIPAA portant sur la transférabilité et la responsabilité en matière d&apos;assurance-maladie</label>
+        <label>Détails de la loi HIPAA portant sur la transférabilité et la responsabilité en matière d&#39;assurance-maladie</label>
         <name>HIPAA_Detail__c</name>
     </fields>
     <fields>
@@ -3471,21 +3490,21 @@
         <help>Quel numéro de téléphone doit être utilisé pour la plupart des communications impliquant ce contact ?</help>
         <label>Téléphone préféré</label>
         <name>PreferredPhone__c</name>
-        <picklistValues>	
-            <masterLabel>Home</masterLabel>	
-            <translation>Téléphone (domicile)</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Mobile</masterLabel>	
-            <translation>Téléphone mobile</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Other</masterLabel>	
-            <translation>Autre téléphone</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Téléphone professionnel</translation>	
+        <picklistValues>
+            <masterLabel>Home</masterLabel>
+            <translation>Téléphone (domicile)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile</masterLabel>
+            <translation>Téléphone mobile</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Autre téléphone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work</masterLabel>
+            <translation>Téléphone professionnel</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>
@@ -3508,17 +3527,17 @@
         <help>Quel e-mail doit être utilisé pour la plupart des communications impliquant ce contact ?</help>
         <label>Adresse e-mail préférée</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>	
-            <masterLabel>Alternate</masterLabel>	
-            <translation>E-mail alternatif</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>University</masterLabel>	
-            <translation>Adresse e-mail de l&apos;université</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Adresse e-mail professionnelle</translation>	
+        <picklistValues>
+            <masterLabel>Alternate</masterLabel>
+            <translation>E-mail alternatif</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University</masterLabel>
+            <translation>Adresse e-mail de l&#39;université</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work</masterLabel>
+            <translation>Adresse e-mail professionnelle</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
@@ -3526,7 +3545,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>University Email</masterLabel>
-            <translation>Adresse e-mail de l&apos;université</translation>
+            <translation>Adresse e-mail de l&#39;université</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work Email</masterLabel>
@@ -3535,7 +3554,7 @@
     </fields>
     <fields>
         <help>Quel est le type de l’adresse postale ?</help>
-        <label>Type d&apos;adresse principal</label>
+        <label>Type d&#39;adresse principal</label>
         <name>Primary_Address_Type__c</name>
         <picklistValues>
             <masterLabel>Home</masterLabel>
@@ -3571,7 +3590,7 @@
         <name>Race__c</name>
         <picklistValues>
             <masterLabel>American Indian or Alaska Native</masterLabel>
-            <translation>Amérindien ou natif d&apos;Alaska</translation>
+            <translation>Amérindien ou natif d&#39;Alaska</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Asian</masterLabel>
@@ -3587,7 +3606,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Native Hawaiian or Other Pacific Islander</masterLabel>
-            <translation>Natif d&apos;Hawaï ou d&apos;une autre île du Pacifique</translation>
+            <translation>Natif d&#39;Hawaï ou d&#39;une autre île du Pacifique</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>White</masterLabel>
@@ -3628,7 +3647,7 @@
     </fields>
     <fields>
         <help>Quel est le type de l’autre adresse ?</help>
-        <label>Type d&apos;adresse secondaire</label>
+        <label>Type d&#39;adresse secondaire</label>
         <name>Secondary_Address_Type__c</name>
         <picklistValues>
             <masterLabel>Home</masterLabel>
@@ -3648,8 +3667,8 @@
         <name>Social_Security_Number__c</name>
     </fields>
     <fields>
-        <help>Adresse e-mail officielle de l&apos;université.</help>
-        <label>Adresse e-mail de l&apos;université</label>
+        <help>Adresse e-mail officielle de l&#39;université.</help>
+        <label>Adresse e-mail de l&#39;université</label>
         <name>UniversityEmail__c</name>
     </fields>
     <fields>
@@ -3663,32 +3682,13 @@
         <name>WorkPhone__c</name>
     </fields>
     <fields>
-        <help>Formule : l&apos;adresse postale si le Type d’adresse principale est Professionnel, l&apos;autre adresse si le Type d’adresse secondaire est Professionnel.</help>
+        <help>Formule : l&#39;adresse postale si le Type d’adresse principale est Professionnel, l&#39;autre adresse si le Type d’adresse secondaire est Professionnel.</help>
         <label>Adresse professionnelle</label>
         <name>Work_Address__c</name>
     </fields>
     <fields>
-        <help>Si cette case est cochée, l&apos;adresse actuelle du contact remplace toutes les adresses nouvelles ou saisonnières (s&apos;applique uniquement aux contacts du foyer).</help>
+        <help>Si cette case est cochée, l&#39;adresse actuelle du contact remplace toutes les adresses nouvelles ou saisonnières (s&#39;applique uniquement aux contacts du foyer).</help>
         <label>Ne pas mettre à jour automatiquement</label>
         <name>is_Address_Override__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Contact Layout</layout>
-        <sections>
-            <label>Informations supplémentaires</label>
-            <section>Additional Information</section>
-        </sections>
-        <sections>
-            <label>Préférences de communication</label>
-            <section>Communication Preferences</section>
-        </sections>
-        <sections>
-            <label>Détails du contact</label>
-            <section>Contact Details</section>
-        </sections>
-        <sections>
-            <label>Affiliations principales</label>
-            <section>Primary Affiliations</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

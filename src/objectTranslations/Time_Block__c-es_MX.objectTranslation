@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Bloques de tiempo</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Time Block Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de bloque de tiempo</nameFieldLabel>
     <fields>
         <help>La institución educativa asociada con este bloque de tiempo. Por ejemplo, una escuela en un distrito.</help>
         <label>Institución educativa</label>
@@ -24,13 +33,4 @@
         <label>Hora de inicio</label>
         <name>Start_Time__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>EDA Time Block Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de bloque de tiempo</nameFieldLabel>
 </CustomObjectTranslation>

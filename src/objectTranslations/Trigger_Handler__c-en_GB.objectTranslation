@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Trigger Handlers</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Trigger Handler Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Trigger Handler Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>Indicates that this module is active</help>
         <label>Active</label>
@@ -81,7 +90,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>Check it if you intent to manage the record yourself. Be aware that updates to the package won&apos;t update the record.</help>
+        <help>Check it if you intent to manage the record yourself. Be aware that updates to the package won&#39;t update the record.</help>
         <label>User Managed</label>
         <name>User_Managed__c</name>
     </fields>
@@ -90,13 +99,4 @@
         <label>Usernames to Exclude</label>
         <name>Usernames_to_Exclude__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Trigger Handler Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Trigger Handler Name</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

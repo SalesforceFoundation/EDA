@@ -8,8 +8,30 @@
         <plural>true</plural>
         <value><!-- Relationship --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Informació de la relació</label>
+            <section>Relationship Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clau de relació</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+    <validationRules>
+        <errorMessage>En lloc de canviar els contactes en una relació existent, suprimiu aquesta relació i creeu-ne una altra.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>En lloc de canviar els contactes en una relació existent, suprimiu aquesta relació i creeu-ne una altra.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
     <fields>
-        <help>El contacte relacionat és ______ d&apos;aquest contacte.</help>
+        <help>El contacte relacionat és ______ d&#39;aquest contacte.</help>
         <label>Contacte</label>
         <name>Contact__c</name>
         <relationshipLabel>Relacions</relationshipLabel>
@@ -20,12 +42,12 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help>És un contacte d&apos;emergència?</help>
-        <label>Contacte d&apos;emergència</label>
+        <help>És un contacte d&#39;emergència?</help>
+        <label>Contacte d&#39;emergència</label>
         <name>Emergency_Contact__c</name>
     </fields>
     <fields>
-        <help>Camp de sistema que uneix els dos costats de la relació junts. Aquest camp no s&apos;ha de modificar directament. La relació recíproca tindrà el tipus contrari, si està disponible, d&apos;aquesta relació.</help>
+        <help>Camp de sistema que uneix els dos costats de la relació junts. Aquest camp no s&#39;ha de modificar directament. La relació recíproca tindrà el tipus contrari, si està disponible, d&#39;aquesta relació.</help>
         <label>Relació recíproca</label>
         <name>ReciprocalRelationship__c</name>
         <relationshipLabel>Relacions</relationshipLabel>
@@ -155,26 +177,4 @@
             <translation>Dona</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Relationship Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Informació de la relació</label>
-            <section>Relationship Information</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Clau de relació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
-    <validationRules>
-        <errorMessage>En lloc de canviar els contactes en una relació existent, suprimiu aquesta relació i creeu-ne una altra.</errorMessage>
-        <name>Contact_Do_Not_Change</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>En lloc de canviar els contactes en una relació existent, suprimiu aquesta relació i creeu-ne una altra.</errorMessage>
-        <name>Related_Contact_Do_Not_Change</name>
-    </validationRules>
 </CustomObjectTranslation>

@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Term Grades</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save. --></help>
         <label><!-- Contact --></label>
@@ -99,12 +107,4 @@
         <name>Term__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>HEDA Term Grade Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

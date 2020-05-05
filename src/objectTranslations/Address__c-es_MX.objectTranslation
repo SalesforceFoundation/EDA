@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Direcciones</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Address Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Id. de Dirección</nameFieldLabel>
     <fields>
         <label>Tipo de dirección</label>
         <name>Address_Type__c</name>
@@ -466,13 +475,4 @@
         <label>Año de inicio de temporada</label>
         <name>Seasonal_Start_Year__c</name>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Address Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Id. de Dirección</nameFieldLabel>
 </CustomObjectTranslation>

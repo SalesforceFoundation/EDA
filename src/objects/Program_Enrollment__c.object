@@ -46,15 +46,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>HEDA_Program_Enrollment_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>HEDA_Program_Enrollment_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>Account__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>GPA__c</fields>
-        <label>HEDA Program Enrollment Compact Layout</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Contains details about the relationship a student Contact has with a Department or School (the degree-granting Account type for the educational institution).</description>
     <enableActivities>false</enableActivities>
@@ -65,6 +56,15 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Program Enrollment</label>
+    <nameField>
+        <displayFormat>PE-{0000}</displayFormat>
+        <label>Program Enrollment ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Program Enrollments</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -266,18 +266,18 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-    <label>Program Enrollment</label>
+    <compactLayouts>
+        <fullName>HEDA_Program_Enrollment_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Account__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>GPA__c</fields>
+        <label>HEDA Program Enrollment Compact Layout</label>
+    </compactLayouts>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>PE-{0000}</displayFormat>
-        <label>Program Enrollment ID</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Program Enrollments</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

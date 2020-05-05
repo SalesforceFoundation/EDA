@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Program Enrolments</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Program Enrolment ID</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>The program the student is enroled in.</help>
         <label>Program</label>
@@ -104,13 +113,4 @@
         <label>Start Date</label>
         <name>Start_Date__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Program Enrollment Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Program Enrolment ID</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

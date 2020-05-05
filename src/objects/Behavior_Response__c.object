@@ -53,6 +53,21 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Behavior Response</label>
+    <nameField>
+        <displayFormat>BR-{0000}</displayFormat>
+        <label>Behavior Response Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Behavior Responses</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Behavior_Involvement__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Behavior_Involvement__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -177,24 +192,9 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <label>Behavior Response</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>BR-{0000}</displayFormat>
-        <label>Behavior Response Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Behavior Responses</pluralLabel>
-    <searchLayouts>
-        <searchResultsAdditionalFields>Behavior_Involvement__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>

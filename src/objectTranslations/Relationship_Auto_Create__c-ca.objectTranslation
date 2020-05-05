@@ -8,26 +8,26 @@
         <plural>true</plural>
         <value><!-- Relationship Auto-Create --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Els tipus de campanya elegibles per a aquest membre de la campanya es creen automàticament. (Estarà en blanc per crear automàticament el contacte)</help>
         <label>Tipus de campanya</label>
         <name>Campaign_Types__c</name>
     </fields>
     <fields>
-        <help>La inserció o actualització de camp que activa la creació d&apos;aquesta relació</help>
+        <help>La inserció o actualització de camp que activa la creació d&#39;aquesta relació</help>
         <label>Camp</label>
         <name>Field__c</name>
     </fields>
     <fields>
-        <help>L&apos;objecte al qual està associada aquesta relació automàtica</help>
+        <help>L&#39;objecte al qual està associada aquesta relació automàtica</help>
         <label>Objecte</label>
         <name>Object__c</name>
     </fields>
     <fields>
-        <help>El tipus de relació que es crearà entre l&apos;objecte base i l&apos;objecte de cerca. L&apos;objecte de cerca rebrà la relació recíproca, si n&apos;hi ha disponible.</help>
+        <help>El tipus de relació que es crearà entre l&#39;objecte base i l&#39;objecte de cerca. L&#39;objecte de cerca rebrà la relació recíproca, si n&#39;hi ha disponible.</help>
         <label>Tipus de relació</label>
         <name>Relationship_Type__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

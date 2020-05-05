@@ -8,8 +8,18 @@
         <plural>true</plural>
         <value>Erreurs</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Error Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Numéro d&#39;erreur</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
     <fields>
-        <help>S&apos;il est connu, contexte dans lequel l&apos;erreur a été générée.</help>
+        <help>S&#39;il est connu, contexte dans lequel l&#39;erreur a été générée.</help>
         <label>Type de contexte</label>
         <name>Context_Type__c</name>
     </fields>
@@ -24,7 +34,7 @@
         <name>Email_Sent__c</name>
     </fields>
     <fields>
-        <help>Type de l’erreur qui s&apos;est produite</help>
+        <help>Type de l’erreur qui s&#39;est produite</help>
         <label>Type d’erreur</label>
         <name>Error_Type__c</name>
     </fields>
@@ -34,7 +44,7 @@
         <name>Full_Message__c</name>
     </fields>
     <fields>
-        <help>S&apos;il est connu, type de l’objet sur lequel l’erreur s’est produite.</help>
+        <help>S&#39;il est connu, type de l’objet sur lequel l’erreur s’est produite.</help>
         <label>Type d’objet</label>
         <name>Object_Type__c</name>
     </fields>
@@ -44,23 +54,13 @@
         <name>Posted_in_Chatter__c</name>
     </fields>
     <fields>
-        <help>S&apos;il est disponible, lien vers l’enregistrement qui a entraîné l’erreur.</help>
+        <help>S&#39;il est disponible, lien vers l’enregistrement qui a entraîné l’erreur.</help>
         <label>URL de l’enregistrement</label>
         <name>Record_URL__c</name>
     </fields>
     <fields>
-        <help>Trace de la pile de l’erreur déclenchée, si elle disponible à l&apos;exécution.</help>
+        <help>Trace de la pile de l’erreur déclenchée, si elle disponible à l&#39;exécution.</help>
         <label>Trace de la pile</label>
         <name>Stack_Trace__c</name>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Error Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Numéro d&apos;erreur</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

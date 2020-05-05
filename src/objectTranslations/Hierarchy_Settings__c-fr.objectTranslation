@@ -8,18 +8,20 @@
         <plural>true</plural>
         <value><!-- Hierarchy Settings --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
-        <help>ID du type d&apos;enregistrement par défaut du compte. Par exemple, si vous spécifiez Administratif (le modèle Compte recommandé), saisissez l&apos;ID du type d&apos;enregistrement Administratif pour l&apos;objet Compte.</help>
+        <help>ID du type d&#39;enregistrement par défaut du compte. Par exemple, si vous spécifiez Administratif (le modèle Compte recommandé), saisissez l&#39;ID du type d&#39;enregistrement Administratif pour l&#39;objet Compte.</help>
         <label>Processeur de compte</label>
         <name>Account_Processor__c</name>
     </fields>
     <fields>
-        <help>Type d&apos;enregistrement des comptes dans lesquels plusieurs adresses doivent être activées.</help>
+        <help>Type d&#39;enregistrement des comptes dans lesquels plusieurs adresses doivent être activées.</help>
         <label>Comptes à adresses multiples</label>
         <name>Accounts_Addresses_Enabled__c</name>
     </fields>
     <fields>
-        <help>Type d&apos;enregistrement des comptes qui doivent être supprimés si tous les contacts enfants ont été supprimés.</help>
+        <help>Type d&#39;enregistrement des comptes qui doivent être supprimés si tous les contacts enfants ont été supprimés.</help>
         <label>Comptes à supprimer</label>
         <name>Accounts_to_Delete__c</name>
     </fields>
@@ -34,57 +36,57 @@
         <name>Admin_Other_Name_Setting__c</name>
     </fields>
     <fields>
-        <help>Le type d&apos;enregistrement Compte utilisé pour des Comptes administratifs. Ce paramètre affecte la gestion des enregistrements d&apos;adresse et le format de nommage des comptes administratifs.</help>
+        <help>Le type d&#39;enregistrement Compte utilisé pour des Comptes administratifs. Ce paramètre affecte la gestion des enregistrements d&#39;adresse et le format de nommage des comptes administratifs.</help>
         <label>Type enregistrement compte administratif</label>
         <name>Administrative_Account_Record_Type__c</name>
     </fields>
     <fields>
-        <help>L&apos;espace de noms du package géré Gift Entry Management.</help>
+        <help>L&#39;espace de noms du package géré Gift Entry Management.</help>
         <label>Espace de noms GEM</label>
         <name>Advancement_Namespace__c</name>
     </fields>
     <fields>
-        <help>Si cette case cochée, une erreur est renvoyée lorsque les utilisateurs remplissent un champ principal dans Contact avec un Compte dont le type d&apos;enregistrement ne correspond pas au type défini dans les paramètres EDA. L&apos;enregistrement Affiliation n&apos;est pas créé et les champs principaux du contact ne sont pas corrects.</help>
+        <help>Si cette case cochée, une erreur est renvoyée lorsque les utilisateurs remplissent un champ principal dans Contact avec un Compte dont le type d&#39;enregistrement ne correspond pas au type défini dans les paramètres EDA. L&#39;enregistrement Affiliation n&#39;est pas créé et les champs principaux du contact ne sont pas corrects.</help>
         <label>Type enregistrement affiliation appliqué</label>
         <name>Affiliation_Record_Type_Enforced__c</name>
     </fields>
     <fields>
-        <help>Indique si la Date de fin de l&apos;Affiliation créée lors de l&apos;inscription au programme doit être définie. Si cette case est activée, définissez la date de fin sur celle de l&apos;inscription au programme. Si elle est désactivée, ne spécifiez pas la date de fin de l&apos;affiliation.</help>
+        <help>Indique si la Date de fin de l&#39;Affiliation créée lors de l&#39;inscription au programme doit être définie. Si cette case est activée, définissez la date de fin sur celle de l&#39;inscription au programme. Si elle est désactivée, ne spécifiez pas la date de fin de l&#39;affiliation.</help>
         <label>Copie date fin affiliation inscr. prog.</label>
         <name>Affl_ProgEnroll_Copy_End_Date__c</name>
     </fields>
     <fields>
-        <help>Indique si la Date de début de l&apos;Affiliation créée lors de l&apos;inscription au programme doit être définie. Si cette case est activée, définissez la date de début sur celle de l&apos;inscription au programme. Si elle est désactivée, ne spécifiez pas la date de début de l&apos;affiliation.</help>
+        <help>Indique si la Date de début de l&#39;Affiliation créée lors de l&#39;inscription au programme doit être définie. Si cette case est activée, définissez la date de début sur celle de l&#39;inscription au programme. Si elle est désactivée, ne spécifiez pas la date de début de l&#39;affiliation.</help>
         <label>Copie date début affiliation inscr. prog</label>
         <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     </fields>
     <fields>
-        <help>Si le paramètre associé (Suppr. affiliation qd inscr. prog. suppr) est désactivé, ce paramètre spécifie la valeur à définir pour le statut de l&apos;affiliation lors de la suppression de son inscription au programme associée.</help>
+        <help>Si le paramètre associé (Suppr. affiliation qd inscr. prog. suppr) est désactivé, ce paramètre spécifie la valeur à définir pour le statut de l&#39;affiliation lors de la suppression de son inscription au programme associée.</help>
         <label>Statut affiliation qd inscr. prog. suppr</label>
         <name>Affl_ProgEnroll_Del_Status__c</name>
     </fields>
     <fields>
-        <help>Indique si une affiliation doit être supprimée lors de la suppression de son inscription au programme associée. Si cette case est activée, supprimez l&apos;affiliation. Si elle est désactivée, définissez le statut de l&apos;affiliation sur la valeur spécifiée dans le paramètre associé (Statut affiliation qd inscr. prog. suppr).</help>
+        <help>Indique si une affiliation doit être supprimée lors de la suppression de son inscription au programme associée. Si cette case est activée, supprimez l&#39;affiliation. Si elle est désactivée, définissez le statut de l&#39;affiliation sur la valeur spécifiée dans le paramètre associé (Statut affiliation qd inscr. prog. suppr).</help>
         <label>Suppr. affiliation qd inscr. prog. suppr</label>
         <name>Affl_ProgEnroll_Del__c</name>
     </fields>
     <fields>
-        <help>Si le paramètre associé (Rôle affiliation défini qd inscr. prog.) est désactivé, ce paramètre spécifie la valeur à définir pour le statut de l&apos;affiliation lors de la suppression de son inscription au programme associée.</help>
+        <help>Si le paramètre associé (Rôle affiliation défini qd inscr. prog.) est désactivé, ce paramètre spécifie la valeur à définir pour le statut de l&#39;affiliation lors de la suppression de son inscription au programme associée.</help>
         <label>Rôle affiliation qd inscr. prog. créée</label>
         <name>Affl_ProgEnroll_Role_Map__c</name>
     </fields>
     <fields>
-        <help>Indique si un rôle doit être spécifié pour l&apos;affiliation créée lors de l&apos;inscription au programme. Cette case est activée, définissez le rôle de l&apos;affiliation sur la valeur spécifiée dans le paramètre associé (Rôle affiliation qd inscr. prog. créée). Si elle est désactivée, ne spécifiez pas de rôle.</help>
+        <help>Indique si un rôle doit être spécifié pour l&#39;affiliation créée lors de l&#39;inscription au programme. Cette case est activée, définissez le rôle de l&#39;affiliation sur la valeur spécifiée dans le paramètre associé (Rôle affiliation qd inscr. prog. créée). Si elle est désactivée, ne spécifiez pas de rôle.</help>
         <label>Rôle affiliation défini qd inscr. prog.</label>
         <name>Affl_ProgEnroll_Set_Role__c</name>
     </fields>
     <fields>
-        <help>La valeur de Statut définie dans l&apos;affiliation créée lors de l&apos;inscription au programme.</help>
+        <help>La valeur de Statut définie dans l&#39;affiliation créée lors de l&#39;inscription au programme.</help>
         <label>Statut affiliation qd inscr. prog. créée</label>
         <name>Affl_ProgEnroll_Status_Map__c</name>
     </fields>
     <fields>
-        <help>Les relations automatiquement créées sont automatiquement dédupliquées afin d&apos;empêcher la création d’enregistrements de relation en double entre deux contacts. Cochez cette case pour désactiver ce comportement et autoriser plusieurs relations de même type entre deux contacts.</help>
+        <help>Les relations automatiquement créées sont automatiquement dédupliquées afin d&#39;empêcher la création d’enregistrements de relation en double entre deux contacts. Cochez cette case pour désactiver ce comportement et autoriser plusieurs relations de même type entre deux contacts.</help>
         <label>Autoris relations dupliquées auto créées</label>
         <name>Allow_AutoCreated_Duplicates__c</name>
     </fields>
@@ -108,17 +110,17 @@
         <name>Default_Contact_Language_Fluency__c</name>
     </fields>
     <fields>
-        <help>Si cette case est cochée, l&apos;infrastructure de gestion des erreurs de l&apos;architecture EDA est désactivée.</help>
+        <help>Si cette case est cochée, l&#39;infrastructure de gestion des erreurs de l&#39;architecture EDA est désactivée.</help>
         <label>Désactiver la gestion des erreurs</label>
         <name>Disable_Error_Handling__c</name>
     </fields>
     <fields>
-        <help>Sélectionnez cette case afin de désactiver l&apos;application du champ Adresse e-mail préférée pour les contacts.</help>
+        <help>Sélectionnez cette case afin de désactiver l&#39;application du champ Adresse e-mail préférée pour les contacts.</help>
         <label>Désactiver application e-mail préféré</label>
         <name>Disable_Preferred_Email_Enforcement__c</name>
     </fields>
     <fields>
-        <help>Sélectionnez cette case afin de désactiver l&apos;application du champ téléphone préféré pour les contacts.</help>
+        <help>Sélectionnez cette case afin de désactiver l&#39;application du champ téléphone préféré pour les contacts.</help>
         <label>Désactiver applic. du téléphone préféré</label>
         <name>Disable_Preferred_Phone_Enforcement__c</name>
     </fields>
@@ -147,7 +149,7 @@
         <name>Error_Notifications_To__c</name>
     </fields>
     <fields>
-        <label>Type d&apos;enregistrement de professeur</label>
+        <label>Type d&#39;enregistrement de professeur</label>
         <name>Faculty_RecType__c</name>
     </fields>
     <fields>
@@ -156,7 +158,7 @@
         <name>Household_Account_Naming_Format__c</name>
     </fields>
     <fields>
-        <help>Le type d&apos;enregistrement Compte utilisé pour des Comptes de foyer. Ce paramètre affecte la gestion des enregistrements d&apos;adresse et le format de nommage des comptes de foyer.</help>
+        <help>Le type d&#39;enregistrement Compte utilisé pour des Comptes de foyer. Ce paramètre affecte la gestion des enregistrements d&#39;adresse et le format de nommage des comptes de foyer.</help>
         <label>Type enreg. de compte adresses du foyer</label>
         <name>Household_Addresses_RecType__c</name>
     </fields>
@@ -232,14 +234,12 @@
         <name>Store_Errors_On__c</name>
     </fields>
     <fields>
-        <label>Type d&apos;enregistrement d&apos;étudiant</label>
+        <label>Type d&#39;enregistrement d&#39;étudiant</label>
         <name>Student_RecType__c</name>
     </fields>
     <fields>
-        <help>Une fois sélectionnées, les exigences du plan peuvent spécifier un plan de programme ou une exigence de plan parente, mais pas les deux. Si vous spécifiez les deux, un message d’erreur empêche leur enregistrement jusqu&apos;à ce qu&apos;un seul soit sélectionné.</help>
+        <help>Une fois sélectionnées, les exigences du plan peuvent spécifier un plan de programme ou une exigence de plan parente, mais pas les deux. Si vous spécifiez les deux, un message d’erreur empêche leur enregistrement jusqu&#39;à ce qu&#39;un seul soit sélectionné.</help>
         <label>Valider plan prog. pour EP imbriquée</label>
         <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

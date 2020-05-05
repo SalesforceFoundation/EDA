@@ -33,7 +33,7 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label>This record can&apos;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&apos;t see related records, or if you&apos;re unable to delete them, contact your System Administrator for assistance.</label>
+        <label>This record can&#39;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&#39;t see related records, or if you&#39;re unable to delete them, contact your System Administrator for assistance.</label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -61,11 +61,11 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
-        <label>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrolment in this Course Offering for this Term Grade.</label>
+        <label>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&#39;s enrolment in this Course Offering for this Term Grade.</label>
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label>The Contact and Course Offering are not specified or don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</label>
+        <label>The Contact and Course Offering are not specified or don&#39;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</label>
         <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
@@ -73,7 +73,7 @@
         <name>NoCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label>The Contact and Course Offering don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</label>
+        <label>The Contact and Course Offering don&#39;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</label>
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
@@ -89,11 +89,11 @@
         <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
-        <label>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</label>
+        <label>We can&#39;t find the email specified in Preferred Email. Make sure that you&#39;re entering the field label of an existing custom email field.</label>
         <name>PreferredEmailMatchMustExist</name>
     </customLabels>
     <customLabels>
-        <label>The email selected for Preferred Email can&apos;t be blank.</label>
+        <label>The email selected for Preferred Email can&#39;t be blank.</label>
         <name>PreferredEmailMatchNotNull</name>
     </customLabels>
     <customLabels>
@@ -101,11 +101,11 @@
         <name>PreferredEmailRequiredError</name>
     </customLabels>
     <customLabels>
-        <label>We can&apos;t find the Phone specified in Preferred Phone. Make sure that you&apos;re entering the field label of an existing custom Phone field.</label>
+        <label>We can&#39;t find the Phone specified in Preferred Phone. Make sure that you&#39;re entering the field label of an existing custom Phone field.</label>
         <name>PreferredPhoneMatchMustExist</name>
     </customLabels>
     <customLabels>
-        <label>The phone selected for Preferred Phone can&apos;t be blank.</label>
+        <label>The phone selected for Preferred Phone can&#39;t be blank.</label>
         <name>PreferredPhoneMatchNotNull</name>
     </customLabels>
     <customLabels>
@@ -121,7 +121,7 @@
         <name>Relationship_Split</name>
     </customLabels>
     <customLabels>
-        <label>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</label>
+        <label>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &#39;Referral&#39; lookup from Campaign Member to Contact could create a &#39;Referrer&#39; and &#39;Referee&#39; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</label>
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
@@ -173,15 +173,15 @@
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
-        <label>We can&apos;t create this Affiliation because the specified Account doesn&apos;t have a record type.</label>
+        <label>We can&#39;t create this Affiliation because the specified Account doesn&#39;t have a record type.</label>
         <name>afflAccountNoRecordType</name>
     </customLabels>
     <customLabels>
-        <label>We can&apos;t save this record because of an Account record type error in Affiliation Mappings. Ask your administrator to verify that Account Record Types are correctly mapped to Contact Primary Affiliations.</label>
+        <label>We can&#39;t save this record because of an Account record type error in Affiliation Mappings. Ask your administrator to verify that Account Record Types are correctly mapped to Contact Primary Affiliations.</label>
         <name>afflAccoutMappingError</name>
     </customLabels>
     <customLabels>
-        <label>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in affiliation mappings.</label>
+        <label>The {0} Account record type doesn&#39;&#39;t exist. Ask your admin to check record types in affiliation mappings.</label>
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
@@ -189,7 +189,7 @@
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, EDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</label>
+        <label>When selected, if users specify an Account as a Contact&#39;s Primary Affiliation, EDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -221,7 +221,7 @@
         <name>exceptionValidationRule</name>
     </customLabels>
     <customLabels>
-        <label>The Filter Field value can&apos;t include the EDA namespace. Remove it from the field name.</label>
+        <label>The Filter Field value can&#39;t include the EDA namespace. Remove it from the field name.</label>
         <name>fieldWithHEDANamespace</name>
     </customLabels>
     <customLabels>
@@ -573,11 +573,11 @@
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label>If selected, copy the Program Enrolment&apos;s End Date to the created Affiliation. Otherwise, leave the created Affiliation&apos;s End Date blank.</label>
+        <label>If selected, copy the Program Enrolment&#39;s End Date to the created Affiliation. Otherwise, leave the created Affiliation&#39;s End Date blank.</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>If selected, copy the Program Enrolment&apos;s Start Date to the created Affiliation. Otherwise, leave the created Affiliation&apos;s Start Date blank.</label>
+        <label>If selected, copy the Program Enrolment&#39;s Start Date to the created Affiliation. Otherwise, leave the created Affiliation&#39;s Start Date blank.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -589,7 +589,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>The Status value set on the Affiliation related to a deleted Program Enrolment, if the related Affiliation isn&apos;t also deleted.</label>
+        <label>The Status value set on the Affiliation related to a deleted Program Enrolment, if the related Affiliation isn&#39;t also deleted.</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
@@ -601,7 +601,7 @@
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>If selected, set the created Affiliation&apos;s Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation&apos;s Role blank.</label>
+        <label>If selected, set the created Affiliation&#39;s Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation&#39;s Role blank.</label>
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
@@ -625,7 +625,7 @@
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</label>
+        <label>Sync the Preferred Phone field to the Contact&#39;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -645,7 +645,7 @@
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
     </customLabels>
     <customLabels>
-        <label>If a course already has a value for Extended Description, we don&apos;t overwrite it.</label>
+        <label>If a course already has a value for Extended Description, we don&#39;t overwrite it.</label>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
     </customLabels>
     <customLabels>
@@ -677,23 +677,23 @@
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
-        <label>For existing Contacts who haven&apos;t specified a Preferred Email or Preferred Phone, the cleanup ensures that one of the Contact&apos;s standard or custom email addresses or phone numbers are set as the preferred value.</label>
+        <label>For existing Contacts who haven&#39;t specified a Preferred Email or Preferred Phone, the cleanup ensures that one of the Contact&#39;s standard or custom email addresses or phone numbers are set as the preferred value.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label>If checked, EDA&apos;s error handling framework is disabled.</label>
+        <label>If checked, EDA&#39;s error handling framework is disabled.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label>Check this if you&apos;d like the system to post notifications for certain type of errors.</label>
+        <label>Check this if you&#39;d like the system to post notifications for certain type of errors.</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</label>
+        <label>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are &#39;All Sys Admins&#39;, the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before EDA added the Race field and removed values from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</label>
+        <label>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before EDA added the Race field and removed values from the Ethnicity field as of EDA version 1.28. If the value in the Contact&#39;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -733,7 +733,7 @@
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label>Check this if you&apos;d like errors to be stored in the database.</label>
+        <label>Check this if you&#39;d like errors to be stored in the database.</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
@@ -777,7 +777,7 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
-        <label>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</label>
+        <label>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &#39;Phone&#39; field is defined.</label>
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
@@ -785,7 +785,7 @@
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</label>
+        <label>Run this data cleanup process after you&#39;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
@@ -909,11 +909,11 @@
         <name>stgToastError</name>
     </customLabels>
     <customLabels>
-        <label>We can&apos;t save the Course Offering Schedule because its End Time doesn&apos;t match the End Time of its associated Time Block. Either edit the End Time, specify a different Time Block, or don&apos;t specify a Time Block.</label>
+        <label>We can&#39;t save the Course Offering Schedule because its End Time doesn&#39;t match the End Time of its associated Time Block. Either edit the End Time, specify a different Time Block, or don&#39;t specify a Time Block.</label>
         <name>timeBlockEndTimeMismatch</name>
     </customLabels>
     <customLabels>
-        <label>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</label>
+        <label>We can&#39;t save the Course Offering Schedule because its Start Time doesn&#39;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&#39;t specify a Time Block.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
     <customTabs>

@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Applications</value>
     </caseValues>
+    <layouts>
+        <layout>EDA Application Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <gender>Masculine</gender>
     <fields>
         <help><!-- The date when the student decides whether to enroll. --></help>
         <label><!-- Applicant Decision Date --></label>
@@ -113,12 +121,4 @@
         <name>Term__c</name>
         <relationshipLabel><!-- Applications --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>EDA Application Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <gender>Masculine</gender>
 </CustomObjectTranslation>

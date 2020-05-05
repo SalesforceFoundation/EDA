@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Requisitos del plan</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Plan Requirement Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de requisito de plan</nameFieldLabel>
     <fields>
         <help>Especifique una categoría para el Requisito del plan.</help>
         <label>Categoría</label>
@@ -54,13 +63,4 @@
         <label>Secuencia</label>
         <name>Sequence__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Plan Requirement Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de requisito de plan</nameFieldLabel>
 </CustomObjectTranslation>

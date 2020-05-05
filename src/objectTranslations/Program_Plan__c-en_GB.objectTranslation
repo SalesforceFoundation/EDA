@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Program Plans</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Program Plan Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>Click to search for an Account (often an Academic Program) to associate with the Program Plan.</help>
         <label>Account</label>
@@ -57,13 +66,4 @@
         <label>Version</label>
         <name>Version__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Program Plan Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Program Plan Name</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
