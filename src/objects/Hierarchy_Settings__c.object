@@ -423,7 +423,7 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <label>Prevent Program Plan Deletion</label>
+        <label>Prevent Program Enrollment Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
