@@ -872,6 +872,7 @@ public class UTIL_Describe {
     * @return List of all the child Relationship Names
     */
     public static List<String> getAllChildRelationshipNames(SobjectType sObjectTypeName) {
+        //TODO: Cache this by SObject Type into Map<SObjectTYpe, List<String>>. Return the existing cached value if it's there, otherwise assemble, cache, then return.
         List<String> childRelationshipNames = new List<String>();
         try {
              DescribeSObjectResult describe = sObjectTypeName.getDescribe();

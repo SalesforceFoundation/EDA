@@ -63,29 +63,42 @@ public virtual with sharing class SRVC_UniqueRecord {
     *****************************************************************************************************************/
     @TestVisible
     public List<SObject> getUniqueRecords(List<SObject> listToCheck) {
-
-        List<SObject> UniqueRecords = new List<SObject>();
-
         // If listToCheck is NULL or has only one entry, return the list
         if (listToCheck == NULL || listToCheck.size() <= 1) {
             return listToCheck;
         }
 
-        uniqueRecordValueObjectClass valueObjectClass = new uniqueRecordValueObjectClass(listToCheck);
-        valueObjectClass.createListAndMap();
+        //Filter out records without Ids
+        Map<String,List<SObject>> filteredRecordMap = this.filterRecordsForIds(listToCheck);
 
-        // If number of records with Ids is less than or equal to 1, return listToCheck
-        if (valueObjectClass.recordWithIds.size() <= 1) {
-            return listToCheck;
+        List<SObject> returnList = this.getUniqueRecordsByIds( filteredRecordMap.get('withIds') );
+
+        if (filteredRecordMap.get('withoutIds').isEmpty() == false) {
+            returnList.addAll(filteredRecordMap.get('withoutIds'));
         }
 
-        UniqueRecords = this.getUniqueRecords(valueObjectClass.recordWithIds, valueObjectClass.sObjectTypeToChildRelationships, valueObjectClass.idToNewSobjectRecord);
+        return returnList;
+    }
 
-        if (valueObjectClass.noIdRecords.size() > 0) {
-            UniqueRecords.addAll(valueObjectClass.noIdRecords);
+    //Filters SObjects into two lists, one with ids, one without ids. Maybe make this an enum later?
+    private Map<String,List<SObject>> filterRecordsForIds(List<SObject> listToCheck) {
+        Map<String,List<SObject>> returnMap = new Map<String,List<SObject>>();
+        
+        List<SObject> recordsWithoutIds = new List<SObject>();
+        List<SObject> recordsWithIds = new List<SObject>();
+
+        for (SObject sObjectToCheck: allSObjectRecords) {
+            if (sObjectToCheck.Id == NULL) {
+                recordsWithoutIds.add(sObjectToCheck);
+            }
+            else {
+                recordsWithIds.add(sObjectToCheck);
+            }
         }
 
-        return UniqueRecords;
+        returnMap.put('withoutIds',recordsWithoutIds);
+        returnMap.put('withIds',recordsWithIds);
+        return returnMap;
     }
 
 
@@ -97,24 +110,47 @@ public virtual with sharing class SRVC_UniqueRecord {
     @return uniqueRecords A list of unique records
     ********************************************************************************************************/
     @TestVisible
-    private List<SObject> getUniqueRecords(List<SObject> sObjectRecords, Map<SObjectType, List<String>> sObjectTyptToAllChildRelationshipNames, Map<Id, SObject> idToSObjectRecord) {
-        List<SObject> uniqueSObjectRecords = new List<SObject>();
-        for (Sobject record: sObjectRecords) {
-            Map<String, Object> fieldNameToValues = record.getPopulatedFieldsAsMap();
-            SObject interimRecord = idToSObjectRecord.get(record.Id);
+    private List<SObject> getUniqueRecordsByIds(List<SObject> sObjectRecords) {
 
-            for (String fieldName: fieldNameToValues.keySet()) {
-                if ((sObjectTyptToAllChildRelationshipNames != NULL && !sObjectTyptToAllChildRelationshipNames.isEmpty() && sObjectTyptToAllChildRelationshipNames.containsKey(record.getSObjectType())) &&
-                    ((sObjectTyptToAllChildRelationshipNames.get(record.getSObjectType()).isEmpty()) 
-                     || (!sObjectTyptToAllChildRelationshipNames.get(record.getSObjectType()).isEmpty() && !sObjectTyptToAllChildRelationshipNames.get(record.getSObjectType()).contains(fieldName)))) {  // Do not add field Names from related records
-                    
-                         interimRecord.put(fieldName, fieldNameToValues.get(fieldName));
-                }
-            }
-            idToSObjectRecord.put(record.Id, interimRecord);
+        //Check for 1 or less records
+            //Return list as is, we can't have duplicates, return
+
+        //instantiate necessary variables outside of the loop
+        Map<SObjectType, List<String>> sObjectTyptToAllChildRelationshipName = new Map<SObjectType, List<String>>(); //Note, we should really be cacheing this in UTIL_Describe and then the method will return either the instance of it or assemble it and give us a new instance of it.
+        Map<Id,SObject> idToSObjectRecordMap = new Map<Id,SObject>(); //return the values from this, final state, but working state also
+
+        //For each record
+        for (Sobject record: sObjectRecords) {
+            //if record id not in idToSObjectRecordMap key, this is the first time we have seen it
+                //Create new record empty record, put record in idToSObjectRecordMap
+
+            //Make this into a method to assemble a record, returns SObject, takes the current sObject, the map's existing sObject value, and sObjectTyptToAllChildRelationshipName (modifies it in flight for now until we can cache better)
+            //SObject uniqueRecord = this.combineRecords(record, idToSObjectRecordMap.get(record.id), sObjectTyptToAllChildRelationshipName);
+                //METHOD START
+                    //Get the name child relationship name map for the SObject into a List for us to work with! Consider a method for this too
+                    //List<String> childRelationshipNames = this.getChildRelationshipNamesForObject(record,sObjectTypeToChildRelationships)
+                        //METHOD START
+                            if (sObjectTypeToChildRelationships.containsKey(record.getSObjectType()) == FALSE) {
+                                sObjectTypeToChildRelationships.put(record.getSObjectType(), UTIL_Describe_API.getAllChildRelationshipNames(record.getSObjectType()));
+                            }
+                            return sObjectTypeToChildRelationships.get(record.getSObjectType());
+                        //METHOD END
+                        //Create it if we need to, and cache it for good measure => sObjectTyptToAllChildRelationshipName
+                        Map<String, Object> fieldNameToValues = record.getPopulatedFieldsAsMap();
+                        SObject interimRecord = record.getSObjectType().newSobject(record.Id)
+                    //run code in loop below to combine records together
+                        for (String fieldName: fieldNameToValues.keySet()) {
+                            if (
+                                !childRelationshipNames.contains(fieldName)
+                            ) {  // Do not add field Names from related records
+                                interimRecord.put(fieldName, fieldNameToValues.get(fieldName));
+                            }
+                        }
+                //METHOD END
+            idToSObjectRecordMap.put(record.Id, uniqueRecord);
         }
-        uniqueSObjectRecords.addAll(idToSObjectRecord.values());
-        return uniqueSObjectRecords;
+
+        return idToSObjectRecordMap.values();
     }
 
     /*******************************************************************************************************
