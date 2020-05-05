@@ -108,6 +108,7 @@
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
         <members>SRVC_UniqueRecord</members>
+        <members>SRVC_UniqueRecord_STUB</members>
         <members>SRVC_UniqueRecord_TEST</members>
         <members>STG_Base_CTRL</members>
         <members>STG_Base_CTRL_TEST</members>

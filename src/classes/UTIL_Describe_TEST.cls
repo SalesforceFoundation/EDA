@@ -102,7 +102,7 @@ public with sharing class UTIL_Describe_TEST {
             picklistEntries = UTIL_Describe_API.getPicklistActiveValuesMap('Account', 'id');
         } catch(UTIL_Describe.SchemaDescribeException sde){}
     } 
-    
+
     // Test for childRelationshipNamesService functionality
     @isTest
     private static void childRelationshipNamesServiceTest() {
@@ -113,15 +113,23 @@ public with sharing class UTIL_Describe_TEST {
         insert adminAccount;
 
         Test.startTest();
-            //String sObjectName = adminAccount.Id.getSObjectType().getDescribe().getName();
-            Schema.SObjectType sObjectType = adminAccount.getSObjectType();
-            List<String> allChildRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(sObjectType);
+            Schema.SObjectType sObjectTypeAcc = adminAccount.getSObjectType();
+            List<String> allChildRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(sObjectTypeAcc);
         Test.stopTest();
 
         System.assert(allChildRelationshipNames != NULL);
         System.assert(allChildRelationshipNames.size() != 0);
         System.assert(allChildRelationshipNames.contains('Contacts'));
     }
-          
 
+    // Test for childRelationshipNamesService functionality
+    @isTest
+    private static void childRelationshipNamesServiceNegativeTest() {
+
+        Test.startTest();
+            List<String> allChildRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(NULL);
+        Test.stopTest();
+
+        System.assert(allChildRelationshipNames == NULL);
+    }
 }
