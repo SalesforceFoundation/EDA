@@ -40,12 +40,64 @@
 private class TB_CannotDelete_TEST {
 
     /*********************************************************************************************************
+    * @description Retrieves the record type Ids for Household and Administrator Accounts. 
+    */
+    public static String deptAccRecordTypeID = UTIL_Describe.getDepAccRecTypeID(); 
+
+    /*********************************************************************************************************
     * @description Test method to test that when Prevent_Time_Block_Deletion__c is enabled in Hierarchy 
     * Settings and Time Block has a child Course Offering record associated with it, the Time Block 
     * record cannot be deleted.
     */
     @isTest 
     private static void cannotDeleteWithChildCourseOfferingPreventDeleteOn() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Time_Block_Deletion__c = TRUE));
+
+        Time startTime = Time.newInstance(8, 0, 0, 0);
+        Time stopTime = Time.newInstance(10, 0, 0, 0);
+
+        List<Time_Block__c> timeBlocks = new List<Time_Block__c>();
+
+        for (Integer index = 0; index < 5; index++){
+            timeBlocks.add(UTIL_UnitTestData_TEST.createTimeBlock(startTime, stopTime));
+        }
+
+        List<Account> departmentAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, TB_CannotDelete_TEST.deptAccRecordTypeID);
+        insert departmentAccounts;
+
+        Term__c testTerm = UTIL_UnitTestData_TEST.getTerm(departmentAccounts[0].Id, 'Test Term');
+        insert testTerm;
+
+        Course__c testCourse = new Course__c(Name = 'Test Course', Account__c = departmentAccounts[0].Id);
+        insert testCourse;
+
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings.add(UTIL_UnitTestData_TEST.createCourseOffering(testCourse.Id, testTerm.Id));
+        }
+
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings[index].Time_Block__c = timeBlocks[index].Id;
+        }
+        update courseOfferings;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(timeBlocks, FALSE);
+        Test.stopTest();
+
+        List<Time_Block__c> returnTimeBlocks = [
+            SELECT Id
+            FROM Time_Block__c
+            WHERE Id IN :timeBlocks
+        ];
+
+        System.assertEquals(timeBlocks.size(), returnTimeBlocks.size());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(Label.CannotDelete, result.errors[0].message);
+        }
     }
 
     /*********************************************************************************************************
@@ -55,6 +107,59 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void cannotDeleteWithChildCourseOfferingSchedulePreventDeleteOn() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Time_Block_Deletion__c = TRUE));
+
+        Time startTime = Time.newInstance(8, 0, 0, 0);
+        Time stopTime = Time.newInstance(10, 0, 0, 0);
+
+        List<Time_Block__c> timeBlocks = new List<Time_Block__c>();
+
+        for (Integer index = 0; index < 5; index++){
+            timeBlocks.add(UTIL_UnitTestData_TEST.createTimeBlock(startTime, stopTime));
+        }
+
+        List<Account> departmentAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, TB_CannotDelete_TEST.deptAccRecordTypeID);
+        insert departmentAccounts;
+
+        Term__c testTerm = UTIL_UnitTestData_TEST.getTerm(departmentAccounts[0].Id, 'Test Term');
+        insert testTerm;
+
+        Course__c testCourse = new Course__c(Name = 'Test Course', Account__c = departmentAccounts[0].Id);
+        insert testCourse;
+
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings.add(UTIL_UnitTestData_TEST.createCourseOffering(testCourse.Id, testTerm.Id));
+        }
+
+        List<Course_Offering_Schedule__c> courseOfferingSchedules = new List<Course_Offering_Schedule__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferingSchedules.add(UTIL_UnitTestData_TEST.createCourseOfferingSchedule(courseOfferings[index].Id));
+        }
+
+        for (Integer index = 0; index < 5; index++){
+            courseOfferingSchedules[index].Time_Block__c = timeBlocks[index].Id;
+        }
+
+        insert courseOfferingSchedules;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(timeBlocks, FALSE);
+        Test.stopTest();
+
+        List<Time_Block__c> returnTimeBlocks = [
+            SELECT Id
+            FROM Time_Block__c
+            WHERE Id IN :timeBlocks
+        ];
+
+        System.assertEquals(timeBlocks.size(), returnTimeBlocks.size());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(Label.CannotDelete, result.errors[0].message);
+        }
     }
 
     /*********************************************************************************************************
@@ -64,6 +169,64 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void cannotDeleteWithChildCourseOfferingAndScheduleRecordsPreventDeleteOn() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Time_Block_Deletion__c = TRUE));
+
+        Time startTime = Time.newInstance(8, 0, 0, 0);
+        Time stopTime = Time.newInstance(10, 0, 0, 0);
+
+        List<Time_Block__c> timeBlocks = new List<Time_Block__c>();
+
+        for (Integer index = 0; index < 5; index++){
+            timeBlocks.add(UTIL_UnitTestData_TEST.createTimeBlock(startTime, stopTime));
+        }
+
+        List<Account> departmentAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, TB_CannotDelete_TEST.deptAccRecordTypeID);
+        insert departmentAccounts;
+
+        Term__c testTerm = UTIL_UnitTestData_TEST.getTerm(departmentAccounts[0].Id, 'Test Term');
+        insert testTerm;
+
+        Course__c testCourse = new Course__c(Name = 'Test Course', Account__c = departmentAccounts[0].Id);
+        insert testCourse;
+
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings.add(UTIL_UnitTestData_TEST.createCourseOffering(testCourse.Id, testTerm.Id));
+        }
+
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings[index].Time_Block__c = timeBlocks[index].Id;
+        }
+        update courseOfferings;
+
+        List<Course_Offering_Schedule__c> courseOfferingSchedules = new List<Course_Offering_Schedule__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferingSchedules.add(UTIL_UnitTestData_TEST.createCourseOfferingSchedule(courseOfferings[index].Id));
+        }
+
+        for (Integer index = 0; index < 5; index++){
+            courseOfferingSchedules[index].Time_Block__c = timeBlocks[index].Id;
+        }
+
+        insert courseOfferingSchedules;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(timeBlocks, FALSE);
+        Test.stopTest();
+
+        List<Time_Block__c> returnTimeBlocks = [
+            SELECT Id
+            FROM Time_Block__c
+            WHERE Id IN :timeBlocks
+        ];
+
+        System.assertEquals(timeBlocks.size(), returnTimeBlocks.size());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(Label.CannotDelete, result.errors[0].message);
+        }
     }
 
     /*********************************************************************************************************
@@ -72,6 +235,33 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithoutChildRecordsPreventDeleteOn() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Time_Block_Deletion__c = TRUE));
+
+        Time startTime = Time.newInstance(8, 0, 0, 0);
+        Time stopTime = Time.newInstance(10, 0, 0, 0);
+
+        List<Time_Block__c> timeBlocks = new List<Time_Block__c>();
+
+        for (Integer index = 0; index < 5; index++){
+            timeBlocks.add(UTIL_UnitTestData_TEST.createTimeBlock(startTime, stopTime));
+        }
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(timeBlocks, FALSE);
+        Test.stopTest();
+
+        List<Time_Block__c> returnTimeBlocks = [
+            SELECT Id
+            FROM Time_Block__c
+            WHERE Id IN :timeBlocks
+        ];
+
+        System.assertEquals(TRUE, returnTimeBlocks.isEmpty());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(TRUE, result.isSuccess());
+        }
     }
 
     /*********************************************************************************************************
@@ -81,6 +271,53 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithChildCourseOfferingPreventDeleteOff() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Time_Block_Deletion__c = FALSE));
+
+        Time startTime = Time.newInstance(8, 0, 0, 0);
+        Time stopTime = Time.newInstance(10, 0, 0, 0);
+
+        List<Time_Block__c> timeBlocks = new List<Time_Block__c>();
+
+        for (Integer index = 0; index < 5; index++){
+            timeBlocks.add(UTIL_UnitTestData_TEST.createTimeBlock(startTime, stopTime));
+        }
+
+        List<Account> departmentAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, TB_CannotDelete_TEST.deptAccRecordTypeID);
+        insert departmentAccounts;
+
+        Term__c testTerm = UTIL_UnitTestData_TEST.getTerm(departmentAccounts[0].Id, 'Test Term');
+        insert testTerm;
+
+        Course__c testCourse = new Course__c(Name = 'Test Course', Account__c = departmentAccounts[0].Id);
+        insert testCourse;
+
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings.add(UTIL_UnitTestData_TEST.createCourseOffering(testCourse.Id, testTerm.Id));
+        }
+
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings[index].Time_Block__c = timeBlocks[index].Id;
+        }
+        update courseOfferings;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(timeBlocks, FALSE);
+        Test.stopTest();
+
+        List<Time_Block__c> returnTimeBlocks = [
+            SELECT Id
+            FROM Time_Block__c
+            WHERE Id IN :timeBlocks
+        ];
+
+        System.assertEquals(TRUE, returnTimeBlocks.isEmpty());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(TRUE, result.isSuccess());
+        }
     }
 
     /*********************************************************************************************************
@@ -90,6 +327,58 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithChildCourseOfferingSchedulePreventDeleteOff() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Time_Block_Deletion__c = FALSE));
+
+        Time startTime = Time.newInstance(8, 0, 0, 0);
+        Time stopTime = Time.newInstance(10, 0, 0, 0);
+
+        List<Time_Block__c> timeBlocks = new List<Time_Block__c>();
+
+        for (Integer index = 0; index < 5; index++){
+            timeBlocks.add(UTIL_UnitTestData_TEST.createTimeBlock(startTime, stopTime));
+        }
+
+        List<Account> departmentAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, TB_CannotDelete_TEST.deptAccRecordTypeID);
+        insert departmentAccounts;
+
+        Term__c testTerm = UTIL_UnitTestData_TEST.getTerm(departmentAccounts[0].Id, 'Test Term');
+        insert testTerm;
+
+        Course__c testCourse = new Course__c(Name = 'Test Course', Account__c = departmentAccounts[0].Id);
+        insert testCourse;
+
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings.add(UTIL_UnitTestData_TEST.createCourseOffering(testCourse.Id, testTerm.Id));
+        }
+
+        List<Course_Offering_Schedule__c> courseOfferingSchedules = new List<Course_Offering_Schedule__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferingSchedules.add(UTIL_UnitTestData_TEST.createCourseOfferingSchedule(courseOfferings[index].Id));
+        }
+
+        for (Integer index = 0; index < 5; index++){
+            courseOfferingSchedules[index].Time_Block__c = timeBlocks[index].Id;
+        }
+
+        insert courseOfferingSchedules;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(timeBlocks, FALSE);
+        Test.stopTest();
+
+        List<Time_Block__c> returnTimeBlocks = [
+            SELECT Id
+            FROM Time_Block__c
+            WHERE Id IN :timeBlocks
+        ];
+
+        System.assertEquals(TRUE, returnTimeBlocks.isEmpty());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(TRUE, result.isSuccess());
+        }
     }
 
     /*********************************************************************************************************
@@ -99,6 +388,63 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithChildCourseOfferingAndSchedulePreventDeleteOff() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Time_Block_Deletion__c = FALSE));
+
+        Time startTime = Time.newInstance(8, 0, 0, 0);
+        Time stopTime = Time.newInstance(10, 0, 0, 0);
+
+        List<Time_Block__c> timeBlocks = new List<Time_Block__c>();
+
+        for (Integer index = 0; index < 5; index++){
+            timeBlocks.add(UTIL_UnitTestData_TEST.createTimeBlock(startTime, stopTime));
+        }
+
+        List<Account> departmentAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, TB_CannotDelete_TEST.deptAccRecordTypeID);
+        insert departmentAccounts;
+
+        Term__c testTerm = UTIL_UnitTestData_TEST.getTerm(departmentAccounts[0].Id, 'Test Term');
+        insert testTerm;
+
+        Course__c testCourse = new Course__c(Name = 'Test Course', Account__c = departmentAccounts[0].Id);
+        insert testCourse;
+
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings.add(UTIL_UnitTestData_TEST.createCourseOffering(testCourse.Id, testTerm.Id));
+        }
+
+        for (Integer index = 0; index < 5; index++){
+            courseOfferings[index].Time_Block__c = timeBlocks[index].Id;
+        }
+        update courseOfferings;
+
+        List<Course_Offering_Schedule__c> courseOfferingSchedules = new List<Course_Offering_Schedule__c>();
+        for (Integer index = 0; index < 5; index++){
+            courseOfferingSchedules.add(UTIL_UnitTestData_TEST.createCourseOfferingSchedule(courseOfferings[index].Id));
+        }
+
+        for (Integer index = 0; index < 5; index++){
+            courseOfferingSchedules[index].Time_Block__c = timeBlocks[index].Id;
+        }
+
+        insert courseOfferingSchedules;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(timeBlocks, FALSE);
+        Test.stopTest();
+
+        List<Time_Block__c> returnTimeBlocks = [
+            SELECT Id
+            FROM Time_Block__c
+            WHERE Id IN :timeBlocks
+        ];
+
+        System.assertEquals(TRUE, returnTimeBlocks.isEmpty());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(TRUE, result.isSuccess());
+        }
     }
 
     /*********************************************************************************************************
@@ -107,6 +453,33 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithoutChildRecordsPreventDeleteOff() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Time_Block_Deletion__c = FALSE));
+
+        Time startTime = Time.newInstance(8, 0, 0, 0);
+        Time stopTime = Time.newInstance(10, 0, 0, 0);
+
+        List<Time_Block__c> timeBlocks = new List<Time_Block__c>();
+
+        for (Integer index = 0; index < 5; index++){
+            timeBlocks.add(UTIL_UnitTestData_TEST.createTimeBlock(startTime, stopTime));
+        }
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(timeBlocks, FALSE);
+        Test.stopTest();
+
+        List<Time_Block__c> returnTimeBlocks = [
+            SELECT Id
+            FROM Time_Block__c
+            WHERE Id IN :timeBlocks
+        ];
+
+        System.assertEquals(TRUE, returnTimeBlocks.isEmpty());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(TRUE, result.isSuccess());
+        }
     }
 
     /*********************************************************************************************************
