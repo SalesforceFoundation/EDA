@@ -170,6 +170,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Prevent_Plan_Requirement_Deletion__c = mySettings.Prevent_Plan_Requirement_Deletion__c;
         settings.Prevent_Program_Plan_Deletion__c = mySettings.Prevent_Program_Plan_Deletion__c;
         settings.Prevent_Test_Deletion__c = mySettings.Prevent_Test_Deletion__c;
+        settings.Prevent_Course_Deletion__c = mySettings.Prevent_Course_Deletion__c; 
         orgSettings = settings;
         return settings;
     }
