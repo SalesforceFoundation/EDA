@@ -159,6 +159,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Prevent_Behavior_Involvement_Deletion__c = mySettings.Prevent_Behavior_Involvement_Deletion__c;
         settings.Prevent_Case_Deletion__c = mySettings.Prevent_Case_Deletion__c;
         settings.Prevent_Contact_Deletion__c = mySettings.Prevent_Contact_Deletion__c;
+        settings.Prevent_Course_Deletion__c = mySettings.Prevent_Course_Deletion__c; 
         settings.Prevent_Course_Connection_Deletion__c = mySettings.Prevent_Course_Connection_Deletion__c;
         settings.Prevent_Course_Offering_Deletion__c = mySettings.Prevent_Course_Offering_Deletion__c;
         settings.Prevent_Facility_Deletion__c = mySettings.Prevent_Facility_Deletion__c;
