@@ -871,7 +871,7 @@ public class UTIL_Describe {
     */
     private static Map<SObjectType, List<String>> sObjectTypeToChildRelationshipNames = new Map<SObjectType, List<String>>();
     
-    
+
     /*******************************************************************************************************
     * @description Returns the list of all Child Relationship Name for a given Sobject Type
     * @return sObjectTypeToChildRelationshipNames.get(sObjectTypeName) List of all the child Relationship Names
@@ -888,12 +888,11 @@ public class UTIL_Describe {
                     }
                 }
                 sObjectTypeToChildRelationshipNames.put(sObjectTypeName, childRelationshipNames);
-
              } catch (Exception ex) {
-                return NULL;
+                 return NULL;
                }  
         }
-        
+
         return sObjectTypeToChildRelationshipNames.get(sObjectTypeName);
     }
 }

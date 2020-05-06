@@ -62,7 +62,6 @@ public virtual with sharing class SRVC_UniqueRecord {
     @return uniqueRecords The list of merged records
     *****************************************************************************************************************/
     public List<SObject> getUniqueRecords(List<SObject> listToCheck) {
-
         // If listToCheck is NULL or has only one entry, return the list
         if (listToCheck == NULL || listToCheck.size() <= 1) {
             return listToCheck;
