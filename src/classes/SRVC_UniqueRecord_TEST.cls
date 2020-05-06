@@ -276,43 +276,53 @@ private class SRVC_UniqueRecord_TEST {
         System.assertEquals('123', uniqueAccount.Phone);
 
     }
-    
-/*
-    // Test for getUniqueRecordList method of SRVC_UniqueRecord class
-    @isTest
-    private static void getUniqueRecordListTest() {
 
-        Account parentAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID())[0];
-        insert parentAccount;
+    // Test for Unique Record Functionality with multiple SOBJect types
+    @isTest
+    private static void uniqueRecordFunctionalityWithMultipleSObjectTypesTest() {
+    
+        Id testContactId = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        Id testAccountId = SRVC_UniqueRecord_STUB.generateFakeAccountId();
 
         List<SObject> duplicateList = new List<SObject>();
 
+        Contact duplicateCon1 = new Contact();
+        duplicateCon1.Id = testContactId;
+        duplicateCon1.firstName = 'Doe';
+
+        Contact duplicateCon2 = new Contact();
+        duplicateCon2.Id = testContactId;
+        duplicateCon2.lastName = 'Night';
+
+        Contact duplicateCon3 = new Contact();
+        duplicateCon3.Id = testContactId;
+        duplicateCon3.HIPAA__c = TRUE;
+
         Account duplicateAccount1 = new Account();
-        duplicateAccount1.Id = parentAccount.Id;
-        duplicateAccount1.Phone = '123';
-        duplicateList.add(duplicateAccount1);
-
-        Account duplicateAccount2 = new Account();
-        duplicateAccount2.Id = parentAccount.Id;
-        duplicateAccount2.website = '123@sf.com';
-        duplicateList.add(duplicateAccount2);
-
-        Account duplicateAccount3 = new Account();
-        duplicateAccount3.Id = parentAccount.Id;
-        duplicateAccount3.description = 'test description';
-        duplicateList.add(duplicateAccount3);
-
-        SRVC_UniqueRecord uniqueRecordService = new SRVC_UniqueRecord();
-
-        List<String> childRelationshipNames = uniqueRecordService.getChildRelationshipNames(duplicateAccount1);
-        Map<Id, SObject> idToNewSObject = uniqueRecordService.createIdToNewSObjectMap(duplicateList);
-
-       Test.startTest();
-            List<SObject> uniqueList = uniqueRecordService.getUniqueRecordList(duplicateList, childRelationshipNames, idToNewSObject);
-       Test.stopTest();
-
-       System.assertEquals(1, uniqueList.size());
+        duplicateAccount1.Id = testAccountId;
+        duplicateAccount1.Name = 'test unique Service';
         
-    }
-*/
+        Account duplicateAccount2 = new Account();
+        duplicateAccount2.Id = testAccountId;
+        duplicateAccount2.Description = 'test description';
+        
+        Account duplicateAccount3 = new Account();
+        duplicateAccount3.Id = testAccountId;
+        duplicateAccount3.Website = 'www.test@sf.com';
+        
+        duplicateList.add(duplicateCon1);
+        duplicateList.add(duplicateCon2);
+        duplicateList.add(duplicateCon3);
+        duplicateList.add(duplicateAccount1);
+        duplicateList.add(duplicateAccount2);
+        duplicateList.add(duplicateAccount3);
+        
+        System.assertEquals(6, duplicateList.size());
+        Test.startTest();
+            List<SObject> uniqueList = SRVC_UniqueRecord.getInstance().getUniqueRecords(duplicateList);
+        Test.stopTest();
+        
+        System.assertEquals(2, uniqueList.size());
+    }    
+
 }

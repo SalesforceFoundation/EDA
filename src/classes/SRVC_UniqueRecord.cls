@@ -61,93 +61,115 @@ public virtual with sharing class SRVC_UniqueRecord {
     @params listToCheck The list of records to be checked and made unique
     @return uniqueRecords The list of merged records
     *****************************************************************************************************************/
-    @TestVisible
     public List<SObject> getUniqueRecords(List<SObject> listToCheck) {
-
-        List<SObject> UniqueRecords = new List<SObject>();
 
         // If listToCheck is NULL or has only one entry, return the list
         if (listToCheck == NULL || listToCheck.size() <= 1) {
             return listToCheck;
         }
 
-        uniqueRecordValueObjectClass valueObjectClass = new uniqueRecordValueObjectClass(listToCheck);
-        valueObjectClass.createListAndMap();
+        // Filter out records without Ids
+        Map<String, List<SObject>> filteredRecordMap = this.filterRecordsForIds(listToCheck);
 
-        // If number of records with Ids is less than or equal to 1, return listToCheck
-        if (valueObjectClass.recordWithIds.size() <= 1) {
-            return listToCheck;
+        List<SObject> returnList = this.getUniqueRecordsByIds(filteredRecordMap.get('withIds'));
+
+        if (filteredRecordMap.get('withoutIds').isEmpty() == false) {
+            returnList.addAll(filteredRecordMap.get('withoutIds'));
         }
 
-        UniqueRecords = this.getUniqueRecords(valueObjectClass.recordWithIds, valueObjectClass.sObjectTypeToChildRelationships, valueObjectClass.idToNewSobjectRecord);
-
-        if (valueObjectClass.noIdRecords.size() > 0) {
-            UniqueRecords.addAll(valueObjectClass.noIdRecords);
-        }
-
-        return UniqueRecords;
+        return returnList;
     }
-
 
     /******************************************************************************************************
-    @description Combines record instances with same ID into one for a given list of Sobjects of same type
-    @params sObjectRecords The list of records to be checked and made unique
-    @params allChildRelationshipNames A list of all the ChildRelationshipNames for the given records type
-    @params idToSObjectRecord A map of id to record for the given sObject records
-    @return uniqueRecords A list of unique records
+    @description Returns a list of unique records for a given list of SObject records with same Ids
+    @params sObjectRecords A list of SOBject records with multiple occurence of same ids
+    @return A list of unique records
     ********************************************************************************************************/
     @TestVisible
-    private List<SObject> getUniqueRecords(List<SObject> sObjectRecords, Map<SObjectType, List<String>> sObjectTyptToAllChildRelationshipNames, Map<Id, SObject> idToSObjectRecord) {
-        List<SObject> uniqueSObjectRecords = new List<SObject>();
-        for (Sobject record: sObjectRecords) {
-            Map<String, Object> fieldNameToValues = record.getPopulatedFieldsAsMap();
-            SObject interimRecord = idToSObjectRecord.get(record.Id);
-
-            for (String fieldName: fieldNameToValues.keySet()) {
-                if ((sObjectTyptToAllChildRelationshipNames != NULL && !sObjectTyptToAllChildRelationshipNames.isEmpty() && sObjectTyptToAllChildRelationshipNames.containsKey(record.getSObjectType())) &&
-                    ((sObjectTyptToAllChildRelationshipNames.get(record.getSObjectType()).isEmpty()) 
-                     || (!sObjectTyptToAllChildRelationshipNames.get(record.getSObjectType()).isEmpty() && !sObjectTyptToAllChildRelationshipNames.get(record.getSObjectType()).contains(fieldName)))) {  // Do not add field Names from related records
-                    
-                         interimRecord.put(fieldName, fieldNameToValues.get(fieldName));
-                }
-            }
-            idToSObjectRecord.put(record.Id, interimRecord);
+    private List<SObject> getUniqueRecordsByIds(List<SObject> sObjectRecords) {
+        // If list has 1 or less records Return list as is, we can't have duplicates, return
+        if (sObjectRecords.size() <= 1) {
+            return sObjectRecords;
         }
-        uniqueSObjectRecords.addAll(idToSObjectRecord.values());
-        return uniqueSObjectRecords;
+
+        Map<SObjectType, List<String>> sObjectTypeToAllChildRelationshipNames = new Map<SObjectType, List<String>>();
+        Map<Id, SObject> idToSObjectRecordMap = new Map<Id, SObject>();
+
+        for (Sobject record: sObjectRecords) {
+
+            if (!idToSObjectRecordMap.containsKey(record.Id)) {
+                idToSObjectRecordMap.put(record.Id, record.getSObjectType().newSobject(record.Id));     
+            }
+
+            SObject uniqueRecord = this.combineRecords(record, idToSObjectRecordMap.get(record.id), sObjectTypeToAllChildRelationshipNames); 
+
+            idToSObjectRecordMap.put(record.Id, uniqueRecord);
+        }
+        
+        return idToSObjectRecordMap.values();
     }
 
-    /*******************************************************************************************************
-    * @description An inner class to create value objects
+    /******************************************************************************************************
+    @description Method to combine recurring occurance of an SObject Records
+    @params SObjectRecord The SObjectRecord to combine the field for
+    @params newSobjectRecord A new instance of the SOBject record 
+    @params allChildRelationshipNames A List of all ChildRelationshipNames for the given SObjectType
+    @return interimRecord An interming record to hold the combined record
     ********************************************************************************************************/
-    private class uniqueRecordValueObjectClass {
-        private List<SObject> allSObjectRecords = new List<SObject>();
-        private List<SObject> noIdRecords = new List<SObject>();
-        private List<SObject> recordWithIds = new List<SObject>();
-        private Map<Id, SObject> idToNewSobjectRecord = new Map<Id, SObject>();
-        private Map<SObjectType, List<String>> sObjectTypeToChildRelationships = new Map<SObjectType, List<String>>();
-        
-        // Constructor
-        public uniqueRecordValueObjectClass(List<SObject> allSObjectRecords) {
-            this.allSObjectRecords = allSObjectRecords;
-        }
-        
-        /******************************************************************************************************************************************
-        @description Creates a list of records with no Ids and creates a map with SObjectTypes as key and list of ChildRelationshipNames as values
-        *******************************************************************************************************************************************/
-        public void createListAndMap() {
-            for (SObject each: allSObjectRecords) {
-                if (each.Id == NULL) {
-                    noIdRecords.add(each);
-                }
-                else {
-                    recordWithIds.add(each);
-                    idToNewSobjectRecord.put(each.Id, each.getSObjectType().newSobject(each.Id));
-                    if (sObjectTypeToChildRelationships.containsKey(each.getSObjectType()) == FALSE) {
-                        sObjectTypeToChildRelationships.put(each.getSObjectType(), UTIL_Describe_API.getAllChildRelationshipNames(each.getSObjectType()));
-                    }
-                }
+    @TestVisible
+    private SObject combineRecords(SObject sObjectRecord, SObject newSobjectRecord, Map<SObjectType, List<String>> allChildRelationshipNames) {
+
+        List<String> childRelationshipNames = this.getChildRelationshipNamesForObject(sObjectRecord, allChildRelationshipNames);
+
+        Map<String, Object> fieldNameToValues = sObjectRecord.getPopulatedFieldsAsMap();
+        SObject interimRecord = newSobjectRecord;
+        //run code in loop below to combine records together
+        for (String fieldName: fieldNameToValues.keySet()) {
+            if (!childRelationshipNames.contains(fieldName)) {  // Do not add field Names from related records
+                interimRecord.put(fieldName, fieldNameToValues.get(fieldName));
             }
         }
+        return interimRecord;
+
+    }
+    /******************************************************************************************************
+    @description Gets a list of all ChildRelationshipNames for a given SObjectType
+    @params SObjectRecord The SObjectRecord the SoBjectRecord to get the SObject Type from
+    @params sObjectTypeToChildRelationships A map of SObjectTYpe to ChildRelationship Names
+    @return sObjectTypeToChildRelationships A List of all ChildRelationshipNames for the given SObjectType
+    ********************************************************************************************************/
+    @TestVisible
+    private List<String> getChildRelationshipNamesForObject(SObject SObjectRecord, Map<SObjectType, List<String>> sObjectTypeToChildRelationships) {
+        if (sObjectTypeToChildRelationships != NULL && sObjectTypeToChildRelationships.containsKey(SObjectRecord.getSObjectType()) == FALSE) {
+            sObjectTypeToChildRelationships.put(SObjectRecord.getSObjectType(), UTIL_Describe_API.getAllChildRelationshipNames(SObjectRecord.getSObjectType()));
+        }
+
+        return sObjectTypeToChildRelationships.get(SObjectRecord.getSObjectType());
+    }
+
+    /******************************************************************************************************
+    @description Filters SObjects into two lists, one with ids, one without ids
+    @params allSObjectRecords The list of records to be checked and made unique
+    @return returnMap A key value pair for recordsWithoutIds and recordsWithIds
+    ********************************************************************************************************/
+    @TestVisible
+    private Map<String, List<SObject>> filterRecordsForIds(List<SObject> allSObjectRecords) {
+        Map<String, List<SObject>> returnMap = new Map<String, List<SObject>>();
+
+        List<SObject> recordsWithoutIds = new List<SObject>();
+        List<SObject> recordsWithIds = new List<SObject>();
+
+        for (SObject sObjectToCheck: allSObjectRecords) {
+            if (sObjectToCheck.Id == NULL) {
+                recordsWithoutIds.add(sObjectToCheck);
+            }
+            else {
+                recordsWithIds.add(sObjectToCheck);
+            }
+        }
+
+        returnMap.put('withoutIds', recordsWithoutIds);
+        returnMap.put('withIds', recordsWithIds);
+        return returnMap;
     }
 }

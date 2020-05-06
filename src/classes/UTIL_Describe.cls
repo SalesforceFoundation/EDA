@@ -866,24 +866,34 @@ public class UTIL_Describe {
 
         return recTypeId;
     }
-
+    /*******************************************************************************************************
+    * @description Cache for SObject type to List of ChildRelationshipNames
+    */
+    private static Map<SObjectType, List<String>> sObjectTypeToChildRelationshipNames = new Map<SObjectType, List<String>>();
+    
+    
     /*******************************************************************************************************
     * @description Returns the list of all Child Relationship Name for a given Sobject Type
-    * @return List of all the child Relationship Names
+    * @return sObjectTypeToChildRelationshipNames.get(sObjectTypeName) List of all the child Relationship Names
     */
     public static List<String> getAllChildRelationshipNames(SobjectType sObjectTypeName) {
-        List<String> childRelationshipNames = new List<String>();
-        try {
-             DescribeSObjectResult describe = sObjectTypeName.getDescribe();
-             for (Schema.ChildRelationship childRelationship : describe.getChildRelationships()) {
-                 if (childRelationship != NULL && childRelationship.getRelationshipName() != NULL) {
-                     childRelationshipNames.add(childRelationship.getRelationshipName());
-                 }
-             }
-        } catch (Exception ex) {
-            return NULL;
-         }
+        if (sObjectTypeToChildRelationshipNames.get(sObjectTypeName) == NULL) {
+            
+            List<String> childRelationshipNames = new List<String>();
+            try {
+                DescribeSObjectResult describe = sObjectTypeName.getDescribe();
+                for (Schema.ChildRelationship childRelationship : describe.getChildRelationships()) {
+                    if (childRelationship != NULL && childRelationship.getRelationshipName() != NULL) {
+                        childRelationshipNames.add(childRelationship.getRelationshipName());
+                    }
+                }
+                sObjectTypeToChildRelationshipNames.put(sObjectTypeName, childRelationshipNames);
 
-        return childRelationshipNames;
+             } catch (Exception ex) {
+                return NULL;
+               }  
+        }
+        
+        return sObjectTypeToChildRelationshipNames.get(sObjectTypeName);
     }
 }
