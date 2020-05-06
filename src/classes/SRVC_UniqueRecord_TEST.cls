@@ -37,6 +37,14 @@
 @isTest
 private class SRVC_UniqueRecord_TEST {
 
+    private static Id generateFakeAccountId() {
+        return UTIL_UnitTestData_Test.getFakeId(Account.SObjectType);
+    }
+
+    private static Id generateFakeContactId() {  
+        return UTIL_UnitTestData_Test.getFakeId(Contact.SObjectType);
+    }
+
     // Tests getInstance()
     @isTest
     static void testGetInstance() {
@@ -81,7 +89,7 @@ private class SRVC_UniqueRecord_TEST {
         List<Account> testAccounts = new List<Account>();
 
         Account testAccount = new Account();
-        testAccount.Id = SRVC_UniqueRecord_STUB.generateFakeAccountId();
+        testAccount.Id = SRVC_UniqueRecord_TEST.generateFakeAccountId();
         testAccount.Name = 'test unique Service';
 
         testAccounts.add(testAccount);
@@ -122,7 +130,7 @@ private class SRVC_UniqueRecord_TEST {
         // Ensure records are not merged
         System.assertEquals(3, uniqueList.size());
     }
-
+ 
     // Test for Unique Record Functionality with a records having Ids and a few not having Ids
     @isTest
     private static void uniqueRecordFunctionalityIdsTest() {
@@ -130,7 +138,7 @@ private class SRVC_UniqueRecord_TEST {
         List<SObject> duplicateList = new List<SObject>();
 
         Contact duplicateCon1 = new Contact();
-        duplicateCon1.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        duplicateCon1.Id = SRVC_UniqueRecord_TEST.generateFakeContactId();
         duplicateCon1.firstName = 'Doe';
 
         Contact duplicateCon2 = new Contact();
@@ -157,7 +165,7 @@ private class SRVC_UniqueRecord_TEST {
         // Ensure only 2 are merged
         System.assertEquals(3, uniqueList.size());
     }
-
+    
     // Test for Unique Record Functionality with a record having Ids and a 2 records not having Ids
     @isTest
     private static void uniqueRecordFunctionalityIds2Test() {
@@ -165,7 +173,7 @@ private class SRVC_UniqueRecord_TEST {
         List<SObject> duplicateList = new List<SObject>();
 
         Contact duplicateCon1 = new Contact();
-        duplicateCon1.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        duplicateCon1.Id = SRVC_UniqueRecord_TEST.generateFakeContactId();
         duplicateCon1.firstName = 'Doe';
 
         Contact duplicateCon2 = new Contact();
@@ -182,6 +190,7 @@ private class SRVC_UniqueRecord_TEST {
 
         Test.startTest();
             List<SObject> uniqueList = SRVC_UniqueRecord.getInstance().getUniqueRecords(duplicateList);
+
         Test.stopTest();
 
         // Ensure no records are merged
@@ -192,7 +201,7 @@ private class SRVC_UniqueRecord_TEST {
     @isTest
     private static void uniqueRecordFunctionalityWithNoRelatedRecordsTest() {
 
-        Id testContactId = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        Id testContactId = SRVC_UniqueRecord_TEST.generateFakeContactId();
 
         List<SObject> duplicateList = new List<SObject>();
 
@@ -278,8 +287,8 @@ private class SRVC_UniqueRecord_TEST {
     @isTest
     private static void uniqueRecordFunctionalityWithMultipleSObjectTypesTest() {
 
-        Id testContactId = SRVC_UniqueRecord_STUB.generateFakeContactId();
-        Id testAccountId = SRVC_UniqueRecord_STUB.generateFakeAccountId();
+        Id testContactId = SRVC_UniqueRecord_TEST.generateFakeContactId();
+        Id testAccountId = SRVC_UniqueRecord_TEST.generateFakeAccountId();
 
         List<SObject> duplicateList = new List<SObject>();
 
@@ -329,7 +338,7 @@ private class SRVC_UniqueRecord_TEST {
         List<SObject> duplicateList = new List<SObject>();
 
         Contact duplicateCon1 = new Contact();
-        duplicateCon1.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        duplicateCon1.Id = SRVC_UniqueRecord_TEST.generateFakeContactId();
         duplicateCon1.firstName = 'Doe';
 
         Contact duplicateCon2 = new Contact();
@@ -360,7 +369,7 @@ private class SRVC_UniqueRecord_TEST {
     private static void combineRecordsTest() {
 
         Contact testContact = new Contact();
-        testContact.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        testContact.Id = SRVC_UniqueRecord_TEST.generateFakeContactId();
         testContact.firstName = 'Doe';
 
         SObject sObjectConRecord = testContact.getSObjectType().newSobject(testContact.Id);
@@ -381,7 +390,7 @@ private class SRVC_UniqueRecord_TEST {
         List<SObject> duplicateList = new List<SObject>();
 
         Contact duplicateCon1 = new Contact();
-        duplicateCon1.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        duplicateCon1.Id = SRVC_UniqueRecord_TEST.generateFakeContactId();
         duplicateCon1.firstName = 'Doe';
 
         Contact duplicateCon2 = new Contact();
@@ -407,7 +416,7 @@ private class SRVC_UniqueRecord_TEST {
         List<SObject> duplicateList = new List<SObject>();
 
         Contact duplicateCon1 = new Contact();
-        duplicateCon1.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        duplicateCon1.Id = SRVC_UniqueRecord_TEST.generateFakeContactId();
         duplicateCon1.firstName = 'Doe';
 
         duplicateList.add(duplicateCon1);
