@@ -51,7 +51,7 @@ public with sharing class TST_CannotDelete_TDTM extends TDTM_runnable {
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-        
+    
         if (TST_CannotDelete_TDTM.enabledPreventTestDeletion == FALSE) {
             return new DmlWrapper(); 
         }
@@ -59,20 +59,17 @@ public with sharing class TST_CannotDelete_TDTM extends TDTM_runnable {
         Map<Id, Test__c> oldmap = new Map<Id, Test__c>((List<Test__c>)oldList);
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            for (Test__c tst : [
-                                    SELECT Id, 
-                                        (SELECT Id FROM Test__c.Test_Scores__r LIMIT 1)
-                                    FROM Test__c WHERE Id IN :oldlist
-                                    
-                                ]) {
+            for (Test__c tst : [ SELECT Id, 
+                                (SELECT Id FROM Test__c.Test_Scores__r LIMIT 1)
+                                FROM Test__c WHERE Id IN :oldlist
+                               ]) {
                 
                 if (this.hasChildRecords(tst)) {
                     Test__c testInContext = oldMap.get(tst.ID);
                     testInContext.addError(Label.CannotDelete);
                 }
-            }     
+            }
         }
-
         return new DmlWrapper();
     }
     
@@ -83,9 +80,6 @@ public with sharing class TST_CannotDelete_TDTM extends TDTM_runnable {
      ********************************************************************************************************/
     @testVisible
     private Boolean hasChildRecords(Test__c tst) {
-        
         return ( tst.Test_Scores__r.isEmpty() == FALSE ); 
-    
     }
-
 }
