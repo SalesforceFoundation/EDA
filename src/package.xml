@@ -77,6 +77,8 @@
         <members>CON_PrimaryLanguage_TEST</members>
         <members>COS_StartEndTime_TDTM</members>
         <members>COS_StartEndTime_TEST</members>
+        <members>COUR_CannotDelete_TDTM</members>
+        <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
         <members>ERR_AsyncErrors</members>
@@ -458,6 +460,7 @@
         <members>Hierarchy_Settings__c.Prevent_Behavior_Involvement_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Case_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Contact_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Course_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Connection_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Offering_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Plan_Requirement_Deletion__c</members>
