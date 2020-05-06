@@ -62,13 +62,11 @@ public with sharing class TB_CannotDelete_TDTM extends TDTM_runnable {
         Map<Id, Time_Block__c> oldmap = new Map<Id, Time_Block__c>((List<Time_Block__c>)oldList);
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            for (Time_Block__c tb : [
-                                    SELECT Id, 
+            for (Time_Block__c tb : [ SELECT Id, 
                                         (SELECT Id FROM Time_Block__c.Time_Blocks__r LIMIT 1),
                                         (SELECT Id FROM Time_Block__c.Course_Offering_Schedules__r LIMIT 1)
-                                    FROM Time_Block__c WHERE Id IN :oldlist
-                                    
-                                ]) {
+                                      FROM Time_Block__c WHERE Id IN :oldlist
+                                    ]) {
                 
                 if (this.hasChildRecords(tb)) {
                     Time_Block__c timeBlockInContext = oldMap.get(tb.ID);
@@ -76,7 +74,7 @@ public with sharing class TB_CannotDelete_TDTM extends TDTM_runnable {
                 }
             }     
         }
-
+        
         return new DmlWrapper();
     }
     
@@ -88,8 +86,6 @@ public with sharing class TB_CannotDelete_TDTM extends TDTM_runnable {
      ********************************************************************************************************/
     @testVisible
     private Boolean hasChildRecords(Time_Block__c tb) {
-        
         return ( tb.Time_Blocks__r.isEmpty() == FALSE || tb.Course_Offering_Schedules__r.isEmpty() == FALSE ); 
-    
     }
 }
