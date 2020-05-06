@@ -30,10 +30,10 @@
 /**
 * @author Salesforce.org
 * @date 2020
-* @group Time Block
+* @group Time Blocks
 * @group-content ../../ApexDocContent/TimeBlocks.htm
-* @description Stops a Time Block from being deleted if it has any Course Offering or 
-* Course Offering Schedule child records. 
+* @description Stops a Time Block from being deleted if it associated with
+* any Course Offering or Course Offering Schedule child records. 
 */
 
 public with sharing class TB_CannotDelete_TDTM extends TDTM_runnable {
