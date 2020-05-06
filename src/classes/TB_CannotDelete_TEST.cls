@@ -35,7 +35,6 @@
 * @description Tests for TB_CannotDelete_TDTM.
 */
 
-
 @isTest
 private class TB_CannotDelete_TEST {
 
@@ -235,6 +234,7 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithoutChildRecordsPreventDeleteOn() {
+        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Time_Block_Deletion__c = TRUE));
 
@@ -327,6 +327,7 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithChildCourseOfferingSchedulePreventDeleteOff() {
+        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Time_Block_Deletion__c = FALSE));
 
@@ -388,6 +389,7 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithChildCourseOfferingAndSchedulePreventDeleteOff() {
+        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Time_Block_Deletion__c = FALSE));
 
@@ -453,6 +455,7 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithoutChildRecordsPreventDeleteOff() {
+        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Prevent_Time_Block_Deletion__c = FALSE));
 
@@ -488,6 +491,7 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void hasCourseOfferingChildRecordsIsTrue() {
+        
         Time startTime = Time.newInstance(8, 0, 0, 0);
         Time stopTime = Time.newInstance(10, 0, 0, 0);
 
@@ -591,6 +595,7 @@ private class TB_CannotDelete_TEST {
     */
     @isTest 
     private static void hasCourseOfferingAndScheduleChildRecordsIsTrue() {
+        
         Time startTime = Time.newInstance(8, 0, 0, 0);
         Time stopTime = Time.newInstance(10, 0, 0, 0);
 
