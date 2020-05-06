@@ -47,7 +47,7 @@ private class SRVC_UniqueRecord_TEST {
         srvcUniqueRecordInstance = SRVC_UniqueRecord.getInstance();
         System.assertEquals(SRVC_UniqueRecord.instance, srvcUniqueRecordInstance);
     }
-    
+
     // NULL test for Unique Record Functionality
     @isTest
     private static void getUniqueRecordsNULLTest() {
@@ -59,7 +59,7 @@ private class SRVC_UniqueRecord_TEST {
         // Ensure empty list is returned
         System.assertEquals(NULL, uniqueList);
     }
-    
+
     // Empty List test for Unique Record Functionality
     @isTest
     private static void getUniqueRecordsEmptyTest() {
@@ -73,17 +73,17 @@ private class SRVC_UniqueRecord_TEST {
         System.assertEquals(0, uniqueList.size());
 
     }
-    
+
     // Test Unique Record Functionality with list size one
     @isTest
     private static void getUniqueRecordsSingleRecordTest() {
 
         List<Account> testAccounts = new List<Account>();
-        
+
         Account testAccount = new Account();
         testAccount.Id = SRVC_UniqueRecord_STUB.generateFakeAccountId();
         testAccount.Name = 'test unique Service';
-        
+
         testAccounts.add(testAccount);
 
         Test.startTest();
@@ -122,7 +122,7 @@ private class SRVC_UniqueRecord_TEST {
         // Ensure records are not merged
         System.assertEquals(3, uniqueList.size());
     }
- 
+
     // Test for Unique Record Functionality with a records having Ids and a few not having Ids
     @isTest
     private static void uniqueRecordFunctionalityIdsTest() {
@@ -152,13 +152,12 @@ private class SRVC_UniqueRecord_TEST {
 
         Test.startTest();
             List<SObject> uniqueList = SRVC_UniqueRecord.getInstance().getUniqueRecords(duplicateList);
-
         Test.stopTest();
 
         // Ensure only 2 are merged
-        System.assertEquals(3, uniqueList.size());      
+        System.assertEquals(3, uniqueList.size());
     }
-    
+
     // Test for Unique Record Functionality with a record having Ids and a 2 records not having Ids
     @isTest
     private static void uniqueRecordFunctionalityIds2Test() {
@@ -171,7 +170,7 @@ private class SRVC_UniqueRecord_TEST {
 
         Contact duplicateCon2 = new Contact();
         duplicateCon2.HIPAA__c = TRUE;
-        
+
         Contact duplicateCon3 = new Contact();
         duplicateCon3.FERPA__c = TRUE;
 
@@ -179,22 +178,20 @@ private class SRVC_UniqueRecord_TEST {
         duplicateList.add(duplicateCon2);
         duplicateList.add(duplicateCon3);
 
-
         System.assertEquals(3, duplicateList.size());
 
         Test.startTest();
             List<SObject> uniqueList = SRVC_UniqueRecord.getInstance().getUniqueRecords(duplicateList);
-
         Test.stopTest();
 
         // Ensure no records are merged
-        System.assertEquals(3, uniqueList.size());      
+        System.assertEquals(3, uniqueList.size());
     }
 
     // Test for Unique Record Functionality
     @isTest
     private static void uniqueRecordFunctionalityWithNoRelatedRecordsTest() {
-         
+
         Id testContactId = SRVC_UniqueRecord_STUB.generateFakeContactId();
 
         List<SObject> duplicateList = new List<SObject>();
@@ -228,7 +225,7 @@ private class SRVC_UniqueRecord_TEST {
 
         System.assertEquals('Doe', uniqueContact.firstName);
         System.assertEquals('Night', uniqueContact.lastName);
-        System.assertEquals(TRUE, uniqueContact.HIPAA__c);       
+        System.assertEquals(TRUE, uniqueContact.HIPAA__c);
     }
 
     // Test for Unique Record Functionality with related records
@@ -276,11 +273,11 @@ private class SRVC_UniqueRecord_TEST {
         System.assertEquals('123', uniqueAccount.Phone);
 
     }
-
+    
     // Test for Unique Record Functionality with multiple SOBJect types
     @isTest
     private static void uniqueRecordFunctionalityWithMultipleSObjectTypesTest() {
-    
+
         Id testContactId = SRVC_UniqueRecord_STUB.generateFakeContactId();
         Id testAccountId = SRVC_UniqueRecord_STUB.generateFakeAccountId();
 
@@ -301,28 +298,127 @@ private class SRVC_UniqueRecord_TEST {
         Account duplicateAccount1 = new Account();
         duplicateAccount1.Id = testAccountId;
         duplicateAccount1.Name = 'test unique Service';
-        
+
         Account duplicateAccount2 = new Account();
         duplicateAccount2.Id = testAccountId;
         duplicateAccount2.Description = 'test description';
-        
+
         Account duplicateAccount3 = new Account();
         duplicateAccount3.Id = testAccountId;
         duplicateAccount3.Website = 'www.test@sf.com';
-        
+
         duplicateList.add(duplicateCon1);
         duplicateList.add(duplicateCon2);
         duplicateList.add(duplicateCon3);
         duplicateList.add(duplicateAccount1);
         duplicateList.add(duplicateAccount2);
         duplicateList.add(duplicateAccount3);
-        
+
         System.assertEquals(6, duplicateList.size());
         Test.startTest();
             List<SObject> uniqueList = SRVC_UniqueRecord.getInstance().getUniqueRecords(duplicateList);
         Test.stopTest();
-        
+
         System.assertEquals(2, uniqueList.size());
-    }    
+    }
+
+    // Test for Unique Record Functionality with related records
+    @isTest
+    private static void filterRecordsForIdsTest() {
+
+        List<SObject> duplicateList = new List<SObject>();
+
+        Contact duplicateCon1 = new Contact();
+        duplicateCon1.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        duplicateCon1.firstName = 'Doe';
+
+        Contact duplicateCon2 = new Contact();
+        duplicateCon2.Id = duplicateCon1.Id;
+        duplicateCon2.lastName = 'Night';
+
+        Contact duplicateCon3 = new Contact();
+        duplicateCon3.HIPAA__c = TRUE;
+
+        Contact duplicateCon4 = new Contact();
+        duplicateCon4.FERPA__c = TRUE;
+
+        duplicateList.add(duplicateCon1);
+        duplicateList.add(duplicateCon2);
+        duplicateList.add(duplicateCon3);
+        duplicateList.add(duplicateCon4);
+
+        Test.startTest();
+            Map<String, List<SObject>> returnMap = SRVC_UniqueRecord.getInstance().filterRecordsForIds(duplicateList);
+        Test.stopTest();
+
+        System.assert(returnMap.get('withIds').size() == 2);
+        System.assert(returnMap.get('withoutIds').size() == 2);
+    }
+
+    // Test for Unique Record Functionality with related records
+    @isTest
+    private static void combineRecordsTest() {
+
+        Contact testContact = new Contact();
+        testContact.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        testContact.firstName = 'Doe';
+
+        SObject sObjectConRecord = testContact.getSObjectType().newSobject(testContact.Id);
+
+        System.assert(((Contact)sObjectConRecord).firstName == NULL);
+
+        Test.startTest();
+            SObject combinedRecord = SRVC_UniqueRecord.getInstance().combineRecords(testContact, sObjectConRecord);
+        Test.stopTest();
+
+        System.assert(((Contact)sObjectConRecord).firstName == 'Doe');
+    }
+
+    // Test for Unique Record Functionality with related records
+    @isTest
+    private static void getUniqueRecordsByIdsTest() {
+
+        List<SObject> duplicateList = new List<SObject>();
+
+        Contact duplicateCon1 = new Contact();
+        duplicateCon1.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        duplicateCon1.firstName = 'Doe';
+
+        Contact duplicateCon2 = new Contact();
+        duplicateCon2.Id = duplicateCon1.Id;
+        duplicateCon2.lastName = 'Night';
+
+        duplicateList.add(duplicateCon1);
+        duplicateList.add(duplicateCon2);
+
+        System.assertEquals(2, duplicateList.size());
+
+        Test.startTest();
+            List<SObject> combinedRecords = SRVC_UniqueRecord.getInstance().getUniqueRecordsByIds(duplicateList);
+        Test.stopTest();
+
+        System.assertEquals(1, combinedRecords.size());
+    }
+
+    // Test for Unique Record Functionality with related records
+    @isTest
+    private static void getUniqueRecordsByIdsWith1RecordTest() {
+
+        List<SObject> duplicateList = new List<SObject>();
+
+        Contact duplicateCon1 = new Contact();
+        duplicateCon1.Id = SRVC_UniqueRecord_STUB.generateFakeContactId();
+        duplicateCon1.firstName = 'Doe';
+
+        duplicateList.add(duplicateCon1);
+
+        System.assertEquals(1, duplicateList.size());
+
+        Test.startTest();
+            List<SObject> combinedRecords = SRVC_UniqueRecord.getInstance().getUniqueRecordsByIds(duplicateList);
+        Test.stopTest();
+
+        System.assertEquals(1, combinedRecords.size());
+    }
 
 }

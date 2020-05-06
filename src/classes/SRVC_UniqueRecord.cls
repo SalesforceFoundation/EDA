@@ -91,34 +91,33 @@ public virtual with sharing class SRVC_UniqueRecord {
             return sObjectRecords;
         }
 
-        Map<SObjectType, List<String>> sObjectTypeToAllChildRelationshipNames = new Map<SObjectType, List<String>>();
         Map<Id, SObject> idToSObjectRecordMap = new Map<Id, SObject>();
 
         for (Sobject record: sObjectRecords) {
 
             if (!idToSObjectRecordMap.containsKey(record.Id)) {
-                idToSObjectRecordMap.put(record.Id, record.getSObjectType().newSobject(record.Id));     
+                idToSObjectRecordMap.put(record.Id, record.getSObjectType().newSobject(record.Id));
             }
 
-            SObject uniqueRecord = this.combineRecords(record, idToSObjectRecordMap.get(record.id), sObjectTypeToAllChildRelationshipNames); 
+            SObject uniqueRecord = this.combineRecords(record, idToSObjectRecordMap.get(record.id)); 
 
             idToSObjectRecordMap.put(record.Id, uniqueRecord);
         }
-        
+
         return idToSObjectRecordMap.values();
     }
 
     /******************************************************************************************************
     @description Method to combine recurring occurance of an SObject Records
     @params SObjectRecord The SObjectRecord to combine the field for
-    @params newSobjectRecord A new instance of the SOBject record 
+    @params newSobjectRecord A new instance of the SOBject record
     @params allChildRelationshipNames A List of all ChildRelationshipNames for the given SObjectType
     @return interimRecord An interming record to hold the combined record
     ********************************************************************************************************/
     @TestVisible
-    private SObject combineRecords(SObject sObjectRecord, SObject newSobjectRecord, Map<SObjectType, List<String>> allChildRelationshipNames) {
+    private SObject combineRecords(SObject sObjectRecord, SObject newSobjectRecord) {
 
-        List<String> childRelationshipNames = this.getChildRelationshipNamesForObject(sObjectRecord, allChildRelationshipNames);
+        List<String> childRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(sObjectRecord.getSObjectType());
 
         Map<String, Object> fieldNameToValues = sObjectRecord.getPopulatedFieldsAsMap();
         SObject interimRecord = newSobjectRecord;
@@ -130,20 +129,6 @@ public virtual with sharing class SRVC_UniqueRecord {
         }
         return interimRecord;
 
-    }
-    /******************************************************************************************************
-    @description Gets a list of all ChildRelationshipNames for a given SObjectType
-    @params SObjectRecord The SObjectRecord the SoBjectRecord to get the SObject Type from
-    @params sObjectTypeToChildRelationships A map of SObjectTYpe to ChildRelationship Names
-    @return sObjectTypeToChildRelationships A List of all ChildRelationshipNames for the given SObjectType
-    ********************************************************************************************************/
-    @TestVisible
-    private List<String> getChildRelationshipNamesForObject(SObject SObjectRecord, Map<SObjectType, List<String>> sObjectTypeToChildRelationships) {
-        if (sObjectTypeToChildRelationships != NULL && sObjectTypeToChildRelationships.containsKey(SObjectRecord.getSObjectType()) == FALSE) {
-            sObjectTypeToChildRelationships.put(SObjectRecord.getSObjectType(), UTIL_Describe_API.getAllChildRelationshipNames(SObjectRecord.getSObjectType()));
-        }
-
-        return sObjectTypeToChildRelationships.get(SObjectRecord.getSObjectType());
     }
 
     /******************************************************************************************************
