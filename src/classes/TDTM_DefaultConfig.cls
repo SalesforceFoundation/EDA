@@ -156,6 +156,11 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'ACCT_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Account',
               Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
 
+        // Stops an Address from being deleted if it has any Account or Contact children
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+              Class__c = 'ADDR_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Address__c',
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
+
         // Automatically populates the Academic Program field in a Course Enrollment
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
               Class__c = 'CENR_AcademicProgram_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c',
