@@ -63,12 +63,14 @@ private class FACI_CannotDelete_TEST {
         parentFacilitiesToInsert.add(parentFacility2); 
         insert parentFacilitiesToInsert; 
 
+        List<Facility__c> childFacilitiesToInsert = new List<Facility__c>(); 
         Facility__c childFacility1 = UTIL_UnitTestData_TEST.getFacility(); 
         Facility__c childFacility2 = UTIL_UnitTestData_TEST.getFacility(); 
         childFacility1.Parent_Facility__c = parentFacility.Id; 
         childFacility2.Parent_Facility__c = parentFacility2.Id; 
-        insert childFacility1;
-        insert childFacility2; 
+        childFacilitiesToInsert.add(childFacility1); 
+        childFacilitiesToInsert.add(childFacility2); 
+        insert childFacilitiesToInsert; 
 
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(parentFacilitiesToInsert, false);
@@ -104,13 +106,15 @@ private class FACI_CannotDelete_TEST {
         insert course; 
         Term__c term = UTIL_UnitTestData_TEST.getTerm(department[0].Id, 'Fall'); 
         insert term; 
-
+        
+        List<Course_Offering__c> courseOfferingsToInsert = new List<Course_Offering__c>(); 
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         courseOffering1.Facility__c = parentFacilitiesToInsert[0].Id;
         courseOffering2.Facility__c = parentFacilitiesToInsert[1].Id;
-        update courseOffering1; 
-        update courseOffering2; 
+        courseOfferingsToInsert.add(courseOffering1); 
+        courseOfferingsToInsert.add(courseOffering2);
+        update courseOfferingsToInsert; 
 
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(parentFacilitiesToInsert, false);
@@ -139,13 +143,15 @@ private class FACI_CannotDelete_TEST {
         parentFacilitiesToInsert.add(parentFacility); 
         parentFacilitiesToInsert.add(parentFacility2); 
         insert parentFacilitiesToInsert; 
-
+        
+        List<Facility__c> childFacilitiesToInsert = new List<Facility__c>(); 
         Facility__c childFacility1 = UTIL_UnitTestData_TEST.getFacility(); 
         Facility__c childFacility2 = UTIL_UnitTestData_TEST.getFacility(); 
         childFacility1.Parent_Facility__c = parentFacility.Id; 
         childFacility2.Parent_Facility__c = parentFacility2.Id; 
-        insert childFacility1;
-        insert childFacility2; 
+        childFacilitiesToInsert.add(childFacility1); 
+        childFacilitiesToInsert.add(childFacility2); 
+        insert childFacilitiesToInsert; 
 
         List<Account> department = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, academicAccRecTypeId);
         insert department; 
@@ -153,13 +159,15 @@ private class FACI_CannotDelete_TEST {
         insert course; 
         Term__c term = UTIL_UnitTestData_TEST.getTerm(department[0].Id, 'Fall'); 
         insert term; 
-
+        
+        List<Course_Offering__c> courseOfferingsToInsert = new List<Course_Offering__c>(); 
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         courseOffering1.Facility__c = parentFacilitiesToInsert[0].Id;
         courseOffering2.Facility__c = parentFacilitiesToInsert[1].Id;
-        update courseOffering1; 
-        update courseOffering2; 
+        courseOfferingsToInsert.add(courseOffering1); 
+        courseOfferingsToInsert.add(courseOffering2);
+        update courseOfferingsToInsert; 
 
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(parentFacilitiesToInsert, false);
@@ -232,12 +240,14 @@ private class FACI_CannotDelete_TEST {
         parentFacilitiesToInsert.add(parentFacility2); 
         insert parentFacilitiesToInsert; 
         
+        List<Facility__c> childFacilitiesToInsert = new List<Facility__c>();
         Facility__c childFacility1 = UTIL_UnitTestData_TEST.getFacility(); 
         Facility__c childFacility2 = UTIL_UnitTestData_TEST.getFacility(); 
         childFacility1.Parent_Facility__c = parentFacility.Id; 
         childFacility2.Parent_Facility__c = parentFacility2.Id; 
-        insert childFacility1;
-        insert childFacility2; 
+        childFacilitiesToInsert.add(childFacility1); 
+        childFacilitiesToInsert.add(childFacility2); 
+        insert childFacilitiesToInsert; 
         
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(parentFacilitiesToInsert, false);
@@ -273,12 +283,14 @@ private class FACI_CannotDelete_TEST {
         Term__c term = UTIL_UnitTestData_TEST.getTerm(department[0].Id, 'Fall'); 
         insert term; 
         
+        List<Course_Offering__c> courseOfferingsToInsert = new List<Course_Offering__c>(); 
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         courseOffering1.Facility__c = parentFacilitiesToInsert[0].Id;
         courseOffering2.Facility__c = parentFacilitiesToInsert[1].Id;
-        update courseOffering1; 
-        update courseOffering2; 
+        courseOfferingsToInsert.add(courseOffering1); 
+        courseOfferingsToInsert.add(courseOffering2);
+        update courseOfferingsToInsert; 
         
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(parentFacilitiesToInsert, false);
@@ -307,13 +319,15 @@ private class FACI_CannotDelete_TEST {
         parentFacilitiesToInsert.add(parentFacility2); 
         insert parentFacilitiesToInsert; 
         
+        List<Facility__c> childFacilitiesToInsert = new List<Facility__c>();
         Facility__c childFacility1 = UTIL_UnitTestData_TEST.getFacility(); 
         Facility__c childFacility2 = UTIL_UnitTestData_TEST.getFacility(); 
         childFacility1.Parent_Facility__c = parentFacility.Id; 
         childFacility2.Parent_Facility__c = parentFacility2.Id; 
-        insert childFacility1;
-        insert childFacility2; 
-        
+        childFacilitiesToInsert.add(childFacility1); 
+        childFacilitiesToInsert.add(childFacility2); 
+        insert childFacilitiesToInsert; 
+ 
         List<Account> department = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, academicAccRecTypeId);
         insert department; 
         Course__c course = new Course__c(Account__c = department[0].Id, Name = 'Bio'); 
@@ -321,12 +335,14 @@ private class FACI_CannotDelete_TEST {
         Term__c term = UTIL_UnitTestData_TEST.getTerm(department[0].Id, 'Fall'); 
         insert term; 
         
+        List<Course_Offering__c> courseOfferingsToInsert = new List<Course_Offering__c>(); 
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         courseOffering1.Facility__c = parentFacilitiesToInsert[0].Id;
         courseOffering2.Facility__c = parentFacilitiesToInsert[1].Id;
-        update courseOffering1; 
-        update courseOffering2; 
+        courseOfferingsToInsert.add(courseOffering1); 
+        courseOfferingsToInsert.add(courseOffering2);
+        update courseOfferingsToInsert;  
         
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(parentFacilitiesToInsert, false);
@@ -395,12 +411,14 @@ private class FACI_CannotDelete_TEST {
         parentFacilitiesToInsert.add(parentFacility2); 
         insert parentFacilitiesToInsert; 
         
+        List<Facility__c> childFacilitiesToInsert = new List<Facility__c>();
         Facility__c childFacility1 = UTIL_UnitTestData_TEST.getFacility(); 
         Facility__c childFacility2 = UTIL_UnitTestData_TEST.getFacility(); 
         childFacility1.Parent_Facility__c = parentFacility.Id; 
         childFacility2.Parent_Facility__c = parentFacility2.Id; 
-        insert childFacility1;
-        insert childFacility2; 
+        childFacilitiesToInsert.add(childFacility1); 
+        childFacilitiesToInsert.add(childFacility2); 
+        insert childFacilitiesToInsert; 
         
         List<Account> department = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, academicAccRecTypeId);
         insert department; 
@@ -409,12 +427,14 @@ private class FACI_CannotDelete_TEST {
         Term__c term = UTIL_UnitTestData_TEST.getTerm(department[0].Id, 'Fall'); 
         insert term; 
         
+        List<Course_Offering__c> courseOfferingsToInsert = new List<Course_Offering__c>(); 
         Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id); 
         courseOffering1.Facility__c = parentFacilitiesToInsert[0].Id;
         courseOffering2.Facility__c = parentFacilitiesToInsert[1].Id;
-        update courseOffering1; 
-        update courseOffering2; 
+        courseOfferingsToInsert.add(courseOffering1); 
+        courseOfferingsToInsert.add(courseOffering2);
+        update courseOfferingsToInsert; 
         
         List<Facility__c> returnParentFacilities = [SELECT Id,
                                                     (SELECT Id FROM Facility__c.Facilities__r LIMIT 1), 

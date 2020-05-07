@@ -51,7 +51,7 @@ public with sharing class FACI_CannotDelete_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         
-        if (!FACI_CannotDelete_TDTM.enabledPreventFacilitiesDeletion) {
+        if (FACI_CannotDelete_TDTM.enabledPreventFacilitiesDeletion == False) {
             return new DmlWrapper(); 
         }
 
