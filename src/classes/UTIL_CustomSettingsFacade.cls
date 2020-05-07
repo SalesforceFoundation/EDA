@@ -156,6 +156,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Household_Other_Name_Setting__c = mySettings.Household_Other_Name_Setting__c;
         settings.Preferred_Phone_Selection__c = mySettings.Preferred_Phone_Selection__c;
         settings.Prevent_Account_Deletion__c = mySettings.Prevent_Account_Deletion__c;
+        settings.Prevent_Address_Deletion__c = mySettings.Prevent_Address_Deletion__c;
         settings.Prevent_Behavior_Involvement_Deletion__c = mySettings.Prevent_Behavior_Involvement_Deletion__c;
         settings.Prevent_Case_Deletion__c = mySettings.Prevent_Case_Deletion__c;
         settings.Prevent_Contact_Deletion__c = mySettings.Prevent_Contact_Deletion__c;
