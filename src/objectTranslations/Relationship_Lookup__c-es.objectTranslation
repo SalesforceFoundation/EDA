@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value><!-- Relationship Lookup --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
     <fields>
         <help>Indica si esta búsqueda recíproca es activa.</help>
         <label>Activa</label>
@@ -28,5 +29,4 @@
         <label>Neutro</label>
         <name>Neutral__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
 </CustomObjectTranslation>

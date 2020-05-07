@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Test --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Test Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Test Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help><!-- The student who took the test. --></help>
         <label><!-- Contact --></label>
@@ -62,14 +72,4 @@
             <translation><!-- TOEFL --></translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Test Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Test Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

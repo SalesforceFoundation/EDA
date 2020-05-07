@@ -3,6 +3,8 @@
     <customSettingsType>Hierarchy</customSettingsType>
     <description>All hierarchy settings.</description>
     <enableFeeds>false</enableFeeds>
+    <label>Hierarchy Settings</label>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Account_Processor__c</fullName>
         <description>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</description>
@@ -95,9 +97,9 @@
     <fields>
         <fullName>Affl_ProgEnroll_Copy_End_Date__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</description>
+        <description>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&#39;s End Date. If disabled, don&#39;t specify the Affiliation&#39;s End Date.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</inlineHelpText>
+        <inlineHelpText>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&#39;s End Date. If disabled, don&#39;t specify the Affiliation&#39;s End Date.</inlineHelpText>
         <label>Affil End Date Copy from Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -105,18 +107,18 @@
     <fields>
         <fullName>Affl_ProgEnroll_Copy_Start_Date__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</description>
+        <description>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&#39;s Start Date. If disabled, don&#39;t specify the Affiliation&#39;s Start Date.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</inlineHelpText>
+        <inlineHelpText>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&#39;s Start Date. If disabled, don&#39;t specify the Affiliation&#39;s Start Date.</inlineHelpText>
         <label>Affil Start Date Copy from Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
-        <description>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted.</description>
+        <description>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&#39;s Status, when its related Program Enrollment is deleted.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted.</inlineHelpText>
+        <inlineHelpText>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&#39;s Status, when its related Program Enrollment is deleted.</inlineHelpText>
         <label>Affil Status When Delete Prog Enroll</label>
         <length>255</length>
         <required>false</required>
@@ -127,9 +129,9 @@
     <fields>
         <fullName>Affl_ProgEnroll_Del__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll.</description>
+        <description>Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&#39;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll.</inlineHelpText>
+        <inlineHelpText>Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&#39;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll.</inlineHelpText>
         <label>Affil Delete When Delete Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -149,9 +151,9 @@
     <fields>
         <fullName>Affl_ProgEnroll_Set_Role__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&apos;t specify a Role.</description>
+        <description>Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&#39;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&#39;t specify a Role.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&apos;t specify a Role.</inlineHelpText>
+        <inlineHelpText>Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&#39;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&#39;t specify a Role.</inlineHelpText>
         <label>Affil Set Role When Create Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -222,9 +224,9 @@
     <fields>
         <fullName>Disable_Error_Handling__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, EDA&apos;s error handling framework is disabled.</description>
+        <description>If checked, EDA&#39;s error handling framework is disabled.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, EDA&apos;s error handling framework is disabled.</inlineHelpText>
+        <inlineHelpText>If checked, EDA&#39;s error handling framework is disabled.</inlineHelpText>
         <label>Disable Error Handling</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -271,9 +273,9 @@
     <fields>
         <fullName>Enable_New_Preferred_Phone_Sync__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Turns on the Preferred Phone functionality that was released in EDA 1.82. This functionality syncs the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</description>
+        <description>Turns on the Preferred Phone functionality that was released in EDA 1.82. This functionality syncs the Preferred Phone field to the Contact&#39;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</inlineHelpText>
+        <inlineHelpText>Sync the Preferred Phone field to the Contact&#39;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</inlineHelpText>
         <label>Enable New Preferred Phone Sync</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -283,7 +285,7 @@
         <defaultValue>false</defaultValue>
         <description>Flag that determines whether to send error notifications.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Check this if you&apos;d like the system to post notifications for certain type of errors.</inlineHelpText>
+        <inlineHelpText>Check this if you&#39;d like the system to post notifications for certain type of errors.</inlineHelpText>
         <label>Error Notifications</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -401,20 +403,20 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Prevent_Course_Deletion__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Reserved for future use.</description>
-        <externalId>false</externalId>
-        <label>Prevent Course Deletion</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Prevent_Course_Connection_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
         <label>Prevent Course Connection Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Course_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Course Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -468,7 +470,7 @@
     </fields>
     <fields>
         <fullName>Relationship_Name_Field_Id__c</fullName>
-        <description>The ID of the Name field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button.  Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
+        <description>The ID of the Name field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &#39;New Relationships&#39; button.  Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
         <externalId>false</externalId>
         <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
         <label>Relationship Name Field Id</label>
@@ -480,7 +482,7 @@
     </fields>
     <fields>
         <fullName>Relationship_Name_Id_Field_Id__c</fullName>
-        <description>The ID of the Name Id field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button. Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
+        <description>The ID of the Name Id field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &#39;New Relationships&#39; button. Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
         <externalId>false</externalId>
         <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
         <label>Relationship Name Id Field Id</label>
@@ -505,7 +507,7 @@
         <defaultValue>true</defaultValue>
         <description>Flag that indicates whether errors are going to be stored in the database.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Check this if you&apos;d like errors to be stored in the database.</inlineHelpText>
+        <inlineHelpText>Check this if you&#39;d like errors to be stored in the database.</inlineHelpText>
         <label>Store Errors</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -531,6 +533,4 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <label>Hierarchy Settings</label>
-    <visibility>Public</visibility>
 </CustomObject>

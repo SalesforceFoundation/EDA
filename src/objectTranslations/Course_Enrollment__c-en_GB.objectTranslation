@@ -8,9 +8,18 @@
         <plural>true</plural>
         <value>Course Connections</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Course Connection ID</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>The Academic Program the student is enroled in.</help>
-        <label>Contact&apos;s Academic Program</label>
+        <label>Contact&#39;s Academic Program</label>
         <name>Account__c</name>
         <relationshipLabel>Course Connections</relationshipLabel>
     </fields>
@@ -27,7 +36,7 @@
         <relationshipLabel>Course Connections</relationshipLabel>
     </fields>
     <fields>
-        <help>The Course Offering the student is enroled in. It&apos;s a Course offered at a specific Term.</help>
+        <help>The Course Offering the student is enroled in. It&#39;s a Course offered at a specific Term.</help>
         <label>Course Offering ID</label>
         <name>Course_Offering__c</name>
         <relationshipLabel>Course Connection</relationshipLabel>
@@ -68,13 +77,4 @@
             <translation>Former</translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Course Connection ID</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Notes de la période</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la note de la période</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>L’étudiant pour qui la note est enregistrée. Lorsqu’il est laissé vide, le champ Contact est rempli automatiquement à partir de la connexion de cours valide lors de l’enregistrement.</help>
         <label>Contact</label>
@@ -37,22 +47,22 @@
         <name>Credits_Earned__c</name>
     </fields>
     <fields>
-        <help>La lettre correspondant à la note que l&apos;étudiant a gagnée pour ce cours, par exemple « A+ » ou une autre valeur de texte.</help>
+        <help>La lettre correspondant à la note que l&#39;étudiant a gagnée pour ce cours, par exemple « A+ » ou une autre valeur de texte.</help>
         <label>Note en lettre</label>
         <name>Letter_Grade__c</name>
     </fields>
     <fields>
-        <help>La note numérique obtenue par l&apos;étudiant pour ce cours, qui peut être basée sur n&apos;importe quel chiffre autre qu&apos;un pourcentage.</help>
+        <help>La note numérique obtenue par l&#39;étudiant pour ce cours, qui peut être basée sur n&#39;importe quel chiffre autre qu&#39;un pourcentage.</help>
         <label>Note numérique</label>
         <name>Numerical_Grade__c</name>
     </fields>
     <fields>
-        <help>La note en pourcentage obtenue par l&apos;étudiant pour ce cours.</help>
+        <help>La note en pourcentage obtenue par l&#39;étudiant pour ce cours.</help>
         <label>Note en pourcentage</label>
         <name>Percent_Grade__c</name>
     </fields>
     <fields>
-        <help>Le résultat de l&apos;étudiant pendant cette période de notation.</help>
+        <help>Le résultat de l&#39;étudiant pendant cette période de notation.</help>
         <label>Résultat</label>
         <name>Result__c</name>
         <picklistValues>
@@ -78,7 +88,7 @@
         <name>Term_Grade_Type__c</name>
         <picklistValues>
             <masterLabel>Exam Grade</masterLabel>
-            <translation>Note à l&apos;examen</translation>
+            <translation>Note à l&#39;examen</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Final Grade</masterLabel>
@@ -99,14 +109,4 @@
         <name>Term__c</name>
         <relationshipLabel>Notes de la période</relationshipLabel>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Term Grade Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la note de la période</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

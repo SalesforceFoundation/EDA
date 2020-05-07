@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fields>
-        <help>L’adresse actuellement renseignée dans les champs de facturation du compte.</help>
-        <label>Adresse actuelle</label>
-        <name>Current_Address__c</name>
-        <relationshipLabel>Comptes (adresse actuelle)</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Primary Contact</label>
-        <name>Primary_Contact__c</name>
-        <relationshipLabel>Compte</relationshipLabel>
-    </fields>
     <layouts>
         <layout>HEDA Household Layout</layout>
         <sections>
@@ -49,4 +38,15 @@
             <section>Fields</section>
         </sections>
     </layouts>
+    <fields>
+        <help>L’adresse actuellement renseignée dans les champs de facturation du compte.</help>
+        <label>Adresse actuelle</label>
+        <name>Current_Address__c</name>
+        <relationshipLabel>Comptes (adresse actuelle)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Primary Contact</label>
+        <name>Primary_Contact__c</name>
+        <relationshipLabel>Compte</relationshipLabel>
+    </fields>
 </CustomObjectTranslation>

@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Instalaciones</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Facility Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de instalación</nameFieldLabel>
     <fields>
         <help>La organización responsable de la instalación.</help>
         <label>Cuenta</label>
@@ -71,13 +80,4 @@
         <name>Parent_Facility__c</name>
         <relationshipLabel>Instalaciones</relationshipLabel>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Facility Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de instalación</nameFieldLabel>
 </CustomObjectTranslation>

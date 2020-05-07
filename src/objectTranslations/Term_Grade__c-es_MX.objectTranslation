@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Evaluaciones de periodo</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de evaluación de periodo</nameFieldLabel>
     <fields>
         <help>El estudiante para el que se está registrando la evaluación. Cuando se deja en blanco, Contacto se cumplimenta automáticamente desde la Conexión de curso válida al guardar.</help>
         <label>Contacto</label>
@@ -99,13 +108,4 @@
         <name>Term__c</name>
         <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Term Grade Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de evaluación de periodo</nameFieldLabel>
 </CustomObjectTranslation>

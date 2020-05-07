@@ -8,18 +8,28 @@
         <plural>true</plural>
         <value><!-- Attendance Event --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de l&#39;esdeveniment d&#39;assistència</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Per als esdeveniments de retards, el moment en què va arribar l’alumne.</help>
-        <label>Hora d&apos;arribada</label>
+        <label>Hora d&#39;arribada</label>
         <name>Arrival_Time__c</name>
     </fields>
     <fields>
-        <help>El tipus de retard o d&apos;absència.</help>
-        <label>Tipus d&apos;assistència</label>
+        <help>El tipus de retard o d&#39;absència.</help>
+        <label>Tipus d&#39;assistència</label>
         <name>Attendance_Type__c</name>
         <picklistValues>
             <masterLabel>Class Absence</masterLabel>
-            <translation>Absència d&apos;una classe</translation>
+            <translation>Absència d&#39;una classe</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Class Tardy</masterLabel>
@@ -27,24 +37,24 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Day Absence</masterLabel>
-            <translation>Absència d&apos;un dia</translation>
+            <translation>Absència d&#39;un dia</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Day Tardy</masterLabel>
-            <translation>Retard d&apos;un dia</translation>
+            <translation>Retard d&#39;un dia</translation>
         </picklistValues>
     </fields>
     <fields>
         <help>L’estudiant que ha arribat tard o està absent.</help>
         <label>Contacte</label>
         <name>Contact__c</name>
-        <relationshipLabel>Esdeveniments d&apos;assistència</relationshipLabel>
+        <relationshipLabel>Esdeveniments d&#39;assistència</relationshipLabel>
     </fields>
     <fields>
         <help>La classe i el període en què l’alumne va arribar tard o va estar absent.</help>
         <label>Connexió del curs</label>
         <name>Course_Connection__c</name>
-        <relationshipLabel>Esdeveniments d&apos;assistència</relationshipLabel>
+        <relationshipLabel>Esdeveniments d&#39;assistència</relationshipLabel>
     </fields>
     <fields>
         <help>El nom del curs en què l’alumne va arribar tard o va estar absent.</help>
@@ -52,12 +62,12 @@
         <name>Course_Name__c</name>
     </fields>
     <fields>
-        <help>Data en què es va produir el retard o l&apos;absència.</help>
+        <help>Data en què es va produir el retard o l&#39;absència.</help>
         <label>Data</label>
         <name>Date__c</name>
     </fields>
     <fields>
-        <help>En cas d’absències justificades, l&apos;hora en què va finalitzar l’absència.</help>
+        <help>En cas d’absències justificades, l&#39;hora en què va finalitzar l’absència.</help>
         <label>Hora de finalització</label>
         <name>End_Time__c</name>
     </fields>
@@ -88,7 +98,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>En cas d’absències justificades, l&apos;hora en què va començar l’absència.</help>
+        <help>En cas d’absències justificades, l&#39;hora en què va començar l’absència.</help>
         <label>Hora inicial</label>
         <name>Start_Time__c</name>
     </fields>
@@ -97,14 +107,4 @@
         <label>No justificat</label>
         <name>Unexcused__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Attendance Event Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l&apos;esdeveniment d&apos;assistència</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

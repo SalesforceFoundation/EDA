@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Adresses</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Address Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&#39;adresse</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
     <fields>
         <label>Type d’adresse</label>
         <name>Address_Type__c</name>
@@ -466,14 +476,4 @@
         <label>Année de début de saison</label>
         <name>Seasonal_Start_Year__c</name>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Address Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;adresse</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

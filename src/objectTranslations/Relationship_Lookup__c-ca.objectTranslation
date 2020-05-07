@@ -8,26 +8,26 @@
         <plural>true</plural>
         <value><!-- Relationship Lookup --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Indica si aquesta cerca recíproca està activa.</help>
         <label>Actiu</label>
         <name>Active__c</name>
     </fields>
     <fields>
-        <help>El valor utilitzat si el camp de sexe del contacte coincideix amb els valors de l&apos;etiqueta personalitzada femenina o la salutació del contacte indica el sexe.</help>
+        <help>El valor utilitzat si el camp de sexe del contacte coincideix amb els valors de l&#39;etiqueta personalitzada femenina o la salutació del contacte indica el sexe.</help>
         <label>Dona</label>
         <name>Female__c</name>
     </fields>
     <fields>
-        <help>El valor utilitzat si el camp de sexe del contacte coincideix amb els valors de l&apos;etiqueta personalitzada masculina o la salutació del contacte indica el sexe.</help>
+        <help>El valor utilitzat si el camp de sexe del contacte coincideix amb els valors de l&#39;etiqueta personalitzada masculina o la salutació del contacte indica el sexe.</help>
         <label>Home</label>
         <name>Male__c</name>
     </fields>
     <fields>
-        <help>El valor utilitzat si el camp de sexe del contacte no coincideix amb les etiquetes personalitzades masculines o femenines, i si de la salutació del contacte no s&apos;infereix el sexe.</help>
+        <help>El valor utilitzat si el camp de sexe del contacte no coincideix amb les etiquetes personalitzades masculines o femenines, i si de la salutació del contacte no s&#39;infereix el sexe.</help>
         <label>Neutral</label>
         <name>Neutral__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

@@ -53,6 +53,20 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Test</label>
+    <nameField>
+        <displayFormat>TST-{0000}</displayFormat>
+        <label>Test Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Tests</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -152,23 +166,9 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <label>Test</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>TST-{0000}</displayFormat>
-        <label>Test Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Tests</pluralLabel>
-    <searchLayouts>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Test_Date__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>

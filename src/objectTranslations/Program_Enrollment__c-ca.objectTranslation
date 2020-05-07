@@ -8,14 +8,24 @@
         <plural>true</plural>
         <value><!-- Program Enrollment --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&#39;inscripció del programa</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
-        <help>El programa al qual està inscrit l&apos;estudiant.</help>
+        <help>El programa al qual està inscrit l&#39;estudiant.</help>
         <label>Programa</label>
         <name>Account__c</name>
         <relationshipLabel>Inscripcions del programa</relationshipLabel>
     </fields>
     <fields>
-        <label>Data d&apos;admissió</label>
+        <label>Data d&#39;admissió</label>
         <name>Admission_Date__c</name>
     </fields>
     <fields>
@@ -41,7 +51,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Senior</masterLabel>
-            <translation>Estudiant d&apos;últim any</translation>
+            <translation>Estudiant d&#39;últim any</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Sophomore</masterLabel>
@@ -55,7 +65,7 @@
         <relationshipLabel>Inscripcions del programa</relationshipLabel>
     </fields>
     <fields>
-        <label>Crèdits als quals s&apos;ha assistit</label>
+        <label>Crèdits als quals s&#39;ha assistit</label>
         <name>Credits_Attempted__c</name>
     </fields>
     <fields>
@@ -63,7 +73,7 @@
         <name>Credits_Earned__c</name>
     </fields>
     <fields>
-        <label>Elegible per inscriure&apos;s</label>
+        <label>Elegible per inscriure&#39;s</label>
         <name>Eligible_to_Enroll__c</name>
     </fields>
     <fields>
@@ -71,7 +81,7 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
-        <label>Estat d&apos;inscripció</label>
+        <label>Estat d&#39;inscripció</label>
         <name>Enrollment_Status__c</name>
         <picklistValues>
             <masterLabel>Full-time</masterLabel>
@@ -101,17 +111,7 @@
         <relationshipLabel>Inscripcions del programa</relationshipLabel>
     </fields>
     <fields>
-        <label>Data d&apos;inici</label>
+        <label>Data d&#39;inici</label>
         <name>Start_Date__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Program Enrollment Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;inscripció del programa</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

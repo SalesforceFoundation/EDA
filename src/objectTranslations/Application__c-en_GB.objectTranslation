@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value><!-- Application --></value>
     </caseValues>
+    <layouts>
+        <layout>EDA Application Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Application Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help><!-- The date when the student decides whether to enroll. --></help>
         <label><!-- Applicant Decision Date --></label>
@@ -113,13 +122,4 @@
         <name>Term__c</name>
         <relationshipLabel><!-- Applications --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>EDA Application Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Application Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

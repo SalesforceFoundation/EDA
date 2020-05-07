@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Contact Layout</layout>
+        <sections>
+            <label>Información adicional</label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label>Preferencias de comunicación</label>
+            <section>Communication Preferences</section>
+        </sections>
+        <sections>
+            <label>Detalle del contacto</label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label>Afiliaciones principales</label>
+            <section>Primary Affiliations</section>
+        </sections>
+    </layouts>
     <fields>
         <help>Email alternativo es un email opcional no capturado en otros campos de email.</help>
         <label>Email alternativo</label>
@@ -266,7 +285,7 @@
             <translation>Checoslovaquia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
             <translation>Costa de Marfil</translation>
         </picklistValues>
         <picklistValues>
@@ -534,7 +553,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>República Popular Democrática de Corea</translation>
         </picklistValues>
         <picklistValues>
@@ -550,7 +569,7 @@
             <translation>Kirguistán</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>República Democrática Popular de Laos</translation>
         </picklistValues>
         <picklistValues>
@@ -1386,7 +1405,7 @@
             <translation>Checoslovaquia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
             <translation>Costa de Marfil</translation>
         </picklistValues>
         <picklistValues>
@@ -1654,7 +1673,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>República Popular Democrática de Corea</translation>
         </picklistValues>
         <picklistValues>
@@ -1670,7 +1689,7 @@
             <translation>Kirguistán</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>República Democrática Popular de Laos</translation>
         </picklistValues>
         <picklistValues>
@@ -2523,7 +2542,7 @@
             <translation>Checoslovaquia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
             <translation>Costa de Marfil</translation>
         </picklistValues>
         <picklistValues>
@@ -2791,7 +2810,7 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
             <translation>República Popular Democrática de Corea</translation>
         </picklistValues>
         <picklistValues>
@@ -2807,7 +2826,7 @@
             <translation>Kirguistán</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
             <translation>República Democrática Popular de Laos</translation>
         </picklistValues>
         <picklistValues>
@@ -3644,23 +3663,4 @@
         <label>No actualizar automáticamente</label>
         <name>is_Address_Override__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Contact Layout</layout>
-        <sections>
-            <label>Información adicional</label>
-            <section>Additional Information</section>
-        </sections>
-        <sections>
-            <label>Preferencias de comunicación</label>
-            <section>Communication Preferences</section>
-        </sections>
-        <sections>
-            <label>Detalle del contacto</label>
-            <section>Contact Details</section>
-        </sections>
-        <sections>
-            <label>Afiliaciones principales</label>
-            <section>Primary Affiliations</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

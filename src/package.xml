@@ -423,6 +423,7 @@
         <members>Facility__c.Account__c</members>
         <members>Facility__c.Capacity__c</members>
         <members>Facility__c.Description__c</members>
+        <members>Facility__c.Donor_Family__c</members>
         <members>Facility__c.Facility_Type__c</members>
         <members>Facility__c.Parent_Facility__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
@@ -463,8 +464,8 @@
         <members>Hierarchy_Settings__c.Prevent_Behavior_Involvement_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Case_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Contact_Deletion__c</members>
-        <members>Hierarchy_Settings__c.Prevent_Course_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Connection_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Course_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Offering_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Plan_Requirement_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Program_Plan_Deletion__c</members>

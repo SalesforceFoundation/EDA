@@ -53,6 +53,22 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Test Score</label>
+    <nameField>
+        <displayFormat>SCR-{0000}</displayFormat>
+        <label>Test Score Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test Scores</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Subject_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Score__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Percentile__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Percentile__c</fullName>
         <description>The percentile ranking for this score.</description>
@@ -151,25 +167,9 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>Test Score</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>SCR-{0000}</displayFormat>
-        <label>Test Score Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Test Scores</pluralLabel>
-    <searchLayouts>
-        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Test__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Subject_Area__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Score__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Percentile__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>

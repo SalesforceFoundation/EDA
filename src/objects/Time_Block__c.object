@@ -53,6 +53,16 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Time Block</label>
+    <nameField>
+        <label>Time Block Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Time Blocks</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Educational_Institution__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -90,7 +100,6 @@
         <trackTrending>false</trackTrending>
         <type>Time</type>
     </fields>
-    <label>Time Block</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
@@ -99,13 +108,4 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <label>Time Block Name</label>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Time Blocks</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>

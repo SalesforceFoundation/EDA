@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Plazos</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Term Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de plazo</nameFieldLabel>
     <fields>
         <label>Cuenta</label>
         <name>Account__c</name>
@@ -54,13 +63,4 @@
             <translation>Semestre</translation>
         </picklistValues>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Term Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de plazo</nameFieldLabel>
 </CustomObjectTranslation>

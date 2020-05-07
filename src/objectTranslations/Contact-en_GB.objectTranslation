@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Contact Layout</layout>
+        <sections>
+            <label>Additional Information</label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label>Communication Preferences</label>
+            <section>Communication Preferences</section>
+        </sections>
+        <sections>
+            <label>Contact Details</label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label>Primary Affiliations</label>
+            <section>Primary Affiliations</section>
+        </sections>
+    </layouts>
     <fields>
         <help>Alternate Email is an optional email not captured in other email fields.</help>
         <label>Alternate Email</label>
@@ -266,8 +285,8 @@
             <translation>Czechoslovakia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Côte d&apos;Ivoire</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Côte d&#39;Ivoire</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -534,8 +553,8 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
-            <translation>Korea (the Democratic People&apos;s Republic of)</translation>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
+            <translation>Korea (the Democratic People&#39;s Republic of)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Korea (the Republic of)</masterLabel>
@@ -550,8 +569,8 @@
             <translation>Kyrgyzstan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
-            <translation>Lao People&apos;s Democratic Republic (the)</translation>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
+            <translation>Lao People&#39;s Democratic Republic (the)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -1386,8 +1405,8 @@
             <translation>Czechoslovakia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Côte d&apos;Ivoire</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Côte d&#39;Ivoire</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -1654,8 +1673,8 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
-            <translation>Korea (the Democratic People&apos;s Republic of)</translation>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
+            <translation>Korea (the Democratic People&#39;s Republic of)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Korea (the Republic of)</masterLabel>
@@ -1670,8 +1689,8 @@
             <translation>Kyrgyzstan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
-            <translation>Lao People&apos;s Democratic Republic (the)</translation>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
+            <translation>Lao People&#39;s Democratic Republic (the)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -2251,7 +2270,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>The current Address that the Contact&apos;s mailing fields are filled with.</help>
+        <help>The current Address that the Contact&#39;s mailing fields are filled with.</help>
         <label>Current Address</label>
         <name>Current_Address__c</name>
         <relationshipLabel>Contacts (Current Address)</relationshipLabel>
@@ -2523,8 +2542,8 @@
             <translation>Czechoslovakia</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Côte d&apos;Ivoire</masterLabel>
-            <translation>Côte d&apos;Ivoire</translation>
+            <masterLabel>Côte d&#39;Ivoire</masterLabel>
+            <translation>Côte d&#39;Ivoire</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Dahomey</masterLabel>
@@ -2791,8 +2810,8 @@
             <translation>Kiribati</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
-            <translation>Korea (the Democratic People&apos;s Republic of)</translation>
+            <masterLabel>Korea (the Democratic People&#39;s Republic of)</masterLabel>
+            <translation>Korea (the Democratic People&#39;s Republic of)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Korea (the Republic of)</masterLabel>
@@ -2807,8 +2826,8 @@
             <translation>Kyrgyzstan</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
-            <translation>Lao People&apos;s Democratic Republic (the)</translation>
+            <masterLabel>Lao People&#39;s Democratic Republic (the)</masterLabel>
+            <translation>Lao People&#39;s Democratic Republic (the)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -3471,21 +3490,21 @@
         <help>Which phone number should be used for most communications involving this Contact?</help>
         <label>Preferred Phone</label>
         <name>PreferredPhone__c</name>
-        <picklistValues>	
-            <masterLabel>Home</masterLabel>	
-            <translation>Home Phone</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Mobile</masterLabel>	
-            <translation>Mobile Phone</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Other</masterLabel>	
-            <translation>Other Phone</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Work Phone</translation>	
+        <picklistValues>
+            <masterLabel>Home</masterLabel>
+            <translation>Home Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile</masterLabel>
+            <translation>Mobile Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Other Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work</masterLabel>
+            <translation>Work Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>
@@ -3508,17 +3527,17 @@
         <help>Which email should be used for most communications involving this Contact?</help>
         <label>Preferred Email</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>	
-            <masterLabel>Alternate</masterLabel>	
-            <translation>Alternate Email</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>University</masterLabel>	
-            <translation>University Email</translation>	
-        </picklistValues>	
-            <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Work Email</translation>	
+        <picklistValues>
+            <masterLabel>Alternate</masterLabel>
+            <translation>Alternate Email</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University</masterLabel>
+            <translation>University Email</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work</masterLabel>
+            <translation>Work Email</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
@@ -3673,7 +3692,7 @@
         <name>WorkEmail__c</name>
     </fields>
     <fields>
-        <help>See &apos;Preferred Phone&apos; field.</help>
+        <help>See &#39;Preferred Phone&#39; field.</help>
         <label>Work Phone</label>
         <name>WorkPhone__c</name>
     </fields>
@@ -3683,27 +3702,8 @@
         <name>Work_Address__c</name>
     </fields>
     <fields>
-        <help>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</help>
+        <help>If checked, the Contact&#39;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</help>
         <label>Do Not Automatically Update</label>
         <name>is_Address_Override__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Contact Layout</layout>
-        <sections>
-            <label>Additional Information</label>
-            <section>Additional Information</section>
-        </sections>
-        <sections>
-            <label>Communication Preferences</label>
-            <section>Communication Preferences</section>
-        </sections>
-        <sections>
-            <label>Contact Details</label>
-            <section>Contact Details</section>
-        </sections>
-        <sections>
-            <label>Primary Affiliations</label>
-            <section>Primary Affiliations</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

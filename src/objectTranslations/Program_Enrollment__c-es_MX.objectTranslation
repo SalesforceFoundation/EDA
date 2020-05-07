@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Inscripciones del programa</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Id. de inscripción del programa</nameFieldLabel>
     <fields>
         <help>El Programa en el que está inscrito el estudiante.</help>
         <label>Programa</label>
@@ -104,13 +113,4 @@
         <label>Fecha de Inicio</label>
         <name>Start_Date__c</name>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Program Enrollment Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Id. de inscripción del programa</nameFieldLabel>
 </CustomObjectTranslation>

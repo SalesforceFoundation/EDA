@@ -42,15 +42,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>HEDA_Course_Offering_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>HEDA_Course_Offering_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>Course__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>Faculty__c</fields>
-        <fields>Capacity__c</fields>
-        <label>HEDA Course Offering Compact Layout</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Joins Courses and Terms to contain information related to a single occurrence of a course.</description>
     <enableActivities>false</enableActivities>
@@ -62,6 +53,15 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Course Offering</label>
+    <nameField>
+        <label>Course Offering ID</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Course Offerings</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Capacity__c</fullName>
         <externalId>false</externalId>
@@ -163,18 +163,18 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>Course Offering</label>
+    <compactLayouts>
+        <fullName>HEDA_Course_Offering_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Course__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>Faculty__c</fields>
+        <fields>Capacity__c</fields>
+        <label>HEDA Course Offering Compact Layout</label>
+    </compactLayouts>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <label>Course Offering ID</label>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Course Offerings</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>

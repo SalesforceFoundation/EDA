@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Behavior Response --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Behavior Response Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la resposta de comportament</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>El número generat pel sistema associat a aquest esdeveniment. Format: BI-{0000}.</help>
         <label>Implicació de comportament</label>
@@ -15,7 +25,7 @@
         <relationshipLabel>Resposta de comportament</relationshipLabel>
     </fields>
     <fields>
-        <help>El destinatari d&apos;aquesta resposta.</help>
+        <help>El destinatari d&#39;aquesta resposta.</help>
         <label>Contacte</label>
         <name>Contact__c</name>
     </fields>
@@ -30,12 +40,12 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
-        <help>Data en què s&apos;inicia la resposta.</help>
-        <label>Data d&apos;inici</label>
+        <help>Data en què s&#39;inicia la resposta.</help>
+        <label>Data d&#39;inici</label>
         <name>Start_Date__c</name>
     </fields>
     <fields>
-        <help>L&apos;estat de la resposta adoptada.</help>
+        <help>L&#39;estat de la resposta adoptada.</help>
         <label>Estat</label>
         <name>Status__c</name>
         <picklistValues>
@@ -72,14 +82,4 @@
             <translation>Altres</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Behavior Response Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la resposta de comportament</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

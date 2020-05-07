@@ -8,14 +8,24 @@
         <plural>true</plural>
         <value>Établissements</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Facility Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de l&#39;établissement</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
     <fields>
-        <help>L&apos;organisation responsable de l&apos;établissement.</help>
+        <help>L&#39;organisation responsable de l&#39;établissement.</help>
         <label>Compte</label>
         <name>Account__c</name>
         <relationshipLabel>Établissement</relationshipLabel>
     </fields>
     <fields>
-        <help>Le nombre maximal de personnes que l&apos;établissement peut accueillir.</help>
+        <help>Le nombre maximal de personnes que l&#39;établissement peut accueillir.</help>
         <label>Capacité</label>
         <name>Capacity__c</name>
     </fields>
@@ -25,8 +35,8 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help>Le type de l&apos;établissement.</help>
-        <label>Type d&apos;établissement</label>
+        <help>Le type de l&#39;établissement.</help>
+        <label>Type d&#39;établissement</label>
         <name>Facility_Type__c</name>
         <picklistValues>
             <masterLabel>Building</masterLabel>
@@ -66,19 +76,9 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>Si l&apos;établissement fait partie d&apos;une structure plus importante, spécifie l&apos;établissement parent. Par exemple, un bâtiment peut être le parent d&apos;une classe.</help>
+        <help>Si l&#39;établissement fait partie d&#39;une structure plus importante, spécifie l&#39;établissement parent. Par exemple, un bâtiment peut être le parent d&#39;une classe.</help>
         <label>Établissement parent</label>
         <name>Parent_Facility__c</name>
         <relationshipLabel>Établissement</relationshipLabel>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Facility Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l&apos;établissement</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

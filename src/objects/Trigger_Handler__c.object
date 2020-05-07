@@ -56,6 +56,14 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Trigger Handler</label>
+    <nameField>
+        <label>Trigger Handler Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Trigger Handlers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>true</defaultValue>
@@ -202,9 +210,9 @@
     <fields>
         <fullName>User_Managed__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The record is managed by the user and updates won&apos;t be pushed to it.</description>
+        <description>The record is managed by the user and updates won&#39;t be pushed to it.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Check it if you intent to manage the record yourself. Be aware that updates to the package won&apos;t update the record.</inlineHelpText>
+        <inlineHelpText>Check it if you intent to manage the record yourself. Be aware that updates to the package won&#39;t update the record.</inlineHelpText>
         <label>User Managed</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -219,7 +227,6 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
-    <label>Trigger Handler</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -237,11 +244,4 @@
         <filterScope>Everything</filterScope>
         <label>All - Main Fields</label>
     </listViews>
-    <nameField>
-        <label>Trigger Handler Name</label>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Trigger Handlers</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

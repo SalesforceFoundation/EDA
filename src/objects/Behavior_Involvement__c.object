@@ -53,6 +53,23 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Behavior Involvement</label>
+    <nameField>
+        <displayFormat>BI-{0000}</displayFormat>
+        <label>Behavior Involvement Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Behavior Involvements</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Role__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Case__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Role__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Case__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Case__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -83,9 +100,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <description>A description of a person&apos;s involvement in a behavior event.</description>
+        <description>A description of a person&#39;s involvement in a behavior event.</description>
         <externalId>false</externalId>
-        <inlineHelpText>A description of a person&apos;s involvement in a behavior event.</inlineHelpText>
+        <inlineHelpText>A description of a person&#39;s involvement in a behavior event.</inlineHelpText>
         <label>Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
@@ -133,26 +150,9 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <label>Behavior Involvement</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>BI-{0000}</displayFormat>
-        <label>Behavior Involvement Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Behavior Involvements</pluralLabel>
-    <searchLayouts>
-        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Role__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Case__c</customTabListAdditionalFields>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Role__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Case__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>

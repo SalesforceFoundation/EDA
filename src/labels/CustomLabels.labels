@@ -54,7 +54,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Cannot Change Contact And Course Offering</shortDescription>
-        <value>Can&apos;t change the Contact or Course Offering on a Course Connection that has associated Term Grades or Attendance Events. If you want a Course Connection with a different Contact or Course Offering, create a new Course Connection.</value>
+        <value>Can&#39;t change the Contact or Course Offering on a Course Connection that has associated Term Grades or Attendance Events. If you want a Course Connection with a different Contact or Course Offering, create a new Course Connection.</value>
     </labels>
     <labels>
         <fullName>CannotDelete</fullName>
@@ -62,7 +62,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CannotDelete</shortDescription>
-        <value>This record can&apos;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&apos;t see related records, or if you&apos;re unable to delete them, contact your System Administrator for assistance.</value>
+        <value>This record can&#39;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&#39;t see related records, or if you&#39;re unable to delete them, contact your System Administrator for assistance.</value>
     </labels>
     <labels>
         <fullName>DefaultAccountName</fullName>
@@ -118,7 +118,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>MultipleCourseConnection</shortDescription>
-        <value>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrollment in this Course Offering for this Term Grade.</value>
+        <value>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&#39;s enrollment in this Course Offering for this Term Grade.</value>
     </labels>
     <labels>
         <fullName>NoContactCOFound</fullName>
@@ -126,7 +126,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoContactCOFound</shortDescription>
-        <value>The Contact and Course Offering are not specified or don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
+        <value>The Contact and Course Offering are not specified or don&#39;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
         <fullName>NoCourseConnection</fullName>
@@ -142,7 +142,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoDataMatch</shortDescription>
-        <value>The Contact and Course Offering don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
+        <value>The Contact and Course Offering don&#39;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
         <fullName>NoFieldsPopulated</fullName>
@@ -174,7 +174,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>PreferredEmailMatchMustExist</shortDescription>
-        <value>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</value>
+        <value>We can&#39;t find the email specified in Preferred Email. Make sure that you&#39;re entering the field label of an existing custom email field.</value>
     </labels>
     <labels>
         <fullName>PreferredEmailMatchNotNull</fullName>
@@ -182,7 +182,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>PreferredEmailMatchNotNull</shortDescription>
-        <value>The email selected for Preferred Email can&apos;t be blank.</value>
+        <value>The email selected for Preferred Email can&#39;t be blank.</value>
     </labels>
     <labels>
         <fullName>PreferredEmailRequiredError</fullName>
@@ -198,7 +198,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>PreferredPhoneMatchMustExist</shortDescription>
-        <value>We can&apos;t find the Phone specified in Preferred Phone. Make sure that you&apos;re entering the field label of an existing custom Phone field.</value>
+        <value>We can&#39;t find the Phone specified in Preferred Phone. Make sure that you&#39;re entering the field label of an existing custom Phone field.</value>
     </labels>
     <labels>
         <fullName>PreferredPhoneMatchNotNull</fullName>
@@ -206,7 +206,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>PreferredPhoneMatchNotNull</shortDescription>
-        <value>The phone selected for Preferred Phone can&apos;t be blank.</value>
+        <value>The phone selected for Preferred Phone can&#39;t be blank.</value>
     </labels>
     <labels>
         <fullName>PreferredPhoneRequiredError</fullName>
@@ -238,7 +238,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>RelationshipsAutoDescription</shortDescription>
-        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
+        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &#39;Referral&#39; lookup from Campaign Member to Contact could create a &#39;Referrer&#39; and &#39;Referee&#39; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
     </labels>
     <labels>
         <fullName>RelationshipsLookupDescription</fullName>
@@ -342,7 +342,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflAccountNoRecordType</shortDescription>
-        <value>We can&apos;t create this Affiliation because the specified Account doesn&apos;t have a record type.</value>
+        <value>We can&#39;t create this Affiliation because the specified Account doesn&#39;t have a record type.</value>
     </labels>
     <labels>
         <fullName>afflAccoutMappingError</fullName>
@@ -350,7 +350,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflAccoutMappingError</shortDescription>
-        <value>We can&apos;t save this record because of an Account record type error in Affiliation Mappings. Ask your administrator to verify that Account Record Types are correctly mapped to Contact Primary Affiliations.</value>
+        <value>We can&#39;t save this record because of an Account record type error in Affiliation Mappings. Ask your administrator to verify that Account Record Types are correctly mapped to Contact Primary Affiliations.</value>
     </labels>
     <labels>
         <fullName>afflNullPointerError</fullName>
@@ -358,7 +358,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflNullPointerError</shortDescription>
-        <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in affiliation mappings.</value>
+        <value>The {0} Account record type doesn&#39;&#39;t exist. Ask your admin to check record types in affiliation mappings.</value>
     </labels>
     <labels>
         <fullName>afflTypeEnforced</fullName>
@@ -374,7 +374,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflTypeEnforcedDescription</shortDescription>
-        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, EDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
+        <value>When selected, if users specify an Account as a Contact&#39;s Primary Affiliation, EDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
     </labels>
     <labels>
         <fullName>automaticHHNaming</fullName>
@@ -438,7 +438,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>The Filter Field value can&apos;t include the EDA namespace. Remove it from the field name.</value>
+        <value>The Filter Field value can&#39;t include the EDA namespace. Remove it from the field name.</value>
     </labels>
     <labels>
         <fullName>firstNameLastNameAdminACC</fullName>
@@ -685,7 +685,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflNotInserted</shortDescription>
-        <value>We can&apos;t map this Affiliation because it references a record type that is already referenced by another Affiliation Mapping. If you want to add this mapping so the Affiliation is translated, click Edit to modify the existing mapping. Then, specify the field API name under Contact Primary Affl Field. Do not change the name specified for Account Record Type.</value>
+        <value>We can&#39;t map this Affiliation because it references a record type that is already referenced by another Affiliation Mapping. If you want to add this mapping so the Affiliation is translated, click Edit to modify the existing mapping. Then, specify the field API name under Contact Primary Affl Field. Do not change the name specified for Account Record Type.</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollDeleteRelated</fullName>
@@ -1141,7 +1141,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentEndDate</shortDescription>
-        <value>If selected, copy the Program Enrollment&apos;s End Date to the created Affiliation. Otherwise, leave the created Affiliation&apos;s End Date blank.</value>
+        <value>If selected, copy the Program Enrollment&#39;s End Date to the created Affiliation. Otherwise, leave the created Affiliation&#39;s End Date blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
@@ -1149,7 +1149,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentStartDate</shortDescription>
-        <value>If selected, copy the Program Enrollment&apos;s Start Date to the created Affiliation. Otherwise, leave the created Affiliation&apos;s Start Date blank.</value>
+        <value>If selected, copy the Program Enrollment&#39;s Start Date to the created Affiliation. Otherwise, leave the created Affiliation&#39;s Start Date blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
@@ -1173,7 +1173,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflDeleteProgramEnrollment</shortDescription>
-        <value>The Status value set on the Affiliation related to a deleted Program Enrollment, if the related Affiliation isn&apos;t also deleted.</value>
+        <value>The Status value set on the Affiliation related to a deleted Program Enrollment, if the related Affiliation isn&#39;t also deleted.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollmentHeader</fullName>
@@ -1197,7 +1197,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflProgEnrollSetRole</shortDescription>
-        <value>If selected, set the created Affiliation&apos;s Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation&apos;s Role blank.</value>
+        <value>If selected, set the created Affiliation&#39;s Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation&#39;s Role blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetRoleValue</fullName>
@@ -1245,7 +1245,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpContactPreferredPhoneSync</shortDescription>
-        <value>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</value>
+        <value>Sync the Preferred Phone field to the Contact&#39;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</value>
     </labels>
     <labels>
         <fullName>stgHelpCopyQueuedEmailSent</fullName>
@@ -1285,7 +1285,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpCoursesDataMigrationDontOverwrite</shortDescription>
-        <value>If a course already has a value for Extended Description, we don&apos;t overwrite it.</value>
+        <value>If a course already has a value for Extended Description, we don&#39;t overwrite it.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigrationUpdatePageLayouts</fullName>
@@ -1349,7 +1349,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpEnsureExistContactPreferEmail</shortDescription>
-        <value>For existing Contacts who haven&apos;t specified a Preferred Email or Preferred Phone, the cleanup ensures that one of the Contact&apos;s standard or custom email addresses or phone numbers are set as the preferred value.</value>
+        <value>For existing Contacts who haven&#39;t specified a Preferred Email or Preferred Phone, the cleanup ensures that one of the Contact&#39;s standard or custom email addresses or phone numbers are set as the preferred value.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorDisable</fullName>
@@ -1357,7 +1357,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpErrorDisable</shortDescription>
-        <value>If checked, EDA&apos;s error handling framework is disabled.</value>
+        <value>If checked, EDA&#39;s error handling framework is disabled.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyOn</fullName>
@@ -1365,7 +1365,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpErrorNotifyOn</shortDescription>
-        <value>Check this if you&apos;d like the system to post notifications for certain type of errors.</value>
+        <value>Check this if you&#39;d like the system to post notifications for certain type of errors.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyTo</fullName>
@@ -1373,7 +1373,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpErrorNotifyTo</shortDescription>
-        <value>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</value>
+        <value>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are &#39;All Sys Admins&#39;, the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</value>
     </labels>
     <labels>
         <fullName>stgHelpEthnicityRaceBackfill</fullName>
@@ -1381,7 +1381,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpEthnicityRaceBackfill</shortDescription>
-        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before EDA added the Race field and removed values from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
+        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before EDA added the Race field and removed values from the Ethnicity field as of EDA version 1.28. If the value in the Contact&#39;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
@@ -1461,7 +1461,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpStoreErrorsOn</shortDescription>
-        <value>Check this if you&apos;d like errors to be stored in the database.</value>
+        <value>Check this if you&#39;d like errors to be stored in the database.</value>
     </labels>
     <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
@@ -1549,7 +1549,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Select a desired picklist value for the batch job to selct a value from</shortDescription>
-        <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
+        <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &#39;Phone&#39; field is defined.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameDesc</fullName>
@@ -1597,7 +1597,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgRunCleanUpEnableFirstTime</shortDescription>
-        <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
+        <value>Run this data cleanup process after you&#39;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>
@@ -1863,7 +1863,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>timeBlockEndTimeMismatch</shortDescription>
-        <value>We can&apos;t save the Course Offering Schedule because its End Time doesn&apos;t match the End Time of its associated Time Block. Either edit the End Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
+        <value>We can&#39;t save the Course Offering Schedule because its End Time doesn&#39;t match the End Time of its associated Time Block. Either edit the End Time, specify a different Time Block, or don&#39;t specify a Time Block.</value>
     </labels>
     <labels>
         <fullName>timeBlockStartTimeMismatch</fullName>
@@ -1871,6 +1871,6 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>timeBlockStartTimeMismatch</shortDescription>
-        <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
+        <value>We can&#39;t save the Course Offering Schedule because its Start Time doesn&#39;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&#39;t specify a Time Block.</value>
     </labels>
 </CustomLabels>

@@ -8,6 +8,8 @@
         <plural>true</plural>
         <value><!-- Relationship Lookup --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Indique si ce lien réciproque est actif.</help>
         <label>Actif</label>
@@ -28,6 +30,4 @@
         <label>Neutre</label>
         <name>Neutral__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

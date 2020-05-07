@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Langues de contact</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Contact Language Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la langue du contact</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>La personne qui parle cette langue.</help>
         <label>Contact</label>
@@ -42,14 +52,4 @@
         <label>Langue principale</label>
         <name>Primary_Language__c</name>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Contact Language Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la langue du contact</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

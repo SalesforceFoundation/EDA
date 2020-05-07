@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Term Grades</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Term Grade Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save.</help>
         <label>Contact</label>
@@ -52,7 +61,7 @@
         <name>Percent_Grade__c</name>
     </fields>
     <fields>
-        <help>The result of the student&apos;s performance for this grading period.</help>
+        <help>The result of the student&#39;s performance for this grading period.</help>
         <label>Result</label>
         <name>Result__c</name>
         <picklistValues>
@@ -99,13 +108,4 @@
         <name>Term__c</name>
         <relationshipLabel>Term Grades</relationshipLabel>
     </fields>
-    <layouts>
-        <layout>HEDA Term Grade Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Term Grade Name</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

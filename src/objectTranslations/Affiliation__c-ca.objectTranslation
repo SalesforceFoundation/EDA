@@ -8,13 +8,27 @@
         <plural>true</plural>
         <value><!-- Affiliation --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Informació d&#39;afiliació</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clau d’afiliació</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <label>Organització</label>
         <name>Account__c</name>
         <relationshipLabel>Contactes afiliats</relationshipLabel>
     </fields>
     <fields>
-        <label>Tipus d&apos;afiliació</label>
+        <label>Tipus d&#39;afiliació</label>
         <name>Affiliation_Type__c</name>
     </fields>
     <fields>
@@ -31,7 +45,7 @@
         <name>EndDate__c</name>
     </fields>
     <fields>
-        <help>Si es marca, l&apos;organització d&apos;afiliació es desa al Registre de contactes.</help>
+        <help>Si es marca, l&#39;organització d&#39;afiliació es desa al Registre de contactes.</help>
         <label>Primari</label>
         <name>Primary__c</name>
     </fields>
@@ -60,7 +74,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Data d&apos;inici</label>
+        <label>Data d&#39;inici</label>
         <name>StartDate__c</name>
     </fields>
     <fields>
@@ -75,18 +89,4 @@
             <translation>Antic</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Affiliation Layout</layout>
-        <sections>
-            <label>Informació d&apos;afiliació</label>
-            <section>Affiliation Information</section>
-        </sections>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Clau d’afiliació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

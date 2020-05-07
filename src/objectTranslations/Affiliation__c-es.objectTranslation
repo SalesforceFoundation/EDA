@@ -8,6 +8,19 @@
         <plural>true</plural>
         <value>Afiliaciones</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Información de la afiliación</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clave de afiliación</nameFieldLabel>
     <fields>
         <label>Organización</label>
         <name>Account__c</name>
@@ -75,17 +88,4 @@
             <translation>Antiguo</translation>
         </picklistValues>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Affiliation Layout</layout>
-        <sections>
-            <label>Información de la afiliación</label>
-            <section>Affiliation Information</section>
-        </sections>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Clave de afiliación</nameFieldLabel>
 </CustomObjectTranslation>
