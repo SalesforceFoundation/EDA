@@ -454,7 +454,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             if (updateWrapper.contactIdAccountIdNewOppsToMove.size() > 0 && Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
                 Advancement_Info.getApiHEDA().moveOppsToContactAccount(updateWrapper.contactIdAccountIdNewOppsToMove, updateWrapper.contactIdAccountIdOldOppsToMove);
             }
-            
+
             //Updates Account Owner to match Contact Owner change
             if (updateWrapper.contactIdContactOwnerChange.size() > 0) {
                 idToSObjectTobeUpdated = updateOwners(updateWrapper.contactIdContactOwnerChange, dmlWrapper);
@@ -466,7 +466,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
 
             dmlWrapper.objectsToUpdate.addAll(idToSObjectTobeUpdated.values());
-            
+
             TDTM_TriggerHandler.processDML(dmlWrapper, true);
             updateRecursionFlag();
 
@@ -485,21 +485,21 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Map<Id, sObject> idToSObjectRecords = new Map<Id, sObject>(idToSObjectTobeUpdated);
 
         for (SObject each: ((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(updateWrapper.contactsChangedLastName))) {
-            if (idToSObjectRecords != NULL && idToSObjectRecords.size() > 0 && idToSObjectRecords.keySet().contains(each.Id)) {
+            if (idToSObjectRecords != NULL && idToSObjectRecords.isEmpty() == false && idToSObjectRecords.keySet().contains(each.Id)) {
                 duplicateOccurence.add(each);
                 duplicateOccurence.add(idToSObjectRecords.get(each.Id));
             }
             else {
                 idToSObjectRecords.put(each.Id, each);
             }
-         }
-         if (duplicateOccurence.size() > 0) {
-             List<sObject> nonDuplicateList = SRVC_UniqueRecord.getInstance().getUniqueRecords(duplicateOccurence);
-             idToSObjectRecords.putAll(nonDuplicateList);
-         }
+        }
+        if (duplicateOccurence.isEmpty() == false) {
+            List<sObject> nonDuplicateList = SRVC_UniqueRecord.getInstance().getUniqueRecords(duplicateOccurence);
+            idToSObjectRecords.putAll(nonDuplicateList);
+        }
         return idToSObjectRecords;
     }
-    
+
     /*******************************************************************************************************
     * @description Processes after delete logic.
     * @param oldContacts is a list of Contacts from trigger old.
@@ -815,7 +815,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Set<Id> contactsAccountId = new Set<Id>();
         Map<Id, sObject> idToSObjectRecords = new Map<Id, sObject>();
 
-        if (contactOwnerChange.size() == 0) {
+        if (contactOwnerChange.isEmpty()) {
             return idToSObjectRecords;
         }
 

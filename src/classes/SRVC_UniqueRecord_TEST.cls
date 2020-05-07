@@ -374,13 +374,13 @@ private class SRVC_UniqueRecord_TEST {
 
         SObject sObjectConRecord = testContact.getSObjectType().newSobject(testContact.Id);
 
-        System.assert(((Contact)sObjectConRecord).firstName == NULL);
+        System.assert( ((Contact)sObjectConRecord).firstName == NULL );
 
         Test.startTest();
             SObject combinedRecord = SRVC_UniqueRecord.getInstance().combineRecords(testContact, sObjectConRecord);
         Test.stopTest();
 
-        System.assert(((Contact)sObjectConRecord).firstName == 'Doe');
+        System.assert( ((Contact)sObjectConRecord).firstName == 'Doe' );
     }
 
     // Test for Unique Record Functionality with related records

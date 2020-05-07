@@ -117,8 +117,8 @@ public with sharing class UTIL_Describe_TEST {
             List<String> allChildRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(sObjectTypeAcc);
         Test.stopTest();
 
-        System.assert(allChildRelationshipNames != NULL);
-        System.assert(allChildRelationshipNames.size() != 0);
+        System.assertNotEquals(NULL, allChildRelationshipNames);
+        System.assertNotEquals(0, allChildRelationshipNames.size());
         System.assert(allChildRelationshipNames.contains('Contacts'));
     }
 
@@ -130,6 +130,6 @@ public with sharing class UTIL_Describe_TEST {
             List<String> allChildRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(NULL);
         Test.stopTest();
 
-        System.assert(allChildRelationshipNames == NULL);
+        System.assertEquals(NULL, allChildRelationshipNames);
     }
 }
