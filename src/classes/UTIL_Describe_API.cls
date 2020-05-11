@@ -292,13 +292,5 @@ global class UTIL_Describe_API {
     global static String getStudentCharacteristicAttributeRecType() {
         return UTIL_Describe.getStudentCharacteristicAttributeRecType();
     }
-
-    /*******************************************************************************************************
-    * @description Returns the list of all Child Relationship Name for a given Sobject Type
-    * @return List of all the child Relationship Names
-    */
-    global static List<String> getAllChildRelationshipNames(SobjectType sObjectTypeName) {
-        return UTIL_Describe.getAllChildRelationshipNames(sObjectTypeName);
-    }
     
 }

@@ -114,7 +114,7 @@ public with sharing class UTIL_Describe_TEST {
 
         Test.startTest();
             Schema.SObjectType sObjectTypeAcc = adminAccount.getSObjectType();
-            List<String> allChildRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(sObjectTypeAcc);
+            List<String> allChildRelationshipNames = UTIL_Describe.getAllChildRelationshipNames(sObjectTypeAcc);
         Test.stopTest();
 
         System.assertNotEquals(NULL, allChildRelationshipNames);
@@ -122,14 +122,16 @@ public with sharing class UTIL_Describe_TEST {
         System.assert(allChildRelationshipNames.contains('Contacts'));
     }
 
-    // Test for childRelationshipNamesService functionality
+    // NULL Test for childRelationshipNamesService functionality
     @isTest
     private static void childRelationshipNamesServiceNegativeTest() {
-
-        Test.startTest();
-            List<String> allChildRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(NULL);
-        Test.stopTest();
-
-        System.assertEquals(NULL, allChildRelationshipNames);
+        try {
+            Test.startTest();
+                List<String> allChildRelationshipNames = UTIL_Describe.getAllChildRelationshipNames(NULL);
+            Test.stopTest();
+        } catch (Exception Ex) {
+            // Should throw a validation message, catching the message to the test the exception
+            System.assert(ex.getMessage().contains('Attempt to de-reference a null object'));
+        }
     }
 }

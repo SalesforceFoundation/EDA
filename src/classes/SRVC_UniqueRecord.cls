@@ -117,7 +117,7 @@ public virtual with sharing class SRVC_UniqueRecord {
     @TestVisible
     private SObject combineRecords(SObject sObjectRecord, SObject newSobjectRecord) {
 
-        List<String> childRelationshipNames = UTIL_Describe_API.getAllChildRelationshipNames(sObjectRecord.getSObjectType());
+        List<String> childRelationshipNames = UTIL_Describe.getAllChildRelationshipNames(sObjectRecord.getSObjectType());
 
         Map<String, Object> fieldNameToValues = sObjectRecord.getPopulatedFieldsAsMap();
         SObject interimRecord = newSobjectRecord;

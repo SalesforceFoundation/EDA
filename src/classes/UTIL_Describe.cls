@@ -877,20 +877,16 @@ public class UTIL_Describe {
     * @return sObjectTypeToChildRelationshipNames.get(sObjectTypeName) List of all the child Relationship Names
     */
     public static List<String> getAllChildRelationshipNames(SobjectType sObjectTypeName) {
+        
         if (UTIL_Describe.sObjectTypeToChildRelationshipNames.get(sObjectTypeName) == NULL) {
-
             List<String> childRelationshipNames = new List<String>();
-            try {
-                DescribeSObjectResult describe = sObjectTypeName.getDescribe();
-                for (Schema.ChildRelationship childRelationship : describe.getChildRelationships()) {
-                    if (childRelationship != NULL && childRelationship.getRelationshipName() != NULL) {
-                        childRelationshipNames.add(childRelationship.getRelationshipName());
-                    }
+            DescribeSObjectResult describe = sObjectTypeName.getDescribe();
+            for (Schema.ChildRelationship childRelationship : describe.getChildRelationships()) {
+                if (childRelationship != NULL && childRelationship.getRelationshipName() != NULL) {
+                    childRelationshipNames.add(childRelationship.getRelationshipName());
                 }
-                sObjectTypeToChildRelationshipNames.put(sObjectTypeName, childRelationshipNames);
-            } catch (Exception ex) {
-                return NULL;
-              }
+            }
+            sObjectTypeToChildRelationshipNames.put(sObjectTypeName, childRelationshipNames);
         }
 
         return sObjectTypeToChildRelationshipNames.get(sObjectTypeName);
