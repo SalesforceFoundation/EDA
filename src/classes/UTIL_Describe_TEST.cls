@@ -129,9 +129,7 @@ public with sharing class UTIL_Describe_TEST {
             Test.startTest();
                 List<String> allChildRelationshipNames = UTIL_Describe.getAllChildRelationshipNames(NULL);
             Test.stopTest();
-        } catch (Exception Ex) {
-            // Should throw a validation message, catching the message to the test the exception
-            System.assert(ex.getMessage().contains('Attempt to de-reference a null object'));
-        }
+            System.assert(false, 'alway throw an exception when NULL is passed as a parameter');
+        } catch (System.NullPointerException npe) { }
     }
 }
