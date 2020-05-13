@@ -3479,21 +3479,21 @@
         <help>Quin número de telèfon s&apos;hauria d&apos;utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
         <label>Telèfon preferit</label>
         <name>PreferredPhone__c</name>
+        <picklistValues>
+            <masterLabel>Home</masterLabel>	
+            <translation>Home Phone</translation>
+        </picklistValues>    
         <picklistValues>	
-            <masterLabel>Home</masterLabel>		
-            <translation>Home Phone</translation>	            
-        </picklistValues>    	
-        <picklistValues>		
-            <masterLabel>Mobile</masterLabel>		
-            <translation>Mobile Phone</translation>		
-        </picklistValues>		
-        <picklistValues>		
-            <masterLabel>Other</masterLabel>		
-            <translation>Other Phone</translation>		
-        </picklistValues>		
-        <picklistValues>		
-            <masterLabel>Work</masterLabel>		
-            <translation>Telèfon de la feina</translation>		
+            <masterLabel>Mobile</masterLabel>	
+            <translation>Mobile Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Other</masterLabel>	
+            <translation>Other Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Telèfon de la feina</translation>	
         </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>

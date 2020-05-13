@@ -3516,17 +3516,17 @@
         <help>Quel e-mail doit être utilisé pour la plupart des communications impliquant ce contact ?</help>
         <label>Adresse e-mail préférée</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>		
-            <masterLabel>Alternate</masterLabel>		
-            <translation>E-mail alternatif</translation>		
-        </picklistValues>		
-        <picklistValues>		
-            <masterLabel>University</masterLabel>		
-            <translation>Adresse e-mail de l&apos;université</translation>		
-        </picklistValues>		
-        <picklistValues>		
-                <masterLabel>Work</masterLabel>		
-                <translation>Adresse e-mail professionnelle</translation>		
+        <picklistValues>	
+            <masterLabel>Alternate</masterLabel>	
+            <translation>E-mail alternatif</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>University</masterLabel>	
+            <translation>Adresse e-mail de l&apos;université</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Adresse e-mail professionnelle</translation>	
         </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
