@@ -65,6 +65,10 @@
         <name>MailingCountry__c</name>
     </fields>
     <fields>
+        <label><!-- Mailing County --></label>
+        <name>MailingCounty__c</name>
+    </fields>
+    <fields>
         <label>Zip/Postal Code</label>
         <name>MailingPostalCode__c</name>
     </fields>

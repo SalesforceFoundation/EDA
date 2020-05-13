@@ -3443,6 +3443,10 @@
         <name>HIPAA__c</name>
     </fields>
     <fields>
+        <label><!-- Mailing County --></label>
+        <name>MailingCounty__c</name>
+    </fields>
+    <fields>
         <label>Antécédents militaires</label>
         <name>Military_Background__c</name>
     </fields>
@@ -3466,6 +3470,10 @@
             <masterLabel>Household__c.Name</masterLabel>
             <translation>Household__c.Name</translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Other County --></label>
+        <name>OtherCounty__c</name>
     </fields>
     <fields>
         <help>Quel numéro de téléphone doit être utilisé pour la plupart des communications impliquant ce contact ?</help>
@@ -3508,18 +3516,6 @@
         <help>Quel e-mail doit être utilisé pour la plupart des communications impliquant ce contact ?</help>
         <label>Adresse e-mail préférée</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>	
-            <masterLabel>Alternate</masterLabel>	
-            <translation>E-mail alternatif</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>University</masterLabel>	
-            <translation>Adresse e-mail de l&apos;université</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Adresse e-mail professionnelle</translation>	
-        </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
             <translation>E-mail alternatif</translation>

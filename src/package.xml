@@ -257,8 +257,10 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account.BillingCounty__c</members>
         <members>Account.Current_Address__c</members>
         <members>Account.Primary_Contact__c</members>
+        <members>Account.ShippingCounty__c</members>
         <members>Address__c.Address_Type__c</members>
         <members>Address__c.Default_Address__c</members>
         <members>Address__c.Formula_MailingAddress__c</members>
@@ -268,6 +270,7 @@
         <members>Address__c.Latest_Start_Date__c</members>
         <members>Address__c.MailingCity__c</members>
         <members>Address__c.MailingCountry__c</members>
+        <members>Address__c.MailingCounty__c</members>
         <members>Address__c.MailingPostalCode__c</members>
         <members>Address__c.MailingState__c</members>
         <members>Address__c.MailingStreet2__c</members>
@@ -353,9 +356,11 @@
         <members>Contact.Gender__c</members>
         <members>Contact.HIPAA_Detail__c</members>
         <members>Contact.HIPAA__c</members>
+        <members>Contact.MailingCounty__c</members>
         <members>Contact.Military_Background__c</members>
         <members>Contact.Military_Service__c</members>
         <members>Contact.Naming_Exclusions__c</members>
+        <members>Contact.OtherCounty__c</members>
         <members>Contact.PreferredPhone__c</members>
         <members>Contact.Preferred_Email__c</members>
         <members>Contact.Primary_Address_Type__c</members>
@@ -463,8 +468,8 @@
         <members>Hierarchy_Settings__c.Prevent_Behavior_Involvement_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Case_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Contact_Deletion__c</members>
-        <members>Hierarchy_Settings__c.Prevent_Course_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Connection_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Course_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Offering_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Plan_Requirement_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Program_Plan_Deletion__c</members>
