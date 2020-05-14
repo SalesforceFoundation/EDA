@@ -54,6 +54,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Contact Language Name --></nameFieldLabel>
+    <nameFieldLabel>Nom de l’idioma de contacte</nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>
