@@ -122,7 +122,7 @@ tasks:
     robot_libdoc:
         # description: Generates documentation for project keyword files.
         options:
-            path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot
+            path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot,robot/EDA/resources/*PageObject.py
             output: robot/EDA/doc/Keywords.html
 
     update_admin_profile:
