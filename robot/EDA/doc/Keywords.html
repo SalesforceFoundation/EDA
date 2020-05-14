@@ -1,0 +1,1949 @@
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+      crossorigin="anonymous">
+    </script>
+    <script>
+      function filter() {
+          var filter_string = $("#filter").val().toLowerCase();
+          $(".kwtable .kwname").each(function() {
+              if ($(this).text().toLowerCase().indexOf(filter_string) !== -1) {
+                  $(this).parent().show();
+              } else {
+                  $(this).parent().hide();
+              }
+          })
+      }
+      $(document).ready(function() {
+          $("#filter").on("input", function() {
+              filter()
+          })
+          $("#filter").keyup(function() {
+              filter()
+          })
+      });
+    </script>
+    <style>
+      body {
+    font-family: 'Open Sans', sans-serif;
+}
+.container {
+    margin: 2em;
+}
+#search {
+    width: 20em;
+}
+.header {
+    display: flex;
+    align-items: bottom;
+}
+.header h1 {
+    margin-top: 0px;
+}
+.header search {
+    align-self: flex-end;
+    margin-bottom: 0px;
+}
+.file-header: {
+    margin-bottom: 10em;
+}
+.file-header h2 {
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #127a9a
+}
+.right {
+    margin-left: auto;
+}
+.search {
+    align-self: center;
+}
+.search {
+    border: 0px;
+}
+.search input {
+    border: 1px solid gray;
+    padding: 4px;
+}
+.footer {
+    margin: 30px;
+    /* background: black; */
+    font-size: 80%;
+    /* color: gray; */
+    padding: 4px;
+}
+.section {
+    margin-bottom: 2em;
+    margin-left: 2em;
+}
+
+pre {
+    max-width: 60em;
+    border: 1px solid lightgrey;
+    padding: 10px 0px 10px 10px;
+}
+
+.pageobject-file-description {
+    margin-left: 2em;
+}
+
+.description {
+    margin-top: 0em;
+    margin-bottom: .5em;
+    padding-left: 0em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    max-width: 60em;
+}
+
+.kwtable {
+    box-shadow: 3px 3px 5px #d4d4d4;
+    border-collapse: collapse;
+    border: 1px solid gray;
+    text-align: left;
+    width: 100%;
+}
+.kwtable th {
+    font-weight: normal;
+    background: #109AD7;
+    color: #f0f0f0;
+    padding: 4px;
+    border: 1px solid gray;
+}
+.kwrow td {
+    padding: 4px;
+    border: 1px solid gray;
+    vertical-align: top;
+}
+.kwtable tr:hover {
+    background-color: #f9f9f9;
+}
+.kwtable .kwargs {
+    width: 20%;
+}
+.kwtable .kwname {
+    font-weight: bold;
+    width: 25%;
+    /* min-width: 15em; */
+    /* max-width: 20%; */
+}
+.library-documentation {
+    margin-bottom: 2em;
+    margin-left: 2em;
+}
+
+.pageobject-header {
+    margin-top: 2em;
+    margin-left: 0px;
+    padding: 0px;
+    border-spacing: 0px;
+}
+
+.pageobject-header td {
+    border: 0px;
+    padding-right: 1.5em;
+}
+.pageobject-header .data {
+    padding-right: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.pageobject-header .labels {
+    font-size: .75em;
+    font-weight: normal;
+    color: gray;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- this is the header for the documentation as a whole -->
+      <div class="header">
+        <h1 class="title">EDA</h1>
+        <div class="filter right">filter: <input id="filter" type="filter"></input></div>
+      </div>
+
+      
+      <div class="file" id="file-robot/EDA/resources/EDA.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/EDA.py'>EDA.py</h2>
+          <div class='file-path'>robot/EDA/resources/EDA.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="">
+
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>EDA</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="EDA.py.Check Field Value">
+                <td class="kwname">
+                  Check Field Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>checks value of a field in details page(section without header)</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Check If Element Exists">
+                <td class="kwname">
+                  Check If Element Exists
+                </td>
+                <td class="kwargs">
+                  
+                  <i>xpath</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Check Status">
+                <td class="kwname">
+                  Check Status
+                </td>
+                <td class="kwargs">
+                  
+                  <i>acc_name</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Choose Panel Tab">
+                <td class="kwname">
+                  Choose Panel Tab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>tab</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Opens panel tab - as passed in to the function tab is a label on menu item, and not a locator.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click Dropdown">
+                <td class="kwname">
+                  Click Dropdown
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click Edit Button">
+                <td class="kwname">
+                  Click Edit Button
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click Id">
+                <td class="kwname">
+                  Click Id
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click On Element">
+                <td class="kwname">
+                  Click On Element
+                </td>
+                <td class="kwargs">
+                  
+                  <i>*args</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click On Element If Exists">
+                <td class="kwname">
+                  Click On Element If Exists
+                </td>
+                <td class="kwargs">
+                  
+                  <i>path</i>, 
+                  
+                  <i>*args</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Clicks on the element if it exists by building a locator using the path and args but the keyword will not fail in case the element doesn't exist</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click Record Button">
+                <td class="kwname">
+                  Click Record Button
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Pass title of the button to click the buttons on the records edit page. Most common buttons are: save and cancel.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click Special Related List Button">
+                <td class="kwname">
+                  Click Special Related List Button
+                </td>
+                <td class="kwargs">
+                  
+                  <i>heading</i>, 
+                  
+                  <i>button_title</i>
+                  
+                </td>
+                <td class="kwdoc"><p>To Click on a related list button which would open up a new lightning page rather than a modal. Pass the list name and button name</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click X Icon">
+                <td class="kwname">
+                  Click X Icon
+                </td>
+                <td class="kwargs">
+                  
+                  <i>field_name</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>To click on x</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Close All Tabs">
+                <td class="kwname">
+                  Close All Tabs
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Gets the count of the tabs that are open and closes them all</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Close Toast Message">
+                <td class="kwname">
+                  Close Toast Message
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Close the toast message banner</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Confirm Status">
+                <td class="kwname">
+                  Confirm Status
+                </td>
+                <td class="kwargs">
+                  
+                  <i>field</i>, 
+                  
+                  <i>status</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Convert Time To UTC Timezone">
+                <td class="kwname">
+                  Convert Time To UTC Timezone
+                </td>
+                <td class="kwargs">
+                  
+                  <i>my_time</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Converts the given datetime to UTC timezone my_time should be in the format %Y-%m-%d %H:%M:%S</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Edit Eda Settings Checkbox">
+                <td class="kwname">
+                  Edit Eda Settings Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                  <i>checkbox_label</i>, 
+                  
+                  <i>checkbox_toggle</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Updates the checkbox_label value to checkbox_toggle in the EDA settings page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Format All">
+                <td class="kwname">
+                  Format All
+                </td>
+                <td class="kwargs">
+                  
+                  <i>loc</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Formats the given locator with the value for all {} occurrences</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Get Eda Locator">
+                <td class="kwname">
+                  Get Eda Locator
+                </td>
+                <td class="kwargs">
+                  
+                  <i>path</i>, 
+                  
+                  <i>*args</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Returns a rendered locator string from the eda_lex_locators dictionary. This can be useful if you want to use an element in a different way than the built in keywords allow.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Get Eda Namespace Prefix">
+                <td class="kwname">
+                  Get Eda Namespace Prefix
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Returns the EDA namespace value if the target org is a managed org else returns blank value</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Get Header Date Value">
+                <td class="kwname">
+                  Get Header Date Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Validates if the specified header field has specified value</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Get Id">
+                <td class="kwname">
+                  Get Id
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Get Main Header">
+                <td class="kwname">
+                  Get Main Header
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Header Field Value">
+                <td class="kwname">
+                  Header Field Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Validates if the specified header field has specified value</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Java Click On Element">
+                <td class="kwname">
+                  Java Click On Element
+                </td>
+                <td class="kwargs">
+                  
+                  <i>path</i>, 
+                  
+                  <i>*args</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Open Custom Settings">
+                <td class="kwname">
+                  Open Custom Settings
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>, 
+                  
+                  <i>error_message</i>, 
+                  
+                  <i>capture_screen</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Performs a wait until the element shows on the page, and clicks the element</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Open Panel Tab">
+                <td class="kwname">
+                  Open Panel Tab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>tab</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Opens specific panel tab, as passed in to function Note:  this is a label on a menu item, and not a locator</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Page Contains Record">
+                <td class="kwname">
+                  Page Contains Record
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Validates if the specified record is present on the page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Pick Date">
+                <td class="kwname">
+                  Pick Date
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>To pick a date from the date picker</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Populate Address">
+                <td class="kwname">
+                  Populate Address
+                </td>
+                <td class="kwargs">
+                  
+                  <i>loc</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Populate address with Place Holder aka Mailing Street etc as a locator and actual value of the place holder.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Populate Placeholder">
+                <td class="kwname">
+                  Populate Placeholder
+                </td>
+                <td class="kwargs">
+                  
+                  <i>loc</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Populate placeholder element as a locator and actual value of the place holder.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Checkbox In Eda Settings">
+                <td class="kwname">
+                  Select Checkbox In Eda Settings
+                </td>
+                <td class="kwargs">
+                  
+                  <i>loc_check</i>, 
+                  
+                  <i>loc_checkbox</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Selects checkbox.  Does nothing if checkbox is already checked</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Frame With Value">
+                <td class="kwname">
+                  Select Frame With Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Selects frame identified by the given value value should be the 'id', 'title' or 'name' attribute value of the webelement used to identify the frame</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Modal Checkbox">
+                <td class="kwname">
+                  Select Modal Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Navigation Tab">
+                <td class="kwname">
+                  Select Navigation Tab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>tab</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Selects navigation tab - as passed in to the function tab is not a locator, but is a label on a tab.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Object Dropdown">
+                <td class="kwname">
+                  Select Object Dropdown
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Option">
+                <td class="kwname">
+                  Select Option
+                </td>
+                <td class="kwargs">
+                  
+                  <i>name</i>
+                  
+                </td>
+                <td class="kwdoc"><p>selects various options in Contact&gt;New opportunity page using name</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Related Dropdown">
+                <td class="kwname">
+                  Select Related Dropdown
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Related Row">
+                <td class="kwname">
+                  Select Related Row
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>To select row from a related list based on name and open the dropdown</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Relatedlist">
+                <td class="kwname">
+                  Select Relatedlist
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"><p>click on the related list to open it</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Row">
+                <td class="kwname">
+                  Select Row
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>To select a row on object page based on name and open the dropdown</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select Tab">
+                <td class="kwname">
+                  Select Tab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>*args</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Switch between different tabs on a record page like Related, Details, News, Activity and Chatter Pass title of the tab</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select The Tab">
+                <td class="kwname">
+                  Select The Tab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Switch between different tabs on a record page like Related, Details, News, Activity and Chatter Pass title of the tab</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Selenium Execute With Retry">
+                <td class="kwname">
+                  Selenium Execute With Retry
+                </td>
+                <td class="kwargs">
+                  
+                  <i>execute</i>, 
+                  
+                  <i>command</i>, 
+                  
+                  <i>params</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Run a single selenium command and retry once.</p>
+<p>The retry happens for certain errors that are likely to be resolved by retrying.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Send Keys To Page">
+                <td class="kwname">
+                  Send Keys To Page
+                </td>
+                <td class="kwargs">
+                  
+                  <i>loc</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Send keys to current page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Shift To Default Content">
+                <td class="kwname">
+                  Shift To Default Content
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Returns to main content, and out of iframe</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify App Exists">
+                <td class="kwname">
+                  Verify App Exists
+                </td>
+                <td class="kwargs">
+                  
+                  <i>app</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verifies that the given app is present in the app launcher</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Contact Role">
+                <td class="kwname">
+                  Verify Contact Role
+                </td>
+                <td class="kwargs">
+                  
+                  <i>name</i>, 
+                  
+                  <i>role</i>
+                  
+                </td>
+                <td class="kwdoc"><p>verifies the contact role on opportunity page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Contact Roles">
+                <td class="kwname">
+                  Verify Contact Roles
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Details Address">
+                <td class="kwname">
+                  Verify Details Address
+                </td>
+                <td class="kwargs">
+                  
+                  <i>field</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Validates if the details page address field has specified value</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Field Value">
+                <td class="kwname">
+                  Verify Field Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>field</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Record">
+                <td class="kwname">
+                  Verify Record
+                </td>
+                <td class="kwargs">
+                  
+                  <i>name</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Checks for the record in the object page and returns true if found else returns false</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Related List Items">
+                <td class="kwname">
+                  Verify Related List Items
+                </td>
+                <td class="kwargs">
+                  
+                  <i>list_name</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verifies a specified related list has specified value(doesn't work if the list is in table format)</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Toast Message">
+                <td class="kwname">
+                  Verify Toast Message
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verifies the toast message</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Wait For Aura">
+                <td class="kwname">
+                  Wait For Aura
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Run the WAIT_FOR_AURA_SCRIPT.</p>
+<p>This script polls Aura via $A in Javascript to determine when all in-flight XHTTP requests have completed before continuing.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Wait For Locator">
+                <td class="kwname">
+                  Wait For Locator
+                </td>
+                <td class="kwargs">
+                  
+                  <i>*args</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Wait For New Window">
+                <td class="kwname">
+                  Wait For New Window
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Waits for specified window to be available by checking every 1 seconds for 25 times</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Wait For Toast Message">
+                <td class="kwname">
+                  Wait For Toast Message
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Acknowledges the success message</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Write To Console">
+                <td class="kwname">
+                  Write To Console
+                </td>
+                <td class="kwargs">
+                  
+                  <i>message</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Writes a message to console on a new line</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/EDA.robot">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/EDA.robot'>EDA.robot</h2>
+          <div class='file-path'>robot/EDA/resources/EDA.robot</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="">
+
+          
+
+          <div class='description' title='Description'><p>Documentation for resource file <code>EDA</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Create Contact">
+                <td class="kwname">
+                  API Create Contact
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Create Course">
+                <td class="kwname">
+                  API Create Course
+                </td>
+                <td class="kwargs">
+                  
+                  <i>account_id</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Create Course Enrollment">
+                <td class="kwname">
+                  API Create Course Enrollment
+                </td>
+                <td class="kwargs">
+                  
+                  <i>contact_id</i>, 
+                  
+                  <i>offering_id</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Create Course Offering">
+                <td class="kwname">
+                  API Create Course Offering
+                </td>
+                <td class="kwargs">
+                  
+                  <i>course_id</i>, 
+                  
+                  <i>term_id</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Create Department">
+                <td class="kwname">
+                  API Create Department
+                </td>
+                <td class="kwargs">
+                  
+                  <i>record_type=University_Department</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API create plan requirement">
+                <td class="kwname">
+                  API create plan requirement
+                </td>
+                <td class="kwargs">
+                  
+                  <i>plan_req_name</i>, 
+                  
+                  <i>program_plan_id</i>, 
+                  
+                  <i>**fields</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Creating a Plan Requirement through API call</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Create Program">
+                <td class="kwname">
+                  API Create Program
+                </td>
+                <td class="kwargs">
+                  
+                  <i>record_type=Academic_Program</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API create program plan">
+                <td class="kwname">
+                  API create program plan
+                </td>
+                <td class="kwargs">
+                  
+                  <i>program_plan_name</i>, 
+                  
+                  <i>**fields</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Creating a Program Plan through API call</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Create Term">
+                <td class="kwname">
+                  API Create Term
+                </td>
+                <td class="kwargs">
+                  
+                  <i>account_id</i>, 
+                  
+                  <i>**fields</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Get ID">
+                <td class="kwname">
+                  API Get ID
+                </td>
+                <td class="kwargs">
+                  
+                  <i>obj_name</i>, 
+                  
+                  <i>field_name</i>, 
+                  
+                  <i>field_value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Returns the ID of a record identified by the given field_name and field_value input for a specific object</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Capture SAL and EDA package details">
+                <td class="kwname">
+                  Capture SAL and EDA package details
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Captures the package details from SAL setup page and prints it to console</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Capture Screenshot and Close Browser If Tests Passed">
+                <td class="kwname">
+                  Capture Screenshot and Close Browser If Tests Passed
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Captures screenshot if a test fails and closes the browser if all tests pass else leaves the browser open</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Capture Screenshot and Delete Records and Close Browser">
+                <td class="kwname">
+                  Capture Screenshot and Delete Records and Close Browser
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Captures screenshot if a test fails, deletes session records and closes the browser</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Choose Frame">
+                <td class="kwname">
+                  Choose Frame
+                </td>
+                <td class="kwargs">
+                  
+                  <i>frame</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Contact">
+                <td class="kwname">
+                  Create Contact
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Contact with Address">
+                <td class="kwname">
+                  Create Contact with Address
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Contact with Email">
+                <td class="kwname">
+                  Create Contact with Email
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Course Enrollment">
+                <td class="kwname">
+                  Create Course Enrollment
+                </td>
+                <td class="kwargs">
+                  
+                  <i>contact_id</i>, 
+                  
+                  <i>offering_name</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Department">
+                <td class="kwname">
+                  Create Department
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create HouseHold">
+                <td class="kwname">
+                  Create HouseHold
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Opportunities">
+                <td class="kwname">
+                  Create Opportunities
+                </td>
+                <td class="kwargs">
+                  
+                  <i>opp_name</i>, 
+                  
+                  <i>hh_name</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Organization Foundation">
+                <td class="kwname">
+                  Create Organization Foundation
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Primary Affiliation">
+                <td class="kwname">
+                  Create Primary Affiliation
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Program">
+                <td class="kwname">
+                  Create Program
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Create Secondary Affiliation">
+                <td class="kwname">
+                  Create Secondary Affiliation
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Go to EDA settings">
+                <td class="kwname">
+                  Go to EDA settings
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Clicks on App Waffle and selects 'EDA Settings' tab</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.New Contact for HouseHold">
+                <td class="kwname">
+                  New Contact for HouseHold
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Open Test Browser And Print Package Details">
+                <td class="kwname">
+                  Open Test Browser And Print Package Details
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Opens the test browser and runs a keyword that prints package details from setup</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Populate Create And Return Contact with Address">
+                <td class="kwname">
+                  Populate Create And Return Contact with Address
+                </td>
+                <td class="kwargs">
+                  
+                  <i>first_name</i>, 
+                  
+                  <i>last_name</i>, 
+                  
+                  <i>mailing_street</i>, 
+                  
+                  <i>mailing_city</i>, 
+                  
+                  <i>mailing_zip</i>, 
+                  
+                  <i>mailing_state</i>, 
+                  
+                  <i>mailing_country</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Scroll Page To Location">
+                <td class="kwname">
+                  Scroll Page To Location
+                </td>
+                <td class="kwargs">
+                  
+                  <i>x_location</i>, 
+                  
+                  <i>y_location</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Select Frame with ID">
+                <td class="kwname">
+                  Select Frame with ID
+                </td>
+                <td class="kwargs">
+                  
+                  <i>id</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Select Frame With Title">
+                <td class="kwname">
+                  Select Frame With Title
+                </td>
+                <td class="kwargs">
+                  
+                  <i>name</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/AffiliationsPageObject.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/AffiliationsPageObject.py'>AffiliationsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/AffiliationsPageObject.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="Listing-hed__HEDA_Settings">
+
+          
+          <div class='pageobject-header'>
+
+            <table class='pageobject-header'>
+              <tbody>
+	        <tr class='data'>
+	          <td title='Page Type'>Listing</td>
+	          <td title='Object Name'>hed__HEDA_Settings</td>
+	        </tr>
+	        <tr class='labels'>
+	          <td>Page Type</td>
+	          <td>Object Name</td>
+	        </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>AffiliationsPageObject.EDASettingsPage</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Add Text To All Text Fields">
+                <td class="kwname">
+                  Add Text To All Text Fields
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Add sample text to each text field to verify that populated fields may be saved properly</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Clear Everything On Affiliation Mappings">
+                <td class="kwname">
+                  Clear Everything On Affiliation Mappings
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Clears all values from every field and checkbox on the Affiliation Mappings page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Click Button">
+                <td class="kwname">
+                  Click Button
+                </td>
+                <td class="kwargs">
+                  
+                  <i>button</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Select the specified button from the page that is specified</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Disable The Checkbox">
+                <td class="kwname">
+                  Disable The Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>, 
+                  
+                  <i>tab</i>, 
+                  
+                  <i>loc_checkbox</i>, 
+                  
+                  <i>loc_checkbox_edit</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Ensure that the specified checkbox is NOT checked Uncheck the checkbox if it is checked Do nothing if the checkbox is already clear</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Enable The Checkbox">
+                <td class="kwname">
+                  Enable The Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>, 
+                  
+                  <i>tab</i>, 
+                  
+                  <i>loc_checkbox</i>, 
+                  
+                  <i>loc_checkbox_edit</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Ensure that the specified checkbox is checked Set the checkbox if it is not set Do nothing if the checkbox is already set</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Go To Affiliation Mappings">
+                <td class="kwname">
+                  Go To Affiliation Mappings
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Navigate to the Affiliations and Affiliation Mappings page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Go To Affiliation Settings">
+                <td class="kwname">
+                  Go To Affiliation Settings
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Navigate to the Affiliations and Settings pages</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Go To Affiliations Edit Mode">
+                <td class="kwname">
+                  Go To Affiliations Edit Mode
+                </td>
+                <td class="kwargs">
+                  
+                  <i>loc</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Go into Edit mode and remove the con</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Log Current Page Object">
+                <td class="kwname">
+                  Log Current Page Object
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Logs the name of the current page object</p>
+<p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Open Item">
+                <td class="kwname">
+                  Open Item
+                </td>
+                <td class="kwargs">
+                  
+                  <i>locator</i>, 
+                  
+                  <i>error_message</i>, 
+                  
+                  <i>capture_screen</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Performs a wait until the element shows on the page, and clicks the element. Pass capture_screen as False to turn off screen capture and True to turn on screen capture</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Place In View">
+                <td class="kwname">
+                  Place In View
+                </td>
+                <td class="kwargs">
+                  
+                  <i>locator</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Scroll the field or object into the current view Examples:</p>
+<table border="1">
+<tr>
+<th>Function</th>
+<th>argument</th>
+</tr>
+<tr>
+<td>place_in_view</td>
+<td>any locator</td>
+</tr>
+<tr>
+<td>self.place_in_view(affiliations_locators["header"])</td>
+<td></td>
+</tr>
+</table></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Process Default Mapping Values">
+                <td class="kwname">
+                  Process Default Mapping Values
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>1. Navigate to EDA Settings. 2. Ensure you're on Affiliations &gt; Affiliation Mappings 3. Verify the values in the first row contains the following values: -Account Record Type: 'Academic Program' -Contact Primary Affl Field: 'Primary Academic Program' -Auto-Enrollment: checked -Auto-Enrollment Status: 'Current' -Auto-Enrollment Role: 'Student' 4. Verify the values in the second row contains the following values: -Account Record Type: 'Business Organization' -Contact Primary Affl Field: 'Primary Business Organization' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 5. Verify the values in the third row contains the following values: -Account Record Type: 'Educational Institution' -Contact Primary Affl Field: 'Primary Educational Institution' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 6. Verify the values in the fourth row contains the following values: -Account Record Type: 'Household Account' -Contact Primary Affl Field: 'Primary Household' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 7. Verify the values in the fifth row contains the following values: -Account Record Type: 'Sports Organization' -Contact Primary Affl Field: 'Primary Sports Organization' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 8. Verify the values in the sixth row contains the following values: -Account Record Type: 'University Department' -Contact Primary Affl Field: 'Primary Department' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 9. Verify there are only six rows present 10. Verify that all text fields values are null and the checkbox is unchecked in the 'New Affiliation Mapping' fields</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Process Default Values">
+                <td class="kwname">
+                  Process Default Values
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Validate the default values for Affiliation Settings</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsPageObject.py.Verify Toast Message">
+                <td class="kwname">
+                  Verify Toast Message
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verifies the toast message</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/ContactsPageObject.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/ContactsPageObject.py'>ContactsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/ContactsPageObject.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="Details-Contact">
+
+          
+          <div class='pageobject-header'>
+
+            <table class='pageobject-header'>
+              <tbody>
+	        <tr class='data'>
+	          <td title='Page Type'>Details</td>
+	          <td title='Object Name'>Contact</td>
+	        </tr>
+	        <tr class='labels'>
+	          <td>Page Type</td>
+	          <td>Object Name</td>
+	        </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>ContactsPageObject.ContactDetailPage</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Add Home Phone And Work Phone To Contact">
+                <td class="kwname">
+                  Add Home Phone And Work Phone To Contact
+                </td>
+                <td class="kwargs">
+                  
+                  <i>name</i>, 
+                  
+                  <i>checked</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Open the contact details and add a home phone and office phone and save.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Add Home Phone To Contact And Verify">
+                <td class="kwname">
+                  Add Home Phone To Contact And Verify
+                </td>
+                <td class="kwargs">
+                  
+                  <i>name</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Open the contact details and add a home phone and save Verify that the home phone is NOT copied to Phone field and that the 'Preferred Phone' is set to None</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Clear The Disable Preferred Phone Enforcement">
+                <td class="kwname">
+                  Clear The Disable Preferred Phone Enforcement
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is not checked Clear the checkbox if it is set Do nothing if the checkbox is already empty</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Click Action Button">
+                <td class="kwname">
+                  Click Action Button
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Clicks on the 'Action' button in Contacts</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Click New Contact Button">
+                <td class="kwname">
+                  Click New Contact Button
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Clicks on the 'New Contact' button in Contacts</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Disable Enchanced Checkbox">
+                <td class="kwname">
+                  Disable Enchanced Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that Enable Enhanced Preferred Phone Functionality checkbox is not checked Clear the checkbox if it is set Do nothing if the checkbox is already empty</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Enable Enchanced Checkbox">
+                <td class="kwname">
+                  Enable Enchanced Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Ensure that the Enhanced Preferred Phone Functionality checkbox is checked Set the checkbox if it is not set Do nothing if the checkbox is already set</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Go To Affiliations Edit Mode">
+                <td class="kwname">
+                  Go To Affiliations Edit Mode
+                </td>
+                <td class="kwargs">
+                  
+                  <i>loc</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Go into Edit mode and remove the con</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Log Current Page Object">
+                <td class="kwname">
+                  Log Current Page Object
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Logs the name of the current page object</p>
+<p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Open Apex">
+                <td class="kwname">
+                  Open Apex
+                </td>
+                <td class="kwargs">
+                  
+                  <i>title</i>, 
+                  
+                  <i>error_message</i>, 
+                  
+                  <i>capture_screen</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Performs a wait until the element shows on the page, and clicks the element</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Open Item">
+                <td class="kwname">
+                  Open Item
+                </td>
+                <td class="kwargs">
+                  
+                  <i>locator</i>, 
+                  
+                  <i>error_message</i>, 
+                  
+                  <i>capture_screen</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Performs a wait until the element shows on the page, and clicks the element</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Place In View">
+                <td class="kwname">
+                  Place In View
+                </td>
+                <td class="kwargs">
+                  
+                  <i>locator</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Scroll the field or object into the current view Examples:</p>
+<table border="1">
+<tr>
+<th>Function</th>
+<th>argument</th>
+</tr>
+<tr>
+<td>place_in_view</td>
+<td>any locator</td>
+</tr>
+<tr>
+<td>self.place_in_view(contacts_locators["header"])</td>
+<td></td>
+</tr>
+</table></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Refresh Contacts">
+                <td class="kwname">
+                  Refresh Contacts
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Refresh the contacts list by clicking on the refresh button</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Run Phone Cleanup">
+                <td class="kwname">
+                  Run Phone Cleanup
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Click on the 'Run Phone Cleanup' button. Also verifies that the 'Run Phone Cleanup' was queued to run.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Select Action">
+                <td class="kwname">
+                  Select Action
+                </td>
+                <td class="kwargs">
+                  
+                  <i>action</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Select the action shortcut</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Select Contact">
+                <td class="kwname">
+                  Select Contact
+                </td>
+                <td class="kwargs">
+                  
+                  <i>contact_firstname</i>, 
+                  
+                  <i>contact_lastname</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Select the contact from the Contacts Recently Viewed list</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Set The Disable Preferred Phone Enforcement">
+                <td class="kwname">
+                  Set The Disable Preferred Phone Enforcement
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is checked. Set the checkbox if it is not already set. Do nothing if the checkbox is already checked.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Validate Preferred Phone Form">
+                <td class="kwname">
+                  Validate Preferred Phone Form
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Test the preferred phone fields and functionality</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Verify Contact Values">
+                <td class="kwname">
+                  Verify Contact Values
+                </td>
+                <td class="kwargs">
+                  
+                  <i>FirstName</i>, 
+                  
+                  <i>LastName</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that the Home Phone number is copied to Phone field</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Verify Setting Of Disable Preferred Phone Enforcement">
+                <td class="kwname">
+                  Verify Setting Of Disable Preferred Phone Enforcement
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is not checked Clear the checkbox if it is set Do nothing if the checkbox is already empty</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Verify Timezone">
+                <td class="kwname">
+                  Verify Timezone
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that a timezone value exists there is currently an open bug on this, once fixed, the keyword needs to be modified to check for a specific timezone</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Verify Toast Message">
+                <td class="kwname">
+                  Verify Toast Message
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verifies the toast message</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Wait And Refresh Static Page Until Text">
+                <td class="kwname">
+                  Wait And Refresh Static Page Until Text
+                </td>
+                <td class="kwargs">
+                  
+                  <i>search_text</i>, 
+                  
+                  <i>wait_time</i>, 
+                  
+                  <i>loc_frame</i>, 
+                  
+                  <i>loc_text</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Wait for text to appear on static page.  Note that the page is refreshed each 'wait_time' until the specified text 'search_text' appears. 'loc_text' will return the text portion of the locator</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+        <div class="section" pageobject="Listing-Contact">
+
+          
+          <div class='pageobject-header'>
+
+            <table class='pageobject-header'>
+              <tbody>
+	        <tr class='data'>
+	          <td title='Page Type'>Listing</td>
+	          <td title='Object Name'>Contact</td>
+	        </tr>
+	        <tr class='labels'>
+	          <td>Page Type</td>
+	          <td>Object Name</td>
+	        </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>ContactsPageObject.ContactsListingPage</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="ContactsPageObject.py.Log Current Page Object">
+                <td class="kwname">
+                  Log Current Page Object
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Logs the name of the current page object</p>
+<p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+    </div>
+    <div class="footer">
+      Generated on Monday May 11, 02:05 PM - cumulusci v3.12.1
+    </div>
+  </body>
+</html>
