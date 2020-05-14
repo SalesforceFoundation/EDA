@@ -14,6 +14,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -110,6 +111,16 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Language_Details__c</fullName>
+        <description>Additional language details.</description>
+        <externalId>false</externalId>
+        <label>Language Details</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Language__c</fullName>
