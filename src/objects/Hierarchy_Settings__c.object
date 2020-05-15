@@ -374,6 +374,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Prevent_Affiliation_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Affiliation Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Prevent_Behavior_Involvement_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
