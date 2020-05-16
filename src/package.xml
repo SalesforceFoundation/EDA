@@ -28,6 +28,7 @@
         <members>AFFL_AccRecordType_TDTM</members>
         <members>AFFL_AccRecordType_TEST</members>
         <members>AFFL_CannotDelete_TDTM</members>
+        <members>AFFL_CannotDelete_TEST</members>
         <members>AFFL_ContactAccChange_TEST</members>
         <members>AFFL_ContactChange_TDTM</members>
         <members>AFFL_MultiRecordTypeMapper</members>
