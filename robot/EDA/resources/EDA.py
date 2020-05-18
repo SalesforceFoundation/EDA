@@ -537,12 +537,6 @@ class EDA(object):
         locator = eda_lex_locators["app_tile"].format(app)
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{app} did not open in 1 min')
 
-    @capture_screenshot_on_error 
-    def checkbox_status(self,cbx_name,status):
-        """verifies if the specified checkbox is with expected status in readonly mode"""
-        locator=locator(cbx_name,status)
-        self.selenium.page_should_contain_element(locator)
-
     def select_frame_with_value(self, value):
         """ Selects the first displayed iframe on the page identified by the given value
             :param value should be the 'id', 'title' or 'name' attribute of the webelement used to identify the iframe
