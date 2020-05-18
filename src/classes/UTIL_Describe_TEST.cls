@@ -122,14 +122,14 @@ public with sharing class UTIL_Describe_TEST {
         System.assert(allChildRelationshipNames.contains('Contacts'));
     }
 
-    // NULL Test for childRelationshipNamesService functionality
+    // NPE Test for childRelationshipNamesService functionality
     @isTest
-    private static void childRelationshipNamesServiceNegativeTest() {
+    private static void childRelationshipNamesNPETest() {
         try {
             Test.startTest();
                 List<String> allChildRelationshipNames = UTIL_Describe.getAllChildRelationshipNames(NULL);
             Test.stopTest();
-            System.assert(false, 'alway throw an exception when NULL is passed as a parameter');
+            System.assert(false, 'Always throw an exception when NULL is passed as a parameter');
         } catch (System.NullPointerException npe) { }
     }
 }
