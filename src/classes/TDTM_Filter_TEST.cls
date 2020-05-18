@@ -500,12 +500,13 @@ public with sharing class TDTM_Filter_TEST {
         System.assertEquals(2, rels.size());
     }
 
-    public static testmethod void customObject() {
+    @isTest
+    private static void customObject() {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
                 Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'));
-                
+
         List<TDTM_Global_API.TdtmToken> tokens = setup();
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
@@ -515,37 +516,51 @@ public with sharing class TDTM_Filter_TEST {
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
-        
+
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
-            
-        Account accFiltered = new Account(Name = 'Acme', RecordTypeId = orgRecTypeID);
-        Account accNotFiltered = new Account(Name = 'ABC', RecordTypeId = householdRecTypeID);
+
+        Account accFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account accNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, householdRecTypeID)[0];
         insert new Account[] {accFiltered, accNotFiltered};
-        
-        Address__c addressFiltered = new Address__c(Parent_Account__c = accFiltered.Id, MailingStreet__c = '123 Main St');
-        Address__c addressNotFiltered = new Address__c(Parent_Account__c = accNotFiltered.Id, MailingStreet__c = '123 Main St');
+
+        Address__c addressFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        addressFiltered.Parent_Account__c = accFiltered.Id;
+        addressFiltered.MailingStreet__c = '123 Main St';
+
+        Address__c addressNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        addressNotFiltered.Parent_Account__c = accNotFiltered.Id; 
+        addressNotFiltered.MailingStreet__c = '123 Main St';
+
         insert new Address__c[] {addressFiltered, addressNotFiltered};
 
         //Creating four contacts. two of them are not students, because they don't have a university email.
-        Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Current_Address__c = addressNotFiltered.Id);
-        Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Current_Address__c = addressFiltered.Id);
-        Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3');
-        Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Current_Address__c = addressFiltered.Id);
+
+        Contact c1 = UTIL_UnitTestData_TEST.getContact();
+        c1.Current_Address__c = addressNotFiltered.Id;
+
+        Contact c2 = UTIL_UnitTestData_TEST.getContact();
+        c2.Current_Address__c = addressFiltered.Id;
+
+        Contact c3 =  UTIL_UnitTestData_TEST.getContact();
+
+        Contact c4 = UTIL_UnitTestData_TEST.getContact();
+        c4.Current_Address__c = addressFiltered.Id;
+
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
         insert contacts;
-        
+
         //Adding lookups among the contacts. Relationships should be automatically created from them.
         //Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
         c1.ReportsToId = c2.Id;
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-        update contacts;
+            update contacts;
         Test.stopTest();
-        
+
         //Only those from c1 and c3 should have had a relationship automatically created.
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
-        System.assertEquals(2, rels.size());       
+        System.assertEquals(2, rels.size());
     }
     
     public static testmethod void customObjectTopOfChain() {
