@@ -10,9 +10,10 @@ Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-Validate Edit Mode For Accounts and Contacts Settings
+Validate Edit Mode For Accounts and Contacts Settings and Click Checkboxes
     [tags]                          unstable
-    Go to page                      Custom      ${NS}HEDA_Settings
+    Go to page                      Custom      HEDA_Settings
+    Current page should be          Custom      HEDA_Settings
     
     Wait for Locator            	tabs.accountsandcontacts
     Click on Element                tabs.accountsandcontacts
@@ -22,12 +23,6 @@ Validate Edit Mode For Accounts and Contacts Settings
 
     Wait for Locator                account_types.administrative
     Click on Element                account_types.administrative
-
-Click Checkboxes
-    [Setup]  Run keywords
-    ...  Go to page                 Custom     ${NS}HEDA_Settings
-    ...  AND  Click on element  tabs.accountsandcontacts
-    ...  AND  Click on element  account_types.edit
 
     Test Checkbox                   Academic Program
     Test Checkbox                   Administrative

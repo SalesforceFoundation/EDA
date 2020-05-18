@@ -1,4 +1,5 @@
 eda_lex_locators = {
+    "app_tile": "//one-app-launcher-modal//one-app-launcher-app-tile//a[.='{}']",
     "app_launcher": {
         "app_link": "//div[contains(@class, 'slds-section slds-is-open')]//section[@id='cards']//a[@class='appTileTitle' and text()='{}']",
     },
@@ -154,7 +155,6 @@ eda_lex_locators = {
         "affiliations_former": "//div/div/following::div/span[text()='Former']",
         "affiliations_student": "(//div/div/span[@class='uiOutputText' and text()='Role Specified for Created Affiliations: ']/following::div[@class='slds-col slds-size--1-of-2'])[1]/span[text()='Student']",
         "affiliations_current": "//div/div/following::div[@class='slds-col slds-size--1-of-2']/span[text()='Current']",
-        "app_tile": "//one-app-launcher-modal//one-app-launcher-app-tile//a[.='{}']",
     },
     "tabs": {
         "accountsandcontacts" : "//a[contains(text(),'Accounts and Contacts')]",
