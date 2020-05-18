@@ -3,20 +3,16 @@
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/SettingsPageObject.py
-Suite Setup     Open Test Browser
+Suite Setup     Run keywords
+...             Open Test Browser
+...             Get namespace
 Suite Teardown  Delete Records and Close Browser
-
-*** Keywords ***
-Test Checkbox
-    [Arguments]                     ${account_label}
-    Wait for Locator                account_types.account_checkbox    ${account_label}
-    Click on element                account_types.account_checkbox    ${account_label}
 
 *** Test Cases ***
 
 Validate Edit Mode For Accounts and Contacts Settings
     [tags]                          unstable
-    Go to page                      Custom      HEDA_Settings
+    Go to page                      Custom      ${NS}HEDA_Settings
     
     Wait for Locator            	tabs.accountsandcontacts
     Click on Element                tabs.accountsandcontacts
@@ -29,7 +25,7 @@ Validate Edit Mode For Accounts and Contacts Settings
 
 Click Checkboxes
     [Setup]  Run keywords
-    ...  Go to page                 Custom     HEDA_Settings
+    ...  Go to page                 Custom     ${NS}HEDA_Settings
     ...  AND  Click on element  tabs.accountsandcontacts
     ...  AND  Click on element  account_types.edit
 
@@ -60,3 +56,16 @@ Unclick Checkboxes
 
     Wait for Locator                account_types.save
     Click on Element                account_types.save
+
+
+*** Keywords ***
+Test Checkbox
+    [Arguments]                     ${account_label}
+    Wait for Locator                account_types.account_checkbox    ${account_label}
+    Click on element                account_types.account_checkbox    ${account_label}
+
+Get namespace
+    [Documentation]                 Get EDA namespace and store it in a suite variable
+
+    ${NS} =                         Get EDA namespace prefix
+    Set suite variable              ${NS}

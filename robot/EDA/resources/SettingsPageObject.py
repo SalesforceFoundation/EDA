@@ -1,10 +1,6 @@
 import logging
 from cumulusci.robotframework.pageobjects import pageobject
 from cumulusci.robotframework.pageobjects import BasePage
-from locators import eda_lex_locators
-from robot.api import logger
-from robot.libraries.BuiltIn import BuiltIn
-from selenium import webdriver
 
 
 @pageobject("Custom", "HEDA_Settings")
@@ -19,9 +15,11 @@ class SettingsPage(BasePage):
             by verifying that the url contains '/view'
         """
         
-        self.selenium.wait_until_location_contains("lightning/n/HEDA_Settings",message="Current page is not Settings Page view") 
+        self.selenium.wait_until_location_contains(
+            "lightning/n/hed__HEDA_Settings", message="Current page is not Settings Page view"
+        )
     
-    def _go_to_page(self, filter_name=None):
+    def _go_to_page(self):
         """To go to EDA Settings page"""
         url_template = "{root}/lightning/n/{object}"
         name = self._object_name
@@ -30,6 +28,4 @@ class SettingsPage(BasePage):
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
         self.eda.wait_for_locator("frame","accessibility title", "accessibility title", "accessibility title")
-        self.eda.choose_frame("accessibility title")
-    
-    
+        self.eda.select_frame_with_value("accessibility title")
