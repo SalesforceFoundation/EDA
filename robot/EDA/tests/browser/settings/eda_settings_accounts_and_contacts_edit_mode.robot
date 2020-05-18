@@ -1,4 +1,7 @@
 *** Settings ***
+Documentation       Test all the checkboxes in the
+...                 Accounts and Contacts Settings page
+...                 by checking and unchecking them
 
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
@@ -9,9 +12,7 @@ Suite Setup     Run keywords
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
-
 Validate Edit Mode For Accounts and Contacts Settings and Click Checkboxes
-    [tags]                          unstable
     Go to page                      Custom      HEDA_Settings
     Current page should be          Custom      HEDA_Settings
     
@@ -36,7 +37,6 @@ Validate Edit Mode For Accounts and Contacts Settings and Click Checkboxes
     Close toast message
 
 Unclick Checkboxes
-
     Click on Element                account_types.edit
     Wait for Locator                account_types.administrative
     Click on Element                account_types.administrative
@@ -55,6 +55,7 @@ Unclick Checkboxes
 
 *** Keywords ***
 Test Checkbox
+    [Documentation]                 Click on the checkbox identified by the {argument} label
     [Arguments]                     ${account_label}
     Wait for Locator                account_types.account_checkbox    ${account_label}
     Click on element                account_types.account_checkbox    ${account_label}
