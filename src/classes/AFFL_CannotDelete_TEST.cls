@@ -38,13 +38,12 @@
 @isTest
 private class AFFL_CannotDelete_TEST {
     /*********************************************************************************************************
-    * @description Retrieves the record type Ids for Household and Administrator Accounts. 
+    * @description Retrieves the record type Id for Academic Programs. 
     */
-    public static String studentConnectionRecordTypeID = UTIL_Describe.getStudentConnectionRecType(); 
     public static String academicAccRecordTypeID = UTIL_Describe.getAcademicAccRecTypeID(); 
 
     /*********************************************************************************************************
-    * @description Test method to test that when Prevent_Affiliation_Deletion__c is enabled in Hierarchy 
+    * @description Test method to test when Prevent_Affiliation_Deletion__c is enabled in Hierarchy 
     * Settings and Affiliation has a child Course Connection record associated with it, the Affiliation 
     * record cannot be deleted.
     */
@@ -100,7 +99,7 @@ private class AFFL_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test method to test that when Prevent_Affiliation_Deletion__c is enabled in Hierarchy 
+    * @description Test method to test when Prevent_Affiliation_Deletion__c is enabled in Hierarchy 
     * Settings and Affiliation has no child records associated with it, the Affiliation 
     * record can be deleted.
     */
@@ -139,7 +138,7 @@ private class AFFL_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test method to test that when Prevent_Affiliation_Deletion__c is disabled in Hierarchy 
+    * @description Test method to test when Prevent_Affiliation_Deletion__c is disabled in Hierarchy 
     * Settings and Affiliation has Course Connection child records associated with it, the Affiliation 
     * record can be deleted.
     */
@@ -194,7 +193,7 @@ private class AFFL_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test method to test that when Prevent_Affiliation_Deletion__c is disabled in Hierarchy 
+    * @description Test method to test when Prevent_Affiliation_Deletion__c is disabled in Hierarchy 
     * Settings and Affiliation has no child records associated with it, the Affiliation 
     * record can be deleted.
     */
@@ -303,7 +302,7 @@ private class AFFL_CannotDelete_TEST {
             FROM Affiliation__c
             WHERE Id IN :affiliations
         ];
-        
+
         AFFL_CannotDelete_TDTM afflCannotDelete = new AFFL_CannotDelete_TDTM();
         for (Affiliation__c affl : returnAffiliations){
             System.assertEquals(FALSE, afflCannotDelete.hasChildRecords(affl));
