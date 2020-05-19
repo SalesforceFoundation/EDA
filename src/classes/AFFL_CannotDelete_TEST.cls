@@ -145,6 +145,52 @@ private class AFFL_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithChildCourseConnectionPreventDeleteOff() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Affiliation_Deletion__c = FALSE));
+
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, academicAccRecordTypeID);
+
+        insert testContact;
+        insert accounts;
+
+        List<Affiliation__c> affiliations = new List<Affiliation__c>();
+        for (Integer index = 0; index < 5; index++){
+            affiliations.add(UTIL_UnitTestData_TEST.getAffiliation(testContact.Id, accounts[0].Id, TRUE));
+        }
+        insert affiliations;
+
+        Course__c course = new Course__c(Name = 'Test Course', Account__c = accounts[0].Id);
+        insert course;
+
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(accounts[0].Id, 'Test Term');
+        insert term;
+
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+
+        List<Course_Enrollment__c> courseConnections = new List<Course_Enrollment__c>();
+        for (Integer index = 0; index < 5; index++){
+            Course_Enrollment__c courseConnection = UTIL_UnitTestData_TEST.getCourseConnection(testContact.Id, courseOffering.Id);
+            courseConnection.Affiliation__c = affiliations[index].Id;
+            courseConnections.add(courseConnection);
+        }
+        insert courseConnections;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(affiliations, FALSE);
+        Test.stopTest();
+
+        List<Affiliation__c> returnAffiliations = [
+            SELECT Id
+            FROM Affiliation__c
+            WHERE Id IN :affiliations
+        ];
+
+        System.assertEquals(TRUE, returnAffiliations.isEmpty());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(TRUE, result.isSuccess());
+        }
     }
 
     /*********************************************************************************************************
@@ -154,6 +200,36 @@ private class AFFL_CannotDelete_TEST {
     */
     @isTest 
     private static void canDeleteWithoutChildCourseConnectionPreventDeleteOff() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Prevent_Affiliation_Deletion__c = FALSE));
+
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, academicAccRecordTypeID);
+
+        insert testContact;
+        insert accounts;
+
+        List<Affiliation__c> affiliations = new List<Affiliation__c>();
+        for (Integer index = 0; index < 5; index++){
+            affiliations.add(UTIL_UnitTestData_TEST.getAffiliation(testContact.Id, accounts[0].Id, TRUE));
+        }
+        insert affiliations;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(affiliations, FALSE);
+        Test.stopTest();
+
+        List<Affiliation__c> returnAffiliations = [
+            SELECT Id
+            FROM Affiliation__c
+            WHERE Id IN :affiliations
+        ];
+
+        System.assertEquals(TRUE, returnAffiliations.isEmpty());
+        
+        for (Database.DeleteResult result : results) {
+            System.assertEquals(TRUE, result.isSuccess());
+        }
     }
 
     /*********************************************************************************************************
@@ -162,6 +238,45 @@ private class AFFL_CannotDelete_TEST {
     */
     @isTest 
     private static void hasChildRecordsIsTrue() {
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, academicAccRecordTypeID);
+
+        insert testContact;
+        insert accounts;
+
+        List<Affiliation__c> affiliations = new List<Affiliation__c>();
+        for (Integer index = 0; index < 5; index++){
+            affiliations.add(UTIL_UnitTestData_TEST.getAffiliation(testContact.Id, accounts[0].Id, TRUE));
+        }
+        insert affiliations;
+
+        Course__c course = new Course__c(Name = 'Test Course', Account__c = accounts[0].Id);
+        insert course;
+
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(accounts[0].Id, 'Test Term');
+        insert term;
+
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+
+        List<Course_Enrollment__c> courseConnections = new List<Course_Enrollment__c>();
+        for (Integer index = 0; index < 5; index++){
+            Course_Enrollment__c courseConnection = UTIL_UnitTestData_TEST.getCourseConnection(testContact.Id, courseOffering.Id);
+            courseConnection.Affiliation__c = affiliations[index].Id;
+            courseConnections.add(courseConnection);
+        }
+        insert courseConnections;
+
+        List<Affiliation__c> returnAffiliations = [
+            SELECT Id,
+                (SELECT Id FROM Affiliation__c.Course_Enrollment__r)
+            FROM Affiliation__c
+            WHERE Id IN :affiliations
+        ];
+
+        AFFL_CannotDelete_TDTM afflCannotDelete = new AFFL_CannotDelete_TDTM();
+        for (Affiliation__c affl : returnAffiliations){
+            System.assertEquals(TRUE, afflCannotDelete.hasChildRecords(affl));
+        }
     }
 
     /*********************************************************************************************************
@@ -170,5 +285,28 @@ private class AFFL_CannotDelete_TEST {
     */
     @isTest 
     private static void hasChildRecordsIsFalse() {
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, academicAccRecordTypeID);
+
+        insert testContact;
+        insert accounts;
+
+        List<Affiliation__c> affiliations = new List<Affiliation__c>();
+        for (Integer index = 0; index < 5; index++){
+            affiliations.add(UTIL_UnitTestData_TEST.getAffiliation(testContact.Id, accounts[0].Id, TRUE));
+        }
+        insert affiliations;
+
+        List<Affiliation__c> returnAffiliations = [
+            SELECT Id,
+                (SELECT Id FROM Affiliation__c.Course_Enrollment__r)
+            FROM Affiliation__c
+            WHERE Id IN :affiliations
+        ];
+        
+        AFFL_CannotDelete_TDTM afflCannotDelete = new AFFL_CannotDelete_TDTM();
+        for (Affiliation__c affl : returnAffiliations){
+            System.assertEquals(FALSE, afflCannotDelete.hasChildRecords(affl));
+        }
     }
 }
