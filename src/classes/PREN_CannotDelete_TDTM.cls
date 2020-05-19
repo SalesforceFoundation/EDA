@@ -42,7 +42,7 @@ public with sharing class PREN_CannotDelete_TDTM extends TDTM_Runnable {
     
     /*******************************************************************************************************
     * @description Stops a Program Enrollment from being deleted if it has any Course Connection 
-    * or Plan Requirement child records.
+    * child records.
     * @param listNew the list of Program Enrollment from trigger new.
     * @param listOld the list of Program Enrollment from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
