@@ -357,11 +357,11 @@ private class SRVC_UniqueRecord_TEST {
         duplicateList.add(duplicateCon4);
 
         Test.startTest();
-            Map<String, List<SObject>> returnMap = SRVC_UniqueRecord.getInstance().filterRecordsForIds(duplicateList);
+            Map<SRVC_UniqueRecord.KEYS, List<SObject>> returnMap = SRVC_UniqueRecord.getInstance().filterRecordsForIds(duplicateList);
         Test.stopTest();
 
-        System.assert(returnMap.get('withIds').size() == 2);
-        System.assert(returnMap.get('withoutIds').size() == 2);
+        System.assert(returnMap.get(SRVC_UniqueRecord.KEYS.WITHIDS).size() == 2);
+        System.assert(returnMap.get(SRVC_UniqueRecord.KEYS.WITHOUTIDS).size() == 2);
     }
 
     // Test for Unique Record Functionality with related records

@@ -56,6 +56,10 @@ public virtual with sharing class SRVC_UniqueRecord {
         return instance;
     }
 
+    // Enum to use the elements as Keys for a map collection
+    @TestVisible
+    private enum KEYS {WITHOUTIDS, WITHIDS}
+
     /****************************************************************************************************************
     @description Combines multiple record instances with same ID into one for a given list of Sobjects of same type
     @params listToCheck The list of records to be checked and made unique
@@ -68,12 +72,12 @@ public virtual with sharing class SRVC_UniqueRecord {
         }
 
         // Filter out records without Ids
-        Map<String, List<SObject>> filteredRecordMap = this.filterRecordsForIds(listToCheck);
+        Map<KEYS, List<SObject>> filteredRecordMap = this.filterRecordsForIds(listToCheck);
 
-        List<SObject> returnList = this.getUniqueRecordsByIds(filteredRecordMap.get('withIds'));
+        List<SObject> returnList = this.getUniqueRecordsByIds(filteredRecordMap.get(KEYS.WITHIDS));
 
-        if (filteredRecordMap.get('withoutIds').isEmpty() == false) {
-            returnList.addAll(filteredRecordMap.get('withoutIds'));
+        if (filteredRecordMap.get(KEYS.WITHOUTIDS).isEmpty() == false) {
+            returnList.addAll(filteredRecordMap.get(KEYS.WITHOUTIDS));
         }
 
         return returnList;
@@ -137,8 +141,8 @@ public virtual with sharing class SRVC_UniqueRecord {
     @return returnMap A key value pair for recordsWithoutIds and recordsWithIds
     ********************************************************************************************************/
     @TestVisible
-    private Map<String, List<SObject>> filterRecordsForIds(List<SObject> allSObjectRecords) {
-        Map<String, List<SObject>> returnMap = new Map<String, List<SObject>>();
+    private Map<KEYS, List<SObject>> filterRecordsForIds(List<SObject> allSObjectRecords) {
+        Map<KEYS, List<SObject>> returnMap = new Map<KEYS, List<SObject>>();
 
         List<SObject> recordsWithoutIds = new List<SObject>();
         List<SObject> recordsWithIds = new List<SObject>();
@@ -152,8 +156,8 @@ public virtual with sharing class SRVC_UniqueRecord {
             }
         }
 
-        returnMap.put('withoutIds', recordsWithoutIds);
-        returnMap.put('withIds', recordsWithIds);
+        returnMap.put(KEYS.WITHOUTIDS, recordsWithoutIds);
+        returnMap.put(KEYS.WITHIDS, recordsWithIds);
         return returnMap;
     }
 }
