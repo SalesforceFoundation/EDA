@@ -437,6 +437,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Prevent_Program_Enrollment_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Program Enrollment Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Prevent_Program_Plan_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
