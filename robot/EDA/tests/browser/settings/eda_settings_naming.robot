@@ -3,14 +3,10 @@
 Resource        robot/EDA/resources/EDA.robot
 Library         robot/EDA/resources/EDA.py
 Suite Setup     Open Test Browser
-Suite Teardown  Delete Records and Close Browser
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
-
-
 Open EDA Settings
-
-
     Go To Eda Settings
 
     Wait for Locator                            eda_settings.system_tab

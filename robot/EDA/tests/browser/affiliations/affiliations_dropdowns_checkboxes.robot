@@ -15,15 +15,11 @@ Library         cumulusci.robotframework.PageObjects
 
 Test Setup      Initialize test setup
 
-Suite Setup     Run keywords
-...             Initialize test data
-...             Open test browser
+Suite Setup     Open test browser
 
-Suite Teardown  Run keywords
-...             Close Browser 
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
-
 Affiliations settings verify standard values
     [tags]                                      unstable
 
@@ -191,10 +187,4 @@ Initialize test setup
     Shift to default content
     Select App Launcher App                     EDA
     Close all tabs
-
-Initialize test data
-    [Documentation]                             Get the EDA namespace
-
-    ${NAMESPACE} =                              Get EDA namespace prefix
-    Set suite variable                          ${NAMESPACE}
 
