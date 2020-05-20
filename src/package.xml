@@ -123,6 +123,8 @@
         <members>STG_Courses_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
+        <members>TB_CannotDelete_TDTM</members>
+        <members>TB_CannotDelete_TEST</members>
         <members>TB_StartEndTime_TDTM</members>
         <members>TB_StartEndTime_TEST</members>
         <members>TDTM_Config</members>
@@ -475,6 +477,7 @@
         <members>Hierarchy_Settings__c.Prevent_Program_Enrollment_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Program_Plan_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Term_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Time_Block_Deletion__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>

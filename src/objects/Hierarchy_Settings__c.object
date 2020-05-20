@@ -473,6 +473,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Prevent_Time_Block_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Time Block Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Reciprocal_Method__c</fullName>
         <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
         <externalId>false</externalId>
