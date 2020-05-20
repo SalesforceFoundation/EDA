@@ -253,6 +253,11 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'BEH_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Behavior_Involvement__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
+                
+        // Prevents deletion of Behavior Involvement when the records have associated child records
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'FACI_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Facility__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
         
         // Prevents deletion of Program Enrollment when the records have associated child records
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
