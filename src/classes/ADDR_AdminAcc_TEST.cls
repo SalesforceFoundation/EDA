@@ -68,8 +68,8 @@ public with sharing class ADDR_AdminAcc_TEST {
         update addrs;
         Test.stopTest();
     
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingCounty__c, 
+      														Current_Address__c
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
@@ -853,6 +853,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = null;
             accsAddrs.accs[i].BillingCity = null;
+            accsAddrs.accs[i].BillingCounty__c = null;
             accsAddrs.accs[i].BillingState = null;
             accsAddrs.accs[i].BillingPostalCode = null;
             accsAddrs.accs[i].BillingCountry = null;

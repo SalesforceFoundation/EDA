@@ -53,7 +53,7 @@ public with sharing class ADDR_Addresses_UTIL {
     public static Boolean isAddressEmpty(Address__c addr) {
         if (addr == null)
            return false;        
-        return (addr.MailingStreet__c == Null && addr.MailingStreet2__c == Null && addr.MailingCity__c == Null &&
+        return (addr.MailingStreet__c == Null && addr.MailingStreet2__c == Null && addr.MailingCity__c == Null && addr.MailingCounty__c == Null && 
            addr.MailingState__c == Null && addr.MailingPostalCode__c == Null && addr.MailingCountry__c == Null);
     }
     
@@ -70,6 +70,7 @@ public with sharing class ADDR_Addresses_UTIL {
         Boolean isChanged = 
            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingStreet, acc.BillingStreet) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCity, acc.BillingCity) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCounty__c, acc.BillingCounty__c) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingState, acc.BillingState) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingPostalCode, acc.BillingPostalCode) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCountry, acc.BillingCountry);
@@ -98,6 +99,7 @@ public with sharing class ADDR_Addresses_UTIL {
            !equalsCaseSensitive(addrNew.MailingStreet__c, addrOld.MailingStreet__c) ||
            !equalsCaseSensitive(addrNew.MailingStreet2__c, addrOld.MailingStreet2__c) ||
            !equalsCaseSensitive(addrNew.MailingCity__c, addrOld.MailingCity__c) ||
+           !equalsCaseSensitive(addrNew.MailingCounty__c, addrOld.MailingCounty__c) ||
            !equalsCaseSensitive(addrNew.MailingState__c, addrOld.MailingState__c) ||
            !equalsCaseSensitive(addrNew.MailingPostalCode__c, addrOld.MailingPostalCode__c) ||
            !equalsCaseSensitive(addrNew.MailingCountry__c, addrOld.MailingCountry__c) ||
@@ -127,6 +129,7 @@ public with sharing class ADDR_Addresses_UTIL {
         Boolean isChanged = 
            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingStreet, con2.MailingStreet) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCity, con2.MailingCity) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCounty__c, con2.MailingCounty__c) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingState, con2.MailingState) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingPostalCode, con2.MailingPostalCode) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCountry, con2.MailingCountry) ||
@@ -154,6 +157,7 @@ public with sharing class ADDR_Addresses_UTIL {
         Boolean isChanged = 
            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingStreet, acc2.BillingStreet) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCity, acc2.BillingCity) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCounty__c, acc2.BillingCounty__c) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
@@ -179,6 +183,7 @@ public with sharing class ADDR_Addresses_UTIL {
         Boolean isEmpty = 
             con1.MailingStreet == null &&
             con1.MailingCity == null &&
+            con1.MailingCounty__c == null &&
             con1.MailingState == null &&
             con1.MailingPostalCode == null &&
             // note that we decided to ignore country so that a default value won't create unnecessary address objects
@@ -200,6 +205,7 @@ public with sharing class ADDR_Addresses_UTIL {
         Boolean isEmpty = 
            acc1.BillingStreet == null &&
            acc1.BillingCity == null &&
+           acc1.BillingCounty__c == null &&
            acc1.BillingState == null &&
            acc1.BillingPostalCode == null &&
             // note that we decided to ignore country so that a default value won't create unnecessary address objects
@@ -242,6 +248,8 @@ public with sharing class ADDR_Addresses_UTIL {
             cChange++;
         if (strCleanup(addrNew.MailingCity__c) != strCleanup(addrOld.MailingCity__c) && addrOld.MailingCity__c != null)
             cChange++;
+        if (strCleanup(addrNew.MailingCounty__c) != strCleanup(addrOld.MailingCounty__c) && addrOld.MailingCounty__c != null)
+            cChange++;
         if (strCleanup(addrNew.MailingState__c) != strCleanup(addrOld.MailingState__c) && addrOld.MailingState__c != null)
             cChange++;
         if (strCleanup(addrNew.MailingPostalCode__c) != strCleanup(addrOld.MailingPostalCode__c) && addrOld.MailingPostalCode__c != null)
@@ -274,6 +282,7 @@ public with sharing class ADDR_Addresses_UTIL {
         addrDst.MailingStreet__c = addrSrc.MailingStreet__c;
         addrDst.MailingStreet2__c = addrSrc.MailingStreet2__c;
         addrDst.MailingCity__c = addrSrc.MailingCity__c;
+        addrDst.MailingCounty__c = addrSrc.MailingCounty__c;
         addrDst.MailingState__c = addrSrc.MailingState__c;
         addrDst.MailingPostalCode__c = addrSrc.MailingPostalCode__c;
         addrDst.MailingCountry__c = addrSrc.MailingCountry__c;
@@ -295,6 +304,7 @@ public with sharing class ADDR_Addresses_UTIL {
     public static void copyAddressStdSObj(SObject sobjSrc, String strFieldPrefixSrc, SObject sobjDst, String strFieldPrefixDst) {
         sobjDst.put(strFieldPrefixDst + 'Street', sobjSrc.get(strFieldPrefixSrc + 'Street'));
         sobjDst.put(strFieldPrefixDst + 'City', sobjSrc.get(strFieldPrefixSrc + 'City'));
+        sobjDst.put(strFieldPrefixDst + 'County__c', sobjSrc.get(strFieldPrefixSrc + 'County__c'));
         sobjDst.put(strFieldPrefixDst + 'PostalCode', sobjSrc.get(strFieldPrefixSrc + 'PostalCode'));
         sobjDst.put(strFieldPrefixDst + 'State', sobjSrc.get(strFieldPrefixSrc + 'State'));
         sobjDst.put(strFieldPrefixDst + 'Country', sobjSrc.get(strFieldPrefixSrc + 'Country'));
@@ -320,6 +330,7 @@ public with sharing class ADDR_Addresses_UTIL {
         addr.MailingStreet__c = (string)sobjSrc.get(strFieldPrefixSrc + 'Street');
         handleMultilineStreet(addr);
         addr.MailingCity__c = (string)sobjSrc.get(strFieldPrefixSrc + 'City');
+        addr.MailingCounty__c = (string)sobjSrc.get(strFieldPrefixSrc + 'County__c');
         addr.MailingPostalCode__c = (string)sobjSrc.get(strFieldPrefixSrc + 'PostalCode');
         addr.MailingState__c = (string)sobjSrc.get(strFieldPrefixSrc + 'State');
         addr.MailingCountry__c = (string)sobjSrc.get(strFieldPrefixSrc + 'Country');
@@ -359,13 +370,25 @@ public with sharing class ADDR_Addresses_UTIL {
     ********************************************************************************************************/
     public static void copyAddressAddrSObj(Address__c addr, SObject sobjDst, string strFieldPrefix, string strFieldAddrType, 
     TDTM_Runnable.DmlWrapper dmlWrapper) {
+        System.debug('ADDR_UTIL copyAddressAddrSObj Method sobjDst -->' + sobjDst); 
+        System.debug('ADDR_UTIL copyAddressAddrSObj Method strFieldPrefix -->' + strFieldPrefix); 
+        System.debug('ADDR_UTIL copyAddressAddrSObj Method strFieldAddrType -->' + strFieldAddrType); 
         sobjDst.put(strFieldPrefix + 'Street', getMultilineStreet(addr));
         sobjDst.put(strFieldPrefix + 'City', addr.MailingCity__c);
+        sobjDst.put(strFieldPrefix + 'County__c', addr.MailingCounty__c);
         sobjDst.put(strFieldPrefix + 'PostalCode', addr.MailingPostalCode__c);
         sobjDst.put(strFieldPrefix + 'Latitude', addr.Geolocation__Latitude__s);
         sobjDst.put(strFieldPrefix + 'Longitude', addr.Geolocation__Longitude__s);
         sobjDst.put('Current_Address__c', addr.Id);
         
+        //Check what type of object sobjDst is -- Contact or Account
+        //Id idToProccess = sobjDst.Id; 
+        //Schema.sObjectType entityType = idToProccess.getSObjectType();
+        //System.debug('ADDR_UTIL copyAddressAddrSObj Method entityType -->' + entityType); 
+        /*if (entityType == Contact.sObjectType) {
+            sobjDst.put(strFieldPrefix + 'County__c', addr.MailingCounty__c);
+        }*/
+     
         if (!isStateCountryPicklistsEnabled) {
             sobjDst.put(strFieldPrefix + 'State', addr.MailingState__c);
             sobjDst.put(strFieldPrefix + 'Country', addr.MailingCountry__c);
@@ -624,7 +647,7 @@ public with sharing class ADDR_Addresses_UTIL {
     public static Map<Id, List<Address__c>> getMapParentIdListAddrs(List<Id> listParentId) {
           
         List<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Parent_Contact__c, Address_Type__c,
-            MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, 
+            MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingCounty__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, 
             Seasonal_Start_Year__c, Seasonal_End_Year__c, Seasonal_Start_Month__c, Seasonal_Start_Day__c, Seasonal_End_Month__c, 
             Seasonal_End_Day__c, Geolocation__Latitude__s, Geolocation__Longitude__s from Address__c where Parent_Account__c 
             IN :listParentId or Parent_Contact__c in :listParentId order by Default_Address__c desc, LastModifiedDate asc]; // ordering needed by cleanupAccountAddresses().
@@ -699,6 +722,7 @@ public with sharing class ADDR_Addresses_UTIL {
     public static void clearAddrInfo(Account acc) {
         acc.BillingStreet = null;
         acc.BillingCity = null;
+        acc.BillingCounty__c = null;
         acc.BillingState = null;
         acc.BillingPostalCode = null;
         acc.BillingCountry = null;
@@ -718,6 +742,7 @@ public with sharing class ADDR_Addresses_UTIL {
     public static void clearAddrInfo(Contact contact) {
         contact.MailingStreet = null;
         contact.MailingCity = null;
+        contact.MailingCounty__c = null;
         contact.MailingState = null;
         contact.MailingPostalCode = null;
         contact.MailingCountry = null;
@@ -731,15 +756,22 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return String The query string.
     ********************************************************************************************************/
     public static String getParentAccsWithChildrenQuery() {
-        String query = 'select recordTypeId, Current_Address__c, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude';     
-        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
+        String query = 'SELECT recordTypeId, Current_Address__c, BillingStreet, BillingCity, BillingCounty__c, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude';     
+        
+        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             query += ', BillingCountryCode, BillingStateCode';
-        query += ', (select Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
-        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
+        }
+            
+        query += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, MailingCounty__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        
+        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             query += ', MailingCountryCode, MailingStateCode';
-        query += ' from Account.Contacts)';
-        query += ', (select Default_Address__c, Parent_Account__c, Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r)';
-        query +=  ' from Account where Id IN ';
+        }
+            
+        query += ' FROM Account.Contacts)';
+        query += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c FROM Account.Addresses__r)';
+        query +=  ' FROM Account WHERE Id IN ';
+        
         return query;
     }
 }

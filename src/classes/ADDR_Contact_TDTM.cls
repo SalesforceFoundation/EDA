@@ -553,9 +553,9 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
               setAddrId.add(contact.Current_Address__c);
         }
     
-        Map<Id, Address__c> mapAddrIdAddr = new Map<Id, Address__c>([select Id, Address_Type__c, MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c,
+        Map<Id, Address__c> mapAddrIdAddr = new Map<Id, Address__c>([select Id, Address_Type__c, MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingCounty__c, MailingState__c,
             Geolocation__Latitude__s, Geolocation__Longitude__s, MailingPostalCode__c, MailingCountry__c,
-            (select is_Address_Override__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Address__c.Contacts1__r)
+            (select is_Address_Override__c, MailingStreet, MailingCity, MailingCounty__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Address__c.Contacts1__r)
             from Address__c where Id in :setAddrId]);
             
         for (Contact contact : listCon) {
