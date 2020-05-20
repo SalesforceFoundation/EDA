@@ -152,6 +152,8 @@
         <members>THAN_ClearCache_TEST</members>
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
+        <members>TST_CannotDelete_TDTM</members>
+        <members>TST_CannotDelete_TEST</members>
         <members>UTIL_ACCT_Naming</members>
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_CustomSettingsFacade_TEST</members>
@@ -477,6 +479,7 @@
         <members>Hierarchy_Settings__c.Prevent_Program_Enrollment_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Program_Plan_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Term_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Test_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Time_Block_Deletion__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
