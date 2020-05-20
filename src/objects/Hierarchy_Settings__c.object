@@ -473,6 +473,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Prevent_Test_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Test Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Prevent_Time_Block_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
