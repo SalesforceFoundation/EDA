@@ -165,6 +165,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Prevent_Course_Offering_Deletion__c = mySettings.Prevent_Course_Offering_Deletion__c;
         settings.Prevent_Facility_Deletion__c = mySettings.Prevent_Facility_Deletion__c;
         settings.Prevent_Plan_Requirement_Deletion__c = mySettings.Prevent_Plan_Requirement_Deletion__c;
+        settings.Prevent_Program_Plan_Deletion__c = mySettings.Prevent_Program_Plan_Deletion__c;
+        settings.Prevent_Time_Block_Deletion__c = mySettings.Prevent_Time_Block_Deletion__c;
         settings.Prevent_Program_Enrollment_Deletion__c = mySettings.Prevent_Program_Enrollment_Deletion__c;
         settings.Prevent_Program_Plan_Deletion__c = mySettings.Prevent_Program_Plan_Deletion__c;
         settings.Prevent_Term_Deletion__c = mySettings.Prevent_Term_Deletion__c;
