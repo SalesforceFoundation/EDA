@@ -419,6 +419,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Prevent_Facility_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Facility Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Prevent_Course_Offering_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
@@ -437,6 +446,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Prevent_Program_Enrollment_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Program Enrollment Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Prevent_Program_Plan_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
@@ -451,6 +469,15 @@
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
         <label>Prevent Term Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Test_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Test Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
