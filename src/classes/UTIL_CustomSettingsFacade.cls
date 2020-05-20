@@ -170,6 +170,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Prevent_Program_Enrollment_Deletion__c = mySettings.Prevent_Program_Enrollment_Deletion__c;
         settings.Prevent_Program_Plan_Deletion__c = mySettings.Prevent_Program_Plan_Deletion__c;
         settings.Prevent_Term_Deletion__c = mySettings.Prevent_Term_Deletion__c;
+        settings.Prevent_Test_Deletion__c = mySettings.Prevent_Test_Deletion__c;
         settings.Reciprocal_Method__c = mySettings.Reciprocal_Method__c;
         settings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;
         settings.Store_Errors_On__c = mySettings.Store_Errors_On__c;
