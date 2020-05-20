@@ -149,6 +149,7 @@ public class UTIL_UnitTestData_TEST {
             addr.Address_Type__c = 'Home';
             addr.MailingStreet__c = 'Street' + i;
             addr.MailingCity__c = 'City' + i;
+            addr.MailingCounty__c = 'County' + i;
             addr.MailingState__c = 'Washington';
             addr.MailingPostalCode__c = 'Zip' + i;
             addr.MailingCountry__c = 'United States';
@@ -189,6 +190,7 @@ public class UTIL_UnitTestData_TEST {
             accsAddrs.accs[i].Current_Address__c = accsAddrs.addrs[i].Id;
             accsAddrs.accs[i].BillingStreet = accsAddrs.addrs[i].MailingStreet__c;
             accsAddrs.accs[i].BillingCity = accsAddrs.addrs[i].MailingCity__c;
+            accsAddrs.accs[i].BillingCounty__c = accsAddrs.addrs[i].MailingCounty__c;
             accsAddrs.accs[i].BillingState = accsAddrs.addrs[i].MailingState__c;
             accsAddrs.accs[i].BillingPostalCode = accsAddrs.addrs[i].MailingPostalCode__c;
             accsAddrs.accs[i].BillingCountry = accsAddrs.addrs[i].MailingCountry__c;
