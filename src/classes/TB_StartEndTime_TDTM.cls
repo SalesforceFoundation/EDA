@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2019
-* @group Course Offering
-* @group-content ../../ApexDocContent/CourseOfferings.htm
+* @group Time Blocks
+* @group-content ../../ApexDocContent/TimeBlocks.htm
 * @description Updates associated Course Offering Schedules' Start Time and End Time fields when the Start Time
 * and/or End Time fields are updated on the Time Block.
 */
