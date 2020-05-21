@@ -3444,7 +3444,7 @@
     </fields>
     <fields>
         <label><!-- Mailing County --></label>
-        <name>MailingCounty__c</name>
+        <name>Mailing_County__c</name>
     </fields>
     <fields>
         <label>Antecedents militars</label>
@@ -3473,7 +3473,7 @@
     </fields>
     <fields>
         <label><!-- Other County --></label>
-        <name>OtherCounty__c</name>
+        <name>Other_County__c</name>
     </fields>
     <fields>
         <help>Quin número de telèfon s&apos;hauria d&apos;utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
