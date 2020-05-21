@@ -198,7 +198,7 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Mailing_County__c</fullName>
-        <description>Additional Address details.</description>
+        <description>The county detail for this Address.</description>
         <externalId>false</externalId>
         <label>Mailing County</label>
         <length>80</length>

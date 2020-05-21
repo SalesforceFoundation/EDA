@@ -4403,7 +4403,7 @@
     </fields>
     <fields>
         <fullName>Mailing_County__c</fullName>
-        <description>Additional Address details.</description>
+        <description>The county detail for the Mailing Address.</description>
         <externalId>false</externalId>
         <label>Mailing County</label>
         <length>80</length>
@@ -4462,7 +4462,7 @@
     </fields>
     <fields>
         <fullName>Other_County__c</fullName>
-        <description>Additional Address details.</description>
+        <description>The county detail for the alternate Address.</description>
         <externalId>false</externalId>
         <label>Other County</label>
         <length>80</length>
