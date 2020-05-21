@@ -882,6 +882,8 @@ public class UTIL_Describe {
         }
 
         return accRecTypeDevName;
+    }
+    
     /*******************************************************************************************************
     * @description Cache for SObject type to List of ChildRelationshipNames
     */
