@@ -201,6 +201,7 @@
         <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
         <members>TDTM_CourseOfferingSchedule</members>
+        <members>TDTM_Event</members>
         <members>TDTM_Facility</members>
         <members>TDTM_Language</members>
         <members>TDTM_Opportunity</members>
@@ -208,6 +209,7 @@
         <members>TDTM_ProgramEnrollment</members>
         <members>TDTM_ProgramPlan</members>
         <members>TDTM_Relationship</members>
+        <members>TDTM_Task</members>
         <members>TDTM_Term</members>
         <members>TDTM_TermGrade</members>
         <members>TDTM_Test</members>
