@@ -10,7 +10,7 @@
     </compactLayouts>
     <fields>
         <fullName>Billing_County__c</fullName>
-        <description>Additional Address details.</description>
+        <description>The county detail for the Billing Address.</description>
         <externalId>false</externalId>
         <label>Billing County</label>
         <length>80</length>
@@ -48,7 +48,7 @@
     </fields>
     <fields>
         <fullName>Shipping_County__c</fullName>
-        <description>Additional Address details.</description>
+        <description>The county detail for the Shipping Address.</description>
         <externalId>false</externalId>
         <label>Shipping County</label>
         <length>80</length>
