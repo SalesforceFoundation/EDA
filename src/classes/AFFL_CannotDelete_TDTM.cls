@@ -34,7 +34,7 @@
 * @group Affiliations
 * @group-content ../../ApexDocContent/Affiliations.htm
 * @description Stops an Affiliation from being deleted if it associated with
-* any Course Connection child records. 
+* any child records. 
 */
 
 public with sharing class AFFL_CannotDelete_TDTM extends TDTM_runnable {
@@ -45,7 +45,7 @@ public with sharing class AFFL_CannotDelete_TDTM extends TDTM_runnable {
     private static Boolean enabledPreventAffiliationDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Affiliation_Deletion__c;
     
     /*******************************************************************************************************
-    * @description Stops a Time Block from being deleted if it has any Course Connection child records. 
+    * @description Stops an Affiliation from being deleted if it has any Course Connection child records. 
     * @param newlist the list of Affiliations from trigger new. 
     * @param oldlist the list of Affiliations from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
