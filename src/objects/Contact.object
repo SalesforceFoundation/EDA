@@ -4402,7 +4402,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>MailingCounty__c</fullName>
+        <fullName>Mailing_County__c</fullName>
         <description>Additional Address details.</description>
         <externalId>false</externalId>
         <label>Mailing County</label>
@@ -4461,7 +4461,7 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>OtherCounty__c</fullName>
+        <fullName>Other_County__c</fullName>
         <description>Additional Address details.</description>
         <externalId>false</externalId>
         <label>Other County</label>

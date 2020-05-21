@@ -3444,7 +3444,7 @@
     </fields>
     <fields>
         <label><!-- Mailing County --></label>
-        <name>MailingCounty__c</name>
+        <name>Mailing_County__c</name>
     </fields>
     <fields>
         <label>Military Background</label>
@@ -3473,7 +3473,7 @@
     </fields>
     <fields>
         <label><!-- Other County --></label>
-        <name>OtherCounty__c</name>
+        <name>Other_County__c</name>
     </fields>
     <fields>
         <help>Which phone number should be used for most communications involving this Contact?</help>
