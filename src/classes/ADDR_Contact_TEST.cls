@@ -1089,6 +1089,7 @@ public with sharing class ADDR_Contact_TEST {
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = null;
             contactsAddrs.contacts[i].MailingCity = null;
+            contactsAddrs.contacts[i].MailingCounty__c = null;
             contactsAddrs.contacts[i].MailingState = null;
             contactsAddrs.contacts[i].MailingPostalCode = null;
             contactsAddrs.contacts[i].MailingCountry = null;
