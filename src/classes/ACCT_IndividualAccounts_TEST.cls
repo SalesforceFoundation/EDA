@@ -2159,4 +2159,46 @@ private class ACCT_IndividualAccounts_TEST {
             system.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
         }
     }
+
+    /*****************************************************************************************************************************************
+    * @description Test to ensure Account's owner and name is changed when COntact's owner and Last names are changed in a single transaction
+    */
+    @isTest
+    private static void testOwnerLastNameUpdate(){
+        // Create a single new User
+        Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
+        User tempUser = new User(LastName = 'TestSysAdminUserA', Email = 'test_insertAsOtherUser@email.npsp',
+                                       ProfileId = sysAdminProfileId, isActive = true, UserName = 'test_insertAsOtherUser@email.npsp',
+                                     Alias = 'tu08534', TimeZoneSidKey = 'America/Los_Angeles',
+                                    LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+        insert tempUser;
+
+        // Create a Contact
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        testContact.FirstName = 'Jon';
+        testContact.LastName = 'Day';
+        insert testContact;
+
+        // Ensure Account is created
+        Account acc = [SELECT Id, ownerId, Name FROM Account];
+        System.assertEquals('Day Administrative Account', acc.Name);
+
+        // Change Contact's Last Name and owner in a single transaction
+        Test.startTest();
+        	testContact.LastName = 'Night';
+        	testContact.OwnerId = tempUser.Id;
+        	update testContact;
+        Test.stopTest();
+
+        // Ensure Contact is updated
+        Contact conAfterUpdate = [SELECT Id, Name, ownerId FROM Contact];
+        System.assertEquals('Jon Night', conAfterUpdate.Name);
+        System.assertEquals(tempUser.Id, conAfterUpdate.OwnerId);
+
+        // Ensure Account's name and owner are updated
+        Account accAfterUpdate = [SELECT Id, ownerId, Name FROM Account];
+        System.assertEquals('Night Administrative Account', accAfterUpdate.Name);
+        System.assertEquals(tempUser.Id, accAfterUpdate.ownerId);
+    }
+
 }
