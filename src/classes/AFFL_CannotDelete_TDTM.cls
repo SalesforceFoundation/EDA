@@ -63,7 +63,7 @@ public with sharing class AFFL_CannotDelete_TDTM extends TDTM_runnable {
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for (Affiliation__c affl : [ SELECT Id, 
-                                            (SELECT Id FROM Affiliation__c.Course_Enrollment__r LIMIT 1)
+                                            (SELECT Id FROM Course_Enrollment__r LIMIT 1)
                                          FROM Affiliation__c WHERE Id IN :oldlist
                                         ]) {
                 

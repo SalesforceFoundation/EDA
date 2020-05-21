@@ -267,7 +267,7 @@ private class AFFL_CannotDelete_TEST {
 
         List<Affiliation__c> returnAffiliations = [
             SELECT Id,
-                (SELECT Id FROM Affiliation__c.Course_Enrollment__r)
+                (SELECT Id FROM Course_Enrollment__r)
             FROM Affiliation__c
             WHERE Id IN :affiliations
         ];
@@ -298,7 +298,7 @@ private class AFFL_CannotDelete_TEST {
 
         List<Affiliation__c> returnAffiliations = [
             SELECT Id,
-                (SELECT Id FROM Affiliation__c.Course_Enrollment__r)
+                (SELECT Id FROM Course_Enrollment__r)
             FROM Affiliation__c
             WHERE Id IN :affiliations
         ];
