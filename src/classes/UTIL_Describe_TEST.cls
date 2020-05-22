@@ -101,6 +101,35 @@ public with sharing class UTIL_Describe_TEST {
         try {
             picklistEntries = UTIL_Describe_API.getPicklistActiveValuesMap('Account', 'id');
         } catch(UTIL_Describe.SchemaDescribeException sde){}
-    }       
+    } 
 
+    // Test for childRelationshipNamesService functionality
+    @isTest
+    private static void childRelationshipNamesServiceTest() {
+
+        // Insert Account
+        Account adminAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+        adminAccount.Name = 'Test Account 000';
+        insert adminAccount;
+
+        Test.startTest();
+            Schema.SObjectType sObjectTypeAcc = adminAccount.getSObjectType();
+            List<String> allChildRelationshipNames = UTIL_Describe.getAllChildRelationshipNames(sObjectTypeAcc);
+        Test.stopTest();
+
+        System.assertNotEquals(NULL, allChildRelationshipNames);
+        System.assertNotEquals(0, allChildRelationshipNames.size());
+        System.assert(allChildRelationshipNames.contains('Contacts'));
+    }
+
+    // NPE Test for childRelationshipNamesService functionality
+    @isTest
+    private static void childRelationshipNamesNPETest() {
+        try {
+            Test.startTest();
+                List<String> allChildRelationshipNames = UTIL_Describe.getAllChildRelationshipNames(NULL);
+            Test.stopTest();
+            System.assert(false, 'Always throw an exception when NULL is passed as a parameter');
+        } catch (System.NullPointerException npe) { }
+    }
 }
