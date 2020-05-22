@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Term --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Term Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom del període</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <label>Compte</label>
         <name>Account__c</name>
@@ -54,14 +64,4 @@
             <translation>Semestre</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Term Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom del període</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

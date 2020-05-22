@@ -53,6 +53,28 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Term Grade</label>
+    <nameField>
+        <displayFormat>TG-{0000}</displayFormat>
+        <label>Term Grade Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Term Grades</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Course_Offering__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Course_Offering__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contact__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Course_Offering__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Contact__c</searchFilterFields>
+        <searchFilterFields>Course_Offering__c</searchFilterFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Course_Offering__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -244,31 +266,9 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>Term Grade</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>TG-{0000}</displayFormat>
-        <label>Term Grade Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Term Grades</pluralLabel>
-    <searchLayouts>
-        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Course_Offering__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Course_Offering__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Contact__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Course_Offering__c</lookupPhoneDialogsAdditionalFields>
-        <searchFilterFields>NAME</searchFilterFields>
-        <searchFilterFields>Contact__c</searchFilterFields>
-        <searchFilterFields>Course_Offering__c</searchFilterFields>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Course_Offering__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>

@@ -53,6 +53,27 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Application</label>
+    <nameField>
+        <displayFormat>APP-{0000}</displayFormat>
+        <label>Application Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Applications</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Applicant__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Applying_To__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Term__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Applicant_Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Preparer__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Applicant_Decision_Date__c</fullName>
         <description>The date when the student decides whether to enroll.</description>
@@ -248,30 +269,9 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>Application</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>APP-{0000}</displayFormat>
-        <label>Application Name</label>
-        <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Applications</pluralLabel>
-    <searchLayouts>
-        <searchResultsAdditionalFields>Applicant__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Applying_To__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Application_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Term__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Application_Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Application_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Application_Decision_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Applicant_Decision_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Preparer__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>

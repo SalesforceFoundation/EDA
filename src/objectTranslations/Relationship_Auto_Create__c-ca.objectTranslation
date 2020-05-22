@@ -8,6 +8,8 @@
         <plural>true</plural>
         <value><!-- Relationship Auto-Create --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Els tipus de campanya elegibles per a aquest membre de la campanya es creen automàticament. (Estarà en blanc per crear automàticament el contacte)</help>
         <label>Tipus de campanya</label>
@@ -28,6 +30,4 @@
         <label>Tipus de relació</label>
         <name>Relationship_Type__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

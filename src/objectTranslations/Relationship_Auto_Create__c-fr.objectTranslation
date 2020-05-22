@@ -8,6 +8,8 @@
         <plural>true</plural>
         <value><!-- Relationship Auto-Create --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Types de campagne éligibles pour cette création automatique de membres de campagne (reste vide pour la création automatique de contacts)</help>
         <label>Types de campagne</label>
@@ -28,6 +30,4 @@
         <label>Type de relation</label>
         <name>Relationship_Type__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

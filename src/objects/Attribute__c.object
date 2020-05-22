@@ -53,6 +53,15 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Attribute</label>
+    <nameField>
+        <label>Attribute Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Attributes</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Agency__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -329,17 +338,6 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <label>Attribute</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
-    <nameField>
-        <label>Attribute Name</label>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Attributes</pluralLabel>
     <recordTypes>
         <fullName>Credential</fullName>
         <active>true</active>
@@ -572,7 +570,9 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
 </CustomObject>

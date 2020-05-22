@@ -8,6 +8,8 @@
         <plural>true</plural>
         <value><!-- Hierarchy Settings --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>ID du type d&apos;enregistrement par défaut du compte. Par exemple, si vous spécifiez Administratif (le modèle Compte recommandé), saisissez l&apos;ID du type d&apos;enregistrement Administratif pour l&apos;objet Compte.</help>
         <label>Processeur de compte</label>
@@ -240,6 +242,4 @@
         <label>Valider plan prog. pour EP imbriquée</label>
         <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

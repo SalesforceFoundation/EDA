@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Enlaces de curso</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Id. de Enlace de cursos</nameFieldLabel>
     <fields>
         <help>El Programa académico en el que está inscrito el estudiante.</help>
         <label>Programa académico del contacto</label>
@@ -68,13 +77,4 @@
             <translation>Antiguo</translation>
         </picklistValues>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Id. de Enlace de cursos</nameFieldLabel>
 </CustomObjectTranslation>

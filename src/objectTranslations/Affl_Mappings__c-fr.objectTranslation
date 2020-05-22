@@ -8,6 +8,8 @@
         <plural>true</plural>
         <value><!-- Affl Mappings --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>L&apos;étiquette du type d&apos;enregistrement de compte.</help>
         <label>Type d&apos;enregistrement de compte</label>
@@ -31,6 +33,4 @@
         <label>Champ d&apos;affiliation principal</label>
         <name>Primary_Affl_Field__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

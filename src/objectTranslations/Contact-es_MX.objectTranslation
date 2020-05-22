@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Contact Layout</layout>
+        <sections>
+            <label>Información adicional</label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label>Preferencias de comunicación</label>
+            <section>Communication Preferences</section>
+        </sections>
+        <sections>
+            <label>Detalle del contacto</label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label>Afiliaciones principales</label>
+            <section>Primary Affiliations</section>
+        </sections>
+    </layouts>
     <fields>
         <help>Email alternativo es un email opcional no capturado en otros campos de email.</help>
         <label>Email alternativo</label>
@@ -3644,23 +3663,4 @@
         <label>No actualizar automáticamente</label>
         <name>is_Address_Override__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Contact Layout</layout>
-        <sections>
-            <label>Información adicional</label>
-            <section>Additional Information</section>
-        </sections>
-        <sections>
-            <label>Preferencias de comunicación</label>
-            <section>Communication Preferences</section>
-        </sections>
-        <sections>
-            <label>Detalle del contacto</label>
-            <section>Contact Details</section>
-        </sections>
-        <sections>
-            <label>Afiliaciones principales</label>
-            <section>Primary Affiliations</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

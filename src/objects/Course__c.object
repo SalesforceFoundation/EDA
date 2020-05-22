@@ -46,14 +46,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>HEDA_Course_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>HEDA_Course_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>Course_ID__c</fields>
-        <fields>Account__c</fields>
-        <fields>Credit_Hours__c</fields>
-        <label>HEDA Course Compact Layout</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Academic course that a Department or School (the degree-granting Account type for the educational institution) offers.</description>
     <enableActivities>false</enableActivities>
@@ -64,6 +56,14 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Course</label>
+    <nameField>
+        <label>Course Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Courses</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
     <fields>
         <fullName>Account__c</fullName>
         <externalId>false</externalId>
@@ -116,17 +116,17 @@
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
-    <label>Course</label>
+    <compactLayouts>
+        <fullName>HEDA_Course_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Course_ID__c</fields>
+        <fields>Account__c</fields>
+        <fields>Credit_Hours__c</fields>
+        <label>HEDA Course Compact Layout</label>
+    </compactLayouts>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <label>Course Name</label>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Courses</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

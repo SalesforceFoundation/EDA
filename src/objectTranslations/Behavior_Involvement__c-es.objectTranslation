@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value><!-- Behavior Involvement --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Behavior Involvement Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de implicación de comportamiento</nameFieldLabel>
     <fields>
         <help>El caso que representa el evento del que se está informando.</help>
         <label>Caso</label>
@@ -50,13 +59,4 @@
             <translation>Testigo</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Behavior Involvement Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de implicación de comportamiento</nameFieldLabel>
 </CustomObjectTranslation>

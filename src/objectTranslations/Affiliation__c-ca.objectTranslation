@@ -8,6 +8,20 @@
         <plural>true</plural>
         <value><!-- Affiliation --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Informació d&apos;afiliació</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clau d’afiliació</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <label>Organització</label>
         <name>Account__c</name>
@@ -75,18 +89,4 @@
             <translation>Antic</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Affiliation Layout</layout>
-        <sections>
-            <label>Informació d&apos;afiliació</label>
-            <section>Affiliation Information</section>
-        </sections>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Clau d’afiliació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

@@ -8,6 +8,8 @@
         <plural>true</plural>
         <value><!-- Relationship Lookup --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Indica si aquesta cerca recíproca està activa.</help>
         <label>Actiu</label>
@@ -28,6 +30,4 @@
         <label>Neutral</label>
         <name>Neutral__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

@@ -46,15 +46,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>HEDA_Relationship_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>HEDA_Relationship_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>RelatedContact__c</fields>
-        <fields>Type__c</fields>
-        <fields>Status__c</fields>
-        <label>HEDA Relationship Compact Layout</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Connection between two Contacts.</description>
     <enableActivities>false</enableActivities>
@@ -65,6 +56,16 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Relationship</label>
+    <nameField>
+        <displayFormat>R-{000000}</displayFormat>
+        <label>Relationship Key</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Relationships</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
@@ -315,21 +316,15 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <label>Relationship</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
-    <nameField>
-        <displayFormat>R-{000000}</displayFormat>
-        <label>Relationship Key</label>
-        <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Relationships</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <compactLayouts>
+        <fullName>HEDA_Relationship_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>RelatedContact__c</fields>
+        <fields>Type__c</fields>
+        <fields>Status__c</fields>
+        <label>HEDA Relationship Compact Layout</label>
+    </compactLayouts>
     <validationRules>
         <fullName>Contact_Do_Not_Change</fullName>
         <active>true</active>
@@ -346,4 +341,9 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <errorDisplayField>RelatedContact__c</errorDisplayField>
         <errorMessage>Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one.</errorMessage>
     </validationRules>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
 </CustomObject>

@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Program Plan --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom del pla del programa</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Feu clic per cercar un compte (sovint un programa acadèmic) per associar al pla del programa.</help>
         <label>Compte</label>
@@ -57,14 +67,4 @@
         <label>Versió</label>
         <name>Version__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Program Plan Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom del pla del programa</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Address --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Address Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d’adreça</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <label>Tipus d&apos;adreça</label>
         <name>Address_Type__c</name>
@@ -466,14 +476,4 @@
         <label>Any d&apos;inici estacional</label>
         <name>Seasonal_Start_Year__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Address Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d’adreça</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

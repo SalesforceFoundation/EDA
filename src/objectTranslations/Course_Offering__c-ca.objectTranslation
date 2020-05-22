@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Course Offering --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Course Offering Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&apos;oferta del curs</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <label>Capacitat</label>
         <name>Capacity__c</name>
@@ -50,14 +60,4 @@
         <name>Time_Block__c</name>
         <relationshipLabel>Blocs de temps</relationshipLabel>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Course Offering Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;oferta del curs</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

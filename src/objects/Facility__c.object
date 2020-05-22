@@ -46,13 +46,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>HEDA_Facility_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>HEDA_Facility_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>Facility_Type__c</fields>
-        <fields>Capacity__c</fields>
-        <label>HEDA Facility Compact Layout</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>A school property asset. For example, a classroom, lecture hall, or laboratory.</description>
     <enableActivities>false</enableActivities>
@@ -63,6 +56,21 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Facility</label>
+    <nameField>
+        <label>Facility Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Facilities</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Facility_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Capacity__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Facility_Type__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Facility_Type__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Facility_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Capacity__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -177,24 +185,16 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>Facility</label>
+    <compactLayouts>
+        <fullName>HEDA_Facility_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Facility_Type__c</fields>
+        <fields>Capacity__c</fields>
+        <label>HEDA Facility Compact Layout</label>
+    </compactLayouts>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <label>Facility Name</label>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Facilities</pluralLabel>
-    <searchLayouts>
-        <customTabListAdditionalFields>Facility_Type__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Capacity__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>Facility_Type__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Facility_Type__c</lookupPhoneDialogsAdditionalFields>
-        <searchResultsAdditionalFields>Facility_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Capacity__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

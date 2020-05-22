@@ -8,6 +8,28 @@
         <plural>true</plural>
         <value><!-- Relationship --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Informació de la relació</label>
+            <section>Relationship Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clau de relació</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+    <validationRules>
+        <errorMessage>En lloc de canviar els contactes en una relació existent, suprimiu aquesta relació i creeu-ne una altra.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>En lloc de canviar els contactes en una relació existent, suprimiu aquesta relació i creeu-ne una altra.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
     <fields>
         <help>El contacte relacionat és ______ d&apos;aquest contacte.</help>
         <label>Contacte</label>
@@ -155,26 +177,4 @@
             <translation>Dona</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Relationship Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Informació de la relació</label>
-            <section>Relationship Information</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Clau de relació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
-    <validationRules>
-        <errorMessage>En lloc de canviar els contactes en una relació existent, suprimiu aquesta relació i creeu-ne una altra.</errorMessage>
-        <name>Contact_Do_Not_Change</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>En lloc de canviar els contactes en una relació existent, suprimiu aquesta relació i creeu-ne una altra.</errorMessage>
-        <name>Related_Contact_Do_Not_Change</name>
-    </validationRules>
 </CustomObjectTranslation>

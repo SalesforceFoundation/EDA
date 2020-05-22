@@ -53,6 +53,15 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Attendance Event</label>
+    <nameField>
+        <displayFormat>AE-{0000}</displayFormat>
+        <label>Attendance Event Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Attendance Events</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <fields>
         <fullName>Arrival_Time__c</fullName>
         <description>For tardy events, the time when the student arrived.</description>
@@ -224,18 +233,9 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <label>Attendance Event</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>AE-{0000}</displayFormat>
-        <label>Attendance Event Name</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Attendance Events</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

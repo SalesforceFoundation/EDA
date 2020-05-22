@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value>Trigger Handlers</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Trigger Handler Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Trigger Handler Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>Indicates that this module is active</help>
         <label>Active</label>
@@ -90,13 +99,4 @@
         <label>Usernames to Exclude</label>
         <name>Usernames_to_Exclude__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Trigger Handler Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Trigger Handler Name</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

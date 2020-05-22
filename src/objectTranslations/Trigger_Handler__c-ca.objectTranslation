@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Trigger Handler --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Trigger Handler Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom del controlador d&apos;activació</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Indica que aquest mòdul està actiu</help>
         <label>Actiu</label>
@@ -90,14 +100,4 @@
         <label>Noms d&apos;usuari per excloure</label>
         <name>Usernames_to_Exclude__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Trigger Handler Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom del controlador d&apos;activació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

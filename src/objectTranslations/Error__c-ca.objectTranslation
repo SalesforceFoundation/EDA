@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Error --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Error Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Número d&apos;error</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Context en què es generava l&apos;error, si es coneix.</help>
         <label>Tipus de context</label>
@@ -53,14 +63,4 @@
         <label>Seguiment de pila</label>
         <name>Stack_Trace__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Error Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Número d&apos;error</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

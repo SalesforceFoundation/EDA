@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Plans de programme</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du plan du programme</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>Cliquez pour rechercher un compte (souvent un programme académique) à associer au plan du programme.</help>
         <label>Compte</label>
@@ -57,14 +67,4 @@
         <label>Version</label>
         <name>Version__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Program Plan Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom du plan du programme</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

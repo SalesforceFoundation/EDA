@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Term Grade --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de qualificació del període</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>L’alumne per al qual es registra la qualificació. Quan es deixa en blanc, el Contacte es copia automàticament de la connexió de curs vàlida en desar-lo.</help>
         <label>Contacte</label>
@@ -99,14 +109,4 @@
         <name>Term__c</name>
         <relationshipLabel>Qualificacions del període</relationshipLabel>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Term Grade Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de qualificació del període</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

@@ -8,6 +8,19 @@
         <plural>true</plural>
         <value>Programaciones de ofertas de cursos</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>EDA Course Offering Schedule Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Días de la Semana</label>
+            <section>Days of Week</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de programación de ofertas de cursos</nameFieldLabel>
     <fields>
         <help>La oferta de cursos a la que pertenece este registro.</help>
         <label>Oferta de curso</label>
@@ -64,17 +77,4 @@
         <label>Miércoles</label>
         <name>Wednesday__c</name>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>EDA Course Offering Schedule Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Días de la Semana</label>
-            <section>Days of Week</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de programación de ofertas de cursos</nameFieldLabel>
 </CustomObjectTranslation>

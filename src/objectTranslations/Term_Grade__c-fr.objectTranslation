@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Notes de la période</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la note de la période</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>L’étudiant pour qui la note est enregistrée. Lorsqu’il est laissé vide, le champ Contact est rempli automatiquement à partir de la connexion de cours valide lors de l’enregistrement.</help>
         <label>Contact</label>
@@ -99,14 +109,4 @@
         <name>Term__c</name>
         <relationshipLabel>Notes de la période</relationshipLabel>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Term Grade Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la note de la période</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

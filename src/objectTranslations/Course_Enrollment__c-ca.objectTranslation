@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Course Connection --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID de connexió del curs</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>El programa acadèmic en què està inscrit l&apos;estudiant.</help>
         <label>Programa acadèmic del contacte</label>
@@ -68,14 +78,4 @@
             <translation>Antic</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID de connexió del curs</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

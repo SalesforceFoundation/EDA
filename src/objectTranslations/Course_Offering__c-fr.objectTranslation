@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Choix de modules</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Course Offering Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&apos;offre de cours</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
     <fields>
         <label>Capacité</label>
         <name>Capacity__c</name>
@@ -50,14 +60,4 @@
         <name>Time_Block__c</name>
         <relationshipLabel>Blocs de temps</relationshipLabel>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Course Offering Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;offre de cours</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

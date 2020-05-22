@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Gestionnaires de déclencheur</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Trigger Handler Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du gestionnaire de déclencheur</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>Indique que ce module est actif</help>
         <label>Actif</label>
@@ -90,14 +100,4 @@
         <label>Noms d&apos;utilisateur à exclure</label>
         <name>Usernames_to_Exclude__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Trigger Handler Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom du gestionnaire de déclencheur</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

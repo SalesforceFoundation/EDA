@@ -56,6 +56,14 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Trigger Handler</label>
+    <nameField>
+        <label>Trigger Handler Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Trigger Handlers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>true</defaultValue>
@@ -219,7 +227,6 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
-    <label>Trigger Handler</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -237,11 +244,4 @@
         <filterScope>Everything</filterScope>
         <label>All - Main Fields</label>
     </listViews>
-    <nameField>
-        <label>Trigger Handler Name</label>
-        <type>Text</type>
-    </nameField>
-    <pluralLabel>Trigger Handlers</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Behavior Involvement --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Behavior Involvement Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la implicació de comportament</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>El cas que representa l’esdeveniment denunciat.</help>
         <label>Cas</label>
@@ -50,14 +60,4 @@
             <translation>Testimoni</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Behavior Involvement Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la implicació de comportament</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

@@ -8,6 +8,33 @@
         <plural>true</plural>
         <value>Attributs</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de l’attribut</nameFieldLabel>
+    <recordTypes>
+        <description>Permet aux établissements d&apos;enseignement de suivre les licences, certifications ou soutiens obtenus par le personnel ou les étudiants.</description>
+        <label>Informations d’authentification</label>
+        <name>Credential</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Permet aux établissements d&apos;enseignement de suivre les caractéristiques importantes des étudiants susceptibles d’affecter leur éducation.</description>
+        <label>Caractéristique de l’étudiant</label>
+        <name>Student_Characteristic</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
     <fields>
         <help>L’agence qui a fourni ou certifié les informations d’authentification.</help>
         <label>Agence</label>
@@ -190,31 +217,4 @@
             <translation>Sociologie</translation>
         </picklistValues>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>EDA Credential Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>EDA Student Characteristic Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l’attribut</nameFieldLabel>
-    <recordTypes>
-        <description>Permet aux établissements d&apos;enseignement de suivre les licences, certifications ou soutiens obtenus par le personnel ou les étudiants.</description>
-        <label>Informations d’authentification</label>
-        <name>Credential</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Permet aux établissements d&apos;enseignement de suivre les caractéristiques importantes des étudiants susceptibles d’affecter leur éducation.</description>
-        <label>Caractéristique de l’étudiant</label>
-        <name>Student_Characteristic</name>
-    </recordTypes>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

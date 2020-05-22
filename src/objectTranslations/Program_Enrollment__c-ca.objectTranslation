@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Program Enrollment --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&apos;inscripció del programa</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>El programa al qual està inscrit l&apos;estudiant.</help>
         <label>Programa</label>
@@ -104,14 +114,4 @@
         <label>Data d&apos;inici</label>
         <name>Start_Date__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Program Enrollment Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;inscripció del programa</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

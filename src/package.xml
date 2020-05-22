@@ -421,6 +421,19 @@
         <members>Course__c.Credit_Hours__c</members>
         <members>Course__c.Description__c</members>
         <members>Course__c.Extended_Description__c</members>
+        <members>Education_History__c.Account__c</members>
+        <members>Education_History__c.Class_Rank_Scale__c</members>
+        <members>Education_History__c.Class_Rank_Weighted__c</members>
+        <members>Education_History__c.Class_Rank__c</members>
+        <members>Education_History__c.Contact__c</members>
+        <members>Education_History__c.Degree_Earned__c</members>
+        <members>Education_History__c.End_Date__c</members>
+        <members>Education_History__c.GPA_Scale_Reporting__c</members>
+        <members>Education_History__c.GPA_Weighted__c</members>
+        <members>Education_History__c.GPA__c</members>
+        <members>Education_History__c.Graduation_Date__c</members>
+        <members>Education_History__c.Start_Date__c</members>
+        <members>Education_History__c.Time_In_Institution__c</members>
         <members>Error__c.Context_Type__c</members>
         <members>Error__c.Datetime__c</members>
         <members>Error__c.Email_Sent__c</members>
@@ -473,8 +486,8 @@
         <members>Hierarchy_Settings__c.Prevent_Behavior_Involvement_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Case_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Contact_Deletion__c</members>
-        <members>Hierarchy_Settings__c.Prevent_Course_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Connection_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Course_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Offering_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Facility_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Plan_Requirement_Deletion__c</members>
@@ -836,6 +849,7 @@
         <members>Course_Offering_Schedule__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>Education_History__c</members>
         <members>Error__c</members>
         <members>Facility__c</members>
         <members>Hierarchy_Settings__c</members>
@@ -1106,6 +1120,12 @@
         <name>FeatureParameterInteger</name>
     </types>
     <types>
+        <members>Account_Record_Page</members>
+        <members>Contact_Record_Page</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Account-EDA Educational Institution</members>
         <members>Account-HEDA Household Layout</members>
         <members>Account-HEDA Organization Layout</members>
         <members>Address__c-HEDA Address Layout</members>
@@ -1117,12 +1137,17 @@
         <members>Behavior_Involvement__c-EDA Behavior Involvement Layout</members>
         <members>Behavior_Response__c-EDA Behavior Response Layout</members>
         <members>Case-EDA Incident Layout</members>
+        <members>Contact-Contact %28Marketing%29 Layout</members>
+        <members>Contact-Contact %28Sales%29 Layout</members>
+        <members>Contact-Contact %28Support%29 Layout</members>
+        <members>Contact-Contact Layout</members>
         <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
         <members>Course_Offering_Schedule__c-EDA Course Offering Schedule Layout</members>
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
         <members>Course__c-HEDA Course Layout</members>
+        <members>Education_History__c-Education History Layout</members>
         <members>Error__c-HEDA Error Layout</members>
         <members>Facility__c-HEDA Facility Layout</members>
         <members>Language__c-HEDA Language Layout</members>
@@ -1151,6 +1176,7 @@
         <members>Course_Offering_Schedule__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
+        <members>Education_History__c.All</members>
         <members>Facility__c.All</members>
         <members>Language__c.All</members>
         <members>Plan_Requirement__c.All</members>

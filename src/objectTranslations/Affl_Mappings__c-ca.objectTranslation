@@ -8,6 +8,8 @@
         <plural>true</plural>
         <value><!-- Affl Mappings --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>L&apos;etiqueta Tipus de registre del compte.</help>
         <label>Tipus de registre del compte</label>
@@ -31,6 +33,4 @@
         <label>Camp d&apos;afiliació primària</label>
         <name>Primary_Affl_Field__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

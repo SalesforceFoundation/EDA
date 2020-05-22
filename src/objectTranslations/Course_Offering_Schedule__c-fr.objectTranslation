@@ -8,6 +8,20 @@
         <plural>true</plural>
         <value>Calendriers de l&apos;offre de cours</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Course Offering Schedule Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Jours de la Semaine</label>
+            <section>Days of Week</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du calendrier de l&apos;offre de cours</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>L&apos;offre de cours à laquelle cet enregistrement appartient.</help>
         <label>Offre de cours</label>
@@ -64,18 +78,4 @@
         <label>Mercredi</label>
         <name>Wednesday__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>EDA Course Offering Schedule Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Jours de la Semaine</label>
-            <section>Days of Week</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom du calendrier de l&apos;offre de cours</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

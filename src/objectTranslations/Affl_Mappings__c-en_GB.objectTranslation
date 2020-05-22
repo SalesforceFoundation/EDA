@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value><!-- Affl Mappings --></value>
     </caseValues>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>The Account Record Type label.</help>
         <label>Account Record Type</label>
@@ -31,5 +32,4 @@
         <label>Primary Affl Field</label>
         <name>Primary_Affl_Field__c</name>
     </fields>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

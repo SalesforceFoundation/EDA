@@ -8,6 +8,27 @@
         <plural>true</plural>
         <value>Relaciones</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Información de relación</label>
+            <section>Relationship Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clave de relación</nameFieldLabel>
+    <validationRules>
+        <errorMessage>En lugar de cambiar los contactos en una relación existente, elimine esta relación y cree una nueva.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>En lugar de cambiar los contactos en una relación existente, elimine esta relación y cree una nueva.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
     <fields>
         <help>El contacto relacionado es ______ de este contacto.</help>
         <label>Contacto</label>
@@ -155,25 +176,4 @@
             <translation>Mujer</translation>
         </picklistValues>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Relationship Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Información de relación</label>
-            <section>Relationship Information</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Clave de relación</nameFieldLabel>
-    <validationRules>
-        <errorMessage>En lugar de cambiar los contactos en una relación existente, elimine esta relación y cree una nueva.</errorMessage>
-        <name>Contact_Do_Not_Change</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>En lugar de cambiar los contactos en una relación existente, elimine esta relación y cree una nueva.</errorMessage>
-        <name>Related_Contact_Do_Not_Change</name>
-    </validationRules>
 </CustomObjectTranslation>

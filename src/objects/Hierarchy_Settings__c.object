@@ -3,6 +3,8 @@
     <customSettingsType>Hierarchy</customSettingsType>
     <description>All hierarchy settings.</description>
     <enableFeeds>false</enableFeeds>
+    <label>Hierarchy Settings</label>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Account_Processor__c</fullName>
         <description>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</description>
@@ -401,15 +403,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Prevent_Course_Deletion__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Reserved for future use.</description>
-        <externalId>false</externalId>
-        <label>Prevent Course Deletion</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Prevent_Course_Connection_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
@@ -419,11 +412,11 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Prevent_Facility_Deletion__c</fullName>
+        <fullName>Prevent_Course_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <label>Prevent Facility Deletion</label>
+        <label>Prevent Course Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -433,6 +426,15 @@
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
         <label>Prevent Course Offering Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Facility_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Facility Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -567,6 +569,4 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <label>Hierarchy Settings</label>
-    <visibility>Public</visibility>
 </CustomObject>

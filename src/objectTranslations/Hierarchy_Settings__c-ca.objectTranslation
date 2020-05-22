@@ -8,6 +8,8 @@
         <plural>true</plural>
         <value><!-- Hierarchy Settings --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>ID del tipus de registre predeterminat del compte. Per exemple, si s&apos;especifica Administratiu (el model de compte recomanat), introduïu l&apos;ID del tipus de registre administratiu per a l&apos;objecte Compte.</help>
         <label>Processador de compte</label>
@@ -240,6 +242,4 @@
         <label>Valida el pla del programa per als requisits del pla enclavat</label>
         <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

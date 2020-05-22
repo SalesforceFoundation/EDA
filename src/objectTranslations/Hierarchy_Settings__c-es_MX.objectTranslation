@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value><!-- Hierarchy Settings --></value>
     </caseValues>
+    <gender><!-- Masculine --></gender>
     <fields>
         <help>Id. del tipo de registro predeterminado para Cuenta. Por ejemplo, si se especifica Administrativa (el modelo de cuenta recomendado), ingrese el Id. del tipo de dirección Administrativa para le objeto Cuenta.</help>
         <label>Procesador de cuentas</label>
@@ -240,5 +241,4 @@
         <label>Validar plan programa para RP anidados</label>
         <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
 </CustomObjectTranslation>

@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Erreurs</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Error Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Numéro d&apos;erreur</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
     <fields>
         <help>S&apos;il est connu, contexte dans lequel l&apos;erreur a été générée.</help>
         <label>Type de contexte</label>
@@ -53,14 +63,4 @@
         <label>Trace de la pile</label>
         <name>Stack_Trace__c</name>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Error Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Numéro d&apos;erreur</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

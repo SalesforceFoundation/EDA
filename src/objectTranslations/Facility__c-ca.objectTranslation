@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Facility --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Facility Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la instal·lació</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>L&apos;organització responsable de la instal·lació.</help>
         <label>Compte</label>
@@ -71,14 +81,4 @@
         <name>Parent_Facility__c</name>
         <relationshipLabel>Instal·lacions</relationshipLabel>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Facility Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la instal·lació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

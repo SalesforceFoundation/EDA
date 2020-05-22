@@ -46,16 +46,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>HEDA_Course_Enrollment_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>HEDA_Course_Enrollment_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>Course_Offering__c</fields>
-        <fields>Program_Enrollment__c</fields>
-        <fields>Grade__c</fields>
-        <fields>Primary__c</fields>
-        <label>HEDA Course Connection Compact Layout</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Represents a connection to a Course Offering.</description>
     <enableActivities>false</enableActivities>
@@ -66,6 +56,15 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <label>Course Connection</label>
+    <nameField>
+        <displayFormat>CC-{0000}</displayFormat>
+        <label>Course Connection ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Course Connections</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -204,18 +203,19 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <label>Course Connection</label>
+    <compactLayouts>
+        <fullName>HEDA_Course_Enrollment_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Course_Offering__c</fields>
+        <fields>Program_Enrollment__c</fields>
+        <fields>Grade__c</fields>
+        <fields>Primary__c</fields>
+        <label>HEDA Course Connection Compact Layout</label>
+    </compactLayouts>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <nameField>
-        <displayFormat>CC-{0000}</displayFormat>
-        <label>Course Connection ID</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <pluralLabel>Course Connections</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

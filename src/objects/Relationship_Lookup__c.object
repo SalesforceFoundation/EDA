@@ -4,6 +4,8 @@
     <description>Provides table of gendered and gender-neutral reciprocal relationships for various relationship types (ie. Father-Son, Father-Daughter, Father-Child)</description>
     <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
+    <label>Relationship Lookup</label>
+    <visibility>Public</visibility>
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>true</defaultValue>
@@ -50,6 +52,4 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Relationship Lookup</label>
-    <visibility>Public</visibility>
 </CustomObject>

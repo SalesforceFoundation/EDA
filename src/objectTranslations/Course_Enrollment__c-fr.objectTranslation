@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Inscriptions à des modules</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&apos;inscriptions aux modules</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help>Le programme académique auquel l&apos;étudiant est inscrit.</help>
         <label>Programme académique du contact</label>
@@ -68,14 +78,4 @@
             <translation>Ancien</translation>
         </picklistValues>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;inscriptions aux modules</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

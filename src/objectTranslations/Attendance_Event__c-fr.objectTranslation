@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Événements de présence</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de l’événement de présence</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
     <fields>
         <help>Pour les retards aux événements, l’heure d’arrivée de l’étudiant.</help>
         <label>Heure d’arrivée</label>
@@ -97,14 +107,4 @@
         <label>Non excusé</label>
         <name>Unexcused__c</name>
     </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>EDA Attendance Event Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l’événement de présence</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

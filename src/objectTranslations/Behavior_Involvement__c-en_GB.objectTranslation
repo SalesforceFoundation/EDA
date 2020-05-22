@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value><!-- Behavior Involvement --></value>
     </caseValues>
+    <layouts>
+        <layout>EDA Behavior Involvement Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Behaviour Involvement Name</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>The Case that represents the event being reported.</help>
         <label>Case</label>
@@ -50,13 +59,4 @@
             <translation>Witness</translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>EDA Behavior Involvement Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Behaviour Involvement Name</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

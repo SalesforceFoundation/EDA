@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value>Exigences du plan</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Plan Requirement Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de l&apos;exigence du plan</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
     <fields>
         <help>Spécifiez une catégorie pour l&apos;Exigence du plan.</help>
         <label>Catégorie</label>
@@ -54,14 +64,4 @@
         <label>Séquence</label>
         <name>Sequence__c</name>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Plan Requirement Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l&apos;exigence du plan</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

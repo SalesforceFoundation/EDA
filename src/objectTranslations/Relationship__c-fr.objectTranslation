@@ -8,6 +8,28 @@
         <plural>true</plural>
         <value>Relations</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Informations de relation</label>
+            <section>Relationship Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clé de relation</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage>Au lieu de modifier les contacts d’une relation existante, effacez cette relation et créez-en une nouvelle.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Au lieu de modifier les contacts d’une relation existante, effacez cette relation et créez-en une nouvelle.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
     <fields>
         <help>Le contact associé est le ______ de ce contact.</help>
         <label>Contact</label>
@@ -155,26 +177,4 @@
             <translation>Épouse</translation>
         </picklistValues>
     </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Relationship Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Informations de relation</label>
-            <section>Relationship Information</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Clé de relation</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
-    <validationRules>
-        <errorMessage>Au lieu de modifier les contacts d’une relation existante, effacez cette relation et créez-en une nouvelle.</errorMessage>
-        <name>Contact_Do_Not_Change</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>Au lieu de modifier les contacts d’une relation existante, effacez cette relation et créez-en une nouvelle.</errorMessage>
-        <name>Related_Contact_Do_Not_Change</name>
-    </validationRules>
 </CustomObjectTranslation>

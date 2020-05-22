@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Contact Language --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Contact Language Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de l’idioma de contacte</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>La persona que parla aquest idioma.</help>
         <label>Contacte</label>
@@ -42,14 +52,4 @@
         <label>Idioma principal</label>
         <name>Primary_Language__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Contact Language Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l’idioma de contacte</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

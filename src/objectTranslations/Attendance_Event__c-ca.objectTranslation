@@ -8,6 +8,16 @@
         <plural>true</plural>
         <value><!-- Attendance Event --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de l&apos;esdeveniment d&apos;assistència</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>Per als esdeveniments de retards, el moment en què va arribar l’alumne.</help>
         <label>Hora d&apos;arribada</label>
@@ -97,14 +107,4 @@
         <label>No justificat</label>
         <name>Unexcused__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Attendance Event Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l&apos;esdeveniment d&apos;assistència</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

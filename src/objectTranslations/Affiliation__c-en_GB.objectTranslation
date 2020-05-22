@@ -8,6 +8,19 @@
         <plural>true</plural>
         <value>Affiliations</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Affiliation Information</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Affiliation Key</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <fields>
         <label>Organisation</label>
         <name>Account__c</name>
@@ -75,17 +88,4 @@
             <translation>Former</translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>HEDA Affiliation Layout</layout>
-        <sections>
-            <label>Affiliation Information</label>
-            <section>Affiliation Information</section>
-        </sections>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Affiliation Key</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

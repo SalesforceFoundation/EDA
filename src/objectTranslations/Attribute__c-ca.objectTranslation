@@ -8,6 +8,33 @@
         <plural>true</plural>
         <value><!-- Attribute --></value>
     </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de l&apos;atribut</nameFieldLabel>
+    <recordTypes>
+        <description>Permet a les institucions educatives fer un seguiment de les llicències, les certificacions o les aprovacions obtingudes pel personal o pels estudiants.</description>
+        <label>Credencial</label>
+        <name>Credential</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Permet a les institucions educatives fer un seguiment de característiques importants dels estudiants que poden afectar l&apos;educació dels estudiants.</description>
+        <label>Característica de l’alumne</label>
+        <name>Student_Characteristic</name>
+    </recordTypes>
+    <startsWith><!-- Consonant --></startsWith>
     <fields>
         <help>L’agència que va proporcionar o certificar la credencial.</help>
         <label>Agència</label>
@@ -190,31 +217,4 @@
             <translation>Sociologia</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Credential Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>EDA Student Characteristic Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l&apos;atribut</nameFieldLabel>
-    <recordTypes>
-        <description>Permet a les institucions educatives fer un seguiment de les llicències, les certificacions o les aprovacions obtingudes pel personal o pels estudiants.</description>
-        <label>Credencial</label>
-        <name>Credential</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Permet a les institucions educatives fer un seguiment de característiques importants dels estudiants que poden afectar l&apos;educació dels estudiants.</description>
-        <label>Característica de l’alumne</label>
-        <name>Student_Characteristic</name>
-    </recordTypes>
-    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>
