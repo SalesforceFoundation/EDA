@@ -2854,9 +2854,9 @@
     <fields>
         <fullName>Current_Address__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup to the current Address record for this Contact. The Contact's Mailing Address field is automatically populated with the street, city, state, and postal code from the current Address record.</description>
+        <description>Lookup to the current Address record for this Contact. The Contact's Mailing Address field is automatically populated with the address fields from the current Address record.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Lookup to the current Address record for this Contact. The Contact's Mailing Address field is automatically populated with the street, city, state, and postal code from the current Address record.</inlineHelpText>
+        <inlineHelpText>Lookup to the current Address record for this Contact. The Contact's Mailing Address field is automatically populated with the address fields from the current Address record.</inlineHelpText>
         <label>Current Address</label>
         <referenceTo>Address__c</referenceTo>
         <relationshipLabel>Contacts (Current Address)</relationshipLabel>
