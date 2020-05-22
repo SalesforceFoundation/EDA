@@ -204,6 +204,7 @@
         <members>TDTM_Event</members>
         <members>TDTM_Facility</members>
         <members>TDTM_Language</members>
+        <members>TDTM_Lead</members>
         <members>TDTM_Opportunity</members>
         <members>TDTM_PlanRequirement</members>
         <members>TDTM_ProgramEnrollment</members>
@@ -216,6 +217,7 @@
         <members>TDTM_Test_Score</members>
         <members>TDTM_TimeBlock</members>
         <members>TDTM_TriggerHandler</members>
+        <members>TDTM_User</members>
         <name>ApexTrigger</name>
     </types>
     <types>
