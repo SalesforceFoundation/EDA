@@ -61,7 +61,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             Address__c addr = addrs[i];
             addr.MailingStreet__c = 'New Street' + i;
             addr.MailingCity__c = 'New City' + i;
-            addr.MailingCounty__c = 'New County' + i;
+            addr.Mailing_County__c = 'New County' + i;
         }
 
         Test.startTest();
@@ -69,13 +69,13 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
 
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-                                                                BillingCounty__c, Current_Address__c
+                                                                Billing_County__c, Current_Address__c
                                                                 FROM Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('New Street'));
             System.assert(acc.BillingCity.contains('New City'));
-            System.assert(acc.BillingCounty__c.contains('New County'));
+            System.assert(acc.Billing_County__c.contains('New County'));
             System.assertNotEquals(Null, acc.Current_Address__c);
         }
     }
@@ -98,13 +98,13 @@ public with sharing class ADDR_AdminAcc_TEST {
 
         //Verify that the Account billing address fields are cleared
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-                                                                BillingCounty__c, Current_Address__c 
+                                                                Billing_County__c, Current_Address__c 
                                                                 FROM Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assertEquals(Null, acc.BillingStreet);
             System.assertEquals(Null, acc.BillingCity);
-            System.assertEquals(Null, acc.BillingCounty__c);
+            System.assertEquals(Null, acc.Billing_County__c);
         }
     }
 
@@ -151,13 +151,13 @@ public with sharing class ADDR_AdminAcc_TEST {
 
         //Verify that the Account address fields went back to the default
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-                                                          		BillingCounty__c, Current_Address__c 
+                                                          		Billing_County__c, Current_Address__c 
                                                                 FROM Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('Street'));
             System.assert(acc.BillingCity.contains('City')); 
-            System.assert(acc.BillingCounty__c.contains('County')); 
+            System.assert(acc.Billing_County__c.contains('County')); 
             System.assertNotEquals(Null, acc.Current_Address__c);                
         }
     }
@@ -185,14 +185,14 @@ public with sharing class ADDR_AdminAcc_TEST {
 
         //Verify that the Account and Contacts don't share the same address and it's new for the Account!
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-                                                             	BillingCounty__c, Current_Address__c 
+                                                             	Billing_County__c, Current_Address__c 
         														FROM Account]);
         
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assertEquals(Null, acc.BillingStreet); //address information has been cleared because address is no longer the default
             System.assertEquals(Null, acc.BillingCity); //address information has been cleared because address is no longer the default
-            System.assertEquals(Null, acc.BillingCounty__c);
+            System.assertEquals(Null, acc.Billing_County__c);
             System.assertEquals(Null, acc.Current_Address__c); //account no longer has a current address, since address is no longer the defaults
         }
     }
@@ -214,7 +214,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         Address__c addrNew = new Address__c();
         addrNew.MailingStreet__c = 'street override';
         addrNew.MailingCity__c = 'city override';
-        addrNew.MailingCounty__c = 'county override';
+        addrNew.Mailing_County__c = 'county override';
         addrNew.Default_Address__c = False;
         //Assign it to the second account
         addrNew.Parent_Account__c = accsAddrs.accs[1].Id;
@@ -230,10 +230,10 @@ public with sharing class ADDR_AdminAcc_TEST {
         //Update the default Address records' mailing fields for both Accounts
         addrs[0].MailingStreet__c = 'New Street';
         addrs[0].MailingCity__c = 'New City';
-        addrs[0].MailingCounty__c = 'New County';
+        addrs[0].Mailing_County__c = 'New County';
         addrs[1].MailingStreet__c = 'New Street';
         addrs[1].MailingCity__c = 'New City';
-        addrs[1].MailingCounty__c = 'New County';
+        addrs[1].Mailing_County__c = 'New County';
 
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
@@ -241,13 +241,13 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-                                                             	BillingCounty__c, Current_Address__c 
+                                                             	Billing_County__c, Current_Address__c 
                                                              	FROM Account]);
         //Verify that the billing address on the Account was updated to match the updated mailing fields on their Address records
         for (Account acc : mapAccIdAcc.values()) {         
             System.assert(acc.BillingStreet.contains('New Street'));
             System.assert(acc.BillingCity.contains('New City'));
-            System.assert(acc.BillingCounty__c.contains('New County'));
+            System.assert(acc.Billing_County__c.contains('New County'));
             System.assertNotEquals(null, acc.Current_Address__c);
         }
     }
@@ -274,7 +274,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             addrs[i].Default_Address__c = True;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
-            addrs[i].MailingCounty__c = 'New Default County' + i;
+            addrs[i].Mailing_County__c = 'New Default County' + i;
         }
         
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
@@ -289,13 +289,13 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         //Verify that the billing address fields on the Account are updated with the new Address mailing fields 
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-                                                             	BillingCounty__c, Current_Address__c 
+                                                             	Billing_County__c, Current_Address__c 
                                                              	FROM Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('New Default Street'));
             System.assert(acc.BillingCity.contains('New Default City'));
-            System.assert(acc.BillingCounty__c.contains('New Default County'));
+            System.assert(acc.Billing_County__c.contains('New Default County'));
             System.assertNotEquals(Null, acc.Current_Address__c);
         }
         
@@ -350,7 +350,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             addrs[i].Default_Address__c = True;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
-            addrs[i].MailingCounty__c = 'New Default County' + i;
+            addrs[i].Mailing_County__c = 'New Default County' + i;
         }
         
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
@@ -364,7 +364,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             listAddrOriginal[i].Default_Address__c = True;
             listAddrOriginal[i].MailingStreet__c = 'Original Default Street' + i;
             listAddrOriginal[i].MailingCity__c = 'Original Default City' + i;
-            listAddrOriginal[i].MailingCounty__c = 'Original Default County' + i;
+            listAddrOriginal[i].Mailing_County__c = 'Original Default County' + i;
         }
         
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
@@ -911,7 +911,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = null;
             accsAddrs.accs[i].BillingCity = null;
-            accsAddrs.accs[i].BillingCounty__c = null;
+            accsAddrs.accs[i].Billing_County__c = null;
             accsAddrs.accs[i].BillingState = null;
             accsAddrs.accs[i].BillingPostalCode = null;
             accsAddrs.accs[i].BillingCountry = null;

@@ -576,10 +576,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         }
 
         Map<Id, Address__c> mapAddrIdAddr = new Map<Id, Address__c>([SELECT Id, Address_Type__c, MailingStreet__c, 
-                                                                    MailingStreet2__c, MailingCity__c, MailingCounty__c, 
+                                                                    MailingStreet2__c, MailingCity__c, Mailing_County__c, 
                                                                     MailingState__c, Geolocation__Latitude__s, Geolocation__Longitude__s, MailingPostalCode__c, MailingCountry__c,
                                                                     (SELECT is_Address_Override__c, MailingStreet, MailingCity, 
-                                                                    MailingCounty__c, MailingState, MailingPostalCode, 
+                                                                    Mailing_County__c, MailingState, MailingPostalCode, 
                                                                     MailingCountry, MailingLatitude, MailingLongitude 
                                                                     FROM Address__c.Contacts1__r)
                                                                     FROM Address__c 
