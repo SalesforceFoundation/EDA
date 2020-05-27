@@ -23,8 +23,7 @@ Suite Setup     Run keywords
 ...             Initialize test data
 ...             Open test browser
 
-Suite Teardown  Run keywords
-...             Close Browser 
+Suite Teardown  Close Browser
 
 *** Test Cases ***
 Verify affiliations with contacts
