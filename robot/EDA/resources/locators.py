@@ -1,4 +1,5 @@
 eda_lex_locators = {
+    "app_tile": "//one-app-launcher-modal//one-app-launcher-app-tile//a[.='{}']",
     "app_launcher": {
         "app_link": "//div[contains(@class, 'slds-section slds-is-open')]//section[@id='cards']//a[@class='appTileTitle' and text()='{}']",
     },
@@ -87,6 +88,7 @@ eda_lex_locators = {
         "ph_affl_unchecked": "//div/span[text()='Primary Household']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
         "pso_affl_unchecked": "//div/span[text()='Primary Sports Organization']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
         "pd_affl_unchecked": "//div/span[text()='Primary Department']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
+
         "checkbox_ap_affl": "(//label[@class='slds-checkbox']/input[@class='mapping-auto-enroll uiInput uiInputCheckbox uiInput--default uiInput--checkbox'])[1]/following-sibling::span[@class='slds-checkbox--faux']",
         "pbo_affl_edit": "(//label/span[text()='Primary Affl Field: Primary Business Organization']/../../../following-sibling::div/div/div/label)[1]/input/following-sibling::span[@class='slds-checkbox--faux']",
         "pei_affl_edit": "(//label/span[text()='Primary Affl Field: Primary Educational Institution']/../../../following-sibling::div/div/div/label)[1]/input/following-sibling::span[@class='slds-checkbox--faux']",
@@ -109,6 +111,7 @@ eda_lex_locators = {
         "status_student_affl": "//select[contains(@class,'affiliation-role-picklist-input-select')]",
         "status_spec_affl_not_deleted_former": "//select[contains(@class,'affiliation-status-delete-picklist-input-select')]",
         "status_current_picklist_affl": "//select[contains(@class,'affiliation-status-picklist-input-select')]",
+        
         "default_account_model": "//span[text()='Default Account Model:']",
         "store_errors": "//span[text()='Store Errors:']",
         "send_error_notifications": "//span[text()='Send Error Notifications:']",
@@ -152,7 +155,6 @@ eda_lex_locators = {
         "affiliations_former": "//div/div/following::div/span[text()='Former']",
         "affiliations_student": "(//div/div/span[@class='uiOutputText' and text()='Role Specified for Created Affiliations: ']/following::div[@class='slds-col slds-size--1-of-2'])[1]/span[text()='Student']",
         "affiliations_current": "//div/div/following::div[@class='slds-col slds-size--1-of-2']/span[text()='Current']",
-        "app_tile": "//one-app-launcher-modal//one-app-launcher-app-tile//a[.='{}']",
     },
     "tabs": {
         "accountsandcontacts" : "//a[contains(text(),'Accounts and Contacts')]",

@@ -385,18 +385,6 @@ class ContactDetailPage(DetailPage):
         self.selenium.click_link(name)
         self.salesforce.click_object_button("Edit")
         self.salesforce.wait_until_modal_is_open()
-#         self.select_contact(FirstName, LastName)
-        # Navigate to Detail tab
-#         self.open_item(
-#             contacts_locators["details_tab"], 
-#             "Details tab not found on contact", 
-#             True
-#         )
-#         self.open_item(
-#             contacts_locators["edit_contact"], 
-#             "Edit button not found on contact", 
-#             False
-#         )
         self.place_in_view(contacts_locators["phone_home"])
         self.selenium.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight)"
