@@ -23,8 +23,3 @@ Validate Edit Mode For EDA Settings, SYSTEM
 
     # Error Notification Recipient
     Select From List By Label       //select[@name='error_to_type']   User
-
-
-*** Keywords ***
-
-
