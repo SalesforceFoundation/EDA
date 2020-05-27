@@ -15,15 +15,13 @@ Library         robot/EDA/resources/EDA.py
 Library         DateTime
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/AffiliationsPageObject.py
-
-Test Setup      Initialize test setup
+...             robot/EDA/resources/SettingsPageObject.py
 
 Suite Setup     Run keywords
 ...             Initialize test data
 ...             Open test browser
 
-Suite Teardown  Run keywords
-...             Close Browser 
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 
@@ -102,11 +100,11 @@ All checkbox fields can retain checked value on save
     ...                                         hed__HEDA_Settings
 
     # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
+    Go to EDA settings
     Go to affiliation settings
 
     ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
-    ${auto_enroll_academic_program} =           Get Eda Locator         eda_settings.auto_enroll_academic_program
+    ${auto_enroll_academic_program} =           Get Eda Locator         affiliations_locators.auto_enroll_academic_program
     ${checkbox_ap_affl} =                       Get Eda Locator         eda_settings.checkbox_ap_affl
 
     ${auto_enroll_business_organization} =      Get Eda Locator         eda_settings.auto_enroll_business_organization
@@ -168,7 +166,7 @@ All checkbox fields can retain unchecked values on save
     ...                                         hed__HEDA_Settings
 
     # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
+    Go to EDA settings
     Go to affiliation settings
 
     ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
@@ -231,12 +229,6 @@ All checkbox fields can retain unchecked values on save
 
 
 *** Keywords ***
-
-Initialize test setup
-    Shift to default content
-    Select App Launcher App                     EDA
-    Close all tabs
-
 Initialize test data
     [Documentation]                             Get the EDA namespace
 

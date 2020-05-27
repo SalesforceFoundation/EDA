@@ -1,12 +1,15 @@
 *** Settings ***
 Documentation
-...     Verify Plan Requirement with both Program Plan & Parent Plan Requirement can be created when setting is disabled
+...     Verify Plan Requirement with both Program Plan & Parent Plan Requirement
+...     can be created when setting is disabled
 
 Resource        robot/EDA/resources/EDA.robot
+
 Suite Setup     Run keywords
 ...             Initialize test data
 ...             Open test browser
-Suite Teardown  Delete records and close browser
+
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Validate creation of Plan Requirement - Nested Plan Requirement setting disabled
