@@ -637,12 +637,12 @@ public with sharing class ADDR_Addresses_UTIL {
                 Address__c addrMatch = Null;
                 for (Address__c childAddr : childAddrs) {
                     //Only include address type in the test if the new one isn't empty.
-                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != null)) {
+                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != Null)) {
                         //Found exact match, record it and bail out
                         addrMatch = childAddr;
                         break;
                     }
-                    if (tryFuzzy && isAddressMatchFuzzy(addr, childAddr, addr.Address_Type__c != null)) {
+                    if (tryFuzzy && isAddressMatchFuzzy(addr, childAddr, addr.Address_Type__c != Null)) {
                         //Found fuzzy match, remember it and continue searching
                         addrMatch = childAddr;
                         continue;
@@ -655,8 +655,9 @@ public with sharing class ADDR_Addresses_UTIL {
                 }
             }
             
-            if (!hasMatch)
+            if (!hasMatch) {
                 mapAddrDupAddr.put(addr, Null);
+            }
         }
         
         return mapAddrDupAddr;
