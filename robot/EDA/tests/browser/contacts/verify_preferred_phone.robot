@@ -15,8 +15,7 @@ Suite Setup     Run keywords
 ...             Initialize test data
 ...             Open test browser
 
-Suite Teardown  Run keywords
-...             Capture screenshot and delete records and close browser 
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Verify basic preferred phone functionality
@@ -177,31 +176,5 @@ Restore eda settings
     Open EDA Settings Tab menu item
     Set the disable preferred phone enforcement
     Shift to default content
-
-Switch to successful
-    Go To Setup Home
-    Wait For New Window                     Home | Salesforce
-    Select window                           Home | Salesforce
-    Wait Until Loading Is Complete
-    Populate Placeholder                    Quick Find          Apex Jobs
-    Open Apex                               Apex Jobs
-    ...                                     Cannot find Apex Jobs page
-    ...                                     false
-
-    Select frame with title                 Apex Jobs ~ Salesforce - Developer Edition
-    
-    ${LOCATOR} =                            Get Eda Locator     eda_settings.batch_successful
-
-    Set focus to element                    ${LOCATOR}
-    Mouse Over                              ${LOCATOR}
-
-    Wait until page contains element        ${LOCATOR}           timeout=1240     error="Apex Jobs Batch Completed element not found"
-    Capture Page Screenshot
-    Unselect Frame
-
-    Go To Object Home                       Contact
-    Shift to default content
-    Verify contact values                   ${CONTACT4.FirstName}
-    ...                                     ${CONTACT4.LastName}
 
 
