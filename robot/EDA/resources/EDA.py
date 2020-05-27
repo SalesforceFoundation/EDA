@@ -5,10 +5,8 @@ import pytz
 
 from cumulusci.robotframework.utils import selenium_retry
 from locators import eda_lex_locators
-from locators import contacts_locators
 
-from robot.libraries.BuiltIn import BuiltIn
-from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchWindowException
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.webdriver.common.keys import Keys
@@ -283,7 +281,7 @@ class EDA(object):
     @capture_screenshot_on_error
     def wait_for_locator(self, path, *args, **kwargs):
         main_loc = self.get_eda_locator(path,*args, **kwargs)
-        self.selenium.wait_until_element_is_visible(main_loc)
+        self.selenium.wait_until_element_is_visible(main_loc, timeout=60)
 
     @capture_screenshot_on_error
     def click_on_element(self,path, *args, **kwargs):
@@ -341,7 +339,6 @@ class EDA(object):
         xpath = eda_lex_locators["input_placeholder"].format(loc)
         field = self.selenium.get_webelement(xpath)
         field.send_keys(value)
-#         if loc == ("Search Contacts" or "Search Accounts"):
         field.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
 
     def edit_eda_settings_checkbox(self, checkbox_label, checkbox_toggle):
@@ -511,26 +508,6 @@ class EDA(object):
 
         assert tab_found, "tab not found"
 
-#     def select_tab(self, tab):
-#         """ Select tab - as passed in to the function
-#             tab is a label on menu item, and not a locator.
-#         """
-#         locator_menu = eda_lex_locators["tab_menu"].format(tab)
-#         element_menu = self.selenium.driver.find_element_by_xpath(locator_menu)
-#         locator_tab = eda_lex_locators["tab_tab"].format(tab)
-#         self.selenium.wait_until_page_contains_element(
-#             locator_menu,
-#             error="Contact tab unavailable"
-#         )
-#         # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
-#         self.selenium.driver.execute_script("arguments[0].click()", element_menu)
-#         time.sleep(1)
-#
-#         # Sometimes, single click fails. Hence an additional condition to click on it again
-#         if not self.check_if_element_exists(locator_tab):
-#             self.selenium.driver.execute_script("arguments[0].click()", element_menu)
-#             time.sleep(1)
-
     def shift_to_default_content(self):
         """ Returns to main content, and out of iframe """
         self.selenium.driver.switch_to.default_content()
@@ -555,7 +532,26 @@ class EDA(object):
         if capture_screen:
             self.selenium.capture_page_screenshot()
 
-    def verify_app_exists(self,app):
+    def verify_app_exists(self, app):
         """Verifies that the given app is present in the app launcher"""
-        locator=eda_lex_locators["eda_settings"]["app_tile"].format(app)
-        self.selenium.wait_until_page_contains_element(locator,timeout=60,error=f'{app} did not open in 1 min')
+        locator = eda_lex_locators["app_tile"].format(app)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{app} did not open in 1 min')
+
+    def select_frame_with_value(self, value):
+        """ Selects the first displayed iframe on the page identified by the given value
+            :param value should be the 'id', 'title' or 'name' attribute of the webelement used to identify the iframe
+        """
+        locator = eda_lex_locators['frame'].format(value, value, value)
+        frames = self.selenium.get_webelements(locator)
+        for frame in frames:
+            if frame.is_displayed():
+                for i in range(10):
+                    try:
+                        self.selenium.select_frame(locator)
+                        return
+                    except NoSuchWindowException:
+                        self.builtin.log("Caught NoSuchWindowException; trying again..", "WARN")
+                        i += 1
+                        time.sleep(0.5)
+                        continue
+        raise Exception('Unable to find an iframe with a name, title or id with value "{}"'.format(value))
