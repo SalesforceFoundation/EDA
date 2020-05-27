@@ -15,8 +15,7 @@ Suite Setup     Run keywords
 ...             Initialize test data
 ...             Open test browser
 
-Suite Teardown  Run keywords
-...             Capture screenshot and delete records and close browser 
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 
