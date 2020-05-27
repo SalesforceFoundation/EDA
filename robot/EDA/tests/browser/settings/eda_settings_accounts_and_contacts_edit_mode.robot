@@ -1,40 +1,29 @@
 *** Settings ***
+Documentation       Test all the checkboxes in the
+...                 Accounts and Contacts Settings page
+...                 by checking and unchecking them
 
 Resource        robot/EDA/resources/EDA.robot
-Suite Setup     Open Test Browser
+Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/SettingsPageObject.py
+Suite Setup     Run keywords
+...             Open Test Browser
+...             Get namespace
 Suite Teardown  Delete Records and Close Browser
 
-*** Keywords ***
-Test Checkbox
-    [Arguments]                     ${account_label}
-    Wait for Locator                account_types.account_checkbox    ${account_label}
-    Click on element                account_types.account_checkbox    ${account_label}
-
 *** Test Cases ***
-
-Validate Edit Mode For Accounts and Contacts Settings
-    [tags]                          unstable
-    Go To Eda Settings
+Validate Edit Mode For Accounts and Contacts Settings and Click Checkboxes
+    Go to page                      Custom      HEDA_Settings
+    Current page should be          Custom      HEDA_Settings
+    
     Wait for Locator            	tabs.accountsandcontacts
     Click on Element                tabs.accountsandcontacts
-    # Click on Tab                  Accounts and Contacts
-    # in this method, add page logic
-         # Click on checkbox or unclick checkbox - pass action into method
-             # validate if box is checked, if checked, catch error and move on,
-             # if unchecked, check, move on
-         # continue for each element on page
 
     Wait for Locator                account_types.edit
     Click on Element                account_types.edit
 
     Wait for Locator                account_types.administrative
     Click on Element                account_types.administrative
-
-Click Checkboxes
-    [Setup]  Run keywords
-    ...  Go to EDA Settings
-    ...  AND  Click on element  tabs.accountsandcontacts
-    ...  AND  Click on element  account_types.edit
 
     Test Checkbox                   Academic Program
     Test Checkbox                   Administrative
@@ -48,9 +37,7 @@ Click Checkboxes
     Close toast message
 
 Unclick Checkboxes
-    Wait for Locator                account_types.edit
     Click on Element                account_types.edit
-
     Wait for Locator                account_types.administrative
     Click on Element                account_types.administrative
 
@@ -64,3 +51,17 @@ Unclick Checkboxes
 
     Wait for Locator                account_types.save
     Click on Element                account_types.save
+
+
+*** Keywords ***
+Test Checkbox
+    [Documentation]                 Click on the checkbox identified by the {argument} label
+    [Arguments]                     ${account_label}
+    Wait for Locator                account_types.account_checkbox    ${account_label}
+    Click on element                account_types.account_checkbox    ${account_label}
+
+Get namespace
+    [Documentation]                 Get EDA namespace and store it in a suite variable
+
+    ${NS} =                         Get EDA namespace prefix
+    Set suite variable              ${NS}
