@@ -23,11 +23,11 @@ Suite Setup     Run keywords
 ...             Initialize test data
 ...             Open test browser
 
-Suite Teardown  Close Browser
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Verify affiliations with contacts
-    [tags]                          unstable
+    [tags]                                  unstable
     Go To Page                              Listing                       Contact
     Click Link                              ${CONTACT.FirstName} ${CONTACT.LastName}
     Current page should be                  Details                       Contact
@@ -60,7 +60,7 @@ Verify affiliations with contacts
     Wait for Locator                        eda_settings.affiliation_match
 
 Verify affiliations with blank record types and mismatched primary affiliations
-    [tags]                          unstable
+    [tags]                                  unstable
     # Create a new contact and populate the Primary Business Organization and Lastname
     Create next contact
     Go To Object Home                       Contact
