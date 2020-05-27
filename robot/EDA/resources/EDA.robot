@@ -4,9 +4,6 @@ Resource        cumulusci/robotframework/Salesforce.robot
 Library         robot/EDA/resources/EDA.py
 Library         DateTime
 
-*** Variables ***
-${PRINT_PACKAGE}        true
-
 *** Keywords ***
 Open Test Browser And Print Package Details
     [Documentation]         Opens the test browser and runs a keyword that prints package details from setup
