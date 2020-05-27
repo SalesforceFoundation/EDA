@@ -1,19 +1,8 @@
-import datetime
-import logging
-import time
-import pytz
-
 from cumulusci.robotframework.pageobjects import ListingPage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import affiliations_locators
-from locators import eda_lex_locators
-from robot.api import logger
-from robot.libraries.BuiltIn import BuiltIn
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+
 
 @pageobject("Listing", "hed__HEDA_Settings")
 class EDASettingsPage(ListingPage):
@@ -22,10 +11,6 @@ class EDASettingsPage(ListingPage):
     @property
     def eda(self):
         return self.builtin.get_library_instance('EDA')
-
-    @property
-    def pageobjects(self):
-        return self.builtin.get_library_instance("cumulusci.robotframework.PageObjects")
 
     def _is_current_page(self):
         """ Verify we are on the EDA Settings page
@@ -52,29 +37,13 @@ class EDASettingsPage(ListingPage):
         elements = int(self.selenium.get_element_count(xpath))
         return True if elements > 0 else False
 
-    def verify_toast_message(self, value):
-        """ Verifies the toast message """
-        self.selenium.wait_until_page_contains_element(affiliations_locators["toast_message"].format(value))
-
-    def place_in_view(self,locator):
-        """ Scroll the field or object into the current view 
-            Examples:
-            | =Function= | =argument= |
-            | place_in_view | any locator |
-            | self.place_in_view(affiliations_locators["header"]) | |
-        """        
-        self.selenium.driver.execute_script(
-            "arguments[0].scrollIntoView()", 
-            self.selenium.driver.find_element_by_xpath(locator)
-        )
-
     def open_item(self, locator, error_message, capture_screen):
         """ Performs a wait until the element shows on the page, and clicks the element.
-            Pass capture_screen as False to turn off screen capture and True to turn on 
+            Pass capture_screen as False to turn off screen capture and True to turn on
             screen capture
         """
         self.selenium.wait_until_page_contains_element(
-            locator, 
+            locator,
             timeout=60,
             error=error_message
         )
@@ -111,7 +80,7 @@ class EDASettingsPage(ListingPage):
         )
         return
 
-    def Go_to_affiliations_edit_mode(self, loc):
+    def go_to_affiliations_edit_mode(self, loc):
         """ Go into Edit mode and remove the con
         """    
         self.selenium.driver.execute_script(
@@ -136,15 +105,7 @@ class EDASettingsPage(ListingPage):
         self.selenium.click_element(affiliations_locators["button_save_affiliation"])
         self.eda.close_toast_message()
 
-    def Click_button(self, button):
-        """ Select the specified button from the page that is specified """
-        self.selenium.wait_until_page_contains_element(
-            button,
-            timeout=60
-        )
-        self.selenium.click_button(button)
-
-    def Enable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
+    def enable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
         """ Ensure that the specified checkbox is checked 
             Set the checkbox if it is not set
             Do nothing if the checkbox is already set
@@ -185,7 +146,7 @@ class EDASettingsPage(ListingPage):
                 "Checkbox for {} setting has been set.\n".format(title) 
             )
 
-    def Disable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
+    def disable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
         """ Ensure that the specified checkbox is NOT checked 
             Uncheck the checkbox if it is checked
             Do nothing if the checkbox is already clear
@@ -250,10 +211,8 @@ class EDASettingsPage(ListingPage):
         self.selenium.driver.find_element_by_xpath(affiliations_locators["affiliations_current"])
         return
 
-    def Process_default_mapping_values(self):
+    def process_default_mapping_values(self):
         """
-        1. Navigate to EDA Settings. 
-        2. Ensure you're on Affiliations > Affiliation Mappings 
         3. Verify the values in the first row contains the following values:
            -Account Record Type: 'Academic Program'
            -Contact Primary Affl Field: 'Primary Academic Program'
@@ -344,7 +303,7 @@ class EDASettingsPage(ListingPage):
         self.selenium.driver.find_element_by_xpath(affiliations_locators["status_mapping_field_input"])
         self.selenium.driver.find_element_by_xpath(affiliations_locators["role_mapping_field_input"])
 
-    def Clear_everything_on_affiliation_mappings(self):
+    def clear_everything_on_affiliation_mappings(self):
         """ Clears all values from every field and checkbox on the Affiliation Mappings page """
 
         # Academic Program
@@ -373,7 +332,7 @@ class EDASettingsPage(ListingPage):
         self.selenium.clear_element_text(affiliations_locators["art_ud_input_affl"])
         self.selenium.clear_element_text(affiliations_locators["paf_pd_input_affl"])
 
-    def Add_text_to_all_text_fields(self):
+    def add_text_to_all_text_fields(self):
         """ Add sample text to each text field to verify that populated fields may be saved properly """
         # Academic Program
         self.selenium.driver.find_element_by_xpath(affiliations_locators["art_ap_input_affl_empty"]).send_keys("Academic Program")
