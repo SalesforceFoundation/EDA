@@ -2,13 +2,7 @@
 
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
-Suite Teardown  Delete Records and Close Browser
-
-*** Keywords ***
-Test Checkbox
-    [Arguments]                     ${account_label}
-    Wait for Locator                account_types.account_checkbox    ${account_label}
-    Click on element                account_types.account_checkbox    ${account_label}
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 

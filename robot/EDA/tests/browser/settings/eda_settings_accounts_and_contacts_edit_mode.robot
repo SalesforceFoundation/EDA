@@ -9,7 +9,7 @@ Library         cumulusci.robotframework.PageObjects
 Suite Setup     Run keywords
 ...             Open Test Browser
 ...             Get namespace
-Suite Teardown  Delete Records and Close Browser
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Validate Edit Mode For Accounts and Contacts Settings and Click Checkboxes
