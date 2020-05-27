@@ -98,6 +98,7 @@ Affiliations settings put dropdowns at defaults
     Close all tabs
 
 Affiliations settings checkboxes toggle
+    [tags]                                      unstable
     Current page should be                      Listing                 hed__HEDA_Settings
     Go to EDA settings    
     Go to affiliation settings
