@@ -1,14 +1,11 @@
 import logging
 import time
-import datetime
-import pytz
 
 from cumulusci.robotframework.utils import selenium_retry
 from locators import eda_lex_locators
 
-from selenium.common.exceptions import NoSuchWindowException
-from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
+from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.common.keys import Keys
 from cumulusci.robotframework.utils import capture_screenshot_on_error
 
@@ -60,16 +57,6 @@ class EDA(object):
         button = self.selenium.get_webelement(locator)
         button.click()
 
-    def click_special_related_list_button(self, heading, button_title):
-        """ To Click on a related list button which would open up a new lightning page rather than a modal.
-            Pass the list name and button name
-        """
-        locator = eda_lex_locators["record"]["related"]["button"].format(
-            heading, button_title
-        )
-        self.selenium.set_focus_to_element(locator)
-        self.selenium.get_webelement(locator).click()
-
     def click_dropdown(self, title):
         locator = eda_lex_locators["record"]["list"].format(title)
         self.selenium.set_focus_to_element(locator)
@@ -81,77 +68,9 @@ class EDA(object):
         self.selenium.set_focus_to_element(locator)
         self.selenium.get_webelement(locator).click()
 
-    def select_row(self, value):
-        """To select a row on object page based on name and open the dropdown"""
-        drop_down = eda_lex_locators["locating_delete_dropdown"].format(value)
-        self.selenium.get_webelement(drop_down).click()
-
-    def select_related_row(self, value):
-        """To select row from a related list based on name and open the dropdown"""
-        locators = eda_lex_locators["related_name"]
-        list_ele = self.selenium.get_webelements(locators)
-        index = 1
-        for locator in list_ele:
-            if locator.text != value:
-                index = index + 1
-            else:
-                drop_down = eda_lex_locators["rel_loc_dd"].format(index)
-                self.selenium.get_webelement(drop_down).click()
-                self.selenium.get_webelement(drop_down).click()
-
-    def select_the_tab(self, title):
-        """ Switch between different tabs on a record page like Related, Details, News, Activity and Chatter
-            Pass title of the tab
-        """
-        locator = eda_lex_locators["contacts_tab"].format(title)
-
-        self.builtin.log("locator for select_tab is: " + locator , "INFO")
-
-        self.selenium.wait_until_page_contains_element(
-            locator,
-            timeout=60,
-            error="List header '{}' is not available on the page".format(title)
-        )
-        self.selenium.set_focus_to_element(locator)
-        self.selenium.get_webelement(locator).click()
-
-    def click_x_icon(self, field_name, value):
-        """To click on x """
-        locator = eda_lex_locators["delete_icon"].format(field_name, value)
-        self.selenium.get_webelement(locator).click()
-
     def click_edit_button(self, title):
         locator = eda_lex_locators["record"]["edit_button"].format(title)
         self.selenium.get_webelement(locator).click()
-
-    def click_id(self, title):
-        locator = eda_lex_locators["aff_id"].format(title)
-        self.selenium.get_webelement(locator).click()
-
-    def select_object_dropdown(self):
-        locator = eda_lex_locators["object_dd"]
-        self.selenium.get_webelement(locator).click()
-
-    def check_status(self, acc_name):
-        aff_list = eda_lex_locators["aff_status"].format(acc_name)
-        aff_list_text = self.selenium.get_webelement(aff_list).text
-        self.aff_id = eda_lex_locators["aff_id"].format(acc_name)
-        self.aff_id_text = self.selenium.get_webelement(self.aff_id).text
-        return self.aff_id_text, aff_list_text
-
-    def get_id(self):
-        locator = eda_lex_locators["click_aff_id"].format(self.aff_id_text)
-        self.selenium.get_webelement(locator).click()
-
-    def confirm_status(self, field, status):
-        locator = eda_lex_locators["check_status"].format(field, status)
-        verify_former = self.selenium.get_webelement(locator).text
-        return verify_former
-
-    def verify_field_value(self, field, value):
-        locator = eda_lex_locators["check_field"].format(field, value)
-        verify_former = self.selenium.get_webelement(locator).text
-        return verify_former
 
     def verify_record(self, name):
         """ Checks for the record in the object page and returns true if found else returns false
@@ -159,32 +78,9 @@ class EDA(object):
         locator = eda_lex_locators["account_list"].format(name)
         self.selenium.page_should_contain_element(locator)
 
-    def select_option(self, name):
-        """selects various options in Contact>New opportunity page using name
-        """
-        locator = eda_lex_locators["dd_options"].format(name)
-        self.selenium.get_webelement(locator).click()
-
-    def verify_related_list_items(self, list_name, value):
-        """Verifies a specified related list has specified value(doesn't work if the list is in table format)"""
-        locator = eda_lex_locators["related_list_items"].format(list_name, value)
-        self.selenium.page_should_contain_element(locator)
-
     def header_field_value(self, title, value):
         """Validates if the specified header field has specified value"""
         locator = eda_lex_locators["header_field_value"].format(title, value)
-        self.selenium.page_should_contain_element(locator)
-
-    def verify_details_address(self, field, value):
-        """Validates if the details page address field has specified value"""
-        locator = eda_lex_locators["detail_page"]["address"].format(field, value)
-        self.selenium.page_should_contain_element(locator)
-
-    def check_field_value(self, title, value):
-        """checks value of a field in details page(section without header)"""
-        locator = eda_lex_locators["detail_page"]["verify_field_value"].format(
-            title, value
-        )
         self.selenium.page_should_contain_element(locator)
 
     def select_modal_checkbox(self, title):
@@ -192,42 +88,11 @@ class EDA(object):
         locator = eda_lex_locators["modal"]["checkbox"].format(title)
         self.selenium.get_webelement(locator).click()
 
-    def select_related_dropdown(self, title):
-        """"""
-        locator = eda_lex_locators["record"]["related"]["drop-down"].format(title)
-        self.selenium.get_webelement(locator).click()
-
-    def get_header_date_value(self, title):
-        """Validates if the specified header field has specified value"""
-        locator = eda_lex_locators["header_datepicker"].format(title)
-        date = self.selenium.get_webelement(locator).text
-        return date
-
-    def get_main_header(self):
-        header = self.selenium.get_webelement("//h1/span").text
-        return header
-
-    def verify_contact_role(self, name, role):
-        """verifies the contact role on opportunity page"""
-        locator = eda_lex_locators["opportunity"]["contact_role"].format(name, role)
-        self.selenium.page_should_contain_element(locator)
-
     def select_relatedlist(self, title):
         """click on the related list to open it"""
         locator = eda_lex_locators["record"]["related"]["title"].format(title)
         element = self.selenium.driver.find_element_by_xpath(locator)
         self.selenium.driver.execute_script('arguments[0].click()', element)
-
-    def verify_contact_roles(self, **kwargs):
-        """"""
-        for name, value in kwargs.items():
-            locator = eda_lex_locators["object"]["contact_role"].format(name, value)
-            self.selenium.page_should_contain_element(locator)
-
-    def page_contains_record(self, title):
-        """Validates if the specified record is present on the page"""
-        locator = eda_lex_locators["object"]["record"].format(title)
-        self.selenium.page_should_not_contain_element(locator)
 
     def select_checkbox_in_eda_settings(self, loc_check, loc_checkbox):
         """ Selects checkbox.  Does nothing if checkbox is already checked """
@@ -299,14 +164,6 @@ class EDA(object):
             self.selenium.driver.find_element_by_xpath(main_loc))
         time.sleep(1)
 
-    def select_frame_with_value(self, value):
-        """ Selects frame identified by the given value
-            value should be the 'id', 'title' or 'name' attribute value of the webelement used to identify the frame
-        """
-        locator = eda_lex_locators["frame"]
-        locator = self.format_all(locator, value)
-        self.selenium.select_frame(locator)
-
     def format_all(self, loc, value):
         """ Formats the given locator with the value for all {} occurrences """
         count = 0
@@ -320,17 +177,6 @@ class EDA(object):
             return loc.format(value, value)
         elif count == 3:
             return loc.format(value, value, value)
-
-    def Send_keys_to_page(self, loc):
-        """ Send keys to current page """
-
-        xpath = eda_lex_locators["input_placeholder"].format(loc)
-        field = self.selenium.get_webelement(xpath)
-        field.send_keys(Keys.ENTER)
-        field.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
-
-        self.selenium.capture_page_screenshot()
-        return
 
     def populate_placeholder(self, loc, value):
         """ Populate placeholder element as a locator
@@ -359,16 +205,12 @@ class EDA(object):
             )
             self.selenium.click_element(locator_checkbox)
             self.selenium.click_element(locator_save)
-            self.wait_for_toast_message("Settings Saved Successfully.")
+            locator_toast = eda_lex_locators["success_message"].format("Settings Saved Successfully.")
+            self.selenium.wait_until_page_contains_element(locator_toast)
 
     def verify_toast_message(self, value):
         """ Verifies the toast message """
         locator = eda_lex_locators["toast_message"].format(value)
-        self.selenium.wait_until_page_contains_element(locator)
-
-    def wait_for_toast_message(self, value):
-        """ Acknowledges the success message """
-        locator = eda_lex_locators["success_message"].format(value)
         self.selenium.wait_until_page_contains_element(locator)
 
     def close_toast_message(self):
@@ -412,78 +254,6 @@ class EDA(object):
         if self.check_if_element_exists(main_loc):
             self.selenium.click_element(main_loc)
 
-    def convert_time_to_UTC_timezone(self, my_time):
-        """ Converts the given datetime to UTC timezone
-            my_time should be in the format %Y-%m-%d %H:%M:%S
-        """
-        my_time_format = datetime.datetime.strptime(my_time, "%Y-%m-%d %H:%M:%S.%f")
-        my_time_local = pytz.timezone("America/Los_Angeles").localize(my_time_format, is_dst=None)
-
-        my_time_utc = my_time_local.astimezone(pytz.utc)
-        return datetime.datetime.strftime(my_time_utc, "%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
-
-    def get_eda_locator(self, path, *args, **kwargs):
-        """ Returns a rendered locator string from the eda_lex_locators
-            dictionary. This can be useful if you want to use an element in
-            a different way than the built in keywords allow.
-        """
-        locator = eda_lex_locators
-        for key in path.split('.'):
-            locator = locator[key]
-        main_loc = locator.format(*args, **kwargs)
-        return main_loc
-
-    def select_navigation_tab(self, tab):
-        """ Selects navigation tab - as passed in to the function
-            tab is not a locator, but is a label on a tab.
-        """
-        locator_menu = eda_lex_locators["navigation_menu"]
-        element_menu = self.selenium.driver.find_element_by_xpath(locator_menu)
-        locator_tab = eda_lex_locators["navigation_tab"].format(tab)
-
-        self.selenium.wait_until_page_contains_element(
-            locator_menu,
-            error="Navigation menu drop down unavailable"
-        )
-        # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
-        self.selenium.driver.execute_script("arguments[0].click()", element_menu)
-
-        # Sometimes, single click fails. Hence an additional condition to click on it again
-        if not self.check_if_element_exists(locator_tab):
-            self.selenium.driver.execute_script("arguments[0].click()", element_menu)
-
-        self.selenium.wait_until_page_contains_element(
-            locator_tab,
-            error=tab + " item not found as an available option in: " + locator_tab
-        )
-        self.selenium.click_element(locator_tab)
-
-    def open_panel_tab(self,tab):
-        """ Opens specific panel tab, as passed in to function
-            Note:  this is a label on a menu item, and not a locator
-        """
-        self.selenium.wait_until_page_contains_element(
-            eda_lex_locators["panel_tab_lookup"].format(tab),
-            timeout=60,
-            error="Cannot find the panel tab: " + tab
-        )
-        self.selenium.driver.execute_script(
-            "arguments[0].click()",
-            self.selenium.driver.find_element_by_xpath(eda_lex_locators["panel_tab_lookup"].format(tab))
-        )
-
-    def choose_panel_tab(self,tab):
-        """ Opens panel tab - as passed in to the function
-            tab is a label on menu item, and not a locator.
-        """
-        self.selenium.wait_until_page_contains_element(
-            eda_lex_locators["choose_tab"].format(tab),
-            timeout=60,
-            error="Cannot find the panel tab: " + tab
-        )
-        self.selenium.click_element(eda_lex_locators["choose_tab"].format(tab))
-
-
     @capture_screenshot_on_error
     def select_tab(self, title):
         """ Switch between different tabs on a record page like Related, Details, News, Activity and Chatter
@@ -516,10 +286,6 @@ class EDA(object):
             "Current frame 2: " + currentFrame
         )
         return
-
-    def write_to_console(self, message):
-        """ Writes a message to console on a new line """
-        logger.console("\n" + message)
 
     def open_custom_settings(self, title, error_message, capture_screen):
         """ Performs a wait until the element shows on the page, and clicks the element """
