@@ -281,23 +281,17 @@
                 }
               },
               {
-                "colspan" : 5,
-                "column" : 25,
-                "name" : "link_1",
-                "row" : 2,
-                "rowspan" : 5,
-                "widgetStyle" : {
-                  "borderEdges" : [ ]
-                }
-              },
-              {
                 "colspan" : 6,
                 "column" : 30,
                 "name" : "link_2",
                 "row" : 2,
                 "rowspan" : 5,
                 "widgetStyle" : {
-                  "borderEdges" : [ ]
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
                 }
               },
               {
@@ -539,6 +533,22 @@
                 "widgetStyle" : {
                   "borderEdges" : [ ]
                 }
+              },
+              {
+                "colspan" : 5,
+                "column" : 25,
+                "name" : "link_5",
+                "row" : 2,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(255, 255, 255)",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
               }
             ]
           },
@@ -612,17 +622,11 @@
                 "row" : 2,
                 "rowspan" : 5,
                 "widgetStyle" : {
-                  "borderEdges" : [ ]
-                }
-              },
-              {
-                "colspan" : 6,
-                "column" : 30,
-                "name" : "link_2",
-                "row" : 2,
-                "rowspan" : 5,
-                "widgetStyle" : {
-                  "borderEdges" : [ ]
+                  "backgroundColor" : "rgb(255, 255, 255)",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
                 }
               },
               {
@@ -994,6 +998,22 @@
                 "widgetStyle" : {
                   "borderEdges" : [ ]
                 }
+              },
+              {
+                "colspan" : 6,
+                "column" : 30,
+                "name" : "link_6",
+                "row" : 2,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
               }
             ]
           },
@@ -1067,7 +1087,11 @@
                 "row" : 2,
                 "rowspan" : 5,
                 "widgetStyle" : {
-                  "borderEdges" : [ ]
+                  "backgroundColor" : "rgb(255, 255, 255)",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
                 }
               },
               {
@@ -1077,17 +1101,11 @@
                 "row" : 2,
                 "rowspan" : 5,
                 "widgetStyle" : {
-                  "borderEdges" : [ ]
-                }
-              },
-              {
-                "colspan" : 6,
-                "column" : 36,
-                "name" : "link_3",
-                "row" : 2,
-                "rowspan" : 5,
-                "widgetStyle" : {
-                  "borderEdges" : [ ]
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
                 }
               },
               {
@@ -1483,6 +1501,22 @@
                 "widgetStyle" : {
                   "borderEdges" : [ ]
                 }
+              },
+              {
+                "colspan" : 6,
+                "column" : 36,
+                "name" : "link_7",
+                "row" : 2,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
               }
             ]
           },
@@ -1556,7 +1590,11 @@
                 "row" : 2,
                 "rowspan" : 5,
                 "widgetStyle" : {
-                  "borderEdges" : [ ]
+                  "backgroundColor" : "rgb(255, 255, 255)",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
                 }
               },
               {
@@ -1566,23 +1604,17 @@
                 "row" : 2,
                 "rowspan" : 5,
                 "widgetStyle" : {
-                  "borderEdges" : [ ]
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
                 }
               },
               {
                 "colspan" : 6,
                 "column" : 36,
                 "name" : "link_3",
-                "row" : 2,
-                "rowspan" : 5,
-                "widgetStyle" : {
-                  "borderEdges" : [ ]
-                }
-              },
-              {
-                "colspan" : 6,
-                "column" : 42,
-                "name" : "link_4",
                 "row" : 2,
                 "rowspan" : 5,
                 "widgetStyle" : {
@@ -1937,6 +1969,22 @@
                 "rowspan" : 5,
                 "widgetStyle" : {
                   "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 6,
+                "column" : 42,
+                "name" : "link_8",
+                "row" : 2,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
                 }
               }
             ]
@@ -6992,7 +7040,7 @@
         "parameters" : {
           "fontSize" : 16,
           "showActionMenu" : true,
-          "text" : "Total # of Contacts",
+          "text" : "Total # Contacts",
           "textAlignment" : "left",
           "textColor" : "#FFFFFF"
         },
@@ -8368,11 +8416,11 @@
             "name" : "b42d5922-b4fc-4b57-8249-2fe26d5d27c6"
           },
           "destinationType" : "page",
-          "fontSize" : 16,
+          "fontSize" : 14,
           "includeState" : false,
-          "text" : "Enrollment Interest",
+          "text" : "ENROLLMENT INTEREST",
           "textAlignment" : "center",
-          "textColor" : "#0070D2"
+          "textColor" : "rgb(92, 122, 153)"
         },
         "type" : "link"
       },
@@ -8392,11 +8440,11 @@
             "name" : "7e9d13c7-923b-4ade-9101-f1e5f496b19c"
           },
           "destinationType" : "page",
-          "fontSize" : 16,
+          "fontSize" : 14,
           "includeState" : false,
-          "text" : "Affiliations",
+          "text" : "AFFILIATIONS",
           "textAlignment" : "center",
-          "textColor" : "#0070D2"
+          "textColor" : "rgb(92, 122, 153)"
         },
         "type" : "link"
       },
@@ -8416,11 +8464,11 @@
             "name" : "76278d97-9bb6-48d3-9f03-88540df652e1"
           },
           "destinationType" : "page",
-          "fontSize" : 16,
+          "fontSize" : 14,
           "includeState" : false,
-          "text" : "Overview",
+          "text" : "OVERVIEW",
           "textAlignment" : "center",
-          "textColor" : "#0070D2"
+          "textColor" : "rgb(92, 122, 153)"
         },
         "type" : "link"
       },
@@ -8430,11 +8478,11 @@
             "name" : "e7c3695d-1029-440e-aeb2-3201b9043895"
           },
           "destinationType" : "page",
-          "fontSize" : 16,
+          "fontSize" : 14,
           "includeState" : false,
-          "text" : "Student Segmentation",
+          "text" : "STUDENT SEGMENTATION",
           "textAlignment" : "center",
-          "textColor" : "#0070D2"
+          "textColor" : "rgb(92, 122, 153)"
         },
         "type" : "link"
       },
@@ -8519,6 +8567,62 @@
           "verticalPadding" : 8
         },
         "type" : "table"
+      },
+      "link_7" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "b42d5922-b4fc-4b57-8249-2fe26d5d27c6"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "ENROLLMENT INTEREST",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
+      },
+      "link_8" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "7e9d13c7-923b-4ade-9101-f1e5f496b19c"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "AFFILIATIONS",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
+      },
+      "link_5" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "76278d97-9bb6-48d3-9f03-88540df652e1"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "OVERVIEW",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
+      },
+      "link_6" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "e7c3695d-1029-440e-aeb2-3201b9043895"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "STUDENT SEGMENTATION",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
       }
     }
   }

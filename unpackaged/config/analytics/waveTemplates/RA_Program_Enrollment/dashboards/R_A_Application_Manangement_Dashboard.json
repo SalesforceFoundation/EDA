@@ -2723,7 +2723,13 @@
                 "row" : 1,
                 "rowspan" : 5,
                 "widgetStyle" : {
-                  "borderEdges" : [ ]
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "rgb(0, 112, 210)",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
                 }
               },
               {
@@ -3144,16 +3150,6 @@
                 }
               },
               {
-                "colspan" : 8,
-                "column" : 34,
-                "name" : "link_24",
-                "row" : 1,
-                "rowspan" : 5,
-                "widgetStyle" : {
-                  "borderEdges" : [ ]
-                }
-              },
-              {
                 "colspan" : 7,
                 "column" : 42,
                 "name" : "link_25",
@@ -3273,6 +3269,20 @@
                   ],
                   "borderRadius" : 4,
                   "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 8,
+                "column" : 34,
+                "name" : "link_24",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
                 }
               }
             ]
@@ -14333,7 +14343,7 @@
         "parameters" : {
           "fontSize" : 16,
           "showActionMenu" : true,
-          "text" : "Total # of Applications",
+          "text" : "Total # Applications",
           "textAlignment" : "left",
           "textColor" : "#FFFFFF"
         },

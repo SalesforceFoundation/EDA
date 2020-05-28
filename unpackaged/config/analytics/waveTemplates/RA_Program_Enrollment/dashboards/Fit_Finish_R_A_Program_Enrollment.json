@@ -4238,7 +4238,7 @@
         "parameters" : {
           "fontSize" : 14,
           "showActionMenu" : true,
-          "text" : "Total # of Applications",
+          "text" : "Total # Applications",
           "textAlignment" : "left",
           "textColor" : "#C6D3E1"
         },

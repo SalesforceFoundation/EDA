@@ -3005,7 +3005,7 @@
   "_type": "dataflow",
   "description": "RA Program Enrollment",
   "MasterLabel": "RA Program Enrollment",
-  "nextRun": "2020-05-20T21:15:00.000Z",
+  "nextRun": "2020-05-27T01:15:00.000Z",
   "frequency": "hour",
   "WorkflowStatus": "Inactive",
   "isDeletable": true,
