@@ -2,14 +2,15 @@
 
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
-Suite Teardown  Delete Records and Close Browser
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 
 Test EDA System Settings
-    Go To Eda Settings
-    Wait For Locator                    eda_settings.system_tab
-    Click On Element                    eda_settings.system_tab
+    [Setup]  Run keywords
+    ...  Go to EDA Settings
+    ...  AND    Wait For Locator        eda_settings.system_tab
+    ...  AND    Click On Element        eda_settings.system_tab
 
 
     # Default Account Model

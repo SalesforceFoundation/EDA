@@ -2,7 +2,7 @@
 
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
-Suite Teardown  Delete Records and Close Browser
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 
@@ -23,8 +23,3 @@ Validate Edit Mode For EDA Settings, SYSTEM
 
     # Error Notification Recipient
     Select From List By Label       //select[@name='error_to_type']   User
-
-
-*** Keywords ***
-
-
