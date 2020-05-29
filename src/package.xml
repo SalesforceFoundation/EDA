@@ -383,6 +383,7 @@
         <members>Contact.is_Address_Override__c</members>
         <members>Contact_Language__c.Contact__c</members>
         <members>Contact_Language__c.Fluency__c</members>
+        <members>Contact_Language__c.Language_Details__c</members>
         <members>Contact_Language__c.Language__c</members>
         <members>Contact_Language__c.Primary_Language__c</members>
         <members>Course_Enrollment__c.Account__c</members>
