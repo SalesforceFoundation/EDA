@@ -112,6 +112,16 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Language_Details__c</fullName>
+        <description>Additional details about this Contact&apos;s preferred language.</description>
+        <externalId>false</externalId>
+        <label>Language Details</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Language__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <description>The Language associated with this Contact.</description>
