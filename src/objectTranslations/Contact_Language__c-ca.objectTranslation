@@ -32,6 +32,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Language Details --></label>
+        <name>Language_Details__c</name>
+    </fields>
+    <fields>
         <help>L&apos;idioma associat a aquest contacte.</help>
         <label>Idiomes</label>
         <name>Language__c</name>
