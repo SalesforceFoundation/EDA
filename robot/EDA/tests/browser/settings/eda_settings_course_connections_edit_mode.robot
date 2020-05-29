@@ -2,7 +2,7 @@
 
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
-Suite Teardown  Delete Records and Close Browser
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Validate Edit Mode For Course Connections, Settings
@@ -23,7 +23,6 @@ Validate Edit Mode For Course Connections, Settings
 
     Select From List By Label       ${student_select}   Student
     Select From List By Label       ${faculty_select}   Faculty
-
 
     #Save settings
     Click Button                                Save

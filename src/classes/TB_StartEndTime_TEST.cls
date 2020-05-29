@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2019
-* @group Course Offering
-* @group-content ../../ApexDocContent/CourseOfferings.htm
+* @group Time Blocks
+* @group-content ../../ApexDocContent/TimeBlocks.htm
 * @description Tests specific to testing the TB_StartEndTime_TDTM logic around updating the Start Time 
 * and End Time on associated Course Offering Schedule records when the Time Block Start Time and/or
 * End Time is updated.

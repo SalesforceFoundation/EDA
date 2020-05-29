@@ -94,12 +94,16 @@
         <members>ERR_Handler</members>
         <members>ERR_Handler_TEST</members>
         <members>ERR_Notifier</members>
+        <members>FACI_CannotDelete_TDTM</members>
+        <members>FACI_CannotDelete_TEST</members>
         <members>PPlan_CannotDelete_TDTM</members>
         <members>PPlan_CannotDelete_TEST</members>
         <members>PPlan_Primary_TDTM</members>
         <members>PPlan_Primary_TEST</members>
         <members>PREN_Affiliation_TDTM</members>
         <members>PREN_Affiliation_TEST</members>
+        <members>PREN_CannotDelete_TDTM</members>
+        <members>PREN_CannotDelete_TEST</members>
         <members>PREN_ProgramPlan_TDTM</members>
         <members>PREN_ProgramPlan_TEST</members>
         <members>PREQ_PreventPPlanParent_TDTM</members>
@@ -111,6 +115,8 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>SRVC_UniqueRecord</members>
+        <members>SRVC_UniqueRecord_TEST</members>
         <members>STG_Base_CTRL</members>
         <members>STG_Base_CTRL_TEST</members>
         <members>STG_CourseConnections</members>
@@ -119,6 +125,8 @@
         <members>STG_Courses_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
+        <members>TB_CannotDelete_TDTM</members>
+        <members>TB_CannotDelete_TEST</members>
         <members>TB_StartEndTime_TDTM</members>
         <members>TB_StartEndTime_TEST</members>
         <members>TDTM_Config</members>
@@ -146,6 +154,8 @@
         <members>THAN_ClearCache_TEST</members>
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
+        <members>TST_CannotDelete_TDTM</members>
+        <members>TST_CannotDelete_TEST</members>
         <members>UTIL_ACCT_Naming</members>
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_CustomSettingsFacade_TEST</members>
@@ -373,6 +383,7 @@
         <members>Contact.is_Address_Override__c</members>
         <members>Contact_Language__c.Contact__c</members>
         <members>Contact_Language__c.Fluency__c</members>
+        <members>Contact_Language__c.Language_Details__c</members>
         <members>Contact_Language__c.Language__c</members>
         <members>Contact_Language__c.Primary_Language__c</members>
         <members>Course_Enrollment__c.Account__c</members>
@@ -466,9 +477,13 @@
         <members>Hierarchy_Settings__c.Prevent_Course_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Connection_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Course_Offering_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Facility_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Plan_Requirement_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Program_Enrollment_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Program_Plan_Deletion__c</members>
         <members>Hierarchy_Settings__c.Prevent_Term_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Test_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Time_Block_Deletion__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>

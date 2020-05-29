@@ -2,7 +2,7 @@
 
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
-Suite Teardown  Delete Records and Close Browser
+Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Keywords ***
 Populate Create And Return Contact with Home Phone
