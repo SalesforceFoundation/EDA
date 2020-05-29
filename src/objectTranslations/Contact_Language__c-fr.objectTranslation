@@ -42,6 +42,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Language Details --></label>
+        <name>Language_Details__c</name>
+    </fields>
+    <fields>
         <help>La langue associée à ce contact.</help>
         <label>Langue</label>
         <name>Language__c</name>
