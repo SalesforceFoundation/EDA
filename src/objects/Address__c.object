@@ -197,7 +197,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Mailing_County__c</fullName>
+        <fullName>MailingCounty__c</fullName>
         <description>The county detail for this Address.</description>
         <externalId>false</externalId>
         <label>Mailing County</label>
