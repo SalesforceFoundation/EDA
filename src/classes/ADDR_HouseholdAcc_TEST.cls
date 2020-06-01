@@ -651,163 +651,196 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     }
 
     /*********************************************************************************************************
-    @description Insert new default addresses to HH w/ existing default addresses.  
-    verify:
-        contact's && hh address matches new default
-        old default addresses no longer marked default
+    @description Create new default Address record on an existing Household Account with Contact. 
+	* Verify: 
+	* - New default Address record is created and associated to the Household Account. 
+	* - New default Address record's Latest_Start_Date__c is with today's date.   
+	* - Contact's mailing fields are updated to match the mailing fields from the newly created default Address records.
+	* - Account's billing fields are updated to match the mailing fields from the newly created default Address records. 
+	* - The previous default Address record is no longer set as the default Address record. 
     **********************************************************************************************************/            
     @isTest
     public static void insertNewDefaultAddrHH() {
         configSettings();
-        
-        // this creates a default Address for each Account
+       
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         List<Address__c> listAddr = [select Id from Address__c];
-        UTIL_Debug.debug('****listAddr count 1: ' + listAddr.size());
         
-        // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = consAccsAddrs.accs[i].Id;
-            addrs[i].Default_Address__c = true;
+            addrs[i].Default_Address__c = True;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
+            addrs[i].Mailing_County__c = 'New Default County' + i;
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         insert addrs;
         Test.stopTest();
 
-        // verify that the HH and Contacts share the same address and it's new!
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        System.assertEquals(2 * 2, listCon.size());
-        listAddr = [select Id from Address__c];
-        UTIL_Debug.debug('****listAddr count 2: ' + listAddr.size());
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                             BillingCity, Billing_County__c, BillingState, 
+                                                             BillingPostalCode, BillingCountry, BillingLatitude, 
+                                                             BillingLongitude 
+                                                             FROM Account]);
+        List<Contact> listCon = [SELECT Id, Name, AccountId, 
+                                 is_Address_Override__c, Current_Address__c, MailingStreet, 
+                                 MailingCity, Mailing_County__c, MailingState, 
+                                 MailingPostalCode, MailingCountry, MailingLatitude, 
+                                 MailingLongitude 
+                                 FROM Contact];
+        System.assertEquals(4, listCon.size());
         
+        //Verify that the HH and Contacts share the same address and its mailing fields matches the newly created default Address record 
+        listAddr = [SELECT Id 
+                    FROM Address__c];
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
-            System.assertEquals(true, isMatchAddressAccCon(acc, con));
+            System.assertEquals(True, isMatchAddressAccCon(acc, con));
             System.assert(con.MailingStreet.contains('New Default Street'));
             System.assert(con.MailingCity.contains('New Default City'));
-            System.assertEquals(false, con.is_Address_Override__c);
-            System.assertNotEquals(null, con.Current_Address__c);
+            System.assert(con.Mailing_County__c.contains('New Default County'));
+            System.assertEquals(False, con.is_Address_Override__c);
+            System.assertNotEquals(Null, con.Current_Address__c);
         }
         
-        // verify the previous addresses got Default cleared.
-        // and verify latest start date and latest end date appropriately set.
-        listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
-        UTIL_Debug.debug('****listAddr in insertNewDefaultAddrHH: ' + JSON.serializePretty(listAddr));
-        System.assertEquals(2 * 2, listAddr.size());
+        //Verify the previous Address record's default is cleared
+        //And verify latest start date and latest end date fields are appropriately set 
+        listAddr = [SELECT Id, Default_Address__c, MailingStreet__c,
+                    Latest_Start_Date__c, Latest_End_Date__c 
+                    FROM Address__c];
+        System.assertEquals(4, listAddr.size());
         for (Address__c addr : listAddr) {
-            boolean fNewDefault = (addr.MailingStreet__c.contains('New Default Street'));
-            System.assertEquals(fNewDefault, addr.Default_Address__c);
-            if (fNewDefault) {
-               System.assertEquals(System.today(), addr.Latest_Start_Date__c);
-               System.assertEquals(null, addr.Latest_End_Date__c);
+            if (addr.MailingStreet__c.contains('New Default Street')) {
+                System.assertEquals(True, addr.Default_Address__c); 
+                System.assertEquals(System.today(), addr.Latest_Start_Date__c);
+               	System.assertEquals(Null, addr.Latest_End_Date__c);
             } else {
-               System.assertEquals(System.today(), addr.Latest_End_Date__c);                
+                System.assertEquals(System.today(), addr.Latest_End_Date__c);                
             }
         }        
     }
     
     /*********************************************************************************************************
-    @description Insert new default addresses to HH w/ existing default addresses, and then go back.  
-    verify:
-        contact's && hh address matches original default
-        new default addresses no longer marked default
+    @description Create new default Address record to an existing Household Account with Contact. Update previous
+	* default Address record's mailing fields and mark it as the default Address record.
+	* Verify:
+	* - For newly created default Address record:
+	* 	- Contact's and Account's mailing/billing fields are updated with the mailing fields from the newly created
+	* 	Address record. 
+	* 	- Previous default Address record is no longer marked as default Address record. 
+	* - When updating the previous Address record's mailing fields and marking it as default: 
+	* 	- Contact's and Account's mailing/billing fields are updated with the mailing fields from the recently
+	* 	updated Address record. 
+	* 	- Previous default Address record is no longer marked as default Address record. 
     **********************************************************************************************************/            
     @isTest
     public static void insertNewDefaultAddrAndResetHH() {
         configSettings();
         
-        // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         List<Address__c> listAddrOriginal = consAccsAddrs.addrs;
         
         ADDR_Addresses_TDTM.addressIdsInserted = new Set<Id>();
-        // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = consAccsAddrs.accs[i].Id;
-            addrs[i].Default_Address__c = true;
+            addrs[i].Default_Address__c = True;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
+            addrs[i].Mailing_County__c = 'New Default County' + i;
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
  
          ADDR_Addresses_TDTM.addressIdsUpdated = new Set<Id>();       
-        // go back to original default addresses
-        // added this extra set to test fix where we didn't use the correct default
+        //Update original default Address record
+        //added this extra set to test fix where we didn't use the correct default
         for (Integer i = 0; i < 2; i++) {
-            listAddrOriginal[i].Default_Address__c = true;
+            listAddrOriginal[i].Default_Address__c = True;
             listAddrOriginal[i].MailingStreet__c = 'Original Default Street' + i;
             listAddrOriginal[i].MailingCity__c = 'Original Default City' + i;
+            listAddrOriginal[i].Mailing_County__c = 'Original Default County' + i;
         }
         Test.startTest();
         update listAddrOriginal;
         Test.stopTest();
 
-        // verify that the HH and Contacts share the same address and it's new!
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        System.assertEquals(2 * 2, listCon.size());
-        
+        //Verify that the HH and Contacts share the same address and it's new!
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                             BillingCity, Billing_County__c, BillingState, 
+                                                             BillingPostalCode, BillingCountry, BillingLatitude, 
+                                                             BillingLongitude 
+                                                             FROM Account]);
+        List<Contact> listCon = [SELECT Id, Name, AccountId, 
+                                 is_Address_Override__c, Current_Address__c, MailingStreet, 
+                                 MailingCity, Mailing_County__c, MailingState, 
+                                 MailingPostalCode, MailingCountry, MailingLatitude, 
+                                 MailingLongitude 
+                                 FROM Contact];
+        System.assertEquals(4, listCon.size());
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
             System.assertEquals(true, isMatchAddressAccCon(acc, con));
             System.assert(con.MailingStreet.contains('Original Default Street'));
             System.assert(con.MailingCity.contains('Original Default City'));
+            System.assert(con.Mailing_County__c.contains('Original Default County'));
             System.assertEquals(false, con.is_Address_Override__c);
             System.assertNotEquals(null, con.Current_Address__c);
         }
         
-        // verify the previous addresses got Default cleared.
-        // and verify latest start date and latest end date appropriately set.
-        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
-        System.assertEquals(2 * 2, listAddr.size());
+        //Verify the previous default Address record is no longer the default Address record 
+        //and verify latest start date and latest end date are appropriately set.
+        List<Address__c> listAddr = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                     Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
+                                     FROM Address__c];
+        System.assertEquals(4, listAddr.size());
         for (Address__c addr : listAddr) {
-            boolean fNewDefault = (addr.MailingStreet__c.contains('Original Default Street'));
-            System.assertEquals(fNewDefault, addr.Default_Address__c);
-            if (fNewDefault) {
-               System.assertEquals(System.today(), addr.Latest_Start_Date__c);
-               System.assertEquals(null, addr.Latest_End_Date__c);
+            if (addr.MailingStreet__c.contains('Original Default Street')) {
+                System.assertEquals(True, addr.Default_Address__c); 
+                System.assertEquals(System.today(), addr.Latest_Start_Date__c);
+               	System.assertEquals(Null, addr.Latest_End_Date__c);
             } else {
-               System.assertEquals(System.today(), addr.Latest_End_Date__c);                
+                System.assertEquals(False, addr.Default_Address__c); 
+                System.assertEquals(System.today(), addr.Latest_End_Date__c);  
             }
         }        
     }
 
     /*********************************************************************************************************
-    @description Update contacts' Address Override.  
-    verify: Contacts' Mailing address fields updated to the Address Override's fields.
+    @description Create a non default Address record. Set the Contact's is_Address_Override__c to True. 
+	* Verify:
+	* - New non default Address record is created.
+	* - If a Contact's is_Address_Override__c = True, then the Contact's mailing fields is updated to match the 
+	* mailing fields from the newly created non default Address record. 
+	* - If a Contact's is_Address_Override__c = False, then the Contact's mailing fields is not updated to match 
+	* the mailing fields from the newly created non default Address record. 
+	* - The Latest_Start_Date__c on the Address record is set. 
     **********************************************************************************************************/            
     @isTest
     public static void updateAddrOverrideHH() {
         configSettings();
         
-        // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
-        
-        // create additional addresses
+
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = consAccsAddrs.accs[i].Id;
-            addrs[i].Default_Address__c = false;
+            addrs[i].Default_Address__c = False;
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
+            addrs[i].Mailing_County__c = 'override' + i;
         }
-        //ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
         
-        // set the contacts' address overrides
+        //Set the Contacts' address overrides
         List<Contact> listCon = new List<Contact>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.Current_Address__c = addrs[i].Id;
-            con.is_Address_Override__c = true;
+            con.is_Address_Override__c = True;
             listCon.add(con);
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
@@ -815,52 +848,67 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         update listCon;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                             BillingCity, Billing_County__c, BillingState, 
+                                                             BillingPostalCode, BillingCountry, BillingLatitude, 
+                                                             BillingLongitude 
+                                                             FROM Account]);
+        listCon = [SELECT Id, Name, AccountId, 
+                   is_Address_Override__c, Current_Address__c, MailingStreet, 
+                   MailingCity, Mailing_County__c, MailingState, 
+                   MailingPostalCode, MailingCountry, MailingLatitude,
+                   MailingLongitude 
+                   FROM Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
             if (con.is_Address_Override__c) {
-                System.assertNotEquals(null, con.Current_Address__c);
-                System.assertEquals(false, isMatchAddressAccCon(acc, con));
+                System.assertNotEquals(Null, con.Current_Address__c);
+                System.assertEquals(False, isMatchAddressAccCon(acc, con));
                 System.assert(con.MailingStreet.contains('override'));
-                System.assert(con.MailingCity.contains('override'));               
+                System.assert(con.MailingCity.contains('override'));   
+                System.assert(con.Mailing_County__c.contains('override')); 
             } else {
-                System.assertEquals(true, isMatchAddressAccCon(acc, con));
+                System.assertEquals(True, isMatchAddressAccCon(acc, con));
                 System.assert(con.MailingStreet.contains('Street'));
                 System.assert(con.MailingCity.contains('City'));
-                System.assertEquals(false, con.is_Address_Override__c);
-                System.assertNotEquals(null, con.Current_Address__c);
+                System.assert(con.Mailing_County__c.contains('County'));
+                System.assertEquals(False, con.is_Address_Override__c);
+                System.assertNotEquals(Null, con.Current_Address__c);
             }
         }
 
-        // verify address overrides have latest start date and latest end date appropriately set.
-        List<Address__c> listAddr = [select Id, Latest_Start_Date__c, Latest_End_Date__c from Address__c where Id in :addrs];
+        //Verify address overrides have latest start date and latest end date appropriately set.
+        List<Address__c> listAddr = [SELECT Id, Latest_Start_Date__c, Latest_End_Date__c 
+                                     FROM Address__c 
+                                     WHERE Id IN :addrs];
         System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
            System.assertEquals(System.today(), addr.Latest_Start_Date__c);
-           System.assertEquals(null, addr.Latest_End_Date__c);
+           System.assertEquals(Null, addr.Latest_End_Date__c);
         }        
     }
         
     /*********************************************************************************************************
-    @description Clear contacts' Address Override.  
-    verify: Contacts' Mailing address fields updated to the HH default address.
+    @description Create a non default Address record. Set the Contact's is_Address_Override__c to True. 
+	* Then set is_Address_Override__c to False. 
+	* Verify: 
+	* - Contact's mailing fields are updated back to the original mailing fields from the billing fields from
+	* the Household Account record.
+	* - Both Latest_Start_Date__c and Latest_End_Date__c are populated because is_Address_Override__c was
+	* set and reset. 
     **********************************************************************************************************/            
     @isTest
     public static void clearAddrOverrideHH() {
         configSettings();
-
-        // this creates two child Contacts and a default Address for each Account
+        
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         UTIL_Debug.debug('****clearAddrOverrideHH consAccsAddrs: ' + JSON.serializePretty(consAccsAddrs));
         
-        // create additional addresses - one for each account
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = consAccsAddrs.accs[i].Id;
-            addrs[i].Default_Address__c = false;
+            addrs[i].Default_Address__c = False;
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
             addrs[i].Latest_Start_Date__c = System.today();
@@ -868,51 +916,64 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
         insert addrs;
         
-        // set the contacts' address overrides - one contact in each account
+        //Set the Contact's address overrides - one contact in each account
         List<Contact> listCon = new List<Contact>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.Current_Address__c = addrs[i].Id;
-            con.is_Address_Override__c = true;
+            con.is_Address_Override__c = True;
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addrs[i], con, 'Mailing', 'Primary_Address_Type__c', null);
             listCon.add(con);
         }
-        //ADDR_Contact_TEST.turnOnAllAddrTriggers();
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
         update listCon;
 
-        List<Contact> allCons = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        List<Contact> allCons = [SELECT Id, Name, AccountId, 
+                                 is_Address_Override__c, Current_Address__c, MailingStreet, 
+                                 MailingCity, Mailing_County__c, MailingState, 
+                                 MailingPostalCode, MailingCountry, MailingLatitude, 
+                                 MailingLongitude 
+                                 FROM Contact];
         UTIL_Debug.debug('****Contacts after first update: ' + JSON.serializePretty(allCons));
 
-        // now clear out the contacts' address overrides
+        //Clear out the Contact's address overrides
         for (Contact con : listCon) {
-            con.is_Address_Override__c = false;
+            con.is_Address_Override__c = False;
         }
-
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         UTIL_Debug.debug('****Second explicit contacts update in clearAddrOverrideHH');
         Test.startTest();
         update listCon;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        allCons = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        //Verify that the HH and Contacts share the same address
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                             BillingCity, Billing_County__c, BillingState, 
+                                                             BillingPostalCode, BillingCountry, BillingLatitude, 
+                                                             BillingLongitude 
+                                                             FROM Account]);
+        allCons = [SELECT Id, Name, AccountId, 
+                   is_Address_Override__c, Current_Address__c, MailingStreet, 
+                   MailingCity, Mailing_County__c,  MailingState, 
+                   MailingPostalCode, MailingCountry, MailingLatitude, 
+                   MailingLongitude 
+                   FROM Contact];
         UTIL_Debug.debug('****Contacts after second update: ' + JSON.serializePretty(allCons));
-        
         for (Contact con : allCons) {
             UTIL_Debug.debug('****Contact after clearing override: ' + JSON.serializePretty(con));
             Account acc = mapAccIdAcc.get(con.AccountId);
             UTIL_Debug.debug('****Parent Account after clearing override: ' + JSON.serializePretty(acc));
-            System.assertEquals(false, con.is_Address_Override__c);
-            System.assertNotEquals(null, con.Current_Address__c);
-            System.assertEquals(true, isMatchAddressAccCon(acc, con));
+            System.assertEquals(False, con.is_Address_Override__c);
+            System.assertNotEquals(Null, con.Current_Address__c);
+            System.assertEquals(True, isMatchAddressAccCon(acc, con));
             System.assert(con.MailingStreet.contains('Street'));
             System.assert(con.MailingCity.contains('City'));
         }
 
-        // verify address overrides have latest start date and latest end date appropriately set.
-        List<Address__c> listAddr = [select Id, Latest_Start_Date__c, Latest_End_Date__c from Address__c where Id in :addrs];
+        //Verify address overrides have latest start date and latest end date appropriately set.
+        List<Address__c> listAddr = [SELECT Id, Latest_Start_Date__c, Latest_End_Date__c 
+                                     FROM Address__c 
+                                     WHERE Id IN :addrs];
         System.assertEquals(2, listAddr.size());
         UTIL_Debug.debug('****Additional addresses after update: ' + JSON.serializePretty(listAddr));
         for (Address__c addr : listAddr) {
@@ -922,117 +983,144 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     }
 
     /*********************************************************************************************************
-    @description Update contacts' mailing address to cause creation of new default Address object.  
-    verify:
-        new Default Address created
-        HH and Contacts get new Address
+    @description Update Contact's mailing fields. 
+	* Verify: 
+	* - New default Address record is created. 
+	* - Household Account's billing fields are updated with the mailing fields from the new default Address record.
+	* - Previous old default Address record is no longer mark as default Address record. 
     **********************************************************************************************************/            
     @isTest
     public static void updateConAddrNewHH() {
         configSettings();
              
-        // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
-        
-        // modify some of the contact addresses directly
+
         for (Integer i = 0; i < 2; i++) {
             consAccsAddrs.contacts[i*2 + i].MailingStreet = 'final Street Edit';
             consAccsAddrs.contacts[i*2 + i].MailingCity = 'final City Edit';
+            consAccsAddrs.contacts[i*2 + i].Mailing_County__c = 'final County Edit';
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update consAccsAddrs.contacts;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        
+        //Verify that the Household Account and Contact share the same address
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                             BillingCity, Billing_County__c, BillingState, 
+                                                             BillingPostalCode, BillingCountry, BillingLatitude, 
+                                                             BillingLongitude 
+                                                             FROM Account]);
+        List<Contact> listCon = [SELECT Id, Name, AccountId, 
+                                 is_Address_Override__c, Current_Address__c, MailingStreet, 
+                                 MailingCity, Mailing_County__c, MailingState, 
+                                 MailingPostalCode, MailingCountry, MailingLatitude, 
+                                 MailingLongitude 
+                                 FROM Contact];
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
-            System.assertEquals(true, isMatchAddressAccCon(acc, con));
+            System.assertEquals(True, isMatchAddressAccCon(acc, con));
             System.assert(con.MailingStreet.contains('final Street Edit'));
             System.assert(con.MailingCity.contains('final City Edit'));
-            System.assertEquals(false, con.is_Address_Override__c);
-            System.assertNotEquals(null, con.Current_Address__c);
+            System.assert(con.Mailing_County__c.contains('final County Edit'));
+            System.assertEquals(False, con.is_Address_Override__c);
+            System.assertNotEquals(Null, con.Current_Address__c);
         }
  
-         // verify the previous addresses got Default cleared.
-        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
-        // each set of edits created a new address object 
+        //Verify the previous addresses got Default cleared.
+        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
+                                     FROM Address__c];
+        //Each set of edits created a new address object 
         System.assertEquals(4, listAddr.size());
         for (Address__c addr : listAddr) {
-            boolean fNewDefault = (addr.MailingStreet__c.contains('final Street Edit'));
-            System.assertEquals(fNewDefault, addr.Default_Address__c);
+            if (addr.MailingStreet__c.contains('final Street Edit')) {
+                System.assertEquals(True, addr.Default_Address__c);
+            } else {
+                System.assertEquals(False, addr.Default_Address__c);
+            }
         }                
     }
 
     /*********************************************************************************************************
-    @description Update contacts' mailing address and mark it as override, to cause creation of new non-default Address object.  
-    verify:
-        new Address created
-        HH sticks with default Address
-        contact gets new address
+    @description Update Contact's mailing fields and set is_Address_Override__c = True. 
+	* Verify:
+	* - New non default Address record is created.  
+	* - Household Account billing fields are not updated - billing fields matches the default Address record. 
+	* - The Contact that was updated will not match the mailing fields with the Household Account billing fields. 
     **********************************************************************************************************/            
     @isTest
     public static void updateConAddrMarkOverrideHH() {
         configSettings();
-        
-        // this creates a default Address for each Account
+
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
-        // modify the contact addresses directly, and set override
         for (Integer i = 0; i < 4; i++) {
             consAccsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
             consAccsAddrs.contacts[i].MailingCity = 'Direct City Edit';
-            consAccsAddrs.contacts[i].is_Address_Override__c = true;
+            consAccsAddrs.contacts[i].Mailing_County__c = 'Direct County Edit';
+            consAccsAddrs.contacts[i].is_Address_Override__c = True;
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update consAccsAddrs.contacts;
         Test.stopTest();
         
-        // verify that the HH and Contacts do not share the same address
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        //Verify that the Household Account and Contacts do not share the same address
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                             BillingCity, Billing_County__c, BillingState, 
+                                                             BillingPostalCode, BillingCountry, BillingLatitude, 
+                                                             BillingLongitude 
+                                                             FROM Account]);
+        List<Contact> listCon = [SELECT Id, Name, AccountId, 
+                                 is_Address_Override__c, Current_Address__c, MailingStreet, 
+                                 MailingCity, Mailing_County__c, MailingState, 
+                                 MailingPostalCode, MailingCountry, MailingLatitude, 
+                                 MailingLongitude 
+                                 FROM Contact];
         UTIL_Debug.debug('****updateConAddrMarkOverrideHH accounts: ' + JSON.serializePretty(mapAccIdAcc.values()));
         UTIL_Debug.debug('****updateConAddrMarkOverrideHH contacts: ' + JSON.serializePretty(listCon));
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
-            System.assertEquals(false, isMatchAddressAccCon(acc, con));
-            System.assertEquals(true, con.MailingStreet.contains('Direct Street Edit'));
-            System.assertEquals(true, con.MailingCity.contains('Direct City Edit'));
-            System.assertEquals(false, acc.BillingStreet.contains('Direct Street Edit'));
-            System.assertEquals(false, acc.BillingCity.contains('Direct City Edit'));
-            System.assertEquals(true, con.is_Address_Override__c);
-            System.assertNotEquals(null, con.Current_Address__c);
+            System.assertEquals(False, isMatchAddressAccCon(acc, con));
+            System.assertEquals(True, con.MailingStreet.contains('Direct Street Edit'));
+            System.assertEquals(True, con.MailingCity.contains('Direct City Edit'));
+            System.assertEquals(True, con.Mailing_County__c.contains('Direct County Edit'));
+            System.assertEquals(False, acc.BillingStreet.contains('Direct Street Edit'));
+            System.assertEquals(False, acc.BillingCity.contains('Direct City Edit'));
+            System.assertEquals(False, acc.Billing_County__c.contains('Direct County Edit'));
+            System.assertEquals(True, con.is_Address_Override__c);
+            System.assertNotEquals(Null, con.Current_Address__c);
         }
  
-         // verify the previous addresses got Default cleared.
-        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
+        //Verify the previous addresses got Default cleared.
+        List<Address__c> listAddr = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
+                                     FROM Address__c];
         System.assertEquals(6, listAddr.size());
         for (Address__c addr : listAddr) {
+            if (addr.MailingStreet__c.contains('Direct Street Edit')) {
+                System.assertEquals(False, addr.Default_Address__c);
+            }
             boolean isNewEdit = (addr.MailingStreet__c.contains('Direct Street Edit'));
             System.assertNotEquals(isNewEdit, addr.Default_Address__c);
         }                
     }
 
     /*********************************************************************************************************
-    @description Update contacts' mailing address to cause an update to default Address object.  
-    verify:
-        existing Default Address updated
-        HH and Contacts get updated Address
+    @description Update Contact's mailing fields - format, case, and mailing address field that don't count 
+	* as a new Address to insert.
+	* Verify:
+	* - Existing default Address record's mailing fields are updated.
+	* - No new Address record is created. 
+	* - Household Account and Contact's billing/mailing fields are updated. 
     **********************************************************************************************************/            
     @isTest
     public static void updateConAddrExistingHH() {
         configSettings();
           
-        // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
        
-        // modify some of the contact addresses directly
-        // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
+        //NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
         List<Contact> listCon = new List<Contact>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
@@ -1042,17 +1130,25 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         update listCon;
-
+        
+        for (Integer i = 0; i < 2; i++) {
+            Contact con = consAccsAddrs.contacts[i*2 + i];
+            con.Mailing_County__c = 'bergen';
+        }
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
+        update listCon;
+        
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.MailingState = 'Washington';
         }
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         update listCon;
-
+		
+        //Whitespace and casing update should not count as a real edit 
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
-            con.MailingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
+            con.MailingStreet = ' direct street  edit ';  
             con.MailingState = 'Oregon';
         }
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
@@ -1060,20 +1156,31 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         update listCon;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        //Verify that the HH and Contacts share the same address
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                             BillingCity, Billing_County__c, BillingState, 
+                                                             BillingPostalCode, BillingCountry, BillingLatitude, 
+                                                             BillingLongitude 
+                                                             FROM Account]);
+        listCon = [SELECT Id, Name, AccountId, 
+                   is_Address_Override__c, Current_Address__c, MailingStreet, 
+                   MailingCity, Mailing_County__c, MailingState, 
+                   MailingPostalCode, MailingCountry, MailingLatitude, 
+                   MailingLongitude 
+                   FROM Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
-            System.assertEquals(true, isMatchAddressAccCon(acc, con));
+            System.assertEquals(True, isMatchAddressAccCon(acc, con));
             System.assert(con.MailingStreet.contains('direct street  edit'));
-            System.assertEquals(false, con.is_Address_Override__c);
-            System.assertNotEquals(null, con.Current_Address__c);
+            System.assert(con.Mailing_County__c.contains('bergen'));
+            System.assertEquals(False, con.is_Address_Override__c);
+            System.assertNotEquals(Null, con.Current_Address__c);
         }
  
-        // verify that no new address was created
-        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
+        //Verify that no new address was created
+        List<Address__c> listAddr = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
+                                     FROM Address__c];
         System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
             System.assertEquals('direct street  edit', addr.MailingStreet__c);
@@ -1090,11 +1197,12 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     public static void updateConAddrExistingCaseOnlyHH() {
         configSettings();
          
-        // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
+		for (Contact c : consAccsAddrs.contacts) {
+            System.assert(c.Mailing_County__c.contains('County')); 
+        }
         
-        // modify some of the contact addresses directly
-        // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
+        //NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         List<Contact> listCon = new List<Contact>();
         for (Integer i = 0; i < 2; i++) {
@@ -1104,52 +1212,65 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update listCon;
-
+        
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.MailingState = 'Washington';
         }
         update listCon;
-
+		
+        //Whitespace and casing should not count as a real edit 
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
-            con.MailingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
+            con.MailingStreet = ' direct street  edit ';  
             con.MailingState = 'Oregon';
         }
         update listCon;
-
+		
+        //Update casing only 
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
-            con.MailingStreet = ' DIRECT STREET  EDIT ';  // only change casing.
+            con.MailingStreet = ' DIRECT STREET  EDIT ';  
         }
         Test.startTest();
         update listCon;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        //Verify that the Household Account and Contact share the same address
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                             BillingCity, Billing_County__c, BillingState, 
+                                                             BillingPostalCode, BillingCountry, BillingLatitude, 
+                                                             BillingLongitude 
+                                                             FROM Account]);
+        listCon = [SELECT Id, Name, AccountId, 
+                   is_Address_Override__c, Current_Address__c, MailingStreet, 
+                   MailingCity, Mailing_County__c, MailingState, 
+                   MailingPostalCode, MailingCountry, MailingLatitude, 
+                   MailingLongitude 
+                   FROM Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
-            System.assertEquals(true, isMatchAddressAccCon(acc, con));
+            System.assertEquals(True, isMatchAddressAccCon(acc, con));
             System.assert(con.MailingStreet.equals('DIRECT STREET  EDIT'));
-            System.assertEquals(false, con.is_Address_Override__c);
-            System.assertNotEquals(null, con.Current_Address__c);
+            System.assertEquals(False, con.is_Address_Override__c);
+            System.assertNotEquals(Null, con.Current_Address__c);
         }
  
-        // verify that no new address was created
-        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
+        //Verify that no new address was created
+        List<Address__c> listAddr = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
+                                     FROM Address__c];
         System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
             System.assert(addr.MailingStreet__c.equals('DIRECT STREET  EDIT'));
         }
         
         ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
-        // now test that changing the case from the account updates all addresses
+        //Test that changing the case from the Account record updates the Address record and 
+        //all mailing fields on Contact record 
         for (Integer i = 0; i < 2; i++) {
             Account acc = consAccsAddrs.accs[i];
             acc.BillingStreet = 'direct street  edit';
@@ -1157,23 +1278,36 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update consAccsAddrs.accs;
         
-        // verify that the HH and Contacts share the same address
-        mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        //Verify that the Household Account and Contacts share the same address
+        mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                            BillingCity, Billing_County__c, BillingState, 
+                                            BillingPostalCode, BillingCountry, BillingLatitude, 
+                                            BillingLongitude 
+                                            FROM Account]);
+        listCon = [SELECT Id, Name, AccountId, 
+                   is_Address_Override__c, Current_Address__c, MailingStreet, 
+                   MailingCity, Mailing_County__c, MailingState, 
+                   MailingPostalCode, MailingCountry, MailingLatitude, 
+                   MailingLongitude 
+                   FROM Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
-            System.assertEquals(true, isMatchAddressAccCon(acc, con));
+            System.assertEquals(True, isMatchAddressAccCon(acc, con));
             System.assert(con.MailingStreet.equals('direct street  edit'));
-            System.assertEquals(false, con.is_Address_Override__c);
-            System.assertNotEquals(null, con.Current_Address__c);
+           
+            System.assertEquals(False, con.is_Address_Override__c);
+            System.assertNotEquals(Null, con.Current_Address__c);
         }
  
-        // verify that no new address was created
-        listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
+        //Verify that no new address was created
+        listAddr = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                    Mailing_County__c, Parent_Account__c 
+                    FROM Address__c];
         System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
             System.assert(addr.MailingStreet__c.equals('direct street  edit'));
+            //System.assert(addr.Mailing_County__c.equals('bergen'));
         }                   
     }
 
