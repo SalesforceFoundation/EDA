@@ -1313,7 +1313,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
             System.assert(addr.MailingStreet__c.equals('direct street  edit'));
-            System.assert(addr.MailingCounty__c.contains('county')); 
+            System.assert(addr.MailingCounty__c.contains('County')); 
         }
     }
 

@@ -363,6 +363,10 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return void. 
     ********************************************************************************************************/
     public static void copyAddressStdSObjAddr(SObject sobjSrc, String strFieldPrefixSrc, Address__c addr, String strAddrType) {
+        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method sobjSrc --> ' + sobjSrc); 
+        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method strFieldPrefixSrc --> ' + strFieldPrefixSrc); 
+        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method strAddrType --> ' + strAddrType); 
+        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method addr --> ' + strAddrType);
         addr.MailingStreet__c = (String)sobjSrc.get(strFieldPrefixSrc + 'Street');
         handleMultilineStreet(addr);
         addr.MailingCity__c = (String)sobjSrc.get(strFieldPrefixSrc + 'City');
@@ -372,7 +376,7 @@ public with sharing class ADDR_Addresses_UTIL {
         addr.MailingCountry__c = (String)sobjSrc.get(strFieldPrefixSrc + 'Country');
         addr.Geolocation__Latitude__s = (Decimal)sobjSrc.get(strFieldPrefixSrc + 'Latitude');
         addr.Geolocation__Longitude__s = (Decimal)sobjSrc.get(strFieldPrefixSrc + 'Longitude');
-        
+        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method addr --> ' + strAddrType);
         //Try to find state and country by code if they aren't specified?
         if (isStateCountryPicklistsEnabled) {
 

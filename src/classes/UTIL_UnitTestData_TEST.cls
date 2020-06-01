@@ -190,7 +190,7 @@ public class UTIL_UnitTestData_TEST {
             accsAddrs.accs[i].Current_Address__c = accsAddrs.addrs[i].Id;
             accsAddrs.accs[i].BillingStreet = accsAddrs.addrs[i].MailingStreet__c;
             accsAddrs.accs[i].BillingCity = accsAddrs.addrs[i].MailingCity__c;
-            accsAddrs.accs[i].Billing_County__c = accsAddrs.addrs[i].Mailing_County__c;
+            accsAddrs.accs[i].Billing_County__c = accsAddrs.addrs[i].MailingCounty__c;
             accsAddrs.accs[i].BillingState = accsAddrs.addrs[i].MailingState__c;
             accsAddrs.accs[i].BillingPostalCode = accsAddrs.addrs[i].MailingPostalCode__c;
             accsAddrs.accs[i].BillingCountry = accsAddrs.addrs[i].MailingCountry__c;
@@ -244,7 +244,7 @@ public class UTIL_UnitTestData_TEST {
             contactsAddrs.contacts[i].Current_Address__c = contactsAddrs.addrs[i].Id;
             contactsAddrs.contacts[i].MailingStreet = contactsAddrs.addrs[i].MailingStreet__c;
             contactsAddrs.contacts[i].MailingCity = contactsAddrs.addrs[i].MailingCity__c;
-            contactsAddrs.contacts[i].Mailing_County__c = contactsAddrs.addrs[i].Mailing_County__c;
+            contactsAddrs.contacts[i].Mailing_County__c = contactsAddrs.addrs[i].MailingCounty__c;
             contactsAddrs.contacts[i].MailingState = contactsAddrs.addrs[i].MailingState__c;
             contactsAddrs.contacts[i].MailingPostalCode = contactsAddrs.addrs[i].MailingPostalCode__c;
             contactsAddrs.contacts[i].MailingCountry = contactsAddrs.addrs[i].MailingCountry__c;
