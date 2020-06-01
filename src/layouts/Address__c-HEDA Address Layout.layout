@@ -49,7 +49,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Mailing_County__c</field>
+                <field>MailingCounty__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

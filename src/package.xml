@@ -280,11 +280,11 @@
         <members>Address__c.Latest_Start_Date__c</members>
         <members>Address__c.MailingCity__c</members>
         <members>Address__c.MailingCountry__c</members>
+        <members>Address__c.MailingCounty__c</members>
         <members>Address__c.MailingPostalCode__c</members>
         <members>Address__c.MailingState__c</members>
         <members>Address__c.MailingStreet2__c</members>
         <members>Address__c.MailingStreet__c</members>
-        <members>Address__c.Mailing_County__c</members>
         <members>Address__c.Parent_Account__c</members>
         <members>Address__c.Parent_Contact__c</members>
         <members>Address__c.Seasonal_End_Day__c</members>
