@@ -51,7 +51,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * default Address record. 
     **********************************************************************************************************/            
     @isTest 
-    public static void updateDefaultAddr() {
+    private static void updateDefaultAddr() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -86,7 +86,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - The billing address fields on the Account are cleared. 
     **********************************************************************************************************/            
     @isTest 
-    static void deleteDefaultAddr() {
+    private static void deleteDefaultAddr() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -116,7 +116,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - The billing address fields on the Account is populated with the mailing fields from the default Address record. 
     **********************************************************************************************************/            
     @isTest
-    static void deleteNonDefaultOverrideAddr() {
+    private static void deleteNonDefaultOverrideAddr() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -168,7 +168,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - The billing address fields on the Account record should be cleared out. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateDefaultAddrToNonDefault() {
+    private static void updateDefaultAddrToNonDefault() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -204,7 +204,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * in Current_Address__c. 
     **********************************************************************************************************/            
     @isTest
-    public static void setAddrOverride() {
+    private static void setAddrOverride() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -261,7 +261,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - The first Address record's Default_Address__c is cleared. 
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultAddr() {
+    private static void insertNewDefaultAddr() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -328,7 +328,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - The second Address record is no longer set as the default Address record for the Account. 
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultAddrAndReset() {
+    private static void insertNewDefaultAddrAndReset() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -393,7 +393,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - The newly created Address record is set as the default Address record for the Account. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrNew() {
+    private static void updateAddrNew() {
         configSettings();
 
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -463,7 +463,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - The original Address record is no longer marked as teh default Address record. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrMarkOverride() {
+    private static void updateAddrMarkOverride() {
         configSettings();
                 
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -512,7 +512,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - No new Address records were created. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrExistingCaseAndFormat() {
+    private static void updateAddrExistingCaseAndFormat() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -628,7 +628,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         Account get updated Address
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrExisting() {
+    private static void updateAddrExisting() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -687,7 +687,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - Runtime error. 
     **********************************************************************************************************/            
     @isTest
-    public static void newAddrNoParent() {
+    private static void newAddrNoParent() {
         configSettings();
         
         List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
@@ -710,7 +710,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - No new duplicate Address records are created. 
     **********************************************************************************************************/            
     @isTest
-    public static void newDupeAddr() {
+    private static void newDupeAddr() {
         configSettings();
             
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -745,7 +745,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * an additional duplicate Address record. 
     **********************************************************************************************************/            
     @isTest
-    public static void newDupeAddrNonDefault() {
+    private static void newDupeAddrNonDefault() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -813,7 +813,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - New default Address record is created and the street is broken into multi street fields. 
     **********************************************************************************************************/            
     @isTest
-    public static void insertMultilineStreetAddress() {
+    private static void insertMultilineStreetAddress() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
                                                                     UTIL_Describe_API.getAdminAccRecTypeID() + ';'));
 
@@ -858,7 +858,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * address fields are updated properly. 
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultMultilineStreetAddr() {
+    private static void insertNewDefaultMultilineStreetAddr() {
         configSettings();
                 
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -895,7 +895,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - The new default Address's multi street fields (MailingStreet__c and MailingStreet2__c) are populated. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateMultilineStreetAddr() {
+    private static void updateMultilineStreetAddr() {
         configSettings();
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -943,7 +943,8 @@ public with sharing class ADDR_AdminAcc_TEST {
     * - Account's billing fields and Current_Address__c are blank. 
     * - The existing Address records are no longer set as default Address records. 
     **********************************************************************************************************/            
-    static testMethod void clearExistingBillingAddrOnAccount() {
+    @isTest
+    private static void clearExistingBillingAddrOnAccount() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
                                                                     UTIL_Describe_API.getAdminAccRecTypeID() + ';'));
                 
