@@ -314,7 +314,7 @@ public class UTIL_UnitTestData_TEST {
             consAccsAddrs.accs[i].Current_Address__c = consAccsAddrs.addrs[i].ID;
             consAccsAddrs.accs[i].BillingStreet = consAccsAddrs.addrs[i].MailingStreet__c;
             consAccsAddrs.accs[i].BillingCity = consAccsAddrs.addrs[i].MailingCity__c;
-            consAccsAddrs.accs[i].Billing_County__c = consAccsAddrs.addrs[i].Mailing_County__c;
+            consAccsAddrs.accs[i].Billing_County__c = consAccsAddrs.addrs[i].MailingCounty__c;
             consAccsAddrs.accs[i].BillingState = consAccsAddrs.addrs[i].MailingState__c;
             consAccsAddrs.accs[i].BillingPostalCode = consAccsAddrs.addrs[i].MailingPostalCode__c;
             consAccsAddrs.accs[i].BillingCountry = consAccsAddrs.addrs[i].MailingCountry__c;
