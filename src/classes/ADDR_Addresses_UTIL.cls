@@ -366,7 +366,7 @@ public with sharing class ADDR_Addresses_UTIL {
         addr.MailingStreet__c = (String)sobjSrc.get(strFieldPrefixSrc + 'Street');
         handleMultilineStreet(addr);
         addr.MailingCity__c = (String)sobjSrc.get(strFieldPrefixSrc + 'City');
-        addr.MailingCounty__c = (String)sobjSrc.get(strFieldPrefixSrc + 'County__c');
+        addr.MailingCounty__c = (String)sobjSrc.get(strFieldPrefixSrc + '_County__c');
         addr.MailingPostalCode__c = (String)sobjSrc.get(strFieldPrefixSrc + 'PostalCode');
         addr.MailingState__c = (String)sobjSrc.get(strFieldPrefixSrc + 'State');
         addr.MailingCountry__c = (String)sobjSrc.get(strFieldPrefixSrc + 'Country');
