@@ -1,8 +1,8 @@
 {
   "templateType" : "app",
-  "label" : "Education Cloud: Recruiting",
+  "label" : "Recruiting & Admissions Analytics",
   "name" : "RA_Program_Enrollment",
-  "description" : "The Recruiting and Admissions template allows you to quickly create insightful dashboards to help you better understand your recruiting and admissions data. Requires EDA.",
+  "description" : "The Education Cloud Recruiting & Admissions template allows schools to identify trends and take action based on Contact, Application, Test Score, and Affiliation data. EDA Required. v2.0",
   "assetVersion" : 46.0,
   "variableDefinition" : "variables.json",
   "uiDefinition" : "ui.json",
@@ -17,7 +17,7 @@
     }
   ],
   "releaseInfo" : {
-    "templateVersion" : "1.4",
+    "templateVersion" : "2.1",
     "notesFile" : "releaseNotes.html"
   },
   "folderDefinition" : "folder.json",
@@ -25,22 +25,22 @@
   "lenses" : [ ],
   "dashboards" : [
     {
-      "label" : "Recruiting and Admissions - Contact",
-      "name" : "Recruiting_Admissions_Contact_tp",
+      "label" : "R&A Application Management",
+      "name" : "R_A_Application_Manangement_Dashboard_tp",
       "condition" : "${Variables.Overrides.createAllDashboards}",
-      "file" : "dashboards/Recruiting_Admissions_Contact.json"
+      "file" : "dashboards/R_A_Application_Manangement_Dashboard.json"
     },
     {
-      "label" : "Recruiting and Admissions - Contact (Requires Customization)",
-      "name" : "RA_Contact_tp",
+      "label" : "R&A Contacts & Affiliations",
+      "name" : "R_A_Contacts_Affiliations_tp",
       "condition" : "${Variables.Overrides.createAllDashboards}",
-      "file" : "dashboards/RA_Contact.json"
+      "file" : "dashboards/R_A_Contacts_Affiliations.json"
     },
     {
-      "label" : "Recruiting and Admissions - Program Enrollment",
-      "name" : "RA_Program_Enrollment_tp",
+      "label" : "R&A Program Enrollment",
+      "name" : "Fit_Finish_R_A_Program_Enrollment_tp",
       "condition" : "${Variables.Overrides.createAllDashboards}",
-      "file" : "dashboards/RA_Program_Enrollment.json"
+      "file" : "dashboards/Fit_Finish_R_A_Program_Enrollment.json"
     }
   ],
   "eltDataflows" : [
@@ -51,7 +51,14 @@
       "file" : "dataflow/RA_Program_EnrollmentDataflow.json"
     }
   ],
+  "recipes" : [ ],
   "datasetFiles" : [
+    {
+      "label" : "RA Applications",
+      "name" : "RA_Applications_tp",
+      "condition" : "${Variables.Overrides.createAllDatasetFiles}",
+      "userXmd" : "dataset_files/RA_Applications_XMD.json"
+    },
     {
       "label" : "RA Contact",
       "name" : "RA_Contact_tp",
@@ -63,10 +70,37 @@
       "name" : "RA_Program_Enrollment_tp",
       "condition" : "${Variables.Overrides.createAllDatasetFiles}",
       "userXmd" : "dataset_files/RA_Program_Enrollment_XMD.json"
+    },
+    {
+      "label" : "RA Test Scores",
+      "name" : "RA_Test_Scores_tp",
+      "condition" : "${Variables.Overrides.createAllDatasetFiles}",
+      "userXmd" : "dataset_files/RA_Test_Scores_XMD.json"
     }
   ],
   "storedQueries" : [ ],
-  "imageFiles" : [ ],
+  "imageFiles" : [
+    {
+      "name" : "Education_Cloud_Expanded_Icon_40x40",
+      "condition" : "${Variables.Overrides.createAllImages}",
+      "file" : "images/Education_Cloud_Expanded_Icon_40.png"
+    },
+    {
+      "name" : "Education_Cloud_Expanded_Iconpng",
+      "condition" : "${Variables.Overrides.createAllImages}",
+      "file" : "images/Education Cloud Expanded Icon.png"
+    },
+    {
+      "name" : "Education_Cloud_Expanded_Iconpng1",
+      "condition" : "${Variables.Overrides.createAllImages}",
+      "file" : "images/Education Cloud Expanded Icon.png"
+    },
+    {
+      "name" : "Education_Cloud_Expanded_Iconpng2",
+      "condition" : "${Variables.Overrides.createAllImages}",
+      "file" : "images/Education Cloud Expanded Icon.png"
+    }
+  ],
   "extendedTypes" : { },
   "templateDependencies" : [ ],
   "icons" : {
