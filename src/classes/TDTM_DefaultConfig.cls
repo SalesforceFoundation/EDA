@@ -229,6 +229,11 @@ public without sharing class TDTM_DefaultConfig {
                 Class__c = 'TERM_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Term__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
 
+        // Prevents deletion of Affiliations when the records are associated with Course Connections
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'AFFL_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Affiliation__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
+
         // Prevents deletion of Tests when the records are associated with Test Scores
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'TST_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Test__c',
