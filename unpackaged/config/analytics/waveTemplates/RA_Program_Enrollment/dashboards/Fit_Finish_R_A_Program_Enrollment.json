@@ -1,0 +1,5791 @@
+{
+  "name" : "Fit_Finish_R_A_Program_Enrollment_tp",
+  "label" : "R&A Program Enrollment",
+  "description" : "Fit & Finish Dashboards",
+  "folder" : {
+    "id" : "${App.Folder.Id}"
+  },
+  "dateVersion" : 1,
+  "mobileDisabled" : false,
+  "xmd" : {
+    "measures" : [
+      {
+        "conditionalFormatting" : {
+          "backgroundColor" : {
+            "referenceField" : "C",
+            "type" : "multiple",
+            "parameters" : {
+              "bins" : [
+                {
+                  "formatValue" : "#E84340",
+                  "bin" : "*"
+                },
+                {
+                  "formatValue" : "#7D98B3",
+                  "bin" : "0"
+                },
+                {
+                  "formatValue" : "#00B531",
+                  "bin" : "1"
+                }
+              ]
+            }
+          }
+        },
+        "field" : "__Application_Change_1.C",
+        "format" : {
+          "customFormat" : "[\"#,###.##%\",100]"
+        }
+      },
+      {
+        "conditionalFormatting" : { },
+        "field" : "__Application_Change_1.A",
+        "format" : {
+          "customFormat" : "[\"#,###\",1]"
+        }
+      },
+      {
+        "conditionalFormatting" : { },
+        "field" : "__Application_Change_1.B",
+        "format" : {
+          "customFormat" : "[\"#,###\",1]"
+        }
+      },
+      {
+        "conditionalFormatting" : {
+          "chartColor" : {
+            "referenceField" : "count",
+            "type" : "multiple",
+            "parameters" : {
+              "bins" : [
+                {
+                  "formatValue" : "#97C6F5",
+                  "bin" : "*"
+                },
+                {
+                  "formatValue" : "#347FDB",
+                  "bin" : "100"
+                },
+                {
+                  "formatValue" : "#8350E8",
+                  "bin" : "2000"
+                }
+              ]
+            }
+          }
+        },
+        "field" : "RA_Program_Enrollmen_1.count",
+        "format" : {
+        }
+      },
+      {
+        "conditionalFormatting" : {
+          "chartColor" : {
+            "referenceField" : "count",
+            "type" : "static",
+            "parameters" : {
+              "formatValue" : "rgb(76, 168, 161)"
+            }
+          }
+        },
+        "field" : "RA_Program_Enrollmen_12.count",
+        "format" : {
+        }
+      },
+      {
+        "conditionalFormatting" : { },
+        "field" : "Program_Enrollment_A_1.A",
+        "format" : {
+          "customFormat" : "[\"#,###\",1]"
+        }
+      }
+    ],
+    "derivedDimensions" : [ ],
+    "organizations" : [ ],
+    "showDetailsDefaultFields" : [ ],
+    "dates" : [ ],
+    "derivedMeasures" : [ ],
+    "dimensions" : [
+      {
+        "recordDisplayFields" : [ ],
+        "conditionalFormatting" : {
+          "chartColor" : {
+            "referenceField" : "count",
+            "type" : "multiple",
+            "parameters" : {
+              "bins" : [
+                {
+                  "formatValue" : "#97C6F5",
+                  "bin" : "*"
+                },
+                {
+                  "formatValue" : "#347FDB",
+                  "bin" : "100"
+                },
+                {
+                  "formatValue" : "#8350E8",
+                  "bin" : "2000"
+                }
+              ]
+            }
+          }
+        },
+        "salesforceActions" : [ ],
+        "field" : "RA_Program_Enrollmen_1.ALL",
+        "members" : [ ],
+        "customActions" : [ ]
+      },
+      {
+        "recordDisplayFields" : [ ],
+        "conditionalFormatting" : {
+          "chartColor" : {
+            "referenceField" : "count",
+            "type" : "static",
+            "parameters" : {
+              "formatValue" : "rgb(76, 168, 161)"
+            }
+          }
+        },
+        "salesforceActions" : [ ],
+        "field" : "RA_Program_Enrollmen_12.ALL",
+        "members" : [ ],
+        "customActions" : [ ]
+      }
+    ]
+  },
+  "state" : {
+    "dataSourceLinks" : [ ],
+    "filters" : [
+      {
+        "dataset" : {
+          "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+        },
+        "dependent" : true,
+        "fields" : [
+          "hed__Graduation_Year__c"
+        ],
+        "locked" : false,
+        "operator" : "in"
+      },
+      {
+        "dataset" : {
+          "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+        },
+        "dependent" : true,
+        "fields" : [
+          "hed__Class_Standing__c"
+        ],
+        "locked" : false,
+        "operator" : "in"
+      },
+      {
+        "dataset" : {
+          "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+        },
+        "dependent" : true,
+        "fields" : [
+          "hed__Enrollment_Status__c"
+        ],
+        "locked" : false,
+        "operator" : "in"
+      },
+      {
+        "dataset" : {
+          "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+        },
+        "dependent" : true,
+        "fields" : [
+          "hed__Affiliation__c.hed__Account__c.ParentId.Name"
+        ],
+        "label" : "Department",
+        "locked" : false,
+        "operator" : "in"
+      },
+      {
+        "dataset" : {
+          "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+        },
+        "dependent" : true,
+        "fields" : [
+          "hed__Account__c.Name"
+        ],
+        "label" : "Academic Program",
+        "locked" : false,
+        "operator" : "in"
+      },
+      {
+        "dataset" : {
+          "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+        },
+        "dependent" : true,
+        "fields" : [
+          "hed__Contact__c.hed__Financial_Aid_Applicant__c"
+        ],
+        "label" : "Financial Aid Status",
+        "locked" : false,
+        "operator" : "in"
+      }
+    ],
+    "gridLayouts" : [
+      {
+        "maxWidth" : 1500,
+        "name" : "Default",
+        "numColumns" : 49,
+        "pages" : [
+          {
+            "label" : "Application Overview",
+            "name" : "4b65a916-0ae6-4816-95c5-368fa426f2ad",
+            "navigationHidden" : false,
+            "widgets" : [
+              {
+                "colspan" : 47,
+                "column" : 1,
+                "name" : "filterpanel_6",
+                "row" : 7,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 13,
+                "column" : 2,
+                "name" : "chart_5",
+                "row" : 59,
+                "rowspan" : 21,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 8,
+                "column" : 33,
+                "name" : "link_2",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 8,
+                "column" : 41,
+                "name" : "link_3",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 47,
+                "column" : 1,
+                "name" : "table_3",
+                "row" : 91,
+                "rowspan" : 34,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(8, 21, 53)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 13,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 12,
+                "rowspan" : 38,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 11,
+                "column" : 1,
+                "name" : "number_8",
+                "row" : 24,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 11,
+                "column" : 1,
+                "name" : "number_10",
+                "row" : 27,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "chart_36",
+                "row" : 59,
+                "rowspan" : 21,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 12,
+                "column" : 18,
+                "name" : "chart_12",
+                "row" : 59,
+                "rowspan" : 21,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C6D3E1",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 9,
+                "column" : 4,
+                "name" : "text_1",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+                    "top"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_8",
+                "row" : 6,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 48,
+                "column" : 1,
+                "name" : "text_2",
+                "row" : 87,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_10",
+                "row" : 85,
+                "rowspan" : 43,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 13,
+                "column" : 2,
+                "name" : "text_3",
+                "row" : 55,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 14,
+                "column" : 33,
+                "name" : "text_5",
+                "row" : 55,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 22,
+                "column" : 14,
+                "name" : "text_7",
+                "row" : 15,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 11,
+                "column" : 1,
+                "name" : "text_10",
+                "row" : 15,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 15,
+                "column" : 1,
+                "name" : "container_1",
+                "row" : 53,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C6D3E1",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 16,
+                "column" : 32,
+                "name" : "container_9",
+                "row" : 53,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C6D3E1",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 14,
+                "column" : 17,
+                "name" : "container_11",
+                "row" : 53,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C6D3E1",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 13,
+                "column" : 18,
+                "name" : "text_13",
+                "row" : 55,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_12",
+                "row" : 82,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_13",
+                "row" : 50,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 1,
+                "column" : 0,
+                "name" : "container_14",
+                "row" : 53,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 1,
+                "column" : 16,
+                "name" : "container_15",
+                "row" : 53,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 1,
+                "column" : 31,
+                "name" : "container_16",
+                "row" : 53,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 1,
+                "column" : 48,
+                "name" : "container_17",
+                "row" : 53,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 11,
+                "column" : 1,
+                "name" : "chart_1",
+                "row" : 37,
+                "rowspan" : 10,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 11,
+                "column" : 1,
+                "name" : "number_1",
+                "row" : 33,
+                "rowspan" : 3,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 5,
+                "column" : 28,
+                "name" : "link_4",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(238, 248, 253, 0)",
+                  "borderColor" : "rgb(0, 114, 214)",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 5,
+                "name" : "number_4",
+                "row" : 19,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#00B531",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 4,
+                "column" : 1,
+                "name" : "number_9",
+                "row" : 17,
+                "rowspan" : 7,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 34,
+                "column" : 14,
+                "name" : "chart_6",
+                "row" : 19,
+                "rowspan" : 29,
+                "widgetStyle" : {
+                  "backgroundColor" : "#091A3E",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 3,
+                "column" : 1,
+                "name" : "image_3",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+            ]
+          },
+          {
+            "label" : "Student Segmentation",
+            "name" : "26b935c3-ff09-4b98-987c-8f0db84764fe",
+            "navigationHidden" : false,
+            "widgets" : [
+              {
+                "colspan" : 47,
+                "column" : 1,
+                "name" : "filterpanel_6",
+                "row" : 7,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 47,
+                "column" : 1,
+                "name" : "table_3",
+                "row" : 69,
+                "rowspan" : 34,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(8, 21, 53)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 12,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 3,
+                "column" : 1,
+                "name" : "number_7",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C6D3E1",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_8",
+                "row" : 6,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 48,
+                "column" : 1,
+                "name" : "text_2",
+                "row" : 65,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_10",
+                "row" : 63,
+                "rowspan" : 41,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 11,
+                "column" : 1,
+                "name" : "text_10",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 14,
+                "name" : "number_5",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 21,
+                "name" : "number_11",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 28,
+                "name" : "number_12",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 14,
+                "name" : "text_8",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 21,
+                "name" : "text_11",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 28,
+                "name" : "text_12",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 13,
+                "column" : 18,
+                "name" : "chart_16",
+                "row" : 28,
+                "rowspan" : 30,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 13,
+                "column" : 2,
+                "name" : "chart_13",
+                "row" : 29,
+                "rowspan" : 30,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 13,
+                "column" : 34,
+                "name" : "chart_8",
+                "row" : 29,
+                "rowspan" : 28,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 15,
+                "column" : 17,
+                "name" : "container_7",
+                "row" : 22,
+                "rowspan" : 39,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(25, 41, 92)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 12,
+                "column" : 18,
+                "name" : "text_6",
+                "row" : 23,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 12,
+                "column" : 35,
+                "name" : "text_14",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 10,
+                "column" : 35,
+                "name" : "chart_2",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 15,
+                "column" : 1,
+                "name" : "container_18",
+                "row" : 22,
+                "rowspan" : 39,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(25, 41, 92)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 12,
+                "column" : 2,
+                "name" : "text_15",
+                "row" : 23,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 15,
+                "column" : 33,
+                "name" : "container_19",
+                "row" : 22,
+                "rowspan" : 39,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(25, 41, 92)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 12,
+                "column" : 34,
+                "name" : "text_16",
+                "row" : 23,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 4,
+                "name" : "number_4",
+                "row" : 16,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#00B531",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 17,
+                "column" : 4,
+                "name" : "text_1",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+                    "top"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 5,
+                "column" : 28,
+                "name" : "link_1",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(238, 248, 253, 0)",
+                  "borderColor" : "rgb(0, 114, 214)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 8,
+                "column" : 33,
+                "name" : "link_5",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "rgb(0, 114, 214)",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 8,
+                "column" : 41,
+                "name" : "link_6",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 3,
+                "column" : 1,
+                "name" : "image_3",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+            ]
+          },
+          {
+            "label" : "Enrollment Interests",
+            "name" : "6c459e1c-398e-401e-9774-d9c706c63103",
+            "navigationHidden" : false,
+            "widgets" : [
+              {
+                "colspan" : 47,
+                "column" : 1,
+                "name" : "filterpanel_6",
+                "row" : 7,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 47,
+                "column" : 1,
+                "name" : "table_3",
+                "row" : 69,
+                "rowspan" : 34,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(8, 21, 53)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_6",
+                "row" : 12,
+                "rowspan" : 8,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 3,
+                "column" : 1,
+                "name" : "number_7",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_3",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#C6D3E1",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_8",
+                "row" : 6,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "#E6ECF2",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 48,
+                "column" : 1,
+                "name" : "text_2",
+                "row" : 65,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 49,
+                "column" : 0,
+                "name" : "container_10",
+                "row" : 63,
+                "rowspan" : 41,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              },
+              {
+                "colspan" : 11,
+                "column" : 1,
+                "name" : "text_10",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 14,
+                "name" : "number_5",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 21,
+                "name" : "number_11",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(0, 0, 0)",
+                  "borderColor" : "#335779",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 28,
+                "name" : "number_12",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 14,
+                "name" : "text_8",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 21,
+                "name" : "text_11",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 28,
+                "name" : "text_12",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 25,
+                "column" : 23,
+                "name" : "container_7",
+                "row" : 22,
+                "rowspan" : 39,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(25, 41, 92)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 12,
+                "column" : 35,
+                "name" : "text_14",
+                "row" : 13,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 10,
+                "column" : 35,
+                "name" : "chart_2",
+                "row" : 15,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 21,
+                "column" : 1,
+                "name" : "container_18",
+                "row" : 22,
+                "rowspan" : 39,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgb(25, 41, 92)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 19,
+                "column" : 2,
+                "name" : "chart_3",
+                "row" : 28,
+                "rowspan" : 30,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 12,
+                "column" : 2,
+                "name" : "text_17",
+                "row" : 23,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 23,
+                "column" : 24,
+                "name" : "chart_4",
+                "row" : 28,
+                "rowspan" : 30,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(8, 21, 53, 0)",
+                  "borderColor" : "#7D98B3",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 12,
+                "column" : 24,
+                "name" : "text_18",
+                "row" : 23,
+                "rowspan" : 4,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 7,
+                "column" : 4,
+                "name" : "number_4",
+                "row" : 16,
+                "rowspan" : 2,
+                "widgetStyle" : {
+                  "backgroundColor" : "#FFFFFF",
+                  "borderColor" : "#00B531",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 4,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 17,
+                "column" : 4,
+                "name" : "text_1",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#FFFFFF",
+                  "borderEdges" : [
+                    "top"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 8,
+                "column" : 33,
+                "name" : "link_2",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "#E6ECF2",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 1
+                }
+              },
+              {
+                "colspan" : 5,
+                "column" : 28,
+                "name" : "link_7",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(238, 248, 253, 0)",
+                  "borderColor" : "rgb(92, 122, 153)",
+                  "borderEdges" : [ ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 8,
+                "column" : 41,
+                "name" : "link_8",
+                "row" : 1,
+                "rowspan" : 5,
+                "widgetStyle" : {
+                  "backgroundColor" : "rgba(255, 255, 255, 0)",
+                  "borderColor" : "rgb(0, 114, 214)",
+                  "borderEdges" : [
+                    "bottom"
+                  ],
+                  "borderRadius" : 0,
+                  "borderWidth" : 2
+                }
+              },
+              {
+                "colspan" : 3,
+                "column" : 1,
+                "name" : "image_3",
+                "row" : 0,
+                "rowspan" : 6,
+                "widgetStyle" : {
+                  "borderEdges" : [ ]
+                }
+              }
+            ]
+          }
+        ],
+        "rowHeight" : "fine",
+        "selectors" : [ ],
+        "style" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "backgroundColor" : "rgb(9, 26, 62)",
+          "cellSpacingX" : 0,
+          "cellSpacingY" : 0,
+          "fit" : "original",
+          "gutterColor" : "rgb(197, 211, 224)"
+        },
+        "version" : 1.0
+      }
+    ],
+    "layouts" : [ ],
+    "steps" : {
+      "hed__Contact__c_hed__1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - US Location",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Contact__c.MailingState"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "autoZoom" : false,
+            "highColor" : "#1674D9",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "projectionType" : "AlbersUSA",
+            "lowColor" : "#C5DBF7",
+            "visualizationType" : "bubblemap",
+            "title" : {
+              "fontSize" : 24,
+              "subtitleFontSize" : 11,
+              "label" : "Students by US Location",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "radiusRatio" : 5,
+            "columnMap" : {
+              "r" : [
+                "count"
+              ],
+              "color" : [
+                "count"
+              ],
+              "trellis" : [ ],
+              "plots" : [
+                "hed__Contact__c.MailingState"
+              ]
+            },
+            "showActionMenu" : true,
+            "theme" : "wave",
+            "map" : "US States",
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "RA_Program_Enrollmen_12" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Country of Origin",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Contact__c.hed__Country_of_Origin__c"
+            ],
+            "order" : [
+              [
+                "hed__Contact__c.hed__Country_of_Origin__c",
+                {
+                  "ascending" : false
+                }
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "hbar",
+            "title" : {
+              "fontSize" : 16,
+              "subtitleFontSize" : 11,
+              "label" : "Country of Origin",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "binValues" : false,
+            "plots" : [
+              {
+                "column" : [
+                  "hed__Contact__c.hed__Country_of_Origin__c"
+                ]
+              }
+            ],
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [
+                "hed__Contact__c.hed__Country_of_Origin__c"
+              ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "applyConditionalFormatting" : true,
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            }
+          },
+          "type" : "chart"
+        }
+      },
+      "RA_PE_Lead_Source_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "RA PE Lead Source",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Contact__c.LeadSource"
+            ],
+            "order" : [
+              [
+                "count",
+                {
+                  "ascending" : false
+                }
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "bottom-center",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "hbar",
+            "title" : {
+              "fontSize" : 16,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "left",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "binValues" : false,
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [
+                "hed__Contact__c.LeadSource"
+              ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "applyConditionalFormatting" : true,
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            }
+          },
+          "type" : "chart"
+        }
+      },
+      "RA_Program_Enrollmen_10" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Student Gender",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Contact__c.hed__Gender__c"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "legend" : {
+              "descOrder" : true,
+              "showHeader" : false,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "totalSumMode" : "none",
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "stackhbar",
+            "title" : {
+              "fontSize" : 16,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "left",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "plots" : [
+              {
+                "column" : [
+                  "count"
+                ]
+              }
+            ],
+            "columnMap" : {
+              "split" : [
+                "hed__Contact__c.hed__Gender__c"
+              ],
+              "trellis" : [ ],
+              "dimensionAxis" : [ ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "normalize" : false,
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "applyConditionalFormatting" : true,
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            }
+          },
+          "type" : "chart"
+        }
+      },
+      "RA_Program_Enrollmen_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Major",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Account__c.Name"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "hbar",
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "Program Enrollment by Major",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "binValues" : false,
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [
+                "hed__Account__c.Name"
+              ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            },
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "static_1" : {
+        "broadcastFacet" : true,
+        "label" : "",
+        "selectMode" : "singlerequired",
+        "type" : "staticflex",
+        "values" : [
+          {
+            "" : "M",
+            "Dimension2" : "hed__Application_Submitted_Date__c_Month"
+          },
+          {
+            "" : "Q",
+            "Dimension2" : "hed__Application_Submitted_Date__c_Quarter"
+          },
+          {
+            "" : "Y",
+            "Dimension2" : "hed__Application_Submitted_Date__c_Year"
+          }
+        ]
+      },
+      "Eligible_to_Enroll_2" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "Eligible to Enroll",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Eligible_to_Enroll__c"
+            ],
+            "filters" : [
+              [
+                "hed__Eligible_to_Enroll__c",
+                [
+                  "true"
+                ],
+                "in"
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "hbar",
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "binValues" : false,
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [
+                "hed__Eligible_to_Enroll__c"
+              ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            },
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "Eligible_to_Enroll_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "Male vs Female",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Contact__c.hed__Gender__c"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : false,
+              "show" : true,
+              "customSize" : 40,
+              "position" : "top-center",
+              "inside" : false
+            },
+            "totalSumMode" : "none",
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "stackhbar",
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                150,
+                80
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "columnMap" : {
+              "split" : [
+                "hed__Contact__c.hed__Gender__c"
+              ],
+              "trellis" : [ ],
+              "dimensionAxis" : [ ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "normalize" : false,
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : false,
+              "showAxis" : false,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "applyConditionalFormatting" : true,
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            }
+          },
+          "type" : "chart"
+        }
+      },
+      "RA_Program_Enrollmen_8" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Enrollment Status",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Enrollment_Status__c"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "centerText" : "",
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : false,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "showMeasureTitle" : true,
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "pie",
+            "title" : {
+              "fontSize" : 24,
+              "subtitleFontSize" : 11,
+              "label" : "Student Enrollment Status",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "wrap",
+              "chartsPerLine" : 4
+            },
+            "inner" : 60,
+            "plots" : [
+              {
+                "column" : [
+                  "count"
+                ]
+              }
+            ],
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimension" : [
+                "hed__Enrollment_Status__c"
+              ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "centerValueType" : "number",
+            "valueType" : "compactNumber",
+            "theme" : "wave",
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "RA_Program_Enrollmen_9" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "RA Program Enrollment - Year over Years Applications",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Application_Submitted_Date__c_Year"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "showActionMenu" : true,
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "showMeasureTitle" : true,
+            "valueType" : "compactNumber",
+            "showTotal" : true,
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "origami",
+            "theme" : "wave",
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "Applications by Year",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "Program_Enrollment_A_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "Program Enrollment Applications by Month",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*",
+                "A"
+              ],
+              [
+                "count",
+                "*",
+                "Three_month_Moving_Average"
+              ]
+            ],
+            "columns" : [
+              {
+                "query" : {
+                  "measures" : [
+                    [
+                      "count",
+                      "*"
+                    ]
+                  ],
+                  "groups" : [
+                    [
+                      "hed__Application_Submitted_Date__c_Year",
+                      "hed__Application_Submitted_Date__c_Month"
+                    ]
+                  ]
+                },
+                "header" : "Monthly Applications"
+              },
+              {
+                "query" : {
+                  "measures" : [
+                    [
+                      "count",
+                      "*"
+                    ]
+                  ],
+                  "groups" : [
+                    [
+                      "hed__Application_Submitted_Date__c_Year",
+                      "hed__Application_Submitted_Date__c_Month"
+                    ]
+                  ],
+                  "formula" : "avg(A) over ([-3..0] partition by all order by ('hed__Application_Submitted_Date__c_Year~~~hed__Application_Submitted_Date__c_Month'))"
+                },
+                "name" : "Three_month_Moving_Average",
+                "header" : "Three-month Moving Average"
+              }
+            ],
+            "groups" : [
+              [
+                "hed__Application_Submitted_Date__c_Year",
+                "hed__Application_Submitted_Date__c_Month"
+              ]
+            ],
+            "filters" : [
+              [
+                "Application Submitted Date",
+                [
+                  [
+                    [
+                      "year",
+                      -2
+                    ],
+                    [
+                      "day",
+                      0
+                    ]
+                  ]
+                ],
+                ">=<="
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showPoints" : false,
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : false,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "bottom-center",
+              "inside" : false
+            },
+            "axisMode" : "sync",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "line",
+            "dashLine" : {
+              "measures" : "",
+              "showDashLine" : false
+            },
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "columnMap" : {
+              "split" : [ ],
+              "trellis" : [ ],
+              "dimensionAxis" : [
+                "hed__Application_Submitted_Date__c_Year~~~hed__Application_Submitted_Date__c_Month"
+              ],
+              "plots" : [
+                "A",
+                "Three_month_Moving_Average"
+              ]
+            },
+            "fillArea" : true,
+            "showActionMenu" : true,
+            "showZero" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "valueType" : "none",
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : false,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "applyConditionalFormatting" : true,
+            "dimensionAxis" : {
+              "showTitle" : false,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            },
+            "drawArea" : {
+              "measure" : "",
+              "showDrawArea" : false,
+              "bounding1" : "",
+              "bounding2" : ""
+            }
+          },
+          "type" : "chart"
+        }
+      },
+      "Program_Enrollment___1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Top Feeder Schools",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "unique",
+                "hed__Contact__c.Primary_Educational_Institution__c"
+              ]
+            ],
+            "groups" : [
+              "hed__Contact__c.Primary_Educational_Institution__c.Name"
+            ],
+            "order" : [
+              [
+                "unique_hed__Contact__c.Primary_Educational_Institution__c",
+                {
+                  "ascending" : false
+                }
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : false,
+              "show" : false,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "hbar",
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "Program Enrollment by Top Feeder Schools",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "binValues" : false,
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [
+                "hed__Contact__c.Primary_Educational_Institution__c.Name"
+              ],
+              "plots" : [
+                "unique_hed__Contact__c.Primary_Educational_Institution__c"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            },
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "all_3" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "all_3",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "filters" : [
+              [
+                "Application Submitted Date",
+                [
+                  [
+                    [
+                      "day",
+                      -30
+                    ],
+                    [
+                      "day",
+                      0
+                    ]
+                  ]
+                ],
+                ">=<="
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "hbar",
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "binValues" : false,
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [ ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            },
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "RA_Program_Enrollmen_4" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Race",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Contact__c.hed__Race__c"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "vbar",
+            "title" : {
+              "fontSize" : 16,
+              "subtitleFontSize" : 11,
+              "label" : "Student Race",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "binValues" : false,
+            "plots" : [
+              {
+                "column" : [
+                  "count"
+                ]
+              }
+            ],
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [
+                "hed__Contact__c.hed__Race__c"
+              ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "applyConditionalFormatting" : true,
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            }
+          },
+          "type" : "chart"
+        }
+      },
+      "Total_Prospects_2" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "Military Vet Apps",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "filters" : [
+              [
+                "hed__Contact__c.hed__Military_Service__c",
+                [
+                  "true"
+                ],
+                "in"
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "hbar",
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "binValues" : false,
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [ ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            },
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "lens_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Data Table",
+        "query" : {
+          "query" : {
+            "values" : [
+              "hed__Contact__c.Name",
+              "hed__Contact__c.Email",
+              "hed__Application_Submitted_Date__c",
+              "hed__Admission_Date__c",
+              "hed__Account__c.Name",
+              "hed__Account__c.ParentId.Name",
+              "hed__Class_Standing__c",
+              "hed__Graduation_Year__c",
+              "hed__Enrollment_Status__c",
+              "hed__GPA__c",
+              "hed__Credits_Earned__c",
+              "hed__Credits_Attempted__c",
+              "hed__Contact__c.Id"
+            ],
+            "order" : [
+              [
+                "hed__Contact__c.Name",
+                {
+                  "ascending" : false
+                }
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : { },
+          "parameters" : {
+            "borderColor" : "#e1e5ee",
+            "borderWidth" : 1,
+            "cell" : {
+              "backgroundColor" : "#f2f6fa",
+              "fontColor" : "#16325c",
+              "fontSize" : 12
+            },
+            "columnProperties" : { },
+            "columns" : [ ],
+            "customBulkActions" : [
+              {
+                "label" : "Add to Campaign",
+                "visualforce" : {
+                  "name" : "BulkAction",
+                  "namespace" : "EABulkActions"
+                }
+              }
+            ],
+            "evenRowColor" : "#f2f6fa",
+            "header" : {
+              "backgroundColor" : "#e4ecf2",
+              "fontColor" : "#5c7a99",
+              "fontSize" : 12
+            },
+            "innerMajorBorderColor" : "#a9b7c7",
+            "innerMinorBorderColor" : "#e1e5ee",
+            "mode" : "fittocontainer",
+            "numberOfLines" : 1,
+            "oddRowColor" : "#ffffff",
+            "showActionMenu" : true,
+            "showRowIndexColumn" : true,
+            "totals" : true,
+            "verticalPadding" : 8
+          },
+          "type" : "table"
+        }
+      },
+      "RA_Program_Enrollmen_2" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Application Date Trends",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "{{column(static_1.selection,[\"Dimension2\"]).asObject()}}"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "fit",
+            "showPoints" : true,
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : false,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : [
+                "count"
+              ],
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : [
+                "hed__Application_Submitted_Date__c_Month"
+              ]
+            },
+            "visualizationType" : "line",
+            "dashLine" : {
+              "measures" : [
+                "count"
+              ],
+              "showDashLine" : false,
+              "groups" : [
+                "{{column(New_01_1.selection,[\"Dimension2\"]).asObject()}}"
+              ]
+            },
+            "title" : {
+              "fontSize" : 18,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "left",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "columnMap" : {
+              "split" : [ ],
+              "trellis" : [ ],
+              "dimensionAxis" : [
+                "hed__Application_Submitted_Date__c_Month"
+              ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "fillArea" : true,
+            "showActionMenu" : true,
+            "showZero" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "valueType" : "none",
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : false,
+              "showAxis" : true,
+              "referenceLines" : [
+                {
+                  "color" : "rgb(0, 161, 224)",
+                  "value" : {
+                    "data" : 0,
+                    "type" : "static"
+                  }
+                }
+              ],
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "applyConditionalFormatting" : true,
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            },
+            "drawArea" : {
+              "measure" : "",
+              "showDrawArea" : false,
+              "bounding1" : "",
+              "bounding2" : ""
+            }
+          },
+          "type" : "chart"
+        }
+      },
+      "__Application_Change_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "# Application Change",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*",
+                "A"
+              ],
+              [
+                "count",
+                "*",
+                "B"
+              ],
+              [
+                "count",
+                "*",
+                "C"
+              ]
+            ],
+            "columns" : [
+              {
+                "query" : {
+                  "measures" : [
+                    [
+                      "count",
+                      "*"
+                    ]
+                  ],
+                  "order" : [
+                    [
+                      -1,
+                      {
+                        "ascending" : false,
+                        "inner" : false
+                      }
+                    ]
+                  ]
+                },
+                "header" : "Total"
+              },
+              {
+                "query" : {
+                  "measures" : [
+                    [
+                      "count",
+                      "*"
+                    ]
+                  ],
+                  "filters" : [
+                    [
+                      "Application Submitted Date",
+                      [
+                        [
+                          [
+                            "day",
+                            -30
+                          ],
+                          [
+                            "day",
+                            0
+                          ]
+                        ]
+                      ],
+                      ">=<="
+                    ]
+                  ]
+                },
+                "header" : "Last 30 Days"
+              },
+              {
+                "query" : {
+                  "measures" : [
+                    [
+                      "count",
+                      "*"
+                    ]
+                  ],
+                  "formula" : "A/(A-B) - 1"
+                },
+                "header" : "%"
+              }
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "options" : { },
+          "parameters" : {
+            "borderColor" : "#e0e5ee",
+            "borderWidth" : 1,
+            "cell" : {
+              "backgroundColor" : "#ffffff",
+              "fontColor" : "#16325c",
+              "fontSize" : 12
+            },
+            "columnProperties" : { },
+            "columns" : [ ],
+            "customBulkActions" : [ ],
+            "header" : {
+              "backgroundColor" : "#f4f6f9",
+              "fontColor" : "#16325c",
+              "fontSize" : 12
+            },
+            "innerMajorBorderColor" : "#a8b7c7",
+            "innerMinorBorderColor" : "#e0e5ee",
+            "maxColumnWidth" : 300,
+            "minColumnWidth" : 40,
+            "mode" : "variable",
+            "numberOfLines" : 1,
+            "showActionMenu" : true,
+            "showRowIndexColumn" : false,
+            "totals" : true,
+            "verticalPadding" : 8
+          },
+          "type" : "table"
+        }
+      },
+      "Total_Prospects_1" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "Financial Aid Apps",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "filters" : [
+              [
+                "hed__Contact__c.hed__Financial_Aid_Applicant__c",
+                [
+                  "true"
+                ],
+                "in"
+              ]
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "bins" : {
+              "breakpoints" : {
+                "high" : 100,
+                "low" : 0
+              },
+              "bands" : {
+                "high" : {
+                  "color" : "#008000",
+                  "label" : ""
+                },
+                "low" : {
+                  "color" : "#B22222",
+                  "label" : ""
+                },
+                "medium" : {
+                  "color" : "#ffa500",
+                  "label" : ""
+                }
+              }
+            },
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "axisMode" : "multi",
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "hbar",
+            "title" : {
+              "fontSize" : 14,
+              "subtitleFontSize" : 11,
+              "label" : "",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "binValues" : false,
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimensionAxis" : [ ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "measureAxis2" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "measureAxis1" : {
+              "sqrtScale" : false,
+              "showTitle" : true,
+              "showAxis" : true,
+              "title" : "",
+              "customDomain" : {
+                "showDomain" : false
+              }
+            },
+            "theme" : "wave",
+            "dimensionAxis" : {
+              "showTitle" : true,
+              "customSize" : "auto",
+              "showAxis" : true,
+              "title" : "",
+              "icons" : {
+                "useIcons" : false,
+                "iconProps" : {
+                  "fit" : "cover",
+                  "column" : "",
+                  "type" : "round"
+                }
+              }
+            },
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      },
+      "RA_Program_Enrollmen_3" : {
+        "broadcastFacet" : true,
+        "datasets" : [
+          {
+            "name" : "${App.Datasets.RA_Program_Enrollment_tp.Name}"
+          }
+        ],
+        "isGlobal" : false,
+        "label" : "R&A Program Enrollment - Academic Department",
+        "query" : {
+          "query" : {
+            "measures" : [
+              [
+                "count",
+                "*"
+              ]
+            ],
+            "groups" : [
+              "hed__Account__c.ParentId.Name"
+            ]
+          },
+          "version" : -1.0
+        },
+        "selectMode" : "single",
+        "type" : "aggregateflex",
+        "useGlobal" : true,
+        "visualizationParameters" : {
+          "parameters" : {
+            "autoFitMode" : "keepLabels",
+            "showValues" : true,
+            "columnMap" : {
+              "trellis" : [ ],
+              "dimension" : [
+                "hed__Account__c.ParentId.Name"
+              ],
+              "plots" : [
+                "count"
+              ]
+            },
+            "showActionMenu" : true,
+            "legend" : {
+              "descOrder" : false,
+              "showHeader" : true,
+              "show" : true,
+              "customSize" : "auto",
+              "position" : "right-top",
+              "inside" : false
+            },
+            "tooltip" : {
+              "showBinLabel" : true,
+              "measures" : "",
+              "showNullValues" : true,
+              "showPercentage" : true,
+              "showDimensions" : true,
+              "showMeasures" : true,
+              "customizeTooltip" : false,
+              "dimensions" : ""
+            },
+            "visualizationType" : "treemap",
+            "theme" : "wave",
+            "title" : {
+              "fontSize" : 24,
+              "subtitleFontSize" : 11,
+              "label" : "Program Enrollment by Department",
+              "align" : "center",
+              "subtitleLabel" : ""
+            },
+            "trellis" : {
+              "flipLabels" : false,
+              "showGridLines" : true,
+              "size" : [
+                100,
+                100
+              ],
+              "enable" : false,
+              "type" : "x",
+              "chartsPerLine" : 4
+            },
+            "applyConditionalFormatting" : true
+          },
+          "type" : "chart"
+        }
+      }
+    },
+    "widgetStyle" : {
+      "backgroundColor" : "#FFFFFF",
+      "borderColor" : "#E6ECF2",
+      "borderEdges" : [ ],
+      "borderRadius" : 0,
+      "borderWidth" : 1
+    },
+    "widgets" : {
+      "number_12" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "showActionMenu" : true,
+          "step" : "Eligible_to_Enroll_2",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "#C6D3E1",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "number_11" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "showActionMenu" : true,
+          "step" : "Total_Prospects_2",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "#C6D3E1",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "container_19" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "number_10" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "showActionMenu" : true,
+          "step" : "Total_Prospects_2",
+          "textAlignment" : "left",
+          "title" : "Military Veteran",
+          "titleColor" : "#C6D3E1",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "container_18" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_17" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_16" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_18" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "# Program Enrollments by Major",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "container_15" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_17" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "# Program Enrollments by Department",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "container_14" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_13" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_14" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "showActionMenu" : true,
+          "text" : "# Applicants by Gender\n",
+          "textAlignment" : "left",
+          "textColor" : "#C6D3E1"
+        },
+        "type" : "text"
+      },
+      "text_13" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "Enrollment Status ",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "text_16" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "# Applications by US Location",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "text_15" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "# Applications by Student Race",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "text_10" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "showActionMenu" : true,
+          "text" : "Total # Applications",
+          "textAlignment" : "left",
+          "textColor" : "#C6D3E1"
+        },
+        "type" : "text"
+      },
+      "text_12" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "showActionMenu" : true,
+          "text" : "Eligible to Enroll\n",
+          "textAlignment" : "left",
+          "textColor" : "#C6D3E1"
+        },
+        "type" : "text"
+      },
+      "text_11" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "showActionMenu" : true,
+          "text" : "Military Veteran\n",
+          "textAlignment" : "left",
+          "textColor" : "#C6D3E1"
+        },
+        "type" : "text"
+      },
+      "container_1" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_3" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_3" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "Top Feeder Schools",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_6" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_6" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showPoints" : false,
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "axisMode" : "sync",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "line",
+          "dashLine" : {
+            "measures" : "",
+            "showDashLine" : false
+          },
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 14,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "fillArea" : true,
+          "columnMap" : {
+            "split" : [ ],
+            "trellis" : [ ],
+            "dimensionAxis" : [
+              "hed__Application_Submitted_Date__c_Year~~~hed__Application_Submitted_Date__c_Month"
+            ],
+            "plots" : [
+              "A",
+              "Three_month_Moving_Average"
+            ]
+          },
+          "showActionMenu" : true,
+          "showZero" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "valueType" : "none",
+          "theme" : "dark",
+          "step" : "Program_Enrollment_A_1",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round",
+                "parameters" : { }
+              }
+            }
+          },
+          "applyConditionalFormatting" : true,
+          "drawArea" : {
+            "measure" : "",
+            "showDrawArea" : false,
+            "bounding1" : "",
+            "bounding2" : ""
+          }
+        },
+        "type" : "chart"
+      },
+      "chart_5" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : false,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 16,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "binValues" : false,
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "columnMap" : {
+            "trellis" : [ ],
+            "dimensionAxis" : [
+              "hed__Contact__c.Primary_Educational_Institution__c.Name"
+            ],
+            "plots" : [
+              "unique_hed__Contact__c.Primary_Educational_Institution__c"
+            ]
+          },
+          "showActionMenu" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "theme" : "light",
+          "step" : "Program_Enrollment___1",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round",
+                "parameters" : { }
+              }
+            }
+          },
+          "applyConditionalFormatting" : true
+        },
+        "type" : "chart"
+      },
+      "text_2" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "Details ",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_7" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_8" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "autoZoom" : false,
+          "highColor" : "#1674D9",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "projectionType" : "AlbersUSA",
+          "lowColor" : "#C5DBF7",
+          "visualizationType" : "bubblemap",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 16,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "radiusRatio" : 5,
+          "columnMap" : {
+            "r" : [
+              "count"
+            ],
+            "color" : [
+              "count"
+            ],
+            "trellis" : [ ],
+            "plots" : [
+              "hed__Contact__c.MailingState"
+            ]
+          },
+          "showActionMenu" : true,
+          "theme" : "dark",
+          "step" : "hed__Contact__c_hed__1",
+          "map" : "US States",
+          "applyConditionalFormatting" : true
+        },
+        "type" : "chart"
+      },
+      "container_8" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_5" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "Application Lead Source",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "container_9" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "text_7" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "2-Year Monthly Application Trend",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "chart_2" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "legend" : {
+            "descOrder" : true,
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "totalSumMode" : "none",
+          "axisMode" : "multi",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "stackhbar",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 16,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "plots" : [
+            {
+              "column" : [
+                "count"
+              ]
+            }
+          ],
+          "columnMap" : {
+            "split" : [
+              "hed__Contact__c.hed__Gender__c"
+            ],
+            "trellis" : [ ],
+            "dimensionAxis" : [ ],
+            "plots" : [
+              "count"
+            ]
+          },
+          "showActionMenu" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "normalize" : false,
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "theme" : "dark",
+          "step" : "RA_Program_Enrollmen_10",
+          "applyConditionalFormatting" : true,
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : false,
+            "title" : "",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round",
+                "parameters" : { }
+              }
+            }
+          }
+        },
+        "type" : "chart"
+      },
+      "chart_1" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : 40,
+            "position" : "top-center",
+            "inside" : false
+          },
+          "totalSumMode" : "none",
+          "axisMode" : "multi",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "stackhbar",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 14,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              150,
+              80
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "columnMap" : {
+            "split" : [
+              "hed__Contact__c.hed__Gender__c"
+            ],
+            "trellis" : [ ],
+            "dimensionAxis" : [ ],
+            "plots" : [
+              "count"
+            ]
+          },
+          "showActionMenu" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "normalize" : false,
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "theme" : "dark",
+          "step" : "Eligible_to_Enroll_1",
+          "applyConditionalFormatting" : true,
+          "dimensionAxis" : {
+            "showTitle" : true,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round",
+                "parameters" : { }
+              }
+            }
+          }
+        },
+        "type" : "chart"
+      },
+      "text_6" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "# Applications by Country of Origin",
+          "textAlignment" : "left",
+          "textColor" : "#FFFFFF"
+        },
+        "type" : "text"
+      },
+      "chart_4" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 24,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "binValues" : false,
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "columnMap" : {
+            "trellis" : [ ],
+            "dimensionAxis" : [
+              "hed__Account__c.Name"
+            ],
+            "plots" : [
+              "count"
+            ]
+          },
+          "showActionMenu" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "measureAxis1" : {
+            "sqrtScale" : true,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "theme" : "bluegrassDark",
+          "step" : "RA_Program_Enrollmen_1",
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round",
+                "parameters" : { }
+              }
+            }
+          },
+          "applyConditionalFormatting" : true
+        },
+        "type" : "chart"
+      },
+      "text_8" : {
+        "parameters" : {
+          "fontSize" : 14,
+          "showActionMenu" : true,
+          "text" : "Financial Aid\n",
+          "textAlignment" : "left",
+          "textColor" : "#C6D3E1"
+        },
+        "type" : "text"
+      },
+      "chart_3" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : false,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "treemap",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 24,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "columnMap" : {
+            "trellis" : [ ],
+            "dimension" : [
+              "hed__Account__c.ParentId.Name"
+            ],
+            "plots" : [
+              "count"
+            ]
+          },
+          "showActionMenu" : true,
+          "theme" : "dark",
+          "step" : "RA_Program_Enrollmen_3",
+          "applyConditionalFormatting" : true
+        },
+        "type" : "chart"
+      },
+      "text_1" : {
+        "parameters" : {
+          "fontSize" : 16,
+          "showActionMenu" : true,
+          "text" : "Einstein Analytics for Education: Program Enrollment",
+          "textAlignment" : "left",
+          "textColor" : "#091A3E"
+        },
+        "type" : "text"
+      },
+      "number_5" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "showActionMenu" : true,
+          "step" : "Total_Prospects_1",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "#C6D3E1",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "number_4" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "C",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 14,
+          "showActionMenu" : true,
+          "step" : "__Application_Change_1",
+          "textAlignment" : "left",
+          "title" : "vs Last 30 Days",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 14
+        },
+        "type" : "number"
+      },
+      "number_1" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "showActionMenu" : true,
+          "step" : "Eligible_to_Enroll_2",
+          "textAlignment" : "left",
+          "title" : "Eligible to Enroll",
+          "titleColor" : "#C6D3E1",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "container_12" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "chart_16" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 16,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "plots" : [
+            {
+              "column" : [
+                "hed__Contact__c.hed__Country_of_Origin__c"
+              ]
+            }
+          ],
+          "columnMap" : {
+            "trellis" : [ ],
+            "dimensionAxis" : [
+              "hed__Contact__c.hed__Country_of_Origin__c"
+            ],
+            "plots" : [
+              "count"
+            ]
+          },
+          "showActionMenu" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "theme" : "watermelonDark",
+          "step" : "RA_Program_Enrollmen_12",
+          "applyConditionalFormatting" : true,
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round",
+                "parameters" : { }
+              }
+            }
+          }
+        },
+        "type" : "chart"
+      },
+      "container_11" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "container_10" : {
+        "parameters" : {
+          "alignmentX" : "left",
+          "alignmentY" : "top",
+          "fit" : "original"
+        },
+        "type" : "container"
+      },
+      "image_3" : {
+        "parameters" : {
+          "alignmentX" : "center",
+          "alignmentY" : "center",
+          "fit" : "original",
+          "image" : {
+            "name" : "${App.Images['Education_Cloud_Expanded_Iconpng2'].Name}",
+            "namespace" : "${Org.Namespace}"
+          }
+        },
+        "type" : "image"
+      },
+      "chart_13" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "right-top",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "vbar",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 16,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "center",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "plots" : [
+            {
+              "column" : [
+                "count"
+              ]
+            }
+          ],
+          "columnMap" : {
+            "trellis" : [ ],
+            "dimensionAxis" : [
+              "hed__Contact__c.hed__Race__c"
+            ],
+            "plots" : [
+              "count"
+            ]
+          },
+          "showActionMenu" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "theme" : "dark",
+          "step" : "RA_Program_Enrollmen_4",
+          "applyConditionalFormatting" : true,
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round",
+                "parameters" : { }
+              }
+            }
+          }
+        },
+        "type" : "chart"
+      },
+      "chart_12" : {
+        "parameters" : {
+          "centerText" : "",
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : true,
+            "show" : true,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "showMeasureTitle" : false,
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "pie",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 16,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "wrap",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "inner" : 60,
+          "plots" : [
+            {
+              "column" : [
+                "count"
+              ]
+            }
+          ],
+          "columnMap" : {
+            "trellis" : [ ],
+            "dimension" : [
+              "hed__Enrollment_Status__c"
+            ],
+            "plots" : [
+              "count"
+            ]
+          },
+          "showActionMenu" : true,
+          "centerValueType" : "number",
+          "valueType" : "compactNumber",
+          "theme" : "light",
+          "step" : "RA_Program_Enrollmen_8",
+          "applyConditionalFormatting" : true
+        },
+        "type" : "chart"
+      },
+      "number_9" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "A",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 32,
+          "showActionMenu" : true,
+          "step" : "__Application_Change_1",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "#C6D3E1",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "number_8" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "showActionMenu" : true,
+          "step" : "Total_Prospects_1",
+          "textAlignment" : "left",
+          "title" : "Financial Aid",
+          "titleColor" : "#C6D3E1",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "number_7" : {
+        "parameters" : {
+          "compact" : true,
+          "exploreLink" : true,
+          "measureField" : "A",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 24,
+          "showActionMenu" : true,
+          "step" : "__Application_Change_1",
+          "textAlignment" : "left",
+          "title" : "",
+          "titleColor" : "#C6D3E1",
+          "titleSize" : 16
+        },
+        "type" : "number"
+      },
+      "number_6" : {
+        "parameters" : {
+          "compact" : false,
+          "exploreLink" : true,
+          "measureField" : "count",
+          "numberColor" : "#FFFFFF",
+          "numberSize" : 20,
+          "showActionMenu" : true,
+          "step" : "all_3",
+          "textAlignment" : "left",
+          "title" : "Apps Last 30 Days:",
+          "titleColor" : "#FFFFFF",
+          "titleSize" : 20
+        },
+        "type" : "number"
+      },
+      "filterpanel_6" : {
+        "parameters" : {
+          "filterItemOptions" : {
+            "backgroundColor" : "#FFFFFF",
+            "borderColor" : "#E6ECF2",
+            "borderRadius" : 4,
+            "borderWidth" : 1,
+            "propertyColor" : "#54698D",
+            "valueColor" : "#16325C"
+          },
+          "filters" : [ ],
+          "itemsPerRow" : 6,
+          "showAllFilters" : true,
+          "title" : {
+            "separatorColor" : "#E6ECF2",
+            "text" : {
+              "align" : "left",
+              "color" : "#091A3E",
+              "fontSize" : 16,
+              "label" : "Filters"
+            },
+            "visible" : false
+          }
+        },
+        "type" : "filterpanel"
+      },
+      "link_3" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "6c459e1c-398e-401e-9774-d9c706c63103"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "ENROLLMENT INTEREST",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
+      },
+      "link_4" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "4b65a916-0ae6-4816-95c5-368fa426f2ad"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "OVERVIEW",
+          "textAlignment" : "center",
+          "textColor" : "rgb(0, 112, 210)"
+        },
+        "type" : "link"
+      },
+      "link_1" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "4b65a916-0ae6-4816-95c5-368fa426f2ad"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "OVERVIEW",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
+      },
+      "link_2" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "26b935c3-ff09-4b98-987c-8f0db84764fe"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "STUDENT SEGMENTATION",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
+      },
+      "table_3" : {
+        "parameters" : {
+          "borderColor" : "#e1e5ee",
+          "borderWidth" : 1,
+          "cell" : {
+            "backgroundColor" : "#f2f6fa",
+            "fontColor" : "#16325c",
+            "fontSize" : 12
+          },
+          "columnProperties" : { },
+          "columns" : [ ],
+          "customBulkActions" : [ ],
+          "evenRowColor" : "#f2f6fa",
+          "exploreLink" : true,
+          "header" : {
+            "backgroundColor" : "#e4ecf2",
+            "fontColor" : "#5c7a99",
+            "fontSize" : 12
+          },
+          "innerMajorBorderColor" : "#a9b7c7",
+          "innerMinorBorderColor" : "#e1e5ee",
+          "mode" : "fittocontainer",
+          "numberOfLines" : 1,
+          "oddRowColor" : "#ffffff",
+          "showActionMenu" : true,
+          "showRowIndexColumn" : true,
+          "step" : "lens_1",
+          "totals" : true,
+          "verticalPadding" : 8
+        },
+        "type" : "table"
+      },
+      "link_7" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "4b65a916-0ae6-4816-95c5-368fa426f2ad"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "OVERVIEW",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
+      },
+      "link_8" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "6c459e1c-398e-401e-9774-d9c706c63103"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "ENROLLMENT INTEREST",
+          "textAlignment" : "center",
+          "textColor" : "rgb(0, 114, 214)"
+        },
+        "type" : "link"
+      },
+      "link_5" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "26b935c3-ff09-4b98-987c-8f0db84764fe"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "STUDENT SEGEMENTATION",
+          "textAlignment" : "center",
+          "textColor" : "rgb(0, 114, 214)"
+        },
+        "type" : "link"
+      },
+      "link_6" : {
+        "parameters" : {
+          "destinationLink" : {
+            "name" : "6c459e1c-398e-401e-9774-d9c706c63103"
+          },
+          "destinationType" : "page",
+          "fontSize" : 14,
+          "includeState" : false,
+          "text" : "ENROLLMENT INTEREST",
+          "textAlignment" : "center",
+          "textColor" : "rgb(92, 122, 153)"
+        },
+        "type" : "link"
+      },
+      "chart_36" : {
+        "parameters" : {
+          "autoFitMode" : "keepLabels",
+          "showValues" : true,
+          "bins" : {
+            "breakpoints" : {
+              "high" : 100,
+              "low" : 0
+            },
+            "bands" : {
+              "high" : {
+                "color" : "#008000",
+                "label" : ""
+              },
+              "low" : {
+                "color" : "#B22222",
+                "label" : ""
+              },
+              "medium" : {
+                "color" : "#ffa500",
+                "label" : ""
+              }
+            }
+          },
+          "legend" : {
+            "descOrder" : false,
+            "showHeader" : true,
+            "show" : false,
+            "customSize" : "auto",
+            "position" : "bottom-center",
+            "inside" : false
+          },
+          "axisMode" : "multi",
+          "tooltip" : {
+            "showBinLabel" : true,
+            "measures" : "",
+            "showNullValues" : true,
+            "showPercentage" : true,
+            "showDimensions" : true,
+            "showMeasures" : true,
+            "customizeTooltip" : false,
+            "dimensions" : ""
+          },
+          "visualizationType" : "hbar",
+          "exploreLink" : true,
+          "title" : {
+            "fontSize" : 16,
+            "subtitleFontSize" : 11,
+            "label" : "",
+            "align" : "left",
+            "subtitleLabel" : ""
+          },
+          "trellis" : {
+            "flipLabels" : false,
+            "showGridLines" : true,
+            "size" : [
+              100,
+              100
+            ],
+            "enable" : false,
+            "type" : "x",
+            "parameters" : { },
+            "chartsPerLine" : 4
+          },
+          "binValues" : false,
+          "columnMap" : {
+            "trellis" : [ ],
+            "dimensionAxis" : [
+              "hed__Contact__c.LeadSource"
+            ],
+            "plots" : [
+              "count"
+            ]
+          },
+          "showActionMenu" : true,
+          "measureAxis2" : {
+            "sqrtScale" : false,
+            "showTitle" : true,
+            "showAxis" : true,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "measureAxis1" : {
+            "sqrtScale" : false,
+            "showTitle" : false,
+            "showAxis" : false,
+            "title" : "",
+            "customDomain" : {
+              "showDomain" : false
+            }
+          },
+          "theme" : "light",
+          "step" : "RA_PE_Lead_Source_1",
+          "applyConditionalFormatting" : true,
+          "dimensionAxis" : {
+            "showTitle" : false,
+            "customSize" : "auto",
+            "showAxis" : true,
+            "title" : "",
+            "icons" : {
+              "useIcons" : false,
+              "iconProps" : {
+                "fit" : "cover",
+                "column" : "",
+                "type" : "round",
+                "parameters" : { }
+              }
+            }
+          }
+        },
+        "type" : "chart"
+      }
+    }
+  }
+}
