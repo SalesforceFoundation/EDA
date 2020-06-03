@@ -167,7 +167,7 @@ public with sharing class ADDR_Addresses_UTIL {
                             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
                             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
                             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
-		System.debug('ADDR_UTIL isAccountAddressChanged isChanged -->' + isChanged); 
+        System.debug('ADDR_UTIL isAccountAddressChanged isChanged -->' + isChanged); 
         if (isChanged == False && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged = !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingStateCode')), String.valueOf(acc2.get('BillingStateCode'))) || 
                         !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingCountryCode')), String.valueOf(acc2.get('BillingCountryCode')));
