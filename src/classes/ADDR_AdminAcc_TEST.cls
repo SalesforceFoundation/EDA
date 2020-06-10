@@ -41,7 +41,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     /*@description Set up of Hierarchy Settings leverage by test methods*/
     private static void configSettings() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-                                                            	Simple_Address_Change_Treated_as_Update__c = True);
+                                                                Simple_Address_Change_Treated_as_Update__c = True);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
     }
         
@@ -189,7 +189,7 @@ public with sharing class ADDR_AdminAcc_TEST {
 
     /*********************************************************************************************************
     @description Account's Current_Address__c is set to a non default Address record and update existing default
-	* Address record's mailing fields. 
+    * Address record's mailing fields. 
     * Verify: 
     * - The billing address fields on the Account is updated with updated mailing fields of the existing default
     * Address record.  
@@ -229,7 +229,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-        														Billing_County__c, Current_Address__c 
+                                                                Billing_County__c, Current_Address__c 
                                                                 FROM Account]);
         //Verify that the billing address on the Account was updated to match the updated mailing fields on their Address records
         for (Account acc : accountsById.values()) {         
@@ -271,14 +271,14 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         List<Address__c> addrQuery = [SELECT Id, Default_Address__c 
-                                      FROM Address__c 
-                                      WHERE Id IN :addrList];
+                                        FROM Address__c 
+                                        WHERE Id IN :addrList];
         System.assertEquals(True, addrQuery[0].Default_Address__c); 
         System.assertEquals(2, addrQuery.size()); 
         
         //Verify that the billing address fields on the Account are updated with the new Address mailing fields 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-        														Billing_County__c, Current_Address__c 
+                                                                Billing_County__c, Current_Address__c 
                                                                 FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.contains('New Default Street'));
@@ -290,8 +290,8 @@ public with sharing class ADDR_AdminAcc_TEST {
         //Verify previous Address records Default_Adress__c is cleared
         //and verify latest start date and latest end date appropriately set.
         List<Address__c> returnAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
-                                        	Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
-                                        	FROM Address__c];
+                                            Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
+                                            FROM Address__c];
         System.assertEquals(4, returnAddrList.size());
         for (Address__c addr : returnAddrList) {
             if (addr.MailingStreet__c.contains('New Default Street')) {
@@ -308,11 +308,11 @@ public with sharing class ADDR_AdminAcc_TEST {
     
     /*********************************************************************************************************
     @description Account has existing default Address record. A second default Address record is created. Update 
-	* the original/first Address record's Default_Address__c and set it to true. 
-	* Verify: 
-	* - The original/first Address record is not the default Address record for the Account. 
-	* - The billing address fields on the Account is reset to the original/first Address record's mailing fields. 
-	* - The second Address record is no longer set as the default Address record for the Account. 
+    * the original/first Address record's Default_Address__c and set it to true. 
+    * Verify: 
+    * - The original/first Address record is not the default Address record for the Account. 
+    * - The billing address fields on the Account is reset to the original/first Address record's mailing fields. 
+    * - The second Address record is no longer set as the default Address record for the Account. 
     **********************************************************************************************************/            
     @isTest
     private static void insertNewDefaultAddressAndResetOriginalDefaultAddress() {
@@ -353,8 +353,8 @@ public with sharing class ADDR_AdminAcc_TEST {
         //Verify the additional addresses got Default cleared
         //Verify latest start date and latest end date appropriately set
         List<Address__c> returnAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
-                                        	Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
-                                        	FROM Address__c];
+                                            Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
+                                            FROM Address__c];
         System.assertEquals(4, returnAddrList.size());
         for (Address__c addr : returnAddrList) {
             if (addr.MailingStreet__c.contains('New Default Street')) {
@@ -413,7 +413,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, BillingStreet, BillingCity, 
-        														Billing_County__c, Current_Address__c 
+                                                                Billing_County__c, Current_Address__c 
                                                                 FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.contains('final Street Edit'));
@@ -424,7 +424,7 @@ public with sharing class ADDR_AdminAcc_TEST {
 
         //Verify the previous addresses got Default cleared
         List<Address__c> returnAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
-                                        	FROM Address__c];
+                                            FROM Address__c];
         //Each set of edits created a new address record
         System.assertEquals(16, returnAddrList.size());
         for (Address__c addr : returnAddrList) {
@@ -470,7 +470,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         System.assertEquals('Direct County Edit', accountsById.values()[1].Billing_County__c);
         
         List<Address__c> returnAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
-                                        	FROM Address__c];
+                                            FROM Address__c];
         System.assertEquals(4, returnAddrList.size());
         for (Address__c addr : returnAddrList) {
             if (addr.MailingStreet__c.contains('Direct Street Edit')) {
@@ -544,7 +544,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, BillingStreet, Current_Address__c 
-        														FROM Account]);
+                                                                FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.equals('DIRECT STREET  EDIT'));
             System.assertNotEquals(Null, acc.Current_Address__c);
@@ -552,8 +552,8 @@ public with sharing class ADDR_AdminAcc_TEST {
 
         //Verify that no new Address record was created
         List<Address__c> returnAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
-                                        	FROM Address__c 
-                                        	WHERE Parent_Account__c IN :accsAddrs.accs];
+                                            FROM Address__c 
+                                            WHERE Parent_Account__c IN :accsAddrs.accs];
         System.assertEquals(2, returnAddrList.size());
         for (Address__c addr : returnAddrList) {
             System.assert(addr.MailingStreet__c.equals('DIRECT STREET  EDIT'));
@@ -570,7 +570,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         //Verify the billing address Account fields
         accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, Current_Address__c 
-                                            	FROM Account]);
+                                                FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.equals('direct street  edit'));
             System.assertNotEquals(Null, acc.Current_Address__c);
@@ -578,7 +578,7 @@ public with sharing class ADDR_AdminAcc_TEST {
 
         //Verify that no new address was created
         returnAddrList = [SELECT Id, Default_Address__c, MailingStreet__c
-                    		FROM Address__c];
+                            FROM Address__c];
         System.assertEquals(2, returnAddrList.size());
         for (Address__c addr : returnAddrList) {
             System.assert(addr.MailingStreet__c.equals('direct street  edit'));
@@ -635,7 +635,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         //Verify that we don't have new Addresses
         List<Address__c> returnAddrList = [SELECT Id 
-                                     		FROM Address__c];
+                                            FROM Address__c];
         System.assertEquals(2, returnAddrList.size());
     }
 
@@ -693,7 +693,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         }
         
         List<Address__c> allAddrsList = [SELECT Id, Default_Address__c, MailingStreet__c
-                                        	FROM Address__c];
+                                            FROM Address__c];
         System.assertEquals(4, allAddrsList.size());
         for (Address__c addr : allAddrsList) {
             if (addr.MailingStreet__c.contains('New Street')) {
@@ -724,8 +724,8 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         //Verify MailingStreet__c and MailingStreet2__c fields on Address record are populated
         List<Address__c> returnAddrList = [SELECT Id, MailingStreet__c, MailingStreet2__c, 
-                                        	Formula_MailingStreetAddress__c, Default_Address__c
-                                        	FROM Address__c];
+                                            Formula_MailingStreetAddress__c, Default_Address__c
+                                            FROM Address__c];
         System.assertEquals(2, returnAddrList.size());
         for (Address__c addr : returnAddrList) {
             System.assertEquals('new street', addr.MailingStreet__c);
@@ -735,7 +735,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         }
 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                              	Current_Address__c 
+                                                                Current_Address__c 
                                                                 FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assertEquals('new street\r\nsecond line', acc.BillingStreet);
@@ -745,17 +745,17 @@ public with sharing class ADDR_AdminAcc_TEST {
 
     /*********************************************************************************************************
     @description Account has an existing default Address record. A new default Address record with multi street
-	* line is created for the Account record. 
-	* Verify: 
-	* - Account is updated properly where MailingStreet__c and MailingStreet2__c
-	* from the new default Address record is set to the billing street field on the Account record. 
-	* - The new default Address record is now set as the Current_Address__c on the Account record and its billing
-	* address fields are updated properly. 
+    * line is created for the Account record. 
+    * Verify: 
+    * - Account is updated properly where MailingStreet__c and MailingStreet2__c
+    * from the new default Address record is set to the billing street field on the Account record. 
+    * - The new default Address record is now set as the Current_Address__c on the Account record and its billing
+    * address fields are updated properly. 
     **********************************************************************************************************/            
     @isTest
     private static void insertNewDefaultMultilineStreetAddressOnExistingAccWithExistingDefaultAddress() {
         configSettings();
-             
+                
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
@@ -775,19 +775,18 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         Map<Id, Account> accIdByAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet
-                                                             FROM Account]);
+                                                                FROM Account]);
         for (Account acc : accIdByAcc.values()) {
             System.assertEquals('New Default Street\r\nSecond Line', acc.BillingStreet);
         }
-        
     }
 
     /*********************************************************************************************************
     @description Account's billing fields are cleared. 
-	* Verify: 
-	* - No new Address records are created. 
-	* - Account's billing fields and Current_Address__c are blank. 
-	* - The existing Address records are no longer set as default Address records. 
+    * Verify: 
+    * - No new Address records are created. 
+    * - Account's billing fields and Current_Address__c are blank. 
+    * - The existing Address records are no longer set as default Address records. 
     **********************************************************************************************************/            
     @isTest
     private static void clearAdminAccountBillingFields() {
@@ -816,7 +815,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         addrList = [SELECT Default_Address__c 
-                 	FROM Address__c];
+                    FROM Address__c];
         System.assertEquals(4, addrList.size());
         //Verify existing default Address record is updated to be non-default
         for (Integer i = 0; i < addrList.size(); i++) {
@@ -824,7 +823,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         }            
         
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, Current_Address__c 
-                                                             	FROM Account]);
+                                                                FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assertEquals(Null, acc.Current_Address__c);
         }

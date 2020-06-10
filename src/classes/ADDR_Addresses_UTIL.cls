@@ -167,7 +167,7 @@ public with sharing class ADDR_Addresses_UTIL {
                             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
                             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
                             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
-        System.debug('ADDR_UTIL isAccountAddressChanged isChanged -->' + isChanged); 
+
         if (isChanged == False && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged = !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingStateCode')), String.valueOf(acc2.get('BillingStateCode'))) || 
                         !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingCountryCode')), String.valueOf(acc2.get('BillingCountryCode')));
@@ -228,8 +228,6 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return Boolean 
     ********************************************************************************************************/
     public static Boolean equalsCaseSensitive(String str1, String str2) {
-        System.debug('ADDR_UTIL equalsCaseSensitive method str1 -->' + str1); 
-        System.debug('ADDR_UTIL equalsCaseSensitive method str2 -->' + str2); 
         if (str1 == Null) {
             return str2 == Null;
         }
@@ -237,7 +235,7 @@ public with sharing class ADDR_Addresses_UTIL {
         if (str2 == Null) {
             return False;
         }
-        System.debug('ADDR_UTIL equalsCaseSensitive method Comparison -->' + (str1.equals(str2))); 
+        
         return str1.equals(str2);
     }
     
@@ -324,8 +322,7 @@ public with sharing class ADDR_Addresses_UTIL {
         
         if (String.isNotBlank(addrSrc.Address_Type__c)) {
             addrDst.Address_Type__c = addrSrc.Address_Type__c;
-        }
-            
+        }   
     }
     
     /*******************************************************************************************************
@@ -363,10 +360,6 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return void. 
     ********************************************************************************************************/
     public static void copyAddressStdSObjAddr(SObject sobjSrc, String strFieldPrefixSrc, Address__c addr, String strAddrType) {
-        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method sobjSrc --> ' + sobjSrc); 
-        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method strFieldPrefixSrc --> ' + strFieldPrefixSrc); 
-        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method strAddrType --> ' + strAddrType); 
-        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method addr --> ' + strAddrType);
         addr.MailingStreet__c = (String)sobjSrc.get(strFieldPrefixSrc + 'Street');
         handleMultilineStreet(addr);
         addr.MailingCity__c = (String)sobjSrc.get(strFieldPrefixSrc + 'City');
@@ -376,7 +369,6 @@ public with sharing class ADDR_Addresses_UTIL {
         addr.MailingCountry__c = (String)sobjSrc.get(strFieldPrefixSrc + 'Country');
         addr.Geolocation__Latitude__s = (Decimal)sobjSrc.get(strFieldPrefixSrc + 'Latitude');
         addr.Geolocation__Longitude__s = (Decimal)sobjSrc.get(strFieldPrefixSrc + 'Longitude');
-        System.debug('ADDR_UTIL copyAddressStdSObjAddr Method addr --> ' + strAddrType);
         //Try to find state and country by code if they aren't specified?
         if (isStateCountryPicklistsEnabled) {
 
@@ -410,10 +402,6 @@ public with sharing class ADDR_Addresses_UTIL {
     ********************************************************************************************************/
     public static void copyAddressAddrSObj(Address__c addr, SObject sobjDst, String strFieldPrefix, String strFieldAddrType, 
     TDTM_Runnable.DmlWrapper dmlWrapper) {
-        System.debug('ADDR_UTIL copyAddressAddrSObj Method sobjDst -->' + sobjDst ); 
-        System.debug('ADDR_UTIL copyAddressAddrSObj Method addr -->' + addr ); 
-        System.debug('ADDR_UTIL copyAddressAddrSObj Method strFieldPrefix -->' + strFieldPrefix ); 
-        System.debug('ADDR_UTIL copyAddressAddrSObj Method strFieldAddrType -->' + strFieldPrefix ); 
         sobjDst.put(strFieldPrefix + 'Street', getMultilineStreet(addr));
         sobjDst.put(strFieldPrefix + 'City', addr.MailingCity__c);
         sobjDst.put(strFieldPrefix + '_County__c', addr.MailingCounty__c);
@@ -422,7 +410,6 @@ public with sharing class ADDR_Addresses_UTIL {
         sobjDst.put(strFieldPrefix + 'Longitude', addr.Geolocation__Longitude__s);
         sobjDst.put('Current_Address__c', addr.Id);
         
-        System.debug('ADDR_UTIL copyAddressAddrSObj Method sobjDst -->' + sobjDst ); 
         if (!isStateCountryPicklistsEnabled) {
             sobjDst.put(strFieldPrefix + 'State', addr.MailingState__c);
             sobjDst.put(strFieldPrefix + 'Country', addr.MailingCountry__c);
@@ -461,12 +448,10 @@ public with sharing class ADDR_Addresses_UTIL {
         }
         
         if (String.isNotBlank(strFieldAddrType)) {
-            System.debug('ADDR_UTIL copyAddressAddrSObj Method strFieldAddrType IsNotBLank -->' + strFieldAddrType ); 
             sobjDst.put(strFieldAddrType, addr.Address_Type__c);
         }
 
         if (dmlWrapper != Null) {
-            System.debug('ADDR_UTIL copyAddressAddrSObj Method DML NotNUll -->' + sobjDst); 
             dmlWrapper.objectsToUpdate.add(sobjDst);
         }
     }
@@ -572,7 +557,6 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return void. 
     ********************************************************************************************************/ 
     public static NonDupeAddrs getNonDuplicateAddresses(List<Address__c> listAddr, Boolean includeAddressType) {  
-        System.debug('ADDR_UTIL getNonDuplicateAddresses Method -->'); 
         NonDupeAddrs nonDupeAddrs = new NonDupeAddrs();
         Map<Address__c, Address__c> mapAddrDupAddr = findDuplicateAddresses(listAddr);
         
@@ -600,7 +584,6 @@ public with sharing class ADDR_Addresses_UTIL {
                     nonDupeAddrs.newAddrs.add(addrNew);
             } 
         }
-        System.debug('ADDR_UTIL getNonDuplicateAddresses nonDupeAddrs -->' + nonDupeAddrs); 
         return nonDupeAddrs;
     }
     
@@ -615,12 +598,10 @@ public with sharing class ADDR_Addresses_UTIL {
         
         public void performDml() {
             if(newAddrs.size() > 0) {
-                System.debug('ADDR_UTIL NonDupeAddr Class newAddr insert -->'); 
                 insert newAddrs;
             }
             
             if(updatedAddrs.size() > 0) {
-                System.debug('ADDR_UTIL NonDupeAddr Class updateADDR -->'); 
                 update updatedAddrs;
             }
         }
@@ -633,10 +614,8 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return Map<Address__c, Address__c>
     ********************************************************************************************************/
     public static Map<Address__c, Address__c> findDuplicateAddresses(List<Address__c> listAddr) {      
-        System.debug('ADDR_UTIL findDuplicateAddresses Method -->' + listAddr); 
         Map<Id, List<Address__c>> mapParentIdToAddrs = getParentIdToAddrs(listAddr);
         Boolean tryFuzzy = UTIL_CustomSettingsFacade.getSettings().Simple_Address_Change_Treated_as_Update__c;
-        System.debug('ADDR_UTIL findDuplicateAddresses tryFuzzy -->' + tryFuzzy); 
         //Create our map for returning information in
         Map<Address__c, Address__c> mapAddrDupAddr = new Map<Address__c, Address__c>();
         
@@ -652,40 +631,31 @@ public with sharing class ADDR_Addresses_UTIL {
             
             Boolean hasMatch = False;
             if (childAddrs != Null) {
-                System.debug('ADDR_UTIL findDuplicateAddresses childAddrs -->' + childAddrs); 
                 Address__c addrMatch = Null;
                 for (Address__c childAddr : childAddrs) {
                     //Only include address type in the test if the new one isn't empty.
-                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != Null)) {
-                        System.debug('ADDR_UTIL findDuplicateAddresses !hasMatch -->'); 
+                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != Null)) { 
                         //Found exact match, record it and bail out
                         addrMatch = childAddr;
-                        System.debug('ADDR_UTIL findDuplicateAddresses !hasMatch -->' + addrMatch); 
                         break;
                     }
                     if (tryFuzzy && isAddressMatchFuzzy(addr, childAddr, addr.Address_Type__c != Null)) {
-                        System.debug('ADDR_UTIL findDuplicateAddresses tryFuzzy -->' + addrMatch); 
                         //Found fuzzy match, remember it and continue searching
                         addrMatch = childAddr;
-                        System.debug('ADDR_UTIL findDuplicateAddresses tryFuzzy -->' + addrMatch); 
                         continue;
                     }
                 }
                 
                 if (addrMatch != Null) {
-                    System.debug('ADDR_UTIL findDuplicateAddresses addrMatchNotNull -->' + addrMatch); 
                     hasMatch = True;
-                    System.debug('ADDR_UTIL findDuplicateAddresses addrMatchNotNull -->' + hasMatch); 
                     mapAddrDupAddr.put(addr, addrMatch);
                 }
             }
             
             if (!hasMatch) {
-                System.debug('ADDR_UTIL findDuplicateAddresses !hasMatch -->'); 
                 mapAddrDupAddr.put(addr, Null);
             }
         }
-        System.debug('ADDR_UTIL findDuplicateAddresses mapAddrDupAddr -->' + mapAddrDupAddr); 
         return mapAddrDupAddr;
     }
     
@@ -784,7 +754,6 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return void. 
     ********************************************************************************************************/
     public static void uncheckDefaultOtherAddrs(Address__c newAddr, List<Address__c> allAddrs, TDTM_Runnable.DmlWrapper dmlWrapper) {
-        System.debug('ADDR_UTIL uncheckDefaultOtherAddrs Method -->' + allAddrs); 
         for(Address__c addr : allAddrs) {
             if(addr.ID != newAddr.ID) {
                 addr.Default_Address__c = False;

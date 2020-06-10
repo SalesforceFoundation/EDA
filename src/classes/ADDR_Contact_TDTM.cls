@@ -280,7 +280,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             if (contactIdParentIdAddrPropagate.size() > 0) {
                 propagateAddrInfo(contactIdParentIdAddrPropagate);
             }
-                 
+                    
             //Propagate address info deletion to parent Household and and siblings without override
             if (contactsAddrPropagateDelete.size() > 0) {
                 propagateAddrInfoDelete(contactsAddrPropagateDelete, dmlWrapper);

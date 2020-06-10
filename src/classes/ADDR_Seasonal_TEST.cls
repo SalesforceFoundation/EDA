@@ -40,11 +40,11 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Insert new current Seasonal Address record to an existing Account with existing default Address
-	* record.
-	* Verify:
-	* - New current Seasonal Address record is created.
-	* - Account's billing fields are updated to match the mailing fields from the newly created Seasonal Address record.
-	* - Previous existing default Address is still marked as default. 
+    * record.
+    * Verify:
+    * - New current Seasonal Address record is created.
+    * - Account's billing fields are updated to match the mailing fields from the newly created Seasonal Address record.
+    * - Previous existing default Address is still marked as default. 
     **********************************************************************************************************/
     @isTest
     private static void insertNewCurrentSeasonalAddressOnExistingAccountWithDefaultAddress() {
@@ -70,8 +70,8 @@ private with sharing class ADDR_Seasonal_TEST {
         Test.stopTest();
 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet,
-                                                              		BillingCity, Billing_County__c, Current_Address__c
-        															FROM Account]);
+                                                                    BillingCity, Billing_County__c, Current_Address__c
+                                                                    FROM Account]);
 
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.contains('New Seasonal Street'));
@@ -81,8 +81,8 @@ private with sharing class ADDR_Seasonal_TEST {
         }
 
         List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
-                                     	Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c
-                                     	FROM Address__c];
+                                        Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c
+                                        FROM Address__c];
         System.assertEquals(4, addrList.size());
         for (Address__c addr : addrList) {
             if (addr.MailingStreet__c.contains('New Seasonal Street')) {
@@ -95,11 +95,11 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Insert new current Seasonal Address record with Year to an existing Account with existing default Address
-	* record.
-	* Verify:
-	* - New current Seasonal Address record is created.
-	* - Account's billing fields are updated to match the mailing fields from the newly created Seasonal Address record.
-	* - Previous existing default Address is still marked as default. 
+    * record.
+    * Verify:
+    * - New current Seasonal Address record is created.
+    * - Account's billing fields are updated to match the mailing fields from the newly created Seasonal Address record.
+    * - Previous existing default Address is still marked as default. 
     **********************************************************************************************************/
     @isTest
     private static void insertNewCurrentSeasonalAddressWithYearOnExistingAccountWithDefaultAddress() {
@@ -127,8 +127,8 @@ private with sharing class ADDR_Seasonal_TEST {
         Test.stopTest();
 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                              		BillingCity, Billing_County__c, Current_Address__c
-        															FROM Account]);
+                                                                    BillingCity, Billing_County__c, Current_Address__c
+                                                                    FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.contains('New Seasonal Street'));
             System.assert(acc.BillingCity.contains('New Seasonal City'));
@@ -137,7 +137,7 @@ private with sharing class ADDR_Seasonal_TEST {
         }
 
         List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c
-                                     	FROM Address__c];
+                                        FROM Address__c];
         System.assertEquals(4, addrList.size());
         for (Address__c addr : addrList) {
             if (addr.MailingStreet__c.contains('New Seasonal Street')) {
@@ -150,11 +150,11 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Insert new non current Seasonal Address record to an existing Account with existing default Address
-	* record.
-	* Verify:
-	* - New non current Season Address record is created.
-	* - Account's billing fields are not updated.
-	* - Previous existing default Address is still marked as default. 
+    * record.
+    * Verify:
+    * - New non current Season Address record is created.
+    * - Account's billing fields are not updated.
+    * - Previous existing default Address is still marked as default. 
     **********************************************************************************************************/
     @isTest
     private static void insertNewNonCurrentSeasonalAddressOnExistingAccountWithDefaultAddress() {
@@ -180,8 +180,8 @@ private with sharing class ADDR_Seasonal_TEST {
         Test.stopTest();
 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                              	BillingCity, Billing_County__c, Current_Address__c
-        														FROM Account]);
+                                                                BillingCity, Billing_County__c, Current_Address__c
+                                                                FROM Account]);
 
         for (Account acc : accountsById.values()) {
             System.assert(!acc.BillingStreet.contains('New Seasonal Street'));
@@ -191,8 +191,8 @@ private with sharing class ADDR_Seasonal_TEST {
         }
 
         List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c,
-                                     	Parent_Account__c
-                                     	FROM Address__c];
+                                        Parent_Account__c
+                                        FROM Address__c];
         System.assertEquals(4, addrList.size());
         for (Address__c addr : addrList) {
             if (addr.MailingStreet__c.contains('New Seasonal Street')) {
@@ -205,11 +205,11 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Update existing non current Seasonal Address record to current Seasonal Address record.  
-	* Verify:
-	* - Account's billing fields are updated to match the mailing fields for the recently updated current
-	* Seasonal Address records. 
-	* - No new Address record is created. 
-	* - Previous existing default Address record is still marked as default. 
+    * Verify:
+    * - Account's billing fields are updated to match the mailing fields for the recently updated current
+    * Seasonal Address records. 
+    * - No new Address record is created. 
+    * - Previous existing default Address record is still marked as default. 
     **********************************************************************************************************/
     @isTest
     private static void updateNonCurrentToCurrentSeasonalAddress() {
@@ -241,8 +241,8 @@ private with sharing class ADDR_Seasonal_TEST {
         Test.stopTest();
 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                              	BillingCity, Billing_County__c, Current_Address__c
-        														FROM Account]);
+                                                                BillingCity, Billing_County__c, Current_Address__c
+                                                                FROM Account]);
 
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.contains('New Seasonal Street'));
@@ -253,7 +253,7 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Verify the previous default Address record is still marked as default
         List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c
-                                     	FROM Address__c];
+                                        FROM Address__c];
         System.assertEquals(4, addrList.size());
         for (Address__c addr : addrList) {
             if (addr.MailingStreet__c.contains('New Seasonal Street')) {
@@ -266,9 +266,9 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Insert multiple where one of the Seasonal Address record is non current,
-	* and the rest are current Seasonal Address records that overlaps the start/end month. 
-	* Verify:
-	* - Overlap detected and Season Address records aren't inserted. 
+    * and the rest are current Seasonal Address records that overlaps the start/end month. 
+    * Verify:
+    * - Overlap detected and Season Address records aren't inserted. 
     **********************************************************************************************************/
     @isTest
     private static void insertSeasonalAddressWithOverlapLogic() {
@@ -306,7 +306,6 @@ private with sharing class ADDR_Seasonal_TEST {
             return;
         }
         System.assert(False); 
-
     }
 
     /*********************************************************************************************************
@@ -408,8 +407,8 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Insert multiple Seasonal Address with current month that overlaps with each other.
-	* Verify:
-	* - Overlap is detected. 
+    * Verify:
+    * - Overlap is detected. 
     **********************************************************************************************************/
     @isTest
     private static void insertCurrentMonthSeasonalAddressWithOverlapLogic() {
@@ -432,8 +431,8 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Insert multiple Seasonal Address with next month that overlaps with each other. 
-	* Verify:
-	* - Overlap is detected. 
+    * Verify:
+    * - Overlap is detected. 
     **********************************************************************************************************/
     @isTest
     private static void insertNextMonthSeasonalAddressWithOverlapLogic() {
@@ -456,8 +455,8 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Insert multiple Seasonal Address with previous month that overlaps with each other. 
-	* Verify:
-	* - Overlap is detected. 
+    * Verify:
+    * - Overlap is detected. 
     **********************************************************************************************************/
     @isTest
     private static void insertPreviousMonthSeasonalAddressWithOverlapLogic() {
@@ -480,9 +479,9 @@ private with sharing class ADDR_Seasonal_TEST {
 
     /*********************************************************************************************************
     @description Insert non current Seasonal Address record that overlaps with an existing non current Seasonal
-	* Address record. 
-	* Verify:
-	* - Overlap is detected and Address record is not inserted. 
+    * Address record. 
+    * Verify:
+    * - Overlap is detected and Address record is not inserted. 
     **********************************************************************************************************/
     @isTest
     private static void insertNonCurrentSeasonalAddressOverlapExistingNonCurrentSeasonAddress() {
@@ -528,13 +527,12 @@ private with sharing class ADDR_Seasonal_TEST {
             return;
         }
         System.assert(False);
-
     }
 
     /*********************************************************************************************************
     @description Insert non current partial Seasonal Address records to an Account with existing Address records. 
-	* Verify:
-	* - Partial Seasonal record is detected and it is not created. 
+    * Verify:
+    * - Partial Seasonal record is detected and it is not created. 
     **********************************************************************************************************/
     @isTest
     private static void insertPartialSeasonalAddress() {
@@ -559,14 +557,13 @@ private with sharing class ADDR_Seasonal_TEST {
             return;
         }
         System.assert(False);
-
     }
 
     /*********************************************************************************************************
     @description Insert non current partial Seasonal Address record with year to an Account with existing
-	* Address record.
-	* Verify:
-	* - Partial Seasonal record is detected and it is not created. 
+    * Address record.
+    * Verify:
+    * - Partial Seasonal record is detected and it is not created. 
     **********************************************************************************************************/
     @isTest
     private static void insertPartialSeasonalYearAddress() {
@@ -599,12 +596,11 @@ private with sharing class ADDR_Seasonal_TEST {
             return;
         }
         System.assert(False);
-
     }
 
     /*********************************************************************************************************
     @description Create new non current Seasonal Address records to existing Accounts and Contacts with existing
-	* default Address records. Schedule and calls ADDR_Seasonal_SCHED and ADDR_Seasonal_BATCH classes. 
+    * default Address records. Schedule and calls ADDR_Seasonal_SCHED and ADDR_Seasonal_BATCH classes. 
     * Verify:
     * - Contact's mailing fields are updated to match the mailing fields from the new Seasonal Address record. 
     * - Account's billing fields are updated to match the mailing fields from the new Seasonal Address record.
@@ -613,9 +609,9 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     private static void scheduleNewNonCurrentSeasonalAddress() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            													Contacts_Addresses_Enabled__c = True,
-            													Simple_Address_Change_Treated_as_Update__c = True);
-        														UTIL_CustomSettings_API.getSettingsForTests(hs);
+                                                                Contacts_Addresses_Enabled__c = True,
+                                                                Simple_Address_Change_Treated_as_Update__c = True);
+                                                                UTIL_CustomSettings_API.getSettingsForTests(hs);
 
         UTIL_UnitTestData_TEST.AccsWithAddrs accsWithAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> accAddrList = accsWithAddrs.addrs;
@@ -651,7 +647,7 @@ private with sharing class ADDR_Seasonal_TEST {
             conNewAddrList[i].MailingCity__c = 'New Seasonal City' + i;
             conNewAddrList[i].MailingCounty__c = 'New Seasonal County' + i;
         }
-		
+        
         //Contains the list of new Seasonal Address for Accounts and Contacts to create 
         List<Address__c> allNewAddrList = new List<Address__c>(accNewAddrsList);
         allNewAddrList.addAll(conNewAddrList);
@@ -683,8 +679,8 @@ private with sharing class ADDR_Seasonal_TEST {
         Test.stopTest();
 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                              	BillingCity, Billing_County__c, Current_Address__c
-        														FROM Account]);
+                                                                BillingCity, Billing_County__c, Current_Address__c
+                                                                FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.contains('New Seasonal Street'));
             System.assert(acc.BillingCity.contains('New Seasonal City'));
@@ -694,9 +690,9 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Verify the previous default Address records are still marked as default
         accAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
-                       		Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c
-                    		FROM Address__c 
-                       		WHERE Id in :accAddrList];
+                            Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c
+                            FROM Address__c 
+                            WHERE Id in :accAddrList];
         System.assertEquals(2, accAddrList.size());
         for (Address__c addr : accAddrList) {
             if (addr.MailingStreet__c.contains('New Seasonal Street')) {
@@ -707,9 +703,9 @@ private with sharing class ADDR_Seasonal_TEST {
         }
 
         Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
-                                                              	MailingCity, Mailing_County__c, is_Address_Override__c, 
-                                                              	Current_Address__c
-        														FROM Contact]);
+                                                                MailingCity, Mailing_County__c, is_Address_Override__c, 
+                                                                Current_Address__c
+                                                                FROM Contact]);
         for (Contact con : contactsById.values()) {
             System.assert(con.MailingStreet.contains('New Seasonal Street'));
             System.assert(con.MailingCity.contains('New Seasonal City'));
@@ -720,9 +716,9 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Verify the previous default Address reocrds are still marked as default 
         conAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
-                       		Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c
-                    		FROM Address__c 
-                       		WHERE Id IN :conAddrList];
+                            Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c
+                            FROM Address__c 
+                            WHERE Id IN :conAddrList];
         System.assertEquals(2, conAddrList.size());
         for (Address__c addr : conAddrList) {
             if (addr.MailingStreet__c.contains('New Seasonal Street')) {
@@ -733,11 +729,10 @@ private with sharing class ADDR_Seasonal_TEST {
         }
     }
 
-
     /*********************************************************************************************************
     @description Create new current Seasonal Address records to existing Accounts and Contacts with existing 
-	* default Address records. Schedule and calls ADDR_Seasonal_SCHED and ADDR_Seasonal_BATCH classes.
-	* Verify:
+    * default Address records. Schedule and calls ADDR_Seasonal_SCHED and ADDR_Seasonal_BATCH classes.
+    * Verify:
     * - Contact's mailing fields are updated to match the mailing fields from the new Seasonal Address record. 
     * - Account's billing fields are updated to match the mailing fields from the new Seasonal Address record.
     * - Previous default Address records are still marked as default. 
@@ -745,9 +740,9 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     private static void scheduleNewCurrentSeasonalAddress() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            													Contacts_Addresses_Enabled__c = True,
-            													Simple_Address_Change_Treated_as_Update__c = True);
-        														UTIL_CustomSettings_API.getSettingsForTests(hs);
+                                                                Contacts_Addresses_Enabled__c = True,
+                                                                Simple_Address_Change_Treated_as_Update__c = True);
+                                                                UTIL_CustomSettings_API.getSettingsForTests(hs);
 
         //Creates a default Address for each Account record
         UTIL_UnitTestData_TEST.AccsWithAddrs accsWithAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -793,8 +788,8 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Verify seasonal mailing fields on Address record are populated on the Account billing fields 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                              	BillingCity, Billing_County__c, Current_Address__c
-        														FROM Account]);
+                                                                BillingCity, Billing_County__c, Current_Address__c
+                                                                FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assert(acc.BillingStreet.contains('New Seasonal Street'));
             System.assert(acc.BillingCity.contains('New Seasonal City'));
@@ -804,8 +799,8 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Verify seasonal mailing fields on Address record are populated on the Contact mailing fields 
         Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
-                                                              	MailingCity, Mailing_County__c, Current_Address__c,
-                                                              	is_Address_Override__c
+                                                                MailingCity, Mailing_County__c, Current_Address__c,
+                                                                is_Address_Override__c
                                                                 FROM Contact]);
         for (Contact con : contactsById.values()) {
             System.assert(con.MailingStreet.contains('New Seasonal Street'));
@@ -846,8 +841,8 @@ private with sharing class ADDR_Seasonal_TEST {
         Test.stopTest();
 
         accountsById = new Map<Id, Account>([SELECT Id, Name, Current_Address__c, 
-                                             	Current_Address__r.Default_Address__c, Current_Address__r.MailingStreet__c
-        										FROM Account]);
+                                                Current_Address__r.Default_Address__c, Current_Address__r.MailingStreet__c
+                                                FROM Account]);
         for (Account acc : accountsById.values()) {
             if (acc.Current_Address__r.MailingStreet__c.contains('New Seasonal Street')) {
                 System.assertEquals(False, acc.Current_Address__r.Default_Address__c);
@@ -857,8 +852,8 @@ private with sharing class ADDR_Seasonal_TEST {
         }
 
         contactsById = new map<Id, Contact>([SELECT Id, Name, Current_Address__c, 
-                                             	Current_Address__r.Default_Address__c, Current_Address__r.MailingStreet__c, is_Address_Override__c
-        										FROM Contact]);
+                                                Current_Address__r.Default_Address__c, Current_Address__r.MailingStreet__c, is_Address_Override__c
+                                                FROM Contact]);
         for (Contact con : contactsById.values()) {
             System.assertEquals(False, con.is_Address_Override__c);
             if (con.Current_Address__r.MailingStreet__c.contains('New Seasonal Street')) {
@@ -871,16 +866,16 @@ private with sharing class ADDR_Seasonal_TEST {
 	
     /*********************************************************************************************************
     @description Create new current Seasonal Address records to an existing Account with existing 
-	* default Address records. 
-	* Verify:
+    * default Address records. 
+    * Verify:
     * - Account's billing fields are updated to match the mailing fields from the new Seasonal Address record.
     **********************************************************************************************************/
     @isTest
     private static void insertCurrentSeasonalAddressWithStartEndYear() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            																	Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            																	Simple_Address_Change_Treated_as_Update__c = True));
-		
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+                                                                                Simple_Address_Change_Treated_as_Update__c = True));
+        
         UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Account> accList = accWithAddrList.accs; 
 
@@ -888,14 +883,14 @@ private with sharing class ADDR_Seasonal_TEST {
         List<Address__c> seasonalAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList.size(); i++) {
             seasonalAddrList[i].Parent_Account__c = accList[0].Id; 
-			seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
-        	seasonalAddrList[i].MailingCity__c = 'Seattle'; 
+            seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
+            seasonalAddrList[i].MailingCity__c = 'Seattle'; 
             seasonalAddrList[i].MailingCounty__c = 'Bergen'; 
-        	seasonalAddrList[i].MailingState__c = 'Washington'; 
-        	seasonalAddrList[i].MailingCountry__c = 'United States';
-        	seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()); 
+            seasonalAddrList[i].MailingState__c = 'Washington'; 
+            seasonalAddrList[i].MailingCountry__c = 'United States';
+            seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()); 
             seasonalAddrList[i].Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month()); 
-       		seasonalAddrList[i].Seasonal_Start_Year__c = System.today().addYears(-1).year(); 
+            seasonalAddrList[i].Seasonal_Start_Year__c = System.today().addYears(-1).year(); 
             seasonalAddrList[i].Seasonal_End_Day__c = String.valueOf(System.today().addDays(1).day()); 
             seasonalAddrList[i].Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month()); 
             seasonalAddrList[i].Seasonal_End_Year__c = System.today().addYears(1).year(); 
@@ -908,43 +903,43 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Seasonal Address should have been copied to the Account
         accList = [SELECT BillingStreet, BillingCity, Billing_County__c, 
-                   	BillingState 
-                   	FROM Account 
-                   	WHERE Id IN :accList];
+                    BillingState 
+                    FROM Account 
+                    WHERE Id IN :accList];
         for (Account acc : accList) {
             System.assertEquals('123 Seasonal', acc.BillingStreet);
-        	System.assertEquals('Seattle', acc.BillingCity);
+            System.assertEquals('Seattle', acc.BillingCity);
             System.assertEquals('Bergen', acc.Billing_County__c);
-        	System.assertEquals('Washington', acc.BillingState);
+            System.assertEquals('Washington', acc.BillingState);
         }
     }
 	
     /*********************************************************************************************************
     @description Create new 2 non current Seasonal Address records to an Account with existing Address records. 
-	* Verify:
+    * Verify:
     * - Only 2 Address records are created and associated to the Account. 
     * - Account billing fields are updated with the Seasonal Address based on the month this test method is ran. 
     **********************************************************************************************************/
     @isTest
     private static void insertNewNonCurrentSeasonalAddressOnAccWithoutAddresses() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            																	Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            																	Simple_Address_Change_Treated_as_Update__c = True));
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+                                                                                Simple_Address_Change_Treated_as_Update__c = True));
         
-       	List<Account> accList = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID());
-		insert accList; 
+        List<Account> accList = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID());
+        insert accList; 
         
         List<Address__c> seasonalAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList.size(); i++) {
             seasonalAddrList[i].Parent_Account__c = accList[0].Id; 
-			seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
-        	seasonalAddrList[i].MailingCity__c = 'Austin'; 
+            seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
+            seasonalAddrList[i].MailingCity__c = 'Austin'; 
             seasonalAddrList[i].MailingCounty__c = 'Bergen'; 
-        	seasonalAddrList[i].MailingState__c = 'Texas'; 
-        	seasonalAddrList[i].MailingCountry__c = 'United States';
-        	seasonalAddrList[i].Seasonal_Start_Day__c = '1'; 
+            seasonalAddrList[i].MailingState__c = 'Texas'; 
+            seasonalAddrList[i].MailingCountry__c = 'United States';
+            seasonalAddrList[i].Seasonal_Start_Day__c = '1'; 
             seasonalAddrList[i].Seasonal_Start_Month__c = '1';
-       		seasonalAddrList[i].Seasonal_Start_Year__c = System.today().year(); 
+            seasonalAddrList[i].Seasonal_Start_Year__c = System.today().year(); 
             seasonalAddrList[i].Seasonal_End_Day__c = '31'; 
             seasonalAddrList[i].Seasonal_End_Month__c = '5';
             seasonalAddrList[i].Seasonal_End_Year__c = System.today().year(); 
@@ -953,17 +948,17 @@ private with sharing class ADDR_Seasonal_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert seasonalAddrList;
         
-		List<Address__c> seasonalAddrList2 = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        List<Address__c> seasonalAddrList2 = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList2.size(); i++) {
             seasonalAddrList2[i].Parent_Account__c = accList[0].Id; 
-			seasonalAddrList2[i].MailingStreet__c = '123 Seasonal'; 
-        	seasonalAddrList2[i].MailingCity__c = 'Seattle'; 
+            seasonalAddrList2[i].MailingStreet__c = '123 Seasonal'; 
+            seasonalAddrList2[i].MailingCity__c = 'Seattle'; 
             seasonalAddrList2[i].MailingCounty__c = 'Bergen'; 
-        	seasonalAddrList2[i].MailingState__c = 'Washington'; 
-        	seasonalAddrList2[i].MailingCountry__c = 'United States';
-        	seasonalAddrList2[i].Seasonal_Start_Day__c = '1'; 
+            seasonalAddrList2[i].MailingState__c = 'Washington'; 
+            seasonalAddrList2[i].MailingCountry__c = 'United States';
+            seasonalAddrList2[i].Seasonal_Start_Day__c = '1'; 
             seasonalAddrList2[i].Seasonal_Start_Month__c = '6';
-       		seasonalAddrList2[i].Seasonal_Start_Year__c = System.today().year(); 
+            seasonalAddrList2[i].Seasonal_Start_Year__c = System.today().year(); 
             seasonalAddrList2[i].Seasonal_End_Day__c = '31'; 
             seasonalAddrList2[i].Seasonal_End_Month__c = '7';
             seasonalAddrList2[i].Seasonal_End_Year__c = System.today().year();    
@@ -972,17 +967,17 @@ private with sharing class ADDR_Seasonal_TEST {
         Test.startTest();
         insert seasonalAddrList2;
         Test.stopTest();
-       
+        
         //Second address should have been successfully saved, without overlap error. Github #196.
         List<Address__c> addrList = [SELECT ID 
-                                     	FROM Address__c 
-                                     	WHERE Parent_Account__c IN :accList];
+                                        FROM Address__c 
+                                        WHERE Parent_Account__c IN :accList];
         System.assertEquals(2, addrList.size());
     }
 	
     /*********************************************************************************************************
     @description Update existing current Seasonal Address record's mailing fields. 
-	* Verify:
+    * Verify:
     * - No new seasonal Address record is created.  
     * - Account billing fields are updated to match the mailing fields recently updated from Seasonal Address.
     * - Previous default Address record is still marked as default. 
@@ -990,8 +985,8 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     private static void updateCurrentSeasonalAddressMailingFields() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            																	Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            																	Simple_Address_Change_Treated_as_Update__c = True)); 
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+                                                                                Simple_Address_Change_Treated_as_Update__c = True)); 
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Account> accList = accWithAddrList.accs; 
@@ -1000,14 +995,14 @@ private with sharing class ADDR_Seasonal_TEST {
         List<Address__c> seasonalAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList.size(); i++) {
             seasonalAddrList[i].Parent_Account__c = accList[0].Id; 
-			seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
-        	seasonalAddrList[i].MailingCity__c = 'Seattle'; 
+            seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
+            seasonalAddrList[i].MailingCity__c = 'Seattle'; 
             seasonalAddrList[i].MailingCounty__c = 'Bergen'; 
-        	seasonalAddrList[i].MailingState__c = 'Washington'; 
-        	seasonalAddrList[i].MailingCountry__c = 'United States';
-        	seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()); 
+            seasonalAddrList[i].MailingState__c = 'Washington'; 
+            seasonalAddrList[i].MailingCountry__c = 'United States';
+            seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()); 
             seasonalAddrList[i].Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month()); 
-       		seasonalAddrList[i].Seasonal_Start_Year__c = System.today().addYears(-1).year(); 
+            seasonalAddrList[i].Seasonal_Start_Year__c = System.today().addYears(-1).year(); 
             seasonalAddrList[i].Seasonal_End_Day__c = String.valueOf(System.today().addDays(1).day()); 
             seasonalAddrList[i].Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month()); 
             seasonalAddrList[i].Seasonal_End_Year__c = System.today().addYears(1).year(); 
@@ -1015,7 +1010,7 @@ private with sharing class ADDR_Seasonal_TEST {
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert seasonalAddrList;
-		
+        
         //Modify seasonal Address fields
         seasonalAddrList[0].MailingStreet__c = 'New Seasonal Address';
         seasonalAddrList[0].MailingCity__c = 'Portland';
@@ -1027,14 +1022,14 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Changes should have been copied to Account
         accList = [SELECT BillingStreet, BillingCity, BillingState 
-                   	FROM Account 
-                   	WHERE Id IN :accList];
+                    FROM Account 
+                    WHERE Id IN :accList];
         System.assertEquals('New Seasonal Address', accList[0].BillingStreet);
         System.assertEquals('Portland', accList[0].BillingCity);
         System.assertEquals('Oregon', accList[0].BillingState);
         
         List<Address__c> addrList = [SELECT Id, MailingStreet__c, Default_Address__c
-                                    	FROM Address__c]; 
+                                        FROM Address__c]; 
         System.assertEquals(2, addrList.size()); 
         for (Address__c addr : addrList) {
             if (addr.MailingStreet__c.contains('Street')) {
@@ -1045,7 +1040,7 @@ private with sharing class ADDR_Seasonal_TEST {
 	
     /*********************************************************************************************************
     @description Update existing current Seasonal Address record's start year. 
-	* Verify:
+    * Verify:
     * - No new seasonal Address record is created.  
     * - Account billing fields are updated to match the mailing fields of the default non Seasonal Address record. 
     * - Previous default Address record is still marked as default. 
@@ -1053,8 +1048,8 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     private static void updateCurrentSeasonalAddressStartYear() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            																	Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            																	Simple_Address_Change_Treated_as_Update__c = True));
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+                                                                                Simple_Address_Change_Treated_as_Update__c = True));
         
         UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Account> accList = accWithAddrList.accs; 
@@ -1063,14 +1058,14 @@ private with sharing class ADDR_Seasonal_TEST {
         List<Address__c> seasonalAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList.size(); i++) {
             seasonalAddrList[i].Parent_Account__c = accList[0].Id; 
-			seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
-        	seasonalAddrList[i].MailingCity__c = 'Seattle'; 
+            seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
+            seasonalAddrList[i].MailingCity__c = 'Seattle'; 
             seasonalAddrList[i].MailingCounty__c = 'Bergen'; 
-        	seasonalAddrList[i].MailingState__c = 'Washington'; 
-        	seasonalAddrList[i].MailingCountry__c = 'United States';
-        	seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()); 
+            seasonalAddrList[i].MailingState__c = 'Washington'; 
+            seasonalAddrList[i].MailingCountry__c = 'United States';
+            seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()); 
             seasonalAddrList[i].Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month()); 
-       		seasonalAddrList[i].Seasonal_Start_Year__c = System.today().addYears(-1).year(); 
+            seasonalAddrList[i].Seasonal_Start_Year__c = System.today().addYears(-1).year(); 
             seasonalAddrList[i].Seasonal_End_Day__c = String.valueOf(System.today().addDays(1).day()); 
             seasonalAddrList[i].Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month()); 
             seasonalAddrList[i].Seasonal_End_Year__c = System.today().addYears(1).year(); 
@@ -1088,8 +1083,8 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Account should have reverted to default address
         accList = [SELECT BillingStreet, BillingCity, Billing_County__c 
-                   	FROM Account 
-                   	WHERE Id IN :accList];
+                    FROM Account 
+                    WHERE Id IN :accList];
         System.assert(accList[0].BillingStreet.contains('Street'));
         System.assert(accList[0].BillingCity.contains('City'));
         System.assert(accList[0].Billing_County__c.contains('County'));
@@ -1097,7 +1092,7 @@ private with sharing class ADDR_Seasonal_TEST {
 	
     /*********************************************************************************************************
     @description Delete existing current Seasonal Address record.  
-	* Verify:
+    * Verify:
     * - Seasonal Address record is deleted. 
     * - Account billing fields are updated to match the mailing fields of the default non Seasonal Address record. 
     * - Previous default Address record is still marked as default. 
@@ -1105,9 +1100,9 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     private static void deleteCurrentSeasonalAddress() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            																	Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            																	Simple_Address_Change_Treated_as_Update__c = True));
-		
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+                                                                                Simple_Address_Change_Treated_as_Update__c = True));
+        
         UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Account> accList = accWithAddrList.accs; 
         
@@ -1115,14 +1110,14 @@ private with sharing class ADDR_Seasonal_TEST {
         List<Address__c> seasonalAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList.size(); i++) {
             seasonalAddrList[i].Parent_Account__c = accList[0].Id; 
-			seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
-        	seasonalAddrList[i].MailingCity__c = 'Seattle'; 
+            seasonalAddrList[i].MailingStreet__c = '123 Seasonal'; 
+            seasonalAddrList[i].MailingCity__c = 'Seattle'; 
             seasonalAddrList[i].MailingCounty__c = 'Bergen'; 
-        	seasonalAddrList[i].MailingState__c = 'Washington'; 
-        	seasonalAddrList[i].MailingCountry__c = 'United States';
-        	seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()); 
+            seasonalAddrList[i].MailingState__c = 'Washington'; 
+            seasonalAddrList[i].MailingCountry__c = 'United States';
+            seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()); 
             seasonalAddrList[i].Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month()); 
-       		seasonalAddrList[i].Seasonal_Start_Year__c = System.today().addYears(-1).year(); 
+            seasonalAddrList[i].Seasonal_Start_Year__c = System.today().addYears(-1).year(); 
             seasonalAddrList[i].Seasonal_End_Day__c = String.valueOf(System.today().addDays(1).day()); 
             seasonalAddrList[i].Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month()); 
             seasonalAddrList[i].Seasonal_End_Year__c = System.today().addYears(1).year(); 
@@ -1138,8 +1133,8 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Account should have reverted to default address
         accList = [SELECT BillingStreet, BillingCity, Billing_County__c 
-                   	FROM Account 
-                   	WHERE Id IN :accList];
+                    FROM Account 
+                    WHERE Id IN :accList];
         System.assert(accList[0].BillingStreet.contains('Street'));
         System.assert(accList[0].BillingCity.contains('City'));
         System.assert(accList[0].Billing_County__c.contains('County'));
@@ -1147,7 +1142,7 @@ private with sharing class ADDR_Seasonal_TEST {
 	
     /*********************************************************************************************************
     @description Create new current Seasonal Address record for a Contact who has an existing default Address record.
-	* Verify:
+    * Verify:
     * - Seasonal Address record is created. 
     * - Account billing fields are updated to match the mailing fields of the newly created current Seasonal Address record. 
     * - Previous default Address record is still marked as default. 
@@ -1155,11 +1150,11 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     private static void insertNewCurrentSeasonalAddressForContact() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            																	Contacts_Addresses_Enabled__c = True,
-            																	Simple_Address_Change_Treated_as_Update__c = True));
+                                                                                Contacts_Addresses_Enabled__c = True,
+                                                                                Simple_Address_Change_Treated_as_Update__c = True));
 
         Contact contact = UTIL_UnitTestData_TEST.getContact(); 
-		contact.LastName = 'newSeasonalAddr';
+        contact.LastName = 'newSeasonalAddr';
         contact.MailingStreet = '123 Main St';
         contact.MailingCity = 'Austin';
         contact.Mailing_County__c = 'Bergen'; 
@@ -1169,8 +1164,8 @@ private with sharing class ADDR_Seasonal_TEST {
 
         //Address record should have been created as child of Contact
         List<Address__c> addrList = [SELECT Parent_Contact__c, Parent_Account__c, MailingStreet__c, 
-                                  	MailingCity__c, MailingCounty__c, MailingState__c 
-                                  	FROM Address__c];
+                                    MailingCity__c, MailingCounty__c, MailingState__c 
+                                    FROM Address__c];
         System.assertEquals(1, addrList.size());
         System.assertEquals(contact.Id, addrList[0].Parent_Contact__c);
         System.assertEquals(Null, addrList[0].Parent_Account__c);
@@ -1178,20 +1173,20 @@ private with sharing class ADDR_Seasonal_TEST {
         System.assertEquals('Austin', addrList[0].MailingCity__c);
         System.assertEquals('Bergen', addrList[0].MailingCounty__c);
         System.assertEquals('Texas', addrList[0].MailingState__c);
-		
+        
         
         //Create seasonal Address record with start and end year that include the current date
         List<Address__c> seasonalAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList.size(); i++) {
             seasonalAddrList[i].Parent_Contact__c = contact.Id; 
-			seasonalAddrList[i].MailingStreet__c = '50 Fremont St'; 
-        	seasonalAddrList[i].MailingCity__c = 'SF'; 
+            seasonalAddrList[i].MailingStreet__c = '50 Fremont St'; 
+            seasonalAddrList[i].MailingCity__c = 'SF'; 
             seasonalAddrList[i].MailingCounty__c = 'Suffolk'; 
-        	seasonalAddrList[i].MailingState__c = 'California'; 
-        	seasonalAddrList[i].MailingCountry__c = 'United States';
-        	seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().day()); 
+            seasonalAddrList[i].MailingState__c = 'California'; 
+            seasonalAddrList[i].MailingCountry__c = 'United States';
+            seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().day()); 
             seasonalAddrList[i].Seasonal_Start_Month__c = String.valueOf(System.today().month()); 
-       		seasonalAddrList[i].Seasonal_Start_Year__c = System.today().year()-1; 
+            seasonalAddrList[i].Seasonal_Start_Year__c = System.today().year()-1; 
             seasonalAddrList[i].Seasonal_End_Day__c = String.valueOf(System.today().day()); 
             seasonalAddrList[i].Seasonal_End_Month__c = String.valueOf(System.today().month()); 
             seasonalAddrList[i].Seasonal_End_Year__c = System.today().year()+1; 
@@ -1201,11 +1196,11 @@ private with sharing class ADDR_Seasonal_TEST {
         Test.startTest();
         insert seasonalAddrList;
         Test.stopTest();
-       
+        
         contact = [SELECT MailingStreet, MailingCity, MailingState, 
-                   	Mailing_County__c, Current_Address__c 
-                   	FROM Contact 
-                   	WHERE Id = :contact.Id];
+                    Mailing_County__c, Current_Address__c 
+                    FROM Contact 
+                    WHERE Id = :contact.Id];
         System.assertEquals('50 Fremont St', contact.MailingStreet);
         System.assertEquals('SF', contact.MailingCity);
         System.assertEquals('Suffolk', contact.Mailing_County__c);
@@ -1213,7 +1208,7 @@ private with sharing class ADDR_Seasonal_TEST {
         System.assertEquals(seasonalAddrList[0].Id, contact.Current_Address__c);
         
         addrList = [SELECT Id, MailingStreet__c, Default_Address__c
-                   		FROM Address__c];
+                        FROM Address__c];
         System.assertEquals(2, addrList.size());
         for (Address__c addr : addrList) {
             if (addr.MailingStreet__c.contains('50 Fremont St')) {
@@ -1226,30 +1221,30 @@ private with sharing class ADDR_Seasonal_TEST {
 	
     /*********************************************************************************************************
     @description Create a 2nd current Seasonal overlap Address record on a Contact. 
-	* Verify:
+    * Verify:
     * - Unable to create the 2nd current overal seasonal Address record. 
     **********************************************************************************************************/
     @isTest
     private static void insert2ndCurrentSeasonalOverlapAddressOnContact() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            																	Contacts_Addresses_Enabled__c = True,
-           	 																	Simple_Address_Change_Treated_as_Update__c = True));
-		Contact contact = UTIL_UnitTestData_TEST.getContact(); 
-		contact.LastName = 'newSeasonalAddr';
+                                                                                Contacts_Addresses_Enabled__c = True,
+                                                                                Simple_Address_Change_Treated_as_Update__c = True));
+        Contact contact = UTIL_UnitTestData_TEST.getContact(); 
+        contact.LastName = 'newSeasonalAddr';
         insert Contact;
- 		
+        
         //Create seasonal Address record with start and end year that include the current date
         List<Address__c> seasonalAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList.size(); i++) {
             seasonalAddrList[i].Parent_Contact__c = contact.Id; 
-			seasonalAddrList[i].MailingStreet__c = '123 Main St'; 
-        	seasonalAddrList[i].MailingCity__c = 'Chicago'; 
+            seasonalAddrList[i].MailingStreet__c = '123 Main St'; 
+            seasonalAddrList[i].MailingCity__c = 'Chicago'; 
             seasonalAddrList[i].MailingCounty__c = 'Suffolk'; 
-        	seasonalAddrList[i].MailingState__c = 'IL'; 
-        	seasonalAddrList[i].MailingCountry__c = 'United States';
-        	seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().day()); 
+            seasonalAddrList[i].MailingState__c = 'IL'; 
+            seasonalAddrList[i].MailingCountry__c = 'United States';
+            seasonalAddrList[i].Seasonal_Start_Day__c = String.valueOf(System.today().day()); 
             seasonalAddrList[i].Seasonal_Start_Month__c = String.valueOf(System.today().month()); 
-       		seasonalAddrList[i].Seasonal_Start_Year__c = System.today().year()-1; 
+            seasonalAddrList[i].Seasonal_Start_Year__c = System.today().year()-1; 
             seasonalAddrList[i].Seasonal_End_Day__c = String.valueOf(System.today().day()); 
             seasonalAddrList[i].Seasonal_End_Month__c = String.valueOf(System.today().month()); 
             seasonalAddrList[i].Seasonal_End_Year__c = System.today().year()+1; 
@@ -1258,8 +1253,8 @@ private with sharing class ADDR_Seasonal_TEST {
         insert seasonalAddrList;
 
         List<Address__c> addrList = [SELECT Parent_Contact__c, Parent_Account__c, MailingStreet__c, 
-                                     	MailingCity__c, MailingState__c, Default_Address__c
-                                  		FROM Address__c];
+                                        MailingCity__c, MailingState__c, Default_Address__c
+                                        FROM Address__c];
         System.assertEquals(1, addrList.size());
         System.assertEquals(contact.Id, addrList[0].Parent_Contact__c);
         System.assertEquals(Null, addrList[0].Parent_Account__c);
@@ -1267,20 +1262,20 @@ private with sharing class ADDR_Seasonal_TEST {
         System.assertEquals('Chicago', addrList[0].MailingCity__c);
         System.assertEquals('IL', addrList[0].MailingState__c);
         System.assertEquals(False, addrList[0].Default_Address__c);
-		
+        
         
         //Create seasonal Address record with start and end year that include the current date
         List<Address__c> seasonalAddrList2 = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         for (Integer i=0; i<seasonalAddrList.size(); i++) {
             seasonalAddrList2[i].Parent_Contact__c = contact.Id; 
-			seasonalAddrList2[i].MailingStreet__c = '50 Fremont St'; 
-        	seasonalAddrList2[i].MailingCity__c = 'SF'; 
+            seasonalAddrList2[i].MailingStreet__c = '50 Fremont St'; 
+            seasonalAddrList2[i].MailingCity__c = 'SF'; 
             seasonalAddrList2[i].MailingCounty__c = 'Bergen'; 
-        	seasonalAddrList2[i].MailingState__c = 'CA'; 
-        	seasonalAddrList2[i].MailingCountry__c = 'United States';
-        	seasonalAddrList2[i].Seasonal_Start_Day__c = String.valueOf(System.today().day()); 
+            seasonalAddrList2[i].MailingState__c = 'CA'; 
+            seasonalAddrList2[i].MailingCountry__c = 'United States';
+            seasonalAddrList2[i].Seasonal_Start_Day__c = String.valueOf(System.today().day()); 
             seasonalAddrList2[i].Seasonal_Start_Month__c = String.valueOf(System.today().month()); 
-       		seasonalAddrList2[i].Seasonal_Start_Year__c = System.today().year()-2; 
+            seasonalAddrList2[i].Seasonal_Start_Year__c = System.today().year()-2; 
             seasonalAddrList2[i].Seasonal_End_Day__c = String.valueOf(System.today().day()); 
             seasonalAddrList2[i].Seasonal_End_Month__c = String.valueOf(System.today().month()); 
             seasonalAddrList2[i].Seasonal_End_Year__c = System.today().year()+2; 

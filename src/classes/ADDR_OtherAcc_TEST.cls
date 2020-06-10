@@ -41,15 +41,15 @@ public with sharing class ADDR_OtherAcc_TEST {
     
     /*********************************************************************************************************
     @description Insert a new Business Account record with populated billing fields.
-	* Verify:
-	* - New default Address record is created.
-	* - Account's billing fields matches the mailing fields on the newly created default Address record. 
+    * Verify:
+    * - New default Address record is created.
+    * - Account's billing fields matches the mailing fields on the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
     private static void insertNewAccountWithBillingFields() {            
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                      			UTIL_Describe_API.getBizAccRecTypeID() + ';'));
- 
+                                                                                UTIL_Describe_API.getBizAccRecTypeID() + ';'));
+
         Integer cAcc = 3;
         list<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(cAcc, UTIL_Describe_API.getBizAccRecTypeID());
         for (Account acc : accList) {
@@ -62,13 +62,13 @@ public with sharing class ADDR_OtherAcc_TEST {
         Test.stopTest();
 
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                              	BillingCity, Billing_County__c, Current_Address__c 
-                                                              	FROM Account]);
+                                                                BillingCity, Billing_County__c, Current_Address__c 
+                                                                FROM Account]);
         System.assertEquals(cAcc, accountsById.size());
         
         List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
-                                     	MailingCity__c, MailingCounty__c, Parent_Account__c
-                                     	FROM Address__c];
+                                        MailingCity__c, MailingCounty__c, Parent_Account__c
+                                        FROM Address__c];
         System.assertEquals(cAcc, addrList.size());
         for (Address__c addr : addrList) {
             Account acc = accountsById.get(addr.Parent_Account__c);
@@ -81,14 +81,14 @@ public with sharing class ADDR_OtherAcc_TEST {
     
     /*********************************************************************************************************
     @description Update existing Business Account's billing fields.
-	* Verify:
-	* - New default Address record is created.
-	* - Account's billing fields matches the mailing fields on the newly created default Address record. 
+    * Verify:
+    * - New default Address record is created.
+    * - Account's billing fields matches the mailing fields on the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
     private static void updateExistingAccountBillingFields() {         
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-																				UTIL_Describe_API.getBizAccRecTypeID() + ';'));
+                                                                                UTIL_Describe_API.getBizAccRecTypeID() + ';'));
 
         Integer numOfAcc = 3;
         List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(numOfAcc, UTIL_Describe_API.getBizAccRecTypeID());
@@ -105,13 +105,13 @@ public with sharing class ADDR_OtherAcc_TEST {
         Test.stopTest();
 
         accList = [SELECT Id, Name, BillingStreet, 
-                   BillingCity, Billing_County__c, Current_Address__c 
-                   FROM Account];
+                    BillingCity, Billing_County__c, Current_Address__c 
+                    FROM Account];
         System.assertEquals(numOfAcc, accList.size());
         
         List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
-                                     MailingCity__c, MailingCounty__c, Parent_Account__c
-                                     FROM Address__c];
+                                        MailingCity__c, MailingCounty__c, Parent_Account__c
+                                        FROM Address__c];
         System.assertEquals(numOfAcc, addrList.size());
                 
         for (Integer i = 0; i < numOfAcc; i++) {
@@ -126,17 +126,17 @@ public with sharing class ADDR_OtherAcc_TEST {
             System.assertEquals(True, addr.Default_Address__c);
         }
     }
-    
+
     /*********************************************************************************************************
     @description Insert new default Address on existing Business Account. 
-	* Verify:
-	* - New default Address record is created.
-	* - Account's billing fields are updated to match the mailing fields on the newly created default Address record. 
+    * Verify:
+    * - New default Address record is created.
+    * - Account's billing fields are updated to match the mailing fields on the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
     private static void insertNewDefaultAddressOnExistingAccount() {           
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                      			UTIL_Describe_API.getBizAccRecTypeID() + ';'));
+                                                                                UTIL_Describe_API.getBizAccRecTypeID() + ';'));
 
         List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(3, UTIL_Describe_API.getBizAccRecTypeID());
         insert accList;
@@ -151,13 +151,13 @@ public with sharing class ADDR_OtherAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         accList = [SELECT Id, Name, BillingStreet, 
-                   		BillingCity, Billing_County__c, Current_Address__c 
-        				FROM Account];
+                        BillingCity, Billing_County__c, Current_Address__c 
+                        FROM Account];
         System.assertEquals(3, accList.size());
         
         addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
-                    	MailingCity__c, MailingCounty__c, Parent_Account__c
-                    	FROM Address__c];
+                        MailingCity__c, MailingCounty__c, Parent_Account__c
+                        FROM Address__c];
         System.assertEquals(3, addrList.size());
         
         for (Integer i = 0; i < accList.size(); i++) {
@@ -194,13 +194,13 @@ public with sharing class ADDR_OtherAcc_TEST {
         Test.stopTest(); 
         
         Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Current_Address__c 
-                                                              	FROM Account]);
+                                                                FROM Account]);
         for (Account acc : accountsById.values()) {
             System.assertEquals(Null, acc.Current_Address__c);
         }
         
         List<Address__c> addrList = [SELECT Id 
-                                     	FROM Address__c];
+                                        FROM Address__c];
         System.assertEquals(0, addrList.size());
     }
 }
