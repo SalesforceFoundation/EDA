@@ -586,82 +586,6 @@ public with sharing class ADDR_AdminAcc_TEST {
     }
 
     /*********************************************************************************************************
-    @description Update accounts' billing address to cause an update of the default Address object.  
-    verify:
-        existing Default Address updated
-        Account get updated Address
-    **********************************************************************************************************/            
-    @isTest
-    private static void updateAdminAccBillingFieldsForSimpleAddressTreatedUpdate2() {
-        configSettings();
-        
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
-        List<Address__c> addrList = accsAddrs.addrs;
-        
-        List<Address__c> returnAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
-                                        	FROM Address__c];
-        System.assertEquals(2, returnAddrList.size());
-        
-        //Modify some of the Account billing address fields. Treat the update to the Account's 
-        //billing address fields as an update instead of new Address. 
-        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
-        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
-            accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
-        }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        update accsAddrs.accs;
-        
-        List<Address__c> returnAddrList1 = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
-                                        	FROM Address__c];
-        System.assertEquals(2, returnAddrList1.size());
-
-        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
-        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
-            accsAddrs.accs[i].BillingState = 'Washington';
-        }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        update accsAddrs.accs;
-        
-        List<Address__c> returnAddrList2 = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
-                                        	FROM Address__c];
-        System.assertEquals(2, returnAddrList2.size());
-        
-        //Whitespace and casing should not count as real edit.
-        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
-        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
-            accsAddrs.accs[i].BillingStreet = ' direct street  edit ';    
-            accsAddrs.accs[i].BillingState = 'Oregon';
-        }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        Test.startTest();
-        update accsAddrs.accs;
-        Test.stopTest();
-        
-        List<Address__c> returnAddrList3 = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
-                                        	FROM Address__c];
-        System.assertEquals(2, returnAddrList3.size());
-
-        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                                BillingCity, BillingState, BillingPostalCode, 
-                                                                BillingCountry, BillingLatitude, BillingLongitude, 
-                                                                Current_Address__c 
-                                                                FROM Account]);
-        for (Account acc : mapAccIdAcc.values()) {
-            System.assert(acc.BillingStreet.contains('direct street  edit'));
-            System.assert(acc.BillingState.contains('Oregon')); 
-            System.assertNotEquals(Null, acc.Current_Address__c);
-        }
-
-        //Verify that no new address was created
-        List<Address__c> returnFinalAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Account__c 
-                                        		FROM Address__c];
-        System.assertEquals(2, returnFinalAddrList.size());
-        for (Address__c addr : returnFinalAddrList) {
-            System.assertEquals('direct street  edit', addr.MailingStreet__c);
-        }        
-    }
-
-    /*********************************************************************************************************
     @description Create an Address with no Account or Contact parent record. 
     * Verify: 
     * - Runtime error. 
@@ -782,7 +706,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     @description New Account is created and its billing address fields are filled out - specifically filling out 
     * BillingStreet field with multiline street value. 
     * Verify: 
-    * - New default Address record is created and the multiline street is broken to MailingStreet__c and MailingStreet2__c.
+    * - New default Address record and multiline street value is populated to MailingStreet__c and MailingStreet2__c.
     **********************************************************************************************************/            
     @isTest
     private static void updateAdminAccountBillingStreetWithMultilineStreetValue() {
@@ -857,55 +781,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         }
         
     }
-    
-    /*********************************************************************************************************
-    @description Account's existing billing street field is updated to accommodate multiline street. 
-	* Verify:
-	* - A new default Address record is created. 
-	* - The new default Address's multi street fields (MailingStreet__c and MailingStreet2__c) are populated. 
-    **********************************************************************************************************/            
-    @isTest
-    private static void updateAdminAccountBillingStreetWithMultilineStreetValue2() {
-        configSettings();
-       
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
-        List<Address__c> addrList = accsAddrs.addrs;
-        
-        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
-            Account acc = accsAddrs.accs[i];
-            acc.BillingStreet = 'Direct Street Edit\r\nSecond Line';
-            acc.BillingCity = 'Direct City Edit';
-        }
-        
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        Test.startTest();
-        update accsAddrs.accs;
-        Test.stopTest();
 
-        Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
-                                                            	BillingCity, BillingState, BillingPostalCode, 
-                                                            	BillingCountry, BillingLatitude, BillingLongitude, 
-                                                            	Current_Address__c 
-                                                            	FROM Account]);
-        for (Account acc : accountsById.values()) {
-            System.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
-            System.assertNotEquals(Null, acc.Current_Address__c);
-        }
- 
-        List<Address__c> returnAddrList = [SELECT Id, MailingStreet__c, MailingStreet2__c, 
-                                     		Formula_MailingStreetAddress__c, Default_Address__c 
-                                     		FROM Address__c];
-        System.assertEquals(4, returnAddrList.size()); 
-        for (Address__c addr : returnAddrList) {
-            if (addr.Default_Address__c) {
-                System.assertEquals('Direct Street Edit', addr.MailingStreet__c);
-                System.assertEquals('Second Line', addr.MailingStreet2__c);
-                System.assertEquals(True, addr.Default_Address__c); 
-                System.assert(addr.Formula_MailingStreetAddress__c.contains('Direct Street Edit<br>Second Line<br>Direct City Edit'));
-            }
-        }
-    }
-    
     /*********************************************************************************************************
     @description Account's billing fields are cleared. 
 	* Verify: 

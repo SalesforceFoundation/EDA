@@ -802,59 +802,7 @@ public with sharing class ADDR_Contact_TEST {
             System.assert(addr.MailingStreet__c.equals('direct street  edit'));
         }                   
     }
-
-    /*********************************************************************************************************
-    @description Update Contacts' Mailing address to cause an update of the default Address object.  
-    verify:
-        existing Default Address updated
-        Contact get updated Address
-    **********************************************************************************************************/            
-    @isTest
-    private static void updateAddrExisting() {
-        configSettings();
-        
-        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
-
-        //NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
-        }
-        turnOnAllAddrTriggers();
-        update contactsAddrs.contacts;
-
-        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingState = 'Washington';
-        }
-        update contactsAddrs.contacts;
-
-        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = ' direct street  edit ';    // whitespace and casing should not count as real edit.
-            contactsAddrs.contacts[i].MailingState = 'Oregon';
-        }
-        Test.startTest();
-        update contactsAddrs.contacts;
-        Test.stopTest();
-        
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
-            System.assert(contact.MailingStreet.contains('direct street  edit'));
-            System.assert(contact.MailingState.contains('Oregon')); 
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
-        }
- 
-        // verify that no new address was created
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
-        System.assertEquals(2, ListAddr.size());
-        for (Address__c addr : ListAddr) {
-            System.assertEquals('direct street  edit', addr.MailingStreet__c);
-        }        
-    }
-
+    
     /*********************************************************************************************************
     @description Create an Address record with no Parent record. 
     * Verify: 
@@ -1043,51 +991,6 @@ public with sharing class ADDR_Contact_TEST {
             System.assertEquals('New Default Street\r\nSecond Line', contact.MailingStreet);
         }
         
-    }
-    
-    /*********************************************************************************************************
-    @description Update Contacts' Mailing address with multiline street address  
-    verify:
-        new Default Address created
-        Contacts get new Address
-        new Addresss has multiline street split into Street and Street2 fields
-    **********************************************************************************************************/            
-    @isTest
-    private static void updateMultilineStreetAddr() {
-        configSettings();
-        
-        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
-        
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            Contact contact = contactsAddrs.contacts[i];
-            contact.MailingStreet = 'Direct Street Edit\r\nSecond Line';
-            contact.MailingCity = 'Direct City Edit';
-        }
-        turnOnAllAddrTriggers();
-        Test.startTest();
-        update contactsAddrs.contacts;
-        Test.stopTest();
-        
-        // verify Contact address
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
-            System.assertEquals('Direct Street Edit\r\nSecond Line', contact.MailingStreet);
-            System.assertEquals('Direct Street Edit\r\nSecond Line', contact.MailingStreet);
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
-        }
- 
-        // verify the Address objects split street.
-        List<Address__c> ListAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c, Default_Address__c from Address__c];
-        for (Address__c addr : ListAddr) {
-            if (addr.Default_Address__c) {
-                System.assertEquals('Direct Street Edit', addr.MailingStreet__c);
-                System.assertEquals('Second Line', addr.MailingStreet2__c);
-                System.assert(addr.Formula_MailingStreetAddress__c.contains('Direct Street Edit<br>Second Line<br>Direct City Edit'));
-            }
-        }
     }
 
     /*********************************************************************************************************
