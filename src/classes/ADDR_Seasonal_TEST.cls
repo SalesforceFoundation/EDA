@@ -1227,9 +1227,7 @@ private with sharing class ADDR_Seasonal_TEST {
     /*********************************************************************************************************
     @description Create a 2nd current Seasonal overlap Address record on a Contact. 
 	* Verify:
-    * - Seasonal Address record is created. 
-    * - Account billing fields are updated to match the mailing fields of the newly created current Seasonal Address record. 
-    * - Previous default Address record is still marked as default. 
+    * - Unable to create the 2nd current overal seasonal Address record. 
     **********************************************************************************************************/
     @isTest
     private static void insert2ndCurrentSeasonalOverlapAddressOnContact() {
