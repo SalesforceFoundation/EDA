@@ -23,3 +23,9 @@ class CourseConnectionsSettingsPage(BasePage):
             locator_tab,
             error=f"Course Connections tab with locator '{locator_tab}' is not available on the page"
         )
+
+    def verify_enable_course_connections_warning(self):
+        """ """
+        locator = eda_lex_locators["eda_settings_cc"]["enable_cc_warning"]
+        self.selenium.wait_until_page_contains_element(locator,
+                                                       error="Enable course connections warning is not displayed")

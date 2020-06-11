@@ -95,6 +95,9 @@ eda_lex_locators = {
         "settings_tab": "(//li[@class='slds-tabs__item slds-text-heading--label slds-active' and @role='tab' and @title='Settings'])[1]/a[contains(text(),'Settings')]",
         "affl_mappings_tab": "//a[contains(text(),'Affiliation Mappings')]",
     },
+    "eda_settings_cc": {
+        "enable_cc_warning": "//div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
+    },
     "account_types": {
         "administrative": "//span[contains(text(),'Administrative')]/parent::*",
         "account_checkbox": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'{}')]",
