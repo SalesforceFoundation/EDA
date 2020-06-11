@@ -19,9 +19,13 @@ eda_lex_locators = {
             "title": '//div[contains(@class, "slds-grid")]/header//a[./span[text()="{}"]]',
         },
     },
+    "tabs": {
+        "tab": "//div[@class='uiTabBar']/ul[@class='tabs__nav']/li[contains(@class,'uiTabItem')]/a[@class='tabHeader']/span[contains(text(), '{}')]",
+        "spl-tab": "//div[@class='slds-tabs_default']//ul[@class='slds-tabs_default__nav']/li[contains(@class,'slds-tabs_default__item')]/a[text()= '{}']",
+    },
     "eda_settings": {
         "tab": "//div[@id='tabs']/descendant::li[contains(@class, 'slds-text-heading--label')]/a[text()='{}']",
-        "edit": "//button[contains(@class, 'slds-button') and @type='button']/span[text()='Edit']/..",
+        "edit": "//div[@class='slds-page-header' and @role='banner']/descendant::span[text()='Edit']/parent::button",
         "checkbox_default": "//span[text()='{}']/../following-sibling::div/descendant::img",
         "checkbox": "//span[text()='{}']/../following-sibling::div/descendant::label[contains(@class,'slds-checkbox')]/span[contains(@class, 'slds-checkbox--faux')]",
         "save": "//div[contains(@class, 'slds-page-header')]/descendant::button[contains(@class, 'settings-save-bttn')]",
@@ -35,18 +39,10 @@ eda_lex_locators = {
         "auto_enroll_sports_organization": "//div/span[text()='Primary Sports Organization']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll checked' and @alt='True']",
         "auto_enroll_university_department": "//div/span[text()='Primary Department']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll checked' and @alt='True']",
 
-        "ap_aff_unchecked": "//div/span[text()='Primary Academic Program']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
-        "pbo_affl_unchecked": "//div/span[text()='Primary Business Organization']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
-        "pei_affl_unchecked": "//div/span[text()='Primary Educational Institution']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
-        "ph_affl_unchecked": "//div/span[text()='Primary Household']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
-        "pso_affl_unchecked": "//div/span[text()='Primary Sports Organization']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
-        "pd_affl_unchecked": "//div/span[text()='Primary Department']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
+        "primary_affl_unchecked": "//div/span[text()='{}']/../following-sibling::div[1]//span/img[@class='mapping-auto-enroll unchecked' and @alt='False']",
         "checkbox_ap_affl": "(//label[@class='slds-checkbox']/input[@class='mapping-auto-enroll uiInput uiInputCheckbox uiInput--default uiInput--checkbox'])[1]/following-sibling::span[@class='slds-checkbox--faux']",
-        "pbo_affl_edit": "(//label/span[text()='Primary Affl Field: Primary Business Organization']/../../../following-sibling::div/div/div/label)[1]/input/following-sibling::span[@class='slds-checkbox--faux']",
-        "pei_affl_edit": "(//label/span[text()='Primary Affl Field: Primary Educational Institution']/../../../following-sibling::div/div/div/label)[1]/input/following-sibling::span[@class='slds-checkbox--faux']",
-        "ph_affl_edit": "(//label/span[text()='Primary Affl Field: Primary Household']/../../../following-sibling::div/div/div/label)[1]/input/following-sibling::span[@class='slds-checkbox--faux']",
-        "pso_affl_edit": "(//label/span[text()='Primary Affl Field: Primary Sports Organization']/../../../following-sibling::div/div/div/label)[1]/input/following-sibling::span[@class='slds-checkbox--faux']",
-        "pd_affl_edit": "(//label/span[text()='Primary Affl Field: Primary Department']/../../../following-sibling::div/div/div/label)[1]/input/following-sibling::span[@class='slds-checkbox--faux']",
+        "primary_affl_edit": "(//label/span[text()='Primary Affl Field: {}']/../../../following-sibling::div/div/div/label)[1]/input/following-sibling::span[@class='slds-checkbox--faux']",
+
         "affiliations_role_checkbox": "//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
         "affiliation_mappings_tab": "//a[contains(text(), 'Affiliation Mappings')]",
         "courses": "//a[contains(text(),'Courses')]",
@@ -98,9 +94,6 @@ eda_lex_locators = {
         "copy_affliation_start_checkbox": "(//div/span[text()='Copy Affiliation Start Date from Program Enrollment:']/following::div)[1]/div/div/label/span[@class='slds-checkbox--faux']",
         "settings_tab": "(//li[@class='slds-tabs__item slds-text-heading--label slds-active' and @role='tab' and @title='Settings'])[1]/a[contains(text(),'Settings')]",
         "affl_mappings_tab": "//a[contains(text(),'Affiliation Mappings')]",
-    },
-    "tabs": {
-        "accountsandcontacts": "//a[contains(text(),'Accounts and Contacts')]",
     },
     "account_types": {
         "administrative": "//span[contains(text(),'Administrative')]/parent::*",
@@ -172,6 +165,9 @@ eda_lex_locators = {
         "checkbox": '//div[contains(@class,"uiInputCheckbox")]/label/span[text()="{}"]/../following-sibling::input[@type="checkbox"]',
         "save": "//div[contains(@class, 'footer') or contains(@class, 'Footer')]/descendant::button[@title='Save']",
     },
+    "relationships_settings_locators": {
+        "sub_tab": "//div[@id='relTabs']/descendant::li[contains(@class, 'slds-text-heading--label')]/a[text()='{}']",
+    }
 }
 
 contacts_locators = {
@@ -214,9 +210,7 @@ affiliations_locators = {
     "edit": "//button[contains(@class, 'slds-button') and @type='button']/span[text()='Edit']/..",
     "checkbox": "//span[text()='{}']/../following-sibling::div/descendant::label[contains(@class,'slds-checkbox')]/span[contains(@class, 'slds-checkbox--faux')]",
     "save": "//div[contains(@class, 'slds-page-header')]/descendant::button[contains(@class, 'settings-save-bttn')]",
-    "affiliations_tab": "//a[contains(text(),'Affiliations')]",
-    "affiliations_settings_tab": "//a[contains(text(),'Settings')]",
-    "affiliations_mappings_tab": "//a[contains(text(),'Affiliation Mappings')]",
+    "sub_tab": "//div[@id='afflTabs']/descendant::li[contains(@class, 'slds-text-heading--label')]/a[text()='{}']",
     "edit_button": "//div[@class='slds-button-group']//span[contains(text(), 'Edit')]",
     "save_button": "//div[@class='slds-button-group']//span[contains(text(), 'Save')]",
     "un_ert_validation": "//span/img[@class='affl-record-type-enforced unchecked' and @alt='False']",
@@ -294,20 +288,10 @@ affiliations_locators = {
     "auto_enrollment": "(//label/span[text()='Auto-Enrollment']/following::br/following::div/label/input/following-sibling::span)[1][@class='slds-checkbox--faux']",
     "status_mapping_field_input": "//label/span[text()='Status']/../following-sibling::input",
     "role_mapping_field_input": "//label/span[text()='Role']/../following-sibling::input",
-    
-    "art_ap_input_affl": "//label/span[text()='Acc Record Type: Academic Program']/following::input[1][@class='mapping-acc-rec-type input' and @type='text']",
-    "art_ap_input_affl_empty": "(//label/span[text()='Acc Record Type: ']/following::input[1][@class='mapping-acc-rec-type input' and @type='text'])[1]",
-    "art_bo_input_affl": "//label/span[text()='Acc Record Type: Business Organization']/following::input[1][@class='mapping-acc-rec-type input' and @type='text']",
-    "art_ei_input_affl": "//label/span[text()='Acc Record Type: Educational Institution']/following::input[1][@class='mapping-acc-rec-type input' and @type='text']",
-    "art_ha_input_affl": "//label/span[text()='Acc Record Type: Household Account']/following::input[1][@class='mapping-acc-rec-type input' and @type='text']",
-    "art_so_input_affl": "//label/span[text()='Acc Record Type: Sports Organization']/following::input[1][@class='mapping-acc-rec-type input' and @type='text']",
-    "art_ud_input_affl": "//label/span[text()='Acc Record Type: University Department']/following::input[1][@class='mapping-acc-rec-type input' and @type='text']",
 
-    "paf_pap_input_affl": "//label/span[text()='Primary Affl Field: Primary Academic Program']/following::input[1][@class='mapping-affl-field input' and @type='text']",
+    "acc_record_type": "//label/span[text()='Acc Record Type: {}']/following::input[1][@class='mapping-acc-rec-type input' and @type='text']",
+    "contact_primary_affl_field": "//label/span[text()='Primary Affl Field: {}']/following::input[1][@class='mapping-affl-field input' and @type='text']",
+
+    "art_ap_input_affl_empty": "(//label/span[text()='Acc Record Type: ']/following::input[1][@class='mapping-acc-rec-type input' and @type='text'])[1]",
     "paf_pap_input_affl_empty": "(//label/span[text()='Primary Affl Field: ']/following::input[1][@class='mapping-affl-field input' and @type='text'])[1]",
-    "paf_pbo_input_affl": "//label/span[text()='Primary Affl Field: Primary Business Organization']/following::input[1][@class='mapping-affl-field input' and @type='text']",
-    "paf_pei_input_affl": "//label/span[text()='Primary Affl Field: Primary Educational Institution']/following::input[1][@class='mapping-affl-field input' and @type='text']",
-    "paf_ph_input_affl":  "//label/span[text()='Primary Affl Field: Primary Household']/following::input[1][@class='mapping-affl-field input' and @type='text']",
-    "paf_pso_input_affl": "//label/span[text()='Primary Affl Field: Primary Sports Organization']/following::input[1][@class='mapping-affl-field input' and @type='text']",
-    "paf_pd_input_affl":  "//label/span[text()='Primary Affl Field: Primary Department']/following::input[1][@class='mapping-affl-field input' and @type='text']",
 }

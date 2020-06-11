@@ -4,20 +4,15 @@ Documentation       Test all the checkboxes in the
 ...                 by checking and unchecking them
 
 Resource        robot/EDA/resources/EDA.robot
+Library         robot/EDA/resources/EDA.py
 Library         cumulusci.robotframework.PageObjects
-...             robot/EDA/resources/SettingsPageObject.py
-Suite Setup     Run keywords
-...             Open Test Browser
-...             Get namespace
-Suite Teardown  Capture screenshot and delete records and close browser
+...             robot/EDA/resources/AccountsAndContactsSettingsPageObject.py
+Suite Setup     Open Test Browser
+Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 Validate Edit Mode For Accounts and Contacts Settings and Click Checkboxes
-    Go to page                      Custom      HEDA_Settings
-    Current page should be          Custom      HEDA_Settings
-    
-    Wait for Locator            	tabs.accountsandcontacts
-    Click on Element                tabs.accountsandcontacts
+    Go to EDA settings tab          Accounts and Contacts
 
     Wait for Locator                account_types.edit
     Click on Element                account_types.edit
@@ -59,9 +54,3 @@ Test Checkbox
     [Arguments]                     ${account_label}
     Wait for Locator                account_types.account_checkbox    ${account_label}
     Click on element                account_types.account_checkbox    ${account_label}
-
-Get namespace
-    [Documentation]                 Get EDA namespace and store it in a suite variable
-
-    ${NS} =                         Get EDA namespace prefix
-    Set suite variable              ${NS}

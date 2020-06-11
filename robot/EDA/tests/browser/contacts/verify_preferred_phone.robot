@@ -2,10 +2,7 @@
 Documentation
 ...     Verify Preferred Phone functionality
 
-Resource        cumulusci/robotframework/Salesforce.robot
 Resource        robot/EDA/resources/EDA.robot
-Library         robot/EDA/resources/EDA.py
-Library         DateTime
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/ContactsPageObject.py
 
@@ -22,7 +19,7 @@ Verify basic preferred phone functionality
     [tags]                          unstable
     Current page should be                  Details             Contact
 
-    Open EDA Settings Tab menu item
+    Go to EDA settings tab          Accounts and Contacts
     Enable enchanced checkbox
     Clear the disable preferred phone enforcement
     Shift to default content
@@ -45,7 +42,7 @@ Verify disable preferred phone enforcement
     # 1) Disable checkbox is not checked
     # 2) Create a contact and then populate home phone,
     #    office phone, hit save, it should thow an error
-    Open EDA Settings Tab menu item
+    Go to EDA settings tab          Accounts and Contacts
     Enable enchanced checkbox
     Clear the disable preferred phone enforcement    
     Shift to default content
@@ -62,7 +59,7 @@ Verify disable preferred phone enforcement
     # 2) Create Contact → populate home phone, office phone → hit 
     #    save → Preferred Phone is populated →  It should not throw 
     #    an error
-    Open EDA Settings Tab menu item
+    Go to EDA settings tab          Accounts and Contacts
     Set the disable preferred phone enforcement
     Shift to default content
 
@@ -73,7 +70,7 @@ Verify disable preferred phone enforcement
     ...                                     True 
 
 Verify batch functionality of preferred phone
-    [tags]                          unstable
+    [tags]                                  unstable
     Current page should be                  Details           Contact
 
     # Verify the EDA Setting 'Disable Preferred Phone enforcement'
@@ -83,7 +80,7 @@ Verify batch functionality of preferred phone
 
     # Make sure the 'Disable Preferred Phone enforcement' checkbox 
     # has a check in the checkbox
-    Open EDA Settings Tab menu item
+    Go to EDA settings tab                      Accounts and Contacts
     Enable enchanced checkbox    
     Set the disable preferred phone enforcement
     Disable enchanced checkbox    
@@ -93,7 +90,7 @@ Verify batch functionality of preferred phone
     # Note:  The 'Disable Preferred Phone enforcement'
     #        is NOT being enforced
     Create last contact
-    Go To Object Home                       Contact
+    Go to object home                           Contact
     
     # Note:  look in ContactsPageObject.py to see that the following
     #        test does indeed verify the phone numbers
@@ -102,16 +99,13 @@ Verify batch functionality of preferred phone
     # Now we'll reconfigure the EDA Setting
     # and run another test to check 'Run Cleanup'
 
-    Open EDA Settings Tab menu item
+    Go to EDA settings tab                      Accounts and Contacts
     Enable enchanced checkbox    
     Clear the disable preferred phone enforcement
     Run phone cleanup
     Shift to default content
 
-    Go To Setup Home
-    Wait For New Window                         Home | Salesforce
-    Select window                               Home | Salesforce
-    Wait Until Loading Is Complete
+    Go to page                                  Home        Setup
     Populate Placeholder                        Quick Find          Apex Jobs
 
     Open Apex                                   Apex Jobs
@@ -168,12 +162,8 @@ Create last contact
     &{CONTACT4} =                           API Create Contact
     Set suite variable                      &{CONTACT4}
 
-Open EDA Settings Tab menu item
-    Select app launcher tab                 EDA Settings
-    Select frame with title                 accessibility title
-
 Restore eda settings
-    Open EDA Settings Tab menu item
+    Go to EDA settings tab                  Accounts and Contacts
     Set the disable preferred phone enforcement
     Shift to default content
 
