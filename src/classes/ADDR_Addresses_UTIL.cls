@@ -183,7 +183,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return Boolean. True if the Mailing Address fields are all empty. 
     ********************************************************************************************************/
     public static Boolean isContactAddressEmpty(Contact con1) {
-        if	(con1 == Null) {
+        if (con1 == Null) {
             return True;
         } 
             
