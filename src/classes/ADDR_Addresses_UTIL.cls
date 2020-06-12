@@ -55,13 +55,13 @@ public with sharing class ADDR_Addresses_UTIL {
             return False;   
         }
                 
-        return (addr.MailingStreet__c == Null && 
-                addr.MailingStreet2__c == Null && 
-                addr.MailingCity__c == Null && 
-                addr.MailingCounty__c == Null && 
-                addr.MailingState__c == Null && 
-                addr.MailingPostalCode__c == Null && 
-                addr.MailingCountry__c == Null
+        return (String.isNotBlank(addr.MailingStreet__c) && 
+                String.isNotBlank(addr.MailingStreet2__c) && 
+                String.isNotBlank(addr.MailingCity__c) && 
+                String.isNotBlank(addr.MailingCounty__c) && 
+                String.isNotBlank(addr.MailingState__c) && 
+                String.isNotBlank(addr.MailingPostalCode__c) && 
+                String.isNotBlank(addr.MailingCountry__c)
                 );
     }
     
@@ -526,7 +526,7 @@ public with sharing class ADDR_Addresses_UTIL {
     public static string getMultilineStreet(Address__c addr) {
         String str = addr.MailingStreet__c;
         
-        if (String.isNotBlank(addr.MailingStreet2__c) && addr.MailingStreet2__c.length() > 0) {
+        if (String.isNotBlank(addr.MailingStreet2__c)) {
             str += '\r\n' + addr.MailingStreet2__c;
         }
             
