@@ -4,6 +4,7 @@ Documentation
 
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/AccountsAndContactsSettingsPageObject.py
 ...             robot/EDA/resources/ContactsPageObject.py
 
 Test Setup      Initialize test setup
@@ -17,21 +18,20 @@ Suite Teardown  Capture screenshot and delete records and close browser
 *** Test Cases ***
 Verify basic preferred phone functionality
     [tags]                          unstable
-    Current page should be                  Details             Contact
 
     Go to EDA settings tab          Accounts and Contacts
-    Enable enchanced checkbox
+    Enable enhanced checkbox
     Clear the disable preferred phone enforcement
     Shift to default content
 
     Go To Page                    Listing                       Contact
     Click Link                    ${CONTACT.FirstName} ${CONTACT.LastName}
+    Wait until loading is complete
     Current page should be                  Details             Contact
     Validate preferred phone form
 
 Verify disable preferred phone enforcement
     [tags]                          unstable
-    Current page should be                  Details             Contact
 
     # Using 2 phone fields
     #
@@ -43,21 +43,21 @@ Verify disable preferred phone enforcement
     # 2) Create a contact and then populate home phone,
     #    office phone, hit save, it should thow an error
     Go to EDA settings tab          Accounts and Contacts
-    Enable enchanced checkbox
-    Clear the disable preferred phone enforcement    
+    Enable enhanced checkbox
+    Clear the disable preferred phone enforcement
     Shift to default content
 
     Create next contact
     Go To Page                    Listing                       Contact
     Add home phone and work phone to contact
     ...                                     ${CONTACT2.FirstName} ${CONTACT2.LastName}
-    ...                                     False 
+    ...                                     False
 
     # Negative Scenario
     #
     # 1) Disable checkbox is checked
-    # 2) Create Contact → populate home phone, office phone → hit 
-    #    save → Preferred Phone is populated →  It should not throw 
+    # 2) Create Contact → populate home phone, office phone → hit
+    #    save → Preferred Phone is populated →  It should not throw
     #    an error
     Go to EDA settings tab          Accounts and Contacts
     Set the disable preferred phone enforcement
@@ -67,23 +67,22 @@ Verify disable preferred phone enforcement
     Go To Object Home                       Contact
     Add home phone and work phone to contact
     ...                                     ${CONTACT3.FirstName} ${CONTACT3.LastName}
-    ...                                     True 
+    ...                                     True
 
 Verify batch functionality of preferred phone
     [tags]                                  unstable
-    Current page should be                  Details           Contact
 
     # Verify the EDA Setting 'Disable Preferred Phone enforcement'
-    
-    # The following places us inside an iFrame.  Remember to jump 
+
+    # The following places us inside an iFrame.  Remember to jump
     # back out when done.
 
-    # Make sure the 'Disable Preferred Phone enforcement' checkbox 
+    # Make sure the 'Disable Preferred Phone enforcement' checkbox
     # has a check in the checkbox
     Go to EDA settings tab                      Accounts and Contacts
-    Enable enchanced checkbox    
+    Enable enhanced checkbox
     Set the disable preferred phone enforcement
-    Disable enchanced checkbox    
+    Disable enhanced checkbox
     Shift to default content
 
     # Create a new contact and add some phone numbers
@@ -91,7 +90,7 @@ Verify batch functionality of preferred phone
     #        is NOT being enforced
     Create last contact
     Go to object home                           Contact
-    
+
     # Note:  look in ContactsPageObject.py to see that the following
     #        test does indeed verify the phone numbers
     Add home phone to contact and verify    ${CONTACT4.FirstName} ${CONTACT4.LastName}
@@ -100,7 +99,7 @@ Verify batch functionality of preferred phone
     # and run another test to check 'Run Cleanup'
 
     Go to EDA settings tab                      Accounts and Contacts
-    Enable enchanced checkbox    
+    Enable enhanced checkbox
     Clear the disable preferred phone enforcement
     Run phone cleanup
     Shift to default content

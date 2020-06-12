@@ -185,18 +185,6 @@ pre {
             <tbody>
               <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
               
-              <tr class="kwrow" id="EDA.py.Check If Element Exists">
-                <td class="kwname">
-                  Check If Element Exists
-                </td>
-                <td class="kwargs">
-                  
-                  <i>xpath</i>
-                  
-                </td>
-                <td class="kwdoc"></td>
-              </tr>
-              
               <tr class="kwrow" id="EDA.py.Click Dropdown">
                 <td class="kwname">
                   Click Dropdown
@@ -216,6 +204,16 @@ pre {
                 <td class="kwargs">
                   
                   <i>title</i>
+                  
+                </td>
+                <td class="kwdoc"></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click Edit On Eda Settings Page">
+                <td class="kwname">
+                  Click Edit On Eda Settings Page
+                </td>
+                <td class="kwargs">
                   
                 </td>
                 <td class="kwdoc"></td>
@@ -335,6 +333,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Returns the EDA namespace value if the target org is a managed org else returns blank value</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Go To Eda Settings Tab">
+                <td class="kwname">
+                  Go To Eda Settings Tab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>tab</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Navigates to EDA settings URL and click on the tab passed by the parameter and then loads the page object identified by the tab name</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Header Field Value">
@@ -697,40 +707,6 @@ pre {
                 <td class="kwdoc"></td>
               </tr>
               
-              <tr class="kwrow" id="EDA.robot.Go to EDA settings">
-                <td class="kwname">
-                  Go to EDA settings
-                </td>
-                <td class="kwargs">
-                  
-                </td>
-                <td class="kwdoc"><p>Clicks on App Waffle and selects 'EDA Settings' tab</p></td>
-              </tr>
-              
-              <tr class="kwrow" id="EDA.robot.Populate Create And Return Contact with Address">
-                <td class="kwname">
-                  Populate Create And Return Contact with Address
-                </td>
-                <td class="kwargs">
-                  
-                  <i>first_name</i>, 
-                  
-                  <i>last_name</i>, 
-                  
-                  <i>mailing_street</i>, 
-                  
-                  <i>mailing_city</i>, 
-                  
-                  <i>mailing_zip</i>, 
-                  
-                  <i>mailing_state</i>, 
-                  
-                  <i>mailing_country</i>
-                  
-                </td>
-                <td class="kwdoc"></td>
-              </tr>
-              
               <tr class="kwrow" id="EDA.robot.Scroll Page To Location">
                 <td class="kwname">
                   Scroll Page To Location
@@ -745,34 +721,22 @@ pre {
                 <td class="kwdoc"></td>
               </tr>
               
-              <tr class="kwrow" id="EDA.robot.Select Frame With Title">
-                <td class="kwname">
-                  Select Frame With Title
-                </td>
-                <td class="kwargs">
-                  
-                  <i>name</i>
-                  
-                </td>
-                <td class="kwdoc"></td>
-              </tr>
-              
             </tbody>
           </table>
         </div> 
         
       </div>
       
-      <div class="file" id="file-robot/EDA/resources/AffiliationsPageObject.py">
+      <div class="file" id="file-robot/EDA/resources/AccountsAndContactsSettingsPageObject.py">
         <div class='file-header'>
-          <h2 title='robot/EDA/resources/AffiliationsPageObject.py'>AffiliationsPageObject.py</h2>
-          <div class='file-path'>robot/EDA/resources/AffiliationsPageObject.py</div>
+          <h2 title='robot/EDA/resources/AccountsAndContactsSettingsPageObject.py'>AccountsAndContactsSettingsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/AccountsAndContactsSettingsPageObject.py</div>
         </div>
 
         
 
         
-        <div class="section" pageobject="Listing-hed__HEDA_Settings">
+        <div class="section" pageobject="Accounts_and_Contacts-HEDA_Settings">
 
           
           <div class='pageobject-header'>
@@ -780,8 +744,8 @@ pre {
             <table class='pageobject-header'>
               <tbody>
 	        <tr class='data'>
-	          <td title='Page Type'>Listing</td>
-	          <td title='Object Name'>hed__HEDA_Settings</td>
+	          <td title='Page Type'>Accounts_and_Contacts</td>
+	          <td title='Object Name'>HEDA_Settings</td>
 	        </tr>
 	        <tr class='labels'>
 	          <td>Page Type</td>
@@ -792,12 +756,103 @@ pre {
           </div>
           
 
-          <div class='description' title='Description'><p>Documentation for library <code>AffiliationsPageObject.EDASettingsPage</code>.</p></div>
+          <div class='description' title='Description'><p>Documentation for library <code>AccountsAndContactsSettingsPageObject.AccountsAndContactsSettingsPage</code>.</p></div>
           <table class="kwtable" title='Table of keywords'>
             <tbody>
               <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Add Text To All Text Fields">
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Clear The Disable Preferred Phone Enforcement">
+                <td class="kwname">
+                  Clear The Disable Preferred Phone Enforcement
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is not checked Clear the checkbox if it is set Do nothing if the checkbox is already empty</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Disable Enhanced Checkbox">
+                <td class="kwname">
+                  Disable Enhanced Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that Enable Enhanced Preferred Phone Functionality checkbox is not checked Clear the checkbox if it is set Do nothing if the checkbox is already empty</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Enable Enhanced Checkbox">
+                <td class="kwname">
+                  Enable Enhanced Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Ensure that the Enhanced Preferred Phone Functionality checkbox is checked Set the checkbox if it is not set Do nothing if the checkbox is already set</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Log Current Page Object">
+                <td class="kwname">
+                  Log Current Page Object
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Logs the name of the current page object</p>
+<p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Set The Disable Preferred Phone Enforcement">
+                <td class="kwname">
+                  Set The Disable Preferred Phone Enforcement
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is checked. Set the checkbox if it is not already set. Do nothing if the checkbox is already checked.</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/AffiliationsSettingsPageObject.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/AffiliationsSettingsPageObject.py'>AffiliationsSettingsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/AffiliationsSettingsPageObject.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="Affiliations-HEDA_Settings">
+
+          
+          <div class='pageobject-header'>
+
+            <table class='pageobject-header'>
+              <tbody>
+	        <tr class='data'>
+	          <td title='Page Type'>Affiliations</td>
+	          <td title='Object Name'>HEDA_Settings</td>
+	        </tr>
+	        <tr class='labels'>
+	          <td>Page Type</td>
+	          <td>Object Name</td>
+	        </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>AffiliationsSettingsPageObject.AffiliationsSettingsPage</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Add Text To All Text Fields">
                 <td class="kwname">
                   Add Text To All Text Fields
                 </td>
@@ -807,7 +862,7 @@ pre {
                 <td class="kwdoc"><p>Add sample text to each text field to verify that populated fields may be saved properly</p></td>
               </tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Clear Everything On Affiliation Mappings">
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Clear Everything On Affiliation Mappings">
                 <td class="kwname">
                   Clear Everything On Affiliation Mappings
                 </td>
@@ -817,7 +872,7 @@ pre {
                 <td class="kwdoc"><p>Clears all values from every field and checkbox on the Affiliation Mappings page</p></td>
               </tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Disable The Checkbox">
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Disable The Checkbox">
                 <td class="kwname">
                   Disable The Checkbox
                 </td>
@@ -835,7 +890,7 @@ pre {
                 <td class="kwdoc"><p>Ensure that the specified checkbox is NOT checked Uncheck the checkbox if it is checked Do nothing if the checkbox is already clear</p></td>
               </tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Enable The Checkbox">
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Enable The Checkbox">
                 <td class="kwname">
                   Enable The Checkbox
                 </td>
@@ -853,27 +908,7 @@ pre {
                 <td class="kwdoc"><p>Ensure that the specified checkbox is checked Set the checkbox if it is not set Do nothing if the checkbox is already set</p></td>
               </tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Go To Affiliation Mappings">
-                <td class="kwname">
-                  Go To Affiliation Mappings
-                </td>
-                <td class="kwargs">
-                  
-                </td>
-                <td class="kwdoc"><p>Navigate to the Affiliations and Affiliation Mappings page</p></td>
-              </tr>
-              
-              <tr class="kwrow" id="AffiliationsPageObject.py.Go To Affiliation Settings">
-                <td class="kwname">
-                  Go To Affiliation Settings
-                </td>
-                <td class="kwargs">
-                  
-                </td>
-                <td class="kwdoc"><p>Navigate to the Affiliations and Settings pages</p></td>
-              </tr>
-              
-              <tr class="kwrow" id="AffiliationsPageObject.py.Go To Affiliations Edit Mode">
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Go To Affiliations Edit Mode">
                 <td class="kwname">
                   Go To Affiliations Edit Mode
                 </td>
@@ -885,7 +920,19 @@ pre {
                 <td class="kwdoc"><p>Go into Edit mode and remove the con</p></td>
               </tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Log Current Page Object">
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Go To Affiliations Sub Tab">
+                <td class="kwname">
+                  Go To Affiliations Sub Tab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>sub_tab</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Click on the given sub_tab in the Affiliations Settings page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Log Current Page Object">
                 <td class="kwname">
                   Log Current Page Object
                 </td>
@@ -896,7 +943,7 @@ pre {
 <p>The current page object is also returned as an object</p></td>
               </tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Open Item">
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Open Item">
                 <td class="kwname">
                   Open Item
                 </td>
@@ -912,7 +959,7 @@ pre {
                 <td class="kwdoc"><p>Performs a wait until the element shows on the page, and clicks the element. Pass capture_screen as False to turn off screen capture and True to turn on screen capture</p></td>
               </tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Process Default Mapping Values">
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Process Default Mapping Values">
                 <td class="kwname">
                   Process Default Mapping Values
                 </td>
@@ -922,7 +969,7 @@ pre {
                 <td class="kwdoc"><p>3. Verify the values in the first row contains the following values: -Account Record Type: 'Academic Program' -Contact Primary Affl Field: 'Primary Academic Program' -Auto-Enrollment: checked -Auto-Enrollment Status: 'Current' -Auto-Enrollment Role: 'Student' 4. Verify the values in the second row contains the following values: -Account Record Type: 'Business Organization' -Contact Primary Affl Field: 'Primary Business Organization' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 5. Verify the values in the third row contains the following values: -Account Record Type: 'Educational Institution' -Contact Primary Affl Field: 'Primary Educational Institution' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 6. Verify the values in the fourth row contains the following values: -Account Record Type: 'Household Account' -Contact Primary Affl Field: 'Primary Household' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 7. Verify the values in the fifth row contains the following values: -Account Record Type: 'Sports Organization' -Contact Primary Affl Field: 'Primary Sports Organization' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 8. Verify the values in the sixth row contains the following values: -Account Record Type: 'University Department' -Contact Primary Affl Field: 'Primary Department' -Auto-Enrollment: unchecked -Auto-Enrollment Status: null -Auto-Enrollment Role: null 9. Verify there are only six rows present 10. Verify that all text fields values are null and the checkbox is unchecked in the 'New Affiliation Mapping' fields</p></td>
               </tr>
               
-              <tr class="kwrow" id="AffiliationsPageObject.py.Process Default Values">
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Process Default Values">
                 <td class="kwname">
                   Process Default Values
                 </td>
@@ -996,36 +1043,6 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Open the contact details and add a home phone and save Verify that the home phone is NOT copied to Phone field and that the 'Preferred Phone' is set to None</p></td>
-              </tr>
-              
-              <tr class="kwrow" id="ContactsPageObject.py.Clear The Disable Preferred Phone Enforcement">
-                <td class="kwname">
-                  Clear The Disable Preferred Phone Enforcement
-                </td>
-                <td class="kwargs">
-                  
-                </td>
-                <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is not checked Clear the checkbox if it is set Do nothing if the checkbox is already empty</p></td>
-              </tr>
-              
-              <tr class="kwrow" id="ContactsPageObject.py.Disable Enchanced Checkbox">
-                <td class="kwname">
-                  Disable Enchanced Checkbox
-                </td>
-                <td class="kwargs">
-                  
-                </td>
-                <td class="kwdoc"><p>Verify that Enable Enhanced Preferred Phone Functionality checkbox is not checked Clear the checkbox if it is set Do nothing if the checkbox is already empty</p></td>
-              </tr>
-              
-              <tr class="kwrow" id="ContactsPageObject.py.Enable Enchanced Checkbox">
-                <td class="kwname">
-                  Enable Enchanced Checkbox
-                </td>
-                <td class="kwargs">
-                  
-                </td>
-                <td class="kwdoc"><p>Ensure that the Enhanced Preferred Phone Functionality checkbox is checked Set the checkbox if it is not set Do nothing if the checkbox is already set</p></td>
               </tr>
               
               <tr class="kwrow" id="ContactsPageObject.py.Go To Affiliations Edit Mode">
@@ -1133,16 +1150,6 @@ pre {
                 <td class="kwdoc"><p>Select the contact from the Contacts Recently Viewed list</p></td>
               </tr>
               
-              <tr class="kwrow" id="ContactsPageObject.py.Set The Disable Preferred Phone Enforcement">
-                <td class="kwname">
-                  Set The Disable Preferred Phone Enforcement
-                </td>
-                <td class="kwargs">
-                  
-                </td>
-                <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is checked. Set the checkbox if it is not already set. Do nothing if the checkbox is already checked.</p></td>
-              </tr>
-              
               <tr class="kwrow" id="ContactsPageObject.py.Validate Preferred Phone Form">
                 <td class="kwname">
                   Validate Preferred Phone Form
@@ -1159,9 +1166,9 @@ pre {
                 </td>
                 <td class="kwargs">
                   
-                  <i>FirstName</i>, 
+                  <i>firstname</i>, 
                   
-                  <i>LastName</i>
+                  <i>lastname</i>
                   
                 </td>
                 <td class="kwdoc"><p>Verify that the Home Phone number is copied to Phone field</p></td>
@@ -1189,7 +1196,18 @@ pre {
           </table>
         </div> 
         
-        <div class="section" pageobject="Listing-Contact">
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/CourseConnectionsSettingsPageObject.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/CourseConnectionsSettingsPageObject.py'>CourseConnectionsSettingsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/CourseConnectionsSettingsPageObject.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="Course_Connections-HEDA_Settings">
 
           
           <div class='pageobject-header'>
@@ -1197,8 +1215,8 @@ pre {
             <table class='pageobject-header'>
               <tbody>
 	        <tr class='data'>
-	          <td title='Page Type'>Listing</td>
-	          <td title='Object Name'>Contact</td>
+	          <td title='Page Type'>Course_Connections</td>
+	          <td title='Object Name'>HEDA_Settings</td>
 	        </tr>
 	        <tr class='labels'>
 	          <td>Page Type</td>
@@ -1209,12 +1227,12 @@ pre {
           </div>
           
 
-          <div class='description' title='Description'><p>Documentation for library <code>ContactsPageObject.ContactsListingPage</code>.</p></div>
+          <div class='description' title='Description'><p>Documentation for library <code>CourseConnectionsSettingsPageObject.CourseConnectionsSettingsPage</code>.</p></div>
           <table class="kwtable" title='Table of keywords'>
             <tbody>
               <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
               
-              <tr class="kwrow" id="ContactsPageObject.py.Log Current Page Object">
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Log Current Page Object">
                 <td class="kwname">
                   Log Current Page Object
                 </td>
@@ -1231,16 +1249,16 @@ pre {
         
       </div>
       
-      <div class="file" id="file-robot/EDA/resources/SettingsPageObject.py">
+      <div class="file" id="file-robot/EDA/resources/CoursesSettingsPageObject.py">
         <div class='file-header'>
-          <h2 title='robot/EDA/resources/SettingsPageObject.py'>SettingsPageObject.py</h2>
-          <div class='file-path'>robot/EDA/resources/SettingsPageObject.py</div>
+          <h2 title='robot/EDA/resources/CoursesSettingsPageObject.py'>CoursesSettingsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/CoursesSettingsPageObject.py</div>
         </div>
 
         
 
         
-        <div class="section" pageobject="Custom-HEDA_Settings">
+        <div class="section" pageobject="Courses-HEDA_Settings">
 
           
           <div class='pageobject-header'>
@@ -1248,7 +1266,7 @@ pre {
             <table class='pageobject-header'>
               <tbody>
 	        <tr class='data'>
-	          <td title='Page Type'>Custom</td>
+	          <td title='Page Type'>Courses</td>
 	          <td title='Object Name'>HEDA_Settings</td>
 	        </tr>
 	        <tr class='labels'>
@@ -1260,12 +1278,258 @@ pre {
           </div>
           
 
-          <div class='description' title='Description'><p>Documentation for library <code>SettingsPageObject.SettingsPage</code>.</p></div>
+          <div class='description' title='Description'><p>Documentation for library <code>CoursesSettingsPageObject.CoursesSettingsPage</code>.</p></div>
           <table class="kwtable" title='Table of keywords'>
             <tbody>
               <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
               
-              <tr class="kwrow" id="SettingsPageObject.py.Log Current Page Object">
+              <tr class="kwrow" id="CoursesSettingsPageObject.py.Log Current Page Object">
+                <td class="kwname">
+                  Log Current Page Object
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Logs the name of the current page object</p>
+<p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/ProgramPlansSettingsPageObject.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/ProgramPlansSettingsPageObject.py'>ProgramPlansSettingsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/ProgramPlansSettingsPageObject.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="Program_Plans-HEDA_Settings">
+
+          
+          <div class='pageobject-header'>
+
+            <table class='pageobject-header'>
+              <tbody>
+	        <tr class='data'>
+	          <td title='Page Type'>Program_Plans</td>
+	          <td title='Object Name'>HEDA_Settings</td>
+	        </tr>
+	        <tr class='labels'>
+	          <td>Page Type</td>
+	          <td>Object Name</td>
+	        </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>ProgramPlansSettingsPageObject.ProgramPlansSettingsPage</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="ProgramPlansSettingsPageObject.py.Log Current Page Object">
+                <td class="kwname">
+                  Log Current Page Object
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Logs the name of the current page object</p>
+<p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/RelationshipsSettingsPageObject.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/RelationshipsSettingsPageObject.py'>RelationshipsSettingsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/RelationshipsSettingsPageObject.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="Relationships-HEDA_Settings">
+
+          
+          <div class='pageobject-header'>
+
+            <table class='pageobject-header'>
+              <tbody>
+	        <tr class='data'>
+	          <td title='Page Type'>Relationships</td>
+	          <td title='Object Name'>HEDA_Settings</td>
+	        </tr>
+	        <tr class='labels'>
+	          <td>Page Type</td>
+	          <td>Object Name</td>
+	        </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>RelationshipsSettingsPageObject.RelationshipsSettingsPage</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Go To Relationships Sub Tab">
+                <td class="kwname">
+                  Go To Relationships Sub Tab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>sub_tab</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Click on the given sub_tab in the Affiliations Settings page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Log Current Page Object">
+                <td class="kwname">
+                  Log Current Page Object
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Logs the name of the current page object</p>
+<p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/SetupPageObject.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/SetupPageObject.py'>SetupPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/SetupPageObject.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="Home-Setup">
+
+          
+          <div class='pageobject-header'>
+
+            <table class='pageobject-header'>
+              <tbody>
+	        <tr class='data'>
+	          <td title='Page Type'>Home</td>
+	          <td title='Object Name'>Setup</td>
+	        </tr>
+	        <tr class='labels'>
+	          <td>Page Type</td>
+	          <td>Object Name</td>
+	        </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>SetupPageObject.SetupHomePage</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="SetupPageObject.py.Log Current Page Object">
+                <td class="kwname">
+                  Log Current Page Object
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Logs the name of the current page object</p>
+<p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="SetupPageObject.py.Perform A Quick Find On">
+                <td class="kwname">
+                  Perform A Quick Find On
+                </td>
+                <td class="kwargs">
+                  
+                  <i>item</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Searches for the given item through Quick Find on Setup page</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="SetupPageObject.py.Wait And Refresh Static Page Until Text">
+                <td class="kwname">
+                  Wait And Refresh Static Page Until Text
+                </td>
+                <td class="kwargs">
+                  
+                  <i>search_text</i>, 
+                  
+                  <i>wait_time</i>, 
+                  
+                  <i>loc_frame</i>, 
+                  
+                  <i>loc_text</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Wait for text to appear on static page.  Note that the page is refreshed each 'wait_time' until the specified text 'search_text' appears. 'loc_text' will return the text portion of the locator</p></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div> 
+        
+      </div>
+      
+      <div class="file" id="file-robot/EDA/resources/SystemSettingsPageObject.py">
+        <div class='file-header'>
+          <h2 title='robot/EDA/resources/SystemSettingsPageObject.py'>SystemSettingsPageObject.py</h2>
+          <div class='file-path'>robot/EDA/resources/SystemSettingsPageObject.py</div>
+        </div>
+
+        
+
+        
+        <div class="section" pageobject="System-HEDA_Settings">
+
+          
+          <div class='pageobject-header'>
+
+            <table class='pageobject-header'>
+              <tbody>
+	        <tr class='data'>
+	          <td title='Page Type'>System</td>
+	          <td title='Object Name'>HEDA_Settings</td>
+	        </tr>
+	        <tr class='labels'>
+	          <td>Page Type</td>
+	          <td>Object Name</td>
+	        </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+          <div class='description' title='Description'><p>Documentation for library <code>SystemSettingsPageObject.SystemSettingsPage</code>.</p></div>
+          <table class="kwtable" title='Table of keywords'>
+            <tbody>
+              <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Log Current Page Object">
                 <td class="kwname">
                   Log Current Page Object
                 </td>
@@ -1284,7 +1548,7 @@ pre {
       
     </div>
     <div class="footer">
-      Generated on Wednesday May 20, 01:00 PM - cumulusci v3.12.2
+      Generated on Friday June 12, 06:04 AM - cumulusci v3.13.2
     </div>
   </body>
 </html>
