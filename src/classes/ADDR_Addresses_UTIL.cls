@@ -55,13 +55,13 @@ public with sharing class ADDR_Addresses_UTIL {
             return False;   
         }
                 
-        return (String.isNotBlank(addr.MailingStreet__c) && 
-                String.isNotBlank(addr.MailingStreet2__c) && 
-                String.isNotBlank(addr.MailingCity__c) && 
-                String.isNotBlank(addr.MailingCounty__c) && 
-                String.isNotBlank(addr.MailingState__c) && 
-                String.isNotBlank(addr.MailingPostalCode__c) && 
-                String.isNotBlank(addr.MailingCountry__c)
+        return (String.isBlank(addr.MailingStreet__c) && 
+                String.isBlank(addr.MailingStreet2__c) && 
+                String.isBlank(addr.MailingCity__c) && 
+                String.isBlank(addr.MailingCounty__c) && 
+                String.isBlank(addr.MailingState__c) && 
+                String.isBlank(addr.MailingPostalCode__c) && 
+                String.isBlank(addr.MailingCountry__c)
                 );
     }
     
