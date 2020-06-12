@@ -692,10 +692,10 @@ public with sharing class ADDR_Addresses_UTIL {
                                             Seasonal_Start_Year__c, Seasonal_End_Year__c, Seasonal_Start_Month__c, 
                                             Seasonal_Start_Day__c, Seasonal_End_Month__c, Seasonal_End_Day__c, 
                                             Geolocation__Latitude__s, Geolocation__Longitude__s 
-                                            FROM Address__c 
-                                            WHERE Parent_Account__c IN :listParentId OR 
-                                            Parent_Contact__c IN :listParentId ORDER BY Default_Address__c DESC, LastModifiedDate ASC]; 
-                                            //Ordering needed by cleanupAccountAddresses()
+                                        FROM Address__c 
+                                        WHERE Parent_Account__c IN :listParentId OR 
+                                        Parent_Contact__c IN :listParentId ORDER BY Default_Address__c DESC, LastModifiedDate ASC]; 
+                                        //Ordering needed by cleanupAccountAddresses()
         
         Map<Id, List<Address__c>> mapParentIdListAddrs = new Map<Id, List<Address__c>>();   
         for (Address__c addr : listAddrOther) { 

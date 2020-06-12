@@ -64,12 +64,12 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     *   Rules:
     *       inserting new contact
     *           if parent Account is Household --> create new Address as child of Account. If not override, make it default and
-                                                    propagate to children without override
+    *                                                propagate to children without override
     *           else && Contact addresses active --> create new Address as child of Contact
     *
     *       updating an existing contact
     *           if parent Account is Household --> create new Address as child of Account. If not override, make it default and
-                                                    propagate to children without override
+    *                                               propagate to children without override
     *           else  && Contact addresses active --> create new Address as child of Contact
     *
     * @param listNew the list of Contacts from trigger new.
@@ -576,11 +576,11 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         }
 
         Map<Id, Address__c> mapAddrIdAddr = new Map<Id, Address__c>([SELECT Id, Address_Type__c, MailingStreet__c, 
-                                                                    MailingStreet2__c, MailingCity__c, MailingCounty__c, 
-                                                                    MailingState__c, Geolocation__Latitude__s, Geolocation__Longitude__s, MailingPostalCode__c, MailingCountry__c,
-                                                                    (SELECT is_Address_Override__c, MailingStreet, MailingCity, 
-                                                                    Mailing_County__c, MailingState, MailingPostalCode, 
-                                                                    MailingCountry, MailingLatitude, MailingLongitude 
+                                                                        MailingStreet2__c, MailingCity__c, MailingCounty__c, 
+                                                                        MailingState__c, Geolocation__Latitude__s, Geolocation__Longitude__s, MailingPostalCode__c, MailingCountry__c,
+                                                                        (SELECT is_Address_Override__c, MailingStreet, MailingCity, 
+                                                                        Mailing_County__c, MailingState, MailingPostalCode, 
+                                                                        MailingCountry, MailingLatitude, MailingLongitude 
                                                                     FROM Address__c.Contacts1__r)
                                                                     FROM Address__c 
                                                                     WHERE Id IN :setAddrId]);
