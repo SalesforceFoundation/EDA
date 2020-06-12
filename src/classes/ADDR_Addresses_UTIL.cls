@@ -805,7 +805,10 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return String. The query string.
     ********************************************************************************************************/
     public static String getParentAccsWithChildrenQuery() {
-        String query = 'SELECT recordTypeId, Current_Address__c, BillingStreet, BillingCity, Billing_County__c, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude';     
+        String query = 'SELECT recordTypeId, Current_Address__c, BillingStreet, ' +
+        'BillingCity, Billing_County__c, BillingState, ' +
+        'BillingPostalCode, BillingCountry, BillingLatitude, ' +
+        'BillingLongitude';
         
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             query += ', BillingCountryCode, BillingStateCode';
