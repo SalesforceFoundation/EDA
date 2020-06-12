@@ -579,9 +579,9 @@ public with sharing class ADDR_Addresses_UTIL {
                     nonDupeAddrs.updatedAddrs.add(addrDup);
                 }
             } else {
-                    addrNew.Latest_Start_Date__c = System.Today();
-                    addrNew.Latest_End_Date__c = Null; 
-                    nonDupeAddrs.newAddrs.add(addrNew);
+                addrNew.Latest_Start_Date__c = System.Today();
+                addrNew.Latest_End_Date__c = Null; 
+                nonDupeAddrs.newAddrs.add(addrNew);
             } 
         }
         return nonDupeAddrs;
