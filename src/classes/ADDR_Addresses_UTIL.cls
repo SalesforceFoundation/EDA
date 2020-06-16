@@ -118,19 +118,24 @@ public with sharing class ADDR_Addresses_UTIL {
     
     /*******************************************************************************************************
     * @description Compares two Contact records' address fields. 
-    * @param con1 a Contact record. 
-    * @param con2 a Contact record. 
+    * @param con1 Contact record from trigger new. 
+    * @param con2 Contact record from trigger old. 
     * @return Boolean. True if the Mailing Address fields have changed. 
     ********************************************************************************************************/
     public static Boolean isContactAddressChanged(Contact con1, Contact con2) {
         if (con1 == Null && con2 == Null) {
             return false;
         }
-
+        
+        //Check if both new or old Contact are null 
         if (con1 == Null || con2 == Null) {
+            //If new Contact is null, then set the new Contact's mailing fields with the old Contact's mailing fields 
             if (con1 == Null) {
                 con1 = con2;
             }
+            //Returns one or the other: 
+            //1. Evaluate whether New Contact's mailing fields are empty. If it is empty, return False, else True 
+            //2. Evaluate whether new Contact's Primary Address Type is not blank
             return (!isContactAddressEmpty(con1) || String.isNotBlank(con1.Primary_Address_Type__c));
         }
         

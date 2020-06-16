@@ -332,10 +332,10 @@ public class UTIL_UnitTestData_TEST {
                 consAccsAddrs.contacts[ (i * contactCount) + j].MailingStreet = addr.MailingStreet__c;
                 consAccsAddrs.contacts[ (i * contactCount) + j].MailingCity = addr.MailingCity__c;
                 consAccsAddrs.contacts[ (i * contactCount) + j].Mailing_County__c = addr.MailingCounty__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingState = addr.MailingState__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingPostalCode = addr.MailingPostalCode__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingCountry = addr.MailingCountry__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingLatitude = addr.Geolocation__Latitude__s;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingState = addr.MailingState__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingPostalCode = addr.MailingPostalCode__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingCountry = addr.MailingCountry__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingLatitude = addr.Geolocation__Latitude__s;
                 consAccsAddrs.contacts[ (i * contactCount) + j].MailingLongitude = addr.Geolocation__Longitude__s;
             }
         }
