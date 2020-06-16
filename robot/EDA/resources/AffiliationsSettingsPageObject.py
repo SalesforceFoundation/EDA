@@ -1,41 +1,30 @@
-from cumulusci.robotframework.pageobjects import ListingPage
+from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import affiliations_locators
+from locators import eda_lex_locators
 from selenium.webdriver.common.keys import Keys
 
 
-@pageobject("Listing", "hed__HEDA_Settings")
-class EDASettingsPage(ListingPage):
-    object_name = "hed__HEDA_Settings"
+@pageobject("Affiliations", "HEDA_Settings")
+class AffiliationsSettingsPage(BasePage):
 
     @property
     def eda(self):
         return self.builtin.get_library_instance('EDA')
 
     def _is_current_page(self):
-        """ Verify we are on the EDA Settings page
-            by verifying that the header title is 'EDA Settings'
         """
-        locator = affiliations_locators["header"]
-        self.selenium.page_should_contain_element(
-            locator,
-            message="Header with text 'EDA Settings' is not available on the page"
+            Verify we are on the EDA Settings page for Affiliations
+            by verifying the HEDA Settings URL and the Affiliations tab
+        """
+        location = "/lightning/n/{}{}".format(self.eda.get_eda_namespace_prefix(), self._object_name)
+        self.selenium.location_should_contain(location)
+
+        locator_tab = eda_lex_locators["eda_settings"]["tab"].format("Affiliations")
+        self.selenium.wait_until_page_contains_element(
+            locator_tab,
+            error=f"Affiliations tab with locator '{locator_tab}' is not available on the page"
         )
-
-    def _go_to_page(self, filter_name=None):
-        url_pattern = "{root}/lightning/n/{object}"
-        name = self._object_name
-        object_name = "{}{}".format(self.cumulusci.get_namespace_prefix(), name)
-        url = url_pattern.format(root=self.cumulusci.org.lightning_base_url, object=object_name)
-        self.selenium.go_to(url)
-        self.salesforce.wait_until_loading_is_complete()
-        self.eda.wait_for_locator("frame", "accessibility title")
-        self.salesforce.select_frame_with_title("accessibility title")
-
-    def _check_if_element_exists(self, xpath):
-        """ Checks if the given xpath exists """
-        elements = int(self.selenium.get_element_count(xpath))
-        return True if elements > 0 else False
 
     def open_item(self, locator, error_message, capture_screen):
         """ Performs a wait until the element shows on the page, and clicks the element.
@@ -52,33 +41,12 @@ class EDASettingsPage(ListingPage):
         if capture_screen:
             self.selenium.capture_page_screenshot()
 
-    def go_to_affiliation_settings(self):
-        """ Navigate to the Affiliations and Settings pages """
-        self.open_item(
-            affiliations_locators["affiliations_tab"],
-            "Cannot find the Affiliations tab",
-            False
-        )
-        self.open_item(
-            affiliations_locators["affiliations_settings_tab"],
-            "Cannot find the Settings tab in the Affiliations page",
-            False
-        )
-        return
-
-    def go_to_affiliation_mappings(self):
-        """ Navigate to the Affiliations and Affiliation Mappings page """
-        self.open_item(
-            affiliations_locators["affiliations_tab"],
-            "Cannot find the Affiliations tab",
-            False
-        )
-        self.open_item(
-            affiliations_locators["affiliations_mappings_tab"],
-            "Cannot find the Affiliation Mappings tab in the Affiliations page",
-            False
-        )
-        return
+    def go_to_affiliations_sub_tab(self, sub_tab):
+        """ Click on the given sub_tab in the Affiliations Settings page """
+        locator = affiliations_locators["sub_tab"].format(sub_tab)
+        self.selenium.wait_until_page_contains_element(locator,
+                                                       error=f"'{sub_tab}' sub tab is not available on the page")
+        self.selenium.click_element(locator)
 
     def go_to_affiliations_edit_mode(self, loc):
         """ Go into Edit mode and remove the con
@@ -122,7 +90,7 @@ class EDASettingsPage(ListingPage):
         )
 
         # Checkbox needs to be marked as checked
-        if self._check_if_element_exists(loc_checkbox):
+        if self.eda._check_if_element_exists(loc_checkbox):
             self.builtin.log("{} checkbox is checked.".format(title))
             return
         else: 
@@ -163,7 +131,7 @@ class EDASettingsPage(ListingPage):
         )
 
         # Checkbox needs to be unchecked
-        if self._check_if_element_exists(loc_checkbox):
+        if self.eda._check_if_element_exists(loc_checkbox):
             self.builtin.log("{} checkbox is already clear.".format(title))
             return
         else: 
@@ -187,16 +155,12 @@ class EDASettingsPage(ListingPage):
 
     def process_default_values(self):
         """ Validate the default values for Affiliation Settings """
-        
-        self.open_item(
-            affiliations_locators["affiliations_tab"], 
-            "Cannot find the Affiliations tab in EDA Settings",
-            False)
 
-        self.open_item(
-            affiliations_locators["affiliations_settings_tab"], 
-            "Cannot find the Settings tab in Affiliations",
-            False)
+        locator_tab = eda_lex_locators["eda_settings"]["tab"].format("Affiliations")
+        locator_subtab = affiliations_locators["sub_tab"].format("Settings")
+
+        self.open_item(locator_tab, "Cannot find the Affiliations tab in EDA Settings", False)
+        self.open_item(locator_subtab, "Cannot find the Settings tab in Affiliations", False)
 
         # Verify the default values for the checkboxes
         self.selenium.driver.find_element_by_xpath(affiliations_locators["un_ert_validation"])
@@ -309,28 +273,35 @@ class EDASettingsPage(ListingPage):
         # Academic Program
         self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_status_academic_program"])
         self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_role_academic_program"])
-        self.selenium.clear_element_text(affiliations_locators["art_ap_input_affl"])
-        self.selenium.clear_element_text(affiliations_locators["paf_pap_input_affl"])
+
+        self.selenium.clear_element_text(affiliations_locators["acc_record_type"].format("Academic Program"))
+        self.selenium.clear_element_text(
+            affiliations_locators["contact_primary_affl_field"].format("Primary Academic Program"))
 
         # Business Organization
-        self.selenium.clear_element_text(affiliations_locators["art_bo_input_affl"])
-        self.selenium.clear_element_text(affiliations_locators["paf_pbo_input_affl"])
+        self.selenium.clear_element_text(affiliations_locators["acc_record_type"].format("Business Organization"))
+        self.selenium.clear_element_text(
+            affiliations_locators["contact_primary_affl_field"].format("Primary Business Organization"))
 
         # Educational Institution
-        self.selenium.clear_element_text(affiliations_locators["art_ei_input_affl"])
-        self.selenium.clear_element_text(affiliations_locators["paf_pei_input_affl"])
+        self.selenium.clear_element_text(affiliations_locators["acc_record_type"].format("Educational Institution"))
+        self.selenium.clear_element_text(
+            affiliations_locators["contact_primary_affl_field"].format("Primary Educational Institution"))
 
         # Household Account
-        self.selenium.clear_element_text(affiliations_locators["art_ha_input_affl"])
-        self.selenium.clear_element_text(affiliations_locators["paf_ph_input_affl"])
+        self.selenium.clear_element_text(affiliations_locators["acc_record_type"].format("Household Account"))
+        self.selenium.clear_element_text(
+            affiliations_locators["contact_primary_affl_field"].format("Primary Household"))
 
         # Sports Organization
-        self.selenium.clear_element_text(affiliations_locators["art_so_input_affl"])
-        self.selenium.clear_element_text(affiliations_locators["paf_pso_input_affl"])
+        self.selenium.clear_element_text(affiliations_locators["acc_record_type"].format("Sports Organization"))
+        self.selenium.clear_element_text(
+            affiliations_locators["contact_primary_affl_field"].format("Primary Sports Organization"))
 
         # University Department
-        self.selenium.clear_element_text(affiliations_locators["art_ud_input_affl"])
-        self.selenium.clear_element_text(affiliations_locators["paf_pd_input_affl"])
+        self.selenium.clear_element_text(affiliations_locators["acc_record_type"].format("University Department"))
+        self.selenium.clear_element_text(
+            affiliations_locators["contact_primary_affl_field"].format("Primary Department"))
 
     def add_text_to_all_text_fields(self):
         """ Add sample text to each text field to verify that populated fields may be saved properly """
