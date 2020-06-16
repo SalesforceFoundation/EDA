@@ -265,7 +265,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
             Test.stopTest();
             System.assert(FALSE, 'Always throw an error when Account is updated to an Account which is part of other primary affiliation');
         } catch (Exception ex) {
-              System.assertEquals(TRUE, ex.getMessage().contains(Label.affiilaitonWithSameAccountExists));
+              System.assertEquals(TRUE, ex.getMessage().contains(Label.AffiilaitonWithSameAccountExists));
           }
     }
 
@@ -299,7 +299,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAffl1.Id).size());        
     }
 
-        // Bulk test createdIdToOtherPrimaryAfflsWithSameAccAndCon method on AFFL_AccChange_TDTM
+    // Bulk test createdIdToOtherPrimaryAfflsWithSameAccAndCon method on AFFL_AccChange_TDTM
     @isTest
     private static void createdIdToOtherPrimaryAfflsWithSameAccAndConBulk() {
         

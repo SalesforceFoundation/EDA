@@ -337,6 +337,14 @@
         <value>The format used for naming Administrative Accounts.</value>
     </labels>
     <labels>
+        <fullName>affiilaitonWithSameAccountExists</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>affiilaitonWithSameAccountExists</shortDescription>
+        <value>Update stopped. There is another primary Affiliation on this Contact with the same Account.</value>
+    </labels>
+    <labels>
         <fullName>afflAccountNoRecordType</fullName>
         <categories>Error</categories>
         <language>en_US</language>
