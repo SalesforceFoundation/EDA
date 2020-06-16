@@ -1,17 +1,15 @@
 *** Settings ***
 
 Resource        robot/EDA/resources/EDA.robot
-Library         robot/EDA/resources/EDA.py
+Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/SystemSettingsPageObject.py
+
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Open EDA Settings
-    Go To Eda Settings
-
-    Wait for Locator                            eda_settings.system_tab
-    Click on Element                            eda_settings.system_tab
-
+    Go to EDA settings tab                     System
 
     # The following call to Select Checkbox In Eda Settings goes into EDIT mode, then SAVE the setting
     # So this call must NOT be called while in EDIT mode, else the Edit button will be not found.

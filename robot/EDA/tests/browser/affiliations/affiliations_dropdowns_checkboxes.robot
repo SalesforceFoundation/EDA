@@ -6,12 +6,9 @@ Documentation
 ...     This tests the edit and save of the Affiliations 
 ...     Settings checkboxes and dropdowns
 
-Resource        cumulusci/robotframework/Salesforce.robot
 Resource        robot/EDA/resources/EDA.robot
-Library         robot/EDA/resources/EDA.py
-Library         DateTime
 Library         cumulusci.robotframework.PageObjects
-...             robot/EDA/resources/AffiliationsPageObject.py
+...             robot/EDA/resources/AffiliationsSettingsPageObject.py
 
 Test Setup      Initialize test setup
 
@@ -23,11 +20,7 @@ Suite Teardown  Capture screenshot and delete records and close browser
 Affiliations settings verify standard values
     [tags]                                      unstable
 
-    Current page should be                      Listing                    
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
+    Go to EDA settings tab                      Affiliations
 
     # Verify that we have the correct defaults
     Process default values
@@ -39,12 +32,8 @@ Affiliations settings verify standard values
 Affiliations settings dropdowns at --None--
     [tags]                                      unstable
 
-    Current page should be                      Listing                 
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
-    Go to affiliation settings
+    Go to EDA settings tab                      Affiliations
+    Go to affiliations sub tab                  Settings
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
 
@@ -69,9 +58,8 @@ Affiliations settings dropdowns at --None--
 Affiliations settings put dropdowns at defaults
     [tags]                                      unstable
 
-    Current page should be                      Listing                 hed__HEDA_Settings
-    Go to EDA settings    
-    Go to affiliation settings
+    Go to EDA settings tab                      Affiliations
+    Go to affiliations sub tab                  Settings
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
 
@@ -94,10 +82,8 @@ Affiliations settings put dropdowns at defaults
     Close all tabs
 
 Affiliations settings checkboxes toggle
-    [tags]                                      unstable
-    Current page should be                      Listing                 hed__HEDA_Settings
-    Go to EDA settings    
-    Go to affiliation settings
+    Go to EDA settings tab                      Affiliations
+    Go to affiliations sub tab                  Settings
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
     ${ert_validation_checkbox} =                Get Eda Locator         eda_settings.ert_validation
