@@ -1,17 +1,16 @@
 *** Settings ***
 
 Resource        robot/EDA/resources/EDA.robot
-Library         robot/EDA/resources/EDA.py
+Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/AffiliationsSettingsPageObject.py
+
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Verify EDA Settings
-    [tags]  unstable
-    Go To Eda Settings
-
-    Wait for Locator                            eda_settings.affiliations_tab
-    Click on Element                            eda_settings.affiliations_tab
+    [tags]                                      unstable
+    Go to EDA settings tab                      Affiliations
 
     ${affl_check} =  Get Eda Locator           eda_settings.affiliations_check
     ${affl_role_checkbox} =  Get Eda Locator   eda_settings.affiliations_role_checkbox
@@ -20,15 +19,12 @@ Verify EDA Settings
     Wait for Locator                            eda_settings.affiliation_mappings_tab
     Click on Element                            eda_settings.affiliation_mappings_tab
 
-   #Go into Edit Mode
     Click Button                                Edit
-
-    #Save settings
     Click Button                                Save
 
 
 Create A Contact
-    [tags]  unstable
+    [tags]                                  unstable
     Set Window Size                         1024    1024
     Go To Object Home                       Contact
 

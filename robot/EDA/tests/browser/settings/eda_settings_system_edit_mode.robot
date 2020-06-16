@@ -1,17 +1,15 @@
 *** Settings ***
 
 Resource        robot/EDA/resources/EDA.robot
+Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/SystemSettingsPageObject.py
+
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
-
 Validate Edit Mode For EDA Settings, SYSTEM
-    Go To Eda Settings
-
-    # Visit System tab
-    Click Link				        //a[contains(text(),'System')]
-    Wait Until Element Is visible	//a[contains(text(),'System')]
+    Go to EDA settings tab          System
 
     #Go into Edit mode now
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
