@@ -10,10 +10,7 @@ Documentation
 ...     in Affiliation Mappings. If validation fails, 
 ...     an error prevents the Affiliation from being saved.
 
-Resource        cumulusci/robotframework/Salesforce.robot
 Resource        robot/EDA/resources/EDA.robot
-Library         robot/EDA/resources/EDA.py
-Library         DateTime
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/ContactsPageObject.py
 

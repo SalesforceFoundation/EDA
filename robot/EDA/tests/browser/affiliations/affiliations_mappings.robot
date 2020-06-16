@@ -9,49 +9,28 @@ Documentation
 ...        All checkbox fields can retain unchecked values on save
 ...        All mappings can be deleted
 
-Resource        cumulusci/robotframework/Salesforce.robot
 Resource        robot/EDA/resources/EDA.robot
-Library         robot/EDA/resources/EDA.py
-Library         DateTime
 Library         cumulusci.robotframework.PageObjects
-...             robot/EDA/resources/AffiliationsPageObject.py
-...             robot/EDA/resources/SettingsPageObject.py
+...             robot/EDA/resources/AffiliationsSettingsPageObject.py
 
-Suite Setup     Run keywords
-...             Initialize test data
-...             Open test browser
-
+Suite Setup     Open test browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
-
 All standard field values
     [tags]                                      unstable
 
-    Current page should be                      Listing                    
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
-    Go to affiliation mappings
+    Go to EDA settings tab                      Affiliations
+    Go to affiliations sub tab                  Affiliation Mappings
 
     # Verify that we have the correct defaults
     Process default mapping values
 
-
-    Shift to default content
-    Go To Object Home                           Account
-    Close all tabs
-
 All text fields retain null value on save
     [tags]                                      unstable
 
-    Current page should be                      Listing                 
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
-    Go to affiliation mappings
+    Go to EDA settings tab                      Affiliations
+    Go to affiliations sub tab                  Affiliation Mappings
 
     ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
 
@@ -64,20 +43,11 @@ All text fields retain null value on save
     Click button on location                    Save                    ${affl_mappings_tab}
     Close toast message
 
-    Shift to default content
-    Go To Object Home                           Account
-    Close all tabs
-
-
 All text fields retain text value on save
     [tags]                                      unstable
 
-    Current page should be                      Listing                 
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
-    Go to affiliation settings
+    Go to EDA settings tab                      Affiliations
+    Go to affiliations sub tab                  Settings
 
     ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
 
@@ -89,22 +59,14 @@ All text fields retain text value on save
     Click button on location                    Save                    ${affl_mappings_tab}
     Close toast message
 
-    Shift to default content
-    Go To Object Home                           Account
-    Close all tabs
-
 All checkbox fields can retain checked value on save
     [tags]                                      unstable
 
-    Current page should be                      Listing                 
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings
-    Go to affiliation settings
+    Go to EDA settings tab                      Affiliations
+    Go to affiliations sub tab                  Settings
 
     ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
-    ${auto_enroll_academic_program} =           Get Eda Locator         affiliations_locators.auto_enroll_academic_program
+    ${auto_enroll_academic_program} =           Get Eda Locator         auto_enroll_academic_program
     ${checkbox_ap_affl} =                       Get Eda Locator         eda_settings.checkbox_ap_affl
 
     ${auto_enroll_business_organization} =      Get Eda Locator         eda_settings.auto_enroll_business_organization
@@ -113,11 +75,11 @@ All checkbox fields can retain checked value on save
     ${auto_enroll_sports_organization} =        Get Eda Locator         eda_settings.auto_enroll_sports_organization
     ${auto_enroll_university_department} =      Get Eda Locator         eda_settings.auto_enroll_university_department
 
-    ${pbo_affl_edit} =                          Get Eda Locator         eda_settings.pbo_affl_edit
-    ${pei_affl_edit} =                          Get Eda Locator         eda_settings.pei_affl_edit
-    ${ph_affl_edit} =                           Get Eda Locator         eda_settings.ph_affl_edit
-    ${pso_affl_edit} =                          Get Eda Locator         eda_settings.pso_affl_edit
-    ${pd_affl_edit} =                           Get Eda Locator         eda_settings.pd_affl_edit
+    ${pbo_affl_edit} =                          Get Eda Locator         eda_settings.primary_affl_edit      Primary Business Organization
+    ${pei_affl_edit} =                          Get Eda Locator         eda_settings.primary_affl_edit      Primary Educational Institution
+    ${ph_affl_edit} =                           Get Eda Locator         eda_settings.primary_affl_edit      Primary Household
+    ${pso_affl_edit} =                          Get Eda Locator         eda_settings.primary_affl_edit      Primary Sports Organization
+    ${pd_affl_edit} =                           Get Eda Locator         eda_settings.primary_affl_edit      Primary Department
 
     # Primary Academic Program
     Enable the checkbox                         Auto-Enrollment
@@ -155,36 +117,28 @@ All checkbox fields can retain checked value on save
     ...                                         ${auto_enroll_university_department}
     ...                                         ${pd_affl_edit}
 
-    Shift to default content
-    Go To Object Home                           Account
-    Close all tabs
-
 All checkbox fields can retain unchecked values on save
     [tags]                                      unstable
 
-    Current page should be                      Listing                 
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings
-    Go to affiliation settings
+    Go to EDA settings tab                      Affiliations
+    Go to affiliations sub tab                  Settings
 
     ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
 
-    ${ap_aff_unchecked} =                       Get Eda Locator         eda_settings.ap_aff_unchecked
+    ${ap_aff_unchecked} =                       Get Eda Locator         eda_settings.primary_affl_unchecked     Primary Academic Program
     ${checkbox_ap_affl} =                       Get Eda Locator         eda_settings.checkbox_ap_affl
 
-    ${pbo_affl_unchecked} =                     Get Eda Locator         eda_settings.pbo_affl_unchecked
-    ${pei_affl_unchecked} =                     Get Eda Locator         eda_settings.pei_affl_unchecked
-    ${ph_affl_unchecked} =                      Get Eda Locator         eda_settings.ph_affl_unchecked
-    ${pso_affl_unchecked} =                     Get Eda Locator         eda_settings.pso_affl_unchecked
-    ${pd_affl_unchecked} =                      Get Eda Locator         eda_settings.pd_affl_unchecked
+    ${pbo_affl_unchecked} =                     Get Eda Locator         eda_settings.primary_affl_unchecked     Primary Business Organization
+    ${pei_affl_unchecked} =                     Get Eda Locator         eda_settings.primary_affl_unchecked     Primary Educational Institution
+    ${ph_affl_unchecked} =                      Get Eda Locator         eda_settings.primary_affl_unchecked     Primary Household
+    ${pso_affl_unchecked} =                     Get Eda Locator         eda_settings.primary_affl_unchecked     Primary Sports Organization
+    ${pd_affl_unchecked} =                      Get Eda Locator         eda_settings.primary_affl_unchecked     Primary Department
 
-    ${pbo_affl_edit} =                          Get Eda Locator         eda_settings.pbo_affl_edit
-    ${pei_affl_edit} =                          Get Eda Locator         eda_settings.pei_affl_edit
-    ${ph_affl_edit} =                           Get Eda Locator         eda_settings.ph_affl_edit
-    ${pso_affl_edit} =                          Get Eda Locator         eda_settings.pso_affl_edit
-    ${pd_affl_edit} =                           Get Eda Locator         eda_settings.pd_affl_edit
+    ${pbo_affl_edit} =                          Get Eda Locator         eda_settings.primary_affl_edit      Primary Business Organization
+    ${pei_affl_edit} =                          Get Eda Locator         eda_settings.primary_affl_edit      Primary Educational Institution
+    ${ph_affl_edit} =                           Get Eda Locator         eda_settings.primary_affl_edit      Primary Household
+    ${pso_affl_edit} =                          Get Eda Locator         eda_settings.primary_affl_edit      Primary Sports Organization
+    ${pd_affl_edit} =                           Get Eda Locator         eda_settings.primary_affl_edit      Primary Department
 
     # Primary Academic Program
     Disable the checkbox                        Auto-Enrollment
@@ -221,17 +175,3 @@ All checkbox fields can retain unchecked values on save
     ...                                         ${affl_mappings_tab}
     ...                                         ${pd_affl_unchecked}
     ...                                         ${pd_affl_edit}
-
-    Shift to default content
-    Go To Object Home                           Account
-    Close all tabs
-
-
-
-*** Keywords ***
-Initialize test data
-    [Documentation]                             Get the EDA namespace
-
-    ${NAMESPACE} =                              Get EDA namespace prefix
-    Set suite variable                          ${NAMESPACE}
-
