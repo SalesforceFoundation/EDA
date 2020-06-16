@@ -45,6 +45,18 @@ public with sharing class AFFL_ContactAccChange_TEST {
     private static Account bizOrg2;
     private static Account householdOrg1;
     private static Affiliation__c bizAffl1;
+    
+    public static void resetAfflFlags() {
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM);
+        
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
+        
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update);
+    }
 
     private static void dataSetup() {
 
@@ -72,7 +84,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     }
     
     @isTest
-    public static void changeContact() {
+    private static void changeContact() {
         dataSetup();
         Account bizAcct = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
         
@@ -107,7 +119,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     }
     
     @isTest
-    public static void clearContact() {
+    private static void clearContact() {
         dataSetup();
         Contact con = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
         Account bizAcct = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
@@ -125,7 +137,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     }
     
     @isTest
-    public static void changeAccountSameType() {
+    private static void changeAccountSameType() {
         dataSetup();
         Contact con = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
         Account bizAcct1 = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
@@ -149,7 +161,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     }
     
     @isTest
-    public static void changeAccountDifferentType() {
+    private static void changeAccountDifferentType() {
         dataSetup();
         Contact contact = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
 
@@ -174,9 +186,9 @@ public with sharing class AFFL_ContactAccChange_TEST {
         List<Affiliation__c> affls = [select Id from Affiliation__c];
         System.assertEquals(1, affls.size());
     }
-    
+
     @isTest
-    public static void clearAccount() {
+    private static void clearAccount() {
         dataSetup();
         Contact contact = [SELECT Primary_Organization__c from Contact WHERE ID = :contact1.Id];
         Account bizAcct1 = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
@@ -193,15 +205,141 @@ public with sharing class AFFL_ContactAccChange_TEST {
         System.assertEquals(null, updatedContact.Primary_Organization__c);
     }
     
-    public static void resetAfflFlags() {
-        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM);
+    /* Test to check there is only one primary affiliation remains when Account on a Primary Affiliation 
+       is changed to an Account whose record type is same as an already existing primary affiliations on the Contact
+    */
+    @isTest
+    private static void updateAccToAnExistingAccType() {
         
-        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated);
-        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert);
-        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
+        dataSetup();
         
-        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);
-        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert);
-        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update);
-    }    
+        // Get a contact
+        Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        
+        // Get the business affiliation to above contact
+        Affiliation__c primaryBusinessAfflOnContact = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: testContact.Id AND Account__c =: bizOrg1.Id];
+        
+        // create 1 hh affiliation on the above contact
+        Affiliation__c primaryHHAfflOnContact = UTIL_UnitTestData_TEST.getAffiliation(contact1.Id, householdOrg1.Id, TRUE);
+        insert primaryHHAfflOnContact;
+        
+        // update the primaryHHAfflOnContact to buiz org 2
+        test.startTest();
+            primaryHHAfflOnContact.Account__c = bizOrg2.Id;
+            update primaryHHAfflOnContact;
+        test.stopTest();
+        
+        Affiliation__c afflUpdated = [SELECT Id, Primary__c FROM Affiliation__c 
+                                      WHERE Id =: primaryBusinessAfflOnContact.Id];
+
+        Affiliation__c primarHHAffilaitionUpdated = [SELECT Id, Primary__c FROM Affiliation__c 
+                                      WHERE Id =: primaryHHAfflOnContact.Id];
+        
+        System.assertEquals(FALSE, afflUpdated.Primary__c);
+        System.assertEquals(TRUE, primarHHAffilaitionUpdated.Primary__c);
+
+    }
+    
+    // Test to check the error when the Organization on an Affiliation is changed to an Account which is a part of Primary Affiliation on the same Contact
+    @isTest
+    private static void updateAccToAnExistingAcc() {
+ 
+        dataSetup();
+
+        // Get the contact
+        Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        
+        // Get the primary business affiliation related to the Contact
+        Affiliation__c primaryBusinessAfflOnContact = [SELECT Account__c FROM Affiliation__c WHERE 
+                                                    Contact__c =: testContact.Id AND Account__c =: bizOrg1.Id];
+
+        // create a primary household affiliation to the Contact
+        Affiliation__c primaryHHAfflOnContact = UTIL_UnitTestData_TEST.getAffiliation(contact1.Id, householdOrg1.Id, TRUE);
+        insert primaryHHAfflOnContact;
+
+        // update the Organization on primary household affiliation to a business organization
+        try {
+            Test.startTest();
+                primaryHHAfflOnContact.Account__c = bizOrg1.Id;
+                update primaryHHAfflOnContact;
+            Test.stopTest();
+            System.assert(FALSE, 'Always throw an error when Account is updated to an Account which is part of other primary affiliation');
+        } catch (Exception ex) {
+              System.assertEquals(TRUE, ex.getMessage().contains(Label.affiilaitonWithSameAccExists));
+          }
+    }
+
+    // Tests createdIdToOtherPrimaryAfflsWithSameAccAndCon method on AFFL_AccChange_TDTM
+    @isTest
+    private static void createdIdToOtherPrimaryAfflsWithSameAccAndCon() {
+        
+        dataSetup();
+
+        // Get the contact
+        Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        
+        // Get the primary business affiliation related to the Contact
+        Affiliation__c primaryBusinessAffl1 = [SELECT Account__c FROM Affiliation__c WHERE 
+                                                Contact__c =: testContact.Id AND Account__c =: bizOrg1.Id];
+        
+        //Create primary affiliation
+        Affiliation__c primaryHHAffl1 = UTIL_UnitTestData_TEST.getAffiliation(testContact.Id, householdOrg1.Id, TRUE);
+        insert primaryHHAffl1;
+        
+        // change the Priamry Household instance to Primary Business Organization 
+        primaryHHAffl1.Account__c = bizOrg1.Id;
+        List<Affiliation__c> affiliationList = new List<Affiliation__c>();
+        affiliationList.add(primaryHHAffl1);
+        
+        Test.startTest();
+            AFFL_AccChange_TDTM afflAccChange = new AFFL_AccChange_TDTM();
+            Map<Id, List<Affiliation__c>> afflToOtherPrimaryAffiliations = afflAccChange.createdIdToOtherPrimaryAfflsWithSameAccAndCon(affiliationList);
+        Test.stopTest();
+        
+        System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAffl1.Id).size());        
+    }
+
+        // Bulk test createdIdToOtherPrimaryAfflsWithSameAccAndCon method on AFFL_AccChange_TDTM
+    @isTest
+    private static void createdIdToOtherPrimaryAfflsWithSameAccAndConBulk() {
+        
+        dataSetup();
+
+        // Get the contacts
+        Contact testContact1 = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        Contact testContact2 = UTIL_UnitTestData_TEST.getContact();
+        insert testContact2;
+
+        // Get the primary business affiliation related to the Contact1
+        Affiliation__c primaryBusinessAfflCon1 = [SELECT Account__c FROM Affiliation__c WHERE 
+                                                       Contact__c =: testContact1.Id AND Account__c =: bizOrg1.Id];
+        //Create a primary HH affiliation for contact 1
+        Affiliation__c primaryHHAfflCon1 = new Affiliation__c(Contact__c = testContact1.ID, Account__c = householdOrg1.ID, Primary__c = true);
+        insert primaryHHAfflCon1;
+        
+        //Create primary affiliation Business for Contact 2
+        Affiliation__c primaryBusinessAfflCon2 =  UTIL_UnitTestData_TEST.getAffiliation(testContact2.Id, bizOrg1.Id, TRUE);
+        insert primaryBusinessAfflCon2;
+        
+        //Create primary HH affiliation for Conatct 2
+        Affiliation__c primaryHHAfflCon2 = new Affiliation__c(Contact__c = testContact2.ID, Account__c = householdOrg1.ID, Primary__c = true);
+        insert primaryHHAfflCon2;
+        
+        // change the Priamry Household instance to Primary Business Organization for Conatct1 and Contact2
+        primaryHHAfflCon1.Account__c = bizOrg1.Id;
+        primaryHHAfflCon2.Account__c = bizOrg1.Id;
+        
+        // Add the to be updated affiliations to the list
+        List<Affiliation__c> affiliationList = new List<Affiliation__c>();
+        affiliationList.add(primaryHHAfflCon1);
+        affiliationList.add(primaryHHAfflCon2);
+        
+        Test.startTest();
+            AFFL_AccChange_TDTM afflAccChange = new AFFL_AccChange_TDTM();
+            Map<Id, List<Affiliation__c>> afflToOtherPrimaryAffiliations = afflAccChange.createdIdToOtherPrimaryAfflsWithSameAccAndCon(affiliationList);
+        Test.stopTest();
+        
+        System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon1.Id).size()); 
+        System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon2.Id).size());
+    }
 }

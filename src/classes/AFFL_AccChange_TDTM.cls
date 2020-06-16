@@ -32,7 +32,12 @@
 * @date 2016
 * @group Affiliations
 * @group-content ../../ApexDocContent/Affiliations.htm
-* @description Handles the Account in a primary Affiliation being changed or cleared.
+* @description Updates the the Primary Affiliation Fields on the related Contact in the following way
+* 1) When Account on a Primary Affiliation is changed to a new Account of Same record type, then updates the Primary Affiliaiton field on the related Contact with the new Account
+* 2.1) When Account on a Primary Affiliation is changed to a new Account of a different record type, then removes the value from the old Primary Affiliation field on the contact
+* and updates the Primary affiliation field related to the new Account Record type on the Contact
+* 2.2) When Account on a Primary Affiliation is changed to a an Account which is a part of Primary Affiliation on the same Contact, it throws an error
+* 3) When Account in a Primary Affiliation is removed, it clears the Primary Affiliation field's value in the related contact
 */
 public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
@@ -70,6 +75,9 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                 }
 
                 Integer i = 0;
+                List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
+                Map<Id, List<Affiliation__c>> IdToOtherAffiliatonsWithSameAccAndCon = createdIdToOtherPrimaryAfflsWithSameAccAndCon(newlist);
+
                 for (SObject so : newlist) {
                		Affiliation__c affl = (Affiliation__c)so;
                		String lookupLabelOrAPIName = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
@@ -98,12 +106,11 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
                		//AFTER UPDATE
                		if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-
                    		Contact relatedContact;
                    		relatedContact = relatedContactsMap.get(affl.Contact__c);
 
                    		//ACCOUNT FIELD CHANGED
-                   		if(affl.Primary__c && affl.Account__c != null && afflOld.Account__c != null
+                   		if (affl.Primary__c && affl.Account__c != null && afflOld.Account__c != null
                        		&& affl.Account__c != afflOld.Account__c && lookupFieldAPIName != null) {
 
                        		if(affl.Affiliation_Type__c == afflOld.Affiliation_Type__c) {
@@ -112,10 +119,21 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                            		relatedContact.put(lookupFieldAPIName, affl.Account__c);
                        		} else {
                            		//If the primary affl now points to an Account of different type, clear the old
-                           		//primary field in Contact and populate the matching new field.
+                           		//primary field in Contact and populate the matching new field. Uncheck any other
+                                //priamry affilations of same type.
+
+                                // check if there are any other Primary affiliations with same account and show an error
+                                if (IdToOtherAffiliatonsWithSameAccAndCon.size() > 0 && IdToOtherAffiliatonsWithSameAccAndCon.get(affl.ID).size() > 0) {
+                                    affl.addError(Label.affiilaitonWithSameAccExists);
+                                    affl.addError('Test');
+                                }
+                                
                            		if (lookupFieldAPINameOld != null) {
-                               		relatedContact.put(lookupFieldAPINameOld, null);
-                               		relatedContact.put(lookupFieldAPIName, affl.Account__c);
+                                       relatedContact.put(lookupFieldAPINameOld, null);
+                                    if (relatedContact.get(lookupFieldAPIName) != affl.Account__c) {
+                               		    relatedContact.put(lookupFieldAPIName, affl.Account__c);
+                                    }
+                                    afflsMadePrimary.add(affl);
                            		}
                        		}
                        		dmlWrapper.objectsToUpdate.add(relatedContact);
@@ -132,17 +150,58 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                    	i++;
                     //Turn off CON_PrimaryAffls_TDTM_After_Update temporarily to avoid creating duplicate affiliation
                     TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
+
                	}
+                if (afflsMadePrimary.size() > 0) {
+                    afflMulti.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
+                }
            	}
         }
 
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;  
-        if(triggerAction == TDTM_Runnable.Action.AfterUpdate)
-        {      
+        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {      
           	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccChange_TDTM, false);
             TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
         }
         return dmlWrapper;
+    }
+
+    @testVisible
+    private Map<Id, List<Affiliation__c>> createdIdToOtherPrimaryAfflsWithSameAccAndCon(List<Affiliation__c> newAffiliationList) {
+
+        Set<ID> newPrimaryAffls = new Set<ID>();
+        Set<ID> afflContactIDs = new Set<ID>();
+        Set<String> afflAccIds = new Set<String>();
+        List<Affiliation__c> oldPrimaryAffls = new List<Affiliation__c>();
+
+        for (Affiliation__c affl : newAffiliationList) {
+            newPrimaryAffls.add(affl.ID);
+            afflContactIDs.add(affl.Contact__c);
+            afflAccIds.add(affl.Account__c);
+        }
+        
+        //Get all possible Primary Affiliation with Same Contact and Account
+        List<Affiliation__c> otherPrimaryAffls = [SELECT Id, Contact__c, Account__c, Affiliation_Type__c, Primary__c
+                                                  FROM Affiliation__c WHERE Account__c IN :afflAccIds and Contact__c IN :afflContactIDs
+                                                  AND Primary__c = TRUE AND Id NOT IN :newPrimaryAffls];
+        
+        Map<Id, List<Affiliation__c>> idToOtherAffiliationWithSameAccAndCon = new Map<Id, List<Affiliation__c>>();
+
+        // Organize the results in a map
+        for (Affiliation__c otherPrimaryAffl : otherPrimaryAffls) {
+            //Any pre-existing Affl with the same Contact and the Account as any new Affl should be added to idToOtherAffiliationWithSameAccAndCon map
+            for (Affiliation__c newAffl : newAffiliationList) {
+                if (otherPrimaryAffl.Contact__c == newAffl.Contact__c && otherPrimaryAffl.Account__c == newAffl.Account__c) {
+                    if(idToOtherAffiliationWithSameAccAndCon.containsKey(newAffl.Id)) {
+                        idToOtherAffiliationWithSameAccAndCon.get(newAffl.Id).add(otherPrimaryAffl);
+                   }else {
+                        idToOtherAffiliationWithSameAccAndCon.put(newAffl.Id, new List<Affiliation__c>{otherPrimaryAffl});
+                   }
+                }
+            }
+        }
+        
+        return idToOtherAffiliationWithSameAccAndCon;
     }
 }
