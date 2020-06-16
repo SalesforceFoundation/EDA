@@ -265,7 +265,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
             Test.stopTest();
             System.assert(FALSE, 'Always throw an error when Account is updated to an Account which is part of other primary affiliation');
         } catch (Exception ex) {
-              System.assertEquals(TRUE, ex.getMessage().contains(Label.affiilaitonWithSameAccExists));
+              System.assertEquals(TRUE, ex.getMessage().contains(Label.affiilaitonWithSameAccountExists));
           }
     }
 
