@@ -217,13 +217,14 @@ public with sharing class AFFL_ContactAccChange_TEST {
         Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
         
         // Get the business affiliation to above contact
-        Affiliation__c primaryBusinessAfflOnContact = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: testContact.Id AND Account__c =: bizOrg1.Id];
+        Affiliation__c primaryBusinessAfflOnContact = [SELECT Account__c FROM Affiliation__c WHERE 
+                                                       Contact__c =: testContact.Id AND Account__c =: bizOrg1.Id];
         
         // create 1 hh affiliation on the above contact
         Affiliation__c primaryHHAfflOnContact = UTIL_UnitTestData_TEST.getAffiliation(contact1.Id, householdOrg1.Id, TRUE);
         insert primaryHHAfflOnContact;
         
-        // update the primaryHHAfflOnContact to buiz org 2
+        // update the primaryHHAfflOnContact to buizorg2
         test.startTest();
             primaryHHAfflOnContact.Account__c = bizOrg2.Id;
             update primaryHHAfflOnContact;
@@ -235,6 +236,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         Affiliation__c primarHHAffilaitionUpdated = [SELECT Id, Primary__c FROM Affiliation__c 
                                       WHERE Id =: primaryHHAfflOnContact.Id];
         
+        // Ensure only one of the affiliations is primary
         System.assertEquals(FALSE, afflUpdated.Primary__c);
         System.assertEquals(TRUE, primarHHAffilaitionUpdated.Primary__c);
 
@@ -251,13 +253,13 @@ public with sharing class AFFL_ContactAccChange_TEST {
         
         // Get the primary business affiliation related to the Contact
         Affiliation__c primaryBusinessAfflOnContact = [SELECT Account__c FROM Affiliation__c WHERE 
-                                                    Contact__c =: testContact.Id AND Account__c =: bizOrg1.Id];
+                                                       Contact__c =: testContact.Id AND Account__c =: bizOrg1.Id];
 
-        // create a primary household affiliation to the Contact
+        // Create a primary household affiliation to the Contact
         Affiliation__c primaryHHAfflOnContact = UTIL_UnitTestData_TEST.getAffiliation(contact1.Id, householdOrg1.Id, TRUE);
         insert primaryHHAfflOnContact;
 
-        // update the Organization on primary household affiliation to a business organization
+        // Update the Organization on primary household affiliation to a business organization, assert error
         try {
             Test.startTest();
                 primaryHHAfflOnContact.Account__c = bizOrg1.Id;
@@ -282,11 +284,11 @@ public with sharing class AFFL_ContactAccChange_TEST {
         Affiliation__c primaryBusinessAffl1 = [SELECT Account__c FROM Affiliation__c WHERE 
                                                 Contact__c =: testContact.Id AND Account__c =: bizOrg1.Id];
         
-        //Create primary affiliation
+        // Create primary affiliation
         Affiliation__c primaryHHAffl1 = UTIL_UnitTestData_TEST.getAffiliation(testContact.Id, householdOrg1.Id, TRUE);
         insert primaryHHAffl1;
         
-        // change the Priamry Household instance to Primary Business Organization 
+        // Change the Priamry Household instance to Primary Business Organization 
         primaryHHAffl1.Account__c = bizOrg1.Id;
         List<Affiliation__c> affiliationList = new List<Affiliation__c>();
         affiliationList.add(primaryHHAffl1);
@@ -296,7 +298,8 @@ public with sharing class AFFL_ContactAccChange_TEST {
             Map<Id, List<Affiliation__c>> afflToOtherPrimaryAffiliations = afflAccChange.createdIdToOtherPrimaryAfflsWithSameAccAndCon(affiliationList);
         Test.stopTest();
         
-        System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAffl1.Id).size());        
+        // Ensure there is an element in the returned list
+        System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAffl1.Id).size());
     }
 
     // Bulk test createdIdToOtherPrimaryAfflsWithSameAccAndCon method on AFFL_AccChange_TDTM
@@ -312,20 +315,24 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         // Get the primary business affiliation related to the Contact1
         Affiliation__c primaryBusinessAfflCon1 = [SELECT Account__c FROM Affiliation__c WHERE 
-                                                       Contact__c =: testContact1.Id AND Account__c =: bizOrg1.Id];
-        //Create a primary HH affiliation for contact 1
+                                                    Contact__c =: testContact1.Id AND Account__c =: bizOrg1.Id];
+        
+        List<Affiliation__c> affiliationsToInsert = new List<Affiliation__c>();
+        // Create a primary HH affiliation for contact1
         Affiliation__c primaryHHAfflCon1 = new Affiliation__c(Contact__c = testContact1.ID, Account__c = householdOrg1.ID, Primary__c = true);
-        insert primaryHHAfflCon1;
+        affiliationsToInsert.add(primaryHHAfflCon1);
         
-        //Create primary affiliation Business for Contact 2
+        // Create primary affiliation Business for Contact2
         Affiliation__c primaryBusinessAfflCon2 =  UTIL_UnitTestData_TEST.getAffiliation(testContact2.Id, bizOrg1.Id, TRUE);
-        insert primaryBusinessAfflCon2;
+        affiliationsToInsert.add(primaryBusinessAfflCon2);
         
-        //Create primary HH affiliation for Conatct 2
+        // Create primary HH affiliation for Conatct2
         Affiliation__c primaryHHAfflCon2 = new Affiliation__c(Contact__c = testContact2.ID, Account__c = householdOrg1.ID, Primary__c = true);
-        insert primaryHHAfflCon2;
+        affiliationsToInsert.add(primaryHHAfflCon2);
+
+        insert affiliationsToInsert;
         
-        // change the Priamry Household instance to Primary Business Organization for Conatct1 and Contact2
+        // Change the Priamry Household instance to Primary Business Organization for Conatct1 and Contact2
         primaryHHAfflCon1.Account__c = bizOrg1.Id;
         primaryHHAfflCon2.Account__c = bizOrg1.Id;
         
@@ -333,13 +340,16 @@ public with sharing class AFFL_ContactAccChange_TEST {
         List<Affiliation__c> affiliationList = new List<Affiliation__c>();
         affiliationList.add(primaryHHAfflCon1);
         affiliationList.add(primaryHHAfflCon2);
-        
+
         Test.startTest();
             AFFL_AccChange_TDTM afflAccChange = new AFFL_AccChange_TDTM();
             Map<Id, List<Affiliation__c>> afflToOtherPrimaryAffiliations = afflAccChange.createdIdToOtherPrimaryAfflsWithSameAccAndCon(affiliationList);
         Test.stopTest();
         
-        System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon1.Id).size()); 
+        // Ensure there is one element in the list for each of the Ids
+        System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon1.Id).size());
+        System.assertEquals(primaryBusinessAfflCon1.Id, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon1.Id)[0].Id);
         System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon2.Id).size());
+        System.assertEquals(primaryBusinessAfflCon2.Id, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon2.Id)[0].Id);
     }
 }

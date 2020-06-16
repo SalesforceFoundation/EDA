@@ -76,7 +76,7 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
                 Integer i = 0;
                 List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
-                Map<Id, List<Affiliation__c>> IdToOtherAffiliatonsWithSameAccAndCon = createdIdToOtherPrimaryAfflsWithSameAccAndCon(newlist);
+                Map<Id, List<Affiliation__c>> idToOtherAffiliatonsWithSameAccAndCon = createdIdToOtherPrimaryAfflsWithSameAccAndCon(newlist);
 
                 for (SObject so : newlist) {
                		Affiliation__c affl = (Affiliation__c)so;
@@ -123,7 +123,7 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                                 //priamry affilations of same type.
 
                                 // check if there are any other Primary affiliations with same account and show an error
-                                if (IdToOtherAffiliatonsWithSameAccAndCon.size() > 0 && IdToOtherAffiliatonsWithSameAccAndCon.get(affl.ID).size() > 0) {
+                                if (idToOtherAffiliatonsWithSameAccAndCon.size() > 0 && idToOtherAffiliatonsWithSameAccAndCon.get(affl.ID).size() > 0) {
                                     affl.addError(Label.AffiilaitonWithSameAccountExists);
                                 }
                                 
@@ -165,7 +165,12 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
         }
         return dmlWrapper;
     }
-
+   
+    /******************************************************************************************************************************
+    * @description creates a map Affiliation Id to other Primary Affilaitons with same Account and Contact
+    * @param newAffiliationList List of affiliations that are being updated
+    * @return idToOtherAffiliationWithSameAccAndCon A map Affiliation Id to other Primary Affilaitons with same Account and Contact
+    ********************************************************************************************************************************/
     @testVisible
     private Map<Id, List<Affiliation__c>> createdIdToOtherPrimaryAfflsWithSameAccAndCon(List<Affiliation__c> newAffiliationList) {
 
@@ -180,7 +185,7 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
             afflAccIds.add(affl.Account__c);
         }
         
-        //Get all possible Primary Affiliation with Same Contact and Account
+        // Get all possible Primary Affiliation with Same Contact and Account
         List<Affiliation__c> otherPrimaryAffls = [SELECT Id, Contact__c, Account__c, Affiliation_Type__c, Primary__c
                                                   FROM Affiliation__c WHERE Account__c IN :afflAccIds and Contact__c IN :afflContactIDs
                                                   AND Primary__c = TRUE AND Id NOT IN :newPrimaryAffls];
@@ -189,7 +194,7 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
         // Organize the results in a map
         for (Affiliation__c otherPrimaryAffl : otherPrimaryAffls) {
-            //Any pre-existing Affl with the same Contact and the Account as any new Affl should be added to idToOtherAffiliationWithSameAccAndCon map
+            // Any pre-existing Affl with the same Contact and the Account as any new Affl should be added to idToOtherAffiliationWithSameAccAndCon map
             for (Affiliation__c newAffl : newAffiliationList) {
                 if (otherPrimaryAffl.Contact__c == newAffl.Contact__c && otherPrimaryAffl.Account__c == newAffl.Account__c) {
                     if(idToOtherAffiliationWithSameAccAndCon.containsKey(newAffl.Id)) {

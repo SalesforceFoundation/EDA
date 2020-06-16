@@ -341,7 +341,7 @@
         <categories>Affiliations</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>affiilaitonWithSameAccountExists</shortDescription>
+        <shortDescription>AffiilaitonWithSameAccountExists</shortDescription>
         <value>Update stopped. There is another primary Affiliation on this Contact with the same Account.</value>
     </labels>
     <labels>
