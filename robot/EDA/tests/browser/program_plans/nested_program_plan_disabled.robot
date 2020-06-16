@@ -4,6 +4,8 @@ Documentation
 ...     can be created when setting is disabled
 
 Resource        robot/EDA/resources/EDA.robot
+Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/ProgramPlansSettingsPageObject.py
 
 Suite Setup     Run keywords
 ...             Initialize test data
@@ -16,9 +18,8 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting disabled
     [Documentation]                 Verify Plan Requirement can be created with both Program Plan & Parent Plan Requirement when setting is disabled
     [tags]                          unstable
 
-    Go to EDA settings
-    Click on element                eda_settings.tab                Program Plans
-    Edit EDA settings checkbox      Validate Program Plan for Nested Plan Requirements                      false
+    Go to EDA settings tab          Program Plans
+    Edit EDA settings checkbox      Validate Program Plan for Nested Plan Requirements          false
 
     Go to record home               &{program_plan}[Id]
     Wait until loading is complete
