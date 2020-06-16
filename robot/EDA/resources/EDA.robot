@@ -1,6 +1,7 @@
 *** Settings ***
 
 Resource        cumulusci/robotframework/Salesforce.robot
+Library         cumulusci.robotframework.PageObjects
 Library         robot/EDA/resources/EDA.py
 Library         DateTime
 
@@ -10,29 +11,6 @@ Capture Screenshot and Delete Records and Close Browser
     Run Keyword If Any Tests Failed      Capture Page Screenshot
     Close Browser
     Delete Session Records
-
-Populate Create And Return Contact with Address
-    [Arguments]     ${first_name}           ${last_name}      
-    ...             ${mailing_street}       ${mailing_city}
-    ...             ${mailing_zip}          ${mailing_state}      ${mailing_country}
-    Go To Object Home         Contact
-    Click Object Button       New
-    Populate Form
-    ...                       First Name=${first_name}
-    ...                       Last Name=${last_name}
-    Click Dropdown            Primary Address Type
-    Click Link                link=Work
-    Populate Address          Mailing Street            ${mailing_street}
-    Populate Address          Mailing City              ${mailing_city}
-    Populate Address          Mailing Zip/Postal Code   ${mailing_zip}
-    Populate Address          Mailing State/Province    ${mailing_state}
-    Populate Address          Mailing Country           ${mailing_country}
-    Click Modal Button        Save
-    Wait Until Modal Is Closed
-
-    ${contact_id} =           Get Current Record Id
-    Store Session Record      Contact  ${contact_id}
-    [return]                  ${contact_id}
 
 API create program plan
     [Documentation]         Creating a Program Plan through API call
@@ -102,16 +80,7 @@ Create Organization Foundation
     ${account_id} =            Get Current Record Id
     Store Session Record       Account  ${account_id}
     [return]                   ${account_id}
-
-Select Frame With Title
-    [Arguments]                 ${name}
-    Select Frame                //iframe[@title= '${name}']
     
 Scroll Page To Location
     [Arguments]                 ${x_location}    ${y_location}
     Execute JavaScript          window.scrollTo(${x_location},${y_location})
-
-Go to EDA settings
-    [Documentation]             Clicks on App Waffle and selects 'EDA Settings' tab
-    Select app launcher tab     EDA Settings
-    Select frame with title     accessibility title
