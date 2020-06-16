@@ -2,31 +2,20 @@
 Documentation
 ...     Verify Multi Addresses Enabled functionality
 
-Resource        cumulusci/robotframework/Salesforce.robot
 Resource        robot/EDA/resources/EDA.robot
-Library         robot/EDA/resources/EDA.py
-Library         DateTime
 Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/AccountsAndContactsSettingsPageObject.py
 ...             robot/EDA/resources/ContactsPageObject.py
 
-Test Setup      Initialize test setup
-
-Suite Setup     Run keywords
-...             Initialize test data
-...             Open test browser
-
+Suite Setup     Open test browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 
 Enable Household Account
     [tags]                              unstable
-    Go To Eda Settings
-    Wait for Locator                    tabs.accountsandcontacts
-    Click on Element                    tabs.accountsandcontacts
-
-    Wait for Locator                    account_types.edit
-    Click on Element                    account_types.edit
+    Go to EDA settings tab              Accounts and Contacts
+    Click edit on EDA settings page
 
     # Check Household Account
     Wait for Locator                    account_types.household 
@@ -64,16 +53,3 @@ Enable Household Account
     Select frame                        ${custom_settings_h_settings}
     Wait for Locator                    custom_settings.no_records
     Click on Element                    custom_settings.no_records
-    
-*** Keywords ***
-
-Initialize test setup
-    Select App Launcher App             EDA
-    Close all tabs
-
-
-Initialize test data
-    [Documentation]                         Enable Household Account and Verify Custom Setting of Hierarchy Settings
-
-    ${NAMESPACE} =                          Get EDA namespace prefix
-    Set suite variable                      ${NAMESPACE}
