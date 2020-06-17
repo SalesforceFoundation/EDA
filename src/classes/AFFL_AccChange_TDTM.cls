@@ -127,7 +127,7 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                                 //primary affilations of same type.
 
                                 // check if there are any other Primary affiliations with same account and show an error
-                                if (idToOtherAffiliatonsWithSameAccAndCon.isEmpty() == false &&
+                                if (idToOtherAffiliatonsWithSameAccAndCon.get(affl.ID) != null &&
                                     idToOtherAffiliatonsWithSameAccAndCon.get(affl.ID).isEmpty() == false) {
                                     affl.addError(Label.AffiliationWithSameAccountExists);
                                 }
@@ -206,14 +206,18 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                 idToOtherPrimaryAfflList.get(accIdConId).add(affiliation);
             } else {
                 idToOtherPrimaryAfflList.put(accIdConId, new List<Affiliation__c>{affiliation});
-             }
+            }
         }
 
         Map<Id, List<Affiliation__c>> idToOtherAffiliationWithSameAccAndCon = new Map<Id, List<Affiliation__c>>();
+
+        if (idToOtherPrimaryAfflList.isEmpty()) {
+            return idToOtherAffiliationWithSameAccAndCon;
+        }
         
         for (Affiliation__c affiliation: newAffiliationList) {
             string accIdConId = (String)affiliation.Account__c + (String)affiliation.Contact__c;
-            if (idToOtherPrimaryAfflList.isEmpty() == false && idToOtherPrimaryAfflList.get(accIdConId).isEmpty() == false) {
+            if (idToOtherPrimaryAfflList.get(accIdConId) != null && idToOtherPrimaryAfflList.get(accIdConId).isEmpty() == false) {
                 idToOtherAffiliationWithSameAccAndCon.put(affiliation.Id, idToOtherPrimaryAfflList.get(accIdConId));                
             }
         }
