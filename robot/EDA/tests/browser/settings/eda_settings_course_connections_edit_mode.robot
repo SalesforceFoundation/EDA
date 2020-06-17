@@ -1,15 +1,15 @@
 *** Settings ***
 
 Resource        robot/EDA/resources/EDA.robot
+Library         cumulusci.robotframework.PageObjects
+...             robot/EDA/resources/CourseConnectionsSettingsPageObject.py
+
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Validate Edit Mode For Course Connections, Settings
-    Go To Eda Settings
-
-    Wait for Locator                        eda_settings.course_connections_tab
-    Click on Element                        eda_settings.course_connections_tab
+    Go to EDA settings tab                  Course Connections
 
     #Go into Edit Mode
     Click Button                            Edit

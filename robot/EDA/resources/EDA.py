@@ -1,13 +1,12 @@
 import logging
 import time
 
-from cumulusci.robotframework.utils import selenium_retry
+from cumulusci.robotframework.utils import selenium_retry, capture_screenshot_on_error
 from locators import eda_lex_locators
 
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.common.keys import Keys
-from cumulusci.robotframework.utils import capture_screenshot_on_error
 
 
 @selenium_retry
@@ -40,6 +39,10 @@ class EDA(object):
     @property
     def selenium(self):
         return self.builtin.get_library_instance("SeleniumLibrary")
+
+    @property
+    def pageobjects(self):
+        return self.builtin.get_library_instance("cumulusci.robotframework.PageObjects")
 
     def populate_address(self, loc, value):
         """ Populate address with Place Holder aka Mailing Street etc as a locator
@@ -96,7 +99,7 @@ class EDA(object):
 
     def select_checkbox_in_eda_settings(self, loc_check, loc_checkbox):
         """ Selects checkbox.  Does nothing if checkbox is already checked """
-        if self.check_if_element_exists(loc_check):
+        if self._check_if_element_exists(loc_check):
             return
         else:
             self.selenium.click_button("Edit")
@@ -105,7 +108,11 @@ class EDA(object):
             self.selenium.wait_until_element_is_visible(loc_check)
             return
 
-    def check_if_element_exists(self, xpath):
+    def _check_if_element_exists(self, xpath):
+        """
+            Checks if the given xpath exists
+            this is only a helper function being called from other keywords
+        """
         elements = int(self.selenium.get_element_count(xpath))
         return True if elements > 0 else False
 
@@ -251,7 +258,7 @@ class EDA(object):
             but the keyword will not fail in case the element doesn't exist
         """
         main_loc = self.get_eda_locator(path, *args, **kwargs)
-        if self.check_if_element_exists(main_loc):
+        if self._check_if_element_exists(main_loc):
             self.selenium.click_element(main_loc)
 
     @capture_screenshot_on_error
@@ -263,7 +270,7 @@ class EDA(object):
         locators = eda_lex_locators["tabs"].values()
         for i in locators:
             locator = i.format(title)
-            if self.check_if_element_exists(locator):
+            if self._check_if_element_exists(locator):
                 print(locator)
                 buttons = self.selenium.get_webelements(locator)
                 for button in buttons:
@@ -321,3 +328,26 @@ class EDA(object):
                         time.sleep(0.5)
                         continue
         raise Exception('Unable to find an iframe with a name, title or id with value "{}"'.format(value))
+
+    def go_to_eda_settings_tab(self, tab):
+        """ Navigates to EDA settings URL and click on the tab passed by the parameter
+            and then loads the page object identified by the tab name
+        """
+        url_pattern = "{root}/lightning/n/{object}"
+        object_name = "{}HEDA_Settings".format(self.get_eda_namespace_prefix())
+        url = url_pattern.format(root=self.cumulusci.org.lightning_base_url, object=object_name)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+        self.wait_for_locator("frame", "accessibility title", "accessibility title", "accessibility title")
+        self.select_frame_with_value("accessibility title")
+
+        locator_tab = eda_lex_locators["eda_settings"]["tab"].format(tab)
+        self.selenium.wait_until_page_contains_element(locator_tab, error=f"'{tab}' tab is not available on the page")
+        self.salesforce._jsclick(locator_tab)
+        tab = tab.replace(" ", "_")
+        self.pageobjects.load_page_object(tab, "HEDA_Settings")
+
+    def click_edit_on_eda_settings_page(self):
+        locator = eda_lex_locators["eda_settings"]["edit"]
+        self.selenium.wait_until_page_contains_element(locator, error="Edit button is not available on the page")
+        self.selenium.click_element(locator)
