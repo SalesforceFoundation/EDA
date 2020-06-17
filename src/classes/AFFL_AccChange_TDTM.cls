@@ -193,9 +193,9 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
             afflAccIdSet.add(affl.Account__c);
         }
         
-        // Get all possible Primary Affiliation with Same Contact and Account
         Map<String, List<Affiliation__c>> idToOtherPrimaryAfflList = new Map<String, List<Affiliation__c>>();
-
+        
+        // Get all possible Primary Affiliation with Same Contact and Account
         for (Affiliation__c affiliation : [SELECT Id, Contact__c, Account__c, Affiliation_Type__c, Primary__c
                                             FROM Affiliation__c WHERE Account__c IN :afflAccIdSet 
                                             AND Contact__c IN :afflContactIdSet
