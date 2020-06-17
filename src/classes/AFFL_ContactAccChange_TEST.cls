@@ -85,7 +85,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     private static void changeContact() {
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
         Account bizAcct = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
         
         //Confirm Primary Business Organization field has been populated in contact
@@ -120,7 +120,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     private static void clearContact() {
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
         Contact con = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
         Account bizAcct = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
         Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c = :con.ID AND Account__c = :bizAcct.ID];
@@ -138,7 +138,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     private static void changeAccountSameType() {
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
         Contact con = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
         Account bizAcct1 = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
         Account bizAcct2 = [SELECT Id FROM Account WHERE ID = :bizOrg2.Id];
@@ -162,7 +162,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     private static void changeAccountDifferentType() {
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
         Contact contact = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
 
         Account bizAcct1 = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
@@ -189,7 +189,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
     @isTest
     private static void clearAccount() {
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
         Contact contact = [SELECT Primary_Organization__c from Contact WHERE ID = :contact1.Id];
         Account bizAcct1 = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
         Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizAcct1.ID];
@@ -211,7 +211,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     @isTest
     private static void updateAccToAnExistingAccType() {
         
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
         
         // Get a contact
         Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
@@ -237,8 +237,8 @@ public with sharing class AFFL_ContactAccChange_TEST {
                                       WHERE Id =: primaryHHAfflOnContact.Id];
         
         // Ensure only one of the affiliations is primary
-        System.assertEquals(FALSE, afflUpdated.Primary__c);
-        System.assertEquals(TRUE, primarHHAffilaitionUpdated.Primary__c);
+        System.assertEquals(false, afflUpdated.Primary__c);
+        System.assertEquals(true, primarHHAffilaitionUpdated.Primary__c);
 
     }
     
@@ -246,7 +246,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     @isTest
     private static void updateAccToAnExistingAcc() {
  
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
 
         // Get the contact
         Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
@@ -265,9 +265,9 @@ public with sharing class AFFL_ContactAccChange_TEST {
                 primaryHHAfflOnContact.Account__c = bizOrg1.Id;
                 update primaryHHAfflOnContact;
             Test.stopTest();
-            System.assert(FALSE, 'Always throw an error when Account is updated to an Account which is part of other primary affiliation');
-        } catch (Exception ex) {
-              System.assertEquals(TRUE, ex.getMessage().contains(Label.AffiliationWithSameAccountExists));
+            System.assert(false, 'Always throw an error when Account is updated to an Account which is part of other primary affiliation');
+        } catch (System.DmlException ex) {
+              System.assertEquals(true, ex.getMessage().contains(Label.AffiliationWithSameAccountExists));
           }
     }
 
@@ -275,7 +275,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     @isTest
     private static void createdIdToOtherPrimaryAfflsWithSameAccAndCon() {
         
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
 
         // Get the contact
         Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
@@ -306,7 +306,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     @isTest
     private static void createdIdToOtherPrimaryAfflsWithSameAccAndConBulk() {
         
-        dataSetup();
+        AFFL_ContactAccChange_TEST.dataSetup();
 
         // Get the contacts
         Contact testContact1 = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
@@ -332,7 +332,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         insert affiliationsToInsert;
         
-        // Change the Priamry Household instance to Primary Business Organization for Conatct1 and Contact2
+        // Change the Primary Household instance to Primary Business Organization for Conatct1 and Contact2
         primaryHHAfflCon1.Account__c = bizOrg1.Id;
         primaryHHAfflCon2.Account__c = bizOrg1.Id;
         
