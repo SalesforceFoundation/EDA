@@ -92,9 +92,9 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>This field is auto-populated with the Affiliation record that represents the student's enrollment in this Program. </description>
+        <description>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. </description>
         <externalId>false</externalId>
-        <inlineHelpText>This field is auto-populated with the Affiliation record that represents the student's enrollment in this Program. </inlineHelpText>
+        <inlineHelpText>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. </inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
@@ -116,8 +116,8 @@
     <fields>
         <fullName>Class_Standing__c</fullName>
         <externalId>false</externalId>
-        <description>The student's level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</description>
-        <inlineHelpText>The student's level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</inlineHelpText>
+        <description>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</description>
+        <inlineHelpText>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</inlineHelpText>
         <label>Class Standing</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -211,8 +211,8 @@
     <fields>
         <fullName>Enrollment_Status__c</fullName>
         <externalId>false</externalId>
-        <description>The student's enrollment status, for example, full-time or half-time.</description>
-        <inlineHelpText>The student's enrollment status, for example, full-time or half-time.</inlineHelpText>
+        <description>The student&apos;s enrollment status, for example, full-time or half-time.</description>
+        <inlineHelpText>The student&apos;s enrollment status, for example, full-time or half-time.</inlineHelpText>
         <label>Enrollment Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -241,8 +241,8 @@
     <fields>
         <fullName>GPA__c</fullName>
         <externalId>false</externalId>
-        <description>The student's current grade point average.</description>
-        <inlineHelpText>The student's current grade point average.</inlineHelpText>
+        <description>The student&apos;s current grade point average.</description>
+        <inlineHelpText>The student&apos;s current grade point average.</inlineHelpText>
         <label>GPA</label>
         <precision>4</precision>
         <required>false</required>

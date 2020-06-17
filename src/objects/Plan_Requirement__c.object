@@ -142,9 +142,9 @@
     <fields>
         <fullName>Program_Plan__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Program Plan this requirement is for. If you're grouping Plan Requirements together under a Parent Plan Requirement, best practice is to link only the top-level Plan Requirement to a Program Plan.</description>
+        <description>The Program Plan this requirement is for. If you&apos;re grouping Plan Requirements together under a Parent Plan Requirement, best practice is to link only the top-level Plan Requirement to a Program Plan.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Program Plan this requirement is for. If you're grouping Plan Requirements together under a Parent Plan Requirement, best practice is to link only the top-level Plan Requirement to a Program Plan.</inlineHelpText>
+        <inlineHelpText>The Program Plan this requirement is for. If you&apos;re grouping Plan Requirements together under a Parent Plan Requirement, best practice is to link only the top-level Plan Requirement to a Program Plan.</inlineHelpText>
         <label>Program Plan</label>
         <referenceTo>Program_Plan__c</referenceTo>
         <relationshipLabel>Plan Requirements</relationshipLabel>

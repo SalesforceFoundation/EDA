@@ -16,9 +16,9 @@
     </fields>
     <fields>
         <fullName>Female__c</fullName>
-        <description>The value used for the Reciprocal Setting if the Contact's Gender or Salutation field indicates Female gender.</description>
+        <description>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Female gender.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The value used for the Reciprocal Setting if the Contact's Gender or Salutation field indicates Female gender.</inlineHelpText>
+        <inlineHelpText>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Female gender.</inlineHelpText>
         <label>Female</label>
         <length>255</length>
         <required>false</required>
@@ -28,9 +28,9 @@
     </fields>
     <fields>
         <fullName>Male__c</fullName>
-        <description>The value used for the Reciprocal Setting if the Contact's Gender or Salutation field indicates Male gender.</description>
+        <description>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Male gender.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The value used for the Reciprocal Setting if the Contact's Gender or Salutation field indicates Male gender.</inlineHelpText>
+        <inlineHelpText>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Male gender.</inlineHelpText>
         <label>Male</label>
         <length>255</length>
         <required>false</required>

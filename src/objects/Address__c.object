@@ -530,7 +530,7 @@ MailingPostalCode__c
         <fullName>Seasonal_End_Year__c</fullName>
         <description>The year that this Address no longer replaces the Default Address.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The year that this Address no longer replaces the Default Dddress.</inlineHelpText>
+        <inlineHelpText>The year that this Address no longer replaces the Default Address.</inlineHelpText>
         <label>Seasonal End Year</label>
         <precision>4</precision>
         <required>false</required>

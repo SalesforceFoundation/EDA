@@ -101,9 +101,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The student who's tardy or absent.</description>
+        <description>The student who&apos;s tardy or absent.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The student who's tardy or absent.</inlineHelpText>
+        <inlineHelpText>The student who&apos;s tardy or absent.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Attendance Events</relationshipLabel>

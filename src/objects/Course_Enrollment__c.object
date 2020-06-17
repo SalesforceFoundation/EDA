@@ -83,7 +83,7 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment's Affiliation. If both conditions aren't true, then this Affiliation field is left blank.</description>
+        <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment's Affiliation. If both conditions aren&apos;t true, then this Affiliation field is left blank.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</inlineHelpText>
         <label>Affiliation</label>
@@ -176,7 +176,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <description>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student's academic major.</description>
         <externalId>false</externalId>
-        <inlineHelpText>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student's academic major.</inlineHelpText>
+        <inlineHelpText>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</inlineHelpText>
         <label>Program Enrollment ID</label>
         <referenceTo>Program_Enrollment__c</referenceTo>
         <relationshipLabel>Course Connections</relationshipLabel>

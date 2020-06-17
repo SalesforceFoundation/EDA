@@ -203,9 +203,9 @@
     <fields>
         <fullName>User_Managed__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you've made changes that you don't want us to overwrite.</description>
+        <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, we no longer push updates to this Trigger Handler. Select this option if you've made changes that you don't want us to overwrite.</inlineHelpText>
+        <inlineHelpText>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</inlineHelpText>
         <label>User Managed</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

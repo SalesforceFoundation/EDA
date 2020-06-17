@@ -70,9 +70,9 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
-        <description>The time of day the Course Offering ends. If you've entered a Time Block for this Course Offering, you can leave this field blank.</description>
+        <description>The time of day the Course Offering ends. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time of day the Course Offering ends. If you've entered a Time Block for this Course Offering, you can leave this field blank.</inlineHelpText>
+        <inlineHelpText>The time of day the Course Offering ends. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</inlineHelpText>
         <label>End Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -129,9 +129,9 @@
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
-        <description>The time of day the Course Offering starts. If you've entered a Time Block for this Course Offering, you can leave this field blank.</description>
+        <description>The time of day the Course Offering starts. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time of day the Course Offering starts. If you've entered a Time Block for this Course Offering, you can leave this field blank.</inlineHelpText>
+        <inlineHelpText>The time of day the Course Offering starts. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</inlineHelpText>
         <label>Start Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
