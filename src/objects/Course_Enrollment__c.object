@@ -69,9 +69,9 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Academic Program that the Contact is associated with.</description>
+        <description>The Academic Program that the student or faculty member is associated with.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Academic Program that the Contact is associated with.</inlineHelpText>
+        <inlineHelpText>The Academic Program that the student or faculty member is associated with.</inlineHelpText>
         <label>Contact&apos;s Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Course Connections</relationshipLabel>
@@ -83,7 +83,7 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</description>
+        <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment's Affiliation. If both conditions aren&apos;t true, then this Affiliation field is left blank.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</inlineHelpText>
         <label>Affiliation</label>
@@ -97,9 +97,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Contact connected to the Course Offering, for example a student or faculty member.</description>
+        <description>The student or faculty member participating in this Course Offering.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Contact connected to the Course Offering, for example a student or faculty member.</inlineHelpText>
+        <inlineHelpText>The student or faculty member participating in this Course Offering.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Connections</relationshipLabel>
@@ -111,9 +111,9 @@
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term.</description>
+        <description>The Course Offering the student or faculty member is involved with.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term.</inlineHelpText>
+        <inlineHelpText>The Course Offering the student or faculty member is involved with.</inlineHelpText>
         <label>Course Offering ID</label>
         <referenceTo>Course_Offering__c</referenceTo>
         <relationshipLabel>Course Connection</relationshipLabel>
@@ -125,6 +125,8 @@
     <fields>
         <fullName>Credits_Attempted__c</fullName>
         <externalId>false</externalId>
+        <description>The number of credits the student is trying to earn through this Course Offering.</description>
+        <inlineHelpText>The number of credits the student is trying to earn through this Course Offering.</inlineHelpText>
         <label>Credits Attempted</label>
         <precision>6</precision>
         <required>false</required>
@@ -136,6 +138,8 @@
     <fields>
         <fullName>Credits_Earned__c</fullName>
         <externalId>false</externalId>
+        <description>The number of credits the student earned by completing this Course Offering.</description>
+        <inlineHelpText>The number of credits the student earned by completing this Course Offering.</inlineHelpText>
         <label>Credits Earned</label>
         <precision>6</precision>
         <required>false</required>
@@ -147,6 +151,8 @@
     <fields>
         <fullName>Grade__c</fullName>
         <externalId>false</externalId>
+        <description>The numeric grade the student earned in this Course Offering.</description>
+        <inlineHelpText>The numeric grade the student earned in this Course Offering.</inlineHelpText>
         <label>Grade</label>
         <precision>6</precision>
         <required>false</required>
@@ -158,9 +164,9 @@
     <fields>
         <fullName>Primary__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Represents a Primary Course Connection.</description>
+        <description>For faculty members, indicates they are the primary faculty (for example, lead instructor) for the Course Offering.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Represents a Primary Course Connection.</inlineHelpText>
+        <inlineHelpText>For faculty members, indicates they are the primary faculty (for example, lead instructor) for the Course Offering.</inlineHelpText>
         <label>Primary</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -168,9 +174,9 @@
     <fields>
         <fullName>Program_Enrollment__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program.</description>
+        <description>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student's academic major.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program.</inlineHelpText>
+        <inlineHelpText>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</inlineHelpText>
         <label>Program Enrollment ID</label>
         <referenceTo>Program_Enrollment__c</referenceTo>
         <relationshipLabel>Course Connections</relationshipLabel>
@@ -181,9 +187,9 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <description>Represents the Status of the Course Connection.</description>
+        <description>Indicates whether this is a current or former Course Connection.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Represents the Status of the Course Connection.</inlineHelpText>
+        <inlineHelpText>Indicates whether this is a current or former Course Connection.</inlineHelpText>
         <label>Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

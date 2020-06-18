@@ -55,7 +55,7 @@
         <label>HEDA Course Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Academic course that a Department or School (the degree-granting Account type for the educational institution) offers.</description>
+    <description>Academic Course offered by a Department or School, for example, English 101 or Ancient History.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -67,6 +67,7 @@
     <fields>
         <fullName>Account__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>The department (Account record) that offers this Course.</inlineHelpText>
         <label>Department</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Courses</relationshipLabel>
@@ -80,6 +81,7 @@
     <fields>
         <fullName>Course_ID__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>The Course alphanumeric ID., for example, English 101.</inlineHelpText>
         <label>Course ID</label>
         <length>255</length>
         <required>false</required>
@@ -101,6 +103,7 @@
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses.</inlineHelpText>
         <label>Description</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -108,7 +111,8 @@
     </fields>
     <fields>
         <fullName>Extended_Description__c</fullName>
-        <description>A text area capable of accepting longer course descriptions.</description>
+        <description>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</description>
+        <inlineHelpText>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</inlineHelpText>
         <externalId>false</externalId>
         <label>Extended Description</label>
         <length>131072</length>

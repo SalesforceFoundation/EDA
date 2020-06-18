@@ -103,9 +103,9 @@
     </fields>
     <fields>
         <fullName>Application_Status__c</fullName>
-        <description>The status of the application review process.</description>
+        <description>The status of the application process.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The status of the application review process.</inlineHelpText>
+        <inlineHelpText>The status of the application process.</inlineHelpText>
         <label>Application Status</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

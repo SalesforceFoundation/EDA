@@ -66,9 +66,9 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The organization that is responsible for the Facility.</description>
+        <description>The organization responsible for this Facility, for example, a University Department.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The organization that is responsible for the Facility.</inlineHelpText>
+        <inlineHelpText>The organization responsible for this Facility, for example, a University Department.</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Facilities</relationshipLabel>
@@ -104,9 +104,9 @@
     </fields>
     <fields>
         <fullName>Facility_Type__c</fullName>
-        <description>The type of Facility.</description>
+        <description>Select the type of Facility this is, for example, a computer lab, health center, lecture hall, etc.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The type of Facility.</inlineHelpText>
+        <inlineHelpText>Select the type of Facility this is, for example, a computer lab, health center, lecture hall, etc.</inlineHelpText>
         <label>Facility Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -166,9 +166,9 @@
     <fields>
         <fullName>Parent_Facility__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom.</description>
+        <description>Optionally indicates the Facility that this one is a part of. For example, if this Facility is a classroom, the Parent Facility would be the building this classroom is in.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom.</inlineHelpText>
+        <inlineHelpText>Optionally indicates the Facility that this one is a part of. For example, if this Facility is a classroom, the Parent Facility would be the building this classroom is in.</inlineHelpText>
         <label>Parent Facility</label>
         <referenceTo>Facility__c</referenceTo>
         <relationshipLabel>Facilities</relationshipLabel>
