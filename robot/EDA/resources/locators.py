@@ -3,7 +3,7 @@ eda_lex_locators = {
     "frame": "//iframe[contains(@id, '{}') or contains(@title, '{}') or contains(@name, '{}')]",
     "input_placeholder": "//input[contains(@placeholder,'{}')]",
     "panel_tab_lookup": "//a/span[text()='{}']",
-    "toast_message": "//span[contains(@class, 'toastMessage') and text()='{}']",
+    "toast_message": "//div[@id='successToast']/descendant::h2[text()='{}']",
     "success_message": "//div[@id='successToast']/descendant::h2[text()='{}']",
     "toast_close": "//div[contains(@class, 'slds-theme--success')]/button[contains(@class, 'slds-notify__close')]",
     "close_tab": "//*[@data-key='close']/ancestor::button[contains(@class, 'slds-button slds-button_icon-x-small')]",
@@ -24,8 +24,9 @@ eda_lex_locators = {
         "spl-tab": "//div[@class='slds-tabs_default']//ul[@class='slds-tabs_default__nav']/li[contains(@class,'slds-tabs_default__item')]/a[text()= '{}']",
     },
     "eda_settings": {
-        "tab": "//div[@id='tabs']/descendant::li[contains(@class, 'slds-text-heading--label')]/a[text()='{}']",
+        "action": "//div[@role='banner']/descendant::button[contains(@class, 'settings-{}-bttn')]",
         "edit": "//div[@class='slds-page-header' and @role='banner']/descendant::span[text()='Edit']/parent::button",
+        "tab": "//div[@id='tabs']/descendant::li[contains(@class, 'slds-text-heading--label')]/a[text()='{}']",
         "checkbox_default": "//span[text()='{}']/../following-sibling::div/descendant::img",
         "checkbox": "//span[text()='{}']/../following-sibling::div/descendant::label[contains(@class,'slds-checkbox')]/span[contains(@class, 'slds-checkbox--faux')]",
         "save": "//div[contains(@class, 'slds-page-header')]/descendant::button[contains(@class, 'settings-save-bttn')]",
@@ -96,7 +97,12 @@ eda_lex_locators = {
         "affl_mappings_tab": "//a[contains(text(),'Affiliation Mappings')]",
     },
     "eda_settings_cc": {
-        "enable_cc_warning": "//div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
+        "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
+        "dropdown_values": "//div[text()='{}']/following-sibling::div/select/option[text()='{}']",
+        "dropdown_values_count": "//div[text()='{}']/following-sibling::div/select/option",
+        "enable_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div[1]/descendant::span",
+        "enable_cc_warning_enabled": "//div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
+        "enable_cc_warning_disabled": "//span[contains(@class, 'slds-hide')]/descendant::div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
     },
     "account_types": {
         "administrative": "//span[contains(text(),'Administrative')]/parent::*",
