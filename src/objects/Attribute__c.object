@@ -69,9 +69,9 @@
     </fields>
     <fields>
         <fullName>Attribute_Type__c</fullName>
-        <description>The type of credential or Attribute.</description>
+        <description>The kind of credential or student Attribute.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The type of credential or Attribute.</inlineHelpText>
+        <inlineHelpText>The kind of credential or student Attribute.</inlineHelpText>
         <label>Attribute Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -180,9 +180,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Contact the Attribute is assigned to.</description>
+        <description>The person this Attribute applies to.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Contact the Attribute is assigned to.</inlineHelpText>
+        <inlineHelpText>The person this Attribute applies to.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Attributes</relationshipLabel>
@@ -193,9 +193,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <description>A description of the credential or Attribute.</description>
+        <description>More details about the credential or student Attribute.</description>
         <externalId>false</externalId>
-        <inlineHelpText>A description of the credential or Attribute.</inlineHelpText>
+        <inlineHelpText>More details about the credential or student Attribute.</inlineHelpText>
         <label>Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
@@ -214,11 +214,11 @@
     </fields>
     <fields>
         <fullName>Expired__c</fullName>
-        <description>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</description>
+        <description>Indicates whether the Attribute has expired. This is selected automatically if the Attribute End Date is in the past.</description>
         <externalId>false</externalId>
         <formula>TODAY() &gt;  End_Date__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</inlineHelpText>
+        <inlineHelpText>Indicates whether the Attribute has expired. This is selected automatically if the Attribute End Date is in the past.</inlineHelpText>
         <label>Expired</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

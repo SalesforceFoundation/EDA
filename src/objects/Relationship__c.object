@@ -68,9 +68,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>Related Contact is this Contact&apos;s ______.</description>
+        <description>Select the person you want to create the Relationship record for.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Related Contact is this Contact&apos;s ______.</inlineHelpText>
+        <inlineHelpText>Select the person you want to create the Relationship record for.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Relationships</relationshipLabel>
@@ -82,9 +82,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <description>Additional information about this Relationship</description>
+        <description>Additional information about how these two people are related.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Additional information about this Relationship</inlineHelpText>
+        <inlineHelpText>Additional information about how these two people are related.</inlineHelpText>
         <label>Description</label>
         <length>32000</length>
         <trackHistory>false</trackHistory>
@@ -95,9 +95,9 @@
     <fields>
         <fullName>Emergency_Contact__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Is this an emergency contact.</description>
+        <description>Indicates the Related Contact is an emergency contact.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Is this an emergency contact.</inlineHelpText>
+        <inlineHelpText>Indicates the Related Contact is an emergency contact.</inlineHelpText>
         <label>Emergency Contact</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -106,9 +106,9 @@
     <fields>
         <fullName>ReciprocalRelationship__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship.</description>
+        <description>Lookup to the related Reciprocal Relationship record. This field is automatically populated. Manually updating this field could result in errors.</description>
         <externalId>false</externalId>
-        <inlineHelpText>System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship.</inlineHelpText>
+        <inlineHelpText>Lookup to the related Reciprocal Relationship record. This field is automatically populated. Manually updating this field could result in errors.</inlineHelpText>
         <label>Reciprocal Relationship</label>
         <referenceTo>Relationship__c</referenceTo>
         <relationshipLabel>Relationships</relationshipLabel>
@@ -122,6 +122,8 @@
         <fullName>RelatedContact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
+        <description>Select the person related to the Contact.</description>
+        <inlineHelpText>Select the person related to the Contact.</inlineHelpText>
         <label>Related Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Hidden Relationships List</relationshipLabel>
@@ -134,12 +136,12 @@
     <fields>
         <fullName>Relationship_Explanation__c</fullName>
         <description>Text formula that constructs a sentence explaining the relationship between the two Contacts</description>
+        <inlineHelpText>A sentence that clarifies who&apos;s who in the Relationship. For example, &quot;&apos;s &quot; Joe Ada is Sara Cordova's employer.&quot;&apos;s &quot; This field is read-only.</inlineHelpText>
         <externalId>false</externalId>
         <formula>TEXT(RelatedContact__r.Salutation) + &quot; &quot; + RelatedContact__r.FirstName + &quot; &quot; + RelatedContact__r.LastName
 + &quot;  &quot;  +  $Label.Relationship_Explanation_Connector + &quot; &quot; +
 TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quot; + Contact__r.LastName + &quot;&apos;s &quot; + TEXT(Type__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Text formula that constructs a sentence explaining the relationship between the two Contacts</inlineHelpText>
         <label>Relationship Explanation</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -150,9 +152,9 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     <fields>
         <fullName>SYSTEM_SystemCreated__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>System field that indicates if this Relationship was created automatically as the reciprocal to another Relationships.</description>
+        <description>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</description>
+        <inlineHelpText>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</inlineHelpText>
         <externalId>false</externalId>
-        <inlineHelpText>System field that indicates if this Relationship was created automatically as the reciprocal to another Relationships.</inlineHelpText>
         <label>_SYSTEM: SystemCreated</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -160,9 +162,9 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <description>Status of the Relationship.</description>
+        <description>Status of the Relationship, for example, Current or Former.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Status of the Relationship.</inlineHelpText>
+        <inlineHelpText>Status of the Relationship, for example, Current or Former.</inlineHelpText>
         <label>Status</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -186,9 +188,9 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     </fields>
     <fields>
         <fullName>Type__c</fullName>
-        <description>Field that describes how the Related Contact is connected to the Contact.</description>
+        <description>Describes how the Related Contact is connected to the Contact, for example, friend, coworker, aunt, etc.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Field that describes how the Related Contact is connected to the Contact.</inlineHelpText>
+        <inlineHelpText>Describes how the Related Contact is connected to the Contact, for example, friend, coworker, aunt, etc.</inlineHelpText>
         <label>Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -336,7 +338,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <description>Do not allow users to change the Contact value as it damages the paired relationship data.</description>
         <errorConditionFormula>AND(NOT( ISNEW() ), ISCHANGED(  Contact__c ))</errorConditionFormula>
         <errorDisplayField>Contact__c</errorDisplayField>
-        <errorMessage>Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one.</errorMessage>
+        <errorMessage>Instead of changing the Contacts in this Relationship, either delete this record, or if appropriate, add an end date and update the status to Former. Then create a new Relationship record between the new Contacts.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Related_Contact_Do_Not_Change</fullName>
@@ -344,6 +346,6 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <description>Do not allow user to change Related Contact value as it damages the paired relationship data</description>
         <errorConditionFormula>and(not( ISNEW()), ISCHANGED( RelatedContact__c ))</errorConditionFormula>
         <errorDisplayField>RelatedContact__c</errorDisplayField>
-        <errorMessage>Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one.</errorMessage>
+        <errorMessage>Instead of changing the Contacts in this Relationship, either delete this record, or if appropriate, add an end date and update the status to Former. Then create a new Relationship record between the new Contacts.</errorMessage>
     </validationRules>
 </CustomObject>

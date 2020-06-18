@@ -124,9 +124,9 @@
     <fields>
         <fullName>Language__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>The Language associated with this Contact.</description>
+        <description>A language this person speaks.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Language associated with this Contact.</inlineHelpText>
+        <inlineHelpText>A language this person speaks.</inlineHelpText>
         <label>Language</label>
         <referenceTo>Language__c</referenceTo>
         <relationshipLabel>Contact Languages</relationshipLabel>
@@ -138,9 +138,9 @@
     <fields>
         <fullName>Primary_Language__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates that this is the language of choice for this Contact.</description>
+        <description>Indicates this is the language of choice for this person.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates that this is the language of choice for this Contact.</inlineHelpText>
+        <inlineHelpText>Indicates this is the language of choice for this person.</inlineHelpText>
         <label>Primary Language</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
