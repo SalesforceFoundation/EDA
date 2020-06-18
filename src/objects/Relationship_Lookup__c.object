@@ -16,9 +16,9 @@
     </fields>
     <fields>
         <fullName>Female__c</fullName>
-        <description>The value used if the Contact&apos;s gender field matches the values in the Female Custom Label or the Contact&apos;s salutation indicates gender.</description>
+        <description>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Female gender.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The value used if the Contact&apos;s gender field matches the values in the Female Custom Label or the Contact&apos;s Salutation indicates gender.</inlineHelpText>
+        <inlineHelpText>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Female gender.</inlineHelpText>
         <label>Female</label>
         <length>255</length>
         <required>false</required>
@@ -28,9 +28,9 @@
     </fields>
     <fields>
         <fullName>Male__c</fullName>
-        <description>The value used if the Contact&apos;s gender field matches the values in the Male Custom Label or the Contact&apos;s salutation indicates gender.</description>
+        <description>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Male gender.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The value used if the Contact&apos;s gender field matches the values in the Male Custom Label or the Contact&apos;s Salutation indicates gender.</inlineHelpText>
+        <inlineHelpText>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Male gender.</inlineHelpText>
         <label>Male</label>
         <length>255</length>
         <required>false</required>
@@ -40,9 +40,9 @@
     </fields>
     <fields>
         <fullName>Neutral__c</fullName>
-        <description>The value used if the Contact&apos;s gender field does not match either the Male or Female Custom Labels, and the Contact&apos;s salutation does not infer gender.</description>
+        <description>The value used if the Contact&apos;s Gender and Saluation fields don't indicate gender.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The value used if the Contact&apos;s gender field does not match either the Male or Female Custom Labels, and the Contact&apos;s Salutation does not infer gender.</inlineHelpText>
+        <inlineHelpText>The value used if the Contact&apos;s Gender and Saluation fields don't indicate gender.</inlineHelpText>
         <label>Neutral</label>
         <length>255</length>
         <required>false</required>
