@@ -56,7 +56,7 @@
         <label>HEDA Program Enrollment Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Contains details about the relationship a student Contact has with a Department or School (the degree-granting Account type for the educational institution).</description>
+    <description>A student Contact's enrollment in an academic program offered by a Department or School (the degree-granting Account type for the educational institution).</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -68,9 +68,9 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The program the student is enrolled in.</description>
+        <description>The Program the student is enrolled in.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
+        <inlineHelpText>The Program the student is enrolled in.</inlineHelpText>
         <label>Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
@@ -82,6 +82,8 @@
     <fields>
         <fullName>Admission_Date__c</fullName>
         <externalId>false</externalId>
+        <description>The date the student was admitted to the Program.</description>
+        <inlineHelpText>The date the student was admitted to the Program.</inlineHelpText>
         <label>Admission Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -90,9 +92,9 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>The Contact-Account relationship this academic information is related to.</description>
+        <description>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. </description>
         <externalId>false</externalId>
-        <inlineHelpText>The Contact-Account relationship this academic information is related to.</inlineHelpText>
+        <inlineHelpText>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. </inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
@@ -104,6 +106,8 @@
     <fields>
         <fullName>Application_Submitted_Date__c</fullName>
         <externalId>false</externalId>
+        <description>The date the student applied for admission to the Program.</description>
+        <inlineHelpText>The date the student applied for admission to the Program.</inlineHelpText>
         <label>Application Submitted Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -112,6 +116,8 @@
     <fields>
         <fullName>Class_Standing__c</fullName>
         <externalId>false</externalId>
+        <description>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</description>
+        <inlineHelpText>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</inlineHelpText>
         <label>Class Standing</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -145,9 +151,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The parent Contact.</description>
+        <description>The student enrolled in this Program.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The parent Contact.</inlineHelpText>
+        <inlineHelpText>The student enrolled in this Program.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
@@ -159,6 +165,8 @@
     <fields>
         <fullName>Credits_Attempted__c</fullName>
         <externalId>false</externalId>
+        <description>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</description>
+        <inlineHelpText>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</inlineHelpText>
         <label>Credits Attempted</label>
         <precision>6</precision>
         <required>false</required>
@@ -170,6 +178,8 @@
     <fields>
         <fullName>Credits_Earned__c</fullName>
         <externalId>false</externalId>
+        <description>The number of credits the student has successfully completed to date.</description>
+        <inlineHelpText>The number of credits the student has successfully completed to date.</inlineHelpText>
         <label>Credits Earned</label>
         <precision>6</precision>
         <required>false</required>
@@ -181,6 +191,8 @@
     <fields>
         <fullName>Eligible_to_Enroll__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>When selected, indicates the student has met program requirements and is eligible to enroll.</description>
+        <inlineHelpText>When selected, indicates the student has met program requirements and is eligible to enroll.</inlineHelpText>
         <externalId>false</externalId>
         <label>Eligible to Enroll</label>
         <trackTrending>false</trackTrending>
@@ -189,6 +201,8 @@
     <fields>
         <fullName>End_Date__c</fullName>
         <externalId>false</externalId>
+        <description>The date the student is scheduled to complete the Program.</description>
+        <inlineHelpText>The date the student is scheduled to complete the Program.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -197,6 +211,8 @@
     <fields>
         <fullName>Enrollment_Status__c</fullName>
         <externalId>false</externalId>
+        <description>The student&apos;s enrollment status, for example, full-time or half-time.</description>
+        <inlineHelpText>The student&apos;s enrollment status, for example, full-time or half-time.</inlineHelpText>
         <label>Enrollment Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -225,6 +241,8 @@
     <fields>
         <fullName>GPA__c</fullName>
         <externalId>false</externalId>
+        <description>The student&apos;s current grade point average.</description>
+        <inlineHelpText>The student&apos;s current grade point average.</inlineHelpText>
         <label>GPA</label>
         <precision>4</precision>
         <required>false</required>
@@ -235,7 +253,8 @@
     </fields>
     <fields>
         <fullName>Graduation_Year__c</fullName>
-        <description>The expected graduation year from the program.</description>
+        <description>The year the student is expected to graduate from this Program.</description>
+        <inlineHelpText>The year the student is expected to graduate from this Program.</inlineHelpText>
         <externalId>false</externalId>
         <label>Class Year</label>
         <length>250</length>
@@ -247,9 +266,9 @@
     <fields>
         <fullName>Program_Plan__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup field to the Program Plan encompassing all Program Requirements that a student should follow for this Program Enrollment.</description>
+        <description>The Program Plan that contains all of the program requirements in effect for this student.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Click to select a Program Plan that a student should follow for this Program Enrollment.</inlineHelpText>
+        <inlineHelpText>The Program Plan that contains all of the program requirements in effect for this student.</inlineHelpText>
         <label>Program Plan</label>
         <referenceTo>Program_Plan__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
@@ -261,6 +280,8 @@
     <fields>
         <fullName>Start_Date__c</fullName>
         <externalId>false</externalId>
+        <description>The date the student started, or is expected to start, this Program.</description>
+        <inlineHelpText>The date the student started, or is expected to start, this Program.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
