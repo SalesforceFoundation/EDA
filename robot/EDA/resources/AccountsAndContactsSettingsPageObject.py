@@ -1,3 +1,4 @@
+from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import eda_lex_locators
@@ -5,11 +6,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 @pageobject("Accounts_and_Contacts", "HEDA_Settings")
-class AccountsAndContactsSettingsPage(BasePage):
-
-    @property
-    def eda(self):
-        return self.builtin.get_library_instance('EDA')
+class AccountsAndContactsSettingsPage(BaseEDAPage, BasePage):
 
     def _is_current_page(self):
         """
