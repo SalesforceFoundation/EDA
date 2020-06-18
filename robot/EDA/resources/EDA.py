@@ -192,7 +192,7 @@ class EDA(BaseEDAPage):
             )
             self.selenium.click_element(locator_checkbox)
             self.selenium.click_element(locator_save)
-            locator_toast = eda_lex_locators["success_message"].format("Settings Saved Successfully.")
+            locator_toast = eda_lex_locators["success_message"].format("Settings successfully saved.")
             self.selenium.wait_until_page_contains_element(locator_toast)
 
     def verify_toast_message(self, value):
