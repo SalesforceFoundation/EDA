@@ -1,16 +1,16 @@
 import logging
 import time
 
+from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.utils import selenium_retry, capture_screenshot_on_error
 from locators import eda_lex_locators
 
-from robot.libraries.BuiltIn import BuiltIn
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.common.keys import Keys
 
 
 @selenium_retry
-class EDA(object):
+class EDA(BaseEDAPage):
 
     ROBOT_LIBRARY_SCOPE = "GLOBAL"
     ROBOT_LIBRARY_VERSION = 1.0
@@ -23,26 +23,6 @@ class EDA(object):
         logging.getLogger("requests.packages.urllib3.connectionpool").setLevel(
             logging.WARN
         )
-
-    @property
-    def builtin(self):
-        return BuiltIn()
-
-    @property
-    def salesforce(self):
-        return self.builtin.get_library_instance('cumulusci.robotframework.Salesforce')
-
-    @property
-    def cumulusci(self):
-        return self.builtin.get_library_instance("cumulusci.robotframework.CumulusCI")
-
-    @property
-    def selenium(self):
-        return self.builtin.get_library_instance("SeleniumLibrary")
-
-    @property
-    def pageobjects(self):
-        return self.builtin.get_library_instance("cumulusci.robotframework.PageObjects")
 
     def populate_address(self, loc, value):
         """ Populate address with Place Holder aka Mailing Street etc as a locator
@@ -212,7 +192,7 @@ class EDA(object):
             )
             self.selenium.click_element(locator_checkbox)
             self.selenium.click_element(locator_save)
-            locator_toast = eda_lex_locators["success_message"].format("Settings Saved Successfully.")
+            locator_toast = eda_lex_locators["success_message"].format("Settings successfully saved.")
             self.selenium.wait_until_page_contains_element(locator_toast)
 
     def verify_toast_message(self, value):

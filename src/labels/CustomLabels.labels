@@ -5,7 +5,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>AfflMappingsDescription</shortDescription>
+        <shortDescription>Info text for Mapped Primary Affiliations</shortDescription>
         <value>Mapped Primary Affiliations appear in a special Primary Affiliations section on the Contact record. The value set as Primary for an Account Record Type appears in the corresponding fields on the Contact record, as defined below. For more information, see the</value>
     </labels>
     <labels>
@@ -13,15 +13,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>AfflProgEnrollDeleted</shortDescription>
-        <value>If selected, when deleting a Program Enrollment, delete its related Affiliation. Otherwise, keep the Affiliation and set its Status to the value defined in Status Specified for Affiliations Not Deleted.</value>
+        <shortDescription>Info text for deleting Affiliations related to deleted Program Enrollments</shortDescription>
+        <value>If selected, when deleting a Program Enrollment, delete its related Affiliation. Otherwise, keep the Affiliation and set its Status to the value defined in Status for Affiliations Not Deleted.</value>
     </labels>
     <labels>
         <fullName>AttendanceCourseConnectionContactMismatch</fullName>
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>AttendanceCourseConnectionContactMismatch</shortDescription>
+        <shortDescription>Course Connection and Attendance Event mismatch error message</shortDescription>
         <value>Specify a Course Connection that has the same Contact as you specified for this Attendance Event.</value>
     </labels>
     <labels>
@@ -29,15 +29,15 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>AutoCreateFieldError</shortDescription>
-        <value>Unable to find valid autocreation Relationship settings. Please check the settings under EDA Settings | Relationships | Autocreation for valid fields and try again.</value>
+        <shortDescription>Error when invalid autocreate relationship configured</shortDescription>
+        <value>There's an invalid autocreate relationship setting configured in EDA Settings | Relationships | Autocreation. Delete or edit the invalid setting, then try again.</value>
     </labels>
     <labels>
         <fullName>BatchJobRunningProblem</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Batch message when it has a problem starting.</shortDescription>
+        <shortDescription>Batch message when there's a problem starting</shortDescription>
         <value>There was a problem starting the Batch.</value>
     </labels>
     <labels>
@@ -45,8 +45,8 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>Please set Filter Field, or both Filter Field and Filter Value.</value>
+        <shortDescription>Error message for TDTM filtering functionality</shortDescription>
+        <value>Set the Filter field, or both the Filter field and Filter value.</value>
     </labels>
     <labels>
         <fullName>CannotChangeContactAndCourseOffering</fullName>
@@ -61,15 +61,15 @@
         <categories>Contacts, Accounts</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CannotDelete</shortDescription>
-        <value>This record can&apos;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&apos;t see related records, or if you&apos;re unable to delete them, contact your System Administrator for assistance.</value>
+        <shortDescription>Error when deleting a record with child records</shortDescription>
+        <value>This record can't be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don't see related records, or if you're unable to delete them, contact your System Administrator for assistance.</value>
     </labels>
     <labels>
         <fullName>DefaultAccountName</fullName>
         <categories>Account Naming</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Default Account Name</shortDescription>
+        <shortDescription>Default text appended to Contact's last name for Acct Name (not HH or Admin)</shortDescription>
         <value>Account</value>
     </labels>
     <labels>
@@ -93,7 +93,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Female</shortDescription>
+        <shortDescription>Column heading for Reciprocal Relationships</shortDescription>
         <value>Female</value>
     </labels>
     <labels>
@@ -101,15 +101,15 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>Invalid filter field value defined for </value>
+        <shortDescription>Error message for TDTM filtering functionality</shortDescription>
+        <value>The field entered as the Filter Field isn't valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field's API name, and omit any EDA namespace prefix ("hed__").</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Male</shortDescription>
+        <shortDescription>Column heading for Reciprocal Relationships settings</shortDescription>
         <value>Male</value>
     </labels>
     <labels>
@@ -117,7 +117,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>MultipleCourseConnection</shortDescription>
+        <shortDescription>Error when multiple Course Connections exist</shortDescription>
         <value>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrollment in this Course Offering for this Term Grade.</value>
     </labels>
     <labels>
@@ -125,7 +125,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>NoContactCOFound</shortDescription>
+        <shortDescription>Error when Contact and Course Offering don't match</shortDescription>
         <value>The Contact and Course Offering are not specified or don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
@@ -133,7 +133,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>NoCourseConnection</shortDescription>
+        <shortDescription>Error when no Course Connection found</shortDescription>
         <value>There is no Course Connection associated with this Contact and Course Offering. If this student is enrolled in this Course Offering, create a Course Connection.</value>
     </labels>
     <labels>
@@ -141,7 +141,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>NoDataMatch</shortDescription>
+        <shortDescription>Error when Contact and Course Offering don't match</shortDescription>
         <value>The Contact and Course Offering don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
@@ -149,7 +149,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>NoFieldsPopulated</shortDescription>
+        <shortDescription>Error when required fields aren't populated</shortDescription>
         <value>Either specify only a Course Connection or both a Contact and a Course Offering.</value>
     </labels>
     <labels>
@@ -165,7 +165,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>OnlyCourseConnectionPopulated</shortDescription>
+        <shortDescription>Error when invalid Course Connection selected</shortDescription>
         <value>There is no Contact or Course Offering associated with this Course Connection. Choose a valid Course Connection.</value>
     </labels>
     <labels>
@@ -173,7 +173,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PreferredEmailMatchMustExist</shortDescription>
+        <shortDescription>Error when an invalid value is selected in Preferred Email</shortDescription>
         <value>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</value>
     </labels>
     <labels>
@@ -181,23 +181,23 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PreferredEmailMatchNotNull</shortDescription>
-        <value>The email selected for Preferred Email can&apos;t be blank.</value>
+        <shortDescription>Error when the value of the email field selected in Preferred Email is null</shortDescription>
+        <value>The email field you selected in Preferred Email is blank. Either choose a different Preferred Email, or add a value for that email field.</value>
     </labels>
     <labels>
         <fullName>PreferredEmailRequiredError</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Preferred Email Required Error</shortDescription>
-        <value>Tell us which email is preferred.</value>
+        <shortDescription>Error when Preferred Email is blank</shortDescription>
+        <value>Select a value for Preferred Email.</value>
     </labels>
     <labels>
         <fullName>PreferredPhoneMatchMustExist</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PreferredPhoneMatchMustExist</shortDescription>
+        <shortDescription>Error when Preferred Phone value doesn't exist</shortDescription>
         <value>We can&apos;t find the Phone specified in Preferred Phone. Make sure that you&apos;re entering the field label of an existing custom Phone field.</value>
     </labels>
     <labels>
@@ -205,7 +205,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PreferredPhoneMatchNotNull</shortDescription>
+        <shortDescription>Error when value for phone field in Preferred Phone is blank.</shortDescription>
         <value>The phone selected for Preferred Phone can&apos;t be blank.</value>
     </labels>
     <labels>
@@ -213,15 +213,15 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PreferredPhoneRequiredError</shortDescription>
-        <value>Tell us which Phone is preferred.</value>
+        <shortDescription>Error when Preferred Phone is blank.</shortDescription>
+        <value>Select a value for Preferred Phone.</value>
     </labels>
     <labels>
         <fullName>Relationship_Explanation_Connector</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Relationship Explanation Connector</shortDescription>
+        <shortDescription>The verb in the Relationship Explanation sentence</shortDescription>
         <value>is</value>
     </labels>
     <labels>
@@ -229,7 +229,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Relationship Split</shortDescription>
+        <shortDescription>Word separator when the Reciprocal Method setting is set to "Value Inversion"</shortDescription>
         <value>-</value>
     </labels>
     <labels>
@@ -237,23 +237,23 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>RelationshipsAutoDescription</shortDescription>
-        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
+        <shortDescription>Info text for Relationships Auto Creation: what they are and how to create them</shortDescription>
+        <value>Auto-Create settings let you define when a Relationship record is automatically created between a Contact and a Campaign Member, based on a custom lookup field on one of the two objects. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationship between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
     </labels>
     <labels>
         <fullName>RelationshipsLookupDescription</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>RelationshipsLookupDescription</shortDescription>
-        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
+        <shortDescription>Info text for Reciprocal Relationships Settings</shortDescription>
+        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, since a father is related to his son, there should be an additional record showing the son related back to his father. You can specify the Type value for the Name, and what the reciprocal value should be based on the gender of the connecting Contact. You can define male, female, and neutral values for each reciprocal setting..</value>
     </labels>
     <labels>
         <fullName>acctNamingOther</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>acctNamingOther</shortDescription>
+        <shortDescription>Picklist value for Admin and Household Account Name Format fields</shortDescription>
         <value>Other</value>
     </labels>
     <labels>
@@ -261,7 +261,7 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Throw exception to external call</shortDescription>
+        <shortDescription>Exception error for an invalid external call</shortDescription>
         <value>Invalid call. This function is reserved for Salesforce use.</value>
     </labels>
     <labels>
@@ -269,15 +269,15 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
-        <value>Address records should only be created as children of Account or Contact.</value>
+        <shortDescription>Error - DEPRECATED</shortDescription>
+        <value>Address records can only be associated with Accounts or Contacts.</value>
     </labels>
     <labels>
         <fullName>addrNotEnabledAccount</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrNotEnabledAccount</shortDescription>
+        <shortDescription>Error when Addr record tied to Account RT without Multi-Addresses enabled</shortDescription>
         <value>The ability to add multiple addresses is disabled for this Account record type. To enable it, go to EDA Settings, click on Accounts and Contacts, and select the appropriate checkbox next to Account Types with Multi-Addresses Enabled.</value>
     </labels>
     <labels>
@@ -285,7 +285,7 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrNotEnabledContact</shortDescription>
+        <shortDescription>Error when Addr record tied to Contact and Contact Multi-Addresses disabled</shortDescription>
         <value>The ability to add multiple addresses is disabled for Contacts. To enable it, go to EDA Settings, click on Accounts and Contacts, then select the Contact Multi-Addresses Enabled checkbox.</value>
     </labels>
     <labels>
@@ -293,55 +293,55 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>addrSeasonalOverlap</shortDescription>
-        <value>Date ranges for Seasonal Addresses cannot overlap.</value>
+        <shortDescription>Error when multiple seasonal Addr records have overlapping dates</shortDescription>
+        <value>There's an existing Address record for this Account or Contact with seasonal start and end dates that overlap the seasonal dates for this record. Adjust the seasonal dates so that they don't overlap with the other Address record.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalPartial</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>addrSeasonalPartial</shortDescription>
-        <value>An address must have all start and end day and month fields set or none of them.</value>
+        <shortDescription>Error when some but not all start and end date fields have values</shortDescription>
+        <value>An address can't have partial Seasonal Start and End Dates. Either enter values for all of the Seasonal Start and End date fields, or leave all of them blank.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalPartialYear</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>addrSeasonalPartialYear</shortDescription>
-        <value>An address must have either both start and end year set or neither.</value>
+        <shortDescription>Error when some but not all start and end date fields have values</shortDescription>
+        <value>An address can't have partial Seasonal Start and End Dates. Either enter values for all of the Seasonal Start and End date fields, or leave all of them blank.</value>
     </labels>
     <labels>
         <fullName>addrValidParentObjects</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrValidParentObjects</shortDescription>
-        <value>Address records should only be created as children of Account or Contact.</value>
+        <shortDescription>Error when Addr record has a parent object other than Account or Contact</shortDescription>
+        <value>Address records can only be associated with Accounts or Contacts.</value>
     </labels>
     <labels>
         <fullName>adminAccNameFormat</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>adminAccNameFormat</shortDescription>
-        <value>Administrative Account Name Format:</value>
+        <shortDescription>Field label for Admin Acct Name format</shortDescription>
+        <value>Administrative Account Name Format</value>
     </labels>
     <labels>
         <fullName>adminAccNameFormatHelpText</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>adminAccNameFormatHelpText</shortDescription>
-        <value>The format used for naming Administrative Accounts.</value>
+        <shortDescription>Info text under Admin Acct Name Format field label</shortDescription>
+        <value>The name format used for auto-created Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>afflAccountNoRecordType</fullName>
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>afflAccountNoRecordType</shortDescription>
+        <shortDescription>Error when Affiliation created for Acct with no record type</shortDescription>
         <value>We can&apos;t create this Affiliation because the specified Account doesn&apos;t have a record type.</value>
     </labels>
     <labels>
@@ -349,7 +349,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>afflAccoutMappingError</shortDescription>
+        <shortDescription>Error when Affiliation created and record type issue in Affiliation Mappings</shortDescription>
         <value>We can&apos;t save this record because of an Account record type error in Affiliation Mappings. Ask your administrator to verify that Account Record Types are correctly mapped to Contact Primary Affiliations.</value>
     </labels>
     <labels>
@@ -357,39 +357,39 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>afflNullPointerError</shortDescription>
-        <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in affiliation mappings.</value>
+        <shortDescription>Error when Affiliation created and Acct RT doesn't exist</shortDescription>
+        <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in Affiliation Mappings.</value>
     </labels>
     <labels>
         <fullName>afflTypeEnforced</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>afflTypeEnforced</shortDescription>
-        <value>Enable Record Type Validation:</value>
+        <shortDescription>Field label for Affiliations setting</shortDescription>
+        <value>Enable Record Type Validation</value>
     </labels>
     <labels>
         <fullName>afflTypeEnforcedDescription</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>afflTypeEnforcedDescription</shortDescription>
-        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, EDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
+        <shortDescription>Info text for the Enable Record Type Validation setting for Affilliations</shortDescription>
+        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, the Account is required to have a record type and all Account Record Type values must be correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
     </labels>
     <labels>
         <fullName>automaticHHNaming</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>automaticHHNaming</shortDescription>
-        <value>Automatically Rename Household Accounts:</value>
+        <shortDescription>Field label for Automatic HH Naming</shortDescription>
+        <value>Automatically Rename Household Accounts</value>
     </labels>
     <labels>
         <fullName>automaticHHNamingHelpText</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>automaticHHNamingHelpText</shortDescription>
+        <shortDescription>Info text for Automatic Household Naming</shortDescription>
         <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
     </labels>
     <labels>
@@ -397,7 +397,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>defaultNamingConnector</shortDescription>
+        <shortDescription>Default connector word for Acct naming</shortDescription>
         <value>and</value>
     </labels>
     <labels>
@@ -414,38 +414,38 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>The Filter Field value names a duplicate of an EDA field. We will filter according to the value in the EDA field. To proceed with saving this record, either specify a non-duplicate field or acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
+        <value>The Filter Field value names a duplicate of a product field. Specify a non-duplicate field. Otherwise, we filter using the value in the product field. If you choose the latter option, acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
     </labels>
     <labels>
         <fullName>exceptionRequiredField</fullName>
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>exceptionRequiredField</shortDescription>
-        <value>A required field is not set. This field could be from this record or a related record.</value>
+        <shortDescription>Error when missing required field value</shortDescription>
+        <value>A blank required field is preventing this record from being saved. The required field could be on this record, or on a record related by a lookup value.</value>
     </labels>
     <labels>
         <fullName>exceptionValidationRule</fullName>
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>exceptionValidationRule</shortDescription>
-        <value>A validation rule is preventing the record from being processed. This could be from this record, or a related record being updated. VALIDATION MESSAGE:</value>
+        <shortDescription>Error when validation rule prevents processing</shortDescription>
+        <value>A validation rule is preventing this record from being processed. The validation rule might be on this record, or on a related record that's being updated. VALIDATION MESSAGE: </value>
     </labels>
     <labels>
         <fullName>fieldWithHEDANamespace</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>The Filter Field value can&apos;t include the EDA namespace. Remove it from the field name.</value>
+        <shortDescription>TDTM filter err msg</shortDescription>
+        <value>The Filter Field can't include namespace prefixes such as hed__. Remove the namespace prefix and try again.</value>
     </labels>
     <labels>
         <fullName>firstNameLastNameAdminACC</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>firstNameLastNameAdminACC</shortDescription>
+        <shortDescription>A picklist value for the Admin Account Name Format setting</shortDescription>
         <value>{!{!FirstName}} {!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -453,7 +453,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>firstNameLastNameFamily</shortDescription>
+        <shortDescription>A picklist value for the Household Account Name Format setting</shortDescription>
         <value>{!{!FirstName}} {!LastName} Family</value>
     </labels>
     <labels>
@@ -461,14 +461,14 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>firstNameLastNameHH</shortDescription>
+        <shortDescription>A picklist value for the Household Account Name Format setting</shortDescription>
         <value>{!{!FirstName}} {!LastName} Household</value>
     </labels>
     <labels>
         <fullName>giftProcessingConfigException</fullName>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Gift Processing configuration error</shortDescription>
+        <shortDescription>Error when Gift Processing config is invalid</shortDescription>
         <value>You are trying to access Gift Processing without the required configuration information. Contact your administrator for help.</value>
     </labels>
     <labels>
@@ -476,15 +476,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>hhAccNameFormat</shortDescription>
-        <value>Household Account Name Format:</value>
+        <shortDescription>Field label for the Household Account Name format setting</shortDescription>
+        <value>Household Account Name Format</value>
     </labels>
     <labels>
         <fullName>hhAccNameFormatHelpText</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>hhAccNameFormatHelpText</shortDescription>
+        <shortDescription>Info text for Household Acct Naming Format</shortDescription>
         <value>The format used for naming Household Accounts.</value>
     </labels>
     <labels>
@@ -492,7 +492,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>hhFamily</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
         <value>Family</value>
     </labels>
     <labels>
@@ -500,7 +500,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameAdminAcc</shortDescription>
+        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
         <value>{!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -508,7 +508,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameFamily</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
         <value>{!LastName} Family</value>
     </labels>
     <labels>
@@ -516,7 +516,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameFirstNameAdminAcc</shortDescription>
+        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Administrative Account</value>
     </labels>
     <labels>
@@ -524,7 +524,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameFirstNameFamily</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format.</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Family</value>
     </labels>
     <labels>
@@ -532,7 +532,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameFirstNameHH</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Household</value>
     </labels>
     <labels>
@@ -540,7 +540,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>lastNameHH</shortDescription>
+        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
         <value>{!LastName} Household</value>
     </labels>
     <labels>
@@ -548,7 +548,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>nestedPlanRequirementPPExp</shortDescription>
+        <shortDescription>Error when Plan Requirement has both parent Plan Requirement and Program Plan</shortDescription>
         <value>Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.</value>
     </labels>
     <labels>
@@ -564,31 +564,31 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No Affiliation Mappings</shortDescription>
-        <value>No Affiliation Mappings to display. Try creating new ones using the form below.</value>
+        <shortDescription>Empty state message for Affiliation Mappings</shortDescription>
+        <value>No Affiliation Mappings have been created. Use the form below to create a new Affiliation Mapping.</value>
     </labels>
     <labels>
         <fullName>noAutoCreateSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No Auto Create Settings</shortDescription>
-        <value>No Auto-Create Settings to display. Try creating new ones using the form below.</value>
+        <shortDescription>Empty state message for Auto-Create Settings</shortDescription>
+        <value>No Auto-Create Settings have been defined. Use the form below to create a new Auto-Create Setting.</value>
     </labels>
     <labels>
         <fullName>noRecSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No Reciprocal Settings</shortDescription>
-        <value>No Reciprocal Settings to display. Try creating new ones using the form below.</value>
+        <shortDescription>Empty state message for Reciprocal Settings </shortDescription>
+        <value>No Reciprocal Settings have been defined. Use the form below to create a new Reciprocal Setting.</value>
     </labels>
     <labels>
         <fullName>preferredBatchDefaultEmail</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>preferredBatchDefaultEmail</shortDescription>
+        <shortDescription>Value used in Preferred Email logic</shortDescription>
         <value>Email (standard)</value>
     </labels>
     <labels>
@@ -596,7 +596,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>preferredBatchDefaultPhone</shortDescription>
+        <shortDescription>Value used in Preferred Phone logic</shortDescription>
         <value>Phone (standard)</value>
     </labels>
     <labels>
@@ -604,39 +604,39 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgAccModelTitle</shortDescription>
-        <value>Default Account Model:</value>
+        <shortDescription>Field label for Account model </shortDescription>
+        <value>Default Account Model</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeSupportsHHAddress</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAccountRecordTypeSupportsHHAddress</shortDescription>
-        <value>Household Account Record Type:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Household Account Record Type</value>
     </labels>
     <labels>
         <fullName>stgAccountTypesMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAccountTypesMultiAddressesEnabled</shortDescription>
-        <value>Account Types with Multi-Addresses Enabled:</value>
+        <shortDescription>Field label for multi address functionality Settings</shortDescription>
+        <value>Account Types with Multi-Addresses Enabled</value>
     </labels>
     <labels>
         <fullName>stgAccoutTypesWithoutContactsDelete</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAccoutTypesWithoutContactsDelete</shortDescription>
-        <value>Account Types without Contacts to Delete:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Account Types without Contacts to Delete</value>
     </labels>
     <labels>
         <fullName>stgAddHispanicOrLatinoPicklistValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAddHispanicOrLatinoPicklistValue</shortDescription>
+        <shortDescription>Instructions for Ethnicity and Race Backfill</shortDescription>
         <value>Add &quot;Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
@@ -644,7 +644,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAddNotHispanicOrLatinoPicklistValue</shortDescription>
+        <shortDescription>Instructions for Ethnicity and Race Backfill</shortDescription>
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
@@ -652,39 +652,39 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAdminAccountRecordType</shortDescription>
-        <value>Administrative Account Record Type:</value>
+        <shortDescription>Field label for Account record types Setting</shortDescription>
+        <value>Administrative Account Record Type</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflCopyProgramEnrollmentEndDate</shortDescription>
-        <value>Copy Affiliation End Date from Program Enrollment:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Copy Affiliation End Date from Program Enrollment</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentStartDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflCopyProgramEnrollmentStartDate</shortDescription>
-        <value>Copy Affiliation Start Date from Program Enrollment:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Copy Affiliation Start Date from Program Enrollment</value>
     </labels>
     <labels>
         <fullName>stgAfflDeleteProgramEnrollment</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflDeleteProgramEnrollment</shortDescription>
-        <value>Status Specified for Affiliations Not Deleted:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Status for Affiliations Not Deleted</value>
     </labels>
     <labels>
         <fullName>stgAfflNotInserted</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflNotInserted</shortDescription>
+        <shortDescription>Error when record type is already used in existing Affl Mapping</shortDescription>
         <value>We can&apos;t map this Affiliation because it references a record type that is already referenced by another Affiliation Mapping. If you want to add this mapping so the Affiliation is translated, click Edit to modify the existing mapping. Then, specify the field API name under Contact Primary Affl Field. Do not change the name specified for Account Record Type.</value>
     </labels>
     <labels>
@@ -692,63 +692,63 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflProgEnrollDeleteRelated</shortDescription>
-        <value>Delete Related Affiliation When Deleting Program Enrollment:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Delete Related Affiliation When Deleting Program Enrollment</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflProgEnrollSetRole</shortDescription>
-        <value>Specify Role for Created Affiliations:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Specify Role for Created Affiliations</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRoleValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflProgEnrollSetRoleValue</shortDescription>
-        <value>Role Specified for Created Affiliations:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Role for Created Affiliations</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetStatusValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflProgEnrollSetStatusValue</shortDescription>
-        <value>Status Specified for Created Affiliations:</value>
+        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <value>Status for Created Affiliations</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfterRunBackfill</shortDescription>
-        <value>After you run the Backfill:</value>
+        <shortDescription>Label for Accounts and Contacts Backfill</shortDescription>
+        <value>After Running the Backfill</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteEnterChatterGroupName</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoCompleteEnterChatterGroupName</shortDescription>
-        <value>Enter Chatter Group name to search</value>
+        <shortDescription>Ghost text in Error Notification Recipients field System Settings</shortDescription>
+        <value>Start typing Chatter Group name to search.</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteEnterUserName</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoCompleteEnterUserName</shortDescription>
-        <value>Enter User name to search</value>
+        <shortDescription>Ghost text in Error Notification Recipients field System Settings</shortDescription>
+        <value>Start typing User name to search.</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteSelectChatterGroup</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoCompleteSelectChatterGroup</shortDescription>
+        <shortDescription>Field label for System Settings</shortDescription>
         <value>Select Chatter Group</value>
     </labels>
     <labels>
@@ -756,7 +756,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoCompleteSelectUser</shortDescription>
+        <shortDescription>Field label for System Settings</shortDescription>
         <value>Select User</value>
     </labels>
     <labels>
@@ -764,7 +764,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoEnrollment</shortDescription>
+        <shortDescription>Field label for Affiliation Mappings Settings</shortDescription>
         <value>Auto-Enrollment</value>
     </labels>
     <labels>
@@ -772,7 +772,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoEnrollmentRole</shortDescription>
+        <shortDescription>Column header for Affiliation Mappings Settings</shortDescription>
         <value>Auto-Enrollment Role</value>
     </labels>
     <labels>
@@ -780,7 +780,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAutoEnrollmentStatus</shortDescription>
+        <shortDescription>Column header for Affiliation Mappings Settings</shortDescription>
         <value>Auto-Enrollment Status</value>
     </labels>
     <labels>
@@ -788,7 +788,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBackfillQueuedEmailSent</shortDescription>
+        <shortDescription>Confirmation message for backfill</shortDescription>
         <value>The backfill was queued successfully. An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
@@ -796,15 +796,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBeforeRunBackfill</shortDescription>
-        <value>Before you run the Backfill:</value>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
+        <value>Before Running the Backfill</value>
     </labels>
     <labels>
         <fullName>stgBtnAddMapping</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnAddMapping</shortDescription>
+        <shortDescription>Button label for Affiliation Mappings Settings</shortDescription>
         <value>Add Mapping</value>
     </labels>
     <labels>
@@ -812,7 +812,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnAddSetting</shortDescription>
+        <shortDescription>Button label for Reciprocal Relationships Settings</shortDescription>
         <value>Add Setting</value>
     </labels>
     <labels>
@@ -820,7 +820,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnCancel</shortDescription>
+        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
         <value>Cancel</value>
     </labels>
     <labels>
@@ -828,7 +828,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnEdit</shortDescription>
+        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
         <value>Edit</value>
     </labels>
     <labels>
@@ -836,7 +836,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnRunBackfill</shortDescription>
+        <shortDescription>Button label for Course Connections Settings</shortDescription>
         <value>Run Backfill</value>
     </labels>
     <labels>
@@ -844,7 +844,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnRunCopy</shortDescription>
+        <shortDescription>Button label for Courses Settings</shortDescription>
         <value>Run Copy</value>
     </labels>
     <labels>
@@ -852,7 +852,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgBtnSave</shortDescription>
+        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
         <value>Save</value>
     </labels>
     <labels>
@@ -860,15 +860,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgCleanupQueuedEmailSent</shortDescription>
-        <value>The Cleanup was queued successfully. An email will be sent at the completion of the batch.</value>
+        <shortDescription>Confirmation msg for Run Cleanup on Accts and Contacts</shortDescription>
+        <value>The Cleanup was queued successfully. An email will be sent when the batch is completed.</value>
     </labels>
     <labels>
         <fullName>stgColAccountRecordType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColAccountRecordType</shortDescription>
+        <shortDescription>Col header and label for Affiliation Mappings Settings</shortDescription>
         <value>Account Record Type</value>
     </labels>
     <labels>
@@ -876,7 +876,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColActive</shortDescription>
+        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
         <value>Active</value>
     </labels>
     <labels>
@@ -884,7 +884,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColCampTypes</shortDescription>
+        <shortDescription>Field label for Relationship Auotcreation Settings</shortDescription>
         <value>Campaign Types</value>
     </labels>
     <labels>
@@ -892,7 +892,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColContactPrimaryAfflField</shortDescription>
+        <shortDescription>Col header for Affiliation Mappings Settings</shortDescription> 
         <value>Contact Primary Affl Field</value>
     </labels>
     <labels>
@@ -900,7 +900,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColFemale</shortDescription>
+        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
         <value>Female</value>
     </labels>
     <labels>
@@ -908,15 +908,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColField</shortDescription>
-        <value>Field</value>
+        <shortDescription>Col header and field label for Relationships Autocreate Settings</shortDescription>
+        <value>Field Label</value>
     </labels>
     <labels>
         <fullName>stgColMale</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColMale</shortDescription>
+        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
         <value>Male</value>
     </labels>
     <labels>
@@ -924,7 +924,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColNeutral</shortDescription>
+        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
         <value>Neutral</value>
     </labels>
     <labels>
@@ -932,15 +932,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColObject</shortDescription>
-        <value>Object</value>
+        <shortDescription>Col header and field label for Relationships  Autocreation Settings</shortDescription>
+        <value>Object API Name</value>
     </labels>
     <labels>
         <fullName>stgColRelType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColRelType</shortDescription>
+        <shortDescription>Col header and field label for Relationships  Autocreation Settings</shortDescription>
         <value>Relationship Type</value>
     </labels>
     <labels>
@@ -948,7 +948,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColRole</shortDescription>
+        <shortDescription>Field label for Affiliation Mappings Settings</shortDescription>
         <value>Role</value>
     </labels>
     <labels>
@@ -956,7 +956,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgColStatus</shortDescription>
+        <shortDescription>Field label for Affiliation Mappings Settings</shortDescription>
         <value>Status</value>
     </labels>
     <labels>
@@ -964,23 +964,23 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgConfirmReadyRunBackfill</shortDescription>
-        <value>I understand and am ready to run Backfill</value>
+        <shortDescription>Confirm ready to run Backfill msg</shortDescription>
+        <value>I understand and am ready to run Backfill.</value>
     </labels>
     <labels>
         <fullName>stgContactMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgContactMultiAddressesEnabled</shortDescription>
-        <value>Contact Multi-Addresses Enabled:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Contact Multi-Addresses Enabled</value>
     </labels>
     <labels>
         <fullName>stgCourseConnBackFillError</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgCourseConnBackFillError</shortDescription>
+        <shortDescription>Error when starting Course Connection backfill</shortDescription>
         <value>There was an error when starting the backfill.</value>
     </labels>
     <labels>
@@ -988,7 +988,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgCourseConnBackFillSuccess</shortDescription>
+        <shortDescription>Success message for Course Connection backfill</shortDescription>
         <value>The backfill was queued successfully.</value>
     </labels>
     <labels>
@@ -1004,7 +1004,7 @@
         <categories>Courses</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting Course Description Copy Email Subject</shortDescription>
+        <shortDescription>Email subject on completion of Run Copy on Courses Description Data Migration</shortDescription>
         <value>Course Description Copy Job Completed with a status of:</value>
     </labels>
     <labels>
@@ -1012,7 +1012,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgDefaultContactLanguageFluency</shortDescription>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Default Contact Language Fluency</value>
     </labels>
     <labels>
@@ -1020,63 +1020,63 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgDefaultFacultyTypeTitle</shortDescription>
-        <value>Default Faculty Record Type:</value>
+        <shortDescription>Field label for Course Connections Settings</shortDescription>
+        <value>Default Faculty Record Type</value>
     </labels>
     <labels>
         <fullName>stgDefaultStudentTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgDefaultStudentTypeTitle</shortDescription>
-        <value>Default Active Student Record Type:</value>
+        <shortDescription>Field label for Course Connections Settings</shortDescription>
+        <value>Default Active Student Record Type</value>
     </labels>
     <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgDisableErrorHandlingTitle</shortDescription>
-        <value>Disable Error Handling:</value>
+        <shortDescription>Field label for System Settings</shortDescription>
+        <value>Disable Error Handling</value>
     </labels>
     <labels>
         <fullName>stgDisablePreferredEmailEnforcement</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgDisablePreferredEmailEnforcement</shortDescription>
-        <value>Disable Preferred Email enforcement:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Disable Preferred Email Enforcement</value>
     </labels>
     <labels>
         <fullName>stgDisablePreferredPhoneEnforcement</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgDisablePreferredPhoneEnforcement</shortDescription>
-        <value>Disable Preferred Phone enforcement:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Disable Preferred Phone Enforcement</value>
     </labels>
     <labels>
         <fullName>stgEnableCourseConnectionsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgEnableCourseConnectionsTitle</shortDescription>
-        <value>Enable Course Connections:</value>
+        <shortDescription>Field label for Course Connections Settings</shortDescription>
+        <value>Enable Course Connections</value>
     </labels>
     <labels>
         <fullName>stgEnablePreferredPhoneSync</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgEnablePreferredPhoneSync</shortDescription>
-        <value>Enable Enhanced Preferred Phone Functionality:</value>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <value>Enable Enhanced Preferred Phone Functionality</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgErrorNotiTo</shortDescription>
+        <shortDescription>Edit mode field label for System Settings</shortDescription>
         <value>Error Notifications To:</value>
     </labels>
     <labels>
@@ -1084,15 +1084,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgErrorNotifRecipientsTitle</shortDescription>
-        <value>Error Notification Recipients:</value>
+        <shortDescription>Field label for System Settings</shortDescription>
+        <value>Error Notification Recipients</value>
     </labels>
     <labels>
         <fullName>stgEthnicityRaceBackfillContacts</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgEthnicityRaceBackfillContacts</shortDescription>
+        <shortDescription>Section title for Accounts and Contacts Settings</shortDescription>
         <value>Ethnicity and Race Backfill for Contacts</value>
     </labels>
     <labels>
@@ -1100,7 +1100,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgFluent</shortDescription>
+        <shortDescription>Picklist value for Accounts and Contacts Settings</shortDescription>
         <value>Fluent</value>
     </labels>
     <labels>
@@ -1108,7 +1108,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpAccountModel</shortDescription>
+        <shortDescription>Info text for System Settings</shortDescription>
         <value>For Higher Education institutions, we recommend the &quot;Administrative&quot; Account model. For K-12 schools, we recommend the &quot;Household&quot; Account model.</value>
     </labels>
     <labels>
@@ -1116,15 +1116,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAccoutsDeletedIfChildContactsDeleted</shortDescription>
-        <value>Record Types of those Accounts that will be automatically deleted if all their children Contacts have been deleted.</value>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
+        <value>Record types of Accounts that are automatically deleted if all their associated Contacts have been deleted.</value>
     </labels>
     <labels>
         <fullName>stgHelpAddressAccRecType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpAddressAccRecType</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>The Account record types that support multiple address management.</value>
     </labels>
     <labels>
@@ -1132,7 +1132,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAdminRecType</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</value>
     </labels>
     <labels>
@@ -1140,23 +1140,23 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflCopyProgramEnrollmentEndDate</shortDescription>
-        <value>If selected, copy the Program Enrollment&apos;s End Date to the created Affiliation. Otherwise, leave the created Affiliation&apos;s End Date blank.</value>
+        <shortDescription>Info text for Affiliations Settings</shortDescription>
+        <value>If selected, the Program Enrollment End Date is copied to the End Date on new Affiliation records. Otherwise, the Affiliation End Date is left blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflCopyProgramEnrollmentStartDate</shortDescription>
-        <value>If selected, copy the Program Enrollment&apos;s Start Date to the created Affiliation. Otherwise, leave the created Affiliation&apos;s Start Date blank.</value>
+        <shortDescription>Info text for Affiliations Settings</shortDescription>
+        <value>If selected, the Program Enrollment Start Date is copied to the Start Date on new Affiliation records. Otherwise, the Affiliation Start Date is left blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflCreateFromProgramEnrollmentHeader</shortDescription>
+        <shortDescription>Section header for Affiliations Settings</shortDescription>
         <value>Affiliations Created with Program Enrollments</value>
     </labels>
     <labels>
@@ -1164,23 +1164,23 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflCreateFromProgramEnrollmentInfo</shortDescription>
-        <value>When creating a Program Enrollment without an existing related Affiliation, create an Affiliation with the values specified here.</value>
+        <shortDescription>Info text for Affiliations Settings</shortDescription>
+        <value>When a Program Enrollment record is created without an existing Affiliation, create an Affiliation record with the values specified below.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollment</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflDeleteProgramEnrollment</shortDescription>
-        <value>The Status value set on the Affiliation related to a deleted Program Enrollment, if the related Affiliation isn&apos;t also deleted.</value>
+        <shortDescription>Info text for Affiliations status</shortDescription>
+        <value>The Status set on the Affiliation related to a deleted Program Enrollment.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollmentHeader</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflDeleteProgramEnrollmentHeader</shortDescription>
+        <shortDescription>Section header for Affiliations Settings</shortDescription>
         <value>Program Enrollment Deletions</value>
     </labels>
     <labels>
@@ -1188,39 +1188,39 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflDeleteProgramEnrollmentInfo</shortDescription>
-        <value>When deleting a Program Enrollment, its related Affiliation can either be deleted or have its Status changed.</value>
+        <shortDescription>Info text for how Program Enrollment delete affects Affiliation</shortDescription>
+        <value>Specify below how you want Affiliation records for deleted Program Enrollments to be handled. The related Affiliation record can either be deleted, or have its Status updated.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflProgEnrollSetRole</shortDescription>
-        <value>If selected, set the created Affiliation&apos;s Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation&apos;s Role blank.</value>
+        <shortDescription>Info text for enable set role on Affiliations</shortDescription>
+        <value>If selected, set the new Affiliation's role to the value defined in Role for Created Affiliations. Otherwise, leave the Affiliation's role blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetRoleValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflProgEnrollSetRoleValue</shortDescription>
-        <value>The Role value set on the Affiliation created with the Program Enrollment, if Specify Role for Created Affiliations is selected.</value>
+        <shortDescription>Info text for Affiliations role</shortDescription>
+        <value>The role set on the Affiliation created with a Program Enrollment.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetStatusValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAfflProgEnrollSetStatusValue</shortDescription>
-        <value>The Status value set on the Affiliation created with the Program Enrollment.</value>
+        <shortDescription>Info text for Affiliations status</shortDescription>
+        <value>The status set on the Affiliation created with a Program Enrollment.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactAddrs</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpContactAddrs</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts address mgmt</shortDescription>
         <value>Select this option to enable multiple address management for Contacts.</value>
     </labels>
     <labels>
@@ -1228,7 +1228,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpContactPreferredEmail</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Preferred Email</shortDescription>
         <value>Do not require Contacts to have a Preferred Email.</value>
     </labels>
     <labels>
@@ -1236,7 +1236,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpContactPreferredPhone</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>Do not require Contacts to have a Preferred Phone.</value>
     </labels>
     <labels>
@@ -1244,7 +1244,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpContactPreferredPhoneSync</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</value>
     </labels>
     <labels>
@@ -1252,7 +1252,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpCopyQueuedEmailSent</shortDescription>
+        <shortDescription>Confirmation msg for Run Copy button on Courses</shortDescription>
         <value>The process was queued successfully. An email will be sent at the completion of the job.</value>
     </labels>
     <labels>
@@ -1260,15 +1260,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpCourseConnBackfillDescription</shortDescription>
-        <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the feature. The Backfill converts all contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
+        <shortDescription>Info text for Course Connections backfill</shortDescription>
+        <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the Course Connections feature. The Backfill converts all Contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigration</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpCoursesDataMigration</shortDescription>
+        <shortDescription>Info text for Courses description field data migration</shortDescription>
         <value>In EDA 1.30, the Extended Description field was added to accommodate longer course descriptions.</value>
     </labels>
     <labels>
@@ -1276,7 +1276,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpCoursesDataMigrationCopiesValues</shortDescription>
+        <shortDescription>Info text for Courses Settings</shortDescription>
         <value>This utility copies values from the Course Description field to the Extended Description field. This process may take some time, but you can safely close this page and the process will continue in the background.</value>
     </labels>
     <labels>
@@ -1284,15 +1284,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpCoursesDataMigrationDontOverwrite</shortDescription>
-        <value>If a course already has a value for Extended Description, we don&apos;t overwrite it.</value>
+        <shortDescription>Info text for Courses Settings</shortDescription>
+        <value>If a Course already has a value for Extended Description, we don&apos;t overwrite it.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigrationUpdatePageLayouts</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpCoursesDataMigrationUpdatePageLayouts</shortDescription>
+        <shortDescription>Info text for Courses Settings</shortDescription>
         <value>After the process is complete, remember to update page layouts and other areas of the application that refer to the Description fields.</value>
     </labels>
     <labels>
@@ -1300,7 +1300,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpDefaultContactLanguageFluency</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</value>
     </labels>
     <labels>
@@ -1308,7 +1308,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpDefaultFacultyType</shortDescription>
+        <shortDescription>Info text for Course Connections Settings</shortDescription>
         <value>The default record type when creating Course Connections for a faculty member.</value>
     </labels>
     <labels>
@@ -1316,7 +1316,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpDefaultStudentType</shortDescription>
+        <shortDescription>Info text for Course Connections Settings</shortDescription>
         <value>The default record type when creating Course Connections for active students.</value>
     </labels>
     <labels>
@@ -1324,7 +1324,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpEnableCourseConnBeforeBackfill</shortDescription>
+        <shortDescription>Error when Enable Course Connections field isn't selected</shortDescription>
         <value>You must enable Course Connections before running the Course Connections Backfill.</value>
     </labels>
     <labels>
@@ -1332,7 +1332,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpEnableCourseConnBeforeRecordTypes</shortDescription>
+        <shortDescription>Error when Enable Course Connections Field isn't selected</shortDescription>
         <value>You must enable Course Connections before editing record types.</value>
     </labels>
     <labels>
@@ -1340,15 +1340,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpEnableCourseConnections</shortDescription>
-        <value>Course Connections connect a contact with a course offering. Enabling this checkbox lets you choose to create the connection for a student or faculty (the two default record types). After selecting this checkbox, you must set the Default Active Student Record Type and the Default Faculty Record Type. If enabling this feature for the first time, it is highly recommended that you run the Backfill in your org.</value>
+        <shortDescription>Info text for Course Connections Settings</shortDescription>
+        <value>Course Connection records connect a Contact with a Course Offering. Enabling this feature allows users to choose the type of Contact (Faculty or Student) to create the Course Connection for. When you enable this feature, you also need to set the Default Active Student Record Type and Default Faculty Record Type, below. If you're enabling this feature for the first time, we highly recommend you run the Course Connections Backfill.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnsureExistContactPreferEmail</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpEnsureExistContactPreferEmail</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>For existing Contacts who haven&apos;t specified a Preferred Email or Preferred Phone, the cleanup ensures that one of the Contact&apos;s standard or custom email addresses or phone numbers are set as the preferred value.</value>
     </labels>
     <labels>
@@ -1356,32 +1356,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpErrorDisable</shortDescription>
-        <value>If checked, EDA&apos;s error handling framework is disabled.</value>
+        <shortDescription>Info text for Systems Settings</shortDescription>
+        <value>Select to disable the product's error handling framework.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyOn</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpErrorNotifyOn</shortDescription>
-        <value>Check this if you&apos;d like the system to post notifications for certain type of errors.</value>
+        <shortDescription>Info text for Systems Settings</shortDescription>
+        <value>If selected, notifications are posted for product-generated errors.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpErrorNotifyTo</shortDescription>
-        <value>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</value>
+        <shortDescription>Info text for Systems Settings</shortDescription>
+        <value>Specify who should receive email error notifications. Valid values are 'All Sys Admins', the ID of a user in your org, or the ID of a Chatter group. You can enter only one value.</value>
     </labels>
     <labels>
         <fullName>stgHelpEthnicityRaceBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpEthnicityRaceBackfill</shortDescription>
-        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before EDA added the Race field and removed values from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
+        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before the Race field was added and values were removed from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
@@ -1396,15 +1396,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpHouseholdRecType</shortDescription>
-        <value>The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts.</value>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
+        <value>The Account record type used for Household Accounts. This setting affects management of Address records and the naming format of Household Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpIfCustomValuesEthnicityCopyRace</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpIfCustomValuesEthnicityCopyRace</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>If your org previously added custom picklist values to the Ethnicity field that you want to be available in the Race field, copy those custom picklist values to the Race field.</value>
     </labels>
     <labels>
@@ -1412,7 +1412,7 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpNestedPlanRequirementPP</shortDescription>
+        <shortDescription>Info text for Program Plans Settings</shortDescription>
         <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</value>
     </labels>
     <labels>
@@ -1428,23 +1428,23 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpRelAutoCreatedDup</shortDescription>
-        <value>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts. Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</value>
+        <shortDescription>Info text for Relationships Settings</shortDescription>
+        <value>Auto-created Relationships are deduplicated by default to prevent duplicate Relationship records from being created between two Contacts. Select "Allow Auto-Created Duplicate Relations" to disable this behavior and allow multiple Relationships of the same type between two Contacts.</value>
     </labels>
     <labels>
         <fullName>stgHelpRelReciprocalMethod</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpRelReciprocalMethod</shortDescription>
-        <value>Determines method used to generate the reciprocal relationship. Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;).</value>
+        <shortDescription>Info text for Relationships Settings</shortDescription>
+        <value>The method used to populate the type field when creating a Reciprocal Relationship. "List Setting" uses the custom settings defined on the Reciprocal Relationships tab with male, female, and neutral values. "Value Inversion" inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
     </labels>
     <labels>
         <fullName>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>Remove all picklist values from the Ethnicity field except for &quot;Hispanic or Latino&quot; and &quot;Not Hispanic or Latino.&quot; We recommend that you replace each removed value with one of the remaining valid values, rather than deleting them outright from existing records. As of EDA version 1.28, the only valid Ethnicity values are &quot;Not Hispanic or Latino&quot; and &quot;Hispanic or Latino.&quot;</value>
     </labels>
     <labels>
@@ -1452,7 +1452,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpSimpleAddrChangeIsUpdate</shortDescription>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
     </labels>
     <labels>
@@ -1460,23 +1460,23 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpStoreErrorsOn</shortDescription>
-        <value>Check this if you&apos;d like errors to be stored in the database.</value>
+        <shortDescription>Info text for System Settings</shortDescription>
+        <value>When selected, errors are stored in a custom Error object. You can create a tab for the Errors object to view a list of all stored errors.</value>
     </labels>
     <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpUpdateReportIfDependenciesEthnicity</shortDescription>
-        <value>If you had dependencies that relied on the previous values in the Ethnicity field, such as in reports, update them.</value>
+        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
+        <value>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</value>
     </labels>
     <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgNestedPlanRequirementPP</shortDescription>
+        <shortDescription>Field label for Program Plans Settings</shortDescription>
         <value>Validate Program Plan for Nested Plan Requirements</value>
     </labels>
     <labels>
@@ -1484,7 +1484,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgNewAfflMapping</shortDescription>
+        <shortDescription>Section header for Affiliation Mappings Settings</shortDescription>
         <value>New Affiliation Mapping</value>
     </labels>
     <labels>
@@ -1492,7 +1492,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgOptAllSysAdmins</shortDescription>
+        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
         <value>All Sys Admins</value>
     </labels>
     <labels>
@@ -1500,7 +1500,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgOptChatterGroup</shortDescription>
+        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
         <value>Chatter Group</value>
     </labels>
     <labels>
@@ -1508,7 +1508,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgOptSelect</shortDescription>
+        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
         <value>Select...</value>
     </labels>
     <labels>
@@ -1516,7 +1516,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgOptUser</shortDescription>
+        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
         <value>User</value>
     </labels>
     <labels>
@@ -1524,7 +1524,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting Preferred Email Batch Email Body</shortDescription>
+        <shortDescription>Body of email after Run Cleanup for preferred email/phone</shortDescription>
         <value>The batch Apex job processed {0} records with {1} failures.</value>
     </labels>
     <labels>
@@ -1532,7 +1532,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting Preferred Email batch Subject</shortDescription>
+        <shortDescription>Subject of email after Run Cleanup for preferred email/phone</shortDescription>
         <value>Preferred Email/Phone Job completed with a status of:</value>
     </labels>
     <labels>
@@ -1540,7 +1540,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgPreferredEmailDataCleanup</shortDescription>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Preferred Email/Phone Data Cleanup:</value>
     </labels>
     <labels>
@@ -1556,7 +1556,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRefreshAdminAcctNameDesc</shortDescription>
+        <shortDescription>Warning for Refresh Admin Account Names</shortDescription>
         <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
@@ -1564,15 +1564,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRefreshAdminAcctNameTitle</shortDescription>
-        <value>Refresh All Administrative Account Names:</value>
+        <shortDescription>Field label for System Settings</shortDescription>
+        <value>Refresh All Administrative Account Names</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRefreshHHAcctNameDesc</shortDescription>
+        <shortDescription>Warning for Refresh Household Account Names</shortDescription>
         <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
@@ -1580,8 +1580,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRefreshHHAcctNameTitle</shortDescription>
-        <value>Refresh All Household Account Names:</value>
+        <shortDescription>Field label for System Settings</shortDescription>
+        <value>Refresh All Household Account Names</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>
@@ -1596,7 +1596,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgRunCleanUpEnableFirstTime</shortDescription>
+        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
     </labels>
     <labels>
@@ -1604,47 +1604,47 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSaveSettings</shortDescription>
-        <value>Settings Saved Successfully.</value>
+        <shortDescription>Confirmation msg for Settings Save action</shortDescription>
+        <value>Settings successfully saved.</value>
     </labels>
     <labels>
         <fullName>stgSelectReciType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSelectReciType</shortDescription>
-        <value>Select recipient type</value>
+        <shortDescription>Field label for error notification recipients</shortDescription>
+        <value>Select recipient type:</value>
     </labels>
     <labels>
         <fullName>stgSendErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgSendErrorsTitle</shortDescription>
-        <value>Send Error Notifications:</value>
+        <shortDescription>Field label for error notifications</shortDescription>
+        <value>Send Error Notifications</value>
     </labels>
     <labels>
         <fullName>stgSimpleAddressChangeUpdate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSimpleAddressChangeUpdate</shortDescription>
-        <value>Simple Address Change Treated as Update:</value>
+        <shortDescription>Field label for Address mgmt Setting</shortDescription>
+        <value>Simple Address Change Treated as Update</value>
     </labels>
     <labels>
         <fullName>stgStoreErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgStoreErrorsTitle</shortDescription>
-        <value>Store Errors:</value>
+        <shortDescription>Field label for error storage setting</shortDescription>
+        <value>Store Errors</value>
     </labels>
     <labels>
         <fullName>stgSuccess</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgSuccess</shortDescription>
+        <shortDescription>Confirmation toast displayed in multiple places</shortDescription>
         <value>Success</value>
     </labels>
     <labels>
@@ -1652,7 +1652,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSuccessAdminAccountNameRefresh</shortDescription>
+        <shortDescription>Success message for Admin Account naming refresh</shortDescription>
         <value>The Administrative Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</value>
     </labels>
@@ -1661,7 +1661,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgSuccessHHAccountNameRefresh</shortDescription>
+        <shortDescription>Success message for Household Account naming refresh</shortDescription>
         <value>The Household Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</value>
     </labels>
@@ -1670,7 +1670,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabAccCont</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Accounts and Contacts</value>
     </labels>
     <labels>
@@ -1678,7 +1678,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabAffl</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Affiliations</value>
     </labels>
     <labels>
@@ -1686,7 +1686,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabAfflMappings</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Affiliation Mappings</value>
     </labels>
     <labels>
@@ -1694,7 +1694,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabAutocreation</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Autocreation</value>
     </labels>
     <labels>
@@ -1702,7 +1702,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabBackfill</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Backfill</value>
     </labels>
     <labels>
@@ -1710,7 +1710,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabCourse</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Courses</value>
     </labels>
     <labels>
@@ -1718,7 +1718,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabCourseConn</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Course Connections</value>
     </labels>
     <labels>
@@ -1726,7 +1726,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabName</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Name</value>
     </labels>
     <labels>
@@ -1734,15 +1734,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabPrimaryAfflField</shortDescription>
-        <value>Primary Affl Field</value>
+        <shortDescription>Settings tab name</shortDescription>
+        <value>Contact Primary Affl Field</value>
     </labels>
     <labels>
         <fullName>stgTabProgramPlan</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabProgramPlan</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Program Plans</value>
     </labels>
     <labels>
@@ -1750,7 +1750,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabReciprocalSettings</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Reciprocal Settings</value>
     </labels>
     <labels>
@@ -1758,7 +1758,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabRel</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Relationships</value>
     </labels>
     <labels>
@@ -1766,7 +1766,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabSettings</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>Settings</value>
     </labels>
     <labels>
@@ -1774,7 +1774,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTabSystem</shortDescription>
+       <shortDescription>Settings tab name</shortDescription>
         <value>System</value>
     </labels>
     <labels>
@@ -1782,15 +1782,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleAllowAutocreatedDuplicateRel</shortDescription>
-        <value>Allow Auto-Created Duplicate Relations:</value>
+        <shortDescription>Title for Reciprocal Relationships info text</shortDescription>
+        <value>Allow Auto-Created Duplicate Relations</value>
     </labels>
     <labels>
         <fullName>stgTitleAppwideSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleAppwideSettings</shortDescription>
+        <shortDescription>Header panel text below EDA Settings title</shortDescription>
         <value>App-wide Settings</value>
     </labels>
     <labels>
@@ -1798,15 +1798,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleCourseConnectionBackfill</shortDescription>
-        <value>Course Connection Backfill:</value>
+        <shortDescription>Title of info text</shortDescription>
+        <value>Course Connection Backfill</value>
     </labels>
     <labels>
         <fullName>stgTitleCoursesDescriptionDataMigration</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleCoursesDescriptionDataMigration</shortDescription>
+        <shortDescription>Title of info text for Course description data migration</shortDescription>
         <value>Courses: Description Data Migration</value>
     </labels>
     <labels>
@@ -1814,7 +1814,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleHEDAConfig</shortDescription>
+        <shortDescription>Header panel title text</shortDescription>
         <value>Configuration</value>
     </labels>
     <labels>
@@ -1822,7 +1822,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleHEDASettings</shortDescription>
+        <shortDescription>Settings title text</shortDescription>
         <value>EDA Settings</value>
     </labels>
     <labels>
@@ -1830,7 +1830,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleNewAutocreateSetting</shortDescription>
+        <shortDescription>Section header for auto-create relationships</shortDescription>
         <value>New Auto-Create Setting</value>
     </labels>
     <labels>
@@ -1838,7 +1838,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleNewReciSetting</shortDescription>
+        <shortDescription>Section header for Reciprocal Relationships</shortDescription>
         <value>New Reciprocal Setting</value>
     </labels>
     <labels>
@@ -1846,15 +1846,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgTitleReciMethod</shortDescription>
-        <value>Reciprocal Method:</value>
+        <shortDescription>Title for Reciprocal Relationships info text</shortDescription>
+        <value>Reciprocal Method</value>
     </labels>
     <labels>
         <fullName>stgToastError</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgToastError</shortDescription>
+        <shortDescription>Error msg used throughout Settings</shortDescription>
         <value>Error</value>
     </labels>
     <labels>
@@ -1862,7 +1862,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>timeBlockEndTimeMismatch</shortDescription>
+        <shortDescription>Error when End Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its End Time doesn&apos;t match the End Time of its associated Time Block. Either edit the End Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
     <labels>
@@ -1870,7 +1870,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>timeBlockStartTimeMismatch</shortDescription>
+        <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
 </CustomLabels>

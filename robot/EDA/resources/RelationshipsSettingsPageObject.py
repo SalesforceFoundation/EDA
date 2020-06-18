@@ -1,14 +1,11 @@
+from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import eda_lex_locators
 
 
 @pageobject("Relationships", "HEDA_Settings")
-class RelationshipsSettingsPage(BasePage):
-
-    @property
-    def eda(self):
-        return self.builtin.get_library_instance('EDA')
+class RelationshipsSettingsPage(BaseEDAPage, BasePage):
 
     def _is_current_page(self):
         """
