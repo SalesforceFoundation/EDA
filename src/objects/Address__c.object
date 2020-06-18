@@ -68,6 +68,8 @@
     <fields>
         <fullName>Address_Type__c</fullName>
         <externalId>false</externalId>
+        <description>Select what kind of address this is, for example, Home, Work, Vacation Residence, or Other.</description>
+        <inlineHelpText>Select what kind of address this is, for example, Home, Work, Vacation Residence, or Other.</inlineHelpText>
         <label>Address Type</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -102,8 +104,9 @@
     <fields>
         <fullName>Default_Address__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates whether this is the Default Address to use for the Household and its Contacts.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Is this the Default Address to use for the Account and its Contacts?</inlineHelpText>
+        <inlineHelpText>Indicates whether this is the Default Address to use for the Household and its Contacts.</inlineHelpText>
         <label>Default Address</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -112,6 +115,8 @@
     <fields>
         <fullName>Formula_MailingAddress__c</fullName>
         <externalId>false</externalId>
+        <description>The full mailing address, including mailing street 2 and country values, if not blank (read-only).</description>
+         <inlineHelpText>The full mailing address, including mailing street 2 and country values, if not blank (read-only).</inlineHelpText>
         <formula>MailingStreet__c &amp;
 BR() &amp; 
 IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
@@ -128,6 +133,8 @@ MailingPostalCode__c
     <fields>
         <fullName>Formula_MailingStreetAddress__c</fullName>
         <externalId>false</externalId>
+        <description>The full mailing address, including mailing street 2 and country values, if not blank (read-only.)</description>
+        <inlineHelpText>The full mailing address, including mailing street 2 and country values, if not blank (read-only.)</inlineHelpText>
         <formula>MailingStreet__c &amp;
 BR() &amp; 
 IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
@@ -143,10 +150,10 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Geolocation__c</fullName>
-        <description>Location expressed as latitude and longitude.</description>
+        <description>The Address expressed as latitude and longitude.</description>
         <displayLocationInDecimal>true</displayLocationInDecimal>
         <externalId>false</externalId>
-        <inlineHelpText>Location expressed as latitude and longitude.</inlineHelpText>
+        <inlineHelpText>The Address expressed as latitude and longitude.</inlineHelpText>
         <label>Geolocation</label>
         <required>false</required>
         <scale>6</scale>
@@ -157,7 +164,8 @@ MailingPostalCode__c
     <fields>
         <fullName>Latest_End_Date__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The most recent ending date this Address was used.</inlineHelpText>
+        <description>The most recent ending date that this Address was used. Generally used with Latest Start Date to track a date range for an Address that's no longer in use.</description>
+        <inlineHelpText>The most recent ending date that this Address was used. Generally used with Latest Start Date to track a date range for an Address that's no longer in use.</inlineHelpText>
         <label>Latest End Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -167,7 +175,8 @@ MailingPostalCode__c
     <fields>
         <fullName>Latest_Start_Date__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The most recent starting date this Address was used.</inlineHelpText>
+        <description>The most recent starting date that this Address was used. Generally used with Latest End Date to track a date range for an Address that's no longer in use.</description>
+        <inlineHelpText>The most recent starting date that this Address was used. Generally used with Latest End Date to track a date range for an Address that's no longer in use.</inlineHelpText>
         <label>Latest Start Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -221,6 +230,8 @@ MailingPostalCode__c
     <fields>
         <fullName>MailingStreet2__c</fullName>
         <externalId>false</externalId>
+        <description>Additional street address detail for this Address, such as Suite or Apt.</description>
+        <inlineHelpText>Additional street address detail for this Address, such as Suite or Apt.</inlineHelpText>
         <label>Mailing Street2</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -241,8 +252,9 @@ MailingPostalCode__c
     <fields>
         <fullName>Parent_Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the Account associated with this Address.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Account this Address is for.</inlineHelpText>
+        <inlineHelpText>Lookup to the Account associated with this Address.</inlineHelpText>
         <label>Parent Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Addresses</relationshipLabel>
@@ -255,9 +267,9 @@ MailingPostalCode__c
     <fields>
         <fullName>Parent_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Contact this address is for.</description>
+        <description>The primary Contact for this Address.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Contact this address is for.</inlineHelpText>
+        <inlineHelpText>The primary Contact for this Address.</inlineHelpText>
         <label>Parent Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Addresses</relationshipLabel>
@@ -270,7 +282,8 @@ MailingPostalCode__c
     <fields>
         <fullName>Seasonal_End_Day__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The day of the month when this address no longer replaces the default address.</inlineHelpText>
+        <description>The day of the month when this Address no longer replaces the Default Address.</description>
+        <inlineHelpText>The day of the month when this Address no longer replaces the Default Address.</inlineHelpText>
         <label>Seasonal End Day</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -440,7 +453,8 @@ MailingPostalCode__c
     <fields>
         <fullName>Seasonal_End_Month__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The month of the year when this address no longer replaces the default address.</inlineHelpText>
+        <description>The month of the year when this Address no longer replaces the Default Address.</description>
+        <inlineHelpText>The month of the year when this Address no longer replaces the Default Address.</inlineHelpText>
         <label>Seasonal End Month</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -514,9 +528,9 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Seasonal_End_Year__c</fullName>
-        <description>The year when this address no longer replaces the default address.</description>
+        <description>The year that this Address no longer replaces the Default Address.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The year when this address no longer replaces the default address.</inlineHelpText>
+        <inlineHelpText>The year that this Address no longer replaces the Default Address.</inlineHelpText>
         <label>Seasonal End Year</label>
         <precision>4</precision>
         <required>false</required>
@@ -529,7 +543,8 @@ MailingPostalCode__c
     <fields>
         <fullName>Seasonal_Start_Day__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The day of the month when this address replaces the default address.</inlineHelpText>
+        <description>The day of the month when this Address replaces the Default Address.</description>
+        <inlineHelpText>The day of the month when this Address replaces the Default Address.</inlineHelpText>
         <label>Seasonal Start Day</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -699,7 +714,8 @@ MailingPostalCode__c
     <fields>
         <fullName>Seasonal_Start_Month__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The month of the year when this address replaces the default address.</inlineHelpText>
+        <description>The month of the year when this Address replaces the Default Address.</description>
+        <inlineHelpText>The month of the year when this Address replaces the Default Address.</inlineHelpText>
         <label>Seasonal Start Month</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -773,9 +789,9 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Seasonal_Start_Year__c</fullName>
-        <description>The year when this address replaces the default address.</description>
+        <description>The year that this Address replaces the Default Address.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The year when this address replaces the default address.</inlineHelpText>
+        <inlineHelpText>The year that this Address replaces the Default Address.</inlineHelpText>
         <label>Seasonal Start Year</label>
         <precision>4</precision>
         <required>false</required>

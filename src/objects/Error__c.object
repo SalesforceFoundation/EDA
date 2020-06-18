@@ -69,9 +69,9 @@
     <fields>
         <fullName>Datetime__c</fullName>
         <defaultValue>now()</defaultValue>
-        <description>Date &amp; time the error occurred</description>
+        <description>Date &amp; time the error occurred.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Date &amp; time the error occurred</inlineHelpText>
+        <inlineHelpText>Date &amp; time the error occurred.</inlineHelpText>
         <label>Datetime</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -89,9 +89,9 @@
     </fields>
     <fields>
         <fullName>Error_Type__c</fullName>
-        <description>Type of error that occurred</description>
+        <description>Type of error that occurred.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Type of error that occurred</inlineHelpText>
+        <inlineHelpText>Type of error that occurred.</inlineHelpText>
         <label>Error Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -99,9 +99,9 @@
     </fields>
     <fields>
         <fullName>Full_Message__c</fullName>
-        <description>Full text of the error message</description>
+        <description>Full text of the error message.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Full text of the error message</inlineHelpText>
+        <inlineHelpText>Full text of the error message.</inlineHelpText>
         <label>Full Message</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
@@ -110,9 +110,9 @@
     </fields>
     <fields>
         <fullName>Object_Type__c</fullName>
-        <description>Type of object on which the error occurred, if known.</description>
+        <description>The object on which the error occurred, if known.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Type of object on which the error occurred, if known.</inlineHelpText>
+        <inlineHelpText>The object on which the error occurred, if known.</inlineHelpText>
         <label>Object Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
