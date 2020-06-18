@@ -1,3 +1,4 @@
+from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import affiliations_locators
@@ -6,11 +7,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 @pageobject("Affiliations", "HEDA_Settings")
-class AffiliationsSettingsPage(BasePage):
-
-    @property
-    def eda(self):
-        return self.builtin.get_library_instance('EDA')
+class AffiliationsSettingsPage(BaseEDAPage, BasePage):
 
     def _is_current_page(self):
         """
