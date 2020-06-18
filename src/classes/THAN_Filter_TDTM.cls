@@ -73,7 +73,7 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                                     String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
                                     List<SObject> records =  Database.query(dynamicQuery);
                                 } catch(QueryException e) {
-                                    handler.addError(Label.InvalidFilter + handler.Class__c);
+                                    handler.addError(Label.InvalidFilter);
                                 }
                             } else {
                                 String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
@@ -88,7 +88,7 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
 
                                 //System should't allow a Filter Field with EDA namespace
                                 if(String.isNotBlank(hedaPrefix) && hasHEDAPrefix) {
-                                    handler.addError(Label.InvalidFilter + handler.Class__c + '. ' + Label.fieldWithHEDANamespace);
+                                    handler.addError(Label.fieldWithHEDANamespace);
                                 } else {
 
                                     //Get Sobject keyset.
@@ -109,16 +109,16 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                                         Boolean fieldExistsHEDA = fieldSet.contains(filterField.toLowerCase());
 
                                         if (String.isNotBlank(hedaPrefix) && fieldExists && fieldExistsHEDA && !ignoreDuplicateField) {
-                                            handler.addError(Label.InvalidFilter + handler.Class__c + '. ' + string.format(Label.duplicateWithHEDAField, new String[]{
+                                            handler.addError(string.format(Label.duplicateWithHEDAField, new String[]{
                                                     Label.duplicateFieldInFilter
                                             }));
                                         }
 
                                         if (!fieldExists && !fieldExistsHEDA) {
-                                            handler.addError(Label.InvalidFilter + handler.Class__c);
+                                            handler.addError(Label.InvalidFilter);
                                         }
                                     } catch (UTIL_Describe.SchemaDescribeException e) {
-                                        handler.addError(Label.InvalidFilter + handler.Class__c);
+                                        handler.addError(Label.InvalidFilter);
                                     }
                                 }
                             }
