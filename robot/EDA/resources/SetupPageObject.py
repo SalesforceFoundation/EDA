@@ -1,9 +1,10 @@
+from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.pageobjects import HomePage
 from cumulusci.robotframework.pageobjects import pageobject
 
 
 @pageobject("Home", "Setup")
-class SetupHomePage(HomePage):
+class SetupHomePage(BaseEDAPage, HomePage):
 
     def _go_to_page(self):
         """ Navigate to the Setup Home via URL and switch to the new window """
