@@ -5,9 +5,9 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Campaign_Types__c</fullName>
-        <description>List of eligible Campaign types for this Campaign Member auto-create. (Will be blank for Contact auto-create)</description>
+        <description>For Auto-Create Relationships based on Campaign Members, the list of Campaign types the automation applies to. This field will be blank for Auto-Create Relationships based on Contacts.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Eligible Campaign types for this Campaign Member auto-create. (Will be blank for Contact auto-create)</inlineHelpText>
+        <inlineHelpText>For Auto-Create Relationships based on Campaign Members, the list of Campaign types the automation applies to. This field will be blank for Auto-Create Relationships based on Contacts.</inlineHelpText>
         <label>Campaign Types</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -15,9 +15,9 @@
     </fields>
     <fields>
         <fullName>Field__c</fullName>
-        <description>The field insert or update that triggers the creation of this Relationship</description>
+        <description>The label of the lookup field that triggers the creation of this Relationship when the field value is updated.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The field insert or update that triggers the creation of this Relationship</inlineHelpText>
+        <inlineHelpText>The label of the lookup field that triggers the creation of this Relationship when the field value is updated.</inlineHelpText>
         <label>Field</label>
         <length>255</length>
         <required>false</required>
@@ -27,9 +27,9 @@
     </fields>
     <fields>
         <fullName>Object__c</fullName>
-        <description>The object this Auto-Relationship is associated with</description>
+        <description>The API name of the object (either Contact or CampaignMember) that the custom lookup field is on.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The object this Auto-Relationship is associated with</inlineHelpText>
+        <inlineHelpText>The API name of the object (either Contact or CampaignMember) that the custom lookup field is on.</inlineHelpText>
         <label>Object</label>
         <length>50</length>
         <required>false</required>
@@ -39,9 +39,9 @@
     </fields>
     <fields>
         <fullName>Relationship_Type__c</fullName>
-        <description>The Relationship type to be created between the base object and the lookup object.  The lookup object will receive the reciprocal Relationship, if one is available.</description>
+        <description>The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Relationship type to be created between the base object and the lookup object.  The lookup object will receive the reciprocal Relationship, if one is available.</inlineHelpText>
+        <inlineHelpText>The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object.</inlineHelpText>
         <label>Relationship Type</label>
         <length>255</length>
         <required>false</required>

@@ -66,9 +66,9 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup field to find an Account (often an Academic Program).</description>
+        <description>The Academic Program this Program Plan is for, for example, BA in Philosophy.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Click to search for an Account (often an Academic Program) to associate with the Program Plan.</inlineHelpText>
+        <inlineHelpText>The Academic Program this Program Plan is for, for example, BA in Philosophy.</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Program Plans</relationshipLabel>
@@ -81,7 +81,6 @@
         <fullName>Description__c</fullName>
         <description>The description of Program Plan.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Describe the Program Plan.</inlineHelpText>
         <label>Description</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -100,18 +99,18 @@
     <fields>
         <fullName>Is_Primary__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrollment</description>
+        <description>Indicates this is the Program Plan currently in effect for the selected Academic Program.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrollment</inlineHelpText>
+        <inlineHelpText>Indicates this is the Program Plan currently in effect for the selected Academic Program.</inlineHelpText>
         <label>Is Primary</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
-        <description>The date the Program Plan went into effect.</description>
+        <description>The date this Program Plan went into effect.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date the Program Plan went into effect.</inlineHelpText>
+        <inlineHelpText>The date this Program Plan went into effect.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -119,9 +118,9 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <description>The status of the program plan.</description>
+        <description>Select "Current" if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise, select "Archived."</description>
         <externalId>false</externalId>
-        <inlineHelpText>The status of the program plan.</inlineHelpText>
+        <inlineHelpText>Select "Current" if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise, select "Archived."</inlineHelpText>
         <label>Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -144,9 +143,9 @@
     </fields>
     <fields>
         <fullName>Total_Required_Credits__c</fullName>
-        <description>The total number of credits a student must complete to satisfy this Program Plan.</description>
+        <description>The total number of credits a student needs to complete to satisfy this Program Plan.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Specify the total number of credits a student must complete to satisfy this program plan.</inlineHelpText>
+        <inlineHelpText>The total number of credits a student needs to complete to satisfy this Program Plan.</inlineHelpText>
         <label>Total Required Credits</label>
         <precision>6</precision>
         <required>false</required>
@@ -157,9 +156,9 @@
     </fields>
     <fields>
         <fullName>Version__c</fullName>
-        <description>The version of the Program Plan. For example, “Spring 2019.”</description>
+        <description>Helps identify which version of the Program Plan this is for this Academic Program, for example, "Spring 2020."</description>
         <externalId>false</externalId>
-        <inlineHelpText>The version of the Program Plan. For example, “Spring 2019.”</inlineHelpText>
+        <inlineHelpText>Helps identify which version of the Program Plan this is for this Academic Program, for example, "Spring 2020."</inlineHelpText>
         <label>Version</label>
         <length>25</length>
         <required>false</required>
