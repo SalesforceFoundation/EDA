@@ -1,17 +1,14 @@
-import time
+from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.pageobjects import DetailPage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import contacts_locators
 from selenium.webdriver.common.keys import Keys
+import time
 
 
 @pageobject("Details", "Contact")
-class ContactDetailPage(DetailPage):
+class ContactDetailPage(BaseEDAPage, DetailPage):
     object_name = "Contact"
-
-    @property
-    def eda(self):
-        return self.builtin.get_library_instance('EDA')
 
     def select_contact(self, contact_firstname, contact_lastname):
         """ Select the contact from the Contacts Recently Viewed list """
