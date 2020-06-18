@@ -59,9 +59,9 @@
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>Indicates that this module is active</description>
+        <description>Indicates whether this Trigger Handler is in use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates that this module is active</inlineHelpText>
+        <inlineHelpText>Indicates whether this Trigger Handler is in use.</inlineHelpText>
         <label>Active</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -69,18 +69,18 @@
     <fields>
         <fullName>Asynchronous__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates that this module should be run asynchronously in this transaction</description>
+        <description>Indicates whether this class should run asynchronously in this transaction, for any of its After events.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates that this module should be run asynchronously in this transaction</inlineHelpText>
+        <inlineHelpText>Indicates whether this class should run asynchronously in this transaction, for any of its After events.</inlineHelpText>
         <label>Asynchronous</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Class__c</fullName>
-        <description>Name of the class to be run</description>
+        <description>The name of the class to run.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Name of the class to be run</inlineHelpText>
+        <inlineHelpText>The name of the class to run.</inlineHelpText>
         <label>Class</label>
         <length>255</length>
         <required>true</required>
@@ -90,9 +90,9 @@
     </fields>
     <fields>
         <fullName>Filter_Field__c</fullName>
-        <description>Name of the field used for filtering.</description>
+        <description>The name of the field used for filtering.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Name of the field used for filtering.</inlineHelpText>
+        <inlineHelpText>The name of the field used for filtering.</inlineHelpText>
         <label>Filter Field</label>
         <length>255</length>
         <required>false</required>
@@ -102,9 +102,9 @@
     </fields>
     <fields>
         <fullName>Filter_Value__c</fullName>
-        <description>Value of the field used for filtering.</description>
+        <description>The value of the field used for filtering.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Value of the field used for filtering.</inlineHelpText>
+        <inlineHelpText>The value of the field used for filtering.</inlineHelpText>
         <label>Filter Value</label>
         <length>255</length>
         <required>false</required>
@@ -114,9 +114,9 @@
     </fields>
     <fields>
         <fullName>Load_Order__c</fullName>
-        <description>Order in which this module should be run, helps maintain dependencies in the modules and data.</description>
+        <description>The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Order in which this module should be run, helps maintain dependencies in the modules and data.</inlineHelpText>
+        <inlineHelpText>The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account.</inlineHelpText>
         <label>Load Order</label>
         <precision>18</precision>
         <required>false</required>
@@ -127,9 +127,9 @@
     </fields>
     <fields>
         <fullName>Object__c</fullName>
-        <description>Name of the object this handler should be run for</description>
+        <description>The name of the object the class should act on, for example, Account, Contact, Opportunity.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Name of the object this handler should be run for</inlineHelpText>
+        <inlineHelpText>The name of the object the class should act on, for example, Account, Contact, Opportunity.</inlineHelpText>
         <label>Object</label>
         <length>255</length>
         <required>true</required>
@@ -139,7 +139,8 @@
     </fields>
     <fields>
         <fullName>Owned_by_Namespace__c</fullName>
-        <description>Enter the namespace of the package or Org that will control this Trigger handler.</description>
+        <description>The namespace of the package or Org that will control this Trigger handler.</description>
+        <inlineHelpText>The namespace of the package or Org that controls this Trigger Handler.</inlineHelpText>
         <externalId>false</externalId>
         <label>Owned by Namespace</label>
         <length>15</length>
@@ -150,9 +151,9 @@
     </fields>
     <fields>
         <fullName>Trigger_Action__c</fullName>
-        <description>Trigger Action in which this module should fire</description>
+        <description>The context in which this class should run, for example, before a record is inserted, after a record is deleted, etc.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Trigger Action in which this module should fire</inlineHelpText>
+        <inlineHelpText>The context in which this class should run, for example, before a record is inserted, after a record is deleted, etc.</inlineHelpText>
         <label>Trigger Action</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -202,16 +203,16 @@
     <fields>
         <fullName>User_Managed__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The record is managed by the user and updates won&apos;t be pushed to it.</description>
+        <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Check it if you intent to manage the record yourself. Be aware that updates to the package won&apos;t update the record.</inlineHelpText>
+        <inlineHelpText>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</inlineHelpText>
         <label>User Managed</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Usernames_to_Exclude__c</fullName>
-        <description>Semicolon separated list of Salesforce usernames that this trigger will NOT run for.</description>
+        <description>Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users.</description>
         <externalId>false</externalId>
         <inlineHelpText>Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users.</inlineHelpText>
         <label>Usernames to Exclude</label>

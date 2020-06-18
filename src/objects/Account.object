@@ -11,9 +11,9 @@
     <fields>
         <fullName>Current_Address__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The current Address that the Account&apos;s billing fields are filled with.</description>
+        <description>Lookup to the current Address record for this Account. The Account's Billing Address field is populated with the address fields from the current Address record.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The current Address that the Account&apos;s billing fields are filled with.</inlineHelpText>
+        <inlineHelpText>Lookup to the current Address record for this Account. The Account's Billing Address field is populated with the address fields from the current Address record.</inlineHelpText>
         <label>Current Address</label>
         <referenceTo>Address__c</referenceTo>
         <relationshipLabel>Accounts (Current Address)</relationshipLabel>
@@ -25,7 +25,9 @@
     <fields>
         <fullName>Primary_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The main Contact for a Household or Administrative Account.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The main Contact for a Household or Administrative Account.</inlineHelpText>
         <label>Primary Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Account</relationshipLabel>
