@@ -55,9 +55,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Arrival_Time__c</fullName>
-        <description>For tardy events, the time when the student arrived.</description>
+        <description>The time a tardy student arrived.</description>
         <externalId>false</externalId>
-        <inlineHelpText>For tardy events, the time when the student arrived.</inlineHelpText>
+        <inlineHelpText>The time a tardy student arrived.</inlineHelpText>
         <label>Arrival Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -65,9 +65,9 @@
     </fields>
     <fields>
         <fullName>Attendance_Type__c</fullName>
-        <description>The type of tardy or absence.</description>
+        <description>Indicate whether this tardy or absence was for one class period or for the day.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The type of tardy or absence.</inlineHelpText>
+        <inlineHelpText>Indicate whether this tardy or absence was for one class period or for the day.</inlineHelpText>
         <label>Attendance Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -101,9 +101,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The student who is either tardy or absent.</description>
+        <description>The student who&apos;s tardy or absent.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The student who is either tardy or absent.</inlineHelpText>
+        <inlineHelpText>The student who&apos;s tardy or absent.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Attendance Events</relationshipLabel>
@@ -115,9 +115,9 @@
     <fields>
         <fullName>Course_Connection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The class and period in which the student was either tardy or absent.</description>
+        <description>The class and period in which the student was tardy or absent.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The class and period in which the student was either tardy or absent.</inlineHelpText>
+        <inlineHelpText>The class and period in which the student was tardy or absent.</inlineHelpText>
         <label>Course Connection</label>
         <referenceTo>Course_Enrollment__c</referenceTo>
         <relationshipLabel>Attendance Events</relationshipLabel>
@@ -128,10 +128,10 @@
     </fields>
     <fields>
         <fullName>Course_Name__c</fullName>
-        <description>The name of the Course for which the student was either tardy or absent.</description>
+        <description>The name of the Course in which the student was tardy or absent (read-only).</description>
         <externalId>false</externalId>
         <formula>Course_Connection__r.Course_Offering__r.Course__r.Name</formula>
-        <inlineHelpText>The name of the Course for which the student was either tardy or absent.</inlineHelpText>
+        <inlineHelpText>The name of the Course in which the student was tardy or absent (read-only).</inlineHelpText>
         <label>Course Name</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -140,9 +140,9 @@
     </fields>
     <fields>
         <fullName>Date__c</fullName>
-        <description>The date when the tardy or absence occurred.</description>
+        <description>The date of the tardy or absence.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date when the tardy or absence occurred.</inlineHelpText>
+        <inlineHelpText>The date of the tardy or absence.</inlineHelpText>
         <label>Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -150,9 +150,9 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
-        <description>For excused absences, the time the absence ends.</description>
+        <description>For a partial-day excused absence, the time the student returned.</description>
         <externalId>false</externalId>
-        <inlineHelpText>For excused absences, the time the absence ends.</inlineHelpText>
+        <inlineHelpText>For a partial-day excused absence, the time the student returned.</inlineHelpText>
         <label>End Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -160,9 +160,9 @@
     </fields>
     <fields>
         <fullName>Reason_Description__c</fullName>
-        <description>A description of the reason the student was either tardy or absent.</description>
+        <description>More details about the student's absence or tardiness.</description>
         <externalId>false</externalId>
-        <inlineHelpText>A description of the reason the student was either tardy or absent.</inlineHelpText>
+        <inlineHelpText>More details about the student's absence or tardiness.</inlineHelpText>
         <label>Reason Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
@@ -171,9 +171,9 @@
     </fields>
     <fields>
         <fullName>Reason__c</fullName>
-        <description>The reason the student was either tardy or absent.</description>
+        <description>Select an option that most closely matches the reason the student was absent or tardy. Use the Reason Description field to enter more details.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The reason the student was either tardy or absent.</inlineHelpText>
+        <inlineHelpText>Select an option that most closely matches the reason the student was absent or tardy. Use the Reason Description field to enter more details.</inlineHelpText>
         <label>Reason</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -206,9 +206,9 @@
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
-        <description>For excused absences, the time the absence starts.</description>
+        <description>For a partial-day excused absence, the time the student left school.</description>
         <externalId>false</externalId>
-        <inlineHelpText>For excused absences, the time the absence starts.</inlineHelpText>
+        <inlineHelpText>For a partial-day excused absence, the time the student left school.</inlineHelpText>
         <label>Start Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
