@@ -56,9 +56,9 @@
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Course Offering to which this record belongs.</description>
+        <description>The Course Offering this schedule is for.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Course Offering to which this record belongs.</inlineHelpText>
+        <inlineHelpText>The Course Offering this schedule is for.</inlineHelpText>
         <label>Course Offering</label>
         <referenceTo>Course_Offering__c</referenceTo>
         <relationshipLabel>Course Offering Schedules</relationshipLabel>
@@ -70,9 +70,9 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
-        <description>The time of day the Course Offering ends.</description>
+        <description>The time of day the Course Offering ends. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time of day the Course Offering ends.</inlineHelpText>
+        <inlineHelpText>The time of day the Course Offering ends. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</inlineHelpText>
         <label>End Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -82,9 +82,9 @@
     <fields>
         <fullName>Facility__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>The Facility associated with the Course Offering for the specified time and day of week.</description>
+        <description>The location of the scheduled Course Offering.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Facility associated with the Course Offering for the specified time and day of week.</inlineHelpText>
+        <inlineHelpText>The location of the scheduled Course Offering.</inlineHelpText>
         <label>Facility</label>
         <referenceTo>Facility__c</referenceTo>
         <relationshipLabel>Course Offering Schedules</relationshipLabel>
@@ -97,7 +97,8 @@
     <fields>
         <fullName>Friday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The Course Offering Schedule includes Friday.</description>
+        <description>Select to indicate this Course Offering is on Fridays. You can select multiple days.</description>
+        <inlineHelpText>Select to indicate this Course Offering is on Fridays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
         <label>Friday</label>
         <trackHistory>false</trackHistory>
@@ -107,7 +108,8 @@
     <fields>
         <fullName>Monday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The Course Offering Schedule includes Monday.</description>
+        <description>Select to indicate this Course Offering is on Mondays. You can select multiple days.</description>
+        <inlineHelpText>Select to indicate this Course Offering is on Mondays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
         <label>Monday</label>
         <trackHistory>false</trackHistory>
@@ -117,7 +119,8 @@
     <fields>
         <fullName>Saturday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The Course Offering Schedule includes Saturday.</description>
+        <description>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</description>
+        <inlineHelpText>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
         <label>Saturday</label>
         <trackHistory>false</trackHistory>
@@ -126,9 +129,9 @@
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
-        <description>The time of day the Course Offering starts.</description>
+        <description>The time of day the Course Offering starts. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time of day the Course Offering starts.</inlineHelpText>
+        <inlineHelpText>The time of day the Course Offering starts. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</inlineHelpText>
         <label>Start Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -138,7 +141,8 @@
     <fields>
         <fullName>Sunday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The Course Offering Schedule includes Sunday.</description>
+        <description>Select to indicate this Course Offering is on Sundays. You can select multiple days.</description>
+        <inlineHelpText>Select to indicate this Course Offering is on Sundays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
         <label>Sunday</label>
         <trackHistory>false</trackHistory>
@@ -148,7 +152,8 @@
     <fields>
         <fullName>Thursday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The Course Offering Schedule includes Thursday.</description>
+        <description>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</description>
+        <inlineHelpText>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
         <label>Thursday</label>
         <trackHistory>false</trackHistory>
@@ -173,7 +178,8 @@
     <fields>
         <fullName>Tuesday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The Course Offering Schedule includes Tuesday.</description>
+        <description>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</description>
+        <inlineHelpText>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
         <label>Tuesday</label>
         <trackHistory>false</trackHistory>
@@ -183,7 +189,8 @@
     <fields>
         <fullName>Wednesday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The Course Offering Schedule includes Wednesday.</description>
+        <description>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</description>
+        <inlineHelpText>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
         <label>Wednesday</label>
         <trackHistory>false</trackHistory>
