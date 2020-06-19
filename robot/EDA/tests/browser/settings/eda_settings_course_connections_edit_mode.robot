@@ -13,6 +13,7 @@ Test Setup      Run keywords
 
 *** Test Cases ***
 Validate Edit Mode For Course Connections, Settings
+    [tags]                                      unstable        W-041783
     Click edit on EDA settings page
     Verify enable course connections warning    true
     Set enable course connections
