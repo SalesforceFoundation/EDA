@@ -12,21 +12,37 @@ Test Setup      Run keywords
 ...             Update enable cc to default
 
 *** Test Cases ***
-Validate Edit Mode For Course Connections, Settings
-    [tags]                                      unstable        W-041783
+# Validate Edit Mode For Course Connections, Settings
+#     [tags]                                      unstable        W-041783
+#     Click edit on EDA settings page
+#     Verify enable course connections warning    true
+#     Set enable course connections
+#     Verify enable course connections warning    false
+#     Verify dropdown values                      Default Active Student Record Type
+#     ...                                         Default
+#     ...                                         Faculty
+#     ...                                         Student
+#     Verify dropdown values                      Default Faculty Record Type
+#     ...                                         Default
+#     ...                                         Faculty
+#     ...                                         Student
+#     Click action button on EDA settings page    Cancel
+
+Validate Field Values retain when Save buttton is clicked
+    [tags]                                      unstable        W-041784
+    # Set Selenium Speed                          2
     Click edit on EDA settings page
-    Verify enable course connections warning    true
     Set enable course connections
-    Verify enable course connections warning    false
-    Verify dropdown values                      Default Active Student Record Type
-    ...                                         Default
-    ...                                         Faculty
-    ...                                         Student
-    Verify dropdown values                      Default Faculty Record Type
-    ...                                         Default
-    ...                                         Faculty
-    ...                                         Student
-    Click action button on EDA settings page    Cancel
+    Update dropdown value                       Default Active Student Record Type      Faculty
+    Update dropdown value                       Default Faculty Record Type             Student
+    Click action button on EDA settings page    Save
+    Go to EDA settings tab                      Course Connections 
+    Verify enable course connections            true
+    Verify selected dropdown value              Default Active Student Record Type      Faculty
+    Verify selected dropdown value              Default Faculty Record Type             Student
+
+
+
 
 #   This is old code, and will be refactored as part of the next WI (W-041784)
 #    ${student_select} =  Get Eda Locator    eda_settings.student_select

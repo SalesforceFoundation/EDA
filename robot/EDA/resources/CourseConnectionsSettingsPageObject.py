@@ -68,3 +68,35 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         else:
             self.selenium.wait_until_page_contains_element(
                 locator_disabled, error="Enable course connections warning is displayed")
+
+    def update_dropdown_value(self, field, value):
+        """ This method will update the drop down field value passed in 'value' variable
+            Pass the expected value to be set in the drop down field from the tests
+        """
+        locator = eda_lex_locators["eda_settings_cc"]["dropdown_values"].format(field,value)
+        self.selenium.wait_until_page_contains_element(locator, 
+                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
+        self.selenium.click_element(locator)
+
+    def verify_enable_course_connections(self, expectedCheckboxValue):
+        """ This method will check the default value of 'Enable Course Connections' checkbox
+        """
+        locator_default = eda_lex_locators["eda_settings_cc"]["default_cc_checkbox"]
+        actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
+        print (actual_value)
+        if not str(expectedCheckboxValue).lower() == "true" :
+            raise Exception (f"Enable course connection is not checked and the value is '{actual_value}'")
+
+    def verify_selected_dropdown_value(self, field, expectedDropdownValue):
+        """ This method will confirm if the value to be set in dropdown field is retained after save action
+            Pass the expected value to be verified from the tests
+        """
+        locator = eda_lex_locators["eda_settings_cc"]["updated_dropdown_value"].format(field,expectedDropdownValue)
+        self.selenium.wait_until_element_is_visible(locator, 
+                                                error= "Element is not displayed for the user")
+        actual_value = self.selenium.get_webelement(locator).text
+        print (actual_value)
+        if not str(expectedDropdownValue).lower() == str(actual_value).lower() :
+            raise Exception (f"Drop down value in '{field}' is not updated and the value is '{actual_value}'")
+
+
