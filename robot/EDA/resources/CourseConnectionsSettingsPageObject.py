@@ -28,12 +28,14 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         locator = eda_lex_locators["eda_settings_cc"]["enable_cc_checkbox"]
         self.selenium.wait_until_page_contains_element(locator)
         self.selenium.click_element(locator)
+        time.sleep(0.5)
 
     def update_enable_cc_to_default(self):
         """ Updating the `Enable Course Connections` checkbox to default value (false)"""
         locator_default = eda_lex_locators["eda_settings_cc"]["default_cc_checkbox"]
         locator_edit_mode = eda_lex_locators["eda_settings_cc"]["enable_cc_checkbox"]
 
+        self.selenium.wait_until_page_contains_element(locator_default)
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
         print (actual_value)
         if not actual_value == "False":

@@ -341,6 +341,7 @@ class EDA(BaseEDAPage):
         self.selenium.click_element(locator)
         if action == "Save":
             self.eda.verify_toast_message("Settings successfully saved.")
+            self.eda.close_toast_message()
 
     def update_dropdown_value(self, field, value):
         """ This method will update the drop down field value passed in 'value' variable
