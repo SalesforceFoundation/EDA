@@ -2918,6 +2918,8 @@
     <fields>
         <fullName>Date_Deceased__c</fullName>
         <externalId>false</externalId>
+        <description></description>
+        <inlineHelpText></inlineHelpText>
         <label>Date Deceased</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Date</type>
@@ -4423,7 +4425,7 @@
         <description>Contact's former first name.</description>
         <externalId>false</externalId>
         <inlineHelpText>Contact's former first name.</inlineHelpText>
-        <label>Former Full Name</label>
+        <label>Former First Name</label>
         <length>80</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
