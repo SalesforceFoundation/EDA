@@ -341,3 +341,24 @@ class EDA(BaseEDAPage):
         self.selenium.click_element(locator)
         if action == "Save":
             self.eda.verify_toast_message("Settings successfully saved.")
+
+    def update_dropdown_value(self, field, value):
+        """ This method will update the drop down field value passed in 'value' variable
+            Pass the expected value to be set in the drop down field from the tests
+        """
+        locator = eda_lex_locators["eda_settings_cc"]["dropdown_values"].format(field,value)
+        self.selenium.wait_until_page_contains_element(locator, 
+                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
+        self.selenium.click_element(locator)
+
+    def verify_selected_dropdown_value(self, field, expectedDropdownValue):
+        """ This method will confirm if the value to be set in dropdown field is retained after save action
+            Pass the expected value to be verified from the tests
+        """
+        locator = eda_lex_locators["eda_settings_cc"]["updated_dropdown_value"].format(field,expectedDropdownValue)
+        self.selenium.wait_until_element_is_visible(locator, 
+                                                error= "Element is not displayed for the user")
+        actual_value = self.selenium.get_webelement(locator).text
+        print (actual_value)
+        if not str(expectedDropdownValue).lower() == str(actual_value).lower() :
+            raise Exception (f"Drop down value in '{field}' is not updated and the value is '{actual_value}'")

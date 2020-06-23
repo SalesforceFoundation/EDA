@@ -3,6 +3,7 @@ from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import eda_lex_locators
+import time
 
 
 @pageobject("Course_Connections", "HEDA_Settings")
@@ -34,7 +35,9 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         locator_edit_mode = eda_lex_locators["eda_settings_cc"]["enable_cc_checkbox"]
 
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
+        print (actual_value)
         if not actual_value == "False":
+            print ("Message from inside loop")
             self.eda.click_edit_on_eda_settings_page()
             self.selenium.wait_until_page_contains_element(
                 locator_edit_mode, error=f"Enable course connections checkbox with locator '{locator_edit_mode}' is not available on the page")
@@ -69,15 +72,6 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
             self.selenium.wait_until_page_contains_element(
                 locator_disabled, error="Enable course connections warning is displayed")
 
-    def update_dropdown_value(self, field, value):
-        """ This method will update the drop down field value passed in 'value' variable
-            Pass the expected value to be set in the drop down field from the tests
-        """
-        locator = eda_lex_locators["eda_settings_cc"]["dropdown_values"].format(field,value)
-        self.selenium.wait_until_page_contains_element(locator, 
-                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
-        self.selenium.click_element(locator)
-
     def verify_enable_course_connections(self, expectedCheckboxValue):
         """ This method will check the default value of 'Enable Course Connections' checkbox
         """
@@ -86,17 +80,5 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         print (actual_value)
         if not str(expectedCheckboxValue).lower() == "true" :
             raise Exception (f"Enable course connection is not checked and the value is '{actual_value}'")
-
-    def verify_selected_dropdown_value(self, field, expectedDropdownValue):
-        """ This method will confirm if the value to be set in dropdown field is retained after save action
-            Pass the expected value to be verified from the tests
-        """
-        locator = eda_lex_locators["eda_settings_cc"]["updated_dropdown_value"].format(field,expectedDropdownValue)
-        self.selenium.wait_until_element_is_visible(locator, 
-                                                error= "Element is not displayed for the user")
-        actual_value = self.selenium.get_webelement(locator).text
-        print (actual_value)
-        if not str(expectedDropdownValue).lower() == str(actual_value).lower() :
-            raise Exception (f"Drop down value in '{field}' is not updated and the value is '{actual_value}'")
 
 
