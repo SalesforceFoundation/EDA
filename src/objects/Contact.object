@@ -2918,8 +2918,6 @@
     <fields>
         <fullName>Date_Deceased__c</fullName>
         <externalId>false</externalId>
-        <description></description>
-        <inlineHelpText></inlineHelpText>
         <label>Date Deceased</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Date</type>
