@@ -33,6 +33,8 @@
 * @group Affiliations
 * @group-content ../../ApexDocContent/Affiliations.htm
 * @description Handles the Contact in a primary Affiliation being changed or cleared.
+* AfterUpdate - When a Primary Affiliation's Contact is changed, it clears its related Primary Affiliation field
+* on the Contact and populates the value in the new Contact's Primary Affiliation field.
 */
 public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 
@@ -79,33 +81,31 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 	            for (SObject so : newlist) {
                     Affiliation__c affl = (Affiliation__c)so;
                     Affiliation__c afflOld;
-               		if(oldlist[i] != null)
+               		if (oldlist[i] != null) {
                    		afflOld = (Affiliation__c)oldlist[i];
-	               	String lookupLabelOrAPIName = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-                    if (lookupLabelOrAPIName == NULL) {
-                        String affiliationTypeAPI = afflMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
-                        lookupLabelOrAPIName = afflMapper.accRecTypeToContactLabel.get(affiliationTypeAPI);
                     }
-	               	String lookupFieldAPIName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
-                    
+                    // Get the Primary Affiliation lookup's API name for this affiliation type
+	               	String lookupFieldAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(affl.Affiliation_Type__c);
+
 					if (isAfflTypeEnforced == true) {
 						ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
 					}
 
 	               	//AFTER UPDATE
-	               	if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+	               	if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 
     		           	Contact newRelatedContact, oldRelatedContact;
-		               	if(newlist != null) {
+		               	if (newlist != null) {
 		                  	newRelatedContact = newRelatedContactsMap.get(affl.Contact__c);
 		               	}
-		               	if(oldlist != null) {
+		               	if (oldlist != null) {
 		                  	oldRelatedContact = oldRelatedContactsMap.get(afflOld.Contact__c);
 		               	}
 
 	                   	//CONTACT FIELD CHANGED
-	                   	if(affl.Primary__c && affl.Contact__c != null && afflOld.Contact__c != null
-	                   		&& affl.Contact__c != afflOld.Contact__c && newRelatedContact != null && oldRelatedContact != null && lookupFieldAPIName != null) {
+	                   	if (affl.Primary__c && affl.Contact__c != null && afflOld.Contact__c != null
+	                   		&& affl.Contact__c != afflOld.Contact__c && newRelatedContact != null 
+                            && oldRelatedContact != null && lookupFieldAPIName != null) {
 
 	                       	//Clear matching primary affiliation field in old Contact
 	                       	oldRelatedContact.put(lookupFieldAPIName, null);
@@ -120,7 +120,7 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 	                   	}
 
 	                   	//CONTACT FIELD CLEARED - same as if the Affiliation was deleted.
-	                   	if(affl.Primary__c && afflOld.Contact__c != null && affl.Contact__c == null && lookupFieldAPIName != null) {
+	                   	if (affl.Primary__c && afflOld.Contact__c != null && affl.Contact__c == null && lookupFieldAPIName != null) {
 	                       	afflMulti.processAfflDeleted(afflOld, oldRelatedContact, lookupFieldAPIName, dmlWrapper);
 	                   	}
 	               	}

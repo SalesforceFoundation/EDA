@@ -262,4 +262,51 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         }
         return validPrimaryFields;
     }
+
+    /*******************************************************************************************************************************
+    * @description Returns the API name of the Primary Affiliation Lookup field from Affiliation_Type__c(Account Record Type Label)
+    * @param affiliationType The value of Affiliation_Type__c on Affiliation which is also related Account's Record Type Label Name
+    * @return lookupFieldAPIName The API name of the Primary Affiliation Lookup field
+    *********************************************************************************************************************************/
+    public String getPrimaryAffiliationLookupAPIFromAffiliationType(String affiliationType) {
+
+        if (affiliationType == null || affiliationType == '') {
+            return affiliationType;
+        }
+
+        String primayAfflLookupLabelOrAPIName = accRecTypeToContactLabel.get(affiliationType);
+
+        if (primayAfflLookupLabelOrAPIName == null) {
+            /* This means 'Account Record Type' in EDA settings is using API names for 'Account Record Type' in Affiliations mappings
+            and we are trying to find by label name, which is Affiliation_Type__c. So first get the API name of the Account Record type
+            from its label (affiliationType). Then use the record type's  API name to get the Contact's Priamry Affiliation's name
+            from settings which could be either API or label. */
+
+            String affiliationTypeAPI = accRecTypeLabelToAPI.get(affiliationType);
+            primayAfflLookupLabelOrAPIName = accRecTypeToContactLabel.get(affiliationTypeAPI);
+        }
+
+        String primaryAfflLookupAPIName;
+
+        // Assume primayAfflLookupLabelOrAPIName is the Primary Affiliation Lookup's label and get its API name from the label
+        if (primayAfflLookupLabelOrAPIName != null) {
+            primaryAfflLookupAPIName = contactLabelNames.get(primayAfflLookupLabelOrAPIName);
+        }
+
+        // If primaryAfflLookupAPIName of the Contact is not found, check if primayAfflLookupLabelOrAPIName is actually a field API Name. 
+        // If yes, assign it to primaryAfflLookupAPIName.
+        if ((primaryAfflLookupAPIName == '' || primaryAfflLookupAPIName == null) && 
+            (primayAfflLookupLabelOrAPIName != null && primayAfflLookupLabelOrAPIName != '')) {
+
+            // Check if primayAfflLookupLabelOrAPIName is in the List of Contact field API names,
+            // if yes, assign primayAfflLookupLabelOrAPIName to primaryAfflLookupAPIName
+            List<String> contactFieldAPINamesList = contactLabelNames.values();
+
+            if (contactFieldAPINamesList.isEmpty() == false && contactFieldAPINamesList.contains(primayAfflLookupLabelOrAPIName) == true) {
+                primaryAfflLookupAPIName = primayAfflLookupLabelOrAPIName;
+            }
+        }
+
+        return primaryAfflLookupAPIName;
+    }
 }

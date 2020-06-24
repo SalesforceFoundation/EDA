@@ -73,25 +73,8 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
                 Integer i = 0;
                 for (SObject so : newlist) {
                     Affiliation__c affl = (Affiliation__c)so;
-
-                    // Get the 'Primary Affl Field' value(could be Lookup Label or the Lookup API name) that is stored in 'Affl Mapping' Custom Settings
-                    String lookupLabelOrAPIName = afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-                    if (lookupLabelOrAPIName == NULL) {
-                        String affiliationTypeAPI = afflMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
-                        lookupLabelOrAPIName = afflMapper.accRecTypeToContactLabel.get(affiliationTypeAPI);
-                    }
-                    // Get the API name of the lookup field if lookupLabelOrAPIName is actually a Label and assig it to lookupFieldAPIName
-                    String lookupFieldAPIName = afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
-                    // If lookupFieldAPIName of the Contact is not found, check if lookupLabelOrAPIName is actually a field API Name, if yes assign it to lookupFieldAPIName.
-                    // This way the API name can be used to populate primay Affiliation lookup on contact even when language is not English
- 
-                    if ((lookupLabelOrAPIName != NULL && lookupLabelOrAPIName != '') && (lookupFieldAPIName == '' || lookupFieldAPIName == NULL)) {
-                        // Check if lookupLabelOrAPIName is in the List of Contact field API names, if yes assign lookupLabelOrAPIName to lookupFieldAPIName
-                        List<String> contactFieldAPINamesList = afflMapper.contactLabelNames.values();
-                        if (contactFieldAPINamesList.contains(lookupLabelOrAPIName)) {
-                            lookupFieldAPIName = lookupLabelOrAPIName;
-                        }
-                    }
+                    // Get the Primary Affiliation lookup's API name for this affiliation type
+                    String lookupFieldAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(affl.Affiliation_Type__c);
 
                     if (isAfflTypeEnforced == true) {
                         ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
