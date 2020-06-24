@@ -54,7 +54,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
 	@isTest
 	private static void createPrimaryAffl() {		
-		AFFL_MultiRecordType_TEST.setup();
+        AFFL_MultiRecordType_TEST.setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -118,7 +118,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(bizOrg2.ID, updatedContact.Primary_Organization__c);  
 	}
 
-	@isTest
+    @isTest
     private static void noDuplicateAffl() {
         AFFL_MultiRecordType_TEST.setup();
 
@@ -143,7 +143,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
 	@isTest
 	private static void deletePrimaryAffl() {		
-		AFFL_MultiRecordType_TEST.setup();
+        AFFL_MultiRecordType_TEST.setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -186,7 +186,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
 	@isTest
 	private static void makePrimaryAfflNonPrimary() {		
-		AFFL_MultiRecordType_TEST.setup();
+        AFFL_MultiRecordType_TEST.setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -223,7 +223,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
 	@isTest
 	private static void makeNonPrimaryAfflPrimary() {
-		AFFL_MultiRecordType_TEST.setup();
+        AFFL_MultiRecordType_TEST.setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -259,7 +259,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
 	@isTest
 	private static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {		
-		AFFL_MultiRecordType_TEST.setup();
+        AFFL_MultiRecordType_TEST.setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -304,7 +304,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
 	}
 
-	@isTest
+    @isTest
     private static void createPrimaryAfflWhenAnotherPrimaryExists() {        
         AFFL_MultiRecordType_TEST.setup();
 
@@ -336,7 +336,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
 	@isTest
 	private static void autoCreateProgramEnrollment() {		
-		AFFL_MultiRecordType_TEST.setup();
+        AFFL_MultiRecordType_TEST.setup();
 
 		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
 		Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
@@ -432,7 +432,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 * This method ensures there is no NPE when a primay affiliation 
 * with no contact is deleted
 */
-	@isTest
+    @isTest
     private static void affiliationDeleteNPECheck() {        
 
         AFFL_MultiRecordType_TEST.setup();
@@ -556,7 +556,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         AFFL_MultiRecordType_TEST.setup();
 
-	    List<Account> accList = new List<Account>();
+        List<Account> accList = new List<Account>();
 
         // Insert a Business Account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];

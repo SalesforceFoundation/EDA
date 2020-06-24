@@ -117,7 +117,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     
     private Map<String, String> getContactLabelsNamesMap(List<SObjectField> cf) {
         Map<String, String> labelsnames = new Map<String, String>();
-        for(SObjectField field : cf) {
+        for (SObjectField field : cf) {
             labelsnames.put(field.getDescribe().getLabel(), field.getDescribe().getName());
         }
         return labelsnames;
@@ -140,8 +140,8 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         accountRecordTypes = new List<String>();
 
         //Put affl mappings in a map.
-        for(Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-            if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
+        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
+            if (!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
                 accRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
                 accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
                 accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
@@ -161,7 +161,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         Set<String> primaryAfflFieldLabelsOrAPIs = new Set<String>(primaryAfflFieldLabelsOrAPINames);
         List<SObjectField> primaryFields = new List<SObjectField>();
         primaryAfflFieldNames = new List<String>();
-        for(SObjectField field : contactFields) {
+        for (SObjectField field : contactFields) {
             if (primaryAfflFieldLabelsOrAPIs.contains(field.getDescribe().getLabel()) || primaryAfflFieldLabelsOrAPIs.contains(field.getDescribe().getName())) {
                 primaryAfflFieldNames.add(field.getDescribe().getName());
                 primaryFields.add(field);
@@ -214,14 +214,14 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     public Boolean needsProgramEnrollment(Affiliation__c affl) {
         Boolean autoEnrollment = false;
         String autoRole, autoStatus;
-        if(affl.Affiliation_Type__c != null) {
+        if (affl.Affiliation_Type__c != null) {
             if(accTypeToEnrollCreate.get(affl.Affiliation_Type__c) != null) {
                autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
             }
             autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
             autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
         }
-        if(autoEnrollment && affl != null && affl.Role__c != null && autoRole == affl.Role__c && affl.Status__c != null 
+        if (autoEnrollment && affl != null && affl.Role__c != null && autoRole == affl.Role__c && affl.Status__c != null 
         && autoStatus == affl.Status__c) { 
            return true;
         }
@@ -255,7 +255,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         for (SObjectField field : cf) {
             contactFieldStrings.add(field.getDescribe().getLabel());
         }
-        for(String primaryAfflFieldLabel : primaryAfflFieldLabels) {
+        for (String primaryAfflFieldLabel : primaryAfflFieldLabels) {
             if(contactFieldStrings.contains(primaryAfflFieldLabel)) {
                 validPrimaryFields.add(primaryAfflFieldLabel);
             }
@@ -302,7 +302,9 @@ public with sharing class AFFL_MultiRecordTypeMapper {
             // if yes, assign primayAfflLookupLabelOrAPIName to primaryAfflLookupAPIName
             List<String> contactFieldAPINamesList = contactLabelNames.values();
 
-            if (contactFieldAPINamesList.isEmpty() == false && contactFieldAPINamesList.contains(primayAfflLookupLabelOrAPIName) == true) {
+            if (contactFieldAPINamesList != null && contactFieldAPINamesList.isEmpty() == false &&
+                contactFieldAPINamesList.contains(primayAfflLookupLabelOrAPIName) == true) {
+
                 primaryAfflLookupAPIName = primayAfflLookupLabelOrAPIName;
             }
         }
