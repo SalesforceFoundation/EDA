@@ -37,32 +37,32 @@
 @isTest
 public with sharing class AFFL_MultiRecordType_TEST {
 
-	private static ID orgRecTypeID;
-	private static ID householdRecTypeID;
+    private static ID orgRecTypeID;
+    private static ID householdRecTypeID;
 
-	public static void setup() {
-		UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+    public static void setup() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
-		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-    	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
-    	mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
-    	insert mappings;
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
+        insert mappings;
 
-    	orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
-    	householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
-	}
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
+    }
 
-	@isTest
-	private static void createPrimaryAffl() {		
+    @isTest
+    private static void createPrimaryAffl() {		
         AFFL_MultiRecordType_TEST.setup();
 
-    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert contact;
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
 
-    	//Verify default household account has been created for the contact
-    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
-    	System.assertNotEquals(null, contact.Account.ID);
-    	System.assertEquals(null, contact.Primary_Household__c);
+        //Verify default household account has been created for the contact
+        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        System.assertNotEquals(null, contact.Account.ID);
+        System.assertEquals(null, contact.Primary_Household__c);
 
         //Manually create an Affiliation to the household, since we are not automatically doing so any more
         AFFL_ContactAccChange_TEST.resetAfflFlags();
@@ -72,51 +72,51 @@ public with sharing class AFFL_MultiRecordType_TEST {
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Primary_Household__c);
 
-    	//Create account of Business Organization record type
-    	Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-    	insert bizOrg1;
+        //Create account of Business Organization record type
+        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert bizOrg1;
 
-    	//Create another key affiliation, this time to a biz org
-		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-		AFFL_ContactAccChange_TEST.resetAfflFlags(); 
-		Test.startTest();
-		insert bizAffl1;
-		Test.stopTest();
+        //Create another key affiliation, this time to a biz org
+        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
+        AFFL_ContactAccChange_TEST.resetAfflFlags(); 
+        Test.startTest();
+        insert bizAffl1;
+        Test.stopTest();
 
-		//The business organization lookup should point to the account that is part of the affiliation we created
-		bizAffl1 = [select Affiliation_Type__c from Affiliation__c where Account__c = :bizOrg1.ID];
-		System.assertEquals('Business Organization', bizAffl1.Affiliation_Type__c);
+        //The business organization lookup should point to the account that is part of the affiliation we created
+        bizAffl1 = [select Affiliation_Type__c from Affiliation__c where Account__c = :bizOrg1.ID];
+        System.assertEquals('Business Organization', bizAffl1.Affiliation_Type__c);
 
-		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
-		System.assertEquals(bizOrg1.ID, Contact.Primary_Organization__c);
+        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+        System.assertEquals(bizOrg1.ID, Contact.Primary_Organization__c);
 
-		//Create second account of the same record type
-		Account bizOrg2 = new Account(Name='Toys Inc', RecordTypeId = orgRecTypeID);
-    	insert bizOrg2;
+        //Create second account of the same record type
+        Account bizOrg2 = new Account(Name='Toys Inc', RecordTypeId = orgRecTypeID);
+        insert bizOrg2;
 
-		//Create second primary affiliation
-		Affiliation__c bizAffl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg2.ID, Primary__c = true);
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		insert bizAffl2;
+        //Create second primary affiliation
+        Affiliation__c bizAffl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg2.ID, Primary__c = true);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert bizAffl2;
 
-		//The previous affiliation should not be the primary any more
-		bizAffl1 = [select Primary__c from Affiliation__c where ID = :bizAffl1.ID];
-		System.assertEquals(false, bizAffl1.Primary__c);
+        //The previous affiliation should not be the primary any more
+        bizAffl1 = [select Primary__c from Affiliation__c where ID = :bizAffl1.ID];
+        System.assertEquals(false, bizAffl1.Primary__c);
 
-		//The business organization lookup should point to the account that is part of the second affiliation we created
-		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
-		System.assertEquals(bizOrg2.ID, Contact.Primary_Organization__c);
+        //The business organization lookup should point to the account that is part of the second affiliation we created
+        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+        System.assertEquals(bizOrg2.ID, Contact.Primary_Organization__c);
 
-		//  Test addition of a new affiliation with the same Account doesn't erase the Primary field on Contact
+        //  Test addition of a new affiliation with the same Account doesn't erase the Primary field on Contact
 
-		// Insert another primary Affiliaiton on the Contact with same Account 
-		Affiliation__c bizAffl3 = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg2.ID, Primary__c = true);
+        // Insert another primary Affiliaiton on the Contact with same Account 
+        Affiliation__c bizAffl3 = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg2.ID, Primary__c = true);
         insert bizAffl3;            
 
         // Verify Primary Buisness Organization on the Contact is not erased         
         Contact updatedContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 
         System.assertEquals(bizOrg2.ID, updatedContact.Primary_Organization__c);  
-	}
+    }
 
     @isTest
     private static void noDuplicateAffl() {
@@ -141,17 +141,17 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(1, affls.size());
     }
 
-	@isTest
-	private static void deletePrimaryAffl() {		
+    @isTest
+    private static void deletePrimaryAffl() {		
         AFFL_MultiRecordType_TEST.setup();
 
-    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert contact;
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
 
-    	//Verify default household account has been created for the contact
-    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
-    	System.assertNotEquals(null, contact.Account.ID);
-    	System.assertEquals(null, contact.Primary_Household__c);
+        //Verify default household account has been created for the contact
+        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        System.assertNotEquals(null, contact.Account.ID);
+        System.assertEquals(null, contact.Primary_Household__c);
 
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
         insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
@@ -160,42 +160,42 @@ public with sharing class AFFL_MultiRecordType_TEST {
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Primary_Household__c);
 
-    	//Craete account of Business Organization record type
-    	Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-    	insert acc1;
+        //Craete account of Business Organization record type
+        Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert acc1;
 
-    	//Create primary Business affiliation
-		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
-		Test.startTest();
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		insert affl1;
-    	Test.stopTest();
+        //Create primary Business affiliation
+        Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
+        Test.startTest();
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert affl1;
+        Test.stopTest();
 
-    	//Verify Primary Organization lookup field points to the account we just created
-    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
-		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
+        //Verify Primary Organization lookup field points to the account we just created
+        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+        System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
 
-		//Delete Business affiliation
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		delete affl1;
+        //Delete Business affiliation
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        delete affl1;
 
-		//Verify Primary Organization lookup field has been cleared
-		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
-		System.assertEquals(null, Contact.Primary_Organization__c);
-	}
+        //Verify Primary Organization lookup field has been cleared
+        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+        System.assertEquals(null, Contact.Primary_Organization__c);
+    }
 
-	@isTest
-	private static void makePrimaryAfflNonPrimary() {		
+    @isTest
+    private static void makePrimaryAfflNonPrimary() {		
         AFFL_MultiRecordType_TEST.setup();
 
-    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert contact;
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
 
-    	//Verify default household account has been created for the contact
-    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
-    	System.assertNotEquals(null, contact.Account.ID);
-    	ID parentAccountId = contact.Account.ID;
-    	System.assertEquals(null, contact.Primary_Household__c);
+        //Verify default household account has been created for the contact
+        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        System.assertNotEquals(null, contact.Account.ID);
+        ID parentAccountId = contact.Account.ID;
+        System.assertEquals(null, contact.Primary_Household__c);
 
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
@@ -206,103 +206,103 @@ public with sharing class AFFL_MultiRecordType_TEST {
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Primary_Household__c);
 
-    	//Make the affiliation not primary
-    	affl.Primary__c = false;
-    	Test.startTest();
-    	AFFL_ContactAccChange_TEST.resetAfflFlags();
-    	update affl;
-    	Test.stopTest();
+        //Make the affiliation not primary
+        affl.Primary__c = false;
+        Test.startTest();
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        update affl;
+        Test.stopTest();
 
-    	//Verify Primary_Household__c field has been cleared
-    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
-    	System.assertEquals(null, contact.Primary_Household__c);
+        //Verify Primary_Household__c field has been cleared
+        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        System.assertEquals(null, contact.Primary_Household__c);
 
-    	//Verify the contact is still the child of the same account
-    	System.assertEquals(parentAccountId, contact.Account.ID);
-	}
+        //Verify the contact is still the child of the same account
+        System.assertEquals(parentAccountId, contact.Account.ID);
+    }
 
-	@isTest
-	private static void makeNonPrimaryAfflPrimary() {
+    @isTest
+    private static void makeNonPrimaryAfflPrimary() {
         AFFL_MultiRecordType_TEST.setup();
 
-    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert contact;
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
 
-    	//Create account of Business Organization record type
-    	Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-    	insert acc1;
+        //Create account of Business Organization record type
+        Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert acc1;
 
-    	//Create non-primary Business affiliation
-		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = false);
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		insert affl1;
+        //Create non-primary Business affiliation
+        Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = false);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert affl1;
 
-		//Verify Primary Organization lookup field is blank
-    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
-		System.assertEquals(null, Contact.Primary_Organization__c);
+        //Verify Primary Organization lookup field is blank
+        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+        System.assertEquals(null, Contact.Primary_Organization__c);
 
-		//Make the business affiliation primary
-		affl1.Primary__c = true;
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		Test.startTest();
-		update affl1;
-		Test.stopTest();
+        //Make the business affiliation primary
+        affl1.Primary__c = true;
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        Test.startTest();
+        update affl1;
+        Test.stopTest();
 
-		//Verify key affl field has been populated
-    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
-		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
+        //Verify key affl field has been populated
+        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+        System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
 
-		//No other affiliation should have been created (bug W-008631)
+        //No other affiliation should have been created (bug W-008631)
         List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID];
         System.assertEquals(1, affls.size());
-	}
+    }
 
-	@isTest
-	private static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {		
+    @isTest
+    private static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {		
         AFFL_MultiRecordType_TEST.setup();
 
-    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert contact;
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
 
-    	//Create 2 accounts of Business Organization record type
-    	Account acc1 = new Account(Name='Acme1', RecordTypeId = orgRecTypeID);
-    	Account acc2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
-    	insert new Account[] {acc1, acc2};
+        //Create 2 accounts of Business Organization record type
+        Account acc1 = new Account(Name='Acme1', RecordTypeId = orgRecTypeID);
+        Account acc2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+        insert new Account[] {acc1, acc2};
 
-    	//Create primary Business affiliation
-		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		insert affl1;
+        //Create primary Business affiliation
+        Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert affl1;
 
-		//Verify key affl field has been populated
-    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
-		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
+        //Verify key affl field has been populated
+        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+        System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
 
-    	//Create non-primary Business affiliation
-		Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc2.ID, Primary__c = false);
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		insert affl2;
+        //Create non-primary Business affiliation
+        Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc2.ID, Primary__c = false);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert affl2;
 
-		//Made the second business affiliation primary
-		affl2.Primary__c = true;
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		Test.startTest();
-		update affl2;
-		Test.stopTest();
+        //Made the second business affiliation primary
+        affl2.Primary__c = true;
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        Test.startTest();
+        update affl2;
+        Test.stopTest();
 
-		//The second affiliation should be the only primary so order by Primary ASC
-		//to ensure we recieve the Primary = True as the second record. Verify
-		//its affiliiation with acc2.
-		List<Affiliation__c> affls = [SELECT Account__c, Primary__c FROM Affiliation__c WHERE Contact__c = :contact.ID ORDER BY Primary__c ASC];
-		System.assertEquals(affls[0].Account__c, acc1.ID);
-		System.assertEquals(affls[0].Primary__c, false);
-		System.assertEquals(affls[1].Account__c, acc2.ID);
-		System.assertEquals(affls[1].Primary__c, true);
+        //The second affiliation should be the only primary so order by Primary ASC
+        //to ensure we recieve the Primary = True as the second record. Verify
+        //its affiliiation with acc2.
+        List<Affiliation__c> affls = [SELECT Account__c, Primary__c FROM Affiliation__c WHERE Contact__c = :contact.ID ORDER BY Primary__c ASC];
+        System.assertEquals(affls[0].Account__c, acc1.ID);
+        System.assertEquals(affls[0].Primary__c, false);
+        System.assertEquals(affls[1].Account__c, acc2.ID);
+        System.assertEquals(affls[1].Primary__c, true);
 
-		//Verify key affl field has been updated
-    	contact = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact.ID];
-		System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
-	}
+        //Verify key affl field has been updated
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact.ID];
+        System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
+    }
 
     @isTest
     private static void createPrimaryAfflWhenAnotherPrimaryExists() {        
@@ -334,66 +334,66 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     }
 
-	@isTest
-	private static void autoCreateProgramEnrollment() {		
+    @isTest
+    private static void autoCreateProgramEnrollment() {		
         AFFL_MultiRecordType_TEST.setup();
 
-		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
-		Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
-		bizOrgMapping.Auto_Program_Enrollment__c = true;
-		bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
-		bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
-		update bizOrgMapping;
+        //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
+        Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
+        bizOrgMapping.Auto_Program_Enrollment__c = true;
+        bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
+        bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
+        update bizOrgMapping;
 
-    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert contact;
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
 
-		//Craete account of Business Organization record type
-    	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-    	insert acc;
+        //Craete account of Business Organization record type
+        Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert acc;
 
-    	//Create Business affiliation
-		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Student', Status__c = 'Current');
-		Test.startTest();
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		insert affl;
-		Test.stopTest();
+        //Create Business affiliation
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Student', Status__c = 'Current');
+        Test.startTest();
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert affl;
+        Test.stopTest();
 
-		//Verify Progran Enrollment record has been created
-		List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
-		System.assertEquals(1, programEnrollments.size());
-		System.assertEquals(contact.ID, programEnrollments[0].Contact__c);
-	}
+        //Verify Progran Enrollment record has been created
+        List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
+        System.assertEquals(1, programEnrollments.size());
+        System.assertEquals(contact.ID, programEnrollments[0].Contact__c);
+    }
 
-	@isTest
-	private static void autoCreateProgramEnrollmentDifferentRole() {
-		AFFL_MultiRecordType_TEST.setup();
+    @isTest
+    private static void autoCreateProgramEnrollmentDifferentRole() {
+        AFFL_MultiRecordType_TEST.setup();
 
-		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing
-		Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
-		bizOrgMapping.Auto_Program_Enrollment__c = true;
-		bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
-		bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
-		update bizOrgMapping;
+        //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing
+        Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
+        bizOrgMapping.Auto_Program_Enrollment__c = true;
+        bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
+        bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
+        update bizOrgMapping;
 
-		Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-		insert contact;
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
 
-		//Craete account of Business Organization record type
-		Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-		insert acc;
+        //Craete account of Business Organization record type
+        Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert acc;
 
-		//Create Business affiliation
-		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Teacher', Status__c = 'Current');
-		Test.startTest();
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		insert affl;
-		Test.stopTest();
+        //Create Business affiliation
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Teacher', Status__c = 'Current');
+        Test.startTest();
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert affl;
+        Test.stopTest();
 
-		//Verify Program Enrollment record has not been created
-		List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
-		System.assertEquals(0, programEnrollments.size());
-	}
+        //Verify Program Enrollment record has not been created
+        List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
+        System.assertEquals(0, programEnrollments.size());
+    }
 
 
 /*********************************************************************************************************
@@ -402,30 +402,30 @@ public with sharing class AFFL_MultiRecordType_TEST {
 * Make sure Affiliation is not created and a custom exception is thrown
 */
 
-	@isTest
-	private static void incorrectAfflMappingsAfflTypeEnforced() {
-		UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+    @isTest
+    private static void incorrectAfflMappingsAfflTypeEnforced() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
-		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-		mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organizations', Primary_Affl_Field__c = 'Primary Business Organization'));
-		insert mappings;
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organizations', Primary_Affl_Field__c = 'Primary Business Organization'));
+        insert mappings;
 
-		List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
-		insert testAccounts;
+        List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
+        insert testAccounts;
 
-		Test.startTest();
-		AFFL_ContactAccChange_TEST.resetAfflFlags();
-		Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = testAccounts[0].Id);
-		Database.SaveResult result = Database.insert(contact, false);
-		Test.stopTest();
+        Test.startTest();
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = testAccounts[0].Id);
+        Database.SaveResult result = Database.insert(contact, false);
+        Test.stopTest();
 
-		//Assert
-		List<Affiliation__c> assertAffls = [select ID from Affiliation__c];
-		System.assertEquals(0, assertAffls.size());
+        //Assert
+        List<Affiliation__c> assertAffls = [select ID from Affiliation__c];
+        System.assertEquals(0, assertAffls.size());
 
-		System.assertEquals(false, result.success);
-		System.assertEquals(Label.afflAccoutMappingError, result.errors[0].message);
-	}
+        System.assertEquals(false, result.success);
+        System.assertEquals(Label.afflAccoutMappingError, result.errors[0].message);
+    }
 
 /*********************************************************************************************************
 * @description
@@ -453,7 +453,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         List<Affiliation__c> affiliationList = [SELECT Id, Name, Contact__c, Primary__c FROM Affiliation__c 
                                                 WHERE Contact__c = :contact.Id 
                                                 AND Account__c = :bizAcc.Id] ;
-												
+                                                
         System.assertEquals(1, affiliationList.size());
         System.assertEquals(true, affiliationList[0].Primary__c);
 
@@ -475,7 +475,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         System.assertEquals(0, allAffiliationList.size()); 
 
-	}
+    }
 
 /*********************************************************************************************************
 * @description
@@ -517,8 +517,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
         for (Contact eachCon: [SELECT Id, Primary_Organization__c, Primary_Household__c FROM Contact]) {
 
             // Ensure Primary fields on Contact are populated
-        	System.assertEquals(eachCon.Primary_Organization__c, bizAcc1.Id);
-        	System.assertEquals(eachCon.Primary_Household__c, hhAcc1.Id);
+            System.assertEquals(eachCon.Primary_Organization__c, bizAcc1.Id);
+            System.assertEquals(eachCon.Primary_Household__c, hhAcc1.Id);
         }
         // Make non-primary Affliations as primary
         Test.startTest();
@@ -533,11 +533,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Test.stopTest();
 
         for (contact conAfterUpdate : [SELECT Id, Primary_Organization__c, Primary_Household__c FROM Contact]) {       
-			// Ensure Primary fields on Contact are populated with new Accounts
-        	System.assertEquals(conAfterUpdate.Primary_Organization__c, bizAcc2.Id);
-        	System.assertEquals(conAfterUpdate.Primary_Household__c, hhAcc2.Id);
+            // Ensure Primary fields on Contact are populated with new Accounts
+            System.assertEquals(conAfterUpdate.Primary_Organization__c, bizAcc2.Id);
+            System.assertEquals(conAfterUpdate.Primary_Household__c, hhAcc2.Id);
         }
-		// Ensure old Affliations are made non-primary
+        // Ensure old Affliations are made non-primary
         for (Affiliation__c eachAffl : [SELECT Id, Primary__c FROM Affiliation__c WHERE (Contact__c = :contact1.Id OR Contact__c = :contact2.Id) AND 
                                         (Account__c = :bizAcc1.Id OR
                                          Account__c = :hhAcc1.Id )]) {                                       
@@ -628,7 +628,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(hhAcc.Id, conAfterUpdate.Primary_Household__c);
     }  		
 
-	 // Test the usage of custom API field name for affiliation mapping for multi-language support
+     // Test the usage of custom API field name for affiliation mapping for multi-language support
 
     @isTest
     private static void customFieldAPIInMappings() {
