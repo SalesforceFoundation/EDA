@@ -360,6 +360,5 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_element_is_visible(locator, 
                                                 error= "Element is not displayed for the user")
         actual_value = self.selenium.get_webelement(locator).text
-        print (actual_value)
         if not str(expectedDropdownValue).lower() == str(actual_value).lower() :
             raise Exception (f"Drop down value in '{field}' is not updated and the value is '{actual_value}'")

@@ -37,9 +37,7 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
 
         self.selenium.wait_until_page_contains_element(locator_default)
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
-        print (actual_value)
         if not actual_value == "False":
-            print ("Message from inside loop")
             self.eda.click_edit_on_eda_settings_page()
             self.selenium.wait_until_page_contains_element(
                 locator_edit_mode, error=f"Enable course connections checkbox with locator '{locator_edit_mode}' is not available on the page")
@@ -79,7 +77,6 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         """
         locator_default = eda_lex_locators["eda_settings_cc"]["default_cc_checkbox"]
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
-        print (actual_value)
         if not str(expectedCheckboxValue).lower() == "true" :
             raise Exception (f"Enable course connection is not checked and the value is '{actual_value}'")
 

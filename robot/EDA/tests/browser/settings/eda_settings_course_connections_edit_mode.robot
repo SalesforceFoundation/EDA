@@ -13,6 +13,10 @@ Test Setup      Run keywords
 
 *** Test Cases ***
 Validate Edit Mode For Course Connections, Settings
+    [Documentation]     This test case validates the settings tab in course connections in edit mode
+    ...                 Also validates the field values of Enable course connections, Default Active
+    ...                 Student Record Type and Default Faculty Record Type are reatined upon saving
+    ...                 which also includes the validation of fields in non edit mode.
     [tags]                                      unstable        W-041783                W-041784
     Click edit on EDA settings page
     Verify enable course connections warning    true
