@@ -11,6 +11,31 @@
         <name>Chosen_Full_Name__c</name>
     </fields>
     <fields>
+        <help><!-- The citizenship status of the contact. --></help>
+        <label><!-- Citizenship Status --></label>
+        <name>Citizenship_Status__c</name>
+        <picklistValues>
+            <masterLabel>Other (Non-US)</masterLabel>
+            <translation><!-- Other (Non-US) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+            <translation><!-- U.S. Citizen or U.S. National --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Dual Citizen</masterLabel>
+            <translation><!-- U.S. Dual Citizen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Permanent Resident</masterLabel>
+            <translation><!-- U.S. Permanent Resident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Refugee or Asylee</masterLabel>
+            <translation><!-- U.S. Refugee or Asylee --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label>Ciutadania</label>
         <name>Citizenship__c</name>
         <picklistValues>
@@ -2257,6 +2282,10 @@
         <relationshipLabel>Contactes (adreça actual)</relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Date Deceased --></label>
+        <name>Date_Deceased__c</name>
+    </fields>
+    <fields>
         <help>Quan estigui seleccionada, aquesta opció marca el contacte com a difunt, i els exclou del nomenament de la llar, de correus electrònics i de trucades telefòniques.</help>
         <label>Difunt</label>
         <name>Deceased__c</name>
@@ -3423,6 +3452,21 @@
         <name>Financial_Aid_Applicant__c</name>
     </fields>
     <fields>
+        <help><!-- Contact&apos;s former first name. --></help>
+        <label><!-- Former First Name --></label>
+        <name>Former_First_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Contact&apos;s former last name. --></help>
+        <label><!-- Former Last Name --></label>
+        <name>Former_Last_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Contact&apos;s former middle name. --></help>
+        <label><!-- Former Middle Name --></label>
+        <name>Former_Middle_Name__c</name>
+    </fields>
+    <fields>
         <label>Sexe</label>
         <name>Gender__c</name>
         <picklistValues>
@@ -3472,22 +3516,6 @@
         <label>Telèfon preferit</label>
         <name>PreferredPhone__c</name>
         <picklistValues>
-            <masterLabel>Home</masterLabel>	
-            <translation>Home Phone</translation>
-        </picklistValues>    
-        <picklistValues>	
-            <masterLabel>Mobile</masterLabel>	
-            <translation>Mobile Phone</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Other</masterLabel>	
-            <translation>Other Phone</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Telèfon de la feina</translation>	
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Home Phone</masterLabel>
             <translation>Home Phone</translation>
         </picklistValues>
@@ -3508,18 +3536,6 @@
         <help>Quin correu electrònic s&apos;hauria d&apos;utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
         <label>Correu preferit</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>	
-            <masterLabel>Alternate</masterLabel>	
-            <translation>Correu electrònic alternatiu</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>University</masterLabel>	
-            <translation>Correu electrònic universitari</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Correu electrònic de la feina</translation>	
-        </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
             <translation>Correu electrònic alternatiu</translation>
