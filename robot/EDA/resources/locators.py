@@ -100,7 +100,7 @@ eda_lex_locators = {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
         "dropdown_values": "//div[text()='{}']/following-sibling::div/select/option[text()='{}']",
         "dropdown_values_count": "//div[text()='{}']/following-sibling::div/select/option",
-        "enable_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div[1]/descendant::span",
+        "enable_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::span",
         "enable_cc_warning_enabled": "//div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
         "enable_cc_warning_disabled": "//span[contains(@class, 'slds-hide')]/descendant::div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
     },

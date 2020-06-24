@@ -29,7 +29,9 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         self.selenium.click_element(locator)
 
     def update_enable_cc_to_default(self):
-        """ Updating the `Enable Course Connections` checkbox to default value (false)"""
+        """ Updating the `Enable Course Connections` checkbox to default value (false)
+            Check for the value and if it is not false, go into edit mode and update
+        """
         locator_default = eda_lex_locators["eda_settings_cc"]["default_cc_checkbox"]
         locator_edit_mode = eda_lex_locators["eda_settings_cc"]["enable_cc_checkbox"]
 
@@ -37,7 +39,8 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         if not actual_value == "False":
             self.eda.click_edit_on_eda_settings_page()
             self.selenium.wait_until_page_contains_element(
-                locator_edit_mode, error=f"Enable course connections checkbox with locator '{locator_edit_mode}' is not available on the page")
+                locator_edit_mode,
+                error=f"Enable course connections checkbox is not available on the page. Locator:'{locator_edit_mode}'")
             self.selenium.click_element(locator_edit_mode)
             self.eda.click_action_button_on_eda_settings_page("Save")
 

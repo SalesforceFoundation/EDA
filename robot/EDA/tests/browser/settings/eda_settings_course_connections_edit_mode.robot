@@ -13,7 +13,11 @@ Test Setup      Run keywords
 
 *** Test Cases ***
 Validate Edit Mode For Course Connections, Settings
+    [Documentation]         Check for the warning message when the Enable Course Connections is unchecked
+    ...                     Check the warning message disappears when the Enable Course Connections is checked
+    ...                     verify default values for Student and Faculty record types
     [tags]                                      unstable        W-041783
+
     Click edit on EDA settings page
     Verify enable course connections warning    true
     Set enable course connections
