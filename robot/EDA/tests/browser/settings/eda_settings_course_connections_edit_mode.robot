@@ -33,10 +33,12 @@ Validate Edit Mode For Course Connections, Settings
     Click action button on EDA settings page    Cancel
     Click edit on EDA settings page
     Set enable course connections
-    Update dropdown value                       Default Active Student Record Type      Faculty
-    Update dropdown value                       Default Faculty Record Type             Student
+    Update dropdown value
+    ...                                         Default Active Student Record Type=Faculty
+    ...                                         Default Faculty Record Type=Student
     Click action button on EDA settings page    Save
     Go to EDA settings tab                      Course Connections                      #This is a work around as we have consistent issues with fields visible to the user 
     Verify enable course connections            true
-    Verify selected dropdown value              Default Active Student Record Type      Faculty
-    Verify selected dropdown value              Default Faculty Record Type             Student
+    Verify selected dropdown value
+    ...                                         Default Active Student Record Type=Faculty
+    ...                                         Default Faculty Record Type=Student
