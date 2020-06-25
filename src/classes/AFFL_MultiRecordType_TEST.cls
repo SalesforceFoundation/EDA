@@ -660,7 +660,130 @@ public with sharing class AFFL_MultiRecordType_TEST {
         //Verify Primary Organization is populated
         Contact updatedContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 
 
-        System.assertEquals(bizAcc.Id, updatedContact.Primary_Organization__c);   
+        System.assertEquals(bizAcc.Id, updatedContact.Primary_Organization__c);
+    }
+
+    /* Test deletion of an Affiliation clears the Primary Affiliation field on its Contact when Affiliation Mappings 
+       have Label for Account Record Types and APIs for Primary Affiliation fields. */
+
+    @isTest
+    private static void testAfflDeletionWithLabelForRecTypeAndAPINameForPrimaryAfflFields() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
+
+        // Insert custom api field name as an affiliation mapping
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        insert mappings;
+
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+
+        // Insert a business account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizAcc;
+
+        // Insert a contact with business account as Primary business organization
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;
+
+        // Insert an affiliation
+        Affiliation__c affiliation = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
+        insert affiliation; 
+
+        // Verify Primary Organization lookup field points to the account we just created
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(bizAcc.ID, Contact.Primary_Organization__c);
+
+        Test.startTest();
+            delete affiliation;
+        Test.stopTest();
+
+        // Verify Primary Organization lookup field has been cleared
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(null, Contact.Primary_Organization__c);
+
+    }
+
+    /* Test deletion of an Affiliation clears the Primary Affiliation field on its Contact when Affiliation Mappings 
+       have API names for Account Record Types and Labels for Primary Affiliation fields. */
+
+    @isTest
+    private static void testAfflDeletionWithAPIForRecTypeAndLabelForPrimaryAfflFields() {
+
+        // Insert custom api field name as an affiliation mapping    
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = 'Primary Business Organization'));
+        insert mappings;
+
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+
+        // Insert a business account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizAcc;
+
+        // Insert a contact with business account as Primary business organization
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;
+
+        // Insert an affiliation
+        Affiliation__c affiliation = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
+        insert affiliation;
+
+        // Verify Primary Organization lookup field points to the account we just created
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(bizAcc.ID, Contact.Primary_Organization__c);
+
+        Test.startTest();
+            delete affiliation;
+        Test.stopTest();
+
+        // Verify Primary Organization lookup field has been cleared
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(null, Contact.Primary_Organization__c);
+
+    }
+
+    /* Test deletion of an Affiliation clears the Primary Affiliation field on its Contact when Affiliation Mappings
+       have API names for Account Record Types and API for Primary Affiliation fields. */
+
+    @isTest
+    private static void testAfflDeletionWithAPIForRecTypeAndAPIForPrimaryAfflFields() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
+
+        // Insert custom api field name as an affiliation mapping
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        insert mappings;
+
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+
+        // Insert a business account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizAcc;
+
+        // Insert a contact with business account as Primary business organization
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;
+
+        // Insert an affiliation
+        Affiliation__c affiliation = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
+        insert affiliation;
+
+        // Verify Primary Organization lookup field points to the account we just created
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(bizAcc.ID, Contact.Primary_Organization__c);
+
+        Test.startTest();
+            delete affiliation;
+        Test.stopTest();
+
+        // Verify Primary Organization lookup field has been cleared
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(null, Contact.Primary_Organization__c);
+
     }
 
     // Test getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper

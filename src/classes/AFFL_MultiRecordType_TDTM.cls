@@ -135,8 +135,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
             if (oldlist != null && oldlist.size() > 0) {
                 for (SObject so : oldlist) {
                     Affiliation__c afflOld = (Affiliation__c)so;
-                    String lookupFieldLabel = afflMapper.accRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
-                    String lookupFieldAPIName = afflMapper.contactLabelNames.get(lookupFieldLabel);
+                    String lookupFieldAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(afflOld.Affiliation_Type__c);
 
                     Contact relatedContact = relatedContactsMap.get(afflOld.Contact__c);
 
