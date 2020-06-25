@@ -11,31 +11,6 @@
         <name>Chosen_Full_Name__c</name>
     </fields>
     <fields>
-        <help><!-- The citizenship status of the contact. --></help>
-        <label><!-- Citizenship Status --></label>
-        <name>Citizenship_Status__c</name>
-        <picklistValues>
-            <masterLabel>Other (Non-US)</masterLabel>
-            <translation><!-- Other (Non-US) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U.S. Citizen or U.S. National</masterLabel>
-            <translation><!-- U.S. Citizen or U.S. National --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U.S. Dual Citizen</masterLabel>
-            <translation><!-- U.S. Dual Citizen --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U.S. Permanent Resident</masterLabel>
-            <translation><!-- U.S. Permanent Resident --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U.S. Refugee or Asylee</masterLabel>
-            <translation><!-- U.S. Refugee or Asylee --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label>Citizenship</label>
         <name>Citizenship__c</name>
         <picklistValues>
@@ -2282,10 +2257,6 @@
         <relationshipLabel>Contacts (Current Address)</relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Date Deceased --></label>
-        <name>Date_Deceased__c</name>
-    </fields>
-    <fields>
         <help>When selected, this option marks the contact as deceased, and excludes them from household naming, emails, and phone calls.</help>
         <label>Deceased</label>
         <name>Deceased__c</name>
@@ -3452,21 +3423,6 @@
         <name>Financial_Aid_Applicant__c</name>
     </fields>
     <fields>
-        <help><!-- Contact&apos;s former first name. --></help>
-        <label><!-- Former First Name --></label>
-        <name>Former_First_Name__c</name>
-    </fields>
-    <fields>
-        <help><!-- Contact&apos;s former last name. --></help>
-        <label><!-- Former Last Name --></label>
-        <name>Former_Last_Name__c</name>
-    </fields>
-    <fields>
-        <help><!-- Contact&apos;s former middle name. --></help>
-        <label><!-- Former Middle Name --></label>
-        <name>Former_Middle_Name__c</name>
-    </fields>
-    <fields>
         <label>Gender</label>
         <name>Gender__c</name>
         <picklistValues>
@@ -3515,6 +3471,22 @@
         <help>Which phone number should be used for most communications involving this Contact?</help>
         <label>Preferred Phone</label>
         <name>PreferredPhone__c</name>
+        <picklistValues>	
+            <masterLabel>Home</masterLabel>	
+            <translation>Home Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Mobile</masterLabel>	
+            <translation>Mobile Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Other</masterLabel>	
+            <translation>Other Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Work Phone</translation>	
+        </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>
             <translation>Home Phone</translation>
@@ -3536,6 +3508,18 @@
         <help>Which email should be used for most communications involving this Contact?</help>
         <label>Preferred Email</label>
         <name>Preferred_Email__c</name>
+        <picklistValues>	
+            <masterLabel>Alternate</masterLabel>	
+            <translation>Alternate Email</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>University</masterLabel>	
+            <translation>University Email</translation>	
+        </picklistValues>	
+            <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Work Email</translation>	
+        </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
             <translation>Alternate Email</translation>
@@ -3550,9 +3534,9 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Primary Academic Program</label>
+        <label><!-- Primary Academic Program --></label>
         <name>Primary_Academic_Program__c</name>
-        <relationshipLabel>Students</relationshipLabel>
+        <relationshipLabel><!-- Students --></relationshipLabel>
     </fields>
     <fields>
         <help>Which type of address is the mailing address?</help>
@@ -3572,14 +3556,14 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Primary Department</label>
+        <label><!-- Primary Department --></label>
         <name>Primary_Department__c</name>
-        <relationshipLabel>Department Members</relationshipLabel>
+        <relationshipLabel><!-- Department Members --></relationshipLabel>
     </fields>
     <fields>
-        <label>Primary Educational Institution</label>
+        <label><!-- Primary Educational Institution --></label>
         <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel>Institution Members</relationshipLabel>
+        <relationshipLabel><!-- Institution Members --></relationshipLabel>
     </fields>
     <fields>
         <label>Primary Household</label>
