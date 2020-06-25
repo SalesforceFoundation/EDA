@@ -11,6 +11,31 @@
         <name>Chosen_Full_Name__c</name>
     </fields>
     <fields>
+        <help><!-- The citizenship status of the contact. --></help>
+        <label><!-- Citizenship Status --></label>
+        <name>Citizenship_Status__c</name>
+        <picklistValues>
+            <masterLabel>Other (Non-US)</masterLabel>
+            <translation><!-- Other (Non-US) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+            <translation><!-- U.S. Citizen or U.S. National --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Dual Citizen</masterLabel>
+            <translation><!-- U.S. Dual Citizen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Permanent Resident</masterLabel>
+            <translation><!-- U.S. Permanent Resident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Refugee or Asylee</masterLabel>
+            <translation><!-- U.S. Refugee or Asylee --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label>Nacionalidad</label>
         <name>Citizenship__c</name>
         <picklistValues>
@@ -2257,6 +2282,10 @@
         <relationshipLabel>Contactos (Dirección actual)</relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Date Deceased --></label>
+        <name>Date_Deceased__c</name>
+    </fields>
+    <fields>
         <help>Cuando se selecciona, esta opción marca el contacto como fallecido, y lo excluye de listas domésticas, correos electrónicos y llamadas de teléfono.</help>
         <label>Fallecido</label>
         <name>Deceased__c</name>
@@ -3423,6 +3452,21 @@
         <name>Financial_Aid_Applicant__c</name>
     </fields>
     <fields>
+        <help><!-- Contact&apos;s former first name. --></help>
+        <label><!-- Former First Name --></label>
+        <name>Former_First_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Contact&apos;s former last name. --></help>
+        <label><!-- Former Last Name --></label>
+        <name>Former_Last_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Contact&apos;s former middle name. --></help>
+        <label><!-- Former Middle Name --></label>
+        <name>Former_Middle_Name__c</name>
+    </fields>
+    <fields>
         <label>Género</label>
         <name>Gender__c</name>
         <picklistValues>
@@ -3471,22 +3515,6 @@
         <help>¿Cuál teléfono debe ser el usado para la mayoría de las comunicaciones con este contacto?</help>
         <label>Teléfono elegido</label>
         <name>PreferredPhone__c</name>
-        <picklistValues>	
-            <masterLabel>Home</masterLabel>	
-            <translation>Teléfono particular</translation>	
-        </picklistValues>
-        <picklistValues>	
-            <masterLabel>Mobile</masterLabel>	
-            <translation>Teléfono móvil</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Other</masterLabel>	
-            <translation>Otro teléfono</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Teléfono laboral</translation>	
-        </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>
             <translation>Teléfono particular</translation>
@@ -3508,18 +3536,6 @@
         <help>¿Cuál correo electrónico debe ser el usado para la mayoría de las comunicaciones con este contacto?</help>
         <label>Correo electrónico elegido</label>
         <name>Preferred_Email__c</name>
-        <picklistValues>	
-            <masterLabel>Alternate</masterLabel>	
-            <translation>Correo electrónico alternativo</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>University</masterLabel>	
-            <translation>Correo electrónico de la universidad</translation>	
-        </picklistValues>	
-        <picklistValues>	
-            <masterLabel>Work</masterLabel>	
-            <translation>Correo electrónico laboral</translation>	
-        </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
             <translation>Correo electrónico alternativo</translation>
