@@ -76,6 +76,7 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         """ This method will check the default value of 'Enable Course Connections' checkbox
         """
         locator_default = eda_lex_locators["eda_settings_cc"]["default_cc_checkbox"]
+        self.selenium.wait_until_element_is_visible(locator_default)
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
         if not str(expectedCheckboxValue).lower() == str(actual_value).lower() :
             raise Exception (f"Enable course connection is not checked and the value is '{actual_value}'")
