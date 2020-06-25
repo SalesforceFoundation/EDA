@@ -11,31 +11,6 @@
         <name>Chosen_Full_Name__c</name>
     </fields>
     <fields>
-        <help><!-- The citizenship status of the contact. --></help>
-        <label><!-- Citizenship Status --></label>
-        <name>Citizenship_Status__c</name>
-        <picklistValues>
-            <masterLabel>Other (Non-US)</masterLabel>
-            <translation><!-- Other (Non-US) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U.S. Citizen or U.S. National</masterLabel>
-            <translation><!-- U.S. Citizen or U.S. National --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U.S. Dual Citizen</masterLabel>
-            <translation><!-- U.S. Dual Citizen --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U.S. Permanent Resident</masterLabel>
-            <translation><!-- U.S. Permanent Resident --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U.S. Refugee or Asylee</masterLabel>
-            <translation><!-- U.S. Refugee or Asylee --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label>Ciutadania</label>
         <name>Citizenship__c</name>
         <picklistValues>
@@ -1153,6 +1128,31 @@
         <picklistValues>
             <masterLabel>Åland Islands</masterLabel>
             <translation>Illes Åland</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The citizenship status of the contact. --></help>
+        <label><!-- Citizenship Status --></label>
+        <name>Citizenship_Status__c</name>
+        <picklistValues>
+            <masterLabel>Other (Non-US)</masterLabel>
+            <translation><!-- Other (Non-US) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+            <translation><!-- U.S. Citizen or U.S. National --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Dual Citizen</masterLabel>
+            <translation><!-- U.S. Dual Citizen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Permanent Resident</masterLabel>
+            <translation><!-- U.S. Permanent Resident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Refugee or Asylee</masterLabel>
+            <translation><!-- U.S. Refugee or Asylee --></translation>
         </picklistValues>
     </fields>
     <fields>
