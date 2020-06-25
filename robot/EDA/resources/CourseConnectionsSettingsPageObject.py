@@ -77,7 +77,7 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         """
         locator_default = eda_lex_locators["eda_settings_cc"]["default_cc_checkbox"]
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
-        if not str(expectedCheckboxValue).lower() == "true" :
+        if not str(expectedCheckboxValue).lower() == str(actual_value).lower() :
             raise Exception (f"Enable course connection is not checked and the value is '{actual_value}'")
 
 
