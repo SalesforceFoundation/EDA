@@ -225,21 +225,21 @@ public with sharing class AFFL_ContactAccChange_TEST {
             update mapping;
         }
 
-        Contact con = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
-        Account bizAcct1 = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
-        Account bizAcct2 = [SELECT Id FROM Account WHERE ID = :bizOrg2.Id];
+        Contact con = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+        Account bizAcct2 = [SELECT Id FROM Account WHERE Id = :bizOrg2.Id];
 
-        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: con.ID AND Account__c =: bizAcct1.ID];
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: con.Id AND Account__c =: bizAcct1.Id];
 
         //Change affiliation account
         Test.startTest();
-            affl1.Account__c = bizAcct2.ID;
+            affl1.Account__c = bizAcct2.Id;
             update affl1;
         Test.stopTest();
 
         //Confirm primary field has been updated
-        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where ID =:con.Id];
-        System.assertEquals(bizAcct2.ID, updatedContact.Primary_Organization__c);
+        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where Id =:con.Id];
+        System.assertEquals(bizAcct2.Id, updatedContact.Primary_Organization__c);
 
         //Make sure we are not creating duplicate affiliations
         List<Affiliation__c> affls = [select Id from Affiliation__c];
@@ -267,24 +267,24 @@ public with sharing class AFFL_ContactAccChange_TEST {
             update mapping;
         }
 
-        Contact contact = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
+        Contact contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
 
-        Account bizAcct1 = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
-        Account houseAcct1 = [SELECT Id FROM Account WHERE ID = :householdOrg1.Id];
+        Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+        Account houseAcct1 = [SELECT Id FROM Account WHERE Id = :householdOrg1.Id];
 
         //Get primary affiliation
-        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizAcct1.ID];
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.Id AND Account__c =: bizAcct1.Id];
 
         //Change affiliation account
         Test.startTest();
-            affl1.Account__c = houseAcct1.ID;
+            affl1.Account__c = houseAcct1.Id;
             update affl1;
         Test.stopTest();
 
         //Confirm primary field has been updated
-        Contact updatedContact = [SELECT Primary_Organization__c, Primary_Household__c FROM Contact where ID =:contact.ID];
+        Contact updatedContact = [SELECT Primary_Organization__c, Primary_Household__c FROM Contact where ID =:contact.Id];
         System.assertEquals(null, updatedContact.Primary_Organization__c);
-        System.assertEquals(householdOrg1.ID, updatedContact.Primary_Household__c);
+        System.assertEquals(householdOrg1.Id, updatedContact.Primary_Household__c);
 
         //Make sure we are not creating duplicate affiliations
         List<Affiliation__c> affls = [select Id from Affiliation__c];
@@ -311,9 +311,9 @@ public with sharing class AFFL_ContactAccChange_TEST {
             update mapping;
         }
 
-        Contact contact = [SELECT Primary_Organization__c from Contact WHERE ID = :contact1.Id];
-        Account bizAcct1 = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
-        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizAcct1.ID];
+        Contact contact = [SELECT Primary_Organization__c from Contact WHERE Id = :contact1.Id];
+        Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.Id AND Account__c =: bizAcct1.Id];
 
         //Clear affiliation account
         Test.startTest();
@@ -322,7 +322,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         Test.stopTest();
 
         //Confirm primary field has been cleared
-        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where ID =:contact.ID];
+        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where Id =:contact.Id];
         System.assertEquals(null, updatedContact.Primary_Organization__c);
     }
 
@@ -346,9 +346,9 @@ public with sharing class AFFL_ContactAccChange_TEST {
             update mapping;
         }
 
-        Contact con = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.Id];
-        Account bizAcct = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
-        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c = :con.ID AND Account__c = :bizAcct.ID];
+        Contact con = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        Account bizAcct = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c = :con.Id AND Account__c = :bizAcct.Id];
 
         //Clear contact
         Test.startTest();
@@ -357,7 +357,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         Test.stopTest();
 
         //Confirm Primary Business Organization field has been cleared in contact
-        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where ID =:con.ID];
+        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where Id =:con.Id];
         System.assertEquals(null, updatedContact.Primary_Organization__c);
     }
     
@@ -382,28 +382,28 @@ public with sharing class AFFL_ContactAccChange_TEST {
             update mapping;
         }
 
-        Account bizAcct = [SELECT Id FROM Account WHERE ID = :bizOrg1.Id];
+        Account bizAcct = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
 
         //Confirm Primary Business Organization field has been populated in contact
-        Contact con1 = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact1.ID];
-        Contact con2 = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact2.ID];
+        Contact con1 = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        Contact con2 = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact2.Id];
 
-        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: con1.ID AND Account__c =: bizAcct.ID];
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: con1.Id AND Account__c =: bizAcct.Id];
 
         System.assertEquals(con1.Primary_Organization__c, affl1.Account__c, 'Primary Org Does Not Match');
 
         //Update primary affiliation to point to a different contact
         Test.startTest();
-            affl1.Contact__c = con2.ID;
+            affl1.Contact__c = con2.Id;
             update affl1;
         Test.stopTest();
 
         //Confirm Primary Business Organization field has been cleared in contact
-        Contact updatedContact = [SELECT Primary_Organization__c from Contact where ID =:con1.ID];
+        Contact updatedContact = [SELECT Primary_Organization__c from Contact where Id =:con1.Id];
         System.assertEquals(null, updatedContact.Primary_Organization__c);
 
         //Confirm Primary Business Organization field has been populated in contact2
-        Contact updatedContact2 = [SELECT Primary_Organization__c FROM Contact where ID =:con2.ID];
+        Contact updatedContact2 = [SELECT Primary_Organization__c FROM Contact where Id =:con2.Id];
         System.assertEquals(affl1.Account__c, updatedcontact2.Primary_Organization__c);
 
         //Make sure we are not creating duplicate affiliations
