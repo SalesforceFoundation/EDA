@@ -5,6 +5,7 @@ from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.utils import selenium_retry, capture_screenshot_on_error
 from locators import eda_lex_locators
 
+from robot.utils import lower
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.common.keys import Keys
 
@@ -331,3 +332,12 @@ class EDA(BaseEDAPage):
         locator = eda_lex_locators["eda_settings"]["edit"]
         self.selenium.wait_until_page_contains_element(locator, error="Edit button is not available on the page")
         self.selenium.click_element(locator)
+
+    def click_action_button_on_eda_settings_page(self, action):
+        """ Clicks on the action (eg: Save, Cancel) button on the EDA Settings page """
+        locator = eda_lex_locators["eda_settings"]["action"].format(lower(action))
+        self.selenium.wait_until_page_contains_element(
+            locator, error=f"Action button with locator '{locator}' is not available on the EDA settings page")
+        self.selenium.click_element(locator)
+        if action == "Save":
+            self.eda.verify_toast_message("Settings successfully saved.")
