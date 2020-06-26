@@ -95,6 +95,14 @@ eda_lex_locators = {
         "copy_affliation_start_checkbox": "(//div/span[text()='Copy Affiliation Start Date from Program Enrollment']/following::div)[1]/div/div/label/span[@class='slds-checkbox--faux']",
         "settings_tab": "(//li[@class='slds-tabs__item slds-text-heading--label slds-active' and @role='tab' and @title='Settings'])[1]/a[contains(text(),'Settings')]",
         "affl_mappings_tab": "//a[contains(text(),'Affiliation Mappings')]",
+        "default_checkbox": "//div[text()='{}']/following-sibling::div/descendant::img",
+        "enable_checkbox": "//div[text()='{}']/following-sibling::div/descendant::span",
+    },
+    "eda_settings_cc": {
+        "dropdown_values": "//div[text()='{}']/following-sibling::div/select/option[text()='{}']",
+        "dropdown_values_count": "//div[text()='{}']/following-sibling::div/select/option",
+        "enable_cc_warning_enabled": "//div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
+        "enable_cc_warning_disabled": "//span[contains(@class, 'slds-hide')]/descendant::div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
     },
     "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",

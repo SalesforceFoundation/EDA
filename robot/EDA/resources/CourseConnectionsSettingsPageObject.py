@@ -1,5 +1,4 @@
 from BaseObjects import BaseEDAPage
-
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import eda_lex_locators
@@ -25,22 +24,24 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
 
     def set_enable_course_connections(self):
         """ Set the checkbox for 'Enable Course Connections' field """
-        locator = eda_lex_locators["eda_settings_cc"]["enable_cc_checkbox"]
+        locator = eda_lex_locators["eda_settings"]["enable_checkbox"].format("Enable Course Connections")
         self.selenium.wait_until_page_contains_element(locator)
         self.selenium.click_element(locator)
-        time.sleep(0.5)
 
     def update_enable_cc_to_default(self):
-        """ Updating the `Enable Course Connections` checkbox to default value (false)"""
-        locator_default = eda_lex_locators["eda_settings_cc"]["default_cc_checkbox"]
-        locator_edit_mode = eda_lex_locators["eda_settings_cc"]["enable_cc_checkbox"]
+        """ Updating the `Enable Course Connections` checkbox to default value (false)
+            Check for the value and if it is not false, go into edit mode and update
+        """
+        locator_default = eda_lex_locators["eda_settings"]["default_checkbox"].format("Enable Course Connections")
+        locator_edit_mode = eda_lex_locators["eda_settings"]["enable_checkbox"].format("Enable Course Connections")
 
         self.selenium.wait_until_page_contains_element(locator_default)
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
         if not actual_value == "False":
             self.eda.click_edit_on_eda_settings_page()
             self.selenium.wait_until_page_contains_element(
-                locator_edit_mode, error=f"Enable course connections checkbox with locator '{locator_edit_mode}' is not available on the page")
+                locator_edit_mode,
+                error=f"Enable course connections checkbox is not available on the page. Locator:'{locator_edit_mode}'")
             self.selenium.click_element(locator_edit_mode)
             self.eda.click_action_button_on_eda_settings_page("Save")
 
@@ -80,5 +81,3 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
         if not str(expectedCheckboxValue).lower() == str(actual_value).lower() :
             raise Exception (f"Enable course connection is not checked and the value is '{actual_value}'")
-
-

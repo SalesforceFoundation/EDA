@@ -13,10 +13,12 @@ Test Setup      Run keywords
 
 *** Test Cases ***
 Validate Edit Mode For Course Connections, Settings
-    [Documentation]     This test case validates the settings tab in course connections in edit mode
-    ...                 Also validates the field values of Enable course connections, Default Active
-    ...                 Student Record Type and Default Faculty Record Type are reatined upon saving
-    ...                 which also includes the validation of fields in non edit mode.
+    [Documentation]         Check for the warning message when the Enable Course Connections is unchecked
+    ...                     Check the warning message disappears when the Enable Course Connections is checked
+    ...                     verify default values for Student and Faculty record types
+    ...                     Also validates the field values of Enable course connections, Default Active
+    ...                     Student Record Type and Default Faculty Record Type are reatined upon saving
+    ...                     which also includes the validation of fields in non edit mode.
     [tags]                                      unstable        W-041783                W-041784
     Click edit on EDA settings page
     Verify enable course connections warning    true
@@ -37,7 +39,7 @@ Validate Edit Mode For Course Connections, Settings
     ...                                         Default Active Student Record Type=Faculty
     ...                                         Default Faculty Record Type=Student
     Click action button on EDA settings page    Save
-    Go to EDA settings tab                      Course Connections                      #This is a work around as we have consistent issues with fields visible to the user 
+    Go to EDA settings tab                      Course Connections                      #This is a work around as we have consistent issues with fields visible to the user
     Verify enable course connections            true
     Verify selected dropdown value
     ...                                         Default Active Student Record Type=Faculty

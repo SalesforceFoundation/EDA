@@ -341,7 +341,6 @@ class EDA(BaseEDAPage):
         self.selenium.click_element(locator)
         if action == "Save":
             self.eda.verify_toast_message("Settings successfully saved.")
-            self.eda.close_toast_message()
 
     def update_dropdown_value(self,**kwargs):
         """ This method will update the drop down field value passed in keyword arguments
@@ -349,7 +348,7 @@ class EDA(BaseEDAPage):
         """
         for field,value in kwargs.items():
             locator = eda_lex_locators["eda_settings_cc"]["dropdown_values"].format(field,value)
-            self.selenium.wait_until_page_contains_element(locator, 
+            self.selenium.wait_until_page_contains_element(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
             self.selenium.click_element(locator)
 
@@ -359,7 +358,7 @@ class EDA(BaseEDAPage):
         """
         for field,value in kwargs.items():
             locator = eda_lex_locators["eda_settings_cc"]["updated_dropdown_value"].format(field,value)
-            self.selenium.wait_until_element_is_visible(locator, 
+            self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).text
             if not str(value).lower() == str(actual_value).lower() :
