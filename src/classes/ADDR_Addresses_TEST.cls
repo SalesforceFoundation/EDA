@@ -120,7 +120,7 @@ public class ADDR_Addresses_TEST {
     * (4) When an existing Address record is updated and it doesn't match the filter, and Default_Address__c is set
     * to true, it should not populate Latest_Start_Date__c with today's date. 
     */
-       @isTest
+    @isTest
     private static void beforeUpdateAddress() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                                                                                Contacts_Addresses_Enabled__c = true));
@@ -207,7 +207,7 @@ public class ADDR_Addresses_TEST {
                                   FROM Contact LIMIT 2]; 
         
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2); 
-           addresses[0].Parent_Contact__c = contacts[0].Id; 
+        addresses[0].Parent_Contact__c = contacts[0].Id; 
         addresses[0].Default_Address__c = False; 
         addresses[0].MailingCity__c = 'Boston'; 
         addresses[1].Parent_Contact__c = contacts[1].Id; 
@@ -283,7 +283,7 @@ public class ADDR_Addresses_TEST {
         Test.stopTest(); 
         
         List<Address__c> returnAddresses = [SELECT Id, MailingCity__c, Default_Address__c
-                                               FROM Address__c
+                                            FROM Address__c
                                             WHERE Id IN :addresses]; 
         System.assertEquals(2, returnAddresses.size());
         
@@ -312,7 +312,7 @@ public class ADDR_Addresses_TEST {
         //Tests that the Parent Contact with the associated "Brooklyn" Address record does not get the Parent Contact's 
         //MailingAddress fields and Current_Address__c updated
         if (cityByContact.containsKey('NULL')) {
-               System.assertEquals(NULL, cityByContact.get('NULL').Current_Address__c);
+            System.assertEquals(NULL, cityByContact.get('NULL').Current_Address__c);
             System.assertEquals(NULL, cityByContact.get('NULL').MailingAddress);
         } 
         
@@ -340,8 +340,8 @@ public class ADDR_Addresses_TEST {
         List<Address__c> addresses = contactsAddrs.addrs;
         
         List<Contact> returnContacts = [SELECT Id, Current_Address__c, MailingAddress, MailingCity
-                                           FROM Contact 
-                                           WHERE Id IN :contacts];
+                                        FROM Contact 
+                                        WHERE Id IN :contacts];
         System.assertEquals(2, returnContacts.size()); 
         
         Map<String, Contact> cityByContact = new Map<String, Contact>(); 
@@ -406,7 +406,7 @@ public class ADDR_Addresses_TEST {
     * (2) When an existing Address record is deleted and it does match the filter, Default_Address__c is set
     * to true, the MailingAddress is not cleared. 
     */    
-       @isTest
+    @isTest
     private static void afterDeleteAddress() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                                                                                Contacts_Addresses_Enabled__c = true));
