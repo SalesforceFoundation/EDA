@@ -92,7 +92,7 @@ public class ADDR_Addresses_TEST {
         
         
         
-           //Address 1: Should enter beforeInsert process and populate the Latest_Start_Date__c 
+        //Address 1: Should enter beforeInsert process and populate the Latest_Start_Date__c 
         //Address 2: Should NOT enter beforeInsert process and will NOT populate the Latest_Start_Date__c 
         List<Address__c> returnAddresses = [SELECT Id, MailingCity__c, Latest_Start_Date__c, Default_Address__c
                                             FROM Address__c
