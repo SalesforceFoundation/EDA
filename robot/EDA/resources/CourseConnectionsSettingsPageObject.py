@@ -49,13 +49,12 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         """ Verify the field has the drop down values given by *args
             we have to pass all the values available in the UI since the count is also verified
         """
-        locator = eda_lex_locators["eda_settings_cc"]["dropdown_values"]
         locator_count = eda_lex_locators["eda_settings_cc"]["dropdown_values_count"].format(field)
         actual_count = int(self.selenium.get_element_count(locator_count))
         expected_count = args.__len__()
         if expected_count == actual_count:
             for value in args:
-                locator = locator.format(field, value)
+                locator = eda_lex_locators["eda_settings_cc"]["dropdown_values"].format(field, value)
                 self.selenium.page_should_contain_element(locator, message=f"'{field}' does not contain the value '{value}'")
         else:
             raise Exception(f"Mismatch in count of drop down values. Actual = '{actual_count}'. Expected = '{expected_count}'")
