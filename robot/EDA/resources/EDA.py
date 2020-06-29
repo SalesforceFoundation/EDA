@@ -331,6 +331,7 @@ class EDA(BaseEDAPage):
     def click_edit_on_eda_settings_page(self):
         locator = eda_lex_locators["eda_settings"]["edit"]
         self.selenium.wait_until_page_contains_element(locator, error="Edit button is not available on the page")
+        self.selenium.wait_until_element_is_visible(locator)
         self.selenium.click_element(locator)
 
     def click_action_button_on_eda_settings_page(self, action):
