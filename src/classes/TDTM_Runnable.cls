@@ -80,10 +80,10 @@ global abstract class TDTM_Runnable {
         for(Integer i = 0; i < allFields.size() - 1; i++) //add all fields, except last, to query
             qn += ' ' + allFields[i] + ', ';
         qn += ' ' + allFields[allFields.size() - 1]; //add last field to query
-        qn += ' from ' + String.escapeSingleQuotes(objectName) + ' where id IN ';
+        qn += ' from ' + objectName + ' where id IN ';
 
-        List<SObject> newlist = Database.query(qn + ':newIds');
-        List<SObject> oldlist = Database.query(qn + ':oldIds');
+        List<SObject> newlist = Database.query(String.escapeSingleQuotes(qn) + ':newIds');
+        List<SObject> oldlist = Database.query(String.escapeSingleQuotes(qn) + ':oldIds');
 
         //Call the non-future method
         Type classType = Type.forName(classToRunName);
