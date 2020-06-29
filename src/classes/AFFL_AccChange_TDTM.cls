@@ -129,7 +129,7 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                                 // check if there are any other Primary affiliations with same account and show an error
                                 if (idToOtherAffiliatonsWithSameAccAndCon.get(affl.ID) != null &&
                                     idToOtherAffiliatonsWithSameAccAndCon.get(affl.ID).isEmpty() == false) {
-                                    affl.addError(Label.AffiliationWithSameAccountExists);
+                                    affl.addError(Label.affiliationWithSameAccExists);
                                 }
                                 
                                 if (lookupFieldAPINameOld != null) {

@@ -337,12 +337,12 @@
         <value>The name format used for auto-created Administrative Accounts.</value>
     </labels>
     <labels>
-        <fullName>AffiliationWithSameAccountExists</fullName>
+        <fullName>affiliationWithSameAccExists</fullName>
         <categories>Affiliations</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>AffiliationWithSameAccountExists</shortDescription>
-        <value>Update stopped. There is another primary Affiliation on this Contact with the same Account.</value>
+        <shortDescription>affiliationWithSameAccExists</shortDescription>
+        <value>Update stopped. A Contact can have only one Primary Affiliation with the same Account. The specified Contact already has a Primary Affiliation with the specified Account.</value>
     </labels>
     <labels>
         <fullName>afflAccountNoRecordType</fullName>
