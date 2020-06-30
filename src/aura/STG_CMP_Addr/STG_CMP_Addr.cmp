@@ -51,7 +51,7 @@
                         <aura:set attribute="else">
                             <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Email_Enforcement__c}"
                                               class="contact-addr-enabled" />
-                            <span class="slds-checkbox--faux"></span>
+                            <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Disable_Preferred_Email_Enforcement__c}"></span>
                             <span class="slds-form-element__label"></span>
                         </aura:set>
                         </aura:if>                       
@@ -79,7 +79,7 @@
                             <ui:inputCheckbox value="{!v.hierarchySettings.Enable_New_Preferred_Phone_Sync__c}"
                                               class="contact-preferred-phone-sync-enabled"
                                               aura:id="enablePrefPhoneEdit"/>
-                            <span class="slds-checkbox--faux"></span>
+                            <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Enable_New_Preferred_Phone_Sync__c}"></span>
                             <span class="slds-form-element__label"></span>
                         </aura:set>
                         </aura:if>
@@ -108,7 +108,7 @@
                                 <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
                                                   class="contact-addr-enabled"
                                                   aura:id="disablePhoneErrorsEdit"/>
-                                <span class="slds-checkbox--faux"></span>
+                                <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"></span>
                                 <span class="slds-form-element__label"></span>
                             </aura:set>
                             </aura:if>
@@ -176,7 +176,7 @@
                         <aura:set attribute="else">
                             <ui:inputCheckbox value="{!v.hierarchySettings.Contacts_Addresses_Enabled__c}"
                                               class="contact-addr-enabled" />
-                            <span class="slds-checkbox--faux"></span>
+                            <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Contacts_Addresses_Enabled__c}"></span>
                             <span class="slds-form-element__label"></span>
                         </aura:set>
                         </aura:if>
@@ -247,7 +247,7 @@
                   <aura:set attribute="else">
                       <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
                                         class="addr-change-inputcheck" />
-                      <span class="slds-checkbox--faux"></span>
+                      <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"></span>
                       <span class="slds-form-element__label"></span>
                   </aura:set>
                   </aura:if>

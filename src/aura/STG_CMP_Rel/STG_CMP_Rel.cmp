@@ -53,7 +53,7 @@
 							             <ui:outputCheckbox value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}" class="allow-dup-rels" />
 							         <aura:set attribute="else">
 							             <ui:inputCheckbox value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}" class="allow-dup-rels" />
-							             <span class="slds-checkbox--faux"></span>
+							             <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"></span>
 			                            <span class="slds-form-element__label"></span>
 							         </aura:set>
 				                     </aura:if>
@@ -147,7 +147,7 @@
 						                 <ui:outputCheckbox value="{!recSetting.Active__c}" class="rec-settg-active" />
 						             <aura:set attribute="else">
 						                 <ui:inputCheckbox value="{!recSetting.Active__c}" class="rec-settg-active" />
-						                 <span class="slds-checkbox--faux"></span>
+						                 <span class="slds-checkbox--faux" data-qa-checkbox-state="{!recSetting.Active__c}"></span>
 			                            <span class="slds-form-element__label"></span>
 						             </aura:set>
 			                         </aura:if>
