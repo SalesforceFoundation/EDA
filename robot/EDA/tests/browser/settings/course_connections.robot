@@ -20,7 +20,7 @@ Validate Edit Mode For Course Connections, Settings
     ...                     Student Record Type and Default Faculty Record Type are reatined upon saving
     ...                     which also includes the validation of fields in non edit mode.
     [tags]                                      unstable        W-041783                W-041784
-    Click edit on EDA settings page
+    Click action button on EDA settings page    Edit
     Verify enable course connections warning    true
     Set enable course connections
     Verify enable course connections warning    false
@@ -33,7 +33,7 @@ Validate Edit Mode For Course Connections, Settings
     ...                                         Faculty
     ...                                         Student
     Click action button on EDA settings page    Cancel
-    Click edit on EDA settings page
+     Click action button on EDA settings page   Edit
     Set enable course connections
     Update dropdown value
     ...                                         Default Active Student Record Type=Faculty

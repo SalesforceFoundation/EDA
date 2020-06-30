@@ -39,7 +39,7 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         self.selenium.wait_until_page_contains_element(locator_default)
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
         if not actual_value == "False":
-            self.eda.click_edit_on_eda_settings_page()
+            self.eda.click_action_button_on_eda_settings_page("Edit")
             self.selenium.wait_until_page_contains_element(
                 locator_edit_mode,
                 error=f"Enable course connections checkbox is not available on the page. Locator:'{locator_edit_mode}'")
@@ -51,6 +51,7 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
             we have to pass all the values available in the UI since the count is also verified
         """
         locator_count = eda_lex_locators["eda_settings_cc"]["dropdown_values_count"].format(field)
+        self.selenium.wait_until_page_contains_element(locator_count, error=f"Dropdown field is not available in edit mode")
         actual_count = int(self.selenium.get_element_count(locator_count))
         expected_count = args.__len__()
         if expected_count == actual_count:

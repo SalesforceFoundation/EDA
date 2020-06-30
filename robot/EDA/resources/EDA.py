@@ -341,7 +341,8 @@ class EDA(BaseEDAPage):
             locator, error=f"Action button with locator '{locator}' is not available on the EDA settings page")
         self.selenium.click_element(locator)
         if action == "Save":
-            self.eda.verify_toast_message("Settings successfully saved.")
+            self.verify_toast_message("Settings successfully saved.")
+            self.close_toast_message()
 
     def update_dropdown_value(self,**kwargs):
         """ This method will update the drop down field value passed in keyword arguments
