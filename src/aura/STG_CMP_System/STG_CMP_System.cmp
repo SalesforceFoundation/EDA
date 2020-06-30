@@ -92,7 +92,7 @@
                                 <aura:set attribute="else">
                                     <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Store_Errors_On__c}"
                                                       class="store-errors" />
-                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Store_Errors_On__c}"></span>
                                     <span class="slds-form-element__label"></span>
                                 </aura:set>
                                 </aura:if>
@@ -117,7 +117,7 @@
                                     <ui:outputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" class="send-errors" />
                                 <aura:set attribute="else">
                                     <ui:inputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" class="send-errors" />
-                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Error_Notifications_On__c}"></span>
                                     <span class="slds-form-element__label"></span>
                                 </aura:set>
                                 </aura:if>
@@ -211,7 +211,7 @@
                                     <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" class="disable-error-handling" />
                                 <aura:set attribute="else">
                                     <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" class="disable-error-handling" />
-                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Disable_Error_Handling__c}"></span>
                                     <span class="slds-form-element__label"></span>
                                 </aura:set>
                                 </aura:if>
@@ -304,7 +304,7 @@
                                     <aura:set attribute="else">
                                         <ui:inputCheckbox aura:id="automaticHHAcc" value="{!v.hierarchySettings.Automatic_Household_Naming__c}"
                                                           class="automatic-hh-acc" />
-                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Automatic_Household_Naming__c}"></span>
                                         <span class="slds-form-element__label"></span>
                                     </aura:set>
                                 </aura:if>
