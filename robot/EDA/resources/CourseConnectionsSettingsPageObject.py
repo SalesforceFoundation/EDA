@@ -26,6 +26,7 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         """ Set the checkbox for 'Enable Course Connections' field """
         locator = eda_lex_locators["eda_settings"]["enable_checkbox"].format("Enable Course Connections")
         self.selenium.wait_until_page_contains_element(locator)
+        self.salesforce._jsclick(locator)
         self.selenium.click_element(locator)
         time.sleep(0.5)
 
