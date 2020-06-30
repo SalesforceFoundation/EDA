@@ -33,7 +33,7 @@ Validate Edit Mode For Course Connections, Settings
     ...                                         Faculty
     ...                                         Student
     Click action button on EDA settings page    Cancel
-     Click action button on EDA settings page   Edit
+    Click action button on EDA settings page    Edit
     Set enable course connections
     Update dropdown value
     ...                                         Default Active Student Record Type=Faculty
