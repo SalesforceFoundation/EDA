@@ -71,7 +71,8 @@
               <aura:set attribute="else">
                   <ui:inputCheckbox value="{!v.hierarchySettings.Enable_Course_Connections__c}" class="slds-checkbox course-cons-inputcheck"
                                     aura:id="checkboxIds" text="" />
-                  <span class="slds-checkbox--faux"></span>
+                  <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Enable_Course_Connections__c}"></span>
+                  <span class="slds-form-element__label"></span>
               </aura:set>
               </aura:if>
             </label>
@@ -147,7 +148,8 @@
           <label class="slds-checkbox">
             <ui:inputCheckbox value="{!v.allowBackfill}" class="slds-checkbox allow-backfill-checkbox"
                               text="" disabled="{!not(v.hierarchySettings.Enable_Course_Connections__c)}"/>
-            <span class="slds-checkbox--faux"></span>
+            <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.allowBackfill}"></span>
+            <span class="slds-form-element__label"></span>
             <ui:outputText value="{!$Label.c.stgConfirmReadyRunBackfill}" class="slds-text-body--small" />
           </label>
         </div>

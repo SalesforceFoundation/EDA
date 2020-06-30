@@ -64,7 +64,7 @@
                                     <aura:set attribute="else">
                                         <ui:inputCheckbox aura:id="afflRecordTypeEnforced" value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
                                                             class="affl-record-type-enforced" />
-                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"></span>
                                         <span class="slds-form-element__label"></span>
                                     </aura:set>
                                 </aura:if>
@@ -102,7 +102,7 @@
                                          <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="delete-prog-enroll" />
                                      <aura:set attribute="else">
                                          <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="delete-prog-enroll" />
-                                         <span class="slds-checkbox--faux"></span>
+                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}"></span>
                                         <span class="slds-form-element__label"></span>
                                      </aura:set>
                                      </aura:if>
@@ -162,7 +162,7 @@
                                          <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}" class="copy-start-date" />
                                      <aura:set attribute="else">
                                          <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}" class="copy-start-date" />
-                                         <span class="slds-checkbox--faux"></span>
+                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}"></span>
                                         <span class="slds-form-element__label"></span>
                                      </aura:set>
                                      </aura:if>
@@ -225,7 +225,7 @@
                                          <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}" class="copy-end-date" />
                                      <aura:set attribute="else">
                                          <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}" class="copy-end-date" />
-                                         <span class="slds-checkbox--faux"></span>
+                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}"></span>
                                         <span class="slds-form-element__label"></span>
                                      </aura:set>
                                      </aura:if>
@@ -250,7 +250,7 @@
                                          <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}" class="copy-start-date" />
                                      <aura:set attribute="else">
                                          <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}" class="copy-start-date" />
-                                         <span class="slds-checkbox--faux"></span>
+                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}"></span>
                                         <span class="slds-form-element__label"></span>
                                      </aura:set>
                                      </aura:if>
@@ -328,7 +328,7 @@
                                          <ui:outputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
                                      <aura:set attribute="else">
                                          <ui:inputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
-                                         <span class="slds-checkbox--faux"></span>
+                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!afflMapping.Auto_Program_Enrollment__c}"></span>
                                          <span class="slds-form-element__label"></span>
                                      </aura:set>
                                      </aura:if>

@@ -33,15 +33,31 @@
 * @group TDTM
 * @group-content ../../ApexDocContent/TDTM.htm
 * @description Tests that just verify exceptions aren't thrown for Objects where
-* we don't have TDTM classese.
+* we don't have TDTM classes.
 */
 @isTest
-public with sharing class TDTM_TriggerScaffolds_TEST {
+private class TDTM_TriggerScaffolds_TEST {
 
     public static testmethod void tdtmLead() {
         //Currently we don't have any Trigger_Handler__c record for Lead. This test is
         //just for test coverage, and to verify no exception gets thrown.
         insert new Lead(Company = 'Pencil Makers', LastName = 'Smith');
+
+        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
+    }
+
+    public static testmethod void tdtmTask() {
+        //Currently we don't have any Trigger_Handler__c record for Task. This test is
+        //just for test coverage, and to verify no exception gets thrown.
+        insert new Task();
+
+        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
+    }
+
+    public static testmethod void tdtmEvent() {
+        //Currently we don't have any Trigger_Handler__c record for Event. This test is
+        //just for test coverage, and to verify no exception gets thrown.
+        insert new Event(DurationInMinutes = 60, ActivityDateTime = DateTime.now());
 
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
     }

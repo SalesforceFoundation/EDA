@@ -56,9 +56,9 @@
     <fields>
         <fullName>Behavior_Involvement__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The system-generated number associated with this event. Format: BI-{0000}.</description>
+        <description>The Behavior Involvement record this Behavior Response is for.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The system-generated number associated with this event. Format: BI-{0000}.</inlineHelpText>
+        <inlineHelpText>The Behavior Involvement record this Behavior Response is for.</inlineHelpText>
         <label>Behavior Involvement</label>
         <referenceTo>Behavior_Involvement__c</referenceTo>
         <relationshipLabel>Behavior Responses</relationshipLabel>
@@ -69,10 +69,10 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
-        <description>The recipient of this response.</description>
+        <description>The recipient of this Behavior Response (read-only).</description>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot; + Behavior_Involvement__r.Contact__c, Behavior_Involvement__r.Contact__r.FirstName + &quot; &quot; + Behavior_Involvement__r.Contact__r.LastName)</formula>
-        <inlineHelpText>The recipient of this response.</inlineHelpText>
+        <inlineHelpText>The recipient of this Behavior Response (read-only).</inlineHelpText>
         <label>Contact</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -81,9 +81,8 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <description>A description of the Behavior Response.</description>
+        <description>A description of the response.</description>
         <externalId>false</externalId>
-        <inlineHelpText>A description of the Behavior Response.</inlineHelpText>
         <label>Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
@@ -92,9 +91,9 @@
     </fields>
     <fields>
         <fullName>End_Date__c</fullName>
-        <description>The date when the response ends.</description>
+        <description>The date the response is no longer in effect.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date when the response ends.</inlineHelpText>
+        <inlineHelpText>The date the response is no longer in effect.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -102,9 +101,9 @@
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
-        <description>The date when the response starts.</description>
+        <description>The date the response goes into effect.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date when the response starts.</inlineHelpText>
+        <inlineHelpText>The date the response goes into effect.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -114,7 +113,6 @@
         <fullName>Status__c</fullName>
         <description>The status of the response taken.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The status of the response taken.</inlineHelpText>
         <label>Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -148,9 +146,9 @@
     </fields>
     <fields>
         <fullName>Type__c</fullName>
-        <description>The type of response taken.</description>
+        <description>The response to the behavior event, for example, Academic Probation, Expulsion, or Other.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The type of response taken.</inlineHelpText>
+        <inlineHelpText>The response to the behavior event, for example, Academic Probation, Expulsion, or Other.</inlineHelpText>
         <label>Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -158,7 +156,7 @@
         <valueSet>
             <restricted>true</restricted>
             <valueSetDefinition>
-                <sorted>true</sorted>
+                <sorted>false</sorted>
                 <value>
                     <fullName>Academic Probation</fullName>
                     <default>false</default>

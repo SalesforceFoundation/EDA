@@ -10,9 +10,9 @@
     </compactLayouts>
     <fields>
         <fullName>AlternateEmail__c</fullName>
-        <description>Alternate Email is an optional email not captured in other email fields.</description>
+        <description>An optional email address not captured in other email fields.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Alternate Email is an optional email not captured in other email fields.</inlineHelpText>
+        <inlineHelpText>An optional email address not captured in other email fields.</inlineHelpText>
         <label>Alternate Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -21,9 +21,9 @@
     </fields>
     <fields>
         <fullName>Chosen_Full_Name__c</fullName>
-        <description>The full name that the Contact prefers to use instead of a legal or official name.</description>
+        <description>The full name that this Contact prefers to use in place of their legal name.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The full name that the Contact prefers to use instead of a legal or official name.</inlineHelpText>
+        <inlineHelpText>The full name that this Contact prefers to use in place of their legal name.</inlineHelpText>
         <label>Chosen Full Name</label>
         <length>255</length>
         <required>false</required>
@@ -34,6 +34,8 @@
     <fields>
         <fullName>Citizenship__c</fullName>
         <externalId>false</externalId>
+        <description>The person's country of citizenship. If this student has dual citizenship, indicate the second country of citizenship in the Dual Citizenship field.</description>
+        <inlineHelpText>The person's country of citizenship. If this student has dual citizenship, indicate the second country of citizenship in the Dual Citizenship field.</inlineHelpText>
         <label>Citizenship</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1442,6 +1444,8 @@
     <fields>
         <fullName>Country_of_Origin__c</fullName>
         <externalId>false</externalId>
+        <description>The country where this person was born.</description>
+        <inlineHelpText>The country where this person was born.</inlineHelpText>
         <label>Country of Origin</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2850,9 +2854,9 @@
     <fields>
         <fullName>Current_Address__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The current Address that the Contact&apos;s mailing fields are filled with.</description>
+        <description>Lookup to the current Address record for this Contact. The Contact's Mailing Address field is automatically populated with the address fields from the current Address record.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The current Address that the Contact&apos;s mailing fields are filled with.</inlineHelpText>
+        <inlineHelpText>Lookup to the current Address record for this Contact. The Contact's Mailing Address field is automatically populated with the address fields from the current Address record.</inlineHelpText>
         <label>Current Address</label>
         <referenceTo>Address__c</referenceTo>
         <relationshipLabel>Contacts (Current Address)</relationshipLabel>
@@ -2864,9 +2868,9 @@
     <fields>
         <fullName>Deceased__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>When selected, this option marks the contact as deceased, and excludes them from household naming, emails, and phone calls.</description>
+        <description>Indicates this person is deceased. When selected, the communication preferences are set to Do Not Call, Email Opt Out, and Do Not Contact. If the Contact is not the only member of the Household, the Contact name is removed from the Household name.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, this option marks the contact as deceased, and excludes them from household naming, emails, and phone calls.</inlineHelpText>
+        <inlineHelpText>Indicates this person is deceased. When selected, the communication preferences are set to Do Not Call, Email Opt Out, and Do Not Contact. If the Contact is not the only member of the Household, the Contact name is removed from the Household name.</inlineHelpText>
         <label>Deceased</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
@@ -2874,18 +2878,18 @@
     <fields>
         <fullName>Do_Not_Contact__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>When selected, this option excludes the contact from emails and phone calls.</description>
+        <description>Indicates this person does not want your organization to call or email. Use this field to filter out Contacts in email and phone lists.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, this option excludes the contact from emails and phone calls.</inlineHelpText>
+        <inlineHelpText>Indicates this person does not want your organization to call or email. Use this field to filter out Contacts in email and phone lists.</inlineHelpText>
         <label>Do Not Contact</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Dual_Citizenship__c</fullName>
-        <description>A field to store a secondary citizenship or dual nationality</description>
+        <description>For people who have dual citizenship, the second country of citizenship.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If this Contact has multiple citizenship it can be recorded here.</inlineHelpText>
+        <inlineHelpText>For people who have dual citizenship, the second country of citizenship.</inlineHelpText>
         <label>Dual Citizenship</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4296,6 +4300,8 @@
         <fullName>Ethnicity__c</fullName>
         <externalId>false</externalId>
         <label>Ethnicity</label>
+        <description>Indicates if this person identifies as Hispanic or Latino.</description>
+        <inlineHelpText>Indicates if this person identifies as Hispanic or Latino.</inlineHelpText>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
@@ -4318,9 +4324,9 @@
     <fields>
         <fullName>Exclude_from_Household_Formal_Greeting__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Checking this box will exclude this contact from the Household Formal Greeting.</description>
+        <description>This field currently isn't tied to product functionality.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Checking this box will exclude this contact from the Household Formal Greeting.</inlineHelpText>
+        <inlineHelpText>This field currently isn't tied to product functionality.</inlineHelpText>
         <label>Exclude from Household Formal Greeting</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
@@ -4328,9 +4334,9 @@
     <fields>
         <fullName>Exclude_from_Household_Informal_Greeting__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Checking this box will exclude this contact from the Household Informal Greeting.</description>
+        <description>This field currently isn't tied to product functionality.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Checking this box will exclude this contact from the Household Informal Greeting.</inlineHelpText>
+        <inlineHelpText>This field currently isn't tied to product functionality.</inlineHelpText>
         <label>Exclude from Household Informal Greeting</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
@@ -4338,9 +4344,9 @@
     <fields>
         <fullName>Exclude_from_Household_Name__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Checking this box will exclude this contact from the Household Name.</description>
+        <description>When selected, this Contact is excluded from the Household Name.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Checking this box will exclude this contact from the Household Name.</inlineHelpText>
+        <inlineHelpText>When selected, this Contact is excluded from the Household Name.</inlineHelpText>
         <label>Exclude from Household Name</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
@@ -4348,6 +4354,8 @@
     <fields>
         <fullName>FERPA__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates whether this person has opted out of disclosure of information per the Family Education Rights and Privacy Act.</description>
+        <inlineHelpText>Indicates whether this person has opted out of disclosure of information per the Family Education Rights and Privacy Act.</inlineHelpText>
         <externalId>false</externalId>
         <label>FERPA</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4357,6 +4365,8 @@
         <fullName>Financial_Aid_Applicant__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <description>Indicates whether this student has applied for financial aid.</description>
+        <inlineHelpText>Indicates whether this student has applied for financial aid.</inlineHelpText>
         <label>Financial Aid Applicant</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
@@ -4364,6 +4374,8 @@
     <fields>
         <fullName>Gender__c</fullName>
         <externalId>false</externalId>
+        <description>Indicates the person's self-identified gender.</description>
+        <inlineHelpText>Indicates the person's self-identified gender.</inlineHelpText>
         <label>Gender</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4387,6 +4399,8 @@
     <fields>
         <fullName>HIPAA_Detail__c</fullName>
         <externalId>false</externalId>
+        <description>Can be used to store information about the student Contact, such as the names of related Contacts authorized to communicate about the student. May require restricted field visibility so that only authorized users can view.</description>
+        <inlineHelpText>Information about this person, such as the names of related Contacts authorized to communicate about the person.</inlineHelpText>
         <label>HIPAA Detail</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4396,6 +4410,8 @@
     <fields>
         <fullName>HIPAA__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Can be used to indicate that the student Contact's record is subject to Health Insurance Portability and Accountability Act requirements, without displaying the details of that information.</description>
+        <inlineHelpText>Indicates whether this person's record is subject to Health Insurance Portability and Accountability Act standards.</inlineHelpText>
         <externalId>false</externalId>
         <label>HIPAA</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4404,6 +4420,8 @@
     <fields>
         <fullName>Military_Background__c</fullName>
         <externalId>false</externalId>
+        <description>Describe this person's miltary service, for example, the branch of the military, length of time in the miltary, date of discharge, etc.</description>
+        <inlineHelpText>Describe this person's miltary service, for example, the branch of the military, length of time in the miltary, date of discharge, etc.</inlineHelpText>
         <label>Military Background</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4413,6 +4431,8 @@
     <fields>
         <fullName>Military_Service__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates whether this person is currently serving or has previously served in the military.</description>
+        <inlineHelpText>Indicates whether this person is currently serving or has previously served in the military.</inlineHelpText>
         <externalId>false</externalId>
         <label>Military Service</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4421,7 +4441,8 @@
     <fields>
         <fullName>Naming_Exclusions__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Determines which household names this contact is NOT included as part of.</inlineHelpText>
+        <description>Selecting the Household Name option excludes this Contact from the Household Name. NOTE: The Household Formal Greeting and Household Informal Greeting options are not currently tied to existing product functionality.</description>
+        <inlineHelpText>Selecting the Household Name option excludes this Contact from the Household Name. NOTE: The Household Formal Greeting and Household Informal Greeting options are not currently tied to existing product functionality.</inlineHelpText>
         <label>Naming Exclusions</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4450,9 +4471,9 @@
     </fields>
     <fields>
         <fullName>PreferredPhone__c</fullName>
-        <description>Which phone number should be used for most communications involving this Contact?</description>
+        <description>The phone (Work, Home, Mobile, Other) that this Contact prefers you to use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Which phone number should be used for most communications involving this Contact?</inlineHelpText>
+        <inlineHelpText>The phone (Work, Home, Mobile, Other) that this Contact prefers you to use.</inlineHelpText>
         <label>Preferred Phone</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4485,9 +4506,9 @@
     </fields>
     <fields>
         <fullName>Preferred_Email__c</fullName>
-        <description>Which email should be used for most communications involving this Contact?</description>
+        <description>The email (University, Work, Alternate) that this Contact prefers you to use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Which email should be used for most communications involving this Contact?</inlineHelpText>
+        <inlineHelpText>The email (University, Work, Alternate) that this Contact prefers you to use.</inlineHelpText>
         <label>Preferred Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4515,9 +4536,9 @@
     </fields>
     <fields>
         <fullName>Primary_Address_Type__c</fullName>
-        <description>Which type of address is the mailing address?</description>
+        <description>Indicate what kind of address the Mailing Address is, for example, Work, Home, or Other.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Which type of address is the mailing address?</inlineHelpText>
+        <inlineHelpText>Indicate what kind of address the Mailing Address is, for example, Work, Home, or Other.</inlineHelpText>
         <label>Primary Address Type</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4552,6 +4573,8 @@
         <fullName>Primary_Household__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
+        <description>Lookup to the main Household (Account record) this Contact is associated with.</description>
+        <inlineHelpText>Lookup to the main Household (Account record) this Contact is associated with.</inlineHelpText>
         <label>Primary Household</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Contacts (Primary Household)</relationshipLabel>
@@ -4578,6 +4601,8 @@
         <fullName>Primary_Organization__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
+        <description>Lookup to the main Organization (Account record) this Contact is associated with.</description>
+        <inlineHelpText>Lookup to the main Organization (Account record) this Contact is associated with.</inlineHelpText>
         <label>Primary Business Organization</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Contacts (Primary Organization)</relationshipLabel>
@@ -4590,6 +4615,8 @@
         <fullName>Race__c</fullName>
         <externalId>false</externalId>
         <label>Race</label>
+        <description>Select the race(s) this person uses to describe themself.</description>
+        <inlineHelpText>Select the race(s) this person uses to describe themself.</inlineHelpText>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>MultiselectPicklist</type>
@@ -4633,6 +4660,8 @@
     <fields>
         <fullName>Religion__c</fullName>
         <externalId>false</externalId>
+        <description>The religion this person practices.</description>
+        <inlineHelpText>The religion this person practices.</inlineHelpText>
         <label>Religion</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4680,9 +4709,9 @@
     </fields>
     <fields>
         <fullName>Secondary_Address_Type__c</fullName>
-        <description>What type of address is the other address?</description>
+        <description>Indicate what kind of address the Secondary Address is, for example, Work, Home, or Other.</description>
         <externalId>false</externalId>
-        <inlineHelpText>What type of address is the other address?</inlineHelpText>
+        <inlineHelpText>Indicate what kind of address the Secondary Address is, for example, Work, Home, or Other.</inlineHelpText>
         <label>Secondary Address Type</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4725,9 +4754,9 @@
     </fields>
     <fields>
         <fullName>UniversityEmail__c</fullName>
-        <description>Official University email address.</description>
+        <description>This person's school email address.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Official University email address.</inlineHelpText>
+        <inlineHelpText>This person's school email address.</inlineHelpText>
         <label>University Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4736,9 +4765,9 @@
     </fields>
     <fields>
         <fullName>WorkEmail__c</fullName>
-        <description>See Preferred Email field.</description>
+        <description>The work email for this person.</description>
         <externalId>false</externalId>
-        <inlineHelpText>See Preferred Email field.</inlineHelpText>
+        <inlineHelpText>The work email for this person.</inlineHelpText>
         <label>Work Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4747,9 +4776,9 @@
     </fields>
     <fields>
         <fullName>WorkPhone__c</fullName>
-        <description>See &apos;Preferred Phone&apos; field.</description>
+        <description>The work phone number for this person.</description>
         <externalId>false</externalId>
-        <inlineHelpText>See &apos;Preferred Phone&apos; field.</inlineHelpText>
+        <inlineHelpText>The work phone number for this person.</inlineHelpText>
         <label>Work Phone</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4757,7 +4786,7 @@
     </fields>
     <fields>
         <fullName>Work_Address__c</fullName>
-        <description>Formula: If the Primary Address Type is Work, the Mailing Address.  If the Secondary Address Type is Work, the Other Address.</description>
+        <description>If you've set "Work" as the Primary Address type, the Work Address is populated with the Mailing Address values. If "Work" is the Secondary Address type, the Work Address is populated with the "Other Address" values. This field is read-only.</description>
         <externalId>false</externalId>
         <formula>if(
     ISPICKVAL(Primary_Address_Type__c,&quot;Work&quot;),
@@ -4776,7 +4805,7 @@
     ,
     &quot;&quot;)
 )</formula>
-        <inlineHelpText>Formula: If the Primary Address Type is Work, the Mailing Address.  If the Secondary Address Type is Work, the Other Address.</inlineHelpText>
+        <inlineHelpText>If you've set "Work" as the Primary Address type, the Work Address is populated with the Mailing Address values. If "Work" is the Secondary Address type, the Work Address is populated with the "Other Address" values. This field is read-only.</inlineHelpText>
         <label>Work Address</label>
         <required>false</required>
         <type>Text</type>
@@ -4785,9 +4814,9 @@
     <fields>
         <fullName>is_Address_Override__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</description>
+        <description>When selected, this Contact's address won't be synced with the Household Default or Seasonal Address. Use this to maintain a separate Mailing Address for this particular Contact. (Applies to Household Contacts only.)</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</inlineHelpText>
+        <inlineHelpText>When selected, this Contact's address won't be synced with the Household Default or Seasonal Address. Use this to maintain a separate Mailing Address for this particular Contact. (Applies to Household Contacts only.)</inlineHelpText>
         <label>Do Not Automatically Update</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>

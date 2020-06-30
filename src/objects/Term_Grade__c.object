@@ -97,9 +97,9 @@
     </fields>
     <fields>
         <fullName>Credits_Attempted__c</fullName>
-        <description>The number of credits attempted for this course and grading period.</description>
+        <description>The number of credits available this Term for this Course.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The number of credits attempted for this course and grading period.</inlineHelpText>
+        <inlineHelpText>The number of credits available this Term for this Course.</inlineHelpText>
         <label>Credits Attempted</label>
         <precision>6</precision>
         <required>false</required>
@@ -110,9 +110,9 @@
     </fields>
     <fields>
         <fullName>Credits_Earned__c</fullName>
-        <description>The number of credits earned for this course and grading period.</description>
+        <description>The number of credits the student earned this term for this course.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The number of credits earned for this course and grading period.</inlineHelpText>
+        <inlineHelpText>The number of credits the student earned this term for this course.</inlineHelpText>
         <label>Credits Earned</label>
         <precision>6</precision>
         <required>false</required>
@@ -123,9 +123,9 @@
     </fields>
     <fields>
         <fullName>Letter_Grade__c</fullName>
-        <description>The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value.</description>
+        <description>If your school uses letter grades, enter the letter grade the student earned, for example, A, B, C, etc.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value.</inlineHelpText>
+        <inlineHelpText>If your school uses letter grades, enter the letter grade the student earned, for example, A, B, C, etc.</inlineHelpText>
         <label>Letter Grade</label>
         <length>255</length>
         <required>false</required>
@@ -135,9 +135,9 @@
     </fields>
     <fields>
         <fullName>Numerical_Grade__c</fullName>
-        <description>The numerical grade the student earned for this course, which can be based on any non-percentage number.</description>
+        <description>If your school uses numeric grades, enter the numeric grade the student earned.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The numerical grade the student earned for this course, which can be based on any non-percentage number.</inlineHelpText>
+        <inlineHelpText>If your school uses numeric grades, enter the numeric grade the student earned.</inlineHelpText>
         <label>Numerical Grade</label>
         <precision>18</precision>
         <required>false</required>
@@ -148,9 +148,9 @@
     </fields>
     <fields>
         <fullName>Percent_Grade__c</fullName>
-        <description>The percentage grade the student earned for this course.</description>
+        <description>If your school grades on a percentage basis, enter the percentage grade the student earned.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The percentage grade the student earned for this course.</inlineHelpText>
+        <inlineHelpText>If your school grades on a percentage basis, enter the percentage grade the student earned.</inlineHelpText>
         <label>Percent Grade</label>
         <precision>6</precision>
         <required>false</required>
@@ -196,9 +196,9 @@
     </fields>
     <fields>
         <fullName>Term_Grade_Type__c</fullName>
-        <description>The type of term or grading period for which this grade is being recorded.</description>
+        <description>The type of grading period that this grade is for, for example, Mid-Term Grade, Final Grade, Exam Grade, Grading Period.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The type of term or grading period for which this grade is being recorded.</inlineHelpText>
+        <inlineHelpText>The type of grading period that this grade is for, for example, Mid-Term Grade, Final Grade, Exam Grade, Grading Period.</inlineHelpText>
         <label>Term Grade Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -233,9 +233,9 @@
     <fields>
         <fullName>Term__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The term or grading period for which this grade is being recorded.</description>
+        <description>Indicates in which Term the student earned this grade.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The term or grading period for which this grade is being recorded.</inlineHelpText>
+        <inlineHelpText>Indicates in which Term the student earned this grade.</inlineHelpText>
         <label>Term</label>
         <referenceTo>Term__c</referenceTo>
         <relationshipLabel>Term Grades</relationshipLabel>
