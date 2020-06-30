@@ -25,7 +25,8 @@
                 <aura:set attribute="else">
                     <ui:inputCheckbox value="{!recType.selected}" class="{!join(' ', 'slds-checkbox', v.class + '-rectypes-inputcheck-' + index)}"
                       aura:id="checkboxIds" text="{!recType.id}"  />
-                    <span class="slds-checkbox--faux"></span>
+                    <span class="slds-checkbox--faux" data-qa-checkbox-state="{!recType.selected}"></span>
+                    <span class="slds-form-element__label"></span>
                 </aura:set>
                 </aura:if>
                 <span class="slds-form-element__label" for="recTypeName">{!recType.name}</span>
