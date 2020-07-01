@@ -96,7 +96,7 @@ eda_lex_locators = {
         "settings_tab": "(//li[@class='slds-tabs__item slds-text-heading--label slds-active' and @role='tab' and @title='Settings'])[1]/a[contains(text(),'Settings')]",
         "affl_mappings_tab": "//a[contains(text(),'Affiliation Mappings')]",
         "default_checkbox": "//div[text()='{}']/following-sibling::div/descendant::img",
-        "enable_checkbox": "//div[text()='{}']/following-sibling::div/descendant::span",
+        "enable_checkbox": "(//div[text()='{}']/following-sibling::div/descendant::span)[1]",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
