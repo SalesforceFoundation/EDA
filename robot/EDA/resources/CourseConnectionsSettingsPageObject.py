@@ -26,17 +26,17 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
     def set_enable_course_connections(self):
         """ Set the checkbox for 'Enable Course Connections' field """
         locator = eda_lex_locators["eda_settings"]["enable_checkbox"].format("Enable Course Connections")
+        locator_enabled = eda_lex_locators["eda_settings_cc"]["enable_cc_warning_enabled"]
         locator_settings = eda_lex_locators["eda_settings_cc"]["settings_tab"]
         self.selenium.page_should_contain_element(locator_settings)
         self.selenium.click_element(locator_settings)
         self.selenium.wait_until_page_contains_element(locator)
-        try:
+        while True:
             self.salesforce._jsclick(locator)
-        except ElementClickInterceptedException:
-            self.selenium.execute_javascript("window.scrollBy(0,0)")
-            self.salesforce._jsclick(locator)
-
-        time.sleep(0.5)
+            time.sleep(1)
+            actual_value = self.selenium.get_webelement(locator_enabled).text
+            if not actual_value == "You must enable Course Connections before editing record types.'" :
+                break
 
     def update_enable_cc_to_default(self):
         """ Updating the `Enable Course Connections` checkbox to default value (false)
@@ -80,6 +80,7 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
             self.selenium.wait_until_page_contains_element(locator_enabled,
                                                            error="Enable course connections warning is not displayed")
         else:
+            time.sleep(1)
             self.selenium.wait_until_page_contains_element(
                 locator_disabled, error="Enable course connections warning is displayed")
 
