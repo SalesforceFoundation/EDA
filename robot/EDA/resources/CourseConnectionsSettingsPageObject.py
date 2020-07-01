@@ -2,6 +2,7 @@ from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
 from locators import eda_lex_locators
+from selenium.common.exceptions import ElementClickInterceptedException
 import time
 
 
@@ -25,8 +26,16 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
     def set_enable_course_connections(self):
         """ Set the checkbox for 'Enable Course Connections' field """
         locator = eda_lex_locators["eda_settings"]["enable_checkbox"].format("Enable Course Connections")
+        locator_settings = eda_lex_locators["eda_settings_cc"]["settings_tab"]
+        self.selenium.page_should_contain_element(locator_settings)
+        self.selenium.click_element(locator_settings)
         self.selenium.wait_until_page_contains_element(locator)
-        self.salesforce._jsclick(locator)
+        try:
+            self.salesforce._jsclick(locator)
+        except ElementClickInterceptedException:
+            self.selenium.execute_javascript("window.scrollBy(0,0)")
+            self.salesforce._jsclick(locator)
+
         time.sleep(0.5)
 
     def update_enable_cc_to_default(self):
@@ -78,7 +87,10 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         """ This method will check the default value of 'Enable Course Connections' checkbox
         """
         locator_default = eda_lex_locators["eda_settings_cc"]["default_cc_checkbox"]
-        self.selenium.page_should_contain_element(locator_default)
+        locator = eda_lex_locators["eda_settings_cc"]["settings_tab"]
+        self.selenium.page_should_contain_element(locator)
+        self.selenium.click_element(locator)
+        time.sleep(1)
         self.selenium.wait_until_element_is_visible(locator_default)
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
         if not str(expectedCheckboxValue).lower() == str(actual_value).lower() :

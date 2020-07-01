@@ -106,6 +106,7 @@ eda_lex_locators = {
         "enable_cc_warning_enabled": "//div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
         "enable_cc_warning_disabled": "//span[contains(@class, 'slds-hide')]/descendant::div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
         "updated_dropdown_value": "//div[text()='{}']/following-sibling::div/descendant::span[text()='{}']",
+        "settings_tab": "//div[contains(@class, 'CourseConnections')]/descendant::a[text()='Settings']",
     },
     "account_types": {
         "administrative": "//span[contains(text(),'Administrative')]/parent::*",
