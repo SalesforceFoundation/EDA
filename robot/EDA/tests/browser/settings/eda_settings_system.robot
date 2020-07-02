@@ -7,8 +7,7 @@ Library         cumulusci.robotframework.PageObjects
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
-Test Setup      Run keywords
-...             Go to EDA settings tab          System
+Test Setup      Go to EDA settings tab      System
 
 *** Test Cases ***
 Validate Standard Field values in system settings
