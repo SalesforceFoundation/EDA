@@ -7,12 +7,9 @@ Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/AccountsAndContactsSettingsPageObject.py
 ...             robot/EDA/resources/ContactsPageObject.py
 
-Test Setup      Initialize test setup
-
 Suite Setup     Run keywords
 ...             Initialize test data
 ...             Open test browser
-
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
@@ -129,11 +126,6 @@ Verify batch functionality of preferred phone
     ...                                     ${CONTACT4.LastName}
 
 *** Keywords ***
-
-Initialize test setup
-    Select App Launcher App                 EDA
-    Close all tabs
-
 Initialize test data
     [Documentation]                         Create a contact with a randomly generated firstname and lastname via API
 
