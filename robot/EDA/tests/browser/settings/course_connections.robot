@@ -16,9 +16,11 @@ Validate Edit Mode For Course Connections, Settings
     [Documentation]         Check for the warning message when the Enable Course Connections is unchecked
     ...                     Check the warning message disappears when the Enable Course Connections is checked
     ...                     verify default values for Student and Faculty record types
-    [tags]                                      unstable        W-041783
-
-    Click edit on EDA settings page
+    ...                     Also validates the field values of Enable course connections, Default Active
+    ...                     Student Record Type and Default Faculty Record Type are reatined upon saving
+    ...                     which also includes the validation of fields in non edit mode.
+    [tags]                                      unstable        W-041783                W-041784
+    Click action button on EDA settings page    Edit
     Verify enable course connections warning    true
     Set enable course connections
     Verify enable course connections warning    false
@@ -31,10 +33,14 @@ Validate Edit Mode For Course Connections, Settings
     ...                                         Faculty
     ...                                         Student
     Click action button on EDA settings page    Cancel
-
-#   This is old code, and will be refactored as part of the next WI (W-041784)
-#    ${student_select} =  Get Eda Locator    eda_settings.student_select
-#    ${faculty_select} =  Get Eda Locator    eda_settings.faculty_select
-#
-#    Select From List By Label       ${student_select}   Student
-#    Select From List By Label       ${faculty_select}   Faculty
+    Click action button on EDA settings page    Edit
+    Set enable course connections
+    Update dropdown value
+    ...                                         Default Active Student Record Type=Student
+    ...                                         Default Faculty Record Type=Faculty
+    Click action button on EDA settings page    Save
+    Go to EDA settings tab                      Course Connections                      #This is a work around as we have consistent issues with fields visible to the user
+    Verify enable course connections            true
+    Verify selected dropdown value
+    ...                                         Default Active Student Record Type=Student
+    ...                                         Default Faculty Record Type=Faculty
