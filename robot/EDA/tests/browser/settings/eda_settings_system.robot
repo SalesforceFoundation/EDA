@@ -7,9 +7,17 @@ Library         cumulusci.robotframework.PageObjects
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
+Test Setup      Run keywords
+...             Go to EDA settings tab          System
+
 *** Test Cases ***
-Test EDA System Settings
-    [Setup]                 Go to EDA settings tab             System
+Validate Standard Field values in system settings
+    [Documentation]         Verify the standard field values for the below fields in system settings
+    ...                     Default Account Model, Store Errors, Send Error Notifications, Error
+    ...                     Notification Recipients, Disable Error Handling, Automatic Household
+    ...                     Naming checkbox, Administrative Account Name Format and Household Account
+    ...                     Name Format
+    [tags]                                      unstable        W-041787
 
     # Default Account Model
     Wait for Locator        eda_settings.default_account_model
