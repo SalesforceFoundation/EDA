@@ -13,31 +13,31 @@ Suite Teardown  Capture screenshot and delete records and close browser
 *** Test Cases ***
 
 Enable Household Account
-    [tags]                              unstable
-    Go to EDA settings tab              Accounts and Contacts
-    Click edit on EDA settings page
+    [tags]                                      unstable
+    Go to EDA settings tab                      Accounts and Contacts
+    Click action button on EDA settings page    Edit
 
     # Check Household Account
-    Wait for Locator                    account_types.household 
-    Click on Element                    account_types.household
+    Wait for Locator                            account_types.household 
+    Click on Element                            account_types.household
 
-    Click on Element                    account_types.save
+    Click on Element                            account_types.save
     Close toast message
 
     # Open Custom Settings
     Shift to default content
     Go To Setup Home
-    Wait For New Window                 Home | Salesforce
-    Select window                       Home | Salesforce
+    Wait For New Window                         Home | Salesforce
+    Select window                               Home | Salesforce
     Wait Until Loading Is Complete
 
-    Populate Placeholder                Quick Find          custom settings
+    Populate Placeholder                        Quick Find          custom settings
 
-    Open custom settings                Custom Settings
-    ...                                 Cannot find Custom Settings page
-    ...                                 false
+    Open custom settings                        Custom Settings
+    ...                                         Cannot find Custom Settings page
+    ...                                         false
 
-    ${custom_settings_hierarchy} =      Get eda Locator     custom_settings.custom_settings_frame
+    ${custom_settings_hierarchy} =              Get eda Locator     custom_settings.custom_settings_frame
     Select frame                        ${custom_settings_hierarchy}
     Wait for Locator                    custom_settings.hierarchy_settings
     Click on Element                    custom_settings.hierarchy_settings
