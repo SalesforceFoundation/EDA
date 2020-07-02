@@ -15,7 +15,7 @@ Suite Teardown  Capture screenshot and delete records and close browser
 Create A New Program Plan
     [tags]                                  unstable
 
-    Go to page                              Listing         Program_Plans__c
+    Go to page                              Listing         Program_Plan__c
     Click Object Button                     New
     Wait for Locator                        program_plans.pp_name
 
@@ -25,7 +25,7 @@ Create A New Program Plan
 Create A Course Offering
     [tags]                                  unstable
 
-    Select App Launcher Tab                 Course Offerings
+    Go to page                              Listing         Course_Offering__c
     Click Object Button                     New
 
     Wait for Locator                        course_offering.search_courses
