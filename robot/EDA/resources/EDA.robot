@@ -42,7 +42,7 @@ API Get ID
     ...                         select=Id
     ...                         ${field_name}=${field_value}
     &{Id} =                 Get From List           ${records}      0
-    [return]                &{Id}[Id]
+    [return]                ${Id}[Id]
 
 API Create Contact
     ${first_name} =  Generate Random String
