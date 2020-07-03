@@ -81,7 +81,7 @@ Create Course Enrollment
     ...                            Contact__c=${contact_id}
     ...                            Course_Offering__r.Name=${offering_name}
     &{enrollment} =            Get From List  ${records}  0
-    Store Session Record       Course_Enrollment__c  &{enrollment}[Id]
+    Store Session Record       Course_Enrollment__c  ${enrollment}[Id]
 
 Create Department
     ${department_name} =  Generate Random String
@@ -183,7 +183,7 @@ Create Primary Affiliation
     Select Tab                  Details
     Scroll Page To Location     100    300
     Click Edit Button           Edit Primary Affiliation
-    Populate Lookup Field       Primary Affiliation    &{account}[Name]
+    Populate Lookup Field       Primary Affiliation    ${account}[Name]
     Click Record Button         Save
     [Return]                    ${account_id}    ${contact_id}
 
@@ -197,7 +197,7 @@ Create Secondary Affiliation
     &{contact} =                Salesforce Get  Contact  ${contact_id}
     Scroll Page To Location     50    400
     Click Related List Button   Organization Affiliations    New
-    Populate Lookup Field       Organization    &{account}[Name]
+    Populate Lookup Field       Organization    ${account}[Name]
     Click Modal Button          Save
     [Return]                    ${account_id}    ${contact_id}
 
