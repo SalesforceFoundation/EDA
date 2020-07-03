@@ -21,7 +21,7 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting disabled
     Go to EDA settings tab          Program Plans
     Edit EDA settings checkbox      Validate Program Plan for Nested Plan Requirements          false
 
-    Go to record home               &{program_plan}[Id]
+    Go to record home               ${program_plan}[Id]
     Wait until loading is complete
 
     Java click on element                panel_tab_lookup    Related
@@ -32,8 +32,8 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting disabled
 
     ${plan_req_name} =              Get EDA locator                 plan_requirement.plan_requirement_name
     Input text                      ${plan_req_name}                Intro to Literature
-    Wait for locator                plan_requirement.program_plan   &{program_plan}[Name]
-    Populate placeholder            Search Plan Requirements        &{plan_requirement_1}[Name]
+    Wait for locator                plan_requirement.program_plan   ${program_plan}[Name]
+    Populate placeholder            Search Plan Requirements        ${plan_requirement_1}[Name]
     Click on element                modal.save
     Wait for locator                plan_requirement.toast_message
 
@@ -49,12 +49,12 @@ Initialize test data
     &{program_plan} =               API create program plan         BA English
     &{plan_requirement_1} =         API create plan requirement
     ...                             Advanced Literature
-    ...                             &{program_plan}[Id]
+    ...                             ${program_plan}[Id]
     ${ns} =                         Get eda namespace prefix
 
     Set suite variable              &{program_plan}
     Set suite variable              &{plan_requirement_1}
     Set suite variable              ${ns}
 
-    Store session record            ${ns}Program_Plan__c            &{program_plan}[Id]
-    Store session record            ${ns}Plan_Requirement__c        &{plan_requirement_1}[Id]
+    Store session record            ${ns}Program_Plan__c            ${program_plan}[Id]
+    Store session record            ${ns}Plan_Requirement__c        ${plan_requirement_1}[Id]
