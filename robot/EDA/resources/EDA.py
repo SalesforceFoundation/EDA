@@ -1,13 +1,23 @@
 import logging
 import time
+import warnings
 
 from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.utils import selenium_retry, capture_screenshot_on_error
-from locators import eda_lex_locators
+from robot.libraries.BuiltIn import RobotNotRunningError
 
 from robot.utils import lower
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.common.keys import Keys
+
+from locators_49 import eda_lex_locators as locators_49
+from locators_48 import eda_lex_locators as locators_48
+locators_by_api_version = {
+    49.0: locators_49,  # Summer '20
+    48.0: locators_48   # Spring '20
+}
+# will get populated in _init_locators
+eda_lex_locators = {}
 
 
 @selenium_retry
@@ -24,6 +34,25 @@ class EDA(BaseEDAPage):
         logging.getLogger("requests.packages.urllib3.connectionpool").setLevel(
             logging.WARN
         )
+        self._init_locators()
+
+    def _init_locators(self):
+        try:
+            client = self.cumulusci.tooling
+            response = client._call_salesforce(
+                'GET', 'https://{}/services/data'.format(client.sf_instance)
+            )
+            self.latest_api_version = float(response.json()[-1]['version'])
+            if self.latest_api_version not in locators_by_api_version:
+                warnings.warn("Could not find locator library for API %d" % self.latest_api_version)
+                self.latest_api_version = max(locators_by_api_version.keys())
+        except RobotNotRunningError:
+            # We aren't part of a running test, likely because we are
+            # generating keyword documentation. If that's the case, assume
+            # the latest supported version
+            self.latest_api_version = max(locators_by_api_version.keys())
+        locators = locators_by_api_version[self.latest_api_version]
+        eda_lex_locators.update(locators)
 
     def populate_address(self, loc, value):
         """ Populate address with Place Holder aka Mailing Street etc as a locator
