@@ -1,7 +1,7 @@
 from BaseObjects import BaseEDAPage
+from EDA import eda_lex_locators
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
-from locators import eda_lex_locators
 from selenium.webdriver.common.keys import Keys
 
 
