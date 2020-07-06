@@ -1156,7 +1156,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The country where this person was born. --></help>
         <label>País d&apos;origen</label>
         <name>Country_of_Origin__c</name>
         <picklistValues>
