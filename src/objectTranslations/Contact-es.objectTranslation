@@ -1131,7 +1131,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The citizenship status of the contact. --></help>
+        <help><!-- The Contact&apos;s citizenship status. --></help>
         <label><!-- Citizenship Status --></label>
         <name>Citizenship_Status__c</name>
         <picklistValues>
@@ -3452,17 +3452,25 @@
         <name>Financial_Aid_Applicant__c</name>
     </fields>
     <fields>
-        <help><!-- Contact&apos;s former first name. --></help>
+        <label>FERPA</label>
+        <name>FERPA__c</name>
+    </fields>
+    <fields>
+        <label>Financial Aid Applicant</label>
+        <name>Financial_Aid_Applicant__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Contact&apos;s former first name. --></help>
         <label><!-- Former First Name --></label>
         <name>Former_First_Name__c</name>
     </fields>
     <fields>
-        <help><!-- Contact&apos;s former last name. --></help>
+        <help><!-- The Contact&apos;s former last name. --></help>
         <label><!-- Former Last Name --></label>
         <name>Former_Last_Name__c</name>
     </fields>
     <fields>
-        <help><!-- Contact&apos;s former middle name. --></help>
+        <help><!-- The Contact&apos;s former middle name. --></help>
         <label><!-- Former Middle Name --></label>
         <name>Former_Middle_Name__c</name>
     </fields>
