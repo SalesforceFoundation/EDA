@@ -402,6 +402,7 @@ class EDA(BaseEDAPage):
         """
         for field,expected_value in kwargs.items():
             locator = eda_lex_locators["eda_settings_cc"]["dropdown_field"].format(field)
+            self.selenium.page_should_contain_element(locator)
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).get_attribute("disabled")
