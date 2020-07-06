@@ -3452,14 +3452,6 @@
         <name>Financial_Aid_Applicant__c</name>
     </fields>
     <fields>
-        <label>FERPA</label>
-        <name>FERPA__c</name>
-    </fields>
-    <fields>
-        <label>Financial Aid Applicant</label>
-        <name>Financial_Aid_Applicant__c</name>
-    </fields>
-    <fields>
         <help><!-- The Contact&apos;s former first name. --></help>
         <label><!-- Former First Name --></label>
         <name>Former_First_Name__c</name>
