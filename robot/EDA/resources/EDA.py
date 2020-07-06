@@ -394,3 +394,16 @@ class EDA(BaseEDAPage):
             actual_value = self.selenium.get_webelement(locator).text
             if not str(value).lower() == str(actual_value).lower() :
                 raise Exception (f"Drop down value in '{field}' is not updated and the value is '{actual_value}'")
+
+    def verify_dropdown_field_status(self, **kwargs):
+        """ Verify the drop down field is disabled/enabled for the user
+            we have to pass the name of the field and the status of the field 
+            True = disabled and False = enabled
+        """
+        for field,expected_value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_cc"]["dropdown_field"].format(field)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+            actual_value = self.selenium.get_webelement(locator).get_attribute("disabled")
+            if not str(expected_value).lower() == str(actual_value).lower() :
+                raise Exception (f"Drop down field '{field}' status is '{actual_value}'")
