@@ -1444,8 +1444,8 @@
     <fields>
         <fullName>Citizenship_Status__c</fullName>
         <externalId>false</externalId>
-        <description>The citizenship status of the contact.</description>
-        <inlineHelpText>The citizenship status of the contact.</inlineHelpText>
+        <description>The Contact's citizenship status.</description>
+        <inlineHelpText>The Contact's citizenship status.</inlineHelpText>
         <label>Citizenship Status</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -4422,9 +4422,9 @@
     </fields>
     <fields>
         <fullName>Former_First_Name__c</fullName>
-        <description>Contact's former first name.</description>
+        <description>The Contact's former first name.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Contact's former first name.</inlineHelpText>
+        <inlineHelpText>The Contact's former first name.</inlineHelpText>
         <label>Former First Name</label>
         <length>80</length>
         <required>false</required>
@@ -4434,9 +4434,9 @@
     </fields>
     <fields>
         <fullName>Former_Middle_Name__c</fullName>
-        <description>Contact's former middle name.</description>
+        <description>The Contact's former middle name.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Contact's former middle name.</inlineHelpText>
+        <inlineHelpText>The Contact's former middle name.</inlineHelpText>
         <label>Former Middle Name</label>
         <length>80</length>
         <required>false</required>
@@ -4446,9 +4446,9 @@
     </fields>
     <fields>
         <fullName>Former_Last_Name__c</fullName>
-        <description>Contact's former last name.</description>
+        <description>The Contact's former last name.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Contact's former last name.</inlineHelpText>
+        <inlineHelpText>The Contact's former last name.</inlineHelpText>
         <label>Former Last Name</label>
         <length>80</length>
         <required>false</required>
