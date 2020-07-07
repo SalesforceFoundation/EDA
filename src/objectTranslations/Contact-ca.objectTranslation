@@ -1135,8 +1135,8 @@
         <label><!-- Citizenship Status --></label>
         <name>Citizenship_Status__c</name>
         <picklistValues>
-            <masterLabel>Other (Non-US)</masterLabel>
-            <translation><!-- Other (Non-US) --></translation>
+            <masterLabel>Other (Non-U.S.)</masterLabel>
+            <translation><!-- Other (Non-U.S.) --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>U.S. Citizen or U.S. National</masterLabel>
