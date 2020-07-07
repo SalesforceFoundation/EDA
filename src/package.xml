@@ -355,8 +355,10 @@
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship__c</members>
+        <members>Contact.Citizenship_Status__c</members>
         <members>Contact.Country_of_Origin__c</members>
         <members>Contact.Current_Address__c</members>
+        <members>Contact.Date_Deceased__c</members>
         <members>Contact.Deceased__c</members>
         <members>Contact.Do_Not_Contact__c</members>
         <members>Contact.Dual_Citizenship__c</members>
@@ -366,6 +368,9 @@
         <members>Contact.Exclude_from_Household_Name__c</members>
         <members>Contact.FERPA__c</members>
         <members>Contact.Financial_Aid_Applicant__c</members>
+        <members>Contact.Former_First_Name__c</members>
+        <members>Contact.Former_Last_Name__c</members>
+        <members>Contact.Former_Middle_Name__c</members>
         <members>Contact.Gender__c</members>
         <members>Contact.HIPAA_Detail__c</members>
         <members>Contact.HIPAA__c</members>
