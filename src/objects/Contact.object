@@ -1474,9 +1474,9 @@
                     <label>U.S. Refugee or Asylee</label>
                 </value>
                 <value>
-                    <fullName>Other (Non-US)</fullName>
+                    <fullName>Other (Non-U.S.)</fullName>
                     <default>false</default>
-                    <label>Other (Non-US)</label>
+                    <label>Other (Non-U.S.)</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
