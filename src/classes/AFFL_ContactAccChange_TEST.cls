@@ -70,6 +70,22 @@ public with sharing class AFFL_ContactAccChange_TEST {
         resetAfflFlags();
         insert bizAffl1;
     }
+
+    private static void updateAffiliationMappings() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+        afflMapper.populateMaps();
+        Map<String, String> accRecTypeToContactLabel = afflMapper.accRecTypeToContactLabel;
+
+        for (String PrimaryAfflField: accRecTypeToContactLabel.values()) {
+            if (PrimaryAfflField == 'Primary Business Organization') {
+                PrimaryAfflField = prefix + 'Primary_Organization__c';
+            }
+        }
+    }
     
     @isTest
     public static void changeContact() {
@@ -215,15 +231,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-            if (mapping.Primary_Affl_Field__c == 'Primary Business Organization') {
-                mapping.Primary_Affl_Field__c = prefix + 'Primary_Organization__c';
-            }
-            update mapping;
-        }
+        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
 
         Contact con = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
         Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
@@ -257,15 +265,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-            if (mapping.Primary_Affl_Field__c == 'Primary Business Organization') {
-                mapping.Primary_Affl_Field__c = prefix + 'Primary_Organization__c';
-            }
-            update mapping;
-        }
+        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
 
         Contact contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
 
@@ -301,15 +301,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-            if (mapping.Primary_Affl_Field__c == 'Primary Business Organization') {
-                mapping.Primary_Affl_Field__c = prefix + 'Primary_Organization__c';
-            }
-            update mapping;
-        }
+        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
 
         Contact contact = [SELECT Primary_Organization__c from Contact WHERE Id = :contact1.Id];
         Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
@@ -336,15 +328,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-            if (mapping.Primary_Affl_Field__c == 'Primary Business Organization') {
-                mapping.Primary_Affl_Field__c = prefix + 'Primary_Organization__c';
-            }
-            update mapping;
-        }
+        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
 
         Contact con = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
         Account bizAcct = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
@@ -372,15 +356,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-            if (mapping.Primary_Affl_Field__c == 'Primary Business Organization') {
-                mapping.Primary_Affl_Field__c = prefix + 'Primary_Organization__c';
-            }
-            update mapping;
-        }
+        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
 
         Account bizAcct = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
 

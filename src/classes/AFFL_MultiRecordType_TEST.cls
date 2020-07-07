@@ -792,13 +792,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         AFFL_MultiRecordType_TEST.setup();
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
-
         Test.startTest();
             AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
             String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType('Business Organization');
         Test.stopTest();
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
 
         System.assertEquals(prefix + 'Primary_Organization__c', primaryAfflLookupAPIName);
 
@@ -832,4 +832,88 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(null, primaryAfflLookupAPIName);
 
     }
+
+    // Positive test for getContactFieldFromSettings method of AFFL_MultiRecordTypeMapper
+    @isTest
+    private static void getContactFieldFromSettingsPoitiveTest() {
+
+        AFFL_MultiRecordType_TEST.setup();
+
+        Test.startTest();
+            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+            String contactFieldFromSettings = afflMapper.getContactFieldFromSettings('Business Organization');
+        Test.stopTest();
+
+        System.assertEquals('Primary Business Organization', contactFieldFromSettings);
+
+    }
+    
+    // Negative test for getContactFieldFromSettings method of AFFL_MultiRecordTypeMapper
+    @isTest
+    private static void getContactFieldFromSettingsNegativeTest() {
+
+        AFFL_MultiRecordType_TEST.setup();
+
+        Test.startTest();
+            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+            String contactFieldFromSettings = afflMapper.getContactFieldFromSettings('Test1234');
+        Test.stopTest();
+
+        System.assertEquals(null, contactFieldFromSettings);
+
+    }
+
+    // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using Label name
+    @isTest
+    private static void getPrimaryAffiliationLookupAPIPoitiveLabelTest() {
+
+        AFFL_MultiRecordType_TEST.setup();
+
+        Test.startTest();
+            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+            String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPI('Primary Business Organization');
+        Test.stopTest();
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        
+        System.assertEquals(prefix + 'Primary_Organization__c', primaryAfflLookupAPIName);
+       
+    }
+    
+    // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using API name
+    @isTest
+    private static void getPrimaryAffiliationLookupAPIPoitiveAPITest() {
+
+        AFFL_MultiRecordType_TEST.setup();
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String lookupAPI = prefix + 'Primary_Organization__c';
+
+        Test.startTest();
+            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+            String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPI(lookupAPI);
+        Test.stopTest();
+
+        
+        System.assertEquals(prefix + 'Primary_Organization__c', primaryAfflLookupAPIName);
+       
+    }
+    
+    // Negative test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper
+    @isTest
+    private static void getPrimaryAffiliationLookupAPINegativeTest() {
+
+        AFFL_MultiRecordType_TEST.setup();
+
+        Test.startTest();
+            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+            String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPI('Test1234');
+        Test.stopTest();
+
+        System.assertEquals(null, primaryAfflLookupAPIName);
+       
+    }
+
 }

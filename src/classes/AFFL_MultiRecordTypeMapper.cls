@@ -132,6 +132,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         return labelsnames;
     }
     
+    @testVisible
     private void populateMaps() {
         accRecTypeToContactLabel = new Map<String, String>();
         accTypeToEnrollCreate = new Map<String, Boolean>();
@@ -266,49 +267,96 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     /*******************************************************************************************************************************
     * @description Returns the API name of the Primary Affiliation Lookup field from Affiliation_Type__c(Account Record Type Label)
     * @param affiliationType The value of Affiliation_Type__c on Affiliation which is also related Account's Record Type Label Name
-    * @return lookupFieldAPIName The API name of the Primary Affiliation Lookup field
+    * @return primaryAfflLookupAPIName The API name of the Primary Affiliation Lookup field or null if not found
     *********************************************************************************************************************************/
     public String getPrimaryAffiliationLookupAPIFromAffiliationType(String affiliationType) {
 
-        if (affiliationType == null || affiliationType == '') {
-            return affiliationType;
+        if (String.isBlank(affiliationType)) {
+            return null;
         }
 
-        String primayAfflLookupLabelOrAPIName = accRecTypeToContactLabel.get(affiliationType);
+        String contactFieldFromSettings = this.getContactFieldFromSettings(affiliationType);
 
-        if (primayAfflLookupLabelOrAPIName == null) {
+        if (String.isBlank(contactFieldFromSettings)) {
+            return null;
+        }
+
+        String primaryAfflLookupAPIName = this.getPrimaryAffiliationLookupAPI(contactFieldFromSettings);
+
+        if (String.isBlank(primaryAfflLookupAPIName)) {
+            return null;
+        }
+
+        return primaryAfflLookupAPIName;
+    }
+
+    /*******************************************************************************************************************************
+    * @description Returns the value in 'Contact Primary Affl Field' in EDA settings
+    * @param affiliationType The value of Affiliation_Type__c on Affiliation which is also related Account's Record Type Label Name
+    * @return contactFieldFromSettings The value in 'Contact Primary Affl Field' in EDA settings for a given Affiliation_Type__c or
+              null if not found
+    *********************************************************************************************************************************/
+    @testVisible
+    private String getContactFieldFromSettings(String affiliationType) {
+
+        String contactFieldFromSettings = this.accRecTypeToContactLabel.get(affiliationType);
+
+        if (String.isBlank(contactFieldFromSettings) == false) {
+            return contactFieldFromSettings;
+        }
+
+        if (String.isBlank(contactFieldFromSettings)) {
             /* This means 'Account Record Type' in EDA settings is using API names for 'Account Record Type' in Affiliations mappings
             and we are trying to find by label name, which is Affiliation_Type__c. So first get the API name of the Account Record type
             from its label (affiliationType). Then use the record type's  API name to get the Contact's Priamry Affiliation's name
             from settings which could be either API or label. */
 
-            String affiliationTypeAPI = accRecTypeLabelToAPI.get(affiliationType);
-            primayAfflLookupLabelOrAPIName = accRecTypeToContactLabel.get(affiliationTypeAPI);
-        }
+            String affiliationTypeAPI = this.accRecTypeLabelToAPI.get(affiliationType);
+            contactFieldFromSettings = this.accRecTypeToContactLabel.get(affiliationTypeAPI);
 
-        String primaryAfflLookupAPIName;
-
-        // Assume primayAfflLookupLabelOrAPIName is the Primary Affiliation Lookup's label and get its API name from the label
-        if (primayAfflLookupLabelOrAPIName != null) {
-            primaryAfflLookupAPIName = contactLabelNames.get(primayAfflLookupLabelOrAPIName);
-        }
-
-        // If primaryAfflLookupAPIName of the Contact is not found, check if primayAfflLookupLabelOrAPIName is actually a field API Name. 
-        // If yes, assign it to primaryAfflLookupAPIName.
-        if ((primaryAfflLookupAPIName == '' || primaryAfflLookupAPIName == null) && 
-            (primayAfflLookupLabelOrAPIName != null && primayAfflLookupLabelOrAPIName != '')) {
-
-            // Check if primayAfflLookupLabelOrAPIName is in the List of Contact field API names,
-            // if yes, assign primayAfflLookupLabelOrAPIName to primaryAfflLookupAPIName
-            List<String> contactFieldAPINamesList = contactLabelNames.values();
-
-            if (contactFieldAPINamesList != null && contactFieldAPINamesList.isEmpty() == false &&
-                contactFieldAPINamesList.contains(primayAfflLookupLabelOrAPIName) == true) {
-
-                primaryAfflLookupAPIName = primayAfflLookupLabelOrAPIName;
+            if (String.isBlank(contactFieldFromSettings) == false) {
+                return contactFieldFromSettings;
             }
         }
 
-        return primaryAfflLookupAPIName;
+        return null;
     }
+
+    /*******************************************************************************************************************************
+    * @description Returns the Primary Affiliation Lookup API name for the given Contact field on the settings
+    * @param contactFieldFromSettings The value in 'Contact Primary Affl Field' from Settings
+    * @return primaryAfflLookupAPIName The API name of the Primary Affiliation Lookup field or null if not found
+    *********************************************************************************************************************************/
+    @testVisible
+    private String getPrimaryAffiliationLookupAPI(String contactFieldFromSettings) {
+
+        /* Check if contactFieldFromSettings is in the List of Contact field API names,
+         if yes, assign contactFieldFromSettings to primaryAfflLookupAPIName */
+
+        List<String> contactFieldAPINamesList = this.contactLabelNames.values();
+        String primaryAfflLookupAPIName;
+
+        if (contactFieldAPINamesList != null && contactFieldAPINamesList.isEmpty() == false &&
+            contactFieldAPINamesList.contains(contactFieldFromSettings) == true) {
+
+            primaryAfflLookupAPIName = contactFieldFromSettings;
+
+            if (String.isBlank(primaryAfflLookupAPIName) == false) {
+                return primaryAfflLookupAPIName;
+            }
+        }
+
+        /* If contactFieldFromSettings is not in the List of Contact field API names,
+         assume it is Label and get the API name from it. */
+
+        if (String.isBlank(primaryAfflLookupAPIName)) {
+            primaryAfflLookupAPIName = this.contactLabelNames.get(contactFieldFromSettings);
+
+            if (String.isBlank(primaryAfflLookupAPIName) == false) {
+                return primaryAfflLookupAPIName;
+            }
+        }
+
+        return null;
+    }       
 }
