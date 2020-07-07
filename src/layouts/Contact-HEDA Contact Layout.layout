@@ -61,6 +61,10 @@
                 <behavior>Edit</behavior>
                 <field>Dual_Citizenship__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Citizenship_Status__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
