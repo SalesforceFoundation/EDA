@@ -342,7 +342,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>affiliationWithSameAccExists</shortDescription>
-        <value>Update stopped. A Contact can have only one Primary Affiliation with the same Account. The specified Contact already has a Primary Affiliation with the specified Account.</value>
+        <value>This Contact already has a Primary Affiliation to the specified Account. Only one Affiliation can be designated as Primary per Account. Either deselect the Primary setting for the other Affiliation so you can designate this one as Primary, or create this Affiliation without the Primary value.</value>
     </labels>
     <labels>
         <fullName>afflAccountNoRecordType</fullName>
