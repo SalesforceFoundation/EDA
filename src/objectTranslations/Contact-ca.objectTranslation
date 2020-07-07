@@ -1131,6 +1131,31 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- The Contact&apos;s citizenship status. --></help>
+        <label><!-- Citizenship Status --></label>
+        <name>Citizenship_Status__c</name>
+        <picklistValues>
+            <masterLabel>Other (Non-U.S.)</masterLabel>
+            <translation><!-- Other (Non-U.S.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+            <translation><!-- U.S. Citizen or U.S. National --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Dual Citizen</masterLabel>
+            <translation><!-- U.S. Dual Citizen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Permanent Resident</masterLabel>
+            <translation><!-- U.S. Permanent Resident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Refugee or Asylee</masterLabel>
+            <translation><!-- U.S. Refugee or Asylee --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label>País d&apos;origen</label>
         <name>Country_of_Origin__c</name>
         <picklistValues>
@@ -2255,6 +2280,10 @@
         <label>Adreça actual</label>
         <name>Current_Address__c</name>
         <relationshipLabel>Contactes (adreça actual)</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date Deceased --></label>
+        <name>Date_Deceased__c</name>
     </fields>
     <fields>
         <help>Quan estigui seleccionada, aquesta opció marca el contacte com a difunt, i els exclou del nomenament de la llar, de correus electrònics i de trucades telefòniques.</help>
@@ -3421,6 +3450,21 @@
     <fields>
         <label>Sol·licitant d&apos;ajuda financera</label>
         <name>Financial_Aid_Applicant__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Contact&apos;s former first name. --></help>
+        <label><!-- Former First Name --></label>
+        <name>Former_First_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Contact&apos;s former last name. --></help>
+        <label><!-- Former Last Name --></label>
+        <name>Former_Last_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Contact&apos;s former middle name. --></help>
+        <label><!-- Former Middle Name --></label>
+        <name>Former_Middle_Name__c</name>
     </fields>
     <fields>
         <label>Sexe</label>

@@ -1442,6 +1442,46 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Citizenship_Status__c</fullName>
+        <externalId>false</externalId>
+        <description>The Contact's citizenship status.</description>
+        <inlineHelpText>The Contact's citizenship status.</inlineHelpText>
+        <label>Citizenship Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>U.S. Citizen or U.S. National</fullName>
+                    <default>false</default>
+                    <label>U.S. Citizen or U.S. National</label>
+                </value>
+                <value>
+                    <fullName>U.S. Dual Citizen</fullName>
+                    <default>false</default>
+                    <label>U.S. Dual Citizen</label>
+                </value>
+                <value>
+                    <fullName>U.S. Permanent Resident</fullName>
+                    <default>false</default>
+                    <label>U.S. Permanent Resident</label>
+                </value>
+                <value>
+                    <fullName>U.S. Refugee or Asylee</fullName>
+                    <default>false</default>
+                    <label>U.S. Refugee or Asylee</label>
+                </value>
+                <value>
+                    <fullName>Other (Non-U.S.)</fullName>
+                    <default>false</default>
+                    <label>Other (Non-U.S.)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Country_of_Origin__c</fullName>
         <externalId>false</externalId>
         <description>The country where this person was born.</description>
@@ -2864,6 +2904,15 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Date_Deceased__c</fullName>
+        <externalId>false</externalId>
+        <description></description>
+        <inlineHelpText></inlineHelpText>
+        <label>Date Deceased</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Deceased__c</fullName>
@@ -4370,6 +4419,42 @@
         <label>Financial Aid Applicant</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Former_First_Name__c</fullName>
+        <description>The Contact's former first name.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Contact's former first name.</inlineHelpText>
+        <label>Former First Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Former_Middle_Name__c</fullName>
+        <description>The Contact's former middle name.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Contact's former middle name.</inlineHelpText>
+        <label>Former Middle Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Former_Last_Name__c</fullName>
+        <description>The Contact's former last name.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Contact's former last name.</inlineHelpText>
+        <label>Former Last Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Gender__c</fullName>
