@@ -21,8 +21,8 @@ Validate drop down values appear when checkbox is unchecked
     Click action button on EDA settings page    Edit
     Verify enable course connections warning    true
     Verify dropdown field status           
-    ...                                         Default Active Student Record Type=true
-    ...                                         Default Faculty Record Type=true 
+    ...                                         Default Active Student Record Type=disabled
+    ...                                         Default Faculty Record Type=disabled 
 
 Validate Edit Mode For Course Connections, Settings
     [Documentation]         Check for the warning message when the Enable Course Connections is unchecked
