@@ -71,7 +71,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         insert bizAffl1;
     }
 
-    private static void updateAffiliationMappings() {
+    private static void updatePrimaryBizOrgMappings() {
 
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -231,7 +231,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
 
         Contact con = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
         Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
@@ -265,7 +265,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
 
         Contact contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
 
@@ -301,7 +301,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
 
         Contact contact = [SELECT Primary_Organization__c from Contact WHERE Id = :contact1.Id];
         Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
@@ -328,7 +328,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
 
         Contact con = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
         Account bizAcct = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
@@ -356,7 +356,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Update Affiliation mapping to use API names for Primary_Affl_Field__c
-        AFFL_ContactAccChange_TEST.updateAffiliationMappings();
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
 
         Account bizAcct = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
 
