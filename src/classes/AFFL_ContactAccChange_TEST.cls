@@ -80,9 +80,9 @@ public with sharing class AFFL_ContactAccChange_TEST {
         afflMapper.populateMaps();
         Map<String, String> accRecTypeToContactLabel = afflMapper.accRecTypeToContactLabel;
 
-        for (String PrimaryAfflField: accRecTypeToContactLabel.values()) {
-            if (PrimaryAfflField == 'Primary Business Organization') {
-                PrimaryAfflField = prefix + 'Primary_Organization__c';
+        for (String accRecType: accRecTypeToContactLabel.keySet()) {
+            if (accRecTypeToContactLabel.get(accRecType) == 'Primary Business Organization') {
+                accRecTypeToContactLabel.put(accRecType, prefix + 'Primary_Organization__c');
             }
         }
     }
