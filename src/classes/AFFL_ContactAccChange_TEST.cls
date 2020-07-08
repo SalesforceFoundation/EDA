@@ -76,17 +76,18 @@ public with sharing class AFFL_ContactAccChange_TEST {
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        afflMapper.populateMaps();
-        Map<String, String> accRecTypeToContactLabel = afflMapper.accRecTypeToContactLabel;
+        //AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+        //Map<String, String> accRecTypeToContactLabel = afflMapper.accRecTypeToContactLabel;
 
-        for (String accRecType: accRecTypeToContactLabel.keySet()) {
-            if (accRecTypeToContactLabel.get(accRecType) == 'Primary Business Organization') {
-                accRecTypeToContactLabel.put(accRecType, prefix + 'Primary_Organization__c');
+        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
+            if (mapping.Primary_Affl_Field__c == 'Primary Business Organization') {
+                mapping.Primary_Affl_Field__c = prefix + 'Primary_Organization__c';
             }
+            update mapping;
         }
+        //afflMapper.populateMaps();
     }
-    
+
     @isTest
     public static void changeContact() {
         dataSetup();
