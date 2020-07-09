@@ -408,4 +408,4 @@ class EDA(BaseEDAPage):
             actual_value = self.selenium.get_webelement(locator).get_attribute(expected_value)
             expected_value = bool(expected_value == "disabled")
             if not str(expected_value).lower() == str(actual_value).lower() :
-                raise Exception (f"Drop down field '{field}' status is '{actual_value}'")
+                raise Exception (f"Drop down field {field} status is {actual_value} instead of {expected_value}")
