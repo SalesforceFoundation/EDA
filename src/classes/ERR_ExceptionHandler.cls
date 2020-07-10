@@ -103,12 +103,13 @@ public with sharing class ERR_ExceptionHandler {
             // Get related Account's Record Type Name from 'Affiliation_Type__c' field
             String afflAccRecTypeName;
             if (affl.Affiliation_Type__c != null) {
-			    afflAccRecTypeName = UTIL_Describe_API.getAccRecTypeDevNameFromName(affl.Affiliation_Type__c);
+                AFFL_MultiRecordTypeMapper affilMapper = new AFFL_MultiRecordTypeMapper();
+                afflAccRecTypeName = affilMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
             }
             //If parent account exists for affiliation and account has no record type
             //display the error message
-            if (affl.Affiliation_Type__c != null && afflAccRecTypeName != null && afflAccRecTypeName != '' &&
-                !validRecordTypes.contains(afflAccRecTypeName) && !validRecordTypes.contains(affl.Affiliation_Type__c)) {
+            if ((affl.Affiliation_Type__c != null && !validRecordTypes.contains(affl.Affiliation_Type__c)) && 
+                (String.isNotBlank(afflAccRecTypeName) &&  !validRecordTypes.contains(afflAccRecTypeName))) {
                 throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
             } else if (affl.Affiliation_Type__c == null) {
                 throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);

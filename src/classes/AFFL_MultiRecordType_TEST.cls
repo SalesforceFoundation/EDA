@@ -663,11 +663,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(bizAcc.Id, updatedContact.Primary_Organization__c);   
     }
 
-    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Rcord Type Enforced is enabled in EDA Settings
+    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
        and Affilaiton Mappings have Record Type Names for Account Record Type */
     @isTest
-    private static void affiliationRecordTypeEnforceWAPINames() {
-        
+    private static void affiliationRecordTypeEnforceWAPINamesForAccRecType() {
+
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
@@ -681,7 +681,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
         insert testAccounts;
-        
+
         // Ensure Accounts are inserted
         List<Account> accountsInserted = [SELECT Id FROM Account];
         System.assert(accountsInserted.size() == 1);
@@ -693,11 +693,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
             testContact.Primary_Organization__c = testAccounts[0].Id;
             contactsToBeInserted.add(testContact);
             insert contactsToBeInserted;
-        
+
             // Ensure 4 Contacts are inserted
             List<Contact> contactsInserted = [SELECT Id FROM Contact];
             System.assertEquals(contactsInserted.size(), 4);
-            
+
             // Ensure only 1 affilation is created for testContact
             List<Affiliation__c> affiliationsBeforeInserted = [SELECT Id, Contact__c FROM Affiliation__c];
             System.assertEquals(1, affiliationsBeforeInserted.size());
@@ -710,19 +710,19 @@ public with sharing class AFFL_MultiRecordType_TEST {
                 affiliationsToBeInserted.add(affl);   
             }
             insert affiliationsToBeInserted;
-        
+
         Test.stopTest();
-        
+
         // Ensure 4 new Affiliations are inserted
         List<Affiliation__c> affiliationsInserted = [SELECT Id FROM Affiliation__c];
         System.assertEquals(5, affiliationsInserted.size());
     }
     
-    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Rcord Type Enforced is enabled in EDA Settings
+    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
        and Affilaiton Mappings have Record Type Labels for Account Record Type */
     @isTest
-    private static void affiliationRecordTypeEnforceWLabels() {
-        
+    private static void affiliationRecordTypeEnforceWLabelsForAccRecType() {
+
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
@@ -736,7 +736,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
         insert testAccounts;
-        
+
         // Ensure Accounts are inserted
         List<Account> accountsInserted = [SELECT Id FROM Account];
         System.assert(accountsInserted.size() == 1);
@@ -748,11 +748,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
             testContact.Primary_Organization__c = testAccounts[0].Id;
             contactsToBeInserted.add(testContact);
             insert contactsToBeInserted;
-        
+
             // Ensure 4 Contacts are inserted
             List<Contact> contactsInserted = [SELECT Id FROM Contact];
             System.assertEquals(contactsInserted.size(), 4);
-            
+
             // Ensure only 1 affilation is created for testContact
             List<Affiliation__c> affiliationsBeforeInserted = [SELECT Id, Contact__c FROM Affiliation__c];
             System.assertEquals(1, affiliationsBeforeInserted.size());
@@ -760,24 +760,138 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
             // Create 1 affilaiton each for a Contact
             List<Affiliation__c> affiliationsToBeInserted = new List<Affiliation__c>();
-           
+    
             for (Contact each: contactsInserted) {
                 Affiliation__c affl = UTIL_UnitTestData_TEST.getAffiliation(each.Id, accountsInserted[0].Id, False);
                 affiliationsToBeInserted.add(affl);   
             }
             insert affiliationsToBeInserted;
-        
+
         Test.stopTest();
-        
+
         // Ensure 4 new Affiliations are inserted
         List<Affiliation__c> affiliationsInserted = [SELECT Id FROM Affiliation__c];
         System.assertEquals(5, affiliationsInserted.size());
     }
-    
+
+    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
+       and Affilaiton Mappings have API names for Account Record Type and primary Affiliaiton Fields */
+    @isTest
+    private static void affiliationRecordTypeEnforceWAPINamesForAccRecTypeAndPrimaryAffl() {
+
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+            mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic_Program', Primary_Affl_Field__c = 'Primary_Academic_Program__c', Auto_Program_Enrollment__c = true, Auto_Program_Enrollment_Status__c = 'Current', Auto_Program_Enrollment_Role__c = 'Student'));
+            mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = 'Primary_Organization__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c = 'Primary_Household__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Educational Institution', Account_Record_Type__c = 'Educational_Institution', Primary_Affl_Field__c = 'Primary_Educational_Institution__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'University Department', Account_Record_Type__c = 'University_Department', Primary_Affl_Field__c = 'Primary_Department__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Sports Organization', Account_Record_Type__c = 'Sports_Organization', Primary_Affl_Field__c = 'Primary_Sports_Organization__c'));
+        insert mappings;
+
+        List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
+        insert testAccounts;
+
+        // Ensure Accounts are inserted
+        List<Account> accountsInserted = [SELECT Id FROM Account];
+        System.assert(accountsInserted.size() == 1);
+
+        Test.startTest();
+            // Insert 4 Contacts
+            List<Contact> contactsToBeInserted = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
+            Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+            testContact.Primary_Organization__c = testAccounts[0].Id;
+            contactsToBeInserted.add(testContact);
+            insert contactsToBeInserted;
+
+            // Ensure 4 Contacts are inserted
+            List<Contact> contactsInserted = [SELECT Id FROM Contact];
+            System.assertEquals(contactsInserted.size(), 4);
+
+            // Ensure only 1 affilation is created for testContact
+            List<Affiliation__c> affiliationsBeforeInserted = [SELECT Id, Contact__c FROM Affiliation__c];
+            System.assertEquals(1, affiliationsBeforeInserted.size());
+            System.assertEquals(testContact.Id, affiliationsBeforeInserted[0].Contact__c);
+
+            // Create 1 affilaiton each for a Contact
+            List<Affiliation__c> affiliationsToBeInserted = new List<Affiliation__c>();
+            for (Contact each: contactsInserted) {
+                Affiliation__c affl = UTIL_UnitTestData_TEST.getAffiliation(each.Id, accountsInserted[0].Id, False);
+                affiliationsToBeInserted.add(affl);   
+            }
+            insert affiliationsToBeInserted;
+
+        Test.stopTest();
+
+        // Ensure 4 new Affiliations are inserted
+        List<Affiliation__c> affiliationsInserted = [SELECT Id FROM Affiliation__c];
+        System.assertEquals(5, affiliationsInserted.size());
+    }
+
+    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
+       and Affilaiton Mappings have Labels for Account Record Type and APIs for Primary Affiliaiton Fields */
+
+    @isTest
+    private static void affiliationRecordTypeEnforceWLabelsForAccRecTypeAndAPIForPrimaryAffl() {
+
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+            mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic Program', Primary_Affl_Field__c = prefix + 'Primary_Academic_Program__c', Auto_Program_Enrollment__c = true, Auto_Program_Enrollment_Status__c = 'Current', Auto_Program_Enrollment_Role__c = 'Student'));
+            mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Educational Institution', Account_Record_Type__c = 'Educational Institution', Primary_Affl_Field__c = prefix + 'Primary_Educational_Institution__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'University Department', Account_Record_Type__c = 'University Department', Primary_Affl_Field__c = prefix + 'Primary_Department__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Sports Organization', Account_Record_Type__c = 'Sports Organization', Primary_Affl_Field__c = prefix + 'Primary_Sports_Organization__c'));
+        insert mappings;
+
+        List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
+        insert testAccounts;
+
+        // Ensure Accounts are inserted
+        List<Account> accountsInserted = [SELECT Id FROM Account];
+        System.assert(accountsInserted.size() == 1);
+
+        Test.startTest();
+            // Insert 4 Contacts
+            List<Contact> contactsToBeInserted = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
+            Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+            testContact.Primary_Organization__c = testAccounts[0].Id;
+            contactsToBeInserted.add(testContact);
+            insert contactsToBeInserted;
+
+            // Ensure 4 Contacts are inserted
+            List<Contact> contactsInserted = [SELECT Id FROM Contact];
+            System.assertEquals(contactsInserted.size(), 4);
+
+            // Ensure only 1 affilation is created for testContact
+            List<Affiliation__c> affiliationsBeforeInserted = [SELECT Id, Contact__c FROM Affiliation__c];
+            System.assertEquals(1, affiliationsBeforeInserted.size());
+            System.assertEquals(testContact.Id, affiliationsBeforeInserted[0].Contact__c);
+
+            // Create 1 affilaiton each for a Contact
+            List<Affiliation__c> affiliationsToBeInserted = new List<Affiliation__c>();
+            for (Contact each: contactsInserted) {
+                Affiliation__c affl = UTIL_UnitTestData_TEST.getAffiliation(each.Id, accountsInserted[0].Id, False);
+                affiliationsToBeInserted.add(affl);   
+            }
+            insert affiliationsToBeInserted;
+
+        Test.stopTest();
+
+        // Ensure 4 new Affiliations are inserted
+        List<Affiliation__c> affiliationsInserted = [SELECT Id FROM Affiliation__c];
+        System.assertEquals(5, affiliationsInserted.size());
+    }
+
     // This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing Record Names Labels from affiliation mappings
     @isTest
-    private static void tesGetValidAccRecordTypesInMappingsMethodwithLabels() {
-        
+    private static void testGetValidAccRecordTypesInMappingsMethodwithLabels() {
+
        // Construct a list of Account Record Type Labels 
        List<String> accRecTypeLabels = new List<String>();
            accRecTypeLabels.add('Academic Program');
@@ -786,21 +900,21 @@ public with sharing class AFFL_MultiRecordType_TEST {
            accRecTypeLabels.add('Household Account');
            accRecTypeLabels.add('University Department');
            accRecTypeLabels.add('Sports Organization');
-        
+
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
            List<String> matchingRecordTypes = afflMapper.getValidAccRecordTypesInMappings(accRecTypeLabels);
         Test.stopTest();
-        
+
         // Ensure List has all 6 mappings
         System.assertEquals(6, matchingRecordTypes.size());
-        
+
     }
-    
+
     // This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing Record Names list from affiliation mappings
     @isTest
-    private static void tesGetValidAccRecordTypesInMappingsMethodwithAPIs() {
-        
+    private static void testGetValidAccRecordTypesInMappingsMethodwithAPIs() {
+
         // Construct a list of Account Record Type Names
         List<String> accRecTypeLabels = new List<String>();
            accRecTypeLabels.add('Academic_Program');
@@ -809,21 +923,22 @@ public with sharing class AFFL_MultiRecordType_TEST {
            accRecTypeLabels.add('HH_Account');
            accRecTypeLabels.add('University_Department');
            accRecTypeLabels.add('Sports_Organization');
-        
+
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
            List<String> matchingRecordTypes = afflMapper.getValidAccRecordTypesInMappings(accRecTypeLabels);
         Test.stopTest();
-        
+
         // Ensure List has all 6 mappings
         System.assertEquals(6, matchingRecordTypes.size());
-        
+
     }
-    
-    // This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing Record Names and Labels list from affiliation mappings
+
+    /* This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing 
+     both Record type Names and Labels list from affiliation mappings */
     @isTest
-    private static void tesGetValidAccRecordTypesInMappingsMethodwithAPIAndLabels() {
-        
+    private static void testGetValidAccRecordTypesInMappingsMethodwithAPIAndLabels() {
+
         // Construct a list of Account Record Type Names and Labels
         List<String> accRecTypeLabels = new List<String>();
            accRecTypeLabels.add('Academic Program');
@@ -832,15 +947,99 @@ public with sharing class AFFL_MultiRecordType_TEST {
            accRecTypeLabels.add('HH_Account');
            accRecTypeLabels.add('University_Department');
            accRecTypeLabels.add('Sports_Organization');
-        
+
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
            List<String> matchingRecordTypes = afflMapper.getValidAccRecordTypesInMappings(accRecTypeLabels);
         Test.stopTest();
-        
+
         // Ensure List has all 6 mappings
         System.assertEquals(6, matchingRecordTypes.size());
+
+    }
+
+    /* This method tests getValidAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
+     both API names for Primary Affiliation Fields */
+
+    @isTest
+    private static void testsGetValidAfflFields() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
         
+        // Construct a list of primary Affiliation field API Names
+        List<String> priamryFieldsList = new List<String>();
+           priamryFieldsList.add(prefix + 'Primary_Academic_Program__c');
+           priamryFieldsList.add(prefix + 'Primary_Educational_Institution__c');
+           priamryFieldsList.add(prefix + 'Primary_Organization__c');
+           priamryFieldsList.add(prefix + 'Primary_Household__c');
+           priamryFieldsList.add(prefix + 'Primary_Department__c');
+           priamryFieldsList.add(prefix + 'Primary_Sports_Organization__c');
+       
+        List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
+
+        Test.startTest();
+           AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFields, priamryFieldsList);
+        Test.stopTest();
+
+        // Ensure List has all 6 mappings
+        System.assertEquals(6, validPrimaryFieldList.size());
+
+    }
+
+    /* This method tests getValidAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
+      labels for Primary Affiliation Fields */
+
+    @isTest
+    private static void testsGetValidAfflFieldsWithLabels() {
+
+        // Construct a list of primary Affiliation field Labels
+        List<String> priamryFieldsList = new List<String>();
+           priamryFieldsList.add('Primary Academic Program');
+           priamryFieldsList.add('Primary Educational Institution');
+           priamryFieldsList.add('Primary Business Organization');
+           priamryFieldsList.add('Primary Household');
+           priamryFieldsList.add('Primary Department');
+           priamryFieldsList.add('Primary Sports Organization');
+       
+        List<SObjectField> contactFieldList = Contact.sObjectType.getDescribe().fields.getMap().values();
+
+        Test.startTest();
+           AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFieldList, priamryFieldsList);
+        Test.stopTest();
+
+        // Ensure List has all 6 mappings
+        System.assertEquals(6, validPrimaryFieldList.size());
+
+    }
+
+    /* This method tests getValidAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
+    both label and API names for Primary Affiliation Fields */
+
+    @isTest
+    private static void testsGetValidAfflFieldsWithLabelsAndAPI() {
+
+        // Construct a list of primary Affiliation field Labels and API names
+        List<String> priamryFieldsList = new List<String>();
+           priamryFieldsList.add('Primary Academic Program');
+           priamryFieldsList.add('Primary Educational Institution');
+           priamryFieldsList.add('Primary Business Organization');
+           priamryFieldsList.add('Primary Household');
+           priamryFieldsList.add('Primary Department');
+           priamryFieldsList.add('Primary Sports Organization');
+       
+        List<SObjectField> contactFieldList = Contact.sObjectType.getDescribe().fields.getMap().values();
+
+        Test.startTest();
+           AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFieldList, priamryFieldsList);
+        Test.stopTest();
+
+        // Ensure List has all 6 mappings
+        System.assertEquals(6, validPrimaryFieldList.size());
+
     }
 
 }
