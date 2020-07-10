@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <label><!-- Billing County --></label>
+        <name>Billing_County__c</name>
+    </fields>
+    <fields>
         <help>The current Address that the Account&apos;s billing fields are filled with.</help>
         <label>Current Address</label>
         <name>Current_Address__c</name>
@@ -10,6 +14,10 @@
         <label>Primary Contact</label>
         <name>Primary_Contact__c</name>
         <relationshipLabel>Account</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shipping County --></label>
+        <name>Shipping_County__c</name>
     </fields>
     <layouts>
         <layout>HEDA Household Layout</layout>
