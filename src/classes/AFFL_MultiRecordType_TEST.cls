@@ -781,13 +781,16 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-            mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic_Program', Primary_Affl_Field__c = 'Primary_Academic_Program__c', Auto_Program_Enrollment__c = true, Auto_Program_Enrollment_Status__c = 'Current', Auto_Program_Enrollment_Role__c = 'Student'));
-            mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = 'Primary_Organization__c'));
-            mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c = 'Primary_Household__c'));
-            mappings.add(new Affl_Mappings__c(Name = 'Educational Institution', Account_Record_Type__c = 'Educational_Institution', Primary_Affl_Field__c = 'Primary_Educational_Institution__c'));
-            mappings.add(new Affl_Mappings__c(Name = 'University Department', Account_Record_Type__c = 'University_Department', Primary_Affl_Field__c = 'Primary_Department__c'));
-            mappings.add(new Affl_Mappings__c(Name = 'Sports Organization', Account_Record_Type__c = 'Sports_Organization', Primary_Affl_Field__c = 'Primary_Sports_Organization__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic_Program', Primary_Affl_Field__c = prefix + 'Primary_Academic_Program__c', Auto_Program_Enrollment__c = true, Auto_Program_Enrollment_Status__c = 'Current', Auto_Program_Enrollment_Role__c = 'Student'));
+            mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Educational Institution', Account_Record_Type__c = 'Educational_Institution', Primary_Affl_Field__c = prefix + 'Primary_Educational_Institution__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'University Department', Account_Record_Type__c = 'University_Department', Primary_Affl_Field__c = prefix + 'Primary_Department__c'));
+            mappings.add(new Affl_Mappings__c(Name = 'Sports Organization', Account_Record_Type__c = 'Sports_Organization', Primary_Affl_Field__c = prefix + 'Primary_Sports_Organization__c'));
         insert mappings;
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
@@ -968,19 +971,19 @@ public with sharing class AFFL_MultiRecordType_TEST {
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
         
         // Construct a list of primary Affiliation field API Names
-        List<String> priamryFieldsList = new List<String>();
-           priamryFieldsList.add(prefix + 'Primary_Academic_Program__c');
-           priamryFieldsList.add(prefix + 'Primary_Educational_Institution__c');
-           priamryFieldsList.add(prefix + 'Primary_Organization__c');
-           priamryFieldsList.add(prefix + 'Primary_Household__c');
-           priamryFieldsList.add(prefix + 'Primary_Department__c');
-           priamryFieldsList.add(prefix + 'Primary_Sports_Organization__c');
+        List<String> primaryFieldsList = new List<String>();
+           primaryFieldsList.add(prefix + 'Primary_Academic_Program__c');
+           primaryFieldsList.add(prefix + 'Primary_Educational_Institution__c');
+           primaryFieldsList.add(prefix + 'Primary_Organization__c');
+           primaryFieldsList.add(prefix + 'Primary_Household__c');
+           primaryFieldsList.add(prefix + 'Primary_Department__c');
+           primaryFieldsList.add(prefix + 'Primary_Sports_Organization__c');
        
         List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
 
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFields, priamryFieldsList);
+           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFields, primaryFieldsList);
         Test.stopTest();
 
         // Ensure List has all 6 mappings
@@ -995,19 +998,19 @@ public with sharing class AFFL_MultiRecordType_TEST {
     private static void testsGetValidAfflFieldsWithLabels() {
 
         // Construct a list of primary Affiliation field Labels
-        List<String> priamryFieldsList = new List<String>();
-           priamryFieldsList.add('Primary Academic Program');
-           priamryFieldsList.add('Primary Educational Institution');
-           priamryFieldsList.add('Primary Business Organization');
-           priamryFieldsList.add('Primary Household');
-           priamryFieldsList.add('Primary Department');
-           priamryFieldsList.add('Primary Sports Organization');
+        List<String> primaryFieldsList = new List<String>();
+           primaryFieldsList.add('Primary Academic Program');
+           primaryFieldsList.add('Primary Educational Institution');
+           primaryFieldsList.add('Primary Business Organization');
+           primaryFieldsList.add('Primary Household');
+           primaryFieldsList.add('Primary Department');
+           primaryFieldsList.add('Primary Sports Organization');
        
         List<SObjectField> contactFieldList = Contact.sObjectType.getDescribe().fields.getMap().values();
 
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFieldList, priamryFieldsList);
+           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFieldList, primaryFieldsList);
         Test.stopTest();
 
         // Ensure List has all 6 mappings
@@ -1021,20 +1024,23 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void testsGetValidAfflFieldsWithLabelsAndAPI() {
 
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
         // Construct a list of primary Affiliation field Labels and API names
-        List<String> priamryFieldsList = new List<String>();
-           priamryFieldsList.add('Primary Academic Program');
-           priamryFieldsList.add('Primary Educational Institution');
-           priamryFieldsList.add('Primary Business Organization');
-           priamryFieldsList.add('Primary Household');
-           priamryFieldsList.add('Primary Department');
-           priamryFieldsList.add('Primary Sports Organization');
+        List<String> primaryFieldsList = new List<String>();
+           primaryFieldsList.add(prefix + 'Primary_Academic_Program__c');
+           primaryFieldsList.add(prefix + 'Primary_Educational_Institution__c');
+           primaryFieldsList.add('Primary Business Organization');
+           primaryFieldsList.add('Primary Household');
+           primaryFieldsList.add('Primary Department');
+           primaryFieldsList.add('Primary Sports Organization');
        
         List<SObjectField> contactFieldList = Contact.sObjectType.getDescribe().fields.getMap().values();
 
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFieldList, priamryFieldsList);
+           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFieldList, primaryFieldsList);
         Test.stopTest();
 
         // Ensure List has all 6 mappings

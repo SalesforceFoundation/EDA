@@ -161,7 +161,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         Set<String> uniquePrimaryAfflFieldsFromsettings = new Set<String>(primaryAfflFieldsFromsettings);
         List<SObjectField> primaryFields = new List<SObjectField>();
         primaryAfflFieldNames = new List<String>();
-        for(SObjectField field : contactFields) {
+        for (SObjectField field : contactFields) {
             if (uniquePrimaryAfflFieldsFromsettings.contains(field.getDescribe().getLabel()) || uniquePrimaryAfflFieldsFromsettings.contains(field.getDescribe().getName())) {
                 primaryAfflFieldNames.add(field.getDescribe().getName());
                 primaryFields.add(field);
