@@ -47,6 +47,10 @@
                 <behavior>Edit</behavior>
                 <field>MailingCountry__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MailingCounty__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
