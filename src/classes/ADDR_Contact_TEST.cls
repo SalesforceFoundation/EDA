@@ -38,83 +38,123 @@
 @isTest
 public with sharing class ADDR_Contact_TEST {
     
+    /*@description Set up of Hierarchy Settings leverage by test methods*/
     private static void configSettings() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true,
-                                               Simple_Address_Change_Treated_as_Update__c = true);
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = True,
+                                                Simple_Address_Change_Treated_as_Update__c = True);
         UTIL_CustomSettings_API.getSettingsForTests(hs);
     }
     
+    /*@description Enable Address TDTM triggers*/
     public static void turnOnAllAddrTriggers() {
         ADDR_Contact_TDTM.turnOn();
         ADDR_Account_TDTM.turnOn();        
         ADDR_Addresses_TDTM.turnOn();
     }
     
+    /*@description Disable Address TDTM triggers*/
     public static void turnOffAllAddrTriggers() {
         ADDR_Contact_TDTM.turnOff();
         ADDR_Account_TDTM.turnOff();        
         ADDR_Addresses_TDTM.turnOff();
     }
     
+    /*********************************************************************************************************
+    @description Create a new Contact record and populate its mailing fields. 
+    * Verify:
+    * - New default Address record is created. 
+    * - New default Address record's Parent_Account__c is blank and Parent_Contact__c is populated. 
+    * - New Admin Account is created and its billing fields are not populated. 
+    **********************************************************************************************************/   
     @isTest
-    public static void noContactToAccPropagation() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            Contacts_Addresses_Enabled__c = true,
-            Simple_Address_Change_Treated_as_Update__c = true);
+    private static void noContactAddressToAdminAccountAddressPropagation() {
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',	
+                                                                Contacts_Addresses_Enabled__c = True,
+                                                                Simple_Address_Change_Treated_as_Update__c = True);
         UTIL_CustomSettings_API.getSettingsForTests(hs);
         
-        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Main St', 
-        MailingCity = 'Austin', MailingState = 'Texas', MailingPostalcode = '78701', MailingCountry = 'United States');
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.LastName = 'Testerson'; 
+        contact.MailingStreet = '123 Main St'; 
+        contact.MailingCity = 'Austin'; 
+        contact.Mailing_County__c = 'Bergen'; 
+        contact.MailingState = 'Texas'; 
+        contact.MailingPostalcode = '78701'; 
+        contact.MailingCountry = 'United States';
         Test.startTest();
         insert contact;
         Test.stopTest();
         
-        //Verify parent account was automatically created
-        contact = [select AccountID from Contact where ID = :contact.ID];
-        System.assertNotEquals(null, contact.AccountID);
+        contact = [SELECT AccountId 
+                    FROM Contact 
+                    WHERE Id = :contact.Id];
+        System.assertNotEquals(Null, contact.AccountID);
         
-        //Verify child address record was created
-        List<Address__c> addrs = [select Parent_Account__c from Address__c where Parent_Contact__c = :contact.ID]; 
-        System.assertEquals(1, addrs.size());
-        System.assertEquals(null, addrs[0].Parent_Account__c);
+        //Verify child Address record was created
+        List<Address__c> addrList = [SELECT Parent_Account__c, Parent_Contact__c, Default_Address__c
+                                        FROM Address__c 
+                                        WHERE Parent_Contact__c = :contact.Id]; 
+        System.assertEquals(1, addrList.size());
+        System.assertEquals(Null, addrList[0].Parent_Account__c);
+        System.assertNotEquals(Null, addrList[0].Parent_Contact__c);
+        System.assertEquals(True, addrList[0].Default_Address__c); 
         
-        //Verify no address record was created as child of the parent account
-        addrs = [select ID from Address__c where Parent_Account__c = :contact.AccountID];
-        System.assertEquals(0, addrs.size()); 
+        //Verify no Address record was created as child of the parent Account
+        addrList = [SELECT ID 
+                    FROM Address__c 
+                    WHERE Parent_Account__c = :contact.AccountId];
+        System.assertEquals(0, addrList.size()); 
         
-        //Verify parent account has no address info
-        Account acc = [select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
-        from Account where ID = :contact.AccountID];
-        System.assertEquals(null, acc.BillingStreet);
-        System.assertEquals(null, acc.BillingState);
-        System.assertEquals(null, acc.BillingPostalCode);
+        //Verify parent Admin Account has no Address info
+        Account acc = [SELECT BillingStreet, BillingCity, Billing_County__c,
+                        BillingState, BillingPostalCode, BillingCountry
+                        FROM Account 
+                        WHERE Id = :contact.AccountId];
+        System.assertEquals(Null, acc.BillingStreet);
+        System.assertEquals(Null, acc.BillingCity);
+        System.assertEquals(Null, acc.Billing_County__c);
+        System.assertEquals(Null, acc.BillingState);
+        System.assertEquals(Null, acc.BillingPostalCode);
         if (!ADDR_Addresses_UTIL.isStateCountryPickListsEnabled) {
-            System.assertEquals(null, acc.BillingCountry);   
+            System.assertEquals(Null, acc.BillingCountry);   
         }
     }
     
+    /*********************************************************************************************************
+    @description Create a new Contact record without populating its mailing fields. Update the new Admin 
+    * Account's billing fields. 
+    * Verify:
+    * - New default Address record is created. 
+    * - New default Address record's Parent_Account__c is populated and Parent_Contact__c is blank. 
+    * - Contact's mailing fields are not populated and are blank. 
+    **********************************************************************************************************/ 
     @isTest
-    public static void noAccToContactPropagation() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
-            Contacts_Addresses_Enabled__c = true,
-            Simple_Address_Change_Treated_as_Update__c = true);
+    private static void noAdminAccountAddressToContactAddressPropagation() {
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+                                                                Contacts_Addresses_Enabled__c = True,
+                                                                Simple_Address_Change_Treated_as_Update__c = True);
         UTIL_CustomSettings_API.getSettingsForTests(hs);
         
-        Contact contact1 = new Contact(LastName = 'Testerson');
-        insert contact1;
+        Contact newContact = UTIL_UnitTestData_TEST.getContact();
+        newContact.LastName = 'Testerson'; 
+        insert newContact;
         
-        //Verify parent account was automatically created
-        contact1 = [select AccountID from Contact where ID = :contact1.ID];
-        System.assertNotEquals(null, contact1.AccountID);
+        //Verify parent Account was automatically created
+        newContact = [SELECT AccountId 
+                        FROM Contact 
+                        WHERE Id = :newContact.Id];
+        System.assertNotEquals(Null, newContact.AccountId);
         
-        //Give address info to account
-        Account acc = [select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
-        from Account where ID = :contact1.AccountID];
+        //Update Admin Account's billing fields
+        Account acc = [SELECT BillingStreet, BillingCity, Billing_County__c, 
+                        BillingState, BillingPostalCode, BillingCountry
+                        FROM Account 
+                        WHERE Id = :newContact.AccountId];
         acc.BillingStreet = '123 main st';
+        acc.BillingCity = 'Austin';
+        acc.Billing_County__c = 'Bergen';
         acc.BillingState = 'Texas';
         acc.BillingPostalCode = '78701';
         acc.BillingCountry = 'United States';
@@ -124,282 +164,355 @@ public with sharing class ADDR_Contact_TEST {
         update acc;
         Test.stopTest();
         
-        //Verify child address record was created
-        List<Address__c> addrs = [select Parent_Contact__c from Address__c where Parent_Account__c = :acc.ID]; 
-        System.assertEquals(1, addrs.size());
-        System.assertEquals(null, addrs[0].Parent_Contact__c);
+        //Verify child Address record was created
+        List<Address__c> addrList = [SELECT Parent_Contact__c, Default_Address__c
+                                        FROM Address__c 
+                                        WHERE Parent_Account__c = :acc.Id]; 
+        System.assertEquals(1, addrList.size());
+        System.assertEquals(Null, addrList[0].Parent_Contact__c);
+        System.assertEquals(True, addrList[0].Default_Address__c);
         
-         //Verify child contact has no address info
-        contact1 = [select MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry
-        from Contact where ID = :contact1.ID];
-        System.assertEquals(null, contact1.MailingStreet);
-        System.assertEquals(null, contact1.MailingState);
-        System.assertEquals(null, contact1.MailingPostalCode);
+        //Verify child Contact's mailing fields are not populated
+        newContact = [SELECT MailingStreet, MailingCity, Mailing_County__c, 
+                        MailingState, MailingPostalCode, MailingCountry
+                        FROM Contact 
+                        WHERE Id = :newContact.Id];
+        System.assertEquals(Null, newContact.MailingStreet);
+        System.assertEquals(Null, newContact.MailingCity);
+        System.assertEquals(Null, newContact.Mailing_County__c);
+        System.assertEquals(Null, newContact.MailingState);
+        System.assertEquals(Null, newContact.MailingPostalCode);
         if (!ADDR_Addresses_UTIL.isStateCountryPickListsEnabled) {
-            System.assertEquals(null, contact1.MailingCountry);   
+            System.assertEquals(Null, newContact.MailingCountry);   
         }
         
-        //Verify no address record was created as child of the child contact
-        addrs = [select ID from Address__c where Parent_Contact__c = :contact1.ID];
-        System.assertEquals(0, addrs.size()); 
+        addrList = [SELECT Id 
+                    FROM Address__c 
+                    WHERE Parent_Contact__c = :newContact.Id];
+        System.assertEquals(0, addrList.size()); 
     }
   
     /*********************************************************************************************************
-    @description Create N new Contacts with Mailing addresses 
-    verify:
-        N addresses created
-        Contact address matches address object address
+    @description Create x number of Contact records with its mailing fields populated.
+    * Verify:
+    * - X number of default Address records are created to match the x number of Contacts created. 
+    * - Contact's mailing fields should match the mailing fields of the default Address records. 
+    * - Account's billing fields should match the mailing fields of the default Address records. 
     **********************************************************************************************************/            
     @isTest
-    public static void newRecordsWithAddrInfo() {            
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
- 
+    private static void insertContactsNewDefaultAddresses() {            
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = True));
+
         Integer contactCount = 3;
-        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(contactCount);
-        for (Contact contact : contacts) {
+        List<Contact> contactList = UTIL_UnitTestData_API.getMultipleTestContacts(contactCount);
+        for (Contact contact : contactList) {
             contact.MailingStreet = '123 45th';
             contact.MailingCity = 'Seattle';
+            contact.Mailing_County__c = 'Bergen';
         }
         Test.startTest();
-        insert contacts;
+        insert contactList;
         Test.stopTest();
 
-        // verify results
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        System.assertEquals(contactCount, mapAccIdAcc.size());
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                                MailingCity, Mailing_County__c, MailingState, 
+                                                                MailingPostalCode, MailingCountry, MailingLatitude, 
+                                                                MailingLongitude, is_Address_Override__c, Current_Address__c 
+                                                                FROM Contact]);
+        System.assertEquals(contactCount, contactsById.size());
         
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Contact__c, 
-        Latest_Start_Date__c, Latest_End_Date__c from Address__c];
-        System.assertEquals(contactCount, ListAddr.size());
+        List<Account> accList = [SELECT Id, BillingStreet, BillingCity, Billing_County__c
+                                    FROM Account];
+        for (Account acc : accList) {
+            System.assertEquals('123 45th', acc.BillingStreet); 
+            System.assertEquals('Seattle', acc.BillingCity); 
+            System.assertEquals('Bergen', acc.Billing_County__c); 
+        }
         
-        for (Address__c addr : ListAddr) {
-            Contact contact = mapAccIdAcc.get(addr.Parent_Contact__c);
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                        MailingCity__c, MailingCounty__c, Parent_Contact__c, 
+                                        Latest_Start_Date__c, Latest_End_Date__c 
+                                        FROM Address__c];
+        System.assertEquals(contactCount, addrList.size());
+        for (Address__c addr : addrList) {
+            Contact contact = contactsById.get(addr.Parent_Contact__c);
             System.assertEquals(contact.MailingStreet, addr.MailingStreet__c);
             System.assertEquals(contact.MailingCity, addr.MailingCity__c);
-            System.assertEquals(true, addr.Default_Address__c);
+            System.assertEquals(contact.Mailing_County__c, addr.MailingCounty__c);
+            System.assertEquals(True, addr.Default_Address__c);
         }
     }
         
     /*********************************************************************************************************
-    @description Update existing default Addresses.  
-    verify: Contact Mailing address fields updated
+    @description Update existing mailing fields on default Address records. 
+    * Verify: 
+    * - Contact's mailing fields are updated to match the mailing fields on default Address records.
     **********************************************************************************************************/            
     @isTest 
-    public static void updateDefaultAddr() {
+    private static void updateDefaultAddressMailingFields() {
         configSettings();
 
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
-        // now let's update the Addresses
         for (Integer i = 0; i < contactsAddrs.addrs.size(); i++) {
             Address__c addr = contactsAddrs.addrs[i];
             addr.MailingStreet__c = 'New Street' + i;
             addr.MailingCity__c = 'New City' + i;
+            addr.MailingCounty__c = 'New County' + i;
         }
         Test.startTest();
         update contactsAddrs.addrs;
         Test.stopTest();
-    
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c
-        from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
+
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                            MailingCity, Mailing_County__c, 
+                                                            is_Address_Override__c, Current_Address__c
+                                                            FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assert(contact.MailingStreet.contains('New Street'));
             System.assert(contact.MailingCity.contains('New City'));
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
+            System.assert(contact.Mailing_County__c.contains('New County'));
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);
         }
     }
     
     /*********************************************************************************************************
-    @description Delete existing default Addresses.  
-    verify: Contact Mailing address fields cleared.
+    @description Delete existing default Address records.  
+    * Verify: 
+    * - Contact's mailing fields are cleared.
+    * - Account's billing fields are cleared. 
     **********************************************************************************************************/            
     @isTest 
-    static void deleteDefaultAddr() {
+    private static void deleteDefaultAddressRecords() {
         configSettings();
         
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
-       
-        // now let's delete the Addresses
+        
+        List<Account> accList = [SELECT Id, BillingStreet, BillingCity, 
+                                    Billing_County__c
+                                    FROM Account];
+        
+        for (Account account : accList) {
+            System.assertNotEquals(Null, account.BillingStreet); 
+            System.assertNotEquals(Null, account.BillingCity); 
+            System.assertNotEquals(Null, account.Billing_County__c); 
+        }
+        
         Test.startTest();
         delete contactsAddrs.addrs;
         Test.stopTest();
-    
-        // verify that the Contact address fields are cleared
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
+
+        //Verify that the Contact mailing fields are cleared
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                                MailingCity, Mailing_County__c, MailingState, 
+                                                                Current_Address__c 
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
+            System.assertEquals(Null, contact.MailingStreet);
+            System.assertEquals(Null, contact.MailingCity);
+            System.assertEquals(Null, contact.Mailing_County__c);
+            System.assertEquals(Null, contact.MailingState);
+            System.assertEquals(Null, contact.Current_Address__c);
+        }
         
-        for (Contact contact : mapAccIdAcc.values()) {
-            System.assertEquals(null, contact.MailingStreet);
-            System.assertEquals(null, contact.MailingCity);
+        accList = [SELECT Id, BillingStreet, BillingCity, 
+                                    Billing_County__c
+                                    FROM Account];
+        for (Account acc : accList) {
+            System.assertEquals(Null, acc.BillingStreet); 
+            System.assertEquals(Null, acc.BillingCity); 
+            System.assertEquals(Null, acc.Billing_County__c); 
         }
     }
 
     /*********************************************************************************************************
     @description Delete existing non-default override Addresses.  
-    verify: Contact Mailing address fields not changed.
+    * Verify: 
+    * - Contact's mailing fields are updated to match the mailing fields of the default Address record. 
     **********************************************************************************************************/            
     @isTest
-    static void deleteNonDefaultOverrideAddr() {
+    private static void deleteNonDefaultOverrideAddress() {
         configSettings();
         
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
         
-        // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
-            addrs[i].Default_Address__c = false;
+            addrs[i].Default_Address__c = False;
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
+            addrs[i].MailingCounty__c = 'override' + i;
         }
         turnOnAllAddrTriggers();
         insert addrs;
         
-        // set the Contacts' address overrides
+        //Set the Contacts' address override
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             Contact contact = contactsAddrs.contacts[i];
             contact.Current_Address__c = addrs[i].Id;
-            contact.is_Address_Override__c = true;
+            contact.is_Address_Override__c = True;
         }
         turnOnAllAddrTriggers();
-        update contactsAddrs.contacts;        
+        update contactsAddrs.contacts;   
         
-        // now let's delete the override Addresses
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                            MailingCity, Mailing_County__c
+                                                            FROM Contact]);
+        
+        for (Contact con : contactsById.values()) {
+            System.assert(con.MailingStreet.contains('override')); 
+            System.assert(con.MailingCity.contains('override')); 
+            System.assert(con.Mailing_County__c.contains('override')); 
+        }
+        
+        //Delete the override Addresses
         turnOnAllAddrTriggers();
         Test.startTest();
         delete addrs;
         Test.stopTest();
-    
-        // verify that the Contact address fields went back to the default
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        UTIL_Debug.debug('****Contacts with address info: ' + JSON.serializePretty(mapAccIdAcc.values()));
-        for (Contact contact : mapAccIdAcc.values()) {
+
+        //Verify that the Contact's mailing fields are set to the default Address's mailing fields 
+        contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                MailingCity, Mailing_County__c, 
+                                                is_Address_Override__c, Current_Address__c 
+                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assert(contact.MailingStreet.contains('Street'));
             System.assert(contact.MailingCity.contains('City')); 
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);                
+            System.assert(contact.Mailing_County__c.contains('County')); 
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);                
         }
     }
 
     /*********************************************************************************************************
-    @description Making an Address non-default. That is, the address is no longer the default one for the Contact.  
-    verify: no change to Contact address
+    @description Update existing default Address record to non default by setting Default_Address__c to false. 
+    * Verify:
+    * - Contact's mailing fields are cleared. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateNonDefaultAddr() {
+    private static void updateDefaultAddressToNonDefaultAddress() {
         configSettings();
         
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
-        // now let's update the Addresses
         for (Integer i = 0; i < contactsAddrs.addrs.size(); i++) {
             Address__c addr = contactsAddrs.addrs[i];
-            addr.Default_Address__c = false;
+            addr.Default_Address__c = False;
         }
         Test.startTest();
         update contactsAddrs.addrs;
         Test.stopTest();
-    
-        // verify that the Contact and Contacts don't share the same address and it's new for the Contact!
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c 
-        from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
-            System.assertEquals(null, contact.MailingStreet); //address information has been cleared because address is no longer the default
-            System.assertEquals(null, contact.MailingCity); //address information has been cleared because address is no longer the default
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertEquals(null, contact.Current_Address__c); //Contact no longer has a current address, since address is no longer the defaults
+
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, MailingStreet, MailingCity, 
+                                                                Mailing_County__c, Current_Address__c, is_Address_Override__c
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
+            System.assertEquals(Null, contact.MailingStreet); 
+            System.assertEquals(Null, contact.MailingCity); 
+            System.assertEquals(Null, contact.Mailing_County__c); 
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertEquals(Null, contact.Current_Address__c); 
         }
     }
 
     /*********************************************************************************************************
-    @description Set Contact address override.  
-    verify: Contact's address matches override
+    @description Create new non default Address record and associate to one of the Contact records.
+    * Enable is_Address_Override__c on the Contact who recently had a new non default Address record. 
+    * Update mailing fields on default Address record. 
+    * Verify:
+    * - Contact whose is_Address_Override__c is enabled, its mailing fields should not be updated to match
+    * the non default Address record. Its mailing fields should be updated to match the newly updated field
+    * of the default Address record's mailing fields. 
+    * - Contact whose is_Address_Override__c is disabled, its mailing fields should be updated to match the 
+    * default Address record's mailing fields. 
     **********************************************************************************************************/            
     @isTest
-    public static void setAddrOverride() {
+    private static void setContactAddrOverrideAndUpdateDefaultAddressRecord() {
         configSettings();
         
-        // this creates a default Address for the Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
+        
+        List<Address__c> newOverrideAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1); 
+        newOverrideAddrList[0].MailingStreet__c = 'street override';
+        newOverrideAddrList[0].MailingCity__c = 'city override';
+        newOverrideAddrList[0].MailingCounty__c = 'county override';
+        newOverrideAddrList[0].Default_Address__c = False;
+        newOverrideAddrList[0].Parent_Contact__c = contactsAddrs.contacts[1].Id;        
+        turnOnAllAddrTriggers();
+        insert newOverrideAddrList;
+        
+        //Set Contact's address override
+        contactsAddrs.contacts[1].Current_Address__c = newOverrideAddrList[0].Id;
+        contactsAddrs.contacts[1].is_Address_Override__c = True;
+        turnOnAllAddrTriggers();
+        update contactsAddrs.contacts;
+        
+        for (Contact con : contactsAddrs.contacts) {
+            if (con.is_Address_Override__c) {
+                System.assertNotEquals('street override', con.MailingStreet); 
+                System.assert(con.MailingStreet.contains('Street'));
+            }
+        }
 
-        // create new non-default address
-        Address__c addrNew = new Address__c();
-        addrNew.MailingStreet__c = 'street override';
-        addrNew.MailingCity__c = 'city override';
-        addrNew.Default_Address__c = false;
-        // assign it to the second Contact
-        addrNew.Parent_Contact__c = contactsAddrs.contacts[1].Id;
-        
-        turnOnAllAddrTriggers();
-        insert addrNew;
-        
-        // set Contact's address override
-        contactsAddrs.contacts[1].Current_Address__c = addrNew.Id;
-        contactsAddrs.contacts[1].is_Address_Override__c = true;
-        
-        turnOnAllAddrTriggers();
-        update contactsAddrs.contacts[0];
-    
-        // now let's update the default Address for both Contacts
+        //Update the default Address for both Contacts
         contactsAddrs.addrs[0].MailingStreet__c = 'New Street';
         contactsAddrs.addrs[0].MailingCity__c = 'New City';
+        contactsAddrs.addrs[0].MailingCounty__c = 'New County';
         contactsAddrs.addrs[1].MailingStreet__c = 'New Street';
         contactsAddrs.addrs[1].MailingCity__c = 'New City';
+        contactsAddrs.addrs[1].MailingCounty__c = 'New County';
 
         turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.addrs;
         Test.stopTest();
         
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
-            // verify that the Contact address is override
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                                MailingCity, Mailing_County__c, Current_Address__c, 
+                                                                is_Address_Override__c
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             if (contact.is_Address_Override__c) { 
                 System.assert(!contact.MailingStreet.contains('street override'));
+                System.assertEquals('New Street', contact.MailingStreet);
                 System.assert(!contact.MailingCity.contains('city override'));
-                System.assertEquals(contact.Current_Address__c, addrNew.Id);            
-            // verify that the Contact address is new
+                System.assertEquals('New City', contact.MailingCity);
+                System.assert(!contact.Mailing_County__c.contains('county override'));
+                System.assertEquals('New County', contact.Mailing_County__c);
+                System.assertNotEquals(contact.Current_Address__c, newOverrideAddrList[0].Id);            
             } else { 
                 System.assert(contact.MailingStreet.contains('New Street'));
                 System.assert(contact.MailingCity.contains('New City'));
-                System.assertNotEquals(null, contact.Current_Address__c);
+                System.assert(contact.Mailing_County__c.contains('New County'));
+                System.assertNotEquals(Null, contact.Current_Address__c);
             }
         }
     }
 
     /*********************************************************************************************************
-    @description Insert new default addresses to Contact w/ existing default addresses  
-    verify:
-        Contact address matches new default
-        old default addresses no longer marked default
+    @description Insert new default Address record to an existing Contact with existing default Address record. 
+    * Verify: 
+    * - New default Address record is created.
+    * - Existing Contact's mailing fields are updated to match the mailing fields from the newly created default 
+    * Address record. 
+    * - Previous default Address record is no longer marked as default. 
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultAddr() {
+    private static void insertNewDefaultAddress() {
         configSettings();
         
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
         
-        // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
-            addrs[i].Default_Address__c = true;
+            addrs[i].Default_Address__c = True;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
+            addrs[i].MailingCounty__c = 'New Default County' + i;
         }
         turnOnAllAddrTriggers();
         Test.startTest();
@@ -407,196 +520,208 @@ public with sharing class ADDR_Contact_TEST {
         turnOnAllAddrTriggers();        
         Test.stopTest();
 
-        // verify that the Contact addresses are new
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                                MailingCity, Mailing_County__c, is_Address_Override__c, 
+                                                                Current_Address__c 
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assert(contact.MailingStreet.contains('New Default Street'));
             System.assert(contact.MailingCity.contains('New Default City'));
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
+            System.assert(contact.Mailing_County__c.contains('New Default County'));
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);
         }
         
-        // verify the previous addresses got Default cleared.
-        // and verify latest start date and latest end date appropriately set.
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Latest_Start_Date__c, 
-        Latest_End_Date__c from Address__c];
-        System.assertEquals(4, ListAddr.size());
-        for (Address__c addr : ListAddr) {
-            boolean fNewDefault = (addr.MailingStreet__c.contains('New Default Street'));
-            System.assertEquals(fNewDefault, addr.Default_Address__c);
-            if (fNewDefault) {
-               System.assertEquals(System.today(), addr.Latest_Start_Date__c);
-               System.assertEquals(null, addr.Latest_End_Date__c);
+        //Verify the previous addresses got Default cleared.
+        //And verify latest start date and latest end date appropriately set.
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                        MailingCounty__c, Parent_Contact__c, Latest_Start_Date__c, 
+                                        Latest_End_Date__c
+                                        FROM Address__c];
+        System.assertEquals(4, addrList.size());
+        for (Address__c addr : addrList) {
+            if (addr.MailingStreet__c.contains('New Default Street')) {
+                System.assertEquals(True, addr.Default_Address__c); 
+                System.assertEquals(System.today(), addr.Latest_Start_Date__c);
+                System.assertEquals(Null, addr.Latest_End_Date__c);
             } else {
-               System.assertEquals(System.today(), addr.Latest_End_Date__c);                
+                System.assertEquals(System.today(), addr.Latest_End_Date__c);                
             }
         }        
     }
     
     /*********************************************************************************************************
-    @description Insert new default addresses to Contact with existing default addresses, and then go back  
-    verify:
-        Contact address matches original default
-        new default addresses no longer marked default
+    @description Insert new default Address record to existing Contact with existing default Address record. 
+    * Update/reset previous old default Address record Default_Address__c to true and update its mailing fields.
+    * Verify: 
+    * - Newly created default Address record is no longer marked as Default Address. 
+    * - Previous existing default Address record is still marked as Default Address record and its mailing fields are 
+    * updated.
+    * - Existing Contact's mailing fields are updated to match the mailing fields of the existing default Address record.
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultAddrAndReset() {
+    private static void insertNewDefaultAddressAndResetPreviousDefaultAddress() {
         configSettings();
         
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
-        List<Address__c> ListAddrOriginal = contactsAddrs.addrs;
-        
-        // create additional addresses
+        List<Address__c> originalAddrList = contactsAddrs.addrs;
+
         ADDR_Addresses_TDTM.addressIdsInserted = new Set<Id>();
-        List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
+        List<Address__c> newAddrList = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
-            addrs[i].Default_Address__c = true;
-            addrs[i].MailingStreet__c = 'New Default Street' + i;
-            addrs[i].MailingCity__c = 'New Default City' + i;
+            newAddrList[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
+            newAddrList[i].Default_Address__c = True;
+            newAddrList[i].MailingStreet__c = 'New Default Street' + i;
+            newAddrList[i].MailingCity__c = 'New Default City' + i;
+            newAddrList[i].MailingCounty__c = 'New Default County' + i;
         }
         turnOnAllAddrTriggers();
-        insert addrs;
+        insert newAddrList;
         
-        // go back to original default addresses
-        // added this extra set to test fix where we didn't use the correct default
+        //Update original default Address record
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            ListAddrOriginal[i].Default_Address__c = true;
-            ListAddrOriginal[i].MailingStreet__c = 'Original Default Street' + i;
-            ListAddrOriginal[i].MailingCity__c = 'Original Default City' + i;
+            originalAddrList[i].Default_Address__c = True;
+            originalAddrList[i].MailingStreet__c = 'Original Default Street' + i;
+            originalAddrList[i].MailingCity__c = 'Original Default City' + i;
+            originalAddrList[i].MailingCounty__c = 'Original Default County' + i;
         }
         turnOnAllAddrTriggers();
         ADDR_Addresses_TDTM.addressIdsUpdated = new Set<Id>();
         Test.startTest();
-        update ListAddrOriginal;
+        update originalAddrList;
         turnOnAllAddrTriggers();
         Test.stopTest();
         
-        // verify the additional addresses got Default cleared.
-        // and verify latest start date and latest end date appropriately set.
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Latest_Start_Date__c, 
-        Latest_End_Date__c from Address__c];
-        System.assertEquals(4, ListAddr.size());
-        for (Address__c addr : ListAddr) {
-            boolean fNewDefault = (addr.MailingStreet__c.contains('Original Default Street'));
-            System.assertEquals(fNewDefault, addr.Default_Address__c);
-            if (fNewDefault) {
-               System.assertEquals(System.today(), addr.Latest_Start_Date__c);
-               System.assertEquals(null, addr.Latest_End_Date__c);
+        //Verify the new additional Address record's Default_Address__c is cleared
+        //and verify latest start date and latest end date appropriately set
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                        Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c 
+                                        FROM Address__c];
+        System.assertEquals(4, addrList.size());
+        for (Address__c addr : addrList) {
+            if (addr.MailingStreet__c.contains('Original Default Street')) {
+                System.assertEquals(True, addr.Default_Address__c); 
+                System.assertEquals(System.today(), addr.Latest_Start_Date__c);
+                System.assertEquals(Null, addr.Latest_End_Date__c);                
             } else {
-               System.assertEquals(System.today(), addr.Latest_End_Date__c);                
+                System.assertEquals(False, addr.Default_Address__c); 
+                System.assertEquals(System.today(), addr.Latest_End_Date__c);     
             }
         }        
     }
 
     /*********************************************************************************************************
-    @description Update contacts' mailing address to cause creation of new default Address object.  
-    verify:
-        new Default Address created
-        Contacts get new Address
+    @description Update existing Contact's mailing fields. 
+    * Verify:
+    * - New default Address record is created. 
+    * - Contact's mailing field matches the mailing fields of the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrNew() {
+    private static void updateExistingContactMailingFields() {
         configSettings();
         
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(4);
 
-        // modify some of the Contact addresses directly
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = 'final Street Edit';
             contactsAddrs.contacts[i].MailingCity = 'final City Edit';
+            contactsAddrs.contacts[i].Mailing_County__c = 'final County Edit';
         }
         turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
         
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                                MailingCity, Mailing_County__c, is_Address_Override__c, 
+                                                                Current_Address__c 
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assert(contact.MailingStreet.contains('final Street Edit'));
             System.assert(contact.MailingCity.contains('final City Edit'));
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);
         }
- 
-         // verify the previous addresses got Default cleared.
-        List<Address__c> addrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
-        UTIL_Debug.debug('****All addresses created: ' + JSON.serializePretty(addrs));
-        // each set of edits created a new address object 
-        System.assertEquals(8, addrs.size());
-        for (Address__c addr : addrs) {
-            boolean fNewDefault = (addr.MailingStreet__c.contains('final Street Edit'));
-            System.assertEquals(fNewDefault, addr.Default_Address__c);
-            System.assertEquals(!fNewDefault, !addr.Default_Address__c);
+
+        //Verify the previous Address records Default_Address__c is cleared
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                        Parent_Contact__c 
+                                        FROM Address__c];
+        //Each set of edits creates a new Address record 
+        System.assertEquals(8, addrList.size());
+        for (Address__c addr : addrList) {
+            if (addr.MailingStreet__c.contains('final Street Edit')) {
+                System.assertEquals(True, addr.Default_Address__c); 
+            } else {
+                System.assertEquals(False, addr.Default_Address__c); 
+            }
         }                
     }
 
     /*********************************************************************************************************
-    @description
-        update Address' Mailing address and mark it as override, to cause creation of new non-default Address object  
-    verify:
-        new Address created
-        original Addresses still default    
+    @description Update existing Contact's mailing fields and enable is_Address_Override__c. 
+    * Verify:
+    * - New non default Address record is created. 
+    * - Contact's mailing fields are updated to match the mailing fields of the newly created non default Address record. 
+    * - Existing default Address record is still marked as default. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrMarkOverride() {
+    private static void updateContactMailingFieldsAndMarkedOverride () {
         configSettings();
         
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
-        // modify the Contact addresses directly, and set override
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
             contactsAddrs.contacts[i].MailingCity = 'Direct City Edit';
-            contactsAddrs.contacts[i].is_Address_Override__c = true;
+            contactsAddrs.contacts[i].Mailing_County__c = 'Direct County Edit';
+            contactsAddrs.contacts[i].is_Address_Override__c = True;
         }
         turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
         
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        System.assertEquals('Direct Street Edit', mapAccIdAcc.values()[0].MailingStreet);
-        System.assertEquals('Direct City Edit', mapAccIdAcc.values()[0].MailingCity);
-        System.assertEquals(true, mapAccIdAcc.values()[0].is_Address_Override__c);
-        System.assertEquals('Direct Street Edit', mapAccIdAcc.values()[1].MailingStreet);
-        System.assertEquals('Direct City Edit', mapAccIdAcc.values()[1].MailingCity);
-        System.assertEquals(true, mapAccIdAcc.values()[1].is_Address_Override__c);
- 
-         // verify the previous addresses didn't get Default cleared.
-        List<Address__c> allAddrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
-        System.assertEquals(4, allAddrs.size());
-        UTIL_Debug.debug('****updateAddrMarkOverride all addrs: ' + JSON.serializePretty(allAddrs));
-        for (Address__c addr : allAddrs) {
-            boolean isNewEdit = (addr.MailingStreet__c.contains('Direct Street Edit'));
-            System.assertNotEquals(isNewEdit, addr.Default_Address__c);
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, 
+                                                                MailingCity, Mailing_County__c, is_Address_Override__c, 
+                                                                Current_Address__c 
+                                                                FROM Contact]);
+        System.assertEquals('Direct Street Edit', contactsById.values()[0].MailingStreet);
+        System.assertEquals('Direct City Edit', contactsById.values()[0].MailingCity);
+        System.assertEquals('Direct County Edit', contactsById.values()[0].Mailing_County__c);
+        System.assertEquals(True, contactsById.values()[0].is_Address_Override__c);
+        System.assertEquals('Direct Street Edit', contactsById.values()[1].MailingStreet);
+        System.assertEquals('Direct City Edit', contactsById.values()[1].MailingCity);
+        System.assertEquals('Direct County Edit', contactsById.values()[1].Mailing_County__c);
+        System.assertEquals(True, contactsById.values()[1].is_Address_Override__c);
+
+        //Verify the previous default Address records are still marked default Address
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c 
+                                        FROM Address__c];
+        System.assertEquals(4, addrList.size());
+        for (Address__c addr : addrList) {
+            if (addr.MailingStreet__c.contains('Direct Street Edit')) {
+                System.assertEquals(False, addr.Default_Address__c); 
+            } else {
+                System.assertEquals(True, addr.Default_Address__c); 
+            }
         }
     }
 
     /*********************************************************************************************************
-    @description Update Contact's Mailing address with just a case change, to cause an update to default Address object  
-    verify:
-        existing Default Address updated
-        Contact has updated Address
+    @description Update Contact's mailing fields format only or update single mailing field. 
+    * Verify: 
+    * - No new default or non default Addres records created. 
+    * - Existing default Address record's mailing fields are updated to match the updates made on Contact's 
+    * mailing fields. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrExistingCaseOnly() { 
+    private static void updateContactMailingFieldsForSimpleAddrChangeTreatedAsUpdate() { 
         configSettings();
-        
-        // this creates a default Address for each Contact
+
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
-        // modify some of the Contact addresses directly
-        // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
+        //NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
         }
@@ -608,39 +733,49 @@ public with sharing class ADDR_Contact_TEST {
             contactsAddrs.contacts[i].MailingState = 'Washington';
         }
         update contactsAddrs.contacts;
-
+        
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
+            contactsAddrs.contacts[i].Mailing_County__c = 'COUNTY';
+        }
+        update contactsAddrs.contacts;
+        
+        //Whitespace and casing should not count as a real edit
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
+        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
+            contactsAddrs.contacts[i].MailingStreet = ' direct street  edit ';  
             contactsAddrs.contacts[i].MailingState = 'Oregon';
         }
         update contactsAddrs.contacts;
-
+        
+        //Change casing only 
         ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = ' DIRECT STREET  EDIT ';  // only change casing.
+            contactsAddrs.contacts[i].MailingStreet = ' DIRECT STREET  EDIT '; 
+            contactsAddrs.contacts[i].Mailing_County__c = ' COUNTY  '; 
         }
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
         
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet,
+                                                                is_Address_Override__c, Current_Address__c 
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assert(contact.MailingStreet.equals('DIRECT STREET  EDIT'));
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);
         }
- 
-        // verify that no new address was created
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
-        System.assertEquals(2, ListAddr.size());
-        for (Address__c addr : ListAddr) {
+
+        //Verify that no new Address record was created
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c 
+                                        FROM Address__c];
+        System.assertEquals(2, addrList.size());
+        for (Address__c addr : addrList) {
             System.assert(addr.MailingStreet__c.equals('DIRECT STREET  EDIT'));
         }
         
-        // now test that changing the case from the Contact updates all addresses
+        //Test that changing the case from the Contact updates all Address
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             Contact contact = contactsAddrs.contacts[i];
             contact.MailingStreet = 'direct street  edit';
@@ -649,114 +784,63 @@ public with sharing class ADDR_Contact_TEST {
         turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
         
-        // verify that the Contact address
-        mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
+        contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, MailingCity, 
+                                                MailingState, is_Address_Override__c, Current_Address__c 
+                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assert(contact.MailingStreet.equals('direct street  edit'));
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);
         }
- 
-        // verify that no new address was created
-        ListAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
-        System.assertEquals(2, ListAddr.size());
-        for (Address__c addr : ListAddr) {
+
+        //Verify that no new Address record was created
+        addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                        Parent_Contact__c 
+                        FROM Address__c];
+        System.assertEquals(2, addrList.size());
+        for (Address__c addr : addrList) {
             System.assert(addr.MailingStreet__c.equals('direct street  edit'));
         }                   
     }
-
+    
     /*********************************************************************************************************
-    @description Update Contacts' Mailing address to cause an update of the default Address object.  
-    verify:
-        existing Default Address updated
-        Contact get updated Address
+    @description Create an Address record with no Parent record. 
+    * Verify: 
+    * - Runtime error. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrExisting() {
-        configSettings();
+    private static void insertNewAddressWithNoParentRecord() {        
+        List<Address__c> addrList = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         
-        // this creates a default Address for each Contact
-        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
-
-        // modify some of the Contact addresses directly
-        // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
-        }
-        turnOnAllAddrTriggers();
-        update contactsAddrs.contacts;
-
-        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingState = 'Washington';
-        }
-        update contactsAddrs.contacts;
-
-        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = ' direct street  edit ';    // whitespace and casing should not count as real edit.
-            contactsAddrs.contacts[i].MailingState = 'Oregon';
-        }
-        Test.startTest();
-        update contactsAddrs.contacts;
-        Test.stopTest();
-        
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
-            System.assert(contact.MailingStreet.contains('direct street  edit'));
-            System.assert(contact.MailingState.contains('Oregon')); 
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
-        }
- 
-        // verify that no new address was created
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
-        System.assertEquals(2, ListAddr.size());
-        for (Address__c addr : ListAddr) {
-            System.assertEquals('direct street  edit', addr.MailingStreet__c);
-        }        
-    }
-
-    /*********************************************************************************************************
-    @description Create an Address with no Contact 
-    verify: runtime error
-    **********************************************************************************************************/            
-    @isTest
-    public static void newAddrNoParent() {        
-        List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
-        for (Integer i = 0; i < addrs.size(); i++) {
-            System.assertEquals(null, addrs[i].Parent_Contact__c);
+        for (Integer i = 0; i < addrList.size(); i++) {
+            System.assertEquals(Null, addrList[i].Parent_Contact__c);
         }
         
         try {
-            insert addrs;
+            insert addrList;
         } catch (Exception ex) {
             System.assert(ex.getMessage().contains(Label.addrValidParentObjects));
             return;
         }
-        System.assert(false); //we shouldn't get here!
+        System.assert(False); 
     }
  
     /*********************************************************************************************************
-    @description Create N new duplicate Addresses from Contact  
-    verify:
-        duplicates not created
+    @description Update existing Contact's mailing fields with existing mailing field values from default Address
+    * record. Essentially, we're updating the Contact's mailing fields with duplicate mailing values. 
+    * Verify:
+    * - No new default Address record is created. 
     **********************************************************************************************************/            
     @isTest
-    public static void newDupeAddr() {
+    private static void updateContactMailingFieldsWithDuplicateAddress() {
         configSettings();
-        
-        // this creates a default Address for each Contact
+
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
-        // create additional addresses thru the Contact.
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = contactsAddrs.addrs[i].MailingStreet__c;
             contactsAddrs.contacts[i].MailingCity = contactsAddrs.addrs[i].MailingCity__c;
+            contactsAddrs.contacts[i].Mailing_County__c = contactsAddrs.addrs[i].MailingCounty__c;
             contactsAddrs.contacts[i].MailingState = contactsAddrs.addrs[i].MailingState__c;
             contactsAddrs.contacts[i].MailingPostalCode = contactsAddrs.addrs[i].MailingPostalCode__c;
             contactsAddrs.contacts[i].MailingCountry = contactsAddrs.addrs[i].MailingCountry__c;
@@ -766,77 +850,83 @@ public with sharing class ADDR_Contact_TEST {
         update contactsAddrs.contacts;
         Test.stopTest();
         
-        // verify that we don't have new Addresses
-        List<Address__c> ListAddr = [select Id from Address__c];
-        System.assertEquals(2, ListAddr.size());
+        //Verify that we don't have new Address records
+        List<Address__c> addrList = [SELECT Id 
+                                        FROM Address__c];
+        System.assertEquals(2, addrList.size());
     }
 
     /*********************************************************************************************************
-    @description Create N new duplicate Addresses from Contact, with non-default existing  
-    verify:
-        duplicates not created
-        found match becomes Default
+    @description Update existing Contact's mailing fields with existing mailing fields values from a non default 
+    * Address record.
+    * Verify:
+    * - Non default Address record is now marked as default Address record.
+    * - No new default Address record is created.
+    * - Previous default Address record is no longer marked as default. 
     **********************************************************************************************************/            
     @isTest
-    public static void newDupeAddrNonDefault() {
+    private static void updateContactMailingFieldsWithNonDefaultAddressMailingFields() {
         configSettings();
         
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
-        // create additional non-default addresses
-        List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
+        List<Address__c> newAddrList = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
-            addrs[i].Default_Address__c = false;
-            addrs[i].MailingStreet__c = 'New Street' + i;
-            addrs[i].MailingCity__c = 'New City' + i;
+            newAddrList[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
+            newAddrList[i].Default_Address__c = False;
+            newAddrList[i].MailingStreet__c = 'New Street' + i;
+            newAddrList[i].MailingCity__c = 'New City' + i;
+            newAddrList[i].MailingCounty__c = 'New County' + i;
         }
         turnOnAllAddrTriggers();
-        insert addrs;
- 
-        // create additional addresses thru the Contact.
+        insert newAddrList;
+
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = addrs[i].MailingStreet__c;
-            contactsAddrs.contacts[i].MailingCity = addrs[i].MailingCity__c;
-            contactsAddrs.contacts[i].MailingState = addrs[i].MailingState__c;
-            contactsAddrs.contacts[i].MailingPostalCode = addrs[i].MailingPostalCode__c;
-            contactsAddrs.contacts[i].MailingCountry = addrs[i].MailingCountry__c;
+            contactsAddrs.contacts[i].MailingStreet = newAddrList[i].MailingStreet__c;
+            contactsAddrs.contacts[i].MailingCity = newAddrList[i].MailingCity__c;
+            contactsAddrs.contacts[i].Mailing_County__c = newAddrList[i].MailingCounty__c;
+            contactsAddrs.contacts[i].MailingState = newAddrList[i].MailingState__c;
+            contactsAddrs.contacts[i].MailingPostalCode = newAddrList[i].MailingPostalCode__c;
+            contactsAddrs.contacts[i].MailingCountry = newAddrList[i].MailingCountry__c;
         }        
         turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
         
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet, MailingCity, 
+                                                            Mailing_County__c, is_Address_Override__c, Current_Address__c 
+                                                            FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assert(contact.MailingStreet.contains('New Street'));
             System.assert(contact.MailingCity.contains('New City'));
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
+            System.assert(contact.Mailing_County__c.contains('New County'));
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);
         }
         
-        // verify the new addresses still are Default and we don't have too many
-        List<Address__c> allAddrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Latest_Start_Date__c, 
-        Latest_End_Date__c from Address__c];
-        UTIL_Debug.debug('****newDupeAddrNonDefault addresses: ' + JSON.serializePretty(allAddrs));
-        System.assertEquals(2 * 2, allAddrs.size());
-        for (Address__c addr : allAddrs) {
-            boolean isNew = (addr.MailingStreet__c.contains('New Street'));
-            System.assertEquals(isNew, addr.Default_Address__c);
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                    Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c 
+                                    FROM Address__c];
+        System.assertEquals(4, addrList.size());
+        for (Address__c addr : addrList) {
+            if (addr.MailingStreet__c.contains('New Street')) {
+                System.assertEquals(True, addr.Default_Address__c); 
+            } else {
+                System.assertEquals(False, addr.Default_Address__c); 
+            }
         }
     }
 
     /*********************************************************************************************************
-    @description Insert Contact w/ multiline street address
-    verify: new default Address created and the street address is broken up into street and street2
+    @description Update existing Contact's MailingStreet with multiline Street value.
+    * Verify:
+    * - New default Address record is created and multiline street is populated into MailingStreet__c and MailingStreet2__c. 
     **********************************************************************************************************/            
     @isTest
-    public static void insertMultilineStreetAddress() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
-    
+    private static void updateContactMailingStreetWithMultiLineStreetValue() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = True));
+
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         for (Contact contact : contacts) {
             contact.MailingStreet = 'new street\r\nsecond line';
@@ -846,255 +936,209 @@ public with sharing class ADDR_Contact_TEST {
         insert contacts; 
         Test.stopTest();       
         
-        // verify the Address objects split street.
-        List<Address__c> ListAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c from Address__c];
-        System.assertEquals(2, ListAddr.size());
-        for (Address__c addr : ListAddr) {
+        //Verify the Address record contains split street 
+        List<Address__c> addrList = [SELECT Id, MailingStreet__c, MailingStreet2__c, 
+                                        Formula_MailingStreetAddress__c 
+                                        FROM Address__c];
+        System.assertEquals(2, addrList.size());
+        for (Address__c addr : addrList) {
             System.assertEquals('new street', addr.MailingStreet__c);
             System.assertEquals('second line', addr.MailingStreet2__c);
             System.assertEquals('new street<br>second line<br>new city,', addr.Formula_MailingStreetAddress__c);
         }
 
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet,
+                                                                is_Address_Override__c, Current_Address__c 
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assertEquals('new street\r\nsecond line', contact.MailingStreet);
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);
         }
     }
 
     /*********************************************************************************************************
-    @description Insert new default multiline street addresses w/ existing default addresses  
-    verify:
-        Contact address matches new default
-        street & street2 combined into contact and Contact single street field
+    @description Insert new default Address record with multiline Street value. 
+    * Verify:
+    * - New default Address record is created with multiline Street fields populated.
+    * - Existing Contact's mailing fields are updated and Address record's multiline street fields are combined 
+    * into MailingStreet on Contact record. 
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultMultilineStreetAddr() {
+    private static void insertNewDefaultAddressWithMultiStreetValue() {
         configSettings();
-                
-        // this creates a default Address for each Contact
+        
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
-
-        // create additional addresses
-        List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
+        
+        List<Address__c> newAddrList = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
-            addrs[i].Default_Address__c = true;
-            addrs[i].MailingStreet__c = 'New Default Street';
-            addrs[i].MailingStreet2__c = 'Second Line';
-            addrs[i].MailingCity__c = 'New Default City' + i;
+            newAddrList[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
+            newAddrList[i].Default_Address__c = True;
+            newAddrList[i].MailingStreet__c = 'New Default Street';
+            newAddrList[i].MailingStreet2__c = 'Second Line';
+            newAddrList[i].MailingCity__c = 'New Default City' + i;
         }
         turnOnAllAddrTriggers();
         Test.startTest();
-        insert addrs;
+        insert newAddrList;
         turnOnAllAddrTriggers();        
         Test.stopTest();
 
-        // verify Contact address is new
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Name, MailingStreet
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
             System.assertEquals('New Default Street\r\nSecond Line', contact.MailingStreet);
             System.assertEquals('New Default Street\r\nSecond Line', contact.MailingStreet);
-        }
-        
-    }
-    
-    /*********************************************************************************************************
-    @description Update Contacts' Mailing address with multiline street address  
-    verify:
-        new Default Address created
-        Contacts get new Address
-        new Addresss has multiline street split into Street and Street2 fields
-    **********************************************************************************************************/            
-    @isTest
-    public static void updateMultilineStreetAddr() {
-        configSettings();
-         
-        // this creates a default Address for each Contact
-        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
-
-        // modify some of the Contact addresses directly
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            Contact contact = contactsAddrs.contacts[i];
-            contact.MailingStreet = 'Direct Street Edit\r\nSecond Line';
-            contact.MailingCity = 'Direct City Edit';
-        }
-        turnOnAllAddrTriggers();
-        Test.startTest();
-        update contactsAddrs.contacts;
-        Test.stopTest();
-        
-        // verify Contact address
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
-        
-        for (Contact contact : mapAccIdAcc.values()) {
-            System.assertEquals('Direct Street Edit\r\nSecond Line', contact.MailingStreet);
-            System.assertEquals('Direct Street Edit\r\nSecond Line', contact.MailingStreet);
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
-        }
- 
-        // verify the Address objects split street.
-        List<Address__c> ListAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c, Default_Address__c from Address__c];
-        for (Address__c addr : ListAddr) {
-            if (addr.Default_Address__c) {
-                System.assertEquals('Direct Street Edit', addr.MailingStreet__c);
-                System.assertEquals('Second Line', addr.MailingStreet2__c);
-                System.assert(addr.Formula_MailingStreetAddress__c.contains('Direct Street Edit<br>Second Line<br>Direct City Edit'));
-            }
-        }
+        }   
     }
 
     /*********************************************************************************************************
-    @description Update N organizational Contacts with Mailing addresses 
-    verify:
-        N addresses created
-        Contact addresses updated
+    @description Update existing Contact record's mailing fields without existing default Address records.
+    * Verify:
+    * - New default Address is created
+    * - Contact's mailing fields matches the mailing fields of the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateRecordsWithAddrInfo() {         
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
- 
-        // create Contacts without addresses
+    private static void updateContactMailingFieldsWithoutExistingAddressRecord() {         
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = True));
+
         Integer contactCount = 3;
-        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(contactCount);
-        insert contacts;
-
-        // update the Contacts' address
-        for (Contact contact : contacts) {
+        List<Contact> contactList = UTIL_UnitTestData_API.getMultipleTestContacts(contactCount);
+        insert contactList;
+        
+        for (Contact contact : contactList) {
             contact.MailingStreet = '123 45th';
             contact.MailingCity = 'Seattle';
+            contact.Mailing_County__c = 'Bergen'; 
         }
         Test.startTest();
         turnOnAllAddrTriggers();
-        update contacts;
+        update contactList;
         Test.stopTest();
 
-        // verify results
-        contacts = [SELECT Id, Name, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, 
-                   Current_Address__c FROM Contact];
-        System.assertEquals(contactCount, contacts.size());
+        contactList = [SELECT Id, Name, MailingStreet, 
+                            MailingCity, Mailing_County__c, Current_Address__c 
+                            FROM Contact];
+        System.assertEquals(contactCount, contactList.size());
         
-        List<Address__c> ListAddr = [SELECT Id, Default_Address__c, MailingStreet__c, MailingCity__c, 
-        Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c FROM Address__c];
-        System.assertEquals(contactCount, ListAddr.size());
-                
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                        MailingCity__c, MailingCounty__c
+                                        FROM Address__c];
+        System.assertEquals(contactCount, addrList.size());      
         for (Integer i = 0; i < contactCount; i++) {
-            Contact contact = contacts[i];
-            Address__c addr = ListAddr[i];
+            Contact contact = contactList[i];
+            Address__c addr = addrList[i];
             System.assertEquals(contact.MailingStreet, addr.MailingStreet__c);
             System.assertEquals(contact.MailingCity, addr.MailingCity__c);
-            System.assertNotEquals(null, contact.MailingStreet);
-            System.assertNotEquals(null, contact.MailingCity);
-            System.assertEquals(true, addr.Default_Address__c);
-            System.assertNotEquals(null, contact.Current_Address__c);
+            System.assertEquals(contact.Mailing_County__c, addr.MailingCounty__c);
+            System.assertNotEquals(Null, contact.MailingStreet);
+            System.assertNotEquals(Null, contact.MailingCity);
+            System.assertEquals(True, addr.Default_Address__c);
+            System.assertNotEquals(Null, contact.Current_Address__c);
         }
     }
     
     /*********************************************************************************************************
-    @description Update N Contacts with address objects 
-    verify:
-        Contact addresses updated
-        contact addresses not updated
+    @description Insert new default Address records and associate to existing Contact record without existing 
+    * default Address record. 
+    * Verify:
+    * - New default Address record is created and associated to the existing Contact record.
+    * - Existing Contact's mailing fields matches the mailing fields of the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
-    public static void newAddrForContacts() {           
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
- 
-        // create Contacts without addresses
-        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(3);
-        insert contacts;
+    private static void insertNewDefaultAddressOnExistingContact() {           
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = True));
 
-         // create addresses for the Contacts
-        List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(contacts.size());
-        for (Integer i = 0; i < contacts.size(); i++) {
-            addrs[i].Parent_Contact__c = contacts[i].Id;
-            addrs[i].Default_Address__c = true;
+        List<Contact> contactList = UTIL_UnitTestData_API.getMultipleTestContacts(3);
+        insert contactList;
+
+        List<Address__c> newAddrList = UTIL_UnitTestData_API.getMultipleTestAddresses(contactList.size());
+        for (Integer i = 0; i < contactList.size(); i++) {
+            newAddrList[i].Parent_Contact__c = contactList[i].Id;
+            newAddrList[i].Default_Address__c = True;
         }
         turnOnAllAddrTriggers();
-        insert addrs;
+        insert newAddrList;
         turnOnAllAddrTriggers();
+
+        contactList = [SELECT Id, Name, MailingStreet, 
+                        MailingCity, Mailing_County__c, Current_Address__c 
+                        FROM Contact];
+        System.assertEquals(3, contactList.size());
         
-        // verify results
-        contacts = [SELECT Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c 
-        FROM Contact];
-        System.assertEquals(3, contacts.size());
-        
-        addrs = [SELECT Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Contact__c, 
-        Latest_Start_Date__c, Latest_End_Date__c FROM Address__c];
-        System.assertEquals(3, addrs.size());
-        
-        for (Integer i = 0; i < contacts.size(); i++) {
-            Contact contact = contacts[i];
-            Address__c addr = addrs[i];
+        newAddrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                        MailingCity__c, MailingCounty__c
+                        FROM Address__c];
+        System.assertEquals(3, newAddrList.size());
+        for (Integer i = 0; i < contactList.size(); i++) {
+            Contact contact = contactList[i];
+            Address__c addr = newAddrList[i];
             System.assertEquals(contact.MailingStreet, addr.MailingStreet__c);
             System.assertEquals(contact.MailingCity, addr.MailingCity__c);
-            System.assertNotEquals(null, contact.MailingStreet);
-            System.assertNotEquals(null, contact.MailingCity);
-            System.assertEquals(true, addr.Default_Address__c);
+            System.assertEquals(contact.Mailing_County__c, addr.MailingCounty__c);
+            System.assertNotEquals(Null, contact.MailingStreet);
+            System.assertNotEquals(Null, contact.MailingCity);
+            System.assertEquals(True, addr.Default_Address__c);
             System.assertEquals(addr.Id, contact.Current_Address__c);
         }
     }
 
     /*********************************************************************************************************
-    @description Create Contacts when the setting for Address Mgmt is off. 
-    verify:
-        no Address objects created
-        Contact addresses set
+    @description Create Contact record with populated mailing fields when the setting for Address Mgmt is disabled. 
+    * Verify:
+    * - No new Address record is created.
+    * - Contact record is created and its mailing fields are populated except Current_Address__c. 
     **********************************************************************************************************/            
     @isTest
-    public static void testDisabledAddr() {        
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = false));
+    private static void insertNewContactWithMailingFieldsWithDisabledContactAddressSetting() {        
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = False));
 
-        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
-        for (Contact contact : contacts) {
+        List<Contact> contactList = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+        for (Contact contact : contactList) {
             contact.MailingStreet = 'new street';
             contact.MailingCity = 'new city';
+            contact.Mailing_County__c = 'new county'; 
         }
-
-        // verify Contact address
-        map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
-        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
+        insert contactList; 
         
-        for (Contact contact : mapAccIdAcc.values()) {
-            System.assertEquals(false, contact.is_Address_Override__c);
-            System.assertEquals(null, contact.Current_Address__c);
+        List<Contact> queryContacts = [SELECT Id FROM Contact WHERE Id IN :contactList]; 
+        System.assertEquals(2, queryContacts.size()); 
+        
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, is_Address_Override__c, Current_Address__c 
+                                                                FROM Contact]);
+        for (Contact contact : contactsById.values()) {
+            System.assertEquals(False, contact.is_Address_Override__c);
+            System.assertEquals(Null, contact.Current_Address__c);
         }
         
-        // verify no address objects created
-        List<Address__c> ListAddr = [select Id from Address__c];
-        System.assertEquals(0, ListAddr.size());
+        //Verify no Address record was created
+        List<Address__c> addrList = [SELECT Id 
+                                        FROM Address__c];
+        System.assertEquals(0, addrList.size());
     }
     
     /*********************************************************************************************************
-    @description Update Contacts' Mailing address fields to empty cause clearing the default address  
-    verify:
-        existing Default Address updated to be non-default
-        no new Address created
+    @description Clear Contact's mailing fields.  
+    * Verify:
+    * - Existing default Address is updated to non default. 
+    * - No new Address record is created. 
     **********************************************************************************************************/            
-    static testMethod void clearAddrExisting() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
+    @isTest
+    private static void clearContactMailingFields() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = True));
                 
-        // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(4);
 
-        // clear addresses fields directly
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = null;
-            contactsAddrs.contacts[i].MailingCity = null;
-            contactsAddrs.contacts[i].MailingState = null;
-            contactsAddrs.contacts[i].MailingPostalCode = null;
-            contactsAddrs.contacts[i].MailingCountry = null;
+            contactsAddrs.contacts[i].MailingStreet = Null;
+            contactsAddrs.contacts[i].MailingCity = Null;
+            contactsAddrs.contacts[i].Mailing_County__c = Null;
+            contactsAddrs.contacts[i].MailingState = Null;
+            contactsAddrs.contacts[i].MailingPostalCode = Null;
+            contactsAddrs.contacts[i].MailingCountry = Null;
             if (ADDR_Addresses_UTIL.isStateCountryPickListsEnabled) {
-                contactsAddrs.contacts[i].put('MailingStateCode', null);
-                contactsAddrs.contacts[i].put('MailingCountryCode', null);
+                contactsAddrs.contacts[i].put('MailingStateCode', Null);
+                contactsAddrs.contacts[i].put('MailingCountryCode', Null);
             }             
         }
 
@@ -1103,36 +1147,54 @@ public with sharing class ADDR_Contact_TEST {
         update contactsAddrs.contacts;
         Test.stopTest();
         
-        // verify that no new address was created
-        List<Address__c> addrs = [select Default_Address__c from Address__c];
-        UTIL_Debug.debug('****Contact addresses after clearing addr info: ' + JSON.serializePretty(addrs));
-        System.assertEquals(4, addrs.size());
+        //Verify that no new Address record was created
+        List<Address__c> addrList = [SELECT Default_Address__c 
+                                    FROM Address__c];
+        System.assertEquals(4, addrList.size());
         
-        // verify existing Default Address updated to be non-default
-        for (Integer i = 0; i < addrs.size(); i++) {
-            System.assertEquals(false, addrs[i].Default_Address__c);
+        //Verify existing Default Address record is updated non default
+        for (Integer i = 0; i < addrList.size(); i++) {
+            System.assertEquals(False, addrList[i].Default_Address__c);
         }              
     }
 
     /*********************************************************************************************************
-    @description Insert admin account with blank address data but only primary address type
-    verify:
-        No blank address record is created
+    @description Insert new Contact records one with MailingStreet and Primary Address Type populated, and 
+    * a second Contact with only Primary Address Type populated. 
+    * Verify:
+    * - Only 1 new default Address record is created.
+    * - No blank Address record is created.
+    * - 2nd Contact whose mailing field were not populated but only Primary Address Type, has blank mailing fields. 
     **********************************************************************************************************/
-    static testMethod void insertAdminAccountWithOnlyPrimaryAddressType() {
-        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
-
-        contacts[0].MailingStreet = 'new street';
-        contacts[0].Primary_Address_Type__c = 'Home';
-        contacts[1].Primary_Address_Type__c = 'Home';
-
+    @isTest
+    private static void insertNewContactWithOnlyPrimaryAddressType() {
+        List<Contact> contactList = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+        contactList[0].LastName = 'newConWithLastName'; 
+        contactList[0].MailingStreet = 'new street';
+        contactList[0].Primary_Address_Type__c = 'Home';
+        contactList[1].Primary_Address_Type__c = 'Home';
+        
         Test.startTest();
-        insert contacts;
+        insert contactList;
         Test.stopTest();
-
-        List<Address__c> assertAddresses = [SELECT Id, Parent_Contact__c FROM Address__c];
-        System.assertEquals(1, assertAddresses.size());
-        System.assertEquals(contacts[0].Id, assertAddresses[0].Parent_Contact__c);
+        
+        contactList = [SELECT Id, LastName, MailingStreet
+                        FROM Contact]; 
+        for (Contact con : contactList) {
+            if (con.LastName.contains('newConWithLastName')) {
+                System.assertEquals('new street', con.MailingStreet); 
+            } else {
+                System.assertNotEquals('new street', con.MailingStreet); 
+                System.assertEquals(Null, con.MailingStreet);
+            }
+        }
+        
+        List<Address__c> assertAddressList = [SELECT Id, Parent_Contact__c, Default_Address__c, 
+                                                MailingStreet__c
+                                                FROM Address__c];
+        System.assertEquals(1, assertAddressList.size());
+        System.assertEquals(contactList[0].Id, assertAddressList[0].Parent_Contact__c);
+        System.assertEquals('new street', assertAddressList[0].MailingStreet__c);
+        System.assertEquals(True, assertAddressList[0].Default_Address__c);
     }
-
 }
