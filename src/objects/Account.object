@@ -9,6 +9,18 @@
         <label>HEDA Account Compact Layout</label>
     </compactLayouts>
     <fields>
+        <fullName>Billing_County__c</fullName>
+        <description>The county detail for the Billing Address.</description>
+        <externalId>false</externalId>
+        <label>Billing County</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Current_Address__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the current Address record for this Account. The Account's Billing Address field is populated with the address fields from the current Address record.</description>
@@ -35,5 +47,17 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Shipping_County__c</fullName>
+        <description>The county detail for the Shipping Address.</description>
+        <externalId>false</externalId>
+        <label>Shipping County</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
 </CustomObject>

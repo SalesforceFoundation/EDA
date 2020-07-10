@@ -156,10 +156,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         String dynamicSoql = 'SELECT Id, AccountId, Account.RecordTypeID, ' +
                            'Account.Primary_Contact__c, Account.Name, FirstName, ' +
                            'LastName, OwnerId, Salutation, ' +
-                           'MailingStreet, MailingCity, MailingState, ' +
+                           'MailingStreet, MailingCity, Mailing_County__c, MailingState, ' +
                            'MailingPostalCode, MailingCountry, MailingLatitude, ' +
                            'MailingLongitude, OtherStreet, OtherCity, ' +
-                           'OtherState, OtherPostalCode, OtherCountry, ' +
+                           'Other_County__c, OtherState, OtherPostalCode, OtherCountry, ' +
                            'OtherLatitude, OtherLongitude, Deceased__c, Exclude_from_Household_Name__c,';
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
