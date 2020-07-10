@@ -4503,6 +4503,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Mailing_County__c</fullName>
+        <description>The county detail for the Mailing Address.</description>
+        <externalId>false</externalId>
+        <label>Mailing County</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Military_Background__c</fullName>
         <externalId>false</externalId>
         <description>Describe this person's miltary service, for example, the branch of the military, length of time in the miltary, date of discharge, etc.</description>
@@ -4553,6 +4565,18 @@
             </valueSetDefinition>
         </valueSet>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other_County__c</fullName>
+        <description>The county detail for the alternate Address.</description>
+        <externalId>false</externalId>
+        <label>Other County</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PreferredPhone__c</fullName>
