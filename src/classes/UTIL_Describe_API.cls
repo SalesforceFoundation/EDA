@@ -292,5 +292,5 @@ global class UTIL_Describe_API {
     global static String getStudentCharacteristicAttributeRecType() {
         return UTIL_Describe.getStudentCharacteristicAttributeRecType();
     }
-
+    
 }
