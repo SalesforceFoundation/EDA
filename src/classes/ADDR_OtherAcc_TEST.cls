@@ -40,163 +40,167 @@
 public with sharing class ADDR_OtherAcc_TEST {
     
     /*********************************************************************************************************
-    @description Create N new accounts with billing addresses 
-    verify:
-        N addresses created
-        account address matches address object address
+    @description Insert a new Business Account record with populated billing fields.
+    * Verify:
+    * - New default Address record is created.
+    * - Account's billing fields matches the mailing fields on the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
-    public static void newRecordsWithAddrInfo() {            
+    private static void insertNewAccountWithBillingFields() {            
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                      UTIL_Describe_API.getBizAccRecTypeID() + ';'));
- 
+                                                                                UTIL_Describe_API.getBizAccRecTypeID() + ';'));
+
         Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(cAcc, UTIL_Describe_API.getBizAccRecTypeID());
-        for (Account acc : listAcc) {
+        list<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(cAcc, UTIL_Describe_API.getBizAccRecTypeID());
+        for (Account acc : accList) {
             acc.BillingStreet = '123 45th';
             acc.BillingCity = 'Seattle';
+            acc.Billing_County__c = 'Bergen';
         }
         Test.startTest();
-        insert listAcc;
+        insert accList;
         Test.stopTest();
 
-        // verify results
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
-        system.assertEquals(cAcc, mapAccIdAcc.size());
+        Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Name, BillingStreet, 
+                                                                BillingCity, Billing_County__c, Current_Address__c 
+                                                                FROM Account]);
+        System.assertEquals(cAcc, accountsById.size());
         
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
-        Latest_Start_Date__c, Latest_End_Date__c from Address__c];
-        system.assertEquals(cAcc, listAddr.size());
-        
-        for (Address__c addr : listAddr) {
-            Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-            system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
-            system.assertEquals(acc.BillingCity, addr.MailingCity__c);
-            system.assertEquals(true, addr.Default_Address__c);
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                        MailingCity__c, MailingCounty__c, Parent_Account__c
+                                        FROM Address__c];
+        System.assertEquals(cAcc, addrList.size());
+        for (Address__c addr : addrList) {
+            Account acc = accountsById.get(addr.Parent_Account__c);
+            System.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
+            System.assertEquals(acc.BillingCity, addr.MailingCity__c);
+            System.assertEquals(acc.Billing_County__c, addr.MailingCounty__c);
+            System.assertEquals(True, addr.Default_Address__c);
         }
     }
     
     /*********************************************************************************************************
-    @description Update N organizational accounts with billing addresses 
-    verify:
-        N addresses created
-        account addresses updated
+    @description Update existing Business Account's billing fields.
+    * Verify:
+    * - New default Address record is created.
+    * - Account's billing fields matches the mailing fields on the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
-    public static void updateRecordsWithAddrInfo() {         
+    private static void updateExistingAccountBillingFields() {         
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                            UTIL_Describe_API.getBizAccRecTypeID() + ';'));
- 
-        // create accounts without addresses
-        Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(cAcc, UTIL_Describe_API.getBizAccRecTypeID());
-        insert listAcc;
+                                                                                UTIL_Describe_API.getBizAccRecTypeID() + ';'));
 
-        // update the accounts' address
-        for (Account acc : listAcc) {
+        Integer numOfAcc = 3;
+        List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(numOfAcc, UTIL_Describe_API.getBizAccRecTypeID());
+        insert accList;
+
+        for (Account acc : accList) {
             acc.BillingStreet = '123 45th';
             acc.BillingCity = 'Seattle';
+            acc.Billing_County__c = 'Bergen';
         }
         Test.startTest();
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        update listAcc;
+        update accList;
         Test.stopTest();
 
-        // verify results
-        listAcc = [SELECT Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, 
-                   Current_Address__c FROM Account];
-        system.assertEquals(cAcc, listAcc.size());
+        accList = [SELECT Id, Name, BillingStreet, 
+                    BillingCity, Billing_County__c, Current_Address__c 
+                    FROM Account];
+        System.assertEquals(numOfAcc, accList.size());
         
-        List<Address__c> listAddr = [SELECT Id, Default_Address__c, MailingStreet__c, MailingCity__c, 
-        Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c FROM Address__c];
-        system.assertEquals(cAcc, listAddr.size());
+        List<Address__c> addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                                        MailingCity__c, MailingCounty__c, Parent_Account__c
+                                        FROM Address__c];
+        System.assertEquals(numOfAcc, addrList.size());
                 
-        for (Integer i = 0; i < cAcc; i++) {
-            Account acc = listAcc[i];
-            Address__c addr = listAddr[i];
-            system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
-            system.assertEquals(acc.BillingCity, addr.MailingCity__c);
-            system.assertNotEquals(null, acc.BillingStreet);
-            system.assertNotEquals(null, acc.BillingCity);
-            system.assertEquals(true, addr.Default_Address__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+        for (Integer i = 0; i < numOfAcc; i++) {
+            Account acc = accList[i];
+            Address__c addr = addrList[i];
+            System.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
+            System.assertEquals(acc.BillingCity, addr.MailingCity__c);
+            System.assertEquals(acc.Billing_County__c, addr.MailingCounty__c);
+            System.assertNotEquals(Null, acc.BillingStreet);
+            System.assertNotEquals(Null, acc.BillingCity);
+            System.assertNotEquals(Null, acc.Current_Address__c);
+            System.assertEquals(True, addr.Default_Address__c);
         }
     }
-    
+
     /*********************************************************************************************************
-    @description Update N accounts with address objects 
-    verify:
-        account addresses updated
-        contact addresses not updated
+    @description Insert new default Address on existing Business Account. 
+    * Verify:
+    * - New default Address record is created.
+    * - Account's billing fields are updated to match the mailing fields on the newly created default Address record. 
     **********************************************************************************************************/            
     @isTest
-    public static void newAddrForAccounts() {           
+    private static void insertNewDefaultAddressOnExistingAccount() {           
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                      UTIL_Describe_API.getBizAccRecTypeID() + ';'));
- 
-        // create accounts without addresses
-        list<Account> listAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(3, UTIL_Describe_API.getBizAccRecTypeID());
-        insert listAcc;
+                                                                                UTIL_Describe_API.getBizAccRecTypeID() + ';'));
 
-         // create addresses for the accounts
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(listAcc.size());
-        for (Integer i = 0; i < listAcc.size(); i++) {
-            addrs[i].Parent_Account__c = listAcc[i].Id;
-            addrs[i].Default_Address__c = true;
+        List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(3, UTIL_Describe_API.getBizAccRecTypeID());
+        insert accList;
+
+        List<Address__c> addrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(accList.size());
+        for (Integer i = 0; i < accList.size(); i++) {
+            addrList[i].Parent_Account__c = accList[i].Id;
+            addrList[i].Default_Address__c = True;
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        insert addrs;
+        insert addrList;
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
-        // verify results
-        listAcc = [SELECT Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c 
-        FROM Account];
-        system.assertEquals(3, listAcc.size());
+        accList = [SELECT Id, Name, BillingStreet, 
+                        BillingCity, Billing_County__c, Current_Address__c 
+                        FROM Account];
+        System.assertEquals(3, accList.size());
         
-        addrs = [SELECT Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
-        Latest_Start_Date__c, Latest_End_Date__c FROM Address__c];
-        system.assertEquals(3, addrs.size());
+        addrList = [SELECT Id, Default_Address__c, MailingStreet__c, 
+                        MailingCity__c, MailingCounty__c, Parent_Account__c
+                        FROM Address__c];
+        System.assertEquals(3, addrList.size());
         
-        for (Integer i = 0; i < listAcc.size(); i++) {
-            Account acc = listAcc[i];
-            Address__c addr = addrs[i];
-            system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
-            system.assertEquals(acc.BillingCity, addr.MailingCity__c);
-            system.assertNotEquals(null, acc.BillingStreet);
-            system.assertNotEquals(null, acc.BillingCity);
-            system.assertEquals(true, addr.Default_Address__c);
-            system.assertEquals(addr.Id, acc.Current_Address__c);
+        for (Integer i = 0; i < accList.size(); i++) {
+            Account acc = accList[i];
+            Address__c addr = addrList[i];
+            System.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
+            System.assertEquals(acc.BillingCity, addr.MailingCity__c);
+            System.assertEquals(acc.Billing_County__c, addr.MailingCounty__c);
+            System.assertNotEquals(Null, acc.BillingStreet);
+            System.assertNotEquals(Null, acc.BillingCity);
+            System.assertEquals(True, addr.Default_Address__c);
+            System.assertEquals(addr.Id, acc.Current_Address__c);
         }
     }
     
     /*********************************************************************************************************
-    @description Create Accounts when the setting for Address Mgmt is off. 
-    verify:
-        no Address objects created
-        Account addresses set
+    @description Insert new Account with billing fields when the setting for Address Mgmt is off. 
+    * Verify:
+    * - No Address record was created
+    * - Account's Current_Address__c is blank. 
     **********************************************************************************************************/            
     @isTest
-    public static void testDisabledAddr() {        
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = null));
+    private static void testDisabledAddressFeature() {        
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = Null));
 
-        List<Account> accs = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getAdminAccRecTypeID());
-        for (Account acc : accs) {
+        List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        for (Account acc : accList) {
             acc.BillingStreet = 'new street';
             acc.BillingCity = 'new city';
+            acc.Billing_County__c = 'new county';
         }
-
-        // verify Account address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
+        Test.startTest();
+        insert accList; 
+        Test.stopTest(); 
         
-        for (Account acc : mapAccIdAcc.values()) {
-            system.assertEquals(null, acc.Current_Address__c);
+        Map<Id, Account> accountsById = new Map<Id, Account>([SELECT Id, Current_Address__c 
+                                                                FROM Account]);
+        for (Account acc : accountsById.values()) {
+            System.assertEquals(Null, acc.Current_Address__c);
         }
         
-        // verify no address objects created
-        list<Address__c> listAddr = [select Id from Address__c];
-        system.assertEquals(0, listAddr.size());
+        List<Address__c> addrList = [SELECT Id 
+                                        FROM Address__c];
+        System.assertEquals(0, addrList.size());
     }
 }

@@ -46,255 +46,303 @@ public with sharing class ADDR_Addresses_UTIL {
     private static Map<String, String> validCountriesByCode = new Map<String, String>();
     
     /*******************************************************************************************************
-    * @description returns whether the Address's mailing fields are null
-    * @param addr the Address
-    * @return Boolean. true if all of the Mailing fields are empty
+    * @description Returns whether the Address's mailing fields are null. 
+    * @param addr the Address record. 
+    * @return Boolean. True if all of the Mailing fields on an Address record are empty. 
     ********************************************************************************************************/
     public static Boolean isAddressEmpty(Address__c addr) {
-        if (addr == null)
-           return false;        
-        return (addr.MailingStreet__c == Null && addr.MailingStreet2__c == Null && addr.MailingCity__c == Null &&
-           addr.MailingState__c == Null && addr.MailingPostalCode__c == Null && addr.MailingCountry__c == Null);
+        if (addr == Null) {
+            return False;   
+        }
+                
+        return (String.isBlank(addr.MailingStreet__c) && 
+                String.isBlank(addr.MailingStreet2__c) && 
+                String.isBlank(addr.MailingCity__c) && 
+                String.isBlank(addr.MailingCounty__c) && 
+                String.isBlank(addr.MailingState__c) && 
+                String.isBlank(addr.MailingPostalCode__c) && 
+                String.isBlank(addr.MailingCountry__c)
+                );
     }
     
     /*******************************************************************************************************
-    * @description Compares the mailing fields in a Contact with the billing fields of an Account.
-    * @param contact The contact to compare.
-    * @param account The account to compare.
-    * @return Boolean True if the mailing fields in the Contact are the same as the billing fields in the Account. 
+    * @description Compares the mailing fields in a Contact record with the billing fields of an Account record.
+    * @param contact the Contact to compare.
+    * @param account the Account to compare.
+    * @return Boolean. True if the mailing fields in the Contact are the same as the billing fields in the Account. 
     ********************************************************************************************************/
     public static Boolean isContactAccAddrInfoSame(Contact contact, Account acc) {
-        if ((contact == null && acc != null) || (contact != null && acc == null)) 
-           return false;
-        
-        Boolean isChanged = 
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingStreet, acc.BillingStreet) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCity, acc.BillingCity) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingState, acc.BillingState) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingPostalCode, acc.BillingPostalCode) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCountry, acc.BillingCountry);
-
-        if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
-            isChanged = 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingStateCode')), String.valueOf(acc.get('BillingStateCode'))) || 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingCountryCode')), String.valueOf(acc.get('BillingCountryCode')));
+        if ((contact == Null && acc != Null) || (contact != Null && acc == Null)) {
+            return False;
         }
+
+        Boolean isChanged = !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingStreet, acc.BillingStreet) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCity, acc.BillingCity) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.Mailing_County__c, acc.Billing_County__c) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingState, acc.BillingState) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingPostalCode, acc.BillingPostalCode) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCountry, acc.BillingCountry);
+
+        if (isChanged == False && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
+            isChanged = !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingStateCode')), String.valueOf(acc.get('BillingStateCode'))) || 
+                        !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingCountryCode')), String.valueOf(acc.get('BillingCountryCode')));
+        }
+
         UTIL_Debug.debug('****Contact address info different from account address info: ' + isChanged);
         return !isChanged;
     }
     
     /*******************************************************************************************************
-    * @description utility to compare two address objects address fields
-    * @param addrNew the new version of the Address
-    * @param addrOld the old version of the Address
-    * @param includeAddressType whether to include comparing the AddressType field
-    * @return Boolean. true if any of the fields fields have changed on the Address
+    * @description Utility to compare two Address records' address fields. 
+    * @param addrNew the new version of the Address record. 
+    * @param addrOld the old version of the Address record. 
+    * @param includeAddressType a boolean that checks whether to include comparing the AddressType field. 
+    * @return Boolean. True if any of the fields fields have changed on the Address record. 
     ********************************************************************************************************/
     public static Boolean isAddressChanged(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
-        if (addrNew == null || addrOld == null) 
-           return false;        
-        return (
-            addrNew.Default_Address__c != addrOld.Default_Address__c ||
-           !equalsCaseSensitive(addrNew.MailingStreet__c, addrOld.MailingStreet__c) ||
-           !equalsCaseSensitive(addrNew.MailingStreet2__c, addrOld.MailingStreet2__c) ||
-           !equalsCaseSensitive(addrNew.MailingCity__c, addrOld.MailingCity__c) ||
-           !equalsCaseSensitive(addrNew.MailingState__c, addrOld.MailingState__c) ||
-           !equalsCaseSensitive(addrNew.MailingPostalCode__c, addrOld.MailingPostalCode__c) ||
-           !equalsCaseSensitive(addrNew.MailingCountry__c, addrOld.MailingCountry__c) ||
-           (includeAddressType && (!equalsCaseSensitive(addrNew.Address_Type__c, addrOld.Address_Type__c))));
+        if (addrNew == Null || addrOld == Null) {
+            return False; 
+        }
+                    
+        return (addrNew.Default_Address__c != addrOld.Default_Address__c ||
+                !equalsCaseSensitive(addrNew.MailingStreet__c, addrOld.MailingStreet__c) ||
+                !equalsCaseSensitive(addrNew.MailingStreet2__c, addrOld.MailingStreet2__c) ||
+                !equalsCaseSensitive(addrNew.MailingCity__c, addrOld.MailingCity__c) ||
+                !equalsCaseSensitive(addrNew.MailingCounty__c, addrOld.MailingCounty__c) ||
+                !equalsCaseSensitive(addrNew.MailingState__c, addrOld.MailingState__c) ||
+                !equalsCaseSensitive(addrNew.MailingPostalCode__c, addrOld.MailingPostalCode__c) ||
+                !equalsCaseSensitive(addrNew.MailingCountry__c, addrOld.MailingCountry__c) ||
+                (includeAddressType && (!equalsCaseSensitive(addrNew.Address_Type__c, addrOld.Address_Type__c)))
+                );
     }
     
     /*******************************************************************************************************
-    * @description compares two contacts' addresses
-    * @param con1 a Contact
-    * @param con2 a Contact
-    * @return Boolean. true if the Mailing Address fields have changed 
+    * @description Compares two Contact records' address fields. 
+    * @param con1 Contact record from trigger new. 
+    * @param con2 Contact record from trigger old. 
+    * @return Boolean. True if the Mailing Address fields have changed. 
     ********************************************************************************************************/
     public static Boolean isContactAddressChanged(Contact con1, Contact con2) {
-        // if both null, no change
-        if (con1 == null && con2 == null) 
-           return false;
-
-        // if one null, make sure other has at least one address field set
-        if (con1 == null || con2 == null) {
-            if (con1 == null) 
-               con1 = con2;
-            return (!isContactAddressEmpty(con1) ||
-               con1.Primary_Address_Type__c != null);
+        if (con1 == Null && con2 == Null) {
+            return false;
         }
         
-        // both provided, so look for at least one change between address fields
-        Boolean isChanged = 
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingStreet, con2.MailingStreet) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCity, con2.MailingCity) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingState, con2.MailingState) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingPostalCode, con2.MailingPostalCode) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCountry, con2.MailingCountry) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Primary_Address_Type__c, con2.Primary_Address_Type__c);
-           
+        //Check if both new or old Contact are null 
+        if (con1 == Null || con2 == Null) {
+            //If new Contact is null, then set the new Contact's mailing fields with the old Contact's mailing fields 
+            if (con1 == Null) {
+                con1 = con2;
+            }
+            //Returns one or the other: 
+            //1. Evaluate whether New Contact's mailing fields are empty. If it is empty, return False, else True 
+            //2. Evaluate whether new Contact's Primary Address Type is not blank
+            return (!isContactAddressEmpty(con1) || String.isNotBlank(con1.Primary_Address_Type__c));
+        }
+        
+        Boolean isChanged = !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingStreet, con2.MailingStreet) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCity, con2.MailingCity) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Mailing_County__c, con2.Mailing_County__c) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingState, con2.MailingState) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingPostalCode, con2.MailingPostalCode) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCountry, con2.MailingCountry) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Primary_Address_Type__c, con2.Primary_Address_Type__c);
+        
         if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
-            isChanged = 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(con1.get('MailingStateCode')), String.valueOf(con2.get('MailingStateCode'))) || 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(con1.get('MailingCountryCode')), String.valueOf(con2.get('MailingCountryCode')));
-        }    
-        //UTIL_Debug.debug('****Contact address changed: ' + isChanged);
+            isChanged = !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(con1.get('MailingStateCode')), String.valueOf(con2.get('MailingStateCode'))) || 
+                        !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(con1.get('MailingCountryCode')), String.valueOf(con2.get('MailingCountryCode')));
+        }   
+        
         return isChanged;   
     }
     
     /*******************************************************************************************************
-    * @description utility to compare two Accounts' (billing) addresses
-    * @param acc1 an Account
-    * @param acc2 an Account
-    * @return Boolean. true if there are any changes between the two accounts.
+    * @description Utility to compare two Account records' Billing address fields. 
+    * @param acc1 an Account record. 
+    * @param acc2 an Account record. 
+    * @return Boolean. True if there are any changes between the two Account records.
     ********************************************************************************************************/
     public static Boolean isAccountAddressChanged(Account acc1, Account acc2) {
-        if (acc1 == null || acc2 == null) 
-           return false;
-        
-        Boolean isChanged = 
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingStreet, acc2.BillingStreet) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCity, acc2.BillingCity) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
-
-        if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
-            isChanged = 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingStateCode')), String.valueOf(acc2.get('BillingStateCode'))) || 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingCountryCode')), String.valueOf(acc2.get('BillingCountryCode')));
+        if (acc1 == Null || acc2 == Null) {
+            return False;
         }
+            
+        Boolean isChanged = !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingStreet, acc2.BillingStreet) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCity, acc2.BillingCity) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.Billing_County__c, acc2.Billing_County__c) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
+                            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
+
+        if (isChanged == False && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
+            isChanged = !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingStateCode')), String.valueOf(acc2.get('BillingStateCode'))) || 
+                        !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingCountryCode')), String.valueOf(acc2.get('BillingCountryCode')));
+        }
+        
         UTIL_Debug.debug('****Address changed: ' + isChanged);
         return isChanged;
     }
     
     /*******************************************************************************************************
-    * @description returns whether the contact's mailing address is empty
-    * @param con1 a Contact
-    * @return Boolean. true if the Mailing Address fields are all empty 
+    * @description Checks whether the Contact's mailing address fields are empty. 
+    * @param con1 a Contact record. 
+    * @return Boolean. True if the Mailing Address fields are all empty. 
     ********************************************************************************************************/
     public static Boolean isContactAddressEmpty(Contact con1) {
-        if(con1 == null)
-            return true;
+        if (con1 == Null) {
+            return True;
+        } 
             
-        Boolean isEmpty = 
-            con1.MailingStreet == null &&
-            con1.MailingCity == null &&
-            con1.MailingState == null &&
-            con1.MailingPostalCode == null &&
-            // note that we decided to ignore country so that a default value won't create unnecessary address objects
-            (con1.MailingCountry == null || ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) &&
-            // only test StateCode if picklists enabled.
-            (!ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled || con1.get('MailingStateCode') == null);
+        Boolean isEmpty = String.isBlank(con1.MailingStreet) &&
+                            String.isBlank(con1.MailingCity) &&
+                            String.isBlank(con1.Mailing_County__c) &&
+                            String.isBlank(con1.MailingState) &&
+                            String.isBlank(con1.MailingPostalCode) &&
+                            //Note that we decided to ignore country so that a default value won't create unnecessary address objects. 
+                            (String.isBlank(con1.MailingCountry) || ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) &&
+                            //Only test StateCode if picklists enabled.
+                            (!ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled || con1.get('MailingStateCode') == Null);
         return isEmpty;   
     }
     
     /*******************************************************************************************************
-    * @description utility to see if an address is specified
-    * @param acc1 an Account
-    * @return Boolean.  true if an address is specified in any of the Account Billing fields
+    * @description Utility to see if billing address fields on an Account are specified. 
+    * @param acc1 an Account record. 
+    * @return Boolean. True if billing address fields on an Account are empty.
     ********************************************************************************************************/
     public static Boolean isAccAddressEmpty(Account acc1) {
-        if (acc1 == null) 
-           return true;
+        if (acc1 == Null) {
+            return True;
+        }
         
-        Boolean isEmpty = 
-           acc1.BillingStreet == null &&
-           acc1.BillingCity == null &&
-           acc1.BillingState == null &&
-           acc1.BillingPostalCode == null &&
-            // note that we decided to ignore country so that a default value won't create unnecessary address objects
-           (acc1.BillingCountry == null || ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) &&
-           // only test StateCode if picklists enabled.
-           (!ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled || acc1.get('BillingStateCode') == null);
+        Boolean isEmpty = String.isBlank(acc1.BillingStreet) &&
+                            String.isBlank(acc1.BillingCity) &&
+                            String.isBlank(acc1.Billing_County__c) &&
+                            String.isBlank(acc1.BillingState) &&
+                            String.isBlank(acc1.BillingPostalCode) &&
+                            //Note that we decided to ignore country so that a default value won't create unnecessary address objects. 
+                            (String.isBlank(acc1.BillingCountry) || ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) &&
+                            //Only test StateCode if picklists enabled.
+                            (!ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled || acc1.get('BillingStateCode') == Null);
         return isEmpty;   
     }
     
     /*******************************************************************************************************
-    * @description Returns whether two strings are equal, using a case sensitve comparison
-    * @param str1 The first string
-    * @param str2 The second string
+    * @description Returns whether two strings are equal, using a case sensitve comparison.
+    * @param str1 The first string.
+    * @param str2 The second string.
     * @return Boolean 
     ********************************************************************************************************/
-    public static Boolean equalsCaseSensitive(string str1, string str2) {
-        if (str1 == null)
-            return str2 == null;
-        if (str2 == null)
-            return false;
+    public static Boolean equalsCaseSensitive(String str1, String str2) {
+        if (str1 == Null) {
+            return str2 == Null;
+        }
+            
+        if (str2 == Null) {
+            return False;
+        }
+        
         return str1.equals(str2);
     }
     
     /*******************************************************************************************************
-    * @description Compare two address objects address fields and support fuzzy matching; our definition of 
+    * @description Compare two Address records' address fields and support fuzzy matching. Definition of 
     * fuzzy is: only one field has changed, ignoring whitespace and letter casing changes.
-    * @param addrNew the new version of the Address
-    * @param addrOld the old version of the Address
-    * @param includeAddressType whether to include comparing the AddressType field
-    * @return Boolean true if no more than one of the fields have changed on the Address, ignoring whitespace and case changes
+    * @param addrNew the new version of the Address record. 
+    * @param addrOld the old version of the Address record. 
+    * @param includeAddressType whether to include comparing the AddressType field. 
+    * @return Boolean. True if no more than one of the fields have changed on the Address, ignoring whitespace and case changes. 
     ********************************************************************************************************/    
     private static Boolean isAddressMatchFuzzy(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
-        if (addrNew == null || addrOld == null) 
-           return false;
-           
-        integer cChange = 0;
-        if (strCleanup(addrNew.MailingStreet__c) != strCleanup(addrOld.MailingStreet__c) && addrOld.MailingStreet__c != null)
+        if (addrNew == Null || addrOld == Null) {
+            return False;
+        }
+            
+        Integer cChange = 0;
+        
+        if (strCleanup(addrNew.MailingStreet__c) != strCleanup(addrOld.MailingStreet__c) && String.isNotBlank(addrOld.MailingStreet__c)) {
             cChange++;
-        if (strCleanup(addrNew.MailingStreet2__c) != strCleanup(addrOld.MailingStreet2__c) && addrOld.MailingStreet2__c != null)
+        }
+        
+        if (strCleanup(addrNew.MailingStreet2__c) != strCleanup(addrOld.MailingStreet2__c) && String.isNotBlank(addrOld.MailingStreet2__c)) {
             cChange++;
-        if (strCleanup(addrNew.MailingCity__c) != strCleanup(addrOld.MailingCity__c) && addrOld.MailingCity__c != null)
+        }
+            
+        if (strCleanup(addrNew.MailingCity__c) != strCleanup(addrOld.MailingCity__c) && String.isNotBlank(addrOld.MailingCity__c)) {
             cChange++;
-        if (strCleanup(addrNew.MailingState__c) != strCleanup(addrOld.MailingState__c) && addrOld.MailingState__c != null)
+        }
+            
+        if (strCleanup(addrNew.MailingCounty__c) != strCleanup(addrOld.MailingCounty__c) && String.isNotBlank(addrOld.MailingCounty__c)) {
             cChange++;
-        if (strCleanup(addrNew.MailingPostalCode__c) != strCleanup(addrOld.MailingPostalCode__c) && addrOld.MailingPostalCode__c != null)
+        }
+            
+        if (strCleanup(addrNew.MailingState__c) != strCleanup(addrOld.MailingState__c) && String.isNotBlank(addrOld.MailingState__c)) {
             cChange++;
-        if (strCleanup(addrNew.MailingCountry__c) != strCleanup(addrOld.MailingCountry__c) && addrOld.MailingCountry__c != null)
+        }
+            
+        if (strCleanup(addrNew.MailingPostalCode__c) != strCleanup(addrOld.MailingPostalCode__c) && String.isNotBlank(addrOld.MailingPostalCode__c)) {
             cChange++;
-        if (includeAddressType && strCleanup(addrNew.Address_Type__c) != strCleanup(addrOld.Address_Type__c) && addrOld.Address_Type__c != null)
+        }
+            
+        if (strCleanup(addrNew.MailingCountry__c) != strCleanup(addrOld.MailingCountry__c) && String.isNotBlank(addrOld.MailingCountry__c)) {
             cChange++;
+        }
+            
+        if (includeAddressType && strCleanup(addrNew.Address_Type__c) != strCleanup(addrOld.Address_Type__c) && String.isNotBlank(addrOld.Address_Type__c)) {
+            cChange++;
+        }
+            
         return cChange <= 1;
     }
     
     /*******************************************************************************************************
-    * @description utility to remove all whitespace and to lowercase the string
-    * @param str the string to clean up
-    * @return string
+    * @description Utility to remove all whitespace and to lowercase the string. 
+    * @param str the string to clean up. 
+    * @return String. 
     ********************************************************************************************************/
-    private static string strCleanup(string str) {
-        if (str != null) return str.replace(' ', '').toLowerCase();
-        else return '';
+    private static String strCleanup(String str) {
+        if (String.isNotBlank(str)) {
+            return str.replace(' ', '').toLowerCase();
+        } else {
+            return '';
+        } 
     }
     
     /*******************************************************************************************************
-    * @description Utility to copy Address fields between Address objects.
-    * @param addrSrc the source Address
-    * @param addrSrc the destination Address
-    * @return void
+    * @description Utility to copy Address fields between Address records.
+    * @param addrSrc the source Address. 
+    * @param addrSrc the destination Address. 
+    * @return void. 
     ********************************************************************************************************/
     public static void copyAddressObj(Address__c addrSrc, Address__c addrDst) {
         addrDst.Default_Address__c = addrSrc.Default_Address__c;
         addrDst.MailingStreet__c = addrSrc.MailingStreet__c;
         addrDst.MailingStreet2__c = addrSrc.MailingStreet2__c;
         addrDst.MailingCity__c = addrSrc.MailingCity__c;
+        addrDst.MailingCounty__c = addrSrc.MailingCounty__c;
         addrDst.MailingState__c = addrSrc.MailingState__c;
         addrDst.MailingPostalCode__c = addrSrc.MailingPostalCode__c;
         addrDst.MailingCountry__c = addrSrc.MailingCountry__c;
         addrDst.Geolocation__Latitude__s = addrSrc.Geolocation__Latitude__s;
         addrDst.Geolocation__Longitude__s = addrSrc.Geolocation__Longitude__s;
-        if (addrSrc.Address_Type__c != null)
+        
+        if (String.isNotBlank(addrSrc.Address_Type__c)) {
             addrDst.Address_Type__c = addrSrc.Address_Type__c;
+        }   
     }
     
-     /*******************************************************************************************************
-    * @description Utility to copy Address fields between Contacts and Accounts (or vice-versa).
+    /*******************************************************************************************************
+    * @description Utility to copy Address fields between Contact and Account records (or vice-versa).
     * Handles instances where State and Country picklists are enabled, and multiline street addresses.
-    * @param sobjSrc the source Contact or Account
-    * @param strFieldPrefixSrc the address fields to copy from, ie., Mailing, Other, Shipping, Billing
-    * @param sobjDst the destination Contact or Account
-    * @param strFieldPrefixDst the address fields to copy to, ie., Mailing, Other, Shipping, Billing
-    * @return void
+    * @param sobjSrc the source Contact or Account record. 
+    * @param strFieldPrefixSrc the address fields to copy from, ie., Mailing, Other, Shipping, Billing. 
+    * @param sobjDst the destination Contact or Account record. 
+    * @param strFieldPrefixDst the address fields to copy to, ie., Mailing, Other, Shipping, Billing. 
+    * @return void. 
     ********************************************************************************************************/
     public static void copyAddressStdSObj(SObject sobjSrc, String strFieldPrefixSrc, SObject sobjDst, String strFieldPrefixDst) {
         sobjDst.put(strFieldPrefixDst + 'Street', sobjSrc.get(strFieldPrefixSrc + 'Street'));
         sobjDst.put(strFieldPrefixDst + 'City', sobjSrc.get(strFieldPrefixSrc + 'City'));
+        sobjDst.put(strFieldPrefixDst + '_County__c', sobjSrc.get(strFieldPrefixSrc + '_County__c'));
         sobjDst.put(strFieldPrefixDst + 'PostalCode', sobjSrc.get(strFieldPrefixSrc + 'PostalCode'));
         sobjDst.put(strFieldPrefixDst + 'State', sobjSrc.get(strFieldPrefixSrc + 'State'));
         sobjDst.put(strFieldPrefixDst + 'Country', sobjSrc.get(strFieldPrefixSrc + 'Country'));
@@ -308,59 +356,60 @@ public with sharing class ADDR_Addresses_UTIL {
     }
     
     /*******************************************************************************************************
-    * @description utility to copy Address fields from a Contact or Account to an Address object.
+    * @description Utility to copy Address fields from a Contact or Account record to an Address record.
     * Handles instances where State and Country picklists are enabled, and multiline street addresses.
-    * @param sobjSrc the source Contact or Account
-    * @param strFieldPrefixSrc the address fields to copy from, ie., Mailing, Other, Shipping, Billing
-    * @param addr the Address object to copy to
-    * @param strAddrType if not null, copy to address.Address_Type__c
-    * @return void
+    * @param sobjSrc the source Contact or Account record. 
+    * @param strFieldPrefixSrc the address fields to copy from, ie., Mailing, Other, Shipping, Billing. 
+    * @param addr the Address object to copy to. 
+    * @param strAddrType if not null, copy to address.Address_Type__c. 
+    * @return void. 
     ********************************************************************************************************/
-    public static void copyAddressStdSObjAddr(SObject sobjSrc, string strFieldPrefixSrc, Address__c addr, string strAddrType) {
-        addr.MailingStreet__c = (string)sobjSrc.get(strFieldPrefixSrc + 'Street');
+    public static void copyAddressStdSObjAddr(SObject sobjSrc, String strFieldPrefixSrc, Address__c addr, String strAddrType) {
+        addr.MailingStreet__c = (String)sobjSrc.get(strFieldPrefixSrc + 'Street');
         handleMultilineStreet(addr);
-        addr.MailingCity__c = (string)sobjSrc.get(strFieldPrefixSrc + 'City');
-        addr.MailingPostalCode__c = (string)sobjSrc.get(strFieldPrefixSrc + 'PostalCode');
-        addr.MailingState__c = (string)sobjSrc.get(strFieldPrefixSrc + 'State');
-        addr.MailingCountry__c = (string)sobjSrc.get(strFieldPrefixSrc + 'Country');
-        addr.Geolocation__Latitude__s = (decimal)sobjSrc.get(strFieldPrefixSrc + 'Latitude');
-        addr.Geolocation__Longitude__s = (decimal)sobjSrc.get(strFieldPrefixSrc + 'Longitude');
-        
-        // try to find state and country by code if they aren't specified?
+        addr.MailingCity__c = (String)sobjSrc.get(strFieldPrefixSrc + 'City');
+        addr.MailingCounty__c = (String)sobjSrc.get(strFieldPrefixSrc + '_County__c');
+        addr.MailingPostalCode__c = (String)sobjSrc.get(strFieldPrefixSrc + 'PostalCode');
+        addr.MailingState__c = (String)sobjSrc.get(strFieldPrefixSrc + 'State');
+        addr.MailingCountry__c = (String)sobjSrc.get(strFieldPrefixSrc + 'Country');
+        addr.Geolocation__Latitude__s = (Decimal)sobjSrc.get(strFieldPrefixSrc + 'Latitude');
+        addr.Geolocation__Longitude__s = (Decimal)sobjSrc.get(strFieldPrefixSrc + 'Longitude');
+        //Try to find state and country by code if they aren't specified?
         if (isStateCountryPicklistsEnabled) {
 
-            // lookup country if needed, by country code
-            string strCountryCode = (string)sobjSrc.get(strFieldPrefixSrc + 'CountryCode');
-            if (addr.MailingCountry__c == null && strCountryCode != null) {
+            //Lookup country if needed, by country code
+            String strCountryCode = (String)sobjSrc.get(strFieldPrefixSrc + 'CountryCode');
+            if (String.isBlank(addr.MailingCountry__c) && String.isNotBlank(strCountryCode)) {
                 addr.MailingCountry__c = validCountriesByCode.get(strCountryCode);
             }
             
-            // lookup state if needed, by country code and state code.
-            string strStateCode = (string)sobjSrc.get(strFieldPrefixSrc + 'StateCode');
-            if (addr.MailingState__c == null && strCountryCode != null && strStateCode != null) {
-                // assume it's a valid statecode
+            //Lookup state if needed, by country code and state code.
+            String strStateCode = (String)sobjSrc.get(strFieldPrefixSrc + 'StateCode');
+            if (String.isBlank(addr.MailingState__c) && String.isNotBlank(strCountryCode) && String.isNotBlank(strStateCode)) {
+                //Assume it's a valid statecode
                 addr.MailingState__c = strStateCode;
             }
         }
         
-        // if specified, also include Address Type
-        if (strAddrType != null) 
+        if (String.isNotBlank(strAddrType)) {
             addr.Address_Type__c = strAddrType;
+        } 
     }
 
     /*******************************************************************************************************
-    * @description Utility to copy Address fields from an Address object to a Contact or Account.
+    * @description Utility to copy Address fields from an Address record to a Contact or Account record.
     * Handles instances where State and Country picklists are enabled, and multiline street addresses.
-    * @param addr the Address object to copy from
-    * @param sobjDst the destination Contact or Account
-    * @param strFieldPrefix the address fields to copy to, ie., Mailing, Other, Shipping, Billing
-    * @param strFieldAddrType an optional Address Type field on sobjDst to copy to 
-    * @return void
+    * @param addr the Address object to copy from. 
+    * @param sobjDst the destination Contact or Account record. 
+    * @param strFieldPrefix the address fields to copy to, ie., Mailing, Other, Shipping, Billing. 
+    * @param strFieldAddrType an optional Address Type field on sobjDst to copy to. 
+    * @return void. 
     ********************************************************************************************************/
-    public static void copyAddressAddrSObj(Address__c addr, SObject sobjDst, string strFieldPrefix, string strFieldAddrType, 
+    public static void copyAddressAddrSObj(Address__c addr, SObject sobjDst, String strFieldPrefix, String strFieldAddrType, 
     TDTM_Runnable.DmlWrapper dmlWrapper) {
         sobjDst.put(strFieldPrefix + 'Street', getMultilineStreet(addr));
         sobjDst.put(strFieldPrefix + 'City', addr.MailingCity__c);
+        sobjDst.put(strFieldPrefix + '_County__c', addr.MailingCounty__c);
         sobjDst.put(strFieldPrefix + 'PostalCode', addr.MailingPostalCode__c);
         sobjDst.put(strFieldPrefix + 'Latitude', addr.Geolocation__Latitude__s);
         sobjDst.put(strFieldPrefix + 'Longitude', addr.Geolocation__Longitude__s);
@@ -370,7 +419,7 @@ public with sharing class ADDR_Addresses_UTIL {
             sobjDst.put(strFieldPrefix + 'State', addr.MailingState__c);
             sobjDst.put(strFieldPrefix + 'Country', addr.MailingCountry__c);
         } else {
-            if (addr.MailingCountry__c != null) {
+            if (String.isNotBlank(addr.MailingCountry__c)) {
                 if (validCountriesByLabel.containsKey(addr.MailingCountry__c)) {
                     sobjDst.put(strFieldPrefix + 'Country', addr.MailingCountry__c);
                     sobjDst.put(strFieldPrefix + 'CountryCode', validCountriesByLabel.get(addr.MailingCountry__c));
@@ -378,46 +427,50 @@ public with sharing class ADDR_Addresses_UTIL {
                     sobjDst.put(strFieldPrefix + 'CountryCode', addr.MailingCountry__c.toUpperCase());
                     sobjDst.put(strFieldPrefix + 'Country', validCountriesByCode.get(addr.MailingCountry__c.toUpperCase()));
                 } else {
-                    // allow the invalid country to be placed in the country field, so Salesforce will generate the error.
+                    //Allow the invalid country to be placed in the country field, so Salesforce will generate the error.
                     sobjDst.put(strFieldPrefix + 'Country', addr.MailingCountry__c);
                 }
-            } else { // MailingCountry = null
-                sobjDst.put(strFieldPrefix + 'CountryCode', null);
-                sobjDst.put(strFieldPrefix + 'Country', null);
+            } else { 
+                // MailingCountry = null
+                sobjDst.put(strFieldPrefix + 'CountryCode', Null);
+                sobjDst.put(strFieldPrefix + 'Country', Null);
             }
-            if (addr.MailingState__c != null) {             
+            
+            if (String.isNotBlank(addr.MailingState__c)) {             
                 if (validStatesByLabel.containsKey(addr.MailingState__c)) {
                     sobjDst.put(strFieldPrefix + 'State', addr.MailingState__c);
                     sobjDst.put(strFieldPrefix + 'StateCode', validStatesByLabel.get(addr.MailingState__c));
                 } else {
-                    // too expensive for us to create the map of CountryCode|StateCode to StateLabel
-                    // so we will just try to save any state that isn't a label as a code.
+                    //Too expensive for us to create the map of CountryCode|StateCode to StateLabel
+                    //so we will just try to save any state that isn't a label as a code.
                     sobjDst.put(strFieldPrefix + 'StateCode', addr.MailingState__c.toUpperCase());
                 }
-            } else { // MailingState = null
-                sobjDst.put(strFieldPrefix + 'StateCode', null);
-                sobjDst.put(strFieldPrefix + 'State', null);   
+            } else { 
+                // MailingCountry = null
+                sobjDst.put(strFieldPrefix + 'StateCode', Null);
+                sobjDst.put(strFieldPrefix + 'State', Null);   
             }
         }
         
-        if (strFieldAddrType != null)
+        if (String.isNotBlank(strFieldAddrType)) {
             sobjDst.put(strFieldAddrType, addr.Address_Type__c);
-          
-        //UTIL_Debug.debug('****Object with copied address info: ' + JSON.serializePretty(sobjDst));
-        if(dmlWrapper != null)
+        }
+
+        if (dmlWrapper != Null) {
             dmlWrapper.objectsToUpdate.add(sobjDst);
+        }
     }
     
     /*******************************************************************************************************
-    * @description utility to determine if the "State and Country Picklist" field feature is enabled in Salesforce
-    * @return true if enabled; Fills 4 sets<> with a list of value codes and labels for each field
+    * @description Utility to determine if the "State and Country Picklist" field feature is enabled in Salesforce. 
+    * @return Boolean. True if enabled; Fills 4 Sets<> with a list of value codes and labels for each field. 
     ********************************************************************************************************/
     private static Boolean initValidStateCountryCodes() {
-
         // If State & Country Picklists are enabled in the org, build maps of the
         // valid Labels and Codes for each field to use for validation
         Map<String, Schema.SObjectField> acctFields = Account.getSobjectType().getDescribe().fields.getMap();
         Boolean isCodesEnabled = acctFields.containsKey('BillingCountryCode');
+        
         if (isCodesEnabled) {
             List<Schema.Picklistentry> countryPLValues = acctFields.get('BillingCountryCode').getDescribe().getPicklistValues();
             for (Schema.Picklistentry p : countryPLValues) {
@@ -426,31 +479,34 @@ public with sharing class ADDR_Addresses_UTIL {
                     validCountriesByCode.put(p.getValue(), p.getLabel());
                 }
             }
+            
             List<Schema.Picklistentry> statePLValues = acctFields.get('BillingStateCode').getDescribe().getPicklistValues();
             for (Schema.Picklistentry p : statePLValues) {
                 if (p.isActive()) { 
-                    validStatesByLabel.put(p.getLabel(), p.getValue());
-                    // we can't have a map of valid StateCodes, because they are not unique.
+                    // We can't have a map of valid StateCodes, because they are not unique.
                     // ideally we would have a map of CountryCode + StateCode -> StateLabel
                     // but Salesforce provides us no way of figuring out picklist dependencies efficiently. 
+                    validStatesByLabel.put(p.getLabel(), p.getValue());
                 }
             }
         }
+        
         return isCodesEnabled;
     }
     
     /*******************************************************************************************************
-    * @description utility to see if the address has only a subset of its seasonal fields set
-    * @param addr the Address to look at
-    * @return Boolean
+    * @description Utility to check if the mailing address fields on Address record has only a subset of 
+    * its seasonal fields set. 
+    * @param addr the Address record. 
+    * @return Boolean. 
     ********************************************************************************************************/
     public static void handleMultilineStreet(Address__c addr) {
-    
-        if (addr.MailingStreet__c == null)
+        if (String.isBlank(addr.MailingStreet__c)) {
             return;
-        
+        }
+
         // handle CR NL
-        integer ich = addr.MailingStreet__c.indexOf('\r\n');
+        Integer ich = addr.MailingStreet__c.indexOf('\r\n');
         if (ich > -1) {
             addr.MailingStreet2__c = addr.MailingStreet__c.substring(ich+2);
             addr.MailingStreet__c = addr.MailingStreet__c.left(ich);
@@ -467,63 +523,70 @@ public with sharing class ADDR_Addresses_UTIL {
     }
     
     /*******************************************************************************************************
-    * @description utility to see if the address has only a subset of its seasonal fields set
-    * @param addr the Address to look at
-    * @return Boolean
+    * @description Utility to check if the mailing street field on Address record has only a 
+    * subset of its seasonal fields set. 
+    * @param addr the Address record. 
+    * @return Boolean. 
     ********************************************************************************************************/
     public static string getMultilineStreet(Address__c addr) {
-        string str = addr.MailingStreet__c;
-        if (addr.MailingStreet2__c != null && addr.MailingStreet2__c.length() > 0)
+        String str = addr.MailingStreet__c;
+        
+        if (String.isNotBlank(addr.MailingStreet2__c)) {
             str += '\r\n' + addr.MailingStreet2__c;
+        }
+            
         return str;
     }
     
     /*******************************************************************************************************
-    * @description specifies whether state and country picklists are enabled in this org.
-    * @return true if enabled
+    * @description Specifies whether state and country picklists are enabled in this org.
+    * @return Boolean. True if enabled
     ********************************************************************************************************/ 
     public static Boolean isStateCountryPicklistsEnabled {
         get {
-            if (isStateCountryPicklistsEnabled == null)
+            if (isStateCountryPicklistsEnabled == Null) {
                 isStateCountryPicklistsEnabled = initValidStateCountryCodes();
+            }
             return isStateCountryPicklistsEnabled;
         }
         private set;
     }
     
     /*******************************************************************************************************
-    * @description For the list of Addresses, sees if there is already an existing Address in the Account that
+    * @description For the list of Address records, check if there is an existing Address in the Account that
     * matches. Creates only unique addresses from their respective household, and mark any existing matches 
     * as Default if the caller specifies it on the new address.
-    * @param listAddr a list of Addresses to update
-    * @param dmlWrapper the Addresses to update
-    * @param includeAddressType whether to include comparing the AddressType field
-    * @return void
+    * @param listAddr a list of Addresses to update. 
+    * @param dmlWrapper the Addresses to update. 
+    * @param includeAddressType whether to include comparing the AddressType field. 
+    * @return void. 
     ********************************************************************************************************/ 
     public static NonDupeAddrs getNonDuplicateAddresses(List<Address__c> listAddr, Boolean includeAddressType) {  
-        
         NonDupeAddrs nonDupeAddrs = new NonDupeAddrs();
-        Map<Address__c, Address__c> mapAddrDupAddr= findDuplicateAddresses(listAddr);
+        Map<Address__c, Address__c> mapAddrDupAddr = findDuplicateAddresses(listAddr);
+        
         for (Address__c addrNew : listAddr) {
             Address__c addrDup = mapAddrDupAddr.get(addrNew);
-            if (addrDup != null) {
-                addrDup.Latest_Start_Date__c = System.today();
-                addrDup.Latest_End_Date__c = null; 
-                // if it is a fuzzy match, not exact, then we want to update the existing address.
+            
+            if (addrDup != Null) {
+                addrDup.Latest_Start_Date__c = System.Today();
+                addrDup.Latest_End_Date__c = Null; 
+                
+                //If it is a fuzzy match, not exact, then we want to update the existing address.
                 if (isAddressChanged(addrNew, addrDup, includeAddressType)) {
                     copyAddressObj(addrNew, addrDup);
                     if (addrNew.Default_Address__c) {
-                        addrDup.Default_Address__c = true;
+                        addrDup.Default_Address__c = True;
                     }
                     nonDupeAddrs.updatedAddrs.add(addrDup);
                 } else if (addrNew.Default_Address__c && !addrDup.Default_Address__c) {
-                    addrDup.Default_Address__c = true;
+                    addrDup.Default_Address__c = True;
                     nonDupeAddrs.updatedAddrs.add(addrDup);
-               }
+                }
             } else {
-                 addrNew.Latest_Start_Date__c = System.today();
-                 addrNew.Latest_End_Date__c = null; 
-                 nonDupeAddrs.newAddrs.add(addrNew);
+                addrNew.Latest_Start_Date__c = System.Today();
+                addrNew.Latest_End_Date__c = Null; 
+                nonDupeAddrs.newAddrs.add(addrNew);
             } 
         }
         return nonDupeAddrs;
@@ -542,6 +605,7 @@ public with sharing class ADDR_Addresses_UTIL {
             if(newAddrs.size() > 0) {
                 insert newAddrs;
             }
+            
             if(updatedAddrs.size() > 0) {
                 update updatedAddrs;
             }
@@ -549,197 +613,222 @@ public with sharing class ADDR_Addresses_UTIL {
     }
     
     /*******************************************************************************************************
-    * @description for the given addresses, find if they have a match, and return a map that
-    * has null for no match, and the matching address if there is a match.
-    * @param listAddr a list of Addresses to update
+    * @description For the given Address records, find if they have a match, and return a map that
+    * has null for no match, and the matching Address if there is a match.
+    * @param listAddr a list of Addresses to update. 
     * @return Map<Address__c, Address__c>
     ********************************************************************************************************/
     public static Map<Address__c, Address__c> findDuplicateAddresses(List<Address__c> listAddr) {      
-
         Map<Id, List<Address__c>> mapParentIdToAddrs = getParentIdToAddrs(listAddr);
         Boolean tryFuzzy = UTIL_CustomSettingsFacade.getSettings().Simple_Address_Change_Treated_as_Update__c;
-        
-        // create our map for returning information in
+        //Create our map for returning information in
         Map<Address__c, Address__c> mapAddrDupAddr = new Map<Address__c, Address__c>();
         
-        // now compare our Addresses to the existing Addresses
+        //Compare our Addresses to the existing Addresses
         for (Address__c addr : listAddr) {
             List<Address__c> childAddrs;
-            if(addr.Parent_Account__c != null) {
+            
+            if (String.isNotBlank(addr.Parent_Account__c)) {
                 childAddrs = mapParentIdToAddrs.get(addr.Parent_Account__c);
-            } else if(addr.Parent_Contact__c != null) {
+            } else if (String.isNotBlank(addr.Parent_Contact__c)) {
                 childAddrs = mapParentIdToAddrs.get(addr.Parent_Contact__c);
             }
             
-            Boolean hasMatch = false;
-            if (childAddrs != null) {
-                Address__c addrMatch = null;
+            Boolean hasMatch = False;
+            if (childAddrs != Null) {
+                Address__c addrMatch = Null;
                 for (Address__c childAddr : childAddrs) {
-                    // only include address type in the test if the new one isn't empty.
-                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != null)) {
-                        // found exact match, record it and bail out
+                    //Only include address type in the test if the new one isn't empty.
+                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != Null)) { 
+                        //Found exact match, record it and bail out
                         addrMatch = childAddr;
                         break;
                     }
-                    if (tryFuzzy && isAddressMatchFuzzy(addr, childAddr, addr.Address_Type__c != null)) {
-                        // found fuzzy match, remember it and continue searching
+                    if (tryFuzzy && isAddressMatchFuzzy(addr, childAddr, addr.Address_Type__c != Null)) {
+                        //Found fuzzy match, remember it and continue searching
                         addrMatch = childAddr;
                         continue;
                     }
                 }
-                if (addrMatch != null) {
-                    hasMatch = true;
+                
+                if (addrMatch != Null) {
+                    hasMatch = True;
                     mapAddrDupAddr.put(addr, addrMatch);
                 }
             }
-            if (!hasMatch)
-                mapAddrDupAddr.put(addr, null);
+            
+            if (!hasMatch) {
+                mapAddrDupAddr.put(addr, Null);
+            }
         }
         return mapAddrDupAddr;
     }
     
     /*******************************************************************************************************
     * @description Creates a map of parent Id to a list of children Addresses.
-    * @param listAddr the list of Addresses
+    * @param listAddr the list of Address records. 
     * @return Map<Id, List<Address__c>> Map that contains the Addresses for each parent Id. 
     ********************************************************************************************************/
     public static Map<ID, List<Address__c>> getParentIdToAddrs(List<Address__c> listAddr) {
-        // for each address, create a map of Parent ID to lists of Addresses
+        //For each address, create a map of Parent ID to lists of Addresses
         List<Id> listParentId = new List<Id>();
+        
         for (Address__c addr : listAddr) {
-            if(addr.Parent_Account__c != null) {
+            if(String.isNotBlank(addr.Parent_Account__c)) {
                 listParentId.add(addr.Parent_Account__c);
-            } else if(addr.Parent_Contact__c != null) {
+            } else if(String.isNotBlank(addr.Parent_Contact__c)) {
                 listParentId.add(addr.Parent_Contact__c);
             }
         }
+        
         return getMapParentIdListAddrs(listParentId);
     }
     
     /*******************************************************************************************************
-    * @description utility to create a map of parent Id to a list of Addresses in that record, given a list of parent Ids.
-    * @param listAccId the list of Account Id's
-    * @return Map<Id, List<Address__c>> map that contains the Addresses for each parent Id.
+    * @description Utility to create a map of parent Id to a list of Addresses in that record, given a list of parent Ids.
+    * @param listAccId the list of Account Id's. 
+    * @return Map<Id, List<Address__c>> Map that contains the Addresses for each parent Id.
     ********************************************************************************************************/
     public static Map<Id, List<Address__c>> getMapParentIdListAddrs(List<Id> listParentId) {
-          
-        List<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Parent_Contact__c, Address_Type__c,
-            MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, 
-            Seasonal_Start_Year__c, Seasonal_End_Year__c, Seasonal_Start_Month__c, Seasonal_Start_Day__c, Seasonal_End_Month__c, 
-            Seasonal_End_Day__c, Geolocation__Latitude__s, Geolocation__Longitude__s from Address__c where Parent_Account__c 
-            IN :listParentId or Parent_Contact__c in :listParentId order by Default_Address__c desc, LastModifiedDate asc]; // ordering needed by cleanupAccountAddresses().
+        List<Address__c> listAddrOther = [SELECT Id, Default_Address__c, Parent_Account__c, 
+                                            Parent_Contact__c, Address_Type__c, MailingStreet__c, 
+                                            MailingStreet2__c, MailingCity__c, MailingCounty__c, 
+                                            MailingState__c, MailingPostalCode__c, MailingCountry__c, 
+                                            Seasonal_Start_Year__c, Seasonal_End_Year__c, Seasonal_Start_Month__c, 
+                                            Seasonal_Start_Day__c, Seasonal_End_Month__c, Seasonal_End_Day__c, 
+                                            Geolocation__Latitude__s, Geolocation__Longitude__s 
+                                        FROM Address__c 
+                                        WHERE Parent_Account__c IN :listParentId OR 
+                                        Parent_Contact__c IN :listParentId ORDER BY Default_Address__c DESC, LastModifiedDate ASC]; 
+                                        //Ordering needed by cleanupAccountAddresses()
         
         Map<Id, List<Address__c>> mapParentIdListAddrs = new Map<Id, List<Address__c>>();   
         for (Address__c addr : listAddrOther) { 
-            if(addr.Parent_Account__c != null) {
+            if(String.isNotBlank(addr.Parent_Account__c)) {
                 List<Address__c> listAddrParentAccs = mapParentIdListAddrs.get(addr.Parent_Account__c);
-                if (listAddrParentAccs == null) {
+                if (listAddrParentAccs == Null) {
                     listAddrParentAccs = new List<Address__c>();
                     mapParentIdListAddrs.put(addr.Parent_Account__c, listAddrParentAccs);
                 }
                 listAddrParentAccs.add(addr);
             }
             
-            if(addr.Parent_Contact__c != null) {
+            if(String.isNotBlank(addr.Parent_Contact__c)) {
                 List<Address__c> listAddrParentContacts = mapParentIdListAddrs.get(addr.Parent_Contact__c);
-                if (listAddrParentContacts == null) {
+                if (listAddrParentContacts == Null) {
                     listAddrParentContacts = new List<Address__c>();
                     mapParentIdListAddrs.put(addr.Parent_Contact__c, listAddrParentContacts);
                 }
                 listAddrParentContacts.add(addr);
             } 
         }
+        
         return mapParentIdListAddrs;
     }
     
     /*******************************************************************************************************
-    * @description Updates the Latest date fields on any address overrides
-    * @param mapAddrIdIsOverride map of Address Id's to an isOverride boolean
-    * @param dmlWrapper to hold the Addresses that need updating 
-    * @return void  
+    * @description Updates the Latest date fields on any Address overrides. 
+    * @param mapAddrIdIsOverride map of Address Id's to an isOverride boolean. 
+    * @param dmlWrapper to hold the Addresses that need updating. 
+    * @return void. 
     ********************************************************************************************************/
     public static void updateAddrIsOverride(Map<Id, boolean> mapAddrIdIsOverride, TDTM_Runnable.DmlWrapper dmlWrapper) {
         UTIL_Debug.debug('****mapAddrIdIsOverride: ' + JSON.serializePretty(mapAddrIdIsOverride));
+        
         for (ID id : mapAddrIdIsOverride.keySet()) {
             Address__c addr = new Address__c();
             addr.Id = id;
-            if (mapAddrIdIsOverride.get(id) == true) {
+            if (mapAddrIdIsOverride.get(id) == True) {
                 UTIL_Debug.debug('****Updating latest start date and latest end date');
-                addr.Latest_Start_Date__c = system.today();
-                addr.Latest_End_Date__c = null;
+                addr.Latest_Start_Date__c = System.Today();
+                addr.Latest_End_Date__c = Null;
             } else {
                 UTIL_Debug.debug('****Updating only latest end date');
                 addr.Latest_End_Date__c = system.today();
             }
+            
             dmlWrapper.objectsToUpdate.add(addr);
         }
     }
     
     /*******************************************************************************************************
     * @description Sets Default_Address__c field to false in all Address records that aren't new.
-    * @param newAddr List of new Address records.
-    * @param allAddrs List of all address records,.
+    * @param newAddr list of new Address records.
+    * @param allAddrs list of all address records. 
     * @param dmlWrapper to hold the Address records that need updating.
-    * @return void  
+    * @return void. 
     ********************************************************************************************************/
     public static void uncheckDefaultOtherAddrs(Address__c newAddr, List<Address__c> allAddrs, TDTM_Runnable.DmlWrapper dmlWrapper) {
         for(Address__c addr : allAddrs) {
             if(addr.ID != newAddr.ID) {
-                addr.Default_Address__c = false;
+                addr.Default_Address__c = False;
                 dmlWrapper.objectsToUpdate.add(addr);
             }
         }
     }
     
     /*******************************************************************************************************
-    * @description Clears all address info from the Account.
-    * @param acc The Account that needs address information to be cleared.
-    * @return void  
+    * @description Clears all address info from the Account record. 
+    * @param acc the Account that needs address information to be cleared.
+    * @return void. 
     ********************************************************************************************************/
     public static void clearAddrInfo(Account acc) {
-        acc.BillingStreet = null;
-        acc.BillingCity = null;
-        acc.BillingState = null;
-        acc.BillingPostalCode = null;
-        acc.BillingCountry = null;
-        acc.BillingLatitude = null;
-        acc.BillingLongitude = null;
+        acc.BillingStreet = Null;
+        acc.BillingCity = Null;
+        acc.Billing_County__c = Null;
+        acc.BillingState = Null;
+        acc.BillingPostalCode = Null;
+        acc.BillingCountry = Null;
+        acc.BillingLatitude = Null;
+        acc.BillingLongitude = Null;
+        
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
-            acc.BillingCountry = null;
-            acc.BillingState = null;   
+            acc.BillingCountry = Null;
+            acc.BillingState = Null;   
         }
     }
     
     /*******************************************************************************************************
-    * @description Clears all address info from the Contact.
-    * @param acc The Contact that needs address information to be cleared.
-    * @return void  
+    * @description Clears all address info from the Contact record. 
+    * @param acc the Contact that needs address information to be cleared.
+    * @return void. 
     ********************************************************************************************************/
     public static void clearAddrInfo(Contact contact) {
-        contact.MailingStreet = null;
-        contact.MailingCity = null;
-        contact.MailingState = null;
-        contact.MailingPostalCode = null;
-        contact.MailingCountry = null;
-        contact.MailingLatitude = null;
-        contact.MailingLongitude = null;
+        contact.MailingStreet = Null;
+        contact.MailingCity = Null;
+        contact.Mailing_County__c = Null;
+        contact.MailingState = Null;
+        contact.MailingPostalCode = Null;
+        contact.MailingCountry = Null;
+        contact.MailingLatitude = Null;
+        contact.MailingLongitude = Null;
     }
     
     /*******************************************************************************************************
     * @description Builds a query with all address-related field from Account, its child Contacts, and its 
-    *              child Addresses. StateCountryPicklist fields included if feature enabled.
-    * @return String The query string.
+    * child Addresses. StateCountryPicklist fields included if feature enabled.
+    * @return String. The query string.
     ********************************************************************************************************/
     public static String getParentAccsWithChildrenQuery() {
-        String query = 'select recordTypeId, Current_Address__c, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude';     
-        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
+        String query = 'SELECT recordTypeId, Current_Address__c, BillingStreet, ' +
+        'BillingCity, Billing_County__c, BillingState, ' +
+        'BillingPostalCode, BillingCountry, BillingLatitude, ' +
+        'BillingLongitude';
+        
+        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             query += ', BillingCountryCode, BillingStateCode';
-        query += ', (select Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
-        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
+        }
+            
+        query += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        
+        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             query += ', MailingCountryCode, MailingStateCode';
-        query += ' from Account.Contacts)';
-        query += ', (select Default_Address__c, Parent_Account__c, Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r)';
-        query +=  ' from Account where Id IN ';
+        }
+            
+        query += ' FROM Account.Contacts)';
+        query += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c FROM Account.Addresses__r)';
+        query +=  ' FROM Account WHERE Id IN ';
+        
         return query;
     }
 }
