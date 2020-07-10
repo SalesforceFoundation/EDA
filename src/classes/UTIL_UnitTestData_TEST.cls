@@ -149,6 +149,7 @@ public class UTIL_UnitTestData_TEST {
             addr.Address_Type__c = 'Home';
             addr.MailingStreet__c = 'Street' + i;
             addr.MailingCity__c = 'City' + i;
+            addr.MailingCounty__c = 'County' + i;
             addr.MailingState__c = 'Washington';
             addr.MailingPostalCode__c = 'Zip' + i;
             addr.MailingCountry__c = 'United States';
@@ -189,6 +190,7 @@ public class UTIL_UnitTestData_TEST {
             accsAddrs.accs[i].Current_Address__c = accsAddrs.addrs[i].Id;
             accsAddrs.accs[i].BillingStreet = accsAddrs.addrs[i].MailingStreet__c;
             accsAddrs.accs[i].BillingCity = accsAddrs.addrs[i].MailingCity__c;
+            accsAddrs.accs[i].Billing_County__c = accsAddrs.addrs[i].MailingCounty__c;
             accsAddrs.accs[i].BillingState = accsAddrs.addrs[i].MailingState__c;
             accsAddrs.accs[i].BillingPostalCode = accsAddrs.addrs[i].MailingPostalCode__c;
             accsAddrs.accs[i].BillingCountry = accsAddrs.addrs[i].MailingCountry__c;
@@ -242,6 +244,7 @@ public class UTIL_UnitTestData_TEST {
             contactsAddrs.contacts[i].Current_Address__c = contactsAddrs.addrs[i].Id;
             contactsAddrs.contacts[i].MailingStreet = contactsAddrs.addrs[i].MailingStreet__c;
             contactsAddrs.contacts[i].MailingCity = contactsAddrs.addrs[i].MailingCity__c;
+            contactsAddrs.contacts[i].Mailing_County__c = contactsAddrs.addrs[i].MailingCounty__c;
             contactsAddrs.contacts[i].MailingState = contactsAddrs.addrs[i].MailingState__c;
             contactsAddrs.contacts[i].MailingPostalCode = contactsAddrs.addrs[i].MailingPostalCode__c;
             contactsAddrs.contacts[i].MailingCountry = contactsAddrs.addrs[i].MailingCountry__c;
@@ -311,6 +314,7 @@ public class UTIL_UnitTestData_TEST {
             consAccsAddrs.accs[i].Current_Address__c = consAccsAddrs.addrs[i].ID;
             consAccsAddrs.accs[i].BillingStreet = consAccsAddrs.addrs[i].MailingStreet__c;
             consAccsAddrs.accs[i].BillingCity = consAccsAddrs.addrs[i].MailingCity__c;
+            consAccsAddrs.accs[i].Billing_County__c = consAccsAddrs.addrs[i].MailingCounty__c;
             consAccsAddrs.accs[i].BillingState = consAccsAddrs.addrs[i].MailingState__c;
             consAccsAddrs.accs[i].BillingPostalCode = consAccsAddrs.addrs[i].MailingPostalCode__c;
             consAccsAddrs.accs[i].BillingCountry = consAccsAddrs.addrs[i].MailingCountry__c;
@@ -326,11 +330,12 @@ public class UTIL_UnitTestData_TEST {
             for(Integer j = 0; j < contactCount; j++) {
                 consAccsAddrs.contacts[ (i * contactCount) + j].Current_Address__c = parentAcc.Current_Address__c;
                 consAccsAddrs.contacts[ (i * contactCount) + j].MailingStreet = addr.MailingStreet__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingCity = addr.MailingCity__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingState = addr.MailingState__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingPostalCode = addr.MailingPostalCode__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingCountry = addr.MailingCountry__c;
-	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingLatitude = addr.Geolocation__Latitude__s;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingCity = addr.MailingCity__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].Mailing_County__c = addr.MailingCounty__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingState = addr.MailingState__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingPostalCode = addr.MailingPostalCode__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingCountry = addr.MailingCountry__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingLatitude = addr.Geolocation__Latitude__s;
                 consAccsAddrs.contacts[ (i * contactCount) + j].MailingLongitude = addr.Geolocation__Longitude__s;
             }
         }

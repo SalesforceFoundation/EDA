@@ -206,6 +206,18 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>MailingCounty__c</fullName>
+        <description>The county detail for this Address.</description>
+        <externalId>false</externalId>
+        <label>Mailing County</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>MailingPostalCode__c</fullName>
         <externalId>false</externalId>
         <label>Mailing Zip/Postal Code</label>
