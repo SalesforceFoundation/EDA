@@ -665,6 +665,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
        and Affilaiton Mappings have Record Type Names for Account Record Type */
+
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecType() {
 
@@ -720,6 +721,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     
     /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
        and Affilaiton Mappings have Record Type Labels for Account Record Type */
+
     @isTest
     private static void affiliationRecordTypeEnforceWLabelsForAccRecType() {
 
@@ -776,6 +778,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
        and Affilaiton Mappings have API names for Account Record Type and primary Affiliaiton Fields */
+
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecTypeAndPrimaryAffl() {
 
@@ -939,6 +942,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     /* This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing 
      both Record type Names and Labels list from affiliation mappings */
+
     @isTest
     private static void testGetValidAccRecordTypesInMappingsMethodwithAPIAndLabels() {
 

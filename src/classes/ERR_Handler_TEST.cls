@@ -154,7 +154,7 @@ public with sharing class ERR_Handler_TEST {
         system.assertEquals(1, [select count() from Error__c]);
     }
 
-    // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Names
+    // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type API Names
     @isTest
     private static void testHandleAfflNullRecordTypeExceptionWithAPIPositive() {
         
@@ -187,7 +187,7 @@ public with sharing class ERR_Handler_TEST {
         Test.stopTest();
     }
 
-    // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Names
+    // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Labels
     @isTest
     private static void testHandleAfflNullRecordTypeExceptionWithLabelsPositive() {
         
@@ -218,7 +218,7 @@ public with sharing class ERR_Handler_TEST {
         Test.stopTest();
     }
 
-   // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Names
+    // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Names
     @isTest
     private static void testHandleAfflNullRecordTypeExceptionWithLabelsNegative() {
         
@@ -247,7 +247,8 @@ public with sharing class ERR_Handler_TEST {
             Test.startTest();
                 ERR_ExceptionHandler.handleAfflNullRecordTypeException(afflAfterInsert, accRecTypeLabels);
             Test.stopTest();
-        } catch (Exception error) {
+            System.assert(false, 'Always throw an exception when affiliation type is not a part of Mappings');
+        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
             System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
         }
         

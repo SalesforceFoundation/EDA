@@ -115,9 +115,9 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         UTIL_Debug.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
     }
     
-    private Map<String, String> getContactLabelsNamesMap(List<SObjectField> cf) {
+    private Map<String, String> getContactLabelsNamesMap(List<SObjectField> contactFieldsList) {
         Map<String, String> labelsnames = new Map<String, String>();
-        for(SObjectField field : cf) {
+        for (SObjectField field : contactFieldsList) {
             labelsnames.put(field.getDescribe().getLabel(), field.getDescribe().getName());
         }
         return labelsnames;
@@ -140,8 +140,8 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         accountRecordTypes = new List<String>();
 
         //Put affl mappings in a map.
-        for(Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-            if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
+        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
+            if (!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
                 accRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
                 accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
                 accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
@@ -214,14 +214,14 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     public Boolean needsProgramEnrollment(Affiliation__c affl) {
         Boolean autoEnrollment = false;
         String autoRole, autoStatus;
-        if(affl.Affiliation_Type__c != null) {
-            if(accTypeToEnrollCreate.get(affl.Affiliation_Type__c) != null) {
+        if (affl.Affiliation_Type__c != null) {
+            if (accTypeToEnrollCreate.get(affl.Affiliation_Type__c) != null) {
                autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
             }
             autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
             autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
         }
-        if(autoEnrollment && affl != null && affl.Role__c != null && autoRole == affl.Role__c && affl.Status__c != null 
+        if (autoEnrollment && affl != null && affl.Role__c != null && autoRole == affl.Role__c && affl.Status__c != null 
         && autoStatus == affl.Status__c) { 
            return true;
         }
@@ -248,7 +248,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     /*******************************************************************************************************
     * @description Returns valid contact primary affiliation fields from mappings
     * @param cf List of fields.
-    * @param primaryAfflFieldsFromsettings List of field labels.
+    * @param primaryAfflFieldsFromsettings List of field labels/API Names from settings.
     * @return List<SObjectField> List of valid contact primary affiliation fields from mappings.
     ********************************************************************************************************/
     @testVisible
