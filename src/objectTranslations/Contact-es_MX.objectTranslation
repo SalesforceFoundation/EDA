@@ -3487,6 +3487,10 @@
         <name>HIPAA__c</name>
     </fields>
     <fields>
+        <label><!-- Mailing County --></label>
+        <name>Mailing_County__c</name>
+    </fields>
+    <fields>
         <label>Formación militar</label>
         <name>Military_Background__c</name>
     </fields>
@@ -3510,6 +3514,10 @@
             <masterLabel>Household__c.Name</masterLabel>
             <translation>Household__c.Name</translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Other County --></label>
+        <name>Other_County__c</name>
     </fields>
     <fields>
         <help>¿Cuál teléfono debe ser el usado para la mayoría de las comunicaciones con este contacto?</help>
@@ -3653,6 +3661,10 @@
         <picklistValues>
             <masterLabel>Other</masterLabel>
             <translation>Otros</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vacation Residence</masterLabel>
+            <translation><!-- Vacation Residence --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work</masterLabel>
