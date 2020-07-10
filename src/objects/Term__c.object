@@ -91,8 +91,8 @@
     </fields>
     <fields>
         <fullName>Grading_Period_Sequence__c</fullName>
-        <description>Indicates which Term this is. For example, enter "1"  for the first quarter or semester, "2" for the second quarter or semester, etc.</description>
-        <inlineHelpText>Indicates which Term this is. For example, enter "1"  for the first quarter or semester, "2" for the second quarter or semester, etc.</inlineHelpText>
+        <description>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</description>
+        <inlineHelpText>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</inlineHelpText>
         <externalId>false</externalId>
         <label>Grading Period Sequence</label>
         <precision>18</precision>
