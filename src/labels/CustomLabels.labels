@@ -342,7 +342,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>affiliationWithSameAccExists</shortDescription>
-        <value>This Contact already has a Primary Affiliation to the specified Account. Either deselect the Primary setting for the other Affiliation so you can designate this one as Primary, or create this Affiliation without the Primary value.”</value>
+        <value>This Contact already has a Primary Affiliation to the specified Account. Either deselect the Primary setting for the other Affiliation so you can designate this one as Primary, or create this Affiliation without the Primary value.</value>
     </labels>
     <labels>
         <fullName>afflAccountNoRecordType</fullName>
