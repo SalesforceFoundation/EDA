@@ -2917,9 +2917,9 @@
     <fields>
         <fullName>Deceased__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates this person is deceased. When selected, the communication preferences are set to Do Not Call, Email Opt Out, and Do Not Contact. If the Contact is not the only member of the Household, the Contact name is removed from the Household name.</description>
+        <description>Indicates this person is deceased. When selected, also enables Do Not Contact, Do Not Call, Email Opt Out, and Fax Opt Out. If the Contact is not the only member of the Household, the Contact name is removed from the Household name.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates this person is deceased. When selected, the communication preferences are set to Do Not Call, Email Opt Out, and Do Not Contact. If the Contact is not the only member of the Household, the Contact name is removed from the Household name.</inlineHelpText>
+        <inlineHelpText>Indicates this person is deceased. When selected, also enables Do Not Contact, Do Not Call, Email Opt Out, and Fax Opt Out. If the Contact is not the only member of the Household, the Contact name is removed from the Household name.</inlineHelpText>
         <label>Deceased</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
