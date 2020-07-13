@@ -32,7 +32,7 @@ class SystemSettingsPage(BaseEDAPage, BasePage):
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_element_attribute(locator, "alt")
             if not str(expected_value).lower() == str(actual_value).lower() :
-                raise Exception (f"Checkbox value in {field} is {actual_value} instead of {expected_value}")
+                raise Exception (f"Checkbox value in {field} is {actual_value} but it should be {expected_value}")
 
     def verify_default_dropdown_value(self,**kwargs):
         """ This method validates the default dropdown value for the field passed in kwargs
