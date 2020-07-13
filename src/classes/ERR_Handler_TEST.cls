@@ -157,21 +157,21 @@ public with sharing class ERR_Handler_TEST {
     // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type API Names
     @isTest
     private static void testHandleAfflNullRecordTypeExceptionWithAPIPositive() {
-        
+
         // Insert an Account
         Account[] testAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID());
         insert testAccount;
-        
+
         // Insert a Contact
         Contact testContact = UTIL_UnitTestData_TEST.getContact();
         insert testContact;
-        
+
         Affiliation__c affl = new Affiliation__c(Contact__c = testContact.ID, Account__c = testAccount[0].ID);
         insert affl;
-        
+
         Affiliation__c afflAfterInsert = [Select Id, Affiliation_Type__c, Account__c FROM Affiliation__c];
         System.assertEquals('Business Organization', afflAfterInsert.Affiliation_Type__c);
-        
+
         // Construct a list of Account Record Type Names
         List<String> accRecTypeAPIs = new List<String>();
            accRecTypeAPIs.add('Academic_Program');
@@ -180,7 +180,7 @@ public with sharing class ERR_Handler_TEST {
            accRecTypeAPIs.add('HH_Account');
            accRecTypeAPIs.add('University_Department');
            accRecTypeAPIs.add('Sports_Organization');
-        
+
         // Test calling the method doesn't throw any error
         Test.startTest();
             ERR_ExceptionHandler.handleAfflNullRecordTypeException(afflAfterInsert, accRecTypeAPIs);
@@ -190,19 +190,19 @@ public with sharing class ERR_Handler_TEST {
     // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Labels
     @isTest
     private static void testHandleAfflNullRecordTypeExceptionWithLabelsPositive() {
-        
+
         Account[] testAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID());
         insert testAccount;
-        
+
         Contact testContact = UTIL_UnitTestData_TEST.getContact();
         insert testContact;
-        
+
         Affiliation__c affl = new Affiliation__c(Contact__c = testContact.ID, Account__c = testAccount[0].ID);
         insert affl;
-        
+
         Affiliation__c afflAfterInsert = [Select Id, Affiliation_Type__c, Account__c FROM Affiliation__c];
         System.assertEquals('Business Organization', afflAfterInsert.Affiliation_Type__c);
-        
+
         // Construct a list of Account Record Type Names
         List<String> accRecTypeLabels = new List<String>();
            accRecTypeLabels.add('Academic Program');
@@ -211,7 +211,7 @@ public with sharing class ERR_Handler_TEST {
            accRecTypeLabels.add('Household Account');
            accRecTypeLabels.add('University Department');
            accRecTypeLabels.add('Sports Organization');
-        
+
         // Test calling the method doesn't throw any error
         Test.startTest();
             ERR_ExceptionHandler.handleAfflNullRecordTypeException(afflAfterInsert, accRecTypeLabels);
@@ -221,19 +221,19 @@ public with sharing class ERR_Handler_TEST {
     // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Names
     @isTest
     private static void testHandleAfflNullRecordTypeExceptionWithLabelsNegative() {
-        
+
         Account[] testAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID());
         insert testAccount;
-        
+
         Contact testContact = UTIL_UnitTestData_TEST.getContact();
         insert testContact;
-        
+
         Affiliation__c affl = new Affiliation__c(Contact__c = testContact.ID, Account__c = testAccount[0].ID);
         insert affl;
-        
+
         Affiliation__c afflAfterInsert = [Select Id, Affiliation_Type__c, Account__c FROM Affiliation__c];
         System.assertEquals('Business Organization', afflAfterInsert.Affiliation_Type__c);
-        
+
         // Construct a list of Account Record Type Names
         List<String> accRecTypeLabels = new List<String>();
            accRecTypeLabels.add('Academic Program');
@@ -241,7 +241,7 @@ public with sharing class ERR_Handler_TEST {
            accRecTypeLabels.add('Household Account');
            accRecTypeLabels.add('University Department');
            accRecTypeLabels.add('Sports Organization');
-        
+
         // Test Error is thrown because Business Organization is not part of accRecTypeLabels
         try {
             Test.startTest();
@@ -251,6 +251,5 @@ public with sharing class ERR_Handler_TEST {
         } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
             System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
         }
-        
     }
 }
