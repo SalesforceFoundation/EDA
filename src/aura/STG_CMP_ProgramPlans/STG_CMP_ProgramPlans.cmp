@@ -16,7 +16,7 @@
                             <aura:set attribute="else">
                                 <ui:inputCheckbox aura:id="validatePPNestedPR" value="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}"
                                                   class="validate-PP-Nested-PR" />
-                                <span class="slds-checkbox--faux"></span>
+                                <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}"></span>
                                 <span class="slds-form-element__label"></span>
                             </aura:set>
                         </aura:if>
