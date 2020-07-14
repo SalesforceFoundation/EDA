@@ -337,6 +337,14 @@
         <value>The name format used for auto-created Administrative Accounts.</value>
     </labels>
     <labels>
+        <fullName>affiliationWithSameAccExists</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>affiliationWithSameAccExists</shortDescription>
+        <value>This Contact already has a Primary Affiliation to the specified Account. Either deselect the Primary setting for the other Affiliation so you can designate this one as Primary, or create this Affiliation without the Primary value.</value>
+    </labels>
+    <labels>
         <fullName>afflAccountNoRecordType</fullName>
         <categories>Error</categories>
         <language>en_US</language>
