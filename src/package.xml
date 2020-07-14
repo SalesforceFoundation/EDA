@@ -602,6 +602,7 @@
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
+        <members>affiliationWithSameAccExists</members>
         <members>AttendanceCourseConnectionContactMismatch</members>
         <members>AutoCreateFieldError</members>
         <members>BatchJobRunningProblem</members>

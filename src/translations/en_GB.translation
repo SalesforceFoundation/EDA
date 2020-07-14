@@ -173,6 +173,10 @@
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
+        <label><!-- affiliationWithSameAccExists --></label>
+        <name>affiliationWithSameAccExists</name>
+    </customLabels>
+    <customLabels>
         <label>We can&apos;t create this Affiliation because the specified Account doesn&apos;t have a record type.</label>
         <name>afflAccountNoRecordType</name>
     </customLabels>
