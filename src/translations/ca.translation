@@ -173,6 +173,10 @@
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
+        <label><!-- affiliationWithSameAccExists --></label>
+        <name>affiliationWithSameAccExists</name>
+    </customLabels>
+    <customLabels>
         <label>No podem crear aquesta afiliació perquè el compte especificat no té un tipus de registre.</label>
         <name>afflAccountNoRecordType</name>
     </customLabels>

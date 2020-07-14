@@ -1131,6 +1131,31 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- The Contact&apos;s citizenship status. --></help>
+        <label><!-- Citizenship Status --></label>
+        <name>Citizenship_Status__c</name>
+        <picklistValues>
+            <masterLabel>Other (Non-U.S.)</masterLabel>
+            <translation><!-- Other (Non-U.S.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+            <translation><!-- U.S. Citizen or U.S. National --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Dual Citizen</masterLabel>
+            <translation><!-- U.S. Dual Citizen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Permanent Resident</masterLabel>
+            <translation><!-- U.S. Permanent Resident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U.S. Refugee or Asylee</masterLabel>
+            <translation><!-- U.S. Refugee or Asylee --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label>País de origen</label>
         <name>Country_of_Origin__c</name>
         <picklistValues>
@@ -2255,6 +2280,10 @@
         <label>Dirección actual</label>
         <name>Current_Address__c</name>
         <relationshipLabel>Contactos (Dirección actual)</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date Deceased --></label>
+        <name>Date_Deceased__c</name>
     </fields>
     <fields>
         <help>Cuando se selecciona, esta opción marca el contacto como fallecido, y lo excluye de listas domésticas, emails y llamadas de teléfono.</help>
@@ -3423,6 +3452,21 @@
         <name>Financial_Aid_Applicant__c</name>
     </fields>
     <fields>
+        <help><!-- The Contact&apos;s former first name. --></help>
+        <label><!-- Former First Name --></label>
+        <name>Former_First_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Contact&apos;s former last name. --></help>
+        <label><!-- Former Last Name --></label>
+        <name>Former_Last_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Contact&apos;s former middle name. --></help>
+        <label><!-- Former Middle Name --></label>
+        <name>Former_Middle_Name__c</name>
+    </fields>
+    <fields>
         <label>Género</label>
         <name>Gender__c</name>
         <picklistValues>
@@ -3441,6 +3485,10 @@
     <fields>
         <label>HIPAA</label>
         <name>HIPAA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mailing County --></label>
+        <name>Mailing_County__c</name>
     </fields>
     <fields>
         <label>Formación militar</label>
@@ -3466,6 +3514,10 @@
             <masterLabel>Household__c.Name</masterLabel>
             <translation>Household__c.Name</translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Other County --></label>
+        <name>Other_County__c</name>
     </fields>
     <fields>
         <help>¿Cuál teléfono debe ser el usado para la mayoría de las comunicaciones con este contacto?</help>
@@ -3609,6 +3661,10 @@
         <picklistValues>
             <masterLabel>Other</masterLabel>
             <translation>Otros</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vacation Residence</masterLabel>
+            <translation><!-- Vacation Residence --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work</masterLabel>

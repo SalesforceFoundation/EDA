@@ -173,6 +173,10 @@
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
+        <label><!-- affiliationWithSameAccExists --></label>
+        <name>affiliationWithSameAccExists</name>
+    </customLabels>
+    <customLabels>
         <label>No podemos crear esta Afiliación porque la Cuenta especificada no tiene un tipo de registro.</label>
         <name>afflAccountNoRecordType</name>
     </customLabels>

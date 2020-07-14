@@ -10,10 +10,7 @@ Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/AffiliationsSettingsPageObject.py
 
-Test Setup      Initialize test setup
-
 Suite Setup     Open test browser
-
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
@@ -166,11 +163,3 @@ Affiliations settings checkboxes toggle
     ...                                         ${copy_affliation_start_checkbox}
     Go To Object Home                           Account
     Close all tabs
-
-*** Keywords ***
-
-Initialize test setup
-    Shift to default content
-    Select App Launcher App                     EDA
-    Close all tabs
-

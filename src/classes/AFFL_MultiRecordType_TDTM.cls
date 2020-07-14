@@ -33,6 +33,13 @@
 * @group Affiliations
 * @group-content ../../ApexDocContent/Affiliations.htm
 * @description Handles Affiliations of different record types, with one primary per type.
+* Before Insert - When a Primary affilaiton is inserted with a contact and Account, it updates the Primary affilaiton field on related Contact and unchecks other
+* Primary affilaitons on the Contact of same type
+* After Update - 1) If a primary affiliation is made non-primary, the Primary affiliation field on the contact will be cleared.
+* 2) If a non-primary affiliation is made primary the key affiliation field on the contact will to be filled,
+* and any other primary affiliation of the same type will be made non-primary.
+* After Insert - Creates Program enrollments if necessary
+* After Delete - If a Primary Affiliation is deleted then it clears its corresponding field's value on the Contact
 */
 public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 

@@ -203,19 +203,23 @@
         <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
         <members>TDTM_CourseOfferingSchedule</members>
+        <members>TDTM_Event</members>
         <members>TDTM_Facility</members>
         <members>TDTM_Language</members>
+        <members>TDTM_Lead</members>
         <members>TDTM_Opportunity</members>
         <members>TDTM_PlanRequirement</members>
         <members>TDTM_ProgramEnrollment</members>
         <members>TDTM_ProgramPlan</members>
         <members>TDTM_Relationship</members>
+        <members>TDTM_Task</members>
         <members>TDTM_Term</members>
         <members>TDTM_TermGrade</members>
         <members>TDTM_Test</members>
         <members>TDTM_Test_Score</members>
         <members>TDTM_TimeBlock</members>
         <members>TDTM_TriggerHandler</members>
+        <members>TDTM_User</members>
         <name>ApexTrigger</name>
     </types>
     <types>
@@ -269,8 +273,10 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account.Billing_County__c</members>
         <members>Account.Current_Address__c</members>
         <members>Account.Primary_Contact__c</members>
+        <members>Account.Shipping_County__c</members>
         <members>Address__c.Address_Type__c</members>
         <members>Address__c.Default_Address__c</members>
         <members>Address__c.Formula_MailingAddress__c</members>
@@ -280,6 +286,7 @@
         <members>Address__c.Latest_Start_Date__c</members>
         <members>Address__c.MailingCity__c</members>
         <members>Address__c.MailingCountry__c</members>
+        <members>Address__c.MailingCounty__c</members>
         <members>Address__c.MailingPostalCode__c</members>
         <members>Address__c.MailingState__c</members>
         <members>Address__c.MailingStreet2__c</members>
@@ -351,8 +358,10 @@
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship__c</members>
+        <members>Contact.Citizenship_Status__c</members>
         <members>Contact.Country_of_Origin__c</members>
         <members>Contact.Current_Address__c</members>
+        <members>Contact.Date_Deceased__c</members>
         <members>Contact.Deceased__c</members>
         <members>Contact.Do_Not_Contact__c</members>
         <members>Contact.Dual_Citizenship__c</members>
@@ -362,12 +371,17 @@
         <members>Contact.Exclude_from_Household_Name__c</members>
         <members>Contact.FERPA__c</members>
         <members>Contact.Financial_Aid_Applicant__c</members>
+        <members>Contact.Former_First_Name__c</members>
+        <members>Contact.Former_Last_Name__c</members>
+        <members>Contact.Former_Middle_Name__c</members>
         <members>Contact.Gender__c</members>
         <members>Contact.HIPAA_Detail__c</members>
         <members>Contact.HIPAA__c</members>
+        <members>Contact.Mailing_County__c</members>
         <members>Contact.Military_Background__c</members>
         <members>Contact.Military_Service__c</members>
         <members>Contact.Naming_Exclusions__c</members>
+        <members>Contact.Other_County__c</members>
         <members>Contact.PreferredPhone__c</members>
         <members>Contact.Preferred_Email__c</members>
         <members>Contact.Primary_Address_Type__c</members>
@@ -588,6 +602,7 @@
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
+        <members>affiliationWithSameAccExists</members>
         <members>AttendanceCourseConnectionContactMismatch</members>
         <members>AutoCreateFieldError</members>
         <members>BatchJobRunningProblem</members>

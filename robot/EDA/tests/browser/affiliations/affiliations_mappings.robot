@@ -66,7 +66,7 @@ All checkbox fields can retain checked value on save
     Go to affiliations sub tab                  Settings
 
     ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
-    ${auto_enroll_academic_program} =           Get Eda Locator         auto_enroll_academic_program
+    ${auto_enroll_academic_program} =           Get Eda Locator         affiliations_locators.auto_enroll_academic_program
     ${checkbox_ap_affl} =                       Get Eda Locator         eda_settings.checkbox_ap_affl
 
     ${auto_enroll_business_organization} =      Get Eda Locator         eda_settings.auto_enroll_business_organization

@@ -4,9 +4,9 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Account_Record_Type__c</fullName>
-        <description>The Account Record Type label.</description>
+        <description>The label of the Account record type that's being mapped.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Account Record Type label.</inlineHelpText>
+        <inlineHelpText>The label of the Account record type that's being mapped.</inlineHelpText>
         <label>Account Record Type</label>
         <length>255</length>
         <required>false</required>
@@ -17,6 +17,8 @@
     <fields>
         <fullName>Auto_Program_Enrollment_Role__c</fullName>
         <externalId>false</externalId>
+        <description>The role to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</description>
+        <inlineHelpText>The role to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</inlineHelpText>
         <label>Auto Enrollment Role</label>
         <length>255</length>
         <required>false</required>
@@ -27,6 +29,8 @@
     <fields>
         <fullName>Auto_Program_Enrollment_Status__c</fullName>
         <externalId>false</externalId>
+        <description>The status to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</description>
+        <inlineHelpText>The status to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</inlineHelpText>
         <label>Auto Enrollment Status</label>
         <length>255</length>
         <required>false</required>
@@ -37,18 +41,18 @@
     <fields>
         <fullName>Auto_Program_Enrollment__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type.</description>
+        <description>If selected, a Program Enrollment record is auto created when a user creates an Affiliation record with an Account of this record type.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type.</inlineHelpText>
+        <inlineHelpText>If selected, a Program Enrollment record is auto created when a user creates an Affiliation record with an Account of this record type.</inlineHelpText>
         <label>Auto Enrollment</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Primary_Affl_Field__c</fullName>
-        <description>The label of the lookup field or the API name of the lookup field in Contact that points to the primary Account of the specified Record Type.</description>
+        <description>The label of the Contact field that holds the value of the primary Account for this record type.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The label of the lookup field or the API name of the lookup field in Contact that points to the primary Account of the specified Record Type.</inlineHelpText>
+        <inlineHelpText>The label of the Contact field that holds the value of the primary Account for this record type.</inlineHelpText>
         <label>Primary Affl Field</label>
         <length>255</length>
         <required>false</required>
