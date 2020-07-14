@@ -115,8 +115,8 @@
     <fields>
         <fullName>Formula_MailingAddress__c</fullName>
         <externalId>false</externalId>
-        <description>The full mailing address, including mailing street 2 and country values, if not blank (read-only).</description>
-         <inlineHelpText>The full mailing address, including mailing street 2 and country values, if not blank (read-only).</inlineHelpText>
+        <description>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</description>
+         <inlineHelpText>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</inlineHelpText>
         <formula>MailingStreet__c &amp;
 BR() &amp; 
 IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
