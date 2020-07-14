@@ -98,6 +98,12 @@ tasks:
                 - EinsteinAnalyticsPlusAdmin
                 - EinsteinAnalyticsPlusUser
 
+    run_tests:
+        options:
+            retry_failures:
+                - "Apex CPU time limit exceeded"
+            retry_always: True
+
     retrieve_config_dev:
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
