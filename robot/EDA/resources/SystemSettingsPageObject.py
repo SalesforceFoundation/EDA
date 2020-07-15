@@ -45,4 +45,4 @@ class SystemSettingsPage(BaseEDAPage, BasePage):
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).text
             if not str(expected_value).lower() == str(actual_value).lower() :
-                raise Exception (f"Dropdown value in {field} is {actual_value} instead of {expected_value}")
+                raise Exception (f"Dropdown value in {field} is {actual_value} but it should be {expected_value}")
