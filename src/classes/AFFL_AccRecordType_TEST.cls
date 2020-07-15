@@ -431,8 +431,8 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
 
-    /* Test to ensure an error is thrown when an affiliation is inserted with an Account
-       whose record type is not a part of Affiliation Mappings */
+    /* Test to ensure an error is thrown when an affiliation is inserted with an Account whose record 
+        type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled */
 
     @isTest
     private static void insertAfflWAccRecTypeEnforced() {
@@ -440,7 +440,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         AFFL_AccRecordType_TEST.setup();
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                                                                             Affiliation_Record_Type_Enforced__c = true));
+                                                                              Affiliation_Record_Type_Enforced__c = true));
 
         Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
@@ -455,7 +455,7 @@ public with sharing class AFFL_AccRecordType_TEST {
                 TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
                 insert affl;
             Test.startTest();
-            System.assert(false, 'Always throw an exception when Account record type is not a part of Affiliation Mappings');
+            System.assert(false, 'Always throw an exception when Account record type is not a part of Affiliation Mappings and when Affiliation Record Type is Enforced.');
         } catch (System.DmlException error) {
             System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
         }
