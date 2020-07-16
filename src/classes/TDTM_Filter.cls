@@ -364,16 +364,16 @@ public class TDTM_Filter {
     private List<SObject> queryRelatedFields(List<SObject> compList) {
         List<SObject> withRelatedFields = new List<SObject>(); //We don't want to modify the original list, but use a new one instead.
         if(compList != null) {
-            Map<ID, SObject> compMap = new Map<ID, SObject>(compList);
-            Set<ID> compListIDs = compMap.keySet();
-            //query filter values, in case they are not in the trigger
-            String dynamicQuery = 'select ' + String.escapeSingleQuotes(filterField) + ' from ' + describeObj.getName() +  ' where ID in :compListIDs';
-            UTIL_Debug.debug('****Relationship filter dynamic query: ' + dynamicQuery);
-            Map<ID, SObject> withRelatedFieldsMap = new Map<ID, SObject>(Database.query(dynamicQuery));
-            //Let's make sure we return them in the same order as the list passed as param
-            for(SObject compRecord : compList) {
-                withRelatedFields.add(withRelatedFieldsMap.get(compRecord.ID));
-            }
+	        Map<ID, SObject> compMap = new Map<ID, SObject>(compList);
+	        Set<ID> compListIDs = compMap.keySet();
+	        //query filter values, in case they are not in the trigger
+	        String dynamicQuery = 'select ' + String.escapeSingleQuotes(filterField) + ' from ' + String.escapeSingleQuotes(describeObj.getName()) +  ' where ID in :compListIDs';
+	        UTIL_Debug.debug('****Relationship filter dynamic query: ' + dynamicQuery);
+	        Map<ID, SObject> withRelatedFieldsMap = new Map<ID, SObject>(Database.query(dynamicQuery));
+	        //Let's make sure we return them in the same order as the list passed as param
+	        for(SObject compRecord : compList) {
+	            withRelatedFields.add(withRelatedFieldsMap.get(compRecord.ID));
+	        }
         }
         return withRelatedFields;
     }
