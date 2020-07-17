@@ -644,7 +644,6 @@
         <members>addrValidParentObjects</members>
         <members>adminAccNameFormat</members>
         <members>adminAccNameFormatHelpText</members>
-        
         <members>afflAccountNoRecordType</members>
         <members>afflAccoutMappingError</members>
         <members>afflNullPointerError</members>
