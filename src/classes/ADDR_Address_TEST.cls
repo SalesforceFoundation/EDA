@@ -34,7 +34,7 @@
 * @group-content ../../ApexDocContent/Address__c.htm
 * @description Tests the various trigger context process for ADDR_Addresses_TDTM. It tests both positive 
 * and negative scenario where an Address record matches the filter field + filter value and an Address 
-* record that does not match the filter field + filter value on the ADDR_Address_TDTM trigger handler record.
+* record that does not match the filter field + filter value on the ADDR_Addresses_TDTM trigger handler record.
 */
 @isTest	
 public class ADDR_Address_TEST {
