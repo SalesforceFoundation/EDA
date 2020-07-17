@@ -74,31 +74,31 @@ public class TDTM_Filter {
         filterObjectChain = new List<String>();
     }
     
-	/*******************************************************************************************************
+    /*******************************************************************************************************
     * @description Filters records to process.
     * @return FilteredLists An instance of the wrapper object that contains the filtered newList and oldList.
     */
     public FilteredLists filter() {
-    	try {
-    		filterField = tdtmToken.filterField;
-    		if(filterField != null) {
-	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
-	        	    filterByRelationship();
-	        	} else { //No need to break down the field condition
-	        	    if(filterField.endsWith('__c')) {
-	        	        fieldName = handleNamespace(filterField);
-	        	    } else {
-	        	        fieldName = filterField;
-	        	    }
-	        	    filterByField();
-	        	}
-	        	return filtered;
-	    	}
-    	} catch(Exception e) {
-    		UTIL_Debug.debug(LoggingLevel.WARN, '****Exception: ' + e.getMessage());
-    		UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
-    	}
-    	return null;
+        try {
+            filterField = tdtmToken.filterField;
+            if(filterField != null) {
+                if(filterField.contains('.')) { 
+                    filterByRelationship();
+                } else { 
+                    if(filterField.endsWith('__c')) {
+                        fieldName = handleNamespace(filterField);
+                    } else {
+                        fieldName = filterField;
+                    }
+                    filterByField();
+                }
+                return filtered;
+            }
+        } catch(Exception e) {
+            UTIL_Debug.debug(LoggingLevel.WARN, '****Exception: ' + e.getMessage());
+            UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
+        }
+        return null;
     }
 
     /*******************************************************************************************************
@@ -227,14 +227,14 @@ public class TDTM_Filter {
             String objectReferenced = getObjectTypeReferenced(parent, child);
             UTIL_Debug.debug('****objectReferenced: ' + objectReferenced);
             if(parent != null) {
-	            field = getSOField(parent, child);
-	            UTIL_Debug.debug('****Field in findValidObjectInChain: ' + field);
-	            if(field == null) {
-	                return findValidObjectInChain(--objectChainIndex);
-	            } else {
-	                ChainLink link = new ChainLink(field, objectReferenced, parent, objectChainIndex);
-	                return link;
-	            }
+                field = getSOField(parent, child);
+                UTIL_Debug.debug('****Field in findValidObjectInChain: ' + field);
+                if(field == null) {
+                    return findValidObjectInChain(--objectChainIndex);
+                } else {
+                    ChainLink link = new ChainLink(field, objectReferenced, parent, objectChainIndex);
+                    return link;
+                }
             } else {
                 return findValidObjectInChain(--objectChainIndex);
             }
@@ -256,19 +256,19 @@ public class TDTM_Filter {
             UTIL_Debug.debug('****Parent in getObjectTypeReferenced: ' + parent);
             child = fromRtoC(child);
             UTIL_Debug.debug('****Child in getObjectTypeReferenced: ' + child);
-	        objectDescribe = UTIL_Describe.getObjectDescribe(parent);
-	        if(objectDescribe != null) {
-		        Map<String, SObjectField> fieldsMap = objectDescribe.fields.getMap();
-		        DescribeFieldResult customObjParentDescribe = fieldsMap.get(child).getDescribe();
-		        List <sObjectType> refs = customObjParentDescribe.getReferenceTo();
-		        if(refs != null && refs.size() == 1) {
-		            objPointingTo = refs[0].getDescribe().getName();
-		            UTIL_Debug.debug('****Child object is of type ' + objPointingTo);
-		        } else if(refs.size() > 1) {
-		            UTIL_Debug.debug('****Field could be pointing to more than one type of object. ' +
-		                             ' We should iterate through each and see which one contains that field.');   
-		        }
-	        }
+            objectDescribe = UTIL_Describe.getObjectDescribe(parent);
+            if(objectDescribe != null) {
+                Map<String, SObjectField> fieldsMap = objectDescribe.fields.getMap();
+                DescribeFieldResult customObjParentDescribe = fieldsMap.get(child).getDescribe();
+                List <sObjectType> refs = customObjParentDescribe.getReferenceTo();
+                if(refs != null && refs.size() == 1) {
+                    objPointingTo = refs[0].getDescribe().getName();
+                    UTIL_Debug.debug('****Child object is of type ' + objPointingTo);
+                } else if(refs.size() > 1) {
+                    UTIL_Debug.debug('****Field could be pointing to more than one type of object. ' +
+                                     ' We should iterate through each and see which one contains that field.');   
+                }
+            }
         } catch(UTIL_Describe.SchemaDescribeException e) {
             UTIL_Debug.debug('****Invalid object name: ' + parent);
             return null;
@@ -468,9 +468,9 @@ public class TDTM_Filter {
                 if (o != null) { //if the object at the bottom of the chain (the one in the trigger) isn't null
                     for (String parentObj : filterObjectChain) {
                         if(o != null) { //if each following object in the chain isn't null
-	                        UTIL_Debug.debug('****Object to traverse: ' + parentObj);
-	                        o = o.getsObject(parentObj);
-	                        UTIL_Debug.debug('****Parent object: ' + o);
+                            UTIL_Debug.debug('****Object to traverse: ' + parentObj);
+                            o = o.getsObject(parentObj);
+                            UTIL_Debug.debug('****Parent object: ' + o);
                         } else {
                             UTIL_Debug.debug('****Object in the chain is null, we should add element directly to filteredList');
                             addDirectly = true;
@@ -504,8 +504,14 @@ public class TDTM_Filter {
     private void filterList(List<SObject> listToFilter, List<SObject> newList, List<SObject> filteredList) {
         if(listToFilter != null && listToFilter.size() > 0) {
             for(integer i=0; i<listToFilter.size();i++) {
-                if(newList[i].get(fieldName) != filterValue) {
-                    filteredList.add(listToFilter[i]);
+                if (newList != null && newList.size() > 0) {
+                    if(newList[i].get(fieldName) != filterValue) {
+                        filteredList.add(listToFilter[i]);
+                    }
+                } else {
+                    if(listToFilter[i].get(fieldName) != filterValue) {
+                        filteredList.add(listToFilter[i]);
+                    }
                 }
             }
         } 
@@ -516,13 +522,13 @@ public class TDTM_Filter {
     * from a method.
     */
     public class FilteredLists {
-    	public List<SObject> newList;
-    	public List<SObject> oldList;
-    	
-    	public FilteredLists() {
-    		newList = new List<SObject>();
-    		oldList = new List<SObject>();
-    	}
+        public List<SObject> newList;
+        public List<SObject> oldList;
+        
+        public FilteredLists() {
+            newList = new List<SObject>();
+            oldList = new List<SObject>();
+        }
     }
     
     /*******************************************************************************************************
