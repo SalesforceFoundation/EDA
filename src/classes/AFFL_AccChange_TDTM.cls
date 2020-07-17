@@ -81,27 +81,15 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                 for (SObject so : newlist) {
                     
                     Affiliation__c affl = (Affiliation__c)so;
-                    String lookupLabelOrAPIName = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-                    
-                    if (lookupLabelOrAPIName == NULL) {
-                        String affiliationTypeAPI = afflMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
-                        lookupLabelOrAPIName = afflMapper.accRecTypeToContactLabel.get(affiliationTypeAPI);
-                    }
-                    String lookupFieldAPIName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
+                    // Get the Primary Affiliation lookup's API name for this affiliation type
+                    String lookupFieldAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(affl.Affiliation_Type__c);
 
                     Affiliation__c afflOld;
-                    String lookupFieldLabelOrAPIOld;
                     String lookupFieldAPINameOld;
 
                     if (oldlist[i] != null) {
                         afflOld = (Affiliation__c)oldlist[i];
-                        lookupFieldLabelOrAPIOld = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
-                        
-                        if (lookupFieldLabelOrAPIOld == NULL) {
-                            String affiliationTypeAPI = afflMapper.accRecTypeLabelToAPI.get(afflOld.Affiliation_Type__c);
-                            lookupFieldLabelOrAPIOld = afflMapper.accRecTypeToContactLabel.get(affiliationTypeAPI);
-                        }
-                            lookupFieldAPINameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOrAPIOld);
+                        lookupFieldAPINameOld = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(afflOld.Affiliation_Type__c);
                     }
 
                     if (isAfflTypeEnforced == true) {
