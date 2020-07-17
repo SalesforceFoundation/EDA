@@ -37,7 +37,7 @@
 * record that does not match the filter field + filter value on the ADDR_Address_TDTM trigger handler record.
 */
 @isTest	
-public class ADDR_Addresses_TEST {
+public class ADDR_Address_TEST {
     /*********************************************************************************************************
     * @description Test setup to create multiple contacts. 
     */

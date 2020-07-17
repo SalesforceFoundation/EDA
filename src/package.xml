@@ -12,7 +12,7 @@
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>
         <members>ADDR_Addresses_TDTM</members>
-        <members>ADDR_Addresses_TEST</members>
+        <members>ADDR_Address_TEST</members>
         <members>ADDR_Addresses_UTIL</members>
         <members>ADDR_AdminAcc_TEST</members>
         <members>ADDR_CannotDelete_TDTM</members>
@@ -603,7 +603,6 @@
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
-        <members>affiliationWithSameAccExists</members>
         <members>AttendanceCourseConnectionContactMismatch</members>
         <members>AutoCreateFieldError</members>
         <members>BatchJobRunningProblem</members>
@@ -644,6 +643,7 @@
         <members>addrValidParentObjects</members>
         <members>adminAccNameFormat</members>
         <members>adminAccNameFormatHelpText</members>
+        <members>affiliationWithSameAccExists</members>
         <members>afflAccountNoRecordType</members>
         <members>afflAccoutMappingError</members>
         <members>afflNullPointerError</members>
