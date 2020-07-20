@@ -1262,6 +1262,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         // Ensure List has all 6 mappings
         System.assertEquals(6, validPrimaryFieldList.size());
 
+    }
     
     // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using API name
     @isTest

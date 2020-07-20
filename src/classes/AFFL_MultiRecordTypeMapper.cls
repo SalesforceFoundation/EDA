@@ -94,20 +94,20 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         accRecTypeLabelToAPI = getAccRecTypeLabelToAPIMap();
         
         //List of primary affiliation lookup fields labels/API names from settings.
-        List<String> primaryAfflFieldsFromsettings = accRecTypeToContactLabel.values();
+        List<String> primaryAfflFieldsFromSettings = accRecTypeToContactLabel.values();
         
         //List of primary affiliation Contact fields.
-        List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldsFromsettings);
+        List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldsFromSettings);
 
         //List of Valid Account Record types in mappings
         validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accountRecordTypes);
 
         //List of Valid Primary Contact Fields in mappings
-        List<String> validContactAfflFields = getValidAfflFields(contactFields, primaryAfflFieldsFromsettings);
+        List<String> validContactAfflFields = getValidAfflFields(contactFields, primaryAfflFieldsFromSettings);
         
         //Check if any mismatch in mappings
         if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c
-                && (primaryAfflFieldsFromsettings.size() != validContactAfflFields.size()
+                && (primaryAfflFieldsFromSettings.size() != validContactAfflFields.size()
                     || accountRecordTypes.size() != validAccRecordTypesInMappings.size())) {
             throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
         }
@@ -159,11 +159,11 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @return List<SObjectField> List of fields in object that are in the provided list of labels or API names.
     ****************************************************************************************************************/
     private List<SObjectField> getPrimaryAfflFields(List<SObjectField> contactFields, List<String> primaryAfflFieldsFromsettings) {
-        Set<String> uniquePrimaryAfflFieldsFromsettings = new Set<String>(primaryAfflFieldsFromsettings);
+        Set<String> uniquePrimaryAfflFieldsFromSettings = new Set<String>(primaryAfflFieldsFromSettings);
         List<SObjectField> primaryFields = new List<SObjectField>();
         primaryAfflFieldNames = new List<String>();
         for (SObjectField field : contactFields) {
-            if (uniquePrimaryAfflFieldsFromsettings.contains(field.getDescribe().getLabel()) || uniquePrimaryAfflFieldsFromsettings.contains(field.getDescribe().getName())) {
+            if (uniquePrimaryAfflFieldsFromSettings.contains(field.getDescribe().getLabel()) || uniquePrimaryAfflFieldsFromSettings.contains(field.getDescribe().getName())) {
                 primaryAfflFieldNames.add(field.getDescribe().getName());
                 primaryFields.add(field);
             }
@@ -249,11 +249,11 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     /*******************************************************************************************************
     * @description Returns valid contact primary affiliation fields from mappings
     * @param cf List of fields.
-    * @param primaryAfflFieldsFromsettings List of field labels/API Names from settings.
+    * @param primaryAfflFieldsFromSettings List of field labels/API Names from settings.
     * @return List<SObjectField> List of valid contact primary affiliation fields from mappings.
     ********************************************************************************************************/
     @testVisible
-    private List<String> getValidAfflFields(List<SObjectField> contactFields, List<String> primaryAfflFieldsFromsettings) {
+    private List<String> getValidAfflFields(List<SObjectField> contactFields, List<String> primaryAfflFieldsFromSettings) {
 
         Set<String> contactFieldLabelStrings = new Set<String>();
         Set<String> contactFieldAPIStrings = new Set<String>();
@@ -264,7 +264,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
             contactFieldAPIStrings.add(field.getDescribe().getName());
         }
 
-        for (String primaryAfflField : primaryAfflFieldsFromsettings) {
+        for (String primaryAfflField : primaryAfflFieldsFromSettings) {
             if (contactFieldLabelStrings.contains(primaryAfflField) || contactFieldAPIStrings.contains(primaryAfflField)) {
                 validPrimaryFields.add(primaryAfflField);
             }
