@@ -27,14 +27,3 @@ Verify standard field values
     ...                                         Error Notification Recipients=All Sys Admins
     ...                                         Administrative Account Name Format={!LastName} Administrative Account
     ...                                         Household Account Name Format={!LastName} Household
-
-# Verify values are retained after save
-#     [Documentation]         Checks for the default account model value as Administrative and checks store errors
-#     ...                     checkbox is checked and send error notification checkbox is unchecked and error
-#     ...                     notification recipient dropdown is set to All Sys Admins and checkboxes for disable
-#     ...                     error handling and automatic household naming are unchecked and administrative 
-#     ...                     account name format is set to {!LastName} Administrative and household account
-#     ...                     name format dropdown is set to {!LastName} Household.
-#     [tags]                                      unstable        W-041788
-#     Go to EDA settings tab                      System
-#     Click action button on EDA settings page    Edit
