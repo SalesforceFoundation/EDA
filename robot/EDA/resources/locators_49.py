@@ -99,6 +99,7 @@ eda_lex_locators = {
         "affl_mappings_tab": "//a[contains(text(),'Affiliation Mappings')]",
         "default_checkbox": "//div[text()='{}']/following-sibling::div/descendant::img",
         "enable_checkbox": "(//div[text()='{}']/following-sibling::div/descendant::span)[1]",
+        "dropdown_field": "//div[text()='{}']/following-sibling::div/select",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
