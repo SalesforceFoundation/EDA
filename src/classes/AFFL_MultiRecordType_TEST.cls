@@ -1177,11 +1177,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     }
 
-    /* This method tests getValidAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
+    /* This method tests getValidPrimaryAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
      both API names for Primary Affiliation Fields */
 
     @isTest
-    private static void testsGetValidAfflFields() {
+    private static void testsGetValidPrimaryAfflFields() {
 
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -1194,12 +1194,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
            primaryFieldsList.add(prefix + 'Primary_Household__c');
            primaryFieldsList.add(prefix + 'Primary_Department__c');
            primaryFieldsList.add(prefix + 'Primary_Sports_Organization__c');
-       
-        List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
 
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFields, primaryFieldsList);
+           List<String> validPrimaryFieldList = afflMapper.getValidPrimaryAfflFields(primaryFieldsList);
         Test.stopTest();
 
         // Ensure List has all 6 mappings
@@ -1207,11 +1205,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     }
 
-    /* This method tests getValidAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
+    /* This method tests getValidprimaryAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
       labels for Primary Affiliation Fields */
 
     @isTest
-    private static void testsGetValidAfflFieldsWithLabels() {
+    private static void testsGetValidPrimaryAfflFieldsWithLabels() {
 
         // Construct a list of primary Affiliation field Labels
         List<String> primaryFieldsList = new List<String>();
@@ -1221,12 +1219,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
            primaryFieldsList.add('Primary Household');
            primaryFieldsList.add('Primary Department');
            primaryFieldsList.add('Primary Sports Organization');
-       
-        List<SObjectField> contactFieldList = Contact.sObjectType.getDescribe().fields.getMap().values();
 
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFieldList, primaryFieldsList);
+           List<String> validPrimaryFieldList = afflMapper.getValidPrimaryAfflFields(primaryFieldsList);
         Test.stopTest();
 
         // Ensure List has all 6 mappings
@@ -1234,11 +1230,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     }
 
-    /* This method tests getValidAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
+    /* This method tests getValidPrimaryAfflFields() of AFFL_MultiRecordTypeMapper class by passing 
     both label and API names for Primary Affiliation Fields */
 
     @isTest
-    private static void testsGetValidAfflFieldsWithLabelsAndAPI() {
+    private static void testsGetValidPrimaryAfflFieldsWithLabelsAndAPI() {
 
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -1250,13 +1246,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
            primaryFieldsList.add('Primary Business Organization');
            primaryFieldsList.add('Primary Household');
            primaryFieldsList.add('Primary Department');
-           primaryFieldsList.add('Primary Sports Organization');
-       
-        List<SObjectField> contactFieldList = Contact.sObjectType.getDescribe().fields.getMap().values();
+           primaryFieldsList.add('Primary Sports Organization');      
 
         Test.startTest();
            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-           List<String> validPrimaryFieldList = afflMapper.getValidAfflFields(contactFieldList, primaryFieldsList);
+           List<String> validPrimaryFieldList = afflMapper.getValidPrimaryAfflFields(primaryFieldsList);
         Test.stopTest();
 
         // Ensure List has all 6 mappings

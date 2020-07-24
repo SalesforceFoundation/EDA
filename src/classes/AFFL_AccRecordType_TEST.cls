@@ -454,7 +454,7 @@ public with sharing class AFFL_AccRecordType_TEST {
                 Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = acc.Id, Primary__c = true);
                 TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
                 insert affl;
-            Test.startTest();
+            Test.stopTest();
             System.assert(false, 'Always throw an exception when Account record type is not a part of Affiliation Mappings and when Affiliation Record Type is Enforced.');
         } catch (System.DmlException error) {
             System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
