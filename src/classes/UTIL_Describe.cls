@@ -663,9 +663,9 @@ public class UTIL_Describe {
      * @description Returns the ID of the Administrative Account record type
      * - If custom admin record type exists, return the custom admin record type
      * - If custom admin record type does not exist, return the default admin record type
-     * @return String The ID of the Administrative Account record type as a String.
+     * @return The ID of the Administrative Account record type.
      */
-    public static String getAdminAccRecTypeID() {
+    public static Id getAdminAccRecTypeID() {
         Id adminRecordTypeId = getCustomAdminAccRecTypeId();
         if (adminRecordTypeId.isEmpty() == true) {
             adminRecordTypeId = getDefaultAdminAccRecTypeId(); 
@@ -675,7 +675,7 @@ public class UTIL_Describe {
 
     /*******************************************************************************************************
      * @description Returns the ID of the custom Administrative Account record type
-     * @return ID of the custom Administrative Account record type.
+     * @return The ID of the custom Administrative Account record type.
      */
     private Id getCustomAdminAccRecTypeId() {
         return Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
@@ -683,15 +683,14 @@ public class UTIL_Describe {
 
     /*******************************************************************************************************
      * @description Returns the ID of the default Administrative Account record type
-     * @return ID of the default Administrative Account record type.
+     * @return The ID of the default Administrative Account record type.
      */
-    private Id getDefaultAdminAccRecTypeId() {
+    public static Id getDefaultAdminAccRecTypeId() {
         Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
         if (defaultAdminRecTypeId.isEmpty() == true) {
             if (Test.isRunningTest()) {
                 defaultAdminRecTypeId = getFirstAvailableAdminAccountRecTypeId();
             } else {
-                //throw exception
                 throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException('Could not find the Account Record Type labeled Administrative.');
             }
         }
@@ -700,7 +699,7 @@ public class UTIL_Describe {
 
     /*******************************************************************************************************
      * @description Returns the ID of the first available account record type
-     * @return ID of the first available account record type.
+     * @return The ID of the first available account record type.
      */
     private Id getFirstAvailableAdminAccountRecTypeId() {
         Id firstAvailableAdminAccountRecTypeId;
