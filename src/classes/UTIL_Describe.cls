@@ -677,7 +677,7 @@ public class UTIL_Describe {
      * @description Returns the ID of the custom Administrative Account record type
      * @return The ID of the custom Administrative Account record type.
      */
-    private Id getCustomAdminAccRecTypeId() {
+    public static Id getCustomAdminAccRecTypeId() {
         return Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
     }
 
@@ -685,7 +685,7 @@ public class UTIL_Describe {
      * @description Returns the ID of the default Administrative Account record type
      * @return The ID of the default Administrative Account record type.
      */
-    public static Id getDefaultAdminAccRecTypeId() {
+    public static Id getDefaultAdminAccRecTypeId() { 
         Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
         if (defaultAdminRecTypeId.isEmpty() == true) {
             if (Test.isRunningTest()) {
@@ -701,7 +701,7 @@ public class UTIL_Describe {
      * @description Returns the ID of the first available account record type
      * @return The ID of the first available account record type.
      */
-    private Id getFirstAvailableAdminAccountRecTypeId() {
+    public Id getFirstAvailableAdminAccountRecTypeId() {
         Id firstAvailableAdminAccountRecTypeId;
         if (getRecTypesMapByDevName('Account').values().size() > 0) {
             firstAvailableAdminAccountRecTypeId = getRecTypesMapByDevName('Account').values()[0];
