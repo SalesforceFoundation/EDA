@@ -662,23 +662,52 @@ public class UTIL_Describe {
     /*******************************************************************************************************
      * @description Returns the ID of the Administrative Account record type
      * - If custom admin record type exists, return the custom admin record type
-     * - If custom admin record type does not exist, use the default admin record type
-     * - If in a unit test and default admin record type does not exist either, use the first found accout record type
+     * - If custom admin record type does not exist, return the default admin record type
      * @return String The ID of the Administrative Account record type as a String.
      */
-
     public static String getAdminAccRecTypeID() {
-        Id adminRecordTypeId = Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
+        Id adminRecordTypeId = getCustomAdminAccRecTypeId();
         if (adminRecordTypeId.isEmpty() == true) {
-            adminRecordTypeId = getRecTypesMapByDevName('Account').get('Administrative');
-            if (adminRecordTypeId.isEmpty == true
-            && Test.isRunningTest()) {
-                if (getRecTypesMapByDevName('Account').values().size() > 0) {
-                    adminRecordTypeId = getRecTypesMapByDevName('Account').values()[0];
-                }
-            }
+            adminRecordTypeId = getDefaultAdminAccRecTypeId(); 
         }
         return adminRecordTypeId;
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the custom Administrative Account record type
+     * @return ID of the custom Administrative Account record type.
+     */
+    private Id getCustomAdminAccRecTypeId() {
+        return Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the default Administrative Account record type
+     * @return ID of the default Administrative Account record type.
+     */
+    private Id getDefaultAdminAccRecTypeId() {
+        Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
+        if (defaultAdminRecTypeId.isEmpty() == true) {
+            if (Test.isRunningTest()) {
+                defaultAdminRecTypeId = getFirstAvailableAdminAccountRecTypeId();
+            } else {
+                //throw exception
+                throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException('Could not find the Account Record Type labeled Administrative.');
+            }
+        }
+        return defaultAdminRecTypeId;
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the first available account record type
+     * @return ID of the first available account record type.
+     */
+    private Id getFirstAvailableAdminAccountRecTypeId() {
+        Id firstAvailableAdminAccountRecTypeId;
+        if (getRecTypesMapByDevName('Account').values().size() > 0) {
+            firstAvailableAdminAccountRecTypeId = getRecTypesMapByDevName('Account').values()[0];
+        }
+        return firstAvailableAdminAccountRecTypeId;
     }
 
     /*******************************************************************************************************
