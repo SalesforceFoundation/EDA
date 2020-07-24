@@ -40,7 +40,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     /*******************************************************************************************************
     * @description Map of Contact field names to Contact field labels.
     ********************************************************************************************************/
-    public Map<String, String> contactFieldAPINamesByLabels;
+    public Map<String, String> contactFieldAPINameByLabel;
         
     /*******************************************************************************************************
     * @description Affiliation Account-record-type-to-Contact-field mappings.
@@ -82,10 +82,10 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
         
         //Map of Contact field labels to Contact field Names.
-        contactFieldAPINamesByLabels = getContactLabelsNamesMap(contactFields);
+        contactFieldAPINameByLabel = getContactLabelsNamesMap(contactFields);
         
         //List of primary affiliation lookup fields names.
-        List<String> contactFieldNames = contactFieldAPINamesByLabels.values();
+        List<String> contactFieldNames = contactFieldAPINameByLabel.values();
         
         //Affiliation Account-record-type-to-Contact-field mappings.
         populateMaps();
@@ -182,14 +182,14 @@ public with sharing class AFFL_MultiRecordTypeMapper {
                 ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
                 if (rcId == recordTypeId) {
                     String fieldLabel = primaryAfflFieldInMappingsByAccRecType.get(recTypeName);
-                    String fieldName = contactFieldAPINamesByLabels.get(fieldLabel);
+                    String fieldName = contactFieldAPINameByLabel.get(fieldLabel);
                     return fieldName;
                 }
             } else if (Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName) != null) {
                 ID rcId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
                 if(rcId == recordTypeId) {
                     String fieldLabel = primaryAfflFieldInMappingsByAccRecType.get(recTypeName);
-                    String fieldName = contactFieldAPINamesByLabels.get(fieldLabel);
+                    String fieldName = contactFieldAPINameByLabel.get(fieldLabel);
                     return fieldName;
                 }
             } else {
@@ -253,11 +253,9 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     ********************************************************************************************************/
     @testVisible
     private List<String> getValidPrimaryAfflFields(List<String> primaryAfflFieldsInMappings) {
-
         List<String> validPrimaryAfflFields = new List<String>();
-
         for (String primaryAfflField : primaryAfflFieldsInMappings) {
-            if (this.contactFieldAPINamesByLabels.keySet().contains(primaryAfflField) || this.contactFieldAPINamesByLabels.values().contains(primaryAfflField)) {
+            if (this.contactFieldAPINameByLabel.keySet().contains(primaryAfflField) || this.contactFieldAPINameByLabel.values().contains(primaryAfflField)) {
                 validPrimaryAfflFields.add(primaryAfflField);
             }
         }
@@ -334,7 +332,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         /* Check if contactFieldFromSettings is in the List of Contact field API names,
          if yes, assign contactFieldFromSettings to primaryAfflLookupAPIName */
 
-        List<String> contactFieldAPINamesList = this.contactFieldAPINamesByLabels.values();
+        List<String> contactFieldAPINamesList = this.contactFieldAPINameByLabel.values();
         String primaryAfflLookupAPIName;
 
         if (contactFieldAPINamesList != null && contactFieldAPINamesList.isEmpty() == false &&
@@ -351,7 +349,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
          assume it is Label and get the API name from it. */
 
         if (String.isBlank(primaryAfflLookupAPIName)) {
-            primaryAfflLookupAPIName = this.contactFieldAPINamesByLabels.get(contactFieldFromSettings);
+            primaryAfflLookupAPIName = this.contactFieldAPINameByLabel.get(contactFieldFromSettings);
 
             if (String.isBlank(primaryAfflLookupAPIName) == false) {
                 return primaryAfflLookupAPIName;
