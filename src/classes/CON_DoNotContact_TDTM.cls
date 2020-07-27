@@ -38,10 +38,10 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
     * @description Synchronizes the "Do Not Contact" fields and naming exclusions for deceased contacts.
-    * @param listNew the list of Accounts from trigger new.
-    * @param listOld the list of Accounts from trigger old.
+    * @param listNew the list of Contacts from trigger new.
+    * @param listOld the list of Contacts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    * @param objResult the describe for Accounts
+    * @param objResult the describe for Contacts
     * @return dmlWrapper.
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
@@ -91,12 +91,13 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      */ 
     @TestVisible
     private void processBeforeInsert(List<Contact> newContactsList) {
+
         for (Contact con : newContactsList){
             if (con.Deceased__c == true){
                 con.Do_Not_Contact__c = con.Deceased__c;
-                this.syncDoNotContactFieldsOnContact(con);
                 this.syncNamingExclusionsOnContact(con);
-            } else if (con.Do_Not_Contact__c == true){
+            } 
+            if (con.Do_Not_Contact__c == true){
                 this.syncDoNotContactFieldsOnContact(con);
             }
         }
@@ -113,15 +114,14 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
         for (Contact con : newContactsList){
 
             Contact oldCon = oldContactsById.get(con.Id);
-            //deceased and do not contact: updates related fields for both checking and unchecking the box.
-            //prefers deceased as the deceased already marks the Do Not Contact fields, in case the user changes both values.
-            
+
             if (con.Deceased__c != oldCon.Deceased__c){
                 // Deceased status changed
                 con.Do_Not_Contact__c = con.Deceased__c;
-                this.syncDoNotContactFieldsOnContact(con);
                 this.syncNamingExclusionsOnContact(con);
-            } else if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
+            } 
+            
+            if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
                 // Do Not Contact flag changed
                 this.syncDoNotContactFieldsOnContact(con);
             }            
@@ -129,20 +129,23 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description syncDoNotContactFieldsOnContact description
-     * @param  contact contact description
+     * @description Synchronizes the communication preference fields
+     * (Do not Call, Email Opt Out, Fax Opt Out) on a contact record
+     * to match the status specified by the "Do Not Contact" field.
+     * @param  contact The contact record to synchronize
      */ 
     @TestVisible
     private void syncDoNotContactFieldsOnContact(Contact contact){
-        // contact.Do_Not_Contact__c = contact.Deceased__c;
         contact.HasOptedOutOfEmail = contact.Do_Not_Contact__c;
         contact.DoNotCall = contact.Do_Not_Contact__c;
         contact.HasOptedOutOfFax  = contact.Do_Not_Contact__c;
     }
 
     /**
-     * @description syncNamingExclusionsOnContact description
-     * @param  contact contact description
+     * @description Synchronizes the Household Naming Exclusion fields 
+     * (checkboxes and picklist) on a contact record to match the status 
+     * specified by the "Deceased" field.
+     * @param  contact The contact record to synchronize
      */ 
     @TestVisible
     private void syncNamingExclusionsOnContact(Contact contact){
@@ -156,7 +159,8 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      * @description Retrieves the naming exclusions specified by the selected checkboxes and returns a string 
      * consisting of the selected values which is used to populate Naming Exclusion multiselect picklist.
      * @param  contact The contact
-     * @return         A string containing the API names matching all selected naming exclusion checkboxes (; delimited)
+     * @return         A semi-colon delimited string containing the API names matching 
+     *                 all selected naming exclusion checkboxes.
      */ 
     @TestVisible
     private String syncSelectedNamingExclusionsFromCheckboxes(Contact contact) {
