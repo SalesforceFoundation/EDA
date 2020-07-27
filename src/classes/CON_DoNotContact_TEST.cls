@@ -245,9 +245,9 @@ private class CON_DoNotContact_TEST {
     @isTest
     private static void insertDeceasedContactsHHModel() {
 
-        // UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-        //                                                     (Account_Processor__c = hhAccountRecordTypeId,
-        //                                                     Automatic_Household_Naming__c = true));
+        //  UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+        //                                                      (Account_Processor__c = hhAccountRecordTypeId,
+        //                                                      Automatic_Household_Naming__c = true));
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = hhAccountRecordTypeId));
@@ -288,6 +288,69 @@ private class CON_DoNotContact_TEST {
             System.assertEquals(true, contactsAfterInsert[i].Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
         }
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that contacts inserted as deceased are excluded from Household naming functionality
+    * and have the following fields automatically marked as true: Do Not Contact, Email Opt Out, Do Not Call, Do Not Fax
+    */
+    // @isTest
+    // private static void updateSecondDeceasedContactsHHModel() {
+
+    //     UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+    //                                                         (Account_Processor__c = hhAccountRecordTypeId,
+    //                                                         Automatic_Household_Naming__c = true));
+
+    //     //UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+    //     //                                                    (Account_Processor__c = hhAccountRecordTypeId));
+
+    //     List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+    //     for (Contact con : testContacts){
+    //         con.Deceased__c = false;
+    //     }
+                                                    
+    //     insert testContacts;
+
+    //     List<Contact> contactsAfterInsert = [SELECT Do_Not_Contact__c, 
+    //                                                 Exclude_from_Household_Name__c, 
+    //                                                 Exclude_from_Household_Formal_Greeting__c,
+    //                                                 Exclude_from_Household_Informal_Greeting__c, 
+    //                                                 HasOptedOutOfEmail, 
+    //                                                 DoNotCall, 
+    //                                                 HasOptedOutOfFax, 
+    //                                                 Naming_Exclusions__c,
+    //                                                 Account.Name,
+    //                                                 Account.Id 
+    //                                             FROM CONTACT 
+    //                                             WHERE Id IN :testContacts];
+
+    //     Contact contactWithAnotherLastName = UTIL_UnitTestData_TEST.getContact();
+    //     contactWithAnotherLastName.Deceased__c = false;
+    //     contactWithAnotherLastName.LastName = 'Testerson';
+    //     contactWithAnotherLastName.AccountId = contactsAfterInsert[0].Account.Id;
+
+    //     insert contactWithAnotherLastName;
+
+    //     Contact contactAfterInsert = [SELECT Id,
+    //                                          Account.Name
+    //                                   FROM Contact
+    //                                   WHERE Id = :contactWithAnotherLastName.Id];
+        
+    //     System.assertEquals('0Contact_forTests0 and Testerson Household', contactAfterInsert.Account.Name, 'Household account name should include contact\'s last name.');
+
+    //     contactWithAnotherLastName.Deceased__c = true;
+
+    //     Test.startTest();
+    //     update contactWithAnotherLastName;
+    //     Test.stopTest();
+
+    //     Contact contactAfterUpdate = [SELECT Id,
+    //                                          Account.Name
+    //                                   FROM Contact
+    //                                   WHERE Id = :contactWithAnotherLastName.Id];
+        
+    //     System.assertEquals('0Contact_forTests0 Household', contactAfterInsert.Account.Name, 'Household account name should include contact\'s last name.');
+    // }
 
 
 

@@ -32,95 +32,151 @@
 * @date 2015
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Handles changes to the deceased and do not contact fields on Contact.
+* @description Synchronizes the "Do Not Contact" fields and naming exclusions for deceased contacts.
 */
 public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description Handles deceased and do not contact fields.
+    * @description Synchronizes the "Do Not Contact" fields and naming exclusions for deceased contacts.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param objResult the describe for Accounts
     * @return dmlWrapper.
     ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
+    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-        for (integer i=0; i<newlist.size();i++) {
+        if (this.isBeforeInsert(triggerAction)) {
+            List<Contact> insertedContactsList = (List<Contact>)newList;
+            this.processBeforeInsert(insertedContactsList);
+        }
 
-            Contact con = (Contact)newlist[i];
-    
-            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-                if (con.Deceased__c)
-                    markContactDeceased(con);
-                else if (con.Do_Not_Contact__c)
-                    markContactDoNotContact(con);
-            }
+        if (this.isBeforeUpdate(triggerAction)) {
+            List<Contact> updatedContactsList = (List<Contact>)newList;
+            Map<Id, Contact> oldUpdatedContactsById = new Map<Id, Contact>((List<Contact>)oldlist);
 
-            if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                Contact oldCon = (Contact)oldlist[i];
-
-                //deceased and do not contact: updates related fields for both checking and unchecking the box.
-                //prefers deceased as the deceased already marks the Do Not Contact fields, in case the user changes both values.
-                if (con.Deceased__c != oldCon.Deceased__c)
-                    markContactDeceased(con);
-                else if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c)
-                    markContactDoNotContact(con);
-            }
+            this.processBeforeUpdate(updatedContactsList, oldUpdatedContactsById);
         }
 
         return new DmlWrapper();
-	}
-
-    /*******************************************************************************************************
-    * @description Toggles additional Contact fields as necessary when a contact is flagged as deceased. 
-    * @param con The Contact record.
-    * @return void.  
-    ********************************************************************************************************/
-    public void markContactDeceased(Contact con) {
-
-        con.Do_Not_Contact__c = con.Deceased__c;
-        markContactDoNotContact(con);
-
-        con.Exclude_from_Household_Name__c = con.Deceased__c;
-        con.Exclude_from_Household_Formal_Greeting__c = con.Deceased__c;
-        con.Exclude_from_Household_Informal_Greeting__c = con.Deceased__c;
-
-        copyNamingExclusionsFromCheckboxes(con);
+    }
+    
+    /**
+     * @description Determine if trigger fired is the result of a Before Insert action. 
+     * @param  triggerAction The current trigger action
+     * @return               return true is trigger context is Before Insert, 
+     *                       false otherwise
+     */ 
+    @TestVisible
+    private Boolean isBeforeInsert(TDTM_Runnable.Action triggerAction) {
+        return triggerAction == TDTM_Runnable.Action.BeforeInsert;
     }
 
-	/*******************************************************************************************************
-    * @description Toggles additional Contact fields as necessary when a contact is flagged as "do not contact". 
-    * @param con The Contact record.
-    * @return void.  
-    ********************************************************************************************************/
-    public void markContactDoNotContact(Contact con) {
-
-        con.HasOptedOutOfEmail = con.Do_Not_Contact__c;
-        con.DoNotCall = con.Do_Not_Contact__c;
-        con.HasOptedOutOfFax  = con.Do_Not_Contact__c;
-
+    /**
+     * @description Determine if trigger fired is the result of a Before Update action. 
+     * @param  triggerAction The current trigger action
+     * @return               return description true if trigger context is Before Update,
+     *                       false otherwise
+     */ 
+    @TestVisible
+    private Boolean isBeforeUpdate(TDTM_Runnable.Action triggerAction) {
+        return triggerAction == TDTM_Runnable.Action.BeforeUpdate;
     }
 
-    /*******************************************************************************************************
-    * @description Copies the values from the naming exclusions checkboxes to the multiselect picklist.
-    * @param con The Contact
-    * @return void
-    ********************************************************************************************************/
-    public static void copyNamingExclusionsFromCheckboxes(Contact con) {
-        string mspValue = '';
+    /**
+     * @description Execute the logic necessary for a Before Insert trigger
+     * action.
+     * @param  newContactsList List of Contacts being inserted
+     */ 
+    @TestVisible
+    private void processBeforeInsert(List<Contact> newContactsList) {
+        for (Contact con : newContactsList){
+            if (con.Deceased__c == true){
+                con.Do_Not_Contact__c = con.Deceased__c;
+                this.syncDoNotContactFieldsOnContact(con);
+                this.syncNamingExclusionsOnContact(con);
+            } else if (con.Do_Not_Contact__c == true){
+                this.syncDoNotContactFieldsOnContact(con);
+            }
+        }
+    }
 
-        if (con.Exclude_from_Household_Name__c)
-            mspValue += 'Household__c.Name;';
-        if (con.Exclude_from_Household_Formal_Greeting__c)
-            mspValue += 'Household__c.Formal_Greeting__c;';
-        if (con.Exclude_from_Household_Informal_Greeting__c)
-            mspValue += 'Household__c.Informal_Greeting__c;';
+    /**
+     * @description Execute the logic necessary for a Before Update trigger
+     * action.
+     * @param  newContactsList     List of updated Contact state 
+     * @param  oldContactsById     Map of Contact state prior to update
+     */ 
+    @TestVisible
+    private void processBeforeUpdate(List<Contact> newContactsList, Map<Id, Contact> oldContactsById) {
+        for (Contact con : newContactsList){
 
-        if (mspValue.endsWith(';'))
-            mspValue = mspValue.substring(0,mspValue.length()-1);
+            Contact oldCon = oldContactsById.get(con.Id);
+            //deceased and do not contact: updates related fields for both checking and unchecking the box.
+            //prefers deceased as the deceased already marks the Do Not Contact fields, in case the user changes both values.
+            
+            if (con.Deceased__c != oldCon.Deceased__c){
+                // Deceased status changed
+                con.Do_Not_Contact__c = con.Deceased__c;
+                this.syncDoNotContactFieldsOnContact(con);
+                this.syncNamingExclusionsOnContact(con);
+            } else if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
+                // Do Not Contact flag changed
+                this.syncDoNotContactFieldsOnContact(con);
+            }            
+        }
+    }
 
-        con.Naming_Exclusions__c = mspValue;
+    /**
+     * @description syncDoNotContactFieldsOnContact description
+     * @param  contact contact description
+     */ 
+    @TestVisible
+    private void syncDoNotContactFieldsOnContact(Contact contact){
+        // contact.Do_Not_Contact__c = contact.Deceased__c;
+        contact.HasOptedOutOfEmail = contact.Do_Not_Contact__c;
+        contact.DoNotCall = contact.Do_Not_Contact__c;
+        contact.HasOptedOutOfFax  = contact.Do_Not_Contact__c;
+    }
+
+    /**
+     * @description syncNamingExclusionsOnContact description
+     * @param  contact contact description
+     */ 
+    @TestVisible
+    private void syncNamingExclusionsOnContact(Contact contact){
+        contact.Exclude_from_Household_Name__c = contact.Deceased__c;
+        contact.Exclude_from_Household_Formal_Greeting__c = contact.Deceased__c;
+        contact.Exclude_from_Household_Informal_Greeting__c = contact.Deceased__c;
+        contact.Naming_Exclusions__c = this.syncSelectedNamingExclusionsFromCheckboxes(contact);
+    }
+
+    /**
+     * @description Retrieves the naming exclusions specified by the selected checkboxes and returns a string 
+     * consisting of the selected values which is used to populate Naming Exclusion multiselect picklist.
+     * @param  contact The contact
+     * @return         A string containing the API names matching all selected naming exclusion checkboxes (; delimited)
+     */ 
+    @TestVisible
+    private String syncSelectedNamingExclusionsFromCheckboxes(Contact contact) {
+        List<String> selectedNamingExclusionList = new List<String>();
+        String selectedNamingExclusions = '';
+
+        if (contact.Exclude_from_Household_Name__c == true) {
+            selectedNamingExclusionList.add('Household__c.Name;');
+        }
+
+        if (contact.Exclude_from_Household_Formal_Greeting__c == true) {
+            selectedNamingExclusionList.add('Household__c.Formal_Greeting__c;');
+        }
+
+        if (contact.Exclude_from_Household_Informal_Greeting__c == true) {
+            selectedNamingExclusionList.add('Household__c.Informal_Greeting__c;');
+        }
+
+        selectedNamingExclusions = String.join(selectedNamingExclusionList, ';');
+
+        return selectedNamingExclusions;
     }
 }
