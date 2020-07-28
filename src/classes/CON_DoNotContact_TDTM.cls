@@ -47,16 +47,15 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
+        List<Contact> newContacts = (List<Contact>)newList;
+
         if (this.isBeforeInsert(triggerAction)) {
-            List<Contact> insertedContactsList = (List<Contact>)newList;
-            this.processBeforeInsert(insertedContactsList);
+            this.processBeforeInsert(newContacts);
         }
 
         if (this.isBeforeUpdate(triggerAction)) {
-            List<Contact> updatedContactsList = (List<Contact>)newList;
             Map<Id, Contact> oldUpdatedContactsById = new Map<Id, Contact>((List<Contact>)oldlist);
-
-            this.processBeforeUpdate(updatedContactsList, oldUpdatedContactsById);
+            this.processBeforeUpdate(newContacts, oldUpdatedContactsById);
         }
 
         return new DmlWrapper();
@@ -91,16 +90,39 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      */ 
     @TestVisible
     private void processBeforeInsert(List<Contact> newContactsList) {
+        List<Contact> deceasedContacts = new List<Contact>();
+        List<Contact> doNotContactContacts = new List<Contact>();
 
         for (Contact con : newContactsList){
             if (con.Deceased__c == true){
                 con.Do_Not_Contact__c = con.Deceased__c;
-                this.syncNamingExclusionsOnContact(con);
-            } 
+                deceasedContacts.add(con);
+            }
+
             if (con.Do_Not_Contact__c == true){
-                this.syncDoNotContactFieldsOnContact(con);
+                doNotContactContacts.add(con);
             }
         }
+
+        if (deceasedContacts.isEmpty() == false){
+            this.syncNamingExclusionsOnContacts(deceasedContacts);
+            this.syncDoNotContactFieldsOnContacts(deceasedContacts);
+        }
+
+        if (doNotContactContacts.isEmpty() == false){
+            this.syncDoNotContactFieldsOnContacts(doNotContactContacts);
+        }
+
+
+        // for (Contact con : newContactsList){
+        //     if (con.Deceased__c == true){
+        //         con.Do_Not_Contact__c = con.Deceased__c;
+        //         this.syncNamingExclusionsOnContact(con);
+        //     } 
+        //     if (con.Do_Not_Contact__c == true){
+        //         this.syncDoNotContactFieldsOnContact(con);
+        //     }
+        // }
     }
 
     /**
@@ -111,76 +133,106 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      */ 
     @TestVisible
     private void processBeforeUpdate(List<Contact> newContactsList, Map<Id, Contact> oldContactsById) {
+        List<Contact> deceasedContacts = new List<Contact>();
+        List<Contact> doNotContactContacts = new List<Contact>();
+        
         for (Contact con : newContactsList){
-
             Contact oldCon = oldContactsById.get(con.Id);
 
             if (con.Deceased__c != oldCon.Deceased__c){
                 // Deceased status changed
                 con.Do_Not_Contact__c = con.Deceased__c;
-                this.syncNamingExclusionsOnContact(con);
-            } 
-            
+                deceasedContacts.add(con);
+            }
+
             if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
                 // Do Not Contact flag changed
-                this.syncDoNotContactFieldsOnContact(con);
-            }            
+                doNotContactContacts.add(con);
+            }
         }
+
+        if (deceasedContacts.isEmpty() == false){
+            this.syncNamingExclusionsOnContacts(deceasedContacts);
+            this.syncDoNotContactFieldsOnContacts(deceasedContacts);
+        }
+
+        if (doNotContactContacts.isEmpty() == false){
+            this.syncDoNotContactFieldsOnContacts(doNotContactContacts);
+        }
+
+        // for (Contact con : newContactsList){
+
+        //     Contact oldCon = oldContactsById.get(con.Id);
+
+        //     if (con.Deceased__c != oldCon.Deceased__c){
+        //         // Deceased status changed
+        //         con.Do_Not_Contact__c = con.Deceased__c;
+        //         this.syncNamingExclusionsOnContact(con);
+        //     } 
+            
+        //     if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
+        //         // Do Not Contact flag changed
+        //         this.syncDoNotContactFieldsOnContact(con);
+        //     }            
+        // }
     }
 
     /**
      * @description Synchronizes the communication preference fields
      * (Do not Call, Email Opt Out, Fax Opt Out) on a contact record
      * to match the status specified by the "Do Not Contact" field.
-     * @param  contact The contact record to synchronize
+     * @param  contactsList List of contacts to synchronize
      */ 
     @TestVisible
-    private void syncDoNotContactFieldsOnContact(Contact contact){
-        contact.HasOptedOutOfEmail = contact.Do_Not_Contact__c;
-        contact.DoNotCall = contact.Do_Not_Contact__c;
-        contact.HasOptedOutOfFax  = contact.Do_Not_Contact__c;
+    private void syncDoNotContactFieldsOnContacts(List<Contact> contactsList){
+        for (Contact con : contactsList){
+            con.HasOptedOutOfEmail = con.Do_Not_Contact__c;
+            con.DoNotCall = con.Do_Not_Contact__c;
+            con.HasOptedOutOfFax  = con.Do_Not_Contact__c;
+        }
     }
 
     /**
      * @description Synchronizes the Household Naming Exclusion fields 
      * (checkboxes and picklist) on a contact record to match the status 
      * specified by the "Deceased" field.
-     * @param  contact The contact record to synchronize
+     * @param  contactsList List of contacts to synchronize
      */ 
     @TestVisible
-    private void syncNamingExclusionsOnContact(Contact contact){
-        contact.Exclude_from_Household_Name__c = contact.Deceased__c;
-        contact.Exclude_from_Household_Formal_Greeting__c = contact.Deceased__c;
-        contact.Exclude_from_Household_Informal_Greeting__c = contact.Deceased__c;
-        contact.Naming_Exclusions__c = this.syncSelectedNamingExclusionsFromCheckboxes(contact);
+    private void syncNamingExclusionsOnContacts(List<Contact> contactsList){
+        for (Contact con : contactsList){
+            con.Exclude_from_Household_Name__c = con.Deceased__c;
+            con.Exclude_from_Household_Formal_Greeting__c = con.Deceased__c;
+            con.Exclude_from_Household_Informal_Greeting__c = con.Deceased__c;
+        }
+
+        this.syncSelectedHHNamingExclusionsFromCheckboxes(contactsList);
     }
 
     /**
-     * @description Retrieves the naming exclusions specified by the selected checkboxes and returns a string 
-     * consisting of the selected values which is used to populate Naming Exclusion multiselect picklist.
-     * @param  contact The contact
-     * @return         A semi-colon delimited string containing the API names matching 
-     *                 all selected naming exclusion checkboxes.
+     * @description Retrieves the naming exclusions specified by the selected checkboxes and synchronizes
+     * the values in Naming Exclusion multiselect picklist to match.
+     * @param  contactsList List of contacts to synchronize
      */ 
     @TestVisible
-    private String syncSelectedNamingExclusionsFromCheckboxes(Contact contact) {
-        List<String> selectedNamingExclusionList = new List<String>();
-        String selectedNamingExclusions = '';
-
-        if (contact.Exclude_from_Household_Name__c == true) {
-            selectedNamingExclusionList.add('Household__c.Name;');
+    private void syncSelectedHHNamingExclusionsFromCheckboxes(List<Contact> contactsList) {
+        for (Contact con : contactsList){
+            List<String> selectedNamingExclusionList = new List<String>();
+            String selectedNamingExclusions = '';
+    
+            if (con.Exclude_from_Household_Name__c == true) {
+                selectedNamingExclusionList.add('Household__c.Name');
+            }
+    
+            if (con.Exclude_from_Household_Formal_Greeting__c == true) {
+                selectedNamingExclusionList.add('Household__c.Formal_Greeting__c');
+            }
+    
+            if (con.Exclude_from_Household_Informal_Greeting__c == true) {
+                selectedNamingExclusionList.add('Household__c.Informal_Greeting__c');
+            }
+    
+            con.Naming_Exclusions__c = String.join(selectedNamingExclusionList, ';');
         }
-
-        if (contact.Exclude_from_Household_Formal_Greeting__c == true) {
-            selectedNamingExclusionList.add('Household__c.Formal_Greeting__c;');
-        }
-
-        if (contact.Exclude_from_Household_Informal_Greeting__c == true) {
-            selectedNamingExclusionList.add('Household__c.Informal_Greeting__c;');
-        }
-
-        selectedNamingExclusions = String.join(selectedNamingExclusionList, ';');
-
-        return selectedNamingExclusions;
     }
 }

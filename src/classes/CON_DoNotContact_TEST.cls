@@ -32,13 +32,208 @@
 * @date 2015
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Handles changes to the deceased and do not contact fields on Contact.
+* @description Tests to validate the functionality of the CON_DoNotContact_TDTM class to
+* synchronize changes to the communication preference and naming exclusion fields for a 
+* deceased contact record.
 */
 @isTest
 private class CON_DoNotContact_TEST {
 
     public static String adminAccountRecordTypeId = UTIL_Describe_API.getAdminAccRecTypeID(); 
     public static String hhAccountRecordTypeId = UTIL_Describe_API.getHhAccRecTypeID(); 
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncDoNotContactFieldsOnContact synchronizes the following fields to true when 
+    * "Do Not Contact" is selected: Email Opt Out, Do Not Call, Do Not Fax
+    */
+    @isTest
+    private static void syncDoNotContactFieldsToTrue(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Do_Not_Contact__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncDoNotContactFieldsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of emails.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of phone calls.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncDoNotContactFieldsOnContact synchronizes the following fields to false when 
+    * "Do Not Contact" is not selected: Email Opt Out, Do Not Call, Do Not Fax
+    */
+    @isTest
+    private static void syncDoNotContactFieldsToFalse(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Do_Not_Contact__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncDoNotContactFieldsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of emails.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of phone calls.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncNamingExclusionsOnContact excludes the following naming conventions  
+    * when a contact has been marked as deceased: Household Name, Household Formal Greeting, Household Informal Greeting
+    */
+    @isTest 
+    private static void syncNamingExclusionsToTrue(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Deceased__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncNamingExclusionsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
+        }
+    }
+
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncNamingExclusionsOnContact removes all household naming exclusions   
+    * when a contact has been updated from previously being deceased.
+    */
+    @isTest 
+    private static void syncNamingExclusionsToFalse(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Deceased__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncNamingExclusionsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be blank.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncSelectedHHNamingExclusionsFromCheckboxes correctly generates a semi-colon 
+    * delimited string listing all household naming exclusions when the corresponding household exclusion checkboxes are 
+    * selected on the Contact.
+    */
+    @isTest 
+    private static void syncHHNamingExclusionsFromCheckboxesAll(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Exclude_from_Household_Name__c = true;
+            con.Exclude_from_Household_Formal_Greeting__c = true;
+            con.Exclude_from_Household_Informal_Greeting__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncSelectedHHNamingExclusionsFromCheckboxes(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals('Household__c.Name;Household__c.Formal_Greeting__c;Household__c.Informal_Greeting__c', 
+                                 con.Naming_Exclusions__c,
+                                'Naming exclusion string should include all household naming conventions');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncSelectedHHNamingExclusionsFromCheckboxes correctly generates a semi-colon 
+    * delimited string listing only the household naming exclusions matching the household exclusion checkbox selections 
+    * on the Contact.
+    */
+    @isTest 
+    private static void syncHHNamingExclusionsFromCheckboxesPartial(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactsList){
+            con.Exclude_from_Household_Name__c = true;
+            con.Exclude_from_Household_Formal_Greeting__c = false;
+            con.Exclude_from_Household_Informal_Greeting__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncSelectedHHNamingExclusionsFromCheckboxes(testContactsList);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals('Household__c.Name;Household__c.Informal_Greeting__c', 
+                                 con.Naming_Exclusions__c,
+                                'Naming exclusion string should include household name and informal greeting');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncSelectedHHNamingExclusionsFromCheckboxes does not generate a string when none 
+    * of the household exclusion checkboxes are selected on the Contact record.
+    */
+    @isTest 
+    private static void syncHHNamingExclusionsFromCheckboxesNone(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactsList){
+            con.Exclude_from_Household_Name__c = false;
+            con.Exclude_from_Household_Formal_Greeting__c = false;
+            con.Exclude_from_Household_Informal_Greeting__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncSelectedHHNamingExclusionsFromCheckboxes(testContactsList);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming exclusion string should be blank');
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**************************************************************************************************************************
     * @description Test method to verify that contacts inserted as deceased are excluded from Household naming functionality
@@ -245,9 +440,9 @@ private class CON_DoNotContact_TEST {
     @isTest
     private static void insertDeceasedContactsHHModel() {
 
-        //  UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-        //                                                      (Account_Processor__c = hhAccountRecordTypeId,
-        //                                                      Automatic_Household_Naming__c = true));
+         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                             (Account_Processor__c = hhAccountRecordTypeId,
+                                                             Automatic_Household_Naming__c = true));
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                             (Account_Processor__c = hhAccountRecordTypeId));
