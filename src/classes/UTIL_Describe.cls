@@ -694,7 +694,7 @@ public class UTIL_Describe {
         Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
         if (defaultAdminRecTypeId == null && Test.isRunningTest() == false) {
             //TODO: Use custom label instead
-            throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException('Could not find the Account Record Type labeled Administrative.');
+            throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(Label.missAccountRecordTypeLabeledAdministrativeErrror);
         }
         return defaultAdminRecTypeId;
     }
