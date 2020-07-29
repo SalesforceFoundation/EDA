@@ -184,7 +184,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      * @description Synchronizes the naming exclusions specified by the selected 
      * checkboxes with the selected values listed in the Naming Exclusion 
      * multiselect picklist.
-     * @param  contactsList List of contacts to synchronize
+     * @param contactsList List of contacts to synchronize
      */ 
     @TestVisible
     private void syncHHNamingExclusionsPicklistFromCheckboxes(List<Contact> contactsList) {
