@@ -65,8 +65,8 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     
     /**
      * @description Determine if trigger fired is the result of a BeforeInsert action. 
-     * @param  triggerAction The current trigger action
-     * @return               returns true is trigger context is BeforeInsert, false otherwise
+     * @param triggerAction The current trigger action
+     * @return returns true is trigger context is BeforeInsert, false otherwise
      */ 
     @TestVisible
     private Boolean isBeforeInsert(TDTM_Runnable.Action triggerAction) {
@@ -75,8 +75,8 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
     /**
      * @description Determine if trigger fired is the result of a BeforeUpdate action. 
-     * @param  triggerAction The current trigger action
-     * @return               returns true if trigger context is BeforeUpdate, false otherwise
+     * @param triggerAction The current trigger action
+     * @return returns true if trigger context is BeforeUpdate, false otherwise
      */ 
     @TestVisible
     private Boolean isBeforeUpdate(TDTM_Runnable.Action triggerAction) {
@@ -85,7 +85,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
     /**
      * @description Execute the logic necessary for a BeforeInsert trigger action.
-     * @param  newContactsList List of Contacts inserted
+     * @param newContactsList List of Contacts inserted
      */ 
     @TestVisible
     private void processBeforeInsert(List<Contact> newContactsList) {
@@ -115,8 +115,8 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
     /**
      * @description Execute the logic necessary for a BeforeUpdate trigger action.
-     * @param  newContactsList List of updated contacts
-     * @param  oldContactsById Map of contacts' state prior to update
+     * @param newContactsList List of updated contacts
+     * @param oldContactsById Map of contacts' state prior to update
      */ 
     @TestVisible
     private void processBeforeUpdate(List<Contact> newContactsList, Map<Id, Contact> oldContactsById) {
