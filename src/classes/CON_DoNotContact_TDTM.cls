@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2020
+* @date 2015
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Synchronizes Household naming exclusions and communication preferences 
@@ -66,8 +66,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     /**
      * @description Determine if trigger fired is the result of a BeforeInsert action. 
      * @param  triggerAction The current trigger action
-     * @return               returns true is trigger context is BeforeInsert, 
-     *                       false otherwise
+     * @return               returns true is trigger context is BeforeInsert, false otherwise
      */ 
     @TestVisible
     private Boolean isBeforeInsert(TDTM_Runnable.Action triggerAction) {
@@ -77,8 +76,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     /**
      * @description Determine if trigger fired is the result of a BeforeUpdate action. 
      * @param  triggerAction The current trigger action
-     * @return               returns true if trigger context is BeforeUpdate,
-     *                       false otherwise
+     * @return               returns true if trigger context is BeforeUpdate, false otherwise
      */ 
     @TestVisible
     private Boolean isBeforeUpdate(TDTM_Runnable.Action triggerAction) {
@@ -87,7 +85,6 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
     /**
      * @description Execute the logic necessary for a BeforeInsert trigger action.
-     * action.
      * @param  newContactsList List of Contacts inserted
      */ 
     @TestVisible
@@ -117,10 +114,9 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description Execute the logic necessary for a BeforeUpdate trigger
-     * action.
-     * @param  newContactsList     List of updated contacts
-     * @param  oldContactsById     Map of contacts' state prior to update
+     * @description Execute the logic necessary for a BeforeUpdate trigger action.
+     * @param  newContactsList List of updated contacts
+     * @param  oldContactsById Map of contacts' state prior to update
      */ 
     @TestVisible
     private void processBeforeUpdate(List<Contact> newContactsList, Map<Id, Contact> oldContactsById) {
@@ -154,7 +150,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      * @description Synchronizes the communication preference fields
      * (Do not Call, Email Opt Out, Fax Opt Out) on a contact record
      * to match the status specified by the "Do Not Contact" field.
-     * @param  contactsList List of contacts to synchronize
+     * @param contactsList List of contacts to synchronize
      */ 
     @TestVisible
     private void syncDoNotContactFieldsOnContacts(List<Contact> contactsList){
@@ -169,7 +165,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      * @description Synchronizes the Household Naming Exclusion fields 
      * (checkboxes and picklist) on a contact record to match the status 
      * specified by the "Deceased" field.
-     * @param  contactsList List of contacts to synchronize
+     * @param contactsList List of contacts to synchronize
      */ 
     @TestVisible
     private void syncNamingExclusionsOnContacts(List<Contact> contactsList){
@@ -186,7 +182,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      * @description Synchronizes the naming exclusions specified by the selected 
      * checkboxes with the selected values listed in the Naming Exclusion 
      * multiselect picklist.
-     * @param  contactsList List of contacts to synchronize
+     * @param contactsList List of contacts to synchronize
      */ 
     @TestVisible
     private void syncHHNamingExclusionsPicklistFromCheckboxes(List<Contact> contactsList) {
