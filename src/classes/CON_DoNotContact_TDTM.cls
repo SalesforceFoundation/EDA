@@ -46,7 +46,6 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     * @param objResult the describe for Contacts
     * @return dmlWrapper.
     ********************************************************************************************************/
-    @TestVisible
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
