@@ -50,15 +50,15 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-        List<Contact> newContacts = (List<Contact>)newList;
+        List<Contact> newContactsList = (List<Contact>)newList;
 
         if (this.isBeforeInsert(triggerAction)) {
-            this.processBeforeInsert(newContacts);
+            this.processBeforeInsert(newContactsList);
         }
 
         if (this.isBeforeUpdate(triggerAction)) {
             Map<Id, Contact> oldUpdatedContactsById = new Map<Id, Contact>((List<Contact>)oldlist);
-            this.processBeforeUpdate(newContacts, oldUpdatedContactsById);
+            this.processBeforeUpdate(newContactsList, oldUpdatedContactsById);
         }
 
         return new DmlWrapper();
@@ -93,27 +93,27 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      */ 
     @TestVisible
     private void processBeforeInsert(List<Contact> newContactsList) {
-        List<Contact> deceasedContacts = new List<Contact>();
-        List<Contact> doNotContactContacts = new List<Contact>();
+        List<Contact> deceasedContactsList = new List<Contact>();
+        List<Contact> doNotContactContactsList = new List<Contact>();
 
         for (Contact con : newContactsList){
             if (con.Deceased__c == true){
                 con.Do_Not_Contact__c = con.Deceased__c;
-                deceasedContacts.add(con);
+                deceasedContactsList.add(con);
             }
 
             if (con.Do_Not_Contact__c == true){
-                doNotContactContacts.add(con);
+                doNotContactContactsList.add(con);
             }
         }
 
-        if (deceasedContacts.isEmpty() == false){
-            this.syncNamingExclusionsOnContacts(deceasedContacts);
-            this.syncDoNotContactFieldsOnContacts(deceasedContacts);
+        if (deceasedContactsList.isEmpty() == false){
+            this.syncNamingExclusionsOnContacts(deceasedContactsList);
+            this.syncDoNotContactFieldsOnContacts(deceasedContactsList);
         }
 
-        if (doNotContactContacts.isEmpty() == false){
-            this.syncDoNotContactFieldsOnContacts(doNotContactContacts);
+        if (doNotContactContactsList.isEmpty() == false){
+            this.syncDoNotContactFieldsOnContacts(doNotContactContactsList);
         }
     }
 
@@ -125,29 +125,29 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      */ 
     @TestVisible
     private void processBeforeUpdate(List<Contact> newContactsList, Map<Id, Contact> oldContactsById) {
-        List<Contact> deceasedContacts = new List<Contact>();
-        List<Contact> doNotContactContacts = new List<Contact>();
+        List<Contact> deceasedContactsList = new List<Contact>();
+        List<Contact> doNotContactContactsList = new List<Contact>();
         
         for (Contact con : newContactsList){
             Contact oldCon = oldContactsById.get(con.Id);
 
             if (con.Deceased__c != oldCon.Deceased__c){
                 con.Do_Not_Contact__c = con.Deceased__c;
-                deceasedContacts.add(con);
+                deceasedContactsList.add(con);
             }
 
             if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
-                doNotContactContacts.add(con);
+                doNotContactContactsList.add(con);
             }
         }
 
-        if (deceasedContacts.isEmpty() == false){
-            this.syncNamingExclusionsOnContacts(deceasedContacts);
-            this.syncDoNotContactFieldsOnContacts(deceasedContacts);
+        if (deceasedContactsList.isEmpty() == false){
+            this.syncNamingExclusionsOnContacts(deceasedContactsList);
+            this.syncDoNotContactFieldsOnContacts(deceasedContactsList);
         }
 
-        if (doNotContactContacts.isEmpty() == false){
-            this.syncDoNotContactFieldsOnContacts(doNotContactContacts);
+        if (doNotContactContactsList.isEmpty() == false){
+            this.syncDoNotContactFieldsOnContacts(doNotContactContactsList);
         }
     }
 
