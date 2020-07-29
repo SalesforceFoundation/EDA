@@ -75,9 +75,8 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
     /**
      * @description Determine if trigger fired is the result of a BeforeUpdate action. 
-     * @param  triggerAction The current trigger action
-     * @return               returns true if trigger context is BeforeUpdate,
-     *                       false otherwise
+     * @param triggerAction The current trigger action
+     * @return returns true if trigger context is BeforeUpdate, false otherwise
      */ 
     @TestVisible
     private Boolean isBeforeUpdate(TDTM_Runnable.Action triggerAction) {
