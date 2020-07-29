@@ -29,18 +29,20 @@
 */
 /**
 * @author Salesforce.org
-* @date 2015
+* @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Synchronizes the "Do Not Contact" fields and naming exclusions for deceased contacts.
+* @description Synchronizes Household naming exclusions and communication preferences 
+* with changes to the Deceased and Do Not Contact fields for the Contact object.
 */
 public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description Synchronizes the "Do Not Contact" fields and naming exclusions for deceased contacts.
-    * @param listNew the list of Contacts from trigger new.
-    * @param listOld the list of Contacts from trigger old.
-    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+    * @description Synchronizes Household naming exclusions and communication preferences 
+    * with changes to the Deceased and Do Not Contact fields for the Contact object.
+    * @param newList the list of Contacts from trigger new
+    * @param oldList the list of Contacts from trigger old
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.)
     * @param objResult the describe for Contacts
     * @return dmlWrapper.
     ********************************************************************************************************/
@@ -63,9 +65,9 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
     
     /**
-     * @description Determine if trigger fired is the result of a Before Insert action. 
+     * @description Determine if trigger fired is the result of a BeforeInsert action. 
      * @param  triggerAction The current trigger action
-     * @return               return true is trigger context is Before Insert, 
+     * @return               returns true is trigger context is BeforeInsert, 
      *                       false otherwise
      */ 
     @TestVisible
@@ -74,9 +76,9 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description Determine if trigger fired is the result of a Before Update action. 
+     * @description Determine if trigger fired is the result of a BeforeUpdate action. 
      * @param  triggerAction The current trigger action
-     * @return               return description true if trigger context is Before Update,
+     * @return               returns true if trigger context is BeforeUpdate,
      *                       false otherwise
      */ 
     @TestVisible
@@ -85,9 +87,9 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description Execute the logic necessary for a Before Insert trigger
+     * @description Execute the logic necessary for a BeforeInsert trigger action.
      * action.
-     * @param  newContactsList List of Contacts being inserted
+     * @param  newContactsList List of Contacts inserted
      */ 
     @TestVisible
     private void processBeforeInsert(List<Contact> newContactsList) {
@@ -116,10 +118,10 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description Execute the logic necessary for a Before Update trigger
+     * @description Execute the logic necessary for a BeforeUpdate trigger
      * action.
-     * @param  newContactsList     List of updated Contact state 
-     * @param  oldContactsById     Map of Contact state prior to update
+     * @param  newContactsList     List of updated contacts
+     * @param  oldContactsById     Map of contacts' state prior to update
      */ 
     @TestVisible
     private void processBeforeUpdate(List<Contact> newContactsList, Map<Id, Contact> oldContactsById) {
@@ -130,13 +132,11 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
             Contact oldCon = oldContactsById.get(con.Id);
 
             if (con.Deceased__c != oldCon.Deceased__c){
-                // Deceased status changed
                 con.Do_Not_Contact__c = con.Deceased__c;
                 deceasedContacts.add(con);
             }
 
             if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
-                // Do Not Contact flag changed
                 doNotContactContacts.add(con);
             }
         }
@@ -184,8 +184,9 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description Retrieves the naming exclusions specified by the selected checkboxes and synchronizes
-     * the values in Naming Exclusion multiselect picklist to match.
+     * @description Synchronizes the naming exclusions specified by the selected 
+     * checkboxes with the selected values listed in the Naming Exclusion 
+     * multiselect picklist.
      * @param  contactsList List of contacts to synchronize
      */ 
     @TestVisible

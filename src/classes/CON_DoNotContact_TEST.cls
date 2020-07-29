@@ -33,12 +33,12 @@
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Tests to validate the functionality of the CON_DoNotContact_TDTM class to
-* synchronize changes to the communication preference and naming exclusion fields for a 
-* deceased contact record.
+* synchronize Household naming exclusions and communication preferences with changes to the Deceased
+* and Do Not Contact fields for the Contact object.
 */
 @isTest
 private class CON_DoNotContact_TEST {
-     /**************************************************************************************************************************
+    /**************************************************************************************************************************
     ****************************************************** FUNCTIONAL TESTS ****************************************************
     **************************************************************************************************************************/
 
