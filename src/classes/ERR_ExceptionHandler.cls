@@ -72,12 +72,12 @@ public with sharing class ERR_ExceptionHandler {
             if (message.contains(STATUS)) {
                 if (SUBSTRINGS.keySet().contains(STATUS)) {
                     message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
-                }else if (CUSTOMS_EXCEPTION_MESSAGES.keySet().contains(STATUS)) {
+                } else if (CUSTOMS_EXCEPTION_MESSAGES.keySet().contains(STATUS)) {
                     message = CUSTOMS_EXCEPTION_MESSAGES.get(STATUS);
                 }
                 ex.setMessage(message);
                 break;
-            }else if ((typeName.contains(STATUS))){
+            } else if ((typeName.contains(STATUS))){
                 ex.setMessage(message);
                 break;                
             }
@@ -100,11 +100,18 @@ public with sharing class ERR_ExceptionHandler {
 
     public static void handleAfflNullRecordTypeException(Affiliation__c affl, List<String> validRecordTypes) {
         if (affl.Account__c != null) {
+            // Get related Account's Record Type Name from 'Affiliation_Type__c' field
+            String afflAccRecTypeName;
+            if (affl.Affiliation_Type__c != null) {
+                AFFL_MultiRecordTypeMapper affilMapper = new AFFL_MultiRecordTypeMapper();
+                afflAccRecTypeName = affilMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
+            }
             //If parent account exists for affiliation and account has no record type
             //display the error message
-            if (affl.Affiliation_Type__c != null && !validRecordTypes.contains(affl.Affiliation_Type__c)) {
+            if ((affl.Affiliation_Type__c != null && !validRecordTypes.contains(affl.Affiliation_Type__c)) && 
+                (String.isNotBlank(afflAccRecTypeName) &&  !validRecordTypes.contains(afflAccRecTypeName))) {
                 throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-            }else if (affl.Affiliation_Type__c == null) {
+            } else if (affl.Affiliation_Type__c == null) {
                 throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
             }
         }
