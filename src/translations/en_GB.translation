@@ -281,6 +281,10 @@
         <name>lastNameHH</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error when missing Account Record Type Labeled Administrative --></label>
+        <name>missAccountRecordTypeLabeledAdministrativeErrror</name>
+    </customLabels>
+    <customLabels>
         <label>Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.</label>
         <name>nestedPlanRequirementPPExp</name>
     </customLabels>

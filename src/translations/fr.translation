@@ -281,6 +281,10 @@
         <name>lastNameHH</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error when missing Account Record Type Labeled Administrative --></label>
+        <name>missAccountRecordTypeLabeledAdministrativeErrror</name>
+    </customLabels>
+    <customLabels>
         <label>Les exigences du plan peuvent indiquer un plan du programme ou une exigence du plan parente, mais pas les deux. Si cette exigence du plan est un enfant d’une autre exigence du plan, spécifiez uniquement une exigence du plan parente. Si cette exigence du plan est un enfant d’un plan du programme, spécifiez uniquement un plan du programme.</label>
         <name>nestedPlanRequirementPPExp</name>
     </customLabels>
