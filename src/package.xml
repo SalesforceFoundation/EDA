@@ -12,6 +12,7 @@
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>
         <members>ADDR_Addresses_TDTM</members>
+        <members>ADDR_Address_TEST</members>
         <members>ADDR_Addresses_UTIL</members>
         <members>ADDR_AdminAcc_TEST</members>
         <members>ADDR_CannotDelete_TDTM</members>

@@ -12,6 +12,18 @@ Test Setup      Run keywords
 ...             Update enable cc to default
 
 *** Test Cases ***
+Validate drop down values appear when checkbox is unchecked
+    [Documentation]         Checks for the warning message when the Enable Course Connections is unchecked.
+    ...                     Checks the dropdown field is disabled for Default Active Student Record Type
+    ...                     and Default Faculty Record Type. The value of the dropdown field status is True
+    ...                     when disbaled and False when enabled.
+    [tags]                                      unstable        W-041782
+    Click action button on EDA settings page    Edit
+    Verify enable course connections warning    true
+    Verify dropdown field status           
+    ...                                         Default Active Student Record Type=disabled
+    ...                                         Default Faculty Record Type=disabled 
+
 Validate Edit Mode For Course Connections, Settings
     [Documentation]         Check for the warning message when the Enable Course Connections is unchecked
     ...                     Check the warning message disappears when the Enable Course Connections is checked
