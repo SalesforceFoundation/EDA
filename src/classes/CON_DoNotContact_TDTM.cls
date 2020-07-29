@@ -117,8 +117,8 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     /**
      * @description Execute the logic necessary for a BeforeUpdate trigger
      * action.
-     * @param  newContactsList     List of updated contacts
-     * @param  oldContactsById     Map of contacts' state prior to update
+     * @param newContactsList List of updated contacts
+     * @param oldContactsById Map of contacts' state prior to update
      */ 
     @TestVisible
     private void processBeforeUpdate(List<Contact> newContactsList, Map<Id, Contact> oldContactsById) {
