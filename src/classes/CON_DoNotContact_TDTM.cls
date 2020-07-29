@@ -167,7 +167,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      * @description Synchronizes the Household Naming Exclusion fields 
      * (checkboxes and picklist) on a contact record to match the status 
      * specified by the "Deceased" field.
-     * @param  contactsList List of contacts to synchronize
+     * @param contactsList List of contacts to synchronize
      */ 
     @TestVisible
     private void syncNamingExclusionsOnContacts(List<Contact> contactsList){
