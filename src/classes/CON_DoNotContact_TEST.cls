@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2015
+* @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Tests to validate the functionality of the CON_DoNotContact_TDTM class to
@@ -1088,7 +1088,7 @@ private class CON_DoNotContact_TEST {
         TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeInsert;
 
         CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
-        System.assertEquals(true, conDoNotContactTDTM.isBeforeInsert(testAction));
+        System.assertEquals(true, conDoNotContactTDTM.isBeforeInsert(testAction), 'Trigger Action is BeforeInsert');
     }
 
     /**************************************************************************************************************************
@@ -1099,7 +1099,7 @@ private class CON_DoNotContact_TEST {
         TDTM_Runnable.Action testAction = TDTM_Runnable.Action.AfterInsert;
 
         CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
-        System.assertEquals(false, conDoNotContactTDTM.isBeforeInsert(testAction));
+        System.assertEquals(false, conDoNotContactTDTM.isBeforeInsert(testAction), 'Trigger Action is not BeforeInsert');
     }
 
     /**************************************************************************************************************************
@@ -1110,7 +1110,7 @@ private class CON_DoNotContact_TEST {
         TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeUpdate;
 
         CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
-        System.assertEquals(true, conDoNotContactTDTM.isBeforeUpdate(testAction));
+        System.assertEquals(true, conDoNotContactTDTM.isBeforeUpdate(testAction), 'Trigger Action is BeforeUpdate');
     }
 
     /**************************************************************************************************************************
@@ -1121,7 +1121,7 @@ private class CON_DoNotContact_TEST {
         TDTM_Runnable.Action testAction = TDTM_Runnable.Action.AfterUpdate;
 
         CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
-        System.assertEquals(false, conDoNotContactTDTM.isBeforeUpdate(testAction));
+        System.assertEquals(false, conDoNotContactTDTM.isBeforeUpdate(testAction), 'Trigger Action is not BeforeUpdate');
     }
 
     /**************************************************************************************************************************
