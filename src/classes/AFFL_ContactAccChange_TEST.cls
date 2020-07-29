@@ -82,7 +82,24 @@ public with sharing class AFFL_ContactAccChange_TEST {
         resetAfflFlags();
         insert bizAffl1;
     }
-    
+
+    private static void updatePrimaryBizOrgMappings() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        //AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+        //Map<String, String> accRecTypeToContactLabel = afflMapper.accRecTypeToContactLabel;
+
+        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
+            if (mapping.Primary_Affl_Field__c == 'Primary Business Organization') {
+                mapping.Primary_Affl_Field__c = prefix + 'Primary_Organization__c';
+            }
+            update mapping;
+        }
+        //afflMapper.populateMaps();
+    }
+
     @isTest
     private static void changeContact() {
         AFFL_ContactAccChange_TEST.dataSetup();
@@ -351,5 +368,171 @@ public with sharing class AFFL_ContactAccChange_TEST {
         System.assertEquals(primaryBusinessAfflCon1.Id, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon1.Id)[0].Id);
         System.assertEquals(1, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon2.Id).size());
         System.assertEquals(primaryBusinessAfflCon2.Id, afflToOtherPrimaryAffiliations.get(primaryHHAfflCon2.Id)[0].Id);
+    }    
+
+    /* Tests changing the Account on a Primary Affiliation to an Account of the same Record Type when API names are used for 
+       'Contact Primary Affl Field ' in Affiliation Mappings will update the Primary Affiliation field on the Contact.
+    */
+
+    @isTest
+    private static void changeAccountSameTypeWithMappingsWithAPINamesForPrimaryAffl() {
+
+        AFFL_ContactAccChange_TEST.dataSetup();
+
+        // Update Affiliation mapping to use API names for Primary_Affl_Field__c
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
+
+        Contact con = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+        Account bizAcct2 = [SELECT Id FROM Account WHERE Id = :bizOrg2.Id];
+
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: con.Id AND Account__c =: bizAcct1.Id];
+
+        //Change affiliation account
+        Test.startTest();
+            affl1.Account__c = bizAcct2.Id;
+            update affl1;
+        Test.stopTest();
+
+        //Confirm primary field has been updated
+        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where Id =:con.Id];
+        System.assertEquals(bizAcct2.Id, updatedContact.Primary_Organization__c);
+
+        //Make sure we are not creating duplicate affiliations
+        List<Affiliation__c> affls = [select Id from Affiliation__c];
+        System.assertEquals(1, affls.size());
+
+    }
+
+    /* Tests changing the Account on a Primary Affiliation to an Account of a different Record Type when API names are used for 
+       'Contact Primary Affl Field ' in Affiliation Mappings will update the Primary Affiliation field on the Contact.
+    */
+
+    @isTest
+    private static void changeAccountDifferentTypeWithMappingsWithAPINamesForPrimaryAffl() {
+
+        AFFL_ContactAccChange_TEST.dataSetup();
+
+        // Update Affiliation mapping to use API names for Primary_Affl_Field__c
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
+
+        Contact contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+
+        Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+        Account houseAcct1 = [SELECT Id FROM Account WHERE Id = :householdOrg1.Id];
+
+        //Get primary affiliation
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.Id AND Account__c =: bizAcct1.Id];
+
+        //Change affiliation account
+        Test.startTest();
+            affl1.Account__c = houseAcct1.Id;
+            update affl1;
+        Test.stopTest();
+
+        //Confirm primary field has been updated
+        Contact updatedContact = [SELECT Primary_Organization__c, Primary_Household__c FROM Contact where ID =:contact.Id];
+        System.assertEquals(null, updatedContact.Primary_Organization__c);
+        System.assertEquals(householdOrg1.Id, updatedContact.Primary_Household__c);
+
+        //Make sure we are not creating duplicate affiliations
+        List<Affiliation__c> affls = [select Id from Affiliation__c];
+        System.assertEquals(1, affls.size());
+    }
+
+    /* Tests clearing the Account on a Primary Affiliation when API names are used for 'Contact Primary Affl Field ' 
+       in Affiliation Mappings will also clear the Primary Affiliation field on the Contact. 
+    */
+
+    @isTest
+    private static void clearAccountWithMappingsWithAPINamesForPrimaryAffl() {
+
+        AFFL_ContactAccChange_TEST.dataSetup();
+
+        // Update Affiliation mapping to use API names for Primary_Affl_Field__c
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
+
+        Contact contact = [SELECT Primary_Organization__c from Contact WHERE Id = :contact1.Id];
+        Account bizAcct1 = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.Id AND Account__c =: bizAcct1.Id];
+
+        //Clear affiliation account
+        Test.startTest();
+            affl1.Account__c = null;
+            update affl1;
+        Test.stopTest();
+
+        //Confirm primary field has been cleared
+        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where Id =:contact.Id];
+        System.assertEquals(null, updatedContact.Primary_Organization__c);
+    }
+
+    /* Tests clearing the Contact on a Primary Affiliation when API names are used for 'Contact Primary Affl Field ' 
+       in Affiliation Mappings will also clear the Primary Affiliation field on the Contact.
+    */
+
+    @isTest
+    private static void clearContactWithAPINamesForPrimaryAffl() {
+
+        AFFL_ContactAccChange_TEST.dataSetup();
+
+        // Update Affiliation mapping to use API names for Primary_Affl_Field__c
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
+
+        Contact con = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        Account bizAcct = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c = :con.Id AND Account__c = :bizAcct.Id];
+
+        //Clear contact
+        Test.startTest();
+            affl1.Contact__c = null;
+            update affl1;
+        Test.stopTest();
+
+        //Confirm Primary Business Organization field has been cleared in contact
+        Contact updatedContact = [SELECT Primary_Organization__c FROM Contact where Id =:con.Id];
+        System.assertEquals(null, updatedContact.Primary_Organization__c);
+    }
+    
+    /* Tests changing the Contact on a Primary Affiliation to another Contact when API names are used for 
+       'Contact Primary Affl Field' in Affiliation Mappings will updaclear te the Primary Affiliation field on the Contact
+       and the value is populated in the new Contact.
+    */
+
+    @isTest
+    private static void changeContactWithAPINamesForPrimaryAffl() {
+
+        AFFL_ContactAccChange_TEST.dataSetup();
+
+        // Update Affiliation mapping to use API names for Primary_Affl_Field__c
+        AFFL_ContactAccChange_TEST.updatePrimaryBizOrgMappings();
+
+        Account bizAcct = [SELECT Id FROM Account WHERE Id = :bizOrg1.Id];
+
+        //Confirm Primary Business Organization field has been populated in contact
+        Contact con1 = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        Contact con2 = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact2.Id];
+
+        Affiliation__c affl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: con1.Id AND Account__c =: bizAcct.Id];
+
+        System.assertEquals(con1.Primary_Organization__c, affl1.Account__c, 'Primary Org Does Not Match');
+
+        //Update primary affiliation to point to a different contact
+        Test.startTest();
+            affl1.Contact__c = con2.Id;
+            update affl1;
+        Test.stopTest();
+
+        //Confirm Primary Business Organization field has been cleared in contact
+        Contact updatedContact = [SELECT Primary_Organization__c from Contact where Id =:con1.Id];
+        System.assertEquals(null, updatedContact.Primary_Organization__c);
+
+        //Confirm Primary Business Organization field has been populated in contact2
+        Contact updatedContact2 = [SELECT Primary_Organization__c FROM Contact where Id =:con2.Id];
+        System.assertEquals(affl1.Account__c, updatedcontact2.Primary_Organization__c);
+
+        //Make sure we are not creating duplicate affiliations
+        List<Affiliation__c> affls = [select Id from Affiliation__c];
+        System.assertEquals(1, affls.size());
     }
 }
