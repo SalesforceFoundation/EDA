@@ -86,7 +86,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     /**
      * @description Execute the logic necessary for a BeforeInsert trigger action.
      * action.
-     * @param  newContactsList List of Contacts inserted
+     * @param newContactsList List of Contacts inserted
      */ 
     @TestVisible
     private void processBeforeInsert(List<Contact> newContactsList) {
