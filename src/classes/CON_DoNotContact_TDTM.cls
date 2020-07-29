@@ -152,7 +152,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      * @description Synchronizes the communication preference fields
      * (Do not Call, Email Opt Out, Fax Opt Out) on a contact record
      * to match the status specified by the "Do Not Contact" field.
-     * @param  contactsList List of contacts to synchronize
+     * @param contactsList List of contacts to synchronize
      */ 
     @TestVisible
     private void syncDoNotContactFieldsOnContacts(List<Contact> contactsList){
