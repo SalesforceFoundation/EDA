@@ -44,21 +44,21 @@ public with sharing class ERR_Handler_TEST {
     private static Id chatterGroupId;
     
     private static void setupWithChatterNotifications() {
-    	
-    	if(Schema.SObjectType.User.isFeedEnabled()) {
-	    	SObject chatterGroup = (SObject)System.Type.forName('CollaborationGroup').newInstance();
-	    	chatterGroup.put('Name', 'ChatterTestGroup');
-	    	chatterGroup.put('CollaborationType', 'Private');
-	    	insert chatterGroup;
-	    	chatterGroupId = chatterGroup.Id;
-	    	UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
-	    	  Error_Notifications_To__c = chatterGroup.Id, Store_Errors_On__c = true, 
-	    	  Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
-    	} else {
-    		UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
-    		  Error_Notifications_To__c = null, Store_Errors_On__c = true, 
-    		  Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
-    	}
+        
+        if(Schema.SObjectType.User.isFeedEnabled()) {
+            SObject chatterGroup = (SObject)System.Type.forName('CollaborationGroup').newInstance();
+            chatterGroup.put('Name', 'ChatterTestGroup');
+            chatterGroup.put('CollaborationType', 'Private');
+            insert chatterGroup;
+            chatterGroupId = chatterGroup.Id;
+            UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
+              Error_Notifications_To__c = chatterGroup.Id, Store_Errors_On__c = true, 
+              Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+        } else {
+            UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
+              Error_Notifications_To__c = null, Store_Errors_On__c = true, 
+              Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+        }
     }
     
     private static void setupWithEmailNotifications() {
@@ -73,7 +73,7 @@ public with sharing class ERR_Handler_TEST {
     /** Test using the default configuration of classes that implement TDTM_Runnable **/
     @isTest
     public static void errorStoredInDbTdtmStandardConfig() {
-    	if (strTestOnly != '*' && strTestOnly != 'errorStoredInDbTdtmStandardConfig') return;
+        if (strTestOnly != '*' && strTestOnly != 'errorStoredInDbTdtmStandardConfig') return;
     
         setupWithEmailNotifications();
                     
@@ -152,5 +152,104 @@ public with sharing class ERR_Handler_TEST {
 
         //assert no additional error record was created on update
         system.assertEquals(1, [select count() from Error__c]);
+    }
+
+    // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type API Names
+    @isTest
+    private static void testHandleAfflNullRecordTypeExceptionWithAPIPositive() {
+
+        // Insert an Account
+        Account[] testAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID());
+        insert testAccount;
+
+        // Insert a Contact
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        insert testContact;
+
+        Affiliation__c affl = new Affiliation__c(Contact__c = testContact.ID, Account__c = testAccount[0].ID);
+        insert affl;
+
+        Affiliation__c afflAfterInsert = [Select Id, Affiliation_Type__c, Account__c FROM Affiliation__c];
+        System.assertEquals('Business Organization', afflAfterInsert.Affiliation_Type__c);
+
+        // Construct a list of Account Record Type Names
+        List<String> accRecTypeAPIs = new List<String>();
+           accRecTypeAPIs.add('Academic_Program');
+           accRecTypeAPIs.add('Educational_Institution');
+           accRecTypeAPIs.add('Business_Organization');
+           accRecTypeAPIs.add('HH_Account');
+           accRecTypeAPIs.add('University_Department');
+           accRecTypeAPIs.add('Sports_Organization');
+
+        // Test calling the method doesn't throw any error
+        Test.startTest();
+            ERR_ExceptionHandler.handleAfflNullRecordTypeException(afflAfterInsert, accRecTypeAPIs);
+        Test.stopTest();
+    }
+
+    // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Labels
+    @isTest
+    private static void testHandleAfflNullRecordTypeExceptionWithLabelsPositive() {
+
+        Account[] testAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID());
+        insert testAccount;
+
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        insert testContact;
+
+        Affiliation__c affl = new Affiliation__c(Contact__c = testContact.ID, Account__c = testAccount[0].ID);
+        insert affl;
+
+        Affiliation__c afflAfterInsert = [Select Id, Affiliation_Type__c, Account__c FROM Affiliation__c];
+        System.assertEquals('Business Organization', afflAfterInsert.Affiliation_Type__c);
+
+        // Construct a list of Account Record Type Names
+        List<String> accRecTypeLabels = new List<String>();
+           accRecTypeLabels.add('Academic Program');
+           accRecTypeLabels.add('Educational Institution');
+           accRecTypeLabels.add('Business Organization');
+           accRecTypeLabels.add('Household Account');
+           accRecTypeLabels.add('University Department');
+           accRecTypeLabels.add('Sports Organization');
+
+        // Test calling the method doesn't throw any error
+        Test.startTest();
+            ERR_ExceptionHandler.handleAfflNullRecordTypeException(afflAfterInsert, accRecTypeLabels);
+        Test.stopTest();
+    }
+
+    // This method tests handleAfflNullRecordTypeException() of ERR_ExceptionHandler class by passing Affiliaiton Record and List of Account Record Type Names
+    @isTest
+    private static void testHandleAfflNullRecordTypeExceptionWithLabelsNegative() {
+
+        Account[] testAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID());
+        insert testAccount;
+
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        insert testContact;
+
+        Affiliation__c affl = new Affiliation__c(Contact__c = testContact.ID, Account__c = testAccount[0].ID);
+        insert affl;
+
+        Affiliation__c afflAfterInsert = [Select Id, Affiliation_Type__c, Account__c FROM Affiliation__c];
+        System.assertEquals('Business Organization', afflAfterInsert.Affiliation_Type__c);
+
+        // Construct a list of Account Record Type Names
+        List<String> accRecTypeLabels = new List<String>();
+           accRecTypeLabels.add('Academic Program');
+           accRecTypeLabels.add('Educational Institution');
+           accRecTypeLabels.add('Household Account');
+           accRecTypeLabels.add('University Department');
+           accRecTypeLabels.add('Sports Organization');
+
+        // Test Error is thrown because Business Organization is not part of accRecTypeLabels
+        try {
+            Test.startTest();
+                ERR_ExceptionHandler.handleAfflNullRecordTypeException(afflAfterInsert, accRecTypeLabels);
+            Test.stopTest();
+            System.assert(false, 'Always throw an exception when affiliation type is not a part of Mappings');
+        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
+            System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
+        }
     }
 }
