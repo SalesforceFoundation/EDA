@@ -65,9 +65,8 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     
     /**
      * @description Determine if trigger fired is the result of a BeforeInsert action. 
-     * @param  triggerAction The current trigger action
-     * @return               returns true is trigger context is BeforeInsert, 
-     *                       false otherwise
+     * @param triggerAction The current trigger action
+     * @return returns true is trigger context is BeforeInsert, false otherwise
      */ 
     @TestVisible
     private Boolean isBeforeInsert(TDTM_Runnable.Action triggerAction) {
