@@ -44,6 +44,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     * @param objResult the describe for Contacts
     * @return dmlWrapper.
     ********************************************************************************************************/
+    @TestVisible
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
@@ -112,17 +113,6 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
         if (doNotContactContacts.isEmpty() == false){
             this.syncDoNotContactFieldsOnContacts(doNotContactContacts);
         }
-
-
-        // for (Contact con : newContactsList){
-        //     if (con.Deceased__c == true){
-        //         con.Do_Not_Contact__c = con.Deceased__c;
-        //         this.syncNamingExclusionsOnContact(con);
-        //     } 
-        //     if (con.Do_Not_Contact__c == true){
-        //         this.syncDoNotContactFieldsOnContact(con);
-        //     }
-        // }
     }
 
     /**
@@ -159,22 +149,6 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
         if (doNotContactContacts.isEmpty() == false){
             this.syncDoNotContactFieldsOnContacts(doNotContactContacts);
         }
-
-        // for (Contact con : newContactsList){
-
-        //     Contact oldCon = oldContactsById.get(con.Id);
-
-        //     if (con.Deceased__c != oldCon.Deceased__c){
-        //         // Deceased status changed
-        //         con.Do_Not_Contact__c = con.Deceased__c;
-        //         this.syncNamingExclusionsOnContact(con);
-        //     } 
-            
-        //     if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
-        //         // Do Not Contact flag changed
-        //         this.syncDoNotContactFieldsOnContact(con);
-        //     }            
-        // }
     }
 
     /**
@@ -206,7 +180,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
             con.Exclude_from_Household_Informal_Greeting__c = con.Deceased__c;
         }
 
-        this.syncSelectedHHNamingExclusionsFromCheckboxes(contactsList);
+        this.syncHHNamingExclusionsPicklistFromCheckboxes(contactsList);
     }
 
     /**
@@ -215,7 +189,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      * @param  contactsList List of contacts to synchronize
      */ 
     @TestVisible
-    private void syncSelectedHHNamingExclusionsFromCheckboxes(List<Contact> contactsList) {
+    private void syncHHNamingExclusionsPicklistFromCheckboxes(List<Contact> contactsList) {
         for (Contact con : contactsList){
             List<String> selectedNamingExclusionList = new List<String>();
             String selectedNamingExclusions = '';
