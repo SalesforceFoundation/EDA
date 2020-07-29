@@ -659,10 +659,10 @@ public class UTIL_Describe {
         return mapRecordTypes.get(objectName);
     }
 
-    /*******************************************************************************************************    
-     * @description Returns the ID of the Administrative Account record type, if it exists.
-     * @return String The ID of the Administrative Account record type as a String.
-     */
+    /*******************************************************************************************************
+    * @description Returns the ID of the Administrative Account record type, if it exists.
+    * @return String The ID of the Administrative Account record type as a String.
+    */
 
     public static String getAdminAccRecTypeID() {
         String recTypeId = getRecTypesMapByDevName('Account').get('Administrative');
