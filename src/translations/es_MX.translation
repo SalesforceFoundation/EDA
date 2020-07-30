@@ -281,10 +281,6 @@
         <name>lastNameHH</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when missing Account Record Type Labeled Administrative --></label>
-        <name>missAccountRecordTypeLabeledAdministrativeErrror</name>
-    </customLabels>
-    <customLabels>
         <label>Requisitos de plan puede especificar un Plan de programa o un Requisito de plan principal, pero no ambos. Si este Requisito de plan es un secundario de otro Requisito de plan, especifique solo un Requisito de plan principal. Si este Requisito de plan es un secundario de un Plan de programa, especifique únicamente un Plan de programa.</label>
         <name>nestedPlanRequirementPPExp</name>
     </customLabels>

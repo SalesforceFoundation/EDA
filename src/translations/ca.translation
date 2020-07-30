@@ -281,10 +281,6 @@
         <name>lastNameHH</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when missing Account Record Type Labeled Administrative --></label>
-        <name>missAccountRecordTypeLabeledAdministrativeErrror</name>
-    </customLabels>
-    <customLabels>
         <label>Els requisits del pla poden especificar un pla del programa o un requisit del pla principal, però no tots dos. Si aquest requisit del pla és derivat d’un altre requisit del pla, especifiqueu només el requisit del pla principal. Si aquest requisit del pla és derivat d’un pla de programa, especifiqueu només un pla de programa.</label>
         <name>nestedPlanRequirementPPExp</name>
     </customLabels>
