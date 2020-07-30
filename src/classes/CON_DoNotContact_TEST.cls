@@ -490,9 +490,6 @@ private class CON_DoNotContact_TEST {
             System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
             System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
             System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
-            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
-            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
-            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
         }
     }
 
@@ -517,7 +514,6 @@ private class CON_DoNotContact_TEST {
             System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
             System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
             System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
-            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
         }
     }
 
@@ -542,7 +538,6 @@ private class CON_DoNotContact_TEST {
             System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
             System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
             System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
-            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
         }
     }
 
