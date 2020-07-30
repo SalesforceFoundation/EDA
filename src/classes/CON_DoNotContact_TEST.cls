@@ -27,6 +27,7 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
+
 /**
 * @author Salesforce.org
 * @date 2015
@@ -246,7 +247,7 @@ private class CON_DoNotContact_TEST {
         }
     }
 
-     /**************************************************************************************************************************
+    /**************************************************************************************************************************
     * @description Test method to verify that contacts inserted with "Do Not Contact" selected have the following communication
     * fields automatically updated to true: Email Opt Out, Do Not Call, Do Not Fax
     */

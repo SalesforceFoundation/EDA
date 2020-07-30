@@ -27,6 +27,7 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
+
 /**
 * @author Salesforce.org
 * @date 2015
@@ -64,20 +65,20 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
     
     /**
-     * @description Determine if trigger fired is the result of a BeforeInsert action. 
-     * @param triggerAction The current trigger action
-     * @return returns true is trigger context is BeforeInsert, false otherwise
-     */ 
+    * @description Determine if trigger fired is the result of a BeforeInsert action. 
+    * @param triggerAction The current trigger action
+    * @return returns true is trigger context is BeforeInsert, false otherwise
+    */ 
     @TestVisible
     private Boolean isBeforeInsert(TDTM_Runnable.Action triggerAction) {
         return triggerAction == TDTM_Runnable.Action.BeforeInsert;
     }
 
     /**
-     * @description Determine if trigger fired is the result of a BeforeUpdate action. 
-     * @param triggerAction The current trigger action
-     * @return returns true if trigger context is BeforeUpdate, false otherwise
-     */ 
+    * @description Determine if trigger fired is the result of a BeforeUpdate action. 
+    * @param triggerAction The current trigger action
+    * @return returns true if trigger context is BeforeUpdate, false otherwise
+    */ 
     @TestVisible
     private Boolean isBeforeUpdate(TDTM_Runnable.Action triggerAction) {
         return triggerAction == TDTM_Runnable.Action.BeforeUpdate;
@@ -114,44 +115,44 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description Execute the logic necessary for a BeforeUpdate trigger action.
-     * @param newContactsList List of updated contacts
-     * @param oldContactsById Map of contacts' state prior to update
-     */ 
+    * @description Execute the logic necessary for a BeforeUpdate trigger action.
+    * @param newContactsList List of updated contacts
+    * @param oldContactsById Map of contacts' state prior to update
+    */ 
     @TestVisible
     private void processBeforeUpdate(List<Contact> newContactsList, Map<Id, Contact> oldContactsById) {
-        List<Contact> deceasedContactsList = new List<Contact>();
-        List<Contact> doNotContactContactsList = new List<Contact>();
-        
+        List<Contact> contactsWithDeceasedChangeList = new List<Contact>();
+        List<Contact> contactsWithDoNotContactChangeList = new List<Contact>();
+
         for (Contact con : newContactsList){
             Contact oldCon = oldContactsById.get(con.Id);
 
             if (con.Deceased__c != oldCon.Deceased__c){
                 con.Do_Not_Contact__c = con.Deceased__c;
-                deceasedContactsList.add(con);
+                contactsWithDeceasedChangeList.add(con);
             }
 
             if (con.Do_Not_Contact__c != oldCon.Do_Not_Contact__c){
-                doNotContactContactsList.add(con);
+                contactsWithDoNotContactChangeList.add(con);
             }
         }
 
-        if (deceasedContactsList.isEmpty() == false){
-            this.syncNamingExclusionsOnContacts(deceasedContactsList);
-            this.syncHHNamingExclusionsPicklistFromCheckboxes(deceasedContactsList);
+        if (contactsWithDeceasedChangeList.isEmpty() == false){
+            this.syncNamingExclusionsOnContacts(contactsWithDeceasedChangeList);
+            this.syncHHNamingExclusionsPicklistFromCheckboxes(contactsWithDeceasedChangeList);
         }
 
-        if (doNotContactContactsList.isEmpty() == false){
-            this.syncDoNotContactFieldsOnContacts(doNotContactContactsList);
+        if (contactsWithDoNotContactChangeList.isEmpty() == false){
+            this.syncDoNotContactFieldsOnContacts(contactsWithDoNotContactChangeList);
         }
     }
 
     /**
-     * @description Synchronizes the communication preference fields
-     * (Do not Call, Email Opt Out, Fax Opt Out) on a contact record
-     * to match the status specified by the "Do Not Contact" field.
-     * @param contactsList List of contacts to synchronize
-     */ 
+    * @description Synchronizes the communication preference fields
+    * (Do not Call, Email Opt Out, Fax Opt Out) on a contact record
+    * to match the status specified by the "Do Not Contact" field.
+    * @param contactsList List of contacts to synchronize
+    */ 
     @TestVisible
     private void syncDoNotContactFieldsOnContacts(List<Contact> contactsList){
         for (Contact con : contactsList){
@@ -162,11 +163,11 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description Synchronizes the Household Naming Exclusion fields 
-     * (checkboxes and picklist) on a contact record to match the status 
-     * specified by the "Deceased" field.
-     * @param contactsList List of contacts to synchronize
-     */ 
+    * @description Synchronizes the Household Naming Exclusion fields 
+    * (checkboxes and picklist) on a contact record to match the status 
+    * specified by the "Deceased" field.
+    * @param contactsList List of contacts to synchronize
+    */ 
     @TestVisible
     private void syncNamingExclusionsOnContacts(List<Contact> contactsList){
         for (Contact con : contactsList){
@@ -177,11 +178,11 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * @description Synchronizes the naming exclusions specified by the selected 
-     * checkboxes with the selected values listed in the Naming Exclusion 
-     * multiselect picklist.
-     * @param contactsList List of contacts to synchronize
-     */ 
+    * @description Synchronizes the naming exclusions specified by the selected 
+    * checkboxes with the selected values listed in the Naming Exclusion 
+    * multiselect picklist.
+    * @param contactsList List of contacts to synchronize
+    */ 
     @TestVisible
     private void syncHHNamingExclusionsPicklistFromCheckboxes(List<Contact> contactsList) {
         for (Contact con : contactsList){
