@@ -552,14 +552,6 @@
         <value>{!LastName} Household</value>
     </labels>
     <labels>
-        <fullName>missAccountRecordTypeLabeledAdministrativeErrror</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Error when missing Account Record Type Labeled Administrative</shortDescription>
-        <value>We can’t find the Account record type labeled Administrative.</value>
-    </labels>
-    <labels>
         <fullName>nestedPlanRequirementPPExp</fullName>
         <categories>Error</categories>
         <language>en_US</language>
