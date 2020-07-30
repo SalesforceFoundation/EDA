@@ -695,22 +695,9 @@ public class UTIL_Describe {
     public static Id getDefaultAdminAccRecTypeId() { 
         Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
         if (defaultAdminRecTypeId == null && Test.isRunningTest() == false) {
-            //TODO: Use custom label instead
             throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(Label.missAccountRecordTypeLabeledAdministrativeErrror);
         }
         return defaultAdminRecTypeId;
-    }
-
-    /*******************************************************************************************************
-     * @description Returns the ID of the first available account record type
-     * @return The ID of the first available account record type.
-     */
-    public static Id getFirstAvailableAccountRecTypeId() {
-        Id firstAvailableAdminAccountRecTypeId;
-        if (getRecTypesMapByDevName('Account').values().size() > 0) {
-            firstAvailableAdminAccountRecTypeId = getRecTypesMapByDevName('Account').values()[0];
-        }
-        return firstAvailableAdminAccountRecTypeId;
     }
 
     /*******************************************************************************************************
