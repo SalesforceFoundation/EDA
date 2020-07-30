@@ -574,6 +574,7 @@ public class UTIL_Describe {
     * Object name as the key and Map as the value. The value Map is the RecordType Developer Name to
     * RecordType Id
     */
+    @testVisible
     private static Map<String, Map<String, Id>> mapRecordTypes = new Map<String, Map<String, Id>>();
 
     /*******************************************************************************************************
