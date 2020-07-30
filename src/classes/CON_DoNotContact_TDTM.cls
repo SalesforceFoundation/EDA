@@ -90,27 +90,27 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
      */ 
     @TestVisible
     private void processBeforeInsert(List<Contact> newContactsList) {
-        List<Contact> deceasedContactsList = new List<Contact>();
-        List<Contact> doNotContactContactsList = new List<Contact>();
+        List<Contact> contactsMarkedDeceasedList = new List<Contact>();
+        List<Contact> contactsMarkedDoNotContactList = new List<Contact>();
 
         for (Contact con : newContactsList){
             if (con.Deceased__c == true){
                 con.Do_Not_Contact__c = con.Deceased__c;
-                deceasedContactsList.add(con);
+                contactsMarkedDeceasedList.add(con);
             }
 
             if (con.Do_Not_Contact__c == true){
-                doNotContactContactsList.add(con);
+                contactsMarkedDoNotContactList.add(con);
             }
         }
 
-        if (deceasedContactsList.isEmpty() == false){
-            this.syncNamingExclusionsOnContacts(deceasedContactsList);
-            this.syncHHNamingExclusionsPicklistFromCheckboxes(deceasedContactsList);
+        if (contactsMarkedDeceasedList.isEmpty() == false){
+            this.syncNamingExclusionsOnContacts(contactsMarkedDeceasedList);
+            this.syncHHNamingExclusionsPicklistFromCheckboxes(contactsMarkedDeceasedList);
         }
 
-        if (doNotContactContactsList.isEmpty() == false){
-            this.syncDoNotContactFieldsOnContacts(doNotContactContactsList);
+        if (contactsMarkedDoNotContactList.isEmpty() == false){
+            this.syncDoNotContactFieldsOnContacts(contactsMarkedDoNotContactList);
         }
     }
 
