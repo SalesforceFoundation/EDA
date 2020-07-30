@@ -151,6 +151,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Account.ID);
         System.assertEquals(null, contact.Primary_Household__c);
+
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
         insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
@@ -194,6 +195,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertNotEquals(null, contact.Account.ID);
         ID parentAccountId = contact.Account.ID;
         System.assertEquals(null, contact.Primary_Household__c);
+
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
         AFFL_ContactAccChange_TEST.resetAfflFlags();
@@ -1183,6 +1185,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
             mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
         insert mappings;
 
+        List<Affl_Mappings__c> allMappings = [SELECT ID from Affl_Mappings__c];
+        System.assertEquals(2, allMappings.size());
+
         // Construct a list of primary Affiliation field API Names
         List<String> primaryFieldsList = new List<String>();
            primaryFieldsList.add(prefix + 'Primary_Organization__c');
@@ -1236,6 +1241,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
             mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
             mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
         insert mappings;
+        
+        List<Affl_Mappings__c> allMappings = [SELECT ID from Affl_Mappings__c];
+        System.assertEquals(2, allMappings.size());
 
         // Construct a list of primary Affiliation field Labels and API names
         List<String> primaryFieldsList = new List<String>();
