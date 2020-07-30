@@ -105,7 +105,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
         if (deceasedContactsList.isEmpty() == false){
             this.syncNamingExclusionsOnContacts(deceasedContactsList);
-            this.syncDoNotContactFieldsOnContacts(deceasedContactsList);
+            this.syncHHNamingExclusionsPicklistFromCheckboxes(deceasedContactsList);
         }
 
         if (doNotContactContactsList.isEmpty() == false){
@@ -138,7 +138,7 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
         if (deceasedContactsList.isEmpty() == false){
             this.syncNamingExclusionsOnContacts(deceasedContactsList);
-            this.syncDoNotContactFieldsOnContacts(deceasedContactsList);
+            this.syncHHNamingExclusionsPicklistFromCheckboxes(deceasedContactsList);
         }
 
         if (doNotContactContactsList.isEmpty() == false){
@@ -174,8 +174,6 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
             con.Exclude_from_Household_Formal_Greeting__c = con.Deceased__c;
             con.Exclude_from_Household_Informal_Greeting__c = con.Deceased__c;
         }
-
-        this.syncHHNamingExclusionsPicklistFromCheckboxes(contactsList);
     }
 
     /**
