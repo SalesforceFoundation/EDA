@@ -684,7 +684,10 @@ public class UTIL_Describe {
      * @return The ID of the custom Administrative Account record type.
      */
     public static Id getCustomAdminAccRecTypeId() {
-        return Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
+        Id customAdminRecTypeId = Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
+        if (getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false) {
+            throw new ERR_ExceptionHandler.CustomAdminRecordTypelMissingException(Label.customAccountRecordTypeMissingError);
+        }
     }
 
     /*******************************************************************************************************
@@ -694,8 +697,8 @@ public class UTIL_Describe {
      */
     public static Id getDefaultAdminAccRecTypeId() { 
         Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
-        if (defaultAdminRecTypeId == null && Test.isRunningTest() == false) {
-            throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(Label.missAccountRecordTypeLabeledAdministrativeErrror);
+        if (defaultAdminRecTypeId == null) {
+            throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(Label.defaultAccountRecordTypeMissingError);
         }
         return defaultAdminRecTypeId;
     }
