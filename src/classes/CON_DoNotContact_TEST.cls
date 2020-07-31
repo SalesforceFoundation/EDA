@@ -27,257 +27,1344 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
+
 /**
 * @author Salesforce.org
 * @date 2015
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Handles changes to the deceased and do not contact fields on Contact.
+* @description Tests to validate the functionality of the CON_DoNotContact_TDTM class to
+* synchronize Household naming exclusions and communication preferences with changes to the Deceased
+* and Do Not Contact fields for the Contact object.
 */
 @isTest
 private class CON_DoNotContact_TEST {
+    /**************************************************************************************************************************
+    ****************************************************** FUNCTIONAL TESTS ***************************************************
+    **************************************************************************************************************************/
 
     /**************************************************************************************************************************
-    * Tests inserting a Contact as deceased to verify DoNotCall, HasOptedOutOfEmail, HasOptedOutOfFax and naming 
-    * exclusions are set.
+    * @description Test method to verify that contacts inserted with "Deceased" = true are excluded from 
+    * from Household naming functionality and have the following fields automatically marked as true: 
+    * Do Not Contact, Email Opt Out, Do Not Call, Do Not Fax
     */
-
-    @isTest
-    private static void insertDeceasedContact() {
-
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
-        contact.Deceased__c = true;
+    @isTest 
+    private static void insertContactDeceasedIsTrue(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Deceased__c = true;
+        }
 
         Test.startTest();
-            insert contact;
+        insert testContactsList;
         Test.stopTest();
 
-        Contact contactAfterInserted = [SELECT Do_Not_Contact__c, Exclude_from_Household_Name__c, Exclude_from_Household_Formal_Greeting__c,
-                                        Exclude_from_Household_Informal_Greeting__c, HasOptedOutOfEmail, DoNotCall, HasOptedOutOfFax, 
-                                        Naming_Exclusions__c FROM CONTACT WHERE Id =: contact.Id];
-
-        System.assertEquals(true, contactAfterInserted.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
-        System.assertEquals(true, contactAfterInserted.HasOptedOutOfEmail, 'Contact should be opted out of fax.');
-        System.assertEquals(true, contactAfterInserted.HasOptedOutOfFax, 'Contact should be opted out of fax.');
-        System.assertEquals(true, contactAfterInserted.DoNotCall, 'Contact should be opted out of phone calls.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
-
+        List<Contact> contactsAfterInsertList = [SELECT Do_Not_Contact__c, 
+                                                        Exclude_from_Household_Name__c, 
+                                                        Exclude_from_Household_Formal_Greeting__c,
+                                                        Exclude_from_Household_Informal_Greeting__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax, 
+                                                        Naming_Exclusions__c
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
+        
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.'); 
+            System.assertEquals(true, con.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
     }
 
     /**************************************************************************************************************************
-    * Tests Updating a deceased Contact as False to verify DoNotCall, HasOptedOutOfEmail, HasOptedOutOfFax and naming 
-    * exclusions are re-set.
+    * @description Test method to verify that contacts inserted with "Deceased" = false are not excluded from 
+    * from Household naming functionality and have the following fields automatically marked as false: 
+    * Do Not Contact, Email Opt Out, Do Not Call, Do Not Fax
     */
+    @isTest 
+    private static void insertContactDeceasedIsFalse(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Deceased__c = false;
+        }
 
+        Test.startTest();
+        insert testContactsList;
+        Test.stopTest();
+
+        List<Contact> contactsAfterInsertList = [SELECT Do_Not_Contact__c, 
+                                                    Exclude_from_Household_Name__c, 
+                                                    Exclude_from_Household_Formal_Greeting__c,
+                                                    Exclude_from_Household_Informal_Greeting__c, 
+                                                    HasOptedOutOfEmail, 
+                                                    DoNotCall, 
+                                                    HasOptedOutOfFax, 
+                                                    Naming_Exclusions__c
+                                             FROM CONTACT 
+                                             WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that contacts updated from being deceased to not deceased are not excluded from 
+    * from Household naming functionality and have the following fields automatically marked as false: 
+    * Do Not Contact, Email Opt Out, Do Not Call, Do Not Fax
+    */
     @isTest
     private static void updateContactDeceasedToFalse() {
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Deceased__c = true;
+        }
 
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
-        contact.Deceased__c = true;
+        insert testContactsList;
 
-        insert contact;
-
-        Contact contactAfterInserted = [SELECT Do_Not_Contact__c, Exclude_from_Household_Name__c, Exclude_from_Household_Formal_Greeting__c,
-                                        Exclude_from_Household_Informal_Greeting__c, HasOptedOutOfEmail, HasOptedOutOfFax, DoNotCall, Naming_Exclusions__c 
-                                        FROM CONTACT WHERE Id =: contact.Id];
-
-        System.assertEquals(true, contactAfterInserted.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
-        System.assertEquals(true, contactAfterInserted.HasOptedOutOfEmail, 'Contact should be opted out of email.');
-        System.assertEquals(true, contactAfterInserted.DoNotCall, 'Contact should be opted out of phone calls.');
-        System.assertEquals(true, contactAfterInserted.HasOptedOutOfFax, 'Contact should be opted out of fax.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
+        for (Contact con : testContactsList){
+            con.Deceased__c = false; 
+        }
 
         Test.startTest();
-            contactAfterInserted.Deceased__c = false;
-            update contactAfterInserted;
+        update testContactsList;
         Test.stopTest();
 
-        Contact contactAfterUpdate = [SELECT Do_Not_Contact__c, Exclude_from_Household_Name__c, Exclude_from_Household_Formal_Greeting__c,
-                                      Exclude_from_Household_Informal_Greeting__c, HasOptedOutOfEmail, DoNotCall, HasOptedOutOfFax, Naming_Exclusions__c 
-                                      FROM CONTACT WHERE Id =: contactAfterInserted.Id];
+        List<Contact> contactsAfterUpdateList = [SELECT Do_Not_Contact__c, 
+                                                        Exclude_from_Household_Name__c, 
+                                                        Exclude_from_Household_Formal_Greeting__c,
+                                                        Exclude_from_Household_Informal_Greeting__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax, 
+                                                        Naming_Exclusions__c
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
 
-        System.assertEquals(false, contactAfterUpdate.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
-        System.assertEquals(false, contactAfterUpdate.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
-        System.assertEquals(false, contactAfterUpdate.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
-        System.assertEquals(false, contactAfterUpdate.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
-        System.assertEquals(false, contactAfterUpdate.HasOptedOutOfEmail, 'ontact should not be opted out of email.');
-        System.assertEquals(false, contactAfterUpdate.DoNotCall, 'Contact should not be opted out of phone calls.');
-        System.assertEquals(false, contactAfterUpdate.HasOptedOutOfFax, 'Contact should not be opted out of fax.');
-        System.assertEquals(null, contactAfterUpdate.Naming_Exclusions__c, 'Naming Exclusion field should be cleared.');
-
+        for (Contact con : contactsAfterUpdateList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of email.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of phone calls.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of fax.');
+        }
     }
 
     /**************************************************************************************************************************
-    * Tests Updating a Contact to deceased to verify DoNotCall, HasOptedOutOfEmail, HasOptedOutOfFax and naming 
-    * exclusions are set.
+    * @description Test method to verify that contacts updated as deceased are excluded from Household naming functionality
+    * and have the following fields automatically marked as true: Do Not Contact, Email Opt Out, Do Not Call, Do Not Fax
     */
-
     @isTest
     private static void updateContactDeceasedToTrue() {
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Deceased__c = false;
+        }
 
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
-        insert contact;
+        insert testContactsList;
 
-        Contact contactAfterInserted = [SELECT Do_Not_Contact__c, Exclude_from_Household_Name__c, Exclude_from_Household_Formal_Greeting__c,
-                                        Exclude_from_Household_Informal_Greeting__c, HasOptedOutOfEmail, HasOptedOutOfFax, DoNotCall, Naming_Exclusions__c 
-                                        FROM CONTACT WHERE Id =: contact.Id];
-
-        System.assertEquals(false, contactAfterInserted.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
-        System.assertEquals(false, contactAfterInserted.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
-        System.assertEquals(false, contactAfterInserted.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
-        System.assertEquals(false, contactAfterInserted.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
-        System.assertEquals(false, contactAfterInserted.HasOptedOutOfEmail, 'Contact should not be opted out of email.');
-        System.assertEquals(false, contactAfterInserted.HasOptedOutOfFax, 'Contact should not be opted out of fax.');
-        System.assertEquals(false, contactAfterInserted.DoNotCall, 'Contact should not be opted out of phone calls.');
-        System.assertEquals(null, contactAfterInserted.Naming_Exclusions__c, 'Naming Exclusion field should be blank.');
+        for (Contact con : testContactsList){
+            con.Deceased__c = true; 
+        }
 
         Test.startTest();
-            contactAfterInserted.Deceased__c = true;
-            update contactAfterInserted;
+        update testContactsList;
         Test.stopTest();
 
-        Contact contactAfterUpdate = [SELECT Do_Not_Contact__c, Exclude_from_Household_Name__c, Exclude_from_Household_Formal_Greeting__c,
-                                      Exclude_from_Household_Informal_Greeting__c, HasOptedOutOfEmail, HasOptedOutOfFax, DoNotCall, Naming_Exclusions__c 
-                                      FROM CONTACT WHERE Id =: contactAfterInserted.Id];
+        List<Contact> contactsAfterUpdateList = [SELECT Do_Not_Contact__c, 
+                                                        Exclude_from_Household_Name__c, 
+                                                        Exclude_from_Household_Formal_Greeting__c,
+                                                        Exclude_from_Household_Informal_Greeting__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax, 
+                                                        Naming_Exclusions__c
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
 
-        System.assertEquals(true, contactAfterUpdate.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
-        System.assertEquals(true, contactAfterUpdate.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
-        System.assertEquals(true, contactAfterUpdate.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
-        System.assertEquals(true, contactAfterUpdate.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
-        System.assertEquals(true, contactAfterUpdate.HasOptedOutOfEmail, 'Contact should not be opted out of email.');
-        System.assertEquals(true, contactAfterUpdate.HasOptedOutOfFax, 'Contact should be opted out of fax.');
-        System.assertEquals(true, contactAfterUpdate.DoNotCall, 'Contact should be opted out of phone calls.');
-        System.assertEquals(true, contactAfterUpdate.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
-        System.assertEquals(true, contactAfterUpdate.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
-        System.assertEquals(true, contactAfterUpdate.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
-
+        for (Contact con : contactsAfterUpdateList){
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');    
+            System.assertEquals(true, con.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of email.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of phone calls.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of fax.');
+        }
     }
 
     /**************************************************************************************************************************
-    * Tests Inserting a deceased Contact to verify DoNotCall, HasOptedOutOfEmail and HasOptedOutOfFax are set
+    * @description Test method to verify that contacts inserted with "Do Not Contact" selected have the following communication
+    * fields automatically updated to true: Email Opt Out, Do Not Call, Do Not Fax
     */
-
     @isTest
-    private static void doNotContactOnInsert() {
-
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
-        contact.do_not_contact__c = true;
+    private static void insertDoNotContactIsTrue() {
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = true;
+        }
 
         Test.startTest();
-            insert contact;
+        insert testContactsList;
         Test.stopTest();
 
-        Contact contactAfterInsert = [SELECT DoNotCall, HasOptedOutOfEmail, HasOptedOutOfFax FROM Contact WHERE Id =: contact.Id];
-        System.assertEquals(true, contactAfterInsert.DoNotCall, 'Contact should be opted out of phone calls.');
-        System.assertEquals(true, contactAfterInsert.HasOptedOutOfEmail, 'Contact should be opted out of email.');
-        System.assertEquals(true, contactAfterInsert.HasOptedOutOfFax, 'Contact should be opted out of fax.');
+        List<Contact> contactsAfterInsertList = [SELECT DoNotCall, 
+                                                        HasOptedOutOfEmail, 
+                                                        HasOptedOutOfFax 
+                                                FROM Contact 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of phone calls.');
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of email.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of fax.');    
+        }
     }
 
     /**************************************************************************************************************************
-    * Tests Updating a Contact to Do Not Contact to verify DoNotCall, HasOptedOutOfEmail and HasOptedOutOfFax are set
+    * @description Test method to verify that contacts inserted with "Do Not Contact" selected have the following communication
+    * fields automatically updated to true: Email Opt Out, Do Not Call, Do Not Fax
     */
+    @isTest
+    private static void insertDoNotContactIsFalse() {
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = false;
+        }
 
+        Test.startTest();
+        insert testContactsList;
+        Test.stopTest();
+
+        List<Contact> contactsAfterInsertList = [SELECT DoNotCall, 
+                                                        HasOptedOutOfEmail, 
+                                                        HasOptedOutOfFax 
+                                                FROM Contact 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of phone calls.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of email.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of fax.');    
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that contacts updated with "Do Not Contact" = true have the following fields 
+    * automatically marked as true: Do Not Contact, Email Opt Out, Do Not Call, Do Not Fax
+    */   
     @isTest
     private static void updateDoNotContactTotrue() {
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = false;
+        }
 
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
-        insert contact;
+        insert testContactsList;
+
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = true;
+        }
 
         Test.startTest();
-            contact.do_not_contact__c = true;
-            update contact;
+        update testContactsList;
         Test.stopTest();
 
-        Contact contactAfterUpdate = [SELECT DoNotCall, HasOptedOutOfEmail, HasOptedOutOfFax FROM Contact WHERE Id =: contact.Id];
-        System.assertEquals(true, contactAfterUpdate.DoNotCall, 'Contact should be opted out of phone calls.');
-        System.assertEquals(true, contactAfterUpdate.HasOptedOutOfEmail, 'Contact should  be opted out of email.');
-        System.assertEquals(true, contactAfterUpdate.HasOptedOutOfFax, 'Contact should be opted out of fax.');
+        List<Contact> contactsAfterUpdateList = [SELECT DoNotCall, 
+                                                        HasOptedOutOfEmail, 
+                                                        HasOptedOutOfFax 
+                                                FROM Contact 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterUpdateList){
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of phone calls.');
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should  be opted out of email.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of fax.');    
+        }
     }
 
     /****************************************************************************************************************************
-    * Tests Updating a Contact's Do Not Contact to False, to verify DoNotCall, HasOptedOutOfEmail and HasOptedOutOfFax are re-set
-    */
-
+    * @description Test method to verify that contacts updated with "Do Not Contact" = False
+    * have the following fields automatically marked as false: Do Not Contact, Email Opt Out, Do Not Call, Do Not Fax
+    */  
     @isTest
     private static void updateDoNotContactToFalse() {
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = true;
+        }
 
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
-        contact.do_not_contact__c = true;
+        insert testContactsList;
 
-        insert contact;
-
-        Contact contactAfterInsert = [SELECT DoNotCall, HasOptedOutOfEmail, HasOptedOutOfFax FROM Contact WHERE Id =: contact.Id];
-
-        System.assertEquals(true, contactAfterInsert.DoNotCall, 'Contact should be opted out of phone calls.');
-        System.assertEquals(true, contactAfterInsert.HasOptedOutOfEmail, 'Contact should  be opted out of fax.');
-        System.assertEquals(true, contactAfterInsert.HasOptedOutOfFax, 'Contact should be opted out of fax.');
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = false;
+        }
 
         Test.startTest();
-            contactAfterInsert.do_not_contact__c = false;
-            update contactAfterInsert;
+        update testContactsList;
         Test.stopTest();
 
-        Contact contactAfterUpdate = [SELECT DoNotCall, HasOptedOutOfEmail, HasOptedOutOfFax FROM Contact WHERE Id =: contactAfterInsert.Id];
-        System.assertEquals(false, contactAfterUpdate.DoNotCall, 'Contact should not be opted out of phone calls.');
-        System.assertEquals(false, contactAfterUpdate.HasOptedOutOfFax, 'Contact should not be opted out of fax.');
-        System.assertEquals(false, contactAfterUpdate.HasOptedOutOfEmail, 'Contact should not be opted out of email.');
+        List<Contact> contactsAfterUpdateList = [SELECT DoNotCall, 
+                                                        HasOptedOutOfEmail, 
+                                                        HasOptedOutOfFax 
+                                                FROM Contact 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterUpdateList){
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of phone calls.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not  be opted out of email.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of fax.');    
+        }
     }
 
     /**************************************************************************************************************************************
-    * Tests Updating a Deceased Contact's Do Not Contact to False, to verify DoNotCall, HasOptedOutOfEmail and HasOptedOutOfFax are re-set
-    */
-
+    * @description Test method to verify that deceased contacts updated with "Do Not Contact" = false will remain excluded from household
+    * naming functionality, but will have the following communication preferences automatically updated to false:
+    * Email Opt Out, Do Not Call, Do Not Fax
+    */  
     @isTest
     private static void updateDoNotContactToFalseOnADeceasedContact() {
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Deceased__c = true;
+        }
 
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
-        contact.Deceased__c = true;
+        insert testContactsList;
 
-        insert contact;
-
-        Contact contactAfterInserted = [SELECT Do_Not_Contact__c, Exclude_from_Household_Name__c, Exclude_from_Household_Formal_Greeting__c,
-                                        Exclude_from_Household_Informal_Greeting__c, HasOptedOutOfEmail, HasOptedOutOfFax, DoNotCall, Naming_Exclusions__c 
-                                        FROM CONTACT WHERE Id =: contact.Id];
-
-        System.assertEquals(true, contactAfterInserted.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
-        System.assertEquals(true, contactAfterInserted.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household InFormal Greeting.');
-        System.assertEquals(true, contactAfterInserted.HasOptedOutOfEmail, 'Contact should be opted out of Email.');
-        System.assertEquals(true, contactAfterInserted.HasOptedOutOfEmail, 'Contact should be opted out of Fax.');
-        System.assertEquals(true, contactAfterInserted.DoNotCall, 'Contact should be opted out of phone calls.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
-        System.assertEquals(true, contactAfterInserted.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = false;
+        }
 
         Test.startTest();
-            contactAfterInserted.do_not_contact__c = false;
-            update contactAfterInserted;
+        update testContactsList;
         Test.stopTest();
 
-        Contact contactAfterUpdate = [SELECT DoNotCall, HasOptedOutOfEmail, HasOptedOutOfFax,Do_Not_Contact__c, Exclude_from_Household_Name__c,
-                                      Exclude_from_Household_Formal_Greeting__c, Exclude_from_Household_Informal_Greeting__c,
-                                      Naming_Exclusions__c FROM Contact WHERE Id =: contactAfterInserted.Id];
+        List<Contact> contactAfterUpdateList = [SELECT DoNotCall, 
+                                                       HasOptedOutOfEmail, 
+                                                       HasOptedOutOfFax,
+                                                       Do_Not_Contact__c, 
+                                                       Exclude_from_Household_Name__c,
+                                                       Exclude_from_Household_Formal_Greeting__c, 
+                                                       Exclude_from_Household_Informal_Greeting__c,
+                                                       Naming_Exclusions__c 
+                                               FROM Contact 
+                                               WHERE Id IN :testContactsList];
 
-        System.assertEquals(false, contactAfterUpdate.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
-        System.assertEquals(false, contactAfterUpdate.DoNotCall, 'Contact should not be opted out of phone calls.');
-        System.assertEquals(false, contactAfterUpdate.HasOptedOutOfEmail, 'Contact should not be opted out of Email.');
-        System.assertEquals(false, contactAfterUpdate.HasOptedOutOfFax, 'Contact should not be opted out of Fax.');
-        System.assertEquals(true, contactAfterUpdate.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
-        System.assertEquals(true, contactAfterUpdate.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
-        System.assertEquals(true, contactAfterUpdate.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
-        System.assertEquals(true, contactAfterUpdate.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
-        System.assertEquals(true, contactAfterUpdate.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
-        System.assertEquals(true, contactAfterUpdate.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Contact should be excluded from Household Informal Greeting.');
+        for (Contact con : contactAfterUpdateList){
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of phone calls.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of Email.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of Fax.');
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Contact should be excluded from Household Informal Greeting.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** UNIT TESTS *********************************************************
+    **************************************************************************************************************************/
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncDoNotContactFieldsOnContact synchronizes the following fields to true when 
+    * "Do Not Contact" is selected: Email Opt Out, Do Not Call, Do Not Fax
+    */
+    @isTest
+    private static void syncDoNotContactFieldsToPositive(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Do_Not_Contact__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncDoNotContactFieldsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of emails.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of phone calls.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncDoNotContactFieldsOnContact synchronizes the following fields to false when 
+    * "Do Not Contact" is not selected: Email Opt Out, Do Not Call, Do Not Fax
+    */
+    @isTest
+    private static void syncDoNotContactFieldsToNegative(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Do_Not_Contact__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncDoNotContactFieldsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of emails.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of phone calls.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncDoNotContactFieldsOnContact synchronizes the following fields to false when 
+    * a null value is set for "Do Not Contact": Email Opt Out, Do Not Call, Do Not Fax
+    */
+    @isTest
+    private static void syncDoNotContactFieldsNull(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Do_Not_Contact__c = null;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncDoNotContactFieldsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of emails.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of phone calls.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncNamingExclusionsOnContact excludes the following naming conventions  
+    * when a contact has been marked as deceased: Household Name, Household Formal Greeting, Household Informal Greeting
+    */
+    @isTest 
+    private static void syncNamingExclusionsPositive(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Deceased__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncNamingExclusionsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncNamingExclusionsOnContact removes all household naming exclusions   
+    * when a contact is marked as being not deceased.
+    */
+    @isTest 
+    private static void syncNamingExclusionsNegative(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Deceased__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncNamingExclusionsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncNamingExclusionsOnContact removes all household naming exclusions   
+    * when a null value is passed for Deceased.
+    */
+    @isTest 
+    private static void syncNamingExclusionsNull(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Deceased__c = null;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncNamingExclusionsOnContacts(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncHHNamingExclusionsPicklistFromCheckboxes correctly generates a semi-colon 
+    * delimited string listing all household naming exclusions when all the corresponding household exclusion checkboxes are 
+    * selected on the Contact.
+    */
+    @isTest 
+    private static void syncHHNamingExclusionsFromCheckboxesAllPositive(){
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactList){
+            con.Exclude_from_Household_Name__c = true;
+            con.Exclude_from_Household_Formal_Greeting__c = true;
+            con.Exclude_from_Household_Informal_Greeting__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncHHNamingExclusionsPicklistFromCheckboxes(testContactList);
+        Test.stopTest();
+
+        for (Contact con : testContactList){
+            System.assertEquals('Household__c.Name;Household__c.Formal_Greeting__c;Household__c.Informal_Greeting__c', 
+                                 con.Naming_Exclusions__c,
+                                'Naming exclusion string should include all household naming conventions');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncHHNamingExclusionsPicklistFromCheckboxes correctly generates a semi-colon 
+    * delimited string listing only the household naming exclusions matching the household exclusion checkbox selections 
+    * on the Contact.
+    */
+    @isTest 
+    private static void syncHHNamingExclusionsFromCheckboxesPartialPositive(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactsList){
+            con.Exclude_from_Household_Name__c = true;
+            con.Exclude_from_Household_Formal_Greeting__c = false;
+            con.Exclude_from_Household_Informal_Greeting__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncHHNamingExclusionsPicklistFromCheckboxes(testContactsList);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals('Household__c.Name;Household__c.Informal_Greeting__c', 
+                                 con.Naming_Exclusions__c,
+                                'Naming exclusion string should include household name and informal greeting');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncHHNamingExclusionsPicklistFromCheckboxes does not generate a string when none 
+    * of the household exclusion checkboxes are selected on the Contact record.
+    */
+    @isTest 
+    private static void syncHHNamingExclusionsFromCheckboxesNoneNegative(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactsList){
+            con.Exclude_from_Household_Name__c = false;
+            con.Exclude_from_Household_Formal_Greeting__c = false;
+            con.Exclude_from_Household_Informal_Greeting__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncHHNamingExclusionsPicklistFromCheckboxes(testContactsList);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming exclusion string should be blank');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that syncHHNamingExclusionsPicklistFromCheckboxes does not generate a string when all 
+    * household exclusion checkboxes are null.
+    */
+    @isTest 
+    private static void syncHHNamingExclusionsFromCheckboxesNull(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+
+        for (Contact con : testContactsList){
+            con.Exclude_from_Household_Name__c = null;
+            con.Exclude_from_Household_Formal_Greeting__c = null;
+            con.Exclude_from_Household_Informal_Greeting__c = null;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.syncHHNamingExclusionsPicklistFromCheckboxes(testContactsList);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that processBeforeInsert excludes a deceased contact from all household naming
+    * functionality and the following fields are set to true: Do Not Contact, Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeInsertDeceasedPositive(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Deceased__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeInsert(testContactsList);
+        Test.stopTest();
+
+        List<Contact> contactsAfterInsertList = [SELECT Do_Not_Contact__c, 
+                                                        Exclude_from_Household_Name__c, 
+                                                        Exclude_from_Household_Formal_Greeting__c,
+                                                        Exclude_from_Household_Informal_Greeting__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax, 
+                                                        Naming_Exclusions__c
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
+            System.assertEquals(true, con.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that processBeforeInsert does not exclude a living contact from any household naming
+    * functionality and the following fields are set to false: Do Not Contact, Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeInsertDeceasedNegative(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Deceased__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeInsert(testContactsList);
+        Test.stopTest();
+
+        List<Contact> contactsAfterInsertList = [SELECT Do_Not_Contact__c, 
+                                                        Exclude_from_Household_Name__c, 
+                                                        Exclude_from_Household_Formal_Greeting__c,
+                                                        Exclude_from_Household_Informal_Greeting__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax, 
+                                                        Naming_Exclusions__c
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should note be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should note be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that when Deceased is null, processBeforeInsert does not exclude a contact from any 
+    * household naming functionality and the following fields are set to false: 
+    * Do Not Contact, Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeInsertDeceasedNull(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Deceased__c = null;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeInsert(testContactsList);
+        Test.stopTest();
+
+        List<Contact> contactsAfterInsertList = [SELECT Do_Not_Contact__c, 
+                                                        Exclude_from_Household_Name__c, 
+                                                        Exclude_from_Household_Formal_Greeting__c,
+                                                        Exclude_from_Household_Informal_Greeting__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax, 
+                                                        Naming_Exclusions__c,
+                                                        Account.Name 
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should note be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that processBeforeInsert synchronizes the following fields to true when 
+    * "Do Not Contact" is selected: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeInsertDoNotContactPositive(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeInsert(testContactsList);
+        Test.stopTest();
+
+        List<Contact> contactsAfterInsertList = [SELECT Do_Not_Contact__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that processBeforeInsert synchronizes the following fields to false when 
+    * "Do Not Contact" is not selected: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeInsertDoNotContactNegative(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeInsert(testContactsList);
+        Test.stopTest();
+
+        List<Contact> contactsAfterInsertList = [SELECT Do_Not_Contact__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that processBeforeInsert synchronizes the following fields to false when 
+    * "Do Not Contact" is null: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeInsertDoNotContactNull(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        
+        for (Contact con : testContactsList){
+            con.Do_Not_Contact__c = null;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeInsert(testContactsList);
+        Test.stopTest();
+
+        List<Contact> contactsAfterInsertList = [SELECT Do_Not_Contact__c, 
+                                                        HasOptedOutOfEmail, 
+                                                        DoNotCall, 
+                                                        HasOptedOutOfFax
+                                                FROM CONTACT 
+                                                WHERE Id IN :testContactsList];
+
+        for (Contact con : contactsAfterInsertList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that processBeforeUpdate excludes a deceased contact from household naming 
+    * functionality and synchronizes the following fields to true: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeUpdateDeceasedPositive(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        Map<Id, Contact> testContactsById = new Map<Id, Contact>();
+        
+        for (Contact con : testContactsList){
+            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+            Contact oldCon = con.clone(false);
+            oldCon.Id = testId;
+            oldCon.Deceased__c = false;
+            testContactsById.put(testId, oldCon);
+
+            con.Id = testId;
+            con.Deceased__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeUpdate(testContactsList, testContactsById);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
+            System.assertEquals(true, con.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that processBeforeUpdate does not exclude a living contact from household naming 
+    * functionality and synchronizes the following fields to false: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeInsertUpdateDeceasedNegative(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        Map<Id, Contact> testContactsById = new Map<Id, Contact>();
+        
+        for (Contact con : testContactsList){
+            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+            Contact oldCon = con.clone(false);
+            oldCon.Id = testId;
+            oldCon.Deceased__c = true;
+            testContactsById.put(testId, oldCon);
+
+            con.Id = testId;
+            con.Deceased__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeUpdate(testContactsList, testContactsById);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that when Deceased is null, processBeforeUpdate does not exclude a contact from 
+    * household naming functionality and synchronizes the following fields to false: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeUpdateDeceasedNull(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        Map<Id, Contact> testContactsById = new Map<Id, Contact>();
+        
+        for (Contact con : testContactsList){
+            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+            Contact oldCon = con.clone(false);
+            oldCon.Id = testId;
+            oldCon.Deceased__c = true;
+            testContactsById.put(testId, oldCon);
+
+            con.Id = testId;
+            con.Deceased__c = null;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeUpdate(testContactsList, testContactsById);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that when "Do Not Contact" is updated to checked, processBeforeUpdate synchronizes 
+    * the following communication preference fields to true: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeUpdateDoNotContactPositive(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        Map<Id, Contact> testContactsById = new Map<Id, Contact>();
+        
+        for (Contact con : testContactsList){
+            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+            Contact oldCon = con.clone(false);
+            oldCon.Id = testId;
+            oldCon.Do_Not_Contact__c = false;
+            testContactsById.put(testId, oldCon);
+
+            con.Id = testId;
+            con.Do_Not_Contact__c = true;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeUpdate(testContactsList, testContactsById);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that when "Do Not Contact" is updated to unchecked, processBeforeUpdate synchronizes 
+    * the following communication preference fields to false: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeUpdateDoNotContactNegative(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        Map<Id, Contact> testContactsById = new Map<Id, Contact>();
+        
+        for (Contact con : testContactsList){
+            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+            Contact oldCon = con.clone(false);
+            oldCon.Id = testId;
+            oldCon.Do_Not_Contact__c = true;
+            testContactsById.put(testId, oldCon);
+
+            con.Id = testId;
+            con.Do_Not_Contact__c = false;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeUpdate(testContactsList, testContactsById);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that when "Do Not Contact" is updated to null, processBeforeUpdate synchronizes 
+    * the following communication preference fields to false: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void processBeforeUpdateDoNotContactNull(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        Map<Id, Contact> testContactsById = new Map<Id, Contact>();
+        
+        for (Contact con : testContactsList){
+            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+            Contact oldCon = con.clone(false);
+            oldCon.Id = testId;
+            oldCon.Do_Not_Contact__c = true;
+            testContactsById.put(testId, oldCon);
+
+            con.Id = testId;
+            con.Do_Not_Contact__c = null;
+        }
+
+        Test.startTest();
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.processBeforeUpdate(testContactsList, testContactsById);
+        Test.stopTest();
+
+        for (Contact con : testContactsList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that isBeforeInsert returns true for a BeforeInsert trigger action.
+    */
+    @isTest 
+    private static void checkIsBeforeInsertPositive(){
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeInsert;
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        System.assertEquals(true, conDoNotContactTDTM.isBeforeInsert(testAction), 'Trigger Action is BeforeInsert');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that isBeforeInsert returns false when the trigger action is not BeforeInsert.
+    */
+    @isTest 
+    private static void checkIsBeforeInsertNegative(){
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.AfterInsert;
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        System.assertEquals(false, conDoNotContactTDTM.isBeforeInsert(testAction), 'Trigger Action is not BeforeInsert');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that isBeforeUpdate returns true for a BeforeUpdate trigger action.
+    */
+    @isTest 
+    private static void checkIsBeforeUpdatePositive(){
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeUpdate;
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        System.assertEquals(true, conDoNotContactTDTM.isBeforeUpdate(testAction), 'Trigger Action is BeforeUpdate');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that isBeforeUpdate returns false when the trigger action is not BeforeUpdate.
+    */
+    @isTest 
+    private static void checkIsBeforeUpdateNegative(){
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.AfterUpdate;
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        System.assertEquals(false, conDoNotContactTDTM.isBeforeUpdate(testAction), 'Trigger Action is not BeforeUpdate');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the run method excludes contact updated to deceased from household naming 
+    * functionality and sets the following fields to true: Do Not Contact, Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void fireBeforeUpdateDeceasedPositive(){
+        List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<SObject> oldList = new List<SObject>();
+
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.BeforeInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        for (SObject so : newList){
+            SObject oldObj = so.clone(false);
+            oldObj.put('Deceased__c', false);
+            oldList.add(oldObj);
+
+            so.put('Deceased__c', true);
+        }
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.run(newList, oldList, triggerAction, objResult);
+
+        for (Contact con : (List<Contact>)newList){
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
+            System.assertEquals(true, con.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the run method clears household naming exclusions for contacts updated from 
+    * being deceased and sets the following fields to false: Do Not Contact, Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void fireBeforeUpdateDeceasedNegative(){
+        List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<SObject> oldList = new List<SObject>();
+
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.BeforeInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        for (SObject so : newList){
+            SObject oldObj = so.clone(false);
+            oldObj.put('Deceased__c', true);
+            oldList.add(oldObj);
+            
+            so.put('Deceased__c', false);
+        }
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.run(newList, oldList, triggerAction, objResult);
+
+        for (Contact con : (List<Contact>)newList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the run method sets the following fields to true for contacts when the  
+    * "Do Not Contact" field is updated to checked: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void fireBeforeUpdateDoNotContactPositive(){
+        List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<SObject> oldList = new List<SObject>();
+
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.BeforeInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        for (SObject so : newList){
+            SObject oldObj = so.clone(false);
+            oldObj.put('Do_Not_Contact__c', false);
+            oldList.add(oldObj);
+
+            so.put('Do_Not_Contact__c', true);
+        }
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.run(newList, oldList, triggerAction, objResult);
+
+        for (Contact con : (List<Contact>)newList){
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the run method sets the following fields to false for contacts when the  
+    * "Do Not Contact" field is updated to unchecked: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void fireBeforeUpdateDoNotContactNegative(){
+        List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<SObject> oldList = new List<SObject>();
+
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.BeforeInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        for (SObject so : newList){
+            SObject oldObj = so.clone(false);
+            oldObj.put('Do_Not_Contact__c', true);
+            oldList.add(oldObj);
+            
+            so.put('Do_Not_Contact__c', false);
+        }
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.run(newList, oldList, triggerAction, objResult);
+
+        for (Contact con : (List<Contact>)newList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the run method excludes inserted deceased contacts from household naming 
+    * functionality and sets the following fields to true: Do Not Contact, Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void fireBeforeInsertDeceasedPositive(){
+        List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<SObject> oldList = null;
+
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.BeforeInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        for (SObject so : newList){
+            so.put('Deceased__c', true);
+        }
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.run(newList, oldList, triggerAction, objResult);
+
+        for (Contact con : (List<Contact>)newList){
+            System.assertEquals(true, con.Exclude_from_Household_Name__c, 'Contact should be excluded from Household Naming.');
+            System.assertEquals(true, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should be excluded from Household Formal Greeting.');
+            System.assertEquals(true, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should be excluded from Household Informal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Name'), 'Naming Exclusions field should include Household Name.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Formal_Greeting__c'), 'Naming Exclusions field should include Household Formal Greeting.');
+            System.assertEquals(true, con.Naming_Exclusions__c.contains('Household__c.Informal_Greeting__c'), 'Naming Exclusions field should include Household Informal Greeting.');
+            System.assertEquals(true, con.Do_Not_Contact__c, 'Contact should be marked as Do Not Contact.');
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the run method does not exclude inserted living contacts from household naming 
+    * functionality and sets the following fields to false: Do Not Contact, Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void fireBeforeInsertDeceasedNegative(){
+        List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<SObject> oldList = null;
+
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.BeforeInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        for (SObject so : newList){
+            so.put('Deceased__c', false);
+        }
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.run(newList, oldList, triggerAction, objResult);
+
+        for (Contact con : (List<Contact>)newList){
+            System.assertEquals(false, con.Exclude_from_Household_Name__c, 'Contact should not be excluded from Household Naming.');
+            System.assertEquals(false, con.Exclude_from_Household_Formal_Greeting__c, 'Contact should not be excluded from Household Formal Greeting.');
+            System.assertEquals(false, con.Exclude_from_Household_Informal_Greeting__c, 'Contact should not be excluded from Household Informal Greeting.');
+            System.assertEquals(true, String.isBlank(con.Naming_Exclusions__c), 'Naming Exclusions field should be cleared.');
+            System.assertEquals(false, con.Do_Not_Contact__c, 'Contact should not be marked as Do Not Contact.');
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the run method synchronizes the following to fields to true when contacts are
+    * inserted with "Do Not Contact" selected: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void fireBeforeInsertDoNotContactPositive(){
+        List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<SObject> oldList = null;
+
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.BeforeInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        for (SObject so : newList){
+            so.put('Do_Not_Contact__c', true);
+        }
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.run(newList, oldList, triggerAction, objResult);
+
+        for (Contact con : (List<Contact>)newList){
+            System.assertEquals(true, con.HasOptedOutOfEmail, 'Contact should be opted out of receiving emails.');
+            System.assertEquals(true, con.HasOptedOutOfFax, 'Contact should be opted out of receiving faxes.');
+            System.assertEquals(true, con.DoNotCall, 'Contact should be opted out of receiving phone calls.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the run method synchronizes the following to fields to false when contacts are
+    * inserted with "Do Not Contact" unchecked: Email Opt Out, Fax Opt Out, Do Not Call
+    */
+    @isTest 
+    private static void fireBeforeInsertDoNotContactNegative(){
+        List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<SObject> oldList = null;
+
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.BeforeInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        for (SObject so : newList){
+            so.put('Do_Not_Contact__c', false);
+        }
+
+        CON_DoNotContact_TDTM conDoNotContactTDTM = new CON_DoNotContact_TDTM();
+        conDoNotContactTDTM.run(newList, oldList, triggerAction, objResult);
+
+        for (Contact con : (List<Contact>)newList){
+            System.assertEquals(false, con.HasOptedOutOfEmail, 'Contact should not be opted out of receiving emails.');
+            System.assertEquals(false, con.HasOptedOutOfFax, 'Contact should not be opted out of receiving faxes.');
+            System.assertEquals(false, con.DoNotCall, 'Contact should not be opted out of receiving phone calls.');
+        }
     }
 }
