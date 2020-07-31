@@ -676,15 +676,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
     private static void autoCreateProgramEnrollment() {		
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
             AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-        String bizOrgRecordTypeName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
-        //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
-        Affl_Mappings__c bizOrgMapping = [SELECT Auto_Program_Enrollment__c,
-            Auto_Program_Enrollment_Role__c,
-            Auto_Program_Enrollment_Status__c
-            FROM Affl_Mappings__c
-            WHERE Name = :bizOrgRecordTypeName];
+        AffiliationMappingWrapper bizOrgMappingWrapper = affiliationMappingWrapperList[1];
+        String bizOrgRecordTypeName = bizOrgMappingWrapper.getAccountRecordTypeName();
 
+        //Turn on Academic Record auto-creation for Business Organization mapping, which we are using as an arbitrary record type for testing.
+        Affl_Mappings__c bizOrgMapping = bizOrgMappingWrapper.getAffiliationMapping();
         bizOrgMapping.Auto_Program_Enrollment__c = true;
         bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
         bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
@@ -714,15 +711,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
     private static void autoCreateProgramEnrollmentDifferentRole() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
             AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-        String bizOrgRecordTypeName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
-        //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing
-        Affl_Mappings__c bizOrgMapping = [SELECT Auto_Program_Enrollment__c,
-            Auto_Program_Enrollment_Role__c,
-            Auto_Program_Enrollment_Status__c
-            FROM Affl_Mappings__c
-            WHERE Name = :bizOrgRecordTypeName];
+        AffiliationMappingWrapper bizOrgMappingWrapper = affiliationMappingWrapperList[1];
+        String bizOrgRecordTypeName = bizOrgMappingWrapper.getAccountRecordTypeName();
 
+        //Turn on Academic Record auto-creation for Business Organization mapping, which we are using as an arbitrary record type for testing.
+        Affl_Mappings__c bizOrgMapping = bizOrgMappingWrapper.getAffiliationMapping();
         bizOrgMapping.Auto_Program_Enrollment__c = true;
         bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
         bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
