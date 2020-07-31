@@ -36,9 +36,6 @@
 */
 @isTest
 public with sharing class AFFL_MultiRecordType_TEST {
-    
-    private static ID orgRecTypeID;
-    private static ID householdRecTypeID;
 
 /**************************************************************************
 * SETUP
@@ -49,13 +46,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
     * tests using record type name and contact field api name
     * @return The affiliation mapping wrappers set up for the tests.
     **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupAndGetMappingsByDevNameAndApiName() {
-        AFFL_MultiRecordType_TEST.initializeAccountRecordTypeIds();
-
+    public static List<AffiliationMappingWrapper> setupMappingsByDevNameAndApiName() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
             AFFL_MultiRecordType_TEST.getAfflMappingWrapperByDevNameAndApiName();
 
-        return AFFL_MultiRecordType_TEST.setupAndGetMappings(affiliationMappingWrapperList);
+        return AFFL_MultiRecordType_TEST.commonSetup(affiliationMappingWrapperList);
     }
 
     /**************************************************************************
@@ -63,13 +58,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
     * tests using record type name and contact field label
     * @return The affiliation mapping wrappers set up for the tests.
     **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupAndGetMappingsByDevNameAndLabel() {
-        AFFL_MultiRecordType_TEST.initializeAccountRecordTypeIds();
-
+    public static List<AffiliationMappingWrapper> setupMappingsByDevNameAndLabel() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
             AFFL_MultiRecordType_TEST.getAfflMappingWrapperByDevNameAndLabel();
 
-        return AFFL_MultiRecordType_TEST.setupAndGetMappings(affiliationMappingWrapperList);
+        return AFFL_MultiRecordType_TEST.commonSetup(affiliationMappingWrapperList);
     }
 
     /**************************************************************************
@@ -77,13 +70,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
     * tests using record type name and contact field api name
     * @return The affiliation mapping wrappers set up for the tests.
     **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupAndGetMappingsByNameAndApiName() {
-        AFFL_MultiRecordType_TEST.initializeAccountRecordTypeIds();
-
+    public static List<AffiliationMappingWrapper> setupMappingsByNameAndApiName() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
             AFFL_MultiRecordType_TEST.getAfflMappingWrapperByNameAndApiName();
 
-        return AFFL_MultiRecordType_TEST.setupAndGetMappings(affiliationMappingWrapperList);
+        return AFFL_MultiRecordType_TEST.commonSetup(affiliationMappingWrapperList);
     }
 
     /**************************************************************************
@@ -91,28 +82,27 @@ public with sharing class AFFL_MultiRecordType_TEST {
     * tests using record type name and contact field label
     * @return The affiliation mapping wrappers set up for the tests.
     **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupAndGetMappingsByNameAndLabel() {
-        AFFL_MultiRecordType_TEST.initializeAccountRecordTypeIds();
-
+    public static List<AffiliationMappingWrapper> setupMappingsByNameAndLabel() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
             AFFL_MultiRecordType_TEST.getAfflMappingWrapperByNameAndLabel();
 
-        return AFFL_MultiRecordType_TEST.setupAndGetMappings(affiliationMappingWrapperList);
+        return AFFL_MultiRecordType_TEST.commonSetup(affiliationMappingWrapperList);
     }
 
     /**************************************************************************
     * @description Sets up hierarchy settings and affiliation mappings for
-    * tests using affiliation wrapper mappings
+    * tests using provided affiliation wrapper mappings common to all setup
+    * scenarios
     * @param affiliationMappingWrapperList The wrapper mappings to set up
     * the test with
     * @return The affiliation mapping wrappers set up for the tests.
     **************************************************************************/
-    private static List<AffiliationMappingWrapper> setupAndGetMappings(
+    private static List<AffiliationMappingWrapper> commonSetup(
         List<AffiliationMappingWrapper> affiliationMappingWrapperList
     ) {
-        AFFL_MultiRecordType_TEST.initializeHierarchySettings(
-            affiliationMappingWrapperList[0].getAccountRecordTypeId()
-        );
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = affiliationMappingWrapperList[0].getAccountRecordTypeId()
+        ));
 
         affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.populateRecordTypeNamesForWrappers(
             affiliationMappingWrapperList
@@ -142,14 +132,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         wrapperList.add(
             new AfflMappingWrapperByDevNameAndApiName(
-                AFFL_MultiRecordType_TEST.householdRecTypeID,
+                UTIL_Describe_API.getHhAccRecTypeID(),
                 contactPrimaryAffiliationFieldApiNameList[0]
             )
         );
 
         wrapperList.add(
             new AfflMappingWrapperByDevNameAndApiName(
-                AFFL_MultiRecordType_TEST.orgRecTypeID,
+                UTIL_Describe_API.getBizAccRecTypeID(),
                 contactPrimaryAffiliationFieldApiNameList[1]
             )
         );
@@ -173,14 +163,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         wrapperList.add(
             new AfflMappingWrapperByDevNameAndLabel(
-                AFFL_MultiRecordType_TEST.householdRecTypeID,
+                UTIL_Describe_API.getHhAccRecTypeID(),
                 contactPrimaryAffiliationFieldNameList[0]
             )
         );
 
         wrapperList.add(
             new AfflMappingWrapperByDevNameAndLabel(
-                AFFL_MultiRecordType_TEST.orgRecTypeID,
+                UTIL_Describe_API.getBizAccRecTypeID(),
                 contactPrimaryAffiliationFieldNameList[1]
             )
         );
@@ -204,14 +194,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         wrapperList.add(
             new AfflMappingWrapperByNameAndApiName(
-                AFFL_MultiRecordType_TEST.householdRecTypeID,
+                UTIL_Describe_API.getHhAccRecTypeID(),
                 contactPrimaryAffiliationFieldApiNameList[0]
             )
         );
 
         wrapperList.add(
             new AfflMappingWrapperByNameAndApiName(
-                AFFL_MultiRecordType_TEST.orgRecTypeID,
+                UTIL_Describe_API.getBizAccRecTypeID(),
                 contactPrimaryAffiliationFieldApiNameList[1]
             )
         );
@@ -235,75 +225,19 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         wrapperList.add(
             new AfflMappingWrapperByNameAndLabel(
-                AFFL_MultiRecordType_TEST.householdRecTypeID,
+                UTIL_Describe_API.getHhAccRecTypeID(),
                 contactPrimaryAffiliationFieldNameList[0]
             )
         );
 
         wrapperList.add(
             new AfflMappingWrapperByNameAndLabel(
-                AFFL_MultiRecordType_TEST.orgRecTypeID,
+                UTIL_Describe_API.getBizAccRecTypeID(),
                 contactPrimaryAffiliationFieldNameList[1]
             )
         );
 
         return wrapperList;
-    }
-
-    /**************************************************************************
-    * @description Gets the contact primary affiliation field labels with the 
-    * household field as the first index and the business organization field
-    * as the second index
-    * @return the list of contact primary affiliation field labels
-    **************************************************************************/
-    private static List<String> getContactPrimaryAffiliationFieldLabels() {
-        List<String> fieldLabelList = new List<String>();
-
-        fieldLabelList.add('Primary Household');
-        fieldLabelList.add('Primary Business Organization');
-
-        return fieldLabelList;
-    }
-
-    /**************************************************************************
-    * @description Gets the contact primary affiliation namespaced api names
-    * with the household field as the first index and the business
-    * organization field as the second index
-    * @return the list of contact primary affiliation local field names
-    **************************************************************************/
-    private static List<String> getContactPrimaryAffiliationFieldApiNames() {
-        List<String> fieldApiNameList = new List<String>();
-
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        fieldApiNameList.add(prefix + 'Primary_Household__c');
-        fieldApiNameList.add(prefix + 'Primary_Organization__c');
-        
-        return fieldApiNameList;
-    }
-
-    /**************************************************************************
-    * @description Initializes account record type ids
-    **************************************************************************/
-    private static void initializeAccountRecordTypeIds() {
-        AFFL_MultiRecordType_TEST.householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
-        AFFL_MultiRecordType_TEST.orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
-    }
-
-    /**************************************************************************
-    * @description Initializes the hierarchy settings for testing, setting the
-    * first
-    * @param accountProcessorRecordTypeId The record type id to use for the
-    * account processor
-    * @return The hierarchy settings created by this process.
-    **************************************************************************/
-    private static Hierarchy_Settings__c initializeHierarchySettings(Id accountProcessorRecordTypeId) {
-        Hierarchy_Settings__c hierarchySettings = new Hierarchy_Settings__c(Account_Processor__c = accountProcessorRecordTypeId);
-
-        UTIL_CustomSettings_API.getSettingsForTests(hierarchySettings);
-
-        return hierarchySettings;
     }
 
     /**************************************************************************
@@ -366,28 +300,35 @@ public with sharing class AFFL_MultiRecordType_TEST {
 * UTILITIES
 **************************************************************************/
 
+
+
     /**************************************************************************
-    * @description Gets the contact primary affiliation field api name for
-    * Business Organization
-    * @return the contact primary affiliation field api name for Business
-    * Organization
+    * @description Gets the contact primary affiliation field labels with the 
+    * household field as the first index and the business organization field
+    * as the second index
+    * @return the list of contact primary affiliation field labels
     **************************************************************************/
-    private static String getBusinessOrganizationFieldApiName() {
-        List<String> fieldApiNameList =
-            AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldApiNames();
-        return fieldApiNameList[1];
+    private static List<String> getContactPrimaryAffiliationFieldLabels() {
+        List<String> fieldLabelList = new List<String>();
+
+        fieldLabelList.add(
+            AFFL_MultiRecordType_TEST.getHouseholdFieldLabel()
+        );
+        fieldLabelList.add(
+            AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldLabel()
+        );
+
+        return fieldLabelList;
     }
 
     /**************************************************************************
-    * @description Gets the contact primary affiliation field labels for
+    * @description Gets the contact primary affiliation field label for
     * Business Organization
     * @return the contact primary affiliation field labels for Business
     * Organization
     **************************************************************************/
     private static String getBusinessOrganizationFieldLabel() {
-        List<String> fieldLabelList =
-            AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldLabels();
-        return fieldLabelList[1];
+        return 'Primary Business Organization';
     }
 
     /**************************************************************************
@@ -396,9 +337,45 @@ public with sharing class AFFL_MultiRecordType_TEST {
     * @return the contact primary affiliation field labels for Household
     **************************************************************************/
     private static String getHouseholdFieldLabel() {
-        List<String> fieldLabelList =
-            AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldLabels();
-        return fieldLabelList[0];
+        return 'Primary Household';
+    }
+
+    /**************************************************************************
+    * @description Gets the contact primary affiliation namespaced api names
+    * with the household field as the first index and the business
+    * organization field as the second index
+    * @return the list of contact primary affiliation local field names
+    **************************************************************************/
+    private static List<String> getContactPrimaryAffiliationFieldApiNames() {
+        List<String> fieldApiNameList = new List<String>();
+
+        fieldApiNameList.add(
+            AFFL_MultiRecordType_TEST.getHouseholdFieldApiName()
+        );
+        fieldApiNameList.add(
+            AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldApiName()
+        );
+        
+        return fieldApiNameList;
+    }
+
+    /**************************************************************************
+    * @description Gets the contact primary affiliation field api name for
+    * Business Organization
+    * @return the contact primary affiliation field api name for Business
+    * Organization
+    **************************************************************************/
+    private static String getBusinessOrganizationFieldApiName() {
+        return UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c');
+    }
+
+    /**************************************************************************
+    * @description Gets the contact primary affiliation field api name for
+    * Household
+    * @return the contact primary affiliation field api name for Household
+    **************************************************************************/
+    private static String getHouseholdFieldApiName() {
+        return UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c');
     }
 
     /**************************************************************************
@@ -415,7 +392,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 **************************************************************************/
     private static void createPrimaryAffl() {		
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+            AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
         String bizOrgAcctName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -434,7 +411,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
 
         //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert bizOrg1;
 
         //Create another key affiliation, this time to a biz org
@@ -452,7 +429,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(bizOrg1.ID, Contact.Primary_Organization__c);
 
         //Create second account of the same record type
-        Account bizOrg2 = new Account(Name='Toys Inc', RecordTypeId = orgRecTypeID);
+        Account bizOrg2 = new Account(Name='Toys Inc', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert bizOrg2;
 
         //Create second primary affiliation
@@ -481,13 +458,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void noDuplicateAffl() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
         //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert bizOrg1;
 
         //Create primary affiliation
@@ -504,7 +481,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void deletePrimaryAffl() {		
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -522,7 +499,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
 
         //Craete account of Business Organization record type
-        Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account acc1 = new Account(Name='Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert acc1;
 
         //Create primary Business affiliation
@@ -547,7 +524,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makePrimaryAfflNonPrimary() {		
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -584,13 +561,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makeNonPrimaryAfflPrimary() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
         //Create account of Business Organization record type
-        Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account acc1 = new Account(Name='Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert acc1;
 
         //Create non-primary Business affiliation
@@ -620,14 +597,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {		
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
         //Create 2 accounts of Business Organization record type
-        Account acc1 = new Account(Name='Acme1', RecordTypeId = orgRecTypeID);
-        Account acc2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+        Account acc1 = new Account(Name='Acme1', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc2 = new Account(Name='Acme2', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert new Account[] {acc1, acc2};
 
         //Create primary Business affiliation
@@ -667,14 +644,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void createPrimaryAfflWhenAnotherPrimaryExists() {        
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
         //Create 2 accounts of Business Organization record type
-        Account acc1 = new Account(Name='Acme1', RecordTypeId = orgRecTypeID);
-        Account acc2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+        Account acc1 = new Account(Name='Acme1', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc2 = new Account(Name='Acme2', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert new Account[] {acc1, acc2};
 
         //Create primary Business affiliation
@@ -698,7 +675,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void autoCreateProgramEnrollment() {		
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+            AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
         String bizOrgRecordTypeName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
         //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
@@ -717,7 +694,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Craete account of Business Organization record type
-        Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account acc = new Account(Name='Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert acc;
 
         //Create Business affiliation
@@ -736,7 +713,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void autoCreateProgramEnrollmentDifferentRole() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+            AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
         String bizOrgRecordTypeName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
         //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing
@@ -755,7 +732,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Craete account of Business Organization record type
-        Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account acc = new Account(Name='Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
         insert acc;
 
         //Create Business affiliation
@@ -780,8 +757,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void incorrectAfflMappingsAfflTypeEnforced() {
         //Note custom setup
-        AFFL_MultiRecordType_TEST.initializeAccountRecordTypeIds();
-
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
             new List<AffiliationMappingWrapper>();
         String bizOrgContactFieldLabel =
@@ -789,14 +764,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         affiliationMappingWrapperList.add(
             new AfflMappingWrapperByNameAndApiName(
-                AFFL_MultiRecordType_TEST.householdRecTypeID,
+                UTIL_Describe_API.getHhAccRecTypeID(),
                 bizOrgContactFieldLabel + 's'
             )
         );
 
-        AFFL_MultiRecordType_TEST.initializeHierarchySettings(
-            affiliationMappingWrapperList[0].getAccountRecordTypeId()
-        );
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = affiliationMappingWrapperList[0].getAccountRecordTypeId()
+        ));
 
         affiliationMappingWrapperList[0].setAccountRecordTypeName(
             'EDA: Not A Valid Record Type Name'
@@ -810,7 +785,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         //Setup end
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
-            1, AFFL_MultiRecordType_TEST.householdRecTypeID);
+            1, UTIL_Describe_API.getHhAccRecTypeID());
         insert testAccounts;
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = testAccounts[0].Id);
@@ -838,10 +813,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void affiliationDeleteNPECheck() {        
 
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact
@@ -888,13 +863,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void multipleAffiliationUpdates() {        
 
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
-        // Insert Accounts       
-        Account bizAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
-        Account bizAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
-        Account hhAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, householdRecTypeID)[0];
-        Account hhAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, householdRecTypeID)[0];
+        // Insert Accounts
+        Account bizAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account hhAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        Account hhAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
 
         insert new Account[] {bizAcc1, bizAcc2, hhAcc1, hhAcc2};
 
@@ -956,16 +931,16 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void bulkAffiliationUpdates() { 
 
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         List<Account> accList = new List<Account>();
 
         // Insert a Business Account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         accList.add(bizAcc);
 
         // Insert a Household Account
-        Account hhAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, householdRecTypeID)[0];
+        Account hhAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
         accList.add(hhAcc);
 
         // Insert multiple contacts
@@ -1033,11 +1008,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
      // Test the usage of custom API field name for affiliation mapping for multi-language support
     @isTest
     private static void customFieldAPIInMappings() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndApiName();
-        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -1061,11 +1035,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithLabelForRecTypeAndAPINameForPrimaryAfflFields() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndApiName();
-        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -1095,11 +1068,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithAPIForRecTypeAndLabelForPrimaryAfflFields() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByDevNameAndLabel();
-        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndLabel();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -1129,11 +1101,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithAPIForRecTypeAndAPIForPrimaryAfflFields() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByDevNameAndApiName();
-        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndApiName();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -1162,7 +1133,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeTest() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+            AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
         String bizOrgRecordTypeName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
         Test.startTest();
@@ -1181,7 +1152,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeNegativeTest() {
 
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Test.startTest();
             AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
@@ -1194,7 +1165,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     // Null test for getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeNullTest() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Test.startTest();
             AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
@@ -1208,7 +1179,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void getContactFieldFromSettingsPoitiveTest() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+            AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
         String bizOrgName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
         String bizOrgContactFieldLabel = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldLabel();
 
@@ -1225,7 +1196,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void getContactFieldFromSettingsNegativeTest() {
 
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Test.startTest();
             AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
@@ -1239,7 +1210,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using Label name
     @isTest
     private static void getPrimaryAffiliationLookupAPIPoitiveLabelTest() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
         String bizOrgContactFieldLabel = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldLabel();
         String bizOrgContactFieldApiName = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldApiName();
 
@@ -1256,7 +1227,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecType() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByDevNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndLabel();
         AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
@@ -1303,7 +1274,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void affiliationRecordTypeEnforceWLabelsForAccRecType() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
         AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
@@ -1351,7 +1322,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecTypeAndPrimaryAffl() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByDevNameAndApiName();
+        AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndApiName();
         AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
@@ -1398,7 +1369,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void affiliationRecordTypeEnforceWLabelsForAccRecTypeAndAPIForPrimaryAffl() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndApiName();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
         AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
@@ -1443,8 +1414,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
     // This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing Record Names Labels from affiliation mappings
     @isTest
     private static void testGetValidAccRecordTypesInMappingsMethodwithLabels() {
-        AFFL_MultiRecordType_TEST.initializeAccountRecordTypeIds();
-
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
             AFFL_MultiRecordType_TEST.getAfflMappingWrapperByNameAndLabel();
 
@@ -1471,7 +1440,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void testGetValidAccRecordTypesInMappingsMethodwithAPIs() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            AFFL_MultiRecordType_TEST.setupAndGetMappingsByDevNameAndLabel();
+            AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndLabel();
 
         // Construct a list of Account Record Type Names
         List<String> accRecTypeDevNameList = new List<String>();
@@ -1494,7 +1463,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void testGetValidAccRecordTypesInMappingsMethodwithAPIAndLabels() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndApiName();
+            AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
 
         // Construct a list of Account Record Type Names and Labels
         List<String> accRecTypeLabelList = new List<String>();
@@ -1518,7 +1487,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void testsGetValidPrimaryAfflFields() {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndApiName();
+            AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
 
         List<Affl_Mappings__c> allMappings = [SELECT ID FROM Affl_Mappings__c];
         System.assertEquals(affiliationMappingWrapperList.size(), allMappings.size());
@@ -1559,8 +1528,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void testsGetValidPrimaryAfflFieldsWithLabelsAndAPI() {
         //Note custom setup
-        AFFL_MultiRecordType_TEST.initializeAccountRecordTypeIds();
-
         List<AffiliationMappingWrapper> wrapperList =
             new List<AffiliationMappingWrapper>();
 
@@ -1575,19 +1542,19 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         wrapperList.add(
             new AfflMappingWrapperByNameAndApiName(
-                AFFL_MultiRecordType_TEST.householdRecTypeID,
+                UTIL_Describe_API.getHhAccRecTypeID(),
                 contactPrimaryAffiliationFieldApiNameList[0]
             )
         );
 
         wrapperList.add(
             new AfflMappingWrapperByNameAndLabel(
-                AFFL_MultiRecordType_TEST.orgRecTypeID,
+                UTIL_Describe_API.getBizAccRecTypeID(),
                 contactPrimaryAffiliationFieldLabelList[1]
             )
         );
 
-        wrapperList = AFFL_MultiRecordType_TEST.setupAndGetMappings(wrapperList);
+        wrapperList = AFFL_MultiRecordType_TEST.commonSetup(wrapperList);
         //Custom setup ended
         
         List<Affl_Mappings__c> allMappings = [SELECT Id from Affl_Mappings__c];
@@ -1611,7 +1578,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using API name
     @isTest
     private static void getPrimaryAffiliationLookupAPIPoitiveAPITest() {
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         String bizOrgContactFieldApiName =
             AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldApiName();
@@ -1630,7 +1597,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     @isTest
     private static void getPrimaryAffiliationLookupAPINegativeTest() {
 
-        AFFL_MultiRecordType_TEST.setupAndGetMappingsByNameAndLabel();
+        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
 
         Test.startTest();
             AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
