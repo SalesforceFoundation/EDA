@@ -95,8 +95,14 @@ public class UTIL_UnitTestData_TEST {
     public static List<Contact> getMultipleTestContacts(Integer n) {
         List<contact> ContactsToAdd = new List<contact>();
         for(Integer i=0; i<n; i++) {
-            Contact newCon = new Contact(FirstName = i + 'Test' + i, LastName = i + 'Contact_forTests' + i, WorkEmail__c = 'fakeemail' + i + '@salesforce.org',
-                             Preferred_Email__c = 'Work Email', WorkPhone__c = i + '06-777-888' + i, PreferredPhone__c = 'Work Phone', OtherCity = 'Seattle');
+            Contact newCon = new Contact(FirstName = i + 'Test' + i, 
+                                         LastName = i + 'Contact_forTests' + i, 
+                                         WorkEmail__c = 'fakeemail' + i + '@salesforce.org',
+                                         Preferred_Email__c = 'Work Email', 
+                                         WorkPhone__c = i + '06-777-888' + i, 
+                                         PreferredPhone__c = 'Work Phone', 
+                                         OtherCity = 'Seattle');
+                                         
             Database.DMLOptions dmo = new Database.DMLOptions();
             dmo.DuplicateRuleHeader.AllowSave = true;
             newCon.setOptions(dmo);
