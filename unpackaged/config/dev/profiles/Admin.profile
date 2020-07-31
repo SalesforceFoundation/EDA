@@ -166,4 +166,24 @@
         <tab>standard-Contact</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <classAccesses>
+        <apexClass>%%%NAMESPACE%%%CMP_SettingsDataProvider</apexClass>
+        <enabled>True</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>%%%NAMESPACE%%%STG_Base_CTRL</apexClass>
+        <enabled>True</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>%%%NAMESPACE%%%STG_CourseConnections</apexClass>
+        <enabled>True</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>%%%NAMESPACE%%%STG_Courses</apexClass>
+        <enabled>True</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>%%%NAMESPACE%%%UTIL_Describe</apexClass>
+        <enabled>True</enabled>
+    </classAccesses>
 </Profile>
