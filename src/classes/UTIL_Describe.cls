@@ -687,7 +687,8 @@ public class UTIL_Describe {
     public static Id getCustomAdminAccRecTypeId() {
         Id customAdminRecTypeId = Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
         if (getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false) {
-            throw new ERR_ExceptionHandler.CustomAdminRecordTypelMissingException(Label.customAccountRecordTypeMissingError);
+            String customAdminRecTypeName = Schema.getGlobalDescribe().get('Account').getDescribe().getRecordTypeInfosById().get(customAdminRecTypeId).getName();
+            throw new ERR_ExceptionHandler.CustomAdminRecordTypelMissingException(String.format(Label.customAccountRecordTypeMissingError, customAdminRecTypeName));
         }
         return customAdminRecTypeId;
     }
