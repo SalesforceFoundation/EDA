@@ -37,8 +37,16 @@
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
+        <label><!-- {0} isn’t a valid record type. Instead, select one of the record types that’s available from Administrative Account Record Type on the Accounts and Contacts tab in EDA Settings. --></label>
+        <name>customAccountRecordTypeMissingError</name>
+    </customLabels>
+    <customLabels>
         <label>Compte</label>
         <name>DefaultAccountName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- We can’t find the Administrative Account record type in your org. Following installation, use Object Manager to create a new record type named ‘Administrative’ for the Account object. --></label>
+        <name>defaultAccountRecordTypeMissingError</name>
     </customLabels>
     <customLabels>
         <label>Compte administratiu</label>
