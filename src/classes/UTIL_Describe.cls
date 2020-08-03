@@ -688,7 +688,8 @@ public class UTIL_Describe {
         Id customAdminRecTypeId = Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
         if (getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false) {
             String customAdminRecTypeName = Schema.getGlobalDescribe().get('Account').getDescribe().getRecordTypeInfosById().get(customAdminRecTypeId).getName();
-            throw new ERR_ExceptionHandler.CustomAdminRecordTypelMissingException(String.format(Label.customAccountRecordTypeMissingError, customAdminRecTypeName));
+            Set<String> exceptionParas = new Set<String>{customAdminRecTypeName};
+            throw new ERR_ExceptionHandler.CustomAdminRecordTypelMissingException(String.format(Label.customAccountRecordTypeMissingError, exceptionParas));
         }
         return customAdminRecTypeId;
     }
