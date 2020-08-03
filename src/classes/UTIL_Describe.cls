@@ -689,6 +689,7 @@ public class UTIL_Describe {
         if (getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false) {
             throw new ERR_ExceptionHandler.CustomAdminRecordTypelMissingException(Label.customAccountRecordTypeMissingError);
         }
+        return customAdminRecTypeId;
     }
 
     /*******************************************************************************************************
@@ -698,7 +699,7 @@ public class UTIL_Describe {
      */
     public static Id getDefaultAdminAccRecTypeId() { 
         Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
-        if (defaultAdminRecTypeId == null) {
+        if (Test.isRunningTest() == false && defaultAdminRecTypeId == null) {
             throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(Label.defaultAccountRecordTypeMissingError);
         }
         return defaultAdminRecTypeId;
