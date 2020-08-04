@@ -439,6 +439,13 @@
         <members>Course__c.Credit_Hours__c</members>
         <members>Course__c.Description__c</members>
         <members>Course__c.Extended_Description__c</members>
+        <members>Education_History__c.Account__c</members>
+        <members>Education_History__c.Contact__c</members>
+        <members>Education_History__c.Educational_Institution_Name__c</members>
+       
+
+
+
         <members>Error__c.Context_Type__c</members>
         <members>Error__c.Datetime__c</members>
         <members>Error__c.Email_Sent__c</members>
@@ -856,6 +863,7 @@
         <members>Course_Offering_Schedule__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>Education_History__c</members>
         <members>Error__c</members>
         <members>Facility__c</members>
         <members>Hierarchy_Settings__c</members>
@@ -1171,6 +1179,14 @@
         <members>Course_Offering_Schedule__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
+
+
+
+        <members>Education_History__c.All</members>
+
+
+
+
         <members>Facility__c.All</members>
         <members>Language__c.All</members>
         <members>Plan_Requirement__c.All</members>
