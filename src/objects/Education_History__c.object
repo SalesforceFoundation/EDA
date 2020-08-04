@@ -166,6 +166,106 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields> 
+    <fields>
+        <fullName>Class_Percentile__c</fullName>
+        <description>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</description>
+        <externalId>false</externalId>
+        <label>Class Percentile</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Class_Rank_Scale__c</fullName>
+        <description>Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile.</description>
+        <externalId>false</externalId>
+        <label>Class Rank Scale</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Exact</fullName>
+                    <default>false</default>
+                    <label>Exact</label>
+                </value>
+                <value>
+                    <fullName>Decile</fullName>
+                    <default>false</default>
+                    <label>Decile</label>
+                </value>
+                <value>
+                    <fullName>Quintile</fullName>
+                    <default>false</default>
+                    <label>Quintile</label>
+                </value>
+                <value>
+                    <fullName>Quartile</fullName>
+                    <default>false</default>
+                    <label>Quartile</label>
+                </value>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Class_Rank_Type__c</fullName>
+        <description>Tracks how the Class Rank was determined. For example, using a weighted or unweighted scale.</description>
+        <externalId>false</externalId>
+        <label>Class Rank Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Unweighted</fullName>
+                    <default>false</default>
+                    <label>Unweighted</label>
+                </value>
+                <value>
+                    <fullName>Weighted</fullName>
+                    <default>false</default>
+                    <label>Weighted</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Class_Rank__c</fullName>
+        <description>The student&apos;s academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5.</description>
+        <externalId>false</externalId>
+        <label>Class Rank</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Class_Size__c</fullName>
+        <description>The number of students that were in the Contact&apos;s class.</description>
+        <externalId>false</externalId>
+        <label>Class Size</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
@@ -181,6 +281,95 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Degree_Earned__c</fullName>
+        <description>If applicable, the level of the degree the Contact earned at this Educational Institution.</description>
+        <externalId>false</externalId>
+        <label>Degree Earned</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>GED</fullName>
+                    <default>false</default>
+                    <label>GED</label>
+                </value>
+                <value>
+                    <fullName>High School Diploma</fullName>
+                    <default>false</default>
+                    <label>High School Diploma</label>
+                </value>
+                <value>
+                    <fullName>AA</fullName>
+                    <default>false</default>
+                    <label>AA</label>
+                </value>
+                <value>
+                    <fullName>AS</fullName>
+                    <default>false</default>
+                    <label>AS</label>
+                </value>
+                <value>
+                    <fullName>BA</fullName>
+                    <default>false</default>
+                    <label>BA</label>
+                </value>
+                <value>
+                    <fullName>BS</fullName>
+                    <default>false</default>
+                    <label>BS</label>
+                </value>
+                <value>
+                    <fullName>MA</fullName>
+                    <default>false</default>
+                    <label>MA</label>
+                </value>
+                <value>
+                    <fullName>MBA</fullName>
+                    <default>false</default>
+                    <label>MBA</label>
+                </value>
+                <value>
+                    <fullName>MS</fullName>
+                    <default>false</default>
+                    <label>MS</label>
+                </value>
+                <value>
+                    <fullName>JD</fullName>
+                    <default>false</default>
+                    <label>JD</label>
+                </value>
+                <value>
+                    <fullName>MD</fullName>
+                    <default>false</default>
+                    <label>MD</label>
+                </value>
+                <value>
+                    <fullName>PhD</fullName>
+                    <default>false</default>
+                    <label>PhD</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Details</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Educational_Institution_Name__c</fullName>
         <description>The name of the Educational Institution associated with this data.</description>
         <externalId>false</externalId>
@@ -191,6 +380,193 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>The date the Contact left this Educational Institution.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the Contact left this Educational Institution.</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>GPA_Scale_Reporting__c</fullName>
+        <description>The highest possible grade point average at this Educational Institution.</description>
+        <externalId>false</externalId>
+        <label>GPA Scale Reporting</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+                <value>
+                    <fullName>11</fullName>
+                    <default>false</default>
+                    <label>11</label>
+                </value>
+                <value>
+                    <fullName>12</fullName>
+                    <default>false</default>
+                    <label>12</label>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                    <label>13</label>
+                </value>
+                <value>
+                    <fullName>14</fullName>
+                    <default>false</default>
+                    <label>14</label>
+                </value>
+                <value>
+                    <fullName>15</fullName>
+                    <default>false</default>
+                    <label>15</label>
+                </value>
+                <value>
+                    <fullName>16</fullName>
+                    <default>false</default>
+                    <label>16</label>
+                </value>
+                <value>
+                    <fullName>17</fullName>
+                    <default>false</default>
+                    <label>17</label>
+                </value>
+                <value>
+                    <fullName>18</fullName>
+                    <default>false</default>
+                    <label>18</label>
+                </value>
+                <value>
+                    <fullName>19</fullName>
+                    <default>false</default>
+                    <label>19</label>
+                </value>
+                <value>
+                    <fullName>20</fullName>
+                    <default>false</default>
+                    <label>20</label>
+                </value>
+                <value>
+                    <fullName>100</fullName>
+                    <default>false</default>
+                    <label>100</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>GPA_Scale_Type__c</fullName>
+        <description>Tracks how the GPA was determined. For example, using a weighted or unweighted scale.</description>
+        <externalId>false</externalId>
+        <label>GPA Scale Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Unweighted</fullName>
+                    <default>false</default>
+                    <label>Unweighted</label>
+                </value>
+                <value>
+                    <fullName>Weighted</fullName>
+                    <default>false</default>
+                    <label>Weighted</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>GPA__c</fullName>
+        <description>The Contact&apos;s final grade point average.</description>
+        <externalId>false</externalId>
+        <label>GPA</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Graduation_Date__c</fullName>
+        <description>If applicable, the date the Contact graduated from this Educational Institution.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If applicable, the date the Contact graduated from this Educational Institution.</inlineHelpText>
+        <label>Graduation Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <description>The date the Contact started at this Educational Institution.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the Contact started at this Educational Institution.</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <label>Education History</label>
     <listViews>
         <fullName>All</fullName>

@@ -440,9 +440,31 @@
         <members>Course__c.Description__c</members>
         <members>Course__c.Extended_Description__c</members>
         <members>Education_History__c.Account__c</members>
+        <members>Education_History__c.Class_Percentile__c</members>
+        <members>Education_History__c.Class_Rank__c</members>
+        <members>Education_History__c.Class_Rank_Scale__c</members>
+        <members>Education_History__c.Class_Rank_Type__c</members>
+        <members>Education_History__c.Class_Size__c</members>
         <members>Education_History__c.Contact__c</members>
+        <members>Education_History__c.Degree_Earned__c</members>
+        <members>Education_History__c.Details__c</members>
         <members>Education_History__c.Educational_Institution_Name__c</members>
-       
+        <members>Education_History__c.End_Date__c</members>
+        <members>Education_History__c.GPA__c</members>
+        <members>Education_History__c.GPA_Scale_Reporting__c</members>
+        <members>Education_History__c.GPA_Scale_Type__c</members>
+        <members>Education_History__c.Graduation_Date__c</members>
+        <members>Education_History__c.Start_Date__c</members>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
 
 
 
