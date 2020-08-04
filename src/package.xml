@@ -1087,6 +1087,7 @@
         <members>Course_Offering_Schedule__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>Education_History__c</members>
         <members>Facility__c</members>
         <members>HEDA_Settings</members>
         <members>Language__c</members>
