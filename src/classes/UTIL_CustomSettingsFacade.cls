@@ -123,15 +123,26 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return Hierarchy_Settings__c The configured settings.
     **/
     public static Hierarchy_Settings__c getSettingsForTests(Hierarchy_Settings__c mySettings) {
-        if(settings == null)
+        if (settings == null) {
             settings = new Hierarchy_Settings__c();
-
+        }
+          
         //create our own based on what's passed in from the test
-        settings.Account_Processor__c = mySettings.Account_Processor__c;
+        if (mySettings.Administrative_Account_Record_Type__c == null) {
+            settings.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
+        } else {
+            settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
+        }  
+
+        if (mySettings.Account_Processor__c == null)
+            settings.Account_Processor__c = settings.Administrative_Account_Record_Type__c;
+        else {
+            settings.Account_Processor__c = mySettings.Account_Processor__c;
+        }
+        
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         settings.Admin_Account_Naming_Format__c = mySettings.Admin_Account_Naming_Format__c;
-        settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
         settings.Affiliation_Record_Type_Enforced__c = mySettings.Affiliation_Record_Type_Enforced__c;
         settings.Affl_ProgEnroll_Copy_End_Date__c = mySettings.Affl_ProgEnroll_Copy_End_Date__c;
         settings.Affl_ProgEnroll_Copy_Start_Date__c = mySettings.Affl_ProgEnroll_Copy_Start_Date__c;
