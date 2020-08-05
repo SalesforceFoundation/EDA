@@ -11,8 +11,8 @@
         <members>ACCT_IndividualAccounts_TDTM</members>
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>
-        <members>ADDR_Addresses_TDTM</members>
         <members>ADDR_Address_TEST</members>
+        <members>ADDR_Addresses_TDTM</members>
         <members>ADDR_Addresses_UTIL</members>
         <members>ADDR_AdminAcc_TEST</members>
         <members>ADDR_CannotDelete_TDTM</members>
@@ -358,8 +358,8 @@
         <members>Case.Occurrence_Date__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
-        <members>Contact.Citizenship__c</members>
         <members>Contact.Citizenship_Status__c</members>
+        <members>Contact.Citizenship__c</members>
         <members>Contact.Country_of_Origin__c</members>
         <members>Contact.Current_Address__c</members>
         <members>Contact.Date_Deceased__c</members>
@@ -441,33 +441,21 @@
         <members>Course__c.Extended_Description__c</members>
         <members>Education_History__c.Account__c</members>
         <members>Education_History__c.Class_Percentile__c</members>
-        <members>Education_History__c.Class_Rank__c</members>
         <members>Education_History__c.Class_Rank_Scale__c</members>
         <members>Education_History__c.Class_Rank_Type__c</members>
+        <members>Education_History__c.Class_Rank__c</members>
         <members>Education_History__c.Class_Size__c</members>
         <members>Education_History__c.Contact__c</members>
         <members>Education_History__c.Degree_Earned__c</members>
         <members>Education_History__c.Details__c</members>
         <members>Education_History__c.Educational_Institution_Name__c</members>
         <members>Education_History__c.End_Date__c</members>
-        <members>Education_History__c.GPA__c</members>
         <members>Education_History__c.GPA_Scale_Reporting__c</members>
         <members>Education_History__c.GPA_Scale_Type__c</members>
+        <members>Education_History__c.GPA__c</members>
         <members>Education_History__c.Graduation_Date__c</members>
         <members>Education_History__c.Start_Date__c</members>
         <members>Education_History__c.Time_At_Institution__c</members>
-        
-        
-        
-        
-        
-        
-        
-        
-
-
-
-
         <members>Error__c.Context_Type__c</members>
         <members>Error__c.Datetime__c</members>
         <members>Error__c.Email_Sent__c</members>
@@ -632,7 +620,6 @@
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
-        <members>affiliationWithSameAccExists</members>
         <members>AttendanceCourseConnectionContactMismatch</members>
         <members>AutoCreateFieldError</members>
         <members>BatchJobRunningProblem</members>
@@ -673,6 +660,7 @@
         <members>addrValidParentObjects</members>
         <members>adminAccNameFormat</members>
         <members>adminAccNameFormatHelpText</members>
+        <members>affiliationWithSameAccExists</members>
         <members>afflAccountNoRecordType</members>
         <members>afflAccoutMappingError</members>
         <members>afflNullPointerError</members>
@@ -1174,6 +1162,7 @@
         <members>Course_Offering_Schedule__c-EDA Course Offering Schedule Layout</members>
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
         <members>Course__c-HEDA Course Layout</members>
+        <members>Education_History__c-EDA Education History Layout</members>
         <members>Error__c-HEDA Error Layout</members>
         <members>Facility__c-HEDA Facility Layout</members>
         <members>Language__c-HEDA Language Layout</members>
@@ -1202,14 +1191,7 @@
         <members>Course_Offering_Schedule__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
-
-
-
         <members>Education_History__c.All</members>
-
-
-
-
         <members>Facility__c.All</members>
         <members>Language__c.All</members>
         <members>Plan_Requirement__c.All</members>
