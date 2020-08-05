@@ -672,6 +672,11 @@
         <members>defaultNamingConnector</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
+        <members>edhTimeAtInstitutionPluralMonthsOnly</members>
+        <members>edhTimeAtInstitutionPluralYearsPluralMonths</members>
+        <members>edhTimeAtInstitutionSingleMonthOnly</members>
+        <members>edhTimeAtInstitutionSingleYearPluralMonths</members>
+        <members>edhTimeAtInstitutionSingleYearSingleMonth</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
         <members>fieldWithHEDANamespace</members>

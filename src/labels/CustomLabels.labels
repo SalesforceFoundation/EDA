@@ -425,6 +425,46 @@
         <value>The Filter Field value names a duplicate of a product field. Specify a non-duplicate field. Otherwise, we filter using the value in the product field. If you choose the latter option, acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
     </labels>
     <labels>
+        <fullName>durationMultiMonths</fullName>
+        <categories>Education History</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text displayed for Time At Institution when duration spans less than a year</shortDescription>
+        <value>{0} months</value>
+    </labels>
+    <labels>
+        <fullName>durationMultiYearsMultiMonths</fullName>
+        <categories>Education History</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text displayed for Time At Institution when duration spans years and months</shortDescription>
+        <value>{0} years, {1} months</value>
+    </labels>
+    <labels>
+        <fullName>durationSingleMonth</fullName>
+        <categories>Education History</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text displayed for Time At Institution when duration spans single month</shortDescription>
+        <value>{0} month</value>
+    </labels>
+    <labels>
+        <fullName>durationSingleYearMultiMonths</fullName>
+        <categories>Education History</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text displayed for Time At Institution when duration spans year and many months</shortDescription>
+        <value>{0} year, {1} months</value>
+    </labels>
+    <labels>
+        <fullName>durationSingleYearSingleMonth</fullName>
+        <categories>Education History</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text displayed for Time At Institution when duration spans year and a month</shortDescription>
+        <value>{0} year, {1} month</value>
+    </labels>
+    <labels>
         <fullName>exceptionRequiredField</fullName>
         <categories>Error</categories>
         <language>en_US</language>
