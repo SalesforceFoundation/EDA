@@ -449,6 +449,7 @@
         <members>Education_History__c.Contact__c</members>
         <members>Education_History__c.Degree_Earned__c</members>
         <members>Education_History__c.Details__c</members>
+        <members>Education_History__c.Education_History_JSON__c</members>
         <members>Education_History__c.Educational_Institution_Name__c</members>
         <members>Education_History__c.End_Date__c</members>
         <members>Education_History__c.GPA_Scale_Reporting__c</members>
