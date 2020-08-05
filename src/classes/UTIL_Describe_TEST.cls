@@ -153,7 +153,7 @@ public with sharing class UTIL_Describe_TEST {
     //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is empty
     @isTest
     private static void getCustomAdminAccRecTypeIdEmptyTest() {                                               
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = ''));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = null));
         
         Test.startTest();
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
