@@ -142,6 +142,15 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>EDA_Education_History_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Educational_Institution_Name__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <fields>Time_At_Institution__c</fields>
+        <label>EDA Education History Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Stores information about a Contact&apos;s education history and related data.</description>
     <enableActivities>false</enableActivities>
@@ -591,7 +600,12 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Education History</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Educational_Institution_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Time_At_Institution__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
