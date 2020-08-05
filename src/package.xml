@@ -672,11 +672,6 @@
         <members>defaultNamingConnector</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
-        <members>edhTimeAtInstitutionPluralMonthsOnly</members>
-        <members>edhTimeAtInstitutionPluralYearsPluralMonths</members>
-        <members>edhTimeAtInstitutionSingleMonthOnly</members>
-        <members>edhTimeAtInstitutionSingleYearPluralMonths</members>
-        <members>edhTimeAtInstitutionSingleYearSingleMonth</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
         <members>fieldWithHEDANamespace</members>
@@ -700,6 +695,11 @@
         <members>noRecSettings</members>
         <members>preferredBatchDefaultEmail</members>
         <members>preferredBatchDefaultPhone</members>
+        <members>spanMonth</members>
+        <members>spanMonths</members>
+        <members>spanYearMonth</members>
+        <members>spanYearMonths</members>
+        <members>spanYearsMonths</members>
         <members>stgAccModelTitle</members>
         <members>stgAccountRecordTypeSupportsHHAddress</members>
         <members>stgAccountTypesMultiAddressesEnabled</members>

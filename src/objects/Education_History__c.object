@@ -566,22 +566,34 @@
         <description>The total amount of time a Contact spent at the Educational Institution, determined by the Start Date and End Date.</description>
         <externalId>false</externalId>
         <formula>IF(
-    NOT(ISBLANK(End_Date__c)) &amp;&amp; NOT(ISBLANK(Start_Date__c)),
-        (IF(FLOOR((End_Date__c - Start_Date__c) / 365) &gt; 1, 
-            TEXT(FLOOR((End_Date__c - Start_Date__c) / 365)) &amp; &quot; Years &quot;, 
-            IF(FLOOR((End_Date__c - Start_Date__c) / 365) = 1, 
-                TEXT(FLOOR((End_Date__c - Start_Date__c) / 365)) &amp; &quot; Year &quot;, 
-                &quot;&quot;
-            ) 
-        )      
-        &amp; TEXT(FLOOR (MOD((End_Date__c - Start_Date__c), 365) / 30)) 
-        &amp; IF(FLOOR (MOD((End_Date__c - Start_Date__c), 365) / 30) &gt; 1, 
-            &quot; Months&quot;, 
-            &quot; Month&quot;
-        )
-), 
-   &quot;&quot;
-)</formula>
+            NOT(ISBLANK(End_Date__c)) &amp;&amp; NOT(ISBLANK(Start_Date__c)),
+                IF (FLOOR((End_Date__c - Start_Date__c) / 365) &lt; 1, 
+                    IF (FLOOR(MOD((End_Date__c - Start_Date__c), 365) / 30) = 1,
+                        SUBSTITUTE($Label.spanMonth , &apos;{0}&apos;, TEXT(FLOOR(MOD((End_Date__c - Start_Date__c), 365) / 30)))
+                    ,
+                        SUBSTITUTE($Label.spanMonths , &apos;{0}&apos;, TEXT(FLOOR(MOD((End_Date__c - Start_Date__c), 365) / 30)))
+                    )
+                , 
+                    IF (FLOOR((End_Date__c - Start_Date__c) / 365) = 1,
+                        IF (FLOOR(MOD((End_Date__c - Start_Date__c), 365) / 30) = 1,
+                            SUBSTITUTE(SUBSTITUTE($Label.spanYearMonth,
+                                        &quot;{0}&quot;, TEXT(FLOOR((End_Date__c - Start_Date__c) / 365))),
+                                        &quot;{1}&quot;, TEXT(FLOOR(MOD((End_Date__c - Start_Date__c), 365) / 30)))
+                        , 
+                            SUBSTITUTE(SUBSTITUTE($Label.spanYearMonths,
+                                        &quot;{0}&quot;, TEXT(FLOOR((End_Date__c - Start_Date__c) / 365))),
+                                        &quot;{1}&quot;, TEXT(FLOOR(MOD((End_Date__c - Start_Date__c), 365) / 30)))
+                        )
+                    , 
+                        SUBSTITUTE(SUBSTITUTE($Label.spanYearsMonths,
+                                    &quot;{0}&quot;, TEXT(FLOOR((End_Date__c - Start_Date__c) / 365))),
+                                    &quot;{1}&quot;, TEXT(FLOOR(MOD((End_Date__c - Start_Date__c), 365) / 30)))
+                    
+                    )
+                )
+        , 
+        &quot;&quot;
+        )</formula>
         <label>Time At Institution</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
