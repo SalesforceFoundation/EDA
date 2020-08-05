@@ -640,6 +640,14 @@
         <value>{0} year, {1} months</value>
     </labels>
     <labels>
+        <fullName>spanYearsMonth</fullName>
+        <categories>Education History</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text displayed for Time At Institution when duration spans years and months</shortDescription>
+        <value>{0} years, {1} month</value>
+    </labels>
+    <labels>
         <fullName>spanYearsMonths</fullName>
         <categories>Education History</categories>
         <language>en_US</language>

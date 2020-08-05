@@ -699,6 +699,7 @@
         <members>spanMonths</members>
         <members>spanYearMonth</members>
         <members>spanYearMonths</members>
+        <members>spanYearsMonth</members>
         <members>spanYearsMonths</members>
         <members>stgAccModelTitle</members>
         <members>stgAccountRecordTypeSupportsHHAddress</members>
