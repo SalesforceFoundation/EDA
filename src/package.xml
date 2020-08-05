@@ -455,7 +455,7 @@
         <members>Education_History__c.GPA_Scale_Type__c</members>
         <members>Education_History__c.Graduation_Date__c</members>
         <members>Education_History__c.Start_Date__c</members>
-        
+        <members>Education_History__c.Time_At_Institution__c</members>
         
         
         

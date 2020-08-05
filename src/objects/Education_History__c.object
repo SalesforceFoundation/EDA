@@ -552,21 +552,33 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <fields>
+        <fullName>Time_At_Institution__c</fullName>
+        <description>The total amount of time a Contact spent at the Educational Institution, determined by the Start Date and End Date.</description>
+        <externalId>false</externalId>
+        <formula>IF(
+    NOT(ISBLANK(End_Date__c)) &amp;&amp; NOT(ISBLANK(Start_Date__c)),
+        (IF(FLOOR((End_Date__c - Start_Date__c) / 365) &gt; 1, 
+            TEXT(FLOOR((End_Date__c - Start_Date__c) / 365)) &amp; &quot; Years &quot;, 
+            IF(FLOOR((End_Date__c - Start_Date__c) / 365) = 1, 
+                TEXT(FLOOR((End_Date__c - Start_Date__c) / 365)) &amp; &quot; Year &quot;, 
+                &quot;&quot;
+            ) 
+        )      
+        &amp; TEXT(FLOOR (MOD((End_Date__c - Start_Date__c), 365) / 30)) 
+        &amp; IF(FLOOR (MOD((End_Date__c - Start_Date__c), 365) / 30) &gt; 1, 
+            &quot; Months&quot;, 
+            &quot; Month&quot;
+        )
+), 
+   &quot;&quot;
+)</formula>
+        <label>Time At Institution</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Education History</label>
     <listViews>
         <fullName>All</fullName>
