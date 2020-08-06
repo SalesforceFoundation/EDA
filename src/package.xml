@@ -993,6 +993,12 @@
         <members>Course__c-es</members>
         <members>Course__c-es_MX</members>
         <members>Course__c-fr</members>
+        <members>Education_History__c-ca</members>
+        <members>Education_History__c-en_GB</members>
+        <members>Education_History__c-en_US</members>
+        <members>Education_History__c-es</members>
+        <members>Education_History__c-es_MX</members>
+        <members>Education_History__c-fr</members>
         <members>Error__c-ca</members>
         <members>Error__c-en_GB</members>
         <members>Error__c-en_US</members>
