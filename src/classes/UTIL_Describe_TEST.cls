@@ -142,7 +142,7 @@ public with sharing class UTIL_Describe_TEST {
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         Test.stopTest();
 
-        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[0], testCustomAdminAccRecTypeId);
+        System.assertEquals(Util_Describe.getAdminAccRecTypeID(), testCustomAdminAccRecTypeId);
     }
 
     //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty but the record type does not exist
@@ -154,7 +154,7 @@ public with sharing class UTIL_Describe_TEST {
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         Test.stopTest();
 
-        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[0], testCustomAdminAccRecTypeId);
+        System.assertEquals(Util_Describe.getAdminAccRecTypeID(), testCustomAdminAccRecTypeId);
     }
 
     //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty and the record type exists
