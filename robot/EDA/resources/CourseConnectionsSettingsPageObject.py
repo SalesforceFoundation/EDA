@@ -98,3 +98,50 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         actual_value = self.selenium.get_element_attribute(locator_default, "alt")
         if not str(expectedCheckboxValue).lower() == str(actual_value).lower():
             raise Exception(f"Value of 'Enable course connections' is not '{expectedCheckboxValue}' as expected")
+
+    def select_course_connections_subtab(self, tabName):
+        """ This method will select the sub tabs available under course connections
+            The name of the sub tab to be selected is passed as an argument from the test
+        """
+        locator = eda_lex_locators["eda_settings_cc"]["cc_sub_tabs"].format(tabName)
+        self.selenium.page_should_contain_element(locator)
+        self.selenium.click_element(locator)
+
+    def verify_backfill_warning(self, is_displayed):
+        """ Verify the warning message is displayed
+            this message gets displayed when the 'Enable Course Connections' field is unchecked
+            and if the user selects backfill subtab
+        """
+        locator_enabled = eda_lex_locators["eda_settings_cc"]["backfill_warning_enabled"]
+        locator_disabled = eda_lex_locators["eda_settings_cc"]["backfill_warning_disabled"]
+        if str(is_displayed).lower() == "true":
+            self.selenium.wait_until_page_contains_element(locator_enabled,
+                                                           error="Backfill warning is not displayed")
+        else:
+            time.sleep(1)
+            self.selenium.wait_until_page_contains_element(
+                locator_disabled, error="Backfill warning is displayed")
+
+    def verify_button_status(self, **kwargs):
+        """ Verify the button is disabled/enabled for the user
+            we have to pass the name of the button and the expected status
+            of the button as either enabled or disabled
+        """
+        for button,expected_value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_cc"]["backfill_button_status"].format(button)
+            self.selenium.page_should_contain_element(locator)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"Element '{button}' button is not displayed for the user")
+            actual_value = self.selenium.get_webelement(locator).get_attribute(expected_value)
+            expected_value = bool(expected_value == "disabled")
+            if not str(expected_value).lower() == str(actual_value).lower() :
+                raise Exception (f"Element {button} button status is {actual_value} instead of {expected_value}")
+
+    def verify_backfill_checkbox_value(self, expectedCheckboxValue):
+        """ This method will verify the 'I understand and am ready to run Backfill.' checkbox is set to the value passed in the arg """
+        locator = eda_lex_locators["eda_settings_cc"]["backfill_checkbox_status"]
+        time.sleep(1)
+        self.selenium.wait_until_element_is_visible(locator)
+        actual_value = self.selenium.get_element_attribute(locator, "data-qa-checkbox-state")
+        if not str(expectedCheckboxValue).lower() == str(actual_value).lower():
+            raise Exception(f"Value of 'I understand and am ready to run Backfill.' is not {expectedCheckboxValue} as expected")
