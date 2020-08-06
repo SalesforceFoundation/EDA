@@ -136,48 +136,36 @@ public with sharing class UTIL_Describe_TEST {
     //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty and the record type exists
     @isTest
     private static void getCustomAdminAccRecTypeIdNotEmptyExistsTest() {
-        List<RecordType> accountRecTypeList = [SELECT Id 
-                                            FROM RecordType 
-                                            WHERE SObjectType = 'Account'];
-
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = accountRecTypeList[1].Id));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = Util_Describe_API.getRecTypesMapByDevName('Account').values()[1]));
         
         Test.startTest();
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         Test.stopTest();
 
-        System.assertEquals(accountRecTypeList[1].Id, testCustomAdminAccRecTypeId);
+        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[1], testCustomAdminAccRecTypeId);
     }
 
     //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty but the record type does not exist
     @isTest
     private static void getCustomAdminAccRecTypeIdNotEmptyNotExistTest() {    
-        List<RecordType> accountRecTypeList = [SELECT Id 
-                                            FROM RecordType 
-                                            WHERE SObjectType = 'Account'];
-
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = 'test123'));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = UTIL_UnitTestData_TEST.getFakeId()));
         
         Test.startTest();
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         Test.stopTest();
 
-        System.assertEquals(accountRecTypeList[0].Id, testCustomAdminAccRecTypeId);
+        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[0], testCustomAdminAccRecTypeId);
     }
 
     //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is empty
     @isTest
-    private static void getCustomAdminAccRecTypeIdEmptyTest() {              
-        List<RecordType> accountRecTypeList = [SELECT Id 
-                                            FROM RecordType 
-                                            WHERE SObjectType = 'Account'];
-        
+    private static void getCustomAdminAccRecTypeIdEmptyTest() {                      
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = null));
         
         Test.startTest();
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         Test.stopTest();
 
-        System.assertEquals(accountRecTypeList[0].Id, testCustomAdminAccRecTypeId);
+        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[0], testCustomAdminAccRecTypeId);
     }
 }
