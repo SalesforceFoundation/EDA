@@ -110,6 +110,11 @@ eda_lex_locators = {
         "enable_cc_warning_disabled": "//span[contains(@class, 'slds-hide')]/descendant::div[contains(@class, 'slds-notify') and @role='alert']/descendant::*[@data-key='warning']/../../following-sibling::span[text()='You must enable Course Connections before editing record types.']",
         "updated_dropdown_value": "//div[text()='{}']/following-sibling::div/descendant::span[text()='{}']",
         "settings_tab": "//div[contains(@class, 'CourseConnections')]/descendant::a[text()='Settings']",
+        "backfill_warning_enabled": "//div[contains(@class, 'slds-notify--alert')]/descendant::span[text()='You must enable Course Connections before running the Course Connections Backfill.']",
+        "backfill_warning_disabled": "//span[contains(@class, 'slds-hide')]/descendant::span[text()='You must enable Course Connections before running the Course Connections Backfill.']",
+        "cc_sub_tabs": "//div[contains(@class, 'CourseConnections')]/descendant::a[text()='{}']",
+        "backfill_button_status": "//span[text()='{}']/parent::button",
+        "backfill_checkbox_status": "//input[contains(@class, 'backfill')]/following-sibling::span[contains(@class, 'checkbox')]",
     },
     "account_types": {
         "administrative": "//span[contains(text(),'Administrative')]/parent::*",
