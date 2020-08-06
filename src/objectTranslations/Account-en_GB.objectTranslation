@@ -16,6 +16,11 @@
         <relationshipLabel>Account</relationshipLabel>
     </fields>
     <fields>
+        <help><!-- A code that uniquely identifies an educational institution using standards recognized in your region. --></help>
+        <label><!-- School Code --></label>
+        <name>School_Code__c</name>
+    </fields>
+    <fields>
         <label><!-- Shipping County --></label>
         <name>Shipping_County__c</name>
     </fields>
