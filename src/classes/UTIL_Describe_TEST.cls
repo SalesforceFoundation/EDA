@@ -133,15 +133,22 @@ public with sharing class UTIL_Describe_TEST {
         } catch (System.NullPointerException npe) { }
     }
 
-    //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is 'Administrative'
+    //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty and the record type exists
     @isTest
-    private static void getCustomAdminAccRecTypeIdDefaultRecTypeTest() {
-        List<RecordType> defaultAdminRecTypes = [SELECT Id 
-                                                FROM RecordType 
-                                                WHERE SObjectType = 'Account'
-                                                    AND DeveloperName = 'Administrative'];
-        System.assertEquals(1, defaultAdminRecTypes.size());
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = defaultAdminRecTypes[0].Id));
+    private static void getCustomAdminAccRecTypeIdNotEmptyExistsTest() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = defaultAdminRecTypes[1].Id));
+        
+        Test.startTest();
+            Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
+        Test.stopTest();
+
+        System.assertEquals(defaultAdminRecTypes[1].Id, testCustomAdminAccRecTypeId);
+    }
+
+    //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty but the record type does not exist
+    @isTest
+    private static void getCustomAdminAccRecTypeIdNotEmptyNotExistTest() {                                               
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = 'test123'));
         
         Test.startTest();
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
@@ -159,22 +166,6 @@ public with sharing class UTIL_Describe_TEST {
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         Test.stopTest();
 
-        System.assertEquals(null, testCustomAdminAccRecTypeId);
-    }
-
-    //Test for getDefaultAdminAccRecTypeId if default admin record type exists
-    @isTest
-    private static void getDefaultAdminAccRecTypeIdExistsTest() {
-        List<RecordType> defaultAdminRecTypes = [SELECT Id 
-                                                FROM RecordType 
-                                                WHERE SObjectType = 'Account'
-                                                    AND DeveloperName = 'Administrative'];
-        System.assertEquals(1, defaultAdminRecTypes.size());
-        
-        Test.startTest();
-            Id testDefaultAdminAccRecTypeId = Util_Describe.getDefaultAdminAccRecTypeId();
-        Test.stopTest();
-
-        System.assertEquals(defaultAdminRecTypes[0].Id, testDefaultAdminAccRecTypeId);
+        System.assertEquals(defaultAdminRecTypes[0].Id, testCustomAdminAccRecTypeId);
     }
 }
