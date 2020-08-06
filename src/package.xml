@@ -204,6 +204,7 @@
         <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
         <members>TDTM_CourseOfferingSchedule</members>
+        <members>TDTM_EducationHistory</members>
         <members>TDTM_Event</members>
         <members>TDTM_Facility</members>
         <members>TDTM_Language</members>
