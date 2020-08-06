@@ -4854,6 +4854,7 @@
     <fields>
         <fullName>Social_Security_Number__c</fullName>
         <externalId>false</externalId>
+        <description>Social Security Number. Encrypted for confidentiality. Only users with the View Encrypted Data permission can see the unencrypted value.</description>
         <label>Social Security Number</label>
         <length>12</length>
         <maskChar>X</maskChar>
