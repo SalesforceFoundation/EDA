@@ -2,7 +2,7 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
         <fullName>Display_Name__c</fullName>
-        <description>The full name of the Facility. For example, &quot;Thomas Edison Building - Room 201.&quot;</description>
+        <description>A name that combines Parent Name (Thurgood Marshall Tower) and Facility Name (Room 400), for example, Thurgood Marshall Tower - Room 400. If no Parent Facility, Account value is used. If also no Account, Facility Name and Display Name are the same.</description>
         <externalId>false</externalId>
         <formula>IF(
     NOT(ISBLANK(%%%NAMESPACE%%%Parent_Facility__c)), %%%NAMESPACE%%%Parent_Facility__r.Name + &apos; - &apos; + Name,
@@ -12,7 +12,7 @@
     )
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>The full name of the Facility. For example, &quot;Thomas Edison Building - Room 201.&quot;</inlineHelpText>
+        <inlineHelpText>A name that combines Parent Name (Thurgood Marshall Tower) and Facility Name (Room 400), for example, Thurgood Marshall Tower - Room 400. If no Parent Facility, Account value is used. If also no Account, Facility Name and Display Name are the same.</inlineHelpText>
         <label>Display Name</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

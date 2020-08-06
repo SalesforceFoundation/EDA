@@ -17,7 +17,6 @@ Validate Standard Field values in system settings
     ...                     Naming checkbox, Administrative Account Name Format and Household Account
     ...                     Name Format
     [tags]                                      unstable        W-041787
-
     # Default Account Model
     Wait for Locator        eda_settings.default_account_model
     Wait for Locator        eda_settings.store_errors

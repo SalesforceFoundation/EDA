@@ -277,6 +277,7 @@
         <members>Account.Billing_County__c</members>
         <members>Account.Current_Address__c</members>
         <members>Account.Primary_Contact__c</members>
+        <members>Account.School_Code__c</members>
         <members>Account.Shipping_County__c</members>
         <members>Address__c.Address_Type__c</members>
         <members>Address__c.Default_Address__c</members>
