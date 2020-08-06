@@ -1,13 +1,23 @@
 import logging
 import time
+import warnings
 
 from BaseObjects import BaseEDAPage
 from cumulusci.robotframework.utils import selenium_retry, capture_screenshot_on_error
-from locators import eda_lex_locators
+from robot.libraries.BuiltIn import RobotNotRunningError
 
 from robot.utils import lower
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.common.keys import Keys
+
+from locators_49 import eda_lex_locators as locators_49
+from locators_48 import eda_lex_locators as locators_48
+locators_by_api_version = {
+    49.0: locators_49,  # Summer '20
+    48.0: locators_48   # Spring '20
+}
+# will get populated in _init_locators
+eda_lex_locators = {}
 
 
 @selenium_retry
@@ -24,6 +34,25 @@ class EDA(BaseEDAPage):
         logging.getLogger("requests.packages.urllib3.connectionpool").setLevel(
             logging.WARN
         )
+        self._init_locators()
+
+    def _init_locators(self):
+        try:
+            client = self.cumulusci.tooling
+            response = client._call_salesforce(
+                'GET', 'https://{}/services/data'.format(client.sf_instance)
+            )
+            self.latest_api_version = float(response.json()[-1]['version'])
+            if self.latest_api_version not in locators_by_api_version:
+                warnings.warn("Could not find locator library for API %d" % self.latest_api_version)
+                self.latest_api_version = max(locators_by_api_version.keys())
+        except RobotNotRunningError:
+            # We aren't part of a running test, likely because we are
+            # generating keyword documentation. If that's the case, assume
+            # the latest supported version
+            self.latest_api_version = max(locators_by_api_version.keys())
+        locators = locators_by_api_version[self.latest_api_version]
+        eda_lex_locators.update(locators)
 
     def populate_address(self, loc, value):
         """ Populate address with Place Holder aka Mailing Street etc as a locator
@@ -331,6 +360,7 @@ class EDA(BaseEDAPage):
     def click_edit_on_eda_settings_page(self):
         locator = eda_lex_locators["eda_settings"]["edit"]
         self.selenium.wait_until_page_contains_element(locator, error="Edit button is not available on the page")
+        self.selenium.wait_until_element_is_visible(locator)
         self.selenium.click_element(locator)
 
     def click_action_button_on_eda_settings_page(self, action):
@@ -340,4 +370,42 @@ class EDA(BaseEDAPage):
             locator, error=f"Action button with locator '{locator}' is not available on the EDA settings page")
         self.selenium.click_element(locator)
         if action == "Save":
-            self.eda.verify_toast_message("Settings successfully saved.")
+            self.verify_toast_message("Settings successfully saved.")
+            self.close_toast_message()
+
+    def update_dropdown_value(self,**kwargs):
+        """ This method will update the drop down field value passed in keyword arguments
+            Pass the expected value to be set in the drop down field from the tests
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_cc"]["dropdown_values"].format(field,value)
+            self.selenium.wait_until_page_contains_element(locator,
+                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
+            self.selenium.click_element(locator)
+
+    def verify_selected_dropdown_value(self,**kwargs):
+        """ This method will confirm if the value to be set in dropdown field is retained after save action
+            Pass the expected value to be verified from the tests using keyword arguments
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_cc"]["updated_dropdown_value"].format(field,value)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+            actual_value = self.selenium.get_webelement(locator).text
+            if not str(value).lower() == str(actual_value).lower() :
+                raise Exception (f"Drop down value in '{field}' is not updated and the value is '{actual_value}'")
+
+    def verify_dropdown_field_status(self, **kwargs):
+        """ Verify the drop down field is disabled/enabled for the user
+            we have to pass the name of the field and the expected status
+            of the field as either enabled or disabled
+        """
+        for field,expected_value in kwargs.items():
+            locator = eda_lex_locators["eda_settings"]["dropdown_field"].format(field)
+            self.selenium.page_should_contain_element(locator)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"Element '{field}' is not displayed for the user")
+            actual_value = self.selenium.get_webelement(locator).get_attribute(expected_value)
+            expected_value = bool(expected_value == "disabled")
+            if not str(expected_value).lower() == str(actual_value).lower() :
+                raise Exception (f"Drop down field {field} status is {actual_value} instead of {expected_value}")
