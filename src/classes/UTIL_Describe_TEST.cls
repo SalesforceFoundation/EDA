@@ -133,16 +133,16 @@ public with sharing class UTIL_Describe_TEST {
         } catch (System.NullPointerException npe) { }
     }
 
-    //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty and the record type exists
+    //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is empty
     @isTest
-    private static void getCustomAdminAccRecTypeIdNotEmptyExistsTest() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = Util_Describe_API.getRecTypesMapByDevName('Account').values()[1]));
+    private static void getCustomAdminAccRecTypeIdEmptyTest() {                      
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = null));
         
         Test.startTest();
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         Test.stopTest();
 
-        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[1], testCustomAdminAccRecTypeId);
+        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[0], testCustomAdminAccRecTypeId);
     }
 
     //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty but the record type does not exist
@@ -157,15 +157,15 @@ public with sharing class UTIL_Describe_TEST {
         System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[0], testCustomAdminAccRecTypeId);
     }
 
-    //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is empty
+    //Test for getCustomAdminAccRecTypeId if the value of Administrative Account Record Type is not empty and the record type exists
     @isTest
-    private static void getCustomAdminAccRecTypeIdEmptyTest() {                      
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = null));
+    private static void getCustomAdminAccRecTypeIdNotEmptyExistsTest() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Administrative_Account_Record_Type__c = Util_Describe_API.getRecTypesMapByDevName('Account').values()[1]));
         
         Test.startTest();
             Id testCustomAdminAccRecTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         Test.stopTest();
 
-        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[0], testCustomAdminAccRecTypeId);
+        System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[1], testCustomAdminAccRecTypeId);
     }
 }
