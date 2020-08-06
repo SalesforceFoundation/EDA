@@ -49,6 +49,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>School_Code__c</fullName>
+        <description>A code that uniquely identifies an educational institution using standards recognized in your region.</description>
+        <externalId>true</externalId>
+        <inlineHelpText>A code that uniquely identifies an educational institution using standards recognized in your region.</inlineHelpText>
+        <label>School Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Shipping_County__c</fullName>
         <description>The county detail for the Shipping Address.</description>
         <externalId>false</externalId>
