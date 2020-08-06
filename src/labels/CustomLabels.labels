@@ -608,7 +608,7 @@
         <value>Phone (standard)</value>
     </labels>
     <labels>
-        <fullName>spanMonth</fullName>
+        <fullName>displayMonth</fullName>
         <categories>Education History</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -616,7 +616,7 @@
         <value>{0} month</value>
     </labels>
     <labels>
-        <fullName>spanMonths</fullName>
+        <fullName>displayMonths</fullName>
         <categories>Education History</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -624,7 +624,7 @@
         <value>{0} months</value>
     </labels>
     <labels>
-        <fullName>spanYearMonth</fullName>
+        <fullName>displayYearMonth</fullName>
         <categories>Education History</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -632,7 +632,7 @@
         <value>{0} year, {1} month</value>
     </labels>
     <labels>
-        <fullName>spanYearMonths</fullName>
+        <fullName>displayYearMonths</fullName>
         <categories>Education History</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -640,7 +640,7 @@
         <value>{0} year, {1} months</value>
     </labels>
     <labels>
-        <fullName>spanYearsMonth</fullName>
+        <fullName>displayYearsMonth</fullName>
         <categories>Education History</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -648,7 +648,7 @@
         <value>{0} years, {1} month</value>
     </labels>
     <labels>
-        <fullName>spanYearsMonths</fullName>
+        <fullName>displayYearsMonths</fullName>
         <categories>Education History</categories>
         <language>en_US</language>
         <protected>true</protected>

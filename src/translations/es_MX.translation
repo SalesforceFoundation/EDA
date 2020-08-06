@@ -310,27 +310,27 @@
     </customLabels>
     <customLabels>
         <label><!-- Text displayed for Time At Institution when duration spans single month --></label>
-        <name>spanMonth</name>
+        <name>displayMonth</name>
     </customLabels>
     <customLabels>
         <label><!-- Text displayed for Time At Institution when duration spans less than a year --></label>
-        <name>spanMonths</name>
+        <name>displayMonths</name>
     </customLabels>
     <customLabels>
         <label><!-- Text displayed for Time At Institution when duration spans year and a month --></label>
-        <name>spanYearMonth</name>
+        <name>displayYearMonth</name>
     </customLabels>
     <customLabels>
         <label><!-- Text displayed for Time At Institution when duration spans year and many months --></label>
-        <name>spanYearMonths</name>
+        <name>displayYearMonths</name>
     </customLabels>
     <customLabels>
         <label><!-- Text displayed for Time At Institution when duration spans years and months --></label>
-        <name>spanYearsMonth</name>
+        <name>displayYearsMonth</name>
     </customLabels>
     <customLabels>
         <label><!-- Text displayed for Time At Institution when duration spans years and months --></label>
-        <name>spanYearsMonths</name>
+        <name>displayYearsMonths</name>
     </customLabels>
     <customLabels>
         <label>Modelo de cuenta predeterminado:</label>

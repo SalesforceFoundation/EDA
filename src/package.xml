@@ -670,6 +670,12 @@
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
         <members>defaultNamingConnector</members>
+        <members>displayMonth</members>
+        <members>displayMonths</members>
+        <members>displayYearMonth</members>
+        <members>displayYearMonths</members>
+        <members>displayYearsMonth</members>
+        <members>displayYearsMonths</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
         <members>exceptionRequiredField</members>
@@ -695,12 +701,6 @@
         <members>noRecSettings</members>
         <members>preferredBatchDefaultEmail</members>
         <members>preferredBatchDefaultPhone</members>
-        <members>spanMonth</members>
-        <members>spanMonths</members>
-        <members>spanYearMonth</members>
-        <members>spanYearMonths</members>
-        <members>spanYearsMonth</members>
-        <members>spanYearsMonths</members>
         <members>stgAccModelTitle</members>
         <members>stgAccountRecordTypeSupportsHHAddress</members>
         <members>stgAccountTypesMultiAddressesEnabled</members>
