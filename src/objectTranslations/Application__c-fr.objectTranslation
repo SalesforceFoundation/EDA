@@ -102,6 +102,11 @@
         <relationshipLabel><!-- Applications --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The date the application was initially created by the applicant. --></help>
+        <label><!-- Initial Creation Date --></label>
+        <name>Initial_Creation_Date__c</name>
+    </fields>
+    <fields>
         <help><!-- The Contact preparing the application. For example, a guardian or a person assisting someone with special needs. --></help>
         <label><!-- Preparer --></label>
         <name>Preparer__c</name>
