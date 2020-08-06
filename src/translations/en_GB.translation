@@ -309,6 +309,30 @@
         <name>preferredBatchDefaultPhone</name>
     </customLabels>
     <customLabels>
+        <label><!-- Text displayed for Time At Institution when duration spans single month --></label>
+        <name>spanMonth</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text displayed for Time At Institution when duration spans less than a year --></label>
+        <name>spanMonths</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text displayed for Time At Institution when duration spans year and a month --></label>
+        <name>spanYearMonth</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text displayed for Time At Institution when duration spans year and many months --></label>
+        <name>spanYearMonths</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text displayed for Time At Institution when duration spans years and months --></label>
+        <name>spanYearsMonth</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text displayed for Time At Institution when duration spans years and months --></label>
+        <name>spanYearsMonths</name>
+    </customLabels>
+    <customLabels>
         <label>Default Account Model:</label>
         <name>stgAccModelTitle</name>
     </customLabels>
