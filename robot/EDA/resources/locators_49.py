@@ -116,6 +116,10 @@ eda_lex_locators = {
         "backfill_button_status": "//span[text()='{}']/parent::button",
         "backfill_checkbox_status": "//input[contains(@class, 'backfill')]/following-sibling::span[contains(@class, 'checkbox')]",
     },
+    "eda_settings_system": {
+        "default_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::img",
+        "default_dropdown_value": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[text()='{}']",
+    },
     "account_types": {
         "administrative": "//span[contains(text(),'Administrative')]/parent::*",
         "household": "//span[text()='Household Account']/preceding-sibling::span",
