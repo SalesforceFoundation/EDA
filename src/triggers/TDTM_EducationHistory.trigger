@@ -31,5 +31,5 @@ trigger TDTM_EducationHistory on Education_History__c (after delete, after inser
 after update, before delete, before insert, before update) {
 
     TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
-        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Address__c);
+        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Education_History__c);
 }

@@ -13,7 +13,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Educational_Institution_Name__c</field>
+                <field>Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -38,10 +38,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Degree_Earned__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Account__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
