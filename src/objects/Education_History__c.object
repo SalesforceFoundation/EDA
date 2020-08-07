@@ -279,15 +279,14 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
-        <!-- <deleteConstraint>Cascade</deleteConstraint> -->
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>The Contact associated with this historical data.</description>
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Education History</relationshipLabel>
         <relationshipName>Education_History</relationshipName>
-        <required>true</required>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
