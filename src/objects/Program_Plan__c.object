@@ -156,9 +156,9 @@
     </fields>
     <fields>
         <fullName>Version__c</fullName>
-        <description>Helps identify which version of the Program Plan this is for this Academic Program, for example, "Spring 2020."</description>
+        <description>The version of the Program Plan, for example, Spring 2020.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Helps identify which version of the Program Plan this is for this Academic Program, for example, "Spring 2020."</inlineHelpText>
+        <inlineHelpText>The version of the Program Plan, for example, Spring 2020.</inlineHelpText>
         <label>Version</label>
         <length>25</length>
         <required>false</required>

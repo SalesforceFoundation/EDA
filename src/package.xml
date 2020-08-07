@@ -277,6 +277,7 @@
         <members>Account.Billing_County__c</members>
         <members>Account.Current_Address__c</members>
         <members>Account.Primary_Contact__c</members>
+        <members>Account.School_Code__c</members>
         <members>Account.Shipping_County__c</members>
         <members>Address__c.Address_Type__c</members>
         <members>Address__c.Default_Address__c</members>
@@ -321,6 +322,7 @@
         <members>Application__c.Application_Status__c</members>
         <members>Application__c.Application_Type__c</members>
         <members>Application__c.Applying_To__c</members>
+        <members>Application__c.Initial_Creation_Date__c</members>
         <members>Application__c.Preparer__c</members>
         <members>Application__c.Term__c</members>
         <members>Attendance_Event__c.Arrival_Time__c</members>

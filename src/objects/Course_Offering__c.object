@@ -52,7 +52,7 @@
         <label>HEDA Course Offering Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Joins Courses and Terms to contain information related to a single occurrence of a course.</description>
+    <description>Joins Courses and Terms to contain information related to a single occurrence of a Course.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
