@@ -126,10 +126,15 @@ public without sharing class UTIL_CustomSettingsFacade {
         if (settings == null) {
             settings = new Hierarchy_Settings__c();
         }
-          
-
+        
         //create our own based on what's passed in from the test
-        settings.Account_Processor__c = mySettings.Account_Processor__c;
+        //Check if user defined admin record type exist. If so, populate with the user defined one.
+        if (mySettings.Account_Processor__c != null) {
+            settings.Account_Processor__c = mySettings.Account_Processor__c;
+        } else {             
+            settings.Account_Processor__c = mySettings.Administrative_Account_Record_Type__c;
+        }
+
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         settings.Admin_Account_Naming_Format__c = mySettings.Admin_Account_Naming_Format__c;
