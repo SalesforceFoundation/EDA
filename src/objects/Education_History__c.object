@@ -141,11 +141,12 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <!-- <compactLayoutAssignment>SYSTEM</compactLayoutAssignment> -->
+    <compactLayoutAssignment>EDA_Education_History_Compact_Layout</compactLayoutAssignment>
     <compactLayouts>
         <fullName>EDA_Education_History_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Educational_Institution_Name__c</fields>
+        <fields>Account__c</fields>
         <fields>Start_Date__c</fields>
         <fields>End_Date__c</fields>
         <fields>Time_At_Institution__c</fields>
@@ -279,6 +280,7 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
+        <!-- <deleteConstraint>Cascade</deleteConstraint> -->
         <description>The Contact associated with this historical data.</description>
         <externalId>false</externalId>
         <label>Contact</label>
@@ -620,7 +622,7 @@
     </nameField>
     <pluralLabel>Education History</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Educational_Institution_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Time_At_Institution__c</searchResultsAdditionalFields>

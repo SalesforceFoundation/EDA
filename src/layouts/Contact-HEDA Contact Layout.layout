@@ -346,7 +346,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Educational_Institution_Name__c</fields>
+        <fields>Account__c</fields>
         <fields>Start_Date__c</fields>
         <fields>End_Date__c</fields>
         <fields>Time_At_Institution__c</fields>
