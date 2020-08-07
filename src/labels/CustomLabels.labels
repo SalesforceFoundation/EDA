@@ -401,14 +401,6 @@
         <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
     </labels>
     <labels>
-        <fullName>customAccountRecordTypeMissingError</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Error when the custom Administrative Account record type can’t be found</shortDescription>
-        <value>{0} isn’t a valid record type. Instead, select one of the record types that’s available from Administrative Account Record Type on the Accounts and Contacts tab in EDA Settings.</value>
-    </labels>
-    <labels>
         <fullName>defaultAccountRecordTypeMissingError</fullName>
         <categories>Error</categories>
         <language>en_US</language>

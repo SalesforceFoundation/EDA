@@ -838,7 +838,6 @@
         <members>stgToastError</members>
         <members>timeBlockEndTimeMismatch</members>
         <members>timeBlockStartTimeMismatch</members>
-        <members>customAccountRecordTypeMissingError</members>
         <members>defaultAccountRecordTypeMissingError</members>
         <name>CustomLabel</name>
     </types>
