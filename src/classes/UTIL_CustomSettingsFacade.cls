@@ -78,8 +78,11 @@ public without sharing class UTIL_CustomSettingsFacade {
             if(orgSettings.Id == null) {
                 configSettings(orgSettings);
                 orgSettings.Setupownerid = UserInfo.getOrganizationId();
-                if(!Test.isRunningTest())
+                orgSettings.Account_Processor__c = UTIL_Describe.getDefaultAdminAccRecTypeId();
+                orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeId();
+                if (!Test.isRunningTest()) {
                     upsert orgSettings;
+                }
             }
         }
         return orgSettings;
@@ -89,10 +92,10 @@ public without sharing class UTIL_CustomSettingsFacade {
      * Private methods that will configure the default org-level custom settings.
      **/
     private static void configSettings(Hierarchy_Settings__c hs) {
-        hs.Account_Processor__c = UTIL_Describe.getDefaultAdminAccRecTypeId();
+        hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeId();
         hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
         hs.Admin_Account_Naming_Format__c = '{!LastName} Administrative Account';
-        hs.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeId();
+        hs.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeId();
         hs.Affl_ProgEnroll_Copy_End_Date__c = false;
         hs.Affl_ProgEnroll_Copy_Start_Date__c = false;
         hs.Affl_ProgEnroll_Role_Map__c = 'Student';
