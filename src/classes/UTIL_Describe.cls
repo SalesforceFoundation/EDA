@@ -694,11 +694,11 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-     * @description Returns the ID of the default Administrative Account record type
+     * @description For new installs only, returns the ID of the default Administrative Account record type
      * - If no default account record type is found, throw exception.
      * @return The ID of the default Administrative Account record type.
      */
-    public static Id getDefaultAdminAccRecTypeId() { 
+    public static Id getDefaultAdminAccRecTypeIdForNewInstall() { 
         Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
         if (Test.isRunningTest() == false && defaultAdminRecTypeId == null) {
             throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(Label.defaultAccountRecordTypeMissingError);

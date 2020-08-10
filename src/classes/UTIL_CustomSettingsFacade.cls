@@ -73,9 +73,9 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return Hierarchy_Settings__c org-level settings.
     */
     public static Hierarchy_Settings__c getOrgSettings() {
-        if(orgSettings == null) {
+        if (orgSettings == null) {
             orgSettings = Hierarchy_Settings__c.getOrgDefaults();
-            if(orgSettings.Id == null) {
+            if (orgSettings.Id == null) {
                 configSettings(orgSettings);
                 orgSettings.Setupownerid = UserInfo.getOrganizationId();
                 orgSettings.Account_Processor__c = UTIL_Describe.getDefaultAdminAccRecTypeId();
