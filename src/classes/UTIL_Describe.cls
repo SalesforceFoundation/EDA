@@ -688,7 +688,7 @@ public class UTIL_Describe {
         Id customAdminRecTypeId = Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
         if (customAdminRecTypeId == null 
             || getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false) {
-            customAdminRecTypeId = getAdminAccRecTypeID();
+            customAdminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
         }
         return customAdminRecTypeId;
     }
