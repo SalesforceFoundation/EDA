@@ -56,7 +56,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     * the returned record already exists or doesn't exist in the database.
     */
     public static Hierarchy_Settings__c getSettings() {
-        if(Test.isRunningTest() && settings == null) {
+        if (Test.isRunningTest() && settings == null) {
         	settings = new Hierarchy_Settings__c();
         	configSettings(settings);
         } else if (settings == null) {
@@ -66,6 +66,39 @@ public without sharing class UTIL_CustomSettingsFacade {
         }
         return settings;
     }
+
+    /*******************************************************************************************************
+    * @description Returns the default settings for new installs.
+    * @return Hierarchy_Settings__c custom settings record.
+    * At the org level, if no user level settings are defined. The ID field should be checked to determine if
+    * the returned record already exists or doesn't exist in the database.
+    */
+    public static Hierarchy_Settings__c getSettingsForNewInstalls() {
+        if (settings != null) {
+            return settings;
+        }
+
+        //Settings empty, initiate settings
+        settings = Hierarchy_Settings__c.getInstance();
+        if (settings.Id == null) {
+            if (orgSettings == null) {
+                orgSettings = Hierarchy_Settings__c.getOrgDefaults();
+                if (orgSettings.Id == null) {
+                    configSettings(orgSettings);
+                    orgSettings.Setupownerid = UserInfo.getOrganizationId();
+                    orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall;
+                    orgSettings.Account_Processor__c = orgSettings.Administrative_Account_Record_Type__c;
+                    if (Test.isRunningTest() == false) {
+                        upsert orgSettings;
+                    }
+                }
+            }
+            settings = orgSettings;
+        }  
+            
+        return settings; 
+    }
+
 
     /*******************************************************************************************************
     * @description Returns the org-level settings. Default org-level settings will be created
@@ -78,8 +111,6 @@ public without sharing class UTIL_CustomSettingsFacade {
             if (orgSettings.Id == null) {
                 configSettings(orgSettings);
                 orgSettings.Setupownerid = UserInfo.getOrganizationId();
-                orgSettings.Account_Processor__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall();
-                orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall();
                 if (!Test.isRunningTest()) {
                     upsert orgSettings;
                 }

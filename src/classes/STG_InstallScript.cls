@@ -42,7 +42,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
         //Initial installation.
         if(context.previousVersion() == null) {
-            UTIL_CustomSettingsFacade.getSettings();
+            UTIL_CustomSettingsFacade.getSettingsForNewInstalls();
             insertMappings(); //putting the logic in a different method to be able to call it from the anonymous window
             insertRelationshipLookups();
             //Schedule Seasonal Addresses recurring job daily
