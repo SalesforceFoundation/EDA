@@ -35,6 +35,10 @@
                 <behavior>Edit</behavior>
                 <field>Degree_Earned__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Details__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
