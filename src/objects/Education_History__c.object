@@ -141,7 +141,6 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <!-- <compactLayoutAssignment>SYSTEM</compactLayoutAssignment> -->
     <compactLayoutAssignment>EDA_Education_History_Compact_Layout</compactLayoutAssignment>
     <compactLayouts>
         <fullName>EDA_Education_History_Compact_Layout</fullName>
@@ -149,7 +148,6 @@
         <fields>Account__c</fields>
         <fields>Start_Date__c</fields>
         <fields>End_Date__c</fields>
-        <fields>Time_At_Institution__c</fields>
         <label>EDA Education History Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -562,17 +560,6 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-    <fields>
-        <fullName>Time_At_Institution__c</fullName>
-        <description>The total amount of time a Contact spent at the Educational Institution, determined by the Start Date and End Date.</description>
-        <externalId>false</externalId>
-        <formula>IF(NOT(ISBLANK(End_Date__c)) &amp;&amp; NOT(ISBLANK(Start_Date__c)) &amp;&amp; (End_Date__c &gt; Start_Date__c),IF(  YEAR(End_Date__c) -  YEAR(Start_Date__c ) &lt; 1 ||(YEAR(End_Date__c) -  YEAR(Start_Date__c) = 1 &amp;&amp; MONTH(End_Date__c) - MONTH(Start_Date__c) &lt; 0 ),IF( (MONTH(End_Date__c) - MONTH(Start_Date__c) = 1) ||((MONTH(End_Date__c) - MONTH(Start_Date__c)) + 12 = 1),IF (MONTH(End_Date__c) - MONTH(Start_Date__c) &lt; 0,SUBSTITUTE($Label.displayMonth , &apos;{0}&apos;, TEXT((MONTH(End_Date__c) - MONTH(Start_Date__c)) + 12)),SUBSTITUTE($Label.displayMonth , &apos;{0}&apos;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c)))),IF ( MONTH(End_Date__c) - MONTH(Start_Date__c) &lt; 0,SUBSTITUTE($Label.displayMonths , &apos;{0}&apos;, TEXT((MONTH(End_Date__c) - MONTH(Start_Date__c)) + 12)),SUBSTITUTE($Label.displayMonths , &apos;{0}&apos;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c))))),IF ( YEAR(End_Date__c) -  YEAR(Start_Date__c ) &lt; 2 ||( YEAR(End_Date__c) -  YEAR(Start_Date__c) = 2 &amp;&amp; MONTH(End_Date__c) - MONTH(Start_Date__c) &lt; 0 ),IF ( YEAR(End_Date__c) - YEAR(Start_Date__c) &lt; 2,IF ( MONTH(End_Date__c) - MONTH(Start_Date__c) = 1,SUBSTITUTE(SUBSTITUTE($Label.displayYearMonth,&quot;{0}&quot;, TEXT(YEAR(End_Date__c) - YEAR(Start_Date__c))),&quot;{1}&quot;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c))),SUBSTITUTE(SUBSTITUTE($Label.displayYearMonths,&quot;{0}&quot;, TEXT(YEAR(End_Date__c) - YEAR(Start_Date__c))),&quot;{1}&quot;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c)))),IF (MONTH(End_Date__c) - MONTH(Start_Date__c) + 12 = 1,SUBSTITUTE(SUBSTITUTE($Label.displayYearMonth,&quot;{0}&quot;, TEXT(YEAR(End_Date__c) - YEAR(Start_Date__c) - 1)),&quot;{1}&quot;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c) + 12)),SUBSTITUTE(SUBSTITUTE($Label.displayYearMonths,&quot;{0}&quot;, TEXT(YEAR(End_Date__c) - YEAR(Start_Date__c) - 1)),&quot;{1}&quot;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c) + 12)))) , IF (MONTH(End_Date__c) - MONTH(Start_Date__c) &lt; 0,IF ( MONTH(End_Date__c) - MONTH(Start_Date__c) + 12 = 1,SUBSTITUTE(SUBSTITUTE($Label.displayYearsMonth,&quot;{0}&quot;, TEXT(YEAR(End_Date__c) - YEAR(Start_Date__c) - 1)),&quot;{1}&quot;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c) + 12)), SUBSTITUTE(SUBSTITUTE($Label.displayYearsMonths,&quot;{0}&quot;, TEXT(YEAR(End_Date__c) - YEAR(Start_Date__c) - 1)),&quot;{1}&quot;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c) + 12))),IF (MONTH(End_Date__c) - MONTH(Start_Date__c) = 1,SUBSTITUTE(SUBSTITUTE($Label.displayYearsMonth,&quot;{0}&quot;, TEXT(YEAR(End_Date__c) - YEAR(Start_Date__c))),&quot;{1}&quot;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c))),SUBSTITUTE(SUBSTITUTE($Label.displayYearsMonths,&quot;{0}&quot;, TEXT(YEAR(End_Date__c) - YEAR(Start_Date__c))),&quot;{1}&quot;, TEXT(MONTH(End_Date__c) - MONTH(Start_Date__c))))))),&quot;&quot;)</formula>
-        <label>Time At Institution</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Education History</label>
     <listViews>
         <fullName>All</fullName>
@@ -589,7 +576,6 @@
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Time_At_Institution__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
