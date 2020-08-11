@@ -14,6 +14,8 @@ Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Verify basic preferred phone functionality
+    [Documentation]     Validates the preferred phone in contact details record after enabling
+    ...                 enhanced preferred phone in accounts and contacts tab in EDA settings
     [tags]                          unstable
 
     Go to EDA settings tab          Accounts and Contacts
@@ -28,6 +30,10 @@ Verify basic preferred phone functionality
     Validate preferred phone form
 
 Verify disable preferred phone enforcement
+    [Documentation]     Validates both scenarios (disable preferred phone - checked and unchecked)
+    ...                 by first checking/unchecking the checkbox in accounts and contacts tab in
+    ...                 EDA settings then creates a new contact record to validate if the error
+    ...                 message is displayed or not.
     [tags]                          unstable
 
     # Using 2 phone fields
@@ -67,6 +73,8 @@ Verify disable preferred phone enforcement
     ...                                     True
 
 Verify batch functionality of preferred phone
+    [Documentation]     Validates the run clean up functionality in accounts and contacts tab in
+    ...                 EDA settings.
     [tags]                                  unstable
 
     # Verify the EDA Setting 'Disable Preferred Phone enforcement'
@@ -127,7 +135,7 @@ Verify batch functionality of preferred phone
 
 *** Keywords ***
 Initialize test data
-    [Documentation]                         Create a contact with a randomly generated firstname and lastname via API
+    [Documentation]     Create a contact with a randomly generated firstname and lastname via API
 
     &{CONTACT} =                            API Create Contact
     Set suite variable                      &{CONTACT}
@@ -136,26 +144,29 @@ Initialize test data
     Set suite variable                      ${NAMESPACE}
 
 Create next contact
-    [Documentation]                         Create a new contact with a randomly generated firstname and lastname via API
+    [Documentation]     Create a new contact with a randomly generated firstname and lastname
+    ...                 via API
 
     &{CONTACT2} =                           API Create Contact
     Set suite variable                      &{CONTACT2}
 
 Create third contact
-    [Documentation]                         Create a new contact with a randomly generated firstname and lastname via API
+    [Documentation]     Create a new contact with a randomly generated firstname and lastname
+    ...                 via API
 
     &{CONTACT3} =                           API Create Contact
     Set suite variable                      &{CONTACT3}
 
 Create last contact
-    [Documentation]                         Create a new contact with a randomly generated firstname and lastname via API
+    [Documentation]     Create a new contact with a randomly generated firstname and lastname
+    ...                 via API
 
     &{CONTACT4} =                           API Create Contact
     Set suite variable                      &{CONTACT4}
 
 Restore eda settings
+    [Documentation]     Updates the disable preferred phone enforcement checkbox if it is
+    ...                 not checked
     Go to EDA settings tab                  Accounts and Contacts
     Set the disable preferred phone enforcement
     Shift to default content
-
-
