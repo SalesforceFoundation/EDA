@@ -570,6 +570,7 @@
         <displayFormat>EH-{0000}</displayFormat>
         <label>Education History Name</label>
         <type>AutoNumber</type>
+        <startingNumber>0001</startingNumber>
     </nameField>
     <pluralLabel>Education History</pluralLabel>
     <searchLayouts>
