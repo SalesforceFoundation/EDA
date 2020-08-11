@@ -237,10 +237,6 @@
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>
-    <fields>
-        <label><!-- Time At Institution --></label>
-        <name>Time_At_Institution__c</name>
-    </fields>
     <gender><!-- Feminine --></gender>
     <layouts>
         <layout>EDA Education History Layout</layout>

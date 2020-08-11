@@ -28,10 +28,6 @@
                 <field>End_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Time_At_Institution__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Graduation_Date__c</field>
             </layoutItems>

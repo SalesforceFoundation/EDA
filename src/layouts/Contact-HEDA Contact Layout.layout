@@ -349,7 +349,6 @@
         <fields>Account__c</fields>
         <fields>Start_Date__c</fields>
         <fields>End_Date__c</fields>
-        <fields>Time_At_Institution__c</fields>
         <relatedList>Education_History__c.Contact__c</relatedList>
         <sortField>Start_Date__c</sortField>
         <sortOrder>Desc</sortOrder>
