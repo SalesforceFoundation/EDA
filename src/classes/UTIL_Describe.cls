@@ -684,7 +684,7 @@ public class UTIL_Describe {
      * @description Returns the ID of the custom Administrative Account record type
      * @return The ID of the custom Administrative Account record type.
      */
-    public static Id getCustomAdminAccRecTypeId() {
+    public static Id getCustomAdminAccRecTypeID() {
         Id customAdminRecTypeId = Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
         if (customAdminRecTypeId == null 
             || getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false) {

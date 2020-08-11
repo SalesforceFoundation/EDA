@@ -123,10 +123,10 @@ public without sharing class UTIL_CustomSettingsFacade {
      * Private methods that will configure the default org-level custom settings.
      **/
     private static void configSettings(Hierarchy_Settings__c hs) {
-        hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeId();
+        hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID();
         hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
         hs.Admin_Account_Naming_Format__c = '{!LastName} Administrative Account';
-        hs.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeId();
+        hs.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
         hs.Affl_ProgEnroll_Copy_End_Date__c = false;
         hs.Affl_ProgEnroll_Copy_Start_Date__c = false;
         hs.Affl_ProgEnroll_Role_Map__c = 'Student';
