@@ -86,7 +86,7 @@ public without sharing class UTIL_CustomSettingsFacade {
                 if (orgSettings.Id == null) {
                     configSettings(orgSettings);
                     orgSettings.Setupownerid = UserInfo.getOrganizationId();
-                    orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall;
+                    orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall();
                     orgSettings.Account_Processor__c = orgSettings.Administrative_Account_Record_Type__c;
                     if (Test.isRunningTest() == false) {
                         upsert orgSettings;
