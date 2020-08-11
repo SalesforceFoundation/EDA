@@ -608,54 +608,6 @@
         <value>Phone (standard)</value>
     </labels>
     <labels>
-        <fullName>displayMonth</fullName>
-        <categories>Education History</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text displayed for Time At Institution when duration spans single month</shortDescription>
-        <value>{0} month</value>
-    </labels>
-    <labels>
-        <fullName>displayMonths</fullName>
-        <categories>Education History</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text displayed for Time At Institution when duration spans less than a year</shortDescription>
-        <value>{0} months</value>
-    </labels>
-    <labels>
-        <fullName>displayYearMonth</fullName>
-        <categories>Education History</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text displayed for Time At Institution when duration spans year and a month</shortDescription>
-        <value>{0} year, {1} month</value>
-    </labels>
-    <labels>
-        <fullName>displayYearMonths</fullName>
-        <categories>Education History</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text displayed for Time At Institution when duration spans year and many months</shortDescription>
-        <value>{0} year, {1} months</value>
-    </labels>
-    <labels>
-        <fullName>displayYearsMonth</fullName>
-        <categories>Education History</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text displayed for Time At Institution when duration spans years and months</shortDescription>
-        <value>{0} years, {1} month</value>
-    </labels>
-    <labels>
-        <fullName>displayYearsMonths</fullName>
-        <categories>Education History</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text displayed for Time At Institution when duration spans years and months</shortDescription>
-        <value>{0} years, {1} months</value>
-    </labels>
-    <labels>
         <fullName>stgAccModelTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

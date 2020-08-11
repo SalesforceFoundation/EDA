@@ -672,12 +672,6 @@
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
         <members>defaultNamingConnector</members>
-        <members>displayMonth</members>
-        <members>displayMonths</members>
-        <members>displayYearMonth</members>
-        <members>displayYearMonths</members>
-        <members>displayYearsMonth</members>
-        <members>displayYearsMonths</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
         <members>exceptionRequiredField</members>
