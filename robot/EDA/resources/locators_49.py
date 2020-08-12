@@ -100,6 +100,7 @@ eda_lex_locators = {
         "default_checkbox": "//div[text()='{}']/following-sibling::div/descendant::img",
         "enable_checkbox": "(//div[text()='{}']/following-sibling::div/descendant::span)[1]",
         "dropdown_field": "//div[text()='{}']/following-sibling::div/select",
+        "run_action": "//button[text()='{}']",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
@@ -115,6 +116,10 @@ eda_lex_locators = {
         "cc_sub_tabs": "//div[contains(@class, 'CourseConnections')]/descendant::a[text()='{}']",
         "backfill_button_status": "//span[text()='{}']/parent::button",
         "backfill_checkbox_status": "//input[contains(@class, 'backfill')]/following-sibling::span[contains(@class, 'checkbox')]",
+    },
+    "eda_settings_courses": {
+        "text_message_displayed": "//span[text()='The process was queued successfully. An email will be sent at the completion of the job.']",
+        "text_message_hidden": "//span[contains(@class, 'slds-hide') and text()='The process was queued successfully. An email will be sent at the completion of the job.']",
     },
     "eda_settings_system": {
         "default_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::img",
