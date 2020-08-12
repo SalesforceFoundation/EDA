@@ -573,6 +573,6 @@ public with sharing class STG_InstallScript_TEST {
         
         Id adminAccountRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
         Id defaultAdminRecordTypeId = UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
-        system.assertEquals(defaultAdminRecordTypeId, adminAccountRecordTypeId);
+        System.assertEquals(defaultAdminRecordTypeId, adminAccountRecordTypeId);
     }
 }
