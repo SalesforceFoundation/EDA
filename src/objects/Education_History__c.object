@@ -165,7 +165,7 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Educational Institution Account associated with this data.</description>
+        <description>The Educational Institution Account related to this data.</description>
         <externalId>false</externalId>
         <label>Educational Institution Account</label>
         <referenceTo>Account</referenceTo>
@@ -278,7 +278,7 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Contact associated with this historical data.</description>
+        <description>The Contact related to this historical data.</description>
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
@@ -379,7 +379,7 @@
     </fields>
     <fields>
         <fullName>Educational_Institution_Name__c</fullName>
-        <description>The name of the Educational Institution associated with this data.</description>
+        <description>The name of the Educational Institution related to this data.</description>
         <externalId>false</externalId>
         <label>Educational Institution Name</label>
         <length>255</length>
