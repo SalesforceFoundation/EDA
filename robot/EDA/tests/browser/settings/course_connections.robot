@@ -1,5 +1,5 @@
 *** Settings ***
-
+Documentation   Validates course connections functionalities in both edit and non edit modes
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/CourseConnectionsSettingsPageObject.py
@@ -13,24 +13,25 @@ Test Setup      Run keywords
 
 *** Test Cases ***
 Validate drop down values appear when checkbox is unchecked
-    [Documentation]         Checks for the warning message when the Enable Course Connections is unchecked.
-    ...                     Checks the dropdown field is disabled for Default Active Student Record Type
-    ...                     and Default Faculty Record Type. The value of the dropdown field status is True
-    ...                     when disbaled and False when enabled.
+    [Documentation]         Checks for the warning message when the Enable Course Connections is
+    ...                     unchecked. Checks the dropdown field is disabled for Default Active
+    ...                     Student Record Type and Default Faculty Record Type. The value of the
+    ...                     dropdown field status is True when disbaled and False when enabled.
     [tags]                                      unstable        W-041782
     Click action button on EDA settings page    Edit
     Verify enable course connections warning    true
-    Verify dropdown field status           
+    Verify dropdown field status
     ...                                         Default Active Student Record Type=disabled
-    ...                                         Default Faculty Record Type=disabled 
+    ...                                         Default Faculty Record Type=disabled
 
 Validate Edit Mode For Course Connections, Settings
-    [Documentation]         Check for the warning message when the Enable Course Connections is unchecked
-    ...                     Check the warning message disappears when the Enable Course Connections is checked
-    ...                     verify default values for Student and Faculty record types
-    ...                     Also validates the field values of Enable course connections, Default Active
-    ...                     Student Record Type and Default Faculty Record Type are reatined upon saving
-    ...                     which also includes the validation of fields in non edit mode.
+    [Documentation]         Check for the warning message when the Enable Course Connections is
+    ...                     unchecked. Check the warning message disappears when the Enable Course
+    ...                     Connections is checked. Verify default values for Student and Faculty
+    ...                     record types. Also validates the field values of Enable course
+    ...                     connections, Default Active Student Record Type and Default Faculty
+    ...                     Record Type are reatined upon saving which also includes the validation
+    ...                     of fields in non edit mode.
     [tags]                                      unstable        W-041783                W-041784
     Click action button on EDA settings page    Edit
     Verify enable course connections warning    true
@@ -51,7 +52,8 @@ Validate Edit Mode For Course Connections, Settings
     ...                                         Default Active Student Record Type=Student
     ...                                         Default Faculty Record Type=Faculty
     Click action button on EDA settings page    Save
-    Go to EDA settings tab                      Course Connections                      #This is a work around as we have consistent issues with fields visible to the user
+    Go to EDA settings tab                      Course Connections
+    ...     #This is a work around as we have consistent issues with fields visible to the user
     Verify enable course connections            true
     Verify selected dropdown value
     ...                                         Default Active Student Record Type=Student

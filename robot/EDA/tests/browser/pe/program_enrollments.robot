@@ -1,5 +1,6 @@
 *** Settings ***
-
+Documentation   Validates the program enrollment functionality in EDA settings and also by creating
+...             a new program enrollment
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/AffiliationsSettingsPageObject.py
@@ -9,6 +10,7 @@ Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Verify EDA Settings
+    [Documentation]     Validates the affiliations settings in edit mode
     [tags]                                      unstable
     Go to EDA settings tab                      Affiliations
 
@@ -24,6 +26,8 @@ Verify EDA Settings
 
 
 Create A Contact
+    [Documentation]     Creates a new contact and account and verifies the affiliation and
+    ...                 program enrollment
     [tags]                                  unstable
     Set Window Size                         1024    1024
     Go To Object Home                       Contact
@@ -54,7 +58,8 @@ Create A Contact
     Click Related List Button               Program Enrollments     New
 
     Wait for Locator                        programenrollment_account
-    Populate Field                          Program    robotTestLastName Academic Account - this is just a robot test string
+    Populate Field                          Program
+    ...                     robotTestLastName Academic Account - this is just a robot test string
 
     #Create a New Account as part of this flow
     Click on Element                        new_account

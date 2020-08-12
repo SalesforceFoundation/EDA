@@ -1,5 +1,5 @@
 *** Settings ***
-
+Documentation   Validates course connections backfill sub tab in EDA settings
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/CourseConnectionsSettingsPageObject.py
@@ -13,10 +13,10 @@ Test Setup      Run keywords
 
 *** Test Cases ***
 Verify backfill settings error message when course connections is unchecked
-    [Documentation]         Checks enable course connection is disabled and then verifies the warning message 
-    ...                     banner is displayed in the backfill tab. Verifies the checkbox "I understand and
-    ...                     am ready to run backfill" is not checked. Checks the button "Run Backfill" is not
-    ...                     active.
+    [Documentation]         Checks enable course connection is disabled and then verifies the
+    ...                     warning message banner is displayed in the backfill tab. Verifies the
+    ...                     checkbox "I understand and am ready to run backfill" is not checked.
+    ...                     Checks the button "Run Backfill" is not active.
     [tags]                                      unstable        W-041785
     Verify enable course connections            false
     Select course connections subtab            Backfill
