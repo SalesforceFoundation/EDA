@@ -124,7 +124,7 @@ Affiliations settings checkboxes toggle
     ...                                         ${del_rel_affl}
 
     Disable the checkbox
-                                        Delete Related Affiliation When Deleting Program Enrollment
+    ...                                 Delete Related Affiliation When Deleting Program Enrollment
     ...                                         ${settings_tab}
     ...                                         ${un_delete_rec_affl}
     ...                                         ${del_rel_affl}
