@@ -558,7 +558,7 @@ public with sharing class STG_InstallScript_TEST {
         
         Id accountProcessorId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
         Id defaultAdminRecordTypeId = UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
-        system.assertEquals(defaultAdminRecordTypeId, accountProcessorId);
+        System.assertEquals(defaultAdminRecordTypeId, accountProcessorId);
     }
 
     /************************************************************************************************************
