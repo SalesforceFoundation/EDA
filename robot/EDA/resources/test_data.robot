@@ -7,7 +7,8 @@ Library        EDA.py
 Create Test User
     [Documentation]  This creates a test user via the salesforce API
     [Arguments]
-    ...  ${first_name}  ${last_name}  ${mailing_street}  ${mailing_city}  ${mailing_state}  ${mailing_country}
+    ...     ${first_name}  ${last_name}  ${mailing_street}  ${mailing_city}  ${mailing_state}
+    ...     ${mailing_country}
 
     ${contact_id} =   Salesforce Insert  Contact
     ...                 FirstName=${first_name}
@@ -16,11 +17,12 @@ Create Test User
     ...                 MailingCity=${mailing_city}
     ...                 MailingState=${mailing_state}
     ...                 MailingCountry=${mailing_country}
-
+    Log     This is a test log to fix robot lint errors
 
 Initialize Test Data
+    [Documentation]     Creates the needed test users
     Open Test Browser
-    Create Test User  Joe      Mazzocco   5345 Calero Ave        San Jose     CA     USA    
+    Create Test User  Joe      Mazzocco   5345 Calero Ave        San Jose     CA     USA
     Create Test User  Sandy    Thompson   534 Calero Ave         San Jose     CA     USA
     Create Test User  Andy     Wright     9989 Blossom Hill Rd   Sacramento   CA     USA
     Create Test User  Sam      Sharp      11 King Street         Clearfield   MI     USA
