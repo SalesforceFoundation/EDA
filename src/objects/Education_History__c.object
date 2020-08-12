@@ -179,8 +179,9 @@
         <fullName>Class_Percentile__c</fullName>
         <description>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</inlineHelpText>
         <label>Class Percentile</label>
-        <precision>3</precision>
+        <precision>2</precision>
         <required>false</required>
         <scale>0</scale>
         <trackTrending>false</trackTrending>
@@ -190,6 +191,7 @@
         <fullName>Class_Rank_Scale__c</fullName>
         <description>Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile.</inlineHelpText>
         <label>Class Rank Scale</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -230,6 +232,7 @@
         <fullName>Class_Rank_Type__c</fullName>
         <description>Tracks how the Class Rank was determined. For example, using a weighted or unweighted scale.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Tracks how the Class Rank was determined. For example, using a weighted or unweighted scale.</inlineHelpText>
         <label>Class Rank Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -255,6 +258,7 @@
         <fullName>Class_Rank__c</fullName>
         <description>The student&apos;s academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The student&apos;s academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5.</inlineHelpText>
         <label>Class Rank</label>
         <precision>4</precision>
         <required>false</required>
@@ -267,6 +271,7 @@
         <fullName>Class_Size__c</fullName>
         <description>The number of students that were in the Contact&apos;s class.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The number of students that were in the Contact&apos;s class.</inlineHelpText>
         <label>Class Size</label>
         <precision>6</precision>
         <required>false</required>
@@ -280,6 +285,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Contact related to this historical data.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Contact related to this historical data.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Education History</relationshipLabel>
@@ -292,6 +298,7 @@
         <fullName>Degree_Earned__c</fullName>
         <description>If applicable, the level of the degree the Contact earned at this Educational Institution.</description>
         <externalId>false</externalId>
+        <inlineHelpText>If applicable, the level of the degree the Contact earned at this Educational Institution.</inlineHelpText>
         <label>Degree Earned</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -370,7 +377,9 @@
     </fields>
     <fields>
         <fullName>Details__c</fullName>
+        <description>Additional details about this student&apos;s educational history.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Additional details about this student&apos;s educational history.</inlineHelpText>
         <label>Details</label>
         <length>131072</length>
         <trackTrending>false</trackTrending>
@@ -402,6 +411,7 @@
         <fullName>GPA_Scale_Reporting__c</fullName>
         <description>The highest possible grade point average at this Educational Institution.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The highest possible grade point average at this Educational Institution.</inlineHelpText>
         <label>GPA Scale Reporting</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -507,6 +517,7 @@
         <fullName>GPA_Scale_Type__c</fullName>
         <description>Tracks how the GPA was determined. For example, using a weighted or unweighted scale.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Tracks how the GPA was determined. For example, using a weighted or unweighted scale.</inlineHelpText>
         <label>GPA Scale Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -532,6 +543,7 @@
         <fullName>GPA__c</fullName>
         <description>The Contact&apos;s final grade point average.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Contact&apos;s final grade point average.</inlineHelpText>
         <label>GPA</label>
         <precision>7</precision>
         <required>false</required>
