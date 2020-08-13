@@ -106,7 +106,6 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
         if (contactsMarkedDeceasedList.isEmpty() == false){
             this.syncNamingExclusionsOnContacts(contactsMarkedDeceasedList);
-            this.syncHHNamingExclusionsPicklistFromCheckboxes(contactsMarkedDeceasedList);
         }
 
         if (contactsMarkedDoNotContactList.isEmpty() == false){
@@ -139,7 +138,6 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
 
         if (contactsWithDeceasedChangeList.isEmpty() == false){
             this.syncNamingExclusionsOnContacts(contactsWithDeceasedChangeList);
-            this.syncHHNamingExclusionsPicklistFromCheckboxes(contactsWithDeceasedChangeList);
         }
 
         if (contactsWithDoNotContactChangeList.isEmpty() == false){
@@ -177,31 +175,4 @@ public class CON_DoNotContact_TDTM extends TDTM_Runnable {
         }
     }
 
-    /**
-    * @description Synchronizes the naming exclusions specified by the selected 
-    * checkboxes with the selected values listed in the Naming Exclusion 
-    * multiselect picklist.
-    * @param contactsList List of contacts to synchronize
-    */ 
-    @TestVisible
-    private void syncHHNamingExclusionsPicklistFromCheckboxes(List<Contact> contactsList) {
-        for (Contact con : contactsList){
-            List<String> selectedNamingExclusionList = new List<String>();
-            String selectedNamingExclusions = '';
-    
-            if (con.Exclude_from_Household_Name__c == true) {
-                selectedNamingExclusionList.add('Household__c.Name');
-            }
-    
-            if (con.Exclude_from_Household_Formal_Greeting__c == true) {
-                selectedNamingExclusionList.add('Household__c.Formal_Greeting__c');
-            }
-    
-            if (con.Exclude_from_Household_Informal_Greeting__c == true) {
-                selectedNamingExclusionList.add('Household__c.Informal_Greeting__c');
-            }
-    
-            con.Naming_Exclusions__c = String.join(selectedNamingExclusionList, ';');
-        }
-    }
 }
