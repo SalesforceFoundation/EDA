@@ -181,7 +181,7 @@
         <externalId>false</externalId>
         <inlineHelpText>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</inlineHelpText>
         <label>Class Percentile</label>
-        <precision>2</precision>
+        <precision>3</precision>
         <required>false</required>
         <scale>0</scale>
         <trackTrending>false</trackTrending>
