@@ -471,6 +471,52 @@ public class UTIL_UnitTestData_TEST {
         return contactLanguageToInsert;
     }
 
+   /**
+    * getContactLanguage description
+    * @param  language The language to relate to the contact language
+    * @param  contact The Contact to relate to the contact language
+    * @param  fluency The level of fluency for the language specified
+    * @return                   return description
+    */ 
+    public static Contact_Language__c getContactLanguage(Language__c language, Contact contact, String fluency) {
+        Contact_Language__c contactLanguage = new Contact_Language__c(
+                                                        Language__c = language.Id, 
+                                                        Contact__c = contact.Id, 
+                                                        Primary_Language__c = false,
+                                                        Fluency__c = fluency
+                                                    );
+        return contactLanguage;
+    }
+
+    /**
+     * mapContactLanguagesToContact description
+     * @param  contactLanguagesList List of Contact Language records to map to Contacts
+     * @return                           returns a Map of a list of Contact Languages by Contact Id
+     */
+    public static Map<Id, List<Contact_Language__c>> mapContactLanguagesToContact(List<Contact_Language__c> contactLanguagesList){
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = new Map<Id, List<Contact_Language__c>>();
+        List<Contact_Language__c> associatedContactLanguagesList;
+
+        for (Contact_Language__c conLang : contactLanguagesList){
+            if (contactLanguagesListByContactId.containsKey(conLang.Contact__c)){
+                associatedContactLanguagesList = contactLanguagesListByContactId.get(conLang.Contact__c);
+            } else {
+                associatedContactLanguagesList = new List<Contact_Language__c>();
+            }
+
+            associatedContactLanguagesList.add(conLang);
+            contactLanguagesListByContactId.put(conLang.Contact__c, associatedContactLanguagesList);
+        }
+
+        return contactLanguagesListByContactId;
+    }
+
+
+
+
+
+
+
     /*********************************************************************************************************
     * @description Gets a Term for testing.
     * @param accountId Account to associate Term with.
