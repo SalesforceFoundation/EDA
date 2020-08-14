@@ -51,43 +51,40 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-        DmlWrapper dmlWrapper = new DmlWrapper();
+            DmlWrapper dmlWrapper = new DmlWrapper();
+
+            if (newList.isEmpty()){
+                return dmlWrapper;
+            }
+
+        
 
         // If this trigger is running as a result of the Contact Language trigger, just exit early - that trigger
         // already did the work for us!
-        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM)) {
-            return dmlWrapper;
-        }
+        // if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM)) {
+        //     return dmlWrapper;
+        // }
 
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
+        // TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
 
-        if (newList != null && newList.size() > 0) {
 
-            // After Insert
-            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                for (Contact newContact : (List<Contact>)newList) {
-                    if (newContact.Primary_Language__c == null) { 
-                        // No Primary Language, so let's continue.
-                        continue;
-                    }
+        // After Insert
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+            this.handleAfterInsert(newList);
+        } 
 
-                    primaryLanguageByContact.put(newContact.Id, newContact.Primary_Language__c);
+        // After Update
+        else if (triggerAction == TDTM_Runnable.Action.AfterUpdate && oldList != null && oldList.size() > 0) {
+            for (Integer i = 0; i < newList.size(); i++) {
+                Contact newContact = (Contact)newList[i];
+                Contact oldContact = (Contact)oldList[i];
+
+                if (newContact.Primary_Language__c == oldContact.Primary_Language__c) {
+                    // The Primary Language field isn't changing, so let's continue.
+                    continue;
                 }
-            } 
 
-            // After Update
-            else if (triggerAction == TDTM_Runnable.Action.AfterUpdate && oldList != null && oldList.size() > 0) {
-                for (Integer i = 0; i < newList.size(); i++) {
-                    Contact newContact = (Contact)newList[i];
-                    Contact oldContact = (Contact)oldList[i];
-
-                    if (newContact.Primary_Language__c == oldContact.Primary_Language__c) {
-                        // The Primary Language field isn't changing, so let's continue.
-                        continue;
-                    }
-
-                    primaryLanguageByContact.put(newContact.Id, newContact.Primary_Language__c);
-                }
+                primaryLanguageByContact.put(newContact.Id, newContact.Primary_Language__c);
             }
         }
 
@@ -103,6 +100,26 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
 
         return dmlWrapper;
+    }
+
+
+    /** 
+     * 
+    */
+    private void handleAfterInsert(List<SObject> newObjectsList){
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM)) {
+            return;
+        }
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
+
+        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
+
+        for (Contact contact : (List<Contact>)newObjectsList) {
+            if (contact.Primary_Language__c != null) { 
+                primaryLanguageByContact.put(contact.Id, contact.Primary_Language__c);
+            }
+        }
     }
 
     private void syncPrimaryContactLanguageRecords() {
