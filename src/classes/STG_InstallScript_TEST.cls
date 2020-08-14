@@ -545,4 +545,34 @@ public with sharing class STG_InstallScript_TEST {
         System.assertEquals(true, hierachySettings.Prevent_Plan_Requirement_Deletion__c,
             'Expected Prevent Plan Requirement Deletion Hierarchy Custom setting is enabled');
     }
+
+    /************************************************************************************************************
+    * @description Test for Account Processor Config of new installs
+    *************************************************************************************************************/
+    @isTest
+    private static void installAccountProcessorConfigTest() {
+        Test.startTest();
+            //Run the install script
+            Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+        
+        Id accountProcessorId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
+        Id defaultAdminRecordTypeId = UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
+        System.assertEquals(defaultAdminRecordTypeId, accountProcessorId);
+    }
+
+    /************************************************************************************************************
+    * @description Test for Admininstrative Account Record Type Config of new installs
+    *************************************************************************************************************/
+    @isTest
+    private static void installAdminAccountRecordTypeConfigTest() {
+        Test.startTest();
+            //Run the install script
+            Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+        
+        Id adminAccountRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
+        Id defaultAdminRecordTypeId = UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
+        System.assertEquals(defaultAdminRecordTypeId, adminAccountRecordTypeId);
+    }
 }
