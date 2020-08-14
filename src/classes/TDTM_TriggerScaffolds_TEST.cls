@@ -110,6 +110,14 @@ private class TDTM_TriggerScaffolds_TEST {
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
     }
 
+    public static testmethod void tdtmEducation_History() {
+        //Currently we don't have any Trigger_Handler__c record for Education History. This test is
+        //just for test coverage, and to verify no exception gets thrown.
+        insert new Education_History__c();
+
+        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
+    }
+
     public static testmethod void tdtmFacility() {
         //Currently we don't have any Trigger_Handler__c record for Facility. This test is
         //just for test coverage, and to verify no exception gets thrown.
@@ -141,4 +149,5 @@ private class TDTM_TriggerScaffolds_TEST {
 
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
     }
+
 }
