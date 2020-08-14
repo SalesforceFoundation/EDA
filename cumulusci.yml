@@ -73,7 +73,7 @@ tasks:
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
-                UTIL_CustomSettingsFacade.getSettings();
+                UTIL_CustomSettingsFacade.getSettingsForNewInstalls();
                 STG_InstallScript.insertMappings();
                 STG_InstallScript.insertRelationshipLookups();
                 TDTM_Global_API.setTdtmConfig(TDTM_Global_API.getDefaultTdtmConfig(), 'hed');
