@@ -11,8 +11,8 @@
         <members>ACCT_IndividualAccounts_TDTM</members>
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>
-        <members>ADDR_Addresses_TDTM</members>
         <members>ADDR_Address_TEST</members>
+        <members>ADDR_Addresses_TDTM</members>
         <members>ADDR_Addresses_UTIL</members>
         <members>ADDR_AdminAcc_TEST</members>
         <members>ADDR_CannotDelete_TDTM</members>
@@ -360,8 +360,8 @@
         <members>Case.Occurrence_Date__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
-        <members>Contact.Citizenship__c</members>
         <members>Contact.Citizenship_Status__c</members>
+        <members>Contact.Citizenship__c</members>
         <members>Contact.Country_of_Origin__c</members>
         <members>Contact.Current_Address__c</members>
         <members>Contact.Date_Deceased__c</members>
@@ -605,7 +605,6 @@
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
-        <members>affiliationWithSameAccExists</members>
         <members>AttendanceCourseConnectionContactMismatch</members>
         <members>AutoCreateFieldError</members>
         <members>BatchJobRunningProblem</members>
@@ -646,6 +645,7 @@
         <members>addrValidParentObjects</members>
         <members>adminAccNameFormat</members>
         <members>adminAccNameFormatHelpText</members>
+        <members>affiliationWithSameAccExists</members>
         <members>afflAccountNoRecordType</members>
         <members>afflAccoutMappingError</members>
         <members>afflNullPointerError</members>
@@ -653,6 +653,7 @@
         <members>afflTypeEnforcedDescription</members>
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
+        <members>defaultAccountRecordTypeMissingError</members>
         <members>defaultNamingConnector</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
@@ -838,7 +839,6 @@
         <members>stgToastError</members>
         <members>timeBlockEndTimeMismatch</members>
         <members>timeBlockStartTimeMismatch</members>
-        <members>defaultAccountRecordTypeMissingError</members>
         <name>CustomLabel</name>
     </types>
     <types>

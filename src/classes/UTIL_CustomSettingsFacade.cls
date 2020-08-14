@@ -83,14 +83,15 @@ public without sharing class UTIL_CustomSettingsFacade {
         if (settings.Id == null) {
             if (orgSettings == null) {
                 orgSettings = Hierarchy_Settings__c.getOrgDefaults();
-                if (orgSettings.Id == null) {
-                    configSettings(orgSettings);
-                    orgSettings.Setupownerid = UserInfo.getOrganizationId();
-                    orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall();
-                    orgSettings.Account_Processor__c = orgSettings.Administrative_Account_Record_Type__c;
-                    if (Test.isRunningTest() == false) {
-                        upsert orgSettings;
-                    }
+                //This will always have an Id outside a test scenario at the moment of a fresh install and this code only runs on a fresh install
+                //Due to this being a fresh install, we can assume the settings do not have the record types in them.
+                configSettings(orgSettings);
+                orgSettings.Setupownerid = UserInfo.getOrganizationId();
+                orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall();
+                orgSettings.Account_Processor__c = orgSettings.Administrative_Account_Record_Type__c;
+
+                if (Test.isRunningTest() == false) {
+                    upsert orgSettings;
                 }
             }
             settings = orgSettings;
