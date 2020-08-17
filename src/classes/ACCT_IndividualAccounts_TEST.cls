@@ -2201,4 +2201,47 @@ private class ACCT_IndividualAccounts_TEST {
         System.assertEquals(tempUser.Id, accAfterUpdate.ownerId);
     }
 
+    /*****************************************************************************************************************************************
+    * @description Helper method to set Default Account Model and Administrative Account Record Type.
+    */
+
+    private static void setAdminAccRecTypeAsBizOrgHelper() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getBizAccRecTypeID(),
+                                                         Administrative_Account_Record_Type__c =  UTIL_Describe_API.getBizAccRecTypeID()));
+    }
+
+    /***********************************************************************************************************************************************
+    * @description Test to ensure Account owner update changes owner on Account when Administrative Account Record Type  and Account Model are
+    * Business Org Record Type
+    */
+    @isTest
+    private static void testContactOwnerUpdateWithBizAccRecTypeAsAdminAccRecType() {
+
+        ACCT_IndividualAccounts_Test.setAdminAccRecTypeAsBizOrgHelper();
+
+        // Insert a user
+        Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
+        User tempUser = new User(LastName = 'TestSysAdminUserA', Email = 'test_insertAsOtherUser@email.npsp',
+                                       ProfileId = sysAdminProfileId, isActive = true, UserName = 'test_insertAsOtherUser@email.npsp',
+                                     Alias = 'tu08534', TimeZoneSidKey = 'America/Los_Angeles',
+                                    LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+        insert tempUser;
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'test1234';
+        insert con;
+
+        Test.startTest();
+            con.OwnerId = tempUser.Id;
+            update con;
+        Test.stopTest();
+
+        // Ensure record type stays the same and owner on the Account is updated to match Contact's owner
+        Account acc = [Select Id, RecordTypeId, ownerId FROM Account LIMIT 1];
+        Contact conAfterUpdate = [SELECT Id, AccountId, ownerId FROM Contact WHERE Id =: con.Id];
+
+        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), acc.RecordTypeId);
+        System.assertEquals(conAfterUpdate.ownerId, acc.ownerId);
+
+    }
 }
