@@ -671,6 +671,7 @@
         <members>afflTypeEnforcedDescription</members>
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
+        <members>defaultAccountRecordTypeMissingError</members>
         <members>defaultNamingConnector</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
