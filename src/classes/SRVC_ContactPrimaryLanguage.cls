@@ -53,7 +53,7 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
      */
     public ContactLanguageInsertUpdate getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
         
-        ContactLanguageInsertUpdate conLangInsUp = new ContactLanguageInsertUpdate();
+        ContactLanguageInsertUpdate contactLanguageInsUp = new ContactLanguageInsertUpdate();
 
         Set<Id> contactIdsToUpdateConLangsToNonPrimarySet = new Set<Id>();
         Map<Id, Contact_Language__c> contactLanguageToInsertByContactId = new Map<Id, Contact_Language__c>();
@@ -86,14 +86,11 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
 
             List<Contact_Language__c> contactLanguagesToUpdateAsNonPrimaryList = this.getContactLanguagesToUpdateAsNonPrimary(contactIdsToUpdateConLangsToNonPrimarySet);
         
-            conLangInsUp.contactLanguagesToInsertList = this.getPrimaryContactLanguagesToInsertOrUpdate(contactLanguageToInsertByContactId.clone(),
-                                                                                                        languageIdToCheckForUpdateByContactId.clone());
-
-            conLangInsUp.contactLanguagesToUpdateList = this.getPrimaryContactLanguagesToInsertOrUpdate(contactLanguageToInsertByContactId.clone(),
-                                                                                                        languageIdToCheckForUpdateByContactId.clone());
+            contactLanguageInsUp = this.getPrimaryContactLanguagesToInsertOrUpdate(contactLanguageToInsertByContactId.clone(),
+                                                                                    languageIdToCheckForUpdateByContactId.clone());
         }
 
-        return conLangInsUp;
+        return contactLanguageInsUp;
     }
 
     /**
@@ -129,29 +126,40 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
         return UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c;
     }
 
+    /**
+     * @description Determines if a Contact Language record flagged for insertion is marked as primary on the corresponding contact record.  If so,
+     * separates the Contact Language into a list for update; marking its Primary Language status and removing it from the insertion list.
+     * @param contactLanguagesToInsertByContactId Mapping of Contact Languages to be inserted, by Contact Id
+     * @param languageIdToCheckForUpdateByContactId Mapping of Language currently marked as primary by Contact Id
+     * @return A ContactLanguageInsertUpdate value object containing one list containing Contact Language records to be inserted and 
+     *         another containing Contact Language records to be updated                                         
+     */
     @TestVisible
-    private List<Contact_Language__c> getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
-                                                            Map<Id, Id> languageIdToCheckForUpdateByContactId){
+    private ContactLanguageInsertUpdate getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
+                                                                                    Map<Id, Id> languageIdToCheckForUpdateByContactId){
 
-        return new List<Contact_Language__c>(); // placeholder
+        ContactLanguageInsertUpdate contactLangInsUp = new ContactLanguageInsertUpdate();
+        List<Contact_Language__c> contactLanguagesToUpdateToPrimaryList = new List<Contact_Language__c>();
 
-    //     List<Contact_Language__c> contactLanguagesToUpdateToPrimaryList = new List<Contact_Language__c>();
+        for (Contact_Language__c conLang : contactLanguagesToInsertByContactId.values()){
+            if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c) &&
+                languageIdToCheckForUpdateByContactId.get(conLang.Contact__c) == conLang.Id){
+                
+                conLang.Primary_Language__c = true;
+                contactLanguagesToUpdateToPrimaryList.add(conLang);
+                contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
+            }
+        }
 
-    //     for (Id conId : contactLanguagesListByContactId.keySet()){
-    //         for (Contact_Language__c conLang : contactLanguagesListByContactId.get(conId)){
-    //             if (languageIdsListByContactId.containsKey(conId)){
-    //                 List<Id> conLanguagesToUpdate = languageIdsListByContactId.get(conId);
-    //                 for(Id langId : conLanguagesToUpdate){
-    //                     if (langId == conLang.Language__c){
-    //                         // update current conLang record instead of inserting
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
+        contactLangInsUp.contactLanguagesToInsertList = contactLanguagesToInsertByContactId.values();
+        contactLangInsUp.contactLanguagesToUpdateList = contactLanguagesToUpdateToPrimaryList;
 
+        return contactLangInsUp;
     }
 
+    /** 
+    * @description
+    */
     private class ContactLanguageInsertUpdate {
         private List<Contact_Language__c> contactLanguagesToInsertList {get; set;}
         private List<Contact_Language__c> contactLanguagesToUpdateList {get; set;}
