@@ -18,10 +18,12 @@ Validate run copy button is active in read and edit mode
     ...                     appears after the button is clicked in both modes.
     [tags]                                      unstable        W-041780
     Click run action button                     Run Copy
-    Verify text appears                         true
+    Verify text appears
+    ...     The process was queued successfully. An email will be sent at the completion of the job.
     Reload Page
     Go to EDA settings tab                      Courses
     Click action button on EDA settings page    Edit
     Click run action button                     Run Copy
-    Verify text appears                         true
+    Verify text appears
+    ...     The process was queued successfully. An email will be sent at the completion of the job.
     Click action button on EDA settings page    Cancel

@@ -118,8 +118,7 @@ eda_lex_locators = {
         "backfill_checkbox_status": "//input[contains(@class, 'backfill')]/following-sibling::span[contains(@class, 'checkbox')]",
     },
     "eda_settings_courses": {
-        "text_message_displayed": "//span[text()='The process was queued successfully. An email will be sent at the completion of the job.']",
-        "text_message_hidden": "//span[contains(@class, 'slds-hide') and text()='The process was queued successfully. An email will be sent at the completion of the job.']",
+        "text_message": "//span[text()='{}']",
     },
     "eda_settings_system": {
         "default_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::img",
