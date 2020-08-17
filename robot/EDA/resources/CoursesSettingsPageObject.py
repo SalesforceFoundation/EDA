@@ -32,5 +32,5 @@ class CoursesSettingsPage(BaseEDAPage, BasePage):
             self.selenium.wait_until_page_contains_element(locator_displayed,
                                                            error="Run copy text is not displayed")
         else:
-            self.selenium.wait_until_page_contains_element(
-                locator_hidden, error="Run copy text message is displayed")
+            self.selenium.wait_until_page_contains_element(locator_hidden,
+                                                        error="Run copy text message is displayed")
