@@ -53,7 +53,7 @@ Validate Edit Mode For Course Connections, Settings
     ...                                         Default Faculty Record Type=Faculty
     Click action button on EDA settings page    Save
     Go to EDA settings tab                      Course Connections
-    ...     #This is a work around as we have consistent issues with fields visible to the user
+    #This is a work around as we have consistent issues with fields visible to the user
     Verify enable course connections            true
     Verify selected dropdown value
     ...                                         Default Active Student Record Type=Student
