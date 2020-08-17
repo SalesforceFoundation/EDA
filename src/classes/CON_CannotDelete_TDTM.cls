@@ -38,6 +38,12 @@
 * Term Grade, or Test child records.
 */
 public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
+
+    /*******************************************************************************************************
+    * @description Get the setting of preventing Contact deletion
+    */
+    private final Boolean isContactDeletionPreventionEnabled = isContactDeletionPreventionEnabled();
+
     /*******************************************************************************************************
     * @description Stops a Contact from being deleted if it has any Address, Affiliation,
     * Application, Attendance Event, Attribute, Behavior Involement, Contact Language,
@@ -45,55 +51,44 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
     * Term Grade, or Test child records.
     * @param listNew the list of Contacts from trigger new.
     * @param listOld the list of Contacts from trigger old.
-    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+    * @param triggerAction which trigger event (BeforeDelete).
     * @param objResult the describe for Contact
     * @return dmlWrapper.
     ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
+    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-      Map<Id, Contact> oldMap = new Map<Id, Contact>((List<Contact>)oldList);
-      Boolean isConDeletionPreventionEnabled = UTIL_CustomSettingsFacade.getSettings().Prevent_Contact_Deletion__c;
-
-        if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isConDeletionPreventionEnabled) {
-            for (Contact c : [SELECT ID,
-                            (SELECT ID FROM Contact.Addresses__r LIMIT 1),
-                            (SELECT ID FROM Contact.Affl_Accounts__r LIMIT 1),
-                            (SELECT ID FROM Contact.Applications_Applicant__r LIMIT 1),
-                            (SELECT ID FROM Contact.Applications_Preparer__r LIMIT 1),
-                            (SELECT ID FROM Contact.Attendance_Events__r LIMIT 1),
-                            (SELECT ID FROM Contact.Attributes__r LIMIT 1),
-                            (SELECT ID FROM Contact.Behavior_Involvements__r LIMIT 1),
-                            (SELECT ID FROM Contact.Contact_Languages__r LIMIT 1),
-                            (SELECT ID FROM Contact.Courses_Taught__r LIMIT 1),
-                            (SELECT ID FROM Contact.Program_Enrollments__r LIMIT 1),
-                            (SELECT ID FROM Contact.Student_Course_Enrollments__r LIMIT 1),
-                            (SELECT ID FROM Contact.Term_Grades__r LIMIT 1),
-                            (SELECT ID FROM Contact.Tests__r LIMIT 1)
-                            FROM Contact
-                            WHERE ID IN :oldlist])
-            {
-                if (hasChildRecords(c)) {
-                    Contact contactInContext = oldmap.get(c.ID);
-                    contactInContext.addError(Label.CannotDelete);
-                }
-            }
+        if (oldlist == null || oldlist.isEmpty() == true) {
+            return new DmlWrapper();
         }
 
-      return new DmlWrapper();
-   }
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
+            handleBeforeDelete(oldList);
+        }
 
-   /*******************************************************************************************************
-   * @description Evaluates whether the Contact has any child related records.
-   * @param c is the current Contact record.
-   * @return Boolean.
-   ********************************************************************************************************/
-   private static Boolean hasChildRecords(Contact c) {
-        return (c.Addresses__r.size() > 0 || c.Affl_Accounts__r.size() > 0 ||
-                c.Applications_Applicant__r.size() > 0  || c.Applications_Preparer__r.size() > 0 ||
-                c.Attendance_Events__r.size() > 0 || c.Attributes__r.size () > 0 ||
-                c.Behavior_Involvements__r.size() > 0 || c.Contact_Languages__r.size() > 0 ||
-                c.Courses_Taught__r.size() > 0 || c.Program_Enrollments__r.size() > 0 ||
-                c.Student_Course_Enrollments__r.size() > 0 || c.Term_Grades__r.size() > 0 || c.Tests__r.size() > 0);
-   }
+        return new DmlWrapper();
+    }
+
+    @TestVisible
+    private void handleBeforeDelete(List<SObject> oldSObjectList) {
+
+        if (!isContactDeletionPreventionEnabled) {
+            return;
+        }
+
+        Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>)oldSObjectList);
+        List<contact> deletionPreventedContactList = this.locateContactPreventDeletionService().preventDeletionForContacts(oldContactById);
+
+    }
+
+    @TestVisible
+    private SRVC_Contact_PreventDeletion locateContactPreventDeletionService() {
+        return SRVC_Contact_PreventDeletion.getInstance();
+    }
+
+    @TestVisible
+    private Boolean isContactDeletionPreventionEnabled() {
+        return UTIL_CustomSettingsFacade.getSettings().Prevent_Contact_Deletion__c;
+    }
+
 }
