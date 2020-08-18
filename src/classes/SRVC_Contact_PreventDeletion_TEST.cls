@@ -39,7 +39,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
 
     // Tests getInstance()
     @isTest
-    static void testPreventDeletionForContacts() {
+    static boolean testPreventDeletionForContacts() {
         SRVC_Contact_PreventDeletion.instance = new STUB_AlwaysHasChildRelationships();
 
         Map<Id,Contact> contactById = new Map<Id,Contact>();
@@ -49,7 +49,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
 
         System.assertEquals(contactById.values().size(), contactsWithErrorsList.size());
 
-        for(Contact contactToCheck : contactsWithErrorsList) {
+        for (Contact contactToCheck : contactsWithErrorsList) {
             System.assert(contactById.get(contactToCheck.Id) != null);
         }
 
