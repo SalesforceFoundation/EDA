@@ -2,7 +2,7 @@ from BaseObjects import BaseEDAPage
 from EDA import eda_lex_locators
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
-
+import time
 
 @pageobject("Courses", "HEDA_Settings")
 class CoursesSettingsPage(BaseEDAPage, BasePage):
@@ -26,11 +26,10 @@ class CoursesSettingsPage(BaseEDAPage, BasePage):
             this message gets displayed when the 'Run copy' button is clicked
             in both read and edit mode
         """
+        time.sleep(0.5) #No other element to wait until this page loads so using sleep
         locator = eda_lex_locators["eda_settings_courses"]["text_message"].format(textMessage)
-        text = self.selenium.get_webelement(locator).get_attribute("class")
-        if "slds-hide" in text:
-            self.selenium.wait_until_page_contains_element(locator,
+        self.selenium.wait_until_page_contains_element(locator,
                                                            error="Run copy text is not displayed")
-        else:
-            self.selenium.wait_until_page_contains_element(locator,
-                                                        error="Run copy text message is displayed")
+        text = self.selenium.get_webelement(locator).get_attribute("className")
+        if "slds-hide" in text:
+            raise Exception(f"The text message {textMessage} is not displayed")
