@@ -2230,9 +2230,9 @@ private class ACCT_IndividualAccounts_TEST {
         Contact con = UTIL_UnitTestData_API.getContact();
         con.LastName = 'test1234';
         insert con;
-
+        con.OwnerId = tempUser.Id;
+        
         Test.startTest();
-            con.OwnerId = tempUser.Id;
             update con;
         Test.stopTest();
 
