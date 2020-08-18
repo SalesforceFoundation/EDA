@@ -188,6 +188,19 @@ global without sharing class STG_InstallScript implements InstallHandler {
             lookups.add(new Relationship_Lookup__c(Name = 'Parent\'s Sibling', Male__c = 'Nephew', Female__c = 'Niece', Neutral__c = 'Sibling\'s Child', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Nephew', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Niece', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Niece', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Guardian', Male__c = 'Dependent', Female__c = 'Dependent', Neutral__c = 'Dependent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Dependent', Male__c = 'Guardian', Female__c = 'Guardian', Neutral__c = 'Guardian', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Stepfather', Male__c = 'Stepson', Female__c = 'Stepdaughter', Neutral__c = 'Stepchild', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Stepmother', Male__c = 'Stepson', Female__c = 'Stepdaughter', Neutral__c = 'Stepchild', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Stepparent', Male__c = 'Stepson', Female__c = 'Stepdaughter', Neutral__c = 'Stepchild', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Stepdaughter', Male__c = 'Stepfather', Female__c = 'Stepmother', Neutral__c = 'Stepparent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Stepson', Male__c = 'Stepfather', Female__c = 'Stepmother', Neutral__c = 'Stepparent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Stepchild', Male__c = 'Stepfather', Female__c = 'Stepmother', Neutral__c = 'Stepparent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Foster Parent', Male__c = 'Foster Son', Female__c = 'Foster Daughter', Neutral__c = 'Foster Child', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Foster Daughter', Male__c = 'Foster Parent', Female__c = 'Foster Parent', Neutral__c = 'Foster Parent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Foster Son', Male__c = 'Foster Parent', Female__c = 'Foster Parent', Neutral__c = 'Foster Parent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Foster Child', Male__c = 'Foster Parent', Female__c = 'Foster Parent', Neutral__c = 'Foster Parent', Active__c = true));
             insert lookups;
         }
     }
