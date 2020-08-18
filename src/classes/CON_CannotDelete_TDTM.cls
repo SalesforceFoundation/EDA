@@ -66,7 +66,7 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
             handleBeforeDelete(oldList);
         }
 
-        return new DmlWrapper();
+      return new DmlWrapper();
     }
 
     @TestVisible
@@ -90,5 +90,5 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
     private Boolean isContactDeletionPreventionEnabled() {
         return UTIL_CustomSettingsFacade.getSettings().Prevent_Contact_Deletion__c;
     }
-
+    
 }
