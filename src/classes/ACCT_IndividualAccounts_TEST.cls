@@ -1325,10 +1325,6 @@ private class ACCT_IndividualAccounts_TEST {
         }
 
         System.assertEquals('Jenny Johnson Household', lastNameByAccountName.get('Johnson')); 
-        System.assertEquals('Jenny Johnson Household', lastNameByAccountName.get('Johnson')); 
-        System.assertEquals('Jenny Johnson Household', lastNameByAccountName.get('Johnson')); 
-        System.assertEquals('Samantha Smith Household', lastNameByAccountName.get('Smith')); 
-        System.assertEquals('Samantha Smith Household', lastNameByAccountName.get('Smith')); 
         System.assertEquals('Samantha Smith Household', lastNameByAccountName.get('Smith')); 
     }
 
