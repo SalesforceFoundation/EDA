@@ -314,6 +314,66 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                     <default>false</default>
                     <label>Employee</label>
                 </value>
+                <value>
+                    <fullName>Guardian</fullName>
+                    <default>false</default>
+                    <label>Guardian</label>
+                </value>
+                <value>
+                    <fullName>Dependent</fullName>
+                    <default>false</default>
+                    <label>Dependent</label>
+                </value>
+                <value>
+                    <fullName>Stepfather</fullName>
+                    <default>false</default>
+                    <label>Stepfather</label>
+                </value>
+                <value>
+                    <fullName>Stepmother</fullName>
+                    <default>false</default>
+                    <label>Stepmother</label>
+                </value>
+                <value>
+                    <fullName>Stepparent</fullName>
+                    <default>false</default>
+                    <label>Stepparent</label>
+                </value>
+                <value>
+                    <fullName>Stepdaughter</fullName>
+                    <default>false</default>
+                    <label>Stepdaughter</label>
+                </value>
+                <value>
+                    <fullName>Stepson</fullName>
+                    <default>false</default>
+                    <label>Stepson</label>
+                </value>
+                <value>
+                    <fullName>Stepchild</fullName>
+                    <default>false</default>
+                    <label>Stepchild</label>
+                </value>
+                <value>
+                    <fullName>Foster Parent</fullName>
+                    <default>false</default>
+                    <label>Foster Parent</label>
+                </value>
+                <value>
+                    <fullName>Foster Daughter</fullName>
+                    <default>false</default>
+                    <label>Foster Daughter</label>
+                </value>
+                <value>
+                    <fullName>Foster Son</fullName>
+                    <default>false</default>
+                    <label>Foster Son</label>
+                </value>
+                <value>
+                    <fullName>Foster Child</fullName>
+                    <default>false</default>
+                    <label>Foster Child</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
