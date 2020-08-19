@@ -3470,6 +3470,10 @@
         <label>Gender</label>
         <name>Gender__c</name>
         <picklistValues>
+            <masterLabel>Decline to State</masterLabel>
+            <translation><!-- Decline to State --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Female</masterLabel>
             <translation>Female</translation>
         </picklistValues>
