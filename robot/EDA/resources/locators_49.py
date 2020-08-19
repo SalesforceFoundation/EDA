@@ -116,6 +116,11 @@ eda_lex_locators = {
         "backfill_button_status": "//span[text()='{}']/parent::button",
         "backfill_checkbox_status": "//input[contains(@class, 'backfill')]/following-sibling::span[contains(@class, 'checkbox')]",
     },
+    "eda_settings_program_plans": {
+        "checkbox_read": "//span[text()='{}']/../following-sibling::div/descendant::img",
+        "checkbox_edit": "(//span[text()='{}']/../following-sibling::div/descendant::span)[1]",
+        "updated_checkbox_edit": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[contains(@class, 'checkbox')]",
+    },
     "eda_settings_system": {
         "default_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::img",
         "default_dropdown_value": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[text()='{}']",
