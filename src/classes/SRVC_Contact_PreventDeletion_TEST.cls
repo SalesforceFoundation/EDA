@@ -55,8 +55,9 @@ private class SRVC_Contact_PreventDeletion_TEST {
 
         return true;
     }
+
     private class STUB_AlwaysHasChildRelationships extends SRVC_Contact_PreventDeletion {
-        
+
         @TestVisible
         protected override Boolean contactHasChildRecords(Contact con) {
             return true;

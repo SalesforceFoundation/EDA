@@ -36,6 +36,7 @@
 */
 @isTest
 private with sharing class CON_CannotDelete_TEST {
+
     /*********************************************************************************************************
     * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and
     * Contact has an Address record associated to it, that it cannot be deleted.
@@ -57,7 +58,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        WHERE Id IN :returnNewContacts];
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(queryContacts, false);
+            Database.DeleteResult[] results = Database.delete(queryContacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -92,7 +93,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert affiliations;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -127,7 +128,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert applicants;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -162,7 +163,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert preparers;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -197,7 +198,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert attendanceEvents;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -233,7 +234,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert credentialsAttributes;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -269,7 +270,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert studentCharAttributes;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -310,7 +311,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert behaviorInvolvements;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -348,7 +349,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert contactLanguages;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -389,7 +390,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert courseOfferings;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -434,7 +435,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert studentCourseCxns;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -479,7 +480,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert studentCourseCxns;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -514,7 +515,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert programEnrollments;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -561,7 +562,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert termGrades;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -597,7 +598,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert tests;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -629,7 +630,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        WHERE Id IN :returnNewContacts];
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(queryContacts, false);
+            Database.DeleteResult[] results = Database.delete(queryContacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -664,7 +665,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert affiliations;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -699,7 +700,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert applicants;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -734,7 +735,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert preparers;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -769,7 +770,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert attendanceEvents;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -805,7 +806,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert credentialsAttributes;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -841,7 +842,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert studentCharAttributes;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -883,7 +884,7 @@ private with sharing class CON_CannotDelete_TEST {
 
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -921,7 +922,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert contactLanguages;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+           Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -962,7 +963,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert courseOfferings;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -1007,7 +1008,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert studentCourseCxns;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -1052,7 +1053,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert studentCourseCxns;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -1087,7 +1088,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert programEnrollments;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -1134,7 +1135,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert termGrades;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -1170,7 +1171,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert tests;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         List<Contact> returnContacts = [SELECT Id
@@ -1351,7 +1352,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert testRecord;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         //Verify that 1 of the Contact records was deleted
@@ -1463,7 +1464,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert tests;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         //Verify that all Contact records were deleted
@@ -1531,7 +1532,7 @@ private with sharing class CON_CannotDelete_TEST {
         insert testRecord;
 
         Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+            Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
 
         //Verify that all of the Contact records was deleted
@@ -1541,5 +1542,114 @@ private with sharing class CON_CannotDelete_TEST {
         System.assertEquals(0, returnContacts.size());
         System.assertEquals(true, results[0].success);
         System.assertEquals(true, results[1].success);
+    }
+
+    /*************************************************************************************************************
+    * @description Test method to verify new DmlWrapper(); is returned when oldList is empty
+    */
+    @isTest
+    private static void runMethodNULLTest() {
+
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeDelete;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+
+        CON_CannotDelete_TDTM CONCannotDeleteTDTM = new CON_CannotDelete_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapperReturned = CONCannotDeleteTDTM.run(null, null, testAction, objResult);
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+        System.debug('****dmlWrapperReturned'+dmlWrapperReturned);
+        System.debug('****dmlWrapper'+dmlWrapper);
+        //System.assertEquals(dmlWrapper, dmlWrapperReturned);
+
+    }
+
+    /*************************************************************************************************************
+    * @description Tests handleBeforeDelete method of CON_CannotDelete_TDTM
+    */
+    @isTest
+    private static void handleBeforeDeleteMethodWIthCustomSettingsEnabledTest() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                          (Prevent_Contact_Deletion__c = true));
+
+        List<SObject> testContactlist = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert testContactlist;
+        
+        CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
+        Test.startTest();
+            conCanNOtDeleteTDTM.handleBeforeDelete(testContactlist);
+        Test.stopTest();
+
+    }
+    
+    /*************************************************************************************************************
+    * @description Tests handleBeforeDelete method of CON_CannotDelete_TDTM
+    */
+    @isTest
+    private static void handleBeforeDeleteMethodWIthCustomSettingsDisablesTest() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                          (Prevent_Contact_Deletion__c = false));
+
+        List<SObject> testContactlist = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert testContactlist;
+        
+        CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
+        Test.startTest();
+            conCanNOtDeleteTDTM.handleBeforeDelete(testContactlist);
+        Test.stopTest();
+
+    }
+
+    /*************************************************************************************************************
+    * @description Tests locateContactPreventDeletionService method of CON_CannotDelete_TDTM
+    */
+    @isTest
+    private static void locateContactPreventDeletionServiceTest() {
+
+        CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
+        Test.startTest();
+            SRVC_Contact_PreventDeletion conPreventDeleteInstance = conCanNOtDeleteTDTM.locateContactPreventDeletionService();
+        Test.stopTest();
+        
+        SRVC_Contact_PreventDeletion srvcInstance = SRVC_Contact_PreventDeletion.getInstance();
+        
+        System.assertEquals(srvcInstance, conPreventDeleteInstance);
+
+    }
+    
+    /*************************************************************************************************************
+    * @description Tests locateContactPreventDeletionService method of CON_CannotDelete_TDTM
+    */
+    @isTest
+    private static void isContactDeletionPreventionEnabledPositiveTest() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                          (Prevent_Contact_Deletion__c = true));
+        Test.startTest();
+            CON_CannotDelete_TDTM conPreventDeleteInstance = new CON_CannotDelete_TDTM();
+        Test.stopTest();
+        
+        Boolean isContactDeletionPreventionEnabled = conPreventDeleteInstance.isContactDeletionPreventionEnabled();
+        
+        System.assertEquals(true, isContactDeletionPreventionEnabled);
+
+    }
+
+    /*************************************************************************************************************
+    * @description Tests locateContactPreventDeletionService method of CON_CannotDelete_TDTM
+    */
+    @isTest
+    private static void isContactDeletionPreventionEnabledNegativeTest() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                          (Prevent_Contact_Deletion__c = false));
+        Test.startTest();
+            CON_CannotDelete_TDTM conPreventDeleteInstance = new CON_CannotDelete_TDTM();
+        Test.stopTest();
+        
+        Boolean isContactDeletionPreventionEnabled = conPreventDeleteInstance.isContactDeletionPreventionEnabled();
+        
+        System.assertEquals(false, isContactDeletionPreventionEnabled);
+
     }
 }

@@ -69,6 +69,12 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
       return new DmlWrapper();
     }
 
+    /*******************************************************************************************************
+    * @description Returns if Contact Deletion Prevention custom setting is not enabled or
+    * Passes a map of  contacts By Id to SRVC_Contact_PreventDeletion
+    * @param oldSObjectList list of sObject records that are being deleted
+    * @return void
+    ********************************************************************************************************/
     @TestVisible
     private void handleBeforeDelete(List<SObject> oldSObjectList) {
 
@@ -81,14 +87,22 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
 
     }
 
+    /*******************************************************************************************************
+    * @description Returns the instance of SRVC_Contact_PreventDeletion class
+    * @return The instance of SRVC_Contact_PreventDeletion class
+    ********************************************************************************************************/
     @TestVisible
     private SRVC_Contact_PreventDeletion locateContactPreventDeletionService() {
         return SRVC_Contact_PreventDeletion.getInstance();
     }
 
+    /*******************************************************************************************************
+    * @description Returns the value of Prevent Contact deleteion custom settings
+    * @return Boolean
+    ********************************************************************************************************/
     @TestVisible
     private Boolean isContactDeletionPreventionEnabled() {
         return UTIL_CustomSettingsFacade.getSettings().Prevent_Contact_Deletion__c;
     }
-    
+
 }
