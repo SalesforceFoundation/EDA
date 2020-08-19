@@ -51,9 +51,9 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
      * @param  oldContactsById oldContactsById description
      * @return                 return description
      */
-    public ContactLanguageInsertUpdate getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
+    public ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
         
-        ContactLanguageInsertUpdate contactLanguageInsUp = new ContactLanguageInsertUpdate();
+        ContactLanguageCategorization contactLanguageInsUp = new ContactLanguageCategorization();
 
         Set<Id> contactIdsToUpdateConLangsToNonPrimarySet = new Set<Id>();
         Map<Id, Contact_Language__c> contactLanguageToInsertByContactId = new Map<Id, Contact_Language__c>();
@@ -131,14 +131,14 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
      * separates the Contact Language into a list for update; marking its Primary Language status and removing it from the insertion list.
      * @param contactLanguagesToInsertByContactId Mapping of Contact Languages to be inserted, by Contact Id
      * @param languageIdToCheckForUpdateByContactId Mapping of Language currently marked as primary by Contact Id
-     * @return A ContactLanguageInsertUpdate value object containing one list containing Contact Language records to be inserted and 
+     * @return A ContactLanguageCategorization value object containing one list containing Contact Language records to be inserted and 
      *         another containing Contact Language records to be updated                                         
      */
     @TestVisible
-    private ContactLanguageInsertUpdate getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
+    private ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
                                                                                     Map<Id, Id> languageIdToCheckForUpdateByContactId){
 
-        ContactLanguageInsertUpdate contactLangInsUp = new ContactLanguageInsertUpdate();
+        ContactLanguageCategorization contactLangInsUp = new ContactLanguageCategorization();
         List<Contact_Language__c> contactLanguagesToUpdateToPrimaryList = new List<Contact_Language__c>();
 
         for (Contact_Language__c conLang : contactLanguagesToInsertByContactId.values()){
@@ -151,8 +151,8 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
             }
         }
 
-        contactLangInsUp.contactLanguagesToInsertList = contactLanguagesToInsertByContactId.values();
-        contactLangInsUp.contactLanguagesToUpdateList = contactLanguagesToUpdateToPrimaryList;
+        contactLangInsUp.setConLanguagesToInsert(contactLanguagesToInsertByContactId.values());
+        contactLangInsUp.setConLanguagesToUpdate(contactLanguagesToUpdateToPrimaryList);
 
         return contactLangInsUp;
     }
@@ -160,8 +160,31 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
     /** 
     * @description
     */
-    private class ContactLanguageInsertUpdate {
-        private List<Contact_Language__c> contactLanguagesToInsertList {get; set;}
-        private List<Contact_Language__c> contactLanguagesToUpdateList {get; set;}
+    public class ContactLanguageCategorization {
+        private List<Contact_Language__c> contactLanguagesToInsertList;
+        private List<Contact_Language__c> contactLanguagesToUpdateList;
+
+        public ContactLanguageCategorization(){
+            this.contactLanguagesToInsertList = new List<Contact_Language__c>();
+            this.contactLanguagesToUpdateList = new List<Contact_Language__c>();
+        }
+
+        public List<Contact_Language__c> getConLanguagesToInsert(){
+            return this.contactLanguagesToInsertList;
+        }
+
+        public List<Contact_Language__c> getConLanguagesToUpdate(){
+            return this.contactLanguagesToUpdateList;
+        }
+
+        public void setConLanguagesToInsert(List<Contact_Language__c> conLanguagesList){
+            this.contactLanguagesToInsertList = conLanguagesList;
+        }
+
+        public void setConLanguagesToUpdate(List<Contact_Language__c> conLanguagesList){
+            this.contactLanguagesToUpdateList = conLanguagesList;
+        }
     }
 }
+
+
