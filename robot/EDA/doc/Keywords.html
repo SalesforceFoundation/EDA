@@ -185,6 +185,18 @@ pre {
             <tbody>
               <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
               
+              <tr class="kwrow" id="EDA.py.Click Action Button On Eda Settings Page">
+                <td class="kwname">
+                  Click Action Button On Eda Settings Page
+                </td>
+                <td class="kwargs">
+                  
+                  <i>action</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Clicks on the action (eg: Save, Cancel) button on the EDA Settings page</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Click Dropdown">
                 <td class="kwname">
                   Click Dropdown
@@ -225,6 +237,8 @@ pre {
                 </td>
                 <td class="kwargs">
                   
+                  <i>path</i>, 
+                  
                   <i>*args</i>, 
                   
                   <i>**kwargs</i>
@@ -259,6 +273,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Pass title of the button to click the buttons on the records edit page. Most common buttons are: save and cancel.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click Run Action Button">
+                <td class="kwname">
+                  Click Run Action Button
+                </td>
+                <td class="kwargs">
+                  
+                  <i>text</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method clicks the any action button (blue in color) present in EDA settings sub tabs. Pass the name of the button from robot file.</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Close All Tabs">
@@ -489,9 +515,7 @@ pre {
                 </td>
                 <td class="kwargs">
                   
-                  <i>*args</i>, 
-                  
-                  <i>**kwargs</i>
+                  <i>title</i>
                   
                 </td>
                 <td class="kwdoc"><p>Switch between different tabs on a record page like Related, Details, News, Activity and Chatter Pass title of the tab</p></td>
@@ -524,6 +548,18 @@ pre {
                 <td class="kwdoc"><p>Returns to main content, and out of iframe</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Update Dropdown Value">
+                <td class="kwname">
+                  Update Dropdown Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the drop down field value passed in keyword arguments Pass the expected value to be set in the drop down field from the tests</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Verify App Exists">
                 <td class="kwname">
                   Verify App Exists
@@ -536,6 +572,18 @@ pre {
                 <td class="kwdoc"><p>Verifies that the given app is present in the app launcher</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Verify Dropdown Field Status">
+                <td class="kwname">
+                  Verify Dropdown Field Status
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify the drop down field is disabled/enabled for the user we have to pass the name of the field and the expected status of the field as either enabled or disabled</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Verify Record">
                 <td class="kwname">
                   Verify Record
@@ -546,6 +594,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Checks for the record in the object page and returns true if found else returns false</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Selected Dropdown Value">
+                <td class="kwname">
+                  Verify Selected Dropdown Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will confirm if the value to be set in dropdown field is retained after save action Pass the expected value to be verified from the tests using keyword arguments</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Verify Toast Message">
@@ -576,6 +636,8 @@ pre {
                   Wait For Locator
                 </td>
                 <td class="kwargs">
+                  
+                  <i>path</i>, 
                   
                   <i>*args</i>, 
                   
@@ -628,7 +690,7 @@ pre {
                 <td class="kwargs">
                   
                 </td>
-                <td class="kwdoc"></td>
+                <td class="kwdoc"><p>Creating a contact through API</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.robot.API create plan requirement">
@@ -694,7 +756,7 @@ pre {
                 <td class="kwargs">
                   
                 </td>
-                <td class="kwdoc"></td>
+                <td class="kwdoc"><p>Creating a contact with email address through API</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.robot.Create Organization Foundation">
@@ -704,21 +766,7 @@ pre {
                 <td class="kwargs">
                   
                 </td>
-                <td class="kwdoc"></td>
-              </tr>
-              
-              <tr class="kwrow" id="EDA.robot.Scroll Page To Location">
-                <td class="kwname">
-                  Scroll Page To Location
-                </td>
-                <td class="kwargs">
-                  
-                  <i>x_location</i>, 
-                  
-                  <i>y_location</i>
-                  
-                </td>
-                <td class="kwdoc"></td>
+                <td class="kwdoc"><p>Creating an organization account through API</p></td>
               </tr>
               
             </tbody>
@@ -1120,7 +1168,7 @@ pre {
 <td>any locator</td>
 </tr>
 <tr>
-<td>self.place_in_view(contacts_locators["header"])</td>
+<td>self.place_in_view(eda_lex_locators["contacts_locators"]["header"])</td>
 <td></td>
 </tr>
 </table></td>
@@ -1243,6 +1291,112 @@ pre {
 <p>The current page object is also returned as an object</p></td>
               </tr>
               
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Select Course Connections Subtab">
+                <td class="kwname">
+                  Select Course Connections Subtab
+                </td>
+                <td class="kwargs">
+                  
+                  <i>tabName</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will select the sub tabs available under course connections The name of the sub tab to be selected is passed as an argument from the test</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Set Enable Course Connections">
+                <td class="kwname">
+                  Set Enable Course Connections
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Set the checkbox for 'Enable Course Connections' field</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Update Enable Cc To Default">
+                <td class="kwname">
+                  Update Enable Cc To Default
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Updating the `Enable Course Connections` checkbox to default value (false) Check for the value and if it is not false, go into edit mode and update</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Verify Backfill Checkbox Value">
+                <td class="kwname">
+                  Verify Backfill Checkbox Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>expectedCheckboxValue</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will verify the 'I understand and am ready to run Backfill.' checkbox is set to the value passed in the arg</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Verify Backfill Warning">
+                <td class="kwname">
+                  Verify Backfill Warning
+                </td>
+                <td class="kwargs">
+                  
+                  <i>is_displayed</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify the warning message is displayed this message gets displayed when the 'Enable Course Connections' field is unchecked and if the user selects backfill subtab</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Verify Button Status">
+                <td class="kwname">
+                  Verify Button Status
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify the button is disabled/enabled for the user we have to pass the name of the button and the expected status of the button as either enabled or disabled</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Verify Dropdown Values">
+                <td class="kwname">
+                  Verify Dropdown Values
+                </td>
+                <td class="kwargs">
+                  
+                  <i>field</i>, 
+                  
+                  <i>*args</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify the field has the drop down values given by *args we have to pass all the values available in the UI since the count is also verified</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Verify Enable Course Connections">
+                <td class="kwname">
+                  Verify Enable Course Connections
+                </td>
+                <td class="kwargs">
+                  
+                  <i>expectedCheckboxValue</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will verify the 'Enable Course Connections' checkbox is set to the value passed in the arg</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CourseConnectionsSettingsPageObject.py.Verify Enable Course Connections Warning">
+                <td class="kwname">
+                  Verify Enable Course Connections Warning
+                </td>
+                <td class="kwargs">
+                  
+                  <i>is_displayed</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify the warning message is displayed this message gets displayed when the 'Enable Course Connections' field is unchecked</p></td>
+              </tr>
+              
             </tbody>
           </table>
         </div> 
@@ -1292,6 +1446,18 @@ pre {
                 </td>
                 <td class="kwdoc"><p>Logs the name of the current page object</p>
 <p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="CoursesSettingsPageObject.py.Verify Text Appears">
+                <td class="kwname">
+                  Verify Text Appears
+                </td>
+                <td class="kwargs">
+                  
+                  <i>is_displayed</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify the text message is displayed this message gets displayed when the 'Run copy' button is clicked in both read and edit mode</p></td>
               </tr>
               
             </tbody>
@@ -1540,6 +1706,30 @@ pre {
 <p>The current page object is also returned as an object</p></td>
               </tr>
               
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Verify Default Checkbox Value">
+                <td class="kwname">
+                  Verify Default Checkbox Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method validates the default checkbox value for the field passed in kwargs Pass the field name and expected value to be verified from the tests using keyword arguments</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Verify Default Dropdown Value">
+                <td class="kwname">
+                  Verify Default Dropdown Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method validates the default dropdown value for the field passed in kwargs Pass the field name and expected value to be verified from the tests using keyword arguments</p></td>
+              </tr>
+              
             </tbody>
           </table>
         </div> 
@@ -1548,7 +1738,7 @@ pre {
       
     </div>
     <div class="footer">
-      Generated on Friday June 12, 06:04 AM - cumulusci v3.13.2
+      Generated on Monday August 17, 09:55 AM - cumulusci v3.15.0
     </div>
   </body>
 </html>
