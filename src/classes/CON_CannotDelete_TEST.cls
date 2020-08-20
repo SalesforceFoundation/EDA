@@ -1555,10 +1555,45 @@ private with sharing class CON_CannotDelete_TEST {
 
         CON_CannotDelete_TDTM CONCannotDeleteTDTM = new CON_CannotDelete_TDTM();
         TDTM_Runnable.DmlWrapper dmlWrapperReturned = CONCannotDeleteTDTM.run(null, null, testAction, objResult);
-        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
-        System.debug('****dmlWrapperReturned'+dmlWrapperReturned);
-        System.debug('****dmlWrapper'+dmlWrapper);
-        //System.assertEquals(dmlWrapper, dmlWrapperReturned);
+
+        System.assertEquals(0, dmlWrapperReturned.objectsToDelete.size());
+
+    }
+
+    /*************************************************************************************************************
+    * @description Test method to verify new DmlWrapper(); is returned when oldList is empty
+    */
+    @isTest
+    private static void runMethodPositiveTest() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                          (Prevent_Contact_Deletion__c = true));
+        
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeDelete;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
+
+        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        insert term;
+
+        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        insert course;
+
+        Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
+        insert affilliation;
+        
+        List<Contact> contactList = [SELECT Id FROM Contact];
+        List<SObject> oldList = new List<SObject>((List<SObject>)contactList);
+
+        CON_CannotDelete_TDTM CONCannotDeleteTDTM = new CON_CannotDelete_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapperReturned = CONCannotDeleteTDTM.run(null, oldList, testAction, objResult);
+        
+        List<contact> contactListAfterDelete = [SELECT Id FROM Contact];
 
     }
 
@@ -1566,18 +1601,55 @@ private with sharing class CON_CannotDelete_TEST {
     * @description Tests handleBeforeDelete method of CON_CannotDelete_TDTM
     */
     @isTest
-    private static void handleBeforeDeleteMethodWIthCustomSettingsEnabledTest() {
+    private static void handleBeforeDeleteMethodWIthCustomSettingsEnabledPoitiveTest() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                          (Prevent_Contact_Deletion__c = true));
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+        
+        
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
+
+        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        insert term;
+
+        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        insert course;
+
+        Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
+        insert affilliation;
+        
+        List<SObject> contactsToBeDeletedList = [SELECT Id FROM Contact];
+        CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
+        Test.startTest();
+             conCanNOtDeleteTDTM.handleBeforeDelete(contactsToBeDeletedList);
+        Test.stopTest();
+        
+        System.assertEquals(1,conCanNotDeleteTDTM.deletionPreventedContactList.size());
+
+    }
+    
+    /*************************************************************************************************************
+    * @description negative test for handleBeforeDelete method of CON_CannotDelete_TDTM
+    */
+    @isTest
+    private static void handleBeforeDeleteMethodWIthCustomSettingsEnabledNegativeTest() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                           (Prevent_Contact_Deletion__c = true));
 
-        List<SObject> testContactlist = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
-        insert testContactlist;
-        
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
+
+        List<SObject> contactsToBeDeletedList = [SELECT Id FROM Contact];
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
-            conCanNOtDeleteTDTM.handleBeforeDelete(testContactlist);
+             conCanNOtDeleteTDTM.handleBeforeDelete(contactsToBeDeletedList);
         Test.stopTest();
+        
+        System.assertEquals(0, conCanNotDeleteTDTM.deletionPreventedContactList.size());
 
     }
     

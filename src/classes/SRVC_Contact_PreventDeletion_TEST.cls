@@ -39,7 +39,18 @@ private class SRVC_Contact_PreventDeletion_TEST {
 
     // Tests getInstance()
     @isTest
-    static boolean testPreventDeletionForContacts() {
+    static void testGetInstance() {
+        SRVC_Contact_PreventDeletion srvcConPreventDeleteInstance = SRVC_Contact_PreventDeletion.getInstance();
+        System.assertEquals(SRVC_Contact_PreventDeletion.instance, srvcConPreventDeleteInstance);
+        System.assertNotEquals(NULL, srvcConPreventDeleteInstance);
+
+        srvcConPreventDeleteInstance = SRVC_Contact_PreventDeletion.getInstance();
+        System.assertEquals(SRVC_Contact_PreventDeletion.instance, srvcConPreventDeleteInstance);
+    }
+
+    // Tests Prevent Deletion for Contacts with STUB_AlwaysHasChildRelationships
+    @isTest
+    static void testPreventDeletionForContactsWithChildren() {
         SRVC_Contact_PreventDeletion.instance = new STUB_AlwaysHasChildRelationships();
 
         Map<Id,Contact> contactById = new Map<Id,Contact>();
@@ -52,15 +63,46 @@ private class SRVC_Contact_PreventDeletion_TEST {
         for (Contact contactToCheck : contactsWithErrorsList) {
             System.assert(contactById.get(contactToCheck.Id) != null);
         }
-
-        return true;
     }
 
+    // Tests Prevent Deletion for Contacts with STUB_DoesNotHaveChildRelationships
+    @isTest
+    static void testPreventDeletionForContactsWithNoChildren() {
+        SRVC_Contact_PreventDeletion.instance = new STUB_DoesNotHaveChildRelationships();
+
+        Map<Id,Contact> contactById = new Map<Id,Contact>();
+        List<Contact> contactsWithErrorsList = SRVC_Contact_PreventDeletion.getInstance().PreventDeletionForContacts(
+            contactById
+        );
+
+        //System.assertNotEquals(contactById.values().size(), contactsWithErrorsList.size());
+        System.assertEquals(0, contactsWithErrorsList.size());
+        for (Contact contactToCheck : contactsWithErrorsList) {
+            System.assert(contactById.get(contactToCheck.Id) == null);
+        }
+    }
+    
+    @isTest
+    static void poisitveIntegrationTestForpreventDeletionForContacts() {
+        
+        
+    }
+
+    // STUB class which extends SRVC_Contact_PreventDeletion
     private class STUB_AlwaysHasChildRelationships extends SRVC_Contact_PreventDeletion {
 
         @TestVisible
         protected override Boolean contactHasChildRecords(Contact con) {
             return true;
+        }
+    }
+    
+    // STUB class which extends SRVC_Contact_PreventDeletion
+    private class STUB_DoesNotHaveChildRelationships extends SRVC_Contact_PreventDeletion {
+
+        @TestVisible
+        protected override Boolean contactHasChildRecords(Contact con) {
+            return false;
         }
     }
 }

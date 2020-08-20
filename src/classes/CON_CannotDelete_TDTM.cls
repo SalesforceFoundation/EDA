@@ -45,6 +45,11 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
     private final Boolean isContactDeletionPreventionEnabled = isContactDeletionPreventionEnabled();
 
     /*******************************************************************************************************
+    * @description List to store the records prevented from deletion
+    */
+    @TestVisible private List<contact> deletionPreventedContactList;
+
+    /*******************************************************************************************************
     * @description Stops a Contact from being deleted if it has any Address, Affiliation,
     * Application, Attendance Event, Attribute, Behavior Involement, Contact Language,
     * Course Offering, Course Enrollment, Program Enrollment,
@@ -83,7 +88,7 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
         }
 
         Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>)oldSObjectList);
-        List<contact> deletionPreventedContactList = this.locateContactPreventDeletionService().preventDeletionForContacts(oldContactById);
+        deletionPreventedContactList = this.locateContactPreventDeletionService().preventDeletionForContacts(oldContactById);
 
     }
 
