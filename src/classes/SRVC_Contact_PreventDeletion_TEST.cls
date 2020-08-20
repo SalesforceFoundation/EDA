@@ -75,7 +75,6 @@ private class SRVC_Contact_PreventDeletion_TEST {
             contactById
         );
 
-        //System.assertNotEquals(contactById.values().size(), contactsWithErrorsList.size());
         System.assertEquals(0, contactsWithErrorsList.size());
         for (Contact contactToCheck : contactsWithErrorsList) {
             System.assert(contactById.get(contactToCheck.Id) == null);
@@ -84,8 +83,38 @@ private class SRVC_Contact_PreventDeletion_TEST {
     
     @isTest
     static void poisitveIntegrationTestForpreventDeletionForContacts() {
-        
-        
+
+
+    }
+
+    @isTest
+    static void negativeIntegrationTestForpreventDeletionForContacts() {
+
+
+    }
+
+    @isTest
+    static void positiveIntegrationTestForGetContactsAndChildRelationships() {
+
+
+    }
+
+    @isTest
+    static void negativeIntegrationTestForGetContactsAndChildRelationships() {
+
+
+    }
+
+    @isTest
+    static void positiveIntegrationTestForContactHasChildRecords() {
+
+
+    }
+
+    @isTest
+    static void negativeIntegrationTestForContactHasChildRecords() {
+
+
     }
 
     // STUB class which extends SRVC_Contact_PreventDeletion
