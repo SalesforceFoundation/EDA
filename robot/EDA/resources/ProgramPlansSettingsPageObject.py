@@ -48,7 +48,7 @@ class ProgramPlansSettingsPage(BaseEDAPage, BasePage):
         for i in range(3):
             i += 1
             self.salesforce._jsclick(locator_edit)
-            time.sleep(1)
+            time.sleep(1) # This is needed as the DOM elements needs to be updated in edit mode
             actual_value = self.selenium.get_element_attribute(locator_enabled, "data-qa-checkbox-state")
             if actual_value == "true":
                 return
