@@ -181,6 +181,7 @@
         <members>UTIL_SortContact_TEST</members>
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
+        <members>VALOBJ_ContactLanguageCategorization</members>
         <name>ApexClass</name>
     </types>
     <types>

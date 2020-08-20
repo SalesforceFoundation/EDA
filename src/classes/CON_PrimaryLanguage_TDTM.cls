@@ -67,33 +67,68 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
                 this.handleAfterUpdate(newList, oldList);
             } 
 
-        //After Update
-        // else if (triggerAction == TDTM_Runnable.Action.AfterUpdate && oldList != null && oldList.size() > 0) {
-        //     for (Integer i = 0; i < newList.size(); i++) {
-        //         Contact newContact = (Contact)newList[i];
-        //         Contact oldContact = (Contact)oldList[i];
-
-        //         if (newContact.Primary_Language__c == oldContact.Primary_Language__c) {
-        //             // The Primary Language field isn't changing, so let's continue.
-        //             continue;
-        //         }
-
-        //         primaryLanguageByContact.put(newContact.Id, newContact.Primary_Language__c);
-        //     }
-        // }
-
-        // syncPrimaryContactLanguageRecords();
-
-        // dmlWrapper.objectsToUpdate.addAll((List<SObject>)contactLanguagesToUpdate);
-        // dmlWrapper.objectsToInsert.addAll((List<SObject>)contactLanguagesToInsert);
-
-        // TDTM_TriggerHandler.processDML(dmlWrapper, true);
-        // dmlWrapper = null;
-
-        // // We're done with our updates, unset the recursion flag.
-        // TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
-
         return dmlWrapper;
+    }
+
+    /**
+     * handleAfterInsert description
+     * @param  newObjectsList newObjectsList description
+     */ 
+    private void handleAfterInsert(List<SObject> newObjectsList){
+        if (this.isInsertRecursion()) {
+            return;
+        }
+
+        this.setInsertRecursion();
+        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
+
+        List<Contact_Language__c> contactLanguagesToCreateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreate(newContactsById.values());
+
+        if (contactLanguagesToCreateList.isEmpty()){
+            this.unsetInsertRecursion();
+            return;
+        }
+
+        DmlWrapper dmlWrapper = new DmlWrapper();
+        dmlWrapper.objectsToInsert.addAll((List<SObject>)contactLanguagesToCreateList);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+
+        this.unsetInsertRecursion();
+    }
+
+    /**
+     * handleAfterUpdate description
+     * @param  newObjectsList newObjectsList description
+     * @param  oldObjectsList oldObjectsList description
+     */ 
+    private void handleAfterUpdate(List<SObject> newObjectsList, List<SObject> oldObjectsList){
+        if (this.isUpdateRecursion()){
+            return;
+        }
+
+        this.setUpdateRecursion();
+        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
+        Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldObjectsList);
+        Map<Id, Id> primaryLanguageByContactId = new Map<Id, Id>();
+        
+        VALOBJ_ContactLanguageCategorization conLangCat = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
+
+        List<Contact_Language__c> conLanguagesToInsertList = conLangCat.contactLanguagesToInsertList;
+        List<Contact_Language__c> conLanguagesToUpdateList = conLangCat.contactLanguagesToUpdateList;
+
+        DmlWrapper dmlWrapper = new DmlWrapper();
+
+        if (conLanguagesToInsertList.isEmpty()){
+            this.unsetInsertRecursion();
+            //return;
+        } else {
+            dmlWrapper.objectsToInsert.addAll((List<SObject>)conLanguagesToInsertList);
+        }
+
+        dmlWrapper.objectsToUpdate.addAll((List<SObject>)conLanguagesToUpdateList);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        
+        this.unsetUpdateRecursion();
     }
 
     @TestVisible
@@ -132,117 +167,4 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM) ||
         TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update);
     }
-
-    /** 
-     * 
-    */
-    private void handleAfterInsert(List<SObject> newObjectsList){
-        if (this.isInsertRecursion()) {
-            return;
-        }
-
-        this.setInsertRecursion();
-        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
-
-        List<Contact_Language__c> contactLanguagesToCreateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreate(newContactsById.values());
-
-        if (contactLanguagesToCreateList.isEmpty()){
-            this.unsetInsertRecursion();
-            return;
-        }
-
-        DmlWrapper dmlWrapper = new DmlWrapper();
-        dmlWrapper.objectsToInsert.addAll((List<SObject>)contactLanguagesToCreateList);
-        TDTM_TriggerHandler.processDML(dmlWrapper, true);
-
-        this.unsetInsertRecursion();
-    }
-
-    private void handleAfterUpdate(List<SObject> newObjectsList, List<SObject> oldObjectsList){
-        if (this.isUpdateRecursion()){
-            return;
-        }
-
-        this.setUpdateRecursion();
-        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
-        Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldObjectsList);
-        Map<Id, Id> primaryLanguageByContactId = new Map<Id, Id>();
-        
-        List<Contact_Language__c> conLanguagesToInsertList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getConLanguagesToInsert();
-        List<Contact_Language__c> conLanguagesToUpdateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getConLanguagesToUpdate();
-
-        DmlWrapper dmlWrapper = new DmlWrapper();
-
-        if (conLanguagesToInsertList.isEmpty()){
-            this.unsetInsertRecursion();
-            return;
-        }
-
-        // if (conLanguagesToUpdateList.isEmpty()){
-        //     this.unsetUpdateRecursion();
-        // }
-        dmlWrapper.objectsToInsert.addAll((List<SObject>)conLanguagesToInsertList);
-        dmlWrapper.objectsToUpdate.addAll((List<SObject>)conLanguagesToUpdateList);
-        TDTM_TriggerHandler.processDML(dmlWrapper, true);
-        
-        this.unsetUpdateRecursion();
-    }
-
-    // private void syncPrimaryContactLanguageRecords() {
-    //     if (primaryLanguageByContact == null || primaryLanguageByContact.size() == 0) {
-    //         return;
-    //     }
-
-    //     Set<Id> contactsWithPrimaryContactLanguages = new Set<Id>();
-
-    //     // Query for all existing Contact Language records that are for the given Contacts and Primary Languages,
-    //     // or any Contact Language records that are marked as Primary that may need to be updated.
-    //     List<Contact_Language__c> existingContactLanguages = [SELECT Id, Language__c, Contact__c, Primary_Language__c
-    //         FROM Contact_Language__c
-    //         WHERE Contact__c IN :primaryLanguageByContact.keySet()
-    //             AND (Language__c IN :primaryLanguageByContact.values() OR Primary_Language__c = true)];
-
-    //     // Iterate over all existing Contact Languages and verify that the appropriate records are set as the Primary Language.
-    //     for (Contact_Language__c existingContactLanguage : existingContactLanguages) {
-    //         Id primaryLanguageId = primaryLanguageByContact.get(existingContactLanguage.Contact__c);
-            
-    //         if (existingContactLanguage.Language__c == primaryLanguageId) {
-    //             // A Contact Language record was found matching the Primary Language on the Contact, so we won't need to create a new record.
-    //             contactsWithPrimaryContactLanguages.add(existingContactLanguage.Contact__c);
-
-    //             if(!existingContactLanguage.Primary_Language__c) {
-    //                 // This Contact Language record needs to be updated to be the Primary Language.
-    //                 contactLanguagesToUpdate.add(new Contact_Language__c(Id = existingContactLanguage.Id, Primary_Language__c = true));
-    //             }
-
-    //         } else if (existingContactLanguage.Language__c != primaryLanguageId && existingContactLanguage.Primary_Language__c) {
-    //             // This Contact Language record needs to be updated to no longer be the Primary Language.
-    //             contactLanguagesToUpdate.add(new Contact_Language__c(Id = existingContactLanguage.Id, Primary_Language__c = false));
-
-    //         }
-    //     }
-
-    //     // Create new Contact Language records for Contacts that don't have one yet.
-    //     // We don't need to create Contact Language records for Contacts that already have a Primary Contact Language record.
-    //     Set<Id> contactsToEvaluate = primaryLanguageByContact.keySet();
-    //     contactsToEvaluate.removeAll(contactsWithPrimaryContactLanguages);
-
-    //     if (contactsToEvaluate.size() == 0) {
-    //         return;
-    //     }
-
-    //     String fluencyValue = UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c;
-    //     for (Id contactId : primaryLanguageByContact.keySet()) {
-    //         Id primaryLanguageId = primaryLanguageByContact.get(contactId);
-
-    //         // This shouldn't happen, but just in case - don't create a Contact Language record for a blank Language
-    //         if (primaryLanguageId == null) {
-    //             continue;
-    //         }
-
-    //         contactLanguagesToInsert.add(new Contact_Language__c(
-    //             Language__c = primaryLanguageId, Contact__c = contactId, Fluency__c = fluencyValue, Primary_Language__c = true
-    //         ));
-    //     }
-    // }
 }
