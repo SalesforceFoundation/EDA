@@ -4478,6 +4478,11 @@
                     <default>false</default>
                     <label>Male</label>
                 </value>
+                <value>
+                    <fullName>Decline to State</fullName>
+                    <default>false</default>
+                    <label>Decline to State</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
