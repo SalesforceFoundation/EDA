@@ -186,8 +186,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
             lookups.add(new Relationship_Lookup__c(Name = 'Granddaughter', Male__c = 'Grandfather', Female__c = 'Grandmother', Neutral__c = 'Grandparent', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Grandson', Male__c = 'Grandfather', Female__c = 'Grandmother', Neutral__c = 'Grandparent', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Grandchild', Male__c = 'Grandfather', Female__c = 'Grandmother', Neutral__c = 'Grandparent', Active__c = true));
-            lookups.add(new Relationship_Lookup__c(Name = 'Employee', Male__c = 'Employer', Female__c = 'Employer', Neutral__c = 'Employer', Active__c = true));
-            lookups.add(new Relationship_Lookup__c(Name = 'Employer', Male__c = 'Employee', Female__c = 'Employee', Neutral__c = 'Employee', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Stepfather', Male__c = 'Stepson', Female__c = 'Stepdaughter', Neutral__c = 'Stepchild', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Stepmother', Male__c = 'Stepson', Female__c = 'Stepdaughter', Neutral__c = 'Stepchild', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Stepparent', Male__c = 'Stepson', Female__c = 'Stepdaughter', Neutral__c = 'Stepchild', Active__c = true));
@@ -200,6 +198,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
             lookups.add(new Relationship_Lookup__c(Name = 'Foster Child', Male__c = 'Foster Parent', Female__c = 'Foster Parent', Neutral__c = 'Foster Parent', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Guardian', Male__c = 'Dependent', Female__c = 'Dependent', Neutral__c = 'Dependent', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Dependent', Male__c = 'Guardian', Female__c = 'Guardian', Neutral__c = 'Guardian', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Employee', Male__c = 'Employer', Female__c = 'Employer', Neutral__c = 'Employer', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Employer', Male__c = 'Employee', Female__c = 'Employee', Neutral__c = 'Employee', Active__c = true));
             insert lookups;
         }
     }
