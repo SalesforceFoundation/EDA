@@ -200,24 +200,14 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Friend</fullName>
-                    <default>false</default>
-                    <label>Friend</label>
-                </value>
-                <value>
-                    <fullName>Family</fullName>
-                    <default>false</default>
-                    <label>Family</label>
-                </value>
-                <value>
-                    <fullName>Coworker</fullName>
-                    <default>false</default>
-                    <label>Coworker</label>
-                </value>
-                <value>
                     <fullName>Father</fullName>
                     <default>false</default>
                     <label>Father</label>
+                </value>
+                <value>
+                    <fullName>Stepfather</fullName>
+                    <default>false</default>
+                    <label>Stepfather</label>
                 </value>
                 <value>
                     <fullName>Mother</fullName>
@@ -225,14 +215,24 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                     <label>Mother</label>
                 </value>
                 <value>
+                    <fullName>Stepmother</fullName>
+                    <default>false</default>
+                    <label>Stepmother</label>
+                </value>
+                <value>
                     <fullName>Parent</fullName>
                     <default>false</default>
                     <label>Parent</label>
                 </value>
                 <value>
-                    <fullName>Son</fullName>
+                    <fullName>Stepparent</fullName>
                     <default>false</default>
-                    <label>Son</label>
+                    <label>Stepparent</label>
+                </value>
+                <value>
+                    <fullName>Foster Parent</fullName>
+                    <default>false</default>
+                    <label>Foster Parent</label>
                 </value>
                 <value>
                     <fullName>Daughter</fullName>
@@ -240,19 +240,44 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                     <label>Daughter</label>
                 </value>
                 <value>
+                    <fullName>Stepdaughter</fullName>
+                    <default>false</default>
+                    <label>Stepdaughter</label>
+                </value>
+                <value>
+                    <fullName>Foster Daughter</fullName>
+                    <default>false</default>
+                    <label>Foster Daughter</label>
+                </value>
+                <value>
+                    <fullName>Son</fullName>
+                    <default>false</default>
+                    <label>Son</label>
+                </value>
+                <value>
+                    <fullName>Stepson</fullName>
+                    <default>false</default>
+                    <label>Stepson</label>
+                </value>
+                <value>
+                    <fullName>Foster Son</fullName>
+                    <default>false</default>
+                    <label>Foster Son</label>
+                </value>
+                <value>
                     <fullName>Child</fullName>
                     <default>false</default>
                     <label>Child</label>
                 </value>
                 <value>
-                    <fullName>Aunt</fullName>
+                    <fullName>Stepchild</fullName>
                     <default>false</default>
-                    <label>Aunt</label>
+                    <label>Stepchild</label>
                 </value>
                 <value>
-                    <fullName>Uncle</fullName>
+                    <fullName>Foster Child</fullName>
                     <default>false</default>
-                    <label>Uncle</label>
+                    <label>Foster Child</label>
                 </value>
                 <value>
                     <fullName>Husband</fullName>
@@ -268,6 +293,16 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                     <fullName>Partner</fullName>
                     <default>false</default>
                     <label>Partner</label>
+                </value>
+                <value>
+                    <fullName>Aunt</fullName>
+                    <default>false</default>
+                    <label>Aunt</label>
+                </value>
+                <value>
+                    <fullName>Uncle</fullName>
+                    <default>false</default>
+                    <label>Uncle</label>
                 </value>
                 <value>
                     <fullName>Cousin</fullName>
@@ -305,6 +340,16 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                     <label>Grandchild</label>
                 </value>
                 <value>
+                    <fullName>Guardian</fullName>
+                    <default>false</default>
+                    <label>Guardian</label>
+                </value>
+                <value>
+                    <fullName>Dependent</fullName>
+                    <default>false</default>
+                    <label>Dependent</label>
+                </value>
+                <value>
                     <fullName>Employer</fullName>
                     <default>false</default>
                     <label>Employer</label>
@@ -313,6 +358,21 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                     <fullName>Employee</fullName>
                     <default>false</default>
                     <label>Employee</label>
+                </value>
+                <value>
+                    <fullName>Friend</fullName>
+                    <default>false</default>
+                    <label>Friend</label>
+                </value>
+                <value>
+                    <fullName>Family</fullName>
+                    <default>false</default>
+                    <label>Family</label>
+                </value>
+                <value>
+                    <fullName>Coworker</fullName>
+                    <default>false</default>
+                    <label>Coworker</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
