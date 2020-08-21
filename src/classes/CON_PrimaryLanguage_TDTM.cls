@@ -111,10 +111,10 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldObjectsList);
         Map<Id, Id> primaryLanguageByContactId = new Map<Id, Id>();
         
-        VALOBJ_ContactLanguageCategorization conLangCat = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
+        //ContactLanguageCategorization conLangCat = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
 
-        List<Contact_Language__c> conLanguagesToInsertList = conLangCat.contactLanguagesToInsertList;
-        List<Contact_Language__c> conLanguagesToUpdateList = conLangCat.contactLanguagesToUpdateList;
+        List<Contact_Language__c> conLanguagesToInsertList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToInsert();
+        List<Contact_Language__c> conLanguagesToUpdateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToUpdate();
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 

@@ -53,17 +53,7 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
      * @param  oldContactsById oldContactsById description
      * @return                 return description
      */
-    public VALOBJ_ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
-        
-        // VALOBJ_ContactLanguageCategorization contactLanguageInsUp = new VALOBJ_ContactLanguageCategorization();
-
-        // something to nothing (!null - null): update old conLang to not primary
-
-        // something to existing something: update existing conlang to primary, update old to non primary
-        // somethign to new something: create new conLang, set old to non primary
-        // nothing to existing somthing: update existing conlang to primary
-        // nothing to new something: create new conlang
-
+    public ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
         Set<Id> contactIdsToUpdateConLangsToNonPrimarySet = new Set<Id>();
         Map<Id, Contact_Language__c> contactLanguageToInsertByContactId = new Map<Id, Contact_Language__c>();
         Map<Id, Id> languageIdToCheckForUpdateByContactId = new Map<Id, Id>();
@@ -86,26 +76,23 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
                                             );
 
                 contactLanguageToInsertByContactId.put(con.Id, conLang); 
-                
-                // TODO: should only include in this list if old.primary != null 
-                if (oldContact.Primary_Language__c != null){
-                    languageIdToCheckForUpdateByContactId.put(con.Id, con.Primary_Language__c);
-                }
+                languageIdToCheckForUpdateByContactId.put(con.Id, con.Primary_Language__c);
             }
 
             if (oldContact.Primary_Language__c != null || con.Primary_Language__c == null){
-                languageIdToCheckForUpdateByContactId.put(con.Id, oldContact.Primary_Language__c);
+                languageIdToCheckForUpdateByContactId.put(con.Id, con.Primary_Language__c);
             }
         }
 
         List<Contact_Language__c> contactLanguagesToUpdateAsNonPrimaryList = this.getContactLanguagesToUpdateAsNonPrimary(contactIdsToUpdateConLangsToNonPrimarySet);
-        VALOBJ_ContactLanguageCategorization contactLanguageInsUp = this.getPrimaryContactLanguagesToInsertOrUpdate(contactLanguageToInsertByContactId.clone(),
+        ContactLanguageCategorization contactLanguageInsUp = this.getPrimaryContactLanguagesToInsertOrUpdate(contactLanguageToInsertByContactId.clone(),
                                                                                                                 languageIdToCheckForUpdateByContactId.clone());
         
         
         contactLanguageInsUp.addContactLanguagesToUpdate(contactLanguagesToUpdateAsNonPrimaryList);
         return contactLanguageInsUp;
     }
+
 
     /**
      * @description
@@ -145,34 +132,76 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
      * separates the Contact Language into a list for update; marking its Primary Language status and removing it from the insertion list.
      * @param contactLanguagesToInsertByContactId Mapping of Contact Languages to be inserted, by Contact Id
      * @param languageIdToCheckForUpdateByContactId Mapping of Language currently marked as primary by Contact Id
-     * @return A VALOBJ_ContactLanguageCategorization value object containing one list containing Contact Language records to be inserted and 
+     * @return A ContactLanguageCategorization value object containing one list containing Contact Language records to be inserted and 
      *         another containing Contact Language records to be updated                                         
      */
     @TestVisible
-    private VALOBJ_ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
+    private ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
                                                                                     Map<Id, Id> languageIdToCheckForUpdateByContactId){
 
-        // VALOBJ_ContactLanguageCategorization contactLangInsUp = new VALOBJ_ContactLanguageCategorization(contactLanguagesToInsertByContactId.values(), contactLanguagesToUpdateToPrimaryList);
         List<Contact_Language__c> contactLanguagesToUpdateToPrimaryList = new List<Contact_Language__c>();
 
-        for (Contact_Language__c conLang : contactLanguagesToInsertByContactId.values()){
-            if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c) &&
-                languageIdToCheckForUpdateByContactId.get(conLang.Contact__c) == conLang.Language__c){
+        List<Contact_Language__c> existingContactLanguagesList = [SELECT Id,
+                                                                          Language__c,
+                                                                          Contact__c,
+                                                                          Primary_Language__c
+                                                                  FROM Contact_Language__c
+                                                                  WHERE Contact__c IN :languageIdToCheckForUpdateByContactId.keySet()
+                                                                  AND (Language__c IN :languageIdToCheckForUpdateByContactId.values()
+                                                                       )];
+
+        for (Contact_Language__c conLang : existingContactLanguagesList){
+            // if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c) &&
+            //     languageIdToCheckForUpdateByContactId.get(conLang.Contact__c) == conLang.Language__c){
                 
-                conLang.Primary_Language__c = true;
-                contactLanguagesToUpdateToPrimaryList.add(conLang);
-                contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
+            //     conLang.Primary_Language__c = true;
+            //     contactLanguagesToUpdateToPrimaryList.add(conLang);
+            //     contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
+            // } 
+
+            if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c)){
+                if (languageIdToCheckForUpdateByContactId.get(conLang.Contact__c) == conLang.Language__c){
+                    conLang.Primary_Language__c = true;
+                    contactLanguagesToUpdateToPrimaryList.add(conLang);
+                    contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
+                } 
+
+                if (String.isBlank(languageIdToCheckForUpdateByContactId.get(conLang.Contact__c))){
+                    conLang.Primary_Language__c = false;
+                    contactLanguagesToUpdateToPrimaryList.add(conLang);
+                    contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
+                }
             }
         }
 
-        // contactLangInsUp.setConLanguagesToInsert(contactLanguagesToInsertByContactId.values());
-        // contactLangInsUp.setConLanguagesToUpdate(contactLanguagesToUpdateToPrimaryList);
-
-        VALOBJ_ContactLanguageCategorization contactLangInsUp = new VALOBJ_ContactLanguageCategorization(contactLanguagesToInsertByContactId.values(), 
+        ContactLanguageCategorization contactLangInsUp = new ContactLanguageCategorization(contactLanguagesToInsertByContactId.values(), 
                                                                                             contactLanguagesToUpdateToPrimaryList);
 
-
         return contactLangInsUp;
+    }
+
+    public class ContactLanguageCategorization{
+        private List<Contact_Language__c> contactLanguagesToInsertList;
+        private List<Contact_Language__c> contactLanguagesToUpdateList;
+        
+        public ContactLanguageCategorization(List<Contact_Language__c> contactLanguagesToInsertList, 
+                                            List<Contact_Language__c> contactLanguagesToUpdateList){
+
+            this.contactLanguagesToInsertList = contactLanguagesToInsertList;
+            this.contactLanguagesToUpdateList = contactLanguagesToUpdateList;
+        }
+
+        public void addContactLanguagesToUpdate(List<Contact_Language__c> contactLanguagesToAddList){
+            this.contactLanguagesToUpdateList.addAll(contactLanguagesToAddList);
+        } 
+
+        public List<Contact_Language__c> getContactLanguagesToInsert(){
+            return this.contactLanguagesToInsertList;
+        }
+
+        public List<Contact_Language__c> getContactLanguagesToUpdate(){
+            return this.contactLanguagesToUpdateList;
+        }
     }
 }
 
