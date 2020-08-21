@@ -37,7 +37,8 @@
 public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<SObject>{
 
     public Database.Querylocator start(Database.BatchableContext bc) {
-        Id adminRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Administrative').getRecordTypeId();
+
+        Id adminRecordTypeId = Util_Describe.getCustomAdminAccRecTypeId();
         String query = 'SELECT Id, RecordTypeId, Primary_Contact__c ' +
             		    'FROM Account ' +
             		    'WHERE RecordTypeId = :adminRecordTypeId' ;
@@ -45,16 +46,18 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
     }
 
     public void execute(Database.BatchableContext bc, List<Account> returnAccounts){
-      	List<Account> accountsToRename = new List<Account>();
+
+        List<Account> accountsToRename = new List<Account>();
         List<Contact> contactsToProcess = new List<Contact>();
         Set<Id> primaryCons = new Set<Id>(); 
-        
+
         if (returnAccounts.size() > 0) {
-            for (Account a : returnAccounts) {
-                if (a.Primary_Contact__c != NULL) {
-                    primaryCons.add(a.Primary_Contact__c); 
+            for (Account acc : returnAccounts) {
+                if (acc.Primary_Contact__c != null) {
+                    primaryCons.add(acc.Primary_Contact__c); 
                 }
             }
+
             if (primaryCons.size() > 0) {
                 contactsToProcess = [SELECT Id, AccountId, Account.RecordTypeId, FirstName, LastName, Salutation 
                                      FROM Contact
@@ -72,18 +75,18 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
     }
 
     public void finish(Database.BatchableContext bc) {
-        AsyncApexJob a = [SELECT Id, Status, JobType, NumberOfErrors,
+        AsyncApexJob asyncJob = [SELECT Id, Status, JobType, NumberOfErrors,
                           JobItemsProcessed, TotalJobItems, CompletedDate,
                           ExtendedStatus, CreatedById, CreatedBy.Email
         				  FROM AsyncApexJob
                           WHERE Id =:bc.getJobId()];
 
        	Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-            List<String> toAddresses = new List<String> {a.CreatedBy.Email};
+            List<String> toAddresses = new List<String> {asyncJob.CreatedBy.Email};
             mail.setToAddresses(toAddresses);
-            mail.setSubject('Administrative Name Refresh Status : ' + a.Status);
-            mail.setPlainTextBody('The batch Apex job processed ' + a.TotalJobItems +
-           ' batches with '+ a.NumberOfErrors + ' failures.');
+            mail.setSubject('Administrative Name Refresh Status : ' + asyncJob.Status);
+            mail.setPlainTextBody('The batch Apex job processed ' + asyncJob.TotalJobItems +
+           ' batches with '+ asyncJob.NumberOfErrors + ' failures.');
             Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
     }
 }
