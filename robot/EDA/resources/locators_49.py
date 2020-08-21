@@ -100,6 +100,7 @@ eda_lex_locators = {
         "default_checkbox": "//div[text()='{}']/following-sibling::div/descendant::img",
         "enable_checkbox": "(//div[text()='{}']/following-sibling::div/descendant::span)[1]",
         "dropdown_field": "//div[text()='{}']/following-sibling::div/select",
+        "run_action": "//button[text()='{}']",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
@@ -116,6 +117,7 @@ eda_lex_locators = {
         "backfill_button_status": "//span[text()='{}']/parent::button",
         "backfill_checkbox_status": "//input[contains(@class, 'backfill')]/following-sibling::span[contains(@class, 'checkbox')]",
     },
+<<<<<<< HEAD
     "eda_settings_program_plans": {
         "checkbox_read": "//span[text()='{}']/../following-sibling::div/descendant::img",
         "checkbox_edit": "(//span[text()='{}']/../following-sibling::div/descendant::span)[1]",
@@ -124,6 +126,12 @@ eda_lex_locators = {
     "eda_settings_courses": {
         "text_message": "//span[text()='{}']",
     },
+||||||| 5612c7ae
+=======
+    "eda_settings_courses": {
+        "text_message": "//span[text()='{}']",
+    },
+>>>>>>> 068e5b61bfa96ed14ee91e3bde6c0b32425bdac2
     "eda_settings_system": {
         "default_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::img",
         "default_dropdown_value": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[text()='{}']",
