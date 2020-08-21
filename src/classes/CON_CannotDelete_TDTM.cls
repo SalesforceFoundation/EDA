@@ -83,7 +83,7 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
     @TestVisible
     private void handleBeforeDelete(List<SObject> oldSObjectList) {
 
-        if (!isContactDeletionPreventionEnabled) {
+        if (!this.isContactDeletionPreventionEnabled) {
             return;
         }
 

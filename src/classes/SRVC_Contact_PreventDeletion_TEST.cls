@@ -37,9 +37,77 @@
 @isTest
 private class SRVC_Contact_PreventDeletion_TEST {
 
+    // Helper method to create Contact with child records
+    private static void createContactWithChildRecordsHelper() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                         (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                          Prevent_Contact_Deletion__c = true));
+
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
+
+        Address__c addr = new Address__c (Parent_Account__c = contacts[0].AccountId, MailingCity__c = 'Boston');
+        addr.Parent_Contact__c = contacts[0].id;
+        insert addr;
+
+        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        insert term;
+
+        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        insert course;
+
+        Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
+        insert affilliation;
+
+        Application__c applicant = new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[0].Id);
+        insert applicant;
+
+        Application__c applicantPreparer = new Application__c(Applying_To__c = acc.Id, Preparer__c = contacts[0].Id);
+        insert applicantPreparer;
+
+        Attendance_Event__c attendance = new Attendance_Event__c(Date__c = System.today(), Contact__c = contacts[0].Id);
+        insert attendance;
+
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
+        Attribute__c credentialAttribute = new Attribute__c(Name = 'TestCred2', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId);
+        insert credentialAttribute;
+
+        Case caseRecord = new Case(ContactId = contacts[0].Id, AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now());
+        insert caseRecord;
+
+           Language__c language = new Language__c(Name = 'Spanish');
+        insert language;
+
+        Contact_Language__c contactLanguage = new Contact_Language__c(Contact__c = contacts[0].Id, Language__c = language.Id);
+        insert contactLanguage;
+
+        Course_Offering__c courseOffering = new Course_Offering__c(Faculty__c = contacts[0].Id, Course__c = course.Id, Term__c = term.Id);
+        insert courseOffering;
+
+        Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.Id, Contact__c = contacts[0].Id);
+        insert termGrade;
+
+        Course_Enrollment__c courseCxn = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id);
+        insert courseCxn;
+
+        Program_Enrollment__c programEnrollment = new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
+        insert programEnrollment;
+
+        Test__c testRecord = new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[0].Id);
+        insert testRecord;
+
+        Behavior_Involvement__c behInvolvement = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[0].Id, caseRecord.Id, 'Reporter');
+        insert behInvolvement;
+    }
+
     // Tests getInstance()
     @isTest
     static void testGetInstance() {
+
         SRVC_Contact_PreventDeletion srvcConPreventDeleteInstance = SRVC_Contact_PreventDeletion.getInstance();
         System.assertEquals(SRVC_Contact_PreventDeletion.instance, srvcConPreventDeleteInstance);
         System.assertNotEquals(NULL, srvcConPreventDeleteInstance);
@@ -51,6 +119,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
     // Tests Prevent Deletion for Contacts with STUB_AlwaysHasChildRelationships
     @isTest
     static void testPreventDeletionForContactsWithChildren() {
+
         SRVC_Contact_PreventDeletion.instance = new STUB_AlwaysHasChildRelationships();
 
         Map<Id,Contact> contactById = new Map<Id,Contact>();
@@ -68,6 +137,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
     // Tests Prevent Deletion for Contacts with STUB_DoesNotHaveChildRelationships
     @isTest
     static void testPreventDeletionForContactsWithNoChildren() {
+
         SRVC_Contact_PreventDeletion.instance = new STUB_DoesNotHaveChildRelationships();
 
         Map<Id,Contact> contactById = new Map<Id,Contact>();
@@ -80,41 +150,134 @@ private class SRVC_Contact_PreventDeletion_TEST {
             System.assert(contactById.get(contactToCheck.Id) == null);
         }
     }
-    
+
+    // Positive tests for preventDeletionForContacts method
     @isTest
     static void poisitveIntegrationTestForpreventDeletionForContacts() {
 
+        SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
 
+        Map<Id, Contact> contactById  = new map<Id, Contact>([SELECT Id FROM CONTACT LIMIT 1]);
+        Test.startTest();
+            List<contact> contactErroredList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
+        Test.stopTest();
+
+        System.assertEquals(1, contactErroredList.size());
     }
 
+    // Negative tests for preventDeletionForContacts method
     @isTest
     static void negativeIntegrationTestForpreventDeletionForContacts() {
 
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
 
+        Map<Id, Contact> contactById  = new map<Id, Contact>([SELECT Id FROM CONTACT LIMIT 1]);
+        Test.startTest();
+            List<contact> contactErroredList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
+        Test.stopTest();
+
+        System.assertEquals(0, contactErroredList.size());
     }
 
+    // Positive tests for ContactsAndChildRelationships method
     @isTest
     static void positiveIntegrationTestForGetContactsAndChildRelationships() {
 
+        SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
 
+        Map<Id, Contact> contactById  = new map<Id, Contact>([SELECT Id FROM CONTACT LIMIT 1]);
+        Set<Id> contactIdSet = contactById.keySet();
+
+        Test.startTest();
+            List<contact> contactsWithChildRecords = SRVC_Contact_PreventDeletion.getInstance().getContactsAndChildRelationships(contactIdSet);
+        Test.stopTest();
+
+        System.assertEquals(1, contactsWithChildRecords[0].Addresses__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Affl_Accounts__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Affl_Accounts__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Applications_Preparer__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Attendance_Events__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Attributes__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Behavior_Involvements__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Contact_Languages__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Courses_Taught__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Program_Enrollments__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Student_Course_Enrollments__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Term_Grades__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Tests__r.size());
     }
 
+    // Negative tests for ContactsAndChildRelationships method
     @isTest
     static void negativeIntegrationTestForGetContactsAndChildRelationships() {
 
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
 
+        Map<Id, Contact> contactById  = new map<Id, Contact>([SELECT Id FROM CONTACT LIMIT 1]);
+        Set<Id> contactIdSet = contactById.keySet();
+
+        Test.startTest();
+            List<contact> contactsWithChildRecords = SRVC_Contact_PreventDeletion.getInstance().getContactsAndChildRelationships(contactIdSet);
+        Test.stopTest();
+
+        System.assertEquals(0, contactsWithChildRecords[0].Addresses__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Affl_Accounts__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Affl_Accounts__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Applications_Preparer__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Attendance_Events__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Attributes__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Behavior_Involvements__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Contact_Languages__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Courses_Taught__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Program_Enrollments__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Student_Course_Enrollments__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Term_Grades__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Tests__r.size());
     }
 
+    // Poisitve test for ContactHasChildRecords method
     @isTest
     static void positiveIntegrationTestForContactHasChildRecords() {
 
+        SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
 
+        Contact con = [SELECT Id,
+                       (SELECT ID FROM Addresses__r LIMIT 1),
+                       (SELECT ID FROM Affl_Accounts__r LIMIT 1),
+                       (SELECT ID FROM Applications_Applicant__r LIMIT 1),
+                       (SELECT ID FROM Applications_Preparer__r LIMIT 1),
+                       (SELECT ID FROM Attendance_Events__r LIMIT 1),
+                       (SELECT ID FROM Attributes__r LIMIT 1),
+                       (SELECT ID FROM Behavior_Involvements__r LIMIT 1),
+                       (SELECT ID FROM Contact_Languages__r LIMIT 1),
+                       (SELECT ID FROM Courses_Taught__r LIMIT 1),
+                       (SELECT ID FROM Program_Enrollments__r LIMIT 1),
+                       (SELECT ID FROM Student_Course_Enrollments__r LIMIT 1),
+                       (SELECT ID FROM Term_Grades__r LIMIT 1),
+                       (SELECT ID FROM Tests__r LIMIT 1)
+                      FROM CONTACT LIMIT 1];
+
+        Test.startTest();
+            Boolean contactHasChildren = SRVC_Contact_PreventDeletion.getInstance().contactHasChildRecords(con);
+        Test.stopTest();
+
+        System.assertEquals(true, contactHasChildren);
     }
 
+    // Negative test for ContactHasChildRecords method
     @isTest
     static void negativeIntegrationTestForContactHasChildRecords() {
 
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
 
+        Test.startTest();
+            Boolean contactHasChildren = SRVC_Contact_PreventDeletion.getInstance().contactHasChildRecords(contacts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, contactHasChildren);
     }
 
     // STUB class which extends SRVC_Contact_PreventDeletion
@@ -125,7 +288,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
             return true;
         }
     }
-    
+
     // STUB class which extends SRVC_Contact_PreventDeletion
     private class STUB_DoesNotHaveChildRelationships extends SRVC_Contact_PreventDeletion {
 
