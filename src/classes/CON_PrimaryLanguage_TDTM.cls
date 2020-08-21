@@ -57,12 +57,10 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
                 return dmlWrapper;
             }
 
-            // After Insert
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 this.handleAfterInsert(newList);
             } 
 
-            //After Udpate
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                 this.handleAfterUpdate(newList, oldList);
             } 
@@ -71,8 +69,8 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * handleAfterInsert description
-     * @param  newObjectsList newObjectsList description
+     * @description Handles processing required for an After Insert trigger.
+     * @param  newObjectsList The list of SObjects inserted.
      */ 
     private void handleAfterInsert(List<SObject> newObjectsList){
         if (this.isInsertRecursion()) {
@@ -97,9 +95,9 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     }
 
     /**
-     * handleAfterUpdate description
-     * @param  newObjectsList newObjectsList description
-     * @param  oldObjectsList oldObjectsList description
+     * @description Handles processing required for an After Update trigger.
+     * @param  newObjectsList A list of SObjects in their updated state.
+     * @param  oldObjectsList A list of SObjects in their state prior to update.
      */ 
     private void handleAfterUpdate(List<SObject> newObjectsList, List<SObject> oldObjectsList){
         if (this.isUpdateRecursion()){
@@ -111,8 +109,6 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldObjectsList);
         Map<Id, Id> primaryLanguageByContactId = new Map<Id, Id>();
         
-        //ContactLanguageCategorization conLangCat = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
-
         List<Contact_Language__c> conLanguagesToInsertList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToInsert();
         List<Contact_Language__c> conLanguagesToUpdateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToUpdate();
 
@@ -120,7 +116,6 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
         if (conLanguagesToInsertList.isEmpty()){
             this.unsetInsertRecursion();
-            //return;
         } else {
             dmlWrapper.objectsToInsert.addAll((List<SObject>)conLanguagesToInsertList);
         }
@@ -131,37 +126,61 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         this.unsetUpdateRecursion();
     }
 
+    /**
+     * @description Retrieves an instance of the SRVC_ContactPrimaryLanguage service class.
+     * @return   An instance of SRVC_ContactPrimaryLanguage.
+     */ 
     @TestVisible
     private SRVC_ContactPrimaryLanguage locateContactPrimaryLanguageService(){
         return SRVC_ContactPrimaryLanguage.getInstance();
     }
 
+    /**
+     * @description Sets the After Insert recurtion flag for CON_PrimaryLanguage_TDTM.
+     */ 
     @TestVisible
     private void setInsertRecursion(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, true);
     }
 
+    /**
+     * @description Clears the After Insert recurtion flag for CON_PrimaryLanguage_TDTM.
+     */ 
     @TestVisible
     private void unsetInsertRecursion(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, false);
     }
 
+    /**
+     * isInsertRecursion description
+     * @return   return description
+     */ 
     @TestVisible
     private Boolean isInsertRecursion(){
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM) ||
         TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert);
     }
 
+    /**
+     * @description Sets the After Update recurtion flag for CON_PrimaryLanguage_TDTM.
+     */
     @TestVisible
     private void setUpdateRecursion(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, true);
     }
 
+    /**
+     * @description Clears the After Update recurtion flag for CON_PrimaryLanguage_TDTM.
+     */
     @TestVisible
     private void unsetUpdateRecursion(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, false);
     }
 
+    /**
+     * @description Determines if either of the Update recursion flags for Contact or Contact Language are set. 
+     * @return   False if the After Update recursion flags for both CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM are not set; true otherwise.
+     */ 
     @TestVisible
     private Boolean isUpdateRecursion(){
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM) ||

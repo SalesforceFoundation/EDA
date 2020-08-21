@@ -1,18 +1,18 @@
 public virtual with sharing class SRVC_ContactPrimaryLanguage {
 
     /*********************************************
-    * @description Instance for Singleton Pattern
+    * @description Instance for Singleton Pattern.
     **********************************************/
     @TestVisible
     private static SRVC_ContactPrimaryLanguage instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
+    * @description Empty constructor is not public for Singleton Pattern.
     **********************************************************************/
     protected SRVC_ContactPrimaryLanguage() {}
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
+    * @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ContactPrimaryLanguage.
     ******************************************************************************/
     public static SRVC_ContactPrimaryLanguage getInstance() {
@@ -25,8 +25,8 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
 
     /**
      * @description Generate a list of Contact Language records for a list of specified Contacts.
-     * @param  contactsList List of Contacts from which to generate Contact Language records for insertion
-     * @return              Returns a list of Contact Language records to be inserted
+     * @param  contactsList A list of Contacts from which to generate Contact Language records for insertion.
+     * @return              A list of Contact Language records to be inserted.
      */
     public List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
         List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
@@ -48,10 +48,10 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
     }
 
     /**
-     * @description
-     * @param  newContactsById newContactsById description
-     * @param  oldContactsById oldContactsById description
-     * @return                 return description
+     * @description Determines if changes to the Primary Language on Contact records are associated with existing Contact Language records or if they require the creation of new Contact Language records.             
+     * @param  newContactsById A map of updated contact records by Id.
+     * @param  oldContactsById A map containing the previous state of the updated contact records by Id.
+     * @return                 A ContactLanguageCategorization value object containing a list of new Contact Language records to insert and a list of existing Contact Language records to update.
      */
     public ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
         Set<Id> contactIdsToUpdateConLangsToNonPrimarySet = new Set<Id>();
@@ -80,7 +80,7 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
             }
 
             if (oldContact.Primary_Language__c != null || con.Primary_Language__c == null){
-                languageIdToCheckForUpdateByContactId.put(con.Id, con.Primary_Language__c);
+                contactIdsToUpdateConLangsToNonPrimarySet.add(con.Id);
             }
         }
 
@@ -88,16 +88,15 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
         ContactLanguageCategorization contactLanguageInsUp = this.getPrimaryContactLanguagesToInsertOrUpdate(contactLanguageToInsertByContactId.clone(),
                                                                                                                 languageIdToCheckForUpdateByContactId.clone());
         
-        
         contactLanguageInsUp.addContactLanguagesToUpdate(contactLanguagesToUpdateAsNonPrimaryList);
         return contactLanguageInsUp;
     }
 
 
     /**
-     * @description
-     * @param  contactIdsToMarkAsNonPrimarySet Set of Contact Ids to process
-     * @return Return a list of Contact Language records corresponding to the Contact Ids provided for processing.
+     * @description Retrieves a list of Contact Languages currently marked as primary that are to be updated as non-primary.
+     * @param  contactIdsToMarkAsNonPrimarySet A set of Contact Ids associated with Contact Languages to process.
+     * @return A list of Contact Language records to be updated as non-primary.
      */
     public List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){
 
@@ -120,7 +119,7 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
 
     /**
      * @description Retrieves the default language fluency setting specified in EDA Settings.
-     * @return   returns the default language fluency value set in EDA Settings
+     * @return   The default language fluency value set in EDA Settings.
      */
     @TestVisible
     private String getDefaultFluencyFromSettings(){
@@ -130,10 +129,10 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
     /**
      * @description Determines if a Contact Language record flagged for insertion is marked as primary on the corresponding contact record.  If so,
      * separates the Contact Language into a list for update; marking its Primary Language status and removing it from the insertion list.
-     * @param contactLanguagesToInsertByContactId Mapping of Contact Languages to be inserted, by Contact Id
-     * @param languageIdToCheckForUpdateByContactId Mapping of Language currently marked as primary by Contact Id
+     * @param contactLanguagesToInsertByContactId A map of Contact Languages to be inserted by Contact Id.
+     * @param languageIdToCheckForUpdateByContactId A map of Languages currently marked as primary by Contact Id.
      * @return A ContactLanguageCategorization value object containing one list containing Contact Language records to be inserted and 
-     *         another containing Contact Language records to be updated                                         
+     *         another containing Contact Language records to be updated.                                         
      */
     @TestVisible
     private ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
@@ -148,30 +147,17 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
                                                                   FROM Contact_Language__c
                                                                   WHERE Contact__c IN :languageIdToCheckForUpdateByContactId.keySet()
                                                                   AND (Language__c IN :languageIdToCheckForUpdateByContactId.values()
-                                                                       )];
+                                                                                   OR Primary_Language__c = true)
+                                                                 ];
 
         for (Contact_Language__c conLang : existingContactLanguagesList){
-            // if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c) &&
-            //     languageIdToCheckForUpdateByContactId.get(conLang.Contact__c) == conLang.Language__c){
+            if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c) &&
+                languageIdToCheckForUpdateByContactId.get(conLang.Contact__c) == conLang.Language__c){
                 
-            //     conLang.Primary_Language__c = true;
-            //     contactLanguagesToUpdateToPrimaryList.add(conLang);
-            //     contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
-            // } 
-
-            if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c)){
-                if (languageIdToCheckForUpdateByContactId.get(conLang.Contact__c) == conLang.Language__c){
-                    conLang.Primary_Language__c = true;
-                    contactLanguagesToUpdateToPrimaryList.add(conLang);
-                    contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
-                } 
-
-                if (String.isBlank(languageIdToCheckForUpdateByContactId.get(conLang.Contact__c))){
-                    conLang.Primary_Language__c = false;
-                    contactLanguagesToUpdateToPrimaryList.add(conLang);
-                    contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
-                }
-            }
+                conLang.Primary_Language__c = true;
+                contactLanguagesToUpdateToPrimaryList.add(conLang);
+                contactLanguagesToInsertByContactId.remove(conLang.Contact__c);
+            } 
         }
 
         ContactLanguageCategorization contactLangInsUp = new ContactLanguageCategorization(contactLanguagesToInsertByContactId.values(), 
@@ -180,6 +166,9 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
         return contactLangInsUp;
     }
 
+    /**
+     * @description Value object containing a list of Contact Language records to be inserted and a list of Contact Language records to be updated.
+     */
     public class ContactLanguageCategorization{
         private List<Contact_Language__c> contactLanguagesToInsertList;
         private List<Contact_Language__c> contactLanguagesToUpdateList;
@@ -191,14 +180,26 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
             this.contactLanguagesToUpdateList = contactLanguagesToUpdateList;
         }
 
+        /**
+         * @description Combines a list of Contact Language records with existing records in contactLanguagesToUpdateList.
+         * @param  contactLanguagesToAddList A list of Contact Languages to add.
+         */ 
         public void addContactLanguagesToUpdate(List<Contact_Language__c> contactLanguagesToAddList){
             this.contactLanguagesToUpdateList.addAll(contactLanguagesToAddList);
         } 
 
+        /**
+         * @description Accessor method for contactLanguagesToInsertList.
+         * @return   A list of Contact Languages to be inserted.
+         */
         public List<Contact_Language__c> getContactLanguagesToInsert(){
             return this.contactLanguagesToInsertList;
         }
 
+        /**
+         * @description Accessor method for contactLanguagesToUpdateList.
+         * @return   A list of Contact Languages to be updated.
+         */
         public List<Contact_Language__c> getContactLanguagesToUpdate(){
             return this.contactLanguagesToUpdateList;
         }
