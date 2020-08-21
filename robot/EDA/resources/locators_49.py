@@ -121,6 +121,9 @@ eda_lex_locators = {
         "checkbox_edit": "(//span[text()='{}']/../following-sibling::div/descendant::span)[1]",
         "updated_checkbox_edit": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[contains(@class, 'checkbox')]",
     },
+    "eda_settings_courses": {
+        "text_message": "//span[text()='{}']",
+    },
     "eda_settings_system": {
         "default_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::img",
         "default_dropdown_value": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[text()='{}']",
