@@ -44,12 +44,12 @@ public class UTIL_ACCT_Naming {
     */
     private static ID hhAccountRecordTypeId = UTIL_Describe.getHhAccRecTypeID();
 
-    /*******************************************************************************************************
-    * @description The Administrative Account record type.
+    /*****************************************************************************************************************
+    * @description The user defined Administrative Account record type in "ACCOUNTS AND CONTACTS" tab of EDA Settings.
     */
-    private static ID adminAccountRecordTypeId = UTIL_Describe.getAdminAccRecTypeID();
+    private static ID userDefinedAdminRecordTypeId = UTIL_Describe.getCustomAdminAccRecTypeId();
 
-    /*******************************************************************************************************
+    /******************************************************************************************************************
     * @description The default/selected Household Account name format.
     */
     private static String hhNameFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
@@ -72,7 +72,7 @@ public class UTIL_ACCT_Naming {
 
         //Retrieve the AccountId from the Contact 
         for (Contact con : contactsChangedLastName) {
-            if (con.AccountId != NULL) {
+            if (con.AccountId != null) {
                 accountIds.add(con.AccountId); 
             }
         }
@@ -85,13 +85,13 @@ public class UTIL_ACCT_Naming {
         
         //Set the Account and Primary ContactId to the map 
         if (accounts.size() > 0) {
-            for (Account a : accounts) {
-                if (a.Primary_Contact__c != NULL) {
-                	accountIdPrimaryContactId.put(a, a.Primary_Contact__c);
+            for (Account acc : accounts) {
+                if (acc.Primary_Contact__c != null) {
+                    accountIdPrimaryContactId.put(acc, acc.Primary_Contact__c);
                 }
             }
         }
-        
+
         for (Account acc : [SELECT Id, Name, RecordTypeId,
                            (SELECT Id, FirstName, LastName, Salutation, AccountId, Account.RecordTypeId
                             FROM Contacts 
@@ -99,8 +99,8 @@ public class UTIL_ACCT_Naming {
                             FROM Account
                             WHERE Id IN :accountIds]) 
         {
-            if (acc.RecordTypeId == adminAccountRecordTypeId) {
-            	acc.Name = UTIL_ACCT_Naming.updateNameFromContact(acc.Contacts, acc);
+            if (acc.RecordTypeId == userDefinedAdminRecordTypeId) {
+                acc.Name = UTIL_ACCT_Naming.updateNameFromContact(acc.Contacts, acc);
                 accountsToUpdate.add(acc);
             }
         }
@@ -209,7 +209,7 @@ public class UTIL_ACCT_Naming {
             if (accountNamingFormat == Label.acctNamingOther) {
                 accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
             }
-        } else if (acc.RecordTypeId == adminAccountRecordTypeId) {
+        } else if (acc.RecordTypeId == userDefinedAdminRecordTypeId) {
             accountNamingFormat = aaNameFormat;
             if (accountNamingFormat == Label.acctNamingOther) {
                 accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Other_Name_Setting__c;
@@ -256,7 +256,7 @@ public class UTIL_ACCT_Naming {
         for (Contact con : cons) {
             if (defaultRecTypeId == hhAccountRecordTypeId) {
                 householdLastNames.add(con.LastName);
-            } else if (defaultRecTypeId == adminAccountRecordTypeId) {
+            } else if (defaultRecTypeId == userDefinedAdminRecordTypeId) {
                 finalAccountName = con.LastName + ' ' + System.label.DefaultAdminName;
                 break;
             } else {

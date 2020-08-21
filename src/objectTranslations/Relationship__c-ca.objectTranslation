@@ -83,6 +83,10 @@
             <translation>Filla</translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Dependent</masterLabel>
+            <translation><!-- Dependent --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Employee</masterLabel>
             <translation>Empleat</translation>
         </picklistValues>
@@ -97,6 +101,22 @@
         <picklistValues>
             <masterLabel>Father</masterLabel>
             <translation>Pare</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Child</masterLabel>
+            <translation><!-- Foster Child --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Daughter</masterLabel>
+            <translation><!-- Foster Daughter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Parent</masterLabel>
+            <translation><!-- Foster Parent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Son</masterLabel>
+            <translation><!-- Foster Son --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Friend</masterLabel>
@@ -127,6 +147,10 @@
             <translation>Net</translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Guardian</masterLabel>
+            <translation><!-- Guardian --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Husband</masterLabel>
             <translation>Marit</translation>
         </picklistValues>
@@ -145,6 +169,30 @@
         <picklistValues>
             <masterLabel>Son</masterLabel>
             <translation>Fill</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepchild</masterLabel>
+            <translation><!-- Stepchild --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepdaughter</masterLabel>
+            <translation><!-- Stepdaughter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepfather</masterLabel>
+            <translation><!-- Stepfather --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepmother</masterLabel>
+            <translation><!-- Stepmother --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepparent</masterLabel>
+            <translation><!-- Stepparent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepson</masterLabel>
+            <translation><!-- Stepson --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Uncle</masterLabel>

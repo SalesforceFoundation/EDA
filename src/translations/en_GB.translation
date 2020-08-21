@@ -41,6 +41,10 @@
         <name>DefaultAccountName</name>
     </customLabels>
     <customLabels>
+        <label><!-- We can’t find the Administrative Account record type in your org. Following installation, use Object Manager to create a new record type named ‘Administrative’ for the Account object. --></label>
+        <name>defaultAccountRecordTypeMissingError</name>
+    </customLabels>
+    <customLabels>
         <label>Administrative Account</label>
         <name>DefaultAdminName</name>
     </customLabels>

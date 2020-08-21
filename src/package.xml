@@ -205,6 +205,7 @@
         <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
         <members>TDTM_CourseOfferingSchedule</members>
+        <members>TDTM_EducationHistory</members>
         <members>TDTM_Event</members>
         <members>TDTM_Facility</members>
         <members>TDTM_Language</members>
@@ -262,6 +263,7 @@
         <members>Course_Enrollment__c.HEDA_Course_Enrollment_Compact_Layout</members>
         <members>Course_Offering__c.HEDA_Course_Offering_Compact_Layout</members>
         <members>Course__c.HEDA_Course_Compact_Layout</members>
+        <members>Education_History__c.EDA_Education_History_Compact_Layout</members>
         <members>Facility__c.HEDA_Facility_Compact_Layout</members>
         <members>Plan_Requirement__c.HEDA_Plan_Requirement_Compact_Layout</members>
         <members>Program_Enrollment__c.HEDA_Program_Enrollment_Compact_Layout</members>
@@ -442,6 +444,22 @@
         <members>Course__c.Credit_Hours__c</members>
         <members>Course__c.Description__c</members>
         <members>Course__c.Extended_Description__c</members>
+        <members>Education_History__c.Account__c</members>
+        <members>Education_History__c.Class_Percentile__c</members>
+        <members>Education_History__c.Class_Rank_Scale__c</members>
+        <members>Education_History__c.Class_Rank_Type__c</members>
+        <members>Education_History__c.Class_Rank__c</members>
+        <members>Education_History__c.Class_Size__c</members>
+        <members>Education_History__c.Contact__c</members>
+        <members>Education_History__c.Degree_Earned__c</members>
+        <members>Education_History__c.Details__c</members>
+        <members>Education_History__c.Educational_Institution_Name__c</members>
+        <members>Education_History__c.End_Date__c</members>
+        <members>Education_History__c.GPA_Scale_Reporting__c</members>
+        <members>Education_History__c.GPA_Scale_Type__c</members>
+        <members>Education_History__c.GPA__c</members>
+        <members>Education_History__c.Graduation_Date__c</members>
+        <members>Education_History__c.Start_Date__c</members>
         <members>Error__c.Context_Type__c</members>
         <members>Error__c.Datetime__c</members>
         <members>Error__c.Email_Sent__c</members>
@@ -654,6 +672,7 @@
         <members>afflTypeEnforcedDescription</members>
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
+        <members>defaultAccountRecordTypeMissingError</members>
         <members>defaultNamingConnector</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
@@ -859,6 +878,7 @@
         <members>Course_Offering_Schedule__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>Education_History__c</members>
         <members>Error__c</members>
         <members>Facility__c</members>
         <members>Hierarchy_Settings__c</members>
@@ -971,6 +991,12 @@
         <members>Course__c-es</members>
         <members>Course__c-es_MX</members>
         <members>Course__c-fr</members>
+        <members>Education_History__c-ca</members>
+        <members>Education_History__c-en_GB</members>
+        <members>Education_History__c-en_US</members>
+        <members>Education_History__c-es</members>
+        <members>Education_History__c-es_MX</members>
+        <members>Education_History__c-fr</members>
         <members>Error__c-ca</members>
         <members>Error__c-en_GB</members>
         <members>Error__c-en_US</members>
@@ -1082,6 +1108,7 @@
         <members>Course_Offering_Schedule__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>Education_History__c</members>
         <members>Facility__c</members>
         <members>HEDA_Settings</members>
         <members>Language__c</members>
@@ -1146,6 +1173,7 @@
         <members>Course_Offering_Schedule__c-EDA Course Offering Schedule Layout</members>
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
         <members>Course__c-HEDA Course Layout</members>
+        <members>Education_History__c-EDA Education History Layout</members>
         <members>Error__c-HEDA Error Layout</members>
         <members>Facility__c-HEDA Facility Layout</members>
         <members>Language__c-HEDA Language Layout</members>
@@ -1174,6 +1202,7 @@
         <members>Course_Offering_Schedule__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
+        <members>Education_History__c.All</members>
         <members>Facility__c.All</members>
         <members>Language__c.All</members>
         <members>Plan_Requirement__c.All</members>

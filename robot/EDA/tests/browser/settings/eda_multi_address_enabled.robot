@@ -13,12 +13,15 @@ Suite Teardown  Capture screenshot and delete records and close browser
 *** Test Cases ***
 
 Enable Household Account
+    [Documentation]     Validates the hierarchy settings page (custom settings) after enabling
+    ...                 multi address checkbox (Household Account) under Accounts and Contacts
+    ...                 tab in EDA settings
     [tags]                                      unstable
     Go to EDA settings tab                      Accounts and Contacts
     Click action button on EDA settings page    Edit
 
     # Check Household Account
-    Wait for Locator                            account_types.household 
+    Wait for Locator                            account_types.household
     Click on Element                            account_types.household
 
     Click on Element                            account_types.save
@@ -37,19 +40,22 @@ Enable Household Account
     ...                                         Cannot find Custom Settings page
     ...                                         false
 
-    ${custom_settings_hierarchy} =              Get eda Locator     custom_settings.custom_settings_frame
+    ${custom_settings_hierarchy} =              Get eda Locator
+    ...                                         custom_settings.custom_settings_frame
     Select frame                        ${custom_settings_hierarchy}
     Wait for Locator                    custom_settings.hierarchy_settings
     Click on Element                    custom_settings.hierarchy_settings
 
 
-    ${custom_settings_definition} =     Get eda Locator     custom_settings.custom_settings_definition
+    ${custom_settings_definition} =     Get eda Locator
+    ...                                 custom_settings.custom_settings_definition
     Select frame                        ${custom_settings_definition}
     Wait for Locator                    custom_settings.manage
     Click on Element                    custom_settings.manage
 
     # Verify "No records to display." exists
-    ${custom_settings_h_settings} =     Get eda Locator     custom_settings.custom_settings_h_settings
+    ${custom_settings_h_settings} =     Get eda Locator
+    ...                                 custom_settings.custom_settings_h_settings
     Select frame                        ${custom_settings_h_settings}
     Wait for Locator                    custom_settings.no_records
     Click on Element                    custom_settings.no_records
