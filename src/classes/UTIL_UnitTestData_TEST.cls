@@ -578,6 +578,18 @@ public class UTIL_UnitTestData_TEST {
         return courseConnection;
     }
 
+    /**********************************************************************************************************    
+    * @description Gets a Test__c record testing.
+    * @Params testType The type of the test 
+    * @params testDate The date of test taken
+    * @params studentId the Id of the Contact record
+    * @return The Test record.
+    **********************************************************************************************************/
+    public static Test__c getTest(String testType, Date testDate, Id studentId) {
+        Test__c test = new Test__c(Test_Type__c = testType, Test_Date__c = testDate, Contact__c = studentId);
+        return test;
+    }
+
     /*********************************************************************************************************
     * @description Gets a Term Grade for testing.
     * @param contactId The Contact of the Course Term Grade.
@@ -592,6 +604,29 @@ public class UTIL_UnitTestData_TEST {
             Course_Connection__c = courseConnectionId
         );
         return termGrade;
+    }
+
+    /**********************************************************************************************************    
+    * @description Gets a Course__c record testing
+    * @Params courseName The name of the Course
+    * @params accountId The Account the Course is assocaited to
+    * @return The Course record
+    **********************************************************************************************************/
+    public static Course__c getCourse(String courseName, Id accountId) {
+        Course__c course = new Course__c(Name = courseName, Account__c = accountId);
+        return course;
+    }
+
+    /**********************************************************************************************************    
+    * @description Gets a Attribute__c record testing.
+    * @Params attributeName The name of the attribute 
+    * @params studentId The Id of the Contact
+    * @params attributeRecordType RecordTypeId of Attribute record
+    * @return The Attribute record.
+    **********************************************************************************************************/
+    public static Attribute__c getAttribute(String attributeName, Id studentId, Id attributeRecordType) {
+        Attribute__c attribute = new Attribute__c(Name = attributeName, Contact__c = studentId, RecordTypeId = attributeRecordType);
+        return attribute;
     }
 
     /*********************************************************************************************************

@@ -50,58 +50,62 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
         insert contacts;
 
-        Address__c addr = new Address__c (Parent_Account__c = contacts[0].AccountId, MailingCity__c = 'Boston');
-        addr.Parent_Contact__c = contacts[0].id;
-        insert addr;
+        Address__c[] addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addrs[0].Parent_Account__c = contacts[0].AccountId;
+        addrs[0].MailingCity__c = 'Boston';
+        addrs[0].Parent_Contact__c = contacts[0].id;
+        insert addrs[0];
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
+        Affiliation__c affilliation = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
         insert affilliation;
 
-        Application__c applicant = new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[0].Id);
+        Application__c applicant = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
         insert applicant;
 
-        Application__c applicantPreparer = new Application__c(Applying_To__c = acc.Id, Preparer__c = contacts[0].Id);
+        Application__c applicantPreparer = UTIL_UnitTestData_TEST.getApplication(acc.Id, null, term.Id);
+        applicantPreparer.Preparer__c = contacts[0].Id;
         insert applicantPreparer;
 
-        Attendance_Event__c attendance = new Attendance_Event__c(Date__c = System.today(), Contact__c = contacts[0].Id);
+        Attendance_Event__c attendance = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[0].Id, null, null, null);
         insert attendance;
 
         Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
-        Attribute__c credentialAttribute = new Attribute__c(Name = 'TestCred2', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId);
+        Attribute__c credentialAttribute = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[0].Id,  credentialRecTypeId);
         insert credentialAttribute;
 
-        Case caseRecord = new Case(ContactId = contacts[0].Id, AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now());
+        Case caseRecord = UTIL_UnitTestData_TEST.getCase(contacts[0].Id, 'School Violation', 'New');
         insert caseRecord;
 
-           Language__c language = new Language__c(Name = 'Spanish');
-        insert language;
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
-        Contact_Language__c contactLanguage = new Contact_Language__c(Contact__c = contacts[0].Id, Language__c = language.Id);
-        insert contactLanguage;
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[0].Id, false);
 
-        Course_Offering__c courseOffering = new Course_Offering__c(Faculty__c = contacts[0].Id, Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering.Faculty__c = contacts[0].Id;
+        update courseOffering;
 
-        Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.Id, Contact__c = contacts[0].Id);
-        insert termGrade;
-
-        Course_Enrollment__c courseCxn = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id);
+        Course_Enrollment__c courseCxn = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
         insert courseCxn;
 
-        Program_Enrollment__c programEnrollment = new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id,  courseOffering.Id, courseCxn.Id);
+        insert termGrade;
+
+        Program_Enrollment__c programEnrollment = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment.Contact__c = contacts[0].Id;
         insert programEnrollment;
 
-        Test__c testRecord = new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[0].Id);
+        Test__c testRecord = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[0].Id);
         insert testRecord;
 
         Behavior_Involvement__c behInvolvement = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[0].Id, caseRecord.Id, 'Reporter');
         insert behInvolvement;
+
     }
 
     // Tests getInstance()
