@@ -72,6 +72,7 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
      * @description Handles processing required for an After Insert trigger.
      * @param  newObjectsList The list of SObjects inserted.
      */ 
+    @TestVisible
     private void handleAfterInsert(List<SObject> newObjectsList){
         if (this.isInsertRecursion()) {
             return;
@@ -99,6 +100,7 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
      * @param  newObjectsList A list of SObjects in their updated state.
      * @param  oldObjectsList A list of SObjects in their state prior to update.
      */ 
+    @TestVisible
     private void handleAfterUpdate(List<SObject> newObjectsList, List<SObject> oldObjectsList){
         if (this.isUpdateRecursion()){
             return;
