@@ -59,6 +59,7 @@ class ProgramPlansSettingsPage(BaseEDAPage, BasePage):
             checkbox is set to the value passed in the arg
         """
         locator_read = eda_lex_locators["eda_settings_program_plans"]["checkbox_read"].format("Validate Program Plan for Nested Plan Requirements")
+        self.selenium.wait_until_page_contains_element(locator_read)
         self.selenium.wait_until_element_is_visible(locator_read)
         actual_value = self.selenium.get_element_attribute(locator_read, "alt")
         if not str(expectedCheckboxValue).lower() == str(actual_value).lower():
