@@ -27,3 +27,13 @@ class RelationshipsSettingsPage(BaseEDAPage, BasePage):
         self.selenium.wait_until_page_contains_element(locator,
                                                        error=f"'{sub_tab}' sub tab is not available on the page")
         self.selenium.click_element(locator)
+
+    def update_reciprocal_method_value(self,**kwargs):
+        """ This method will update the drop down field value passed in keyword arguments
+            Pass the expected value to be set in the drop down field from the tests
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_relationships"]["dropdown_value"].format(field,value)
+            self.selenium.wait_until_page_contains_element(locator,
+                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
+            self.selenium.click_element(locator)

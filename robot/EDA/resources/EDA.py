@@ -382,6 +382,16 @@ class EDA(BaseEDAPage):
             self.verify_toast_message("Settings successfully saved.")
             self.close_toast_message()
 
+    def update_checkbox_value(self,**kwargs):
+        """ This method will update the checkbox field value passed in keyword arguments
+            Pass the expected value to be set in the  field from the tests
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings"]["update_checkbox"].format(field)
+            self.selenium.wait_until_page_contains_element(locator,
+                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
+            self.selenium.click_element(locator)
+
     def update_dropdown_value(self,**kwargs):
         """ This method will update the drop down field value passed in keyword arguments
             Pass the expected value to be set in the drop down field from the tests
