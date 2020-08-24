@@ -10,7 +10,7 @@ Suite Teardown  Capture screenshot and delete records and close browser
 *** Test Cases ***
 Validate Edit Mode For Relationships, Settings
     [Documentation]     Validates the relationships tab in EDA settings is available in Edit mode
-    Go to EDA settings tab          Relationships
+    Go to EDA settings tab      Relationships
 
     Click Element
     ...                         //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
