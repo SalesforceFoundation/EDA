@@ -454,30 +454,49 @@ private class CON_PrimaryLanguage_TEST {
 
     @isTest 
     private static void handleAfterUpdatePositive(){
-        List<SObject> newObjectsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
-        List<SObject> oldTestObjectsList = new List<SObject>();
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<Contact> oldTestContactsList = new List<Contact>();
+
+        // List<SObject> newObjectsList = new List<SObject>();
+        // List<SObject> oldTestObjectsList = new List<SObject>();
 
         Language__c englishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.sObjectType),
                                                       Name = 'English'
                                                      );
         Language__c frenchLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.sObjectType),
-                                                        Name = 'French'
+                                                     Name = 'French'
                                                     );
-        
-        for (SObject so : newObjectsList){
-            String testId = UTIL_UnitTestData_TEST.getFakeId(so.getSObjectType());
-            so.put('Primary_Language__c', frenchLanguage.Id);
-            so.put('Id', testId);
 
-            SObject oldSO = so.clone(false);
-            oldSO.put('Primary_Language__c', englishLanguage.Id);
-            oldSO.put('Id', testId);
-            oldTestObjectsList.add(oldSO);
+        System.debug('MK DEBUG: english Id: ' + englishLanguage.Id);
+        System.debug('MK DEBUG: french Id: ' + frenchLanguage.Id);
+
+        for (Contact con : testContactsList){
+            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+            System.debug('MK DEBUG: testId: '  + testId);
+            con.Id = testId;
+            con.Primary_Language__c = frenchLanguage.Id;
+
+            Contact oldCon = con.clone(false);
+            oldCon.Id = con.Id;
+            oldCon.Primary_Language__c = englishLanguage.Id;
+            oldTestContactsList.add(oldCon);
         }
+        
+        // for (SObject so : newObjectsList){
+        //     //String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        //     so.put('Primary_Language__c', frenchLanguage.Id);
+        //     //so.put('Id', testId);
+
+        //     SObject oldSO = so.clone(false);
+        //     oldSO.put('Primary_Language__c', englishLanguage.Id);
+        //     //oldSO.put('Id', testId);
+        //     oldSO.put('Id', so.get('Id'));
+        //     oldTestObjectsList.add(oldSO);
+        // }
 
         Test.startTest();
         CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
-        conPrimaryLangTDTM.handleAfterUpdate(newObjectsList, oldTestObjectsList);
+        conPrimaryLangTDTM.handleAfterUpdate((List<SObject>)testContactsList, (List<SObject>)oldTestContactsList);
         Test.stopTest();
 
         List<Contact_Language__c> conLangResults = [SELECT Id, 
@@ -504,9 +523,7 @@ private class CON_PrimaryLanguage_TEST {
                     System.assertEquals(false, conLang.Primary_Language__c, 'English Contact Language record should not be set as primary.');
                 }
             }
-        }
-
-        
+        }        
     }
 
     @isTest 
