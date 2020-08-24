@@ -32,7 +32,7 @@
 * @description Tests class for refreshing Administrative Account Names.
 */
 @isTest
-public class ACCT_AdministrativeNameRefresh_TEST {
+private class ACCT_AdministrativeNameRefresh_TEST {
     /*******************************************************************************************************
     * @description Tests that the refresh Administrative Account name functionality is working properly if 
     * there are multiple Admin Account.
@@ -50,15 +50,15 @@ public class ACCT_AdministrativeNameRefresh_TEST {
         contacts[1].FirstName = 'Betty';
         insert contacts;
 
-        
         Set<Id> accountIds = new Set<Id>();
-        Map<String, Id> lastNameByAccountId = new Map<String, Id>(); 
-        for (Contact c : [SELECT Id, LastName, AccountId, Account.Name 
+        Map<String, Id> lastNameByAccountId = new Map<String, Id>();
+
+        for (Contact con : [SELECT Id, LastName, AccountId, Account.Name 
                           FROM Contact 
                           WHERE Id IN :contacts]) 
         {
-            accountIds.add(c.AccountId);
-            lastNameByAccountId.put(c.LastName, c.AccountId); 
+            accountIds.add(con.AccountId);
+            lastNameByAccountId.put(con.LastName, con.AccountId); 
         }
 
         List<Account> queryAccounts = [SELECT Id, Name, RecordTypeId, RecordType.Name
@@ -69,18 +69,18 @@ public class ACCT_AdministrativeNameRefresh_TEST {
         update queryAccounts;
         
         //Verifies that the update on Account Name on the Account record persisted
-        for (Account a : queryAccounts) {
-            if (lastNameByAccountId.get('Wells') == a.Id) {
-                System.assertEquals('Tommy Wells Account', a.Name); 
+        for (Account acc : queryAccounts) {
+            if (lastNameByAccountId.get('Wells') == acc.Id) {
+                System.assertEquals('Tommy Wells Account', acc.Name); 
             }
-            if (lastNameByAccountId.get('Jones') == a.Id) {
-                System.assertEquals('Betty Jones Account', a.Name); 
+            if (lastNameByAccountId.get('Jones') == acc.Id) {
+                System.assertEquals('Betty Jones Account', acc.Name); 
             }
         }
        
         Test.startTest();
-        ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
-        Id apexJobId = Database.executeBatch(batch, 200);
+            ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
+            Id apexJobId = Database.executeBatch(batch, 200);
         Test.stopTest();
         
         //Verifies that after refresh Admin Account was ran that the Account names are properly updated
@@ -104,7 +104,7 @@ public class ACCT_AdministrativeNameRefresh_TEST {
     * to it. The Admin Account should be renamed based on the Primary Contact. 
     */    
     @isTest
-       private static void multipleContactsOnAdminAccount() {
+    private static void multipleContactsOnAdminAccount() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                                                         Admin_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Administrative Account'
                                                         ));
@@ -122,11 +122,11 @@ public class ACCT_AdministrativeNameRefresh_TEST {
         
         Set<Id> accountIds = new Set<Id>(); 
         Map<String, Id> lastNameByAccountId = new Map<String, Id>(); 
-        for (Contact c : cons) {
-            accountIds.add(c.AccountId); 
-            lastNameByAccountId.put(c.LastName, c.AccountId); 
+        for (Contact con : cons) {
+            accountIds.add(con.AccountId); 
+            lastNameByAccountId.put(con.LastName, con.AccountId); 
         } 
-        
+
         List<Account> accounts = [SELECT Id
                                   FROM Account 
                                   WHERE Id IN :accountIds]; 
@@ -135,12 +135,12 @@ public class ACCT_AdministrativeNameRefresh_TEST {
         update accounts;
         
         //Verifies that the update on Account Name on the Account record persisted
-        for (Account a : accounts) {
-            if (lastNameByAccountId.get('Wells') == a.Id) {
-                System.assertEquals('Tommy Wells Account', a.Name); 
+        for (Account acc : accounts) {
+            if (lastNameByAccountId.get('Wells') == acc.Id) {
+                System.assertEquals('Tommy Wells Account', acc.Name); 
             }
-            if (lastNameByAccountId.get('Jones') == a.Id) {
-                System.assertEquals('Betty White Account', a.Name); 
+            if (lastNameByAccountId.get('Jones') == acc.Id) {
+                System.assertEquals('Betty White Account', acc.Name); 
             }
         }
         
@@ -158,8 +158,8 @@ public class ACCT_AdministrativeNameRefresh_TEST {
         System.assertEquals(4, queryAllContacts.size()); 
         
         Test.startTest();
-        ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
-        Id apexJobId = Database.executeBatch(batch, 200);
+            ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
+            Id apexJobId = Database.executeBatch(batch, 200);
         Test.stopTest();
         
         //Verifies that after refresh Admin Account was ran that the Account names are properly
