@@ -52,7 +52,6 @@ private with sharing class CON_CannotDelete_TEST {
 
         List<Contact> returnNewContacts = consAccsAddrs.contacts;
 
-
         List<Contact> queryContacts = [SELECT Id
                                        FROM Contact
                                        WHERE Id IN :returnNewContacts];
@@ -85,12 +84,11 @@ private with sharing class CON_CannotDelete_TEST {
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
+        
+        Affiliation__c affiliaiton1 = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
+        Affiliation__c affiliaiton2 = UTIL_UnitTestData_TEST.getAffiliation(contacts[1].Id, acc.Id, false);
 
-        List<Affiliation__c> affiliations = new List<Affiliation__c>{
-            new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id),
-            new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
-        };
-        insert affiliations;
+        insert new List<Affiliation__c>{affiliaiton1, affiliaiton2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -120,12 +118,13 @@ private with sharing class CON_CannotDelete_TEST {
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
+        
+        term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Spring 2020');
 
-        List<Application__c> applicants = new List<Application__c>{
-            new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[0].Id),
-            new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[1].Id)
-        };
-        insert applicants;
+        Application__c application1 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
+        Application__c application2 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[1].Id, term.Id);
+
+        insert new List<Application__c> {application1, application2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -155,12 +154,15 @@ private with sharing class CON_CannotDelete_TEST {
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
+        
+        term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Spring 2020');
 
-        List<Application__c> preparers = new List<Application__c>{
-            new Application__c(Applying_To__c  = acc.Id, Applicant__c  = contacts[0].Id, Preparer__c = contacts[1].Id),
-            new Application__c(Applying_To__c  = acc.Id, Applicant__c  = contacts[1].Id, Preparer__c = contacts[0].Id)
-        };
-        insert preparers;
+        Application__c application1 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
+        application1.Preparer__c = contacts[1].Id;
+        Application__c application2 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[1].Id, term.Id);
+        application2.Preparer__c = contacts[0].Id;
+
+        insert new List<Application__c> {application1, application2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -191,11 +193,15 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>{
-            new Attendance_Event__c (Date__c = System.today(), Contact__c = contacts[0].Id),
-            new Attendance_Event__c (Date__c = System.today(), Contact__c = contacts[1].Id)
-        };
-        insert attendanceEvents;
+        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendanceEvent1.Date__c = System.today();
+        attendanceEvent1.Contact__c = contacts[0].Id;
+
+        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendanceEvent2.Date__c = System.today();
+        attendanceEvent2.Contact__c = contacts[1].Id;
+
+        insert new List<Attendance_Event__c> {attendanceEvent1, attendanceEvent2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -227,11 +233,11 @@ private with sharing class CON_CannotDelete_TEST {
         insert contacts;
 
         Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
-        List<Attribute__c> credentialsAttributes = new List<Attribute__c>{
-            new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId),
-            new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId)
-        };
-        insert credentialsAttributes;
+
+        Attribute__c attribute1 = UTIL_UnitTestData_TEST.getAttribute('TestCred1', contacts[0].Id, credentialRecTypeId);
+        Attribute__c attribute2 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, credentialRecTypeId);
+
+        insert new List<Attribute__c> {attribute1, attribute2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -263,11 +269,11 @@ private with sharing class CON_CannotDelete_TEST {
         insert contacts;
 
         Id studentCharRecTypeId = UTIL_Describe_API.getStudentCharacteristicAttributeRecType();
-        List<Attribute__c> studentCharAttributes = new List<Attribute__c>{
-            new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = studentCharRecTypeId),
-            new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = studentCharRecTypeId)
-        };
-        insert studentCharAttributes;
+
+        Attribute__c attribute1 = UTIL_UnitTestData_TEST.getAttribute('TestCred1', contacts[0].Id, studentCharRecTypeId);
+        Attribute__c attribute2 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, studentCharRecTypeId);
+
+        insert new List<Attribute__c> {attribute1, attribute2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -298,17 +304,17 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Case> cases = new List<Case>{
-            new Case(AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now()),
-            new Case(AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now())
-        };
-        insert cases;
+        Case case1 = UTIL_UnitTestData_TEST.getCase(null, 'School Code of Conduct', 'Current');
+        case1.AccountId = acc.Id;
+        Case case2 = UTIL_UnitTestData_TEST.getCase(null, 'School Code of Conduct', 'Current');
+        case2.AccountId = acc.Id;
 
-        List<Behavior_Involvement__c> behaviorInvolvements = new List<Behavior_Involvement__c>{
-            new Behavior_Involvement__c(Case__c = cases[0].Id, Contact__c = contacts[0].Id, Role__c = 'Reporter'),
-            new Behavior_Involvement__c(Case__c = cases[1].Id, Contact__c = contacts[1].Id, Role__c = 'Reporter')
-        };
-        insert behaviorInvolvements;
+        insert new List<case> {case1, case2};
+
+        Behavior_Involvement__c behaviorInvolvement1 = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[0].Id, case1.Id, 'Reporter');
+        Behavior_Involvement__c behaviorInvolvement2 = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[1].Id, case2.Id, 'Reporter');
+
+        insert new List<Behavior_Involvement__c> {behaviorInvolvement1,behaviorInvolvement2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -339,14 +345,10 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Language__c language = new Language__c(Name = 'Spanish');
-        insert language;
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Italian');
 
-        List<Contact_Language__c> contactLanguages = new List<Contact_Language__c>{
-            new Contact_Language__c(Contact__c = contacts[0].Id, Language__c = language.Id),
-            new Contact_Language__c(Contact__c = contacts[1].Id, Language__c = language.Id)
-        };
-        insert contactLanguages;
+        Contact_Language__c contactLanguage1 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[0].Id, false);
+        Contact_Language__c contactLanguage2 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -377,17 +379,19 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>{
-            new Course_Offering__c(Faculty__c = contacts[0].Id, Course__c = course.Id, Term__c = term.Id),
-            new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id)
-        };
-        insert courseOfferings;
+        Course_Offering__c courseOfferings1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOfferings1.Faculty__c = contacts[0].Id;
+
+        Course_Offering__c courseOfferings2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOfferings2.Faculty__c = contacts[1].Id;
+
+        update new List<Course_Offering__c> {courseOfferings1, courseOfferings2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -418,21 +422,23 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        Course_Offering__c courseOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
 
         Id studentCourseCxnRecTypeId = UTIL_Describe_API.getStudentConnectionRecType();
-        List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id),
-            new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id)
-        };
-        insert studentCourseCxns;
+
+        Course_Enrollment__c studentCourseCxn1 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
+        studentCourseCxn1.Status__c = 'Current';
+
+        Course_Enrollment__c studentCourseCxn2 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
+        studentCourseCxn2.Status__c = 'Current';
+
+        insert new List<Course_Enrollment__c> {studentCourseCxn1, studentCourseCxn2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -463,21 +469,23 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        Course_Offering__c courseOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
 
         Id studentCourseCxnRecTypeId = UTIL_Describe_API.getFacultyConnectionRecType();
-        List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id),
-            new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id)
-        };
-        insert studentCourseCxns;
+
+        Course_Enrollment__c studentCourseCxn1 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
+        studentCourseCxn1.Status__c = 'Current';
+
+        Course_Enrollment__c studentCourseCxn2 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
+        studentCourseCxn2.Status__c = 'Current';
+
+        insert new List<Course_Enrollment__c> {studentCourseCxn1, studentCourseCxn2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -508,11 +516,13 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Program_Enrollment__c> programEnrollments = new List<Program_Enrollment__c>{
-            new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[0].Id),
-            new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
-        };
-        insert programEnrollments;
+        Program_Enrollment__c programEnrollment1 = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment1.Contact__c = contacts[0].Id;
+
+        Program_Enrollment__c programEnrollment2 = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment2.Contact__c = contacts[1].Id;
+
+        insert new List<Program_Enrollment__c> {programEnrollment1, programEnrollment2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -543,23 +553,27 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
+        
+        Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
 
-        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>{
-            new Course_Offering__c(Faculty__c = contacts[0].Id, Course__c = course.Id, Term__c = term.Id),
-            new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id)
-        };
-        insert courseOfferings;
+        courseOffering1.Faculty__c = contacts[0].Id;
+        courseOffering2.Faculty__c = contacts[1].Id;
 
-        List<Term_Grade__c> termGrades = new List<Term_Grade__c>{
-            new Term_Grade__c(Course_Offering__c = courseOfferings[0].Id, Contact__c = contacts[0].Id),
-            new Term_Grade__c(Course_Offering__c = courseOfferings[1].Id, Contact__c = contacts[1].Id)
-        };
-        insert termGrades;
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
+        courseOfferings.add(courseOffering1);
+        courseOfferings.add(courseOffering2);
+        update courseOfferings;
+
+        Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOfferings[0].Id, null);
+        Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOfferings[1].Id, null);
+        
+        insert new List<Term_Grade__c> {termGrade1, termGrade2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -590,12 +604,10 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
+        Test__c testRecord1 = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[0].Id);
+        Test__c testRecord2 = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[1].Id);
 
-        List<Test__c> tests = new List<Test__c>{
-            new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[0].Id),
-            new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id)
-        };
-        insert tests;
+        insert new List<Test__c> {testRecord1, testRecord2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -623,7 +635,6 @@ private with sharing class CON_CannotDelete_TEST {
         UTIL_UnitTestData_TEST.ContactsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
         List<Contact> returnNewContacts = consAccsAddrs.contacts;
-
 
         List<Contact> queryContacts = [SELECT Id
                                        FROM Contact
@@ -658,11 +669,10 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Affiliation__c> affiliations = new List<Affiliation__c>{
-            new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id),
-            new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
-        };
-        insert affiliations;
+        Affiliation__c affilliation1 = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
+        Affiliation__c affilliation2 = UTIL_UnitTestData_TEST.getAffiliation(contacts[1].Id, acc.Id, false);
+
+        insert new List<Affiliation__c> {affilliation1, affilliation2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -693,11 +703,13 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Application__c> applicants = new List<Application__c>{
-            new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[0].Id),
-            new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[1].Id)
-        };
-        insert applicants;
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
+        insert term;
+
+        Application__c applicant1 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
+        Application__c applicant2 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[1].Id, term.Id);
+
+        insert new List<Application__c> {applicant1, applicant2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -728,11 +740,15 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Application__c> preparers = new List<Application__c>{
-            new Application__c(Applying_To__c  = acc.Id, Applicant__c  = contacts[0].Id, Preparer__c = contacts[1].Id),
-            new Application__c(Applying_To__c  = acc.Id, Applicant__c  = contacts[1].Id, Preparer__c = contacts[0].Id)
-        };
-        insert preparers;
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
+        insert term;
+
+        Application__c applicant1 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
+        applicant1.Preparer__c  = contacts[1].Id;
+        Application__c applicant2 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[1].Id, term.Id);
+        applicant2.Preparer__c  = contacts[0].Id;
+
+        insert new List<Application__c> {applicant1, applicant2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -763,11 +779,15 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>{
-            new Attendance_Event__c (Date__c = System.today(), Contact__c = contacts[0].Id),
-            new Attendance_Event__c (Date__c = System.today(), Contact__c = contacts[1].Id)
-        };
-        insert attendanceEvents;
+        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendanceEvent1.Date__c = System.today();
+        attendanceEvent1.Contact__c = contacts[0].Id;
+
+        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendanceEvent2.Date__c = System.today();
+        attendanceEvent2.Contact__c = contacts[1].Id;
+
+        insert new List<Attendance_Event__c> {attendanceEvent1, attendanceEvent2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -799,11 +819,10 @@ private with sharing class CON_CannotDelete_TEST {
         insert contacts;
 
         Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
-        List<Attribute__c> credentialsAttributes = new List<Attribute__c>{
-            new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId),
-            new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId)
-        };
-        insert credentialsAttributes;
+        Attribute__c credentialAttribute1 = UTIL_UnitTestData_TEST.getAttribute('TestCred1', contacts[0].Id,  credentialRecTypeId);
+        Attribute__c credentialAttribute2 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id,  credentialRecTypeId);
+
+        insert new List<Attribute__c> {credentialAttribute1, credentialAttribute2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -835,11 +854,11 @@ private with sharing class CON_CannotDelete_TEST {
         insert contacts;
 
         Id studentCharRecTypeId = UTIL_Describe_API.getStudentCharacteristicAttributeRecType();
-        List<Attribute__c> studentCharAttributes = new List<Attribute__c>{
-            new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = studentCharRecTypeId),
-            new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = studentCharRecTypeId)
-        };
-        insert studentCharAttributes;
+
+        Attribute__c credentialAttribute1 = UTIL_UnitTestData_TEST.getAttribute('TestCred1', contacts[0].Id,  studentCharRecTypeId);
+        Attribute__c credentialAttribute2 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id,  studentCharRecTypeId);
+
+        insert new List<Attribute__c> {credentialAttribute1, credentialAttribute2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -870,18 +889,17 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Case> cases = new List<Case>{
-            new Case(AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now()),
-            new Case(AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now())
-        };
-        insert cases;
+        Case case1 = UTIL_UnitTestData_TEST.getCase(null, 'School Code of Conduct', 'Current');
+        case1.AccountId = acc.Id;
+        Case case2 = UTIL_UnitTestData_TEST.getCase(null, 'School Code of Conduct', 'Current');
+        case2.AccountId = acc.Id;
 
-        List<Behavior_Involvement__c> behaviorInvolvements = new List<Behavior_Involvement__c>{
-            new Behavior_Involvement__c(Case__c = cases[0].Id, Contact__c = contacts[0].Id, Role__c = 'Reporter'),
-            new Behavior_Involvement__c(Case__c = cases[1].Id, Contact__c = contacts[1].Id, Role__c = 'Reporter')
-        };
-        insert behaviorInvolvements;
+        insert new List<case> {case1, case2};
+        
+        Behavior_Involvement__c behaviorInvolvement1 = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[0].Id, case1.Id, 'Reporter');
+        Behavior_Involvement__c behaviorInvolvement2 = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[1].Id, case2.Id, 'Reporter');
 
+        insert new List<Behavior_Involvement__c> {behaviorInvolvement1, behaviorInvolvement2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -912,14 +930,11 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Language__c language = new Language__c(Name = 'Spanish');
-        insert language;
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+        Contact_Language__c contactLanguage1 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[0].Id, false);
+        Contact_Language__c contactLanguage2 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
 
-        List<Contact_Language__c> contactLanguages = new List<Contact_Language__c>{
-            new Contact_Language__c(Contact__c = contacts[0].Id, Language__c = language.Id),
-            new Contact_Language__c(Contact__c = contacts[1].Id, Language__c = language.Id)
-        };
-        insert contactLanguages;
+        update new List<Contact_Language__c> {contactLanguage1, contactLanguage2};
 
         Test.startTest();
            Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -950,17 +965,19 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course =  UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>{
-            new Course_Offering__c(Faculty__c = contacts[0].Id, Course__c = course.Id, Term__c = term.Id),
-            new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id)
-        };
-        insert courseOfferings;
+        Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering1.Faculty__c = contacts[0].Id;
+        update courseOffering1;
+        
+        Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering2.Faculty__c = contacts[1].Id;
+        update courseOffering2;
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -991,21 +1008,23 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course =  UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        Course_Offering__c courseOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
 
         Id studentCourseCxnRecTypeId = UTIL_Describe_API.getStudentConnectionRecType();
-        List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id),
-            new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id)
-        };
-        insert studentCourseCxns;
+
+        Course_Enrollment__c studentCourseCxn1 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
+        studentCourseCxn1.Status__c = 'Current';
+
+        Course_Enrollment__c studentCourseCxn2 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
+        studentCourseCxn2.Status__c = 'Current';
+
+        insert new List<Course_Enrollment__c> {studentCourseCxn1, studentCourseCxn2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -1036,21 +1055,22 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        Course_Offering__c courseOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
 
         Id studentCourseCxnRecTypeId = UTIL_Describe_API.getFacultyConnectionRecType();
-        List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[0].Id),
-            new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id)
-        };
-        insert studentCourseCxns;
+         Course_Enrollment__c studentCourseCxn1 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
+        studentCourseCxn1.Status__c = 'Current';
+
+        Course_Enrollment__c studentCourseCxn2 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
+        studentCourseCxn2.Status__c = 'Current';
+
+        insert new List<Course_Enrollment__c> {studentCourseCxn1, studentCourseCxn2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -1081,11 +1101,13 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        List<Program_Enrollment__c> programEnrollments = new List<Program_Enrollment__c>{
-            new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[0].Id),
-            new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
-        };
-        insert programEnrollments;
+        Program_Enrollment__c programEnrollment1 = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment1.Contact__c = contacts[0].Id;
+
+        Program_Enrollment__c programEnrollment2 = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment2.Contact__c = contacts[1].Id;
+
+        insert new List<Program_Enrollment__c> {programEnrollment1, programEnrollment2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -1116,23 +1138,28 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>{
-            new Course_Offering__c(Faculty__c = contacts[0].Id, Course__c = course.Id, Term__c = term.Id),
-            new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id)
-        };
-        insert courseOfferings;
+        Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering1.Faculty__c = contacts[0].Id;
 
-        List<Term_Grade__c> termGrades = new List<Term_Grade__c>{
-            new Term_Grade__c(Course_Offering__c = courseOfferings[0].Id, Contact__c = contacts[0].Id),
-            new Term_Grade__c(Course_Offering__c = courseOfferings[1].Id, Contact__c = contacts[1].Id)
-        };
-        insert termGrades;
+        Course_Offering__c courseOffering2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering2.Faculty__c = contacts[1].Id;
+
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
+        courseOfferings.add(courseOffering1);
+        courseOfferings.add(courseOffering2);
+
+        update courseOfferings;
+
+        Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOfferings[0].Id, null);
+        Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOfferings[1].Id, null);
+        
+        insert new List<Term_Grade__c> {termGrade1, termGrade2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -1163,12 +1190,10 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
+        Test__c testRecord1 = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[0].Id);
+        Test__c testRecord2 = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[1].Id);
 
-        List<Test__c> tests = new List<Test__c>{
-            new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[0].Id),
-            new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id)
-        };
-        insert tests;
+        insert new List<Test__c>{testRecord1, testRecord2};
 
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -1199,82 +1224,82 @@ private with sharing class CON_CannotDelete_TEST {
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        List<Affiliation__c> affiliations = new List<Affiliation__c>{
-            new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id),
-            new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
-        };
-        insert affiliations;
+        Affiliation__c affiliaiton1 = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
+        Affiliation__c affiliaiton2 = UTIL_UnitTestData_TEST.getAffiliation(contacts[1].Id, acc.Id, false);
 
-        List<Application__c> applicants = new List<Application__c>{
-            new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[0].Id),
-            new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[1].Id)
-        };
-        insert applicants;
+        insert new List<Affiliation__c>{affiliaiton1, affiliaiton2};
 
-        List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>{
-            new Attendance_Event__c (Date__c = System.today(), Contact__c = contacts[0].Id),
-            new Attendance_Event__c (Date__c = System.today(), Contact__c = contacts[1].Id)
-        };
-        insert attendanceEvents;
+        Application__c application1 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
+        Application__c application2 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[1].Id, term.Id);
+
+        insert new List<Application__c> {application1, application2};
+
+        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendanceEvent1.Date__c = System.today();
+        attendanceEvent1.Contact__c = contacts[0].Id;
+
+        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendanceEvent2.Date__c = System.today();
+        attendanceEvent2.Contact__c = contacts[1].Id;
+
+        insert new List<Attendance_Event__c> {attendanceEvent1, attendanceEvent2};
 
         Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
-        List<Attribute__c> credentialsAttributes = new List<Attribute__c>{
-            new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId),
-            new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId)
-        };
-        insert credentialsAttributes;
 
-        List<Case> cases = new List<Case>{
-            new Case(ContactId = contacts[0].Id, AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now()),
-            new Case(ContactId = contacts[1].Id, AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now())
-        };
-        insert cases;
+        Attribute__c attribute1 = UTIL_UnitTestData_TEST.getAttribute('TestCred1', contacts[0].Id, credentialRecTypeId);
+        Attribute__c attribute2 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, credentialRecTypeId);
 
-       	Language__c language = new Language__c(Name = 'Spanish');
-        insert language;
+        insert new List<Attribute__c> {attribute1, attribute2};
 
-        List<Contact_Language__c> contactLanguages = new List<Contact_Language__c>{
-            new Contact_Language__c(Contact__c = contacts[0].Id, Language__c = language.Id),
-            new Contact_Language__c(Contact__c = contacts[1].Id, Language__c = language.Id)
-        };
-        insert contactLanguages;
+        Case case1 = UTIL_UnitTestData_TEST.getCase(contacts[0].Id, 'School Code of Conduct', 'Current');
+        Case case2 = UTIL_UnitTestData_TEST.getCase(contacts[1].Id, 'School Code of Conduct', 'Current');
+        
+        insert new List<case> {case1, case2};
 
-        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>{
-            new Course_Offering__c(Faculty__c = contacts[0].Id, Course__c = course.Id, Term__c = term.Id),
-            new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id)
-        };
-        insert courseOfferings;
+       	Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
-        List<Term_Grade__c> termGrades = new List<Term_Grade__c>{
-            new Term_Grade__c(Course_Offering__c = courseOfferings[0].Id, Contact__c = contacts[0].Id),
-            new Term_Grade__c(Course_Offering__c = courseOfferings[1].Id, Contact__c = contacts[1].Id)
-        };
-        insert termGrades;
+        Contact_Language__c contactLanguage1 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[0].Id, false);
+        Contact_Language__c contactLanguage2 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
 
-        Id studentCourseCxnRecTypeId = UTIL_Describe_API.getStudentConnectionRecType();
-        List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Course_Offering__c = courseOfferings[0].Id, Status__c = 'Current', Contact__c = contacts[0].Id),
-            new Course_Enrollment__c(Course_Offering__c = courseOfferings[1].Id, Status__c = 'Current', Contact__c = contacts[1].Id)
-        };
-        insert studentCourseCxns;
+        Course_Offering__c courseOfferings1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOfferings1.Faculty__c = contacts[0].Id;
 
-        List<Program_Enrollment__c> programEnrollments = new List<Program_Enrollment__c>{
-            new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[0].Id),
-            new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
-        };
-        insert programEnrollments;
+        Course_Offering__c courseOfferings2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOfferings2.Faculty__c = contacts[1].Id;
 
-        List<Test__c> tests = new List<Test__c>{
-            new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[0].Id),
-            new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id)
-        };
-        insert tests;
+        update new List<Course_Offering__c> {courseOfferings1, courseOfferings2};
+
+        Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOfferings1.Id, null);
+        Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOfferings2.Id, null);
+
+        insert new List<Term_Grade__c> {termGrade1, termGrade2};
+
+        Course_Enrollment__c studentCourseCxn1 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOfferings1.Id);
+        studentCourseCxn1.Status__c = 'Current';
+
+        Course_Enrollment__c studentCourseCxn2 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOfferings2.Id);
+        studentCourseCxn2.Status__c = 'Current';
+
+        insert new List<Course_Enrollment__c> {studentCourseCxn1, studentCourseCxn2};
+
+        Program_Enrollment__c programEnrollment1 = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment1.Contact__c = contacts[0].Id;
+
+        Program_Enrollment__c programEnrollment2 = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment2.Contact__c = contacts[1].Id;
+
+        insert new List<Program_Enrollment__c> {programEnrollment1, programEnrollment2};
+
+        Test__c testRecord1 = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[0].Id);
+        Test__c testRecord2 = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[1].Id);
+
+        insert new List<Test__c> {testRecord1, testRecord2};
 
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(contacts, false);
@@ -1308,49 +1333,50 @@ private with sharing class CON_CannotDelete_TEST {
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[1].Id);
-        insert affilliation;
+        Affiliation__c affiliaiton = UTIL_UnitTestData_TEST.getAffiliation(contacts[1].Id, acc.Id, false);
+        insert affiliaiton;
 
-        Application__c applicant = new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[1].Id);
+        Application__c applicant = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[1].Id, term.Id);
         insert applicant;
 
-        Attendance_Event__c attendance = new Attendance_Event__c(Date__c = System.today(), Contact__c = contacts[1].Id);
+        Attendance_Event__c attendance = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendance.Date__c = System.today();
         insert attendance;
 
         Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
-        Attribute__c credentialAttribute = new Attribute__c(Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId);
-        insert credentialAttribute;
 
-        Case caseRecord = new Case(ContactId = contacts[1].Id, AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now());
+        Attribute__c attribute1 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, credentialRecTypeId);
+
+        Case caseRecord = UTIL_UnitTestData_TEST.getCase(contacts[1].Id, 'School Code of Conduct', 'Current');
+        caseRecord.AccountId = acc.Id;
         insert caseRecord;
 
-       	Language__c language = new Language__c(Name = 'Spanish');
-        insert language;
+       	Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
-        Contact_Language__c contactLanguage = new Contact_Language__c(Contact__c = contacts[1].Id, Language__c = language.Id);
-        insert contactLanguage;
+        Contact_Language__c contactLanguage =  UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
 
-        Course_Offering__c courseOffering = new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering.Faculty__c = contacts[1].Id;
+        update courseOffering;
 
-		Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.Id, Contact__c = contacts[1].Id);
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id,courseOffering.Id, null);
         insert termGrade;
 
-        Course_Enrollment__c courseCxn = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id);
+        Course_Enrollment__c courseCxn = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
+        courseCxn.Status__c = 'Current';
         insert courseCxn;
 
-        Program_Enrollment__c programEnrollment = new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id);
-        insert programEnrollment;
+        Program_Enrollment__c programEnrollment = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment.Contact__c = contacts[1].Id;
 
-        Test__c testRecord = new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id);
+        Test__c testRecord = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[1].Id);
         insert testRecord;
-
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
@@ -1380,89 +1406,89 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        List<Affiliation__c> affiliations = new List<Affiliation__c>{
-            new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id),
-            new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
-        };
-        insert affiliations;
+        Affiliation__c affiliaiton1 = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
+        Affiliation__c affiliaiton2 = UTIL_UnitTestData_TEST.getAffiliation(contacts[1].Id, acc.Id, false);
 
-        List<Application__c> applicants = new List<Application__c>{
-            new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[0].Id),
-            new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[1].Id)
-        };
-        insert applicants;
+        insert new List<Affiliation__c>{affiliaiton1, affiliaiton2};
 
-        List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>{
-            new Attendance_Event__c (Date__c = System.today(), Contact__c = contacts[0].Id),
-            new Attendance_Event__c (Date__c = System.today(), Contact__c = contacts[1].Id)
-        };
-        insert attendanceEvents;
+        Application__c application1 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
+        Application__c application2 = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[1].Id, term.Id);
+
+        insert new List<Application__c> {application1, application2};
+
+        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendanceEvent1.Date__c = System.today();
+        attendanceEvent1.Contact__c = contacts[0].Id;
+
+        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendanceEvent2.Date__c = System.today();
+        attendanceEvent2.Contact__c = contacts[1].Id;
+
+        insert new List<Attendance_Event__c> {attendanceEvent1, attendanceEvent2};
 
         Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
-        List<Attribute__c> credentialsAttributes = new List<Attribute__c>{
-            new Attribute__c (Name = 'TestCred1', Contact__c = contacts[0].Id, RecordTypeId = credentialRecTypeId),
-            new Attribute__c (Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId)
-        };
-        insert credentialsAttributes;
 
-        List<Case> cases = new List<Case>{
-            new Case(AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now()),
-            new Case(AccountId = acc.Id, Category__c = 'School Code of Conduct', Occurrence_Date__c = System.now())
-        };
-        insert cases;
+        Attribute__c attribute1 = UTIL_UnitTestData_TEST.getAttribute('TestCred1', contacts[0].Id, credentialRecTypeId);
+        Attribute__c attribute2 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, credentialRecTypeId);
 
-        List<Behavior_Involvement__c> behaviorInvolvements = new List<Behavior_Involvement__c>{
-            new Behavior_Involvement__c(Case__c = cases[0].Id, Contact__c = contacts[0].Id, Role__c = 'Reporter'),
-            new Behavior_Involvement__c(Case__c = cases[1].Id, Contact__c = contacts[1].Id, Role__c = 'Reporter')
-        };
-        insert behaviorInvolvements;
+        insert new List<Attribute__c> {attribute1, attribute2};
 
-       	Language__c language = new Language__c(Name = 'Spanish');
-        insert language;
+        Case case1 = UTIL_UnitTestData_TEST.getCase(null, 'School Code of Conduct', 'Current');
+        case1.AccountId = acc.Id;
+        Case case2 = UTIL_UnitTestData_TEST.getCase(null, 'School Code of Conduct', 'Current');
+        case2.AccountId = acc.Id;
 
-        List<Contact_Language__c> contactLanguages = new List<Contact_Language__c>{
-            new Contact_Language__c(Contact__c = contacts[0].Id, Language__c = language.Id),
-            new Contact_Language__c(Contact__c = contacts[1].Id, Language__c = language.Id)
-        };
-        insert contactLanguages;
+        insert new List<case> {case1, case2};
+        Behavior_Involvement__c beh1 = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[0].Id, case1.Id, 'Reporter');
+        Behavior_Involvement__c beh2 = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[1].Id, case2.Id, 'Reporter');
 
-        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>{
-            new Course_Offering__c(Faculty__c = contacts[0].Id, Course__c = course.Id, Term__c = term.Id),
-            new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id)
-        };
-        insert courseOfferings;
+        insert new List<Behavior_Involvement__c> {beh1, beh2};
 
-        List<Term_Grade__c> termGrades = new List<Term_Grade__c>{
-            new Term_Grade__c(Course_Offering__c = courseOfferings[0].Id, Contact__c = contacts[0].Id),
-            new Term_Grade__c(Course_Offering__c = courseOfferings[1].Id, Contact__c = contacts[1].Id)
-        };
-        insert termGrades;
+       	Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+
+        Contact_Language__c contactLanguage1 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[0].Id, false);
+        Contact_Language__c contactLanguage2 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
+        Course_Offering__c courseOfferings1 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOfferings1.Faculty__c = contacts[0].Id;
+
+        Course_Offering__c courseOfferings2 = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOfferings2.Faculty__c = contacts[1].Id;
+
+        update new List<Course_Offering__c> {courseOfferings1, courseOfferings2};
+
+        Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOfferings1.Id, null);
+        Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOfferings2.Id, null);
+
+        insert new List<Term_Grade__c> {termGrade1, termGrade2};
 
         Id studentCourseCxnRecTypeId = UTIL_Describe_API.getStudentConnectionRecType();
-        List<Course_Enrollment__c> studentCourseCxns = new List<Course_Enrollment__c>{
-            new Course_Enrollment__c(Course_Offering__c = courseOfferings[0].Id, Status__c = 'Current', Contact__c = contacts[0].Id),
-            new Course_Enrollment__c(Course_Offering__c = courseOfferings[1].Id, Status__c = 'Current', Contact__c = contacts[1].Id)
-        };
-        insert studentCourseCxns;
 
-        List<Program_Enrollment__c> programEnrollments = new List<Program_Enrollment__c>{
-            new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[0].Id),
-            new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
-        };
-        insert programEnrollments;
+        Course_Enrollment__c studentCourseCxn1 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOfferings1.Id);
+        studentCourseCxn1.Status__c = 'Current';
 
-        List<Test__c> tests = new List<Test__c>{
-            new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[0].Id),
-            new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id)
-        };
-        insert tests;
+        Course_Enrollment__c studentCourseCxn2 = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOfferings2.Id);
+        studentCourseCxn2.Status__c = 'Current';
 
+        insert new List<Course_Enrollment__c> {studentCourseCxn1, studentCourseCxn2};
+
+        Program_Enrollment__c programEnrollment1 = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment1.Contact__c = contacts[0].Id;
+        
+        Program_Enrollment__c programEnrollment2 = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment2.Contact__c = contacts[1].Id;
+
+        insert new List<Program_Enrollment__c> {programEnrollment1, programEnrollment2};
+
+        Test__c testRecord1 = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[0].Id);
+        Test__c testRecord2 = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[1].Id);
+
+        insert new List<Test__c> {testRecord1, testRecord2};
         Test.startTest();
             Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
@@ -1491,44 +1517,47 @@ private with sharing class CON_CannotDelete_TEST {
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
         insert term;
 
-        Course__c course = new Course__c(Name = 'Biology', Account__c = acc.Id);
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[1].Id);
+        Affiliation__c affilliation = UTIL_UnitTestData_TEST.getAffiliation(contacts[1].Id, acc.Id, false);
         insert affilliation;
 
-        Application__c applicant = new Application__c(Applying_To__c = acc.Id, Applicant__c = contacts[1].Id);
+        Application__c applicant = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[1].Id, term.Id);
         insert applicant;
 
-        Attendance_Event__c attendance = new Attendance_Event__c(Date__c = System.today(), Contact__c = contacts[1].Id);
+        Attendance_Event__c attendance = UTIL_UnitTestData_TEST.getAttendanceEvent();
+        attendance.Date__c = System.today();
+        attendance.Contact__c = contacts[0].Id;
         insert attendance;
 
         Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
-        Attribute__c credentialAttribute = new Attribute__c(Name = 'TestCred2', Contact__c = contacts[1].Id, RecordTypeId = credentialRecTypeId);
+        Attribute__c credentialAttribute = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, credentialRecTypeId);
         insert credentialAttribute;
 
-       	Language__c language = new Language__c(Name = 'Spanish');
-        insert language;
+       	Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
-        Contact_Language__c contactLanguage = new Contact_Language__c(Contact__c = contacts[1].Id, Language__c = language.Id);
-        insert contactLanguage;
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
 
-        Course_Offering__c courseOffering = new Course_Offering__c(Faculty__c = contacts[1].Id, Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering.Faculty__c = contacts[1].Id;
+        update courseOffering;
 
-		Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.Id, Contact__c = contacts[1].Id);
+		Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOffering.Id, null);
         insert termGrade;
 
-        Course_Enrollment__c courseCxn = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, Status__c = 'Current', Contact__c = contacts[1].Id);
+        Course_Enrollment__c courseCxn = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
+        courseCxn.Status__c = 'Current';
         insert courseCxn;
 
-        Program_Enrollment__c programEnrollment = new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id);
+        Program_Enrollment__c programEnrollment = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment.Contact__c = contacts[1].Id;
         insert programEnrollment;
 
-        Test__c testRecord = new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id);
+        Test__c testRecord = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[1].Id);
         insert testRecord;
 
         Test.startTest();

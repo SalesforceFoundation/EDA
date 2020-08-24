@@ -663,7 +663,7 @@ public class UTIL_UnitTestData_TEST {
         Facility__c facility = new Facility__c(Name = 'Test Facility ' + Datetime.now().getTime());
         return facility;
     }
-    
+
     /*********************************************************************************************************
     * @description Gets a Case record for testing based on the parameter
     * @param student The Contact record to associate the Case with
@@ -677,7 +677,7 @@ public class UTIL_UnitTestData_TEST {
     	                             Category__c = category, Status = status);
         return caseRecord;
     }
-    
+
     /*********************************************************************************************************
     * @description Gets a Behavior Involvement record for testing based on the parameter
     * @param student The Contact record to associate the Beahvior Involvement with
@@ -692,7 +692,7 @@ public class UTIL_UnitTestData_TEST {
                                                                                 Role__c = role);
         return behavInvolvement;
     }
-    
+
     /**********************************************************************************************************    
     * @description Gets an Application for testing.
     * @Params appyingTo The Id of the Account 

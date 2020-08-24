@@ -71,7 +71,7 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
             handleBeforeDelete(oldList);
         }
 
-      return new DmlWrapper();
+        return new DmlWrapper();
     }
 
     /*******************************************************************************************************
