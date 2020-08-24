@@ -40,7 +40,7 @@ class ProgramPlansSettingsPage(BaseEDAPage, BasePage):
             self.eda.click_action_button_on_eda_settings_page("Save")
 
     def update_nested_plan_requirements_checkbox(self):
-        """ Set the checkbox for 'Enable Course Connections' field """
+        """ Set the checkbox for 'Nested plan requirements' field """
         locator_edit = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format("Validate Program Plan for Nested Plan Requirements")
         locator_enabled = eda_lex_locators["eda_settings_program_plans"]["updated_checkbox_edit"].format("Validate Program Plan for Nested Plan Requirements")
         self.selenium.wait_until_page_contains_element(locator_edit)
@@ -52,7 +52,7 @@ class ProgramPlansSettingsPage(BaseEDAPage, BasePage):
             actual_value = self.selenium.get_element_attribute(locator_enabled, "data-qa-checkbox-state")
             if actual_value == "true":
                 return
-        raise Exception("Clicking element 'Enable Course Connections' failed after multiple tries")
+        raise Exception("Clicking element 'Nested plan requirements' failed after multiple tries")
 
     def verify_nested_plan_requirements_checkbox(self, expectedCheckboxValue):
         """ This method will verify the 'Validate Program Plan for Nested Plan Requirements'
