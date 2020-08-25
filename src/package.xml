@@ -727,6 +727,8 @@
         <members>stgBtnAddSetting</members>
         <members>stgBtnCancel</members>
         <members>stgBtnEdit</members>
+        <members>stgBtnRefreshAdminNames</members>
+        <members>stgBtnRefreshHouseholdNames</members>
         <members>stgBtnRunBackfill</members>
         <members>stgBtnRunCopy</members>
         <members>stgBtnSave</members>
