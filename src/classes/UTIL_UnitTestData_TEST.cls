@@ -618,7 +618,7 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /**********************************************************************************************************    
-    * @description Gets a Attribute__c record testing.
+    * @description Gets a Attribute__c record testing
     * @Params attributeName The name of the attribute 
     * @params studentId The Id of the Contact
     * @params attributeRecordType RecordTypeId of Attribute record
@@ -639,12 +639,12 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Gets a Attendance Event with fields for testing.
+    * @description Gets a Attendance Event with fields for testing
     * @param contactId The contact to be associated with the Attendance Event
     * @param courseConnectionID The Course Connection to be associated with the Attendance Event
     * @param attendanceType The type of Attendance Event
     * @param reason The reason for Attendance Event
-    * @return The Attendance Event record.
+    * @return The Attendance Event record
     **********************************************************************************************************/
     public static Attendance_Event__c getAttendanceEvent(Id contactId, Id courseConnectionID, String attendanceType, String reason) {
         Attendance_Event__c attd = new Attendance_Event__c();
@@ -694,11 +694,11 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /**********************************************************************************************************    
-    * @description Gets an Application for testing.
+    * @description Gets an Application for testing
     * @Params appyingTo The Id of the Account 
     * @params student The Id of the Contact
     * @params terms the Id of the Term
-    * @return The Application record.
+    * @return The Application record
     **********************************************************************************************************/
     public static Application__c getApplication(Id appyingTo, Id student, Id term) {
         Application__c application = new Application__c(Applying_To__c = appyingTo, Applicant__c = student, Term__c = term);
