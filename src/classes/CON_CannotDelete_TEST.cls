@@ -1616,8 +1616,7 @@ private with sharing class CON_CannotDelete_TEST {
         Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affilliation;
 
-        List<Contact> contactList = [SELECT Id FROM Contact];
-        List<SObject> oldList = new List<SObject>((List<SObject>)contactList);
+        List<SObject> oldList = new List<SObject>((List<SObject>)contacts);
 
         CON_CannotDelete_TDTM CONCannotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
@@ -1655,8 +1654,7 @@ private with sharing class CON_CannotDelete_TEST {
         Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affilliation;
 
-        List<Contact> contactList = [SELECT Id FROM Contact];
-        List<SObject> oldList = new List<SObject>((List<SObject>)contactList);
+        List<SObject> oldList = new List<SObject>((List<SObject>)contacts);
 
         CON_CannotDelete_TDTM CONCannotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
@@ -1689,11 +1687,10 @@ private with sharing class CON_CannotDelete_TEST {
 
         Affiliation__c affilliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affilliation;
-        
-        List<SObject> contactsToBeDeletedList = [SELECT Id FROM Contact];
+
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
-             conCanNOtDeleteTDTM.handleBeforeDelete(contactsToBeDeletedList);
+             conCanNOtDeleteTDTM.handleBeforeDelete(contacts);
         Test.stopTest();
 
         System.assertEquals(1,conCanNotDeleteTDTM.deletionPreventedContactList.size());
@@ -1710,12 +1707,11 @@ private with sharing class CON_CannotDelete_TEST {
                                                           (Prevent_Contact_Deletion__c = true));
 
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
-        insert contacts;
+        contacts[0].Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
 
-        List<SObject> contactsToBeDeletedList = [SELECT Id FROM Contact];
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
-             conCanNOtDeleteTDTM.handleBeforeDelete(contactsToBeDeletedList);
+             conCanNOtDeleteTDTM.handleBeforeDelete((List<SObject>)contacts);
         Test.stopTest();
 
         System.assertEquals(0, conCanNotDeleteTDTM.deletionPreventedContactList.size());
@@ -1731,8 +1727,7 @@ private with sharing class CON_CannotDelete_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                           (Prevent_Contact_Deletion__c = false));
 
-        List<SObject> testContactlist = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
-        insert testContactlist;
+        List<SObject> testContactlist = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
