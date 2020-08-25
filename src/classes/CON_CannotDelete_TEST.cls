@@ -1707,7 +1707,7 @@ private with sharing class CON_CannotDelete_TEST {
                                                           (Prevent_Contact_Deletion__c = true));
 
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
-        contacts[0].Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        insert contacts;
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
