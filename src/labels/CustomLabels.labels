@@ -401,6 +401,14 @@
         <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
     </labels>
     <labels>
+        <fullName>defaultAccountRecordTypeMissingError</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when the default Administrative Account record type can’t be found</shortDescription>
+        <value>We can’t find the Administrative Account record type in your org. Following installation, use Object Manager to create a new record type named ‘Administrative’ for the Account object.</value>
+    </labels>
+    <labels>
         <fullName>defaultNamingConnector</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

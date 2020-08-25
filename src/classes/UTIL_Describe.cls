@@ -661,9 +661,9 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-     * @description Returns the ID of the Administrative Account record type, if it exists.
-     * @return String The ID of the Administrative Account record type as a String.
-     */
+    * @description Returns the ID of the Administrative Account record type, if it exists.
+    * @return String The ID of the Administrative Account record type as a String.
+    */
 
     public static String getAdminAccRecTypeID() {
         String recTypeId = getRecTypesMapByDevName('Account').get('Administrative');
@@ -678,6 +678,32 @@ public class UTIL_Describe {
         } else {
             return recTypeId;
         }
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the custom Administrative Account record type
+     * @return The ID of the custom Administrative Account record type.
+     */
+    public static Id getCustomAdminAccRecTypeID() {
+        Id customAdminRecTypeId = Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
+        if (customAdminRecTypeId == null 
+            || getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false) {
+            customAdminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
+        }
+        return customAdminRecTypeId;
+    }
+
+    /*******************************************************************************************************
+     * @description For new installs only, returns the ID of the default Administrative Account record type
+     * - If no default account record type is found, throw exception.
+     * @return The ID of the default Administrative Account record type.
+     */
+    public static Id getDefaultAdminAccRecTypeIDForNewInstall() { 
+        Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
+        if (Test.isRunningTest() == false && defaultAdminRecTypeId == null) {
+            throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(Label.defaultAccountRecordTypeMissingError);
+        }
+        return defaultAdminRecTypeId;
     }
 
     /*******************************************************************************************************
