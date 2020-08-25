@@ -382,20 +382,20 @@ class EDA(BaseEDAPage):
             self.verify_toast_message("Settings successfully saved.")
             self.close_toast_message()
 
-       def update_checkbox_value(self,**kwargs):
+    def update_checkbox_value(self,**kwargs):
         """ This method will update the checkbox field value passed in keyword arguments
             Pass the expected value to be set in the checkbox field from the tests
             true - checked, false - unchecked
         """
         for field,value in kwargs.items():
-            locator = eda_lex_locators["eda_settings_relationships"]["checkbox_read"].format(field,value)
+            locator = eda_lex_locators["eda_settings_program_plans"]["checkbox_read"].format(field,value)
             self.selenium.wait_until_page_contains_element(locator)
             self.selenium.wait_until_element_is_visible(locator)
             actual_value = self.selenium.get_element_attribute(locator, "alt")
             print (actual_value)
             if not str(actual_value).lower() == str(value).lower():
                 self.click_action_button_on_eda_settings_page("Edit")
-                locator_edit = eda_lex_locators["eda_settings_relationships"]["checkbox_edit"].format(field,value)
+                locator_edit = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field,value)
                 self.selenium.wait_until_page_contains_element(locator_edit,
                                                 error=f"'{locator_edit}' is not available ")
                 self.selenium.click_element(locator_edit)
@@ -439,25 +439,30 @@ class EDA(BaseEDAPage):
                 raise Exception (f"Drop down field {field} status is {actual_value} instead of {expected_value}")
 
     def verify_checkbox_value(self,**kwargs):
-        """ This method validates the default checkbox value for the field passed in kwargs
+        """ This method validates the checkbox value for the field passed in kwargs
             Pass the field name and expected value to be verified from the tests using
-            keyword arguments
+            keyword arguments. true - checked, false - unchecked
         """
+        self.selenium.execute_javascript("window.scrollTo(0, document.body.scrollHeight)")
+        self.selenium.execute_javascript("window.scrollTo(document.body.scrollHeight, 0)")
         for field,expected_value in kwargs.items():
             locator = eda_lex_locators["eda_settings_system"]["default_checkbox"].format(field)
+            self.selenium.page_should_contain_element(locator)
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_element_attribute(locator, "alt")
+            print (f"{locator} actual_value is ", actual_value)
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Checkbox value in {field} is {actual_value} but it should be {expected_value}")
 
     def verify_dropdown_value(self,**kwargs):
-        """ This method validates the default dropdown value for the field passed in kwargs
+        """ This method validates the dropdown value for the field passed in kwargs
             Pass the field name and expected value to be verified from the tests using
             keyword arguments
         """
         for field,expected_value in kwargs.items():
             locator = eda_lex_locators["eda_settings_system"]["default_dropdown_value"].format(field,expected_value)
+            self.selenium.page_should_contain_element(locator)
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).text

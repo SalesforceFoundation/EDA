@@ -7,10 +7,7 @@ Library         cumulusci.robotframework.PageObjects
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
-Test Setup      Run keywords
-...             Go to EDA settings tab          Relationships      AND
-...             Update reciprocal method value      Reciprocal Method=List Setting
-...             Update checkbox value       Allow Auto-Created Duplicate Relations=false
+Test Setup      Go to EDA settings tab          Relationships
 
 *** Test Cases ***
 Verify relationship settings can retain values on save
@@ -18,18 +15,12 @@ Verify relationship settings can retain values on save
     ...                     duplicate relations' are retained after making an update to their values
     ...                     and click on save button
     [tags]                    unstable        W-7989099
-    Verify dropdown value
-    ...                         Reciprocal Method=List Setting
-    Verify checkbox value
-    ...                         Allow Auto-Created Duplicate Relations=false
-    Click action button on EDA settings page        Edit
-    Update reciprocal method value
-    ...                         Reciprocal Method=Value Inversion
-    Update checkbox value
-    ...                         Allow Auto-Created Duplicate Relations=true
-    Click action button on EDA settings page        Save
+    Update reciprocal method value      Reciprocal Method=List Setting
+    Update checkbox value       Allow Auto-Created Duplicate Relations=false
+    Verify dropdown value       Reciprocal Method=List Setting
+    Verify checkbox value       Allow Auto-Created Duplicate Relations=false
+    Update reciprocal method value      Reciprocal Method=Value Inversion
+    Update checkbox value       Allow Auto-Created Duplicate Relations=true
     Go to EDA settings tab      Relationships
-    Verify dropdown value
-    ...                         Reciprocal Method=Value Inversion
-    Verify checkbox value
-    ...                         Allow Auto-Created Duplicate Relations=true
+    Verify dropdown value       Reciprocal Method=Value Inversion
+    Verify checkbox value       Allow Auto-Created Duplicate Relations=true
