@@ -31,7 +31,7 @@
 * @author Salesforce.org
 * @date 2020
 * @group 
-* @group-content ../../ApexDocContent/
+* @group-content ../../ApexDocContent/Contacts.htm
 * @description Test class for SRVC_Contact_PreventDeletion
 */
 @isTest

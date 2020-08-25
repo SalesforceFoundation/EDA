@@ -28,7 +28,7 @@ POSSIBILITY OF SUCH DAMAGE.
 * @author Salesforce.org
 * @date 2020
 * @group
-* @group-content ../../ApexDocContent/
+* @group-content ../../ApexDocContent/Contacts.htm
 * @description
 */
 public virtual with sharing class SRVC_Contact_PreventDeletion {
