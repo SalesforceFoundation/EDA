@@ -321,13 +321,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void handleInsertProcessing(HandleInsertWrapperLogic insertWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        //Creates new Account
-        if (contactsNeedAccounts.size() > 0) {
-            UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
-            insertContactAccount(contactsNeedAccounts, dmlWrapper);
-        }
-
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+
+            //Creates new Account
+            if (contactsNeedAccounts.size() > 0) {
+                UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
+                insertContactAccount(contactsNeedAccounts, dmlWrapper);
+            }
 
             //Updates the Primary Contact Field on New Account
             if (insertWrapper.accIdConIdToUpdate.size() > 0) {
@@ -439,13 +439,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Map<Id, sObject> idToSObjectTobeUpdated = new Map<Id, sObject>();
         List<sObject> duplicateOccurence = new List<sObject>();
 
-        //Creates new Account
-        if (contactsNeedAccounts.size() > 0) {
-            UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
-            insertContactAccount(contactsNeedAccounts, dmlWrapper);
-        }
-
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+
+            //Creates new Account
+            if (contactsNeedAccounts.size() > 0) {
+                UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
+                insertContactAccount(contactsNeedAccounts, dmlWrapper);
+            }
 
             //Updates Household Account name
             if (updateWrapper.accountIdsToRename.size() > 0) {
