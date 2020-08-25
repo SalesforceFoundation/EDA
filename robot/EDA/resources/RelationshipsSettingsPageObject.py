@@ -33,7 +33,13 @@ class RelationshipsSettingsPage(BaseEDAPage, BasePage):
             Pass the expected value to be set in the drop down field from the tests
         """
         for field,value in kwargs.items():
-            locator = eda_lex_locators["eda_settings_relationships"]["dropdown_value"].format(field,value)
-            self.selenium.wait_until_page_contains_element(locator,
-                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
-            self.selenium.click_element(locator)
+            locator = eda_lex_locators["eda_settings_program_plans"]["checkbox_read"].format(field,value)
+            text = self.selenium.get_text(locator)
+            print (text)
+            if not str(text).lower() == str(value).lower():
+                self.click_action_button_on_eda_settings_page("Edit")
+                locator_edit = eda_lex_locators["eda_settings_relationships"]["dropdown_value"].format(field,value)
+                self.selenium.wait_until_page_contains_element(locator_edit,
+                                                error=f"'{locator_edit}' is not available ")
+                self.selenium.click_element(locator_edit)
+                self.click_action_button_on_eda_settings_page("Save")

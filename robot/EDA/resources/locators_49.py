@@ -130,6 +130,7 @@ eda_lex_locators = {
         "text_message": "//span[text()='{}']",
     },
     "eda_settings_relationships": {
+        "dropdown_read": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[text()='{}']",
         "dropdown_value": "//span[text()='{}']/../following-sibling::div/descendant::select/option[text()='{}']",
     },
     "eda_settings_system": {

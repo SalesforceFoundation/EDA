@@ -18,12 +18,12 @@ Verify standard field values
     ...                     dropdown is set to {!LastName} Household.
     [tags]                    unstable        W-041787
     Go to EDA settings tab    System
-    Verify default checkbox value
+    Verify checkbox value
     ...                       Store Errors=true
     ...                       Send Error Notifications=false
     ...                       Disable Error Handling=false
     ...                       Automatically Rename Household Accounts=false
-    Verify default dropdown value
+    Verify dropdown value
     ...                       Default Account Model=Administrative
     ...                       Error Notification Recipients=All Sys Admins
     ...                       Administrative Account Name Format={!LastName} Administrative Account
