@@ -35,7 +35,6 @@ class RelationshipsSettingsPage(BaseEDAPage, BasePage):
         for field,value in kwargs.items():
             locator = eda_lex_locators["eda_settings_relationships"]["dropdown_read"].format(field)
             text = self.selenium.get_webelement(locator).text
-            print (text)
             if not str(text).lower() == str(value).lower():
                 self.eda.click_action_button_on_eda_settings_page("Edit")
                 locator_edit = eda_lex_locators["eda_settings_relationships"]["dropdown_value"].format(field,value)

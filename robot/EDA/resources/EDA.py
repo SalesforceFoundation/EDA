@@ -392,7 +392,6 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_page_contains_element(locator)
             self.selenium.wait_until_element_is_visible(locator)
             actual_value = self.selenium.get_element_attribute(locator, "alt")
-            print (actual_value)
             if not str(actual_value).lower() == str(value).lower():
                 self.click_action_button_on_eda_settings_page("Edit")
                 locator_edit = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field,value)
@@ -451,7 +450,6 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_element_attribute(locator, "alt")
-            print (f"{locator} actual_value is ", actual_value)
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Checkbox value in {field} is {actual_value} but it should be {expected_value}")
 
