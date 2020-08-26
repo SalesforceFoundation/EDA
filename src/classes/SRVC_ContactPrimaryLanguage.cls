@@ -98,7 +98,8 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
      * @param  contactIdsToMarkAsNonPrimarySet A set of Contact Ids associated with Contact Languages to process.
      * @return A list of Contact Language records to be updated as non-primary.
      */
-    public List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){
+    @TestVisible
+    protected virtual List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){
 
         List<Contact_Language__c> contactLanguagesToUpdateAsNonPrimary = new List<Contact_Language__c>();
 
@@ -135,7 +136,7 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
      *         another containing Contact Language records to be updated.                                         
      */
     @TestVisible
-    private ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
+    protected virtual ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
                                                                                     Map<Id, Id> languageIdToCheckForUpdateByContactId){
 
         List<Contact_Language__c> contactLanguagesToUpdateToPrimaryList = new List<Contact_Language__c>();
