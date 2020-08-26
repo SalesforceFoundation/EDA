@@ -433,7 +433,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label><!-- Refresg All Household Names --></label>
+        <label><!-- Refresh All Household Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
