@@ -127,9 +127,12 @@ private class SRVC_Contact_PreventDeletion_TEST {
         SRVC_Contact_PreventDeletion.instance = new STUB_AlwaysHasChildRelationships();
 
         Map<Id,Contact> contactById = new Map<Id,Contact>();
-        List<Contact> contactsWithErrorsList = SRVC_Contact_PreventDeletion.getInstance().PreventDeletionForContacts(
-            contactById
-        );
+
+        Test.startTest();
+            List<Contact> contactsWithErrorsList = SRVC_Contact_PreventDeletion.getInstance().PreventDeletionForContacts(
+                contactById
+            );
+        Test.stopTest();
 
         System.assertEquals(contactById.values().size(), contactsWithErrorsList.size());
 
@@ -145,9 +148,12 @@ private class SRVC_Contact_PreventDeletion_TEST {
         SRVC_Contact_PreventDeletion.instance = new STUB_DoesNotHaveChildRelationships();
 
         Map<Id,Contact> contactById = new Map<Id,Contact>();
-        List<Contact> contactsWithErrorsList = SRVC_Contact_PreventDeletion.getInstance().PreventDeletionForContacts(
-            contactById
-        );
+
+        Test.startTest();
+            List<Contact> contactsWithErrorsList = SRVC_Contact_PreventDeletion.getInstance().PreventDeletionForContacts(
+                contactById
+            );
+        Test.stopTest();
 
         System.assertEquals(0, contactsWithErrorsList.size());
         for (Contact contactToCheck : contactsWithErrorsList) {
