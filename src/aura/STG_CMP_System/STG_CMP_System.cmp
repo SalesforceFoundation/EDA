@@ -257,7 +257,7 @@
 
                 <div class="slds-col slds-size--1-of-2">
                     <lightning:button
-                        disabled="{!v.isView}"
+                        disabled="{!!v.isView}"
                         variant="brand"
                         label="{!$Label.c.stgBtnRefreshAdminNames}"
                         title="refreshButton"
