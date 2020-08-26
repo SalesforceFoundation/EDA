@@ -341,6 +341,21 @@ private class SRVC_ContactPrimaryLanguage_TEST {
 
     }
 
+    @isTest 
+    private static void getPrimaryContactLanguagesNoInsertsNoUpdates(){
+        Test.startTest();
+        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(new Map<Id, Contact_Language__c>(), new Map<Id, Id>());
+        Test.stopTest();
+
+        System.assertEquals(true, conLangCat.getContactLanguagesToInsert().isEmpty(), 'There should be no new Contact Language records to create.');
+        System.assertEquals(true, conLangCat.getContactLanguagesToUpdate().isEmpty(), 'There should be no existing Contact Language records to update.');
+    }
+
+    @isTest 
+    private static void getPrimaryContactLanguagesInsertsAndUpdates(){
+
+    }
+
 
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
