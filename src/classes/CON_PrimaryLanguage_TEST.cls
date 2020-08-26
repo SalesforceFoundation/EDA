@@ -35,9 +35,6 @@
 @isTest
 private class CON_PrimaryLanguage_TEST {
 
-    // private static Contact contact;
-    // private static Language__c language;
-    // private static Contact_Language__c contactLanguage;
     private static final String DEFAULT_FLUENCY = Label.stgFluent;
 
     /**************************************************************************************************************************
@@ -326,10 +323,10 @@ private class CON_PrimaryLanguage_TEST {
     ****************************************************** UNIT TESTS *********************************************************
     **************************************************************************************************************************/
 
-    /**
-     * @description Test method to verify that isUpdateRecursion returns true when either or both recursion flags
-     * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are set.
-     */ 
+    /************************************************************************************************************
+    * @description Test method to verify that isUpdateRecursion returns true when either or both recursion flags
+    * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are set.
+    *************************************************************************************************************/ 
     @isTest 
     private static void isUpdateRecursionTrue(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, true);
@@ -342,10 +339,10 @@ private class CON_PrimaryLanguage_TEST {
         Test.stopTest();
     }
 
-    /**
-     * @description Test method to verify that isUpdateRecursion returns when both recursion flags
-     * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are unset.
-     */ 
+    /************************************************************************************************************
+    * @description Test method to verify that isUpdateRecursion returns when both recursion flags
+    * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are unset.
+    *************************************************************************************************************/ 
     @isTest 
     private static void isUpdateRecursionFalse(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, false);
@@ -358,6 +355,10 @@ private class CON_PrimaryLanguage_TEST {
         Test.stopTest();
     }
 
+    /************************************************************************************************************
+    * @description Test method to verify that unsetUpdateRecursion properly updates the status for the 
+    * CON_PrimaryLanguage_After_Update recursion flag to false.
+    *************************************************************************************************************/ 
     @isTest 
     private static void unsetUpdateRecursionTrue(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, true);
@@ -371,6 +372,10 @@ private class CON_PrimaryLanguage_TEST {
         System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update), 'Update recursion flag should be cleared.');
     }
 
+    /************************************************************************************************************
+    * @description Test method to verify that unsetUpdateRecursion properly updates the status for the 
+    * CON_PrimaryLanguage_After_Update recursion flag to true.
+    *************************************************************************************************************/ 
     @isTest 
     private static void setUpdateRecursionTrue(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, false);
@@ -384,10 +389,10 @@ private class CON_PrimaryLanguage_TEST {
         System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update), 'Update recursion flag should be set.');
     }
 
-    /**
-     * @description Test method to verify that isInsertRecursion returns true when either or both recursion flags
-     * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are set.
-     */ 
+    /************************************************************************************************************
+    * @description Test method to verify that isInsertRecursion returns true when either or both recursion flags
+    * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are set.
+    *************************************************************************************************************/ 
     @isTest 
     private static void isInsertRecursionTrue(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, true);
@@ -400,10 +405,10 @@ private class CON_PrimaryLanguage_TEST {
         Test.stopTest();
     }
 
-    /**
-     * @description Test method to verify that isInsertRecursion returns when both recursion flags
-     * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are unset.
-     */ 
+    /************************************************************************************************************
+    * @description Test method to verify that isInsertRecursion returns false when both recursion flags
+    * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are unset.
+    *************************************************************************************************************/ 
     @isTest 
     private static void isInsertRecursionFalse(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, false);
@@ -416,6 +421,10 @@ private class CON_PrimaryLanguage_TEST {
         Test.stopTest();
     }
 
+    /************************************************************************************************************
+    * @description Test method to verify that unsetInsertRecursion correctly updates the status of the 
+    * CON_PrimaryLanguage_TDTM_After_Insert recursion flag to false.
+    *************************************************************************************************************/ 
     @isTest 
     private static void unsetInsertRecursionTrue(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, true);
@@ -429,6 +438,10 @@ private class CON_PrimaryLanguage_TEST {
         System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert), 'Insert recursion flag should be cleared.');
     }
 
+    /************************************************************************************************************
+    * @description Test method to verify that setInsertRecursion correctly updates the status of the 
+    * CON_PrimaryLanguage_TDTM_After_Insert recursion flag to true.
+    *************************************************************************************************************/ 
     @isTest 
     private static void setInsertRecursionTrue(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, false);
@@ -442,8 +455,12 @@ private class CON_PrimaryLanguage_TEST {
         System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert), 'Insert recursion flag should be set.');
     }
 
+    /************************************************************************************************************
+    * @description Test method to verify that getInstance correctly returns an existing instance of 
+    * SRVC_ContactPrimaryLanguage when one already exists.
+    *************************************************************************************************************/ 
     @isTest 
-    private static void locateContactPrimaryLanguageService(){
+    private static void locateContactPrimaryLanguageServiceExisting(){
         SRVC_ContactPrimaryLanguage srvcConPrimaryLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
         System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
         System.assertNotEquals(NULL, srvcConPrimaryLangInstance);
@@ -452,79 +469,78 @@ private class CON_PrimaryLanguage_TEST {
         System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
     }
 
+    /************************************************************************************************************
+    * @description Test method to verify that getInstance correctly returns a new instance of 
+    * SRVC_ContactPrimaryLanguage when one does not exist.
+    *************************************************************************************************************/ 
     @isTest 
-    private static void handleAfterUpdatePositive(){
-        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
-        List<Contact> oldTestContactsList = new List<Contact>();
+    private static void locateContactPrimaryLanguageServiceNew(){
+        SRVC_ContactPrimaryLanguage srvcConPrimaryLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
+        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
+        System.assertNotEquals(NULL, srvcConPrimaryLangInstance);
 
-        // List<SObject> newObjectsList = new List<SObject>();
-        // List<SObject> oldTestObjectsList = new List<SObject>();
-
-        Language__c englishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.sObjectType),
-                                                      Name = 'English'
-                                                     );
-        Language__c frenchLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.sObjectType),
-                                                     Name = 'French'
-                                                    );
-
-        System.debug('MK DEBUG: english Id: ' + englishLanguage.Id);
-        System.debug('MK DEBUG: french Id: ' + frenchLanguage.Id);
-
-        for (Contact con : testContactsList){
-            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
-            System.debug('MK DEBUG: testId: '  + testId);
-            con.Id = testId;
-            con.Primary_Language__c = frenchLanguage.Id;
-
-            Contact oldCon = con.clone(false);
-            oldCon.Id = con.Id;
-            oldCon.Primary_Language__c = englishLanguage.Id;
-            oldTestContactsList.add(oldCon);
-        }
-        
-        // for (SObject so : newObjectsList){
-        //     //String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
-        //     so.put('Primary_Language__c', frenchLanguage.Id);
-        //     //so.put('Id', testId);
-
-        //     SObject oldSO = so.clone(false);
-        //     oldSO.put('Primary_Language__c', englishLanguage.Id);
-        //     //oldSO.put('Id', testId);
-        //     oldSO.put('Id', so.get('Id'));
-        //     oldTestObjectsList.add(oldSO);
-        // }
-
-        Test.startTest();
-        CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
-        conPrimaryLangTDTM.handleAfterUpdate((List<SObject>)testContactsList, (List<SObject>)oldTestContactsList);
-        Test.stopTest();
-
-        List<Contact_Language__c> conLangResults = [SELECT Id, 
-                                                           Primary_Language__c, 
-                                                           Fluency__c,
-                                                           Contact__c,
-                                                           Language__c
-                                                    FROM Contact_Language__c
-                                                    WHERE Contact__c IN :newObjectsList];
-
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangResults);
-
-        for (Contact con : (List<Contact>)newObjectsList){
-            System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
-            System.assertEquals(2, contactLanguagesListByContactId.get(con.Id).size(), 'Contact should be associated with two Contact Language records.');            
-            System.assertEquals(frenchLanguage.Id, con.Primary_Language__c, 'Contact\'s primary language should be French.');            
-
-            for (Contact_Language__c conLang : contactLanguagesListByContactId.get(con.Id)){
-                if (conLang.Language__c == frenchLanguage.Id){
-                    System.assertEquals(true, conLang.Primary_Language__c, 'French Contact Language record should be set as primary.');
-                    System.assertEquals(DEFAULT_FLUENCY, conLang.Fluency__c, 'French Contact Language record fluency should match the default value.');
-                } else {
-                    System.assertEquals(englishLanguage.Id, conLang.Language__c, 'Second contact language record should correspond to the English Language.');
-                    System.assertEquals(false, conLang.Primary_Language__c, 'English Contact Language record should not be set as primary.');
-                }
-            }
-        }        
+        // srvcConPrimaryLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
+        // System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
     }
+
+    // @isTest 
+    // private static void handleAfterUpdatePositive(){
+    //     List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+    //     List<Contact> oldTestContactsList = new List<Contact>();
+      
+    //     Language__c englishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.sObjectType),
+    //                                                   Name = 'English'
+    //                                                  );
+    //     Language__c frenchLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.sObjectType),
+    //                                                  Name = 'French'
+    //                                                 );
+
+    //     // Language__c englishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
+    //     // Language__c frenchLanguage = UTIL_UnitTestData_TEST.createLanguage('French');
+
+    //     for (Contact con : testContactsList){
+    //         String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+    //         System.debug('MK DEBUG: testId: '  + testId);
+    //         con.Id = testId;
+    //         con.Primary_Language__c = frenchLanguage.Id;
+
+    //         Contact oldCon = con.clone(false);
+    //         oldCon.Id = con.Id;
+    //         oldCon.Primary_Language__c = englishLanguage.Id;
+    //         oldTestContactsList.add(oldCon);
+    //     }
+        
+    //     Test.startTest();
+    //     CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
+    //     conPrimaryLangTDTM.handleAfterUpdate((List<SObject>)testContactsList, (List<SObject>)oldTestContactsList);
+    //     Test.stopTest();
+
+    //     List<Contact_Language__c> conLangResults = [SELECT Id, 
+    //                                                        Primary_Language__c, 
+    //                                                        Fluency__c,
+    //                                                        Contact__c,
+    //                                                        Language__c
+    //                                                 FROM Contact_Language__c
+    //                                                 WHERE Contact__c IN :testContactsList];
+
+    //     Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangResults);
+
+    //     for (Contact con : testContactsList){
+    //         System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
+    //         System.assertEquals(2, contactLanguagesListByContactId.get(con.Id).size(), 'Contact should be associated with two Contact Language records.');            
+    //         System.assertEquals(frenchLanguage.Id, con.Primary_Language__c, 'Contact\'s primary language should be French.');            
+
+    //         for (Contact_Language__c conLang : contactLanguagesListByContactId.get(con.Id)){
+    //             if (conLang.Language__c == frenchLanguage.Id){
+    //                 System.assertEquals(true, conLang.Primary_Language__c, 'French Contact Language record should be set as primary.');
+    //                 System.assertEquals(DEFAULT_FLUENCY, conLang.Fluency__c, 'French Contact Language record fluency should match the default value.');
+    //             } else {
+    //                 System.assertEquals(englishLanguage.Id, conLang.Language__c, 'Second contact language record should correspond to the English Language.');
+    //                 System.assertEquals(false, conLang.Primary_Language__c, 'English Contact Language record should not be set as primary.');
+    //             }
+    //         }
+    //     }        
+    // }
 
     @isTest 
     private static void handleAfterUpdateNegative(){
@@ -535,6 +551,55 @@ private class CON_PrimaryLanguage_TEST {
     private static void handleAfterUpdateNull(){
         
     }
+
+    // @isTest 
+    // private static void handleAfterInsertPositive(){
+    //     List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);      
+    //     Language__c englishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
+    //                                                   Name = 'English');
+
+    //     TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, false);
+    //     TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
+
+    //     //Language__c englishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
+
+    //     for (Contact con : testContactsList){
+    //         con.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+    //         con.Primary_Language__c = englishLanguage.Id; 
+    //     }
+        
+    //     Test.startTest();
+    //     CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
+    //     conPrimaryLangTDTM.handleAfterInsert((List<SObject>)testContactsList);
+    //     Test.stopTest();
+    // }
+
+    // @isTest 
+    // private static void fireAfterInsertWithPrimaryLanguage(){
+        
+    //     List<SObject> newList = (List<SObject>)UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+    //     List<SObject> oldList = null;
+
+    //     TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, false);
+    //     TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
+
+    //     TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.AfterInsert;
+    //     Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+        
+    //     Language__c fakeEnglishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
+    //                                                    Name = 'English'
+    //                                                 );
+    //     for (SObject so : newList){
+    //         so.put('Id', UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType));
+    //         so.put('Primary_Language__c', fakeEnglishLanguage.Id);
+    //     }
+
+    //     CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
+    //     conPrimaryLangTDTM.run(newList, oldList, triggerAction, objResult);
+
+    //     for (Contact con : (List<Contact>)newList){
+    //     }
+    // }
 
     
 }

@@ -102,8 +102,6 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
      */ 
     @TestVisible
     private void handleAfterUpdate(List<SObject> newObjectsList, List<SObject> oldObjectsList){
-        
-
         if (this.isUpdateRecursion()){
             return;
         }
@@ -113,16 +111,6 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldObjectsList);
         Map<Id, Id> primaryLanguageByContactId = new Map<Id, Id>();
 
-        for (Contact c : newContactsById.values()){
-            System.debug('MK DEUBUG: new con primary lang: ' + c.Primary_Language__c);
-
-        }
-
-        for (Contact c : oldContactsById.values()){
-            System.debug('MK DEUBUG: old con primary lang: ' + c.Primary_Language__c);
-
-        }
-        
         List<Contact_Language__c> conLanguagesToInsertList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToInsert();
         List<Contact_Language__c> conLanguagesToUpdateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToUpdate();
 

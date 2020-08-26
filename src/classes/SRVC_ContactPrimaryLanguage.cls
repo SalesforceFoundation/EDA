@@ -149,7 +149,7 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
                                                                   AND (Language__c IN :languageIdToCheckForUpdateByContactId.values()
                                                                                    OR Primary_Language__c = true)
                                                                  ];
-
+                                                                        
         for (Contact_Language__c conLang : existingContactLanguagesList){
             if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c) &&
                 languageIdToCheckForUpdateByContactId.get(conLang.Contact__c) == conLang.Language__c){
