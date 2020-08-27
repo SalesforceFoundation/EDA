@@ -321,6 +321,7 @@
         <members>Application__c.Applicant__c</members>
         <members>Application__c.Application_Date__c</members>
         <members>Application__c.Application_Decision_Date__c</members>
+        <members>Application__c.Application_JSON__c</members>
         <members>Application__c.Application_Status__c</members>
         <members>Application__c.Application_Type__c</members>
         <members>Application__c.Applying_To__c</members>
@@ -364,6 +365,7 @@
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship_Status__c</members>
         <members>Contact.Citizenship__c</members>
+        <members>Contact.Contact_JSON__c</members>
         <members>Contact.Country_of_Origin__c</members>
         <members>Contact.Current_Address__c</members>
         <members>Contact.Date_Deceased__c</members>
@@ -452,6 +454,7 @@
         <members>Education_History__c.Contact__c</members>
         <members>Education_History__c.Degree_Earned__c</members>
         <members>Education_History__c.Details__c</members>
+        <members>Education_History__c.Education_History_JSON__c</members>
         <members>Education_History__c.Educational_Institution_Name__c</members>
         <members>Education_History__c.End_Date__c</members>
         <members>Education_History__c.GPA_Scale_Reporting__c</members>

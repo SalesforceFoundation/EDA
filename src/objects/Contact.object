@@ -4346,6 +4346,17 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Contact_JSON__c</fullName>
+        <description>A system field that stores a large JSON structure and is used for integrations. Do not modify this field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>Contact JSON</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Ethnicity__c</fullName>
         <externalId>false</externalId>
         <label>Ethnicity</label>
