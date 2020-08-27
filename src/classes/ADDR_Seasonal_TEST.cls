@@ -48,7 +48,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertNewCurrentSeasonalAddressOnExistingAccountWithDefaultAddress() {
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> newAddrList = accsAddrs.addrs;
 
         newAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -103,7 +103,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertNewCurrentSeasonalAddressWithYearOnExistingAccountWithDefaultAddress() {
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> newAddrList = accsAddrs.addrs;
 
         newAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -158,7 +158,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertNewNonCurrentSeasonalAddressOnExistingAccountWithDefaultAddress() {
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> newAddrList = accsAddrs.addrs;
 
         newAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -213,7 +213,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void updateNonCurrentToCurrentSeasonalAddress() {
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> newAddrList = accsAddrs.addrs;
         
         newAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -272,7 +272,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertSeasonalAddressWithOverlapLogic() {
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> newAddrList = accsAddrs.addrs;
 
         newAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(4);
@@ -485,7 +485,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertNonCurrentSeasonalAddressOverlapExistingNonCurrentSeasonAddress() {
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> newAddrList = accsAddrs.addrs;
 
         //Create additional Seasonal Address records that's not current
@@ -536,7 +536,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertPartialSeasonalAddress() {
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
 
         //Create additional non current Seasonal Address records
@@ -567,7 +567,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertPartialSeasonalYearAddress() {
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
 
         //Create additional not current Seasonal Address record 
@@ -608,12 +608,12 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void scheduleNewNonCurrentSeasonalAddress() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
                                                                 Contacts_Addresses_Enabled__c = True,
                                                                 Simple_Address_Change_Treated_as_Update__c = True);
                                                                 UTIL_CustomSettings_API.getSettingsForTests(hs);
 
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsWithAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsWithAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> accAddrList = accsWithAddrs.addrs;
 
         //Creates a default Address records for each Contact
@@ -739,13 +739,13 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void scheduleNewCurrentSeasonalAddress() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
                                                                 Contacts_Addresses_Enabled__c = True,
                                                                 Simple_Address_Change_Treated_as_Update__c = True);
                                                                 UTIL_CustomSettings_API.getSettingsForTests(hs);
 
         //Creates a default Address for each Account record
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsWithAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsWithAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrListForAcc = accsWithAddrs.addrs;
 
         //Creates a default Address for each Contact record 
@@ -872,11 +872,11 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertCurrentSeasonalAddressWithStartEndYear() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
                                                                                 Simple_Address_Change_Treated_as_Update__c = True));
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Account> accList = accWithAddrList.accs; 
 
         //Create seasonal Address record with start and end year that include the current date
@@ -922,11 +922,11 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertNewNonCurrentSeasonalAddressOnAccWithoutAddresses() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
                                                                                 Simple_Address_Change_Treated_as_Update__c = True));
         
-        List<Account> accList = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID());
+        List<Account> accList = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID());
         insert accList; 
         
         List<Address__c> seasonalAddrList = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
@@ -984,11 +984,11 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void updateCurrentSeasonalAddressMailingFields() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
                                                                                 Simple_Address_Change_Treated_as_Update__c = True)); 
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Account> accList = accWithAddrList.accs; 
         
         //Create seasonal Address record with start and end year that include the current date
@@ -1047,11 +1047,11 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void updateCurrentSeasonalAddressStartYear() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
                                                                                 Simple_Address_Change_Treated_as_Update__c = True));
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Account> accList = accWithAddrList.accs; 
         
         //Create seasonal Address record with start and end year that include the current date
@@ -1099,11 +1099,11 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void deleteCurrentSeasonalAddress() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+                                                                                Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
                                                                                 Simple_Address_Change_Treated_as_Update__c = True));
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accWithAddrList = UTIL_UnitTestData_TEST.createTestAccsAddrs(1, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Account> accList = accWithAddrList.accs; 
         
         //Create seasonal Address record with start and end year that include the current date
@@ -1149,7 +1149,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insertNewCurrentSeasonalAddressForContact() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
                                                                                 Contacts_Addresses_Enabled__c = True,
                                                                                 Simple_Address_Change_Treated_as_Update__c = True));
 
@@ -1226,7 +1226,7 @@ private with sharing class ADDR_Seasonal_TEST {
     **********************************************************************************************************/
     @isTest
     private static void insert2ndCurrentSeasonalOverlapAddressOnContact() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
                                                                                 Contacts_Addresses_Enabled__c = True,
                                                                                 Simple_Address_Change_Treated_as_Update__c = True));
         Contact contact = UTIL_UnitTestData_TEST.getContact(); 
