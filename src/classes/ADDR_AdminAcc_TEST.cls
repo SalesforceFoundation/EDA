@@ -40,7 +40,9 @@ public with sharing class ADDR_AdminAcc_TEST {
     
     /*@description Set up of Hierarchy Settings leverage by test methods*/
     private static void configSettings() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        Id customAdminRecType = UTIL_Describe.getCustomAdminAccRecTypeID();
+        
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = customAdminRecType + ';',
                                                                 Simple_Address_Change_Treated_as_Update__c = True);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
     }
@@ -55,7 +57,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void updateDefaultAddressMailingFields() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         for (Integer i = 0; i < addrList.size(); i++) {
@@ -88,7 +90,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void deleteDefaultAddressRecord() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         Test.startTest();
         delete addrList;
@@ -116,7 +118,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void deleteNonDefaultAddress() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         addrList = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
@@ -164,7 +166,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void updateDefaultAddressToNonDefault() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         for (Integer i = 0; i < addrList.size(); i++) {
@@ -198,7 +200,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void updateDefaultAddressMailingFieldsWithExistingNonDefaultOverrideAddress() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         //Create new non-default address
@@ -252,7 +254,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void insertNewDefaultAddressOnExistingAccountWithExistingDefaultAddress() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         //Create additional addresses
@@ -318,7 +320,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void insertNewDefaultAddressAndResetOriginalDefaultAddress() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> originalAddrList = accsAddrs.addrs;
         
         //Create additional addresses
@@ -381,7 +383,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void updateAdminAcctBillingFieldsXTimes() {
         configSettings();
 
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
@@ -446,7 +448,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void updateAdminAccBillingFieldsOnce() {
         configSettings();
                 
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
@@ -490,7 +492,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void updateAdminAccBillingFieldsForSimpleAddressTreatedUpdate() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         //Modify some of the Account billing address fields. Treat the update to the Account's 
@@ -617,7 +619,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void updateAdminAccountBillingFieldsWithDuplicateValues() {
         configSettings();
             
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
@@ -652,7 +654,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void updateAdminAccountBillingFieldsWithNonDefaultAddressMailingFields() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         addrList = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
@@ -711,9 +713,9 @@ public with sharing class ADDR_AdminAcc_TEST {
     @isTest
     private static void updateAdminAccountBillingStreetWithMultilineStreetValue() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                    UTIL_Describe_API.getAdminAccRecTypeID() + ';'));
+                                                                    UTIL_Describe.getCustomAdminAccRecTypeID() + ';'));
 
-        List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         for (Account acc : accList) {
             acc.BillingStreet = 'new street\r\nsecond line';
             acc.BillingCity = 'new city';
@@ -756,7 +758,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     private static void insertNewDefaultMultilineStreetAddressOnExistingAccWithExistingDefaultAddress() {
         configSettings();
                 
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrList = accsAddrs.addrs;
         
         addrList = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
@@ -791,9 +793,9 @@ public with sharing class ADDR_AdminAcc_TEST {
     @isTest
     private static void clearAdminAccountBillingFields() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                    UTIL_Describe_API.getAdminAccRecTypeID() + ';'));
+                                                                    UTIL_Describe.getCustomAdminAccRecTypeID() + ';'));
                 
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe.getCustomAdminAccRecTypeID());
         
         List<Address__c> addrList = accsAddrs.addrs;
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {

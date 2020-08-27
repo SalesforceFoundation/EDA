@@ -400,7 +400,7 @@ private class TDTM_Manager_TEST {
     @isTest
     public static void excludeUsernamesSingleUser() {
         UTIL_CustomSettings_API.getSettingsForTests(
-                new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+                new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID()));
 
         //Get current user's username
         String currUserName = UserInfo.getUserName();
@@ -426,7 +426,7 @@ private class TDTM_Manager_TEST {
     @isTest
     public static void excludeUsernamesMultipleUser() {
         UTIL_CustomSettings_API.getSettingsForTests(
-                new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+                new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID()));
 
         //Get current user's username
         String currUserName = UserInfo.getUserName();
