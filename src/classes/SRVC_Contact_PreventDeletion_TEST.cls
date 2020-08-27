@@ -64,8 +64,8 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
         insert course;
 
-        Affiliation__c affilliation = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
-        insert affilliation;
+        Affiliation__c affiliation = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
+        insert affiliation;
 
         Application__c applicant = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
         insert applicant;
@@ -170,7 +170,8 @@ private class SRVC_Contact_PreventDeletion_TEST {
                 contactById
             );
         Test.stopTest();
-
+        
+        // Ensure contactsWithErrorsList is empty
         System.assertEquals(0, contactsWithErrorsList.size());
 
     }
@@ -188,7 +189,8 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Test.startTest();
             List<contact> contactErroredList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
         Test.stopTest();
-
+        
+        // Ensure contactsWithErrorsList is not empty
         System.assertEquals(1, contactErroredList.size());
     }
 
@@ -206,7 +208,8 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Test.startTest();
             List<contact> contactErroredList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
         Test.stopTest();
-
+        
+        // Ensure contactsWithErrorsList is empty
         System.assertEquals(0, contactErroredList.size());
     }
 
@@ -224,7 +227,8 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Test.startTest();
             List<Contact> contactsWithChildRecords = SRVC_Contact_PreventDeletion.getInstance().getContactsAndChildRelationships(contactIdSet);
         Test.stopTest();
-
+        
+        // Ensure child records are retrieved
         System.assertEquals(1, contactsWithChildRecords[0].Addresses__r.size());
         System.assertEquals(1, contactsWithChildRecords[0].Affl_Accounts__r.size());
         System.assertEquals(1, contactsWithChildRecords[0].Affl_Accounts__r.size());
@@ -298,7 +302,8 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Test.startTest();
             Boolean contactHasChildren = SRVC_Contact_PreventDeletion.getInstance().contactHasChildRecords(con);
         Test.stopTest();
-
+        
+        // Ensure contactHasChildren is true
         System.assertEquals(true, contactHasChildren);
     }
 
@@ -313,7 +318,8 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Test.startTest();
             Boolean contactHasChildren = SRVC_Contact_PreventDeletion.getInstance().contactHasChildRecords(contacts[0]);
         Test.stopTest();
-
+        
+        // Ensure contactHasChildren is false
         System.assertEquals(false, contactHasChildren);
     }
 
