@@ -127,6 +127,10 @@
         <name>Details__c</name>
     </fields>
     <fields>
+        <label><!-- Education History JSON --></label>
+        <name>Education_History_JSON__c</name>
+    </fields>
+    <fields>
         <label><!-- Educational Institution Name --></label>
         <name>Educational_Institution_Name__c</name>
     </fields>
