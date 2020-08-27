@@ -45,7 +45,7 @@ private with sharing class TDTM_Filter_TEST {
     private static void recTypesSetup() {
         orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
-        adminRecTypeID = UTIL_Describe_API.getAdminAccRecTypeID();
+        adminRecTypeID = UTIL_Describe.getCustomAdminAccRecTypeID();
     }
 
     private static List<TDTM_Global_API.TdtmToken> setup() {
