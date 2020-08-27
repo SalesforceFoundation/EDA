@@ -848,6 +848,22 @@
         <value>Edit</value>
     </labels>
     <labels>
+        <fullName>stgBtnRefreshAdminNames</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label for refreshing Administrative Account Names</shortDescription>
+        <value>Refresh All Administrative Names</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRefreshHouseholdNames</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label for refreshing Household Account Names</shortDescription>
+        <value>Refresh All Household Names</value>
+    </labels>
+    <labels>
         <fullName>stgBtnRunBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
