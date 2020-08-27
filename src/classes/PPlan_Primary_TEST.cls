@@ -42,7 +42,7 @@ private class PPlan_Primary_TEST {
     */
     @IsTest
     static void setOtherProgramPlanNonPrimaryUpdate() {
-        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID());
         insert accts[0];
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
@@ -76,7 +76,7 @@ private class PPlan_Primary_TEST {
      */
     @IsTest
     static void setOtherProgramPlanNonPrimaryInsert() {
-        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID());
         insert accts[0];
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
@@ -112,7 +112,7 @@ private class PPlan_Primary_TEST {
      */
     @IsTest
     static void setOtherProgramPlanNonPrimaryLinkToAccount() {
-        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID());
         insert accts[0];
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
@@ -149,7 +149,7 @@ private class PPlan_Primary_TEST {
      */
     @IsTest
     static void isNewlyPrimaryOrPrimaryAndAccountChanged() {
-         List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
+         List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         insert accts[0];
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
