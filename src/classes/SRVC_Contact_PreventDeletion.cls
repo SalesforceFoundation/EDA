@@ -61,13 +61,13 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
     @params contactById The map of contacts by its Ids
     @return contactPreventedFromDeletionList The list Contacts prevented from deletion
     *****************************************************************************************************************/
-    public List<contact> preventDeletionForContacts(Map<Id, Contact> contactById) {
+    public virtual List<Contact> preventDeletionForContacts(Map<Id, Contact> contactById) {
 
-        List<contact> contactWithChildRecordsList = getContactsAndChildRelationships(contactById.keySet());
-        List<contact> contactPreventedFromDeletionList = new List<contact>();
+        List<Contact> contactWithChildRecordsList = getContactsAndChildRelationships(contactById.keySet());
+        List<Contact> contactPreventedFromDeletionList = new List<Contact>();
 
-        for (contact eachContact: contactWithChildRecordsList) {
-            if (contactHasChildRecords(eachContact)) {
+        for (Contact eachContact: contactWithChildRecordsList) {
+            if (this.contactHasChildRecords(eachContact)) {
                 Contact contactInContext = contactById.get(eachContact.ID);
                 contactInContext.addError(Label.CannotDelete);
                 contactPreventedFromDeletionList.add(contactInContext);
@@ -83,7 +83,7 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
     @return List<Contact>
     *****************************************************************************************************************/
     @TestVisible
-    private List<Contact> getContactsAndChildRelationships(set<Id> contactIdSet) {
+    protected virtual List<Contact> getContactsAndChildRelationships(set<Id> contactIdSet) {
         return [SELECT ID,
                 (SELECT ID FROM Addresses__r LIMIT 1),
                 (SELECT ID FROM Affl_Accounts__r LIMIT 1),
@@ -103,18 +103,24 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
     }
 
    /*******************************************************************************************************
-   * @description Evaluates whether the Contact has any child related records.
-   * @param con is the current Contact record.
-   * @return Boolean.
+   * @description Evaluates whether the Contact has any child related records
+   * @param con is the current Contact record
+   * @return Boolean
    ********************************************************************************************************/
     @TestVisible
     protected virtual Boolean contactHasChildRecords(Contact con) {
-        return (con.Addresses__r.isEmpty() == false || con.Affl_Accounts__r.isEmpty() == false ||
-                con.Applications_Applicant__r.isEmpty() == false  || con.Applications_Preparer__r.isEmpty() == false ||
-                con.Attendance_Events__r.isEmpty() == false || con.Attributes__r.isEmpty() == false ||
-                con.Behavior_Involvements__r.isEmpty() == false || con.Contact_Languages__r.isEmpty() == false ||
-                con.Courses_Taught__r.isEmpty() == false || con.Program_Enrollments__r.isEmpty() == false ||
-                con.Student_Course_Enrollments__r.isEmpty() == false || con.Term_Grades__r.isEmpty() == false ||
+        return (con.Addresses__r.isEmpty() == false ||
+                con.Affl_Accounts__r.isEmpty() == false ||
+                con.Applications_Applicant__r.isEmpty() == false ||
+                con.Applications_Preparer__r.isEmpty() == false ||
+                con.Attendance_Events__r.isEmpty() == false ||
+                con.Attributes__r.isEmpty() == false ||
+                con.Behavior_Involvements__r.isEmpty() == false ||
+                con.Contact_Languages__r.isEmpty() == false ||
+                con.Courses_Taught__r.isEmpty() == false ||
+                con.Program_Enrollments__r.isEmpty() == false ||
+                con.Student_Course_Enrollments__r.isEmpty() == false ||
+                con.Term_Grades__r.isEmpty() == false ||
                 con.Tests__r.isEmpty() == false);
     }
 

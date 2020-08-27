@@ -40,25 +40,15 @@
 public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description Get the setting of preventing Contact deletion
-    */
-    private final Boolean isContactDeletionPreventionEnabled = isContactDeletionPreventionEnabled();
-
-    /*******************************************************************************************************
-    * @description List to store the records prevented from deletion
-    */
-    @TestVisible private List<contact> deletionPreventedContactList;
-
-    /*******************************************************************************************************
     * @description Stops a Contact from being deleted if it has any Address, Affiliation,
     * Application, Attendance Event, Attribute, Behavior Involement, Contact Language,
     * Course Offering, Course Enrollment, Program Enrollment,
-    * Term Grade, or Test child records.
-    * @param listNew the list of Contacts from trigger new.
-    * @param listOld the list of Contacts from trigger old.
-    * @param triggerAction which trigger event (BeforeDelete).
+    * Term Grade, or Test child records
+    * @param listNew the list of Contacts from trigger new
+    * @param listOld the list of Contacts from trigger old
+    * @param triggerAction which trigger event (BeforeDelete)
     * @param objResult the describe for Contact
-    * @return dmlWrapper.
+    * @return dmlWrapper
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -68,7 +58,7 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
         }
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            handleBeforeDelete(oldList);
+            this.handleBeforeDelete(oldList);
         }
 
         return new DmlWrapper();
@@ -76,19 +66,20 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
     * @description Returns if Contact Deletion Prevention custom setting is not enabled or
-    * Passes a map of  contacts By Id to SRVC_Contact_PreventDeletion
+    * Passes a map of contacts By Id to SRVC_Contact_PreventDeletion and returns a List of Contacts that have
+    * been prevented for deletion
     * @param oldSObjectList list of sObject records that are being deleted
-    * @return void
+    * @return List<Contact>
     ********************************************************************************************************/
     @TestVisible
-    private void handleBeforeDelete(List<SObject> oldSObjectList) {
+    private List<Contact> handleBeforeDelete(List<SObject> oldSObjectList) {
 
-        if (!this.isContactDeletionPreventionEnabled) {
-            return;
+        if (!this.isContactDeletionPreventionEnabled()) {
+            return null;
         }
 
         Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>)oldSObjectList);
-        deletionPreventedContactList = this.locateContactPreventDeletionService().preventDeletionForContacts(oldContactById);
+        return this.locateContactPreventDeletionService().preventDeletionForContacts(oldContactById);
 
     }
 

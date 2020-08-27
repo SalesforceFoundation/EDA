@@ -37,8 +37,10 @@
 @isTest
 private class SRVC_Contact_PreventDeletion_TEST {
 
-    // Helper method to create Contact with child records
-    private static void createContactWithChildRecordsHelper() {
+    /**************************************************************************************************************************
+    * @description Helper method to create Contact with child records
+    */
+    private static Contact createContactWithChildRecordsHelper() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                          (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
@@ -47,10 +49,10 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
 
-        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
         insert contacts;
 
-        Address__c[] addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         addrs[0].Parent_Account__c = contacts[0].AccountId;
         addrs[0].MailingCity__c = 'Boston';
         addrs[0].Parent_Contact__c = contacts[0].id;
@@ -105,10 +107,14 @@ private class SRVC_Contact_PreventDeletion_TEST {
 
         Behavior_Involvement__c behInvolvement = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(contacts[0].Id, caseRecord.Id, 'Reporter');
         insert behInvolvement;
+        
+        return contacts[0];
 
     }
 
-    // Tests getInstance()
+    /**************************************************************************************************************************
+    * @description Tests getInstance() of SRVC_Contact_PreventDeletion
+    */
     @isTest
     static void testGetInstance() {
 
@@ -120,13 +126,18 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(SRVC_Contact_PreventDeletion.instance, srvcConPreventDeleteInstance);
     }
 
-    // Tests Prevent Deletion for Contacts with STUB_AlwaysHasChildRelationships
+    /**************************************************************************************************************************
+    * @description Tests Prevent Deletion for Contacts with STUB_ContactsWithChildRelationships
+    */
     @isTest
-    static void testPreventDeletionForContactsWithChildren() {
+    static void testPreventDeletionForContactsWithChildrenUsingSTUB() {
 
-        SRVC_Contact_PreventDeletion.instance = new STUB_AlwaysHasChildRelationships();
+        SRVC_Contact_PreventDeletion.instance = new STUB_ContactsWithChildRelationships();
+     
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        contacts[0].Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
 
-        Map<Id,Contact> contactById = new Map<Id,Contact>();
+        Map<Id, Contact> contactById = new Map<Id, Contact>((List<Contact>)contacts);
 
         Test.startTest();
             List<Contact> contactsWithErrorsList = SRVC_Contact_PreventDeletion.getInstance().PreventDeletionForContacts(
@@ -141,13 +152,18 @@ private class SRVC_Contact_PreventDeletion_TEST {
         }
     }
 
-    // Tests Prevent Deletion for Contacts with STUB_DoesNotHaveChildRelationships
+    /**************************************************************************************************************************
+    * @description Tests Prevent Deletion for Contacts with STUB_ContactsWithNoChildRelationships
+    */
     @isTest
-    static void testPreventDeletionForContactsWithNoChildren() {
+    static void testPreventDeletionForContactsWithNoChildrenUsingSTUB() {
 
-        SRVC_Contact_PreventDeletion.instance = new STUB_DoesNotHaveChildRelationships();
+        SRVC_Contact_PreventDeletion.instance = new STUB_ContactsWithNoChildRelationships();
 
-        Map<Id,Contact> contactById = new Map<Id,Contact>();
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        contacts[0].Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+        Map<Id, Contact> contactById = new Map<Id, Contact>((List<Contact>)contacts);
 
         Test.startTest();
             List<Contact> contactsWithErrorsList = SRVC_Contact_PreventDeletion.getInstance().PreventDeletionForContacts(
@@ -156,18 +172,19 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Test.stopTest();
 
         System.assertEquals(0, contactsWithErrorsList.size());
-        for (Contact contactToCheck : contactsWithErrorsList) {
-            System.assert(contactById.get(contactToCheck.Id) == null);
-        }
+
     }
 
-    // Positive tests for preventDeletionForContacts method
+    /**************************************************************************************************************************
+    * @description Positive tests for preventDeletionForContacts method using Contact with Child records
+    */
     @isTest
-    static void poisitveIntegrationTestForpreventDeletionForContacts() {
+    static void positiveTestForPreventDeletionForContacts() {
 
-        SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
+        Contact contactWithChildRecords = SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
+        Map<Id, Contact> contactById  = new map<Id, Contact>();
+        contactById.put(contactWithChildRecords.Id, contactWithChildRecords);
 
-        Map<Id, Contact> contactById  = new map<Id, Contact>([SELECT Id FROM CONTACT LIMIT 1]);
         Test.startTest();
             List<contact> contactErroredList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
         Test.stopTest();
@@ -175,14 +192,17 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(1, contactErroredList.size());
     }
 
-    // Negative tests for preventDeletionForContacts method
+    /**************************************************************************************************************************
+    * @description Negative tests for preventDeletionForContacts method with No Child records
+    */
     @isTest
-    static void negativeIntegrationTestForpreventDeletionForContacts() {
+    static void negativeTestForPreventDeletionForContacts() {
 
-        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
-        insert contacts;
+        List<Contact> contactWithNoChildRecord = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        contactWithNoChildRecord[0].Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
 
-        Map<Id, Contact> contactById  = new map<Id, Contact>([SELECT Id FROM CONTACT LIMIT 1]);
+        Map<Id, Contact> contactById  = new map<Id, Contact>(contactWithNoChildRecord);
+
         Test.startTest();
             List<contact> contactErroredList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
         Test.stopTest();
@@ -190,17 +210,19 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(0, contactErroredList.size());
     }
 
-    // Positive tests for ContactsAndChildRelationships method
+    /**************************************************************************************************************************
+    * @description Positive tests for ContactsAndChildRelationships method
+    */
     @isTest
-    static void positiveIntegrationTestForGetContactsAndChildRelationships() {
+    static void positiveTestForGetContactsAndChildRelationships() {
 
-        SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
+        Contact contactWithChildRecords = SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
 
-        Map<Id, Contact> contactById  = new map<Id, Contact>([SELECT Id FROM CONTACT LIMIT 1]);
-        Set<Id> contactIdSet = contactById.keySet();
+        Set<Id> contactIdSet = new Set<Id>();
+        contactIdSet.add(contactWithChildRecords.Id);
 
         Test.startTest();
-            List<contact> contactsWithChildRecords = SRVC_Contact_PreventDeletion.getInstance().getContactsAndChildRelationships(contactIdSet);
+            List<Contact> contactsWithChildRecords = SRVC_Contact_PreventDeletion.getInstance().getContactsAndChildRelationships(contactIdSet);
         Test.stopTest();
 
         System.assertEquals(1, contactsWithChildRecords[0].Addresses__r.size());
@@ -218,14 +240,16 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(1, contactsWithChildRecords[0].Tests__r.size());
     }
 
-    // Negative tests for ContactsAndChildRelationships method
+    /**************************************************************************************************************************
+    * @description Negative tests for ContactsAndChildRelationships method
+    */
     @isTest
-    static void negativeIntegrationTestForGetContactsAndChildRelationships() {
+    static void negativeTestForGetContactsAndChildRelationships() {
 
-        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
         insert contacts;
 
-        Map<Id, Contact> contactById  = new map<Id, Contact>([SELECT Id FROM CONTACT LIMIT 1]);
+        Map<Id, Contact> contactById  = new map<Id, Contact>(contacts);
         Set<Id> contactIdSet = contactById.keySet();
 
         Test.startTest();
@@ -247,11 +271,13 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(0, contactsWithChildRecords[0].Tests__r.size());
     }
 
-    // Poisitve test for ContactHasChildRecords method
+    /**************************************************************************************************************************
+    * @description positive test for ContactHasChildRecords method
+    */
     @isTest
-    static void positiveIntegrationTestForContactHasChildRecords() {
+    static void positiveTestForContactHasChildRecords() {
 
-        SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
+        Contact contactWithChildRecords = SRVC_Contact_PreventDeletion_TEST.createContactWithChildRecordsHelper();
 
         Contact con = [SELECT Id,
                        (SELECT ID FROM Addresses__r LIMIT 1),
@@ -267,7 +293,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
                        (SELECT ID FROM Student_Course_Enrollments__r LIMIT 1),
                        (SELECT ID FROM Term_Grades__r LIMIT 1),
                        (SELECT ID FROM Tests__r LIMIT 1)
-                      FROM CONTACT LIMIT 1];
+                      FROM CONTACT WHERE Id =: contactWithChildRecords.Id];
 
         Test.startTest();
             Boolean contactHasChildren = SRVC_Contact_PreventDeletion.getInstance().contactHasChildRecords(con);
@@ -276,12 +302,13 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(true, contactHasChildren);
     }
 
-    // Negative test for ContactHasChildRecords method
+    /**************************************************************************************************************************
+    * @description Negative test for ContactHasChildRecords method
+    */
     @isTest
-    static void negativeIntegrationTestForContactHasChildRecords() {
+    static void negativeTestForContactHasChildRecords() {
 
-        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
-        insert contacts;
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
 
         Test.startTest();
             Boolean contactHasChildren = SRVC_Contact_PreventDeletion.getInstance().contactHasChildRecords(contacts[0]);
@@ -290,8 +317,20 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(false, contactHasChildren);
     }
 
-    // STUB class which extends SRVC_Contact_PreventDeletion
-    private class STUB_AlwaysHasChildRelationships extends SRVC_Contact_PreventDeletion {
+    /**************************************************************************************************************************************
+    * STUB class which extends SRVC_Contact_PreventDeletion, overrides getContactsAndChildRelationships and contactHasChildRecords method
+    */
+    private class STUB_ContactsWithChildRelationships extends SRVC_Contact_PreventDeletion {
+
+        @TestVisible
+        protected override List<Contact> getContactsAndChildRelationships(set<Id> contactIdSet) {
+            List<Contact> contactsList = new List<Contact>();
+            for (Id eachContactId: contactIdSet) {
+                Contact con = new Contact(Id = eachContactId, LastName = eachContactId);
+                contactsList.add(con);
+            }
+            return contactsList;
+        }
 
         @TestVisible
         protected override Boolean contactHasChildRecords(Contact con) {
@@ -299,8 +338,20 @@ private class SRVC_Contact_PreventDeletion_TEST {
         }
     }
 
-    // STUB class which extends SRVC_Contact_PreventDeletion
-    private class STUB_DoesNotHaveChildRelationships extends SRVC_Contact_PreventDeletion {
+    /***************************************************************************************************************************************
+    * STUB class which extends SRVC_Contact_PreventDeletion, overrides getContactsAndChildRelationships and contactHasChildRecords method
+    */
+    private class STUB_ContactsWithNoChildRelationships extends SRVC_Contact_PreventDeletion {
+
+        @TestVisible
+        protected override List<Contact> getContactsAndChildRelationships(set<Id> contactIdSet) {
+            List<Contact> contactsList = new List<Contact>();
+            for (Id eachContactId: contactIdSet) {
+                Contact con = new Contact(Id = eachContactId, LastName = eachContactId);
+                contactsList.add(con);
+            }
+            return contactsList;
+        }
 
         @TestVisible
         protected override Boolean contactHasChildRecords(Contact con) {
