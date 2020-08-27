@@ -72,7 +72,7 @@ private class TDTM_DMLgt200_TEST {
 
         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID()));
 
         String newContactMailingStreet = '123 Elm St';
         List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(inputSize);
@@ -118,8 +118,8 @@ private class TDTM_DMLgt200_TEST {
          if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
          UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
-                    Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                    Accounts_to_Delete__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+                    Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+                    Accounts_to_Delete__c = UTIL_Describe.getCustomAdminAccRecTypeID()));
 
          List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(inputSize);
          insert testContacts;
@@ -146,12 +146,12 @@ private class TDTM_DMLgt200_TEST {
         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettings_API.getSettingsForTests(hs);
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;        
         // now let's update the Addresses
         for (Integer i = 0; i < addrs.size(); i++) {
@@ -186,12 +186,12 @@ private class TDTM_DMLgt200_TEST {
         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettings_API.getSettingsForTests(hs);
 
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
        
         // now let's delete the Addresses
@@ -220,11 +220,11 @@ private class TDTM_DMLgt200_TEST {
         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettings_API.getSettingsForTests(hs);
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
@@ -275,12 +275,12 @@ private class TDTM_DMLgt200_TEST {
         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettings_API.getSettingsForTests(hs);
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // now let's update the Addresses
@@ -317,11 +317,11 @@ private class TDTM_DMLgt200_TEST {
         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettings_API.getSettingsForTests(hs);          
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getCustomAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
@@ -372,8 +372,8 @@ private class TDTM_DMLgt200_TEST {
         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+            Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettings_API.getSettingsForTests(hs);

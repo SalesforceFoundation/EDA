@@ -44,7 +44,7 @@ private class STG_Base_CTRL_TEST {
     public static void recTypesSetup() {
         orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
-        adminRecTypeID = UTIL_Describe_API.getAdminAccRecTypeID();
+        adminRecTypeID = UTIL_Describe.getCustomAdminAccRecTypeID();
     }
 
     /*** Affiliate Mappings ***/
@@ -266,7 +266,7 @@ private class STG_Base_CTRL_TEST {
     @isTest
     public static void checkRefreshAdministrativeAccountBatch() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
-        												Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+        												Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
             											Admin_Account_Naming_Format__c = '{!LastName} Administrative'
         												));
         Id apexJobId = STG_Base_CTRL.executeRefreshAdminAccountBatch();
