@@ -64,7 +64,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :queryContacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -98,7 +98,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnedContactsList.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -134,7 +134,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -172,7 +172,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -211,7 +211,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -247,7 +247,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -283,7 +283,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -324,7 +324,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -358,7 +358,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -401,7 +401,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -448,7 +448,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -495,12 +495,12 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
 
-	/*********************************************************************************************************
+    /*********************************************************************************************************
     * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and
     * Contact has a Program Enrollment record associated to it, that it cannot be deleted.
     */
@@ -532,7 +532,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -583,7 +583,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -617,7 +617,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that none of the Contact records were deleted
+        //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
@@ -648,7 +648,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :queryContacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -682,7 +682,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact the records were deleted
+        //Verify that all of Contact the records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -719,7 +719,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -758,7 +758,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -797,7 +797,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -832,7 +832,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -873,7 +873,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -908,7 +908,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -951,7 +951,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -998,7 +998,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -1044,12 +1044,12 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
 
-	/*********************************************************************************************************
+    /*********************************************************************************************************
     * @description Test method to test if Prevent_Contact_Deletion__c is disabled in Hierarchy Settings, and
     * Contact has a Program Enrollment record associated to it, that it can be deleted.
     */
@@ -1081,7 +1081,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -1133,7 +1133,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -1167,7 +1167,7 @@ private with sharing class CON_CannotDelete_TEST {
                                        FROM Contact
                                        WHERE Id IN :contacts];
 
-        //Verfies that all of Contact records were deleted
+        //Verify that all of Contact records were deleted
         System.assertEquals(0, returnContacts.size());
 
     }
@@ -1178,7 +1178,7 @@ private with sharing class CON_CannotDelete_TEST {
     */
     @isTest
     private static void cannotDelete() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                          (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                           Prevent_Contact_Deletion__c = true));
 
@@ -1226,7 +1226,7 @@ private with sharing class CON_CannotDelete_TEST {
 
         insert new List<case> {case1, case2};
 
-       	Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
         Contact_Language__c contactLanguage1 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[0].Id, false);
         Contact_Language__c contactLanguage2 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
@@ -1287,7 +1287,7 @@ private with sharing class CON_CannotDelete_TEST {
     */
     @isTest
     private static void cannotDeleteSomeContacts() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                          (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                           Prevent_Contact_Deletion__c = true));
 
@@ -1321,7 +1321,7 @@ private with sharing class CON_CannotDelete_TEST {
         caseRecord.AccountId = acc.Id;
         insert caseRecord;
 
-       	Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
         Contact_Language__c contactLanguage =  UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
 
@@ -1341,6 +1341,7 @@ private with sharing class CON_CannotDelete_TEST {
 
         Test__c testRecord = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[1].Id);
         insert testRecord;
+
         Test.startTest();
             List<Database.DeleteResult> results = Database.delete(contacts, false);
         Test.stopTest();
@@ -1360,7 +1361,7 @@ private with sharing class CON_CannotDelete_TEST {
     */
     @isTest
     private static void canDelete() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                          (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                           Prevent_Contact_Deletion__c = false));
 
@@ -1414,7 +1415,7 @@ private with sharing class CON_CannotDelete_TEST {
 
         insert new List<Behavior_Involvement__c> {beh1, beh2};
 
-       	Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
         Contact_Language__c contactLanguage1 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[0].Id, false);
         Contact_Language__c contactLanguage2 = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
@@ -1461,6 +1462,7 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> returnContacts = [SELECT Id
                                         FROM Contact
                                         WHERE Id IN :contacts];
+
         System.assertEquals(0, returnContacts.size());
     }
 
@@ -1471,7 +1473,7 @@ private with sharing class CON_CannotDelete_TEST {
     */
     @isTest
     private static void canDeleteAllContacts() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                          (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                           Prevent_Contact_Deletion__c = false));
 
@@ -1502,7 +1504,7 @@ private with sharing class CON_CannotDelete_TEST {
         Attribute__c credentialAttribute = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, credentialRecTypeId);
         insert credentialAttribute;
 
-       	Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
         Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contacts[1].Id, false);
 
@@ -1510,7 +1512,7 @@ private with sharing class CON_CannotDelete_TEST {
         courseOffering.Faculty__c = contacts[1].Id;
         update courseOffering;
 
-		Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOffering.Id, null);
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOffering.Id, null);
         insert termGrade;
 
         Course_Enrollment__c courseCxn = UTIL_UnitTestData_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
@@ -1586,19 +1588,17 @@ private with sharing class CON_CannotDelete_TEST {
         List<SObject> oldList = new List<SObject>((List<SObject>)contacts);
 
         Map<Id, Contact> contactById = new Map<Id, Contact>(contacts);
-        
-        CON_CannotDelete_TDTM ConCannotDeleteTDTM = new CON_CannotDelete_TDTM();
 
-        List<Contact> deletionPreventedContactListStub = new List<Contact>();
+        CON_CannotDelete_TDTM ConCannotDeleteTDTM = new CON_CannotDelete_TDTM();
 
         Test.startTest();
             ConCannotDeleteTDTM.run(null, oldList, testAction, objResult); 
         Test.stopTest();
 
-        deletionPreventedContactListStub = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
+        List<Contact> deletionPreventedContactList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
 
-        // deletionPreventedContactListStub is not empty
-        System.assertEquals(1, deletionPreventedContactListStub.size());
+        // verify deletionPreventedContactList is not empty
+        System.assertEquals(1, deletionPreventedContactList.size());
  
     }
 
@@ -1609,7 +1609,7 @@ private with sharing class CON_CannotDelete_TEST {
     @isTest
     private static void runMethodNegativeTestWithCustomSettingsDisabled() {
 
-        SRVC_Contact_PreventDeletion.instance = new STUB_deletionPreventionContactList();
+        SRVC_Contact_PreventDeletion.instance = new STUB_DeletionPreventionContactList();
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                           (Prevent_Contact_Deletion__c = false));
@@ -1637,17 +1637,15 @@ private with sharing class CON_CannotDelete_TEST {
         Map<Id, Contact> contactById = new Map<Id, Contact>();
 
         CON_CannotDelete_TDTM ConCannotDeleteTDTM = new CON_CannotDelete_TDTM();
-        
-        List<Contact> deletionPreventedContactListStub = new List<Contact>();
 
         Test.startTest();
-          ConCannotDeleteTDTM.run(null, oldList, testAction, objResult); 
+            ConCannotDeleteTDTM.run(null, oldList, testAction, objResult); 
         Test.stopTest();
 
-        deletionPreventedContactListStub = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
+        List<Contact> deletionPreventedContactList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
 
-        // Ensure deletionPreventedContactListStub is empty
-        System.assertEquals(0, deletionPreventedContactListStub.size());
+        // Verify deletionPreventedContactList is empty
+        System.assertEquals(0, deletionPreventedContactList.size());
  
     }
 
@@ -1675,16 +1673,14 @@ private with sharing class CON_CannotDelete_TEST {
 
         CON_CannotDelete_TDTM ConCannotDeleteTDTM = new CON_CannotDelete_TDTM();
 
-        List<Contact> deletionPreventedContactListStub = new List<Contact>();
-
         Test.startTest();
           ConCannotDeleteTDTM.run(null, oldList, testAction, objResult); 
         Test.stopTest();
 
-        deletionPreventedContactListStub = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
+        List<Contact> deletionPreventedContactList = SRVC_Contact_PreventDeletion.getInstance().preventDeletionForContacts(contactById);
 
-        // Ensure deletionPreventedContactListStub is empty
-        System.assertEquals(0, deletionPreventedContactListStub.size());
+        // Verify deletionPreventedContactList is empty
+        System.assertEquals(0, deletionPreventedContactList.size());
     }
 
     /********************************************************************************************************************************
@@ -1713,10 +1709,10 @@ private with sharing class CON_CannotDelete_TEST {
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
-             List<Contact> deletionPreventedContactList = conCanNotDeleteTDTM.handleBeforeDelete(contacts);
+            List<Contact> deletionPreventedContactList = conCanNotDeleteTDTM.handleBeforeDelete(contacts);
         Test.stopTest();
         
-        // Ensure deletionPreventedContactList is not empty
+        // Verify deletionPreventedContactList is not empty
         System.assertEquals(1, deletionPreventedContactList.size());
 
     }
@@ -1736,10 +1732,10 @@ private with sharing class CON_CannotDelete_TEST {
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
-             List<Contact> deletionPreventedContactList = conCanNotDeleteTDTM.handleBeforeDelete((List<SObject>)contacts);
+            List<Contact> deletionPreventedContactList = conCanNotDeleteTDTM.handleBeforeDelete((List<SObject>)contacts);
         Test.stopTest();
         
-        // Ensure deletionPreventedContactList is empty
+        // Verify deletionPreventedContactList is empty
         System.assertEquals(0, deletionPreventedContactList.size());
 
     }
@@ -1760,7 +1756,7 @@ private with sharing class CON_CannotDelete_TEST {
             List<Contact> deletionPreventedContactList = conCanNotDeleteTDTM.handleBeforeDelete(testContactlist);
         Test.stopTest();
 
-        // Ensure deletionPreventedContactList is null
+        // Verify deletionPreventedContactList is null
         System.assertEquals(null, deletionPreventedContactList);
     }
 
@@ -1821,12 +1817,13 @@ private with sharing class CON_CannotDelete_TEST {
     /*************************************************************************************************************
     * STUB class which extends SRVC_Contact_PreventDeletion
     */
-    private class STUB_deletionPreventionContactList extends SRVC_Contact_PreventDeletion {
+    private class STUB_DeletionPreventionContactList extends SRVC_Contact_PreventDeletion {
             
         @TestVisible
         List<Contact> deletionPreventedContactList = new List<Contact>();
                 
         public override List<Contact> preventDeletionForContacts(Map<Id, Contact> contactById) {
+
             deletionPreventedContactList = super.preventDeletionForContacts(contactById);
             return deletionPreventedContactList;         
         }
