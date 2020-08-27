@@ -111,8 +111,15 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldObjectsList);
         Map<Id, Id> primaryLanguageByContactId = new Map<Id, Id>();
 
-        List<Contact_Language__c> conLanguagesToInsertList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToInsert();
-        List<Contact_Language__c> conLanguagesToUpdateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToUpdate();
+        List<Contact_Language__c> conLanguagesToInsertList = new List<Contact_Language__c>();
+        List<Contact_Language__c> conLanguagesToUpdateList = new List<Contact_Language__c>();
+
+       // List<Contact_Language__c> conLanguagesToInsertList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToInsert();
+       // List<Contact_Language__c> conLanguagesToUpdateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById).getContactLanguagesToUpdate();
+
+        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
+        conLanguagesToInsertList = conLangCat.getContactLanguagesToInsert();
+        conLanguagesToUpdateList = conLangCat.getContactLanguagesToUpdate();
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
