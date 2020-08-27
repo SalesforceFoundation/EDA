@@ -314,7 +314,7 @@
             </div>
         </div>
         <div class="slds-col slds-size--1-of-2 slds-p-top--large slds-m-top--large slds-border--top">
-            <lightning:button variant="brand" label="Run Backfill" iconName="utility:copy" iconPosition="left" onclick="{! c.runBackfill }" aura:id="ethnicRaceBtn" />
+            <lightning:button variant="brand" label="{!$Label.c.stgBtnRunBackfill}" iconName="utility:copy" iconPosition="left" onclick="{! c.runBackfill }" aura:id="ethnicRaceBtn" />
             <br />
             <ui:outputText aura:id="ethnicRaceMsg" value="{!$Label.c.stgBackfillQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
         </div>
