@@ -387,6 +387,17 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Education_History_JSON__c</fullName>
+        <description>A system field that stores a large JSON structure used for integrations. Do not modify this field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>Education History JSON</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Educational_Institution_Name__c</fullName>
         <description>The name of the Educational Institution related to this data.</description>
         <externalId>false</externalId>
