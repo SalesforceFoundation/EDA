@@ -46,7 +46,7 @@ public without sharing class UTIL_OrgTelemetry {
 
     @testVisible
     private UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
-    
+
     /**
      * @description A complete list of the Telemetry Types (at a high level) that are handled by this service class.
      * These are used by the batch job to process feature parameters in asynchronous groups to avoid governor
@@ -129,6 +129,7 @@ public without sharing class UTIL_OrgTelemetry {
      * custom settings.
      */
     private void handleEDASettingsTelemetry() {
+
         Hierarchy_Settings__c edaSettings = UTIL_CustomSettingsFacade.getSettings();
 
         Integer campaignMemberRelationshipRules = 0;
@@ -144,16 +145,16 @@ public without sharing class UTIL_OrgTelemetry {
         }
 
         featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name(), campaignMemberRelationshipRules);
-        
+
         featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountContactRelationshipRules.name(), contactRelationshipRules);
-        
+
         featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(), edaSettings.Automatic_Household_Naming__c);
-        
+
         featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_CourseConnections.name(), UTIL_CustomSettingsFacade.courseConnectionsEnabled());
-        
+
         featureManager.setPackageBooleanValue(TelemetryParameterName.HasDefaultAdministrativeAccountModel.name(), 
             edaSettings.Account_Processor__c != null && edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID());
-        
+
         featureManager.setPackageBooleanValue(TelemetryParameterName.HasDefaultHouseholdAccountModel.name(), 
             edaSettings.Account_Processor__c != null && edaSettings.Account_Processor__c == UTIL_Describe.getHhAccRecTypeID());
 
@@ -173,6 +174,7 @@ public without sharing class UTIL_OrgTelemetry {
      configuration.
      */
     private void handleOrgEnvironmentTelemetry() {
+
         Integer activeCourseConnectionRecordTypes = 0;
         Integer activeEthnicityPicklistValues = 0;
         Boolean usingOldCourseDescription = false;
@@ -180,6 +182,7 @@ public without sharing class UTIL_OrgTelemetry {
         // Determine the number of active Course Connection record types.
         Map<String, Schema.RecordTypeInfo> courseConnectionRecordTypesByDeveloperName = 
                 Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByDeveloperName();
+
         for (String developerName : courseConnectionRecordTypesByDeveloperName.keySet()) {
             Schema.RecordTypeInfo rti = courseConnectionRecordTypesByDeveloperName.get(developerName);
             if (rti.getDeveloperName() != 'Master' && rti.isActive()) {
@@ -190,6 +193,7 @@ public without sharing class UTIL_OrgTelemetry {
         // Determine the number of active Ethnicity picklist values.
         Schema.DescribeFieldResult fieldResult = Contact.Ethnicity__c.getDescribe();
         List<Schema.PicklistEntry> picklistEntries = fieldResult.getPicklistValues();
+
         for (Schema.PicklistEntry pe : picklistEntries) {
             if (pe.isActive()) {
                 activeEthnicityPicklistValues++;
@@ -223,16 +227,17 @@ public without sharing class UTIL_OrgTelemetry {
      * custom object record count.
      */
     private void handleObjectUsageTelemetry() {
+
         Integer countAdministrativeAccounts = 0;
-        if (UTIL_Describe.getAdminAccRecTypeID() != null) {
-            countAdministrativeAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getAdminAccRecTypeID()];
+        if (UTIL_Describe.getCustomAdminAccRecTypeId() != null) {
+            countAdministrativeAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getCustomAdminAccRecTypeId()];
         }
 
         Integer countHouseholdAccounts = 0;
         if (UTIL_Describe.getHhAccRecTypeID() != null) {
             countHouseholdAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getHhAccRecTypeID()];
         }
-        
+
         featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountAdministrativeAccounts.name(), countAdministrativeAccounts);
 
         featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountHouseholdAccounts.name(), countHouseholdAccounts);
