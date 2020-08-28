@@ -30,6 +30,10 @@
         <name>Application_Decision_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Application JSON --></label>
+        <name>Application_JSON__c</name>
+    </fields>
+    <fields>
         <help><!-- The status of the application review process. --></help>
         <label><!-- Application Status --></label>
         <name>Application_Status__c</name>
