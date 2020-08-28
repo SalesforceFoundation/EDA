@@ -73,15 +73,15 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
      * @param  newObjectsList The list of SObjects inserted.
      */ 
     @TestVisible
-    private void handleAfterInsert(List<SObject> newObjectsList){
+    private virtual void handleAfterInsert(List<SObject> newObjectsList){
         if (this.isInsertRecursion()) {
             return;
         }
 
         this.setInsertRecursion();
         Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
-
         List<Contact_Language__c> contactLanguagesToCreateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreate(newContactsById.values());
+        System.assert(!contactLanguagesToCreateList.isEmpty());
 
         if (contactLanguagesToCreateList.isEmpty()){
             this.unsetInsertRecursion();

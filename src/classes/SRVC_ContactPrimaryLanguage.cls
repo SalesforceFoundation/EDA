@@ -28,7 +28,7 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
      * @param  contactsList A list of Contacts from which to generate Contact Language records for insertion.
      * @return              A list of Contact Language records to be inserted.
      */
-    public List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
+    public virtual List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
         List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
 
         for (Contact con : contactsList){

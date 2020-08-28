@@ -36,19 +36,11 @@
 */
 @isTest
 private class SRVC_ContactPrimaryLanguage_TEST {
-    private static Id generateFakeLanguageId() {
-        return UTIL_UnitTestData_Test.getFakeId(Language__c.SObjectType);
-    }
 
-    private static Id generateFakeContactId() {  
-        return UTIL_UnitTestData_Test.getFakeId(Contact.SObjectType);
-    }
-
-    private static Id generateFakeContactLanguageId() {  
-        return UTIL_UnitTestData_Test.getFakeId(Contact_Language__c.SObjectType);
-    }
-
-    // Tests getInstance()
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * SRVC_ContactPrimaryLanguage class or a new one if one doesn't already exist.
+    ***************************************************************************************************************************/
     @isTest
     private static void getInstancePositive() {
         SRVC_ContactPrimaryLanguage srvcConPrimLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
@@ -59,14 +51,18 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimLangInstance);
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getContactLanguagesToCreate method returns a list of contact language records 
+    * to create when a contact is associated with new primary language.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getContactLanguagesToCreatePositive(){                                                            
         List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
-        Language__c testEnglishLanguage = new Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId(), 
+        Language__c testEnglishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType), 
                                                           Name='English');
 
         for (Contact con : testContactsList){
-            con.Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId();
+            con.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
             con.Primary_Language__c = testEnglishLanguage.Id;
         }
 
@@ -80,11 +76,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     @isTest 
     private static void getContactLanguagesToCreateNegative(){
         List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
-        Language__c testEnglishLanguage = new Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId(), 
+        Language__c testEnglishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType), 
                                                           Name='English');
 
         for (Contact con : testContactsList){
-            con.Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId();
+            con.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
         }
 
         Test.startTest();
@@ -97,11 +93,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     @isTest 
     private static void getContactLanguagesToCreateNull(){
         List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
-        Language__c testEnglishLanguage = new Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId(), 
+        Language__c testEnglishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType), 
                                                           Name='English');
 
         for (Contact con : testContactsList){
-            con.Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId();
+            con.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
             con.Primary_Language__c = null;
         }
 
@@ -112,12 +108,32 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(true, conLangsToInsertList.isEmpty());
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getContactLanguagesToCreateOrUpdate method returns a list of new contact 
+    * languages to create when a contact is updated with a new Primary Language that has not been previously associated with the
+    * contact.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getContactLanguagesToInsertNoUpdates(){
-        SRVC_ContactPrimaryLanguage.instance = new STUB_HasContactLanguagesToCreate();
+        SRVC_ContactPrimaryLanguage.instance = new STUB_HasContactLanguagesToInsert();
 
         Map<Id, Contact> newContactsById = new Map<Id, Contact>();
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>();
+
+        for (Integer i = 0; i < 5; i++){
+            String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+
+            Contact con = new Contact(Id = testId,
+                                      LastName = 'Test' + i,
+                                      Primary_Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType));
+            
+            Contact oldCon = con.clone(false);
+            oldCon.Id = testId;
+            oldCon.Primary_Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType);
+            
+            oldContactsById.put(testId, oldCon);
+            newContactsById.put(testId, con);
+        }
 
         Test.startTest();
         SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangsToInsertUpdate = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
@@ -127,26 +143,36 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(true, conLangsToInsertUpdate.getContactLanguagesToUpdate().isEmpty(), 'There should be no existing Contact Language records to update.'); 
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getContactLanguagesToCreateOrUpdate method returns a list of existing contact 
+    * languages to update when a contact is updated with a Primary Language that was previously associated with the contact.
+    ***************************************************************************************************************************/
     @isTest 
-    private static void getContactLanguagesToUpdateNoInserts(){        
+    private static void getContactLanguagesToUpdateNoInserts(){    
+        SRVC_ContactPrimaryLanguage.instance = new STUB_HasContactLanguagesToUpdate();
+        
         Map<Id, Contact> newContactsById = new Map<Id, Contact>();
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>();
 
-        List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
-        Language__c testEnglishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
+        for (Integer i = 0; i < 5; i++){
+            String testConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            String existingLangId = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType);
+            
+            Contact con = new Contact(Id = testConId,
+                                      LastName = 'Test' + i,
+                                      Primary_Language__c = existingLangId);
 
-        for (Contact con : testContactsList){
-            con.Primary_Language__c = testEnglishLanguage.Id;
-        }
+            Contact oldCon = con.clone(false);
+            oldCon.Id = testConId;
+            oldCon.Primary_Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType);
 
-        insert testContactsList;
+            Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                  Contact__c = testConId,
+                                                                  Language__c = existingLangId,
+                                                                  Primary_Language__c = false);
 
-        for (Contact con : testContactsList){
-            newContactsById.put(con.Id, con);
-
-            Contact oldContact = con.clone(false);
-            oldContact.Primary_Language__c = null;            
-            oldContactsById.put(con.Id, oldContact);
+            oldContactsById.put(testConId, oldCon);
+            newContactsById.put(testConId, con);
         }
 
         Test.startTest();
@@ -155,127 +181,28 @@ private class SRVC_ContactPrimaryLanguage_TEST {
 
         System.assertEquals(true, conLangsToInsertUpdate.getContactLanguagesToInsert().isEmpty(), 'There should be no new Contact Language records to create.'); 
         System.assertEquals(5, conLangsToInsertUpdate.getContactLanguagesToUpdate().size(), 'There should be 5 existing Contact Language records to update.'); 
-
-        for (Contact_Language__c conLang : conLangsToInsertUpdate.getContactLanguagesToUpdate()){
-            System.assertEquals(testEnglishLanguage.Id, conLang.Language__c, 'Each existing Contact Language to be updated should correspond to the English language');
-        }
     }
 
-    @isTest 
-    private static void getContactLanguagesToUpdateToNonPrimary(){        
-        Map<Id, Contact> newContactsById = new Map<Id, Contact>();
-        Map<Id, Contact> oldContactsById = new Map<Id, Contact>();
-
-        List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
-        Language__c testEnglishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
-
-        for (Contact con : testContactsList){
-            con.Primary_Language__c = testEnglishLanguage.Id;
-        }
-
-        insert testContactsList;
-
-        for (Contact con : testContactsList){
-            Contact oldContact = con.clone(false);
-            oldContact.Id = con.Id;
-            oldContact.Primary_Language__c = testEnglishLanguage.Id;            
-            oldContactsById.put(con.Id, oldContact);
-
-            con.Id = con.Id;
-            con.Primary_Language__c = null;
-            newContactsById.put(con.Id, con);
-        }
-
-        Test.startTest();
-        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangsToInsertUpdate = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
-        Test.stopTest();
-
-        System.assertEquals(true, conLangsToInsertUpdate.getContactLanguagesToInsert().isEmpty(), 'There should be no new Contact Language records to create.'); 
-        System.assertEquals(5, conLangsToInsertUpdate.getContactLanguagesToUpdate().size(), 'There should be 5 existing Contact Language records to update to non-primary.'); 
-
-        for (Contact_Language__c conLang : conLangsToInsertUpdate.getContactLanguagesToUpdate()){
-            System.assertEquals(false, conLang.Primary_Language__c, 'Each existing Contact Language should be updated to non-primary status.');
-        }
-    }
-    
-
-    // @isTest 
-    // private static void getContactLanguagesToUpdateAsNonPrimaryPositive(){
-    //     Language__c testEnglishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
-    //     List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
-    //     Set<Id> testContactIdsSet = new Set<Id>();
-
-    //     for (Contact con : testContactsList){
-    //         con.Primary_Language__c = testEnglishLanguage.Id;          
-    //     }
-
-    //     insert testContactsList;
-    //     testContactIdsSet = new Map<Id, Contact>(testContactsList).keySet();
-
-    //     Test.startTest();
-    //     List<Contact_Language__c> conLangsToSetNonPrimary = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToUpdateAsNonPrimary(testContactIdsSet);
-    //     Test.stopTest();
-
-    //     System.assertEquals(5, conLangsToSetNonPrimary.size(), 'There should be 5 Contact Languages to be updated to non-primary status.');
-    // }
-
-    // @isTest 
-    // private static void getContactLanguagesToUpdateAsNonPrimaryNegative(){
-    //     Language__c testEnglishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
-    //     List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
-    //     Set<Id> testContactIdsSet = new Set<Id>();
-
-    //     for (Contact con : testContactsList){
-    //         con.Primary_Language__c = testEnglishLanguage.Id;          
-    //     }
-
-    //     insert testContactsList;
-    //     testContactIdsSet = new Map<Id, Contact>(testContactsList).keySet();
-
-    //     for (Contact con : testContactsList){
-    //         con.Primary_Language__c = null;          
-    //     }
-
-    //     update testContactsList;
-
-    //     Test.startTest();
-    //     List<Contact_Language__c> conLangsToSetNonPrimary = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToUpdateAsNonPrimary(testContactIdsSet);
-    //     Test.stopTest();
-
-    //     System.assertEquals(true, conLangsToSetNonPrimary.isEmpty(), 'There should be no Contact Languages to be updated to non-primary status.');
-    // }
-
-    // @isTest 
-    // private static void getContactLanguagesToUpdateAsNonPrimaryNegative(){
-    //     Language__c testEnglishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
-    //     List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
-    //     Set<Id> testContactIdsSet = new Set<Id>();
-
-    //     for (Contact con : testContactsList){
-    //         con.Primary_Language__c = testEnglishLanguage.Id;          
-    //     }
-
-    //     insert testContactsList;
-    //     testContactIdsSet = new Map<Id, Contact>(testContactsList).keySet();
-
-    //     for (Contact con : testContactsList){
-    //         con.Primary_Language__c = null;          
-    //     }
-
-    //     update testContactsList;
-
-    //     Test.startTest();
-    //     List<Contact_Language__c> conLangsToSetNonPrimary = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToUpdateAsNonPrimary(testContactIdsSet);
-    //     Test.stopTest();
-
-    //     System.assertEquals(true, conLangsToSetNonPrimary.isEmpty(), 'There should be no Contact Languages to be updated to non-primary status.');
-    // }
-
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getContactLanguagesToUpdateAsNonPrimary method returns an empty list when 
+    * a contact is not associated with contact language records set as primary.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getContactLanguagesToUpdateAsNonPrimaryNegative(){
-        SRVC_ContactPrimaryLanguage.instance = new STUB_hasNoContactLanguagesToUpdateAsNonPrimary();
-
+        SRVC_ContactPrimaryLanguage.instance = new STUB_HasContactLanguagesToInsert();
         Set<Id> testContactIdsSet = new Set<Id>();
+
+        for (Integer i = 0; i < 5; i++){
+            String testConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            String testLangId = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType);
+
+            Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                  Language__c = testLangId,
+                                                                  Contact__c = testConId,
+                                                                  Primary_Language__c = false);
+
+            testContactIdsSet.add(testConId);
+        }
 
         Test.startTest();
         List<Contact_Language__c> conLangsToSetNonPrimary = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToUpdateAsNonPrimary(testContactIdsSet);
@@ -284,11 +211,27 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(true, conLangsToSetNonPrimary.isEmpty(), 'There should be no Contact Languages to be updated to non-primary status.');
     }  
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getContactLanguagesToUpdateAsNonPrimary method returns a list of contact
+    * language records matching contacts that are associated with contact language records set as primary.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getContactLanguagesToUpdateAsNonPrimaryPositive(){
-        SRVC_ContactPrimaryLanguage.instance = new STUB_hasContactLanguagesToUpdateAsNonPrimary();
-
+        SRVC_ContactPrimaryLanguage.instance = new STUB_HasContactLanguagesToUpdate();
+        
         Set<Id> testContactIdsSet = new Set<Id>();
+
+        for (Integer i = 0; i < 5; i++){
+            String testConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            String testLangId = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType);
+
+            Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                  Language__c = testLangId,
+                                                                  Contact__c = testConId,
+                                                                  Primary_Language__c = true);
+
+            testContactIdsSet.add(testConId);
+        }
 
         Test.startTest();
         List<Contact_Language__c> conLangsToSetNonPrimary = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToUpdateAsNonPrimary(testContactIdsSet);
@@ -297,6 +240,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(5, conLangsToSetNonPrimary.size(), 'There should be 5 Contact Languages to be updated to non-primary status.');
     }                               
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getContactLanguagesToUpdateAsNonPrimary method returns an empty list of 
+    * contact language records when an empty set of contact Ids is passed in as a parameter.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getContactLanguagesToUpdateAsNonPrimaryEmpty(){
         Test.startTest();
@@ -306,6 +253,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(true, conLangsToSetNonPrimary.isEmpty(), 'There should be no Contact Languages to be updated to non-primary status.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getDefaultFluencyFromSettings correctly returns the value set as the 
+    * Default_Contact_Language_Fluency__c.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getDefaultFluencyFromSettingsPositive(){
         Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -318,6 +269,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals('Fluent', fluencySetting, 'Default fluency setting should be "Fluent".');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getDefaultFluencyFromSettings correctly returns a blank value when 
+    * the value of Default_Contact_Language_Fluency__c is set as null.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getDefaultFluencyFromSettingsNull(){
         Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -330,6 +285,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(true, String.isBlank(fluencySetting), 'Default fluency setting should be null.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getDefaultFluencyFromSettings correctly returns a blank value when 
+    * the value of Default_Contact_Language_Fluency__c is blank.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getDefaultFluencyFromSettingsBlank(){
         Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -342,75 +301,33 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(true, String.isBlank(fluencySetting), 'Default fluency setting should be blank.');
     }
 
-    // @isTest 
-    // private static void getPrimaryContactLanguagesToInsertNoUpdates(){
-    //     Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-    //                                                                                     (Default_Contact_Language_Fluency__c = null));
-
-    //     List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
-    //     Map<Id,Contact_Language__c> conLanguagesToInsertByConId = new Map<Id,Contact_Language__c>();
-    //     Language__c testEnglishLanguage = new Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId(),
-    //                                                       Name = 'English');
-    //     for (Contact con : testContactsList){
-    //         String testConId = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId();
-    //         con.Id = testConId;
-    //         con.Primary_Language__c = testEnglishLanguage.Id;
-
-    //         Contact_Language__c conLang = UTIL_UnitTestData_TEST.getContactLanguage(testEnglishLanguage, con, hs.Default_Contact_Language_Fluency__c);
-    //         conLang.Primary_Language__c = true;
-    //         conLanguagesToInsertByConId.put(testConId, conLang);
-    //     }
-
-    //     Test.startTest();
-    //     SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, new Map<Id, Id>());
-    //     Test.stopTest();
-
-    //     System.assertEquals(5, conLangCat.getContactLanguagesToInsert().size(), 'There should be 5 new Contact Language records to create.');
-    //     System.assertEquals(true, conLangCat.getContactLanguagesToUpdate().isEmpty(), 'There should be no existing Contact Language records to update.');
-    // }
-
-    // @isTest 
-    // private static void getPrimaryContactLanguagesToUpdateNoInserts(){
-    //     Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-    //                                                                                     (Default_Contact_Language_Fluency__c = null));
-
-    //     List<Contact_Language__c> existingContactLanugages = new List<Contact_Language__c>();
-    //     Map<Id, Contact_Language__c> conLanguagesToInsertByConId = new Map<Id, Contact_Language__c>();
-    //     Map<Id, Id> languageIdToCheckForUpdateByContactId = new Map<Id, Id>();
-    //     List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
-    //     Language__c testEnglishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
-
-    //     insert testContactsList;
-
-    //     for (Contact con : testContactsList){
-    //         Contact_Language__c conLang = new Contact_Language__c(Contact__c = con.Id,
-    //                                                               Language__c = testEnglishLanguage.Id,
-    //                                                               Primary_Language__c = false  
-    //                                                              );
-    //         existingContactLanugages.add(conLang);
-    //     }
-
-    //     insert existingContactLanugages;
-
-    //     for (Contact_Language__c conLang : existingContactLanugages){
-    //         conLanguagesToInsertByConId.put(conLang.Contact__c, conLang);
-    //         languageIdToCheckForUpdateByContactId.put(conLang.Contact__c, conLang.Language__c);
-    //     }
-
-    //     Test.startTest();
-    //     SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
-    //     Test.stopTest();
-
-    //     System.assertEquals(true, conLangCat.getContactLanguagesToInsert().isEmpty(), 'There should be no new Contact Language records to create.');
-    //     System.assertEquals(5, conLangCat.getContactLanguagesToUpdate().size(), 'There should be 5 existing Contact Language records to update.');
-    // }
-
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getPrimaryContactLanguagesToInsertOrUpdate returns a list new Contact 
+    * Languages to insert when a Contact is updated with a new primary language and a list of existing Contact Languages to 
+    * update when a contact is updated with a language that was previously associated as a primary language.
+    ***************************************************************************************************************************/
     @isTest 
-    private static void getPrimaryContactLanguagesInsertAndUpdateSTUB(){
+    private static void getPrimaryContactLanguagesInsertAndUpdate(){
         SRVC_ContactPrimaryLanguage.instance = new STUB_HasPrimaryContactLanguagesToInsertAndUpdate();
 
         Map<Id, Contact_Language__c> conLanguagesToInsertByConId = new Map<Id, Contact_Language__c>();
         Map<Id, Id> languageIdToCheckForUpdateByContactId = new Map<Id, Id>();
+
+        for (Integer i = 0; i < 5; i++){
+            String testConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            String testLangId = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType);
+
+            Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                  Language__c = testLangId,
+                                                                  Contact__c = testConId,
+                                                                  Primary_Language__c = true);
+
+            conLanguagesToInsertByConId.put(testConId, conLang);
+
+            if (Math.mod(i, 2) != 0){
+                languageIdToCheckForUpdateByContactId.put(testConId, testLangId);
+            }
+        }
 
         Test.startTest();
         SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
@@ -420,12 +337,29 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(2, conLangCat.getContactLanguagesToUpdate().size(), 'There should be 2 existing Contact Language records to update.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getPrimaryContactLanguagesToInsertOrUpdate returns a list new Contact 
+    * Languages to insert when a Contact is updated with a new primary language and an empty list of existing Contact Languages to 
+    * update when a contact is updated with a language that was not previously associated as a primary language.
+    ***************************************************************************************************************************/
     @isTest 
-    private static void getPrimaryContactLanguagesInsertNoUpdatesSTUB(){
-        SRVC_ContactPrimaryLanguage.instance = new STUB_HasPrimaryContactLanguagesToInsert();
-        
+    private static void getPrimaryContactLanguagesInsertNoUpdates(){
+        SRVC_ContactPrimaryLanguage.instance = new STUB_HasContactLanguagesToInsert();
+
         Map<Id, Contact_Language__c> conLanguagesToInsertByConId = new Map<Id, Contact_Language__c>();
         Map<Id, Id> languageIdToCheckForUpdateByContactId = new Map<Id, Id>();
+
+        for (Integer i = 0; i < 5; i++){
+            String testConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            String testLangId = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType);
+
+            Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                  Language__c = testLangId,
+                                                                  Contact__c = testConId,
+                                                                  Primary_Language__c = true);
+
+            conLanguagesToInsertByConId.put(testConId, conLang);
+        }
 
         Test.startTest();
         SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
@@ -435,12 +369,30 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(true, conLangCat.getContactLanguagesToUpdate().isEmpty(), 'There should be no existing Contact Language records to update.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getPrimaryContactLanguagesToInsertOrUpdate returns an empty list of new Contact 
+    * Languages to insert and a list of existing Contact Language records when a Contact is updated with primary languages that 
+    * were previously associated with the Contact.
+    ***************************************************************************************************************************/
     @isTest 
-    private static void getPrimaryContactLanguagesUpdateNoInsertsSTUB(){
-        SRVC_ContactPrimaryLanguage.instance = new STUB_HasPrimaryContactLanguagesToUpdate();
+    private static void getPrimaryContactLanguagesUpdateNoInserts(){
+        SRVC_ContactPrimaryLanguage.instance = new STUB_HasContactLanguagesToUpdate();
         
         Map<Id, Contact_Language__c> conLanguagesToInsertByConId = new Map<Id, Contact_Language__c>();
         Map<Id, Id> languageIdToCheckForUpdateByContactId = new Map<Id, Id>();
+
+        for (Integer i = 0; i < 5; i++){
+            String testConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            String testLangId = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType);
+
+            Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                  Language__c = testLangId,
+                                                                  Contact__c = testConId,
+                                                                  Primary_Language__c = true);
+
+            conLanguagesToInsertByConId.put(testConId, conLang);
+            languageIdToCheckForUpdateByContactId.put(testConId, testLangId);
+        }
 
         Test.startTest();
         SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
@@ -450,6 +402,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(5, conLangCat.getContactLanguagesToUpdate().size(), 'There should be 5 existing Contact Language records to update.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getPrimaryContactLanguagesToInsertOrUpdate returns empty lists when a Contact
+    * is updated with no primary language.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getPrimaryContactLanguagesNoInsertsNoUpdates(){
         Test.startTest();
@@ -468,16 +424,36 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
-    private class STUB_HasContactLanguagesToCreate extends SRVC_ContactPrimaryLanguage {
+    
+    
+    // private class STUB_FindContactLanguagesToCreate extends SRVC_ContactPrimaryLanguage{
+    //     @TestVisible
+    //     public override List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
+    //         List<Contact_Language__c> conLangsToCreate = new List<Contact_Language__c>();
+
+    //         for (Integer i=0; i<5; i++){
+    //             Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+    //                                                                   Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+    //                                                                   Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
+    //                                                                   Primary_Language__c = false
+    //                                                                  );
+    //             conLangsToCreate.add(conLang);
+    //         }
+            
+    //         return conLangsToCreate;
+    //     }
+    // }
+
+    private class STUB_HasContactLanguagesToInsert extends SRVC_ContactPrimaryLanguage {
         @TestVisible
         public override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
             List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
             List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
 
             for (Integer i = 0; i < 5; i++){
-                Contact_Language__c conLang = new Contact_Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactLanguageId(),
-                                                                      Contact__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId(),
-                                                                      Language__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId(),
+                Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                      Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+                                                                      Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
                                                                       Primary_Language__c = false
                                                                      );
                 contactLanguagesToInsertList.add(conLang);
@@ -487,9 +463,7 @@ private class SRVC_ContactPrimaryLanguage_TEST {
                                                                                                                                                     contactLanguagesToUpdateList);
             return conLangCat;
         }
-    }
-    
-    private class STUB_HasPrimaryContactLanguagesToInsert extends SRVC_ContactPrimaryLanguage {
+
         @TestVisible
         protected override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
                                                                                                                                 Map<Id, Id> languageIdToCheckForUpdateByContactId){
@@ -497,9 +471,9 @@ private class SRVC_ContactPrimaryLanguage_TEST {
             List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
             
             for (Integer i = 0; i < 5; i++){
-                Contact_Language__c conLang = new Contact_Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactLanguageId(),
-                                                                      Contact__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId(),
-                                                                      Language__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId(),
+                Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                      Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+                                                                      Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
                                                                       Primary_Language__c = false
                                                                      );
                 contactLanguagesToInsertList.add(conLang);
@@ -509,9 +483,38 @@ private class SRVC_ContactPrimaryLanguage_TEST {
                                                                                                                                                     contactLanguagesToUpdateList);
             return conLangCat;
         }
+
+        @TestVisible 
+        protected override List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){            
+            return new List<Contact_Language__c>();
+        }
     }
 
-    private class STUB_HasPrimaryContactLanguagesToUpdate extends SRVC_ContactPrimaryLanguage {
+    private class STUB_HasContactLanguagesToUpdate extends SRVC_ContactPrimaryLanguage{
+        @TestVisible
+        public override List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
+            return new List<Contact_Language__c>();
+        }
+
+        @TestVisible
+        public override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
+            List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
+            List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
+
+            for (Integer i = 0; i < 5; i++){
+                Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                      Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+                                                                      Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
+                                                                      Primary_Language__c = false
+                                                                     );
+                contactLanguagesToUpdateList.add(conLang);
+            }      
+
+            SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = new SRVC_ContactPrimaryLanguage.ContactLanguageCategorization(contactLanguagesToInsertList,
+                                                                                                                                                    contactLanguagesToUpdateList);
+            return conLangCat;
+        }
+
         @TestVisible
         protected override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
                                                                                                                                 Map<Id, Id> languageIdToCheckForUpdateByContactId){
@@ -520,9 +523,9 @@ private class SRVC_ContactPrimaryLanguage_TEST {
             List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
             
             for (Integer i = 0; i < 5; i++){
-                Contact_Language__c conLang = new Contact_Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactLanguageId(),
-                                                                      Contact__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId(),
-                                                                      Language__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId(),
+                Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                      Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+                                                                      Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
                                                                       Primary_Language__c = false
                                                                      );
                 contactLanguagesToUpdateList.add(conLang);
@@ -531,6 +534,21 @@ private class SRVC_ContactPrimaryLanguage_TEST {
             SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = new SRVC_ContactPrimaryLanguage.ContactLanguageCategorization(contactLanguagesToInsertList,
                                                                                                                                                     contactLanguagesToUpdateList);
             return conLangCat;
+        }
+
+        @TestVisible 
+        protected override List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){
+            List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
+            
+            for (Integer i = 0; i < 5; i++){
+                Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                      Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+                                                                      Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType)
+                                                                     );
+                contactLanguagesToUpdateList.add(conLang);
+            } 
+            
+            return contactLanguagesToUpdateList;
         }
     }
 
@@ -542,9 +560,9 @@ private class SRVC_ContactPrimaryLanguage_TEST {
             List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
             
             for (Integer i = 0; i < 5; i++){
-                Contact_Language__c conLang = new Contact_Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactLanguageId(),
-                                                                      Contact__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId(),
-                                                                      Language__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId(),
+                Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+                                                                      Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+                                                                      Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
                                                                       Primary_Language__c = false
                                                                      );
                 if (Math.mod(i, 2) == 0){
@@ -560,27 +578,43 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
     }
 
-    private class STUB_hasContactLanguagesToUpdateAsNonPrimary extends SRVC_ContactPrimaryLanguage {
-        @TestVisible 
-        protected override List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){
-            List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
+    // private class STUB_HasContactLanguagesToUpdateAsNonPrimary extends SRVC_ContactPrimaryLanguage {
+    //     @TestVisible 
+    //     protected override List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){
+    //         List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
             
-            for (Integer i = 0; i < 5; i++){
-                Contact_Language__c conLang = new Contact_Language__c(Id = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactLanguageId(),
-                                                                      Contact__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeContactId(),
-                                                                      Language__c = SRVC_ContactPrimaryLanguage_TEST.generateFakeLanguageId()
-                                                                     );
-                contactLanguagesToUpdateList.add(conLang);
-            } 
+    //         for (Integer i = 0; i < 5; i++){
+    //             Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+    //                                                                   Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+    //                                                                   Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType)
+    //                                                                  );
+    //             contactLanguagesToUpdateList.add(conLang);
+    //         } 
             
-            return contactLanguagesToUpdateList;
-        }
-    }
+    //         return contactLanguagesToUpdateList;
+    //     }
+    // }
 
-    private class STUB_hasNoContactLanguagesToUpdateAsNonPrimary extends SRVC_ContactPrimaryLanguage {
-        @TestVisible 
-        protected override List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){            
-            return new List<Contact_Language__c>();
-        }
-    }
+    
+
+    // public class STUB_findContactLanguagesToCreate extends SRVC_ContactPrimaryLanguage{
+
+    //     @TestVisible
+    //     public override List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
+
+    //         System.debug('MK DEBUG: entered stub class with contactsList = ' + contactsList);
+    //         List<Contact_Language__c> conLangsToCreate = new List<Contact_Language__c>();
+
+    //         for (Contact con : contactsList){
+    //             Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+    //                                                                   Contact__c = con.Id,
+    //                                                                   Language__c = con.Primary_Language__c,
+    //                                                                   Primary_Language__c = false
+    //                                                                  );
+    //             conLangsToCreate.add(conLang);
+    //         }
+            
+    //         return conLangsToCreate;
+    //     }
+    // }
 }
