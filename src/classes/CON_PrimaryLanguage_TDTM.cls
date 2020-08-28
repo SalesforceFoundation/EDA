@@ -73,7 +73,7 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
      * @param  newObjectsList The list of SObjects inserted.
      */ 
     @TestVisible
-    private virtual void handleAfterInsert(List<SObject> newObjectsList){
+    private void handleAfterInsert(List<SObject> newObjectsList){
         if (this.isInsertRecursion()) {
             return;
         }

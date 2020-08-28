@@ -483,6 +483,11 @@ private class CON_PrimaryLanguage_TEST {
         System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
     }
 
+    /************************************************************************************************************
+    * @description Test method to verify that handleAfterUpdate updates existing contact language records to 
+    * primary or creates new contact language records for languages updated to primary and not previously 
+    * associated with a contact.
+    *************************************************************************************************************/ 
     // @isTest 
     // private static void handleAfterUpdatePositive(){
     //     List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
@@ -542,56 +547,54 @@ private class CON_PrimaryLanguage_TEST {
     //     }        
     // }
 
+    /************************************************************************************************************
+    * @description Test method to verify that handleAfterUpdate does not update existing contact language records  
+    * to primary when none are previously associated with a contact.
+    *************************************************************************************************************/ 
     @isTest 
     private static void handleAfterUpdateNegative(){
         
     }
 
-    @isTest 
-    private static void handleAfterUpdateNull(){
-        
-    }
-
+    /************************************************************************************************************
+    * @description Test method to verify that handleAfterInsert updates existing contact language records and
+    * creates new records for contacts inserted with primary languages not previously associated.   
+    *************************************************************************************************************/ 
     @isTest 
     private static void handleAfterInsertPositive(){
-        // TODO: handleInsert performs DML operation, so fake Ids won't work...do I need to stub the DML process as well?
         SRVC_ContactPrimaryLanguage.instance = new STUB_HasContactLanguagesToCreate();
-        //CON_PrimaryLanguage_TDTM.instance = new STUB_ProcessInsert();
 
         List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);      
-        // Language__c englishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
-        //                                               Name = 'English');
-        Language__c englishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
+        Language__c englishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
+                                                       Name = 'English');
 
         for (Contact con : testContactsList){
             //con.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
             con.Primary_Language__c = englishLanguage.Id; 
         }
 
-        //insert testContactsList;
-        
         Test.startTest();
         CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
         conPrimaryLangTDTM.handleAfterInsert((List<SObject>)testContactsList);
         Test.stopTest();
+    }
 
-        // List<Contact_Language__c> conLanguagesResultList = [SELECT Id,
-        //                                                            Contact__c,
-        //                                                            Language__c,
-        //                                                            Primary_Language__c
-        //                                                     FROM Contact_Language__c
-        //                                                     WHERE Contact__c IN :testContactsList
-        //                                                     AND Language__c = :englishLanguage.Id];
+    /************************************************************************************************************
+    * @description Test method to verify that handleAfterInsert does not update existing contact language records 
+    * when they do not exist and does not create new contact language records for contacts inserted without a 
+    * primary languages.   
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void handleAfterInsertNegative(){
 
-        // System.assertEquals(5, conLanguagesResultList.size(), 'There should be 5 contact language records to create.');
     }
 
     /************************************************************************************************************
     * @description Test method to verify that the run method creates Contact Language records for new languages
-    * associated as the primary language with an inserted Contact.
+    * set as primary for inserted Contacts.
     *************************************************************************************************************/ 
     @isTest 
-    private static void processAfterInsert(){
+    private static void runAfterInsertPositive(){
         List<SObject> newList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
         List<SObject> oldList = new List<SObject>();
 
@@ -617,6 +620,25 @@ private class CON_PrimaryLanguage_TEST {
         }
     }
 
+    /************************************************************************************************************
+    * @description Test method to verify that the run method does not create new Contact Language records when a
+    * Contact inserted with a primary language already has a matching contact language record.  It also verifies
+    * that the existing contact record will be updated to primary.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void runAfterInsertWithExisting(){
+
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that the run method does not create Contact Language records corresponding 
+    * to inserted Contacts when they are insterted without a primary language.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void runAfterInsertNegative(){
+
+    }
+
     private class STUB_HasContactLanguagesToCreate extends SRVC_ContactPrimaryLanguage {
         @TestVisible 
         public override List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
@@ -633,35 +655,5 @@ private class CON_PrimaryLanguage_TEST {
             return contactLanguagesToCreateList;
         }
     }
-
-    
-
-
-    // @isTest 
-    // private static void fireAfterInsertWithPrimaryLanguage(){
-        
-    //     List<SObject> newList = (List<SObject>)UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
-    //     List<SObject> oldList = null;
-
-    //     TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, false);
-    //     TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
-
-    //     TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.AfterInsert;
-    //     Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
-        
-    //     Language__c fakeEnglishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
-    //                                                    Name = 'English'
-    //                                                 );
-    //     for (SObject so : newList){
-    //         so.put('Id', UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType));
-    //         so.put('Primary_Language__c', fakeEnglishLanguage.Id);
-    //     }
-
-    //     CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
-    //     conPrimaryLangTDTM.run(newList, oldList, triggerAction, objResult);
-
-    //     for (Contact con : (List<Contact>)newList){
-    //     }
-    // }
     
 }
