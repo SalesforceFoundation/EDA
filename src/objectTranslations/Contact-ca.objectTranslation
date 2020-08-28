@@ -1156,6 +1156,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Contact JSON --></label>
+        <name>Contact_JSON__c</name>
+    </fields>
+    <fields>
         <label>País d&apos;origen</label>
         <name>Country_of_Origin__c</name>
         <picklistValues>
