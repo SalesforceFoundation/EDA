@@ -429,6 +429,14 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
+        <label><!-- Refresh All Administrative Names --></label>
+        <name>stgBtnRefreshAdminNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Refresh All Household Names --></label>
+        <name>stgBtnRefreshHouseholdNames</name>
+    </customLabels>
+    <customLabels>
         <label>Exécuter le remplissage</label>
         <name>stgBtnRunBackfill</name>
     </customLabels>

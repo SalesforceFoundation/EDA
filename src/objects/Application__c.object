@@ -102,6 +102,17 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Application_JSON__c</fullName>
+        <description>A system field that stores a large JSON structure used for integrations. Do not modify this field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>Application JSON</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Application_Status__c</fullName>
         <description>The status of the application process.</description>
         <externalId>false</externalId>
