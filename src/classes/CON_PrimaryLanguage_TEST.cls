@@ -325,11 +325,11 @@ private class CON_PrimaryLanguage_TEST {
 
     /************************************************************************************************************
     * @description Test method to verify that isUpdateRecursion returns true when either or both recursion flags
-    * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are set.
+    * CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM are set.
     *************************************************************************************************************/ 
     @isTest 
     private static void isUpdateRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
 
         CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
@@ -341,11 +341,11 @@ private class CON_PrimaryLanguage_TEST {
 
     /************************************************************************************************************
     * @description Test method to verify that isUpdateRecursion returns when both recursion flags
-    * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are unset.
+    * CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM are unset.
     *************************************************************************************************************/ 
     @isTest 
     private static void isUpdateRecursionFalse(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
 
         CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
@@ -361,7 +361,7 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void unsetUpdateRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
 
         CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
 
@@ -369,7 +369,7 @@ private class CON_PrimaryLanguage_TEST {
         conPriLangTdtm.unsetUpdateRecursion();
         Test.stopTest();
 
-        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update), 'Update recursion flag should be cleared.');
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Update recursion flag should be cleared.');
     }
 
     /************************************************************************************************************
@@ -378,7 +378,7 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void setUpdateRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
 
         CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
 
@@ -386,16 +386,16 @@ private class CON_PrimaryLanguage_TEST {
         conPriLangTdtm.setUpdateRecursion();
         Test.stopTest();
 
-        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Update), 'Update recursion flag should be set.');
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Update recursion flag should be set.');
     }
 
     /************************************************************************************************************
     * @description Test method to verify that isInsertRecursion returns true when either or both recursion flags
-    * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are set.
+    * CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM are set.
     *************************************************************************************************************/ 
     @isTest 
     private static void isInsertRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
 
         CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
@@ -407,11 +407,11 @@ private class CON_PrimaryLanguage_TEST {
 
     /************************************************************************************************************
     * @description Test method to verify that isInsertRecursion returns false when both recursion flags
-    * CON_PrimaryLanguage_TDTM_After_Update and CLAN_PrimaryLanguage_TDTM are unset.
+    * CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM are unset.
     *************************************************************************************************************/ 
     @isTest 
     private static void isInsertRecursionFalse(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
 
         CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
@@ -423,11 +423,11 @@ private class CON_PrimaryLanguage_TEST {
 
     /************************************************************************************************************
     * @description Test method to verify that unsetInsertRecursion correctly updates the status of the 
-    * CON_PrimaryLanguage_TDTM_After_Insert recursion flag to false.
+    * CON_PrimaryLanguage_TDTM recursion flag to false.
     *************************************************************************************************************/ 
     @isTest 
     private static void unsetInsertRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
 
         CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
 
@@ -435,16 +435,16 @@ private class CON_PrimaryLanguage_TEST {
         conPriLangTdtm.unsetInsertRecursion();
         Test.stopTest();
 
-        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert), 'Insert recursion flag should be cleared.');
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Insert recursion flag should be cleared.');
     }
 
     /************************************************************************************************************
     * @description Test method to verify that setInsertRecursion correctly updates the status of the 
-    * CON_PrimaryLanguage_TDTM_After_Insert recursion flag to true.
+    * CON_PrimaryLanguage_TDTM recursion flag to true.
     *************************************************************************************************************/ 
     @isTest 
     private static void setInsertRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
 
         CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
 
@@ -452,7 +452,7 @@ private class CON_PrimaryLanguage_TEST {
         conPriLangTdtm.setInsertRecursion();
         Test.stopTest();
 
-        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM_After_Insert), 'Insert recursion flag should be set.');
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Insert recursion flag should be set.');
     }
 
     /************************************************************************************************************
