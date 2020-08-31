@@ -169,7 +169,8 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
     }
 
     /**
-     * @description Value object containing a list of Contact Language records to be inserted and a list of Contact Language records to be updated.
+     * @description Value object specifying a list of new Contact Language records to be inserted 
+     * and a list of existing Contact Language records to be updated.
      */
     public class ContactLanguagesToProcess{
         public List<Contact_Language__c> contactLanguagesToInsertList { get; private set; }
@@ -189,22 +190,6 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
         public void addContactLanguagesToUpdate(List<Contact_Language__c> contactLanguagesToAddList){
             this.contactLanguagesToUpdateList.addAll(contactLanguagesToAddList);
         } 
-
-        // /**
-        //  * @description Accessor method for contactLanguagesToInsertList.
-        //  * @return   A list of Contact Languages to be inserted.
-        //  */
-        // public List<Contact_Language__c> getContactLanguagesToInsert(){
-        //     return this.contactLanguagesToInsertList;
-        // }
-
-        // /**
-        //  * @description Accessor method for contactLanguagesToUpdateList.
-        //  * @return   A list of Contact Languages to be updated.
-        //  */
-        // public List<Contact_Language__c> getContactLanguagesToUpdate(){
-        //     return this.contactLanguagesToUpdateList;
-        // }
     }
 }
 
