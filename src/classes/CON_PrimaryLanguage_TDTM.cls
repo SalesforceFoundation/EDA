@@ -68,16 +68,16 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
      * @description Handles processing required for an After Insert trigger.
-     * @param newObjectsList The list of SObjects inserted.
+     * @param newSObjectsList The list of SObjects inserted.
      *******************************************************************************************************/ 
     @TestVisible
-    private void handleAfterInsert(List<SObject> newObjectsList){
+    private void handleAfterInsert(List<SObject> newSObjectsList){
         if (this.isInsertRecursion() == true) {
             return;
         }
 
         this.setInsertRecursion();
-        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
+        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newSObjectsList);
         List<Contact_Language__c> contactLanguagesToCreateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreate(newContactsById.values());
         
         if (contactLanguagesToCreateList.isEmpty() == true){
@@ -93,18 +93,18 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
     * @description Handles processing required for an After Update trigger.
-    * @param newObjectsList The list of updated SObjects.
-    * @param oldObjectsList The list of SObjects in their state prior to update.
+    * @param newSObjectsList The list of updated SObjects.
+    * @param oldSObjectsList The list of SObjects in their state prior to update.
     *******************************************************************************************************/ 
     @TestVisible
-    private void handleAfterUpdate(List<SObject> newObjectsList, List<SObject> oldObjectsList){
+    private void handleAfterUpdate(List<SObject> newSObjectsList, List<SObject> oldSObjectsList){
         if (this.isUpdateRecursion()){
             return;
         }
 
         this.setUpdateRecursion();
-        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
-        Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldObjectsList);
+        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newSObjectsList);
+        Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldSObjectsList);
         Map<Id, Id> primaryLanguageByContactId = new Map<Id, Id>();
 
         List<Contact_Language__c> conLanguagesToInsertList = new List<Contact_Language__c>();
