@@ -32,7 +32,8 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Service class for CON_PrimaryLanguage_TDTM
+* @description Service class for CON_PrimaryLanguage_TDTM.  Identifies new Contact Language records
+* to create and existing Contact Language records to update.
 */
 public virtual with sharing class SRVC_ContactPrimaryLanguage {
 
@@ -187,8 +188,7 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
                                                                   FROM Contact_Language__c
                                                                   WHERE Contact__c IN :languageIdToCheckForUpdateByContactId.keySet()
                                                                   AND (Language__c IN :languageIdToCheckForUpdateByContactId.values()
-                                                                                   OR Primary_Language__c = true)
-                                                                 ];
+                                                                                   OR Primary_Language__c = true)];
                                                                         
         for (Contact_Language__c conLang : existingContactLanguagesList){
             if (languageIdToCheckForUpdateByContactId.containsKey(conLang.Contact__c) &&

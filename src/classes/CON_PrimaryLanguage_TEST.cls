@@ -515,13 +515,13 @@ private class CON_PrimaryLanguage_TEST {
         Test.stopTest();
 
         List<Contact_Language__c> conLangResultsList = [SELECT Id, 
-                                                           Primary_Language__c, 
-                                                           Fluency__c,
-                                                           Contact__c,
-                                                           Language__c
-                                                    FROM Contact_Language__c
-                                                    WHERE Contact__c IN :newTestContactsList
-                                                    AND Language__c = :englishLanguage.Id];
+                                                               Primary_Language__c, 
+                                                               Fluency__c,
+                                                               Contact__c,
+                                                               Language__c
+                                                        FROM Contact_Language__c
+                                                        WHERE Contact__c IN :newTestContactsList
+                                                        AND Language__c = :englishLanguage.Id];
 
         System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain unset.');
         System.assertEquals(5, conLangResultsList.size(), 'There should be 5 new English Contact Language records created.');
@@ -585,12 +585,12 @@ private class CON_PrimaryLanguage_TEST {
                                                         FROM Contact_Language__c
                                                         WHERE Contact__c IN :newTestContactsList];
 
-        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain unset.');
-
         Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangResultsList);
 
-        for (Id conId : contactLanguagesListByContactId.keySet()){
-            List<Contact_Language__c> conLangsList = contactLanguagesListByContactId.get(conId);
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain unset.');
+
+        for (Contact con : newTestContactsList){
+            List<Contact_Language__c> conLangsList = contactLanguagesListByContactId.get(con.Id);
             System.assertEquals(2, conLangsList.size(), 'There should be 2 contact languages associated with each contact (French and English).');
 
             for (Contact_Language__c conLang : conLangsList){
@@ -818,8 +818,7 @@ private class CON_PrimaryLanguage_TEST {
                                                                Primary_Language__c,
                                                                Fluency__c
                                                         FROM Contact_Language__c
-                                                        WHERE Contact__c IN :testContactsList
-                                                        ];
+                                                        WHERE Contact__c IN :testContactsList];
 
         System.assertEquals(5, conLangResultsList.size() - 5, 'Each contact record should be associated with 1 new contact language records.');
         System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should be unset.');
@@ -858,8 +857,7 @@ private class CON_PrimaryLanguage_TEST {
                                                                Primary_Language__c,
                                                                Fluency__c
                                                         FROM Contact_Language__c
-                                                        WHERE Contact__c IN :testContactsList
-                                                        ];
+                                                        WHERE Contact__c IN :testContactsList];
 
         System.assertEquals(true, conLangResultsList.isEmpty(), 'There should be no contact language records created for contacts inserted without a primary language.');
         System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should be remain unset.');
@@ -892,8 +890,7 @@ private class CON_PrimaryLanguage_TEST {
                                                                Primary_Language__c,
                                                                Fluency__c
                                                         FROM Contact_Language__c
-                                                        WHERE Contact__c IN :testContactsList
-                                                        ];
+                                                        WHERE Contact__c IN :testContactsList];
 
         System.assertEquals(true, conLangResultsList.isEmpty(), 'There should be no contact language records created for contacts inserted without a primary language.');
         System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain set.');
