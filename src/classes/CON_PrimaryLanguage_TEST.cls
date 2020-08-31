@@ -29,8 +29,9 @@
 * @date 2019
 * @group Languages
 * @group-content ../../ApexDocContent/Languages.htm
-* @description Tests specific to testing the logic around creating and modifying Contact Language records when
-* the Contact's "Primary Language" lookup field is manually changed.
+* @description Tests to verify the logic associated with the CON_PrimaryLanguage_TDTM class when Contact records are
+* inserted or updated with changes to the Primary Language field.  Validates that a new Contact Language record is
+* created only when an existing record corresponding to the Contact and Language is not found.
 */
 @isTest
 private class CON_PrimaryLanguage_TEST {
@@ -484,76 +485,264 @@ private class CON_PrimaryLanguage_TEST {
     }
 
     /************************************************************************************************************
-    * @description Test method to verify that handleAfterUpdate updates existing contact language records to 
-    * primary or creates new contact language records for languages updated to primary and not previously 
-    * associated with a contact.
-    *************************************************************************************************************/ 
-    // @isTest 
-    // private static void handleAfterUpdatePositive(){
-    //     List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
-    //     List<Contact> oldTestContactsList = new List<Contact>();
-      
-    //     Language__c englishLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.sObjectType),
-    //                                                   Name = 'English'
-    //                                                  );
-    //     Language__c frenchLanguage = new Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Language__c.sObjectType),
-    //                                                  Name = 'French'
-    //                                                 );
-
-    //     // Language__c englishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
-    //     // Language__c frenchLanguage = UTIL_UnitTestData_TEST.createLanguage('French');
-
-    //     for (Contact con : testContactsList){
-    //         String testId = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
-    //         System.debug('MK DEBUG: testId: '  + testId);
-    //         con.Id = testId;
-    //         con.Primary_Language__c = frenchLanguage.Id;
-
-    //         Contact oldCon = con.clone(false);
-    //         oldCon.Id = con.Id;
-    //         oldCon.Primary_Language__c = englishLanguage.Id;
-    //         oldTestContactsList.add(oldCon);
-    //     }
-        
-    //     Test.startTest();
-    //     CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
-    //     conPrimaryLangTDTM.handleAfterUpdate((List<SObject>)testContactsList, (List<SObject>)oldTestContactsList);
-    //     Test.stopTest();
-
-    //     List<Contact_Language__c> conLangResults = [SELECT Id, 
-    //                                                        Primary_Language__c, 
-    //                                                        Fluency__c,
-    //                                                        Contact__c,
-    //                                                        Language__c
-    //                                                 FROM Contact_Language__c
-    //                                                 WHERE Contact__c IN :testContactsList];
-
-    //     Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangResults);
-
-    //     for (Contact con : testContactsList){
-    //         System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
-    //         System.assertEquals(2, contactLanguagesListByContactId.get(con.Id).size(), 'Contact should be associated with two Contact Language records.');            
-    //         System.assertEquals(frenchLanguage.Id, con.Primary_Language__c, 'Contact\'s primary language should be French.');            
-
-    //         for (Contact_Language__c conLang : contactLanguagesListByContactId.get(con.Id)){
-    //             if (conLang.Language__c == frenchLanguage.Id){
-    //                 System.assertEquals(true, conLang.Primary_Language__c, 'French Contact Language record should be set as primary.');
-    //                 System.assertEquals(DEFAULT_FLUENCY, conLang.Fluency__c, 'French Contact Language record fluency should match the default value.');
-    //             } else {
-    //                 System.assertEquals(englishLanguage.Id, conLang.Language__c, 'Second contact language record should correspond to the English Language.');
-    //                 System.assertEquals(false, conLang.Primary_Language__c, 'English Contact Language record should not be set as primary.');
-    //             }
-    //         }
-    //     }        
-    // }
-
-    /************************************************************************************************************
-    * @description Test method to verify that handleAfterUpdate does not update existing contact language records  
-    * to primary when none are previously associated with a contact.
+    * @description Test method to verify that handleAfterUpdate creates new contact language records for contacts
+    * updated with primary languages never previously associated.  
     *************************************************************************************************************/ 
     @isTest 
-    private static void handleAfterUpdateNegative(){
+    private static void handleAfterUpdateInsertsOnly(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
+
+        List<Contact> newTestContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<Contact> oldTestContactsList = new List<Contact>();
+      
+        Language__c englishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
+        Language__c frenchLanguage = UTIL_UnitTestData_TEST.createLanguage('French');
+
+        insert newTestContactsList;
+
+        for (Contact con : newTestContactsList){
+            con.Primary_Language__c = englishLanguage.Id;
+
+            Contact oldContact = con.Clone(false);
+            oldContact.Id = con.Id;
+            oldContact.Primary_Language__c = frenchLanguage.Id;
+            oldTestContactsList.add(oldContact);
+        }
         
+        Test.startTest();
+        CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
+        conPrimaryLangTDTM.handleAfterUpdate((List<SObject>)newTestContactsList, (List<SObject>)oldTestContactsList);
+        Test.stopTest();
+
+        List<Contact_Language__c> conLangResultsList = [SELECT Id, 
+                                                           Primary_Language__c, 
+                                                           Fluency__c,
+                                                           Contact__c,
+                                                           Language__c
+                                                    FROM Contact_Language__c
+                                                    WHERE Contact__c IN :newTestContactsList
+                                                    AND Language__c = :englishLanguage.Id];
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain unset.');
+        System.assertEquals(5, conLangResultsList.size(), 'There should be 5 new English Contact Language records created.');
+
+        for (Contact_Language__c conLang : conLangResultsList){
+            System.assertEquals(true, conLang.Primary_Language__c, 'Each new Contact Language record should be marked as primary.');
+            System.assertEquals(UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c, conLang.Fluency__c, 'Each new contact language record should be associated with the default fluency value.');
+        }        
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that handleAfterUpdate does not create new contact language records for 
+    * contacts updated with primary languages previously associated and updates existing contact language record
+    * to primary.  Instead, the previous contact language record is unset as primary and the existing contact 
+    * language record is updated to primary.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void handleAfterUpdateUpdatesOnly(){
+        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                                                    (Default_Contact_Language_Fluency__c = 'Fluent'));
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
+        
+        List<Contact> newTestContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<Contact> oldTestContactsList = new List<Contact>();
+        List<Contact_Language__c> contactLanguagesList = new List<Contact_Language__c>();
+
+        Language__c englishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
+        Language__c frenchLanguage = UTIL_UnitTestData_TEST.createLanguage('French');
+
+        insert newTestContactsList;
+
+        for (Contact con : newTestContactsList){
+            Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, con, hs.Default_Contact_Language_Fluency__c);
+            Contact_Language__c frenchConLang = UTIL_UnitTestData_TEST.getContactLanguage(frenchLanguage, con, hs.Default_Contact_Language_Fluency__c);
+            frenchConLang.Primary_Language__c = true;
+
+            contactLanguagesList.add(englishConLang);
+            contactLanguagesList.add(frenchConLang);
+
+            con.Primary_Language__c = englishLanguage.Id;
+
+            Contact oldContact = con.Clone(false);
+            oldContact.Id = con.Id;
+            oldContact.Primary_Language__c = frenchLanguage.Id;
+            oldTestContactsList.add(oldContact);
+        }
+        
+        insert contactLanguagesList;
+
+        Test.startTest();
+        CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
+        conPrimaryLangTDTM.handleAfterUpdate((List<SObject>)newTestContactsList, (List<SObject>)oldTestContactsList);
+        Test.stopTest();
+
+        List<Contact_Language__c> conLangResultsList = [SELECT Id, 
+                                                               Primary_Language__c, 
+                                                               Fluency__c,
+                                                               Contact__c,
+                                                               Language__c
+                                                        FROM Contact_Language__c
+                                                        WHERE Contact__c IN :newTestContactsList];
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain unset.');
+
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangResultsList);
+
+        for (Id conId : contactLanguagesListByContactId.keySet()){
+            List<Contact_Language__c> conLangsList = contactLanguagesListByContactId.get(conId);
+            System.assertEquals(2, conLangsList.size(), 'There should be 2 contact languages associated with each contact (French and English).');
+
+            for (Contact_Language__c conLang : conLangsList){
+                if (conLang.Language__c == englishLanguage.Id){
+                    System.assertEquals(true, conLang.Primary_Language__c, 'Existing English Contact Language record should be marked as primary.');
+                } else {
+                    System.assertEquals(true, (conLang.Language__c == frenchLanguage.Id && conLang.Primary_Language__c == false), 'French Contact Language record should not be marked as primary.');
+                }
+            } 
+        }
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that handleAfterUpdate creates new contact language records for contacts
+    * updated with new primary languages and updates to primary existing contact language record for contacts 
+    * with matching existing contact language records.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void handleAfterUpdateInsertsAndUpdates(){
+        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                                                    (Default_Contact_Language_Fluency__c = 'Fluent'));
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
+
+        List<Contact> newTestContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<Contact> oldTestContactsList = new List<Contact>();
+        List<Contact_Language__c> contactLanguagesList = new List<Contact_Language__c>();
+
+        Language__c englishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
+
+        insert newTestContactsList;
+
+        for (Integer i = 0; i < 5; i++){
+            if (Math.mod(i,2) == 0){
+                Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, newTestContactsList[i], hs.Default_Contact_Language_Fluency__c);
+                contactLanguagesList.add(englishConLang);
+            }
+            
+            newTestContactsList[i].Primary_Language__c = englishLanguage.Id;
+
+            Contact oldContact = newTestContactsList[i].Clone(false);
+            oldContact.Id = newTestContactsList[i].Id;
+            oldContact.Primary_Language__c = null;
+            oldTestContactsList.add(oldContact);
+        }
+
+        insert contactLanguagesList;
+
+        Test.startTest();
+        CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
+        conPrimaryLangTDTM.handleAfterUpdate((List<SObject>)newTestContactsList, (List<SObject>)oldTestContactsList);
+        Test.stopTest();
+
+        List<Contact_Language__c> conLangResultsList = [SELECT Id, 
+                                                               Primary_Language__c, 
+                                                               Fluency__c,
+                                                               Contact__c,
+                                                               Language__c
+                                                        FROM Contact_Language__c
+                                                        WHERE Contact__c IN :newTestContactsList
+                                                        AND Language__c = :englishLanguage.Id];
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain unset.');
+        System.assertEquals(5, conLangResultsList.size(), 'There should only be 5 English contact language records.');
+
+        for (Contact_Language__c conLang : conLangResultsList){
+            System.assertEquals(true, conLang.Primary_Language__c, 'Each English contact language records should not be marked as primary.');
+        }
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that handleAfterUpdate does not create new contact language records for 
+    * contacts updated with primary languages removed and ensures that the previous contact language record is
+    * unset as primary.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void handleAfterUpdateLanguageRemoved(){
+        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                                                    (Default_Contact_Language_Fluency__c = 'Fluent'));
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
+
+        List<Contact> newTestContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<Contact> oldTestContactsList = new List<Contact>();
+        List<Contact_Language__c> contactLanguagesList = new List<Contact_Language__c>();
+
+        Language__c englishLanguage = UTIL_UnitTestData_TEST.createLanguage('English');
+
+        insert newTestContactsList;
+
+        for (Contact con : newTestContactsList){
+            Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, con, hs.Default_Contact_Language_Fluency__c);
+            englishConLang.Primary_Language__c = true;
+
+            contactLanguagesList.add(englishConLang);
+
+            con.Primary_Language__c = null;
+
+            Contact oldContact = con.Clone(false);
+            oldContact.Id = con.Id;
+            oldContact.Primary_Language__c = englishLanguage.Id;
+            oldTestContactsList.add(oldContact);
+        }
+
+        insert contactLanguagesList;
+
+        Test.startTest();
+        CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
+        conPrimaryLangTDTM.handleAfterUpdate((List<SObject>)newTestContactsList, (List<SObject>)oldTestContactsList);
+        Test.stopTest();
+
+        List<Contact_Language__c> conLangResultsList = [SELECT Id, 
+                                                               Primary_Language__c, 
+                                                               Fluency__c,
+                                                               Contact__c,
+                                                               Language__c
+                                                        FROM Contact_Language__c
+                                                        WHERE Contact__c IN :newTestContactsList
+                                                        AND Language__c = :englishLanguage.Id];
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain unset.');
+        System.assertEquals(5, conLangResultsList.size(), 'There should only be 5 English contact language records.');
+
+        for (Contact_Language__c conLang : conLangResultsList){
+            System.assertEquals(false, conLang.Primary_Language__c, 'Each English contact language records should not be marked as primary.');
+        }
+    }
+
+    @isTest 
+    private static void runAfterUpdatePositive(){
+
+    }
+
+    @isTest 
+    private static void runAfterUpdateNegative(){
+        
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that handleAfterUpdate does not create or update any contact language 
+    * when executed from a recursion context.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void handleAfterUpdateRecursion(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
+
+        Test.startTest();
+        CON_PrimaryLanguage_TDTM conPrimaryLangTDTM = new CON_PrimaryLanguage_TDTM();
+        conPrimaryLangTDTM.handleAfterUpdate(new List<SObject>(), new List<SObject>());
+        Test.stopTest();
+
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain set.');
     }
 
     /************************************************************************************************************
@@ -603,7 +792,7 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void handleAfterInsertWithoutPrimaryLanguage(){
-        SRVC_ContactPrimarylanguage.instance = new STUB_HasNoContactLanguagesToCreate();
+        SRVC_ContactPrimarylanguage.instance = new STUB_HasNoContactLanguagesToCreateOrUpdate();
 
         List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);  
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
@@ -638,7 +827,7 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void handleAfterInsertRecursion(){
-        SRVC_ContactPrimaryLanguage.instance = new STUB_HasNoContactLanguagesToCreate();
+        SRVC_ContactPrimaryLanguage.instance = new STUB_HasNoContactLanguagesToCreateOrUpdate();
 
         List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);   
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
@@ -714,7 +903,7 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void runAfterInsertNegative(){
-        SRVC_ContactPrimaryLanguage.instance = new STUB_HasNoContactLanguagesToCreate();
+        SRVC_ContactPrimaryLanguage.instance = new STUB_HasNoContactLanguagesToCreateOrUpdate();
 
         List<Contact> newContactsList = new List<Contact>();
         List<SObject> oldList = new List<SObject>();
@@ -741,10 +930,30 @@ private class CON_PrimaryLanguage_TEST {
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
-    private class STUB_HasNoContactLanguagesToCreate extends SRVC_ContactPrimaryLanguage {
+    private class STUB_HasNoContactLanguagesToCreateOrUpdate extends SRVC_ContactPrimaryLanguage {
         @TestVisible 
         public override List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){            
             return new List<Contact_Language__c>();
+        }
+
+        @TestVisible
+        protected override SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess getPrimaryContactLanguagesToInsertOrUpdate(
+                                                                                    Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
+                                                                                    Map<Id, Id> languageIdToCheckForUpdateByContactId){
+
+            List<Contact_Language__c> contactLanguagesToInsertList = contactLanguagesToInsertByContactId.values();
+            List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
+
+            // for (Integer i = 0; i < 5; i++){
+            //     Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
+            //                                                           Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+            //                                                           Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType));
+            //     contactLanguagesToInsertList.add(conLang);
+            // }
+
+            SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = new SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess(contactLanguagesToInsertList, contactLanguagesToUpdateList);
+
+            return conLangToProcess;
         }
     }
     

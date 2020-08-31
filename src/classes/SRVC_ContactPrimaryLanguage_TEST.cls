@@ -136,11 +136,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
 
         Test.startTest();
-        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangsToInsertUpdate = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
+        SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangsToInsertUpdate = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
         Test.stopTest();
 
-        System.assertEquals(5, conLangsToInsertUpdate.getContactLanguagesToInsert().size(), 'There should be 5 new Contact Language records to create.'); 
-        System.assertEquals(true, conLangsToInsertUpdate.getContactLanguagesToUpdate().isEmpty(), 'There should be no existing Contact Language records to update.'); 
+        System.assertEquals(5, conLangsToInsertUpdate.contactLanguagesToInsertList.size(), 'There should be 5 new Contact Language records to create.'); 
+        System.assertEquals(true, conLangsToInsertUpdate.contactLanguagesToUpdateList.isEmpty(), 'There should be no existing Contact Language records to update.'); 
     }
 
     /**************************************************************************************************************************
@@ -176,11 +176,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
 
         Test.startTest();
-        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangsToInsertUpdate = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
+        SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangsToInsertUpdate = SRVC_ContactPrimaryLanguage.getInstance().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
         Test.stopTest();
 
-        System.assertEquals(true, conLangsToInsertUpdate.getContactLanguagesToInsert().isEmpty(), 'There should be no new Contact Language records to create.'); 
-        System.assertEquals(5, conLangsToInsertUpdate.getContactLanguagesToUpdate().size(), 'There should be 5 existing Contact Language records to update.'); 
+        System.assertEquals(true, conLangsToInsertUpdate.contactLanguagesToInsertList.isEmpty(), 'There should be no new Contact Language records to create.'); 
+        System.assertEquals(5, conLangsToInsertUpdate.contactLanguagesToUpdateList.size(), 'There should be 5 existing Contact Language records to update.'); 
     }
 
     /**************************************************************************************************************************
@@ -330,11 +330,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
 
         Test.startTest();
-        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
+        SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
         Test.stopTest();
 
-        System.assertEquals(3, conLangCat.getContactLanguagesToInsert().size(), 'There should be 3 new Contact Language records to create.');
-        System.assertEquals(2, conLangCat.getContactLanguagesToUpdate().size(), 'There should be 2 existing Contact Language records to update.');
+        System.assertEquals(3, conLangToProcess.contactLanguagesToInsertList.size(), 'There should be 3 new Contact Language records to create.');
+        System.assertEquals(2, conLangToProcess.contactLanguagesToUpdateList.size(), 'There should be 2 existing Contact Language records to update.');
     }
 
     /**************************************************************************************************************************
@@ -362,11 +362,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
 
         Test.startTest();
-        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
+        SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
         Test.stopTest();
 
-        System.assertEquals(5, conLangCat.getContactLanguagesToInsert().size(), 'There should be 5 new Contact Language records to create.');
-        System.assertEquals(true, conLangCat.getContactLanguagesToUpdate().isEmpty(), 'There should be no existing Contact Language records to update.');
+        System.assertEquals(5, conLangToProcess.contactLanguagesToInsertList.size(), 'There should be 5 new Contact Language records to create.');
+        System.assertEquals(true, conLangToProcess.contactLanguagesToUpdateList.isEmpty(), 'There should be no existing Contact Language records to update.');
     }
 
     /**************************************************************************************************************************
@@ -395,11 +395,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
 
         Test.startTest();
-        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
+        SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(conLanguagesToInsertByConId, languageIdToCheckForUpdateByContactId);
         Test.stopTest();
 
-        System.assertEquals(true, conLangCat.getContactLanguagesToInsert().isEmpty(), 'There should be no new Contact Language records to create.');
-        System.assertEquals(5, conLangCat.getContactLanguagesToUpdate().size(), 'There should be 5 existing Contact Language records to update.');
+        System.assertEquals(true, conLangToProcess.contactLanguagesToInsertList.isEmpty(), 'There should be no new Contact Language records to create.');
+        System.assertEquals(5, conLangToProcess.contactLanguagesToUpdateList.size(), 'There should be 5 existing Contact Language records to update.');
     }
 
     /**************************************************************************************************************************
@@ -409,11 +409,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     @isTest 
     private static void getPrimaryContactLanguagesNoInsertsNoUpdates(){
         Test.startTest();
-        SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(new Map<Id, Contact_Language__c>(), new Map<Id, Id>());
+        SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = SRVC_ContactPrimaryLanguage.getInstance().getPrimaryContactLanguagesToInsertOrUpdate(new Map<Id, Contact_Language__c>(), new Map<Id, Id>());
         Test.stopTest();
 
-        System.assertEquals(true, conLangCat.getContactLanguagesToInsert().isEmpty(), 'There should be no new Contact Language records to create.');
-        System.assertEquals(true, conLangCat.getContactLanguagesToUpdate().isEmpty(), 'There should be no existing Contact Language records to update.');
+        System.assertEquals(true, conLangToProcess.contactLanguagesToInsertList.isEmpty(), 'There should be no new Contact Language records to create.');
+        System.assertEquals(true, conLangToProcess.contactLanguagesToUpdateList.isEmpty(), 'There should be no existing Contact Language records to update.');
     }
 
     @isTest 
@@ -426,7 +426,7 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     **************************************************************************************************************************/
     private class STUB_HasContactLanguagesToInsert extends SRVC_ContactPrimaryLanguage {
         @TestVisible
-        public override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
+        public override SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
             List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
             List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
 
@@ -439,13 +439,13 @@ private class SRVC_ContactPrimaryLanguage_TEST {
                 contactLanguagesToInsertList.add(conLang);
             }      
 
-            SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = new SRVC_ContactPrimaryLanguage.ContactLanguageCategorization(contactLanguagesToInsertList,
+            SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = new SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess(contactLanguagesToInsertList,
                                                                                                                                                     contactLanguagesToUpdateList);
-            return conLangCat;
+            return conLangToProcess;
         }
 
         @TestVisible
-        protected override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
+        protected override SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
                                                                                                                                 Map<Id, Id> languageIdToCheckForUpdateByContactId){
             List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
             List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
@@ -459,9 +459,9 @@ private class SRVC_ContactPrimaryLanguage_TEST {
                 contactLanguagesToInsertList.add(conLang);
             }                                                                                                                       
 
-            SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = new SRVC_ContactPrimaryLanguage.ContactLanguageCategorization(contactLanguagesToInsertList,
+            SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = new SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess(contactLanguagesToInsertList,
                                                                                                                                                     contactLanguagesToUpdateList);
-            return conLangCat;
+            return conLangToProcess;
         }
 
         @TestVisible 
@@ -477,7 +477,7 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
 
         @TestVisible
-        public override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
+        public override SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
             List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
             List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
 
@@ -490,13 +490,13 @@ private class SRVC_ContactPrimaryLanguage_TEST {
                 contactLanguagesToUpdateList.add(conLang);
             }      
 
-            SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = new SRVC_ContactPrimaryLanguage.ContactLanguageCategorization(contactLanguagesToInsertList,
+            SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = new SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess(contactLanguagesToInsertList,
                                                                                                                                                     contactLanguagesToUpdateList);
-            return conLangCat;
+            return conLangToProcess;
         }
 
         @TestVisible
-        protected override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
+        protected override SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
                                                                                                                                 Map<Id, Id> languageIdToCheckForUpdateByContactId){
             
             List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
@@ -511,9 +511,9 @@ private class SRVC_ContactPrimaryLanguage_TEST {
                 contactLanguagesToUpdateList.add(conLang);
             }                                                                                                                         
 
-            SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = new SRVC_ContactPrimaryLanguage.ContactLanguageCategorization(contactLanguagesToInsertList,
+            SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = new SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess(contactLanguagesToInsertList,
                                                                                                                                                     contactLanguagesToUpdateList);
-            return conLangCat;
+            return conLangToProcess;
         }
 
         @TestVisible 
@@ -534,7 +534,7 @@ private class SRVC_ContactPrimaryLanguage_TEST {
 
     private class STUB_HasPrimaryContactLanguagesToInsertAndUpdate extends SRVC_ContactPrimaryLanguage {
         @TestVisible
-        protected override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
+        protected override SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
                                                                                                                                 Map<Id, Id> languageIdToCheckForUpdateByContactId){            
             List<Contact_Language__c> contactLanguagesToInsertList = new List<Contact_Language__c>();
             List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
@@ -552,9 +552,9 @@ private class SRVC_ContactPrimaryLanguage_TEST {
                 }
             }                                                                                                                         
 
-            SRVC_ContactPrimaryLanguage.ContactLanguageCategorization conLangCat = new SRVC_ContactPrimaryLanguage.ContactLanguageCategorization(contactLanguagesToInsertList,
+            SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = new SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess(contactLanguagesToInsertList,
                                                                                                                                                     contactLanguagesToUpdateList);
-            return conLangCat;
+            return conLangToProcess;
         }
     }
 }
