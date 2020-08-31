@@ -84,7 +84,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
                     String lookupFieldAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(affl.Affiliation_Type__c);
 
                     if (isAfflTypeEnforced == true) {
-                        ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
+                        ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings, afflMapper.accRecTypeLabelToAPI);
                     }
 
                     Contact relatedContact = relatedContactsMap.get(affl.Contact__c);

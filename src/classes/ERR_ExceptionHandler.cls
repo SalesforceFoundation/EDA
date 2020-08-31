@@ -98,22 +98,30 @@ public with sharing class ERR_ExceptionHandler {
         return false;
     }
 
-    public static void handleAfflNullRecordTypeException(Affiliation__c affl, List<String> validRecordTypes) {
-        if (affl.Account__c != null) {
-            // Get related Account's Record Type Name from 'Affiliation_Type__c' field
-            String afflAccRecTypeName;
-            if (affl.Affiliation_Type__c != null) {
-                AFFL_MultiRecordTypeMapper affilMapper = new AFFL_MultiRecordTypeMapper();
-                afflAccRecTypeName = affilMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
-            }
-            //If parent account exists for affiliation and account has no record type
-            //display the error message
-            if ((affl.Affiliation_Type__c != null && !validRecordTypes.contains(affl.Affiliation_Type__c)) && 
-                (String.isNotBlank(afflAccRecTypeName) &&  !validRecordTypes.contains(afflAccRecTypeName))) {
-                throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-            } else if (affl.Affiliation_Type__c == null) {
-                throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
-            }
+    /*******************************************************************************************************
+    * @description Throws an exception if an affiliation's type is null or its parent account's record type is not in the list of valid record types.
+    * @param affl The affiliation to test.
+    * @param validRecordTypes The list of record types to validate against.
+    * @param accRecTypeLabelToAPI The map of account record type labels to account record type api names
+    */
+    public static void handleAfflNullRecordTypeException(Affiliation__c affl, List<String> validRecordTypes, Map<String,String> accRecTypeLabelToAPI) {
+        if(affl.Account__c == null) {
+            return;
+        }
+
+        if(affl.Affiliation_Type__c == null) {
+            throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
+        }
+
+        // Get related Account's Record Type Name from 'Affiliation_Type__c' field
+        String afflAccRecTypeName = accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
+
+        //If parent account exists for affiliation and account has no record type
+        //display the error message
+        if (!validRecordTypes.contains(affl.Affiliation_Type__c) && String.isNotBlank(afflAccRecTypeName) &&
+            !validRecordTypes.contains(afflAccRecTypeName)
+        ) {
+            throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
         }
     }
 

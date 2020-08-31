@@ -93,7 +93,7 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                     }
 
                     if (isAfflTypeEnforced == true) {
-                        ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
+                        ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings, afflMapper.accRecTypeLabelToAPI);
                     }
 
                     // AFTER UPDATE
