@@ -424,26 +424,6 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
-    
-    
-    // private class STUB_FindContactLanguagesToCreate extends SRVC_ContactPrimaryLanguage{
-    //     @TestVisible
-    //     public override List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
-    //         List<Contact_Language__c> conLangsToCreate = new List<Contact_Language__c>();
-
-    //         for (Integer i=0; i<5; i++){
-    //             Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
-    //                                                                   Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
-    //                                                                   Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType),
-    //                                                                   Primary_Language__c = false
-    //                                                                  );
-    //             conLangsToCreate.add(conLang);
-    //         }
-            
-    //         return conLangsToCreate;
-    //     }
-    // }
-
     private class STUB_HasContactLanguagesToInsert extends SRVC_ContactPrimaryLanguage {
         @TestVisible
         public override SRVC_ContactPrimaryLanguage.ContactLanguageCategorization getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
@@ -577,44 +557,4 @@ private class SRVC_ContactPrimaryLanguage_TEST {
             return conLangCat;
         }
     }
-
-    // private class STUB_HasContactLanguagesToUpdateAsNonPrimary extends SRVC_ContactPrimaryLanguage {
-    //     @TestVisible 
-    //     protected override List<Contact_Language__c> getContactLanguagesToUpdateAsNonPrimary(Set<Id> contactIdsToMarkAsNonPrimarySet){
-    //         List<Contact_Language__c> contactLanguagesToUpdateList = new List<Contact_Language__c>();
-            
-    //         for (Integer i = 0; i < 5; i++){
-    //             Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
-    //                                                                   Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
-    //                                                                   Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType)
-    //                                                                  );
-    //             contactLanguagesToUpdateList.add(conLang);
-    //         } 
-            
-    //         return contactLanguagesToUpdateList;
-    //     }
-    // }
-
-    
-
-    // public class STUB_findContactLanguagesToCreate extends SRVC_ContactPrimaryLanguage{
-
-    //     @TestVisible
-    //     public override List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
-
-    //         System.debug('MK DEBUG: entered stub class with contactsList = ' + contactsList);
-    //         List<Contact_Language__c> conLangsToCreate = new List<Contact_Language__c>();
-
-    //         for (Contact con : contactsList){
-    //             Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
-    //                                                                   Contact__c = con.Id,
-    //                                                                   Language__c = con.Primary_Language__c,
-    //                                                                   Primary_Language__c = false
-    //                                                                  );
-    //             conLangsToCreate.add(conLang);
-    //         }
-            
-    //         return conLangsToCreate;
-    //     }
-    // }
 }

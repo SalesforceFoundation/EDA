@@ -74,15 +74,15 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
      */ 
     @TestVisible
     private void handleAfterInsert(List<SObject> newObjectsList){
-        if (this.isInsertRecursion()) {
+        if (this.isInsertRecursion() == true) {
             return;
         }
 
         this.setInsertRecursion();
         Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newObjectsList);
         List<Contact_Language__c> contactLanguagesToCreateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreate(newContactsById.values());
-
-        if (contactLanguagesToCreateList.isEmpty()){
+        
+        if (contactLanguagesToCreateList.isEmpty() == true){
             this.unsetInsertRecursion();
             return;
         }
@@ -90,7 +90,6 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         DmlWrapper dmlWrapper = new DmlWrapper();
         dmlWrapper.objectsToInsert.addAll((List<SObject>)contactLanguagesToCreateList);
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
-
         this.unsetInsertRecursion();
     }
 
@@ -166,7 +165,6 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     @TestVisible
     private Boolean isInsertRecursion(){
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM) ||
-        //TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM);
         TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM);
 
     }
