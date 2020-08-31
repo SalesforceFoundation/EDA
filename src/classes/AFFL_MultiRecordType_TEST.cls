@@ -1602,84 +1602,118 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     }
 
+    /**
+     * @description Tests whether the record type labels are cached and matches the size of record types for Account
+     */
+    @isTest
+    private static void multiRecordTypeMapperAccRecTypeLabelToAPINew() {
+        System.assertEquals(null,AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache);
+
+        AFFL_MultiRecordTypeMapper multiRecordTypeMapper = new AFFL_MultiRecordTypeMapper();
+
+        Map<String,String> accRecTypeLabelToAPI = multiRecordTypeMapper.accRecTypeLabelToAPI;
+
+        System.assertNotEquals(null,AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache);
+        System.assertEquals(accRecTypeLabelToAPI,AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache);
+        System.assertEquals(Account.SObjectType.getDescribe().getRecordTypeInfos().size(),accRecTypeLabelToAPI.size());
+    }
+
+    /**
+     * @description Tests whether the record type labels are appropriately cached and that the cache is called when accessed
+     */
+    @isTest
+    private static void multiRecordTypeMapperAccRecTypeLabelToAPICache() {
+        AFFL_MultiRecordTypeMapper multiRecordTypeMapper = new AFFL_MultiRecordTypeMapper();
+        Map<String,String> accRecTypeLabelToAPI = multiRecordTypeMapper.accRecTypeLabelToAPI;
+
+        System.assertNotEquals(null,AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache);
+
+        Integer numberOfQueries = Limits.getQueries();
+
+        Map<String,String> accRecTypeLabelToAPI2 = multiRecordTypeMapper.accRecTypeLabelToAPI;
+
+        System.assertEquals(numberOfQueries,Limits.getQueries());
+        System.assertEquals(accRecTypeLabelToAPI,accRecTypeLabelToAPI2);
+    }
+
 /**************************************************************************
 * INNER CLASS MODELS
 **************************************************************************/
 
-private abstract class AffiliationMappingWrapper {
-    Id accountRecordTypeId;
-    String accountRecordTypeDeveloperName;
-    String accountRecordTypeName;
-    Affl_Mappings__c affiliationMapping;
-    String contactFieldApiName;
-    String contactFieldLabel;
+    private abstract class AffiliationMappingWrapper {
+        Id accountRecordTypeId;
+        String accountRecordTypeDeveloperName;
+        String accountRecordTypeName;
+        Affl_Mappings__c affiliationMapping;
+        String contactFieldApiName;
+        String contactFieldLabel;
 
-    /**************************************************************************
-    * @description Gets the account record type Id for the mapping
-    * @return The account record type Id for the mapping
-    **************************************************************************/
-    public Id getAccountRecordTypeId() {
-        return this.accountRecordTypeId;
-    }
-
-    /**************************************************************************
-    * @description Gets the underlying affiliation mapping
-    * @return The underlying affiliation mapping
-    **************************************************************************/
-    public Affl_Mappings__c getAffiliationMapping() {
-        return this.affiliationMapping;
-    }
-
-    /**************************************************************************
-    * @description Gets the account record type developer name for the mapping
-    * @return The account record type developer name for the mapping
-    **************************************************************************/
-    public String getAccountRecordTypeDeveloperName() {
-        return this.accountRecordTypeDeveloperName;
-    }
-
-    /**************************************************************************
-    * @description Gets the account record type name for the mapping
-    * @return The account record type name for the mapping
-    **************************************************************************/
-    public String getAccountRecordTypeName() {
-        return this.accountRecordTypeName;
-    }
-
-    /**************************************************************************
-    * @description Sets the account record type name for the mapping
-    * @param accountRecordTypeName the new account record type name for the
-    * mapping
-    **************************************************************************/
-    public void setAccountRecordTypeName(String accountRecordTypeName) {
-        this.accountRecordTypeName = accountRecordTypeName;
-    }
-
-    /**************************************************************************
-    * @description Gets the contact field label for the mapping
-    * @return The contact field label for the mapping
-    **************************************************************************/
-    public String getContactFieldLabel() {
-        return this.contactFieldLabel;
-    }
-
-    /**************************************************************************
-    * @description Sets the record name from its id and the map of account
-    * record type infos
-    **************************************************************************/
-    public void setRecordTypeNamesFromId(Map<Id, Schema.RecordTypeInfo> accountRecordTypeInfosByIds) {
-        if( String.isBlank( this.getAccountRecordTypeId() ) ) {
-            return;
+        /**************************************************************************
+        * @description Gets the account record type Id for the mapping
+        * @return The account record type Id for the mapping
+        **************************************************************************/
+        public Id getAccountRecordTypeId() {
+            return this.accountRecordTypeId;
         }
 
-        this.accountRecordTypeName =
-            accountRecordTypeInfosByIds.get(this.accountRecordTypeId).getName();
-        this.accountRecordTypeDeveloperName =
-            accountRecordTypeInfosByIds.get(this.accountRecordTypeId).getDeveloperName();
-    }
+        /**************************************************************************
+        * @description Gets the underlying affiliation mapping
+        * @return The underlying affiliation mapping
+        **************************************************************************/
+        public Affl_Mappings__c getAffiliationMapping() {
+            return this.affiliationMapping;
+        }
 
-    public virtual void setAffiliationMapping() {}
-}
+        /**************************************************************************
+        * @description Gets the account record type developer name for the mapping
+        * @return The account record type developer name for the mapping
+        **************************************************************************/
+        public String getAccountRecordTypeDeveloperName() {
+            return this.accountRecordTypeDeveloperName;
+        }
+
+        /**************************************************************************
+        * @description Gets the account record type name for the mapping
+        * @return The account record type name for the mapping
+        **************************************************************************/
+        public String getAccountRecordTypeName() {
+            return this.accountRecordTypeName;
+        }
+
+        /**************************************************************************
+        * @description Sets the account record type name for the mapping
+        * @param accountRecordTypeName the new account record type name for the
+        * mapping
+        **************************************************************************/
+        public void setAccountRecordTypeName(String accountRecordTypeName) {
+            this.accountRecordTypeName = accountRecordTypeName;
+        }
+
+        /**************************************************************************
+        * @description Gets the contact field label for the mapping
+        * @return The contact field label for the mapping
+        **************************************************************************/
+        public String getContactFieldLabel() {
+            return this.contactFieldLabel;
+        }
+
+        /**************************************************************************
+        * @description Sets the record name from its id and the map of account
+        * record type infos
+        **************************************************************************/
+        public void setRecordTypeNamesFromId(Map<Id, Schema.RecordTypeInfo> accountRecordTypeInfosByIds) {
+            if( String.isBlank( this.getAccountRecordTypeId() ) ) {
+                return;
+            }
+
+            this.accountRecordTypeName =
+                accountRecordTypeInfosByIds.get(this.accountRecordTypeId).getName();
+            this.accountRecordTypeDeveloperName =
+                accountRecordTypeInfosByIds.get(this.accountRecordTypeId).getDeveloperName();
+        }
+
+        public virtual void setAffiliationMapping() {}
+    }
 
     private class AfflMappingWrapperByDevNameAndApiName extends AffiliationMappingWrapper {
         /**************************************************************************

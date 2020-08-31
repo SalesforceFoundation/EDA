@@ -70,9 +70,10 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     public List<String> primaryAfflFieldNames;
 
     /*******************************************************************************************************
-    * @description Map of Account Record Type Label to API
+    * @description Static Map of Account Record Type Label to API
     ********************************************************************************************************/
-    public Map<String, String> accRecTypeLabelToAPI;
+    @testVisible
+    private static Map<String, String> accRecTypeLabelToAPICache;
     
     /*******************************************************************************************************
     * @description Constructor that initializes class properties.
@@ -89,9 +90,6 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         
         //Affiliation Account-record-type-to-Contact-field mappings.
         populateMaps();
-
-        // Map of Account RecordType Label To API
-        accRecTypeLabelToAPI = getAccRecTypeLabelToAPIMap();
         
         //List of primary affiliation lookup fields labels/API names from settings.
         List<String> primaryAfflFieldsInMappings = primaryAfflFieldInMappingsByAccRecType.values();
@@ -122,14 +120,22 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         }
         return labelsnames;
     }
+
+    /**
+     * @description A map of record type names to developer names, supporting localized names
+     */
+    public Map<String,String> accRecTypeLabelToAPI {
+        get {
+            if(AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache != null) {
+                return AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache;
+            }
     
-    // @Desription Returns a Map of Record type label to its API
-    private Map<String, String> getAccRecTypeLabelToAPIMap() {
-        Map<String, String> labelsnames = new Map<String, String>();
-        for (RecordType field : [SELECT  Name, DeveloperName FROM RecordType Where SobjectType = 'Account']) {
-            labelsnames.put(field.Name, field.DeveloperName);
+            AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache = new Map<String, String>();
+            for (RecordType field : [SELECT  Name, DeveloperName FROM RecordType WHERE SobjectType = 'Account']) {
+                AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache.put(field.Name, field.DeveloperName);
+            }
+            return AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache;
         }
-        return labelsnames;
     }
     
     @testVisible
