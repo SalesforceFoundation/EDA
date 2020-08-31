@@ -27,10 +27,12 @@
 /**
 * @author Salesforce.org
 * @date 2019
-* @group Languages
-* @group-content ../../ApexDocContent/Languages.htm
-* @description Creates or modifies existing Contact Language records when the Contact's "Primary Language" 
-* lookup field is manually changed.
+* @group Contacts
+* @group-content ../../ApexDocContent/Contacts.htm
+* @description Ensures that Contact records are associated with Contact Language records corresponding to
+* the language specified by the Primary Language field.  Creates new or modifies existing Contact Language
+* records when applicable for Contacts inserted with a language specified as the Primary Language 
+* or updated with changes to the Primary Language field.
 */
 public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 

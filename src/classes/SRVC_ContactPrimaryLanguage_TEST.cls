@@ -424,6 +424,11 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
+    
+    /************************************************************************************************************
+    * @description Stub class to simulate the response from SRVC_ContactPrimaryLanguage with contact language 
+    * records to be inserted and no existing records to update.
+    *************************************************************************************************************/ 
     private class STUB_HasContactLanguagesToInsert extends SRVC_ContactPrimaryLanguage {
         @TestVisible
         public override SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
@@ -470,6 +475,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
     }
 
+    /************************************************************************************************************
+    * @description Stub class to simulate the response from SRVC_ContactPrimaryLanguage with existing contact  
+    * language records to be updated and no new records to be inserted.
+    *************************************************************************************************************/ 
     private class STUB_HasContactLanguagesToUpdate extends SRVC_ContactPrimaryLanguage{
         @TestVisible
         public override List<Contact_Language__c> getContactLanguagesToCreate(List<Contact> contactsList){
@@ -532,6 +541,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         }
     }
 
+    /************************************************************************************************************
+    * @description Stub class to simulate the response from SRVC_ContactPrimaryLanguage with contact language 
+    * records to be both inserted and updated
+    *************************************************************************************************************/ 
     private class STUB_HasPrimaryContactLanguagesToInsertAndUpdate extends SRVC_ContactPrimaryLanguage {
         @TestVisible
         protected override SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess getPrimaryContactLanguagesToInsertOrUpdate(Map<Id, Contact_Language__c> contactLanguagesToInsertByContactId,
