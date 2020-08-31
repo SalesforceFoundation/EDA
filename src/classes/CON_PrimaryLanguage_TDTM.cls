@@ -36,19 +36,15 @@
 */
 public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
-    private List<Contact_Language__c> contactLanguagesToUpdate = new List<Contact_Language__c>();
-    private List<Contact_Language__c> contactLanguagesToInsert = new List<Contact_Language__c>();
-    private Map<Id, Id> primaryLanguageByContact = new Map<Id, Id>();
-
     /*******************************************************************************************************
-    * @description Iterates over all Contact records being inserted, updated, or deleted and ensures that if
+    * @description Iterates over all Contact records being inserted or updated and ensures that if
     * a Primary Language is set, updated, or cleared, the corresponding Contact Language record is created or
     * updated accordingly.
     * @param newList the list of Contacts from trigger new.
     * @param oldList the list of Contacts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param objResult the describe for Contact.
-    * @return dmlWrapper A null or empty dmlWrapper, since this TDTM class does its own DML processing.
+    * @return A null or empty dmlWrapper, since this TDTM class does its own DML processing.
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -72,7 +68,7 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
      * @description Handles processing required for an After Insert trigger.
-     * @param  newObjectsList The list of SObjects inserted.
+     * @param newObjectsList The list of SObjects inserted.
      *******************************************************************************************************/ 
     @TestVisible
     private void handleAfterInsert(List<SObject> newObjectsList){
@@ -96,10 +92,10 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-     * @description Handles processing required for an After Update trigger.
-     * @param  newObjectsList A list of SObjects in their updated state.
-     * @param  oldObjectsList A list of SObjects in their state prior to update.
-     *******************************************************************************************************/ 
+    * @description Handles processing required for an After Update trigger.
+    * @param newObjectsList The list of updated SObjects.
+    * @param oldObjectsList The list of SObjects in their state prior to update.
+    *******************************************************************************************************/ 
     @TestVisible
     private void handleAfterUpdate(List<SObject> newObjectsList, List<SObject> oldObjectsList){
         if (this.isUpdateRecursion()){
@@ -114,7 +110,9 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         List<Contact_Language__c> conLanguagesToInsertList = new List<Contact_Language__c>();
         List<Contact_Language__c> conLanguagesToUpdateList = new List<Contact_Language__c>();
 
-        SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
+        SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = 
+            this.locateContactPrimaryLanguageService().getContactLanguagesToCreateOrUpdate(newContactsById, oldContactsById);
+        
         conLanguagesToInsertList = conLangToProcess.contactLanguagesToInsertList;
         conLanguagesToUpdateList = conLangToProcess.contactLanguagesToUpdateList;
 
@@ -133,34 +131,34 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-     * @description Retrieves an instance of the SRVC_ContactPrimaryLanguage service class.
-     * @return   An instance of SRVC_ContactPrimaryLanguage.
-     *******************************************************************************************************/ 
+    * @description Retrieves an instance of the SRVC_ContactPrimaryLanguage service class.
+    * @return An instance of SRVC_ContactPrimaryLanguage.
+    *******************************************************************************************************/ 
     @TestVisible
     private SRVC_ContactPrimaryLanguage locateContactPrimaryLanguageService(){
         return SRVC_ContactPrimaryLanguage.getInstance();
     }
 
     /*******************************************************************************************************
-     * @description Sets the After Insert recurtion flag for CON_PrimaryLanguage_TDTM.
-     *******************************************************************************************************/ 
+    * @description Sets the After Insert recursion flag for CON_PrimaryLanguage_TDTM.
+    *******************************************************************************************************/ 
     @TestVisible
     private void setInsertRecursion(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
     }
 
     /*******************************************************************************************************
-     * @description Clears the After Insert recurtion flag for CON_PrimaryLanguage_TDTM.
-     *******************************************************************************************************/ 
+    * @description Clears the After Insert recursion flag for CON_PrimaryLanguage_TDTM.
+    *******************************************************************************************************/ 
     @TestVisible
     private void unsetInsertRecursion(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
     }
 
     /*******************************************************************************************************
-     * isInsertRecursion description
-     * @return   return description
-     *******************************************************************************************************/ 
+    * @description Determines whether current context is associated with an insert recursion.
+    * @return False if both After Insert recursion flags for CLAN_PrimaryLanguage_TDTM and CON_PrimaryLanguage_TDTM are not set, true otherwise.
+    *******************************************************************************************************/ 
     @TestVisible
     private Boolean isInsertRecursion(){
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM) ||
@@ -169,25 +167,25 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-     * @description Sets the After Update recurtion flag for CON_PrimaryLanguage_TDTM.
-     *******************************************************************************************************/
+    * @description Sets the After Update recurtion flag for CON_PrimaryLanguage_TDTM.
+    *******************************************************************************************************/
     @TestVisible
     private void setUpdateRecursion(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
     }
 
     /*******************************************************************************************************
-     * @description Clears the After Update recurtion flag for CON_PrimaryLanguage_TDTM.
-     *******************************************************************************************************/
+    * @description Clears the After Update recurtion flag for CON_PrimaryLanguage_TDTM.
+    *******************************************************************************************************/
     @TestVisible
     private void unsetUpdateRecursion(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
     }
 
     /*******************************************************************************************************
-     * @description Determines if either of the Update recursion flags for Contact or Contact Language are set. 
-     * @return   False if the After Update recursion flags for both CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM are not set; true otherwise.
-     *******************************************************************************************************/ 
+    * @description Determines whether current context is associated with an update recursion.
+    * @return False if both After Update recursion flags for CLAN_PrimaryLanguage_TDTM and CON_PrimaryLanguage_TDTM are unset, true otherwise.
+    *******************************************************************************************************/ 
     @TestVisible
     private Boolean isUpdateRecursion(){
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM) ||
