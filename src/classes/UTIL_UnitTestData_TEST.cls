@@ -471,13 +471,13 @@ public class UTIL_UnitTestData_TEST {
         return contactLanguageToInsert;
     }
 
-   /**
-    * getContactLanguage description
-    * @param  language The language to relate to the contact language
-    * @param  contact The Contact to relate to the contact language
-    * @param  fluency The level of fluency for the language specified
-    * @return                   return description
-    */ 
+    /*******************************************************************************************************
+    * @description Creates (without inserting) a contact language record for testing.
+    * @param  language The language to relate to the contact language record.
+    * @param  contact The Contact to relate to the contact language record.
+    * @param  fluency The level of fluency for the language specified on the contact language record.
+    * @return A Contact Language record corresponding the specified Contact and Language.
+    *******************************************************************************************************/ 
     public static Contact_Language__c getContactLanguage(Language__c language, Contact contact, String fluency) {
         Contact_Language__c contactLanguage = new Contact_Language__c(
                                                         Language__c = language.Id, 
@@ -488,11 +488,11 @@ public class UTIL_UnitTestData_TEST {
         return contactLanguage;
     }
 
-    /**
-     * mapContactLanguagesToContact description
-     * @param  contactLanguagesList List of Contact Language records to map to Contacts
-     * @return                           returns a Map of a list of Contact Languages by Contact Id
-     */
+    /*******************************************************************************************************
+    * @description Generates a map of containing a list of Contact Language records, sorted by their associated Contact Id.
+    * @param  contactLanguagesList A List of Contact Language records to be mapped.
+    * @return A Map containing a list of Contact Languages by Contact Id.
+    *******************************************************************************************************/
     public static Map<Id, List<Contact_Language__c>> mapContactLanguagesToContact(List<Contact_Language__c> contactLanguagesList){
         Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = new Map<Id, List<Contact_Language__c>>();
         List<Contact_Language__c> associatedContactLanguagesList;
@@ -510,12 +510,6 @@ public class UTIL_UnitTestData_TEST {
 
         return contactLanguagesListByContactId;
     }
-
-
-
-
-
-
 
     /*********************************************************************************************************
     * @description Gets a Term for testing.
