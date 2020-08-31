@@ -51,7 +51,7 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
             DmlWrapper dmlWrapper = new DmlWrapper();
 
-            if (newList == null || newList.isEmpty()){
+            if (newList == null || newList.isEmpty() == true){
                 return dmlWrapper;
             }
 
@@ -78,7 +78,8 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
         this.setInsertRecursion();
         Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newSObjectsList);
-        List<Contact_Language__c> contactLanguagesToCreateList = this.locateContactPrimaryLanguageService().getContactLanguagesToCreate(newContactsById.values());
+        List<Contact_Language__c> contactLanguagesToCreateList = 
+            this.locateContactPrimaryLanguageService().getContactLanguagesToCreate(newContactsById.values());
         
         if (contactLanguagesToCreateList.isEmpty() == true){
             this.unsetInsertRecursion();
@@ -98,7 +99,7 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     *******************************************************************************************************/ 
     @TestVisible
     private void handleAfterUpdate(List<SObject> newSObjectsList, List<SObject> oldSObjectsList){
-        if (this.isUpdateRecursion()){
+        if (this.isUpdateRecursion() == true){
             return;
         }
 
@@ -118,7 +119,7 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if (conLanguagesToInsertList.isEmpty()){
+        if (conLanguagesToInsertList.isEmpty() == true){
             this.unsetInsertRecursion();
         } else {
             dmlWrapper.objectsToInsert.addAll((List<SObject>)conLanguagesToInsertList);
