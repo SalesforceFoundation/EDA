@@ -53,7 +53,7 @@ private class SRVC_ContactPrimaryLanguage_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getContactLanguagesToCreate method returns a list of contact language records 
-    * to create when a contact is associated with new primary language.
+    * to create when Contacts are inserted new values specified for Primary Language.
     ***************************************************************************************************************************/
     @isTest 
     private static void getContactLanguagesToCreatePositive(){                                                            
@@ -73,6 +73,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(5, conLangsToInsertList.size());
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getContactLanguagesToCreate method does not return a list of contact 
+    * language records to create when contacts are inserted without a value specified for Primary Language.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getContactLanguagesToCreateNegative(){
         List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
@@ -90,6 +94,10 @@ private class SRVC_ContactPrimaryLanguage_TEST {
         System.assertEquals(true, conLangsToInsertList.isEmpty());
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getContactLanguagesToCreate method does not return a list of contact 
+    * language records to create when contacts are inserted with a null value specified for Primary Language.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getContactLanguagesToCreateNull(){
         List<Contact> testContactsList = UTIL_UnitTestData_Test.getMultipleTestContacts(5);
