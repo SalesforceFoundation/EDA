@@ -98,13 +98,24 @@ public with sharing class ERR_ExceptionHandler {
         return false;
     }
 
+    @testVisible
+    private static AFFL_MultiRecordTypeMapper affilMapper {
+        get {
+            if(affilMapper == null) {
+                affilMapper = new AFFL_MultiRecordTypeMapper();
+            }
+
+            return affilMapper;
+        }
+        set;
+    }
+
     public static void handleAfflNullRecordTypeException(Affiliation__c affl, List<String> validRecordTypes) {
         if (affl.Account__c != null) {
             // Get related Account's Record Type Name from 'Affiliation_Type__c' field
             String afflAccRecTypeName;
             if (affl.Affiliation_Type__c != null) {
-                AFFL_MultiRecordTypeMapper affilMapper = new AFFL_MultiRecordTypeMapper();
-                afflAccRecTypeName = affilMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
+                afflAccRecTypeName = ERR_ExceptionHandler.affilMapper.accRecTypeLabelToAPI.get(affl.Affiliation_Type__c);
             }
             //If parent account exists for affiliation and account has no record type
             //display the error message
