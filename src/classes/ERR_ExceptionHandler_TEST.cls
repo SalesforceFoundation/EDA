@@ -83,5 +83,15 @@ private with sharing class ERR_ExceptionHandler_TEST {
 		ERR_ExceptionHandler.beautifyExceptionMessage(ex);
 
 		system.assertEquals(oldMessage, ex.getMessage(), 'Unhandled exception type should be unmodified.');
-	}
+    }
+    
+    @isTest
+    private static void testAffilMapper() {
+        AFFL_MultiRecordTypeMapper afflMapper1 = ERR_ExceptionHandler.affilMapper;
+        Integer numberOfQueries = Limits.getQueries();
+
+        AFFL_MultiRecordTypeMapper afflMapper2 = ERR_ExceptionHandler.affilMapper;
+        System.assertEquals(afflMapper1,afflMapper2,'The affiliation mapper was not cached.');
+        System.assertEquals(numberOfQueries,Limits.getQueries(),'More queries were called when getting the cached affiliation mapper.');
+    }
 }
