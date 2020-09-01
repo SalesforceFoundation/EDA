@@ -1615,7 +1615,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         System.assertNotEquals(null,AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache);
         System.assertEquals(accRecTypeLabelToAPI,AFFL_MultiRecordTypeMapper.accRecTypeLabelToAPICache);
-        System.assertEquals(Account.SObjectType.getDescribe().getRecordTypeInfos().size(),accRecTypeLabelToAPI.size());
+
+        //Queries don't pull the 'Master' record type
+        System.assertEquals(Account.SObjectType.getDescribe().getRecordTypeInfos().size() -1,accRecTypeLabelToAPI.size());
     }
 
     /**
