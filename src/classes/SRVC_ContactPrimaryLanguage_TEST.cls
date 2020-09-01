@@ -432,7 +432,7 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     private static void addContactLanguagesToUpdatePositive(){
         List<Contact_Language__c> conLangsToInsertList = new List<Contact_Language__c>();
         List<Contact_Language__c> conLangsToUpdateList = new List<Contact_Language__c>();
-        List<Contact_Language__c> additionalConLangsToInserList = new List<Contact_Language__c>();
+        List<Contact_Language__c> additionalConLangsToUpdateList = new List<Contact_Language__c>();
 
         for (Integer i = 0; i< 5; i++){
             Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
@@ -445,14 +445,14 @@ private class SRVC_ContactPrimaryLanguage_TEST {
                                                                   Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
                                                                   Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType));
 
-            conLangsToInsertList.add(conLang);
-            additionalConLangsToInserList.add(addConLang);
+            conLangsToUpdateList.add(conLang);
+            additionalConLangsToUpdateList.add(addConLang);
         }
 
         SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = new SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess(conLangsToInsertList, conLangsToUpdateList);
         
         Test.startTest();
-        conLangToProcess.addContactLanguagesToUpdate(additionalConLangsToInserList);
+        conLangToProcess.addContactLanguagesToUpdate(additionalConLangsToUpdateList);
         Test.stopTest();
 
         System.assertEquals(10, conLangToProcess.contactLanguagesToUpdateList.size(), 'List of Contact Language records to insert should increase to 10.');
@@ -466,20 +466,20 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     private static void addContactLanguagesToUpdateNegative(){
         List<Contact_Language__c> conLangsToInsertList = new List<Contact_Language__c>();
         List<Contact_Language__c> conLangsToUpdateList = new List<Contact_Language__c>();
-        List<Contact_Language__c> additionalConLangsToInserList = new List<Contact_Language__c>();
+        List<Contact_Language__c> additionalConLangsToUpdateList = new List<Contact_Language__c>();
 
         for (Integer i = 0; i< 5; i++){
             Contact_Language__c conLang = new Contact_Language__c(Id = UTIL_UnitTestData_TEST.getFakeId(Contact_Language__c.SObjectType),
                                                                   Contact__c = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
                                                                   Language__c = UTIL_UnitTestData_TEST.getFakeId(Language__c.SObjectType));
 
-            conLangsToInsertList.add(conLang);
+            conLangsToUpdateList.add(conLang);
         }
 
         SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess conLangToProcess = new SRVC_ContactPrimaryLanguage.ContactLanguagesToProcess(conLangsToInsertList, conLangsToUpdateList);
         
         Test.startTest();
-        conLangToProcess.addContactLanguagesToUpdate(additionalConLangsToInserList);
+        conLangToProcess.addContactLanguagesToUpdate(additionalConLangsToUpdateList);
         Test.stopTest();
 
         System.assertEquals(5, conLangToProcess.contactLanguagesToUpdateList.size(), 'List of Contact Language records to insert should remain at 5.');
