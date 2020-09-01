@@ -183,7 +183,7 @@ public with sharing class ADDR_OtherAcc_TEST {
     private static void testDisabledAddressFeature() {        
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = Null));
 
-        List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getAdminAccRecTypeID());
+        List<Account> accList = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe.getCustomAdminAccRecTypeID());
         for (Account acc : accList) {
             acc.BillingStreet = 'new street';
             acc.BillingCity = 'new city';

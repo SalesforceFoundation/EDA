@@ -56,7 +56,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     * the returned record already exists or doesn't exist in the database.
     */
     public static Hierarchy_Settings__c getSettings() {
-        if(Test.isRunningTest() && settings == null) {
+        if (Test.isRunningTest() && settings == null) {
         	settings = new Hierarchy_Settings__c();
         	configSettings(settings);
         } else if (settings == null) {
@@ -68,18 +68,53 @@ public without sharing class UTIL_CustomSettingsFacade {
     }
 
     /*******************************************************************************************************
+    * @description Returns the default settings for new installs.
+    * @return Hierarchy_Settings__c custom settings record.
+    * At the org level, if no user level settings are defined. The ID field should be checked to determine if
+    * the returned record already exists or doesn't exist in the database.
+    */
+    public static Hierarchy_Settings__c getSettingsForNewInstalls() {
+        if (settings != null) {
+            return settings;
+        }
+
+        //Settings empty, initiate settings
+        settings = Hierarchy_Settings__c.getInstance();
+        if (settings.Id == null) {
+            if (orgSettings == null) {
+                orgSettings = Hierarchy_Settings__c.getOrgDefaults();
+                //This will always have an Id outside a test scenario at the moment of a fresh install and this code only runs on a fresh install
+                //Due to this being a fresh install, we can assume the settings do not have the record types in them.
+                configSettings(orgSettings);
+                orgSettings.Setupownerid = UserInfo.getOrganizationId();
+                orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall();
+                orgSettings.Account_Processor__c = orgSettings.Administrative_Account_Record_Type__c;
+
+                if (Test.isRunningTest() == false) {
+                    upsert orgSettings;
+                }
+            }
+            settings = orgSettings;
+        }  
+            
+        return settings; 
+    }
+
+
+    /*******************************************************************************************************
     * @description Returns the org-level settings. Default org-level settings will be created
     * if none exist. Meant to be called only from settings page and install script.
     * @return Hierarchy_Settings__c org-level settings.
     */
     public static Hierarchy_Settings__c getOrgSettings() {
-        if(orgSettings == null) {
+        if (orgSettings == null) {
             orgSettings = Hierarchy_Settings__c.getOrgDefaults();
-            if(orgSettings.Id == null) {
+            if (orgSettings.Id == null) {
                 configSettings(orgSettings);
                 orgSettings.Setupownerid = UserInfo.getOrganizationId();
-                if(!Test.isRunningTest())
+                if (!Test.isRunningTest()) {
                     upsert orgSettings;
+                }
             }
         }
         return orgSettings;
@@ -123,11 +158,18 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return Hierarchy_Settings__c The configured settings.
     **/
     public static Hierarchy_Settings__c getSettingsForTests(Hierarchy_Settings__c mySettings) {
-        if(settings == null)
+        if (settings == null) {
             settings = new Hierarchy_Settings__c();
-
+        }
+        
         //create our own based on what's passed in from the test
-        settings.Account_Processor__c = mySettings.Account_Processor__c;
+        //Check if user defined admin record type exist. If so, populate with the user defined one.
+        if (mySettings.Account_Processor__c != null) {
+            settings.Account_Processor__c = mySettings.Account_Processor__c;
+        } else {             
+            settings.Account_Processor__c = mySettings.Administrative_Account_Record_Type__c;
+        }
+
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         settings.Admin_Account_Naming_Format__c = mySettings.Admin_Account_Naming_Format__c;

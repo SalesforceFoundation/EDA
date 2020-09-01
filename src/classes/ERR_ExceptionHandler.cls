@@ -119,4 +119,5 @@ public with sharing class ERR_ExceptionHandler {
 
     public class AfflAccountNoRecordTypeException extends Exception {}
     public class AffAccountRecordTypeMappingsException extends Exception {}
+    public class DefaultAdminRecordTypelMissingException extends Exception {}
 }

@@ -12,6 +12,8 @@ Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 Validate Edit Mode For Accounts and Contacts Settings and Click Checkboxes
+    [Documentation]     Clicks the checkboxes in edit mode for accounts and
+    ...                 contacts tab in EDA settings.
     Go to EDA settings tab          Accounts and Contacts
 
     Wait for Locator                account_types.edit
@@ -32,6 +34,8 @@ Validate Edit Mode For Accounts and Contacts Settings and Click Checkboxes
     Close toast message
 
 Unclick Checkboxes
+    [Documentation]     Unselects the checkboxes in edit mode for accounts and contacts
+    ...                 tab in EDA settings
     Click on Element                account_types.edit
     Wait for Locator                account_types.administrative
     Click on Element                account_types.administrative

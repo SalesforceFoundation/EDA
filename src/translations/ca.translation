@@ -41,6 +41,10 @@
         <name>DefaultAccountName</name>
     </customLabels>
     <customLabels>
+        <label><!-- We can’t find the Administrative Account record type in your org. Following installation, use Object Manager to create a new record type named ‘Administrative’ for the Account object. --></label>
+        <name>defaultAccountRecordTypeMissingError</name>
+    </customLabels>
+    <customLabels>
         <label>Compte administratiu</label>
         <name>DefaultAdminName</name>
     </customLabels>
@@ -423,6 +427,14 @@
     <customLabels>
         <label>Edita</label>
         <name>stgBtnEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Refresh All Administrative Names --></label>
+        <name>stgBtnRefreshAdminNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Refresh All Household Names --></label>
+        <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
         <label>Executa el reenviament</label>

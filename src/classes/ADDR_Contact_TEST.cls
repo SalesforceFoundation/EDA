@@ -68,8 +68,8 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/   
     @isTest
     private static void noContactAddressToAdminAccountAddressPropagation() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',	
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+                                                                Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',	
                                                                 Contacts_Addresses_Enabled__c = True,
                                                                 Simple_Address_Change_Treated_as_Update__c = True);
         UTIL_CustomSettings_API.getSettingsForTests(hs);
@@ -131,8 +131,8 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/ 
     @isTest
     private static void noAdminAccountAddressToContactAddressPropagation() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
+                                                                Accounts_Addresses_Enabled__c = UTIL_Describe.getCustomAdminAccRecTypeID() + ';',
                                                                 Contacts_Addresses_Enabled__c = True,
                                                                 Simple_Address_Change_Treated_as_Update__c = True);
         UTIL_CustomSettings_API.getSettingsForTests(hs);

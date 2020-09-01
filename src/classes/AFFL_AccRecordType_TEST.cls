@@ -246,7 +246,7 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         //Create primary Affl to Account without record type - since the account created will have the record type assigned
         //to the profile running the tests as default, we assign a different type to it. Profiles cannot be created in tests.
-        Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+        Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
         insert acc;
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = acc.Id, Primary__c = true);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
@@ -272,10 +272,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         AFFL_AccRecordType_TEST.setup();
 
         //Create some Accounts with Admin record type
-        List<Account> adminAccList = UTIL_UnitTestData_API.getMultipleTestAccounts(10, UTIL_Describe_API.getAdminAccRecTypeID());
+        List<Account> adminAccList = UTIL_UnitTestData_API.getMultipleTestAccounts(10, UTIL_Describe.getCustomAdminAccRecTypeID());
         insert adminAccList;
 
-        List<Account> theAccs = [SELECT Id FROM Account WHERE RecordTypeId = :UTIL_Describe_API.getAdminAccRecTypeID()];
+        List<Account> theAccs = [SELECT Id FROM Account WHERE RecordTypeId = :UTIL_Describe.getCustomAdminAccRecTypeID()];
         System.assertEquals(10, theAccs.size());
 
         //Change the record type of the Accounts to Biz type and HH type
@@ -310,8 +310,8 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert contacts;
 
         //Create Accounts with Admin Record Type
-        Account company = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
-        Account hh = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+        Account company = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
+        Account hh = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
         List<Account> accs = new List<Account>{company, hh};
         insert accs;
 
@@ -446,7 +446,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert contact;
 
         //Create a Primary Affiliation to an Account with Admin record type
-        Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+        Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
         insert acc;
 
         try {

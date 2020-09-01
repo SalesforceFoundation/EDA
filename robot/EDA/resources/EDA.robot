@@ -7,7 +7,8 @@ Library         DateTime
 
 *** Keywords ***
 Capture Screenshot and Delete Records and Close Browser
-    [Documentation]         Captures screenshot if a test fails, deletes session records and closes the browser
+    [Documentation]         Captures screenshot if a test fails, deletes session records
+    ...                     and closes the browser
     Run Keyword If Any Tests Failed      Capture Page Screenshot
     Close Browser
     Delete Session Records
@@ -36,7 +37,8 @@ API create plan requirement
     [return]                &{plan_requirement}
 
 API Get ID
-    [Documentation]         Returns the ID of a record identified by the given field_name and field_value input for a specific object
+    [Documentation]         Returns the ID of a record identified by the given field_name and
+    ...                     field_value input for a specific object
     [Arguments]             ${obj_name}             ${field_name}               ${field_value}
     @{records} =            Salesforce Query        ${obj_name}
     ...                         select=Id
@@ -45,6 +47,7 @@ API Get ID
     [return]                ${Id}[Id]
 
 API Create Contact
+    [Documentation]         Creating a contact through API
     ${first_name} =  Generate Random String
     ${last_name} =   Generate Random String
     ${contact_id} =  Salesforce Insert  Contact
@@ -54,6 +57,7 @@ API Create Contact
     [return]         &{contact}
 
 Create Contact with Email
+    [Documentation]         Creating a contact with email address through API
     ${first_name} =           Generate Random String
     ${last_name} =            Generate Random String
     Go To Object Home         Contact
@@ -62,25 +66,22 @@ Create Contact with Email
     ...                       First Name=${first_name}
     ...                       Last Name=${last_name}
     ...                       Work Email= dshattuck@salesforce.com
-    Click Modal Button        Save    
+    Click Modal Button        Save
     Wait Until Modal Is Closed
     ${contact_id} =           Get Current Record Id
     Store Session Record      Contact  ${contact_id}
     [return]                  ${contact_id}
-        
-Create Organization Foundation   
+
+Create Organization Foundation
+    [Documentation]         Creating an organization account through API
     ${account_name} =          Generate Random String
     Go To Object Home          Account
     Click Object Button        New
     Select Record Type         Organization
     Populate Form
     ...                        Account Name=${account_name}
-    Click Modal Button         Save    
+    Click Modal Button         Save
     Wait Until Modal Is Closed
     ${account_id} =            Get Current Record Id
     Store Session Record       Account  ${account_id}
     [return]                   ${account_id}
-    
-Scroll Page To Location
-    [Arguments]                 ${x_location}    ${y_location}
-    Execute JavaScript          window.scrollTo(${x_location},${y_location})

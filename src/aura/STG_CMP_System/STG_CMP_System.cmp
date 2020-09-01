@@ -11,9 +11,9 @@
     <aura:attribute name="adminOtherDisplay" type="Boolean" />
     <aura:attribute name="hhOtherDisplay" type="Boolean" />
     <aura:attribute name="adminAccNameFormatOptions" type="String[]"/>
-	<aura:attribute name="hhNameFormatOptions" type="String[]"/> 
+    <aura:attribute name="hhNameFormatOptions" type="String[]"/> 
     
-	<div aura:id="hhSuccessToast" id="hhSuccessToast" class="slds-hide">
+    <div aura:id="hhSuccessToast" id="hhSuccessToast" class="slds-hide">
         <div class="slds-box">
             <div class="slds-notify_container slds-notify_container--inline">
                 <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
@@ -26,8 +26,8 @@
                             <c:svgIcon name="success" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
                         </div>
                          <div class="slds-col slds-align-middle slds-gutters">
-                        	<h2 class="slds-text-heading_small">{!$Label.c.stgSuccessHHAccountNameRefresh}</h2>
-                       	</div>
+                            <h2 class="slds-text-heading_small">{!$Label.c.stgSuccessHHAccountNameRefresh}</h2>
+                           </div>
 
                     </div>
                 </div>
@@ -48,9 +48,8 @@
                         </div>
 
                          <div class="slds-col slds-align-middle slds-gutters">
-                        	<h2 class="slds-text-heading_small">{!$Label.c.stgSuccessAdminAccountNameRefresh}</h2>
-                       	</div>
-
+                            <h2 class="slds-text-heading_small">{!$Label.c.stgSuccessAdminAccountNameRefresh}</h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,12 +57,12 @@
     </div>
 
     <div id="systemTabs" class="slds-tabs--scoped">
-		<div aura:id="settingsContent" class="slds-tabs__content" role="tabpanel">
-        	<div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
+        <div aura:id="settingsContent" class="slds-tabs__content" role="tabpanel">
+            <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
 
                 <div class="slds-col slds-size--1-of-2">
-            		<ui:outputText value="{!$Label.c.stgAccModelTitle}" />
-        		</div>
+                    <ui:outputText value="{!$Label.c.stgAccModelTitle}" />
+                </div>
 
                 <div class="slds-col slds-size--1-of-2">
                     <c:CMP_RecTypes_Dropdown class="default-account-model-record-type"
@@ -252,19 +251,19 @@
                 <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
                     {!$Label.c.stgRefreshAdminAcctNameTitle}
                     <div class="slds-col slds-size--1-of-1">
-                    	<ui:outputText value="{!$Label.c.stgRefreshAdminAcctNameDesc}" class="slds-text-body--small" />
+                        <ui:outputText value="{!$Label.c.stgRefreshAdminAcctNameDesc}" class="slds-text-body--small" />
                     </div>
                 </div>
 
-              	<div class="slds-col slds-size--1-of-2">
-              		<lightning:button
-                                disabled="{!!v.isView}"
-                        	    variant="brand"
-                    		    label="Refresh All Administrative Names"
-                        	    title="refreshButton"
-                        	    onclick="{! c.handleRefreshAdminAccount}"/>
-
-              	</div>
+                <div class="slds-col slds-size--1-of-2">
+                    <lightning:button
+                        disabled="{!!v.isView}"
+                        variant="brand"
+                        label="{!$Label.c.stgBtnRefreshAdminNames}"
+                        title="refreshButton"
+                        onclick="{! c.handleRefreshAdminAccount}"
+                    />
+                </div>
 
                 <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
                 
@@ -320,15 +319,15 @@
                 <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
                     {!$Label.c.stgRefreshHHAcctNameTitle}
                     <div class="slds-col slds-size--1-of-1">
-                    	<ui:outputText value="{!$Label.c.stgRefreshHHAcctNameDesc}" class="slds-text-body--small" />
+                        <ui:outputText value="{!$Label.c.stgRefreshHHAcctNameDesc}" class="slds-text-body--small" />
                     </div>
                 </div>
 
                 <div class="slds-col slds-size--1-of-2">
-               	<lightning:button
+                   <lightning:button
                                 variant="brand"
                                 disabled="{!!v.isView}"
-                                label="Refresh All Household Names"
+                                label="{!$Label.c.stgBtnRefreshHouseholdNames}"
                                 title="refreshHouseholdAccountButton"
                                 onclick="{! c.handleRefreshHouseholdAccount}"/>
                 </div>

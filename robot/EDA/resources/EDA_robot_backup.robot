@@ -13,6 +13,7 @@ Library         DateTime
 
 *** Keywords ***
 API Create Term
+    [Documentation]     Creating a term through API
     [Arguments]       ${account_id}  &{fields}
     ${term_name} =    Generate Random String
     ${term_id} =      Salesforce Insert  Term__c
@@ -23,6 +24,7 @@ API Create Term
     [return]          &{term}
 
 API Create Course
+    [Documentation]     Creating a course through API
     [Arguments]       ${account_id}
     ${course_name} =  Generate Random String
     ${course_id} =    Salesforce Insert  Course__c
@@ -32,6 +34,7 @@ API Create Course
     [return]          &{course}
 
 API Create Course Offering
+    [Documentation]     Creating a course offering through API
     [Arguments]       ${course_id}  ${term_id}
     ${offering_id} =  Salesforce Insert  Course_Offering__c
     ...                   Course__c=${course_id}
@@ -40,6 +43,7 @@ API Create Course Offering
     [return]          &{offering}
 
 API Create Course Enrollment
+    [Documentation]     Creating a course enrollment through API
     [Arguments]       ${contact_id}  ${offering_id}
     ${rt_id} =        Get Record Type Id  Course_Enrollment__c  Student
     ${enrollment_id} =  Salesforce Insert  Course_Enrollment__c
@@ -50,6 +54,7 @@ API Create Course Enrollment
     [return]          &{enrollment}
 
 API Create Department
+    [Documentation]     Creating a department through API
     [Arguments]       ${record_type}=University_Department
     ${dept_name} =    Generate Random String
     ${rt_id} =        Get Record Type Id  Account  University_Department
@@ -60,6 +65,7 @@ API Create Department
     [return]          &{department}
 
 API Create Program
+    [Documentation]     Creating a program through API
     [Arguments]       ${record_type}=Academic_Program
     ${prog_name} =    Generate Random String
     ${rt_id} =        Get Record Type Id  Account  Academic_Program
@@ -70,6 +76,7 @@ API Create Program
     [return]          &{program}
 
 Create Course Enrollment
+    [Documentation]     Creating a course enrollment
     [Arguments]                ${contact_id}  ${offering_name}
     Go To Record Home          ${contact_id}
     Click Related List Button  Course Connections  New
@@ -84,6 +91,7 @@ Create Course Enrollment
     Store Session Record       Course_Enrollment__c  ${enrollment}[Id]
 
 Create Department
+    [Documentation]     Creating a department
     ${department_name} =  Generate Random String
     Go To Object Home     Account
     Click Object Button   New
@@ -96,6 +104,7 @@ Create Department
     [return]              ${department_id}
 
 Create Program
+    [Documentation]     Creating a program
     ${program_name} =     Generate Random String
     Go To Object Home     Account
     Click Object Button   New
@@ -108,6 +117,7 @@ Create Program
     [return]              ${program_id}
 
 Create Contact
+    [Documentation]     Creating a contact
     ${first_name} =           Generate Random String
     ${last_name} =            Generate Random String
     Go To Object Home         Contact
@@ -122,6 +132,7 @@ Create Contact
     [return]                  ${contact_id}
 
 Create Contact with Address
+    [Documentation]     Creating a contact with address
     ${first_name} =           Generate Random String
     ${last_name} =            Generate Random String
     Go To Object Home         Contact
@@ -144,6 +155,7 @@ Create Contact with Address
     [return]                  ${contact_id}
 
 New Contact for HouseHold
+    [Documentation]     Creating a new household contact
     Click Related List Button  Contacts    New
     Wait Until Modal Is Open
     ${first_name} =           Generate Random String
@@ -160,6 +172,7 @@ New Contact for HouseHold
     [return]                  ${contact_id}
 
 Create HouseHold
+    [Documentation]     Creating a new household account
     ${account_name} =         Generate Random String
     Go To Object Home         Account
     Click Object Button       New
@@ -173,6 +186,7 @@ Create HouseHold
     [return]                  ${account_id}
 
 Create Primary Affiliation
+    [Documentation]     Creating a primary affiliation between account and contact
     # Create Organization Account
     ${account_id} =             Create Organization Foundation
     &{account} =                Salesforce Get  Account  ${account_id}
@@ -188,6 +202,7 @@ Create Primary Affiliation
     [Return]                    ${account_id}    ${contact_id}
 
 Create Secondary Affiliation
+    [Documentation]     Creating a secondary affiliation between account and contact
     # Create Organization Account
     ${account_id} =             Create Organization Foundation
     &{account} =                Salesforce Get  Account  ${account_id}
@@ -202,6 +217,7 @@ Create Secondary Affiliation
     [Return]                    ${account_id}    ${contact_id}
 
 Create Opportunities
+    [Documentation]     Creating a new opportunity
     [Arguments]                 ${opp_name}    ${hh_name}
     Select Window
     Sleep                       2
