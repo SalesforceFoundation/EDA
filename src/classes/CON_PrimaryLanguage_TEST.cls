@@ -325,11 +325,11 @@ private class CON_PrimaryLanguage_TEST {
     **************************************************************************************************************************/
 
     /************************************************************************************************************
-    * @description Test method to verify that isUpdateRecursion returns true when either or both recursion flags
-    * CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM are set.
+    * @description Test method to verify that isUpdateRecursion returns true when only the recursion flag for
+    * CON_PrimaryLanguage_TDTM is set.
     *************************************************************************************************************/ 
     @isTest 
-    private static void isUpdateRecursionTrue(){
+    private static void isUpdateConPrimaryLanguageRecursionTrue(){
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
 
@@ -341,7 +341,39 @@ private class CON_PrimaryLanguage_TEST {
     }
 
     /************************************************************************************************************
-    * @description Test method to verify that isUpdateRecursion returns when both recursion flags
+    * @description Test method to verify that isUpdateRecursion returns true when only the recursion flag
+    * for CLAN_PrimaryLanguage_TDTM is set.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void isUpdateCLANPrimaryLanguageRecursionTrue(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, true);
+
+        CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
+
+        Test.startTest();
+        System.assertEquals(true, conPriLangTdtm.isUpdateRecursion(), 'Update recursion status should be true.');
+        Test.stopTest();
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that isUpdateRecursion returns true when recursion flags for both
+    * CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM set.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void isUpdateRecursionTrue(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, true);
+
+        CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
+
+        Test.startTest();
+        System.assertEquals(true, conPriLangTdtm.isUpdateRecursion(), 'Update recursion status should be true.');
+        Test.stopTest();
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that isUpdateRecursion returns false when recursion flags for both
     * CON_PrimaryLanguage_TDTM and CLAN_PrimaryLanguage_TDTM are unset.
     *************************************************************************************************************/ 
     @isTest 
