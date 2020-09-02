@@ -38,17 +38,28 @@
 private class SRVC_ContactPrimaryLanguage_TEST {
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * SRVC_ContactPrimaryLanguage class or a new one if one doesn't already exist.
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * SRVC_ContactPrimaryLanguage class when one does not already exist.
     ***************************************************************************************************************************/
     @isTest
-    private static void getInstancePositive() {
+    private static void getInstanceNew() {
         SRVC_ContactPrimaryLanguage srvcConPrimLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
-        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimLangInstance);
-        System.assertNotEquals(NULL, srvcConPrimLangInstance);
+        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimLangInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(true, srvcConPrimLangInstance != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * SRVC_ContactPrimaryLanguage class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+        SRVC_ContactPrimaryLanguage srvcConPrimLangInstance1 = SRVC_ContactPrimaryLanguage.getInstance();
+        SRVC_ContactPrimaryLanguage srvcConPrimLangInstance2 = SRVC_ContactPrimaryLanguage.getInstance();
  
-        srvcConPrimLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
-        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimLangInstance);
+        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimLangInstance1, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(srvcConPrimLangInstance1, srvcConPrimLangInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
+        System.assertEquals(true, srvcConPrimLangInstance1 != null, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************

@@ -524,9 +524,8 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void getInstanceOfContactPrimaryLanguageService(){
-        CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
-
         Test.startTest();
+        CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
         SRVC_ContactPrimaryLanguage srvcConPrimaryLangInstance = conPriLangTdtm.locateContactPrimaryLanguageService();
         Test.stopTest();
         
