@@ -604,9 +604,6 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void handleAfterUpdateUpdatesOnly(){
-        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                                                    (Default_Contact_Language_Fluency__c = 'Fluent'));
-
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
         
         List<Contact> newTestContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
@@ -619,8 +616,8 @@ private class CON_PrimaryLanguage_TEST {
         insert newTestContactsList;
 
         for (Contact con : newTestContactsList){
-            Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, con, hs.Default_Contact_Language_Fluency__c);
-            Contact_Language__c frenchConLang = UTIL_UnitTestData_TEST.getContactLanguage(frenchLanguage, con, hs.Default_Contact_Language_Fluency__c);
+            Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, con, UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c);
+            Contact_Language__c frenchConLang = UTIL_UnitTestData_TEST.getContactLanguage(frenchLanguage, con, UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c);
             frenchConLang.Primary_Language__c = true;
 
             contactLanguagesList.add(englishConLang);
@@ -674,9 +671,6 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void handleAfterUpdateInsertsAndUpdates(){
-        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                                                    (Default_Contact_Language_Fluency__c = 'Fluent'));
-
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
 
         List<Contact> newTestContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
@@ -689,7 +683,7 @@ private class CON_PrimaryLanguage_TEST {
 
         for (Integer i = 0; i < 5; i++){
             if (Math.mod(i,2) == 0){
-                Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, newTestContactsList[i], hs.Default_Contact_Language_Fluency__c);
+                Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, newTestContactsList[i], UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c);
                 contactLanguagesList.add(englishConLang);
             }
             
@@ -732,9 +726,6 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void handleAfterUpdateLanguageRemoved(){
-        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                                                    (Default_Contact_Language_Fluency__c = 'Fluent'));
-
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, false);
 
         List<Contact> newTestContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
@@ -746,7 +737,7 @@ private class CON_PrimaryLanguage_TEST {
         insert newTestContactsList;
 
         for (Contact con : newTestContactsList){
-            Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, con, hs.Default_Contact_Language_Fluency__c);
+            Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, con, UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c);
             englishConLang.Primary_Language__c = true;
 
             contactLanguagesList.add(englishConLang);
@@ -789,9 +780,6 @@ private class CON_PrimaryLanguage_TEST {
     *************************************************************************************************************/ 
     @isTest 
     private static void runAfterUpdatePositive(){
-        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                                                    (Default_Contact_Language_Fluency__c = 'Fluent'));
-
         List<Contact> newTestContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
         List<Contact> oldTestContactsList = new List<Contact>();
         List<Contact_Language__c> contactLanguagesList = new List<Contact_Language__c>();
@@ -804,7 +792,7 @@ private class CON_PrimaryLanguage_TEST {
         insert newTestContactsList;
 
         for (Contact con : newTestContactsList){
-            Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, con, hs.Default_Contact_Language_Fluency__c);
+            Contact_Language__c englishConLang = UTIL_UnitTestData_TEST.getContactLanguage(englishLanguage, con, UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c);
             contactLanguagesList.add(englishConLang);
 
             con.Primary_Language__c = englishLanguage.Id;

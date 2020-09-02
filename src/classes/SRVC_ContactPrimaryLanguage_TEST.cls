@@ -294,22 +294,6 @@ private class SRVC_ContactPrimaryLanguage_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getDefaultFluencyFromSettings correctly returns a blank value when 
-    * the value of Default_Contact_Language_Fluency__c is blank.
-    ***************************************************************************************************************************/
-    @isTest 
-    private static void getDefaultFluencyFromSettingsBlank(){
-        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                                                     (Default_Contact_Language_Fluency__c = ''));
-
-        Test.startTest();
-        String fluencySetting = SRVC_ContactPrimaryLanguage.getInstance().getDefaultFluencyFromSettings();
-        Test.stopTest();
-
-        System.assertEquals(true, String.isBlank(fluencySetting), 'Default fluency setting should be blank.');
-    }
-
-    /**************************************************************************************************************************
     * @description Test method to verify that the getPrimaryContactLanguagesToInsertOrUpdate returns a list new Contact 
     * Languages to insert when a Contact is updated with a new primary language and a list of existing Contact Languages to 
     * update when a contact is updated with a language that was previously associated as a primary language.

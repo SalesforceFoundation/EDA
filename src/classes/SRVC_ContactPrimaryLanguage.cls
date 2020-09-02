@@ -91,7 +91,6 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
     * @param  oldContactsById A map containing the previous state of the updated contact records by Id.
     * @return A ContactLanguagesToProcess value object containing a list of new Contact Language records to insert and a list of existing Contact Language records to update.
     ************************************************************************************************************/
-    @TestVisible
     public virtual ContactLanguagesToProcess getContactLanguagesToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById){
         Set<Id> contactIdsToUpdateConLangsToNonPrimarySet = new Set<Id>();
         Map<Id, Contact_Language__c> contactLanguageToInsertByContactId = new Map<Id, Contact_Language__c>();
