@@ -519,31 +519,18 @@ private class CON_PrimaryLanguage_TEST {
     }
 
     /************************************************************************************************************
-    * @description Test method to verify that getInstance correctly returns an existing instance of 
-    * SRVC_ContactPrimaryLanguage when one already exists.
+    * @description Test method to verify that the locateContactPrimaryLanguageService returns an instance of the
+    * SRVC_ContactPrimaryLanguage service class.
     *************************************************************************************************************/ 
     @isTest 
-    private static void locateContactPrimaryLanguageServiceExisting(){
-        SRVC_ContactPrimaryLanguage srvcConPrimaryLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
-        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
-        System.assertNotEquals(NULL, srvcConPrimaryLangInstance);
+    private static void getInstanceOfContactPrimaryLanguageService(){
+        CON_PrimaryLanguage_TDTM conPriLangTdtm = new CON_PrimaryLanguage_TDTM();
 
-        srvcConPrimaryLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
-        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
-    }
-
-    /************************************************************************************************************
-    * @description Test method to verify that getInstance correctly returns a new instance of 
-    * SRVC_ContactPrimaryLanguage when one does not exist.
-    *************************************************************************************************************/ 
-    @isTest 
-    private static void locateContactPrimaryLanguageServiceNew(){
-        SRVC_ContactPrimaryLanguage srvcConPrimaryLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
-        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
-        System.assertNotEquals(NULL, srvcConPrimaryLangInstance);
-
-        srvcConPrimaryLangInstance = SRVC_ContactPrimaryLanguage.getInstance();
-        System.assertEquals(SRVC_ContactPrimaryLanguage.instance, srvcConPrimaryLangInstance);
+        Test.startTest();
+        SRVC_ContactPrimaryLanguage srvcConPrimaryLangInstance = conPriLangTdtm.locateContactPrimaryLanguageService();
+        Test.stopTest();
+        
+        System.assertEquals(true, srvcConPrimaryLangInstance != null, 'Instance of service class should be retrieved.');
     }
 
     /************************************************************************************************************
