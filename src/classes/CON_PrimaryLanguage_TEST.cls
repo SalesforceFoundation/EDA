@@ -721,7 +721,7 @@ private class CON_PrimaryLanguage_TEST {
         System.assertEquals(5, conLangResultsList.size(), 'There should only be 5 English contact language records.');
 
         for (Contact_Language__c conLang : conLangResultsList){
-            System.assertEquals(true, conLang.Primary_Language__c, 'Each English contact language records should not be marked as primary.');
+            System.assertEquals(true, conLang.Primary_Language__c, 'Each English contact language record should not be marked as primary.');
         }
     }
 
