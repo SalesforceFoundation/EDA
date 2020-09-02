@@ -53,11 +53,11 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
     * @return The instance of SRVC_ContactPrimaryLanguage.
     ******************************************************************************/
     public static SRVC_ContactPrimaryLanguage getInstance() {
-        if (instance == NULL) {
-            instance = new SRVC_ContactPrimaryLanguage();
+        if (SRVC_ContactPrimaryLanguage.instance == NULL) {
+            SRVC_ContactPrimaryLanguage.instance = new SRVC_ContactPrimaryLanguage();
         }
 
-        return instance;
+        return SRVC_ContactPrimaryLanguage.instance;
     }
 
     /************************************************************************************************************
