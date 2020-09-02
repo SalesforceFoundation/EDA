@@ -69,7 +69,7 @@ private class CON_PrimaryLanguage_TEST {
                                                             FROM Contact_Language__c
                                                             WHERE Contact__c IN :testContactsList];
 
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = CON_PrimaryLanguage_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
 
         for (Contact con : testContactsList){
             System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
@@ -109,7 +109,7 @@ private class CON_PrimaryLanguage_TEST {
                                                             FROM Contact_Language__c
                                                             WHERE Contact__c IN :testContactsList];
 
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = CON_PrimaryLanguage_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
 
         for (Contact con : testContactsList){
             System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
@@ -156,7 +156,7 @@ private class CON_PrimaryLanguage_TEST {
                                                             FROM Contact_Language__c
                                                             WHERE Contact__c IN :testContactsList];
 
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = CON_PrimaryLanguage_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
 
         for (Contact con : testContactsList){
             System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
@@ -218,7 +218,7 @@ private class CON_PrimaryLanguage_TEST {
                                                             FROM Contact_Language__c
                                                             WHERE Contact__c IN :testContactsList];
 
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = CON_PrimaryLanguage_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
 
         for (Contact con : testContactsList){
             System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
@@ -266,7 +266,7 @@ private class CON_PrimaryLanguage_TEST {
                                                             FROM Contact_Language__c
                                                             WHERE Contact__c IN :testContactsList];
 
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = CON_PrimaryLanguage_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
 
         for (Contact con : testContactsList){
             System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
@@ -308,7 +308,7 @@ private class CON_PrimaryLanguage_TEST {
                                                             FROM Contact_Language__c
                                                             WHERE Contact__c IN :testContactsList];
 
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = CON_PrimaryLanguage_TEST.mapContactLanguagesToContact(conLangAfterInsertList);
 
         for (Contact con : testContactsList){
             System.assertEquals(true, contactLanguagesListByContactId.containsKey(con.Id), 'Contact should be associated with Contact Language records.');
@@ -585,7 +585,7 @@ private class CON_PrimaryLanguage_TEST {
                                                         FROM Contact_Language__c
                                                         WHERE Contact__c IN :newTestContactsList];
 
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = UTIL_UnitTestData_TEST.mapContactLanguagesToContact(conLangResultsList);
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = CON_PrimaryLanguage_TEST.mapContactLanguagesToContact(conLangResultsList);
 
         System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM), 'Recursion flag should remain unset.');
 
@@ -966,6 +966,32 @@ private class CON_PrimaryLanguage_TEST {
                                                             WHERE Contact__c IN :newContactsList];
 
         System.assertEquals(true, conLanguageResultsList.isEmpty(), 'There should no contact language records created.');
+    }
+
+    /**************************************************************************************************************************
+    *************************************************** HELPER METHODS ********************************************************
+    **************************************************************************************************************************/
+
+    /************************************************************************************************************
+    * @description Generates a map of containing a list of Contact Language records, sorted by their associated Contact Id.
+    * @param  contactLanguagesList A List of Contact Language records to be mapped.
+    * @return A Map containing a list of Contact Languages by Contact Id.
+    ************************************************************************************************************/
+    private static Map<Id, List<Contact_Language__c>> mapContactLanguagesToContact(List<Contact_Language__c> contactLanguagesList){
+        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = new Map<Id, List<Contact_Language__c>>();
+        List<Contact_Language__c> associatedContactLanguagesList;
+
+        for (Contact_Language__c conLang : contactLanguagesList){
+            if (contactLanguagesListByContactId.containsKey(conLang.Contact__c)){
+                associatedContactLanguagesList = contactLanguagesListByContactId.get(conLang.Contact__c);
+            } else {
+                associatedContactLanguagesList = new List<Contact_Language__c>();
+            }
+
+            associatedContactLanguagesList.add(conLang);
+            contactLanguagesListByContactId.put(conLang.Contact__c, associatedContactLanguagesList);
+        }
+        return contactLanguagesListByContactId;
     }
 
     /**************************************************************************************************************************

@@ -488,29 +488,6 @@ public class UTIL_UnitTestData_TEST {
         return contactLanguage;
     }
 
-    /*******************************************************************************************************
-    * @description Generates a map of containing a list of Contact Language records, sorted by their associated Contact Id.
-    * @param  contactLanguagesList A List of Contact Language records to be mapped.
-    * @return A Map containing a list of Contact Languages by Contact Id.
-    *******************************************************************************************************/
-    public static Map<Id, List<Contact_Language__c>> mapContactLanguagesToContact(List<Contact_Language__c> contactLanguagesList){
-        Map<Id, List<Contact_Language__c>> contactLanguagesListByContactId = new Map<Id, List<Contact_Language__c>>();
-        List<Contact_Language__c> associatedContactLanguagesList;
-
-        for (Contact_Language__c conLang : contactLanguagesList){
-            if (contactLanguagesListByContactId.containsKey(conLang.Contact__c)){
-                associatedContactLanguagesList = contactLanguagesListByContactId.get(conLang.Contact__c);
-            } else {
-                associatedContactLanguagesList = new List<Contact_Language__c>();
-            }
-
-            associatedContactLanguagesList.add(conLang);
-            contactLanguagesListByContactId.put(conLang.Contact__c, associatedContactLanguagesList);
-        }
-
-        return contactLanguagesListByContactId;
-    }
-
     /*********************************************************************************************************
     * @description Gets a Term for testing.
     * @param accountId Account to associate Term with.
