@@ -104,9 +104,9 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
         }
 
         this.setUpdateRecursion();
+        
         Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newSObjectsList);
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldSObjectsList);
-        Map<Id, Id> primaryLanguageByContactId = new Map<Id, Id>();
 
         List<Contact_Language__c> conLanguagesToInsertList = new List<Contact_Language__c>();
         List<Contact_Language__c> conLanguagesToUpdateList = new List<Contact_Language__c>();
@@ -119,12 +119,12 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if (conLanguagesToInsertList.isEmpty() == true){
-            this.unsetInsertRecursion();
-        } else {
-            dmlWrapper.objectsToInsert.addAll((List<SObject>)conLanguagesToInsertList);
-        }
-
+        if (conLanguagesToUpdateList.isEmpty() == true && conLanguagesToInsertList.isEmpty() == true){
+            this.unsetUpdateRecursion();
+            return;
+        } 
+        
+        dmlWrapper.objectsToInsert.addAll((List<SObject>)conLanguagesToInsertList);
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)conLanguagesToUpdateList);
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         
