@@ -228,9 +228,8 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
     **/
     public static List<Affl_Mappings__c> getAfflMappings() {
-        if(afflMappings == null) {
-        afflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c,
-               Auto_Program_Enrollment_Status__c from Affl_Mappings__c order by Account_Record_Type__c limit 50000];
+        if (afflMappings == null) {
+            afflMappings = Affl_Mappings__c.getAll().values();
         }
         return afflMappings;
     }
