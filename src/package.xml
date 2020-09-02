@@ -99,6 +99,7 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
+        <members>MODL_Contact_PrimaryAfflMapper</members>
         <members>PPlan_CannotDelete_TDTM</members>
         <members>PPlan_CannotDelete_TEST</members>
         <members>PPlan_Primary_TDTM</members>
