@@ -36,8 +36,6 @@
 @isTest
 private class CON_PrimaryLanguage_TEST {
 
-    private static final String DEFAULT_FLUENCY = Label.stgFluent;
-
     /**************************************************************************************************************************
     ****************************************************** FUNCTIONAL TESTS ***************************************************
     **************************************************************************************************************************/
@@ -78,7 +76,7 @@ private class CON_PrimaryLanguage_TEST {
             System.assertEquals(englishLanguage.Id, con.Primary_Language__c, 'Contact\'s primary language should be English.');            
             System.assertEquals(con.Primary_Language__c, contactLanguagesListByContactId.get(con.Id)[0].Language__c, 'Primary language on Contact should match the language specified on Contact Language record.');
             System.assertEquals(true, contactLanguagesListByContactId.get(con.Id)[0].Primary_Language__c, 'English Contact Language record should be set as primary.');
-            System.assertEquals(DEFAULT_FLUENCY, contactLanguagesListByContactId.get(con.Id)[0].Fluency__c, 'English Contact Language record fluency should match the default value.');
+            System.assertEquals(UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c, contactLanguagesListByContactId.get(con.Id)[0].Fluency__c, 'English Contact Language record fluency should match the default value.');
         }
     }
 
@@ -118,7 +116,7 @@ private class CON_PrimaryLanguage_TEST {
             System.assertEquals(englishLanguage.Id, con.Primary_Language__c, 'Contact\'s primary language should be English.');            
             System.assertEquals(con.Primary_Language__c, contactLanguagesListByContactId.get(con.Id)[0].Language__c, 'Primary language on Contact should match the language specified on Contact Language record.');
             System.assertEquals(true, contactLanguagesListByContactId.get(con.Id)[0].Primary_Language__c, 'English Contact Language record should be set as primary.');
-            System.assertEquals(DEFAULT_FLUENCY, contactLanguagesListByContactId.get(con.Id)[0].Fluency__c, 'English Contact Language record fluency should match the default value.');
+            System.assertEquals(UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c, contactLanguagesListByContactId.get(con.Id)[0].Fluency__c, 'English Contact Language record fluency should match the default value.');
         }
     }
 
@@ -166,7 +164,7 @@ private class CON_PrimaryLanguage_TEST {
             for (Contact_Language__c conLang : contactLanguagesListByContactId.get(con.Id)){
                 if (conLang.Language__c == frenchLanguage.Id){
                     System.assertEquals(true, conLang.Primary_Language__c, 'French Contact Language record should be set as primary.');
-                    System.assertEquals(DEFAULT_FLUENCY, conLang.Fluency__c, 'French Contact Language record fluency should match the default value.');
+                    System.assertEquals(UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c, conLang.Fluency__c, 'French Contact Language record fluency should match the default value.');
                 } else {
                     System.assertEquals(englishLanguage.Id, conLang.Language__c, 'Second contact language record should correspond to the English Language.');
                     System.assertEquals(false, conLang.Primary_Language__c, 'English Contact Language record should not be set as primary.');
@@ -196,7 +194,7 @@ private class CON_PrimaryLanguage_TEST {
         insert testContactsList;
 
         for (Contact con : testContactsList){
-            Contact_Language__c existingConLang = UTIL_UnitTestData_TEST.getContactLanguage(frenchLanguage, con, DEFAULT_FLUENCY);
+            Contact_Language__c existingConLang = UTIL_UnitTestData_TEST.getContactLanguage(frenchLanguage, con, UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c);
             testExistingConLangs.add(existingConLang);
         }
 
@@ -316,7 +314,7 @@ private class CON_PrimaryLanguage_TEST {
             System.assertEquals(englishLanguage.Id, contactLanguagesListByContactId.get(con.Id)[0].Language__c, 'Contact Language record associated with Contact should be for the English Language.');
             System.assertEquals(null, con.Primary_Language__c, 'Contact\'s primary language should be blank.');            
             System.assertEquals(false, contactLanguagesListByContactId.get(con.Id)[0].Primary_Language__c, 'English Contact Language record should not be set as primary.');
-            System.assertEquals(DEFAULT_FLUENCY, contactLanguagesListByContactId.get(con.Id)[0].Fluency__c, 'English Contact Language record fluency should match the default value.');
+            System.assertEquals(UTIL_CustomSettingsFacade.getSettings().Default_Contact_Language_Fluency__c, contactLanguagesListByContactId.get(con.Id)[0].Fluency__c, 'English Contact Language record fluency should match the default value.');
         }
     }
 
