@@ -425,13 +425,12 @@ class EDA(BaseEDAPage):
             of the action button as either enabled or disabled
         """
         for button,expected_value in kwargs.items():
-            locator = eda_lex_locators["eda_settings"]["run_action"].format(button)
+            locator = eda_lex_locators["eda_settings"]["action_button"].format(button)
             self.selenium.page_should_contain_element(locator)
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= f"Element '{button}' button is not displayed for the user")
             time.sleep(1)
             actual_value = self.selenium.get_webelement(locator).get_attribute("disabled")
-            print(actual_value)
             expected_value = bool(expected_value == "disabled")
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Element {button} button status is {actual_value} instead of {expected_value}")

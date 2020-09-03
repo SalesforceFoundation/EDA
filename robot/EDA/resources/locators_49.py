@@ -100,7 +100,7 @@ eda_lex_locators = {
         "default_checkbox": "//div[text()='{}']/following-sibling::div/descendant::img",
         "enable_checkbox": "(//div[text()='{}']/following-sibling::div/descendant::span)[1]",
         "dropdown_field": "//div[text()='{}']/following-sibling::div/select",
-        "run_action": "//button[text()='{}']",
+        "action_button": "//button[text()='{}']",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
