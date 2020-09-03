@@ -90,7 +90,7 @@ class EDA(BaseEDAPage):
         """ This method clicks the any action button (blue in color) present in EDA settings sub
             tabs. Pass the name of the button from robot file.
         """
-        locator = eda_lex_locators["eda_settings"]["run_action"].format(text)
+        locator = eda_lex_locators["eda_settings"]["action_button"].format(text)
         self.selenium.wait_until_page_contains_element(
             locator, error=f"Run action button with locator '{locator}' is not available")
         self.selenium.click_element(locator)
