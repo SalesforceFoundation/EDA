@@ -10,11 +10,13 @@ from robot.utils import lower
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.common.keys import Keys
 
+from locators_50 import eda_lex_locators as locators_50
 from locators_49 import eda_lex_locators as locators_49
-from locators_48 import eda_lex_locators as locators_48
+
+
 locators_by_api_version = {
-    49.0: locators_49,  # Summer '20
-    48.0: locators_48   # Spring '20
+    50.0: locators_50,  # Winter '21
+    49.0: locators_49   # Summer '20
 }
 # will get populated in _init_locators
 eda_lex_locators = {}
