@@ -145,9 +145,9 @@ public class UTIL_Describe {
         }
     }
     
-    /*******************************************
+    /************************************************************************************
     * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
-    ********************************************/
+    ************************************************************************************/
     private static void fillPicklistEntriesForObject(string objectName, string fieldName) {
         
         // make sure we have this field's schema mapped
@@ -330,7 +330,7 @@ public class UTIL_Describe {
     * @description Returns field describe data
     * @param objectName the name of the object to look up
     * @param fieldName the name of the field to look up
-    * @return Schema.DescribeFieldResult the describe field result for the given field
+    * @return Schema.DescribeFieldResult the describe field result for the given field name
     */
     public static Schema.DescribeFieldResult getFieldDescribe(String objectName, String fieldName) {
 
