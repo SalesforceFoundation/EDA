@@ -13,7 +13,7 @@ Test Setup      Go to EDA settings tab      Accounts and Contacts
 *** Test Cases ***
 Validate run cleanup button is active in read and edit mode
     [Documentation]         Checks run cleanup button in accounts and contacts tab in EDA settings
-    ...                     is active in read and edit mode. Also validates the text "The Cleanup
+    ...                     is active in read mode. Also validates the text "The Cleanup
     ...                     was queued successfully. An email will be sent when the batch is
     ...                     completed." appears after the button is clicked in both modes.
     [tags]                                      unstable        W-8016783
