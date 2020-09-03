@@ -72,6 +72,27 @@ public class UTIL_Describe {
         }
     }
 
+    /*************************************************************************************************
+    * @description Caches object into UTIL_Describe.objectDescribes from Schema.DescribeSObjectResult
+    * @param sObjectResult Schema.DescribeSObjectResult
+    **************************************************************************************************/
+    public static void cacheDescribeSObjectResult(Schema.DescribeSObjectResult sObjectResult) {
+
+        // get the object map the first time
+        if (gd == null) {
+            gd = Schema.getGlobalDescribe();
+        }
+
+        // get the object description
+        if (gd.containsKey(sObjectResult.getName())) {
+            if (!objectDescribes.containsKey(sObjectResult.getName())) {
+                objectDescribes.put(sObjectResult.getName(), gd.get(sObjectResult.getName()).getDescribe());
+            }    
+        } else {
+            throw new SchemaDescribeException('Invalid object name \'' + sObjectResult.getName() + '\'');
+        }
+    }
+
     /********************************************
     * Gets a field map for a new object/field pair
     *********************************************/
@@ -658,6 +679,111 @@ public class UTIL_Describe {
         }
 
         return mapRecordTypes.get(objectName);
+    }
+
+    /*******************************************************************************************************************
+    * @description Cache for the map recordTypeInfoByDeveloperName
+    */
+    @testVisible
+    private static Map<String, Schema.RecordTypeInfo> recordTypeInfoByDeveloperName = new Map<String, Schema.RecordTypeInfo>();
+
+    /**********************************************************************************************************************
+     * @description Returns Schema.RecordTypeInfo for active, user-available recordTypeInfos for a given recordTypeDevName
+     * @param objectName Name of the object to retrieve recordTypeInfos for
+     * @param recordTypeDevName The record type's developer name
+     * @return Schema.RecordTypeInfo The RecordTypeInfo for a given recordTypeDevName, object
+     */
+    private static Schema.RecordTypeInfo getRecordTypeInfoByDeveloperName(String objectName, String recordTypeDevName) {
+
+        if (recordTypeInfoByDeveloperName.get(recordTypeDevName) == null) {
+
+            // Get the Describe Result
+            fillMapsForObject(objectName);
+            Schema.DescribeSObjectResult obj = objectDescribes.get(objectName);
+
+            // Obtain ALL Active Record Types for the given SObjectType objectType
+            String soql = 'SELECT Id, Name, DeveloperName FROM RecordType ' + 'WHERE SObjectType = \''
+                          + String.escapeSingleQuotes(obj.getName()) + '\' ' + 'AND IsActive = TRUE';
+            List<SObject> results;
+
+            try {
+                results = Database.query(soql);
+            } catch (Exception ex) {
+                results = new List<SObject>();
+            }
+
+            // Obtain the RecordTypeInfos for this SObjectType objectType
+            Map<Id, Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
+
+            for (SObject rt : results) {
+
+                // Check RecordType IS available for the running user
+                if (!Test.isRunningTest()) {
+                    if (recordTypeInfos.get(rt.Id).isAvailable()) {
+                            recordTypeInfoByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
+                    }
+                // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
+                // might fail just because the user running them does not have certain record types assigned.
+                } else {
+                    recordTypeInfoByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
+                }
+            }
+        }
+
+        return recordTypeInfoByDeveloperName.get(recordTypeDevName);
+    }
+
+    /*******************************************************************************************************************
+    * @description Cache for the map recordTypeInfoByName
+    */
+    @testVisible
+    private static Map<String, Schema.RecordTypeInfo> recordTypeInfoByName = new Map<String, Schema.RecordTypeInfo>();
+
+    /**********************************************************************************************************************
+     * @description Returns Schema.RecordTypeInfo for active, user-available recordTypeInfos for a given recordTypeName
+     * @param objectName Name of the object to retrieve recordTypeInfos for
+     * @param recordTypedevName The record type's developer name
+     * @return Schema.RecordTypeInfo The RecordTypeInfo for a given recordTypedevName, object
+     */
+    public static Schema.RecordTypeInfo getRecordTypeInfoByName(String objectName, String recordTypeName) {
+
+        if(recordTypeInfoByDeveloperName.get(recordTypeName) == null) {
+
+            // Get the Describe Result
+            fillMapsForObject(objectName);
+            Schema.DescribeSObjectResult obj = objectDescribes.get(objectName);
+
+            // Obtain ALL Active Record Types for the given SObjectType objectType
+            String soql = 'SELECT Id, Name, DeveloperName FROM RecordType ' + 'WHERE SObjectType = \''
+                          + String.escapeSingleQuotes(obj.getName()) + '\' ' + 'AND IsActive = TRUE';
+            List<SObject> results;
+
+            try {
+                results = Database.query(soql);
+            } catch (Exception ex) {
+                results = new List<SObject>();
+            }
+
+            // Obtain the RecordTypeInfos for this SObjectType objectType
+            Map<Id, Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
+
+            for (SObject rt : results) {
+
+                // Check RecordType IS available for the running user
+                if (!Test.isRunningTest()) {
+                    if (recordTypeInfos.get(rt.Id).isAvailable()) {
+                            recordTypeInfoByName.put(String.valueOf(rt.get('Name')), recordTypeInfos.get(rt.Id));
+                    }
+                // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
+                // might fail just because the user running them does not have certain record types assigned.
+                } else {
+                    recordTypeInfoByName.put(String.valueOf(rt.get('Name')), recordTypeInfos.get(rt.Id));
+                }
+            }
+
+        }
+
+        return recordTypeInfoByName.get(recordTypeName);
     }
 
     /*******************************************************************************************************

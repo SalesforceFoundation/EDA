@@ -28,7 +28,7 @@
 * @author Salesforce.org
 * @date 2020
 * @group 
-* @group-content ../../ApexDocContent/Contacts.htm
+* @group-content ../../ApexDocContent/
 * @description Model class for CON_PrimaryLanguage_TDTM. Captures 'Account Record Type', 'Contact Primary Affl Field' values from EDA Settings
 * and RecordTypeInfo for Account and DescribeFieldResult for Contact. Provides getter methods for 'Account Record Type' from EDA Settings and 
 * 'Contact Primary Affl Field'from EDA Settings, AccountRecordTypeId and ContactFieldApiName.
@@ -44,7 +44,7 @@ public class MODL_Contact_PrimaryAfflMapper {
     private String accRecTypeValueFromSettings;
 
     /*******************************************************************************************************
-    * @description Contructor with 4 parameter
+    * @description Constructor with 4 parameter
     * @param accountRecordTypeInfo Schema.RecordTypeInfo of Account
     * @param contactDescribeFieldResult Schema.DescribeFieldResult for Contact's field
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
@@ -61,7 +61,7 @@ public class MODL_Contact_PrimaryAfflMapper {
     }
 
     /*******************************************************************************************************
-    * @description Contructor with 3 parameter
+    * @description Constructor with 3 parameter
     * @param contactDescribeFieldResult Schema.DescribeFieldResult for Contact's field
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
@@ -74,7 +74,7 @@ public class MODL_Contact_PrimaryAfflMapper {
     }
 
     /*******************************************************************************************************
-    * @description Contructor with 3 parameter
+    * @description Constructor with 3 parameter
     * @param accountRecordTypeInfo Schema.RecordTypeInfo of Account
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
