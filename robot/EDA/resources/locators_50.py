@@ -1,4 +1,4 @@
-""" Locators for Summer '20 """
+""" Locators for Winetr '21 """
 
 eda_lex_locators = {
     "app_tile": "//one-app-launcher-modal//one-app-launcher-app-tile//a[.='{}']",

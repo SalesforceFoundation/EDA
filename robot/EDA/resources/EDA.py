@@ -12,6 +12,7 @@ from selenium.webdriver.common.keys import Keys
 
 from locators_50 import eda_lex_locators as locators_50
 from locators_49 import eda_lex_locators as locators_49
+
 locators_by_api_version = {
     50.0: locators_50,  # Winter '21
     49.0: locators_49   # Summer '20
@@ -495,3 +496,4 @@ class EDA(BaseEDAPage):
         text = self.selenium.get_webelement(locator).get_attribute("className")
         if "slds-hide" in text:
             raise Exception(f"The text message {textMessage} is not displayed")
+
