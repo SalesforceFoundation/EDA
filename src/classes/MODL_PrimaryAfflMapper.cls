@@ -33,7 +33,7 @@
 * and RecordTypeInfo for Account and DescribeFieldResult for Contact. Provides getter methods for 'Account Record Type' from EDA Settings and 
 * 'Contact Primary Affl Field'from EDA Settings, AccountRecordTypeId and ContactFieldApiName.
 */
-public class MODL_Contact_PrimaryAfflMapper {
+public class MODL_PrimaryAfflMapper {
 
     private Id accRecordTypeId;
     private String accRecTypeDeveloperName;
@@ -50,7 +50,7 @@ public class MODL_Contact_PrimaryAfflMapper {
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
     *******************************************************************************************************/ 
-    public MODL_Contact_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue) {
+    public MODL_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue) {
         this.accRecordTypeId = accountRecordTypeInfo.getRecordTypeId();
         this.accRecTypeDeveloperName = accountRecordTypeInfo.getDeveloperName();
         this.accRecTypeName = accountRecordTypeInfo.getName();
@@ -66,7 +66,7 @@ public class MODL_Contact_PrimaryAfflMapper {
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
     *******************************************************************************************************/ 
-    public MODL_Contact_PrimaryAfflMapper(Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue) {
+    public MODL_PrimaryAfflMapper(Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue) {
         this.contactFieldApiName = contactDescribeFieldResult.getName();
         this.contactFieldLabel = contactDescribeFieldResult.getLabel();
         this.primaryAfflFieldValueFromSettings = settingsContactFieldValue;
@@ -79,7 +79,7 @@ public class MODL_Contact_PrimaryAfflMapper {
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
     *******************************************************************************************************/ 
-    public MODL_Contact_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, String settingsContactFieldValue, String settingsRecordTypeValue) {
+    public MODL_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, String settingsContactFieldValue, String settingsRecordTypeValue) {
         this.accRecordTypeId = accountRecordTypeInfo.getRecordTypeId();
         this.accRecTypeDeveloperName = accountRecordTypeInfo.getDeveloperName();
         this.accRecTypeName = accountRecordTypeInfo.getName();
