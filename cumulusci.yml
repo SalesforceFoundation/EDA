@@ -54,6 +54,23 @@ tasks:
             path: unpackaged/config/spe
             namespace_inject: $project_config.project__package__namespace
 
+    deploy_language_translation_workbench_settings:
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/qa/language/settings
+            unmanaged: True
+
+    deploy_translation_settings:
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/qa/language/settings
+            unmanaged: True
+
+
     assign_encryption_permset:
         group: 'Shield Platform Encryption'
         description: Assigns the Encryption permission set to the current user for Shield Platform Encryption testing.
@@ -269,6 +286,13 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
+    translations:
+        description: Flow to be used to set up an org for translation regression testing. Enables Translation workbench, platform language settings and sets 5 languages to active.
+        steps:
+            1:
+                task: deploy_language_translation_workbench_settings
+            2:
+                task: deploy_translation_settings
 
 services:
     mockaroo:
