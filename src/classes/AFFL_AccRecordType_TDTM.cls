@@ -71,7 +71,8 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         //    B. If that account did not have a record type:
         //         --> the key affl lookup field for that type in Contacts affiliated to it needs to be populated
         if (newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
-        
+            AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+
             for (Integer i = 0; i < newlist.size(); i++) {
                 SObject so = newlist[i];
                 //AFTER UPDATE
@@ -83,8 +84,6 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
                     if (acc.RecordTypeId == oldAcc.RecordTypeId) {
                         continue;
                     }
-
-                    AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
                     //Find the lookup field that matches the new record type
                     String keyAfflFieldNewType = afflMapper.getKeyAfflFieldByAccRecordType(acc.RecordTypeId);
