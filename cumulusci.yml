@@ -67,7 +67,7 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/config/qa/language/settings
+            path: unpackaged/config/qa/language/translations
             unmanaged: True
 
 
