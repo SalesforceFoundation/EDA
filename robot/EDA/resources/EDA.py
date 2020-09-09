@@ -13,7 +13,6 @@ from selenium.webdriver.common.keys import Keys
 from locators_50 import eda_lex_locators as locators_50
 from locators_49 import eda_lex_locators as locators_49
 
-
 locators_by_api_version = {
     50.0: locators_50,  # Winter '21
     49.0: locators_49   # Summer '20
@@ -91,7 +90,7 @@ class EDA(BaseEDAPage):
         """ This method clicks the any action button (blue in color) present in EDA settings sub
             tabs. Pass the name of the button from robot file.
         """
-        locator = eda_lex_locators["eda_settings"]["run_action"].format(text)
+        locator = eda_lex_locators["eda_settings"]["action_button"].format(text)
         self.selenium.wait_until_page_contains_element(
             locator, error=f"Run action button with locator '{locator}' is not available")
         self.selenium.click_element(locator)
@@ -468,3 +467,33 @@ class EDA(BaseEDAPage):
             actual_value = self.selenium.get_webelement(locator).text
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Dropdown value in {field} is {actual_value} but it should be {expected_value}")
+
+    def verify_action_button_status(self, **kwargs):
+        """ Verify the action button is disabled/enabled for the user
+            we have to pass the name of the button and the expected status
+            of the action button as either enabled or disabled
+        """
+        for button,expected_value in kwargs.items():
+            locator = eda_lex_locators["eda_settings"]["action_button"].format(button)
+            self.selenium.page_should_contain_element(locator)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"Element '{button}' button is not displayed for the user")
+            time.sleep(1)
+            actual_value = self.selenium.get_webelement(locator).get_attribute("disabled")
+            expected_value = bool(expected_value == "disabled")
+            if not str(expected_value).lower() == str(actual_value).lower() :
+                raise Exception (f"Element {button} button status is {actual_value} instead of {expected_value}")
+
+    def verify_text_appears(self, textMessage):
+        """ Verify the text message is displayed
+            this message gets displayed when the 'Run copy' button is clicked
+            in both read and edit mode
+        """
+        time.sleep(0.5) #No other element to wait until this page loads so using sleep
+        locator = eda_lex_locators["eda_settings_courses"]["text_message"].format(textMessage)
+        self.selenium.wait_until_page_contains_element(locator,
+                                                           error="Run copy text is not displayed")
+        text = self.selenium.get_webelement(locator).get_attribute("className")
+        if "slds-hide" in text:
+            raise Exception(f"The text message {textMessage} is not displayed")
+
