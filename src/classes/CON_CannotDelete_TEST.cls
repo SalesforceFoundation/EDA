@@ -1280,10 +1280,10 @@ private with sharing class CON_CannotDelete_TEST {
         System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
     }
 
-    /*********************************************************************************************************
-    * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and if
-    * one of the Contact record has child records associated to it, then it should be deleted. The Contact record
-    * that do not have any child related records should not be deleted.
+    /******************************************************************************************************************
+    * @description Test method to test when Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and if
+    * one of the Contact records has child records associated to it, then it should not be deleted. The Contact records
+    * that do not have any child related records should be deleted.
     */
     @isTest
     private static void cannotDeleteSomeContacts() {
@@ -1355,9 +1355,9 @@ private with sharing class CON_CannotDelete_TEST {
         System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
     }
 
-    /*********************************************************************************************************
+    /**********************************************************************************************************
     * @description Test method to test if Prevent_Contact_Deletion__c is disabled in Hierarchy Settings,and the
-    * Contact record has different child records associated to it,then it can be deleted.
+    * Contact record has different child records associated to it, then it can be deleted.
     */
     @isTest
     private static void canDelete() {

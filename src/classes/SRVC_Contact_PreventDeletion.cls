@@ -29,7 +29,8 @@ POSSIBILITY OF SUCH DAMAGE.
 * @date 2020
 * @group
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description
+* @description Service class for CON_CannotDelete_TDTM. Returns Contact records
+* that have been prevented from deletion.
 */
 public virtual with sharing class SRVC_Contact_PreventDeletion {
 
