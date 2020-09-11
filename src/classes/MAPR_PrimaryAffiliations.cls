@@ -67,9 +67,9 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
 
     /**************************************************************************************
     * @description Returns a list of Models for Affiliation mappings
-    * @return List<MODL_Contact_PrimaryAfflMapper>
+    * @return List<MODL_PrimaryAfflMapper>
     **************************************************************************************/
-    public List<MODL_Contact_PrimaryAfflMapper> getModelsFromSettings() {
+    public List<MODL_PrimaryAfflMapper> getModelsFromSettings() {
         List<Affl_Mappings__c> afflMappingsFromSettingsList = UTIL_CustomSettingsFacade.getAfflMappings();
         return getModelsFromMappings(afflMappingsFromSettingsList);
     }
@@ -77,46 +77,46 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     /*********************************************************************************************************************
     * @description Returns a list of Models for Affiliation mappings for a given list of Affl_Mappings__c custom settings
     * @param afflMappingsList List of Affl_Mappings__c custom settings
-    * @return List<MODL_Contact_PrimaryAfflMapper> List of models for the given list of Affl_Mappings__c custom settings
+    * @return List<MODL_PrimaryAfflMapper> List of models for the given list of Affl_Mappings__c custom settings
     *********************************************************************************************************************/
     @testVisible
-    private List<MODL_Contact_PrimaryAfflMapper> getModelsFromMappings(List<Affl_Mappings__c> afflMappingsList) {
+    private List<MODL_PrimaryAfflMapper> getModelsFromMappings(List<Affl_Mappings__c> afflMappingsList) {
 
-       List<MODL_Contact_PrimaryAfflMapper> affiliationModelsList = new List<MODL_Contact_PrimaryAfflMapper>();
-       Set<String> contactFieldAPINamesSet = new Set<String>();
-       Set<Id> accountRecordTypeIdsSet = new Set<Id>();
+        List<MODL_PrimaryAfflMapper> affiliationModelsList = new List<MODL_PrimaryAfflMapper>();
+        Set<String> contactFieldAPINamesSet = new Set<String>();
+        Set<Id> accountRecordTypeIdsSet = new Set<Id>();
 
-       for (Affl_Mappings__c mapping: afflMappingsList) {
+        for (Affl_Mappings__c mapping: afflMappingsList) {
 
-           MODL_Contact_PrimaryAfflMapper modelFromMapping = getModelFromMapping(mapping);
+            MODL_PrimaryAfflMapper modelFromMapping = getModelFromMapping(mapping);
 
-           if (modelFromMapping == null) {
-               continue;
-           }
+            if (modelFromMapping == null) {
+                continue;
+            }
 
-           if ((contactFieldAPINamesSet.isEmpty() == false && contactFieldAPINamesSet.contains(modelFromMapping.getContactFieldApiName())) || 
+            if ((contactFieldAPINamesSet.isEmpty() == false && contactFieldAPINamesSet.contains(modelFromMapping.getContactFieldApiName())) || 
                (accountRecordTypeIdsSet.isEmpty() == false && accountRecordTypeIdsSet.contains(modelFromMapping.getAccountRecordTypeId()))) {
                continue;
-           }
+            }
 
-           affiliationModelsList.add(modelFromMapping);
-           contactFieldAPINamesSet.add(modelFromMapping.getContactFieldApiName());
-           accountRecordTypeIdsSet.add(modelFromMapping.getAccountRecordTypeId());
+            affiliationModelsList.add(modelFromMapping);
+            contactFieldAPINamesSet.add(modelFromMapping.getContactFieldApiName());
+            accountRecordTypeIdsSet.add(modelFromMapping.getAccountRecordTypeId());
 
-       }
+        }
 
-       return affiliationModelsList;
+        return affiliationModelsList;
     }
 
     /*****************************************************************************************************
     * @description Returns a Model for a given Affl_Mappings__c record
     * @param afflMapping An Affl_Mappings__c custom settings record
-    * @return MODL_Contact_PrimaryAfflMapper A model for given Affl_Mappings__c record
+    * @return MODL_PrimaryAfflMapper A model for given Affl_Mappings__c record
     *****************************************************************************************************/
     @testVisible
-    private MODL_Contact_PrimaryAfflMapper getModelFromMapping(Affl_Mappings__c afflMapping) {
+    private MODL_PrimaryAfflMapper getModelFromMapping(Affl_Mappings__c afflMapping) {
 
-        List<MODL_Contact_PrimaryAfflMapper> primaryAfflModelsList = new List<MODL_Contact_PrimaryAfflMapper>();
+        List<MODL_PrimaryAfflMapper> primaryAfflModelsList = new List<MODL_PrimaryAfflMapper>();
         Set<Affl_Mappings__c> afflMappingSet = new Set<Affl_Mappings__c>();
 
         // Check if the Primary Affl Field an API name
@@ -162,16 +162,16 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             if (primaryAfflFieldDescribe == null) {
                 return null;
             }
-            MODL_Contact_PrimaryAfflMapper primaryAfflModel = new MODL_Contact_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
+            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
             return primaryAfflModel;
         }
 
         if (primaryAfflFieldDescribe == null) {
-            MODL_Contact_PrimaryAfflMapper primaryAfflModel = new MODL_Contact_PrimaryAfflMapper(accountRecTypeInfo, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
+            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
             return primaryAfflModel;
         }
 
-        MODL_Contact_PrimaryAfflMapper primaryAfflModel = new MODL_Contact_PrimaryAfflMapper(accountRecTypeInfo, primaryAfflFieldDescribe, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
+        MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, primaryAfflFieldDescribe, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
         return primaryAfflModel;
     }
 
