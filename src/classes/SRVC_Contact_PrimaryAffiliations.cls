@@ -31,21 +31,21 @@
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Service class for CON_PrimaryAffls_TDTM. Returns Affiliations to insert and update for the List of Contacts.
 */
-public virtual with sharing class SRVC_Contact_PrimaryAffiliation {
+public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static SRVC_Contact_PrimaryAffiliation instance;
+    private static SRVC_Contact_PrimaryAffiliations instance;
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of SRVC_Contact_PrimaryAffiliation.
+    * @return The instance of SRVC_Contact_PrimaryAffiliations.
     ******************************************************************************/
-    public static SRVC_Contact_PrimaryAffiliation getInstance() {
+    public static SRVC_Contact_PrimaryAffiliations getInstance() {
         if (instance == null) {
-            instance = new SRVC_Contact_PrimaryAffiliation();
+            instance = new SRVC_Contact_PrimaryAffiliations();
         }
 
         return instance;
@@ -54,7 +54,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliation {
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected SRVC_Contact_PrimaryAffiliation() {}
+    protected SRVC_Contact_PrimaryAffiliations() {}
 
     /************************************************************************
     * @description Returns a list of Affiliations to create for the Contacts
