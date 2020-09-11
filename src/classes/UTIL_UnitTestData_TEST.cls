@@ -578,6 +578,18 @@ public class UTIL_UnitTestData_TEST {
         return courseConnection;
     }
 
+    /**********************************************************************************************************    
+    * @description Gets a Test__c record testing.
+    * @Params testType The type of the test 
+    * @params testDate The date of test taken
+    * @params studentId the Id of the Contact record
+    * @return The Test record.
+    **********************************************************************************************************/
+    public static Test__c getTest(String testType, Date testDate, Id studentId) {
+        Test__c test = new Test__c(Test_Type__c = testType, Test_Date__c = testDate, Contact__c = studentId);
+        return test;
+    }
+
     /*********************************************************************************************************
     * @description Gets a Term Grade for testing.
     * @param contactId The Contact of the Course Term Grade.
@@ -594,6 +606,29 @@ public class UTIL_UnitTestData_TEST {
         return termGrade;
     }
 
+    /**********************************************************************************************************    
+    * @description Gets a Course__c record testing
+    * @Params courseName The name of the Course
+    * @params accountId The Account the Course is assocaited to
+    * @return The Course record
+    **********************************************************************************************************/
+    public static Course__c getCourse(String courseName, Id accountId) {
+        Course__c course = new Course__c(Name = courseName, Account__c = accountId);
+        return course;
+    }
+
+    /**********************************************************************************************************    
+    * @description Gets a Attribute__c record testing
+    * @Params attributeName The name of the attribute 
+    * @params studentId The Id of the Contact
+    * @params attributeRecordType RecordTypeId of Attribute record
+    * @return The Attribute record.
+    **********************************************************************************************************/
+    public static Attribute__c getAttribute(String attributeName, Id studentId, Id attributeRecordType) {
+        Attribute__c attribute = new Attribute__c(Name = attributeName, Contact__c = studentId, RecordTypeId = attributeRecordType);
+        return attribute;
+    }
+
     /*********************************************************************************************************
     * @description Gets a Attendance Event for testing.
     * @return The Attendance Event record.
@@ -604,12 +639,12 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Gets a Attendance Event with fields for testing.
+    * @description Gets a Attendance Event with fields for testing
     * @param contactId The contact to be associated with the Attendance Event
     * @param courseConnectionID The Course Connection to be associated with the Attendance Event
     * @param attendanceType The type of Attendance Event
     * @param reason The reason for Attendance Event
-    * @return The Attendance Event record.
+    * @return The Attendance Event record
     **********************************************************************************************************/
     public static Attendance_Event__c getAttendanceEvent(Id contactId, Id courseConnectionID, String attendanceType, String reason) {
         Attendance_Event__c attd = new Attendance_Event__c();
@@ -628,7 +663,7 @@ public class UTIL_UnitTestData_TEST {
         Facility__c facility = new Facility__c(Name = 'Test Facility ' + Datetime.now().getTime());
         return facility;
     }
-    
+
     /*********************************************************************************************************
     * @description Gets a Case record for testing based on the parameter
     * @param student The Contact record to associate the Case with
@@ -642,7 +677,7 @@ public class UTIL_UnitTestData_TEST {
     	                             Category__c = category, Status = status);
         return caseRecord;
     }
-    
+
     /*********************************************************************************************************
     * @description Gets a Behavior Involvement record for testing based on the parameter
     * @param student The Contact record to associate the Beahvior Involvement with
@@ -657,13 +692,13 @@ public class UTIL_UnitTestData_TEST {
                                                                                 Role__c = role);
         return behavInvolvement;
     }
-    
+
     /**********************************************************************************************************    
-    * @description Gets an Application for testing.
+    * @description Gets an Application for testing
     * @Params appyingTo The Id of the Account 
     * @params student The Id of the Contact
     * @params terms the Id of the Term
-    * @return The Application record.
+    * @return The Application record
     **********************************************************************************************************/
     public static Application__c getApplication(Id appyingTo, Id student, Id term) {
         Application__c application = new Application__c(Applying_To__c = appyingTo, Applicant__c = student, Term__c = term);
