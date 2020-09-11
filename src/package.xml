@@ -120,6 +120,8 @@
         <members>REL_Utils</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
+        <members>SRVC_Contact_PreventDeletion</members>
+        <members>SRVC_Contact_PreventDeletion_TEST</members>
         <members>SRVC_UniqueRecord</members>
         <members>SRVC_UniqueRecord_TEST</members>
         <members>STG_Base_CTRL</members>
