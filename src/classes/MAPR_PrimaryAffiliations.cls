@@ -129,15 +129,15 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
 
         if (primaryAfflFieldDescribe == null) {
             if (this.isPrimaryAffiliationValidationOn() == true) {
-                throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                //throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
             }
         }
-        
+
         if (primaryAfflFieldDescribe != null) {
             if (this.isPrimaryAffiliationValidationOn() == true) {
-                if (string.valueOf(primaryAfflFieldDescribe.getType()) != 'Reference' || 
-                    string.valueOf(primaryAfflFieldDescribe.getReferenceTo()).contains('Account') == false) {
-                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                if (String.valueOf(primaryAfflFieldDescribe.getType()) != 'Reference' || 
+                    String.valueOf(primaryAfflFieldDescribe.getReferenceTo()).contains('Account') == false) {
+                    //throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
                 }
             }
         }
@@ -152,7 +152,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
 
         if (accountRecTypeInfo == null) {
             if (this.isPrimaryAffiliationValidationOn() == true) {
-                throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                //throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
             } else {
                 return null;
             }
