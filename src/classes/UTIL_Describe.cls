@@ -193,9 +193,9 @@ public class UTIL_Describe {
     }
 
     @testVisible
-    private static Map<String, String> getFieldNamesByLabel(List<SObjectField> contactFieldsList) {
+    private static Map<String, String> getFieldNamesByLabel(List<SObjectField> sObjectFieldsList) {
         Map<String, String> fieldNameByLabel = new Map<String, String>();
-        for (SObjectField field : contactFieldsList) {
+        for (SObjectField field : sObjectFieldsList) {
             fieldNameByLabel.put(field.getDescribe().getLabel(), field.getDescribe().getName());
         }
         return fieldNameByLabel;
@@ -749,7 +749,7 @@ public class UTIL_Describe {
      * @param recordTypeDevName The record type's developer name
      * @return Schema.RecordTypeInfo The RecordTypeInfo for a given recordTypeDevName, object
      */
-    private static Schema.RecordTypeInfo getRecordTypeInfoByDeveloperName(String objectName, String recordTypeDevName) {
+    public static Schema.RecordTypeInfo getRecordTypeInfoByDeveloperName(String objectName, String recordTypeDevName) {
 
         if (recordTypeInfoByDeveloperName.get(recordTypeDevName) == null) {
 

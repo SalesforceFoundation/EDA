@@ -44,7 +44,7 @@ public class MODL_PrimaryAfflMapper {
     private String accRecTypeValueFromSettings;
 
     /*******************************************************************************************************
-    * @description Constructor with 4 parameter
+    * @description Constructor with 4 parameters
     * @param accountRecordTypeInfo Schema.RecordTypeInfo of Account
     * @param contactDescribeFieldResult Schema.DescribeFieldResult for Contact's field
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
@@ -61,7 +61,7 @@ public class MODL_PrimaryAfflMapper {
     }
 
     /*******************************************************************************************************
-    * @description Constructor with 3 parameter
+    * @description Constructor with 3 parameters
     * @param contactDescribeFieldResult Schema.DescribeFieldResult for Contact's field
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
@@ -74,7 +74,7 @@ public class MODL_PrimaryAfflMapper {
     }
 
     /*******************************************************************************************************
-    * @description Constructor with 3 parameter
+    * @description Constructor with 3 parameters
     * @param accountRecordTypeInfo Schema.RecordTypeInfo of Account
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
@@ -90,6 +90,7 @@ public class MODL_PrimaryAfflMapper {
     /*******************************************************************************************************
     * @description Getter method to return the Account Record Type Id. If it is not available then returns
     * 'Account Record Type' value from EDA Settings.
+    * @return Account Record Type Id or 'Account Record Type' value from EDA Settings
     *******************************************************************************************************/ 
     public Id getAccountRecordTypeId() {
         if (this.accRecordTypeId == null) {
@@ -101,6 +102,7 @@ public class MODL_PrimaryAfflMapper {
     /*******************************************************************************************************
     * @description Getter method to return the Contact Field API name. If it is not available then returns
     * 'Contact Primary Affl Field' from EDA Settings.
+    * @return Field API name for Contact or 'Primary Affl Field' value from EDA Settings
     *******************************************************************************************************/ 
     public String getContactFieldApiName() {
         if (String.isEmpty(this.contactFieldApiName) == true) {
@@ -111,6 +113,7 @@ public class MODL_PrimaryAfflMapper {
 
     /*******************************************************************************************************
     * @description Getter method to return the 'Contact Primary Affl Field' value from EDA Settings.
+    * @return 'Primary Affl Field' value from EDA Settings
     *******************************************************************************************************/ 
     public String getSettingsContactFieldValue() {
         return this.primaryAfflFieldValueFromSettings;
@@ -118,6 +121,7 @@ public class MODL_PrimaryAfflMapper {
 
     /*******************************************************************************************************
     * @description Getter method to return the 'Account Record Type' value from EDA Settings.
+    * 'Account Record Type' value from EDA Settings
     *******************************************************************************************************/ 
     public String getSettingsRecordTypeFieldValue() {
         return this.accRecTypeValueFromSettings;
