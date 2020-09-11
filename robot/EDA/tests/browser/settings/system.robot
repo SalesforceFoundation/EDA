@@ -16,7 +16,7 @@ Verify standard field values
     ...                     household naming are unchecked and administrative account name format
     ...                     is set to {!LastName} Administrative and household account name format
     ...                     dropdown is set to {!LastName} Household.
-    [tags]                    unstable        W-041787
+    [tags]                    unstable        W-041787      rbt:high
     Go to EDA settings tab    System
     Verify checkbox value
     ...                       Store Errors=true
@@ -33,7 +33,7 @@ Verify system settings can retain value on save
     [Documentation]         Updates the values of checkbox and dropdown fields in system settings to
     ...                     the passed value as arguments and verifies the same values are retained
     ...                     after saving it.
-    [tags]                    unstable        W-8042700
+    [tags]                    unstable        W-8042700     rbt:high
     Go to EDA settings tab    System
     Update checkbox value
     ...                       Store Errors=false
