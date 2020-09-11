@@ -471,6 +471,23 @@ public class UTIL_UnitTestData_TEST {
         return contactLanguageToInsert;
     }
 
+    /*******************************************************************************************************
+    * @description Creates (without inserting) a contact language record for testing.
+    * @param  language The language to relate to the contact language record.
+    * @param  contact The Contact to relate to the contact language record.
+    * @param  fluency The level of fluency for the language specified on the contact language record.
+    * @return A Contact Language record corresponding the specified Contact and Language.
+    *******************************************************************************************************/ 
+    public static Contact_Language__c getContactLanguage(Language__c language, Contact contact, String fluency) {
+        Contact_Language__c contactLanguage = new Contact_Language__c(
+                                                        Language__c = language.Id, 
+                                                        Contact__c = contact.Id, 
+                                                        Primary_Language__c = false,
+                                                        Fluency__c = fluency
+                                                    );
+        return contactLanguage;
+    }
+
     /*********************************************************************************************************
     * @description Gets a Term for testing.
     * @param accountId Account to associate Term with.
