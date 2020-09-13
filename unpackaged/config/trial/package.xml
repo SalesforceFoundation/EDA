@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <types>
+        <members>*</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+
+        <members>Account.%%%NAMESPACE%%%Current_Address__c</members>
+        <members>Account.%%%NAMESPACE%%%Primary_Contact__c</members>
+        <members>Account.%%%NAMESPACE%%%School_Code__c</members>
+
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Address_Type__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Default_Address__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Formula_MailingAddress__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Formula_MailingStreetAddress__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Geolocation__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Latest_End_Date__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Latest_Start_Date__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%MailingCity__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%MailingCountry__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%MailingCounty__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%MailingPostalCode__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%MailingState__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%MailingStreet2__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%MailingStreet__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Parent_Account__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Parent_Contact__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Seasonal_End_Day__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Seasonal_End_Month__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Seasonal_End_Year__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Seasonal_Start_Day__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Seasonal_Start_Month__c</members>
+        <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Seasonal_Start_Year__c</members>
+
+        <!-- <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%</members> -->
+
+
+        <members>%%%NAMESPACE%%%Behavior_Involvement__c.%%%NAMESPACE%%%Case__c</members>
+        <members>%%%NAMESPACE%%%Behavior_Involvement__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Behavior_Involvement__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Behavior_Involvement__c.%%%NAMESPACE%%%Role__c</members>
+
+
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Account__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Former_First_Name__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Former_Middle_Name__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Former_Last_Name__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Gender__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%HIPAA_Detail__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%HIPAA__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Mailing_County__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Military_Background__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Military_Service__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Naming_Exclusions__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Other_County__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%PreferredPhone__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Preferred_Email__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Primary_Address_Type__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Primary_Household__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Primary_Language__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Primary_Organization__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Race__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Religion__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Secondary_Address_Type__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Social_Security_Number__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%UniversityEmail__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%WorkEmail__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%WorkPhone__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%Work_Address__c</members>
+        <members>%%%NAMESPACE%%%Contact__c.%%%NAMESPACE%%%is_Address_Override__c</members>
+
+
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Affiliation__c</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Course_Offering__c</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Credits_Attempted__c</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Credits_Earned__c</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Grade__c</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Primary__c</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Program_Enrollment__c</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Status__c</members>
+
+        <members>%%%NAMESPACE%%%Contact_Language__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Contact_Language__c.%%%NAMESPACE%%%Fluency__c</members>
+        <members>%%%NAMESPACE%%%Contact_Language__c.%%%NAMESPACE%%%Language_Details__c</members>
+        <members>%%%NAMESPACE%%%Contact_Language__c.%%%NAMESPACE%%%Language__c</members>
+        <members>%%%NAMESPACE%%%Contact_Language__c.%%%NAMESPACE%%%Primary_Language__c</members>
+
+
+        <members>%%%NAMESPACE%%%Course.%%%NAMESPACE%%%Account__c</members>
+        <members>%%%NAMESPACE%%%Course.%%%NAMESPACE%%%Course_ID__c</members>
+        <members>%%%NAMESPACE%%%Course.%%%NAMESPACE%%%Credit_Hours__c</members>
+        <members>%%%NAMESPACE%%%Course.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Course.%%%NAMESPACE%%%Extended_Description__c</members>
+
+
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Capacity__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Course__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%End_Date__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Facility__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Faculty__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Section_ID__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Start_Date__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Term__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Time_Block__c</members>
+
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Course_Offering__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%End_Time__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Facility__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Friday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Monday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Saturday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Start_Time__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Sunday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Thursday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Time_Block__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Tuesday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Wednesday__c</members>
+
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Account__c</members>
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Class_Percentile__c</members>
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Class_Rank_Scale__c</members>
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Class_Rank__c</members>
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Class_Size__c</members>
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Degree_Earned__c</members>
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Details__c</members>
+        <members>%%%NAMESPACE%%%Education_History__c.%%%NAMESPACE%%%Education_History_JSON__c</members>
+
+        <members>%%%NAMESPACE%%%Error__c.%%%NAMESPACE%%%Datetime__c</members>
+        <members>%%%NAMESPACE%%%Error__c.%%%NAMESPACE%%%Email_Sent__c</members>
+        <members>%%%NAMESPACE%%%Error__c.%%%NAMESPACE%%%Error_Type__c</members>
+        <members>%%%NAMESPACE%%%Error__c.%%%NAMESPACE%%%Full_Message__c</members>
+        <members>%%%NAMESPACE%%%Error__c.%%%NAMESPACE%%%Object_Type__c</members>
+        <members>%%%NAMESPACE%%%Error__c.%%%NAMESPACE%%%Posted_in_Chatter__c</members>
+        <members>%%%NAMESPACE%%%Error__c.%%%NAMESPACE%%%Record_URL__c</members>
+        <members>%%%NAMESPACE%%%Error__c.%%%NAMESPACE%%%Stack_Trace__c</members>
+
+
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Account_Processor__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Accounts_Addresses_Enabled__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Accounts_to_Delete__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Admin_Account_Naming_Format__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Admin_Other_Name_Setting__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Administrative_Account_Record_Type__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Advancement_Namespace__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Affiliation_Record_Type_Enforced__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Affl_ProgEnroll_Copy_End_Date__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Affl_ProgEnroll_Copy_Start_Date__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Affl_ProgEnroll_Del_Status__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Affl_ProgEnroll_Del__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Affl_ProgEnroll_Role_Map__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Affl_ProgEnroll_Set_Role__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Affl_ProgEnroll_Status_Map__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Allow_AutoCreated_Duplicates__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Async_Error_Check_Last_Run__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Automatic_Household_Naming__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Contacts_Addresses_Enabled__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Default_Contact_Language_Fluency__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Disable_Error_Handling__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Disable_Preferred_Phone_Enforcement__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Enable_Course_Connections__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Enable_Debug__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Enable_New_Preferred_Phone_Sync__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Error_Notifications_On__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Error_Notifications_To__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Faculty_RecType__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Household_Account_Naming_Format__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Household_Addresses_RecType__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Household_Other_Name_Setting__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Preferred_Phone_Selection__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Account_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Address_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Affiliation_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Behavior_Involvement_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Case_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Contact_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Course_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Course_Connection_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Facility_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Course_Offering_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Plan_Requirement_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Program_Enrollment_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Program_Plan_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Term_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Test_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Prevent_Time_Block_Deletion__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Reciprocal_Method__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Relationship_Name_Field_Id__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Relationship_Name_Id_Field_Id__c</members>
+        <members>%%%NAMESPACE%%%Hierarchy_Settings__c.%%%NAMESPACE%%%Simple_Address_Change_Treated_as_Update__c</members>
+
+
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Category__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Course__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Credits__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Plan_Requirement__c</members>
+
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%Account__c</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%End_Date__c</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%Is_Primary__c</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%Start_Date__c</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%Status__c</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%Total_Required_Credits__c</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%Version__c</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.%%%NAMESPACE%%%</members>
+
+
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Emergency_Contact__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%ReciprocalRelationship__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%RelatedContact__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.Relationship_Explanation__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%SYSTEM_SystemCreated__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Status__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Type__c</members>
+
+        <members>%%%NAMESPACE%%%Relationship_Auto_Create__c.%%%NAMESPACE%%%Campaign_Types__c</members>
+        <members>%%%NAMESPACE%%%Relationship_Auto_Create__c.%%%NAMESPACE%%%Field__c</members>
+        <members>%%%NAMESPACE%%%Relationship_Auto_Create__c.%%%NAMESPACE%%%Object__c</members>
+        <members>%%%NAMESPACE%%%Relationship_Auto_Create__c.%%%NAMESPACE%%%Relationship_Type__c</members>
+
+        <members>%%%NAMESPACE%%%Relationship_Lookup__c.%%%NAMESPACE%%%Active__c</members>
+        <members>%%%NAMESPACE%%%Relationship_Lookup__c.%%%NAMESPACE%%%Female__c</members>
+        <members>%%%NAMESPACE%%%Relationship_Lookup__c.%%%NAMESPACE%%%Male__c</members>
+        <members>%%%NAMESPACE%%%Relationship_Lookup__c.%%%NAMESPACE%%%Neutral__c</members>
+
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Type__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Start_Date__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Parent_Term__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Instructional_Days__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Grading_Period_Sequence__c</members>
+
+        <members>%%%NAMESPACE%%%Time_Block__c.%%%NAMESPACE%%%Educational_Institution__c</members>
+        <members>%%%NAMESPACE%%%Time_Block__c.%%%NAMESPACE%%%End_Time__c</members>
+        <members>%%%NAMESPACE%%%Time_Block__c.%%%NAMESPACE%%%Start_Time__c</members>
+
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Course_Connection__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Course_Offering__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Credits_Attempted__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Credits_Earned__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Letter_Grade__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Numerical_Grade__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Percent_Grade__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Result__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Term_Grade_Type__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Term__c</members>
+
+
+        <members>%%%NAMESPACE%%%Test__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Test__c.%%%NAMESPACE%%%Date_Received__c</members>
+        <members>%%%NAMESPACE%%%Test__c.%%%NAMESPACE%%%Source__c</members>
+        <members>%%%NAMESPACE%%%Test__c.%%%NAMESPACE%%%Test_Date__c</members>
+        <members>%%%NAMESPACE%%%Test__c.%%%NAMESPACE%%%Test_Type__c</members>
+
+
+        <members>%%%NAMESPACE%%%Test_Score__c.%%%NAMESPACE%%%Subject_Area__c</members>
+        <members>%%%NAMESPACE%%%Test_Score__c.%%%NAMESPACE%%%Score__c</members>
+        <members>%%%NAMESPACE%%%Test_Score__c.%%%NAMESPACE%%%Percentile__c</members>
+        <members>%%%NAMESPACE%%%Test_Score__c.%%%NAMESPACE%%%Test__c</members>
+        <members>%%%NAMESPACE%%%Test_Score__c.Test_Type__c</members>
+
+
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Active__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Asynchronous__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Class__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Filter_Field__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Filter_Value__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Load_Order__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Object__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Owned_by_Namespace__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Trigger_Action__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%User_Managed__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Usernames_to_Exclude__c</members>
+        <name>CustomField</name>
+    </types>
+
+    <types>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.All</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.All_Main_Fields</members>
+        <members>%%%NAMESPACE%%%Time_Block__c.All</members>
+        <members>%%%NAMESPACE%%%Behavior_Response__c.All</members>
+        <members>%%%NAMESPACE%%%Attendance_Event__c.All</members>
+        <members>%%%NAMESPACE%%%Application__c.All</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.All</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.All</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.All</members>
+        <members>%%%NAMESPACE%%%Contact_Language__c.All</members>
+        <members>%%%NAMESPACE%%%Affiliation__c.All</members>
+        <members>%%%NAMESPACE%%%Address__c.All</members>
+        <members>%%%NAMESPACE%%%Behavior_Involvement__c.All</members>
+        <members>%%%NAMESPACE%%%Attribute__c.All</members>
+        <members>%%%NAMESPACE%%%Course__c.All</members>
+        <members>%%%NAMESPACE%%%Education_History__c.All</members>
+        <members>%%%NAMESPACE%%%Facility__c.All</members>
+        <members>%%%NAMESPACE%%%Language__c.All</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.All</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.Primary_Program_Plan</members>
+        <members>%%%NAMESPACE%%%Relationship__c.All</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.All</members>
+        <members>%%%NAMESPACE%%%Test_Score__c.All</members>
+        <members>%%%NAMESPACE%%%Test__c.All</members>
+        <name>ListView</name>
+    </types>
+    <version>48.0</version>
+</Package>
