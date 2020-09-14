@@ -70,7 +70,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     * @return List<MODL_PrimaryAfflMapper>
     **************************************************************************************/
     public List<MODL_PrimaryAfflMapper> getModelsFromSettings() {
-        List<Affl_Mappings__c> afflMappingsFromSettingsList = UTIL_CustomSettingsFacade.getAfflMappings();
+        List<Affl_Mappings__c> afflMappingsFromSettingsList = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
         return getModelsFromMappings(afflMappingsFromSettingsList);
     }
 

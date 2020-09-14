@@ -227,21 +227,13 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     * @description Value object specifying a list of new Affiliation records to be inserted 
     * and a list of existing Affiliation records to be updated.
     ************************************************************************************************************/
-    public class AffiliationsToprocess {
+    public class AffiliationsToProcess {
 
-        public List<Affiliation__c> affiliationsToInsertList;
-        Set<Id> accountIdSet;
+        private List<Affiliation__c> affiliationsToInsertList;
+        private Set<Id> accountIdSet;
 
         public AffiliationsToProcess(List<Affiliation__c> affiliationsToInsertList, Set<Id> accountIdSet){
             this.affiliationsToInsertList = affiliationsToInsertList;
-            this.accountIdSet = accountIdSet;
-        }
-
-        public void setAffiliationListToInsert(List<Affiliation__c> affiliationsToInsertList){
-            this.affiliationsToInsertList = affiliationsToInsertList;
-        }
-
-        public void setAccountIdSet( Set<Id> accountIdSet){
             this.accountIdSet = accountIdSet;
         }
 
