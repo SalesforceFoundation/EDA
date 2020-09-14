@@ -13,25 +13,25 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Contact__c</field>
+                <field>%%%NAMESPACE%%%Contact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Test_Type__c</field>
+                <field>%%%NAMESPACE%%%Test_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Test_Date__c</field>
+                <field>%%%NAMESPACE%%%Test_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Date_Received__c</field>
+                <field>%%%NAMESPACE%%%Date_Received__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Source__c</field>
+                <field>%%%NAMESPACE%%%Source__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -60,18 +60,18 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Test_Type__c</fields>
-        <fields>Subject_Area__c</fields>
-        <fields>Score__c</fields>
-        <fields>Percentile__c</fields>
-        <relatedList>Test_Score__c.Test__c</relatedList>
+        <fields>%%%NAMESPACE%%%Test_Type__c</fields>
+        <fields>%%%NAMESPACE%%%Subject_Area__c</fields>
+        <fields>%%%NAMESPACE%%%Score__c</fields>
+        <fields>%%%NAMESPACE%%%Percentile__c</fields>
+        <relatedList>%%%NAMESPACE%%%Test_Score__c.%%%NAMESPACE%%%Test__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

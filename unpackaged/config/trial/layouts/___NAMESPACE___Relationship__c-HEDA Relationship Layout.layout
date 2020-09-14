@@ -9,29 +9,29 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Contact__c</field>
+                <field>%%%NAMESPACE%%%Contact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Status__c</field>
+                <field>%%%NAMESPACE%%%Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Relationship_Explanation__c</field>
+                <field>%%%NAMESPACE%%%Relationship_Explanation__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>RelatedContact__c</field>
+                <field>%%%NAMESPACE%%%RelatedContact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Type__c</field>
+                <field>%%%NAMESPACE%%%Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Emergency_Contact__c</field>
+                <field>%%%NAMESPACE%%%Emergency_Contact__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -44,7 +44,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Description__c</field>
+                <field>%%%NAMESPACE%%%Description__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -73,9 +73,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <showEmailCheckbox>false</showEmailCheckbox>

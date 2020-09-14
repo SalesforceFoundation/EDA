@@ -13,31 +13,31 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Account__c</field>
+                <field>%%%NAMESPACE%%%Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Contact__c</field>
+                <field>%%%NAMESPACE%%%Contact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Start_Date__c</field>
+                <field>%%%NAMESPACE%%%Start_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>End_Date__c</field>
+                <field>%%%NAMESPACE%%%End_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Graduation_Date__c</field>
+                <field>%%%NAMESPACE%%%Graduation_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Degree_Earned__c</field>
+                <field>%%%NAMESPACE%%%Degree_Earned__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Details__c</field>
+                <field>%%%NAMESPACE%%%Details__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -47,35 +47,35 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>GPA__c</field>
+                <field>%%%NAMESPACE%%%GPA__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>GPA_Scale_Type__c</field>
+                <field>%%%NAMESPACE%%%GPA_Scale_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>GPA_Scale_Reporting__c</field>
+                <field>%%%NAMESPACE%%%GPA_Scale_Reporting__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Class_Rank__c</field>
+                <field>%%%NAMESPACE%%%Class_Rank__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Class_Size__c</field>
+                <field>%%%NAMESPACE%%%Class_Size__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Class_Percentile__c</field>
+                <field>%%%NAMESPACE%%%Class_Percentile__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Class_Rank_Scale__c</field>
+                <field>%%%NAMESPACE%%%Class_Rank_Scale__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Class_Rank_Type__c</field>
+                <field>%%%NAMESPACE%%%Class_Rank_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -104,9 +104,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <showEmailCheckbox>false</showEmailCheckbox>

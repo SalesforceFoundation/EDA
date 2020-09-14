@@ -13,19 +13,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Datetime__c</field>
+                <field>%%%NAMESPACE%%%Datetime__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Full_Message__c</field>
+                <field>%%%NAMESPACE%%%Full_Message__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Stack_Trace__c</field>
+                <field>%%%NAMESPACE%%%Stack_Trace__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Error_Type__c</field>
+                <field>%%%NAMESPACE%%%Error_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -35,19 +35,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Email_Sent__c</field>
+                <field>%%%NAMESPACE%%%Email_Sent__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Posted_in_Chatter__c</field>
+                <field>%%%NAMESPACE%%%Posted_in_Chatter__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Object_Type__c</field>
+                <field>%%%NAMESPACE%%%Object_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Record_URL__c</field>
+                <field>%%%NAMESPACE%%%Record_URL__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -76,9 +76,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <showEmailCheckbox>false</showEmailCheckbox>

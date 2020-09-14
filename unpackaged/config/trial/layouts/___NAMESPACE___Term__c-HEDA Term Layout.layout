@@ -12,33 +12,33 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Account__c</field>
+                <field>%%%NAMESPACE%%%Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Start_Date__c</field>
+                <field>%%%NAMESPACE%%%Start_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>End_Date__c</field>
+                <field>%%%NAMESPACE%%%End_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Parent_Term__c</field>
+                <field>%%%NAMESPACE%%%Parent_Term__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Type__c</field>
+                <field>%%%NAMESPACE%%%Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Grading_Period_Sequence__c</field>
+                <field>%%%NAMESPACE%%%Grading_Period_Sequence__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Instructional_Days__c</field>
+                <field>%%%NAMESPACE%%%Instructional_Days__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -67,27 +67,27 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
-        <fields>Type__c</fields>
-        <fields>Instructional_Days__c</fields>
-        <relatedList>Term__c.Parent_Term__c</relatedList>
+        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
+        <fields>%%%NAMESPACE%%%End_Date__c</fields>
+        <fields>%%%NAMESPACE%%%Type__c</fields>
+        <fields>%%%NAMESPACE%%%Instructional_Days__c</fields>
+        <relatedList>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Parent_Term__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Section_ID__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
-        <fields>Faculty__c</fields>
-        <fields>Capacity__c</fields>
-        <relatedList>Course_Offering__c.Term__c</relatedList>
+        <fields>%%%NAMESPACE%%%Section_ID__c</fields>
+        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
+        <fields>%%%NAMESPACE%%%End_Date__c</fields>
+        <fields>%%%NAMESPACE%%%Faculty__c</fields>
+        <fields>%%%NAMESPACE%%%Capacity__c</fields>
+        <relatedList>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Term__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

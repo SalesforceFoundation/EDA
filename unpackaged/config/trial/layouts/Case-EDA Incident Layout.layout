@@ -35,15 +35,15 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Occurrence_Date__c</field>
+                <field>%%%NAMESPACE%%%Occurrence_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Category__c</field>
+                <field>%%%NAMESPACE%%%Category__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Location__c</field>
+                <field>%%%NAMESPACE%%%Location__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -65,9 +65,9 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedContent>
@@ -86,9 +86,9 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact__c</fields>
-        <fields>Role__c</fields>
-        <relatedList>Behavior_Involvement__c.Case__c</relatedList>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%Role__c</fields>
+        <relatedList>%%%NAMESPACE%%%Behavior_Involvement__c.%%%NAMESPACE%%%Case__c</relatedList>
     </relatedLists>
     <relatedObjects>ContactId</relatedObjects>
     <relatedObjects>AccountId</relatedObjects>

@@ -8,7 +8,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Course__c</field>
+                <field>%%%NAMESPACE%%%Course__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -16,33 +16,33 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Start_Date__c</field>
+                <field>%%%NAMESPACE%%%Start_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Capacity__c</field>
+                <field>%%%NAMESPACE%%%Capacity__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Term__c</field>
+                <field>%%%NAMESPACE%%%Term__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Section_ID__c</field>
+                <field>%%%NAMESPACE%%%Section_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>End_Date__c</field>
+                <field>%%%NAMESPACE%%%End_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Time_Block__c</field>
+                <field>%%%NAMESPACE%%%Time_Block__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Faculty__c</field>
+                <field>%%%NAMESPACE%%%Faculty__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -71,25 +71,25 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Time_Block__c</fields>
-        <fields>Facility__c</fields>
-        <relatedList>Course_Offering_Schedule__c.Course_Offering__c</relatedList>
+        <fields>%%%NAMESPACE%%%Time_Block__c</fields>
+        <fields>%%%NAMESPACE%%%Facility__c</fields>
+        <relatedList>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Course_Offering__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact__c</fields>
-        <fields>Account__c</fields>
-        <fields>Program_Enrollment__c</fields>
-        <fields>Credits_Attempted__c</fields>
-        <fields>Primary__c</fields>
-        <relatedList>Course_Enrollment__c.Course_Offering__c</relatedList>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%Account__c</fields>
+        <fields>%%%NAMESPACE%%%Program_Enrollment__c</fields>
+        <fields>%%%NAMESPACE%%%Credits_Attempted__c</fields>
+        <fields>%%%NAMESPACE%%%Primary__c</fields>
+        <relatedList>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Course_Offering__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

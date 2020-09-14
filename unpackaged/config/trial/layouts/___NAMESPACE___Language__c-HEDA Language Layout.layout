@@ -44,17 +44,17 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact__c</fields>
-        <fields>Fluency__c</fields>
-        <fields>Primary_Language__c</fields>
-        <relatedList>Contact_Language__c.Language__c</relatedList>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%Fluency__c</fields>
+        <fields>%%%NAMESPACE%%%Primary_Language__c</fields>
+        <relatedList>%%%NAMESPACE%%%Contact_Language__c.%%%NAMESPACE%%%Language__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

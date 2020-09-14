@@ -43,7 +43,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Current_Address__c</field>
+                <field>%%%NAMESPACE%%%Current_Address__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -95,37 +95,37 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>FULL_NAME</fields>
         <fields>CONTACT.BIRTHDATE</fields>
-        <fields>FERPA__c</fields>
+        <fields>%%%NAMESPACE%%%FERPA__c</fields>
         <fields>CONTACT.PHONE1</fields>
-        <fields>UniversityEmail__c</fields>
+        <fields>%%%NAMESPACE%%%UniversityEmail__c</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact__c</fields>
-        <fields>Role__c</fields>
-        <fields>Status__c</fields>
-        <fields>StartDate__c</fields>
-        <fields>EndDate__c</fields>
-        <fields>Primary__c</fields>
-        <relatedList>Affiliation__c.Account__c</relatedList>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%Role__c</fields>
+        <fields>%%%NAMESPACE%%%Status__c</fields>
+        <fields>%%%NAMESPACE%%%StartDate__c</fields>
+        <fields>%%%NAMESPACE%%%EndDate__c</fields>
+        <fields>%%%NAMESPACE%%%Primary__c</fields>
+        <relatedList>%%%NAMESPACE%%%Affiliation__c.%%%NAMESPACE%%%Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>MailingStreet__c</fields>
-        <fields>MailingStreet2__c</fields>
-        <fields>MailingCity__c</fields>
-        <fields>MailingState__c</fields>
-        <fields>MailingPostalCode__c</fields>
-        <relatedList>Address__c.Parent_Account__c</relatedList>
+        <fields>%%%NAMESPACE%%%MailingStreet__c</fields>
+        <fields>%%%NAMESPACE%%%MailingStreet2__c</fields>
+        <fields>%%%NAMESPACE%%%MailingCity__c</fields>
+        <fields>%%%NAMESPACE%%%MailingState__c</fields>
+        <fields>%%%NAMESPACE%%%MailingPostalCode__c</fields>
+        <relatedList>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Parent_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

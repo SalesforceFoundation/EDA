@@ -12,22 +12,22 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Course_ID__c</field>
+                <field>%%%NAMESPACE%%%Course_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Extended_Description__c</field>
+                <field>%%%NAMESPACE%%%Extended_Description__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Account__c</field>
+                <field>%%%NAMESPACE%%%Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Credit_Hours__c</field>
+                <field>%%%NAMESPACE%%%Credit_Hours__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -54,19 +54,19 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Section_ID__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
-        <fields>Faculty__c</fields>
-        <fields>Capacity__c</fields>
-        <relatedList>Course_Offering__c.Course__c</relatedList>
+        <fields>%%%NAMESPACE%%%Section_ID__c</fields>
+        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
+        <fields>%%%NAMESPACE%%%End_Date__c</fields>
+        <fields>%%%NAMESPACE%%%Faculty__c</fields>
+        <fields>%%%NAMESPACE%%%Capacity__c</fields>
+        <relatedList>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Course__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

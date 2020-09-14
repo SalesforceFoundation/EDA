@@ -13,49 +13,49 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Contact__c</field>
+                <field>%%%NAMESPACE%%%Contact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Course_Name__c</field>
+                <field>%%%NAMESPACE%%%Course_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Course_Connection__c</field>
+                <field>%%%NAMESPACE%%%Course_Connection__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Attendance_Type__c</field>
+                <field>%%%NAMESPACE%%%Attendance_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Unexcused__c</field>
+                <field>%%%NAMESPACE%%%Unexcused__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Date__c</field>
+                <field>%%%NAMESPACE%%%Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Arrival_Time__c</field>
+                <field>%%%NAMESPACE%%%Arrival_Time__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Start_Time__c</field>
+                <field>%%%NAMESPACE%%%Start_Time__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>End_Time__c</field>
+                <field>%%%NAMESPACE%%%End_Time__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Reason__c</field>
+                <field>%%%NAMESPACE%%%Reason__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Reason_Description__c</field>
+                <field>%%%NAMESPACE%%%Reason_Description__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -84,9 +84,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>

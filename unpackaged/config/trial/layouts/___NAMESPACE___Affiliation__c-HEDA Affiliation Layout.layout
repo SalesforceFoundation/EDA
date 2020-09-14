@@ -9,37 +9,37 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Account__c</field>
+                <field>%%%NAMESPACE%%%Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Role__c</field>
+                <field>%%%NAMESPACE%%%Role__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>StartDate__c</field>
+                <field>%%%NAMESPACE%%%StartDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Primary__c</field>
+                <field>%%%NAMESPACE%%%Primary__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Affiliation_Type__c</field>
+                <field>%%%NAMESPACE%%%Affiliation_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Contact__c</field>
+                <field>%%%NAMESPACE%%%Contact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Status__c</field>
+                <field>%%%NAMESPACE%%%Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EndDate__c</field>
+                <field>%%%NAMESPACE%%%EndDate__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -52,7 +52,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Description__c</field>
+                <field>%%%NAMESPACE%%%Description__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -81,18 +81,18 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Program_Enrollment__c.Affiliation__c</relatedList>
+        <relatedList>%%%NAMESPACE%%%Program_Enrollment__c.Affiliation__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Course_Enrollment__c.Affiliation__c</relatedList>
+        <relatedList>%%%NAMESPACE%%%Course_Enrollment__c.Affiliation__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

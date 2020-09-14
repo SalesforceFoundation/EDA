@@ -13,19 +13,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Program_Plan__c</field>
+                <field>%%%NAMESPACE%%%Program_Plan__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Plan_Requirement__c</field>
+                <field>%%%NAMESPACE%%%Plan_Requirement__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Course__c</field>
+                <field>%%%NAMESPACE%%%Course__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Description__c</field>
+                <field>%%%NAMESPACE%%%Description__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -35,15 +35,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Category__c</field>
+                <field>%%%NAMESPACE%%%Category__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Sequence__c</field>
+                <field>%%%NAMESPACE%%%Sequence__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Credits__c</field>
+                <field>%%%NAMESPACE%%%Credits__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -72,19 +72,19 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Program_Plan__c</fields>
-        <fields>Course__c</fields>
-        <fields>Category__c</fields>
-        <fields>Credits__c</fields>
-        <fields>Sequence__c</fields>
-        <relatedList>Plan_Requirement__c.Plan_Requirement__c</relatedList>
+        <fields>%%%NAMESPACE%%%Program_Plan__c</fields>
+        <fields>%%%NAMESPACE%%%Course__c</fields>
+        <fields>%%%NAMESPACE%%%Category__c</fields>
+        <fields>%%%NAMESPACE%%%Credits__c</fields>
+        <fields>%%%NAMESPACE%%%Sequence__c</fields>
+        <relatedList>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Plan_Requirement__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

@@ -13,27 +13,27 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Class__c</field>
+                <field>%%%NAMESPACE%%%Class__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Object__c</field>
+                <field>%%%NAMESPACE%%%Object__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Load_Order__c</field>
+                <field>%%%NAMESPACE%%%Load_Order__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Filter_Field__c</field>
+                <field>%%%NAMESPACE%%%Filter_Field__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>User_Managed__c</field>
+                <field>%%%NAMESPACE%%%User_Managed__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Usernames_to_Exclude__c</field>
+                <field>%%%NAMESPACE%%%Usernames_to_Exclude__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -43,23 +43,23 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Trigger_Action__c</field>
+                <field>%%%NAMESPACE%%%Trigger_Action__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Active__c</field>
+                <field>%%%NAMESPACE%%%Active__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Asynchronous__c</field>
+                <field>%%%NAMESPACE%%%Asynchronous__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Filter_Value__c</field>
+                <field>%%%NAMESPACE%%%Filter_Value__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Owned_by_Namespace__c</field>
+                <field>%%%NAMESPACE%%%Owned_by_Namespace__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -88,9 +88,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <showEmailCheckbox>false</showEmailCheckbox>
