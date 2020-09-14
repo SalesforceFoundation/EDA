@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-
+    <types>
+        <members>Account.HEDA_Account_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Address__c.HEDA_Address_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Affiliation__c.HEDA_Affiliation_Compact_Layout</members>
+        <!-- <members>Contact.HEDA_Contact_Compact_Layout</members> -->
+        <members>%%%NAMESPACE%%%Contact_Language__c.HEDA_Contact_Language_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.HEDA_Course_Enrollment_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.HEDA_Course_Offering_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Course__c.HEDA_Course_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Education_History__c.EDA_Education_History_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Facility__c.HEDA_Facility_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.HEDA_Plan_Requirement_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Program_Enrollment__c.HEDA_Program_Enrollment_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Program_Plan__c.HEDA_Program_Plan_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Relationship__c.HEDA_Relationship_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Term__c.HEDA_Term_Compact_Layout</members>
+        <name>CompactLayout</name>
+    </types>
     <types>
         <members>*</members>
         <name>CustomLabels</name>
@@ -10,8 +27,8 @@
         <name>CustomObject</name>
     </types>
     <types>
-
-        <members>Account.%%%NAMESPACE%%%Current_Address__c</members>
+        <members>*</members>
+        <!-- <members>Account.%%%NAMESPACE%%%Current_Address__c</members>
         <members>Account.%%%NAMESPACE%%%Primary_Contact__c</members>
         <members>Account.%%%NAMESPACE%%%School_Code__c</members>
 
@@ -38,9 +55,6 @@
         <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Seasonal_Start_Month__c</members>
         <members>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Seasonal_Start_Year__c</members>
 
-        <!-- <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%</members>
-        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%</members>
-        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%</members> -->
 
 
         <members>%%%NAMESPACE%%%Behavior_Involvement__c.%%%NAMESPACE%%%Case__c</members>
@@ -284,7 +298,7 @@
         <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Owned_by_Namespace__c</members>
         <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Trigger_Action__c</members>
         <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%User_Managed__c</members>
-        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Usernames_to_Exclude__c</members>
+        <members>%%%NAMESPACE%%%Trigger_Handler__c.%%%NAMESPACE%%%Usernames_to_Exclude__c</members> -->
         <name>CustomField</name>
     </types>
 
