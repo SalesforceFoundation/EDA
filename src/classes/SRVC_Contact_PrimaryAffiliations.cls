@@ -92,12 +92,11 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                     // illegal assignment exp
                     // find another exception if you were to assign id to boolean
                     Contact.addError(e.getMessage());
-                    //// throw new custom exception
-                    //throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field In Affiliation Mappings');
                 }
                 affiliationsToCreateForEachContactList.add(afflToCreate);
           }
-       }Catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
+       }Catch (ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException error) {
             return new List<Affiliation__c>();
         }
         return affiliationsToCreateForEachContactList;
@@ -160,19 +159,22 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 }
                 if ((oldContact.get(eachModel.getContactFieldApiName()) == null && newContact.get(eachModel.getContactFieldApiName()) != null) || 
                     (oldContact.get(eachModel.getContactFieldApiName()) != newContact.get(eachModel.getContactFieldApiName()))) {
-                    try {
-                        affiliationsToCreateForEachContactList.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true));
-                    } catch (Exception e) {
+                     Affiliation__c afflToCreate = new Affiliation__c();
+                     try {
+                         afflToCreate.Contact__c = newContact.ID;
+                         afflToCreate.Account__c = (Id)newContact.get(eachModel.getContactFieldApiName());
+                         afflToCreate.Primary__c = true;
+                     } catch (Exception e) {
                         newContact.addError(e.getMessage());
-                        //throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-                        ///
+                        throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field In Affiliation Mappings');
                     }
+                    affiliationsToCreateForEachContactList.add(afflToCreate);
                 }
                 if (oldContact.get(eachModel.getContactFieldApiName()) != null && newContact.get(eachModel.getContactFieldApiName()) == null) {
                      accountIds.add((Id)oldContact.get(eachModel.getContactFieldApiName()));
                 }
             }
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
+        } catch (ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException error) {
             // create new constructor and return
            AffiliationsToProcess AfflsToProcess = new AffiliationsToProcess();
            return AfflsToProcess;

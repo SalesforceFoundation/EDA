@@ -126,10 +126,10 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribe('Contact', afflMapping.Primary_Affl_Field__c);
         } catch (UTIL_Describe.SchemaDescribeException ex) {
             try{
-            primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribeByLabel('Contact', afflMapping.Primary_Affl_Field__c);
+                primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribeByLabel('Contact', afflMapping.Primary_Affl_Field__c);
             } catch (UTIL_Describe.SchemaDescribeException exp) {
                 if (this.isPrimaryAffiliationValidationOn() == true) {
-                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field in Affiliation Mappings');
                 }
             }
         }     
@@ -138,7 +138,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             if (this.isPrimaryAffiliationValidationOn() == true) {
                 if (string.valueOf(primaryAfflFieldDescribe.getType()) != 'Reference' || 
                     string.valueOf(primaryAfflFieldDescribe.getReferenceTo()).contains('Account') == false) {
-                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field in Affiliation Mappings');
                 }
             }
         }
@@ -155,7 +155,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
        
         if (accountRecTypeInfo == null) {
             if (this.isPrimaryAffiliationValidationOn() == true) {
-                throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                throw new ERR_ExceptionHandler.invalidRecordTypeInAffiliationMappingException('Invalid RecordType In Affiliation Mappings');
             } else {
                 return null;
             }

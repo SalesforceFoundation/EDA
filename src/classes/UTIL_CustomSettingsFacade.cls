@@ -241,7 +241,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
     **/
     public static List<Affl_Mappings__c> getPrimaryAfflMappings() {
-        if(primaryAfflMappings == null) {
+        if (primaryAfflMappings == null) {
             primaryAfflMappings = Affl_Mappings__c.getAll().values();
         }
         return primaryAfflMappings;
