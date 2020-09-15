@@ -4,9 +4,5 @@
         <members>Language</members>
         <name>Settings</name>
     </types>
-    <types>
-        <members>*</members>
-        <name>Translations</name>
-    </types>
     <version>48.0</version>
 </Package>
