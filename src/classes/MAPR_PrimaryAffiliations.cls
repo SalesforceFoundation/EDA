@@ -123,10 +123,10 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
         Schema.DescribeFieldResult primaryAfflFieldDescribe;
 
         try {
-            primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribe('Contact', afflMapping.hed__Primary_Affl_Field__c);
+            primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribe('Contact', afflMapping.Primary_Affl_Field__c);
         } catch (UTIL_Describe.SchemaDescribeException ex) {
             try{
-            primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribeByLabel('Contact', afflMapping.hed__Primary_Affl_Field__c);
+            primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribeByLabel('Contact', afflMapping.Primary_Affl_Field__c);
             } catch (UTIL_Describe.SchemaDescribeException exp) {
                 if (this.isPrimaryAffiliationValidationOn() == true) {
                     throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
@@ -144,12 +144,12 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
         }
 
         // Get the record type info by developer name
-        Schema.RecordTypeInfo accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', afflMapping.hed__Account_Record_Type__c);
+        Schema.RecordTypeInfo accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', afflMapping.Account_Record_Type__c);
 
 
         // If we don’t have a record type info, get the record type info by name
         if (accountRecTypeInfo == null) {
-            accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByName('Account', afflMapping.hed__Account_Record_Type__c);
+            accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByName('Account', afflMapping.Account_Record_Type__c);
         }
 
        
@@ -165,16 +165,16 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             if (primaryAfflFieldDescribe == null) {
                 return null;
             }
-            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
+            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
             return primaryAfflModel;
         }
 
         if (primaryAfflFieldDescribe == null) {
-            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
+            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
             return primaryAfflModel;
         }
 
-        MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, primaryAfflFieldDescribe, afflMapping.hed__Primary_Affl_Field__c, afflMapping.hed__Account_Record_Type__c);
+        MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
         
         return primaryAfflModel;
     }
