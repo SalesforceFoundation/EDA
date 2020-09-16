@@ -16,7 +16,7 @@ Verify that field values retain when Save button is clicked
     [Documentation]         Checks the program plan for nested plan requirements is not checked.
     ...                     Then updates the checkbox from unchecked to checked and validates the
     ...                     checkbox value is retained after save
-    [tags]                                      unstable        W-7961761
+    [tags]                                      unstable        W-7961761       rbt:high
     Verify nested plan requirements checkbox    false
     Click action button on EDA settings page    Edit
     Update nested plan requirements checkbox
