@@ -47,7 +47,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
         insert mappings;
     }
-
+    
     /**************************************************************************************************************************************
     * @description Inserts Affiliation mappings with RecordTypeDevName and PrimaryAffiliationFieldLabels
     ***************************************************************************************************************************************/
@@ -87,7 +87,7 @@ private class MAPR_PrimaryAffiliations_TEST {
     /**************************************************************************************************************************************
     * @description Inserts Affiliation mappings with RecordTypeName and inaccurate PrimaryAffiliationFieldLabels
     ***************************************************************************************************************************************/
-    static void insertAfflMappingsWithRecordTypeNameAndInaccuratePrimaryFieldLables() {
+   static void insertAfflMappingsWithRecordTypeNameAndInaccuratePrimaryFieldLables() {
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Wrong field Label1'));
@@ -193,7 +193,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         Test.startTest();
             MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
-
+        
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
         
@@ -203,15 +203,16 @@ private class MAPR_PrimaryAffiliations_TEST {
         System.assertEquals(prefix + 'Primary_Organization__c', primaryAfflModel.getContactFieldApiName());
         System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), primaryAfflModel.getAccountRecordTypeId());
 
-    }
 
+    }
+    
     /**************************************************************************************************************************************
     * @description Test method to verify that the getModelFromMapping method with 
     * RecordType Dev Name And Primary Field Label in Settings
     ***************************************************************************************************************************************/
     @isTest
-    private static void getModelFromMappingTestWithFieldLabel() {
-
+    private static void getModelFromMappingTestWithFieldLabelAndRecTypeDevName() {
+        
         MAPR_PrimaryAffiliations_TEST.insertAfflMappingsWithRecordTypeDevNameAndPrimaryFieldLables();
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
 
@@ -228,16 +229,16 @@ private class MAPR_PrimaryAffiliations_TEST {
         System.assertEquals('Primary Business Organization', primaryAfflModel.getSettingsContactFieldValue());
         System.assertEquals(prefix + 'Primary_Organization__c', primaryAfflModel.getContactFieldApiName());
         System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), primaryAfflModel.getAccountRecordTypeId());
-
+        
     }
-
+    
     /**************************************************************************************************************************************
     * @description Test method to verify that the getModelFromMapping method with 
     * RecordType Name And Primary Field Label in Settings
     ***************************************************************************************************************************************/
     @isTest
     private static void getModelFromMappingTestWithFieldLabelAndRecTypeName() {
-
+        
         MAPR_PrimaryAffiliations_TEST.insertAfflMappingsWithRecordTypeNameAndPrimaryFieldLables();
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
 
@@ -254,7 +255,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         System.assertEquals('Primary Business Organization', primaryAfflModel.getSettingsContactFieldValue());
         System.assertEquals(prefix + 'Primary_Organization__c', primaryAfflModel.getContactFieldApiName());
         System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), primaryAfflModel.getAccountRecordTypeId());
-
+        
     }
     
     /**************************************************************************************************************************************
@@ -268,7 +269,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = new STUB_PrimaryAffiliationValidationOn();
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
-
+        
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         try{
@@ -279,7 +280,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         } catch (ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException ex) {
             System.assert(ex.getMessage().contains('Invalid Contact Field in Affiliation Mappings'));
         }   
-
+        
     } 
     
     /**************************************************************************************************************************************
@@ -294,7 +295,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         insert mappings;
 
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = new STUB_PrimaryAffiliationValidationOn();
-
+        
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         try{
@@ -317,7 +318,7 @@ private class MAPR_PrimaryAffiliations_TEST {
 
         MAPR_PrimaryAffiliations_TEST.insertAfflMappingsWithInaccurateRecordTypeNameAndAccuratePrimaryFieldLables();
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = new STUB_PrimaryAffiliationValidationOn();
-
+        
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         try{
@@ -328,7 +329,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         } catch (ERR_ExceptionHandler.invalidRecordTypeInAffiliationMappingException ex) {
             System.assert(ex.getMessage().contains('Invalid RecordType In Affiliation Mappings'));
         }   
-
+        
     }
 
     /**************************************************************************************************************************************
@@ -344,9 +345,17 @@ private class MAPR_PrimaryAffiliations_TEST {
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         Test.startTest();
-            MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
+        MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
-        System.assert(primaryAfflModel == null);
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        
+        System.assert(primaryAfflModel != null);
+        System.assertEquals('Business Org test', primaryAfflModel.getAccountRecordTypeId());
+        System.assertEquals(prefix + 'Primary_Organization__c', primaryAfflModel.getContactFieldApiName());
+        System.assertEquals('Primary Business Organization', primaryAfflModel.getSettingsContactFieldValue());
+        System.assertEquals('Business Org test', primaryAfflModel.getSettingsRecordTypeFieldValue());
 
     }
     
@@ -363,7 +372,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         Test.startTest();
-            MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
+        MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
         System.assert(primaryAfflModel == null);
 
@@ -382,29 +391,26 @@ private class MAPR_PrimaryAffiliations_TEST {
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         Test.startTest();
-            MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
+        MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
+        System.assertEquals(null, primaryAfflModel);
 
-        System.assertEquals('Business Organization', primaryAfflModel.getSettingsRecordTypeFieldValue());
-        System.assertEquals('Wrong field Label1', primaryAfflModel.getSettingsContactFieldValue());
-        System.assertEquals('Wrong field Label1', primaryAfflModel.getContactFieldApiName());
-        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), primaryAfflModel.getAccountRecordTypeId());
 
     }
-
+    
     /**************************************************************************************************************************************
     * @description Test method to verify that the getModelsFromSettings method with 
     * duplicate Settings will filter duplicate models 
     ***************************************************************************************************************************************/
     @isTest
     private static void getModelsFromMappingsTestWithDevNameAndPrimaryFieldAPIsWithDuplicates() {
-
+        
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
+        
         MAPR_PrimaryAffiliations_TEST.insertAfflMappingsWithRecordTypeDevNameAndPrimaryFieldAPIs();
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
-
+        
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization duplicate', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
         insert mappings;
@@ -422,6 +428,7 @@ private class MAPR_PrimaryAffiliations_TEST {
     * @description Test method to verify that the getModelFromMapping method with 
     * Inaccurate RecordType Dev Name And accurate Primary Field Label in Settings when validation is off
     ***************************************************************************************************************************************/
+    /*
     @isTest
     private static void getModelsFromMappingsTestWithInaccurateRecordTypeAndValidationOff() {
 
@@ -431,13 +438,12 @@ private class MAPR_PrimaryAffiliations_TEST {
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         Test.startTest();
-            List<MODL_PrimaryAfflMapper> primaryAfflModels = maprPrimaryAfflInstance.getModelsFromMappings(primaryAfflMappings);
+        List<MODL_PrimaryAfflMapper> primaryAfflModels = maprPrimaryAfflInstance.getModelsFromMappings(primaryAfflMappings);
         Test.stopTest();
-
         System.assertEquals(0, primaryAfflModels.size());
 
     }
-
+*/
     /***************************************************************************************************************
     * STUB class which extends MAPR_PrimaryAffiliations, overrides isPrimaryAffiliationValidationOn
     */

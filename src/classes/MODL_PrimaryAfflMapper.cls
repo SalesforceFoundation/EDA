@@ -92,11 +92,11 @@ public class MODL_PrimaryAfflMapper {
     * 'Account Record Type' value from EDA Settings.
     * @return Account Record Type Id or 'Account Record Type' value from EDA Settings
     *******************************************************************************************************/ 
-    public Id getAccountRecordTypeId() {
+    public String getAccountRecordTypeId() {
         if (this.accRecordTypeId == null) {
             return this.accRecTypeValueFromSettings;
         }
-        return this.accRecordTypeId;
+        return (String)this.accRecordTypeId;
     }
 
     /*******************************************************************************************************

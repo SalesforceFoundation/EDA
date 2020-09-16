@@ -1,19 +1,16 @@
 /*
-    Copyright (c) 2014, Salesforce.org
+    Copyright (c) 2020, Salesforce.org
     All rights reserved.
-
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-
     * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+      notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
+      notice, this List of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
-
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -29,194 +26,147 @@
 */
 /**
 * @author Salesforce.org
-* @date 2015
-* @group Contacts
+* @date 2020
+* @group 
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description
-1) Creates Primary Affiliations when the user populates any of the Primary Affiliation lookup fields on the Contact object.
-2) Create Primary Affiliations when the user updates any of the Primary Affiliation lookup fields on Contact and 
-* resets the old Primary Affiliations to make them non-Primary.
-3) Makes the Primary Affiliations non-Primary when Primary Affiliation Lookup fields on the Contact are cleared.
+* @description Mapper class for CON_PrimaryLanguage_TDTM.
 */
-public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
+public virtual with sharing class MAPR_PrimaryAffiliations {
 
-    /*******************************************************************************************************
-    * @description Handles primary affiliation fields.
-    * @param listNew the list of Accounts from trigger new.
-    * @param listOld the list of Accounts from trigger old.
-    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    * @param objResult the describe for Accounts
-    * @return dmlWrapper.
-    ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
-    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+    /*********************************************
+    * @description Instance for Singleton Pattern
+    **********************************************/
+    @TestVisible
+    private static MAPR_PrimaryAffiliations instance;
 
-        if (newlist == null || newlist.isEmpty() == true) {
-            return new DmlWrapper();
+    /*****************************************************************************
+    * @description Static method to get the current instance for Singleton pattern
+    * @return The instance of MAPR_PrimaryAffiliations.
+    ******************************************************************************/
+    public static MAPR_PrimaryAffiliations getInstance() {
+        if (instance == null) {
+            instance = new MAPR_PrimaryAffiliations();
         }
 
-        UTIL_Describe.cacheDescribeSObjectResult(objResult);
-
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-            this.handleAfterInsert(newlist);
-        }
-
-        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            this.handleAfterUpdate(oldlist, newlist);
-        }
-
-        return new DmlWrapper();
-
+        return instance;
     }
 
-    /*******************************************************************************************************
-    * @description Returns the instance of MAPR_PrimaryAffiliations class
-    * @return The instance of MAPR_PrimaryAffiliations class
-    ********************************************************************************************************/
-    @TestVisible
-    private MAPR_PrimaryAffiliations locateAffiliationSettingMapper() {
-        return MAPR_PrimaryAffiliations.getInstance();
+    /*********************************************************************
+    * @description Empty constructor is not public for Singleton Pattern
+    **********************************************************************/
+    protected MAPR_PrimaryAffiliations() {}
+
+    /**************************************************************************************
+    * @description Returns the value of Affiliation_Record_Type_Enforced__c custom setting
+    * @return boolean
+    **************************************************************************************/
+    @testVisible
+    protected virtual boolean isPrimaryAffiliationValidationOn() {
+        return false;
     }
 
-    /*******************************************************************************************************
-    * @description Returns the instance of SRVC_Contact_PrimaryAffiliations class
-    * @return The instance of SRVC_Contact_PrimaryAffiliations class
-    ********************************************************************************************************/
-    @TestVisible
-    private SRVC_Contact_PrimaryAffiliations locateContactAffiliationService() {
-        return SRVC_Contact_PrimaryAffiliations.getInstance();
+    /**************************************************************************************
+    * @description Returns a list of Models for Affiliation mappings
+    * @return List<MODL_PrimaryAfflMapper>
+    **************************************************************************************/
+    public List<MODL_PrimaryAfflMapper> getModelsFromSettings() {
+        List<Affl_Mappings__c> afflMappingsFromSettingsList = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+        return getModelsFromMappings(afflMappingsFromSettingsList);
     }
 
-    @TestVisible
-    private boolean isAffiliationUpdateRecursion() {
-        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
+    /*********************************************************************************************************************
+    * @description Returns a list of Models for Affiliation mappings for a given list of Affl_Mappings__c custom settings
+    * @param afflMappingsList List of Affl_Mappings__c custom settings
+    * @return List<MODL_PrimaryAfflMapper> List of models for the given list of Affl_Mappings__c custom settings
+    *********************************************************************************************************************/
+    @testVisible
+    private List<MODL_PrimaryAfflMapper> getModelsFromMappings(List<Affl_Mappings__c> afflMappingsList) {
+
+       List<MODL_PrimaryAfflMapper> affiliationModelsList = new List<MODL_PrimaryAfflMapper>();
+       Set<String> contactFieldAPINamesSet = new Set<String>();
+       Set<Id> accountRecordTypeIdsSet = new Set<Id>();
+
+       for (Affl_Mappings__c mapping: afflMappingsList) {
+
+           MODL_PrimaryAfflMapper modelFromMapping = this.getModelFromMapping(mapping);
+
+           if (modelFromMapping == null) {
+               continue;
+           }
+
+           if ((contactFieldAPINamesSet.isEmpty() == false && contactFieldAPINamesSet.contains(modelFromMapping.getContactFieldApiName())) || 
+               (accountRecordTypeIdsSet.isEmpty() == false && accountRecordTypeIdsSet.contains(modelFromMapping.getAccountRecordTypeId()))) {
+               continue;
+           }
+
+           affiliationModelsList.add(modelFromMapping);
+           contactFieldAPINamesSet.add(modelFromMapping.getContactFieldApiName());
+           accountRecordTypeIdsSet.add(modelFromMapping.getAccountRecordTypeId());
+
+       }
+
+       return affiliationModelsList;
     }
 
-    @TestVisible
-    private void setAffiliationUpdateRecursion() {
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated, true);
-    }
+    /*****************************************************************************************************
+    * @description Returns a Model for a given Affl_Mappings__c record
+    * @param afflMapping An Affl_Mappings__c custom settings record
+    * @return MODL_PrimaryAfflMapper A model for given Affl_Mappings__c record
+    *****************************************************************************************************/
+    @testVisible
+    private MODL_PrimaryAfflMapper getModelFromMapping(Affl_Mappings__c afflMapping) {
 
-    @TestVisible
-    private void resetAffiliationUpdateRecursion() {
-        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated); 
-    }
+        List<MODL_PrimaryAfflMapper> primaryAfflModelsList = new List<MODL_PrimaryAfflMapper>();
+        Set<Affl_Mappings__c> afflMappingSet = new Set<Affl_Mappings__c>();
 
-    @TestVisible
-    private boolean isInsertRecursion() {
-        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert);
-    }
+        // Check if the Primary Affl Field an API name
+        Schema.DescribeFieldResult primaryAfflFieldDescribe;
 
-    @TestVisible
-    private void setInsertRecursion() {
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, true);
-    }
+        try {
+            primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribe('Contact', afflMapping.Primary_Affl_Field__c);
+        } catch (UTIL_Describe.SchemaDescribeException ex) {
+            try{
+                primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribeByLabel('Contact', afflMapping.Primary_Affl_Field__c);
+            } catch (UTIL_Describe.SchemaDescribeException exp) {
+                if (this.isPrimaryAffiliationValidationOn() == false) {
+                    return null;
+                }
+                throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field in Affiliation Mappings');
 
-    @TestVisible
-    private void unsetInsertRecursion() {
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, false);
-    }
-
-    @TestVisible
-    private boolean isUpdateRecursion() {
-        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM) || 
-            TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
-    }
-
-    @TestVisible
-    private void setUpdateRecursion() {
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, true);
-    }
-
-    @TestVisible
-    private void unsetUpdateRecursion() {
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, false);
-    }
-
-    /*******************************************************************************************************
-    * @description Returns if Contact Deletion Prevention custom setting is not enabled or
-    * Passes a map of contacts By Id to SRVC_Contact_PreventDeletion and returns a List of Contacts that have
-    * been prevented for deletion
-    * @param newSObjectList list of sObject records that are being deleted
-    * @return void
-    ********************************************************************************************************/
-    @TestVisible
-    private void handleAfterInsert(List<SObject> newSObjectList) {
-
-        if (this.isInsertRecursion() == true) {
-            return;
-        }
-
-        setInsertRecursion();
-
-        Map<Id, Contact> newContactById = new Map<Id, Contact>((List<Contact>)newSObjectList);
-
-        // Get Primary Affiliation Mapping Models from the Primary Affiliation Settings Mapper
-        List<MODL_PrimaryAfflMapper> primaryAffiliationModels = this.locateAffiliationSettingMapper().getModelsFromSettings();
-
-        // Get the Affiliation records to create from the Contact Primary Affiliation Service
-        List<Affiliation__c> affiliationsToInsert = this.locateContactAffiliationService().getAffiliationsToCreate(newContactById.values(), primaryAffiliationModels);
-
-        if (affiliationsToInsert.size() == 0) {
-            this.unsetInsertRecursion();
-            return;
-        }
-
-        this.setAffiliationUpdateRecursion();
-
-        DmlWrapper dmlWrapper = new DmlWrapper();
-        dmlWrapper.objectsToInsert.addAll((List<SObject>)affiliationsToInsert);
-        TDTM_TriggerHandler.processDML(dmlWrapper, true);
-        this.resetAffiliationUpdateRecursion();
-        this.unsetInsertRecursion();
-
-    }
-
-    /*******************************************************************************************************
-    * @description Returns if Contact Deletion Prevention custom setting is not enabled or
-    * Passes a map of contacts By Id to SRVC_Contact_PreventDeletion and returns a List of Contacts that have
-    * been prevented for deletion
-    * @param oldSObjectList list of sObject records that are being deleted
-    * @return List<Contact>
-    ********************************************************************************************************/
-    @TestVisible
-    private void handleAfterUpdate(List<SObject> oldSObjectList, List<SObject> newSObjectList) {
-
-        if (this.isUpdateRecursion() == true) {
-            return;
-        }
-
-        setUpdateRecursion(); 
-
-        Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>)oldSObjectList);
-        Map<Id, Contact> newContactById = new Map<Id, Contact>((List<Contact>)newSObjectList);
-
-        List<MODL_PrimaryAfflMapper> primaryAffiliationModels = this.locateAffiliationSettingMapper().getModelsFromSettings();
-
-        SRVC_Contact_PrimaryAffiliations.AffiliationsToInsertAndUpdate affiliationsToInsertAndUpdate = this.locateContactAffiliationService().getAffiliationsToCreateOrUpdate(newContactById, oldContactById, primaryAffiliationModels);
-        
-        DmlWrapper dmlWrapper = new DmlWrapper();
-
-        if (AffiliationsToInsertAndUpdate.getAffiliationListToUpdateClone().isEmpty() == false) {
-            this.setAffiliationUpdateRecursion();
-            dmlWrapper.objectsToUpdate.addAll((List<SObject>)(AffiliationsToInsertAndUpdate.getAffiliationListToUpdateClone()));
-        }
-
-        if (AffiliationsToInsertAndUpdate.getAffiliationListToinsertClone().isEmpty() == false) {
-            if (this.isAffiliationUpdateRecursion() == false) {
-                this.setAffiliationUpdateRecursion();
             }
+        }     
 
-            dmlWrapper.objectsToInsert.addAll((List<SObject>)(AffiliationsToInsertAndUpdate.getAffiliationListToInsertClone()));
-
+       if (primaryAfflFieldDescribe != null) {
+            if (this.isPrimaryAffiliationValidationOn() == true) {
+                if (string.valueOf(primaryAfflFieldDescribe.getType()) != 'Reference' || 
+                    string.valueOf(primaryAfflFieldDescribe.getReferenceTo()).contains('Account') == false) {
+                    throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field in Affiliation Mappings');
+                }
+            }
         }
 
-        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        // Get the record type info by developer name
+        Schema.RecordTypeInfo accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', afflMapping.Account_Record_Type__c);
 
-        if (this.isAffiliationUpdateRecursion() == true) {
-            resetAffiliationUpdateRecursion();
+        // If we don’t have a record type info, get the record type info by name
+        if (accountRecTypeInfo == null) {
+            accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByName('Account', afflMapping.Account_Record_Type__c);
         }
 
-        this.unsetUpdateRecursion();
+        if (accountRecTypeInfo == null) {
+            if (this.isPrimaryAffiliationValidationOn() == true) {
+                throw new ERR_ExceptionHandler.invalidRecordTypeInAffiliationMappingException('Invalid RecordType In Affiliation Mappings');
+            }
+        }
+
+        if (accountRecTypeInfo == null) {
+            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
+            return primaryAfflModel;
+        }
+
+        MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
+
+        return primaryAfflModel;
     }
+
 }
