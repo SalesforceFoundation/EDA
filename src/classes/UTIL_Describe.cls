@@ -80,7 +80,6 @@ public class UTIL_Describe {
 
         // make sure we have this field's schema mapped
         if (!fieldDescribesForObjectByLabel.containsKey(objectName) || !fieldDescribesForObjectByLabel.get(objectName).containsKey(fieldLabel)) {
-            //System.debug('%%%%%% inside first if');
             fillFieldMapsForObjectWithLabel(objectName, fieldLabel);
         }
 
@@ -92,7 +91,6 @@ public class UTIL_Describe {
     * Gets a field map for a new object/field pair
     *********************************************/
     private static void fillFieldMapsForObjectWithLabel(string objectName, string fieldLabel) {
-        //System.debug('%%%%%% inside fillFieldMapsForObjectWithLabel method');
         // get the object map the first time
         fillMapsForObject(objectName);
 
@@ -100,21 +98,15 @@ public class UTIL_Describe {
         if (!fieldTokensForLablel.containsKey(objectName)) {
             fieldTokensForLablel.put(objectName, objectDescribes.get(objectName).fields.getMap());
             fieldDescribesForObjectByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
-            //System.debug('%%%%%% after map put');
         }
        
-        //System.debug('&&&'+fieldDescribesForObjectByLabel.get(objectName));
         if (!fieldDescribesForObjectByLabel.get(objectName).containsKey(fieldLabel)) {
             List<SObjectField> contactFieldList = new List<SObjectField>();
             contactFieldList.addAll(objectDescribes.get(objectName).fields.getMap().values());
-            //System.debug('%%%% contactFieldList'+contactFieldList);
             Map<String, String> fieldNamesByLabel = getFieldNamesByLabel(contactFieldList);
-            //System.debug('%%%% fieldNamesByLabel'+JSON.serializePretty(fieldNamesByLabel));
             String fieldName = fieldNamesByLabel.get(fieldLabel);
-            //System.debug('%%%% fieldName'+fieldName);
             if (fieldName != null && fieldTokens.get(objectName).containsKey(fieldName)) {
                Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
-               //System.debug('%%%% dfr'+dfr);
                fieldDescribesForObjectByLabel.get(objectName).put(fieldLabel, dfr);
             } else {
                  throw new SchemaDescribeException('Invalid field Label \'' + fieldLabel + '\'');
@@ -763,12 +755,8 @@ public class UTIL_Describe {
      * @return Schema.RecordTypeInfo The RecordTypeInfo for a given recordTypedevName, object
      */
     public static Schema.RecordTypeInfo getRecordTypeInfoByDeveloperName(String objectName, String recordTypeDevName) {
-        //System.debug('@@@@@@@@@ objectName'+objectName);
-        //System.debug('@@@@@@@@@ recordTypeDevName'+recordTypeDevName);
         if (recordTypeInfoByDeveloperName.get(recordTypedevName) == null) {
-            
-            //System.debug('@@@@@@@@@ inside if');
-
+     
             // Get the Describe Result
             fillMapsForObject(objectName);
             Schema.DescribeSObjectResult obj = objectDescribes.get(objectName);
@@ -780,7 +768,6 @@ public class UTIL_Describe {
 
             try {
                 results = Database.query(soql);
-                //System.debug('@@@@@@@@@ results'+results);
             } catch (Exception ex) {
                 results = new List<SObject>();
             }
@@ -794,7 +781,6 @@ public class UTIL_Describe {
                 if (!Test.isRunningTest()) {
                     if (recordTypeInfos.get(rt.Id).isAvailable()) {
                         recordTypeInfoByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
-                        //System.debug('@@@@@@@@@ recordTypeInfoByDeveloperName'+recordTypeInfoByDeveloperName);
                     }
                 // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
                 // might fail just because the user running them does not have certain record types assigned.
@@ -854,7 +840,6 @@ public class UTIL_Describe {
             }
 
         }
- //System.debug('##### inside recordTypeInfoByName final'+recordTypeInfoByName);
         return recordTypeInfoByName.get(recordTypeName);
     }
 

@@ -128,9 +128,11 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             try{
                 primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribeByLabel('Contact', afflMapping.Primary_Affl_Field__c);
             } catch (UTIL_Describe.SchemaDescribeException exp) {
-                if (this.isPrimaryAffiliationValidationOn() == true) {
-                    throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field in Affiliation Mappings');
+                if (this.isPrimaryAffiliationValidationOn() == false) {
+                    return null;
                 }
+                throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field in Affiliation Mappings');
+
             }
         }     
 
@@ -146,36 +148,24 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
         // Get the record type info by developer name
         Schema.RecordTypeInfo accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', afflMapping.Account_Record_Type__c);
 
-
         // If we don’t have a record type info, get the record type info by name
         if (accountRecTypeInfo == null) {
             accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByName('Account', afflMapping.Account_Record_Type__c);
         }
 
-       
         if (accountRecTypeInfo == null) {
             if (this.isPrimaryAffiliationValidationOn() == true) {
                 throw new ERR_ExceptionHandler.invalidRecordTypeInAffiliationMappingException('Invalid RecordType In Affiliation Mappings');
-            } else {
-                return null;
             }
         }
 
         if (accountRecTypeInfo == null) {
-            if (primaryAfflFieldDescribe == null) {
-                return null;
-            }
             MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
             return primaryAfflModel;
         }
 
-        if (primaryAfflFieldDescribe == null) {
-            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
-            return primaryAfflModel;
-        }
-
         MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
-        
+
         return primaryAfflModel;
     }
 

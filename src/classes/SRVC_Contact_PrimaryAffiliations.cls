@@ -56,6 +56,10 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     **********************************************************************/
     protected SRVC_Contact_PrimaryAffiliations() {}
 
+    @TestVisible
+    private boolean shouldCreateAffiliationsForUpdate() {
+        return !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);
+    }
     /************************************************************************
     * @description Returns a list of Affiliations to create for the Contacts
     * @Param contactList List of Contacts to create Affiliations for
@@ -88,10 +92,15 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                     afflToCreate.Contact__c = contact.ID;
                     afflToCreate.Account__c = (Id)contact.get(eachModel.getContactFieldApiName());
                     afflToCreate.Primary__c = true;
-                } catch (Exception e) {
+                } catch (System.SObjectException sObjExc) {
                     // illegal assignment exp
                     // find another exception if you were to assign id to boolean
-                    Contact.addError(e.getMessage());
+                    Contact.addError(sObjExc.getMessage());
+                    throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field In Affiliation Mappings');
+                } catch (System.TypeException typeExc) {
+                    // illegal assignment exp
+                    // find another exception if you were to assign id to boolean
+                    Contact.addError(typeExc.getMessage());
                     throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field In Affiliation Mappings');
                 }
                 affiliationsToCreateForEachContactList.add(afflToCreate);
@@ -108,16 +117,22 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     * @Param afflMappingsModelsList List of Primary Affiliations Models
     ************************************************************************/
     public AffiliationsToInsertAndUpdate getAffiliationsToCreateOrUpdate(Map<Id, Contact> newContactsById, Map<Id, Contact> oldContactsById, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
-
+         
         List<Affiliation__c> afflToBeAddedList = new List<Affiliation__c>();
         Map<Id, Set<Id>> accountIdsSetByContactId = new Map<Id, Set<Id>>();
         Set<Id> accountIdSet = new Set<Id>();
-
+        Boolean shouldCreateAffiliatons = this.shouldCreateAffiliationsForUpdate();
+        
         for (Contact newContact: newContactsById.values()) {
-            AffiliationsToProcess afflsToProcess = this.getAffiliationsToCreateOrUpdateForContact(newContact, oldContactsById.get(newContact.Id), afflMappingsModelsList);
-              // new add method to add to existing list, create a new list and use value object at end. transient list and constructors
-            //  add affiliations to affiliationsToInsert list
-            this.addAffiliationsToInsert(afflToBeAddedList, afflsToProcess.getAffiliationListToInsertClone());
+            AffiliationsToProcess afflsToProcess;
+            if (shouldCreateAffiliatons == true) {
+                afflsToProcess = this.getAffiliationsToCreateOrUpdateForContact(newContact, oldContactsById.get(newContact.Id), afflMappingsModelsList);
+                // new add method to add to existing list, create a new list and use value object at end. transient list and constructors
+                //  add affiliations to affiliationsToInsert list
+                this.addAffiliationsToInsert(afflToBeAddedList, afflsToProcess.getAffiliationListToInsertClone());
+            } else {
+                afflsToProcess = this.getAffiliationsToUpdateForContact(newContact, oldContactsById.get(newContact.Id), afflMappingsModelsList);
+            }
 
             if (afflsToProcess.getAccountIdSet().isEmpty() == false) {
                 accountIdsSetByContactId.put(newContact.Id, afflsToProcess.getAccountIdSet());
@@ -147,10 +162,10 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     ************************************************************************/
     @TestVisible 
     Private AffiliationsToProcess getAffiliationsToCreateOrUpdateForContact(Contact newContact, Contact oldContact, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
-
+        
         List<Affiliation__c> affiliationsToCreateForEachContactList = new List<Affiliation__c>();
         Set<Id> accountIds = new Set<Id>();
-
+       
         try{
             for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
 
@@ -160,12 +175,16 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 if ((oldContact.get(eachModel.getContactFieldApiName()) == null && newContact.get(eachModel.getContactFieldApiName()) != null) || 
                     (oldContact.get(eachModel.getContactFieldApiName()) != newContact.get(eachModel.getContactFieldApiName()))) {
                      Affiliation__c afflToCreate = new Affiliation__c();
+                     afflToCreate.Contact__c = newContact.ID;  
+                     afflToCreate.Primary__c = true;
                      try {
-                         afflToCreate.Contact__c = newContact.ID;
+                         // add affiliation in single line 
                          afflToCreate.Account__c = (Id)newContact.get(eachModel.getContactFieldApiName());
-                         afflToCreate.Primary__c = true;
-                     } catch (Exception e) {
-                        newContact.addError(e.getMessage());
+                     } catch (System.SObjectException sObjExc) {
+                        newContact.addError(sObjExc.getMessage());
+                        throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field In Affiliation Mappings');
+                    } catch (System.TypeException typeExc) {
+                        newContact.addError(typeExc.getMessage());
                         throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field In Affiliation Mappings');
                     }
                     affiliationsToCreateForEachContactList.add(afflToCreate);
@@ -184,6 +203,28 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         return AfflsToProcess;
     }
 
+    @TestVisible 
+    Private AffiliationsToProcess getAffiliationsToUpdateForContact(Contact newContact, Contact oldContact, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
+        
+        List<Affiliation__c> affiliationsToCreateForEachContactList = new List<Affiliation__c>();
+        Set<Id> accountIds = new Set<Id>();
+     
+
+        for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
+            
+            if (newContact.get(eachModel.getContactFieldApiName()) == oldContact.get(eachModel.getContactFieldApiName())) {
+                continue;
+            }
+
+            if (oldContact.get(eachModel.getContactFieldApiName()) != null && newContact.get(eachModel.getContactFieldApiName()) == null) {
+                accountIds.add((Id)oldContact.get(eachModel.getContactFieldApiName()));
+            }
+        }
+        
+
+        AffiliationsToProcess AfflsToProcess = new AffiliationsToProcess(affiliationsToCreateForEachContactList, accountIds);
+        return AfflsToProcess;
+    }
     /***************************************************************************
     * @description Returns a list of Affiliations to be updated
     * @Param contactIdsByAccountIdSets A map of all Accounts Ids by ContactId

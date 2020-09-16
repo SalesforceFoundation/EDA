@@ -119,7 +119,8 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 
     @TestVisible
     private boolean isUpdateRecursion() {
-        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM);
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM) || 
+            TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
     }
 
     @TestVisible
@@ -130,11 +131,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     @TestVisible
     private void unsetUpdateRecursion() {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, false);
-    }
-    
-    @TestVisible
-    private boolean isAffiliationMadePrimary() {
-        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);
     }
 
     /*******************************************************************************************************
@@ -186,10 +182,10 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     @TestVisible
     private void handleAfterUpdate(List<SObject> oldSObjectList, List<SObject> newSObjectList) {
 
-        if (this.isUpdateRecursion() == true || this.isAffiliationUpdateRecursion() == true) {
+        if (this.isUpdateRecursion() == true) {
             return;
         }
-    
+
         setUpdateRecursion(); 
 
         Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>)oldSObjectList);
@@ -210,9 +206,9 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             if (this.isAffiliationUpdateRecursion() == false) {
                 this.setAffiliationUpdateRecursion();
             }
-            if (this.isAffiliationMadePrimary() == false) {
-                dmlWrapper.objectsToInsert.addAll((List<SObject>)(AffiliationsToInsertAndUpdate.getAffiliationListToInsertClone()));
-            }
+
+            dmlWrapper.objectsToInsert.addAll((List<SObject>)(AffiliationsToInsertAndUpdate.getAffiliationListToInsertClone()));
+
         }
 
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
