@@ -61,7 +61,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     * @return boolean
     **************************************************************************************/
     @testVisible
-    private boolean isPrimaryAffiliationValidationOn() {
+    protected virtual boolean isPrimaryAffiliationValidationOn() {
         return false;
     }
 
