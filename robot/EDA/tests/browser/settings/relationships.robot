@@ -14,7 +14,7 @@ Verify relationship settings can retain values on save
     [Documentation]         Checks the values of 'Reciprocal Method' and 'Allow auto-created
     ...                     duplicate relations' are retained after making an update to their values
     ...                     and click on save button
-    [tags]                    unstable        W-7989099
+    [tags]                    unstable        W-7989099     rbt:high
     Update reciprocal method value      Reciprocal Method=List Setting
     Update checkbox value       Allow Auto-Created Duplicate Relations=false
     Verify dropdown value       Reciprocal Method=List Setting

@@ -17,7 +17,7 @@ Verify backfill settings error message when course connections is unchecked
     ...                     warning message banner is displayed in the backfill tab. Verifies the
     ...                     checkbox "I understand and am ready to run backfill" is not checked.
     ...                     Checks the button "Run Backfill" is not active.
-    [tags]                                      unstable        W-041785
+    [tags]                                      unstable        W-041785        rbt:high
     Verify enable course connections            false
     Select course connections subtab            Backfill
     Verify backfill warning                     true
