@@ -34,7 +34,9 @@
 @isTest
 private class MODL_PrimaryAfflMapper_TEST {
 
-    /* Tests MODL_PrimaryAfflMapper with all the four Parameters */
+    /*********************************************************************** 
+    * @descriptionTests MODL_PrimaryAfflMapper with all the four Parameters 
+    ************************************************************************/
     @isTest
     static void constructorWithAllParametersTest() {
 
@@ -59,7 +61,9 @@ private class MODL_PrimaryAfflMapper_TEST {
 
     }
 
-    /* Tests MODL_PrimaryAfflMapper with ContactDescribeFieldResult and Mapping Settings Parameters */
+    /***********************************************************************************************************************  
+    *Tests MODL_PrimaryAfflMapper with ContactDescribeFieldResult, Mapping Settings Parameters and no Schema.RecordTypeInfo 
+    ************************************************************************************************************************/
     @isTest
     static void  constructorWithContactDescribeFieldResultTest() {
 
@@ -76,14 +80,16 @@ private class MODL_PrimaryAfflMapper_TEST {
             MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c);
         Test.stopTest();
 
-        //System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getAccountRecordTypeId());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getAccountRecordTypeId());
         System.assertEquals(prefix + 'Primary_Organization__c', conPrimayAfflModl.getContactFieldApiName());
         System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getSettingsContactFieldValue());
         System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getSettingsRecordTypeFieldValue());
 
     }
 
-    /* Tests MODL_PrimaryAfflMapper with Schema.RecordTypeInfo and Mapping Settings Parameters */
+    /***********************************************************************************************************************  
+    Tests MODL_PrimaryAfflMapper with Schema.RecordTypeInfo, Mapping Settings Parameters and no ContactDescribeFieldResult 
+    ************************************************************************************************************************/
     @isTest
     static void  constructorWithRecordTypeInfoTest() {
 

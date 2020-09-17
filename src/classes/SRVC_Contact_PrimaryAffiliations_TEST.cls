@@ -60,10 +60,36 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     }
     
     /**************************************************************************************************************************
+    * @description Test method for shouldCreateAffiliationsForUpdate()
+    ***************************************************************************************************************************/
+    @isTest
+    private static void shouldCreateAffiliationsForUpdateFalseTest() {
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
+        Test.startTest();
+            Boolean shouldCreateAffiliations = SRVC_Contact_PrimaryAffiliations.getInstance().shouldCreateAffiliationsForUpdate();
+        Test.stopTest();
+        
+        System.assertEquals(false, shouldCreateAffiliations);
+    }
+    
+    /**************************************************************************************************************************
+    * @description Test method for shouldCreateAffiliationsForUpdate()
+    ***************************************************************************************************************************/
+    @isTest
+    private static void shouldCreateAffiliationsForUpdateTrueTest() {
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        Test.startTest();
+            Boolean shouldCreateAffiliations = SRVC_Contact_PrimaryAffiliations.getInstance().shouldCreateAffiliationsForUpdate();
+        Test.stopTest();
+        
+        System.assertEquals(true, shouldCreateAffiliations);
+    }
+
+    /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreate() returns list of affiliations to create
     ***************************************************************************************************************************/
     @isTest
-    private static void getAffiliationsToCreateTestPositive() {
+    private static void getAffiliationsToCreatePositiveTest() {
         
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -94,10 +120,78 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     }
     
     /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreate() returns empty list of affiliations to create
+    * when Primary Affiliaton field's value is null
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateNegativeTestWithNULL() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        contact1.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        
+        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
+        contact2.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        
+        List<Contact> contactList = new List<Contact> {contact1, contact2};
+        
+        Test.startTest();
+            List<Affiliation__c> affiliationsToCreate = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreate(contactList, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+        
+        System.assertEquals(0, affiliationsToCreate.size());
+        
+    }
+    
+        /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreate() returns empty list of affiliations to create
+    * when Primary Affiliaton field's value is null
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateNegativeTestWithTypeException() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Birthdate'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        contact1.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        contact1.Birthdate = System.today();
+        
+        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
+        contact2.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        contact2.Birthdate = System.today();
+        
+        List<Contact> contactList = new List<Contact> {contact1, contact2};
+        
+        Test.startTest();
+            List<Affiliation__c> affiliationsToCreate = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreate(contactList, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+        
+        System.assertEquals(0, affiliationsToCreate.size());
+        
+    }
+    
+    /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreate() returns list of affiliations to create
     ***************************************************************************************************************************/
     @isTest
-    private static void getAffiliationsToCreateForContactTestPositive() {
+    private static void getAffiliationsToCreateForContactPositiveTest() {
         
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -125,16 +219,16 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify getAffiliationsToCreate() returns list of affiliations to create
+    * @description Test method to verify getAffiliationsToCreate() returns empty list of affiliations to create
+    * when Primary Affiliation field's value is null
     ***************************************************************************************************************************/
- 
     @isTest
-    private static void getAffiliationsToCreateForContactNegativeTestWithSObjectException() {
+    private static void getAffiliationsToCreateForContactNegativeTest() {
         
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
         
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>(); // change Primary_Affl_Field__c to boolean, date, int
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
         mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
         insert mappings;
@@ -143,7 +237,34 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         
         Contact contact1 = UTIL_UnitTestData_TEST.getContact();
         contact1.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+       
+        Test.startTest();
+            List<Affiliation__c> affiliationsToCreate = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateForContact(contact1, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+
+        System.assertEquals(0, affiliationsToCreate.size());
+    }
+    
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreate() returns empty list when encountering a type exception
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateForContactNegativeTestWithTypeException() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>(); // change Primary_Affl_Field__c to boolean, date, int
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Birthdate'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        contact1.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
         contact1.Primary_Organization__c = businesssAccount.Id;
+        contact1.Birthdate = System.today();
        
         Test.startTest();
             List<Affiliation__c> affiliationsToCreate = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateForContact(contact1, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
@@ -152,12 +273,47 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         System.assertEquals(0, affiliationsToCreate.size());
 
     }
-   
+    
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreate() returns empty list when encountering a String exception
+    ***************************************************************************************************************************/
     @isTest
-    private static void getAffiliationsToCreateOrUpdateBulkPositiveTest() {
+    private static void getAffiliationsToCreateForContactNegativeTestWithStringException() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>(); // change Primary_Affl_Field__c to boolean, date, int
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Email'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        contact1.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        contact1.Primary_Organization__c = businesssAccount.Id;
+        contact1.Email = 'Test@sf.com';
+       
+        Test.startTest();
+            List<Affiliation__c> affiliationsToCreate = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateForContact(contact1, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+
+        System.assertEquals(0, affiliationsToCreate.size());
+
+    }
+    
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdate() returns affiliations to insert when 
+    * ShouldCreateAffiliatons is true
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateTestWithShouldCreateAffiliatonsTrue() {
 
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
         
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
@@ -172,7 +328,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         Contact oldContact2 = UTIL_UnitTestData_TEST.getContact();
         oldContact2.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
         
-        List<Contact> oldContactList = new List<Contact> {oldContact1, oldContact2};
+        Contact oldContact3 = UTIL_UnitTestData_TEST.getContact();
+        oldContact3.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        oldContact3.Primary_Organization__c = businesssAccount.Id;
+        
+        List<Contact> oldContactList = new List<Contact> {oldContact1, oldContact2, oldContact3};
 
         Map<Id, Contact> oldContactMap = new Map<Id, Contact>(oldContactList);
 
@@ -182,7 +342,10 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         Contact newContact2 = oldContact2.clone(true);
         newContact2.Primary_Organization__c = businesssAccount.Id;
         
-        List<Contact> newContactList = new List<Contact> {newContact1, newContact2};
+        Contact newContact3 = oldContact3.clone(true);
+        newContact3.Primary_Organization__c = null;
+        
+        List<Contact> newContactList = new List<Contact> {newContact1, newContact2, newContact3};
         
         Map<Id, Contact> newContactMap = new Map<Id, Contact>(newContactList);
         
@@ -191,7 +354,388 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         Test.stopTest();
         
         System.assertEquals(2, afflsToInsertUpdate.getAffiliationListToInsertClone().size());
-        System.assertEquals(0, afflsToInsertUpdate.getAffiliationListToUpdateClone().size());
+        // System.assertEquals(1, afflsToInsertUpdate.getAffiliationListToUpdateClone().size()); can not test for this as it performs soql
 
     }
+    
+    /*****************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdate() returns affiliations to insert when Contact's
+    * Primary Affiliaton field is populated in an update
+    ******************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsert() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+        
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact oldContact = UTIL_UnitTestData_TEST.getContact();
+        oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+        Contact newContact = oldContact.clone(true);
+        newContact.Primary_Organization__c = businesssAccount.Id;
+
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+        
+        System.assertEquals(1, afflsToProcess.getAffiliationListToInsertClone().size());
+        System.assertEquals(0, afflsToProcess.getAccountIdSet().size());
+        
+    }
+    
+    /*****************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdate() returns affiliations to insert when Contact's
+    * Primary Affiliaton field is updated
+    ******************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsertWhenPrimaryFiledIsChanged() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+        
+        Account businesssAccount1 = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account businesssAccount2 = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact oldContact = UTIL_UnitTestData_TEST.getContact();
+        oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        oldContact.Primary_Organization__c = businesssAccount1.Id;
+
+        Contact newContact = oldContact.clone(true);
+        newContact.Primary_Organization__c = businesssAccount2.Id;
+
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+        
+        System.assertEquals(1, afflsToProcess.getAffiliationListToInsertClone().size());        
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdateForContact() returns null
+    * when String exception is encountered
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateForContactTestForInsertWithStringException() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Email'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+        
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact oldContact = UTIL_UnitTestData_TEST.getContact();
+        oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+        Contact newContact = oldContact.clone(true);
+        newContact.Email = 'test@sf.com';
+
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+        
+        System.assertEquals(null, afflsToProcess.affiliationsToInsertList);
+        System.assertEquals(null, afflsToProcess.accountIdSet);
+        
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdateForContact() returns null
+    * when type exception is encountered
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateForContactTestForInsertWithTypeException() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Birthdate'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+        
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact oldContact = UTIL_UnitTestData_TEST.getContact();
+        oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+        Contact newContact = oldContact.clone(true);
+        newContact.Birthdate = System.today();
+
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+        
+        System.assertEquals(null, afflsToProcess.affiliationsToInsertList);
+        System.assertEquals(null, afflsToProcess.accountIdSet);
+        
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdateForContact() clears Primary Field on Affiliaton
+    * when Primary Affiliation field is cleared on Contact
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateForContactTestWithForUpdate() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact oldContact = UTIL_UnitTestData_TEST.getContact();
+        oldContact.Primary_Organization__c = businesssAccount.Id;
+        oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+        Contact newContact = oldContact.clone(true);
+        newContact.Primary_Organization__c = null;
+
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+
+        System.assertEquals(0, afflsToProcess.getAffiliationListToInsertClone().size());
+        System.assertEquals(1, afflsToProcess.getAccountIdSet().size());
+        
+    }
+    
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToUpdateForContact() doesn't update Priamry check box when there is
+    * no change in Primary Affiliation's field on Contact
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToUpdateForContactTest() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact oldContact = UTIL_UnitTestData_TEST.getContact();
+        oldContact.Primary_Organization__c = businesssAccount.Id;
+        oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+        Contact newContact = oldContact.clone(true);
+
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+
+        System.assertEquals(true, afflsToProcess.accountIdSet.isEmpty());
+        
+    }
+    
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToUpdateForContact() updates Primary check box when there is
+    * Primary Affiliation's field on Contact is cleared
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToUpdateForContactTestWhenPrimaryFieldIsCleared() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact oldContact = UTIL_UnitTestData_TEST.getContact();
+        oldContact.Primary_Organization__c = businesssAccount.Id;
+        oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+
+        Contact newContact = oldContact.clone(true);
+        newContact.Primary_Organization__c = null;
+            
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+
+        System.assertEquals(1, afflsToProcess.accountIdSet.size());
+        
+    }
+    
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdate() using DML return Affiliatons to update when 
+    * Primary Affiliation field is cleared on Contact
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateTestForUpdateUsingDML() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+        
+        Account businesssAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businesssAccount;
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        testContact.Primary_Organization__c = businesssAccount.Id;
+        
+        List<contact> contactList = new List<contact>();
+        contactList.add(testContact);
+        insert contactList;
+        
+        Contact newContact = testContact.clone(true);
+        newContact.Primary_Organization__c = null;
+
+        List<contact> newContactList = new List<contact>();
+        newContactList.add(newContact);
+        
+        list<Affiliation__c> affliations = [SELECT Id, Primary__c, Contact__c, Account__c From Affiliation__c];
+        
+        System.assertEquals(1, affliations.size());
+        System.assertEquals(true, affliations[0].Primary__c);
+        System.assertEquals(businesssAccount.Id, affliations[0].Account__c);
+        System.assertEquals(testContact.Id, affliations[0].Contact__c);
+        
+        Map<Id, Contact> contactById = new Map<Id, Contact>(contactList);
+        Map<Id, Contact> newContactById = new Map<Id, Contact>(newContactList);
+            
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToInsertAndUpdate afflsToInsertUpdate = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdate(newContactById, contactById, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+        
+       System.assertEquals(1, afflsToInsertUpdate.getAffiliationListToUpdateClone().size());
+       System.assertEquals(0, afflsToInsertUpdate.getAffiliationListToInsertClone().size());
+
+    }
+    
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdateForContact() using DML return Affiliatons to update
+    * when Primary Affiliation field is cleared on Contact
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateForContactTestForUpdateUsingDML() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+        
+        Account businesssAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businesssAccount;
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        testContact.Primary_Organization__c = businesssAccount.Id;
+
+        insert testContact;
+        
+        Contact newContact = testContact.clone(true);
+        newContact.Primary_Organization__c = null;
+        
+        list<Affiliation__c> affliations = [SELECT Id, Primary__c, Contact__c, Account__c From Affiliation__c];
+        
+        System.assertEquals(1, affliations.size());
+        System.assertEquals(true, affliations[0].Primary__c);
+        System.assertEquals(businesssAccount.Id, affliations[0].Account__c);
+        System.assertEquals(testContact.Id, affliations[0].Contact__c);
+            
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, testContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+        Test.stopTest();
+        
+       System.assertEquals(1, afflsToProcess.getAccountIdSet().size());
+       System.assertEquals(0, afflsToProcess.getAffiliationListToInsertClone().size());
+
+    }
+    
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToUpdateMethod() using DML to update Affiliations
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToUpdateMethodTest() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
+        insert mappings;
+        
+        Account businesssAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businesssAccount;
+        
+        Set<Id> accIdSet = new Set<Id>();
+        accIdSet.add(businesssAccount.Id);
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        testContact.Primary_Organization__c = businesssAccount.Id;
+
+        insert testContact;
+        
+        List<Affiliation__c> affliations = [SELECT Id, Primary__c, Contact__c, Account__c From Affiliation__c];
+        
+        System.assertEquals(1, affliations.size());
+        System.assertEquals(true, affliations[0].Primary__c);
+        System.assertEquals(businesssAccount.Id, affliations[0].Account__c);
+        System.assertEquals(testContact.Id, affliations[0].Contact__c);
+        
+        Map<Id, Set<Id>> accountIdsByContactIdSets = new Map<Id, Set<Id>>();
+        accountIdsByContactIdSets.put(testContact.Id, accIdSet);
+            
+        Test.startTest();
+            List<Affiliation__c> afflsToMakeNonPrimary = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToUpdate(accountIdsByContactIdSets, accIdSet);
+        Test.stopTest();
+        
+        System.assertEquals(affliations[0].Id, afflsToMakeNonPrimary[0].Id);
+        System.assertEquals(false, afflsToMakeNonPrimary[0].Primary__c);
+        System.assertEquals(businesssAccount.Id, afflsToMakeNonPrimary[0].Account__c);
+        System.assertEquals(testContact.Id, afflsToMakeNonPrimary[0].Contact__c);
+    }     
 }

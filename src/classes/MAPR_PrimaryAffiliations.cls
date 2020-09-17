@@ -62,7 +62,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     **************************************************************************************/
     @testVisible
     protected virtual boolean isPrimaryAffiliationValidationOn() {
-        return false;
+        return UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c;
     }
 
     /**************************************************************************************
@@ -84,18 +84,17 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
 
        List<MODL_PrimaryAfflMapper> affiliationModelsList = new List<MODL_PrimaryAfflMapper>();
        Set<String> contactFieldAPINamesSet = new Set<String>();
-       Set<Id> accountRecordTypeIdsSet = new Set<Id>();
+       Set<String> accountRecordTypeIdsSet = new Set<String>();
 
        for (Affl_Mappings__c mapping: afflMappingsList) {
 
            MODL_PrimaryAfflMapper modelFromMapping = this.getModelFromMapping(mapping);
-
            if (modelFromMapping == null) {
                continue;
            }
 
            if ((contactFieldAPINamesSet.isEmpty() == false && contactFieldAPINamesSet.contains(modelFromMapping.getContactFieldApiName())) || 
-               (accountRecordTypeIdsSet.isEmpty() == false && accountRecordTypeIdsSet.contains(modelFromMapping.getAccountRecordTypeId()))) {
+               (accountRecordTypeIdsSet.isEmpty() == false && accountRecordTypeIdsSet.contains(modelFromMapping.getAccountRecordTypeId()))) {      
                continue;
            }
 
@@ -104,7 +103,6 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
            accountRecordTypeIdsSet.add(modelFromMapping.getAccountRecordTypeId());
 
        }
-
        return affiliationModelsList;
     }
 
@@ -131,7 +129,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
                 if (this.isPrimaryAffiliationValidationOn() == false) {
                     return null;
                 }
-                throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field in Affiliation Mappings');
+                throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
 
             }
         }     
@@ -140,7 +138,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             if (this.isPrimaryAffiliationValidationOn() == true) {
                 if (string.valueOf(primaryAfflFieldDescribe.getType()) != 'Reference' || 
                     string.valueOf(primaryAfflFieldDescribe.getReferenceTo()).contains('Account') == false) {
-                    throw new ERR_ExceptionHandler.invalidContactFieldInAffiliationMappingException('Invalid Contact Field in Affiliation Mappings');
+                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
                 }
             }
         }
@@ -155,12 +153,12 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
 
         if (accountRecTypeInfo == null) {
             if (this.isPrimaryAffiliationValidationOn() == true) {
-                throw new ERR_ExceptionHandler.invalidRecordTypeInAffiliationMappingException('Invalid RecordType In Affiliation Mappings');
+                throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
             }
         }
 
         if (accountRecTypeInfo == null) {
-            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);
+            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);       
             return primaryAfflModel;
         }
 
