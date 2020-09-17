@@ -122,7 +122,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         Map<Id, Set<Id>> accountIdsSetByContactId = new Map<Id, Set<Id>>();
         Set<Id> accountIdSet = new Set<Id>();
         Boolean shouldCreateAffiliatons = this.shouldCreateAffiliationsForUpdate();
-        
+
         for (Contact newContact: newContactsById.values()) {
             AffiliationsToProcess afflsToProcess;
             if (shouldCreateAffiliatons == true) {
@@ -153,10 +153,10 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     ************************************************************************/
     @TestVisible 
     Private AffiliationsToProcess getAffiliationsToCreateOrUpdateForContact(Contact newContact, Contact oldContact, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
-        
+
         List<Affiliation__c> affiliationsToCreateForEachContactList = new List<Affiliation__c>();
         Set<Id> accountIds = new Set<Id>();
-       
+
         try{
             for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
 
@@ -199,12 +199,12 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     ************************************************************************/
     @TestVisible 
     Private AffiliationsToProcess getAffiliationsToUpdateForContact(Contact newContact, Contact oldContact, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
-        
+
         List<Affiliation__c> affiliationsToCreateForEachContactList = new List<Affiliation__c>();
         Set<Id> accountIds = new Set<Id>();
 
         for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
-            
+
             if (newContact.get(eachModel.getContactFieldApiName()) == oldContact.get(eachModel.getContactFieldApiName())) {
                 continue;
             }
@@ -279,7 +279,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     * and a list of existing Affiliation records to be updated.
     ************************************************************************************************************/
     public class AffiliationsToProcess {
-        
+
         @testVisible
         private List<Affiliation__c> affiliationsToInsertList;
 
@@ -300,7 +300,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         public Set<Id> getAccountIdSet() {
             return accountIdSet.clone();
         }
-        
+
     }
 
 }

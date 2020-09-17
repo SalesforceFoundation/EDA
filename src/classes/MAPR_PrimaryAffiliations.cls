@@ -86,23 +86,24 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
        Set<String> contactFieldAPINamesSet = new Set<String>();
        Set<String> accountRecordTypeIdsSet = new Set<String>();
 
-       for (Affl_Mappings__c mapping: afflMappingsList) {
+        for (Affl_Mappings__c mapping: afflMappingsList) {
 
-           MODL_PrimaryAfflMapper modelFromMapping = this.getModelFromMapping(mapping);
-           if (modelFromMapping == null) {
-               continue;
-           }
+            MODL_PrimaryAfflMapper modelFromMapping = this.getModelFromMapping(mapping);
 
-           if ((contactFieldAPINamesSet.isEmpty() == false && contactFieldAPINamesSet.contains(modelFromMapping.getContactFieldApiName())) || 
-               (accountRecordTypeIdsSet.isEmpty() == false && accountRecordTypeIdsSet.contains(modelFromMapping.getAccountRecordTypeId()))) {      
-               continue;
-           }
+            if (modelFromMapping == null) {
+                continue;
+            }
 
-           affiliationModelsList.add(modelFromMapping);
-           contactFieldAPINamesSet.add(modelFromMapping.getContactFieldApiName());
-           accountRecordTypeIdsSet.add(modelFromMapping.getAccountRecordTypeId());
+            if ((contactFieldAPINamesSet.isEmpty() == false && contactFieldAPINamesSet.contains(modelFromMapping.getContactFieldApiName())) || 
+                (accountRecordTypeIdsSet.isEmpty() == false && accountRecordTypeIdsSet.contains(modelFromMapping.getAccountRecordTypeId()))) {      
+                continue;
+            }
 
-       }
+            affiliationModelsList.add(modelFromMapping);
+            contactFieldAPINamesSet.add(modelFromMapping.getContactFieldApiName());
+            accountRecordTypeIdsSet.add(modelFromMapping.getAccountRecordTypeId());
+
+        }
        return affiliationModelsList;
     }
 
