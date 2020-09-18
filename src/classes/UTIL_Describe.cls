@@ -52,58 +52,27 @@ public class UTIL_Describe {
     private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribeByLabel = new Map<String, Map<String, Schema.DescribeFieldResult>>();
     private static Map<String, Map<String, List<Schema.PicklistEntry>>> fieldPicklistEntries = new Map<String, Map<String, List<Schema.PicklistEntry>>>();
 
-    /*******************************************************************************************************
-    * @description Returns field describe data
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return Schema.DescribeFieldResult the describe field result for the given field
-    */
-    public static Schema.DescribeFieldResult getFieldDescribe(String objectName, String fieldName) {
+    /*******************************************
+    * Gets describe maps for a new object
+    ********************************************/
+    static void fillMapsForObject(string objectName) {
 
-        // make sure we have this field's schema mapped
-        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
-            fillFieldMapsForObject(objectName, fieldName);
-        }
-
-        Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(fieldName);
-        return dfr;
-    }
-
-    /*******************************************************************************************************
-    * @description Returns field describe data by Field Label
-    * @param objectName the name of the object to lookup
-    * @param fieldLabel the label of the field to lookup
-    * @return Schema.DescribeFieldResult the describe field result for the given field
-    */
-
-    public static Schema.DescribeFieldResult getFieldDescribeByLabel(String objectName, String fieldLabel) {
         // get the object map the first time
-        fillMapsForObject(objectName);
+        if (gd == null) {
+            gd = Schema.getGlobalDescribe();
+        } 
 
-        // get the field description
-        if (!fieldTokens.containsKey(objectName)) {
-            fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
-            fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
-            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+        // get the object description
+        if (gd.containsKey(objectName)) {
+
+            if (!objectDescribes.containsKey(objectName)) {
+                objectDescribes.put(objectName, gd.get(objectName).getDescribe());
+            }    
+        } else {
+            throw new SchemaDescribeException('Invalid object name \'' + objectName + '\'');
         }
-
-        if (fieldDescribeByLabel.get(objectName).containsKey(fieldLabel)) { 
-            return fieldDescribeByLabel.get(objectName).get(fieldLabel);
-        }
-
-        integer labelMapsize = fieldDescribeByLabel.get(objectName).size();
-        for (Integer i = labelMapsize; i < fieldTokens.get(objectName).size(); i++) {
-            Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).values()[i].getDescribe();
-            fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
-            
-            if (fieldLabel == dfr.getLabel()) {
-                return dfr;
-            }
-        }
-        throw new SchemaDescribeException('Invalid field Label \'' + fieldLabel + '\'');
-
     }
-    
+
     /********************************************
     * Gets a field map for a new object/field pair
     *********************************************/
@@ -128,48 +97,6 @@ public class UTIL_Describe {
             } else {
                 throw new SchemaDescribeException('Invalid field name \'' + fieldName + '\'');
             }
-        }
-    }
-
-    /*******************************************
-    * Gets describe maps for a new object
-    ********************************************/
-    static void fillMapsForObject(string objectName) {
-
-        // get the object map the first time
-        if (gd == null) {
-            gd = Schema.getGlobalDescribe();
-        } 
-
-        // get the object description
-        if (gd.containsKey(objectName)) {
-
-            if (!objectDescribes.containsKey(objectName)) {
-                objectDescribes.put(objectName, gd.get(objectName).getDescribe());
-            }    
-        } else {
-            throw new SchemaDescribeException('Invalid object name \'' + objectName + '\'');
-        }
-    }
-
-    /*************************************************************************************************
-    * @description Caches object into UTIL_Describe.objectDescribes from Schema.DescribeSObjectResult
-    * @param sObjectResult Schema.DescribeSObjectResult
-    **************************************************************************************************/
-    public static void cacheDescribeSObjectResult(Schema.DescribeSObjectResult sObjectResult) {
-
-        // get the object map the first time
-        if (gd == null) {
-            gd = Schema.getGlobalDescribe();
-        }
-
-        // get the object description
-        if (gd.containsKey(sObjectResult.getName())) {
-            if (!objectDescribes.containsKey(sObjectResult.getName())) {
-                objectDescribes.put(sObjectResult.getName(), gd.get(sObjectResult.getName()).getDescribe());
-            }    
-        } else {
-            throw new SchemaDescribeException('Invalid object name \'' + sObjectResult.getName() + '\'');
         }
     }
 
@@ -201,9 +128,9 @@ public class UTIL_Describe {
         }
     }
 
-    /*******************************************
+    /***********************************************************************************
     * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
-    ********************************************/
+    ************************************************************************************/
     private static void fillPicklistEntriesForObject(string objectName, string fieldName) {
         
         // make sure we have this field's schema mapped
@@ -230,7 +157,6 @@ public class UTIL_Describe {
             fieldPicklistEntries.get(objectName).put(fieldName, picklistValues);
         }
     }
-
 
     /******************************************************************************************************
     * @description Returns new object of given type.
@@ -382,8 +308,78 @@ public class UTIL_Describe {
         return fields;
     }
 
+    /*******************************************************************************************************
+    * @description Returns field describe data
+    * @param objectName the name of the object to look up
+    * @param fieldName the name of the field to look up
+    * @return Schema.DescribeFieldResult the describe field result for the given field
+    */
+    public static Schema.DescribeFieldResult getFieldDescribe(String objectName, String fieldName) {
 
+        // make sure we have this field's schema mapped
+        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
+            fillFieldMapsForObject(objectName, fieldName);
+        }
 
+        Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(fieldName);
+        return dfr;
+    }
+
+    /*******************************************************************************************************
+    * @description Returns field describe data by Field Label
+    * @param objectName the name of the object to lookup
+    * @param fieldLabel the label of the field to lookup
+    * @return Schema.DescribeFieldResult the describe field result for the given field
+    */
+
+    public static Schema.DescribeFieldResult getFieldDescribeByLabel(String objectName, String fieldLabel) {
+        // get the object map the first time
+        fillMapsForObject(objectName);
+
+        // get the field description
+        if (!fieldTokens.containsKey(objectName)) {
+            fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
+            fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+        }
+
+        if (fieldDescribeByLabel.get(objectName).containsKey(fieldLabel)) { 
+            return fieldDescribeByLabel.get(objectName).get(fieldLabel);
+        }
+
+        integer labelMapsize = fieldDescribeByLabel.get(objectName).size();
+        for (Integer i = labelMapsize; i < fieldTokens.get(objectName).size(); i++) {
+            Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).values()[i].getDescribe();
+            fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
+            
+            if (fieldLabel == dfr.getLabel()) {
+                return dfr;
+            }
+        }
+        throw new SchemaDescribeException('Invalid field Label \'' + fieldLabel + '\'');
+
+    }
+
+    /*************************************************************************************************
+    * @description Caches object into UTIL_Describe.objectDescribes from Schema.DescribeSObjectResult
+    * @param sObjectResult Schema.DescribeSObjectResult
+    **************************************************************************************************/
+    public static void cacheDescribeSObjectResult(Schema.DescribeSObjectResult sObjectResult) {
+
+        // get the object map the first time
+        if (gd == null) {
+            gd = Schema.getGlobalDescribe();
+        }
+
+        // get the object description
+        if (gd.containsKey(sObjectResult.getName())) {
+            if (!objectDescribes.containsKey(sObjectResult.getName())) {
+                objectDescribes.put(sObjectResult.getName(), gd.get(sObjectResult.getName()).getDescribe());
+            }    
+        } else {
+            throw new SchemaDescribeException('Invalid object name \'' + sObjectResult.getName() + '\'');
+        }
+    }
 
 
     /*******************************************************************************************************
