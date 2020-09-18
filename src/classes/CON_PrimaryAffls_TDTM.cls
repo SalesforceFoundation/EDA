@@ -87,47 +87,74 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         return SRVC_Contact_PrimaryAffiliations.getInstance();
     }
 
+    /*******************************************************************************************************
+    * @description Returns the value of CON_PrimaryAffls_TDTM_After_Update recursion flag
+    *******************************************************************************************************/
     @TestVisible
     private boolean isAffiliationUpdateRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
     }
 
+    /*******************************************************************************************************
+    * @description Sets the value of CON_PrimaryAffls_TDTM_keyAfflLookupUpdated recursion flag to true
+    *******************************************************************************************************/
     @TestVisible
     private void setAffiliationUpdateRecursion() {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated, true);
     }
 
+    /*******************************************************************************************************
+    * @description Resets the value of CON_PrimaryAffls_TDTM_keyAfflLookupUpdated recursion flag
+    *******************************************************************************************************/
     @TestVisible
     private void resetAffiliationUpdateRecursion() {
         TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated); 
     }
 
+    /*******************************************************************************************************
+    * @description Returns the value of CON_PrimaryAffls_TDTM_After_Insert recursion flag
+    *******************************************************************************************************/
     @TestVisible
     private boolean isInsertRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert);
     }
 
+    /*******************************************************************************************************
+    * @description Sets the value of CON_PrimaryAffls_TDTM_After_Insert recursion flag to true
+    *******************************************************************************************************/
     @TestVisible
     private void setInsertRecursion() {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, true);
     }
 
+    /*******************************************************************************************************
+    * @description Sets the value of CON_PrimaryAffls_TDTM_After_Insert recursion flag to false
+    *******************************************************************************************************/
     @TestVisible
     private void unsetInsertRecursion() {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, false);
     }
 
+    /************************************************************************************************************************************
+    * @description Returns the value of operation (AFFL_AccRecordType_TDTM OR CON_PrimaryAffls_TDTM_After_Update)
+    **************************************************************************************************************************************/
     @TestVisible
     private boolean isUpdateRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM) || 
             TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
     }
 
+    /************************************************************************************************************************************
+    * @description Sets the recursion flag CON_PrimaryAffls_TDTM_After_Update) to true
+    **************************************************************************************************************************************/
     @TestVisible
     private void setUpdateRecursion() {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, true);
     }
 
+    /************************************************************************************************************************************
+    * @description unsets the recursion flag CON_PrimaryAffls_TDTM_After_Update) to false
+    **************************************************************************************************************************************/
     @TestVisible
     private void unsetUpdateRecursion() {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, false);

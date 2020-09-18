@@ -91,7 +91,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
             for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
                 if (contact.get(eachModel.getContactFieldApiName()) == null) {
                     continue;
-                }    
+                }
                 Affiliation__c afflToCreate;
                 try {
                     afflToCreate = new Affiliation__c(Contact__c = contact.ID, Account__c = (Id)contact.get(eachModel.getContactFieldApiName()), Primary__c = true);
@@ -103,8 +103,8 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                     throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
                 }
                 affiliationsToCreateForEachContactList.add(afflToCreate);
-          }
-       } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
+            }
+        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
             return new List<Affiliation__c>();
         }
         return affiliationsToCreateForEachContactList;
