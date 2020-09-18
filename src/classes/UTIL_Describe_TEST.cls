@@ -232,4 +232,26 @@ public with sharing class UTIL_Describe_TEST {
         System.assert(false, 'Invalid object should throw an error');    
         } catch (UTIL_Describe.SchemaDescribeException ex) {}
     }
+
+    // Positive test for getFieldDescribeByLabel
+    @isTest
+    private static void getFieldDescribeByLabelPositiveTest() {
+        Test.startTest();
+            Schema.DescribeFieldResult contactFieldDesc = Util_Describe.getFieldDescribeByLabel('Contact','First Name');
+        Test.stopTest();
+        
+        System.assertEquals('FirstName', contactFieldDesc.getname());
+
+    }
+    
+    // Negative test for getFieldDescribeByLabel
+    @isTest
+    private static void getFieldDescribeByLabelNegativeTest() {
+        try{
+            Test.startTest();
+                Schema.DescribeFieldResult contactFieldDesc = Util_Describe.getFieldDescribeByLabel('Contact','First Name testing');
+            Test.stopTest();
+            System.assert(false, 'Invalid field label should throw an error'); 
+        } catch (UTIL_Describe.SchemaDescribeException ex) {}
+    }
 }

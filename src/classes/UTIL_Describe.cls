@@ -48,9 +48,8 @@ public class UTIL_Describe {
     private static Map<String, Schema.SObjectType> gd;
     private static Map<String, Schema.DescribeSObjectResult> objectDescribes = new Map<String, Schema.DescribeSObjectResult>();
     private static Map<String, Map<String, Schema.SObjectField>> fieldTokens = new Map<String, Map<String, Schema.SObjectField>>();
-    private static Map<String, Map<String, Schema.SObjectField>> fieldTokensForLablel = new Map<String, Map<String, Schema.SObjectField>>();
     private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribes = new Map<String, Map<String, Schema.DescribeFieldResult>>();
-    private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribesForObjectByLabel = new Map<String, Map<String, Schema.DescribeFieldResult>>();
+    private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribeByLabel = new Map<String, Map<String, Schema.DescribeFieldResult>>();
     private static Map<String, Map<String, List<Schema.PicklistEntry>>> fieldPicklistEntries = new Map<String, Map<String, List<Schema.PicklistEntry>>>();
 
     /*******************************************************************************************************
@@ -76,52 +75,33 @@ public class UTIL_Describe {
     * @param fieldLabel the label of the field to lookup
     * @return Schema.DescribeFieldResult the describe field result for the given field
     */
+
     public static Schema.DescribeFieldResult getFieldDescribeByLabel(String objectName, String fieldLabel) {
-
-        // make sure we have this field's schema mapped
-        if (!fieldDescribesForObjectByLabel.containsKey(objectName) || !fieldDescribesForObjectByLabel.get(objectName).containsKey(fieldLabel)) {
-            fillFieldMapsForObjectWithLabel(objectName, fieldLabel);
-        }
-
-        Schema.DescribeFieldResult dfr = fieldDescribesForObjectByLabel.get(objectName).get(fieldLabel);
-        return dfr;
-    }
-    
-    /********************************************
-    * Gets a field map for a new object/field pair
-    *********************************************/
-    private static void fillFieldMapsForObjectWithLabel(string objectName, string fieldLabel) {
         // get the object map the first time
         fillMapsForObject(objectName);
 
         // get the field description
-        if (!fieldTokensForLablel.containsKey(objectName)) {
-            fieldTokensForLablel.put(objectName, objectDescribes.get(objectName).fields.getMap());
-            fieldDescribesForObjectByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+        if (!fieldTokens.containsKey(objectName)) {
+            fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
+            fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
         }
-       
-        if (!fieldDescribesForObjectByLabel.get(objectName).containsKey(fieldLabel)) {
-            List<SObjectField> contactFieldList = new List<SObjectField>();
-            contactFieldList.addAll(objectDescribes.get(objectName).fields.getMap().values());
-            Map<String, String> fieldNamesByLabel = getFieldNamesByLabel(contactFieldList);
-            String fieldName = fieldNamesByLabel.get(fieldLabel);
-            if (fieldName != null && fieldTokens.get(objectName).containsKey(fieldName)) {
-               Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
-               fieldDescribesForObjectByLabel.get(objectName).put(fieldLabel, dfr);
-            } else {
-                 throw new SchemaDescribeException('Invalid field Label \'' + fieldLabel + '\'');
-             }
 
+        if (fieldDescribeByLabel.get(objectName).containsKey(fieldLabel)) { 
+            return fieldDescribeByLabel.get(objectName).get(fieldLabel);
         }
-    }
 
-    @testVisible
-    private static Map<String, String> getFieldNamesByLabel(List<SObjectField> contactFieldsList) {
-        Map<String, String> fieldNameByLabel = new Map<String, String>();
-        for (SObjectField field : contactFieldsList) {
-            fieldNameByLabel.put(field.getDescribe().getLabel(), field.getDescribe().getName());
+        integer labelMapsize = fieldDescribeByLabel.get(objectName).size();
+        for (Integer i = labelMapsize; i < fieldTokens.get(objectName).size(); i++) {
+            Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).values()[i].getDescribe();
+            fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
+            
+            if (fieldLabel == dfr.getLabel()) {
+                return dfr;
+            }
         }
-        return fieldNameByLabel;
+        throw new SchemaDescribeException('Invalid field Label \'' + fieldLabel + '\'');
+
     }
     
     /********************************************
@@ -136,7 +116,7 @@ public class UTIL_Describe {
         if (!fieldTokens.containsKey(objectName)) {
             fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
             fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
-            //fieldDescribesForObjectByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
         }
 
         if (!fieldDescribes.get(objectName).containsKey(fieldName)) {
@@ -144,12 +124,13 @@ public class UTIL_Describe {
             if (fieldTokens.get(objectName).containsKey(fieldName)) {
                 Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
                 fieldDescribes.get(objectName).put(fieldName, dfr);
+                fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
             } else {
                 throw new SchemaDescribeException('Invalid field name \'' + fieldName + '\'');
             }
         }
     }
-    
+
     /*******************************************
     * Gets describe maps for a new object
     ********************************************/
@@ -204,6 +185,7 @@ public class UTIL_Describe {
         if (!fieldTokens.containsKey(objectName)) {
             fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
             fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
         }
 
         if (fieldTokens.get(objectName).size() != fieldDescribes.get(objectName).size()) {
@@ -213,11 +195,12 @@ public class UTIL_Describe {
                 if (!fieldDescribes.get(objectName).containsKey(fieldName)) {
                     Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
                     fieldDescribes.get(objectName).put(fieldName, dfr);
+                    fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
                 }
             }
         }
     }
-    
+
     /*******************************************
     * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
     ********************************************/
