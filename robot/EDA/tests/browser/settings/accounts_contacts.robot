@@ -16,7 +16,7 @@ Validate run cleanup button is active in read and edit mode
     ...                     is active in read mode and inactive in edit mode. Also validates the
     ...                     text "The Cleanup was queued successfully. An email will be sent when
     ...                     the batch is completed." appears after the button is clicked.
-    [tags]                                      unstable        W-8016783
+    [tags]                                      unstable        W-8016783       rbt:high
     Click action button on EDA settings page    Edit
     Verify action button status                 Run Cleanup=disabled
     Click action button on EDA settings page    Cancel
