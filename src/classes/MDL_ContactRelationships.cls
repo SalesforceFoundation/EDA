@@ -37,7 +37,7 @@
 public with sharing class MDL_ContactRelationships {
     public Id contactId { get; private set; }
 
-    // Relationship__c.Contact__c - <Relationship__c.Type__c - Relationship__c>
+    // For reference: Relationship__c.Contact__c - <Relationship__c.Type__c - Relationship__c>
     private Map<Id, Map<String, Relationship__c>> relationshipByTypeByRelatedContactId { get; private set; }
     public List<Relationship__c> relationshipList { get; private set; } 
 

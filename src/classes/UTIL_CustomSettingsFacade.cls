@@ -49,6 +49,34 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static List<Relationship_Auto_Create__c> relationshipAutocreate;
     public static List<Relationship_Lookup__c> relationshipLookup;
 
+    private static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relationshipAutoCreateBySObjectType;
+    private static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> activeRelationshipLookupList;
+
+    /******************************************************************************************************
+    * @description Returns a mapping of Relationship Auto Create mappings for Contact
+    * @return A map containing a list of Relationship Auto Create settings for the Contact object
+    ******************************************************************************************************/
+    public static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> getAutocreateSettingsForContact(){
+        if (relationshipAutoCreateBySObjectType != null){
+            return relationshipAutoCreateBySObjectType;
+        }
+
+        if (relationshipAutocreate == null){
+            relationshipAutocreate = UTIL_CustomSettingsFacade.getAutocreateSettings();
+        }
+
+        List<Relationship_Auto_Create__c> relationshipAutoCreateList = new List<Relationship_Auto_Create__c>();
+
+        for (Relationship_Auto_Create__c relAutoCreate : relationshipAutocreate){
+            if (relAutoCreate.Object__c.equalsIgnoreCase('Contact')){
+                relationshipAutoCreateList.add(relAutoCreate);
+            }
+        }
+
+        relationshipAutoCreateBySObjectType.put(Contact.SObjectType, relationshipAutoCreateList);
+        return relationshipAutoCreateBySObjectType;
+    }
+    
     /*******************************************************************************************************
     * @description Returns the default settings.
     * @return Hierarchy_Settings__c custom settings record.
