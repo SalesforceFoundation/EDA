@@ -59,7 +59,49 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return SRVC_ContactRelationshipAutoCreate.instance;
     }
 
-    public ContactRelationshipsModel getRelationshipsToCreateForContacts(){
+    /******************************************************************************
+    * getRelationshipsToCreateForContacts description
+    * @param contactsList contactsList description
+    * @param contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
+    * @return return description
+    ******************************************************************************/ 
+    public MDL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+        MDL_ContactsRelationships contactsRelationshipsModel = new MDL_ContactsRelationships();
 
+        for (Contact con : contactsList){
+            MDL_ContactRelationships conRelationshipsModel = this.getRelationshipsToCreateForContact(con, contactRelationShipAutoCreateMapModelsList);
+
+            //if (conRelationshipsModel != null){
+            if (conRelationshipsModel.isEmpty() == false){
+                contactsRelationshipsModel.addContactRelationshipsModel(conRelationshipsModel);
+            }
+        }
+
+        return contactsRelationshipsModel;
+    }
+
+    /**
+     * getRelationshipsToCreateForContact description
+     * @param  contact                                    contact description
+     * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
+     * @return                                            return description
+     */ 
+    public MDL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+        MDL_ContactRelationships conRelationshipsModel = new MDL_ContactRelationships(contact.Id);
+
+        for (MDL_ContactRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
+            Object contactFieldValue = contact.get(conRelAutoCreateMap.contactFieldApiName);
+            
+            if (contactFieldValue != null){
+                Relationship__c conRelationshipToAdd = new Relationship__c(Contact__c = contact.Id,
+                                                                           RelatedContact__c = (Id)contactFieldValue,
+                                                                           Type__c = conRelAutoCreateMap.relationshipType,
+                                                                           Status__c = 'Current');
+
+                conRelationshipsModel.addRelationship(conRelationshipToAdd);
+            }
+        }
+
+        return conRelationshipsModel;
     }
 }
