@@ -65,7 +65,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @param contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
     * @return return description
     ******************************************************************************/ 
-    public MDL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+    protected virtual MDL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MDL_ContactsRelationships contactsRelationshipsModel = new MDL_ContactsRelationships();
 
         for (Contact con : contactsList){
@@ -86,7 +86,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
      * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
      * @return                                            return description
      */ 
-    public MDL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+    protected virtual MDL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MDL_ContactRelationships conRelationshipsModel = new MDL_ContactRelationships(contact.Id);
 
         for (MDL_ContactRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
@@ -103,5 +103,70 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         }
 
         return conRelationshipsModel;
+    }
+
+    /**
+    * getRelationshipsToCreateForUpdatedContact description
+    * @param  newContact                                 newContact description
+    * @param  oldContact                                 oldContact description
+    * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
+    * @return                                            return description
+    */
+    protected virtual MDL_ContactRelationships getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+        MDL_ContactRelationships contactRelationshipsModel = new MDL_ContactRelationships(newContact.Id);
+
+        for (MDL_ContactRelationshipAutoCreateMapping conRelAutoCreateMappingMdl : contactRelationShipAutoCreateMapModelsList){
+            Object newContactFieldValue = newContact.get(conRelAutoCreateMappingMdl.contactFieldApiName);
+            Object oldContactFieldValue = oldContact.get(conRelAutoCreateMappingMdl.contactFieldApiName);
+    
+            if (newContactFieldValue != null && newContactFieldValue != oldContactFieldValue){
+                Relationship__c relationshipToAdd = new Relationship__c(Contact__c = newContact.Id,
+                                                                        RelatedContact__c = (Id)newContactFieldValue,
+                                                                        Type__c = conRelAutoCreateMappingMdl.relationshipType,
+                                                                        Status__c = 'Current');
+
+                contactRelationshipsModel.addRelationship(relationshipToAdd);
+            }
+        }
+
+        return contactRelationshipsModel;
+    }
+
+    /**
+    * getRelationshipsToInsertFromModel description
+    * @param  contactRelationshipsModel contactRelationshipsModel description
+    * @return                           return description
+    */
+    protected virtual List<Relationship__c> getRelationshipsToInsertFromModel(MDL_ContactsRelationships contactsRelationshipsModel){
+        if (UTIL_CustomSettingsFacade.getSettings().Allow_AutoCreated_Duplicates__c == true){
+            return contactsRelationshipsModel.relationshipList;
+        }
+
+        List<Relationship__c> contactRelationships = [SELECT Id,
+                                                             Contact__c,
+                                                             RelatedContact__c,
+                                                             Type__c
+                                                      FROM Relationship__c
+                                                      WHERE Contact__c in :contactsRelationshipsModel.contactIdsSet
+                                                      AND RelatedContact__c in :contactsRelationshipsModel.relatedContactIdSet
+                                                      LIMIT 2000];
+
+        for (Relationship__c rel : contactRelationships){
+            if (this.isADuplicateRelationship(rel, contactsRelationshipsModel) == true){
+                contactsRelationshipsModel.removeRelationshipFromList(rel);
+            }
+        }
+
+        return contactsRelationshipsModel.relationshipList;
+    }
+
+    /**
+    * isADuplicateRelationship description
+    * @param  relationship               relationship description
+    * @param  contactRelationshipsModel contactsRelationshipsModel description
+    * @return                            return description
+    */ 
+    private Boolean isADuplicateRelationship(Relationship__c relationship, MDL_ContactsRelationships contactsRelationshipsModel){
+        return contactsRelationshipsModel.hasRelationship(relationship);
     }
 }

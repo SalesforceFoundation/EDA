@@ -1,6 +1,6 @@
 public with sharing class MDL_ContactsRelationships {
     public Set<Id> contactIdsSet { get; private set; }
-    public Set<Id> relatedContactIdSet;
+    public Set<Id> relatedContactIdSet { get; private set; }
     public Map<Id, MDL_ContactRelationships> contactRelationshipsModelsByContactId;
     public List<Relationship__c> relationshipList { get; private set; }
     

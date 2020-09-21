@@ -53,7 +53,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     private static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> activeRelationshipLookupList;
 
     /******************************************************************************************************
-    * @description Returns a mapping of Relationship Auto Create mappings for Contact
+    * @description Generates a map of Relationship Auto Create settings for Contact
     * @return A map containing a list of Relationship Auto Create settings for the Contact object
     ******************************************************************************************************/
     public static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> getAutocreateSettingsForContact(){
