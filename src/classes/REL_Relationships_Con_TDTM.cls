@@ -97,6 +97,30 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         return dmlWrapper;
     }
 
+    /********************************************************************************************************
+    * @description Handles processing of logic necessary for an After Update trigger action.
+    * @param newList The list of updated objects.
+    * @param oldList The list of objects to be updated
+    * @return A DmlWrapper
+    ********************************************************************************************************/ 
+    @TestVisible
+    private DmlWrapper handleAfterUpdate(List<SObject> newList, List<SObject> oldList){
+
+        DmlWrapper dmlWrapper = new DmlWrapper();
+
+        if (this.isUpdateRecursion() == true){
+            return null;
+        }
+
+        this.setUpdateRecursion();
+
+        List<Contact> newContactsList = (List<Contact>)newList;
+        List<Contact> oldContactsList = (List<Contact>)oldList;
+        //List<MDL_ContactRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
+
+        return dmlWrapper;
+    }
+
     /*******************************************************************************************************
     * @description Retrieves an instance of the SRVC_RelAutoCreateSettingsMapper service class.
     * @return An instance of SRVC_RelAutoCreateSettingsMapper.
@@ -131,6 +155,30 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
     }
 
+    /*******************************************************************************************************
+    * @description Determines whether current context is associated with an update recursion.
+    * @return True if After Update recursion flag for REL_Relationships_Con_TDTM is set, False otherwise.
+    *******************************************************************************************************/ 
+    @TestVisible
+    private Boolean isUpdateRecursion(){
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update);
+    }
+
+    /*******************************************************************************************************
+    * @description Sets the After Update recursion flag for REL_Relationships_Con_TDTM.
+    *******************************************************************************************************/    
+    @TestVisible
+    private void setUpdateRecursion(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
+    }
+
+    /*******************************************************************************************************
+    * @description Clears the After Update recursion flag for REL_Relationships_Con_TDTM.
+    *******************************************************************************************************/ 
+    @TestVisible
+    private void unsetUpdateRecursion(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, false);
+    }
 
     /*******************************************************************************************************
     * @description Deletes Relationships when a Contact is deleted
