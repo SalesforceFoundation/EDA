@@ -125,16 +125,18 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
 
         for (Contact newContact: newContactsById.values()) {
             AffiliationsToProcess afflsToProcess;
+            Set<Id> accIdSet;
             if (shouldCreateAffiliatons == true) {
                 afflsToProcess = this.getAffiliationsToCreateOrUpdateForContact(newContact, oldContactsById.get(newContact.Id), afflMappingsModelsList);
                 afflToBeAddedList.addAll(afflsToProcess.getAffiliationListToInsertClone());
+                accIdSet = afflsToProcess.getAccountIdSet();
             } else {
-                afflsToProcess = this.getAffiliationsToUpdateForContact(newContact, oldContactsById.get(newContact.Id), afflMappingsModelsList);
+                accIdSet = this.getAffiliationsToUpdateForContact(newContact, oldContactsById.get(newContact.Id), afflMappingsModelsList);
             }
 
-            if (afflsToProcess.getAccountIdSet().isEmpty() == false) {
-                accountIdsSetByContactId.put(newContact.Id, afflsToProcess.getAccountIdSet());
-                accountIdSet.addAll(afflsToProcess.getAccountIdSet());
+            if (accIdSet.isEmpty() == false) {
+                accountIdsSetByContactId.put(newContact.Id, accIdSet);
+                accountIdSet.addAll(accIdSet);
             }
         }
 
@@ -195,10 +197,10 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     * @description Returns a list of Affiliations to update for each Contact
     * @Param newContact The contact to update Affiliations for
     * @Param newContact The contact to before update
-    * @Param afflMappingsModelsList List of Primary Affiliations Models
+    * @Param accountIds Set of accountIds of the affiliaitons to be updated
     ************************************************************************/
     @TestVisible 
-    Private AffiliationsToProcess getAffiliationsToUpdateForContact(Contact newContact, Contact oldContact, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
+    Private Set<Id> getAffiliationsToUpdateForContact(Contact newContact, Contact oldContact, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
 
         List<Affiliation__c> affiliationsToCreateForEachContactList = new List<Affiliation__c>();
         Set<Id> accountIds = new Set<Id>();
@@ -214,8 +216,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
             }
         }
 
-        AffiliationsToProcess AfflsToProcess = new AffiliationsToProcess(affiliationsToCreateForEachContactList, accountIds);
-        return AfflsToProcess;
+        return accountIds;
     }
 
     /***************************************************************************

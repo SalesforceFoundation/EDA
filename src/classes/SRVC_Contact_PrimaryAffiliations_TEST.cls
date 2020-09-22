@@ -554,10 +554,10 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         Contact newContact = oldContact.clone(true);
 
         Test.startTest();
-            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+            Set<Id> accountIdSet = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
         Test.stopTest();
 
-        System.assertEquals(true, afflsToProcess.accountIdSet.isEmpty());
+        System.assertEquals(true, accountIdSet.isEmpty());
         
     }
     
@@ -588,10 +588,10 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         newContact.Primary_Organization__c = null;
 
         Test.startTest();
-            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
+            Set<Id> accIdSet = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
         Test.stopTest();
 
-        System.assertEquals(1, afflsToProcess.accountIdSet.size());
+        System.assertEquals(1, accIdSet.size());
 
     }
     
