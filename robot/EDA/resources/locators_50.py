@@ -133,6 +133,8 @@ eda_lex_locators = {
     "eda_settings_system": {
         "default_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::img",
         "default_dropdown_value": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[text()='{}']",
+        "admin_success_toast": "//div[@id='adminSuccessToast']/descendant::h2",
+        "hh_success_toast": "//div[@id='hhSuccessToast']/descendant::h2",
     },
     "account_types": {
         "administrative": "//span[contains(text(),'Administrative')]/parent::*",
