@@ -39,8 +39,7 @@ private class MAPR_PrimaryAffiliations_TEST {
     ***************************************************************************************************************************************/
     static void insertAfflMappingsWithRecordTypeDevNameAndPrimaryFieldAPIs() {
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
@@ -64,8 +63,7 @@ private class MAPR_PrimaryAffiliations_TEST {
     ***************************************************************************************************************************************/
     static void insertAfflMappingsWithRecordTypeNameAndPrimaryFieldAPIs() {
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
@@ -124,7 +122,9 @@ private class MAPR_PrimaryAffiliations_TEST {
     @isTest
     private static void getInstanceNew() {
 
-        MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
+        Test.startTest();
+            MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
+        Test.stopTest();
         System.assertEquals(MAPR_PrimaryAffiliations.instance, maprPrimaryAfflInstance, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, maprPrimaryAfflInstance != null, 'Instance of service class should not be null.');
     }
@@ -135,9 +135,11 @@ private class MAPR_PrimaryAffiliations_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-
-        MAPR_PrimaryAffiliations maprPrimaryAfflInstance1 = MAPR_PrimaryAffiliations.getInstance();
-        MAPR_PrimaryAffiliations maprPrimaryAfflInstance2 = MAPR_PrimaryAffiliations.getInstance();
+        
+        Test.startTest();
+            MAPR_PrimaryAffiliations maprPrimaryAfflInstance1 = MAPR_PrimaryAffiliations.getInstance();
+            MAPR_PrimaryAffiliations maprPrimaryAfflInstance2 = MAPR_PrimaryAffiliations.getInstance();
+        Test.stopTest();
 
         System.assertEquals(MAPR_PrimaryAffiliations.instance, maprPrimaryAfflInstance1, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(maprPrimaryAfflInstance1, maprPrimaryAfflInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
@@ -152,7 +154,11 @@ private class MAPR_PrimaryAffiliations_TEST {
     private static void isPrimaryAffiliationValidationOnTrueTest() {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
-        Boolean isValidationOn = MAPR_PrimaryAffiliations.getInstance().isPrimaryAffiliationValidationOn();
+
+        Test.startTest();
+            Boolean isValidationOn = MAPR_PrimaryAffiliations.getInstance().isPrimaryAffiliationValidationOn();
+        Test.stopTest();
+
         System.assertEquals(true, isValidationOn);
 
     }
@@ -165,7 +171,10 @@ private class MAPR_PrimaryAffiliations_TEST {
     private static void isPrimaryAffiliationValidationOnFalseTest() {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
-        Boolean isValidationOn = MAPR_PrimaryAffiliations.getInstance().isPrimaryAffiliationValidationOn();
+        Test.startTest();
+            Boolean isValidationOn = MAPR_PrimaryAffiliations.getInstance().isPrimaryAffiliationValidationOn();
+        Test.stopTest();
+
         System.assertEquals(false, isValidationOn);
     }
 
@@ -286,8 +295,7 @@ private class MAPR_PrimaryAffiliations_TEST {
     @isTest
     private static void getModelsFromMappingsTestWithDevNameAndPrimaryFieldAPIsWithDuplicates() {
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
         MAPR_PrimaryAffiliations_TEST.insertAfflMappingsWithRecordTypeDevNameAndPrimaryFieldAPIs();
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
@@ -297,6 +305,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         insert mappings;
  
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+
         Test.startTest();
             List<MODL_PrimaryAfflMapper> primaryAfflModels = maprPrimaryAfflInstance.getModelsFromMappings(primaryAfflMappings);
         Test.stopTest();
@@ -316,12 +325,12 @@ private class MAPR_PrimaryAffiliations_TEST {
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
 
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+
         Test.startTest();
             MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
         System.assert(primaryAfflModel != null);
         System.assertEquals('Business_Organization', primaryAfflModel.getSettingsRecordTypeFieldValue());
@@ -342,12 +351,12 @@ private class MAPR_PrimaryAffiliations_TEST {
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
 
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+
         Test.startTest();
             MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
         System.assert(primaryAfflModel != null);
         System.assertEquals('Business_Organization', primaryAfflModel.getSettingsRecordTypeFieldValue());
@@ -368,12 +377,12 @@ private class MAPR_PrimaryAffiliations_TEST {
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
 
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+
         Test.startTest();
             MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
         System.assert(primaryAfflModel != null);
         System.assertEquals('Business Organization', primaryAfflModel.getSettingsRecordTypeFieldValue());
@@ -394,12 +403,12 @@ private class MAPR_PrimaryAffiliations_TEST {
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = MAPR_PrimaryAffiliations.getInstance();
 
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+
         Test.startTest();
             MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
         System.assert(primaryAfflModel != null);
         System.assertEquals('Business Organization', primaryAfflModel.getSettingsRecordTypeFieldValue());
@@ -542,8 +551,7 @@ private class MAPR_PrimaryAffiliations_TEST {
             MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
         System.assert(primaryAfflModel != null);
         System.assertEquals('Business Org test', primaryAfflModel.getAccountRecordTypeId());

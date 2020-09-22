@@ -83,6 +83,8 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     private List<MODL_PrimaryAfflMapper> getModelsFromMappings(List<Affl_Mappings__c> afflMappingsList) {
 
        List<MODL_PrimaryAfflMapper> affiliationModelsList = new List<MODL_PrimaryAfflMapper>();
+
+       // Sets to ensure duplicate mappings won't have models added to the list to return
        Set<String> contactFieldAPINamesSet = new Set<String>();
        Set<String> accountRecordTypeIdsSet = new Set<String>();
 
@@ -156,9 +158,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             if (this.isPrimaryAffiliationValidationOn() == true) {
                 throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
             }
-        }
 
-        if (accountRecTypeInfo == null) {
             MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c);       
             return primaryAfflModel;
         }

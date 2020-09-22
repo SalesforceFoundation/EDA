@@ -209,6 +209,20 @@ public with sharing class UTIL_Describe_TEST {
         System.assert(recTypeInfo == null);
     }
 
+    // Test method for populateRecordTypeInfoForSObject
+    @isTest
+    private static void populateRecordTypeInfoForSObjectTest() {
+        
+        Test.startTest();
+            Util_Describe.populateRecordTypeInfoForSObject('Contact');
+        Test.stopTest();
+
+        Schema.RecordTypeInfo recTypeInfoByDevName = Util_Describe.getRecordTypeInfoByDeveloperName('Account', 'Academic_Program');
+        Schema.RecordTypeInfo recTypeInfoByName = Util_Describe.getRecordTypeInfoByName('Account', 'Academic Program');
+        System.assert(recTypeInfoByDevName != null);
+        System.assert(recTypeInfoByName != null);
+    }
+
     // Positive test for cacheDescribeSObjectResult
     @isTest
     private static void cacheDescribeSObjectResultPositive() {

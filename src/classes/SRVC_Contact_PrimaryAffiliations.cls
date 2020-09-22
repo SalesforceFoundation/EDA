@@ -163,9 +163,8 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 if (newContact.get(eachModel.getContactFieldApiName()) == oldContact.get(eachModel.getContactFieldApiName())) {
                     continue;
                 }
-                if ((oldContact.get(eachModel.getContactFieldApiName()) == null && newContact.get(eachModel.getContactFieldApiName()) != null) || 
-                    ((oldContact.get(eachModel.getContactFieldApiName()) != null && newContact.get(eachModel.getContactFieldApiName()) != null)
-                     && (oldContact.get(eachModel.getContactFieldApiName()) != newContact.get(eachModel.getContactFieldApiName())))) {
+
+                if (newContact.get(eachModel.getContactFieldApiName()) != null) {
                          Affiliation__c afflToCreate;
                          try {
                              afflToCreate = new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true);
@@ -178,7 +177,8 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                          }
                          affiliationsToCreateForEachContactList.add(afflToCreate);
                 }
-                if (oldContact.get(eachModel.getContactFieldApiName()) != null && newContact.get(eachModel.getContactFieldApiName()) == null) {
+
+                if (oldContact.get(eachModel.getContactFieldApiName()) != null) {
                      accountIds.add((Id)oldContact.get(eachModel.getContactFieldApiName()));
                 }
             }
@@ -209,7 +209,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 continue;
             }
 
-            if (oldContact.get(eachModel.getContactFieldApiName()) != null && newContact.get(eachModel.getContactFieldApiName()) == null) {
+            if (oldContact.get(eachModel.getContactFieldApiName()) != null) {
                 accountIds.add((Id)oldContact.get(eachModel.getContactFieldApiName()));
             }
         }

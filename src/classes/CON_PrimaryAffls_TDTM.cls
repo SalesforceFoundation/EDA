@@ -33,10 +33,10 @@
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description
-1) Creates Primary Affiliations when the user populates any of the Primary Affiliation lookup fields on the Contact object.
-2) Create Primary Affiliations when the user updates any of the Primary Affiliation lookup fields on Contact and 
+* 1)Creates Primary Affiliations when the user populates any of the Primary Affiliation lookup fields on the Contact object.
+* 2)Create Primary Affiliations when the user updates any of the Primary Affiliation lookup fields on Contact and 
 * resets the old Primary Affiliations to make them non-Primary.
-3) Makes the Primary Affiliations non-Primary when Primary Affiliation Lookup fields on the Contact are cleared.
+* 3)Makes the Primary Affiliations non-Primary when Primary Affiliation Lookup fields on the Contact are cleared.
 */
 public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 
@@ -48,21 +48,21 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     * @param objResult the describe for Accounts
     * @return dmlWrapper.
     ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
+    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-        if (newlist == null || newlist.isEmpty() == true) {
+        if (newList == null || newList.isEmpty() == true) {
             return new DmlWrapper();
         }
 
         UTIL_Describe.cacheDescribeSObjectResult(objResult);
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-            this.handleAfterInsert(newlist);
+            this.handleAfterInsert(newList);
         }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            this.handleAfterUpdate(oldlist, newlist);
+            this.handleAfterUpdate(oldList, newList);
         }
 
         return new DmlWrapper();
@@ -174,7 +174,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             return;
         }
 
-        setInsertRecursion();
+        this.setInsertRecursion();
 
         Map<Id, Contact> newContactById = new Map<Id, Contact>((List<Contact>)newSObjectList);
 
@@ -212,9 +212,8 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         if (this.isUpdateRecursion() == true) {
             return;
         }
-        
-        
-        setUpdateRecursion(); 
+
+        this.setUpdateRecursion(); 
 
         Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>)oldSObjectList);
         Map<Id, Contact> newContactById = new Map<Id, Contact>((List<Contact>)newSObjectList);
@@ -242,7 +241,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
 
         if (this.isAffiliationUpdateRecursion() == true) {
-            resetAffiliationUpdateRecursion();
+            this.resetAffiliationUpdateRecursion();
         }
 
         this.unsetUpdateRecursion();

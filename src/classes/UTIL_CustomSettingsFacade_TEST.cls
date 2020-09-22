@@ -95,9 +95,11 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
     // Positive test for getPrimaryAfflMappings method
     @isTest
     public static void getPrimaryAfflMappings() {
+        
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
-        insert new Affl_Mappings__c(Name = 'edu', Account_Record_Type__c = 'educational institution',
-            Primary_Affl_Field__c = 'primary educational institution', Auto_Program_Enrollment__c = true,
+        insert new Affl_Mappings__c(Name = 'edu', Account_Record_Type__c = 'Academic_Program',
+            Primary_Affl_Field__c = prefix + 'Primary_Academic_Program__c', Auto_Program_Enrollment__c = true,
             Auto_Program_Enrollment_Role__c = 'student', Auto_Program_Enrollment_Status__c = 'current');
 
         Test.startTest();

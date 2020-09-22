@@ -36,10 +36,14 @@
 */
 @isTest
 private with sharing class CON_PrimaryAffls_TEST {
-    
-    /****************************************************
-    * @description Tests set AffiliationUpdate recursion
-    *****************************************************/
+
+    /**************************************************************************************************************************
+    ****************************************************** UNIT TESTS *********************************************************
+    **************************************************************************************************************************/
+
+    /********************************************************
+    * @description Tests setAffiliationUpdateRecursion method
+    *********************************************************/
     @isTest
     static void setAffiliationUpdateRecursion() {
         CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
@@ -56,7 +60,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
 
     /******************************************************
-    * @description Tests set Insert recursion
+    * @description Tests setInsertRecursion method
     *******************************************************/
     @isTest
     static void setInsertRecursion() {
@@ -74,7 +78,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
 
     /*******************************************************
-    * @description Tests set Update recursion
+    * @description Tests setUpdateRecursion method
     ********************************************************/
     @isTest
     static void setUpdateRecursion() {
@@ -92,7 +96,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
     
     /*******************************************************
-    * @description Tests unset Insert recursion
+    * @description Tests unsetInsertRecursion method
     ********************************************************/
     @isTest
     static void unsetInsertRecursion() {
@@ -111,7 +115,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
     
     /*******************************************************
-    * @description Tests unsetInsert recursion
+    * @description Tests unsetInsert recursion method
     *******************************************************/
     @isTest
     static void unsetUpdateRecursion() {
@@ -130,7 +134,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
     
     /*******************************************************
-    * @description Tests IsInsert recursion
+    * @description Tests isInsertRecursion method
     *******************************************************/
     @isTest
     static void isInsertRecursion() {
@@ -143,14 +147,30 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         System.assertEquals(true, isInsertRecursion, 'Insert recursion should not be active for CON_PrimaryAffls_TDTM');
     }
-    
+
     /*******************************************************
-    * @description Tests IsUpdate recursion
+    * @description Tests IsUpdateRecursion method for 
+    * CON_PrimaryAffls_TDTM_After_Update flag
     *******************************************************/
     @isTest
-    static void isupdateRecursion() {
+    static void isupdateRecursionForAfterUpdate() {
         CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
         tdtmClass.setUpdateRecursion();
+
+        Test.startTest();
+            Boolean isUpdateRecursion = tdtmClass.isUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, isUpdateRecursion, 'Update recursion should not be active for CON_PrimaryAffls_TDTM');
+    }
+
+    /*******************************************************
+    * @description Tests IsUpdateRecursion method for 
+    * AFFL_AccRecordType_TDTM flag
+    *******************************************************/
+    @isTest
+    static void isupdateRecursionForAfflAccRecType() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM, true
         );
@@ -161,12 +181,28 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         System.assertEquals(true, isUpdateRecursion, 'Update recursion should not be active for CON_PrimaryAffls_TDTM');
     }
-    
+
     /*******************************************************
-    * @description Tests resetRecursion
+    * @description Tests isAffiliationUpdateRecursion method
     *******************************************************/
     @isTest
-    static void resetRecursion() {
+    static void isAffiliationUpdateRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setUpdateRecursion();
+
+        Test.startTest();
+            Boolean isAffiliationUpdateRecursion = tdtmClass.isAffiliationUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, isAffiliationUpdateRecursion, 'Update recursion should not be active for CON_PrimaryAffls_TDTM');
+    }
+
+    /*******************************************************
+    * @description Tests resetAffiliationUpdateRecursion will 
+    * reset CON_PrimaryAffls_TDTM_keyAfflLookupUpdated flag
+    *******************************************************/
+    @isTest
+    static void resetAffiliationUpdateRecursion() {
         CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
         tdtmClass.setAffiliationUpdateRecursion();
 
@@ -180,7 +216,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
     
     /*************************************************************************************************************
-    * @description Tests locateAffiliationSettingMapper method of CON_PriamryAffls_TDTM
+    * @description Tests locateAffiliationSettingMapper method of CON_PrimaryAffls_TDTM
     *************************************************************************************************************/
     @isTest
     private static void locateAffiliationSettingMapperTest() {
@@ -197,7 +233,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
     
     /*************************************************************************************************************
-    * @description Tests locateContactAffiliationService method of CON_PriamryAffls_TDTM
+    * @description Tests locateContactAffiliationService method of CON_PrimaryAffls_TDTM
     **************************************************************************************************************/
     @isTest
     private static void locateContactAffiliationService() {
@@ -219,11 +255,35 @@ private with sharing class CON_PrimaryAffls_TEST {
     @isTest
     private static void runMethodNULLTest() {
 
-        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.AfterUpdate;
         Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
 
         CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
-        TDTM_Runnable.DmlWrapper dmlWrapperReturned = tdtmClass.run(null, null, testAction, objResult);
+        Test.startTest();
+            TDTM_Runnable.DmlWrapper dmlWrapperReturned = tdtmClass.run(null, null, testAction, objResult);
+        Test.stopTest();
+
+        System.assertEquals(0, dmlWrapperReturned.objectsToInsert.size());
+
+    }
+
+    
+    /*************************************************************************************************************
+    * @description Test for run method to verify new DmlWrapper(); is returned when newList is empty
+    *************************************************************************************************************/
+    @isTest
+    private static void runMethodEmptyTest() {
+
+        List<Contact> newContactsList = new List<Contact>();
+        List<SObject> oldContactList = new List<SObject>();
+
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.AfterUpdate;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        Test.startTest();
+            TDTM_Runnable.DmlWrapper dmlWrapperReturned = tdtmClass.run(newContactsList, oldContactList, testAction, objResult);
+        Test.stopTest();
 
         System.assertEquals(0, dmlWrapperReturned.objectsToInsert.size());
 
@@ -251,7 +311,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> newContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             newContactList.add(contactWithPrimaryBusinessOrg);
@@ -303,7 +363,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> oldContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             oldContactList.add(contactWithPrimaryBusinessOrg);
         }
@@ -358,7 +418,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> oldContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_organization__c = businessAccounts[0].Id;
             oldContactList.add(contactWithPrimaryBusinessOrg);
@@ -406,7 +466,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> oldContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             oldContactList.add(contactWithPrimaryBusinessOrg);
         }
@@ -452,7 +512,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> oldContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccounts[0].Id;
             oldContactList.add(contactWithPrimaryBusinessOrg);
@@ -494,7 +554,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> oldContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             oldContactList.add(contactWithPrimaryBusinessOrg);
         }
@@ -543,7 +603,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> oldContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             oldContactList.add(contactWithPrimaryBusinessOrg);
         }
@@ -599,7 +659,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> oldContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccounts[0].Id;
             oldContactList.add(contactWithPrimaryBusinessOrg);
@@ -659,7 +719,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Contact> oldContactList = new List<Contact>();
 
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccounts[0].Id;
             oldContactList.add(contactWithPrimaryBusinessOrg);
@@ -702,6 +762,11 @@ private with sharing class CON_PrimaryAffls_TEST {
 
     }
 
+    /**************************************************************************************************************************
+    ****************************************************** FUNCTIONAL TESTS ***************************************************
+    **************************************************************************************************************************/
+
+
     /*************************************************************************************************************
     * @description Positive bulk test to ensure affiliations are created on Contact insert
     **************************************************************************************************************/
@@ -722,7 +787,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -768,7 +833,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
         }
@@ -824,7 +889,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -866,7 +931,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -885,7 +950,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
 
     /********************************************************************************************************************************
-    * @description Test to ensure new priamry affiliations are created and old ones become non-primary when Primary field is updated
+    * @description Test to ensure new Primary affiliations are created and old ones become non-primary when Primary field is updated
     ********************************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactupdates() {
@@ -904,7 +969,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccountList;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccountList[0].Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -955,7 +1020,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccountList;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i <5; i++) {
+        for (integer i = 0; i < 5; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccountList[0].Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
