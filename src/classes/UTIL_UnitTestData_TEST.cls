@@ -377,8 +377,8 @@ public class UTIL_UnitTestData_TEST {
     * @Param contactId id of the Contact record
     * @return eduHistory The instance of education history record
     **********************************************************************************************************/
-    public static Education_History__c getEduHistory(Id contactId) {
-        Education_History__c eduHistory = new Education_History__c(Contact__c = contactId);
+    public static Education_History__c getEduHistory(Id accId, Id contactId) {
+        Education_History__c eduHistory = new Education_History__c(Account__c = accId, Contact__c = contactId);
         return eduHistory;
     }
 

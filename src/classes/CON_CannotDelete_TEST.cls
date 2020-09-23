@@ -469,7 +469,7 @@ private with sharing class CON_CannotDelete_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
         
-        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(contacts[0].Id);
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(null,contacts[0].Id);
         insert eduHis;
         
         Test.startTest();
@@ -1271,8 +1271,8 @@ private with sharing class CON_CannotDelete_TEST {
 
         update new List<Course_Offering__c> {courseOfferings1, courseOfferings2};
 
-        Education_History__c eduHis1 = UTIL_UnitTestData_Test.getEduHistory(contacts[0].Id);
-        Education_History__c eduHis2 = UTIL_UnitTestData_Test.getEduHistory(contacts[1].Id);
+        Education_History__c eduHis1 = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        Education_History__c eduHis2 = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[1].Id);
         insert new List<Education_History__c> {eduHis1, eduHis2};
 
         Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOfferings1.Id, null);
@@ -1365,7 +1365,7 @@ private with sharing class CON_CannotDelete_TEST {
         courseOffering.Faculty__c = contacts[1].Id;
         update courseOffering;
         
-        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(contacts[1].Id);
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[1].Id);
         insert eduHis;
 
         Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id,courseOffering.Id, null);
@@ -1466,8 +1466,8 @@ private with sharing class CON_CannotDelete_TEST {
 
         update new List<Course_Offering__c> {courseOfferings1, courseOfferings2};
 
-        Education_History__c eduHis1 = UTIL_UnitTestData_Test.getEduHistory(contacts[0].Id);
-        Education_History__c eduHis2 = UTIL_UnitTestData_Test.getEduHistory(contacts[1].Id);
+        Education_History__c eduHis1 = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        Education_History__c eduHis2 = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[1].Id);
         insert new List<Education_History__c> {eduHis1, eduHis2};
 
         Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOfferings1.Id, null);
@@ -1555,7 +1555,7 @@ private with sharing class CON_CannotDelete_TEST {
         courseOffering.Faculty__c = contacts[1].Id;
         update courseOffering;
 
-        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(contacts[1].Id);
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[1].Id);
         insert eduHis;
 
         Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOffering.Id, null);

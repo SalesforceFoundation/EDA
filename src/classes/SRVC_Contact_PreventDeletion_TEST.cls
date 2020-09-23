@@ -95,7 +95,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Course_Enrollment__c courseCxn = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
         insert courseCxn;
 
-        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(contacts[0].Id);
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
         insert eduHis;
 
         Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id,  courseOffering.Id, courseCxn.Id);
