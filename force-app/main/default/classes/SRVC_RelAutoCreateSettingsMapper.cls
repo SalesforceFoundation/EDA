@@ -63,7 +63,7 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
     * @return A list of ContactRelationshipAutoCreateMapping models
     *****************************************************************************/
     public virtual List<MDL_ContactRelationshipAutoCreateMapping> getContactMappingModelsFromSettings(){
-        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relAutoCreateListBySObjectType = UTIL_CustomSettingsFacade.getAutocreateSettingsForContact();
+        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relAutoCreateListBySObjectType = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
         return this.getContactMappingModelsFromMappings(relAutoCreateListBySObjectType.get(Contact.SObjectType));
     }
 
