@@ -99,7 +99,7 @@ public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
                 acc.Attributes__r.size() > 0 ||
                 acc.Courses__r.size() > 0 ||
                 acc.Course_Enrollments__r.size() > 0 ||
-                acc.Education_History__r.size() > 0
+                acc.Education_History__r.size() > 0 ||
                 acc.Facilities__r.size() > 0 ||
                 acc.Household_Members__r.size() > 0 ||
                 acc.Organization_Members__r.size() > 0 ||
