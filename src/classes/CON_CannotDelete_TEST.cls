@@ -468,10 +468,10 @@ private with sharing class CON_CannotDelete_TEST {
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
-        
+
         Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(null,contacts[0].Id);
         insert eduHis;
-        
+
         Test.startTest();
             List<Database.DeleteResult> results = Database.delete(contacts, false);
         Test.stopTest();
@@ -1635,7 +1635,7 @@ private with sharing class CON_CannotDelete_TEST {
         Affiliation__c affiliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affiliation;
 
-        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(contacts[0].Id);
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
         insert eduHis;
 
         List<SObject> oldList = new List<SObject>((List<SObject>)contacts);
@@ -1685,7 +1685,7 @@ private with sharing class CON_CannotDelete_TEST {
         Affiliation__c affiliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affiliation;
 
-        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(contacts[0].Id);
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
         insert eduHis;
 
         List<SObject> oldList = new List<SObject>((List<SObject>)contacts);
@@ -1763,7 +1763,7 @@ private with sharing class CON_CannotDelete_TEST {
         Affiliation__c affiliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affiliation;
 
-        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(contacts[0].Id);
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
         insert eduHis;
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
