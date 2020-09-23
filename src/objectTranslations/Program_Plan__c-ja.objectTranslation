@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <help>このプログラムプランの対象の学問的プログラム (哲学の学士号など)。</help>
+    <relationshipLabel>プログラムプラン</relationshipLabel>
+    <label>取引先</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>説明</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>プログラムプランの終了日。</help>
+    <label>終了日</label>
+  </fields>
+  <fields>
+    <name>Is_Primary__c</name>
+    <help>これが、選択された学問的プログラムで現在有効なプログラムプランであることを示します。</help>
+    <label>主</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>このプログラムプランが有効になった日付。</help>
+    <label>開始日</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>このプログラムプランに登録された学生がいる場合や、このプログラムプランに学生が登録できる場合、[現在] を選択します。それ以外の場合は、[アーカイブ済み] を選択します。</help>
+    <label>状況</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>現在</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Archived</masterLabel>
+      <translation>アーカイブ済み</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Total_Required_Credits__c</name>
+    <help>学生がこのプログラムプランを満たすために完了する必要がある合計単位数</help>
+    <label>合計必修単位数</label>
+  </fields>
+  <fields>
+    <name>Version__c</name>
+    <help>プログラムプランのバージョン (2020 年春など)。</help>
+    <label>バージョン</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Program Plan Layout</layout>
+    <sections>
+      <label>カスタムリンク</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>プログラムプラン名</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>プログラムプラン名</label>
+  </standardFields>
+  <caseValues>
+    <plural>false</plural>
+    <value>プログラムプラン</value>
+  </caseValues>
+</CustomObjectTranslation>

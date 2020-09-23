@@ -1,0 +1,518 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <help>Ohjelma, johon opiskelija on ilmoittautunut.</help>
+    <relationshipLabel>Ohjelmaan ilmoittautumiset</relationshipLabel>
+    <label>Ohjelma</label>
+  </fields>
+  <fields>
+    <name>Admission_Date__c</name>
+    <help>Päivämäärä, jolloin opiskelija hyväksyttiin ohjelmaan.</help>
+    <label>Hyväksymispäiväys</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <help>Tämä kenttä täytetään automaattisesti jäsenyystietueella, joka edustaa opiskelijan ilmoittautumista tähän ohjelmaan.</help>
+    <relationshipLabel>Ohjelmaan ilmoittautumiset</relationshipLabel>
+    <label>Jäsenyys</label>
+  </fields>
+  <fields>
+    <name>Application_Submitted_Date__c</name>
+    <help>Päivämäärä, jolloin opiskelija haki pääsyä ohjelmaan.</help>
+    <label>Hakemuksen jättöpäivä</label>
+  </fields>
+  <fields>
+    <name>Class_Standing__c</name>
+    <help>Opiskelijan taso ohjelmassa, esimerkiksi fuksi, toisen vuoden opiskelija, juniori tai vanhempi.</help>
+    <label>Sijoitus luokassa</label>
+    <picklistValues>
+      <masterLabel>Freshman</masterLabel>
+      <translation>Fuksi</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sophomore</masterLabel>
+      <translation>Toisen vuoden opiskelija</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Junior</masterLabel>
+      <translation>Juniori</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Senior</masterLabel>
+      <translation>Vanhempi</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>Opiskelija ilmoittautui tähän ohjelmaan.</help>
+    <relationshipLabel>Ohjelmaan ilmoittautumiset</relationshipLabel>
+    <label>Yhteyshenkilö</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>Opintopisteiden määrä, jonka opiskelija on yrittänyt saada tähän mennessä. Tämä sisältää keskeneräiset opinnot ja epäonnistuneet kurssit, joista ei ole saatu opintopisteitä.</help>
+    <label>Opintopistetavoite</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>Opintopisteiden määrä, jonka opiskelija on suorittanut tähän mennessä.</help>
+    <label>Ansaitut opintopisteet</label>
+  </fields>
+  <fields>
+    <name>Eligible_to_Enroll__c</name>
+    <help>Valittuna tämä osoittaa, että opiskelija täyttää ohjelmavaatimukset ja on kelvollinen ilmoittautumaan.</help>
+    <label>Kelvollinen ilmoittautumaan</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>Päivämäärä, jolloin opiskelijan on määrä suorittaa ohjelma.</help>
+    <label>Päättymispäivä</label>
+  </fields>
+  <fields>
+    <name>Enrollment_Status__c</name>
+    <help>Opiskelijan osallistumistila, esimerkiksi kokopäiväinen tai puoliaikainen.</help>
+    <label>Osallistumistila</label>
+    <picklistValues>
+      <masterLabel>Full-time</masterLabel>
+      <translation>Kokoaikainen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Half-time</masterLabel>
+      <translation>Puoliaikainen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Less than half-time</masterLabel>
+      <translation>Alle puoliaikainen</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>GPA__c</name>
+    <help>Opiskelijan nykyisen arvosanan keskiarvo.</help>
+    <label>Keskiarvosana</label>
+  </fields>
+  <fields>
+    <name>Graduation_Year__c</name>
+    <help>Vuosi, jolloin opiskelijan odotetaan valmistuvan tästä ohjelmasta.</help>
+    <label>Vuosiluokka</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>Ohjelmasuunnitelma, joka sisältää kaikki tämän opiskelijan voimassa olevat ohjelmavaatimukset.</help>
+    <relationshipLabel>Ohjelmaan ilmoittautumiset</relationshipLabel>
+    <label>Ohjelmasuunnitelma</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>Päivämäärä, jolloin opiskelija aloitti tai hänen odotetaan aloittavan tämän ohjelman.</help>
+    <label>Alkamispäivä</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Program Enrollment Layout</layout>
+    <sections>
+      <label>Mukautetut linkit</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Ohjelmaan ilmoittautumisen tunnus</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Ohjelmaan ilmoittautumisen tunnus</label>
+  </standardFields>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinti</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröintini</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröintisi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinnit</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröintini</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröintisi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinnin</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröintini</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröintisi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröintien</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröintieni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröintiesi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Inessive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinnissä</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Inessive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinnissäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Inessive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinnissäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Inessive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinneissä</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Inessive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinneissäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Inessive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinneissäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Elative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinnistä</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Elative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinnistäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Elative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinnistäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Elative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinneistä</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Elative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinneistäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Elative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinneistäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Illative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröintiin</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Illative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröintiini</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Illative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröintiisi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Illative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinteihin</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Illative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinteihini</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Illative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinteihisi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Adessive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinnillä</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Adessive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinnilläni</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Adessive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinnilläsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Adessive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinneillä</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Adessive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinneilläni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Adessive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinneilläsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Ablative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinniltä</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Ablative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinniltäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Ablative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinniltäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Ablative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinneiltä</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Ablative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinneiltäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Ablative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinneiltäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Allative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinnille</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Allative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinnilleni</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Allative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinnillesi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Allative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinneille</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Allative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinneilleni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Allative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinneillesi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Essive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröintinä</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Essive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröintinäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Essive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröintinäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Essive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinteinä</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Essive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinteinäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Essive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinteinäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Translative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinniksi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Translative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinnikseni</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Translative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinniksesi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Translative</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröinneiksi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Translative</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröinneikseni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Translative</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröinneiksesi</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Partitive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröintiä</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Partitive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröintiäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Partitive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröintiäsi</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Partitive</caseType>
+    <possessive>None</possessive>
+    <value>Ohjelmaan rekisteröintejä</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Partitive</caseType>
+    <possessive>First</possessive>
+    <value>Ohjelmaan rekisteröintejäni</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Partitive</caseType>
+    <possessive>Second</possessive>
+    <value>Ohjelmaan rekisteröintejäsi</value>
+  </caseValues>
+</CustomObjectTranslation>

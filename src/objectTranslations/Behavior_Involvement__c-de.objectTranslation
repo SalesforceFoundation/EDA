@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Case__c</name>
+    <help>Der Fall, der den gemeldeten Vorfall darstellt.</help>
+    <relationshipLabel>Beteiligte am Vorfall</relationshipLabel>
+    <label>Fall</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>Der Schüler/Student oder Lehrpersonalkontakt, der direkt am Vorfall beteiligt ist.</help>
+    <relationshipLabel>Beteiligte am Vorfall</relationshipLabel>
+    <label>Kontakt</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>Beschreibung</label>
+  </fields>
+  <fields>
+    <name>Role__c</name>
+    <help>Die Rolle dieser Person beim Vorfall.</help>
+    <label>Rolle</label>
+    <picklistValues>
+      <masterLabel>Perpetrator</masterLabel>
+      <translation>Täter</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Reporter</masterLabel>
+      <translation>Berichterstatter</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Victim</masterLabel>
+      <translation>Opfer</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Witness</masterLabel>
+      <translation>Zeuge</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Sonstiges</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>EDA Behavior Involvement Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Name des Beteiligten am Vorfall</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Name des Beteiligten am Vorfall</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Beteiligung am Vorfall</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Beteiligung am Vorfall</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Beteiligung am Vorfall</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Beteiligung am Vorfall</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Beteiligungen am Vorfall</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Beteiligungen am Vorfall</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Beteiligungen am Vorfall</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Beteiligungen am Vorfall</value>
+  </caseValues>
+</CustomObjectTranslation>

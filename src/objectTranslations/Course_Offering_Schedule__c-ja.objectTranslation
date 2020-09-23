@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>このスケジュールの対象の提供コース。</help>
+    <relationshipLabel>提供コーススケジュール</relationshipLabel>
+    <label>提供コース</label>
+  </fields>
+  <fields>
+    <name>End_Time__c</name>
+    <help>提供コースが終了する時刻。この提供コースの [時間ブロック] を入力している場合、この項目を空白のままにできます。</help>
+    <label>終了時刻</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>スケジュールされた提供コースの場所。</help>
+    <relationshipLabel>提供コーススケジュール</relationshipLabel>
+    <label>施設</label>
+  </fields>
+  <fields>
+    <name>Friday__c</name>
+    <help>この提供コースが金曜日に開催されることを示す場合に選択します。複数の曜日を選択できます。</help>
+    <label>金曜日</label>
+  </fields>
+  <fields>
+    <name>Monday__c</name>
+    <help>この提供コースが月曜日に開催されることを示す場合に選択します。複数の曜日を選択できます。</help>
+    <label>月曜日</label>
+  </fields>
+  <fields>
+    <name>Saturday__c</name>
+    <help>この提供コースが土曜日に開催されることを示す場合に選択します。複数の曜日を選択できます。</help>
+    <label>土曜日</label>
+  </fields>
+  <fields>
+    <name>Start_Time__c</name>
+    <help>提供コースが開始される時刻。この提供コースの [時間ブロック] を入力している場合、この項目を空白のままにできます。</help>
+    <label>開始時刻</label>
+  </fields>
+  <fields>
+    <name>Sunday__c</name>
+    <help>この提供コースが日曜日に開催されることを示す場合に選択します。複数の曜日を選択できます。</help>
+    <label>日曜日</label>
+  </fields>
+  <fields>
+    <name>Thursday__c</name>
+    <help>この提供コースが木曜日に開催されることを示す場合に選択します。複数の曜日を選択できます。</help>
+    <label>木曜日</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <help>この提供コースが開催される時間ブロック。</help>
+    <relationshipLabel>提供コーススケジュール</relationshipLabel>
+    <label>時間ブロック</label>
+  </fields>
+  <fields>
+    <name>Tuesday__c</name>
+    <help>この提供コースが火曜日に開催されるることを示す場合に選択します。複数の曜日を選択できます。</help>
+    <label>火曜日</label>
+  </fields>
+  <fields>
+    <name>Wednesday__c</name>
+    <help>この提供コースが水曜日に開催されることを示す場合に選択します。複数の曜日を選択できます。</help>
+    <label>水曜日</label>
+  </fields>
+  <layouts>
+    <layout>EDA Course Offering Schedule Layout</layout>
+    <sections>
+      <label>曜日</label>
+      <section>Days of Week</section>
+    </sections>
+    <sections>
+      <label>カスタムリンク</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>提供コーススケジュール名</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>提供コーススケジュール名</label>
+  </standardFields>
+  <caseValues>
+    <plural>false</plural>
+    <value>提供コーススケジュール</value>
+  </caseValues>
+</CustomObjectTranslation>
