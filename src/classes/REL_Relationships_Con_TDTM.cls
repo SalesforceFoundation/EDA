@@ -62,9 +62,9 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
             return handleAfterInsert(newList);
         }
 
-        // if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
-        //    // return handleAfterUpdate(newList, oldList);
-        // }
+        if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+            return handleAfterUpdate(newList, oldList);
+        }
 
         /******************************************************************************************************************** */
          //Casting them to contacts, since this class should be run only for contacts
