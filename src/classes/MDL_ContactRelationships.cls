@@ -50,6 +50,11 @@ public with sharing class MDL_ContactRelationships {
     * @param  relationshipToAdd The Relationship record to add.
     *************************************************************************************************************/
     public void addRelationship(Relationship__c relationshipToAdd){
+        
+        if (relationshipByTypeByRelatedContactId == null){
+            relationshipByTypeByRelatedContactId = new Map<Id, Map<String, Relationship__c>>();
+        }
+
         Map<String, Relationship__c> relationshipsByType = relationshipByTypeByRelatedContactId.get(relationshipToAdd.Contact__c);
 
         if (relationshipsByType == null){
