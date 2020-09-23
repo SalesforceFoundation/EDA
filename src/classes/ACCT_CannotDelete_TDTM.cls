@@ -79,7 +79,7 @@ public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
                                 (SELECT ID FROM Account.Time_Blocks__r LIMIT 1)
                                 FROM Account WHERE ID IN :oldlist]) {
 
-                if (hasChildRecords(acc)) {
+                if (this.hasChildRecords(acc)) {
                     Account accountInContext = oldMap.get(acc.ID);
                     accountInContext.addError(Label.CannotDelete);
                 }
@@ -93,19 +93,19 @@ public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
      * @param a is the current Account record.
      * @return Boolean.
      ********************************************************************************************************/
-    private static Boolean hasChildRecords(Account acc) {
-        return (acc.Addresses__r.size() > 0 ||
-                acc.Affl_Contacts__r.size() > 0 ||
-                acc.Attributes__r.size() > 0 ||
-                acc.Courses__r.size() > 0 ||
-                acc.Course_Enrollments__r.size() > 0 ||
-                acc.Education_History__r.size() > 0 ||
-                acc.Facilities__r.size() > 0 ||
-                acc.Household_Members__r.size() > 0 ||
-                acc.Organization_Members__r.size() > 0 ||
-                acc.Program_Enrollments__r.size() > 0 ||
-                acc.Program_Plans__r.size() > 0 ||
-                acc.Terms__r.size() > 0 ||
-                acc.Time_Blocks__r.size() > 0);
+    private Boolean hasChildRecords(Account acc) {
+        return (acc.Addresses__r.isEmpty() == false ||
+                acc.Affl_Contacts__r.isEmpty() == false ||
+                acc.Attributes__r.isEmpty() == false ||
+                acc.Courses__r.isEmpty() == false ||
+                acc.Course_Enrollments__r.isEmpty() == false ||
+                acc.Education_History__r.isEmpty() == false ||
+                acc.Facilities__r.isEmpty() == false ||
+                acc.Household_Members__r.isEmpty() == false ||
+                acc.Organization_Members__r.isEmpty() == false ||
+                acc.Program_Enrollments__r.isEmpty() == false ||
+                acc.Program_Plans__r.isEmpty() == false ||
+                acc.Terms__r.isEmpty() == false ||
+                acc.Time_Blocks__r.isEmpty() == false);
     }
 }

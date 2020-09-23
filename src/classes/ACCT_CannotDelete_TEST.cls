@@ -297,8 +297,8 @@ public with sharing class ACCT_CannotDelete_TEST {
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
 
-    /*********************************************************************************************************
-    * @description Test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
+    /************************************************************************************************************
+    * @description Bulk test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
     * Account has a Education History record associated to it, that it cannot be deleted.
     */
     @isTest
@@ -309,11 +309,13 @@ public with sharing class ACCT_CannotDelete_TEST {
 
         List<Account> newAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAcademicAccRecTypeID()); 
         insert newAccounts;
-        
+
         Education_History__c educationHistory1 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[0].Id, null);
-        Education_History__c educationHistory2 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
+        Education_History__c educationHistory2 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[0].Id, null);
+        Education_History__c educationHistory3 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
+        Education_History__c educationHistory4 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
         
-        insert new List<Education_History__c> {educationHistory1, educationHistory2};
+        insert new List<Education_History__c> {educationHistory1, educationHistory2, educationHistory3, educationHistory4};
             
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(newAccounts, false);
@@ -736,7 +738,7 @@ public with sharing class ACCT_CannotDelete_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
+    * @description Bulk test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
     * Account has a Education History record associated to it, that it can be deleted.
     */
     @isTest
@@ -750,9 +752,11 @@ public with sharing class ACCT_CannotDelete_TEST {
         insert newAccounts;
 
         Education_History__c educationHistory1 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[0].Id, null);
-        Education_History__c educationHistory2 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
+        Education_History__c educationHistory2 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[0].Id, null);
+        Education_History__c educationHistory3 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
+        Education_History__c educationHistory4 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
 
-        insert new List<Education_History__c> {educationHistory1, educationHistory2};
+        insert new List<Education_History__c> {educationHistory1, educationHistory2, educationHistory3, educationHistory4};
 
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(newAccounts, false);
@@ -1116,5 +1120,4 @@ public with sharing class ACCT_CannotDelete_TEST {
 
         System.assertEquals(0, returnAccounts.size());
     }
-    
 }
