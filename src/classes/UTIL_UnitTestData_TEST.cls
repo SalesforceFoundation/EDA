@@ -373,6 +373,16 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Returns an instance Education History record
+    * @Param contactId id of the Contact record
+    * @return eduHistory The instance of education history record
+    **********************************************************************************************************/
+    public static Education_History__c getEduHistory(Id contactId) {
+        Education_History__c eduHistory = new Education_History__c(Contact__c = contactId);
+        return eduHistory;
+    }
+
+    /*********************************************************************************************************
     * @description Create a list of error records for the current system time.
     **********************************************************************************************************/
     public static List<Error__c> getListOfErrors(Integer n) {
