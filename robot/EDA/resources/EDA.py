@@ -389,16 +389,16 @@ class EDA(BaseEDAPage):
             true - checked, false - unchecked
         """
         for field,value in kwargs.items():
-            locator = eda_lex_locators["eda_settings_program_plans"]["checkbox_read"].format(field,value)
+            locator = eda_lex_locators["eda_settings_program_plans"]["checkbox_read"].format(field)
             self.selenium.wait_until_page_contains_element(locator)
             self.selenium.wait_until_element_is_visible(locator)
             actual_value = self.selenium.get_element_attribute(locator, "alt")
             if not str(actual_value).lower() == str(value).lower():
                 self.click_action_button_on_eda_settings_page("Edit")
-                locator_edit = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field,value)
+                locator_edit = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field)
                 self.selenium.wait_until_page_contains_element(locator_edit,
                                                 error=f"'{locator_edit}' is not available ")
-                self.selenium.click_element(locator_edit)
+                self.salesforce._jsclick(locator_edit)
                 self.click_action_button_on_eda_settings_page("Save")
 
     def update_dropdown_value(self,**kwargs):
