@@ -131,7 +131,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                                         Type__c = conRelAutoCreateMappingMdl.relationshipType,
                                                                         Status__c = 'Current');
 
-                insert relationshipToAdd; // TODO: INSERT HERE?
+                insert relationshipToAdd; 
                 contactRelationshipsModel.addRelationship(relationshipToAdd);
             }
         }
