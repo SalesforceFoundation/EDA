@@ -92,13 +92,15 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
             
             String contactFieldApiName = conRelAutoCreateMap.settingsContactFieldValue;
             Object contactFieldValue = contact.get(contactFieldApiName);
+            System.debug('contactFieldValue');
 
             if (contactFieldValue != null){
-                
                 Relationship__c conRelationshipToAdd = new Relationship__c(Contact__c = contact.Id,
                                                                            RelatedContact__c = (Id)contactFieldValue,
                                                                            Type__c = conRelAutoCreateMap.relationshipType,
                                                                            Status__c = 'Current');
+
+                insert conRelationshipToAdd; //TODO: INSERT HERE?
 
                 conRelationshipsModel = new MDL_ContactRelationships(contact.Id);
                 conRelationshipsModel.addRelationship(conRelationshipToAdd);
@@ -129,6 +131,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                                         Type__c = conRelAutoCreateMappingMdl.relationshipType,
                                                                         Status__c = 'Current');
 
+                insert relationshipToAdd; // TODO: INSERT HERE?
                 contactRelationshipsModel.addRelationship(relationshipToAdd);
             }
         }

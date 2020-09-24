@@ -37,14 +37,12 @@
 public with sharing class MDL_ContactRelationships {
     public Id contactId { get; private set; }
 
-    // For reference: Relationship__c.Contact__c - <Relationship__c.Type__c - Relationship__c>
+    // For reference: Relationship__c.RelatedContact__c - <Relationship__c.Type__c - Relationship__c>
     private Map<Id, Map<String, Relationship__c>> relationshipByTypeByRelatedContactId { get; private set; }
     public List<Relationship__c> relationshipList { get; private set; } 
 
     public MDL_ContactRelationships(Id contactId) {
         this.contactId = contactId;
-
-        // TODO: do we need to initialize map and list?
         relationshipByTypeByRelatedContactId = new Map<Id, Map<String, Relationship__c>>();
         relationshipList = new List<Relationship__c>();
     }
@@ -55,15 +53,15 @@ public with sharing class MDL_ContactRelationships {
     *************************************************************************************************************/
     public void addRelationship(Relationship__c relationshipToAdd){
         
-        Map<String, Relationship__c> relationshipsByType = relationshipByTypeByRelatedContactId.get(relationshipToAdd.Contact__c);
+        Map<String, Relationship__c> relationshipsByType = relationshipByTypeByRelatedContactId.get(relationshipToAdd.RelatedContact__c);
 
         if (relationshipsByType == null){
-            // relationship by type mapping doesn't exist for current contact 
-            Map<String, Relationship__c> newRelationshipsByType = new Map<String, Relationship__c>();
-            relationshipByTypeByRelatedContactId.put(relationshipToAdd.Contact__c, newRelationshipsByType);
+            // relationship by type mapping doesn't exist for current related contact 
+            relationshipsByType = new Map<String, Relationship__c>();
+            relationshipsByType.put(relationshipToAdd.Type__c, relationshipToAdd);
         } 
-        
-        relationshipsByType.put(relationshipToAdd.Type__c, relationshipToAdd);
+
+        relationshipByTypeByRelatedContactId.put(relationshipToAdd.RelatedContact__c, relationshipsByType);
         relationshipList.add(relationshipToAdd);
     }
 
