@@ -217,7 +217,10 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
 
         List<Contact> newContactsList = (List<Contact>)newList;
         List<Contact> oldContactsList = (List<Contact>)oldList;
-        //List<MDL_ContactRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
+        
+        List<MDL_ContactRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
+
+        this.unsetUpdateRecursion();
 
         return dmlWrapper;
     }
