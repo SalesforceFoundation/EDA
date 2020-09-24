@@ -93,13 +93,13 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
     * @return               return description
     */ 
     public virtual MDL_ContactRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
-        Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe('Relationship_Auto_Create__c', 'Field__c');
+       // Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe('Relationship_Auto_Create__c', 'Field__c');
+        Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe(Relationship_Auto_Create__c.SObjectType.getDescribe().getName(), Relationship_Auto_Create__c.Field__c.getDescribe().getName());
 
         if (fieldDescribe == null){
             return null;
         }
 
-        //MDL_ContactRelationshipAutoCreateMapping conRelationshipAutoCreateMapMdl = new MDL_ContactRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, relAutoCreate.Field__c);
         return new MDL_ContactRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, relAutoCreate.Field__c);
     }
 }
