@@ -218,11 +218,47 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
 
         this.setUpdateRecursion();
 
-        List<Contact> newContactsList = (List<Contact>)newList;
-        List<Contact> oldContactsList = (List<Contact>)oldList;
+        Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newSObjectsList);
+        Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldSObjectsList);
         
         List<MDL_ContactRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
 
+        /** 
+         * Under construction
+         * TODO: get rid of comments when this is done!
+        */
+
+        //Create a ContactsRelationshipsModel for Contacts to Insert
+        MDL_ContactRelationships contactsRelationshipsModel = new MDL_ContactRelationships();
+
+        //Create a Map<Id,Contact> to update
+
+        //loop through contacts in newContactsById
+        for (Contact newContact : newContactsById.values()) {
+            Contact oldContact = oldContactsById.get(newContact.Id);
+            contactRelationshipsModel = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForUpdatedContact(contactRelAutoCreateModelsList, newContact, oldContact);
+            // if the ContactRelationshipsModel is not empty
+                // Add the model to the the ContactsRelationshipsModel
+            // If relationships should be updated for the contact per locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact,oldContact)
+            if (this.locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact, oldContact)) {
+                // Add the new contact to the map of contactsby id to update.
+
+            }
+        }
+            
+        // If the ContactsRelationshipsModel is not empty
+            // get the relationships to create using locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactsRelationshipsModel)
+            // Add those relationships to the DmlWrapper
+        // If the map of contact by Id is not empty
+            // Get relationships to update using getRelationshipsToUpdate
+            // Add those relationships to the DmlWrapper
+        //  If we have relationships to insert or update
+            // Add the relationships to insert to a new dml wrapper
+            // process the wrapper
+    
+        
+
+        
         this.unsetUpdateRecursion();
 
         return dmlWrapper;
@@ -243,6 +279,15 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     *******************************************************************************************************/ 
     @TestVisible
     private SRVC_ContactRelationshipAutoCreate locateRelationshipAutoCreateService(){
+        return SRVC_ContactRelationshipAutoCreate.getInstance();
+    }
+
+    /*******************************************************************************************************
+    * TODO: @description Retrieves an instance of the SRVC_ContactRelationshipAutoCreate service class.
+    * @return An instance of SRVC_ContactRelationshipAutoCreate.
+    *******************************************************************************************************/ 
+    @TestVisible
+    private SRVC_ContactRelationshipAutoCreate locateReciprocalRelationshipService(){
         return SRVC_ContactRelationshipAutoCreate.getInstance();
     }
 
