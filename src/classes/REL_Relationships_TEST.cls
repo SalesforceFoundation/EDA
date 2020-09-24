@@ -68,12 +68,7 @@ private class REL_Relationships_TEST {
                                                                                                         Field__c = 'ReportsToId', 
                                                                                                         Relationship_Type__c = 'TestType');
             insert contactRelationshipAutoCreate;
-
-
-            // MDL_ContactRelationshipAutoCreateMapping contactAutoCreateRelMapping = new MDL_ContactRelationshipAutoCreateMapping(Contact.ReportsToId.getDescribe(), 
-            //                                                                                                                     contactRelationshipAutoCreate.Relationship_Type__c, 
-            //                                                                                                                     contactRelationshipAutoCreate.Field__c);
-
+            
             //add Reciprocal Relationship
             delete [SELECT Id FROM Relationship_Lookup__c];
             insert new Relationship_Lookup__c(Name = 'TestLookupType', Male__c = 'TestMaleType',
