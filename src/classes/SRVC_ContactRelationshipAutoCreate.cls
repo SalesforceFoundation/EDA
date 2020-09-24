@@ -86,21 +86,23 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
      * @return                                            return description
      */ 
     public virtual MDL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
-        MDL_ContactRelationships conRelationshipsModel = new MDL_ContactRelationships(contact.Id);
+        MDL_ContactRelationships conRelationshipsModel; 
 
         for (MDL_ContactRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
-            System.debug('MK DEBUG: conRelAutoCreateMap: ' + conRelAutoCreateMap);
             
             String contactFieldApiName = conRelAutoCreateMap.settingsContactFieldValue;
             Object contactFieldValue = contact.get(contactFieldApiName);
-            
-            System.debug('MK DEBUG: contactFieldValue: ' + contactFieldValue);
+            System.debug('contactFieldValue');
+
             if (contactFieldValue != null){
                 Relationship__c conRelationshipToAdd = new Relationship__c(Contact__c = contact.Id,
                                                                            RelatedContact__c = (Id)contactFieldValue,
                                                                            Type__c = conRelAutoCreateMap.relationshipType,
                                                                            Status__c = 'Current');
 
+                insert conRelationshipToAdd; //TODO: INSERT HERE?
+
+                conRelationshipsModel = new MDL_ContactRelationships(contact.Id);
                 conRelationshipsModel.addRelationship(conRelationshipToAdd);
             }
         }
@@ -129,6 +131,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                                         Type__c = conRelAutoCreateMappingMdl.relationshipType,
                                                                         Status__c = 'Current');
 
+                insert relationshipToAdd; // TODO: INSERT HERE?
                 contactRelationshipsModel.addRelationship(relationshipToAdd);
             }
         }
