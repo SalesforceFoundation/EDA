@@ -313,7 +313,6 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return List<Relationship_Auto_Create__c> Existing Relationship Auto-Create custom settings in a list.
     **/
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
-
         if(relationshipAutocreate == null) {
             relationshipAutocreate = [SELECT Id, 
                                              Name, 
@@ -324,6 +323,7 @@ public without sharing class UTIL_CustomSettingsFacade {
                                      LIMIT 50000];
         }
 
+        System.debug('MK DEBUG; IN Getting Auto Create Settings - relationshipAutocreate: ' + relationshipAutocreate);
         return relationshipAutocreate;
     }
 
