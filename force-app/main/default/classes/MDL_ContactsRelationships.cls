@@ -3,6 +3,13 @@ public with sharing class MDL_ContactsRelationships {
     public Set<Id> relatedContactIdSet { get; private set; }
     public Map<Id, MDL_ContactRelationships> contactRelationshipsModelsByContactId;
     public List<Relationship__c> relationshipList { get; private set; }
+
+    public MDL_ContactsRelationships(){
+        contactIdsSet = new Set<Id>();
+        relatedContactIdSet = new Set<Id>();
+        contactRelationshipsModelsByContactId = new Map<Id, MDL_ContactRelationships>();
+        relationshipList = new List<Relationship__c>();
+    }
     
     /**
      * addContactRelationshipsModel description
