@@ -43,6 +43,10 @@ public with sharing class MDL_ContactRelationships {
 
     public MDL_ContactRelationships(Id contactId) {
         this.contactId = contactId;
+
+        // TODO: do we need to initialize map and list?
+        relationshipByTypeByRelatedContactId = new Map<Id, Map<String, Relationship__c>>();
+        relationshipList = new List<Relationship__c>();
     }
 
     /************************************************************************************************************
@@ -51,10 +55,6 @@ public with sharing class MDL_ContactRelationships {
     *************************************************************************************************************/
     public void addRelationship(Relationship__c relationshipToAdd){
         
-        if (relationshipByTypeByRelatedContactId == null){
-            relationshipByTypeByRelatedContactId = new Map<Id, Map<String, Relationship__c>>();
-        }
-
         Map<String, Relationship__c> relationshipsByType = relationshipByTypeByRelatedContactId.get(relationshipToAdd.Contact__c);
 
         if (relationshipsByType == null){

@@ -59,13 +59,15 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         UTIL_Describe.cacheDescribeSObjectResult(Contact.SObjectType.getDescribe());
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert){
-            return handleAfterInsert(newList);
+            return this.handleAfterInsert(newList);
         }
 
         // if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
         //    // return handleAfterUpdate(newList, oldList);
         // }
 
+
+        System.debug('MK DEBUG: Continuing to old code');
         /******************************************************************************************************************** */
          //Casting them to contacts, since this class should be run only for contacts
          List<Contact> newListCasted = (newList == null ? new List<Contact>(): (List<Contact>)newList);
@@ -172,8 +174,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     * @return A DmlWrapper
     ********************************************************************************************************/ 
     @TestVisible
-    private DmlWrapper handleAfterInsert(List<SObject> newList){
-
+    private DmlWrapper handleAfterInsert(List<SObject> newList){        
         if (this.isInsertRecursion() == true){
             return null;
         }
@@ -181,18 +182,20 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         this.setInsertRecursion();
 
         List<Contact> newContactsList = (List<Contact>)newList;
-        List<MDL_ContactRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
+        List<MDL_ContactRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();        
         MDL_ContactsRelationships contactsRelationshipsMdl = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForContacts(newContactsList, contactRelAutoCreateModelsList);
 
-        List<Relationship__c> contactRelationshipsToCreate = contactsRelationshipsMdl.relationshipList;
+        if (contactsRelationshipsMdl != null){
+            List<Relationship__c> contactRelationshipsToCreate = contactsRelationshipsMdl.relationshipList;
 
-        if (contactRelationshipsToCreate.isEmpty() == false){
-            DmlWrapper dmlWrapper = new DmlWrapper();
-            
-            dmlWrapper.objectsToInsert.addAll((List<SObject>)contactRelationshipsToCreate);
-            TDTM_TriggerHandler.processDML(dmlWrapper, true);
+            if (contactRelationshipsToCreate != null && contactRelationshipsToCreate.isEmpty() == false){
+                DmlWrapper dmlWrapper = new DmlWrapper();
+                
+                dmlWrapper.objectsToInsert.addAll((List<SObject>)contactRelationshipsToCreate);
+                TDTM_TriggerHandler.processDML(dmlWrapper, true);
+            }
         }
-
+        
         this.unsetInsertRecursion();
 
         return null;
