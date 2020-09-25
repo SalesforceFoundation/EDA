@@ -35,195 +35,1017 @@
 * @description Test for Contact primary affilation fields functionality.
 */
 @isTest
-public with sharing class CON_PrimaryAffls_TEST {
+private with sharing class CON_PrimaryAffls_TEST {
 
-    private static ID orgRecTypeID;
-    private static ID householdRecTypeID;
+    /**************************************************************************************************************************
+    ****************************************************** UNIT TESTS *********************************************************
+    **************************************************************************************************************************/
 
-    public static void setup() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+    /********************************************************
+    * @description Tests setAffiliationUpdateRecursion method
+    *********************************************************/
+    @isTest
+    static void setAffiliationUpdateRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
+        Test.startTest();
+            tdtmClass.setAffiliationUpdateRecursion();
+        Test.stopTest();
+
+        Boolean keyLookupUpdated = TDTM_ProcessControl.getRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated
+        );
+
+        System.assertEquals(true, keyLookupUpdated, 'keyLookupUpdated should be active for CON_PrimaryAffls_TDTM');
+    }
+
+    /******************************************************
+    * @description Tests setInsertRecursion method
+    *******************************************************/
+    @isTest
+    static void setInsertRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
+        Test.startTest();
+            tdtmClass.setInsertRecursion();
+        Test.stopTest();
+
+        Boolean afterInsert = TDTM_ProcessControl.getRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert
+        );
+
+        System.assertEquals(true, afterInsert, 'afterInsert should be active for CON_PrimaryAffls_TDTM');
+    }
+
+    /*******************************************************
+    * @description Tests setUpdateRecursion method
+    ********************************************************/
+    @isTest
+    static void setUpdateRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
+        Test.startTest();
+            tdtmClass.setUpdateRecursion();
+        Test.stopTest();
+
+        Boolean afterUpdate = TDTM_ProcessControl.getRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update
+        );
+
+        System.assertEquals(true, afterUpdate, 'afterUpdate should be active for CON_PrimaryAffls_TDTM');
+    }
+    
+    /*******************************************************
+    * @description Tests unsetInsertRecursion method
+    ********************************************************/
+    @isTest
+    static void unsetInsertRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setInsertRecursion();
+
+        Test.startTest();
+            tdtmClass.unsetInsertRecursion();
+        Test.stopTest();
+
+        Boolean isInsertRecursion = TDTM_ProcessControl.getRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert
+        );
+
+        System.assertEquals(false, isInsertRecursion, 'Insert recursion should not be active for CON_PrimaryAffls_TDTM');
+    }
+    
+    /*******************************************************
+    * @description Tests unsetInsert recursion method
+    *******************************************************/
+    @isTest
+    static void unsetUpdateRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setUpdateRecursion();
+
+        Test.startTest();
+            tdtmClass.unsetUpdateRecursion();
+        Test.stopTest();
+
+        Boolean isUpdateRecursion = TDTM_ProcessControl.getRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert
+        );
+
+        System.assertEquals(false, isUpdateRecursion, 'Update recursion should not be active for CON_PrimaryAffls_TDTM');
+    }
+    
+    /*******************************************************
+    * @description Tests isInsertRecursion method
+    *******************************************************/
+    @isTest
+    static void isInsertRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setInsertRecursion();
+
+        Test.startTest();
+            Boolean isInsertRecursion = tdtmClass.isInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, isInsertRecursion, 'Insert recursion should not be active for CON_PrimaryAffls_TDTM');
+    }
+
+    /*******************************************************
+    * @description Tests IsUpdateRecursion method for 
+    * CON_PrimaryAffls_TDTM_After_Update flag
+    *******************************************************/
+    @isTest
+    static void isupdateRecursionForAfterUpdate() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setUpdateRecursion();
+
+        Test.startTest();
+            Boolean isUpdateRecursion = tdtmClass.isUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, isUpdateRecursion, 'Update recursion should not be active for CON_PrimaryAffls_TDTM');
+    }
+
+    /*******************************************************
+    * @description Tests IsUpdateRecursion method for 
+    * AFFL_AccRecordType_TDTM flag
+    *******************************************************/
+    @isTest
+    static void isupdateRecursionForAfflAccRecType() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM, true
+        );
+
+        Test.startTest();
+            Boolean isUpdateRecursion = tdtmClass.isUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, isUpdateRecursion, 'Update recursion should not be active for CON_PrimaryAffls_TDTM');
+    }
+
+    /*******************************************************
+    * @description Tests isAffiliationUpdateRecursion method
+    *******************************************************/
+    @isTest
+    static void isAffiliationUpdateRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setUpdateRecursion();
+
+        Test.startTest();
+            Boolean isAffiliationUpdateRecursion = tdtmClass.isAffiliationUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, isAffiliationUpdateRecursion, 'Update recursion should not be active for CON_PrimaryAffls_TDTM');
+    }
+
+    /*******************************************************
+    * @description Tests resetAffiliationUpdateRecursion will 
+    * reset CON_PrimaryAffls_TDTM_keyAfflLookupUpdated flag
+    *******************************************************/
+    @isTest
+    static void resetAffiliationUpdateRecursion() {
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setAffiliationUpdateRecursion();
+
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated), 'update recurssion should be true');        
+
+        Test.startTest();
+            tdtmClass.resetAffiliationUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated), 'Update recursion should be reset');
+    }
+    
+    /*************************************************************************************************************
+    * @description Tests locateAffiliationSettingMapper method of CON_PrimaryAffls_TDTM
+    *************************************************************************************************************/
+    @isTest
+    private static void locateAffiliationSettingMapperTest() {
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        Test.startTest();
+            MAPR_PrimaryAffiliations primaryAfflInstance = tdtmClass.locateAffiliationSettingMapper();
+        Test.stopTest();
+
+        MAPR_PrimaryAffiliations maprInstance = MAPR_PrimaryAffiliations.getInstance();
+
+        System.assertEquals(maprInstance, primaryAfflInstance);
+
+    }
+    
+    /*************************************************************************************************************
+    * @description Tests locateContactAffiliationService method of CON_PrimaryAffls_TDTM
+    **************************************************************************************************************/
+    @isTest
+    private static void locateContactAffiliationService() {
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations primaryAfflInstance = tdtmClass.locateContactAffiliationService();
+        Test.stopTest();
+
+        SRVC_Contact_PrimaryAffiliations srvcInstance = SRVC_Contact_PrimaryAffiliations.getInstance();
+
+        System.assertEquals(srvcInstance, primaryAfflInstance);
+
+    }
+
+    /*************************************************************************************************************
+    * @description NULL test for run method to verify new DmlWrapper(); is returned when newList is null
+    *************************************************************************************************************/
+    @isTest
+    private static void runMethodNULLTest() {
+
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.AfterUpdate;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        Test.startTest();
+            TDTM_Runnable.DmlWrapper dmlWrapperReturned = tdtmClass.run(null, null, testAction, objResult);
+        Test.stopTest();
+
+        System.assertEquals(0, dmlWrapperReturned.objectsToInsert.size());
+
+    }
+
+    
+    /*************************************************************************************************************
+    * @description Test for run method to verify new DmlWrapper(); is returned when newList is empty
+    *************************************************************************************************************/
+    @isTest
+    private static void runMethodEmptyTest() {
+
+        List<Contact> newContactsList = new List<Contact>();
+        List<SObject> oldContactList = new List<SObject>();
+
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.AfterUpdate;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        Test.startTest();
+            TDTM_Runnable.DmlWrapper dmlWrapperReturned = tdtmClass.run(newContactsList, oldContactList, testAction, objResult);
+        Test.stopTest();
+
+        System.assertEquals(0, dmlWrapperReturned.objectsToInsert.size());
+
+    }
+
+    /*************************************************************************************************************
+    * @description Positive test method for run method afterInsert to ensure affiliations are created on insert
+    *************************************************************************************************************/
+    @isTest
+    static void runMethodTestForAfterInsert() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
         insert mappings;
 
-        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
-        householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
-    }
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businessAccount1;
 
-    @isTest
-    public static void newContactWithPrimaryAfflFieldMultiple() {
-        setup();
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
 
-        //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
+        List<Contact> newContactList = new List<Contact>();
 
-        //Create second account of Business Organization record type
-        Account bizOrg2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
-        insert bizOrg2;
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
+            newContactList.add(contactWithPrimaryBusinessOrg);
+        }
 
-        List<Contact> contacts = new List<Contact>();
+        insert newContactList;
 
-        //Create contacts with value in Primary Business Organization field
-        contacts.add( new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = bizOrg1.ID) );
+        List<Affiliation__c> affiliationAfterInsertList = [SELECT Id FROM Affiliation__c];
 
-        contacts.add( new Contact(FirstName = 'Test2', LastName = 'Testerson2', Primary_Organization__c = bizOrg2.ID) );
+        System.assertEquals(5, affiliationAfterInsertList.size());
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
 
         Test.startTest();
-        insert contacts;
+        TDTM_Runnable.DmlWrapper dmlWrapper = tdtmClass.run(
+            (List<SObject>)newContactList,
+            null, 
+            TDTM_Runnable.Action.AfterInsert,
+            contactDescribeResult
+        );
         Test.stopTest();
 
-        //Verify key business affiliation has been automatically created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c];
+        List<Affiliation__c> affiliationList = [SELECT Id FROM Affiliation__c];
 
-        // Check Bulkification
-        System.assertEquals(2, affls.size());
+        System.assertEquals(10, affiliationList.size(), '5 more affiliation records should be inserted');
 
-        // Check 1st Record
-        System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
-        System.assertEquals(true, affls[0].Primary__c);
-
-        // Check 2nd Record
-        System.assertEquals('Business Organization', affls[1].Affiliation_Type__c);
-        System.assertEquals(true, affls[1].Primary__c);
     }
 
+    /*************************************************************************************************************
+    * @description Positive test method for run method afterUpdate to ensure affiliations are created
+    * when contact is updated with Primary Field
+    **************************************************************************************************************/
     @isTest
-    public static void addingValToExistingPrimaryAfflField() {
-        setup();
+    static void runMethodTestForAfterUpdate() {
 
-        //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
-        //Create contact without value in Primary Business Organization field
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-        insert contact;
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
 
-        //No business affiliation should have been created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID
-                                        and Account__c = :bizOrg1.ID];
-        System.assertEquals(0, affls.size());
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businessAccount1;
 
-        //Set primary affl field
-        contact.Primary_Organization__c = bizOrg1.ID;
-        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
+
+        List<Contact> oldContactList = new List<Contact>();
+
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            oldContactList.add(contactWithPrimaryBusinessOrg);
+        }
+
+        insert oldContactList;
+
+        List<Contact> newContactList = new List<Contact>();
+        for (Contact eachContact: oldContactList) {            
+            Contact newContact = eachContact.Clone(false);
+            newContact.Id = eachContact.Id;
+            newContact.Primary_organization__c = businessAccount1.Id;
+            newContactList.add(newContact);
+        }
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
         Test.startTest();
-        update contact;
+        TDTM_Runnable.DmlWrapper dmlWrapper = tdtmClass.run(
+            (List<SObject>)newContactList,
+            (List<SObject>)oldContactList, 
+            TDTM_Runnable.Action.Afterupdate,
+            contactDescribeResult
+        );
         Test.stopTest();
 
-        //Verify key business affiliation has been automatically created
-        affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID
-                                        and Account__c = :bizOrg1.ID];
-        System.assertEquals(1, affls.size());
-        System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
-        System.assertEquals(true, affls[0].Primary__c);
+        List<Affiliation__c> affiliationList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(5, affiliationList.size());
+
     }
 
+    /*************************************************************************************************************
+    * @description Positive test method for handleAfterInsertMethod to ensure affiliations are inserted when
+    * Primary field is populated
+    *************************************************************************************************************/
     @isTest
-    public static void changingPrimaryAfflField() {
-        setup();
+    static void handleAfterInsertWithPrimaryBusinessOrg() {
 
-        //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
-        //Create contact with value in Primary Business Organization field
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = bizOrg1.ID);
-        insert contact;
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
 
-        //Verify key business affiliation has been automatically created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c
-                                        where Contact__c = :contact.ID and Account__c = :bizOrg1.ID];
-        System.assertEquals(1, affls.size());
-        Affiliation__c affl1 = affls[0];
-        System.assertEquals('Business Organization', affl1.Affiliation_Type__c);
-        System.assertEquals(true, affl1.Primary__c);
+        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccounts;
 
-        //Create second Business Organization
-        Account bizOrg2 = new Account(Name='Acme 2', RecordTypeId = orgRecTypeID);
-        insert bizOrg2;
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
 
-        //update key Business Organization field in Contact
-        contact.Primary_Organization__c = bizOrg2.ID;
-        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        List<Contact> oldContactList = new List<Contact>();
+
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_organization__c = businessAccounts[0].Id;
+            oldContactList.add(contactWithPrimaryBusinessOrg);
+        }
+
+        insert oldContactList;
+
+        List<Affiliation__c> affiliationList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(5, affiliationList.size());
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
         Test.startTest();
-        update contact;
+            tdtmClass.handleAfterInsert(oldContactList);
         Test.stopTest();
 
-        //Verify previous Affiliation has been made non-primary
-        affl1 = [select Primary__c from Affiliation__c where ID = : affl1.ID];
-        System.assertEquals(false, affl1.Primary__c);
+        List<Affiliation__c> affiliationAfterCallList = [SELECT Id FROM Affiliation__c];
 
-        //Verify new Affiliation has been created and made primary
-        affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID
-                                        and Account__c = :bizOrg2.ID];
-        System.assertEquals(1, affls.size());
-        System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
-        System.assertEquals(true, affls[0].Primary__c);
+        System.assertEquals(10, affiliationAfterCallList.size());
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert), 'Recursion flag should be unset.');
+
     }
 
+    /*************************************************************************************************************
+    * @description Negative test method for run method afterUpdate to ensure no affiliatons are inserted when
+    * Primary field is not populated
+    **************************************************************************************************************/
     @isTest
-    public static void clearingPrimaryAfflField() {
-        setup();
+    static void handleAfterInsertWithNoPrimaryField() {
 
-        //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
-        //Create contact with value in Primary Business Organization field
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = bizOrg1.ID);
-        insert contact;
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
 
-        //Verify key business affiliation has been automatically created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID
-                                        and Account__c = :bizOrg1.ID];
-        System.assertEquals(1, affls.size());
-        System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
+        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccounts;
 
-        //update key Business Organization field in Contact
-        contact.Primary_Organization__c = null;
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
 
-        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        List<Contact> oldContactList = new List<Contact>();
+
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            oldContactList.add(contactWithPrimaryBusinessOrg);
+        }
+
+        insert oldContactList;
+
+        List<Affiliation__c> affiliationList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(0, affiliationList.size());
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
+        Test.startTest();
+            tdtmClass.handleAfterInsert(oldContactList);
+        Test.stopTest();
+
+        List<Affiliation__c> affiliationAfterCallList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(0, affiliationAfterCallList.size());
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert), 'Recursion flag should be unset.');
+
+    }
+
+    /*************************************************************************************************************
+    * @description Test method for run method afterUpdate doesn't create affiliations when flag is on
+    **************************************************************************************************************/
+    @isTest
+    static void handleAfterInsertWithFlagOn() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccounts;
+
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
+
+        List<Contact> oldContactList = new List<Contact>();
+
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccounts[0].Id;
+            oldContactList.add(contactWithPrimaryBusinessOrg);
+        }
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setInsertRecursion();
+
+        Test.startTest();
+            tdtmClass.handleAfterInsert(oldContactList);
+        Test.stopTest();
+
+        List<Affiliation__c> affiliationAfterCallList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(0, affiliationAfterCallList.size());
+
+    }
+
+    /*************************************************************************************************************
+    * @description Positive test method for run method after Update to ensure affiliations are not created when
+    * flag is on
+    **************************************************************************************************************/
+    @isTest
+    static void handleAfterUpdateWithFlagOn() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccounts;
+
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
+
+        List<Contact> oldContactList = new List<Contact>();
+
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            oldContactList.add(contactWithPrimaryBusinessOrg);
+        }
+
+        List<Contact> newContactsList = new List<Contact>();
+        for (Contact oldContact: oldContactList) {
+            Contact newContact = oldContact.Clone(false);
+            newContact.Id = oldContact.Id;
+            newContact.Primary_Organization__c = businessAccounts[0].Id;
+            newContactsList.add(newContact);
+        }
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+        tdtmClass.setUpdateRecursion();
+
+        Test.startTest();
+            tdtmClass.handleAfterUpdate(oldContactList, newContactsList);
+        Test.stopTest();
+
+        List<Affiliation__c> affiliationAfterCallList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(0, affiliationAfterCallList.size());
+
+    }
+    
+    /*************************************************************************************************************
+    * @description Positive test method for run method afterUpdate to ensure affiliations are created when
+    * Contacts are updated with Primary field
+    **************************************************************************************************************/
+    @isTest
+    static void handleAfterUpdateInsertOnly() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccounts;
+
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
+
+        List<Contact> oldContactList = new List<Contact>();
+
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            oldContactList.add(contactWithPrimaryBusinessOrg);
+        }
+
+        insert oldContactList;
+
+        List<Affiliation__c> affiliationList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(0, affiliationList.size());
+
+        List<Contact> newContactsList = new List<Contact>();
+        for (Contact oldContact: oldContactList) {
+            Contact newContact = oldContact.Clone(false);
+            newContact.Id = oldContact.Id;
+            newContact.Primary_Organization__c = businessAccounts[0].Id;
+            newContactsList.add(newContact);
+        }
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
+        Test.startTest();
+            tdtmClass.handleAfterUpdate(oldContactList, newContactsList);
+        Test.stopTest();
+
+        List<Affiliation__c> affiliationAfterCallList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(5, affiliationAfterCallList.size());
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update), 'Recursion flag should be unset.');
+
+    }
+
+    /*************************************************************************************************************
+    * @description Positive test method for run method afterUpdate to ensure affiliations are updated when
+    * Contacts are cleared with Primary fields
+    **************************************************************************************************************/
+    @isTest
+    static void handleAfterUpdateUpdatesOnly() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccounts;
+
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
+
+        List<Contact> oldContactList = new List<Contact>();
+
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccounts[0].Id;
+            oldContactList.add(contactWithPrimaryBusinessOrg);
+        }
+
+        insert oldContactList;
+
+        List<Affiliation__c> affiliationList = [SELECT Id FROM Affiliation__c WHERE Primary__c = TRUE];
+
+        System.assertEquals(5, affiliationList.size());
+
+        List<Contact> newContactsList = new List<Contact>();
+        for (Contact oldContact: oldContactList) {
+            Contact newContact = oldContact.Clone(false);
+            newContact.Id = oldContact.Id;
+            newContact.Primary_Organization__c = null;
+            newContactsList.add(newContact);
+        }
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
+        Test.startTest();
+            tdtmClass.handleAfterUpdate(oldContactList, newContactsList);
+        Test.stopTest();
+
+        List<Affiliation__c> affiliationAfterCallList = [SELECT Id, Primary__c FROM Affiliation__c];
+
+        System.assertEquals(5, affiliationAfterCallList.size());
+
+        for (Affiliation__c each: affiliationAfterCallList) {
+            System.assertEquals(false, each.Primary__c);
+        }
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update), 'Recursion flag should be unset.');
+
+    }
+
+    /*************************************************************************************************************
+    * @description Positive test method for run method afterUpdate to test inserts and updates of affiliations
+    **************************************************************************************************************/
+    @isTest
+    static void handleAfterUpdateInsertAndUpdates() {
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccounts;
+
+        Schema.DescribeSObjectResult contactDescribeResult =
+            UTIL_Describe.getObjectDescribe('Contact');
+
+        List<Contact> oldContactList = new List<Contact>();
+
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccounts[0].Id;
+            oldContactList.add(contactWithPrimaryBusinessOrg);
+        }
+
+        insert oldContactList;
+
+        List<Affiliation__c> affiliationList = [SELECT Id FROM Affiliation__c WHERE Primary__c = TRUE];
+
+        System.assertEquals(5, affiliationList.size());
+
+        List<Contact> newContactsList = new List<Contact>();
+        for (Contact oldContact: oldContactList) {
+            Contact newContact = oldContact.Clone(false);
+            newContact.Id = oldContact.Id;
+            newContact.Primary_Organization__c = businessAccounts[1].Id;
+            newContactsList.add(newContact);
+        }
+
+        CON_PrimaryAffls_TDTM tdtmClass = new CON_PrimaryAffls_TDTM();
+
+        Test.startTest();
+            tdtmClass.handleAfterUpdate(oldContactList, newContactsList);
+        Test.stopTest();
+
+        List<Contact> contactList = [SELECT Id, (SELECT Id, Contact__c, Account__c, Primary__c FROM Affl_Accounts__r) FROM Contact];
+        System.assertEquals(5, contactList.size());
+        for (Contact eachContact: contactList) {
+            System.assertEquals(2, eachContact.Affl_Accounts__r.size());
+            for (Affiliation__c affiliation: eachContact.Affl_Accounts__r) {
+                if (affiliation.Account__c == businessAccounts[1].Id) {
+                    System.assertEquals(true, affiliation.Primary__c);
+                }
+                System.assertEquals(eachContact.Id, affiliation.Contact__c);
+            }
+
+        }
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update), 'Recursion flag should be unset.');
+
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** FUNCTIONAL TESTS ***************************************************
+    **************************************************************************************************************************/
+
+
+    /*************************************************************************************************************
+    * @description Positive bulk test to ensure affiliations are created on Contact insert
+    **************************************************************************************************************/
+    @isTest
+    private static void createAffiliationsOnBulkContactInsert() {
+
+       // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        // insert business account
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businessAccount1;
+
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
+            contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
+        }
+
+        Test.startTest();
+            insert contactsToBeInserted;
+        Test.stopTest();
+
+        Map<Id, Contact> ContactsById = new Map<Id, Contact>(contactsToBeInserted);
+
+        //Ensure Primary Business Organization affiliations are created for each Contact
+        List<Contact> updatedContactList = [SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r) FROM Contact WHERE Id IN: ContactsById.keySet()];
+        System.assertEquals(5, updatedContactList.size());
+        for (Contact eachUpdatedContact: updatedContactList) {
+            System.assertEquals(1, eachUpdatedContact.Affl_Accounts__r.size());
+             for (Affiliation__c affiliation: eachUpdatedContact.Affl_Accounts__r) {
+                 System.assertEquals(businessAccount1.Id, affiliation.Account__c);
+                 System.assertEquals(eachUpdatedContact.Id, affiliation.Contact__c);
+                 System.assertEquals(true, affiliation.Primary__c);
+             }
+        }
+
+    }
+
+    /*************************************************************************************************************
+    * @description Positive bulk test to ensure affiliations are created on Contact update
+    **************************************************************************************************************/
+    @isTest
+    private static void createAffiliationsOnBulkContactupdate() {
+
+        // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        // insert business account
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businessAccount1;
+
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
+        }
+
+        insert contactsToBeInserted;
+
+        List<Contact> contactToBeUpdatedList = new List<Contact>();
+
+        for (Contact contactToBeUpdated: contactsToBeInserted) {
+            contactToBeUpdated.Primary_Organization__c = businessAccount1.Id;
+            contactToBeUpdatedList.add(contactToBeUpdated);
+        }
+
+        Test.startTest();
+            update contactToBeUpdatedList;
+        Test.stopTest();
+        Map<Id, Contact> ContactsById = new Map<Id, Contact>(contactToBeUpdatedList);
+
+        //Ensure Primary Business Organization affiliations are created for each Contact
+        List<Contact> updatedContactList = [SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r) FROM Contact WHERE Id IN: ContactsById.keySet()];
+        System.assertEquals(5, updatedContactList.size());
+        for (Contact eachUpdatedContact: updatedContactList) {
+            System.assertEquals(1, eachUpdatedContact.Affl_Accounts__r.size());
+             for (Affiliation__c affiliation: eachUpdatedContact.Affl_Accounts__r) {
+                 System.assertEquals(businessAccount1.Id, affiliation.Account__c);
+                 System.assertEquals(eachUpdatedContact.Id, affiliation.Contact__c);
+                 System.assertEquals(true, affiliation.Primary__c);
+            }
+
+        }
+
+    }
+
+    /****************************************************************************************************************
+    * @description Tests to ensure error is thrown when validation is On and mappings have incorrect values
+    **************************************************************************************************************/
+    @isTest
+    private static void createAffiliationsOnBulkContactInsertWithWrongMappingsWithValidationOn() {
+
+       UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+
+       // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c' +'test'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        // insert business account
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businessAccount1;
+
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
+            contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
+        }
+
+        try{        
+            Test.startTest();
+                insert contactsToBeInserted;
+            Test.stopTest();
+            System.assert(false, 'Always throw an exception when Primary Affl Field is not valid and when Affiliation Record Type is Enforced ');
+        } catch (System.DmlException ex) {
+            System.assert(ex.getMessage().contains(Label.afflAccoutMappingError));
+        }
+
+        List<Contact> conList = [SELECT Id FROM Contact];
+        List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(true, afflList.isEmpty());
+        System.assertEquals(true, conList.isEmpty());
+    }
+
+    /*************************************************************************************************************************
+    * @description Test to ensure Contacts are not created created when mappings have incorrect values and validation is off
+    *************************************************************************************************************************/
+    @isTest
+    private static void createAffiliationsOnBulkContactInsertWithWrongMappingsWithValidationOff() {
+
+       // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c' +'test'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        // insert business account
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businessAccount1;
+
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
+            contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
+        }
+
+        Test.startTest();
+        insert contactsToBeInserted;
+        Test.stopTest();
+
+        List<Contact> conList = [SELECT Id FROM Contact];
+        List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(5, conList.size());
+        System.assertEquals(true, afflList.isEmpty());
+
+    }
+
+    /********************************************************************************************************************************
+    * @description Test to ensure new Primary affiliations are created and old ones become non-primary when Primary field is updated
+    ********************************************************************************************************************************/
+    @isTest
+    private static void createAffiliationsOnBulkContactupdates() {
+
+        // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        // insert business account
+        List<Account> businessAccountList = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccountList;
+
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccountList[0].Id;
+            contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
+        }
+
+        insert contactsToBeInserted;
+
+        List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c WHERE Account__c =: businessAccountList[0].Id AND Primary__c = TRUE];
+        System.assertEquals(5, afflList.size());
+
+        List<Contact> contactToBeUpdatedList = new List<Contact>();
+
+        for (Contact contactToBeUpdated: contactsToBeInserted) {
+            contactToBeUpdated.Primary_Organization__c = businessAccountList[1].Id;
+            contactToBeUpdatedList.add(contactToBeUpdated);
+        }
+
+        Test.startTest();
+            update contactToBeUpdatedList;
+        Test.stopTest();
+        Map<Id, Contact> ContactsById = new Map<Id, Contact>(contactToBeUpdatedList);
+
+        List<Affiliation__c> afflListWithBizOrg1AsPrimary = [SELECT Id FROM Affiliation__c WHERE Account__c =: businessAccountList[0].Id AND Primary__c = TRUE];
+        System.assertEquals(0, afflListWithBizOrg1AsPrimary.size());
+
+        List<Affiliation__c> afflListWithBizOrg2AsPrimary = [SELECT Id FROM Affiliation__c WHERE Account__c =: businessAccountList[1].Id AND Primary__c = TRUE];
+        System.assertEquals(5, afflListWithBizOrg2AsPrimary.size());
         
-        Test.startTest();
-        update contact;
-        Test.stopTest();
-
-        //Verify key business affiliation has been changed to non-primary
-        affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID
-                                        and Account__c = :bizOrg1.ID];
-        System.assertEquals(1, affls.size());
-        System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
-        System.assertEquals(false, affls[0].Primary__c);
     }
 
+    /*************************************************************************************************************
+    * @description Test to ensure Primary Affiliations are made non-primary when Primary field is cleared
+    **************************************************************************************************************/
     @isTest
-    public static void invalidFieldName() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+    private static void makeAffiliationNonPrimaryByClearingField() {
+
+        // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization',
-                                            Primary_Affl_Field__c = 'Primary Invalid Field'));
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
         insert mappings;
 
-        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        // insert business account
+        List<Account> businessAccountList = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe_API.getBizAccRecTypeID());
+        insert businessAccountList;
 
-        //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < 5; i++) {
+            Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccountList[0].Id;
+            contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
+        }
 
-        //Create contact with value in Primary Business Organization field
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = bizOrg1.ID);
+        insert contactsToBeInserted;
+
+        List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c WHERE Account__c =: businessAccountList[0].Id AND Primary__c = TRUE];
+        System.assertEquals(5, afflList.size());
+
+        List<Contact> contactToBeUpdatedList = new List<Contact>();
+
+        for (Contact contactToBeUpdated: contactsToBeInserted) {
+            contactToBeUpdated.Primary_Organization__c = null;
+            contactToBeUpdatedList.add(contactToBeUpdated);
+        }
+
         Test.startTest();
-        insert contact;
+            update contactToBeUpdatedList;
         Test.stopTest();
+        Map<Id, Contact> ContactsById = new Map<Id, Contact>(contactToBeUpdatedList);
 
-        //Verify no key business affiliation has been automatically created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID
-                                        and Account__c = :bizOrg1.ID];
-        System.assertEquals(0, affls.size());
+        List<Affiliation__c> afflListWithBizOrg1AsPrimary = [SELECT Id FROM Affiliation__c WHERE Primary__c = TRUE];
+        System.assertEquals(0, afflListWithBizOrg1AsPrimary.size());
+
     }
+
 }
