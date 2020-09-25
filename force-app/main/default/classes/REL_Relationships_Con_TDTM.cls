@@ -157,14 +157,14 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
              dmlWrapper.objectsToUpdate.addAll((list<sObject>)listRelsForUpdate);
          }
  
-         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
-         TDTM_TriggerHandler.processDML(dmlWrapper, true);
-         dmlWrapper = null;
-         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
-         /********************************************************************************************************/
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
+        /********************************************************************************************************/
 
 
-         return dmlWrapper;
+        return dmlWrapper;
     }
 
 

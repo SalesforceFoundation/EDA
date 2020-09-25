@@ -420,6 +420,420 @@ public with sharing class REL_Relationships_Con_TEST {
     }
 
     /*********************************************************************************************************
+    ********************************************* UNIT TESTS *************************************************
+    *********************************************************************************************************/
+
+    /*********************************************************************************************************
+    * @description Test method to validate that unsetInsertRecursion() updates the REL_Relationships_Con_TDTM
+    * recursion trigger flag from true to false.     
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void unsetInsertRecursionTrue(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.unsetInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Insert recursion trigger should be set to false.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that unsetInsertRecursion() does not change the 
+    * REL_Relationships_Con_TDTM recursion trigger flag if already set to false.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void unsetInsertRecursionFalse(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.unsetInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Insert recursion trigger should remain set to false.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that setInsertRecursion() changes the 
+    * REL_Relationships_Con_TDTM recursion trigger flag from false to true.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void setInsertRecursionTrue(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.setInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Insert recursion trigger should be set to true.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that setInsertRecursion() does not change the 
+    * REL_Relationships_Con_TDTM recursion trigger flag if already set to true.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void setInsertRecursionFalse(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.setInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Insert recursion trigger should remain set to true.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that isInsertRecursion() returns true when the 
+    * REL_Relationships_Con_TDTM recursion trigger flag is set to true.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void isInsertRecursionTrue(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        System.assertEquals(true, relConTdtm.isInsertRecursion(), 'Insert recursion trigger should be true.');
+        Test.stopTest();
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that isInsertRecursion() returns false when the 
+    * REL_Relationships_Con_TDTM recursion trigger flag is set to false.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void isInsertRecursionFalse(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        System.assertEquals(false, relConTdtm.isInsertRecursion(), 'Insert recursion trigger should be false.');
+        Test.stopTest();
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that the locateRelationshipAutoCreateService returns an instance of the
+    * SRVC_ContactRelationshipAutoCreate service class.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void getInstanceOfRelationshipAutoCreateService(){
+        Test.startTest();
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        SRVC_ContactRelationshipAutoCreate srvcConRelAutoCreateInstance = relConTdtm.locateRelationshipAutoCreateService();
+        Test.stopTest();
+        
+        System.assertEquals(true, srvcConRelAutoCreateInstance != null, 'Instance of service class should be retrieved.');
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that the locateRelationshipAutoCreateMappingService() returns an instance 
+    * of the SRVC_RelAutoCreateSettingsMapper service class.
+    *************************************************************************************************************/ 
+    @isTest 
+    private static void getInstanceOfRelationshipAutoCreateMappingService(){
+        Test.startTest();
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        SRVC_RelAutoCreateSettingsMapper srvcRelAutoCreateSettingsMapperInstance = relConTdtm.locateRelationshipAutoCreateMappingService();
+        Test.stopTest();
+        
+        System.assertEquals(true, srvcRelAutoCreateSettingsMapperInstance != null, 'Instance of service class should be retrieved.');
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that the handleAfterInsert() returns null and does not perform an
+    * insert when executed in an Insert Recursion context.
+    ************************************************************************************************************/
+    @isTest 
+    private static void handleAfterInsertWithRecursion(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+
+        List<Contact> relatedContactsList = new List<Contact>();
+
+        for (Integer i = 0; i < 5; i++){
+            Contact con = new Contact(Id = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
+                                      LastName = 'Testerson',
+                                      ReportsToId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType));
+            relatedContactsList.add(con);
+        }
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        System.assertEquals(null, relConTdtm.handleAfterInsert((List<SObject>)relatedContactsList), 'Insert logic in insert recursion context should not execute.');
+        Test.stopTest();
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that the handleAfterInsert() inserts contacts and does not create 
+    * relationships when Auto Create is not enabled.
+    ************************************************************************************************************/
+    @isTest 
+    private static void handleAfterInsertWithoutAutoCreate(){
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        insert contactsList;
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.handleAfterInsert((List<SObject>)contactsList);
+        Test.stopTest();
+
+        List<Relationship__c> relationshipResultsList = [SELECT Id
+                                                         FROM Relationship__c
+                                                         WHERE Contact__c IN :contactsList
+                                                         OR RelatedContact__c IN :contactsList];
+                                                        
+        System.assertEquals(true, relationshipResultsList.isEmpty(), 'There should be no relationship records auto created.');
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that the handleAfterInsert() does not create a relationship and
+    * reciprocal relationship when Auto Create is enabled, but the mapped field is not populated.
+    ************************************************************************************************************/
+    @isTest 
+    private static void handleAfterInsertWithAutoCreateNoFieldPopulated(){
+        Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate', 
+                                                                                                   Object__c = 'Contact',
+                                                                                                   Field__c = 'ReportsToId', 
+                                                                                                   Relationship_Type__c = 'Tester',
+                                                                                                   Campaign_Types__c = '');
+
+        insert contactReportToRelAutoCreate;
+
+        List<Relationship_Lookup__c> relationshipLookupsList = new List<Relationship_Lookup__c>();
+        Relationship_Lookup__c testerRelationshipLookup = new Relationship_Lookup__c(Name = 'Tester', 
+                                                                                   Male__c = 'Testee-Male',
+                                                                                   Female__c = 'Testee-Female', 
+                                                                                   Neutral__c = 'Testee');
+
+        Relationship_Lookup__c testeeRelationshipLookup = new Relationship_Lookup__c(Name = 'Testee', 
+                                                                                   Male__c = 'Tester-Male',
+                                                                                   Female__c = 'Tester-Female', 
+                                                                                   Neutral__c = 'Tester');
+
+        relationshipLookupsList.add(TesterRelationshipLookup);
+        relationshipLookupsList.add(TesteeRelationshipLookup);
+        insert relationshipLookupsList;
+
+        Set<Id> fakeContactIdsSet = new Set<Id>();
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Contact con : contactsList){
+            Id fakeConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            fakeContactIdsSet.add(fakeConId);
+            con.Id = fakeConId;
+            con.ReportsToId = null;
+        }
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.handleAfterInsert((List<SObject>)contactsList);
+        Test.stopTest();
+
+        List<Relationship__c> relationshipResultsList = [SELECT Id
+                                                         FROM Relationship__c
+                                                         WHERE Contact__c IN :fakeContactIdsSet
+                                                         OR RelatedContact__c IN :fakeContactIdsSet];
+                                                        
+        System.assertEquals(true, relationshipResultsList.isEmpty(), 'There should be no relationship records auto created.');
+    }
+
+    /************************************************************************************************************
+    * @description Test method to verify that the handleAfterInsert() inserts contacts and creates a relationship 
+    * and reciprocal relationship when Auto Create is enabled and a mappe field is populated.
+    ************************************************************************************************************/
+    @isTest 
+    private static void handleAfterInsertWithAutoCreateFieldPopulated(){
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
+
+        Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate', 
+                                                                                                   Object__c = 'Contact',
+                                                                                                   Field__c = 'ReportsToId', 
+                                                                                                   Relationship_Type__c = 'Tester',
+                                                                                                   Campaign_Types__c = '');
+
+        insert contactReportToRelAutoCreate;
+
+        List<Relationship_Lookup__c> relationshipLookupsList = new List<Relationship_Lookup__c>();
+        Relationship_Lookup__c testerRelationshipLookup = new Relationship_Lookup__c(Name = 'Tester', 
+                                                                                   Male__c = 'Testee-Male',
+                                                                                   Female__c = 'Testee-Female', 
+                                                                                   Neutral__c = 'Testee');
+
+        Relationship_Lookup__c testeeRelationshipLookup = new Relationship_Lookup__c(Name = 'Testee', 
+                                                                                   Male__c = 'Tester-Male',
+                                                                                   Female__c = 'Tester-Female', 
+                                                                                   Neutral__c = 'Tester');
+
+        relationshipLookupsList.add(TesterRelationshipLookup);
+        relationshipLookupsList.add(TesteeRelationshipLookup);
+        insert relationshipLookupsList;
+
+        List<Contact> relatedContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Integer i = 0; i < relatedContactsList.size(); i++){
+            relatedContactsList[i].FirstName = 'Test';
+            relatedContactsList[i].LastName = 'Related ' + i; 
+        }
+        insert relatedContactsList;
+        
+        Map<Id, Contact> relatedContactsById = new Map<Id, Contact>();
+        for (Contact con : relatedContactsList){
+            relatedContactsById.put(con.Id, con);
+        }
+
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Integer i = 0; i < contactsList.size(); i++){
+            contactsList[i].FirstName = 'Test';
+            contactsList[i].LastName = 'Contact ' + i;
+            contactsList[i].ReportsToId = relatedContactsList[i].Id;
+        }
+
+        insert contactsList; // inserts 10 additional relationship records
+
+        Map<Id, Contact> contactsById = new Map<Id, Contact>();
+        for (Contact con : contactsList){
+            contactsById.put(con.Id, con);
+        }
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.handleAfterInsert((List<SObject>)contactsList);
+        Test.stopTest();
+
+        List<Relationship__c> relationshipResultsList = [SELECT Id, 
+                                                                Contact__c,
+                                                                RelatedContact__c,
+                                                                Status__c,
+                                                                Type__c
+                                                        FROM Relationship__c
+                                                        WHERE Contact__c IN :contactsList
+                                                        OR Contact__c IN :relatedContactsList];
+
+        System.assertEquals(20, relationshipResultsList.size(), '10 Relationship records should be auto created (10 extra created due to test setup).');
+        
+        Map<Id, TestRelationshipMapper> testRelationshipMapperByContactId = REL_Relationships_Con_TEST.mapRelationshipListsToContact(contactsById, relationshipResultsList);
+
+        for (Id contactId : testRelationshipMapperByContactId.keySet()){
+            System.assertEquals(2, testRelationshipMapperByContactId.get(contactId).testerRelationshipsList.size(), 'Each contact should only have 2 Tester relationship records (1 extra created due to test setup).');
+            System.assertEquals(2, testRelationshipMapperByContactId.get(contactId).testeeRelationshipsList.size(), 'Each contact should only have 2 Testee relationship records (1 extra created due to test setup).');
+        }
+    }
+
+    /************************************************************************************************************
+    * @description Test to verify that run() creates relationships for contacts inserted with Relationship Auto 
+    * Create enabled.
+    ************************************************************************************************************/ 
+    @isTest 
+    private static void runAfterInsertWithAutoCreate(){
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
+
+        Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate', 
+                                                                                                   Object__c = 'Contact',
+                                                                                                   Field__c = 'ReportsToId', 
+                                                                                                   Relationship_Type__c = 'Tester',
+                                                                                                   Campaign_Types__c = '');
+
+        insert contactReportToRelAutoCreate;
+
+        List<Relationship_Lookup__c> relationshipLookupsList = new List<Relationship_Lookup__c>();
+        Relationship_Lookup__c testerRelationshipLookup = new Relationship_Lookup__c(Name = 'Tester', 
+                                                                                   Male__c = 'Testee-Male',
+                                                                                   Female__c = 'Testee-Female', 
+                                                                                   Neutral__c = 'Testee');
+
+        Relationship_Lookup__c testeeRelationshipLookup = new Relationship_Lookup__c(Name = 'Testee', 
+                                                                                   Male__c = 'Tester-Male',
+                                                                                   Female__c = 'Tester-Female', 
+                                                                                   Neutral__c = 'Tester');
+
+        relationshipLookupsList.add(TesterRelationshipLookup);
+        relationshipLookupsList.add(TesteeRelationshipLookup);
+        insert relationshipLookupsList;
+
+        List<Contact> relatedContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Integer i = 0; i < relatedContactsList.size(); i++){
+            relatedContactsList[i].FirstName = 'Test';
+            relatedContactsList[i].LastName = 'Related ' + i; 
+        }
+        insert relatedContactsList;
+        
+        Map<Id, Contact> relatedContactsById = new Map<Id, Contact>();
+        for (Contact con : relatedContactsList){
+            relatedContactsById.put(con.Id, con);
+        }
+
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Integer i = 0; i < contactsList.size(); i++){
+            contactsList[i].FirstName = 'Test';
+            contactsList[i].LastName = 'Contact ' + i;
+            contactsList[i].ReportsToId = relatedContactsList[i].Id;
+        }
+
+        insert contactsList; // inserts 10 additional relationship records
+
+        Map<Id, Contact> contactsById = new Map<Id, Contact>();
+        for (Contact con : contactsList){
+            contactsById.put(con.Id, con);
+        }
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.AfterInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+
+        Test.startTest();
+        relConTdtm.run((List<SObject>)contactsList, null, triggerAction, objResult);
+        Test.stopTest();
+
+        List<Relationship__c> relationshipResultsList = [SELECT Id, 
+                                                                Contact__c,
+                                                                RelatedContact__c,
+                                                                Status__c,
+                                                                Type__c
+                                                        FROM Relationship__c
+                                                        WHERE Contact__c IN :contactsList
+                                                        OR Contact__c IN :relatedContactsList];
+
+        System.assertEquals(20, relationshipResultsList.size(), '10 Relationship records should be auto created (10 extra created due to test setup).');
+    }
+
+    /************************************************************************************************************
+    * @description Test to verify that run() does not create relationships for contacts inserted with 
+    * Relationship Auto Create disabled.
+    ************************************************************************************************************/ 
+    @isTest 
+    private static void runAfterInsertWithoutAutoCreate(){
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
+
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        insert contactsList; 
+
+        Map<Id, Contact> contactsById = new Map<Id, Contact>();
+        for (Contact con : contactsList){
+            contactsById.put(con.Id, con);
+        }
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        TDTM_Runnable.Action triggerAction = TDTM_Runnable.Action.AfterInsert;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
+
+        Test.startTest();
+        relConTdtm.run((List<SObject>)contactsList, null, triggerAction, objResult);
+        Test.stopTest();
+
+        List<Relationship__c> relationshipResultsList = [SELECT Id, 
+                                                                Contact__c,
+                                                                RelatedContact__c,
+                                                                Status__c,
+                                                                Type__c
+                                                        FROM Relationship__c
+                                                        WHERE Contact__c IN :contactsList
+                                                        OR RelatedContact__c IN :contactsList];
+
+        System.assertEquals(true, relationshipResultsList.isEmpty(), 'No Relationship records should be auto created.');
+    }
+
+    /*********************************************************************************************************
     * @description Helper method to generate a map relating a contact to all associated Tester and Testee relationship records.
     * @param  contactsById A map of inserted contacts by Id
     * @param  relationshipsList A list of relationship records to be mapped
@@ -437,27 +851,15 @@ public with sharing class REL_Relationships_Con_TEST {
                 if (testRelMapper == null){
                     testRelMapper = new TestRelationshipMapper(rel.Contact__c);
                 }
-
-                // TODO: refactor
-                if (rel.Type__c.contains('Tester')){
-                    testRelMapper.testerRelationshipsList.add(rel);
-                } else {
-                    testRelMapper.testeeRelationshipsList.add(rel);
-                }
             } else {
                 testRelMapper = testRelationshipMapperByContactId.get(rel.relatedContact__c);
 
                 if (testRelMapper == null){
                     testRelMapper = new TestRelationshipMapper(rel.relatedContact__c);
                 }
-                
-                // TODO: refactor
-                if (rel.Type__c.contains('Tester')){
-                    testRelMapper.testerRelationshipsList.add(rel);
-                } else {
-                    testRelMapper.testeeRelationshipsList.add(rel);
-                }
             }
+
+            testRelMapper.addRelationship(rel);
         }
 
         return testRelationshipMapperByContactId;
@@ -476,41 +878,20 @@ public with sharing class REL_Relationships_Con_TEST {
             testerRelationshipsList = new List<Relationship__c>();
             testeeRelationshipsList = new List<Relationship__c>();
         }    
-    }
 
-    /*********************************************************************************************************
-    ********************************************* UNIT TESTS *************************************************
-    *********************************************************************************************************/
+        /*********************************************************************************************************
+        * @description Adds a new relationship to the Tester or Testee relationship
+        * list for a contact based on relationship type.
+        * @param  rel A relationship to add.
+        *********************************************************************************************************/
+        public void addRelationship(Relationship__c rel){
+            if (rel.Type__c.contains('Tester')){
+                testerRelationshipsList.add(rel);
+            }
 
-    /*********************************************************************************************************
-    * @description Test method to validate that unsetInsertRecursion() updates the REL_Relationships_Con_TDTM
-    * recursion trigger flag from true to false.     
-    *********************************************************************************************************/ 
-    @isTest 
-    private static void unsetInsertRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
-
-        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
-        Test.startTest();
-        relConTdtm.unsetInsertRecursion();
-        Test.stopTest();
-
-        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Recursion trigger should be set to false.');
-    }
-
-    /*********************************************************************************************************
-    * @description Test method to validate that unsetInsertRecursion() does not change the 
-    * REL_Relationships_Con_TDTM recursion trigger flag if already set to false.   
-    *********************************************************************************************************/ 
-    @isTest 
-    private static void unsetInsertRecursionFalse(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
-
-        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
-        Test.startTest();
-        relConTdtm.unsetInsertRecursion();
-        Test.stopTest();
-
-        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Recursion trigger should remain set to false.');
+            if (rel.Type__c.contains('Testee')){
+                testeeRelationshipsList.add(rel);
+            }
+        }
     }
 }
