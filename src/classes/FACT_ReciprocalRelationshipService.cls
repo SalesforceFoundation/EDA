@@ -38,7 +38,7 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
     /*********************************************
     * @description Instance for Singleton Pattern.
     **********************************************/
-    private static ReciprocalRelationshipService instance;  
+    private static SRVC_ReciprocalRelationship instance;  
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern.
@@ -49,9 +49,9 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
     * @description Static method to get the current instance for Singleton pattern.
     * @return The instance of FACT_ReciprocalRelationshipService.
     ******************************************************************************/
-    public static SRVC_RelAutoCreateSettingsMapper getInstance() {
+    public static SRVC_ReciprocalRelationship getInstance() {
         if (FACT_ReciprocalRelationshipService.instance == null) {
-            FACT_ReciprocalRelationshipService.instance = this.locateReciprocalRelationshipService();
+            FACT_ReciprocalRelationshipService.instance = FACT_ReciprocalRelationshipService.locateReciprocalRelationshipService();
         }
 
         return FACT_ReciprocalRelationshipService.instance;
@@ -62,16 +62,16 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
     * @return The reciprocal method.
     ******************************************************************************/
     @TestVisible
-    private String getReciprocalMethodFromSettings() {
+    private static String getReciprocalMethodFromSettings() {
         return UTIL_CustomSettingsFacade.getSettings().Reciprocal_Method__c;
     }
 
     /*****************************************************************************
-    * @description Retrieves an instance of the ReciprocalRelationshipService class.
+    * @description Retrieves an instance of the Reciprocal Relationship Service class based on the reciprocal method.
     * @return An instance of the ReciprocalRelationshipService class.
     ******************************************************************************/
     @TestVisible
-    private String locateReciprocalRelationshipService() {
+    private static SRVC_ReciprocalRelationship locateReciprocalRelationshipService() {
         String reciprocalMethod = getReciprocalMethodFromSettings();
         if (reciprocalMethod == 'List Setting') {
             //return ReciprocalRelationshipListService

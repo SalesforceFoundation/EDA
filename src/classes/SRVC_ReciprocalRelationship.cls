@@ -50,7 +50,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     * @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ReciprocalRelationship.
     ******************************************************************************/
-    public static SRVC_RelAutoCreateSettingsMapper getInstance() {
+    public static SRVC_ReciprocalRelationship getInstance() {
         if (SRVC_ReciprocalRelationship.instance == null) {
             SRVC_ReciprocalRelationship.instance = new SRVC_ReciprocalRelationship();
         }
@@ -69,7 +69,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
         // For each relationship in the map’s values
         for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
             // If relationshipIsReciprocal is false
-            if (isRelationshipReciprocal == false) {
+            if (this.isRelationshipReciprocal(relationship, contactRelationshipsByIdToUpdateMap.keySet()) == false) {
                 // Get the reciprocal relationship using the relationship map
                 // Set the reciprocal relationship’s type to the relationship’s type
                 // Add the reciprocal relationship to the list of relationships to update
@@ -87,6 +87,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     protected boolean isRelationshipReciprocal(Relationship__c relationship, Set<Id> contactIdsSet) {
         // Takes in a Relationship and a Contact Id Set
         // return if the Relationship’s Related Contact is in the Contact Id set    
+        return contactIdsSet.contains(relationship.RelatedContact__c);
     }
 
     /*****************************************************************************
@@ -95,25 +96,34 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     ******************************************************************************/
     private boolean shouldUpdateContactRelationships(Contact newContact, Contact oldContact) {
         // Takes in a new Contact and an old Contact
-        // Return oldContact.Gender__c != newContact.Gender__c        
+        return oldContact.Gender__c != newContact.Gender__c;        
     }
 
     /*****************************************************************************
     * TODO: @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ReciprocalRelationship.
     ******************************************************************************/
-    private boolean getRelationshipsForContacts(Set<Id> contactIdsSet) {
+    private Map<Id, Relationship__c> getRelationshipsForContacts(Set<Id> contactIdsSet) {
         // Takes a set of contact ids
         // return a map of Relationship__c by Id created from the following query:
+        List<Relationship__c> relationshipsForContacts = [SELECT Id,
+                                                                Contact__c,
+                                                                RelatedContact__c,
+                                                                ReciprocalRelationship__c,
+                                                                Type__c
+                                                        FROM Relationship__c
+                                                        WHERE Contact__c IN :contactIdsSet()
+                                                            OR Related_Contact__c IN :contactIdsSet()];
+        return new Map<Id, Relationship__c>(relationshipsForContacts);
     }
 
     /*****************************************************************************
     * TODO: @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ReciprocalRelationship.
     ******************************************************************************/
-    private boolean getRelationshipsToDeleteForContacts(Set<Id> contactIdsSet) {
+    /*private List<Relationship__c> getRelationshipsToDeleteForContacts(Set<Id> contactIdsSet) {
         // Takes a set of contact ids
         // Query the relationships to delete as follows:
         // return the list of relationships    
-    }    
+    }*/    
 }
