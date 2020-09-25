@@ -23,3 +23,40 @@ Validate run cleanup button is active in read and edit mode
     Click run action button                     Run Cleanup
     Verify text appears
     ...     The Cleanup was queued successfully. An email will be sent when the batch is completed.
+
+Verify disable preferred phone enforcement shows and hides as expected
+    [Documentation]         Checks disable preferred phone enforcement is displayed when enable
+    ...                     enhanced preferred phone functionality is checked and vice versa.
+    [tags]                                      unstable        W-8089752       rbt:high
+    Update checkbox value
+    ...                       Enable Enhanced Preferred Phone Functionality=true
+    ...                       Disable Preferred Phone Enforcement=false
+    Verify checkbox value
+    ...                       Enable Enhanced Preferred Phone Functionality=true
+    ...                       Disable Preferred Phone Enforcement=false
+    Update enable preferred phone checkbox value
+    ...                       Enable Enhanced Preferred Phone Functionality=false
+    Verify disable preferred phone enforcement displayed
+    ...                       Disable Preferred Phone Enforcement=false
+    Click action button on EDA settings page    Save
+    Verify checkbox value
+    ...                       Enable Enhanced Preferred Phone Functionality=false
+    Update enable preferred phone checkbox value
+    ...                       Enable Enhanced Preferred Phone Functionality=true
+    Verify disable preferred phone enforcement displayed
+    ...                       Disable Preferred Phone Enforcement=true
+    Update disable preferred phone checkbox value
+    ...                       Disable Preferred Phone Enforcement=true
+    Click action button on EDA settings page    Save
+    Verify checkbox value
+    ...                       Enable Enhanced Preferred Phone Functionality=true
+    ...                       Disable Preferred Phone Enforcement=true
+    Update enable preferred phone checkbox value
+    ...                       Enable Enhanced Preferred Phone Functionality=false
+    Verify disable preferred phone enforcement displayed
+    ...                       Disable Preferred Phone Enforcement=false
+    Click action button on EDA settings page    Save
+    Verify checkbox value
+    ...                       Enable Enhanced Preferred Phone Functionality=false
+    Verify disable preferred phone enforcement displayed
+    ...                       Disable Preferred Phone Enforcement=false

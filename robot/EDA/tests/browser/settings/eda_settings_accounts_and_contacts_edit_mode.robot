@@ -49,7 +49,7 @@ Unclick Checkboxes
     Test Checkbox                   University Department
 
     Wait for Locator                account_types.save
-    Click on Element                account_types.save
+    Click action button on EDA settings page    Save
 
 
 *** Keywords ***

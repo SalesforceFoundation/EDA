@@ -235,16 +235,19 @@ class EDA(BaseEDAPage):
             locator_toast = eda_lex_locators["success_message"].format("Settings successfully saved.")
             self.selenium.wait_until_page_contains_element(locator_toast)
 
+    @capture_screenshot_on_error
     def verify_toast_message(self, value):
         """ Verifies the toast message """
         locator = eda_lex_locators["toast_message"].format(value)
         self.selenium.wait_until_page_contains_element(locator)
 
+    @capture_screenshot_on_error
     def close_toast_message(self):
         """ Close the toast message banner """
-        self.selenium.wait_until_element_is_visible(eda_lex_locators["toast_close"])
-        self.selenium.click_element(eda_lex_locators["toast_close"])
-        self.selenium.wait_until_element_is_not_visible(eda_lex_locators["toast_close"])
+        locator = eda_lex_locators["toast_close"]
+        if self._check_if_element_exists(locator):
+            self.salesforce._jsclick(locator)
+        #self.selenium.capture_page_screenshot()
 
     def get_eda_namespace_prefix(self):
         """ Returns the EDA namespace value if the target org is a managed org else returns blank value """
@@ -373,16 +376,18 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_element_is_visible(locator)
         self.selenium.click_element(locator)
 
+    @capture_screenshot_on_error
     def click_action_button_on_eda_settings_page(self, action):
         """ Clicks on the action (eg: Save, Cancel) button on the EDA Settings page """
         locator = eda_lex_locators["eda_settings"]["action"].format(lower(action))
         self.selenium.wait_until_page_contains_element(
             locator, error=f"Action button with locator '{locator}' is not available on the EDA settings page")
-        self.selenium.click_element(locator)
+        self.salesforce._jsclick(locator)
         if action == "Save":
             self.verify_toast_message("Settings successfully saved.")
             self.close_toast_message()
 
+    @capture_screenshot_on_error
     def update_checkbox_value(self,**kwargs):
         """ This method will update the checkbox field value passed in keyword arguments
             Pass the expected value to be set in the checkbox field from the tests
@@ -393,12 +398,21 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_page_contains_element(locator)
             self.selenium.wait_until_element_is_visible(locator)
             actual_value = self.selenium.get_element_attribute(locator, "alt")
+            self.builtin.log("Locator " + locator + "actual value is " + actual_value)
             if not str(actual_value).lower() == str(value).lower():
                 self.click_action_button_on_eda_settings_page("Edit")
                 locator_edit = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field)
                 self.selenium.wait_until_page_contains_element(locator_edit,
                                                 error=f"'{locator_edit}' is not available ")
-                self.salesforce._jsclick(locator_edit)
+                for i in range(3):
+                    i += 1
+                    self.salesforce._jsclick(locator_edit)
+                    time.sleep(1)
+                    actual_value = self.selenium.get_element_attribute(locator_edit, "data-qa-checkbox-state")
+                    if actual_value == str(value).lower():
+                        self.builtin.log("The checkbox value in edit mode is" + actual_value)
+                        self.builtin.log("Updated locator " + locator_edit)
+                        break
                 self.click_action_button_on_eda_settings_page("Save")
 
     def update_dropdown_value(self,**kwargs):
@@ -438,6 +452,7 @@ class EDA(BaseEDAPage):
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Drop down field {field} status is {actual_value} instead of {expected_value}")
 
+    @capture_screenshot_on_error
     def verify_checkbox_value(self,**kwargs):
         """ This method validates the checkbox value for the field passed in kwargs
             Pass the field name and expected value to be verified from the tests using
@@ -451,6 +466,7 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_element_attribute(locator, "alt")
+            self.builtin.log("Actual value of " + locator + " is " + actual_value)
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Checkbox value in {field} is {actual_value} but it should be {expected_value}")
 
@@ -489,11 +505,12 @@ class EDA(BaseEDAPage):
             this message gets displayed when the 'Run copy' button is clicked
             in both read and edit mode
         """
-        time.sleep(0.5) #No other element to wait until this page loads so using sleep
+        time.sleep(1) #No other element to wait until this page loads so using sleep
         locator = eda_lex_locators["eda_settings_courses"]["text_message"].format(textMessage)
-        self.selenium.wait_until_page_contains_element(locator,
+        self.selenium.wait_until_element_is_enabled(locator,
                                                            error="Run copy text is not displayed")
         text = self.selenium.get_webelement(locator).get_attribute("className")
+        self.builtin.log("The text message is " + text)
         if "slds-hide" in text:
             raise Exception(f"The text message {textMessage} is not displayed")
 
