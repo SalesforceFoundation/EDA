@@ -91,4 +91,32 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
 
         System.assertEquals(false, hs.Error_Notifications_On__c);
     }
+    
+    // Positive test for getPrimaryAfflMappings method
+    @isTest
+    public static void getPrimaryAfflMappings() {
+        
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
+
+        insert new Affl_Mappings__c(Name = 'edu', Account_Record_Type__c = 'Academic_Program',
+            Primary_Affl_Field__c = prefix + 'Primary_Academic_Program__c', Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Role__c = 'student', Auto_Program_Enrollment_Status__c = 'current');
+
+        Test.startTest();
+            List<Affl_Mappings__c> mappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+        Test.stopTest();
+
+        System.assertEquals(1, mappings.size());
+    }
+
+    // NULL test for getPrimaryAfflMappings method
+    @isTest
+    public static void getPrimaryAfflMappingsNULLTest() {
+
+        Test.startTest();
+            List<Affl_Mappings__c> mappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+        Test.stopTest();
+
+        System.assertEquals(0, mappings.size());
+    }
 }
