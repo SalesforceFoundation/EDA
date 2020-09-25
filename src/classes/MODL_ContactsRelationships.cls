@@ -34,16 +34,16 @@
 * @group-content ../../ApexDocContent/Relationships.htm
 * @description Model class for REL_Relationships_Con_TDTM.
 */
-public with sharing class MDL_ContactsRelationships {
+public with sharing class MODL_ContactsRelationships {
     public Set<Id> contactIdsSet { get; private set; }
     public Set<Id> relatedContactIdSet { get; private set; }
-    public Map<Id, MDL_ContactRelationships> contactRelationshipsModelsByContactId;
+    public Map<Id, MODL_ContactRelationships> contactRelationshipsModelsByContactId;
     public List<Relationship__c> relationshipList { get; private set; }
 
-    public MDL_ContactsRelationships(){
+    public MODL_ContactsRelationships(){
         contactIdsSet = new Set<Id>();
         relatedContactIdSet = new Set<Id>();
-        contactRelationshipsModelsByContactId = new Map<Id, MDL_ContactRelationships>();
+        contactRelationshipsModelsByContactId = new Map<Id, MODL_ContactRelationships>();
         relationshipList = new List<Relationship__c>();
     }
     
@@ -51,7 +51,7 @@ public with sharing class MDL_ContactsRelationships {
      * addContactRelationshipsModel description
      * @param  conRelationshipsModel conRelationshipsModel description
      */ 
-    public void addContactRelationshipsModel(MDL_ContactRelationships conRelationshipsModel){
+    public void addContactRelationshipsModel(MODL_ContactRelationships conRelationshipsModel){
         contactRelationshipsModelsByContactId.put(conRelationshipsModel.contactId, conRelationshipsModel);
         contactIdsSet.add(conRelationshipsModel.contactId);
         relatedContactIdSet.addAll(conRelationshipsModel.getRelatedContactIdSet());
@@ -63,7 +63,7 @@ public with sharing class MDL_ContactsRelationships {
      * @return              return description
      */ 
     public Boolean hasRelationship(Relationship__c relationship){
-        MDL_ContactRelationships contactRelationshipModel = contactRelationshipsModelsByContactId.get(relationship.Contact__c);
+        MODL_ContactRelationships contactRelationshipModel = contactRelationshipsModelsByContactId.get(relationship.Contact__c);
     
         if (contactRelationshipModel == null){
             return false;

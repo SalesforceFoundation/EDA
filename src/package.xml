@@ -99,11 +99,11 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
-        <members>MDL_ContactRelationshipAutoCreateMapping</members>
-        <members>MDL_ContactRelationships</members>
-        <members>MDL_ContactsRelationships</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
+        <members>MODL_ConRelationshipAutoCreateMapping</members>
+        <members>MODL_ContactRelationships</members>
+        <members>MODL_ContactsRelationships</members>
         <members>MODL_PrimaryAfflMapper</members>
         <members>MODL_PrimaryAfflMapper_TEST</members>
         <members>PPlan_CannotDelete_TDTM</members>
