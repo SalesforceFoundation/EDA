@@ -323,27 +323,6 @@ public class UTIL_Describe {
         return dfr;
     }
 
-    /*************************************************************************************************
-    * @description Caches object into UTIL_Describe.objectDescribes from Schema.DescribeSObjectResult
-    * @param sObjectResult Schema.DescribeSObjectResult
-    **************************************************************************************************/
-    public static void cacheDescribeSObjectResult(Schema.DescribeSObjectResult sObjectResult) {
-
-        // get the object map the first time
-        if (gd == null) {
-            gd = Schema.getGlobalDescribe();
-        }
-
-        // get the object description
-        if (gd.containsKey(sObjectResult.getName())) {
-            if (!objectDescribes.containsKey(sObjectResult.getName())) {
-                objectDescribes.put(sObjectResult.getName(), gd.get(sObjectResult.getName()).getDescribe());
-            }    
-        } else {
-            throw new SchemaDescribeException('Invalid object name \'' + sObjectResult.getName() + '\'');
-        }
-    }
-
     /*******************************************************************************************************
     * @description Returns field describe data by Field Label
     * @param objectName the name of the object to lookup
