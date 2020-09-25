@@ -20,6 +20,7 @@ Validate drop down values appear when checkbox is unchecked
     [tags]                                      unstable        W-041782        rbt:high
     Click action button on EDA settings page    Edit
     Verify enable course connections warning    true
+    Sleep                                       10
     Verify dropdown field status
     ...                                         Default Active Student Record Type=disabled
     ...                                         Default Faculty Record Type=disabled

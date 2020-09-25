@@ -166,3 +166,41 @@ class AccountsAndContactsSettingsPage(BaseEDAPage, BasePage):
                 "Saving changes.\n" +
                 "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
             )
+
+    def verify_disable_preferred_phone_enforcement_displayed(self,**kwargs):
+        """ Verify disable preferred phone enforcement is displayed """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field)
+            if str(value).lower() == "false":
+                self.selenium.page_should_not_contain_element(locator)
+            else:
+                self.selenium.page_should_contain_element(locator)
+
+    def update_enable_preferred_phone_checkbox_value(self,**kwargs):
+        """ This method will update the checkbox field value passed in keyword arguments
+            Pass the expected value to be set in the checkbox field from the tests
+            true - checked, false - unchecked
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_program_plans"]["checkbox_read"].format(field)
+            self.selenium.wait_until_page_contains_element(locator)
+            self.selenium.wait_until_element_is_visible(locator)
+            actual_value = self.selenium.get_element_attribute(locator, "alt")
+            if not str(actual_value).lower() == str(value).lower():
+                self.eda.click_action_button_on_eda_settings_page("Edit")
+                locator_edit = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field)
+                self.selenium.wait_until_page_contains_element(locator_edit,
+                                                error=f"'{locator_edit}' is not available ")
+                self.salesforce._jsclick(locator_edit)
+
+    def update_disable_preferred_phone_checkbox_value(self,**kwargs):
+        """ This method will update the checkbox field value passed in keyword arguments
+            Pass the expected value to be set in the checkbox field from the tests
+            true - checked, false - unchecked
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field)
+            if str(value).lower() == "true":
+                self.selenium.wait_until_page_contains_element(locator)
+                self.selenium.wait_until_element_is_visible(locator)
+                self.salesforce._jsclick(locator)
