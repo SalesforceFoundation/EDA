@@ -49,6 +49,7 @@ public class UTIL_Describe {
     private static Map<String, Schema.DescribeSObjectResult> objectDescribes = new Map<String, Schema.DescribeSObjectResult>();
     private static Map<String, Map<String, Schema.SObjectField>> fieldTokens = new Map<String, Map<String, Schema.SObjectField>>();
     private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribes = new Map<String, Map<String, Schema.DescribeFieldResult>>();
+    private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribeByLabel = new Map<String, Map<String, Schema.DescribeFieldResult>>();
     private static Map<String, Map<String, List<Schema.PicklistEntry>>> fieldPicklistEntries = new Map<String, Map<String, List<Schema.PicklistEntry>>>();
 
     /*******************************************
@@ -84,6 +85,7 @@ public class UTIL_Describe {
         if (!fieldTokens.containsKey(objectName)) {
             fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
             fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
         }
 
         if (!fieldDescribes.get(objectName).containsKey(fieldName)) {
@@ -91,6 +93,7 @@ public class UTIL_Describe {
             if (fieldTokens.get(objectName).containsKey(fieldName)) {
                 Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
                 fieldDescribes.get(objectName).put(fieldName, dfr);
+                fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
             } else {
                 throw new SchemaDescribeException('Invalid field name \'' + fieldName + '\'');
             }
@@ -109,9 +112,9 @@ public class UTIL_Describe {
         if (!fieldTokens.containsKey(objectName)) {
             fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
             fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
         }
 
-        //Map<String, Schema.SObjectField> fieldsMap = objectDescribes.get(objectName).fields.getMap();
         if (fieldTokens.get(objectName).size() != fieldDescribes.get(objectName).size()) {
 
             for ( string fieldName : fieldTokens.get(objectName).keyset()) {
@@ -119,14 +122,15 @@ public class UTIL_Describe {
                 if (!fieldDescribes.get(objectName).containsKey(fieldName)) {
                     Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
                     fieldDescribes.get(objectName).put(fieldName, dfr);
+                    fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
                 }
             }
         }
     }
-    
-    /*******************************************
+
+    /***********************************************************************************
     * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
-    ********************************************/
+    ************************************************************************************/
     private static void fillPicklistEntriesForObject(string objectName, string fieldName) {
         
         // make sure we have this field's schema mapped
@@ -153,7 +157,6 @@ public class UTIL_Describe {
             fieldPicklistEntries.get(objectName).put(fieldName, picklistValues);
         }
     }
-
 
     /******************************************************************************************************
     * @description Returns new object of given type.
@@ -320,6 +323,56 @@ public class UTIL_Describe {
 
         Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(fieldName);
         return dfr;
+    }
+
+    /*******************************************************************************************************
+    * @description Returns field describe data by Field Label
+    * @param objectName the name of the object to lookup
+    * @param fieldLabel the label of the field to lookup
+    * @return Schema.DescribeFieldResult the describe field result for the given field
+    */
+
+    public static Schema.DescribeFieldResult getFieldDescribeByLabel(String objectName, String fieldLabel) {
+        // get the object map the first time
+        fillMapsForObject(objectName);
+
+        // get the field description
+        if (!fieldTokens.containsKey(objectName)) {
+            fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
+            fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+        }
+
+        if (fieldDescribeByLabel.get(objectName).containsKey(fieldLabel)) { 
+            return fieldDescribeByLabel.get(objectName).get(fieldLabel);
+        }
+
+        integer labelMapsize = fieldDescribeByLabel.get(objectName).size();
+        for (Integer i = labelMapsize; i < fieldTokens.get(objectName).size(); i++) {
+            Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).values()[i].getDescribe();
+            fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
+            
+            if (fieldLabel == dfr.getLabel()) {
+                return dfr;
+            }
+        }
+        throw new SchemaDescribeException('Invalid field Label \'' + fieldLabel + '\'');
+
+    }
+
+    /*************************************************************************************************
+    * @description Caches object into UTIL_Describe.objectDescribes from Schema.DescribeSObjectResult
+    * @param sObjectResult Schema.DescribeSObjectResult
+    **************************************************************************************************/
+    public static void cacheDescribeSObjectResult(Schema.DescribeSObjectResult sObjectResult) {
+
+        if (sObjectResult == null ) {
+            throw new SchemaDescribeException('Invalid null sObjectResult');
+        }
+
+        if (!objectDescribes.containsKey(sObjectResult.getName())) {
+            objectDescribes.put(sObjectResult.getName(), sObjectResult);
+        }
     }
 
     /*******************************************************************************************************
@@ -658,6 +711,99 @@ public class UTIL_Describe {
         }
 
         return mapRecordTypes.get(objectName);
+    }
+
+    /*******************************************************************************************************************
+    * @description Cache for the map recordTypeInfoByDeveloperName. It is a Map with
+    * RecordTypeDevName as the key and RecordTypeInfo as the value.
+    */
+    @testVisible
+    private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypeInfoByDeveloperName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
+
+    /************************************************************************************************************
+     * @description Returns a map of active, user-available recordTypeInfos for a given recordTypedevName
+     * @param objectName Name of the object to retrieve recordTypeInfos for.
+     * @param recordTypedevName The record type's developer name.
+     * @return Schema.RecordTypeInfo The RecordTypeInfo for a given recordTypedevName, object
+     */
+    public static Schema.RecordTypeInfo getRecordTypeInfoByDeveloperName(String objectName, String recordTypeDevName) {
+        
+        if (recordTypeInfoByDeveloperName.get(objectName) == null) {
+            populateRecordTypeInfoForSObject(objectName);
+        }
+        return recordTypeInfoByDeveloperName.get(objectName).get(recordTypeDevName);
+    }
+
+    /*******************************************************************************************************************
+    * @description Cache for the map recordTypeInfoByName
+    */
+    @testVisible
+    private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypeInfoByName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
+
+    /**********************************************************************************************************************
+     * @description Returns Schema.RecordTypeInfo for active, user-available recordTypeInfos for a given recordTypeName
+     * @param objectName Name of the object to retrieve recordTypeInfos for
+     * @param recordTypedevName The record type's developer name
+     * @return Schema.RecordTypeInfo The RecordTypeInfo for a given recordTypedevName, object
+     */
+    public static Schema.RecordTypeInfo getRecordTypeInfoByName(String objectName, String recordTypeName) {
+        if (recordTypeInfoByName.get(objectName) == null) {
+            populateRecordTypeInfoForSObject(objectName);
+        }
+        return recordTypeInfoByName.get(objectName).get(recordTypeName);
+    }
+
+     /**********************************************************************************************************************
+     * @description Populated recordTypeByDeveloperName and recordTypeInfoByName maps for a given objectName
+     * @param objectName Name of the object to retrieve recordTypeInfos for
+     * @return void
+     */
+    @testVisible
+    private static void populateRecordTypeInfoForSObject (String objectName) {
+        if (recordTypeInfoByDeveloperName.get(objectName) != null) {
+            return;
+        }
+
+        Map<String, Schema.RecordTypeInfo> recordTypeByDeveloperName = new Map<String, Schema.RecordTypeInfo>();
+        Map<String, Schema.RecordTypeInfo> recordTypeByName = new Map<String, Schema.RecordTypeInfo>();
+
+        // Get the Describe Result
+        fillMapsForObject(objectName);
+        Schema.DescribeSObjectResult obj = objectDescribes.get(objectName);
+
+        // Obtain ALL Active Record Types for the given SObjectType objectType
+        String soql = 'SELECT Id, Name, DeveloperName FROM RecordType ' + 'WHERE SObjectType = \''
+                        + String.escapeSingleQuotes(obj.getName()) + '\' ' + 'AND IsActive = TRUE';
+        List<SObject> results;
+
+        try {
+            results = Database.query(soql);
+        } catch (Exception ex) {
+            results = new List<SObject>();
+        }
+
+        // Obtain the RecordTypeInfos for this SObjectType objectType
+        Map<Id, Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
+
+        for (SObject rt : results) {
+
+            // Check RecordType IS available for the running user
+            if (!Test.isRunningTest()) {
+                if (recordTypeInfos.get(rt.Id).isAvailable()) {
+                    recordTypeByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
+                    recordTypeByName.put(String.valueOf(rt.get('Name')), recordTypeInfos.get(rt.Id));
+                }
+            // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
+            // might fail just because the user running them does not have certain record types assigned.
+            } else {
+                recordTypeByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
+                recordTypeByName.put(String.valueOf(rt.get('Name')), recordTypeInfos.get(rt.Id));
+            }
+        }
+
+        recordTypeInfoByDeveloperName.put(objectName, recordTypeByDeveloperName);
+        recordTypeInfoByName.put(objectName,recordTypeByName);
+
     }
 
     /*******************************************************************************************************
