@@ -233,7 +233,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
 
         //Create a Map<Id,Contact> to update
         //? Should this be relationships?
-        Map<Id,Contact> contactRelationshipsByIdToUpdateMap = new Map<Id,Contact>();
+        Map<Id, Contact> contactRelationshipsByIdToUpdateMap = new Map<Id,Contact>();
 
         //loop through contacts in newContactsById
         for (Contact newContact : newContactsById.values()) {
