@@ -404,12 +404,15 @@ class EDA(BaseEDAPage):
                 locator_edit = eda_lex_locators["eda_settings_program_plans"]["checkbox_edit"].format(field)
                 self.selenium.wait_until_page_contains_element(locator_edit,
                                                 error=f"'{locator_edit}' is not available ")
-                self.salesforce._jsclick(locator_edit)
-                time.sleep(1)
-                actual_value = self.selenium.get_element_attribute(locator_edit, "data-qa-checkbox-state")
-                if actual_value == 'true':
-                    self.builtin.log("The checkbox value in edit mode is" + actual_value)
-                self.builtin.log("Updated locator " + locator_edit)
+                for i in range(3):
+                    i += 1
+                    self.salesforce._jsclick(locator_edit)
+                    time.sleep(1)
+                    actual_value = self.selenium.get_element_attribute(locator_edit, "data-qa-checkbox-state")
+                    if actual_value == str(value).lower():
+                        self.builtin.log("The checkbox value in edit mode is" + actual_value)
+                        self.builtin.log("Updated locator " + locator_edit)
+                        break
                 self.click_action_button_on_eda_settings_page("Save")
 
     def update_dropdown_value(self,**kwargs):
@@ -449,6 +452,7 @@ class EDA(BaseEDAPage):
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Drop down field {field} status is {actual_value} instead of {expected_value}")
 
+    @capture_screenshot_on_error
     def verify_checkbox_value(self,**kwargs):
         """ This method validates the checkbox value for the field passed in kwargs
             Pass the field name and expected value to be verified from the tests using
@@ -462,6 +466,7 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_element_attribute(locator, "alt")
+            self.builtin.log("Actual value of " + locator + " is " + actual_value)
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Checkbox value in {field} is {actual_value} but it should be {expected_value}")
 

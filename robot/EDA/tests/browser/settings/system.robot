@@ -25,6 +25,7 @@ Verify system settings can retain value on save
     Click action button on EDA settings page    Save
     # Below step is necessary as sometimes the dropdown field is not loading to verify its value
     Go to EDA settings tab    System
+    Sleep                     25
     Verify checkbox value
     ...                       Store Errors=false
     ...                       Send Error Notifications=true
