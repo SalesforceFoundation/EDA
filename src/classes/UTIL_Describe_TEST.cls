@@ -168,4 +168,104 @@ public with sharing class UTIL_Describe_TEST {
 
         System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[1], testCustomAdminAccRecTypeId);
     }
+
+     // Positive test for getRecordTypeInfoByDevName
+    @isTest
+    private static void getRecordTypeInfoByDevNamePositiveTest() {
+
+        Test.startTest();
+            Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByDeveloperName('Account', 'Academic_Program');
+        Test.stopTest();
+        System.assert(recTypeInfo != null);
+    }
+
+    // Negative test for getRecordTypeInfoByDevName
+    @isTest
+    private static void getRecordTypeInfoByDevNameNegativeTest() {
+
+        Test.startTest();
+            Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByDeveloperName('Account', 'test only rec type..');
+        Test.stopTest();
+        System.assert(recTypeInfo == null);
+    }
+
+    // Positive test for getRecordTypeInfoByName
+    @isTest
+    private static void getRecordTypeInfoByNamePositiveTest() {
+
+        Test.startTest();
+            Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByName('Account', 'Academic Program');
+        Test.stopTest();
+        System.assert(recTypeInfo != null);
+    }
+
+    // Negative test for getRecordTypeInfoByName
+    @isTest
+    private static void getRecordTypeInfoByNameNegativeTest() {
+
+        Test.startTest();
+            Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByName('Account', 'test only rec type');
+        Test.stopTest();
+        System.assert(recTypeInfo == null);
+    }
+
+    // Test method for populateRecordTypeInfoForSObject
+    @isTest
+    private static void populateRecordTypeInfoForSObjectTest() {
+        
+        Test.startTest();
+            Util_Describe.populateRecordTypeInfoForSObject('Contact');
+        Test.stopTest();
+
+        Schema.RecordTypeInfo recTypeInfoByDevName = Util_Describe.getRecordTypeInfoByDeveloperName('Account', 'Academic_Program');
+        Schema.RecordTypeInfo recTypeInfoByName = Util_Describe.getRecordTypeInfoByName('Account', 'Academic Program');
+        System.assert(recTypeInfoByDevName != null);
+        System.assert(recTypeInfoByName != null);
+    }
+
+    // Positive test for cacheDescribeSObjectResult
+    @isTest
+    private static void cacheDescribeSObjectResultPositive() {
+        try {
+            Test.startTest();
+               Util_Describe.cacheDescribeSObjectResult(Account.SObjectType.getDescribe());
+            Test.stopTest();
+        } catch (UTIL_Describe.SchemaDescribeException ex) {
+            System.assert(false, 'Valid object should not throw an error');  
+        }
+
+    }
+
+    // Negative test for cacheDescribeSObjectResult
+    @isTest
+    private static void cacheDescribeSObjectResultNegativeTest() {
+        try{
+            Test.startTest();
+                Util_Describe.cacheDescribeSObjectResult(UTIL_Describe_API.getObjectDescribe('TestOnlyObj'));
+            Test.stopTest();
+        System.assert(false, 'Invalid object should throw an error');    
+        } catch (UTIL_Describe.SchemaDescribeException ex) {}
+    }
+
+    // Positive test for getFieldDescribeByLabel
+    @isTest
+    private static void getFieldDescribeByLabelPositiveTest() {
+        Test.startTest();
+            Schema.DescribeFieldResult contactFieldDesc = Util_Describe.getFieldDescribeByLabel('Contact','First Name');
+        Test.stopTest();
+        
+        System.assertEquals('FirstName', contactFieldDesc.getname());
+
+    }
+    
+    // Negative test for getFieldDescribeByLabel
+    @isTest
+    private static void getFieldDescribeByLabelNegativeTest() {
+        try{
+            Test.startTest();
+                Schema.DescribeFieldResult contactFieldDesc = Util_Describe.getFieldDescribeByLabel('Contact','First Name testing');
+            Test.stopTest();
+            System.assert(false, 'Invalid field label should throw an error'); 
+        } catch (UTIL_Describe.SchemaDescribeException ex) {}
+    }
 }
