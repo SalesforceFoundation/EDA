@@ -100,14 +100,13 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                                            Type__c = conRelAutoCreateMap.relationshipType,
                                                                            Status__c = 'Current');
 
-                insert conRelationshipToAdd; //TODO: INSERT HERE?
+                insert conRelationshipToAdd;
 
                 conRelationshipsModel = new MDL_ContactRelationships(contact.Id);
                 conRelationshipsModel.addRelationship(conRelationshipToAdd);
             }
         }
 
-        System.debug('MK DEBUG conRelationshipsModel: ' + conRelationshipsModel);
         return conRelationshipsModel;
     }
 
