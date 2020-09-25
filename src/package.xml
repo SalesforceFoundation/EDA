@@ -99,6 +99,10 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
+        <members>MAPR_PrimaryAffiliations</members>
+        <members>MAPR_PrimaryAffiliations_TEST</members>
+        <members>MODL_PrimaryAfflMapper</members>
+        <members>MODL_PrimaryAfflMapper_TEST</members>
         <members>PPlan_CannotDelete_TDTM</members>
         <members>PPlan_CannotDelete_TEST</members>
         <members>PPlan_Primary_TDTM</members>
@@ -122,6 +126,8 @@
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_Contact_PreventDeletion</members>
         <members>SRVC_Contact_PreventDeletion_TEST</members>
+        <members>SRVC_Contact_PrimaryAffiliations</members>
+        <members>SRVC_Contact_PrimaryAffiliations_TEST</members>
         <members>SRVC_UniqueRecord</members>
         <members>SRVC_UniqueRecord_TEST</members>
         <members>STG_Base_CTRL</members>
