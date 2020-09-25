@@ -16,7 +16,7 @@ Verify standard field values
     ...                     household naming are unchecked and administrative account name format
     ...                     is set to {!LastName} Administrative and household account name format
     ...                     dropdown is set to {!LastName} Household.
-    [tags]                    unstable        W-041787      rbt:high
+    [tags]                    unstable        W-041787      rbt:medium
     Go to EDA settings tab    System
     Verify checkbox value
     ...                       Store Errors=true

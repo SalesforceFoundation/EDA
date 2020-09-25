@@ -7,7 +7,7 @@ eda_lex_locators = {
     "panel_tab_lookup": "//a/span[text()='{}']",
     "toast_message": "//div[@id='successToast']/descendant::h2[text()='{}']",
     "success_message": "//div[@id='successToast']/descendant::h2[text()='{}']",
-    "toast_close": "//div[contains(@class, 'slds-theme--success')]/button[contains(@class, 'slds-notify__close')]",
+    "toast_close": "//div[@id='successToast']/descendant::button[contains(@class, 'slds-notify__close')]",
     "close_tab": "//*[@data-key='close']/ancestor::button[contains(@class, 'slds-button slds-button_icon-x-small')]",
     "mailing_address": "//*[contains(@placeholder,'{}')]",
     "record": {
