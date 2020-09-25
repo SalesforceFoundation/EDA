@@ -209,7 +209,6 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/ 
     @TestVisible
     private DmlWrapper handleAfterUpdate(List<SObject> newList, List<SObject> oldList){
-
         DmlWrapper dmlWrapper = new DmlWrapper();
 
         if (this.isUpdateRecursion() == true){
@@ -229,36 +228,52 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         */
 
         //Create a ContactsRelationshipsModel for Contacts to Insert
-        MDL_ContactRelationships contactsRelationshipsModel = new MDL_ContactRelationships();
+        //? Should this be relationships?
+        MDL_ContactsRelationships contactRelationshipsToCreate = new MDL_ContactsRelationships();
 
         //Create a Map<Id,Contact> to update
+        //? Should this be relationships?
+        Map<Id,Contact> contactRelationshipsToUpdate = new Map<Id,Contact>();
 
         //loop through contacts in newContactsById
         for (Contact newContact : newContactsById.values()) {
             Contact oldContact = oldContactsById.get(newContact.Id);
-            contactRelationshipsModel = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForUpdatedContact(contactRelAutoCreateModelsList, newContact, oldContact);
+            MDL_ContactRelationships contactRelationshipsModel = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForUpdatedContact(contactRelAutoCreateModelsList, newContact, oldContact);
             // if the ContactRelationshipsModel is not empty
+            if (contactRelationshipsModel.isEmpty == false) {
                 // Add the model to the the ContactsRelationshipsModel
+                contactsToInsert.addContactRelationshipsModel(contactRelationshipsModel);   
+            }
+                
             // If relationships should be updated for the contact per locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact,oldContact)
-            if (this.locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact, oldContact)) {
+            if (this.locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact, oldContact) == true) {
                 // Add the new contact to the map of contactsby id to update.
-
+                contactsToUpdate.put(newContact.Id, newContact);
             }
         }
             
         // If the ContactsRelationshipsModel is not empty
+        if (contactsToInsert.isEmpty == false) {
             // get the relationships to create using locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactsRelationshipsModel)
+            List<Relationship__c> relationshipsToInsert = this.locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactsToInsert);
             // Add those relationships to the DmlWrapper
+            dmlWrapper.objectsToInsert.addAll((List<SObject>)relationshipsToInsert);
+
+        }
+
         // If the map of contact by Id is not empty
+        if (contactRelationshipsToUpdate.values().isEmpty() == false) {
             // Get relationships to update using getRelationshipsToUpdate
+            List<Relationship__c> relationshipsToUpdate = this.getRelationshipsToUpdate(contactsToUpdate);
             // Add those relationships to the DmlWrapper
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>)relationshipsToUpdate);
+        }
+        
         //  If we have relationships to insert or update
             // Add the relationships to insert to a new dml wrapper
             // process the wrapper
-    
-        
-
-        
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+                
         this.unsetUpdateRecursion();
 
         return dmlWrapper;
