@@ -279,13 +279,9 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         return dmlWrapper;
     }
 
-    // getRelationshipsToUpdate
-    // Takes in contactByIdMap Map<Id,Contact>
-    // Gets the map of relationship by relationship id to check for an update using locateReciprocalRelationshipService().getRelationshipsForContacts(contactByIdsMap.keySet())
-    // Return the list of relationships to update using locateReciprocalRelationshipService().getRelationshipsToUpdateForContacts(contactByIdMap,relationshipsByIdToUpdateMap)
     /*******************************************************************************************************
     * @description Get a list of relationships to update based on contact map.
-    * @param contactRelationshipsToUpdateMap the Map of Contacts whose relationships need to be updated. 
+    * @param contactRelationshipsToUpdateMap The map of Contacts whose relationships need to be updated. 
     * @return A list of relationships to update.
     *******************************************************************************************************/ 
     @TestVisible
@@ -318,7 +314,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     *******************************************************************************************************/ 
     @TestVisible
     private SRVC_ContactRelationshipAutoCreate locateReciprocalRelationshipService(){
-        return SRVC_ContactRelationshipAutoCreate.getInstance();
+        return FACT_ReciprocalRelationshipService.getInstance();
     }
 
     /*******************************************************************************************************
