@@ -2,6 +2,7 @@ from BaseObjects import BaseEDAPage
 from EDA import eda_lex_locators
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
+import time
 
 
 @pageobject("System", "HEDA_Settings")
@@ -30,3 +31,23 @@ class SystemSettingsPage(BaseEDAPage, BasePage):
             self.selenium.wait_until_page_contains_element(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
             self.selenium.click_element(locator)
+
+    def verify_admin_toast_message(self, value):
+        """ Verifies the admin  toast message """
+        locator = eda_lex_locators["eda_settings_system"]["admin_success_toast"]
+        time.sleep(0.5) # This wait is needed for the toast message validation
+        self.selenium.wait_until_page_contains_element(locator)
+        actual_value = self.selenium.get_webelement(locator).text
+        self.builtin.log("Toast message :" + actual_value)
+        if not str(value).lower() == str(actual_value).lower() :
+                raise Exception (f"Expected {value} but it displayed {actual_value}")
+
+    def verify_household_toast_message(self, value):
+        """ Verifies the household specific toast message """
+        locator = eda_lex_locators["eda_settings_system"]["hh_success_toast"]
+        time.sleep(0.5) # This wait is needed for the toast message validation
+        self.selenium.wait_until_page_contains_element(locator)
+        actual_value = self.selenium.get_webelement(locator).text
+        self.builtin.log("Toast message :" + actual_value)
+        if not str(value).lower() == str(actual_value).lower() :
+                raise Exception (f"Expected {value} but it displayed {actual_value}")

@@ -1,6 +1,7 @@
 from BaseObjects import BaseEDAPage
 from EDA import eda_lex_locators
 from cumulusci.robotframework.pageobjects import BasePage
+from cumulusci.robotframework.utils import selenium_retry, capture_screenshot_on_error
 from cumulusci.robotframework.pageobjects import pageobject
 import time
 
@@ -41,21 +42,30 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
                 return
         raise Exception("Clicking element 'Enable Course Connections' failed after multiple tries")
 
+    @capture_screenshot_on_error
     def update_enable_cc_to_default(self):
         """ Updating the `Enable Course Connections` checkbox to default value (false)
             Check for the value and if it is not false, go into edit mode and update
         """
         locator_default = eda_lex_locators["eda_settings"]["default_checkbox"].format("Enable Course Connections")
         locator_edit_mode = eda_lex_locators["eda_settings"]["enable_checkbox"].format("Enable Course Connections")
-
+        time.sleep(5)
         self.selenium.wait_until_page_contains_element(locator_default)
         actual_value = self.selenium.get_webelement(locator_default).get_attribute("alt")
+        self.builtin.log("The default checkbox value is " + actual_value)
         if not actual_value == "False":
             self.eda.click_action_button_on_eda_settings_page("Edit")
             self.selenium.wait_until_page_contains_element(
                 locator_edit_mode,
                 error=f"Enable course connections checkbox is not available on the page. Locator:'{locator_edit_mode}'")
-            self.selenium.click_element(locator_edit_mode)
+            for i in range(3):
+                i += 1
+                self.salesforce._jsclick(locator_edit_mode)
+                time.sleep(1)
+                actual_value = self.selenium.get_element_attribute(locator_edit_mode, "data-qa-checkbox-state")
+                if actual_value == 'false':
+                    self.builtin.log("The checkbox value in edit mode is" + actual_value)
+                    break
             self.eda.click_action_button_on_eda_settings_page("Save")
 
     def verify_dropdown_values(self, field, *args):
