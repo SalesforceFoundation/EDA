@@ -220,7 +220,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newList);
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldList);
         
-        List<MDL_ContactRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
+        List<MODL_ConRelationshipAutoCreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
 
         /** 
          * Under construction
@@ -229,7 +229,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
 
         //Create a ContactsRelationshipsModel for Contacts to Insert
         //? Should this be relationships?
-        MDL_ContactsRelationships contactRelationshipsToCreate = new MDL_ContactsRelationships();
+        MODL_ContactsRelationships contactRelationshipsToCreate = new MODL_ContactsRelationships();
 
         //Create a Map<Id,Contact> to update
         //? Should this be relationships?
@@ -238,7 +238,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         //loop through contacts in newContactsById
         for (Contact newContact : newContactsById.values()) {
             Contact oldContact = oldContactsById.get(newContact.Id);
-            MDL_ContactRelationships contactRelationshipsModel = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForUpdatedContact(newContact, oldContact, contactRelAutoCreateModelsList);
+            MODL_ContactRelationships contactRelationshipsModel = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForUpdatedContact(newContact, oldContact, contactRelAutoCreateModelsList);
             // if the ContactRelationshipsModel is not empty
             if (contactRelationshipsModel.isEmpty() == false) {
                 // Add the model to the the ContactsRelationshipsModel

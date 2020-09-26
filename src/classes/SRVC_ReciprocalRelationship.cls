@@ -62,7 +62,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     * @description Get the relationships to update from map of contact and map of relationship to update
     * @return The instance of SRVC_ReciprocalRelationship.
     ******************************************************************************/
-    private List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> contactRelationshipsByIdToUpdateMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
+    public List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> contactRelationshipsByIdToUpdateMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
         // Takes in a Map<Id,Contact> of contacts by contact ids for the update and a Map<Id,Relationship__c> of relationships by relationship ids to check for update
         // Create a list of Relationships to update
         List<Relationship__c> relationshipsToUpdateList = new List<Relationship__c>();
@@ -94,7 +94,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     * TODO: @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ReciprocalRelationship.
     ******************************************************************************/
-    private boolean shouldUpdateContactRelationships(Contact newContact, Contact oldContact) {
+    public boolean shouldUpdateContactRelationships(Contact newContact, Contact oldContact) {
         // Takes in a new Contact and an old Contact
         return oldContact.Gender__c != newContact.Gender__c;        
     }
@@ -103,7 +103,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     * TODO: @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ReciprocalRelationship.
     ******************************************************************************/
-    private Map<Id, Relationship__c> getRelationshipsForContacts(Set<Id> contactIdsSet) {
+    public Map<Id, Relationship__c> getRelationshipsForContacts(Set<Id> contactIdsSet) {
         // Takes a set of contact ids
         // return a map of Relationship__c by Id created from the following query:
         List<Relationship__c> relationshipsForContacts = [SELECT Id,
