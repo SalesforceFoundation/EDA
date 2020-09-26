@@ -62,9 +62,8 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
     * @description
     * @return A list of ContactRelationshipAutoCreateMapping models
     *****************************************************************************/
-    public virtual List<MDL_ContactRelationshipAutoCreateMapping> getContactMappingModelsFromSettings(){
+    public virtual List<MODL_ConRelationshipAutoCreateMapping> getContactMappingModelsFromSettings(){
         Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relAutoCreateListBySObjectType = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
-        System.debug('MK DEBUG SRVC REL AUTOCREATE SETTINGS MAPPER: relAutoCreateListBySObjectType: ' + relAutoCreateListBySObjectType);
         return this.getContactMappingModelsFromMappings(relAutoCreateListBySObjectType.get(Contact.SObjectType));
     }
 
@@ -73,11 +72,11 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
     * @param  relAutoCreateList relAutoCreateList description
     * @return                   return description
     */ 
-    public virtual List<MDL_ContactRelationshipAutoCreateMapping> getContactMappingModelsFromMappings(List<Relationship_Auto_Create__c> relAutoCreateList){
-        List<MDL_ContactRelationshipAutoCreateMapping> conRelAutoCreateMapModelsList = new List<MDL_ContactRelationshipAutoCreateMapping>();
+    public virtual List<MODL_ConRelationshipAutoCreateMapping> getContactMappingModelsFromMappings(List<Relationship_Auto_Create__c> relAutoCreateList){
+        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMapModelsList = new List<MODL_ConRelationshipAutoCreateMapping>();
 
         for (Relationship_Auto_Create__c relAutoCreate : relAutoCreateList){
-            MDL_ContactRelationshipAutoCreateMapping relatedModel = this.getModelFromMapping(relAutoCreate);
+            MODL_ConRelationshipAutoCreateMapping relatedModel = this.getModelFromMapping(relAutoCreate);
 
             if (relatedModel != null){
                 conRelAutoCreateMapModelsList.add(relatedModel);
@@ -92,7 +91,7 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
     * @param  relAutoCreate relAutoCreate description
     * @return               return description
     */ 
-    public virtual MDL_ContactRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
+    public virtual MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
        // Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe('Relationship_Auto_Create__c', 'Field__c');
         Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe(Relationship_Auto_Create__c.SObjectType.getDescribe().getName(), Relationship_Auto_Create__c.Field__c.getDescribe().getName());
 
@@ -100,6 +99,6 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
             return null;
         }
 
-        return new MDL_ContactRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, relAutoCreate.Field__c);
+        return new MODL_ConRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, relAutoCreate.Field__c);
     }
 }

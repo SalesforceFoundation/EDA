@@ -99,9 +99,13 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
-        <members>MDL_ContactRelationshipAutoCreateMapping</members>
-        <members>MDL_ContactRelationships</members>
-        <members>MDL_ContactsRelationships</members>
+        <members>MAPR_PrimaryAffiliations</members>
+        <members>MAPR_PrimaryAffiliations_TEST</members>
+        <members>MODL_ConRelationshipAutoCreateMapping</members>
+        <members>MODL_ContactRelationships</members>
+        <members>MODL_ContactsRelationships</members>
+        <members>MODL_PrimaryAfflMapper</members>
+        <members>MODL_PrimaryAfflMapper_TEST</members>
         <members>PPlan_CannotDelete_TDTM</members>
         <members>PPlan_CannotDelete_TEST</members>
         <members>PPlan_Primary_TDTM</members>
@@ -125,9 +129,16 @@
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_ContactRelationshipAutoCreate</members>
+<<<<<<< HEAD
         <members>SRVC_Contact_PreventDeletion</members>
         <members>SRVC_Contact_PreventDeletion_TEST</members>
+=======
+        <members>SRVC_ContactRelationshipAutoCreate_TEST</members>
+>>>>>>> 86f750f81574d8e4e8c375bad4f40c2f105d54ce
         <members>SRVC_RelAutoCreateSettingsMapper</members>
+        <members>SRVC_RelAutoCreateSettingsMapper_TEST</members>
+        <members>SRVC_Contact_PrimaryAffiliations</members>
+        <members>SRVC_Contact_PrimaryAffiliations_TEST</members>
         <members>SRVC_UniqueRecord</members>
         <members>SRVC_UniqueRecord_TEST</members>
         <members>STG_Base_CTRL</members>

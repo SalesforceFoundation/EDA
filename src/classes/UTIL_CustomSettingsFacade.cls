@@ -46,6 +46,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 
     //list settings
     public static List<Affl_Mappings__c> afflMappings;
+    public static List<Affl_Mappings__c> primaryAfflMappings;
     public static List<Relationship_Auto_Create__c> relationshipAutocreate;
     public static List<Relationship_Lookup__c> relationshipLookup;
 
@@ -232,6 +233,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Role_Map__c = mySettings.Affl_ProgEnroll_Role_Map__c;
         settings.Affl_ProgEnroll_Set_Role__c= mySettings.Affl_ProgEnroll_Set_Role__c;
         settings.Affl_ProgEnroll_Status_Map__c= mySettings.Affl_ProgEnroll_Status_Map__c;
+        settings.Allow_AutoCreated_Duplicates__c = mySettings.Allow_AutoCreated_Duplicates__c;
         settings.Async_Error_Check_Last_Run__c = mySettings.Async_Error_Check_Last_Run__c;
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
         settings.Contacts_Addresses_Enabled__c = mySettings.Contacts_Addresses_Enabled__c;
@@ -286,6 +288,17 @@ public without sharing class UTIL_CustomSettingsFacade {
     }
 
     /*******************************************************************************************************
+    * @description Retrieves the existing Affiliation Mappings list custom settings using getAll method.
+    * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
+    **/
+    public static List<Affl_Mappings__c> getPrimaryAfflMappings() {
+        if (primaryAfflMappings == null) {
+            primaryAfflMappings = Affl_Mappings__c.getAll().values();
+        }
+        return primaryAfflMappings;
+    }
+
+    /*******************************************************************************************************
     * @description Retrieves the existing Relationship Reciprocal list custom settings.
     * @return List<Relationship_Lookup__c> Existing Relationship Reciprocal custom settings in a list.
     **/
@@ -311,7 +324,6 @@ public without sharing class UTIL_CustomSettingsFacade {
                                      LIMIT 50000];
         }
 
-        System.debug('MK DEBUG; IN Getting Auto Create Settings - relationshipAutocreate: ' + relationshipAutocreate);
         return relationshipAutocreate;
     }
 

@@ -65,11 +65,11 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @param contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
     * @return return description
     ******************************************************************************/ 
-    public virtual MDL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
-        MDL_ContactsRelationships contactsRelationshipsModel = new MDL_ContactsRelationships();
+    public virtual MODL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
 
         for (Contact con : contactsList){
-            MDL_ContactRelationships conRelationshipsModel = this.getRelationshipsToCreateForContact(con, contactRelationShipAutoCreateMapModelsList);
+            MODL_ContactRelationships conRelationshipsModel = this.getRelationshipsToCreateForContact(con, contactRelationShipAutoCreateMapModelsList);
 
             if (conRelationshipsModel != null){
                 contactsRelationshipsModel.addContactRelationshipsModel(conRelationshipsModel);
@@ -85,10 +85,10 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
      * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
      * @return                                            return description
      */ 
-    public virtual MDL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
-        MDL_ContactRelationships conRelationshipsModel; 
+    public virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+        MODL_ContactRelationships conRelationshipsModel; 
 
-        for (MDL_ContactRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
+        for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
             
             String contactFieldApiName = conRelAutoCreateMap.settingsContactFieldValue;
             Object contactFieldValue = contact.get(contactFieldApiName);
@@ -100,14 +100,13 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                                            Type__c = conRelAutoCreateMap.relationshipType,
                                                                            Status__c = 'Current');
 
-                insert conRelationshipToAdd; //TODO: INSERT HERE?
+                insert conRelationshipToAdd;
 
-                conRelationshipsModel = new MDL_ContactRelationships(contact.Id);
+                conRelationshipsModel = new MODL_ContactRelationships(contact.Id);
                 conRelationshipsModel.addRelationship(conRelationshipToAdd);
             }
         }
 
-        System.debug('MK DEBUG conRelationshipsModel: ' + conRelationshipsModel);
         return conRelationshipsModel;
     }
 
@@ -118,10 +117,10 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
     * @return                                            return description
     */
-    public virtual MDL_ContactRelationships getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<MDL_ContactRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
-        MDL_ContactRelationships contactRelationshipsModel = new MDL_ContactRelationships(newContact.Id);
+    public virtual MODL_ContactRelationships getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+        MODL_ContactRelationships contactRelationshipsModel = new MODL_ContactRelationships(newContact.Id);
 
-        for (MDL_ContactRelationshipAutoCreateMapping conRelAutoCreateMappingMdl : contactRelationShipAutoCreateMapModelsList){
+        for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMappingMdl : contactRelationShipAutoCreateMapModelsList){
             Object newContactFieldValue = newContact.get(conRelAutoCreateMappingMdl.contactFieldApiName);
             Object oldContactFieldValue = oldContact.get(conRelAutoCreateMappingMdl.contactFieldApiName);
     
@@ -144,7 +143,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @param  contactRelationshipsModel contactRelationshipsModel description
     * @return                           return description
     */
-    public virtual List<Relationship__c> getRelationshipsToInsertFromModel(MDL_ContactsRelationships contactsRelationshipsModel){
+    public virtual List<Relationship__c> getRelationshipsToInsertFromModel(MODL_ContactsRelationships contactsRelationshipsModel){
         if (UTIL_CustomSettingsFacade.getSettings().Allow_AutoCreated_Duplicates__c == true){
             return contactsRelationshipsModel.relationshipList;
         }
@@ -173,7 +172,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @param  contactRelationshipsModel contactsRelationshipsModel description
     * @return                            return description
     */ 
-    private Boolean isADuplicateRelationship(Relationship__c relationship, MDL_ContactsRelationships contactsRelationshipsModel){
+    private Boolean isADuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
         return contactsRelationshipsModel.hasRelationship(relationship);
     }
 }

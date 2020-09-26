@@ -157,14 +157,14 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
              dmlWrapper.objectsToUpdate.addAll((list<sObject>)listRelsForUpdate);
          }
  
-         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
-         TDTM_TriggerHandler.processDML(dmlWrapper, true);
-         dmlWrapper = null;
-         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
-         /********************************************************************************************************/
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
+        /********************************************************************************************************/
 
 
-         return dmlWrapper;
+        return dmlWrapper;
     }
 
 
@@ -182,8 +182,8 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         this.setInsertRecursion();
 
         List<Contact> newContactsList = (List<Contact>)newList;
-        List<MDL_ContactRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();        
-        MDL_ContactsRelationships contactsRelationshipsMdl = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForContacts(newContactsList, contactRelAutoCreateModelsList);
+        List<MODL_ConRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();        
+        MODL_ContactsRelationships contactsRelationshipsMdl = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForContacts(newContactsList, contactRelAutoCreateModelsList);
 
         if (contactsRelationshipsMdl != null){
             List<Relationship__c> contactRelationshipsToCreate = contactsRelationshipsMdl.relationshipList;

@@ -34,14 +34,14 @@
 * @group-content ../../ApexDocContent/Relationships.htm
 * @description 
 */
-public with sharing class MDL_ContactRelationshipAutoCreateMapping {
+public with sharing class MODL_ConRelationshipAutoCreateMapping {
 
     public String contactFieldApiName { get; private set; }
     public String contactFieldLabel { get; private set; }
     public String relationshipType { get; private set; }
     public String settingsContactFieldValue { get; private set; }
      
-    public MDL_ContactRelationshipAutoCreateMapping(Schema.DescribeFieldResult contactField, String relationshipType, String relAutoCreateMappingValue) {
+    public MODL_ConRelationshipAutoCreateMapping(Schema.DescribeFieldResult contactField, String relationshipType, String relAutoCreateMappingValue) {
         contactFieldApiName = contactField.getName();
         contactFieldLabel = contactField.getLabel();
         this.relationshipType = relationshipType;
