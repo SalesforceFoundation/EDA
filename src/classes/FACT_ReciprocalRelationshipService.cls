@@ -51,7 +51,17 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
     ******************************************************************************/
     public static SRVC_ReciprocalRelationship getInstance() {
         if (FACT_ReciprocalRelationshipService.instance == null) {
-            FACT_ReciprocalRelationshipService.instance = FACT_ReciprocalRelationshipService.locateReciprocalRelationshipService();
+            //FACT_ReciprocalRelationshipService.instance = FACT_ReciprocalRelationshipService.locateReciprocalRelationshipService();
+            String reciprocalMethod = getReciprocalMethodFromSettings();
+            if (reciprocalMethod == 'List Setting') {
+                //return ReciprocalRelationshipListService
+            }
+
+            if (reciprocalMethod == 'Value Inversion') {
+                //return ReciprocalRelationshipInversionService
+            }
+
+            return SRVC_ReciprocalRelationship.getInstance();
         }
 
         return FACT_ReciprocalRelationshipService.instance;
@@ -70,9 +80,9 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
     * @description Retrieves an instance of the Reciprocal Relationship Service class based on the reciprocal method.
     * @return An instance of the ReciprocalRelationshipService class.
     ******************************************************************************/
-    @TestVisible
+    /*@TestVisible
     private static SRVC_ReciprocalRelationship locateReciprocalRelationshipService() {
-        String reciprocalMethod = getReciprocalMethodFromSettings();
+        /*String reciprocalMethod = getReciprocalMethodFromSettings();
         if (reciprocalMethod == 'List Setting') {
             //return ReciprocalRelationshipListService
         }
@@ -82,6 +92,6 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
         }
     
         return SRVC_ReciprocalRelationship.getInstance();
-    }
+    }*/
 }
 

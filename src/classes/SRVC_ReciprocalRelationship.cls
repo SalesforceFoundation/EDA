@@ -112,8 +112,8 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
                                                                 ReciprocalRelationship__c,
                                                                 Type__c
                                                         FROM Relationship__c
-                                                        WHERE Contact__c IN :contactIdsSet()
-                                                            OR Related_Contact__c IN :contactIdsSet()];
+                                                        WHERE Contact__c IN :contactIdsSet
+                                                            OR RelatedContact__c IN :contactIdsSet];
         return new Map<Id, Relationship__c>(relationshipsForContacts);
     }
 

@@ -238,7 +238,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         //loop through contacts in newContactsById
         for (Contact newContact : newContactsById.values()) {
             Contact oldContact = oldContactsById.get(newContact.Id);
-            MDL_ContactRelationships contactRelationshipsModel = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForUpdatedContact(contactRelAutoCreateModelsList, newContact, oldContact);
+            MDL_ContactRelationships contactRelationshipsModel = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForUpdatedContact(newContact, oldContact, contactRelAutoCreateModelsList);
             // if the ContactRelationshipsModel is not empty
             if (contactRelationshipsModel.isEmpty() == false) {
                 // Add the model to the the ContactsRelationshipsModel
@@ -253,9 +253,9 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         }
             
         // If the ContactsRelationshipsModel is not empty
-        if (contactRelationshipsToCreate.isEmpty == false) {
+        if (contactRelationshipsToCreate.isEmpty() == false) {
             // get the relationships to create using locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactsRelationshipsModel)
-            List<Relationship__c> relationshipsToInsert = this.locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactsToInsert);
+            List<Relationship__c> relationshipsToInsert = this.locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactRelationshipsToCreate);
             // Add those relationships to the DmlWrapper
             dmlWrapper.objectsToInsert.addAll((List<SObject>)relationshipsToInsert);
 
