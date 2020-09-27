@@ -228,12 +228,11 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         */
 
         //Create a ContactsRelationshipsModel for Contacts to Insert
-        //? Should this be relationships?
         MODL_ContactsRelationships contactRelationshipsToCreate = new MODL_ContactsRelationships();
 
         //Create a Map<Id,Contact> to update
         //? Should this be relationships?
-        Map<Id, Contact> contactRelationshipsByIdToUpdateMap = new Map<Id,Contact>();
+        Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id,Contact>();
 
         //loop through contacts in newContactsById
         for (Contact newContact : newContactsById.values()) {
@@ -248,7 +247,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
             // If relationships should be updated for the contact per locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact,oldContact)
             if (this.locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact, oldContact) == true) {
                 // Add the new contact to the map of contactsby id to update.
-                contactRelationshipsByIdToUpdateMap.put(newContact.Id, newContact);
+                newContactRelationshipToUpdateByIdMap.put(newContact.Id, newContact);
             }
         }
             
@@ -258,13 +257,12 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
             List<Relationship__c> relationshipsToInsert = this.locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactRelationshipsToCreate);
             // Add those relationships to the DmlWrapper
             dmlWrapper.objectsToInsert.addAll((List<SObject>)relationshipsToInsert);
-
         }
 
         // If the map of contact by Id is not empty
-        if (contactRelationshipsByIdToUpdateMap.values().isEmpty() == false) {
+        if (newContactRelationshipToUpdateByIdMap.values().isEmpty() == false) {
             // Get relationships to update using getRelationshipsToUpdate
-            List<Relationship__c> relationshipsToUpdate = this.getRelationshipsToUpdate(contactRelationshipsByIdToUpdateMap);
+            List<Relationship__c> relationshipsToUpdate = this.getRelationshipsToUpdate(newContactRelationshipToUpdateByIdMap);
             // Add those relationships to the DmlWrapper
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)relationshipsToUpdate);
         }
@@ -285,9 +283,9 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     * @return A list of relationships to update.
     *******************************************************************************************************/ 
     @TestVisible
-    private List<Relationship__c> getRelationshipsToUpdate(Map<Id,Contact> contactRelationshipsByIdToUpdateMap){
-        Map<Id, Relationship__c> relationshipsByIdToUpdateMap = this.locateReciprocalRelationshipService().getRelationshipsForContacts(contactRelationshipsByIdToUpdateMap.keySet());
-        return this.locateReciprocalRelationshipService().getRelationshipsToUpdateForContacts(contactRelationshipsByIdToUpdateMap, relationshipsByIdToUpdateMap);
+    private List<Relationship__c> getRelationshipsToUpdate(Map<Id,Contact> newContactRelationshipToUpdateByIdMap){
+        Map<Id, Relationship__c> relationshipsByIdToUpdateMap = this.locateReciprocalRelationshipService().getRelationshipsForContacts(newContactRelationshipToUpdateByIdMap.keySet());
+        return this.locateReciprocalRelationshipService().getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
     }
 
     /*******************************************************************************************************
