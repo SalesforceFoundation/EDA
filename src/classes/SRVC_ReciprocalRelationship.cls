@@ -118,15 +118,5 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
                                                         WHERE Contact__c IN :contactIdsSet
                                                             OR RelatedContact__c IN :contactIdsSet];
         return new Map<Id, Relationship__c>(relationshipsForContacts);
-    }
-
-    /*****************************************************************************
-    * TODO: @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_ReciprocalRelationship.
-    ******************************************************************************/
-    /*private List<Relationship__c> getRelationshipsToDeleteForContacts(Set<Id> contactIdsSet) {
-        // Takes a set of contact ids
-        // Query the relationships to delete as follows:
-        // return the list of relationships    
-    }*/    
+    }  
 }
