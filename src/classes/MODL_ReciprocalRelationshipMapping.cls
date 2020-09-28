@@ -44,10 +44,10 @@ public with sharing class MODL_ReciprocalRelationshipMapping {
 
 
     private String relationshipName; 
-    private Boolean isActive { get; private set; }
-    private String femaleRelationshipType { get; private set; }
-    private String maleRelationshipType { get; private set; }
-    private String neutralRelationshipType { get; private set; }
+    private Boolean isActive; 
+    private String femaleRelationshipType; 
+    private String maleRelationshipType; 
+    private String neutralRelationshipType; 
 
     public MODL_ReciprocalRelationshipMapping(Relationship_Lookup__c relationshipLookup) {
         // Takes in a Relationship_Lookup__c
@@ -75,7 +75,9 @@ public with sharing class MODL_ReciprocalRelationshipMapping {
         return this.maleRelationshipType;
     }
 
-    public String
+    public String getNeutralRelationshipType() {
+        return this.neutralRelationshipType;
+    }
 
     public Boolean hasFemaleValue() {
         return this.femaleRelationshipType != null;
