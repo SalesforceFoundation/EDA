@@ -84,7 +84,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @description Generates a list of active Relationship Lookup mappings.
     * @return A list containing the current active Relationship Lookup mappings.
     ******************************************************************************************************/ 
-    public List<Relationship_Lookup__c> getActiveRelationshipLookups(){
+    public static List<Relationship_Lookup__c> getActiveRelationshipLookups(){
         if (activeRelationshipLookupList != null){
             return activeRelationshipLookupList;
         }

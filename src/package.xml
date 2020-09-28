@@ -102,6 +102,7 @@
         <members>FACT_ReciprocalRelationshipService</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
+        <members>MAPR_ReciprocalRelationshipSettings</members>
         <members>MODL_ConRelationshipAutoCreateMapping</members>
         <members>MODL_ContactRelationships</members>
         <members>MODL_ContactsRelationships</members>
