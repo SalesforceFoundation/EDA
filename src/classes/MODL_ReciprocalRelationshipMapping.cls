@@ -60,8 +60,22 @@ public with sharing class MODL_ReciprocalRelationshipMapping {
     }
 
     public String getRelationshipName() {
-        return relationshipName;
+        return this.relationshipName;
     }
+
+    public Boolean getIsActive() {
+        return this.isActive;
+    }
+
+    public String getFemaleRelationshipType() {
+        return this.femaleRelationshipType;
+    }
+
+    public String getMaleRelationshipType() {
+        return this.maleRelationshipType;
+    }
+
+    public String
 
     public Boolean hasFemaleValue() {
         return this.femaleRelationshipType != null;
