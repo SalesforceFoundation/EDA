@@ -59,37 +59,28 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     }
     
     /*****************************************************************************
-    * TODO: @description Get the relationships to update from map of contact and map of relationship to update
-    * @return The instance of SRVC_ReciprocalRelationship.
+    * @description Get the relationships to update from map of contact and map of relationship to update.
+    * @return The relationships to update.
     ******************************************************************************/
     public List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> newContactRelationshipToUpdateByIdMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
-        // Takes in a Map<Id,Contact> of contacts by contact ids for the update and a Map<Id,Relationship__c> of relationships by relationship ids to check for update
-        // Create a list of Relationships to update
         List<Relationship__c> relationshipsToUpdateList = new List<Relationship__c>();
-        // For each relationship in the map’s values
+
         for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
-            // If relationshipIsReciprocal is false
             if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == false) {
-                // Get the reciprocal relationship using the relationship map
                 Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
-                // Set the reciprocal relationship’s type to the relationship’s type
-                relationship.Type__c = reciprocalRelationship.Type__c;
-                // Add the reciprocal relationship to the list of relationships to update
-                relationshipsToUpdateList.add(relationship);
+                reciprocalRelationship.Type__c = relationship.Type__c;
+                relationshipsToUpdateList.add(reciprocalRelationship);
             }
         }
             
-        // Return the list of Relationships to update
         return relationshipsToUpdateList;
     }
 
     /*****************************************************************************
-    * TODO: @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_ReciprocalRelationship.
+    * @description Check if a relationship is reciprocal.
+    * @return If a relationship is reciprocal.
     ******************************************************************************/
-    protected boolean isRelationshipReciprocal(Relationship__c relationship, Set<Id> contactIdsSet) {
-        // Takes in a Relationship and a Contact Id Set
-        // return if the Relationship’s Related Contact is in the Contact Id set    
+    protected boolean isRelationshipReciprocal(Relationship__c relationship, Set<Id> contactIdsSet) {  
         return contactIdsSet.contains(relationship.RelatedContact__c);
     }
 
@@ -98,17 +89,14 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     * @return If Contact relationships should be updated.
     ******************************************************************************/
     public boolean shouldUpdateContactRelationships(Contact newContact, Contact oldContact) {
-        // Takes in a new Contact and an old Contact
         return oldContact.Gender__c != newContact.Gender__c;        
     }
 
     /*****************************************************************************
-    * TODO: @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_ReciprocalRelationship.
+    * @description Query reciprocal relationships for contacts.
+    * @return The map of reciprocal relationship by Id for contacts.
     ******************************************************************************/
     public Map<Id, Relationship__c> getRelationshipsForContacts(Set<Id> contactIdsSet) {
-        // Takes a set of contact ids
-        // return a map of Relationship__c by Id created from the following query:
         List<Relationship__c> relationshipsForContacts = [SELECT Id,
                                                                 Contact__c,
                                                                 RelatedContact__c,
