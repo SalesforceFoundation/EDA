@@ -107,13 +107,13 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return conRelationshipsModel;
     }
 
-    /**
-    * getRelationshipsToCreateForUpdatedContact description
-    * @param  newContact                                 newContact description
-    * @param  oldContact                                 oldContact description
-    * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
-    * @return                                            return description
-    */
+    /**************************************************************************************************************************
+    * @description Retrieves a model representing the Relationship records to be created for a single updated Contact record.
+    * @param  newContact The Contact record in its updated state.
+    * @param  oldContact The Contact record in its state prior to update.
+    * @param  contactRelationShipAutoCreateMapModelsList List of Relationships Auto Create mappings for Contact.
+    * @return A MODL_ContactRelationships object representing the relationships records to be created for the specified Contact.
+    **************************************************************************************************************************/
     public virtual MODL_ContactRelationships getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MODL_ContactRelationships contactRelationshipsModel = new MODL_ContactRelationships(newContact.Id);
 
@@ -135,11 +135,11 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return contactRelationshipsModel;
     }
 
-    /**
-    * getRelationshipsToInsertFromModel description
-    * @param  contactRelationshipsModel contactRelationshipsModel description
-    * @return                           return description
-    */
+    /**************************************************************************************************************************
+    * @description Retrieves the Relationship records to insert from a specified ContactsRelationships model.
+    * @param contactRelationshipsModel The MODL_ContactsRelationships model from which to retrieve Relationship records to insert.
+    * @return A list of Relationship records to be inserted.
+    **************************************************************************************************************************/
     public virtual List<Relationship__c> getRelationshipsToInsertFromModel(MODL_ContactsRelationships contactsRelationshipsModel){
         if (UTIL_CustomSettingsFacade.getSettings().Allow_AutoCreated_Duplicates__c == true){
             return contactsRelationshipsModel.relationshipList;
