@@ -36,5 +36,49 @@
 */
 @isTest 
 public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * SRVC_ContactRelationshipAutoCreate class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
+        SRVC_ContactRelationshipAutoCreate srvcConRelAutoCreate = SRVC_ContactRelationshipAutoCreate.getInstance();
+        System.assertEquals(SRVC_ContactRelationshipAutoCreate.instance, srvcConRelAutoCreate, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(true, srvcConRelAutoCreate != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance() returns the existing instance of the 
+    * SRVC_ContactRelationshipAutoCreate class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+        SRVC_ContactRelationshipAutoCreate srvcConRelAutoCreateInstance1 = SRVC_ContactRelationshipAutoCreate.getInstance();
+        SRVC_ContactRelationshipAutoCreate srvcConRelAutoCreateInstance2 = SRVC_ContactRelationshipAutoCreate.getInstance();
+ 
+        System.assertEquals(SRVC_ContactRelationshipAutoCreate.instance, srvcConRelAutoCreateInstance1, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(srvcConRelAutoCreateInstance1, srvcConRelAutoCreateInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
+        System.assertEquals(true, srvcConRelAutoCreateInstance1 != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getRelationshipsToCreateForContactsTrue() returns a MODL_ContactsRelationships
+    * model for a list of Contact records with existing MODL_ContactRelationships. 
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getRelationshipsToCreateForContactsTrue(){
+
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getRelationshipsToCreateForContactsTrue() returns an empty MODL_ContactsRelationships
+    * model for a list of Contact records without existing MODL_ContactRelationships. 
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getRelationshipsToCreateForContactsFalse(){
+
+    }
+
     
 }

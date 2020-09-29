@@ -36,21 +36,21 @@
 * associated with Auto-creation of relationships.
 */
 public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
-    /*********************************************
+    /**************************************************************************************************************************
     * @description Instance for Singleton Pattern.
-    **********************************************/
+    **************************************************************************************************************************/
     @TestVisible
     private static SRVC_ContactRelationshipAutoCreate instance;
 
-    /*********************************************************************
+    /**************************************************************************************************************************
     * @description Empty constructor is not public for Singleton Pattern.
-    **********************************************************************/
+    **************************************************************************************************************************/
     protected SRVC_ContactRelationshipAutoCreate() {}
 
-    /*****************************************************************************
+    /**************************************************************************************************************************
     * @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ContactRelationshipAutoCreate.
-    ******************************************************************************/
+    **************************************************************************************************************************/
     public static SRVC_ContactRelationshipAutoCreate getInstance() {
         if (SRVC_ContactRelationshipAutoCreate.instance == NULL) {
             SRVC_ContactRelationshipAutoCreate.instance = new SRVC_ContactRelationshipAutoCreate();
@@ -59,12 +59,12 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return SRVC_ContactRelationshipAutoCreate.instance;
     }
 
-    /******************************************************************************
-    * getRelationshipsToCreateForContacts description
-    * @param contactsList contactsList description
-    * @param contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
-    * @return return description
-    ******************************************************************************/ 
+    /**************************************************************************************************************************
+    * @description Retrieves a model representing the Relationship records to be created for a list of Contact records.
+    * @param contactsList A list of Contact records from which to retrieve associated Relationship records.
+    * @param contactRelationShipAutoCreateMapModelsList A List of MODL_ConRelationshipAutoCreateMapping representing Relationship Auto Create mappings for Contact.
+    * @return A MODL_ContactsRelationships model representing the Relationships associated with a list of Contacts. 
+    **************************************************************************************************************************/ 
     public virtual MODL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
 
@@ -79,12 +79,12 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return contactsRelationshipsModel;
     }
 
-    /**
-     * getRelationshipsToCreateForContact description
-     * @param  contact                                    contact description
-     * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
-     * @return                                            return description
-     */ 
+    /**************************************************************************************************************************
+    * @description Retrieves a model representing the Relationship records to be created for a single Contact record.
+    * @param  contact The Contact record to be used to create the ContactRelationships model.
+    * @param  contactRelationShipAutoCreateMapModelsList A List of MODL_ConRelationshipAutoCreateMapping representing Relationship Auto Create mappings for Contact.
+    * @return A MODL_ContactRelationships model representing the Relationships associated with the specified Contact record. 
+    **************************************************************************************************************************/ 
     public virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MODL_ContactRelationships conRelationshipsModel; 
 
