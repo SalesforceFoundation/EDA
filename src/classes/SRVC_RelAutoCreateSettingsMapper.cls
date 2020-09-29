@@ -32,7 +32,8 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Service class for REL_Relationships_Con_TDTM. 
+* @description Service class for REL_Relationships_Con_TDTM; used to generate MODL_ConRelationshipAutoCreateMapping
+* models representing Relationship Auto Create mappings set for the Contact object. 
 */
 public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
     /***************************************************************************************************************************
@@ -95,13 +96,12 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
     * @return A MODL_ConRelationshipAutoCreateMapping representing the specified Relationship Auto Create mapping.
     ***************************************************************************************************************************/
     public virtual MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
-       // Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe('Relationship_Auto_Create__c', 'Field__c');
-        Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe(Relationship_Auto_Create__c.SObjectType.getDescribe().getName(), Relationship_Auto_Create__c.Field__c.getDescribe().getName());
-
+        Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe(relAutoCreate.Object__c, relAutoCreate.Field__c);
+  
         if (fieldDescribe == null){
             return null;
         }
-
-        return new MODL_ConRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, relAutoCreate.Field__c);
+        
+        return new MODL_ConRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, String.valueOf(relAutoCreate));
     }
 }

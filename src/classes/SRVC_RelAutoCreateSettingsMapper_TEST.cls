@@ -69,17 +69,19 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
     @isTest 
     private static void getContactMappingModelsFromSettingsTrue(){
         List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
+        Relationship_Auto_Create__c contactRelAutoCreate;
+        Relationship_Auto_Create__c accountRelAutoCreate;
 
         for (Integer i = 0; i < 5; i++){
-            Relationship_Auto_Create__c contactRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate' + i, 
+            contactRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate' + i, 
                                                                                                Object__c = 'Contact',
-                                                                                               Field__c = 'TestContactField' + i, 
+                                                                                               Field__c = 'ReportsToId', 
                                                                                                Relationship_Type__c = 'ContactTester' + i,
                                                                                                Campaign_Types__c = '');
 
-            Relationship_Auto_Create__c accountRelAutoCreate = new Relationship_Auto_Create__c(Name = 'AccountReportToAutoCreate' + i, 
+            accountRelAutoCreate = new Relationship_Auto_Create__c(Name = 'AccountReportToAutoCreate' + i, 
                                                                                                Object__c = 'Account',
-                                                                                               Field__c = 'TestAccountField' + i, 
+                                                                                               Field__c = 'Name', 
                                                                                                Relationship_Type__c = 'AccountTester' + i,
                                                                                                Campaign_Types__c = '');
             relAutoCreateList.add(contactRelAutoCreate);
@@ -95,8 +97,10 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
         System.assertEquals(5, conRelAutoCreateMappingList.size(), 'There should be 5 Relationship Auto Create Mapping models for Contact.');
 
         for (Integer i = 0; i < conRelAutoCreateMappingList.size(); i++){
+            System.debug('MK DEBUG: conRelAutoCreateMappingList[i] - ' + conRelAutoCreateMappingList[i]);
+            System.assertEquals('ReportsToId', conRelAutoCreateMappingList[i].contactFieldApiName, 'The contact field name set on model should correspond to the Relationship_Type__c for the Contact Relationship Auto Create mapping.');
+            System.assertEquals('Reports To ID', conRelAutoCreateMappingList[i].contactFieldLabel, 'The contact field label set on model should correspond to the Relationship_Type__c for the Contact Relationship Auto Create mapping.');
             System.assertEquals('ContactTester' + i, conRelAutoCreateMappingList[i].relationshipType, 'The relationship type set on model should correspond to the Relationship_Type__c for the Contact Relationship Auto Create mapping.');
-            System.assertEquals('TestContactField' + i, conRelAutoCreateMappingList[i].settingsContactFieldValue, 'The field set on model should correspond to the Field__c for the Contact Relationship Auto Create mapping.');
         }
     }
 
@@ -128,14 +132,14 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
             Relationship_Auto_Create__c contactRelAutoCreate = new Relationship_Auto_Create__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship_Auto_Create__c.SObjectType),
                                                                                                Name = 'ConReportToAutoCreate' + i, 
                                                                                                Object__c = 'Contact',
-                                                                                               Field__c = 'TestContactField' + i, 
+                                                                                               Field__c = 'reportsToId', 
                                                                                                Relationship_Type__c = 'ContactTester' + i,
                                                                                                Campaign_Types__c = '');
 
             Relationship_Auto_Create__c accountRelAutoCreate = new Relationship_Auto_Create__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship_Auto_Create__c.SObjectType),
                                                                                                Name = 'AccountReportToAutoCreate' + i, 
                                                                                                Object__c = 'Account',
-                                                                                               Field__c = 'TestAccountField' + i, 
+                                                                                               Field__c = 'Name', 
                                                                                                Relationship_Type__c = 'AccountTester' + i,
                                                                                                Campaign_Types__c = '');
             relAutoCreateList.add(contactRelAutoCreate);
@@ -176,14 +180,14 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
             Relationship_Auto_Create__c contactRelAutoCreate = new Relationship_Auto_Create__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship_Auto_Create__c.SObjectType),
                                                                                                Name = 'ConReportToAutoCreate' + i, 
                                                                                                Object__c = 'Contact',
-                                                                                               Field__c = 'TestContactField' + i, 
+                                                                                               Field__c = 'ReportsToId', 
                                                                                                Relationship_Type__c = 'ContactTester' + i,
                                                                                                Campaign_Types__c = '');
 
             Relationship_Auto_Create__c accountRelAutoCreate = new Relationship_Auto_Create__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship_Auto_Create__c.SObjectType),
                                                                                                Name = 'AccountReportToAutoCreate' + i, 
                                                                                                Object__c = 'Account',
-                                                                                               Field__c = 'TestAccountField' + i, 
+                                                                                               Field__c = 'Name', 
                                                                                                Relationship_Type__c = 'AccountTester' + i,
                                                                                                Campaign_Types__c = '');
             relAutoCreateList.add(contactRelAutoCreate);
@@ -194,9 +198,11 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
         for (Relationship_Auto_Create__c relAutoCreate : relAutoCreateList){
             MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMapping = SRVC_RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(relAutoCreate);
             if (conRelAutoCreateMapping.relationshipType.contains('ContactTester')){
-                System.assertEquals(true, conRelAutoCreateMapping.settingsContactFieldValue.contains('TestContactField'));
+                System.assertEquals(true, conRelAutoCreateMapping.contactFieldApiName.contains('ReportsToId'));
+                System.assertEquals(true, conRelAutoCreateMapping.contactFieldLabel.contains('Reports To ID'));
             } else {
-                System.assertEquals(true, conRelAutoCreateMapping.settingsContactFieldValue.contains('TestAccountField'));
+                System.assertEquals(true, conRelAutoCreateMapping.settingsContactFieldValue.contains('Name'));
+                System.assertEquals(true, conRelAutoCreateMapping.relationshipType.contains('AccountTester'));
             }
         }
         Test.stopTest();
@@ -208,15 +214,27 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
     ***************************************************************************************************************************/ 
     @isTest 
     private static void getModelFromMappingFalse(){
-        Relationship_Auto_Create__c relAutoCreate = new Relationship_Auto_Create__c();
+        SRVC_RelAutoCreateSettingsMapper.instance = new STUB_NoRelAutoCreateMappingModel();
+
+        Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe(Relationship_Auto_Create__c.SObjectType.getDescribe().getName(), Relationship_Auto_Create__c.Field__c.getDescribe().getName());
 
         Test.startTest();
-        MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMapping = SRVC_RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(relAutoCreate);
-        System.debug('MK DEBUG: conRelAutoCreateMapping - ' + conRelAutoCreateMapping);
-        System.assertEquals('Field__c', conRelAutoCreateMapping.contactFieldApiName, 'Field API name should be set for empty Relationships Auto Create record.');
-        System.assertEquals('Field', conRelAutoCreateMapping.contactFieldLabel, 'Field label should be set for empty Relationships Auto Create record.');
-        System.assertEquals(null, conRelAutoCreateMapping.relationshipType, 'Relationship type should not be set for empty Relationships Auto Create record.');
-        System.assertEquals(null, conRelAutoCreateMapping.settingsContactFieldValue, 'Field value should not be set for empty Relationships Auto Create record.');
+        System.assertEquals(null, SRVC_RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(new Relationship_Auto_Create__c()), 'Empty Relationship Auto Create record should return null');
         Test.stopTest();
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUBS **************************************************************
+    **************************************************************************************************************************/
+
+    /************************************************************************************************************
+    * @description Stub class to simulate a null response from the getModelFromMapping method in the
+    * SRVC_RelAutoCreateSettingsMapper.
+    *************************************************************************************************************/ 
+    private class STUB_NoRelAutoCreateMappingModel extends SRVC_RelAutoCreateSettingsMapper {
+        @TestVisible
+        public override MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
+            return null;
+        }
     }
 }
