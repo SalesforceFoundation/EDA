@@ -32,7 +32,8 @@
 * @date 2020
 * @group Relationships
 * @group-content ../../ApexDocContent/Relationships.htm
-* @description 
+* @description Model class used to represent details of the Relationship Auto Create mappings 
+* set for the Contact object in EDA Settings.
 */
 public with sharing class MODL_ConRelationshipAutoCreateMapping {
 
