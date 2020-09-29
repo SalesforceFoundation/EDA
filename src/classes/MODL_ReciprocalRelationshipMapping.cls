@@ -35,14 +35,6 @@
 * @description Model for Reciprocal Relationship Mappings.
 */
 public with sharing class MODL_ReciprocalRelationshipMapping {
-
-    // relationshipName of type String representing the type of relationship this applies to
-    // isActive of type Boolean representing if the mapping is active
-    // femaleRelationshipType of type String representing the female type for the reciprocal relationship
-    // maleRelationshipType of type String representing the male type for the reciprocal relationship
-    // neutralRelationshipType of type String representing the neutral type for the reciprocal relationship
-
-
     private String relationshipName; 
     private Boolean isActive; 
     private String femaleRelationshipType; 
@@ -50,13 +42,11 @@ public with sharing class MODL_ReciprocalRelationshipMapping {
     private String neutralRelationshipType; 
 
     public MODL_ReciprocalRelationshipMapping(Relationship_Lookup__c relationshipLookup) {
-        // Takes in a Relationship_Lookup__c
-        // ❓Assign variables to matching values in Relationship_Lookup__c
-        this.relationshipName = '';
-        this.isActive = false;
-        this.femaleRelationshipType = '';
-        this.maleRelationshipType = '';
-        this.neutralRelationshipType = '';         
+        this.relationshipName = relationshipLookup.Name;
+        this.isActive = relationshipLookup.Active__c;
+        this.femaleRelationshipType = relationshipLookup.Female__c;
+        this.maleRelationshipType = relationshipLookup.Male__c;
+        this.neutralRelationshipType = relationshipLookup.Neutral__c;         
     }
 
     public String getRelationshipName() {
