@@ -97,7 +97,6 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
         System.assertEquals(5, conRelAutoCreateMappingList.size(), 'There should be 5 Relationship Auto Create Mapping models for Contact.');
 
         for (Integer i = 0; i < conRelAutoCreateMappingList.size(); i++){
-            System.debug('MK DEBUG: conRelAutoCreateMappingList[i] - ' + conRelAutoCreateMappingList[i]);
             System.assertEquals('ReportsToId', conRelAutoCreateMappingList[i].contactFieldApiName, 'The contact field name set on model should correspond to the Relationship_Type__c for the Contact Relationship Auto Create mapping.');
             System.assertEquals('Reports To ID', conRelAutoCreateMappingList[i].contactFieldLabel, 'The contact field label set on model should correspond to the Relationship_Type__c for the Contact Relationship Auto Create mapping.');
             System.assertEquals('ContactTester' + i, conRelAutoCreateMappingList[i].relationshipType, 'The relationship type set on model should correspond to the Relationship_Type__c for the Contact Relationship Auto Create mapping.');
@@ -215,8 +214,6 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
     @isTest 
     private static void getModelFromMappingFalse(){
         SRVC_RelAutoCreateSettingsMapper.instance = new STUB_NoRelAutoCreateMappingModel();
-
-        Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe(Relationship_Auto_Create__c.SObjectType.getDescribe().getName(), Relationship_Auto_Create__c.Field__c.getDescribe().getName());
 
         Test.startTest();
         System.assertEquals(null, SRVC_RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(new Relationship_Auto_Create__c()), 'Empty Relationship Auto Create record should return null');
