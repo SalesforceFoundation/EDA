@@ -89,10 +89,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         MODL_ContactRelationships conRelationshipsModel; 
 
         for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
-            
-            String contactFieldApiName = conRelAutoCreateMap.settingsContactFieldValue;
-            Object contactFieldValue = contact.get(contactFieldApiName);
-            System.debug('contactFieldValue');
+            Object contactFieldValue = contact.get(conRelAutoCreateMap.contactFieldApiName);
 
             if (contactFieldValue != null){
                 Relationship__c conRelationshipToAdd = new Relationship__c(Contact__c = contact.Id,
