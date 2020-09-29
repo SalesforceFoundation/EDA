@@ -36,9 +36,7 @@
 */
 public with sharing class MODL_ContactRelationships {
     public Id contactId { get; private set; }
-
-    // For reference: Relationship__c.RelatedContact__c - <Relationship__c.Type__c - Relationship__c>
-    private Map<Id, Map<String, Relationship__c>> relationshipByTypeByRelatedContactId { get; private set; }
+    public Map<Id, Map<String, Relationship__c>> relationshipByTypeByRelatedContactId { get; private set; }
     public List<Relationship__c> relationshipList { get; private set; } 
 
     public MODL_ContactRelationships(Id contactId) {
