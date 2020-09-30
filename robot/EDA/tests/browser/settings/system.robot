@@ -75,13 +75,11 @@ Verify Error Notification Recipients field picklist availability
     Click action button on EDA settings page    Edit
     Select recipient type value
     ...                       Select recipient type:=Chatter Group
-    Log     ${group_name}   console=true
     Select recipient
     ...                       Select Chatter Group=${group_name}
     Click action button on EDA settings page    Save
     Verify dropdown value
     ...                       Error Notification Recipients=${group_id}
-    Log     ${user_id}   console=true
     Click action button on EDA settings page    Edit
     Select recipient type value
     ...                       Select recipient type:=All Sys Admins

@@ -54,8 +54,8 @@ class SystemSettingsPage(BaseEDAPage, BasePage):
             self.selenium.click_element(locator)
 
     def select_recipient(self,**kwargs):
-        """ This method will enter the account name format after selecting other in the drop down
-            Pass the expected value to be set in the input field as arguments
+        """ This method will select the lookup result for the recipient notification
+            Pass the expected value to be selected as arguments
         """
         for field,value in kwargs.items():
             locator = eda_lex_locators["eda_settings_system"]["recipient_name"].format(field)
