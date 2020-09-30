@@ -37,13 +37,14 @@ public class MODL_PreferredEmailSettings {
     public String alternateEmailPreferredLabel { get; private set; }
     public String emailLabel { get; private set; }
     public Map<String, String> preferredEmailPicklistLabelByApiName { get; private set; }
-    
+
     /* Constructor to set the properties */
     public MODL_PreferredEmailSettings(List<MODL_PreferredEmailField> preferredEmailFieldModels, String alternateEmailPreferredLabel, String emailLabel, Map<String,String> preferredEmailPicklistLabelByApiName) {
+
         this.preferredEmailFieldModels = preferredEmailFieldModels;
         this.alternateEmailPreferredLabel = alternateEmailPreferredLabel;
         this.emailLabel = emailLabel;
         this.preferredEmailPicklistLabelByApiName = preferredEmailPicklistLabelByApiName;
-        
+
     }
 }

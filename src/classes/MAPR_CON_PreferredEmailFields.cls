@@ -1,0 +1,213 @@
+/*
+    Copyright (c) 2020, Salesforce.org
+    All rights reserved.
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this List of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this List of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Salesforce.org nor the names of
+      its contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+/**
+* @author Salesforce.org
+* @date 2020
+* @group 
+* @group-content ../../ApexDocContent/
+* @description Mapper class for CON_Preferred_Email
+*/
+public virtual with sharing class MAPR_CON_PreferredEmailFields {
+
+    /*********************************************
+    * @description Instance for Singleton Pattern
+    **********************************************/
+    @TestVisible
+    private static MAPR_CON_PreferredEmailFields instance;
+
+    /***********************************************
+    * @description preferredEmailFieldSettingsModel
+    ***********************************************/
+    static MODL_PreferredEmailSettings preferredEmailFieldSettingsModel;
+
+    /*****************************************************************************
+    * @description Static method to get the current instance for Singleton pattern
+    * @return The instance of MAPR_CON_PreferredEmailFields.
+    ******************************************************************************/
+    public static MAPR_CON_PreferredEmailFields getInstance() {
+
+        if (instance == null) {
+            instance = new MAPR_CON_PreferredEmailFields();
+        }
+
+        return instance;
+    }
+
+    /*********************************************************************
+    * @description Empty constructor is not public for Singleton Pattern
+    **********************************************************************/
+    protected MAPR_CON_PreferredEmailFields() {}
+
+    /**************************************************************************************
+    * @description Returns the cached MODL_PreferredEmailSettings
+    * @return MODL_PreferredEmailSettings
+    **************************************************************************************/
+    public MODL_PreferredEmailSettings getPreferredEmailSettingsModel() {
+
+        if (preferredEmailFieldSettingsModel != null) {
+            return preferredEmailFieldSettingsModel;
+        }
+
+        preferredEmailFieldSettingsModel = this.createEmailFieldSettingsModel();
+        return preferredEmailFieldSettingsModel;
+    }
+
+    /**************************************************************************************
+    * @description Returns the MODL_PreferredEmailSettings
+    * @return MODL_PreferredEmailSettings
+    **************************************************************************************/
+    @TestVisible
+    private MODL_PreferredEmailSettings createEmailFieldSettingsModel() {
+
+        Map<String, Schema.DescribeFieldResult> contactEmailFieldsByApiName = this.getContactEmailFieldByApiName();
+        String standardEmailFieldLabel = contactEmailFieldsByApiName.get('Email').getLabel();
+        Map<String, String> preferredEmailPicklistValuesByLabel = this.getPreferredEmailPicklistValuesByLabel();
+        Map<String, String> legacyPreferredEmailPicklistValuesByLabel = this.getLegacyPreferredEmailPicklistValuesByLabel();
+        Map<String, String> preferredEmailPicklistLabelByApiName = this.getPreferredEmailPicklistLabelByApiName();
+        String alternateEmailFieldPrefLabel;
+        Map<String, String> edaEmailFieldAPINamesByLabel = this.getEDAEmailFieldsApiNamesByLabel(contactEmailFieldsByApiName);
+        EDAEmailFieldsModel edaEmailFldMDl = new EDAEmailFieldsModel(edaEmailFieldAPINamesByLabel);
+        List<MODL_PreferredEmailField> prefEmailFieldModels = new List<MODL_PreferredEmailField>();
+
+        for (String contactEmailfieldAPIName: contactEmailFieldsByApiName.keySet()) {
+
+            String contactEmailFieldLabel = contactEmailFieldsByApiName.get(contactEmailfieldAPIName).getLabel();
+
+            if (contactEmailfieldAPIName == standardEmailFieldLabel || edaEmailFldMDl.hasEmailField(contactEmailFieldLabel, contactEmailfieldAPIName) == true) {
+                continue;
+            }
+
+            MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField(contactEmailFieldLabel, contactEmailfieldAPIName, preferredEmailPicklistValuesByLabel, legacyPreferredEmailPicklistValuesByLabel);
+
+            if (contactEmailfieldAPIName == UTIL_Namespace.StrTokenNSPrefix('AlternateEmail__c')) {
+                alternateEmailFieldPrefLabel = prefEmailFieldModel.preferredLabel ;
+            }
+            prefEmailFieldModels.add(prefEmailFieldModel);
+        }
+
+        MODL_PreferredEmailSettings prefEmailSettingsModel = new MODL_PreferredEmailSettings(prefEmailFieldModels, alternateEmailFieldPrefLabel, standardEmailFieldLabel, preferredEmailPicklistLabelByApiName);
+
+        return prefEmailSettingsModel;
+    }
+
+    /**************************************************************************************
+    * @description Returns a map of Contact Email Field Describes by their API Names
+    * @return Map<String, Schema.DescribeFieldResult>
+    **************************************************************************************/
+    @TestVisible
+    private Map<String, Schema.DescribeFieldResult> getContactEmailFieldByApiName() {
+        return UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
+    }
+
+    /**************************************************************************************
+    * @description Returns a map of Preferred Email's picklist values by their labels
+    * @return Map<String, String>
+    **************************************************************************************/
+    @TestVisible
+    private Map<String, String> getPreferredEmailPicklistValuesByLabel() {
+        return UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact','Preferred_Email__c');
+    }
+
+    /**************************************************************************************
+    * @description Returns a map of Preferred Email's Legacy picklist values by their labels
+    * @return Map<String, String>
+    **************************************************************************************/
+    @TestVisible
+    private Map<String, String> getLegacyPreferredEmailPicklistValuesByLabel() {
+
+        Map<String,String> legacyPreferredEmailPicklistValuesByLabel = new Map<String,String> {
+                  'University Email' => 'University',
+                 'Work Email' => 'Work',
+                 'Alternate Email' => 'Alternate'
+                };
+      
+        return legacyPreferredEmailPicklistValuesByLabel;            
+    }
+
+    /**************************************************************************************
+    * @description Returns a map of Preferred Email's picklist Labels by their API names
+    * @return Map<String, String>
+    **************************************************************************************/
+    @TestVisible
+    private Map<String, String> getPreferredEmailPicklistLabelByApiName() {
+        return UTIL_Describe.getPicklistEntriesApiToLabelMap('Contact','Preferred_Email__c');
+    }
+
+    /**************************************************************************************
+    * @description Returns True id the API field name passed is an EDA field else false
+    * @param fieldApiName The Contact Field's API name to check for
+    * @return Boolean
+    **************************************************************************************/
+    @TestVisible
+    private Boolean isEDAField(String fieldApiName) {
+
+        if (String.isNotBlank(UTIL_Namespace.getNamespace()) && fieldApiName.startsWithIgnoreCase(UTIL_Namespace.getNamespace())) {
+            return true;
+        }
+        return false;
+    }
+
+    /**************************************************************************************
+    * @description Returns A map of EDA Email Field Names By Label
+    * @param contactFieldApiNames A map of Field Describes for Contact object by API names
+    * @return edaEmailFieldAPINamesByLabels A map of EDA Email Field Names By Label
+    **************************************************************************************/
+    @TestVisible
+    private Map<String,String> getEDAEmailFieldsApiNamesByLabel(Map<String, Schema.DescribeFieldResult> contactFieldApiNames) {
+
+        Map<String, String> edaEmailFieldAPINamesByLabels = new Map<String, String>();
+
+        for (String fieldApiName : contactFieldApiNames.keySet()) {
+            if (this.isEDAField(fieldApiName) == true) {
+                edaEmailFieldAPINamesByLabels.put(contactFieldApiNames.get(fieldApiName).getLabel(), fieldApiName);
+            } 
+        }
+
+        return edaEmailFieldAPINamesByLabels;
+    }
+
+    /*******************************************************************************************************
+    * @description A value object to determine if a field label or API name is a part of EDA Email fields
+    ********************************************************************************************************/
+    private class EDAEmailFieldsModel {
+
+        private Map<String, String> edaEmailFieldApiNamesByLabel;
+ 
+        private EDAEmailFieldsModel(Map<String, String> edaEmailFieldApiNamesByLabel) {
+            this.edaEmailFieldApiNamesByLabel = edaEmailFieldApiNamesByLabel;
+        }
+
+        private Boolean hasEmailField(String fieldLabel, String fieldApiName) {
+            if (edaEmailFieldApiNamesByLabel.keySet().contains(fieldLabel) == false || 
+                edaEmailFieldApiNamesByLabel.get(fieldLabel) != fieldApiName) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+}

@@ -39,7 +39,7 @@ public class MODL_PreferredEmailField {
 
     /* Constructor to set the properties */
     public MODL_PreferredEmailField(String label, String apiName, Map<String, String> preferredEmailPicklistValuesByLabel, Map<String, String> preferredEmailPicklistValuesByLabelLegacy) {
-        
+
         this.label = label;
         this.apiName = apiName;
 
@@ -54,6 +54,6 @@ public class MODL_PreferredEmailField {
         }
 
         this.preferredLabel = label;    
-        
+
     }
 }
