@@ -129,7 +129,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
     **************************************************************************************/
     @TestVisible
     private Map<String, String> getPreferredEmailPicklistValuesByLabel() {
-        return UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact','Preferred_Email__c');
+        return UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', UTIL_Namespace.StrTokenNSPrefix('') + 'Preferred_Email__c');
     }
 
     /**************************************************************************************
@@ -154,7 +154,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
     **************************************************************************************/
     @TestVisible
     private Map<String, String> getPreferredEmailPicklistLabelByApiName() {
-        return UTIL_Describe.getPicklistEntriesApiToLabelMap('Contact','Preferred_Email__c');
+        return UTIL_Describe.getPicklistEntriesApiToLabelMap('Contact', UTIL_Namespace.StrTokenNSPrefix('') + 'Preferred_Email__c');
     }
 
     /**************************************************************************************
