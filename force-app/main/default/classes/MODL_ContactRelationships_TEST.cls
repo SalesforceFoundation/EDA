@@ -65,7 +65,7 @@ public with sharing class MODL_ContactRelationships_TEST {
     }
 
     @isTest 
-    private static void getRelatedContactIdSetTrue(){
+    private static void getRelatedContactIdSetFalse(){
         
     }
 
@@ -75,7 +75,7 @@ public with sharing class MODL_ContactRelationships_TEST {
     }
 
     @isTest 
-    private static void getRelationshipTrue(){
+    private static void getRelationshipFalse(){
         
     }
 
