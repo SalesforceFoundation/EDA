@@ -766,5 +766,18 @@ public class UTIL_UnitTestData_TEST {
       String result = String.valueOf(s_num++);
       return sot.getDescribe().getKeyPrefix() +
          '0'.repeat(12-result.length()) + result;
+    }
+
+    /*********************************************************************************************************
+    * @description Creates a Relationship record.
+    * @return The generated Relationships record.
+    **********************************************************************************************************/
+    public static Relationship__c getRelationship(Id contactId, Id relatedContactId, String relType){
+        Relationship__c rel = new Relationship__c(Contact__c = contactId,
+                                                  RelatedContact__c = relatedContactId,
+                                                  Status__c = 'Current',
+                                                  Type__c = relType);
+
+        return rel;
    }
 }
