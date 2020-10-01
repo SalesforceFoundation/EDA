@@ -34,30 +34,7 @@
 * @group-content ../../ApexDocContent/
 * @description Service class for reciprocal relationships. 
 */
-public virtual with sharing class SRVC_ReciprocalRelationship {
-    /*********************************************
-    * @description Instance for Singleton Pattern.
-    **********************************************/
-    @TestVisible
-    private static SRVC_ReciprocalRelationship instance;
-
-    /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern.
-    **********************************************************************/
-    protected SRVC_ReciprocalRelationship() {}
-
-    /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_ReciprocalRelationship.
-    ******************************************************************************/
-    public static SRVC_ReciprocalRelationship getInstance() {
-        if (SRVC_ReciprocalRelationship.instance == null) {
-            SRVC_ReciprocalRelationship.instance = new SRVC_ReciprocalRelationship();
-        }
-
-        return SRVC_ReciprocalRelationship.instance;
-    }
-    
+public virtual with sharing class SRVC_ReciprocalRelationship {    
     /*****************************************************************************
     * @description Get the relationships to update from map of contact and map of relationship to update.
     * @return The relationships to update.
