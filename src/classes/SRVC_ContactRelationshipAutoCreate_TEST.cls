@@ -412,79 +412,79 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     * @description Test method to verify that getRelationshipsToInsertFromModel returns a list of unique relationships when a
     * MODL_ContactsRelationships model is associated with relationships and duplicates are not allowed.
     **************************************************************************************************************************/
-    @isTest 
-    private static void getRelationshipsToInsertFromModelTrueAllowDuplicatesFalse(){
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
+    // @isTest 
+    // private static void getRelationshipsToInsertFromModelTrueAllowDuplicatesFalse(){
+    //     UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
 
-        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
-        List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
-        List<Relationship__c> relationshipsList = new List<Relationship__c>();
+    //     MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+    //     List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
+    //     List<Relationship__c> relationshipsList = new List<Relationship__c>();
 
-        List<Contact> relatedContactsList = new List<Contact>();
-        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
-        insert contactsList;
+    //     List<Contact> relatedContactsList = new List<Contact>();
+    //     List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
+    //     insert contactsList;
 
-        for (Integer i = 0; i < 3; i++){
-            relatedContactsList.add(contactsList[i]);
-            contactsList.remove(i);
-        }
+    //     for (Integer i = 0; i < 3; i++){
+    //         relatedContactsList.add(contactsList[i]);
+    //         contactsList.remove(i);
+    //     }
 
-        for (Integer i = 0; i < contactsList.size(); i++){
-            Relationship__c motherRel1 = new Relationship__c(Contact__c = contactsList[i].Id,
-                                                             RelatedContact__c = relatedContactsList[i].Id,
-                                                             Status__c = 'Current',
-                                                             Type__c = 'Mother');
+    //     for (Integer i = 0; i < contactsList.size(); i++){
+    //         Relationship__c motherRel1 = new Relationship__c(Contact__c = contactsList[i].Id,
+    //                                                          RelatedContact__c = relatedContactsList[i].Id,
+    //                                                          Status__c = 'Current',
+    //                                                          Type__c = 'Mother');
 
-            Relationship__c motherRel2 = new Relationship__c(Contact__c = contactsList[i].Id,
-                                                             RelatedContact__c = relatedContactsList[i].Id,
-                                                             Status__c = 'Current',
-                                                             Type__c = 'Mother');
+    //         Relationship__c motherRel2 = new Relationship__c(Contact__c = contactsList[i].Id,
+    //                                                          RelatedContact__c = relatedContactsList[i].Id,
+    //                                                          Status__c = 'Current',
+    //                                                          Type__c = 'Mother');
 
-            Relationship__c motherRel3 = new Relationship__c(Contact__c = contactsList[i].Id,
-                                                             RelatedContact__c = relatedContactsList[i].Id,
-                                                             Status__c = 'Current',
-                                                             Type__c = 'Mother');
+    //         Relationship__c motherRel3 = new Relationship__c(Contact__c = contactsList[i].Id,
+    //                                                          RelatedContact__c = relatedContactsList[i].Id,
+    //                                                          Status__c = 'Current',
+    //                                                          Type__c = 'Mother');
 
-            relationshipsList.add(motherRel1);
-            relationshipsList.add(motherRel2);
-            relationshipsList.add(motherRel3);
-        }
+    //         relationshipsList.add(motherRel1);
+    //         relationshipsList.add(motherRel2);
+    //         relationshipsList.add(motherRel3);
+    //     }
 
-        insert relationshipsList;
+    //     insert relationshipsList;
 
-        Map<Id, List<Relationship__c>> relationshipsListByContactId = new Map<Id, List<Relationship__c>>();
+    //     Map<Id, List<Relationship__c>> relationshipsListByContactId = new Map<Id, List<Relationship__c>>();
 
-        for (Relationship__c rel : relationshipsList){
-            List<Relationship__c> tempRelList = relationshipsListByContactId.get(rel.Contact__c);
+    //     for (Relationship__c rel : relationshipsList){
+    //         List<Relationship__c> tempRelList = relationshipsListByContactId.get(rel.Contact__c);
 
-            if (tempRelList == null){
-                tempRelList = new List<Relationship__c>();
-            }
+    //         if (tempRelList == null){
+    //             tempRelList = new List<Relationship__c>();
+    //         }
 
-            tempRelList.add(rel);
-            relationshipsListByContactId.put(rel.Contact__c, tempRelList);
-        }
+    //         tempRelList.add(rel);
+    //         relationshipsListByContactId.put(rel.Contact__c, tempRelList);
+    //     }
 
-        for (Id conId : relationshipsListByContactId.keySet()){
-            List<Relationship__c> currentRelationshipsList = relationshipsListByContactId.get(conId);
-            MODL_ContactRelationships conRelModel = new MODL_ContactRelationships(conId);
+    //     for (Id conId : relationshipsListByContactId.keySet()){
+    //         List<Relationship__c> currentRelationshipsList = relationshipsListByContactId.get(conId);
+    //         MODL_ContactRelationships conRelModel = new MODL_ContactRelationships(conId);
 
-            for (Relationship__c rel : currentRelationshipsList){
-                conRelModel.addRelationship(rel);
-            }
+    //         for (Relationship__c rel : currentRelationshipsList){
+    //             conRelModel.addRelationship(rel);
+    //         }
             
-            conRelsModelsList.add(conRelModel);
-        }        
+    //         conRelsModelsList.add(conRelModel);
+    //     }        
 
-        for (MODL_ContactRelationships conRelsModel : conRelsModelsList){
-            contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
-        }
+    //     for (MODL_ContactRelationships conRelsModel : conRelsModelsList){
+    //         contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
+    //     }
         
-        Test.startTest();
-        List<Relationship__c> relationshipsResultsList = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(contactsRelationshipsModel);
-        System.assertEquals(3, relationshipsResultsList.size(), 'Duplicate relationships for each contact relationships model should be removed.'); 
-        Test.stopTest();
-    }
+    //     Test.startTest();
+    //     List<Relationship__c> relationshipsResultsList = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(contactsRelationshipsModel);
+    //     System.assertEquals(3, relationshipsResultsList.size(), 'Duplicate relationships for each contact relationships model should be removed.'); 
+    //     Test.stopTest();
+    // }
 
     /**************************************************************************************************************************
     * @description Test method to verify that getRelationshipsToInsertFromModel returns an empty list when an empty

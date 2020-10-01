@@ -89,7 +89,6 @@ public with sharing class MODL_ContactsRelationships {
     * @param relationshipToRemove The Relationship record to remove.
     ************************************************************************************************************/
     public void removeRelationshipFromList(Relationship__c relationshipToRemove){
-        System.debug('MK DEBUG ------- removing relationship : ' + relationshipToRemove);
         for (Integer i = 0; i < relationshipList.size(); i++){
             if (relationshipList[i].Id == relationshipToRemove.Id){
                 relationshipList.remove(i);
