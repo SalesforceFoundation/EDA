@@ -54,7 +54,6 @@ public with sharing class MODL_ContactRelationships {
         Map<String, Relationship__c> relationshipsByType = relationshipByTypeByRelatedContactId.get(relationshipToAdd.RelatedContact__c);
 
         if (relationshipsByType == null){
-            // relationship by type mapping doesn't exist for current related contact 
             relationshipsByType = new Map<String, Relationship__c>();
             relationshipsByType.put(relationshipToAdd.Type__c, relationshipToAdd);
         } 
@@ -64,15 +63,15 @@ public with sharing class MODL_ContactRelationships {
     }
 
     /************************************************************************************************************
-    * @description Retrieves the Contact Ids related to Relationship records.
-    * @return A Set of Contact Ids.
+    * @description Retrieves the Contact Ids related to associated Relationship records.
+    * @return A Set of related Contact Ids.
     ************************************************************************************************************/
     public Set<Id> getRelatedContactIdSet(){
         return relationshipByTypeByRelatedContactId.keySet();
     }
 
     /************************************************************************************************************
-     * @description Retrieves the the Relationship record associated with a given Contact and Type.
+     * @description Retrieves the the Relationship record associated with a given related Contact and Type.
      * @param  contactId The related Contact Id for the Relationship.
      * @param  relationshipType The related Relationship type.
      * @return A matching Relationship record if one exists, null otherwise.

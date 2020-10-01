@@ -153,12 +153,11 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         
         for (Relationship__c rel : contactRelationships){
             if (this.isADuplicateRelationship(rel, contactsRelationshipsModel) == true){
-                // TODO: need to check if duplicate found and dupe count > 1 then remove, otherwise leave it
-                System.debug('MK DEBUG: duplicate relationship found: ' + rel);
-                //TODO: I think there is a bug here...if only 1 existing record, don't delete otherwise there will be none left
                 System.debug('MK DEBUG: contactsRelationshipsModel.relationshipList BEFORE deletion: ' + contactsRelationshipsModel.relationshipList);
                 contactsRelationshipsModel.removeRelationshipFromList(rel);
                 System.debug('MK DEBUG: contactsRelationshipsModel.relationshipList AFTER deletion: ' + contactsRelationshipsModel.relationshipList);
+            } else {
+                // TODO: Add relationship from query to model?  Or should the ContactRelationships model be initialized with related relationships populated?
             }
         }
 
