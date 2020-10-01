@@ -36,21 +36,21 @@
 * associated with Auto-creation of relationships.
 */
 public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
-    /*********************************************
+    /**************************************************************************************************************************
     * @description Instance for Singleton Pattern.
-    **********************************************/
+    **************************************************************************************************************************/
     @TestVisible
     private static SRVC_ContactRelationshipAutoCreate instance;
 
-    /*********************************************************************
+    /**************************************************************************************************************************
     * @description Empty constructor is not public for Singleton Pattern.
-    **********************************************************************/
+    **************************************************************************************************************************/
     protected SRVC_ContactRelationshipAutoCreate() {}
 
-    /*****************************************************************************
+    /**************************************************************************************************************************
     * @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ContactRelationshipAutoCreate.
-    ******************************************************************************/
+    **************************************************************************************************************************/
     public static SRVC_ContactRelationshipAutoCreate getInstance() {
         if (SRVC_ContactRelationshipAutoCreate.instance == NULL) {
             SRVC_ContactRelationshipAutoCreate.instance = new SRVC_ContactRelationshipAutoCreate();
@@ -59,12 +59,12 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return SRVC_ContactRelationshipAutoCreate.instance;
     }
 
-    /******************************************************************************
-    * getRelationshipsToCreateForContacts description
-    * @param contactsList contactsList description
-    * @param contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
-    * @return return description
-    ******************************************************************************/ 
+    /**************************************************************************************************************************
+    * @description Retrieves a model representing the Relationship records to be created for a list of Contact records.
+    * @param contactsList A list of Contact records from which to retrieve associated Relationship records.
+    * @param contactRelationShipAutoCreateMapModelsList A List of MODL_ConRelationshipAutoCreateMapping representing Relationship Auto Create mappings for Contact.
+    * @return A MODL_ContactsRelationships model representing the Relationships associated with a list of Contacts. 
+    **************************************************************************************************************************/ 
     public virtual MODL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
 
@@ -79,28 +79,23 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return contactsRelationshipsModel;
     }
 
-    /**
-     * getRelationshipsToCreateForContact description
-     * @param  contact                                    contact description
-     * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
-     * @return                                            return description
-     */ 
+    /**************************************************************************************************************************
+    * @description Retrieves a model representing the Relationship records to be created for a single Contact record.
+    * @param  contact The Contact record to be used to create the ContactRelationships model.
+    * @param  contactRelationShipAutoCreateMapModelsList A List of MODL_ConRelationshipAutoCreateMapping representing Relationship Auto Create mappings for Contact.
+    * @return A MODL_ContactRelationships model representing the Relationships associated with the specified Contact record. 
+    **************************************************************************************************************************/ 
     public virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MODL_ContactRelationships conRelationshipsModel; 
 
         for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
-            
-            String contactFieldApiName = conRelAutoCreateMap.settingsContactFieldValue;
-            Object contactFieldValue = contact.get(contactFieldApiName);
-            System.debug('contactFieldValue');
+            Object contactFieldValue = contact.get(conRelAutoCreateMap.contactFieldApiName);
 
             if (contactFieldValue != null){
                 Relationship__c conRelationshipToAdd = new Relationship__c(Contact__c = contact.Id,
                                                                            RelatedContact__c = (Id)contactFieldValue,
                                                                            Type__c = conRelAutoCreateMap.relationshipType,
                                                                            Status__c = 'Current');
-
-                insert conRelationshipToAdd;
 
                 conRelationshipsModel = new MODL_ContactRelationships(contact.Id);
                 conRelationshipsModel.addRelationship(conRelationshipToAdd);
@@ -110,13 +105,13 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return conRelationshipsModel;
     }
 
-    /**
-    * getRelationshipsToCreateForUpdatedContact description
-    * @param  newContact                                 newContact description
-    * @param  oldContact                                 oldContact description
-    * @param  contactRelationShipAutoCreateMapModelsList contactRelationShipAutoCreateMapModelsList description
-    * @return                                            return description
-    */
+    /**************************************************************************************************************************
+    * @description Retrieves a model representing the Relationship records to be created for a single updated Contact record.
+    * @param  newContact The Contact record in its updated state.
+    * @param  oldContact The Contact record in its state prior to update.
+    * @param  contactRelationShipAutoCreateMapModelsList List of Relationships Auto Create mappings for Contact.
+    * @return A MODL_ContactRelationships object representing the relationships records to be created for the specified Contact.
+    **************************************************************************************************************************/
     public virtual MODL_ContactRelationships getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MODL_ContactRelationships contactRelationshipsModel = new MODL_ContactRelationships(newContact.Id);
 
@@ -130,7 +125,6 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                                         Type__c = conRelAutoCreateMappingMdl.relationshipType,
                                                                         Status__c = 'Current');
 
-                insert relationshipToAdd; 
                 contactRelationshipsModel.addRelationship(relationshipToAdd);
             }
         }
@@ -138,11 +132,11 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         return contactRelationshipsModel;
     }
 
-    /**
-    * getRelationshipsToInsertFromModel description
-    * @param  contactRelationshipsModel contactRelationshipsModel description
-    * @return                           return description
-    */
+    /**************************************************************************************************************************
+    * @description Retrieves the Relationship records to insert from a specified ContactsRelationships model.
+    * @param contactRelationshipsModel The MODL_ContactsRelationships model from which to retrieve Relationship records to insert.
+    * @return A list of Relationship records to be inserted.
+    **************************************************************************************************************************/
     public virtual List<Relationship__c> getRelationshipsToInsertFromModel(MODL_ContactsRelationships contactsRelationshipsModel){
         if (UTIL_CustomSettingsFacade.getSettings().Allow_AutoCreated_Duplicates__c == true){
             return contactsRelationshipsModel.relationshipList;
@@ -156,22 +150,28 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                       WHERE Contact__c in :contactsRelationshipsModel.contactIdsSet
                                                       AND RelatedContact__c in :contactsRelationshipsModel.relatedContactIdSet
                                                       LIMIT 2000];
-
+        
         for (Relationship__c rel : contactRelationships){
             if (this.isADuplicateRelationship(rel, contactsRelationshipsModel) == true){
+                // TODO: need to check if duplicate found and dupe count > 1 then remove, otherwise leave it
+                System.debug('MK DEBUG: duplicate relationship found: ' + rel);
+                //TODO: I think there is a bug here...if only 1 existing record, don't delete otherwise there will be none left
+                System.debug('MK DEBUG: contactsRelationshipsModel.relationshipList BEFORE deletion: ' + contactsRelationshipsModel.relationshipList);
                 contactsRelationshipsModel.removeRelationshipFromList(rel);
+                System.debug('MK DEBUG: contactsRelationshipsModel.relationshipList AFTER deletion: ' + contactsRelationshipsModel.relationshipList);
             }
         }
 
         return contactsRelationshipsModel.relationshipList;
     }
 
-    /**
-    * isADuplicateRelationship description
-    * @param  relationship               relationship description
-    * @param  contactRelationshipsModel contactsRelationshipsModel description
-    * @return                            return description
-    */ 
+    /**************************************************************************************************************************
+    * @description Determines if a Contact record has an existing Relationship record that matches a specified Relationship.
+    * @param relationship The Relationships to check for a duplicate.
+    * @param contactRelationshipsModel The Contact Relationships model containing all existing Relationships for a Contact.
+    * @return True if a duplicate Relationship record is found, False otherwise.
+    **************************************************************************************************************************/ 
+    @TestVisible
     private Boolean isADuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
         return contactsRelationshipsModel.hasRelationship(relationship);
     }

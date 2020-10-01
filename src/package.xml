@@ -105,7 +105,9 @@
         <members>MAPR_ReciprocalRelationshipSettings</members>
         <members>MODL_ConRelationshipAutoCreateMapping</members>
         <members>MODL_ContactRelationships</members>
+        <members>MODL_ContactRelationships_TEST</members>
         <members>MODL_ContactsRelationships</members>
+        <members>MODL_ContactsRelationships_TEST</members>
         <members>MODL_PrimaryAfflMapper</members>
         <members>MODL_PrimaryAfflMapper_TEST</members>
         <members>MODL_ReciprocalRelationshipMapping</members>

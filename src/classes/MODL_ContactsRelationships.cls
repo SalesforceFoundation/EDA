@@ -32,7 +32,8 @@
 * @date 2020
 * @group Contact Relationships
 * @group-content ../../ApexDocContent/Relationships.htm
-* @description Model class for REL_Relationships_Con_TDTM.
+* @description Model class for REL_Relationships_Con_TDTM; used to represent the Relationships associated with
+* a list of Contact records.
 */
 public with sharing class MODL_ContactsRelationships {
     public Set<Id> contactIdsSet { get; private set; }
@@ -47,42 +48,45 @@ public with sharing class MODL_ContactsRelationships {
         relationshipList = new List<Relationship__c>();
     }
     
-    /**
-     * addContactRelationshipsModel description
-     * @param  conRelationshipsModel conRelationshipsModel description
-     */ 
+    /**************************************************************************************************************************
+    * @description Adds a MODL_ContactRelationships model to the existing contactRelationshipsModelsByContactId
+    * map and adds the associated ContactId and RelatedContactId to the existing lists contactIdsSet and 
+    * relatedContactIdSet respectively.
+    * @param conRelationshipsModel A MODL_ContactRelationships model to be added to the existing variables.
+    **************************************************************************************************************************/ 
     public void addContactRelationshipsModel(MODL_ContactRelationships conRelationshipsModel){
         contactRelationshipsModelsByContactId.put(conRelationshipsModel.contactId, conRelationshipsModel);
         contactIdsSet.add(conRelationshipsModel.contactId);
         relatedContactIdSet.addAll(conRelationshipsModel.getRelatedContactIdSet());
+        relationshipList.addAll(conRelationshipsModel.relationshipList);
     }
 
-    /**
-     * hasRelationship description
-     * @param  relationship relationship description
-     * @return              return description
-     */ 
+    /**************************************************************************************************************************
+    * @description Determines whether a specified Relationship exists for the associated Contact in the contactRelationshipsModelsByContactId map.
+    * @param relationship A Relationship record to search for.
+    * @return True if a Relationship record matching the specified Contact and Type exists in the contactRelationshipsModelsByContactId map, False otherwise.
+    **************************************************************************************************************************/ 
     public Boolean hasRelationship(Relationship__c relationship){
-        MODL_ContactRelationships contactRelationshipModel = contactRelationshipsModelsByContactId.get(relationship.Contact__c);
+        MODL_ContactRelationships contactRelationshipsModel = contactRelationshipsModelsByContactId.get(relationship.Contact__c);
     
-        if (contactRelationshipModel == null){
+        if (contactRelationshipsModel == null){
             return false;
         }
 
-        return (contactRelationshipModel.getRelationship(relationship.Contact__c, relationship.Type__c) != null) ? true : false;
+        return (contactRelationshipsModel.getRelationship(relationship.RelatedContact__c, relationship.Type__c) != null) ? true : false;
     }
 
-    /**
-     * isEmpty description
-     * @return   return description
-     */ 
+    /**************************************************************************************************************************
+    * @description Determines whether the contactRelationshipsModelsByContactId map is empty.
+    * @return True is contactRelationshipsModelsByContactId is empty, False otherwise.
+    **************************************************************************************************************************/ 
     public Boolean isEmpty(){
         return contactRelationshipsModelsByContactId.isEmpty();
     }
 
     /************************************************************************************************************
-    * @description Remove a specified Relationship record from relationshipList.
-    * @param relationshipToRemove The Relationship to remove
+    * @description Removes a specified Relationship record from relationshipList.
+    * @param relationshipToRemove The Relationship record to remove.
     ************************************************************************************************************/
     public void removeRelationshipFromList(Relationship__c relationshipToRemove){
         for (Integer i = 0; i < relationshipList.size(); i++){
