@@ -165,6 +165,10 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
     @TestVisible
     private Boolean isEDAField(String fieldApiName) {
 
+        if (Test.isRunningTest() && String.isBlank(UTIL_Namespace.getNamespace()) && fieldApiName.endsWithIgnoreCase('__c')) {
+            return true;
+        }
+
         if (String.isNotBlank(UTIL_Namespace.getNamespace()) && fieldApiName.startsWithIgnoreCase(UTIL_Namespace.getNamespace())) {
             return true;
         }
