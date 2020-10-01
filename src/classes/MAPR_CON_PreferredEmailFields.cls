@@ -158,7 +158,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
     }
 
     /**************************************************************************************
-    * @description Returns True id the API field name passed is an EDA field else false
+    * @description Returns True if the API field name passed is an EDA field else false
     * @param fieldApiName The Contact Field's API name to check for
     * @return Boolean
     **************************************************************************************/

@@ -33,27 +33,27 @@
 */
 public class MODL_PreferredEmailField {
 
-    public String label { get; private set; }
-    public String apiName { get; private set; }
+    public String emailTypeFieldLabel { get; private set; }
+    public String emailTypeFieldApiName { get; private set; }
     public String preferredLabel { get; private set; }
 
     /* Constructor to set the properties */
-    public MODL_PreferredEmailField(String label, String apiName, Map<String, String> preferredEmailPicklistValuesByLabel, Map<String, String> preferredEmailPicklistValuesByLabelLegacy) {
+    public MODL_PreferredEmailField(String emailTypeFieldLabel, String emailTypeFieldApiName, Map<String, String> preferredEmailPicklistValuesByLabel, Map<String, String> preferredEmailPicklistValuesByLabelLegacy) {
 
-        this.label = label;
-        this.apiName = apiName;
+        this.emailTypeFieldLabel = emailTypeFieldLabel;
+        this.emailTypeFieldApiName = emailTypeFieldApiName;
 
-        if (preferredEmailPicklistValuesByLabel.keySet().contains(label)) {  
-            this.preferredLabel = preferredEmailPicklistValuesByLabel.get(label);
+        if (preferredEmailPicklistValuesByLabel.containsKey(emailTypeFieldLabel)) {  
+            this.preferredLabel = preferredEmailPicklistValuesByLabel.get(emailTypeFieldLabel);
             return;  
         }
 
-        if (preferredEmailPicklistValuesByLabelLegacy.keySet().contains(label)) {  
-            this.preferredLabel = preferredEmailPicklistValuesByLabelLegacy.get(label);
+        if (preferredEmailPicklistValuesByLabelLegacy.containsKey(emailTypeFieldLabel)) {  
+            this.preferredLabel = preferredEmailPicklistValuesByLabelLegacy.get(emailTypeFieldLabel);
             return;  
         }
 
-        this.preferredLabel = label;    
+        this.preferredLabel = emailTypeFieldLabel;    
 
     }
 }
