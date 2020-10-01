@@ -101,8 +101,7 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     
         System.assertEquals(5, consRelsModel.contactIdsSet.size(), 'There should be 5 contacts with relationships to create.');
         System.assertEquals(15, consRelsModel.relatedContactIdSet.size(), 'There should be 15 related contacts associated with relationships to create.');
-        //System.assertEquals(15, consRelsModel.relationshipList.size(), 'There should be 15 relationships to be created.');
-        System.assertEquals(true, consRelsModel.relationshipList.isEmpty(), 'There should be no relationships to be created.');
+        System.assertEquals(15, consRelsModel.relationshipList.size(), 'There should be 15 relationships to be created.');
         System.assertEquals(5, consRelsModel.contactRelationshipsModelsByContactId.keySet().size(), 'There should be 5 ContactRelationships models associated with relationships to create.');
     }
 
@@ -360,7 +359,53 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToInsertFromModelTrueAllowDuplicatesTrue(){
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = true));
 
+        MODL_ContactsRelationships contactRelationshipsModel = new MODL_ContactsRelationships();
+        List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
+
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Contact con : contactsList){
+            Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+
+            con.Id = conFakeId;
+
+            MODL_ContactRelationships conRelModel = new MODL_ContactRelationships(con.Id);
+
+            Relationship__c motherRel1 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+                                                          Contact__c = conRelModel.contactId,
+                                                          RelatedContact__c = relatedConFakeId,
+                                                          Status__c = 'Current',
+                                                          Type__c = 'Mother');
+
+            Relationship__c motherRel2 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+                                                            Contact__c = conRelModel.contactId,
+                                                            RelatedContact__c = relatedConFakeId,
+                                                            Status__c = 'Current',
+                                                            Type__c = 'Mother');
+
+            Relationship__c motherRel3 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+                                                            Contact__c = conRelModel.contactId,
+                                                            RelatedContact__c = relatedConFakeId,
+                                                            Status__c = 'Current',
+                                                            Type__c = 'Mother');
+
+            conRelModel.addRelationship(motherRel1);
+            conRelModel.addRelationship(motherRel2);
+            conRelModel.addRelationship(motherRel3);
+
+            conRelsModelsList.add(conRelModel);
+        }
+
+        for (MODL_ContactRelationships conRelsModel : conRelsModelsList){
+            contactRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
+        }
+        
+        Test.startTest();
+        List<Relationship__c> relationshipsList = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(contactRelationshipsModel);
+        System.assertEquals(15, relationshipsList.size(), 'Each contact relationships model should be associated with 3 duplicate relationships.'); 
+        Test.stopTest();
     }
 
     /**************************************************************************************************************************
@@ -369,7 +414,76 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToInsertFromModelTrueAllowDuplicatesFalse(){
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
 
+        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+        List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
+        List<Relationship__c> relationshipsList = new List<Relationship__c>();
+
+        List<Contact> relatedContactsList = new List<Contact>();
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
+        insert contactsList;
+
+        for (Integer i = 0; i < 3; i++){
+            relatedContactsList.add(contactsList[i]);
+            contactsList.remove(i);
+        }
+
+        for (Integer i = 0; i < contactsList.size(); i++){
+            Relationship__c motherRel1 = new Relationship__c(Contact__c = contactsList[i].Id,
+                                                             RelatedContact__c = relatedContactsList[i].Id,
+                                                             Status__c = 'Current',
+                                                             Type__c = 'Mother');
+
+            Relationship__c motherRel2 = new Relationship__c(Contact__c = contactsList[i].Id,
+                                                             RelatedContact__c = relatedContactsList[i].Id,
+                                                             Status__c = 'Current',
+                                                             Type__c = 'Mother');
+
+            Relationship__c motherRel3 = new Relationship__c(Contact__c = contactsList[i].Id,
+                                                             RelatedContact__c = relatedContactsList[i].Id,
+                                                             Status__c = 'Current',
+                                                             Type__c = 'Mother');
+
+            relationshipsList.add(motherRel1);
+            relationshipsList.add(motherRel2);
+            relationshipsList.add(motherRel3);
+        }
+
+        insert relationshipsList;
+
+        Map<Id, List<Relationship__c>> relationshipsListByContactId = new Map<Id, List<Relationship__c>>();
+
+        for (Relationship__c rel : relationshipsList){
+            List<Relationship__c> tempRelList = relationshipsListByContactId.get(rel.Contact__c);
+
+            if (tempRelList == null){
+                tempRelList = new List<Relationship__c>();
+            }
+
+            tempRelList.add(rel);
+            relationshipsListByContactId.put(rel.Contact__c, tempRelList);
+        }
+
+        for (Id conId : relationshipsListByContactId.keySet()){
+            List<Relationship__c> currentRelationshipsList = relationshipsListByContactId.get(conId);
+            MODL_ContactRelationships conRelModel = new MODL_ContactRelationships(conId);
+
+            for (Relationship__c rel : currentRelationshipsList){
+                conRelModel.addRelationship(rel);
+            }
+            
+            conRelsModelsList.add(conRelModel);
+        }        
+
+        for (MODL_ContactRelationships conRelsModel : conRelsModelsList){
+            contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
+        }
+        
+        Test.startTest();
+        List<Relationship__c> relationshipsResultsList = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(contactsRelationshipsModel);
+        System.assertEquals(3, relationshipsResultsList.size(), 'Duplicate relationships for each contact relationships model should be removed.'); 
+        Test.stopTest();
     }
 
     /**************************************************************************************************************************
@@ -382,6 +496,88 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
 
         Test.startTest();
         System.assertEquals(true, SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(new MODL_ContactsRelationships()).isEmpty(), 'There should be no Relationship records to insert.');
+        Test.stopTest();
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that isADuplicateRelationship() returns False when there is no duplicate record
+    * found in the list of existing Relationship records for a Contact.
+    **************************************************************************************************************************/
+    @isTest 
+    private static void isADuplicateRelationshipFalse(){
+        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+        Contact testCon = UTIL_UnitTestData_TEST.getContact();
+
+        Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+        Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+
+        testCon.Id = conFakeId;
+
+        MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(testCon.Id);
+
+        Relationship__c relToCompare = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+                                                           Contact__c = conRelsModel.contactId,
+                                                           RelatedContact__c = relatedConFakeId,
+                                                           Status__c = 'Current',
+                                                           Type__c = 'Cousin');
+
+        Relationship__c motherRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+                                                        Contact__c = conRelsModel.contactId,
+                                                        RelatedContact__c = relatedConFakeId,
+                                                        Status__c = 'Current',
+                                                        Type__c = 'Mother');
+
+        Relationship__c sisterRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+                                                        Contact__c = conRelsModel.contactId,
+                                                        RelatedContact__c = relatedConFakeId,
+                                                        Status__c = 'Current',
+                                                        Type__c = 'Sister');
+
+        conRelsModel.addRelationship(motherRel);
+        conRelsModel.addRelationship(sisterRel);
+
+        contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
+        
+        Test.startTest();
+        System.assertEquals(false, SRVC_ContactRelationshipAutoCreate.getInstance().isADuplicateRelationship(relToCompare, contactsRelationshipsModel), 'Contact Relationships should not indicate existence of a duplicate relationship record.');
+        Test.stopTest();
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that isADuplicateRelationship() returns True when there is a duplicate record
+    * found in the list of existing Relationship records for a Contact.
+    **************************************************************************************************************************/
+    @isTest 
+    private static void isADuplicateRelationshipTrue(){
+        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+        Contact testCon = UTIL_UnitTestData_TEST.getContact();
+
+        Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+        Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+
+        testCon.Id = conFakeId;
+
+        MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(testCon.Id);
+
+        Relationship__c motherRel1 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+                                                        Contact__c = conRelsModel.contactId,
+                                                        RelatedContact__c = relatedConFakeId,
+                                                        Status__c = 'Current',
+                                                        Type__c = 'Mother');
+
+        Relationship__c motherRel2 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+                                                        Contact__c = conRelsModel.contactId,
+                                                        RelatedContact__c = relatedConFakeId,
+                                                        Status__c = 'Current',
+                                                        Type__c = 'Mother');
+
+        conRelsModel.addRelationship(motherRel1);
+        conRelsModel.addRelationship(motherRel2);
+
+        contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
+        
+        Test.startTest();
+        System.assertEquals(true, SRVC_ContactRelationshipAutoCreate.getInstance().isADuplicateRelationship(motherRel1, contactsRelationshipsModel), 'Contact Relationships should indicate existence of a duplicate relationship record.');
         Test.stopTest();
     }
 
@@ -432,7 +628,7 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
                 contactRelationshipsModel.addRelationship(motherRel);
                 contactRelationshipsModel.addRelationship(cousinRel);
 
-                contactsRelsModel.addContactRelationshipsModel(contactRelationshipsModel); // add current model to CONTACTSRelationshipSModel
+                contactsRelsModel.addContactRelationshipsModel(contactRelationshipsModel);
             }
 
             return contactsRelsModel;
@@ -497,15 +693,6 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
 
             return conRelationshipsModel;
         }
-
-        // @TestVisible
-        // public override List<Relationship__c> getRelationshipsToInsertFromModel(MODL_ContactsRelationships contactsRelationshipsModel){
-        //     List<Relationship__c> relationshipsToInsertList = new List<Relationship__c>();
-
-        //     // TODO
-
-        //     return relationshipsToInsertList;
-        // }
     }
 
     /************************************************************************************************************

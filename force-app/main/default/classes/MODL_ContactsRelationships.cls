@@ -58,6 +58,7 @@ public with sharing class MODL_ContactsRelationships {
         contactRelationshipsModelsByContactId.put(conRelationshipsModel.contactId, conRelationshipsModel);
         contactIdsSet.add(conRelationshipsModel.contactId);
         relatedContactIdSet.addAll(conRelationshipsModel.getRelatedContactIdSet());
+        relationshipList.addAll(conRelationshipsModel.relationshipList);
     }
 
     /**************************************************************************************************************************
@@ -66,13 +67,13 @@ public with sharing class MODL_ContactsRelationships {
     * @return True if a Relationship record matching the specified Contact and Type exists in the contactRelationshipsModelsByContactId map, False otherwise.
     **************************************************************************************************************************/ 
     public Boolean hasRelationship(Relationship__c relationship){
-        MODL_ContactRelationships contactRelationshipModel = contactRelationshipsModelsByContactId.get(relationship.Contact__c);
+        MODL_ContactRelationships contactRelationshipsModel = contactRelationshipsModelsByContactId.get(relationship.Contact__c);
     
-        if (contactRelationshipModel == null){
+        if (contactRelationshipsModel == null){
             return false;
         }
 
-        return (contactRelationshipModel.getRelationship(relationship.Contact__c, relationship.Type__c) != null) ? true : false;
+        return (contactRelationshipsModel.getRelationship(relationship.RelatedContact__c, relationship.Type__c) != null) ? true : false;
     }
 
     /**************************************************************************************************************************
@@ -88,6 +89,7 @@ public with sharing class MODL_ContactsRelationships {
     * @param relationshipToRemove The Relationship record to remove.
     ************************************************************************************************************/
     public void removeRelationshipFromList(Relationship__c relationshipToRemove){
+        System.debug('MK DEBUG ------- removing relationship : ' + relationshipToRemove);
         for (Integer i = 0; i < relationshipList.size(); i++){
             if (relationshipList[i].Id == relationshipToRemove.Id){
                 relationshipList.remove(i);
