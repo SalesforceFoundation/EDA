@@ -102,6 +102,6 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
             return null;
         }
         
-        return new MODL_ConRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, String.valueOf(relAutoCreate));
+        return new MODL_ConRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, relAutoCreate.Field__c);
     }
 }
