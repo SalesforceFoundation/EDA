@@ -57,7 +57,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     * @description Check if a relationship is reciprocal.
     * @return If a relationship is reciprocal.
     ******************************************************************************/
-    protected boolean isRelationshipReciprocal(Relationship__c relationship, Set<Id> contactIdsSet) {  
+    public boolean isRelationshipReciprocal(Relationship__c relationship, Set<Id> contactIdsSet) {  
         return contactIdsSet.contains(relationship.RelatedContact__c);
     }
 

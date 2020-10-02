@@ -37,37 +37,114 @@
 @isTest
 private class SRVC_ReciprocalRelationship_TEST {
     /**************************************************************************************************************************
-    * @description Test method for shouldCreateAffiliationsForUpdateFalseTest() if false
+    * @description Test method for isRelationshipReciprocal() if false
     ***************************************************************************************************************************/
     @isTest
-    private static void shouldCreateAffiliationsForUpdateFalseTest() {
+    private static void isRelationshipReciprocalFalseTest() {
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{contact1, contact2};
+
+        Relationship__c relationship = UTIL_UnitTestData_TEST.getRelationship(contact1.Id, null, 'Son');
+        
+        Set<Id> contactIds = new Set<Id>{contact1.Id, contact2.Id};
+        
+        Test.startTest();
+            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+            Boolean isRelationshipReciprocal = instance.isRelationshipReciprocal(relationship, contactIds);
+        Test.stopTest();
+        
+        System.assertEquals(false, isRelationshipReciprocal);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method for isRelationshipReciprocal() if true
+    ***************************************************************************************************************************/
+    @isTest
+    private static void isRelationshipReciprocalTrueTest() {
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{contact1, contact2};
+
+        Relationship__c relationship = UTIL_UnitTestData_TEST.getRelationship(contact1.Id, contact2.Id, 'Father');
+        
+        Set<Id> contactIds = new Set<Id>{contact1.Id, contact2.Id};
+        
+        Test.startTest();
+            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+            Boolean isRelationshipReciprocal = instance.isRelationshipReciprocal(relationship, contactIds);
+        Test.stopTest();
+        
+        System.assertEquals(true, isRelationshipReciprocal);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method for shouldUpdateContactRelationships() if false
+    ***************************************************************************************************************************/
+    @isTest
+    private static void shouldUpdateContactRelationshipsFalseTest() {
         Contact newContact = UTIL_UnitTestData_TEST.getContact();
         Contact oldContact = UTIL_UnitTestData_TEST.getContact();
         newContact.Gender__c = 'Male';
         oldContact.Gender__c = 'Male';
         Test.startTest();
             SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
-            Boolean shouldCreateAffiliationsForUpdate = instance.shouldUpdateContactRelationships(newContact, oldContact);
+            Boolean shouldUpdateContactRelationships = instance.shouldUpdateContactRelationships(newContact, oldContact);
         Test.stopTest();
         
-        System.assertEquals(false, shouldCreateAffiliationsForUpdate);
+        System.assertEquals(false, shouldUpdateContactRelationships);
     }
 
     /**************************************************************************************************************************
-    * @description Test method for shouldCreateAffiliationsForUpdateFalseTest() if true
+    * @description Test method for shouldUpdateContactRelationships() if true
     ***************************************************************************************************************************/
     @isTest
-    private static void shouldCreateAffiliationsForUpdateTrueTest() {
+    private static void shouldUpdateContactRelationshipsTrueTest() {
         Contact newContact = UTIL_UnitTestData_TEST.getContact();
         Contact oldContact = UTIL_UnitTestData_TEST.getContact();
         newContact.Gender__c = 'Male';
         oldContact.Gender__c = 'Female';
         Test.startTest();
             SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
-            Boolean shouldCreateAffiliationsForUpdate = instance.shouldUpdateContactRelationships(newContact, oldContact);
+            Boolean shouldUpdateContactRelationships = instance.shouldUpdateContactRelationships(newContact, oldContact);
         Test.stopTest();
         
-        System.assertEquals(true, shouldCreateAffiliationsForUpdate);
+        System.assertEquals(true, shouldUpdateContactRelationships);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method for getRelationshipsForContacts() if contacts exist
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRelationshipsForContactsContactsExistTest() {
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{contact1, contact2};
+
+        Set<Id> contactIds = new Set<Id>{contact1.Id, contact2.Id};
+
+        Test.startTest();
+            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+            Map<Id, Relationship__c> relationshipsForContacts = instance.getRelationshipsForContacts(contactIds);
+        Test.stopTest();
+        
+        System.assertEquals(2, relationshipsForContacts.size());
+        System.assertEquals(contact1.Id, relationshipsForContacts.values()[0].Id);
+        System.assertEquals(contact2.Id, relationshipsForContacts.values()[1].Id);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method for getRelationshipsForContacts() if no contact
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRelationshipsForContactsEmptySetTest() {
+        Test.startTest();
+            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+            Map<Id, Relationship__c> relationshipsForContacts = instance.getRelationshipsForContacts(new Set<Id>());
+        Test.stopTest();
+        
+        System.assertEquals(0, relationshipsForContacts.keySet().size());
+
     }
 }
 
