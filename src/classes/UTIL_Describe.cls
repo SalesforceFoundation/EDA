@@ -787,7 +787,6 @@ public class UTIL_Describe {
 
         for (SObject rt : results) {
 
-            // Check RecordType IS available for the running user
             if (!Test.isRunningTest()) {
                 recordTypeByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
                 recordTypeByName.put(String.valueOf(rt.get('Name')), recordTypeInfos.get(rt.Id));
