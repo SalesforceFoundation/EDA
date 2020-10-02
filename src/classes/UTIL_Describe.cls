@@ -786,19 +786,8 @@ public class UTIL_Describe {
         Map<Id, Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
 
         for (SObject rt : results) {
-
-            // Check RecordType IS available for the running user
-            if (!Test.isRunningTest()) {
-                if (recordTypeInfos.get(rt.Id).isAvailable()) {
-                    recordTypeByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
-                    recordTypeByName.put(String.valueOf(rt.get('Name')), recordTypeInfos.get(rt.Id));
-                }
-            // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
-            // might fail just because the user running them does not have certain record types assigned.
-            } else {
-                recordTypeByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
-                recordTypeByName.put(String.valueOf(rt.get('Name')), recordTypeInfos.get(rt.Id));
-            }
+            recordTypeByDeveloperName.put(String.valueOf(rt.get('DeveloperName')), recordTypeInfos.get(rt.Id));
+            recordTypeByName.put(String.valueOf(rt.get('Name')), recordTypeInfos.get(rt.Id));
         }
 
         recordTypeInfoByDeveloperName.put(objectName, recordTypeByDeveloperName);
