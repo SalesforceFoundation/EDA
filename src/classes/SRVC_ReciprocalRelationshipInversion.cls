@@ -34,7 +34,7 @@
 * @group-content ../../ApexDocContent/
 * @description Service class for reciprocal relationship inversion. 
 */
-public virtual with sharing class SRVC_ReciprocalRelationshipInversion {
+public virtual with sharing class SRVC_ReciprocalRelationshipInversion extends SRVC_ReciprocalRelationship{
     /*********************************************
     * @description Instance for Singleton Pattern.
     **********************************************/
@@ -56,5 +56,53 @@ public virtual with sharing class SRVC_ReciprocalRelationshipInversion {
         }
 
         return SRVC_ReciprocalRelationshipInversion.instance;
+    }
+
+    /*****************************************************************************
+    * TODO: @description Get the relationships to update from map of contact and map of relationship to update
+    * @return The instance of SRVC_ReciprocalRelationship.
+    ******************************************************************************/
+    public override List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> newContactRelationshipToUpdateByIdMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
+        // Create a list of Relationships to update            
+        List<Relationship__c> relationshipsToUpdateList = new List<Relationship__c>();
+        // For each relationship in the map’s values
+        for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
+            // If relationshipIsReciprocal is false
+            if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == false) {
+                // Get the reciprocal relationship using the relationship map
+                Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
+                // Set the reciprocal relationship’s type to the getRelationshipTypeToSet for the original relationship’s type
+                // TODO
+                // Add the reciprocal relationship to the list of relationships to update
+                relationshipsToUpdateList.add(reciprocalRelationship);    
+            }
+        }
+            
+        // Return the list of Relationships to update
+        return relationshipsToUpdateList;
+    }
+
+    /*****************************************************************************
+    * TODO: @description Get the relationships to update from map of contact and map of relationship to update
+    * @return The instance of SRVC_ReciprocalRelationship.
+    ******************************************************************************/
+    public String getRelationshipTypeToSet(String relationshipType) {
+
+        // Takes in a String representing a relationship type
+        // Get the Label Relationship_Split
+            //relationshipSplit = Label.Relationship_Split
+        // Split the relationship type into a list of strings using String.split(Relationship_Split)
+        List<String> relationshipTypesList = relationshipType.split(Label.Relationship_Split);
+        
+        // If the list of strings has a size of 1
+        if (relationshipTypesList.size() == 1) {
+            return relationshipTypesList[0];
+        }
+
+        return relationshipTypesList[1] + Label.Relationship_Split + relationshipTypesList[0];
+            // Return the relationship type;
+        // Return relationshipTypeSplit[1] + Relationship_Split + relationshipTypeSplit[0] , effective swapping what is on one side of the split character with the other.
+    
+    
     }
 }

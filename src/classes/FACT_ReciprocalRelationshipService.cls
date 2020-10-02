@@ -61,7 +61,7 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
                 //return ReciprocalRelationshipInversionService
             }
 
-            return SRVC_ReciprocalRelationship.getInstance();
+            return new SRVC_ReciprocalRelationship();
         }
 
         return FACT_ReciprocalRelationshipService.instance;

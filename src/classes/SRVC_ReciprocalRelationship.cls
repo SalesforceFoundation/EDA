@@ -39,7 +39,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
     * @description Get the relationships to update from map of contact and map of relationship to update.
     * @return The relationships to update.
     ******************************************************************************/
-    public List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> newContactRelationshipToUpdateByIdMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
+    public virtual List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> newContactRelationshipToUpdateByIdMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
         List<Relationship__c> relationshipsToUpdateList = new List<Relationship__c>();
 
         for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
