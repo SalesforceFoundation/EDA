@@ -284,12 +284,13 @@ public with sharing class MODL_ContactRelationships_TEST {
         }
         Test.stopTest();
     }
+
     /**************************************************************************************************************************
     * @description Helper method to generate a list of Contact Relationships models.
     * @param contactsCount The number of Contacts to associate with Contact Relationships models.
     * @return A list of MODL_ContactRelationships.
     **************************************************************************************************************************/ 
-    private static List<MODL_ContactRelationships> getContactRelationshipsModelList(Integer contactsCount){
+    public static List<MODL_ContactRelationships> getContactRelationshipsModelList(Integer contactsCount){
         List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(contactsCount);
         
