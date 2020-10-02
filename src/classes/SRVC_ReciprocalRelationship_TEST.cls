@@ -113,10 +113,33 @@ private class SRVC_ReciprocalRelationship_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method for getRelationshipsForContacts() if contacts exist
+    * @description Test method for getRelationshipsForContacts() if relationships exist
     ***************************************************************************************************************************/
     @isTest
-    private static void getRelationshipsForContactsContactsExistTest() {
+    private static void getRelationshipsForContactsRelationshipsExistTest() {
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{contact1, contact2};
+
+        Relationship__c relationship = UTIL_UnitTestData_TEST.getRelationship(contact1.Id, contact2.Id, 'Father');
+        insert relationship;
+
+        Set<Id> contactIds = new Set<Id>{contact1.Id, contact2.Id};
+
+        Test.startTest();
+            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+            Map<Id, Relationship__c> relationshipsForContacts = instance.getRelationshipsForContacts(contactIds);
+        Test.stopTest();
+        
+        System.assertEquals(2, relationshipsForContacts.size());
+        System.assertEquals(relationship.Id, relationshipsForContacts.values()[0].Id);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method for getRelationshipsForContacts() if relationships do not exist
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRelationshipsForContactsNoRelationshipTest() {
         Contact contact1 = UTIL_UnitTestData_TEST.getContact();
         Contact contact2 = UTIL_UnitTestData_TEST.getContact();
         insert new List<Contact>{contact1, contact2};
@@ -128,13 +151,11 @@ private class SRVC_ReciprocalRelationship_TEST {
             Map<Id, Relationship__c> relationshipsForContacts = instance.getRelationshipsForContacts(contactIds);
         Test.stopTest();
         
-        System.assertEquals(2, relationshipsForContacts.size());
-        System.assertEquals(contact1.Id, relationshipsForContacts.values()[0].Id);
-        System.assertEquals(contact2.Id, relationshipsForContacts.values()[1].Id);
+        System.assertEquals(0, relationshipsForContacts.size());
     }
 
     /**************************************************************************************************************************
-    * @description Test method for getRelationshipsForContacts() if no contact
+    * @description Test method for getRelationshipsForContacts() if passing empty set
     ***************************************************************************************************************************/
     @isTest
     private static void getRelationshipsForContactsEmptySetTest() {
@@ -143,8 +164,65 @@ private class SRVC_ReciprocalRelationship_TEST {
             Map<Id, Relationship__c> relationshipsForContacts = instance.getRelationshipsForContacts(new Set<Id>());
         Test.stopTest();
         
-        System.assertEquals(0, relationshipsForContacts.keySet().size());
+        System.assertEquals(0, relationshipsForContacts.size());
+    }
 
+    /**************************************************************************************************************************
+    * @description Test method for getRelationshipsForContacts() if passing null
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRelationshipsForContactsNullTest() {
+        Test.startTest();
+            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+            Map<Id, Relationship__c> relationshipsForContacts = instance.getRelationshipsForContacts(null);
+        Test.stopTest();
+        
+        System.assertEquals(0, relationshipsForContacts.size());
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method for getRelationshipsToUpdateForContacts() if relationships exist
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRelationshipsToUpdateForContactsRelationshipsExistTest() {
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{contact1, contact2};
+
+        Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
+        newContactRelationshipToUpdateByIdMap.put(contact1.Id, contact1);
+        newContactRelationshipToUpdateByIdMap.put(contact2.Id, contact2);
+
+        Relationship__c relationship = UTIL_UnitTestData_TEST.getRelationship(contact1.Id, contact2.Id, 'Father');
+        insert relationship;
+
+        List<Relationship__c> relationships = [SELECT ID,
+                                                    Contact__c,
+                                                    RelatedContact__c,
+                                                    ReciprocalRelationship__c,
+                                                    Type__c     
+                                                FROM Relationship__c];
+        Map<Id, Relationship__c> relationshipsByIdToUpdateMap = new Map<Id, Relationship__c>(relationships);
+
+        Test.startTest();
+            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+            List<Relationship__c> relationshipsToUpdateList = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
+        Test.stopTest();
+        
+        System.assertEquals(2, relationshipsToUpdateList.size());
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method for getRelationshipsToUpdateForContacts() if passing empty maps
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRelationshipsToUpdateForContactsEmptyMapTest() {
+        Test.startTest();
+            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+            List<Relationship__c> relationshipsToUpdateList = instance.getRelationshipsToUpdateForContacts(new Map<Id, Contact>(), new Map<Id, Relationship__c>());
+        Test.stopTest();
+        
+        System.assertEquals(0, relationshipsToUpdateList.size());
     }
 }
 

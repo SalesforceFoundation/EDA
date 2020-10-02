@@ -43,7 +43,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
         List<Relationship__c> relationshipsToUpdateList = new List<Relationship__c>();
 
         for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
-            if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == false) {
+            if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == true) {
                 Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
                 reciprocalRelationship.Type__c = relationship.Type__c;
                 relationshipsToUpdateList.add(reciprocalRelationship);
