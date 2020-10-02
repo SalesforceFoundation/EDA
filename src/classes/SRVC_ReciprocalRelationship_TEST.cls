@@ -191,7 +191,6 @@ private class SRVC_ReciprocalRelationship_TEST {
 
         Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
         newContactRelationshipToUpdateByIdMap.put(contact1.Id, contact1);
-        newContactRelationshipToUpdateByIdMap.put(contact2.Id, contact2);
 
         Relationship__c relationship = UTIL_UnitTestData_TEST.getRelationship(contact1.Id, contact2.Id, 'Father');
         insert relationship;
@@ -209,7 +208,7 @@ private class SRVC_ReciprocalRelationship_TEST {
             List<Relationship__c> relationshipsToUpdateList = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
         
-        System.assertEquals(2, relationshipsToUpdateList.size());
+        System.assertEquals(1, relationshipsToUpdateList.size());
     }
 
     /**************************************************************************************************************************

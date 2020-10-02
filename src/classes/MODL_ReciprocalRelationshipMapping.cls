@@ -41,6 +41,10 @@ public with sharing class MODL_ReciprocalRelationshipMapping {
     private String maleRelationshipType; 
     private String neutralRelationshipType; 
 
+    /*******************************************************************************************************
+    * @description Constructor with 4 parameters.
+    * @param relationshipLookup Relationship lookup from custom settings.
+    *******************************************************************************************************/ 
     public MODL_ReciprocalRelationshipMapping(Relationship_Lookup__c relationshipLookup) {
         this.relationshipName = relationshipLookup.Name;
         this.isActive = relationshipLookup.Active__c;
@@ -49,30 +53,51 @@ public with sharing class MODL_ReciprocalRelationshipMapping {
         this.neutralRelationshipType = relationshipLookup.Neutral__c;         
     }
 
+    /*******************************************************************************************************
+    * @description Returns the relationship name from the model.
+    *******************************************************************************************************/ 
     public String getRelationshipName() {
         return this.relationshipName;
     }
 
+    /*******************************************************************************************************
+    * @description Returns the isActive from the model.
+    *******************************************************************************************************/ 
     public Boolean getIsActive() {
         return this.isActive;
     }
 
+    /*******************************************************************************************************
+    * @description Returns the female relationship type from the model.
+    *******************************************************************************************************/ 
     public String getFemaleRelationshipType() {
         return this.femaleRelationshipType;
     }
 
+    /*******************************************************************************************************
+    * @description Returns the male relationship type from the model.
+    *******************************************************************************************************/ 
     public String getMaleRelationshipType() {
         return this.maleRelationshipType;
     }
 
+    /*******************************************************************************************************
+    * @description Returns the neutral relationship type from the model.
+    *******************************************************************************************************/ 
     public String getNeutralRelationshipType() {
         return this.neutralRelationshipType;
     }
 
+    /*******************************************************************************************************
+    * @description Check if the model has any female relationship type.
+    *******************************************************************************************************/ 
     public Boolean hasFemaleValue() {
         return this.femaleRelationshipType != null;
     }
 
+    /*******************************************************************************************************
+    * @description Check if the model has any male relationship type.
+    *******************************************************************************************************/ 
     public Boolean hasMaleValue() {
         return this.maleRelationshipType != null;
     }

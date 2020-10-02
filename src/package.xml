@@ -111,6 +111,7 @@
         <members>MODL_PrimaryAfflMapper</members>
         <members>MODL_PrimaryAfflMapper_TEST</members>
         <members>MODL_ReciprocalRelationshipMapping</members>
+        <members>MODL_ReciprocalRelationshipMapping_TEST</members>
         <members>PPlan_CannotDelete_TDTM</members>
         <members>PPlan_CannotDelete_TEST</members>
         <members>PPlan_Primary_TDTM</members>
