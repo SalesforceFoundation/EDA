@@ -59,44 +59,28 @@ public virtual with sharing class MAPR_ReciprocalRelationshipSettings {
     }
 
     /*****************************************************************************
-    * TODO: @description Check if Contact relationships should be updated.
-    * @return If Contact relationships should be updated.
+    * @description Get the active mappings models from relationship lookups.
+    * @return A Map of MODL_ReciprocalRelationshipMapping by relationship name.
     ******************************************************************************/
     @TestVisible
-    private Map<String, MODL_ReciprocalRelationshipMapping> getActiveMappingsModels() {
-        //Get the relationship autocreate mappings using UTIL_CustomSettingsFacade.getActiveRelationshipLookups()
-        //Return getActiveMappingModelsFromMappings() 
-        List<Relationship_Lookup__c> relationshipLookupsList = UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
-        return this.getActiveMappingModelsFromMappings(relationshipLookupsList);  
-    }
-
-    /*****************************************************************************
-    * TODO: @description Check if Contact relationships should be updated.
-    * @return If Contact relationships should be updated.
-    ******************************************************************************/
-    @TestVisible
-    private Map<String, MODL_ReciprocalRelationshipMapping> getActiveMappingModelsFromMappings(List<Relationship_Lookup__c> relationshipLookupsList) {
-        // Takes in a List<Relationship_Lookup__c>
-        // Create a Map<String,MODL_ReciprocalRelationshipMapping>
-        // For each mapping
-            // Add getModelFromMapping() to the map of models by names
-        // Return the map of models
+    private Map<String, MODL_ReciprocalRelationshipMapping> getActiveMappingModelsFromRelationshipLookups() {
         Map<String, MODL_ReciprocalRelationshipMapping> reciprocalRelationshipMappingByNameMap = new Map<String, MODL_ReciprocalRelationshipMapping>();
+        
+        List<Relationship_Lookup__c> relationshipLookupsList = UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
+
         for (Relationship_Lookup__c relationshipLookup : relationshipLookupsList) {
             reciprocalRelationshipMappingByNameMap.put(getModelFromMapping(relationshipLookup).getRelationshipName(), getModelFromMapping(relationshipLookup));
         }
+
         return reciprocalRelationshipMappingByNameMap;
     }
 
     /*****************************************************************************
-    * TODO: @description Check if Contact relationships should be updated.
-    * @return If Contact relationships should be updated.
+    * @description Get the reciprocal relationship mapping model from relationship lookup.
+    * @return The model of reciprocal relationship mapping.
     ******************************************************************************/
     @TestVisible
     private MODL_ReciprocalRelationshipMapping getModelFromMapping(Relationship_Lookup__c relationshipLookup) {
-        // Takes in a Relationship_Lookup__c
-        // Create a ReciprocalRelationshipMappingModel using the mapping
-        // return the model
         return new MODL_ReciprocalRelationshipMapping(relationshipLookup);
     }
 }
