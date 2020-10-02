@@ -38,7 +38,7 @@
 public with sharing class MODL_ContactsRelationships {
     public Set<Id> contactIdsSet { get; private set; }
     public Set<Id> relatedContactIdSet { get; private set; }
-    public Map<Id, MODL_ContactRelationships> contactRelationshipsModelsByContactId;
+    public Map<Id, MODL_ContactRelationships> contactRelationshipsModelsByContactId { get; private set; }
     public List<Relationship__c> relationshipList { get; private set; }
 
     public MODL_ContactsRelationships(){
@@ -89,9 +89,9 @@ public with sharing class MODL_ContactsRelationships {
     * @param relationshipToRemove The Relationship record to remove.
     ************************************************************************************************************/
     public void removeRelationshipFromList(Relationship__c relationshipToRemove){
-        for (Integer i = 0; i < relationshipList.size(); i++){
-            if (relationshipList[i].Id == relationshipToRemove.Id){
-                relationshipList.remove(i);
+        for (Integer i = 0; i < this.relationshipList.size(); i++){
+            if (this.relationshipList[i].Id == relationshipToRemove.Id){
+                this.relationshipList.remove(i);
                 break;
             }
         }
