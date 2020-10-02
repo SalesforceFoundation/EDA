@@ -503,83 +503,83 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     * @description Test method to verify that isADuplicateRelationship() returns False when there is no duplicate record
     * found in the list of existing Relationship records for a Contact.
     **************************************************************************************************************************/
-    @isTest 
-    private static void isADuplicateRelationshipFalse(){
-        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
-        Contact testCon = UTIL_UnitTestData_TEST.getContact();
+    // @isTest 
+    // private static void isADuplicateRelationshipFalse(){
+    //     MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+    //     Contact testCon = UTIL_UnitTestData_TEST.getContact();
 
-        Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
-        Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+    //     Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+    //     Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
 
-        testCon.Id = conFakeId;
+    //     testCon.Id = conFakeId;
 
-        MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(testCon.Id);
+    //     MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(testCon.Id);
 
-        Relationship__c relToCompare = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
-                                                           Contact__c = conRelsModel.contactId,
-                                                           RelatedContact__c = relatedConFakeId,
-                                                           Status__c = 'Current',
-                                                           Type__c = 'Cousin');
+    //     Relationship__c relToCompare = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+    //                                                        Contact__c = conRelsModel.contactId,
+    //                                                        RelatedContact__c = relatedConFakeId,
+    //                                                        Status__c = 'Current',
+    //                                                        Type__c = 'Cousin');
 
-        Relationship__c motherRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
-                                                        Contact__c = conRelsModel.contactId,
-                                                        RelatedContact__c = relatedConFakeId,
-                                                        Status__c = 'Current',
-                                                        Type__c = 'Mother');
+    //     Relationship__c motherRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+    //                                                     Contact__c = conRelsModel.contactId,
+    //                                                     RelatedContact__c = relatedConFakeId,
+    //                                                     Status__c = 'Current',
+    //                                                     Type__c = 'Mother');
 
-        Relationship__c sisterRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
-                                                        Contact__c = conRelsModel.contactId,
-                                                        RelatedContact__c = relatedConFakeId,
-                                                        Status__c = 'Current',
-                                                        Type__c = 'Sister');
+    //     Relationship__c sisterRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+    //                                                     Contact__c = conRelsModel.contactId,
+    //                                                     RelatedContact__c = relatedConFakeId,
+    //                                                     Status__c = 'Current',
+    //                                                     Type__c = 'Sister');
 
-        conRelsModel.addRelationship(motherRel);
-        conRelsModel.addRelationship(sisterRel);
+    //     conRelsModel.addRelationship(motherRel);
+    //     conRelsModel.addRelationship(sisterRel);
 
-        contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
+    //     contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
         
-        Test.startTest();
-        System.assertEquals(false, SRVC_ContactRelationshipAutoCreate.getInstance().isADuplicateRelationship(relToCompare, contactsRelationshipsModel), 'Contact Relationships should not indicate existence of a duplicate relationship record.');
-        Test.stopTest();
-    }
+    //     Test.startTest();
+    //     System.assertEquals(false, SRVC_ContactRelationshipAutoCreate.getInstance().isADuplicateRelationship(relToCompare, contactsRelationshipsModel), 'Contact Relationships should not indicate existence of a duplicate relationship record.');
+    //     Test.stopTest();
+    // }
 
     /**************************************************************************************************************************
     * @description Test method to verify that isADuplicateRelationship() returns True when there is a duplicate record
     * found in the list of existing Relationship records for a Contact.
     **************************************************************************************************************************/
-    @isTest 
-    private static void isADuplicateRelationshipTrue(){
-        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
-        Contact testCon = UTIL_UnitTestData_TEST.getContact();
+    // @isTest 
+    // private static void isADuplicateRelationshipTrue(){
+    //     MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+    //     Contact testCon = UTIL_UnitTestData_TEST.getContact();
 
-        Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
-        Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+    //     Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+    //     Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
 
-        testCon.Id = conFakeId;
+    //     testCon.Id = conFakeId;
 
-        MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(testCon.Id);
+    //     MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(testCon.Id);
 
-        Relationship__c motherRel1 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
-                                                        Contact__c = conRelsModel.contactId,
-                                                        RelatedContact__c = relatedConFakeId,
-                                                        Status__c = 'Current',
-                                                        Type__c = 'Mother');
+    //     Relationship__c motherRel1 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+    //                                                     Contact__c = conRelsModel.contactId,
+    //                                                     RelatedContact__c = relatedConFakeId,
+    //                                                     Status__c = 'Current',
+    //                                                     Type__c = 'Mother');
 
-        Relationship__c motherRel2 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
-                                                        Contact__c = conRelsModel.contactId,
-                                                        RelatedContact__c = relatedConFakeId,
-                                                        Status__c = 'Current',
-                                                        Type__c = 'Mother');
+    //     Relationship__c motherRel2 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
+    //                                                     Contact__c = conRelsModel.contactId,
+    //                                                     RelatedContact__c = relatedConFakeId,
+    //                                                     Status__c = 'Current',
+    //                                                     Type__c = 'Mother');
 
-        conRelsModel.addRelationship(motherRel1);
-        conRelsModel.addRelationship(motherRel2);
+    //     conRelsModel.addRelationship(motherRel1);
+    //     conRelsModel.addRelationship(motherRel2);
 
-        contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
+    //     contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
         
-        Test.startTest();
-        System.assertEquals(true, SRVC_ContactRelationshipAutoCreate.getInstance().isADuplicateRelationship(motherRel1, contactsRelationshipsModel), 'Contact Relationships should indicate existence of a duplicate relationship record.');
-        Test.stopTest();
-    }
+    //     Test.startTest();
+    //     System.assertEquals(true, SRVC_ContactRelationshipAutoCreate.getInstance().isADuplicateRelationship(motherRel1, contactsRelationshipsModel), 'Contact Relationships should indicate existence of a duplicate relationship record.');
+    //     Test.stopTest();
+    // }
 
 
     /**************************************************************************************************************************

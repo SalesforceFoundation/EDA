@@ -153,6 +153,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         
         for (Relationship__c rel : contactRelationships){
             if (this.isADuplicateRelationship(rel, contactsRelationshipsModel) == true){
+            //if (this.getDuplicateRelationship(rel, contactsRelationshipsModel) == true){
                 contactsRelationshipsModel.removeRelationshipFromList(rel);
             } 
         }
@@ -170,4 +171,9 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     private Boolean isADuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
         return contactsRelationshipsModel.hasRelationship(relationship);
     }
+
+    // @TestVisible
+    // private Boolean getDuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
+    //     return contactsRelationshipsModel.getRelationship(relationship);
+    // }
 }
