@@ -152,9 +152,9 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                       LIMIT 2000];
         
         for (Relationship__c rel : contactRelationships){
-            if (this.isADuplicateRelationship(rel, contactsRelationshipsModel) == true){
-            //if (this.getDuplicateRelationship(rel, contactsRelationshipsModel) == true){
-                contactsRelationshipsModel.removeRelationshipFromList(rel);
+            Relationship__c relToRemove = this.getDuplicateRelationship(rel, contactsRelationshipsModel);
+            if (relToRemove != null){
+                contactsRelationshipsModel.removeRelationshipFromList(relToRemove);
             } 
         }
 
@@ -168,12 +168,8 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @return True if a duplicate Relationship record is found, False otherwise.
     **************************************************************************************************************************/ 
     @TestVisible
-    private Boolean isADuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
-        return contactsRelationshipsModel.hasRelationship(relationship);
+    //private Boolean isADuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
+    private Relationship__c getDuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
+        return contactsRelationshipsModel.getRelationship(relationship);
     }
-
-    // @TestVisible
-    // private Boolean getDuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
-    //     return contactsRelationshipsModel.getRelationship(relationship);
-    // }
 }

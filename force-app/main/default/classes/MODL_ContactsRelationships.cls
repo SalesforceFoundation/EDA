@@ -70,10 +70,16 @@ public with sharing class MODL_ContactsRelationships {
         MODL_ContactRelationships contactRelationshipsModel = contactRelationshipsModelsByContactId.get(relationship.Contact__c);
     
         if (contactRelationshipsModel == null){
+            return null;
+        }
+
+        Relationship__c rel = contactRelationshipsModel.getRelationship(relationship.RelatedContact__c, relationship.Type__c);
+
+        if (rel == null){
             return false;
         }
 
-        return (contactRelationshipsModel.getRelationship(relationship.RelatedContact__c, relationship.Type__c) != null) ? true : false;
+        return true;
     }
 
     /**************************************************************************************************************************
@@ -95,5 +101,20 @@ public with sharing class MODL_ContactsRelationships {
                 break;
             }
         }
+    }
+
+    /************************************************************************************************************
+    * @description Retrieves a specified Relationship record from the list of Contacts Relationships Model relationships.
+    * @param relationshipToRetrieve The Relationship to retrieve
+    * @return The matching Relationship record from the Contacts Relationships model.
+    ************************************************************************************************************/ 
+    public Relationship__c getRelationship(Relationship__c relationshipToRetrieve){
+        for (Relationship__c rel : this.relationshipList){
+            if (relationshipToRetrieve.Id == rel.Id){
+                return rel;
+            }
+        }
+        
+        return null;
     }
 }
