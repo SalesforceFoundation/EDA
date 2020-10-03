@@ -51,14 +51,13 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
     ******************************************************************************/
     public static SRVC_ReciprocalRelationship getInstance() {
         if (FACT_ReciprocalRelationshipService.instance == null) {
-            //FACT_ReciprocalRelationshipService.instance = FACT_ReciprocalRelationshipService.locateReciprocalRelationshipService();
             String reciprocalMethod = getReciprocalMethodFromSettings();
             if (reciprocalMethod == 'List Setting') {
-                //return ReciprocalRelationshipListService
+                return SRVC_ReciprocalRelationshipList.getInstance();
             }
 
             if (reciprocalMethod == 'Value Inversion') {
-                //return ReciprocalRelationshipInversionService
+                return SRVC_ReciprocalRelationshipInversion.getInstance();
             }
 
             return new SRVC_ReciprocalRelationship();
@@ -75,23 +74,5 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
     private static String getReciprocalMethodFromSettings() {
         return UTIL_CustomSettingsFacade.getSettings().Reciprocal_Method__c;
     }
-
-    /*****************************************************************************
-    * @description Retrieves an instance of the Reciprocal Relationship Service class based on the reciprocal method.
-    * @return An instance of the ReciprocalRelationshipService class.
-    ******************************************************************************/
-    /*@TestVisible
-    private static SRVC_ReciprocalRelationship locateReciprocalRelationshipService() {
-        /*String reciprocalMethod = getReciprocalMethodFromSettings();
-        if (reciprocalMethod == 'List Setting') {
-            //return ReciprocalRelationshipListService
-        }
-
-        if (reciprocalMethod == 'Value Inversion') {
-            //return ReciprocalRelationshipInversionService
-        }
-    
-        return SRVC_ReciprocalRelationship.getInstance();
-    }*/
 }
 

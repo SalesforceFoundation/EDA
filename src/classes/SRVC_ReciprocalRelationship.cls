@@ -37,6 +37,8 @@
 public virtual with sharing class SRVC_ReciprocalRelationship {    
     /*****************************************************************************
     * @description Get the relationships to update from map of contact and map of relationship to update.
+    * @param newContactRelationshipToUpdateByIdMap Map of contact whose relationships need to be updated.
+    * @param relationshipsByIdToUpdateMap Map of relationship to update.
     * @return The relationships to update.
     ******************************************************************************/
     public virtual List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> newContactRelationshipToUpdateByIdMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
@@ -55,6 +57,8 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
 
     /*****************************************************************************
     * @description Check if a relationship is reciprocal.
+    * @param relationship Current relationship.
+    * @param contactIdsSet A set of Ids of the contact of current relationship and its related contact.
     * @return If a relationship is reciprocal.
     ******************************************************************************/
     public boolean isRelationshipReciprocal(Relationship__c relationship, Set<Id> contactIdsSet) {  
@@ -63,6 +67,8 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
 
     /*****************************************************************************
     * @description Check if Contact relationships should be updated.
+    * @param newContact New contact.
+    * @param oldContact Old contact.
     * @return If Contact relationships should be updated.
     ******************************************************************************/
     public boolean shouldUpdateContactRelationships(Contact newContact, Contact oldContact) {
@@ -71,6 +77,7 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
 
     /*****************************************************************************
     * @description Query reciprocal relationships for contacts.
+    * @param contactIdsSet A set of contact ids to be queried.
     * @return The map of reciprocal relationship by Id for contacts.
     ******************************************************************************/
     public Map<Id, Relationship__c> getRelationshipsForContacts(Set<Id> contactIdsSet) {

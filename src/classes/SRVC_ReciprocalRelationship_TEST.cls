@@ -185,15 +185,15 @@ private class SRVC_ReciprocalRelationship_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getRelationshipsToUpdateForContactsRelationshipsExistTest() {
-        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
-        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{contact1, contact2};
+        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
+        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{fatherContact, sonContact};
 
         Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
-        newContactRelationshipToUpdateByIdMap.put(contact1.Id, contact1);
+        newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
 
-        Relationship__c relationship = UTIL_UnitTestData_TEST.getRelationship(contact1.Id, contact2.Id, 'Father');
-        insert relationship;
+        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
+        insert fatherRelationship;
 
         List<Relationship__c> relationships = [SELECT ID,
                                                     Contact__c,

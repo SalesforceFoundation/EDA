@@ -60,6 +60,8 @@ public virtual with sharing class SRVC_ReciprocalRelationshipInversion extends S
 
     /*****************************************************************************
     * @description Get the relationships to update from map of contact and map of relationship to update if reciprocal method is inversion.
+    * @param newContactRelationshipToUpdateByIdMap Map of contact whose relationships need to be updated.
+    * @param relationshipsByIdToUpdateMap Map of relationship to update.
     * @return The relationships to update.
     ******************************************************************************/
     public override List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> newContactRelationshipToUpdateByIdMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
@@ -68,7 +70,7 @@ public virtual with sharing class SRVC_ReciprocalRelationshipInversion extends S
         for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
             if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == false) {
                 Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
-                reciprocalRelationship.Type__c = this.getInversedRelationshipTypeFromRelationshipType(reciprocalRelationship.Type__c);
+                reciprocalRelationship.Type__c = this.getInversedRelationshipType(reciprocalRelationship.Type__c);
                 relationshipsToUpdateList.add(reciprocalRelationship);    
             }
         }
@@ -78,9 +80,11 @@ public virtual with sharing class SRVC_ReciprocalRelationshipInversion extends S
 
     /*****************************************************************************
     * @description Get the inversed relationship type from the relationship type.
+    * @param relationshipType The type of relationship.
     * @return The string of the inversed relationship type.
     ******************************************************************************/
-    private String getInversedRelationshipTypeFromRelationshipType(String relationshipType) {
+    @TestVisible
+    private String getInversedRelationshipType(String relationshipType) {
         List<String> relationshipTypesList = relationshipType.split(Label.Relationship_Split);
         
         if (relationshipTypesList.size() == 1) {
