@@ -62,12 +62,16 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
             return this.handleAfterInsert(newList);
         }
 
+<<<<<<< HEAD
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
             return handleAfterUpdate(newList, oldList);
         }
 
 
         System.debug('MK DEBUG: Continuing to old code');
+=======
+        System.debug('Continuing to old code');
+>>>>>>> 743bdb01169f0c80a478ed86d2319b61b880207d
         /******************************************************************************************************************** */
          //Casting them to contacts, since this class should be run only for contacts
          List<Contact> newListCasted = (newList == null ? new List<Contact>(): (List<Contact>)newList);

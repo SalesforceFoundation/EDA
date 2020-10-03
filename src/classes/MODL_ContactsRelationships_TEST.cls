@@ -158,6 +158,48 @@ public with sharing class MODL_ContactsRelationships_TEST {
     @isTest 
     private static void hasRelationshipFalse(){
         List<Relationship__c> relationshipsToFind = new List<Relationship__c>();
+        List<MODL_ContactsRelationships> contactsRelationshipsModelsList = new List<MODL_ContactsRelationships>();
+
+        for (Integer i = 0; i < 5; i++){
+            MODL_ContactsRelationships consRelsModel = new MODL_ContactsRelationships();
+            contactsRelationshipsModelsList.add(consRelsModel);
+        }
+
+        for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
+            List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+            conRelsModelsList = MODL_ContactsRelationships_TEST.addRelationshipsToContactRelationshipsModels(conRelsModelsList, 5);
+
+            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            //for (Integer i = 0; i < conRelsModelsList.size(); i++){
+                 //Associate relationships to Contact, but not Contact Relationships model
+                //for (Integer i = 0; i < 2; i++){
+                    Relationship__c relToFind = UTIL_UnitTestData_TEST.getRelationship(conRelsMod.contactId, UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType), 'Cousin');
+                    //Relationship__c relToFind = UTIL_UnitTestData_TEST.getRelationship(conRelsModelsList[1].contactId, UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType), 'Cousin');
+                    relationshipsToFind.add(relToFind);
+                //}
+
+                consRelsMod.addContactRelationshipsModel(conRelsMod);
+            }
+        }
+        
+        Test.startTest();
+        for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
+            for (Relationship__c relToFind : relationshipsToFind){
+                if (consRelsMod.contactIdsSet.contains(relToFind.Contact__c)){
+                    System.assertEquals(false, consRelsMod.hasRelationship(relToFind), 'There should be no matching Relationship in relationships associated with current Contacts Relationships model.');
+                }
+            }
+        }
+        Test.stopTest();
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that hasRelationship() returns null there are no Contact Relationships models associated
+    * with a specified contact.
+    **************************************************************************************************************************/
+    @isTest 
+    private static void hasRelationshipNull(){
+        List<Relationship__c> relationshipsToFind = new List<Relationship__c>();
         for (Integer i = 0; i < 5; i++){
             Relationship__c relationship = UTIL_UnitTestData_TEST.getRelationship(UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType), UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType), 'Cousin');
             relationshipsToFind.add(relationship);
@@ -172,7 +214,7 @@ public with sharing class MODL_ContactsRelationships_TEST {
 
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
             List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
-            conRelsModelsList = MODL_ContactsRelationships_TEST.addRelationshipsToContactRelationshipsModels(conRelsModelsList.clone(), 3);
+            conRelsModelsList = MODL_ContactsRelationships_TEST.addRelationshipsToContactRelationshipsModels(conRelsModelsList, 3);
 
             for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
                 consRelsMod.addContactRelationshipsModel(conRelsMod);
@@ -182,7 +224,7 @@ public with sharing class MODL_ContactsRelationships_TEST {
         Test.startTest();
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
             for (Relationship__c relToFind : relationshipsToFind){
-                System.assertEquals(false, consRelsMod.hasRelationship(relToFind), 'There should be no matching Relationship in relationships associated with current Contacts Relationships model.');
+                System.assertEquals(null, consRelsMod.hasRelationship(relToFind), 'There should be no matching Relationship in relationships associated with current Contacts Relationships model.');
             }
         }
         Test.stopTest();
