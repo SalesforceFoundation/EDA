@@ -31,7 +31,7 @@
 * @author Salesforce.org
 * @date 2020
 * @group 
-* @group-content ../../ApexDocContent/
+* @group-content ../../ApexDocContent/Relationships.htm
 * @description Service class for reciprocal relationships. 
 */
 public virtual with sharing class SRVC_ReciprocalRelationship {    
