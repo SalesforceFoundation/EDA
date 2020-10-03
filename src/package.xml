@@ -143,6 +143,7 @@
         <members>SRVC_Contact_PrimaryAffiliations_TEST</members>
         <members>SRVC_ReciprocalRelationship</members>
         <members>SRVC_ReciprocalRelationshipInversion</members>
+        <members>SRVC_ReciprocalRelInversion_TEST</members>
         <members>SRVC_ReciprocalRelationship_TEST</members>
         <members>SRVC_RelAutoCreateSettingsMapper</members>
         <members>SRVC_RelAutoCreateSettingsMapper_TEST</members>

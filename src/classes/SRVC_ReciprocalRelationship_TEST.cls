@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2009, 2012, Salesforce.org
+    Copyright (c) 2020 Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2011,2012
+* @date 2020
 * @group Relationships
 * @group-content ../../ApexDocContent/Relationships.htm
 * @description Test class for SRVC_ReciprocalRelationship.
