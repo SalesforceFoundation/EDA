@@ -36,7 +36,6 @@
 */
 @isTest
 private class MAPR_ReciprocalRelationshipSettings_TEST {
-
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
     * MAPR_ReciprocalRelationshipSettings class when one does not already exist.

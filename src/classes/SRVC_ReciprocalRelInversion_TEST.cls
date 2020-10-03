@@ -36,5 +36,28 @@
 */
 @isTest
 private class SRVC_ReciprocalRelInversion_TEST {
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * MAPR_ReciprocalRelationshipSettings class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNewTest() {
+        MAPR_ReciprocalRelationshipSettings maprReciprocalRelationshipSettingsInstance = MAPR_ReciprocalRelationshipSettings.getInstance();
+        System.assertEquals(MAPR_ReciprocalRelationshipSettings.instance, maprReciprocalRelationshipSettingsInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(true, maprReciprocalRelationshipSettingsInstance != null, 'Instance of service class should not be null.');
+    }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * MAPR_ReciprocalRelationshipSettings class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExistingTest() {
+        MAPR_ReciprocalRelationshipSettings maprReciprocalRelationshipSettingsInstance1 = MAPR_ReciprocalRelationshipSettings.getInstance();
+        MAPR_ReciprocalRelationshipSettings maprReciprocalRelationshipSettingsInstance2 = MAPR_ReciprocalRelationshipSettings.getInstance();
+ 
+        System.assertEquals(MAPR_ReciprocalRelationshipSettings.instance, maprReciprocalRelationshipSettingsInstance1, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(maprReciprocalRelationshipSettingsInstance1, maprReciprocalRelationshipSettingsInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
+        System.assertEquals(true, maprReciprocalRelationshipSettingsInstance1 != null, 'Instance of service class should not be null.');
+    }
 }
