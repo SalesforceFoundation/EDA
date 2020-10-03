@@ -42,7 +42,7 @@ private class MAPR_ReciprocalRelationshipSettings_TEST {
     * MAPR_ReciprocalRelationshipSettings class when one does not already exist.
     ***************************************************************************************************************************/
     @isTest
-    private static void getInstanceNew() {
+    private static void getInstanceNewTest() {
         MAPR_ReciprocalRelationshipSettings maprReciprocalRelationshipSettingsInstance = MAPR_ReciprocalRelationshipSettings.getInstance();
         System.assertEquals(MAPR_ReciprocalRelationshipSettings.instance, maprReciprocalRelationshipSettingsInstance, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, maprReciprocalRelationshipSettingsInstance != null, 'Instance of service class should not be null.');
@@ -53,7 +53,7 @@ private class MAPR_ReciprocalRelationshipSettings_TEST {
     * MAPR_ReciprocalRelationshipSettings class when one already exists.
     ***************************************************************************************************************************/
     @isTest
-    private static void getInstanceExisting() {
+    private static void getInstanceExistingTest() {
         MAPR_ReciprocalRelationshipSettings maprReciprocalRelationshipSettingsInstance1 = MAPR_ReciprocalRelationshipSettings.getInstance();
         MAPR_ReciprocalRelationshipSettings maprReciprocalRelationshipSettingsInstance2 = MAPR_ReciprocalRelationshipSettings.getInstance();
  
@@ -62,5 +62,60 @@ private class MAPR_ReciprocalRelationshipSettings_TEST {
         System.assertEquals(true, maprReciprocalRelationshipSettingsInstance1 != null, 'Instance of service class should not be null.');
     }
 
-    
+    /**************************************************************************************************************************
+    * @description Test for getModelFromMapping if relationship lookup exists
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getModelFromMappingRelationshipLookupExistsTest() {
+        Relationship_Lookup__c relationshipLookup = new Relationship_Lookup__c(Name = 'test relationship name',
+                                                                            Active__c = true,
+                                                                            Female__c = 'Mother',
+                                                                            Male__c = 'Father',
+                                                                            Neutral__c = 'Parent');
+
+        Test.startTest();
+            MODL_ReciprocalRelationshipMapping modelReciprocalRelationshipMapping = MAPR_ReciprocalRelationshipSettings.getInstance().getModelFromMapping(relationshipLookup);
+        Test.stopTest();
+
+        System.assertEquals('test relationship name', modelReciprocalRelationshipMapping.getRelationshipName());
+        System.assertEquals(true, modelReciprocalRelationshipMapping.getIsActive());
+        System.assertEquals('Mother', modelReciprocalRelationshipMapping.getFemaleRelationshipType());
+        System.assertEquals('Father', modelReciprocalRelationshipMapping.getMaleRelationshipType());
+        System.assertEquals('Parent', modelReciprocalRelationshipMapping.getNeutralRelationshipType());
+    }
+
+    /**************************************************************************************************************************
+    * @description Test for getActiveMappingModelsFromRelationshipLookups if relationship lookup exists
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getActiveMappingModelsFromRelationshipLookupsRelationshipLookupExistsTest() {
+        Relationship_Lookup__c relationshipLookup = new Relationship_Lookup__c(Name = 'test relationship name',
+                                                                            Active__c = true,
+                                                                            Female__c = 'Mother',
+                                                                            Male__c = 'Father',
+                                                                            Neutral__c = 'Parent');
+        insert relationshipLookup;
+
+        Test.startTest();
+            Map<String, MODL_ReciprocalRelationshipMapping> activeMappingModelsFromRelationshipLookups = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups();
+        Test.stopTest();
+
+        System.assertEquals('test relationship name', activeMappingModelsFromRelationshipLookups.get(relationshipLookup.Name).getRelationshipName());
+        System.assertEquals(true, activeMappingModelsFromRelationshipLookups.get(relationshipLookup.Name).getIsActive());
+        System.assertEquals('Mother', activeMappingModelsFromRelationshipLookups.get(relationshipLookup.Name).getFemaleRelationshipType());
+        System.assertEquals('Father', activeMappingModelsFromRelationshipLookups.get(relationshipLookup.Name).getMaleRelationshipType());
+        System.assertEquals('Parent', activeMappingModelsFromRelationshipLookups.get(relationshipLookup.Name).getNeutralRelationshipType());
+    }
+
+    /**************************************************************************************************************************
+    * @description Test for getModelFromMapping if no relationship lookup exists
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getActiveMappingModelsFromRelationshipLookupsNoRelationshipLookupExistsTest() {
+        Test.startTest();
+            Map<String, MODL_ReciprocalRelationshipMapping> activeMappingModelsFromRelationshipLookups = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups();
+        Test.stopTest();
+
+        System.assertEquals(0, activeMappingModelsFromRelationshipLookups.values().size());
+    }
 }
