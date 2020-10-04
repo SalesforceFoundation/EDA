@@ -50,7 +50,7 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     * @description Static method to get the current instance for Singleton pattern.
     * @return The instance of SRVC_ReciprocalRelationshipList.
     ******************************************************************************/
-    public static SRVC_ReciprocalRelationshipInversion getInstance() {
+    public static SRVC_ReciprocalRelationshipList getInstance() {
         if (SRVC_ReciprocalRelationshipList.instance == null) {
             SRVC_ReciprocalRelationshipList.instance = new SRVC_ReciprocalRelationshipList();
         }
@@ -59,7 +59,7 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     }
 
     /*****************************************************************************
-    * @description Get the relationships to update from map of contact and map of relationship to update if reciprocal method is inversion.
+    * @description Get the relationships to update from map of contact and map of relationship to update if reciprocal method is list.
     * @param newContactRelationshipToUpdateByIdMap Map of contact whose relationships need to be updated.
     * @param relationshipsByIdToUpdateMap Map of relationship to update.
     * @return The relationships to update.
@@ -67,15 +67,10 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     public override List<Relationship__c> getRelationshipsToUpdateForContacts(Map<Id, Contact> newContactRelationshipToUpdateByIdMap, Map<Id, Relationship__c> relationshipsByIdToUpdateMap) {
         List<Relationship__c> relationshipsToUpdateList = new List<Relationship__c>();
 
-        //     * Get the a ReciprocalRelationshipMappingModel by name (String) map using locateReciprocalRelationshipMapper().getActiveMappingModels()
         Map<String, MODL_ReciprocalRelationshipMapping> activeMappingModels = this.locateReciprocalRelationshipMapper().getActiveMappingModelsFromRelationshipLookups();
-        //     * Get the set of female genders using  getFemaleGenderSet()
         Set<String> femaleGendersSet = this.getFemaleGenderSet();
-        //     * Get the set of male genders using getMaleGenderSet()
         Set<String> maleGendersSet = this.getMaleGenderSet();
-        //     * Get the set of female salutations using  getFemaleSalutationSet()
         Set<String> femaleSalutationSet = this.getFemaleSalutationSet();
-        //     * Get the set of male salutations using getMaleSalutationSet()
         Set<String> maleSalutationSet = this.getMaleSalutationSet();
 
         for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
@@ -88,29 +83,37 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
        
                 //* If that model is null
                 if (reciprocalRelationshipMappingModel == null) {
-                    //* Add getRelationshipToUpdateWithoutMapping(reciprocalRelationship,relationship.Type__c) to the list to update
                     relationshipsToUpdateList.add(this.getRelationshipToUpdateWithoutMapping(reciprocalRelationship, relationship.Type__c));
-                    //continue
+                    
                     continue;
                 } 
 
-                //Get the contact for the relationship using the contact map
-                Contact xxxContact = newContactRelationshipToUpdateByIdMap.get(relationship.Contact__c);
-                //If the contact’s gender is not null
-                if (xxxContact.Gender__c != null) {
+                Contact relatedContact = newContactRelationshipToUpdateByIdMap.get(relationship.RelatedContact__c);
+                if (String.isNotBlank(relatedContact.Gender__c)) {
                     //* Get getRelationshipToUpdateFromGender(reciprocalRelationship,contact,mappingModel,salutationSetsModel)
-                    //* If that value is not null
-                        //* If a relationship was returned
-                        //* Add the relationship to the list to update
-                        //* continue  
+                    //relationshipsToUpdateList.add(this.getRelationshipToUpdateFromGender(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, relationship.Type__c));
+                    
                 }
 
                 //* Add getRelationshipToUpdateFromSalutation(reciprocalRelationship,contact,mappingModel,salutationSetsModel) to the list to update
-                relationshipsToUpdateList.add(this.getRelationshipToUpdateFromSalutation(reciprocalRelationship, xxxContact, reciprocalRelationshipMappingModel, salutationSetsModel));
+                //relationshipsToUpdateList.add(this.getRelationshipToUpdateFromSalutation(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, salutationSetsModel));
             }
         }
             
         return relationshipsToUpdateList;
+    }
+
+    /*******************************************************************************************************
+    * @description Get the reciprocal relationship to update if without reciprocal relationship mapping. 
+    * @param reciprocalRelationship A reciprocal relationship.
+    * @param relationshipType The type of the relationship.
+    * @return The reciprocal relationship to update.
+    *******************************************************************************************************/ 
+    @TestVisible
+    private Relationship__c getRelationshipToUpdateWithoutMapping(Relationship__c reciprocalRelationship, String relationshipType) {
+        reciprocalRelationship.Type__c = relationshipType;
+
+        return reciprocalRelationship;
     }
 
     /*******************************************************************************************************
@@ -128,7 +131,7 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     *******************************************************************************************************/ 
     @TestVisible
     private Set<String> getFemaleGenderSet(){
-        return getGenderSet(getFemaleLabelList());
+        return getGenderSet(this.getFemaleLabelList());
     }
 
     /*******************************************************************************************************
@@ -137,7 +140,7 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     *******************************************************************************************************/ 
     @TestVisible
     private Set<String> getMaleGenderSet(){
-        return getGenderSet(getMaleLabelList());
+        return getGenderSet(this.getMaleLabelList());
     }
 
     /*******************************************************************************************************
@@ -163,13 +166,13 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     * @return An instance of MAPR_ReciprocalRelationshipSettings.
     *******************************************************************************************************/ 
     @TestVisible
-    private List<String> getFemaleSalutationSet(){
+    private Set<String> getFemaleSalutationSet(){
         Set<String> femaleLabelsSet = new Set<String>(this.getFemaleLabelList());
 
-        femaleLablesSet.add('Mrs.');
-        femaleLablesSet.add('Ms.');
+        femaleLabelsSet.add('Mrs.');
+        femaleLabelsSet.add('Ms.');
 
-        return femaleLablesSet;
+        return femaleLabelsSet;
     }
 
     /*******************************************************************************************************
@@ -177,12 +180,21 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     * @return An instance of MAPR_ReciprocalRelationshipSettings.
     *******************************************************************************************************/ 
     @TestVisible
-    private List<String> getMaleSalutationSet(){
-        Set<String> maleLabelsSet = new Set<String>(this.getMmaleLabelList());
+    private Set<String> getMaleSalutationSet(){
+        Set<String> maleLabelsSet = new Set<String>(this.getMaleLabelList());
 
         maleLabelsSet.add('Mr.');
 
         return maleLabelsSet;
+    }
+
+    /*******************************************************************************************************
+    * TODO: @description Retrieves an instance of the MAPR_ReciprocalRelationshipSettings service class.
+    * @return An instance of MAPR_ReciprocalRelationshipSettings.
+    *******************************************************************************************************/ 
+    @TestVisible
+    private Set<String> getGenderSet(List<String> genderLabelList){
+        return new Set<String>(genderLabelList);
     }
 }
 

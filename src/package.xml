@@ -100,6 +100,7 @@
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
         <members>FACT_ReciprocalRelationshipService</members>
+        <members>FACT_ReciprocalRelService_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
         <members>MAPR_ReciprocalRelationshipSettings</members>
@@ -143,6 +144,7 @@
         <members>SRVC_Contact_PrimaryAffiliations_TEST</members>
         <members>SRVC_ReciprocalRelationship</members>
         <members>SRVC_ReciprocalRelationshipInversion</members>
+        <members>SRVC_ReciprocalRelationshipList</members>
         <members>SRVC_ReciprocalRelInversion_TEST</members>
         <members>SRVC_ReciprocalRelationship_TEST</members>
         <members>SRVC_RelAutoCreateSettingsMapper</members>

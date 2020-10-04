@@ -63,7 +63,7 @@ public virtual with sharing class MAPR_ReciprocalRelationshipSettings {
     * @return A Map of MODL_ReciprocalRelationshipMapping by relationship name.
     ******************************************************************************/
     @TestVisible
-    private Map<String, MODL_ReciprocalRelationshipMapping> getActiveMappingModelsFromRelationshipLookups() {
+    public Map<String, MODL_ReciprocalRelationshipMapping> getActiveMappingModelsFromRelationshipLookups() {
         Map<String, MODL_ReciprocalRelationshipMapping> reciprocalRelationshipMappingByNameMap = new Map<String, MODL_ReciprocalRelationshipMapping>();
         
         List<Relationship_Lookup__c> relationshipLookupsList = UTIL_CustomSettingsFacade.getActiveRelationshipLookups();

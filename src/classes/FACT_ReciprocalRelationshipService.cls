@@ -31,8 +31,8 @@
 * @author Salesforce.org
 * @date 2020
 * @group 
-* @group-content ../../ApexDocContent/
-* @description Service class for REL_Relationships_Con_TDTM. TODO
+* @group-content ../../ApexDocContent/Relationships.htm
+* @description Factory class for reciprocal relationship instance. 
 */
 public virtual with sharing class FACT_ReciprocalRelationshipService {
     /*********************************************
