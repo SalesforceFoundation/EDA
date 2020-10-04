@@ -86,7 +86,7 @@ private class FACT_ReciprocalRelService_TEST {
             String reciprocalMethod = FACT_ReciprocalRelationshipService.getReciprocalMethodFromSettings();
         Test.stopTest();
 
-        System.assertEquals('Inversion', reciprocalMethod);
+        System.assertEquals('Value Inversion', reciprocalMethod);
     }
 
     /*****************************************************************************
@@ -100,7 +100,7 @@ private class FACT_ReciprocalRelService_TEST {
             String reciprocalMethod = FACT_ReciprocalRelationshipService.getReciprocalMethodFromSettings();
         Test.stopTest();
 
-        System.assertEquals('List', reciprocalMethod);
+        System.assertEquals('List Setting', reciprocalMethod);
     }
 
     /*****************************************************************************
