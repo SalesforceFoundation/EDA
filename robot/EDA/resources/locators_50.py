@@ -135,6 +135,11 @@ eda_lex_locators = {
         "default_dropdown_value": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[text()='{}']",
         "admin_success_toast": "//div[@id='adminSuccessToast']/descendant::h2",
         "hh_success_toast": "//div[@id='hhSuccessToast']/descendant::h2",
+        "other_accname_format": "//span[text()='{}']/../preceding-sibling::div[1]/descendant::input",
+        "other_dropdown_value": "//span[text()='{}']/../preceding-sibling::div[1]/descendant::span[text()='{}']",
+        "recipient_type_value": "//span[text()='{}']/../following-sibling::div/descendant::select/option[@value='{}']",
+        "recipient_name": "//label[text()='{}']/../div/descendant::input",
+        "recipient_lookup": "//div[contains(@class, 'lookup') and text()='{}']",
     },
     "account_types": {
         "administrative": "//span[contains(text(),'Administrative')]/parent::*",
