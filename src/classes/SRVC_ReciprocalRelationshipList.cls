@@ -131,7 +131,7 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     *******************************************************************************************************/ 
     @TestVisible
     private Set<String> getFemaleGenderSet(){
-        return getGenderSet(this.getFemaleLabelList());
+        return new Set<String>(this.getFemaleLabelList());
     }
 
     /*******************************************************************************************************
@@ -140,7 +140,7 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     *******************************************************************************************************/ 
     @TestVisible
     private Set<String> getMaleGenderSet(){
-        return getGenderSet(this.getMaleLabelList());
+        return new Set<String>(this.getMaleLabelList());
     }
 
     /*******************************************************************************************************
@@ -186,15 +186,6 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
         maleLabelsSet.add('Mr.');
 
         return maleLabelsSet;
-    }
-
-    /*******************************************************************************************************
-    * TODO: @description Retrieves an instance of the MAPR_ReciprocalRelationshipSettings service class.
-    * @return An instance of MAPR_ReciprocalRelationshipSettings.
-    *******************************************************************************************************/ 
-    @TestVisible
-    private Set<String> getGenderSet(List<String> genderLabelList){
-        return new Set<String>(genderLabelList);
     }
 }
 

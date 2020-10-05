@@ -99,6 +99,7 @@ private class MAPR_ReciprocalRelationshipSettings_TEST {
             Map<String, MODL_ReciprocalRelationshipMapping> activeMappingModelsFromRelationshipLookups = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups();
         Test.stopTest();
 
+        System.assertEquals(1, activeMappingModelsFromRelationshipLookups.values().size());
         System.assertEquals('test relationship name', activeMappingModelsFromRelationshipLookups.get(relationshipLookup.Name).getRelationshipName());
         System.assertEquals(true, activeMappingModelsFromRelationshipLookups.get(relationshipLookup.Name).getIsActive());
         System.assertEquals('Mother', activeMappingModelsFromRelationshipLookups.get(relationshipLookup.Name).getFemaleRelationshipType());

@@ -91,7 +91,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 
         activeRelationshipLookupList = new List<Relationship_Lookup__c>();
 
-        for (Relationship_Lookup__c relLookup : activeRelationshipLookupList){
+        for (Relationship_Lookup__c relLookup : Util_CustomSettingsFacade.getReciprocalSettings()){
             if (relLookup.Active__c == true){
                 activeRelationshipLookupList.add(relLookup);
             }
