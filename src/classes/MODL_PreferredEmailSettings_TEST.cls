@@ -42,20 +42,20 @@ private class MODL_PreferredEmailSettings_TEST {
     private static void MODL_PreferredEmailSettings() {
 
         MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField('University Email',  UTIL_Namespace.StrTokenNSPrefix('') + 'UniversityEmail__c',
-                                                                                       MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailPicklistLabelByApiName(), 
-                                                                                       MAPR_CON_PreferredEmailFields.getInstance().getLegacyPreferredEmailPicklistValuesByLabel());
+                                                                                       'University Email');
         List<MODL_PreferredEmailField> prefEmailFieldModelList = new List<MODL_PreferredEmailField>();
         prefEmailFieldModelList.add(prefEmailFieldModel);
 
         Test.startTest();
-            MODL_PreferredEmailSettings prefEmailSettingsModel = new MODL_PreferredEmailSettings(prefEmailFieldModelList, prefEmailFieldModel.preferredLabel,
-                                                                                       'Email', 
+            MODL_PreferredEmailSettings prefEmailSettingsModel = new MODL_PreferredEmailSettings(prefEmailFieldModelList, 'University Email',
+                                                                                       'Email', true,
                                                                                        MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailPicklistLabelByApiName());
         Test.stopTest();
 
         System.assertEquals(1, prefEmailSettingsModel.preferredEmailFieldModels.size());
         System.assertEquals('University Email', prefEmailSettingsModel.alternateEmailPreferredLabel);
         System.assertEquals('Email', prefEmailSettingsModel.emailLabel);
+        System.assertEquals(true, prefEmailSettingsModel.preferredEmailValidationEnabled);
         System.assertEquals(false, prefEmailSettingsModel.preferredEmailPicklistLabelByApiName.isEmpty());
     }    
 }

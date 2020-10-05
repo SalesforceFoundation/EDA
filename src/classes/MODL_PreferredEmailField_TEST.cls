@@ -35,14 +35,13 @@
 private class MODL_PreferredEmailField_TEST {
 
     /******************************************************************************************************************************************************
-    * @description Test method to verify MODL_PreferredEmailField assigns value when Email Type Field Label is in preferredEmailPicklistValuesByLabel Map
+    * @description Test method to verify MODL_PreferredEmailField assigns values to properties
     *******************************************************************************************************************************************************/
     @isTest
-    private static void MODL_PreferredEmailFieldWithLabel() {
+    private static void MODL_PreferredEmailField() {
         Test.startTest();
             MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField('University Email',  UTIL_Namespace.StrTokenNSPrefix('') + 'UniversityEmail__c',
-                                                                                       MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailPicklistLabelByApiName(), 
-                                                                                       MAPR_CON_PreferredEmailFields.getInstance().getLegacyPreferredEmailPicklistValuesByLabel());
+                                                                                       'University Email');
         Test.stopTest();
 
         System.assertEquals('University Email', prefEmailFieldModel.emailTypeFieldLabel);
@@ -51,45 +50,4 @@ private class MODL_PreferredEmailField_TEST {
     
     }
 
-    /**********************************************************************************************************************************************************
-    * @description Test method to verify MODL_PreferredEmailField assigns value when Email Type Field Label is in preferredEmailPicklistValuesByLabelLegacy Map
-    ***********************************************************************************************************************************************************/
-    @isTest
-    private static void MODL_PreferredEmailFieldWithLegacyLabel() {
-        
-        Map<String, String> preferredEmailPicklistLabelByApiNameCustom = new Map<String, String>{
-                'University' => 'University',
-                'Work' => 'Work',
-                'Alternate' => 'Alternate'
-            };
-        Test.startTest();
-            MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField('University Email',  UTIL_Namespace.StrTokenNSPrefix('') + 'UniversityEmail__c',
-                                                                                       preferredEmailPicklistLabelByApiNameCustom, 
-                                                                                       MAPR_CON_PreferredEmailFields.getInstance().getLegacyPreferredEmailPicklistValuesByLabel());
-        Test.stopTest();
-
-        System.assertEquals('University Email', prefEmailFieldModel.emailTypeFieldLabel);
-        System.assertEquals(UTIL_Namespace.StrTokenNSPrefix('') + 'UniversityEmail__c', prefEmailFieldModel.emailTypeFieldApiName);
-        System.assertEquals('University', prefEmailFieldModel.preferredLabel);
-    
-    }
-
-     /**************************************************************************************************************************
-    * @description Test method to verify MODL_PreferredEmailField assigns value when Email Type Field Label is  not in both 
-    * preferredEmailPicklistValuesByLabel and preferredEmailPicklistValuesByLabelLegacy Maps
-    ***************************************************************************************************************************/
-    @isTest
-    private static void MODL_PreferredEmailFieldWithLabelWithCustomEmailField() {
-
-        Test.startTest();
-            MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField('Test Email Field',  UTIL_Namespace.StrTokenNSPrefix('') + 'TestEmail__c',
-                                                                                       MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailPicklistLabelByApiName(), 
-                                                                                       MAPR_CON_PreferredEmailFields.getInstance().getLegacyPreferredEmailPicklistValuesByLabel());
-        Test.stopTest();
-
-        System.assertEquals('Test Email Field', prefEmailFieldModel.emailTypeFieldLabel);
-        System.assertEquals(UTIL_Namespace.StrTokenNSPrefix('') + 'TestEmail__c', prefEmailFieldModel.emailTypeFieldApiName);
-        System.assertEquals('Test Email Field', prefEmailFieldModel.preferredLabel);
-    
-    }
 }

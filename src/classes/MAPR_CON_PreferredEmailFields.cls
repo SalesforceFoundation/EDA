@@ -83,6 +83,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
     @TestVisible
     private MODL_PreferredEmailSettings createEmailFieldSettingsModel() {
 
+        Boolean isPreferredEmailValidationEnabled = this.getPreferredEmailValidationEnabled();
         Map<String, Schema.DescribeFieldResult> contactEmailFieldsByApiName = this.getContactEmailFieldByApiName();
         String standardEmailFieldLabel = contactEmailFieldsByApiName.get('Email').getLabel();
         Map<String, String> preferredEmailPicklistValuesByLabel = this.getPreferredEmailPicklistValuesByLabel();
@@ -90,18 +91,19 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
         Map<String, String> preferredEmailPicklistLabelByApiName = this.getPreferredEmailPicklistLabelByApiName();
         String alternateEmailFieldPrefLabel;
         Map<String, String> edaEmailFieldAPINamesByLabel = this.getEDAEmailFieldsApiNamesByLabel(contactEmailFieldsByApiName);
-        EDAEmailFieldsModel edaEmailFldMDl = new EDAEmailFieldsModel(edaEmailFieldAPINamesByLabel);
         List<MODL_PreferredEmailField> prefEmailFieldModels = new List<MODL_PreferredEmailField>();
+        EDAEmailFieldsModel edaEmailFieldModel = new EDAEmailFieldsModel(edaEmailFieldAPINamesByLabel);
 
         for (String contactEmailfieldAPIName: contactEmailFieldsByApiName.keySet()) {
 
             String contactEmailFieldLabel = contactEmailFieldsByApiName.get(contactEmailfieldAPIName).getLabel();
 
-            if (contactEmailfieldAPIName == standardEmailFieldLabel || edaEmailFldMDl.hasEmailField(contactEmailFieldLabel, contactEmailfieldAPIName) == true) {
+            if (contactEmailfieldAPIName == standardEmailFieldLabel || edaEmailFieldModel.hasDuplicateLabelForEDAField(contactEmailFieldLabel, contactEmailfieldAPIName) == true) {
                 continue;
             }
 
-            MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField(contactEmailFieldLabel, contactEmailfieldAPIName, preferredEmailPicklistValuesByLabel, legacyPreferredEmailPicklistValuesByLabel);
+            String PreferredLabel = this.getPreferredLabelFromLabel(contactEmailFieldLabel, preferredEmailPicklistValuesByLabel, legacyPreferredEmailPicklistValuesByLabel);
+            MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField(contactEmailFieldLabel, contactEmailfieldAPIName, PreferredLabel);
 
             if (contactEmailfieldAPIName == UTIL_Namespace.StrTokenNSPrefix('AlternateEmail__c')) {
                 alternateEmailFieldPrefLabel = prefEmailFieldModel.preferredLabel ;
@@ -109,9 +111,39 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
             prefEmailFieldModels.add(prefEmailFieldModel);
         }
 
-        MODL_PreferredEmailSettings prefEmailSettingsModel = new MODL_PreferredEmailSettings(prefEmailFieldModels, alternateEmailFieldPrefLabel, standardEmailFieldLabel, preferredEmailPicklistLabelByApiName);
+        MODL_PreferredEmailSettings prefEmailSettingsModel = new MODL_PreferredEmailSettings(prefEmailFieldModels, alternateEmailFieldPrefLabel, standardEmailFieldLabel, isPreferredEmailValidationEnabled, preferredEmailPicklistLabelByApiName);
 
         return prefEmailSettingsModel;
+    }
+
+    /**************************************************************************************
+    * @description Returns the prefLabel that needs to be set for Preferred Email
+    * @return prefLabel the prefLabel that needs to be set for Preferred Email
+    **************************************************************************************/
+    @TestVisible
+    private String getPreferredLabelFromLabel(String emailTypeFieldLabel, Map<String, String> preferredEmailPicklistValuesByLabel, Map<String, String> legacyPreferredEmailPicklistValuesByLabel) {
+        String prefLabel;
+        if (preferredEmailPicklistValuesByLabel.containsKey(emailTypeFieldLabel)) {  
+            prefLabel = preferredEmailPicklistValuesByLabel.get(emailTypeFieldLabel);
+            return prefLabel;  
+        }
+
+        if (legacyPreferredEmailPicklistValuesByLabel.containsKey(emailTypeFieldLabel)) {  
+            prefLabel = legacyPreferredEmailPicklistValuesByLabel.get(emailTypeFieldLabel);
+            return prefLabel;  
+        }
+
+        prefLabel = emailTypeFieldLabel;
+        return prefLabel;
+    }
+
+    /**************************************************************************************
+    * @description Returns the value of Disable Preferred Email Enforcement custom settings
+    * @return Boolean
+    **************************************************************************************/
+    @TestVisible
+    private Boolean getPreferredEmailValidationEnabled() {
+        return UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Email_Enforcement__c;
     }
 
     /**************************************************************************************
@@ -208,7 +240,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
             this.edaEmailFieldApiNamesByLabel = edaEmailFieldApiNamesByLabel;
         }
 
-        private Boolean hasEmailField(String fieldLabel, String fieldApiName) {
+        private Boolean hasDuplicateLabelForEDAField(String fieldLabel, String fieldApiName) {
             if (edaEmailFieldApiNamesByLabel.keySet().contains(fieldLabel) == false || 
                 edaEmailFieldApiNamesByLabel.get(fieldLabel) != fieldApiName) {
                 return true;

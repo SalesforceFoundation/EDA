@@ -44,6 +44,7 @@ private class MAPR_CON_PreferredEmailFields_TEST {
         Test.startTest();
             MAPR_CON_PreferredEmailFields maprConPreferredEmailFieldsInstance = MAPR_CON_PreferredEmailFields.getInstance();
         Test.stopTest();
+
         System.assertEquals(MAPR_CON_PreferredEmailFields.instance, maprConPreferredEmailFieldsInstance, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, maprConPreferredEmailFieldsInstance != null, 'Instance of service class should not be null.');
     }
@@ -90,7 +91,7 @@ private class MAPR_CON_PreferredEmailFields_TEST {
 
         MODL_PreferredEmailSettings prefEmailSettingsModel1 = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
         Test.startTest();
-                MODL_PreferredEmailSettings prefEmailSettingsModel2 = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
+            MODL_PreferredEmailSettings prefEmailSettingsModel2 = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
         Test.stopTest();
 
         System.assertEquals(prefEmailSettingsModel1, prefEmailSettingsModel2);
@@ -116,6 +117,90 @@ private class MAPR_CON_PreferredEmailFields_TEST {
         System.assertEquals(true, String.isNotBlank(prefEmailSettingsModel.emailLabel));
         System.assertEquals(false, prefEmailSettingsModel.preferredEmailPicklistLabelByApiName.isEmpty());
 
+    }
+
+    /*************************************************************************************************************************************************************
+    * @description  Test method to verify that the getPreferredLabelFromLabel returns a Label when values is contained in preferredEmailPicklistValuesByLabel map
+    *************************************************************************************************************************************************************/
+    @isTest
+    private static void getPreferredLabelFromLabel() {
+        Map<String,String> legacyPreferredEmailPicklistValuesByLabel = new Map<String,String> {
+                  'University Email' => 'University',
+                 'Work Email' => 'Work',
+                 'Alternate Email' => 'Alternate'
+                };
+                    
+        Test.startTest();
+            String preferredLabel =  MAPR_CON_PreferredEmailFields.getInstance().getPreferredLabelFromLabel('University Email', 
+                                                                                                     UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', UTIL_Namespace.StrTokenNSPrefix('') + 'Preferred_Email__c'),
+                                                                                                    legacyPreferredEmailPicklistValuesByLabel);
+        Test.stopTest();
+        
+        System.assertEquals('University Email', preferredLabel);
+    }
+    
+    /******************************************************************************************************************************************************************
+    * @description  Test method to verify that the getPreferredLabelFromLabel returns a Label when values is contained in legacyPreferredEmailPicklistValuesByLabel map
+    ******************************************************************************************************************************************************************/
+    @isTest
+    private static void getPreferredLabelFromLabelLegacy() {
+        Map<String, String> preferredEmailPicklistLabelByApiNameCustom = new Map<String, String>{
+                'University' => 'University',
+                'Work' => 'Work',
+                'Alternate' => 'Alternate'
+            };
+                
+         Map<String,String> legacyPreferredEmailPicklistValuesByLabel = new Map<String,String> {
+            'University Email' => 'University',
+                'Work Email' => 'Work',
+                'Alternate Email' => 'Alternate'
+             };
+                    
+        Test.startTest();
+            String preferredLabel =  MAPR_CON_PreferredEmailFields.getInstance().getPreferredLabelFromLabel('University Email', 
+                                                                                                     preferredEmailPicklistLabelByApiNameCustom,
+                                                                                                     legacyPreferredEmailPicklistValuesByLabel);
+        Test.stopTest();
+        
+        System.assertEquals('University', preferredLabel);
+    }
+
+    /******************************************************************************************************************************************************************
+    * @description  Test method to verify that the getPreferredLabelFromLabel returns a Label when values is are
+    * not in either preferredEmailPicklistValuesByLabel or legacyPreferredEmailPicklistValuesByLabel map
+    ******************************************************************************************************************************************************************/
+    @isTest
+    private static void getPreferredLabelFromLabelCustom() {
+        Map<String,String> legacyPreferredEmailPicklistValuesByLabel = new Map<String,String> {
+            'University Email' => 'University',
+                'Work Email' => 'Work',
+                'Alternate Email' => 'Alternate'
+                };
+                    
+        Test.startTest();
+            String preferredLabel =  MAPR_CON_PreferredEmailFields.getInstance().getPreferredLabelFromLabel('Test Email Field', 
+                                                                                                     UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', UTIL_Namespace.StrTokenNSPrefix('') + 'Preferred_Email__c'),
+                                                                                                    legacyPreferredEmailPicklistValuesByLabel);
+        Test.stopTest();
+        
+        System.assertEquals('Test Email Field', preferredLabel);
+    }
+
+    /******************************************************************************************************************************************************************
+    * @description Test method to verify that the getPreferredEmailValidationEnabled returns the value strored in Custom Settings
+    ******************************************************************************************************************************************************************/
+    @isTest
+    private static void getPreferredEmailValidationEnabled() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                      (Disable_Preferred_Email_Enforcement__c = true));
+        
+        Test.startTest();
+            Boolean ispreferredEmailValidationEnabled = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailValidationEnabled();
+        Test.stopTest();
+        
+        System.assertEquals(true, ispreferredEmailValidationEnabled);
+        
     }
 
     /*********************************************************************************************************************************************
