@@ -65,6 +65,102 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
             return handleAfterUpdate(newList, oldList);
         }
+        
+        /******************************************************************************************************************** */
+         //Casting them to contacts, since this class should be run only for contacts
+         List<Contact> newListCasted = (newList == null ? new List<Contact>(): (List<Contact>)newList);
+         List<Contact> oldListCasted = (oldList == null ? new List<Contact>(): (List<Contact>)oldList);
+         Map<Id, Contact> oldMap = new Map<Id, Contact>(oldListCasted);
+                      
+         if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM)) {
+             reentrancyPrevented = true;
+             return dmlWrapper;
+          }
+         
+         List<Id> contactIds = new List<Id>();
+         List<Id> reciprocalIds = new List<Id>();
+         List<String> types = new List<String>();
+         
+         Set<Id> changedGender = new Set<Id>();        
+         
+         if(newlist != null && newlist.size() > 0) {
+             for (Contact c : newListCasted){
+                 for(String s : REL_Utils.getAutoCreateMap().keySet()){
+                     Relationship_Auto_Create__c rac = REL_Utils.getAutoCreateMap().get(s);
+                     if (rac.Object__c != 'Contact') {
+                         continue;
+                     }
+                     
+                     Id relatedContactId;
+                     try{
+                         //get the id from the field                        
+                         relatedContactId = (Id)c.get(rac.Field__c);
+                     }catch(Exception e){
+                         c.addError(system.Label.AutoCreateFieldError);
+                     }    
+                     
+                     if(triggerAction == TDTM_Runnable.Action.afterInsert && relatedContactId != null) {                        
+                         contactIds.add(c.Id);
+                         reciprocalIds.add(relatedContactId);
+                         types.add(rac.Relationship_Type__c);
+                     } else if (triggerAction == TDTM_Runnable.Action.afterUpdate && relatedContactId != null 
+                             && relatedContactId != oldMap.get(c.id).get(rac.Field__c)){
+                         contactIds.add(c.Id);
+                         reciprocalIds.add(relatedContactId);
+                         types.add(rac.Relationship_Type__c);
+                     }         
+                 }
+                 
+                 //handle updates to the gender field
+                 if (triggerAction == TDTM_Runnable.Action.afterUpdate && oldMap.get(c.id) != null) {
+                     if (c.Gender__c != oldMap.get(c.id).Gender__c) {
+                         changedGender.add(c.id);
+                     }
+                 }           
+             }
+         }
+         
+         if(triggerAction == TDTM_Runnable.Action.AfterDelete) {
+             DmlWrapper w = deleteEmptyRelationships(oldMap);
+             dmlWrapper.objectsToDelete.addAll(w.objectsToDelete);
+         }
+         
+         if (!contactIds.isEmpty()){
+             DmlWrapper w = createNewRelationships(contactIds, reciprocalIds, types);
+             dmlWrapper.objectsToInsert.addAll(w.objectsToInsert);
+         }
+         
+         if (!changedGender.isEmpty()) {
+             //query for a map of all relationships where where contact or related contact has changed gender
+             map<id,Relationship__c> mapRelationship = new map<Id,Relationship__c>(
+                 [SELECT Id, Contact__c, RelatedContact__c, ReciprocalRelationship__c, Type__c 
+                 FROM Relationship__c WHERE Contact__c IN :changedGender OR RelatedContact__c IN :changedGender]
+             );
+             //make a list of "Related Contact" lookup relationships in our set, these we want to update
+             list<Relationship__c> listRelsForUpdate = new list<Relationship__c>();
+             //make a list of mirror relationships for our first list, we need these for the addType method
+             list<Relationship__c> listMirrorRels = new list<Relationship__c>();
+ 
+             //get the relationships that the gender change affects
+             for (Relationship__c rel : mapRelationship.values()) {
+                 //add the changed gender's relationship and reciprocal
+                 if (changedGender.contains(rel.RelatedContact__c)) {
+                     listRelsForUpdate.add(rel);
+                     listMirrorRels.add(mapRelationship.get(rel.ReciprocalRelationship__c));
+                 }
+             }
+ 
+             //update type info
+             REL_Relationships_TDTM.addType(listMirrorRels, listRelsForUpdate);
+             dmlWrapper.objectsToUpdate.addAll((list<sObject>)listRelsForUpdate);
+         }
+ 
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
+        /********************************************************************************************************/
+
 
         return dmlWrapper;
     }
