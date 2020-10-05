@@ -370,6 +370,13 @@ class EDA(BaseEDAPage):
         tab = tab.replace(" ", "_")
         self.pageobjects.load_page_object(tab, "HEDA_Settings")
 
+    def go_to_groups_home(self):
+        """ Navigates to the Home view of the groups tab """
+        url = self.cumulusci.org.lightning_base_url
+        url = "{}/lightning/o/CollaborationGroup/list?filterName=Recent".format(url)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
     def click_edit_on_eda_settings_page(self):
         locator = eda_lex_locators["eda_settings"]["edit"]
         self.selenium.wait_until_page_contains_element(locator, error="Edit button is not available on the page")
@@ -481,6 +488,7 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).text
+            self.builtin.log("Actual value of " + locator + " is " + actual_value)
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Dropdown value in {field} is {actual_value} but it should be {expected_value}")
 

@@ -56,6 +56,15 @@ API Create Contact
     &{contact} =     Salesforce Get  Contact  ${contact_id}
     [return]         &{contact}
 
+API Create Collaboration Group
+    [Documentation]
+    ...             Creates a collaboration group by sending name and collaboration type
+    [Arguments]      ${group_name}
+    ${group_id} =  Salesforce Insert  CollaborationGroup
+    ...                  Name=${group_name}
+    ...                  CollaborationType=Public
+    [return]         ${group_id}
+
 Create Contact with Email
     [Documentation]         Creating a contact with email address through API
     ${first_name} =           Generate Random String
