@@ -50,15 +50,17 @@ public with sharing class MODL_ContactRelationships {
     * @param  relationshipToAdd The Relationship record to add.
     *************************************************************************************************************/
     public void addRelationship(Relationship__c relationshipToAdd){
-        
-        Map<String, Relationship__c> relationshipsByType = relationshipByTypeByRelatedContactId.get(relationshipToAdd.RelatedContact__c);
+        Map<String, Relationship__c> relationshipsByType = 
+            relationshipByTypeByRelatedContactId.get(relationshipToAdd.RelatedContact__c);
 
         if (relationshipsByType == null){
             relationshipsByType = new Map<String, Relationship__c>();
-            relationshipsByType.put(relationshipToAdd.Type__c, relationshipToAdd);
+            relationshipByTypeByRelatedContactId.put(
+                relationshipToAdd.RelatedContact__c, relationshipsByType
+            );
         } 
 
-        relationshipByTypeByRelatedContactId.put(relationshipToAdd.RelatedContact__c, relationshipsByType);
+        relationshipsByType.put(relationshipToAdd.Type__c, relationshipToAdd);
         relationshipList.add(relationshipToAdd);
     }
 

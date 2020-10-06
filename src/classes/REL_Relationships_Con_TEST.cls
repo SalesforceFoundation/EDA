@@ -661,13 +661,13 @@ public with sharing class REL_Relationships_Con_TEST {
 
     /************************************************************************************************************
     * @description Test method to verify that the locateRelationshipAutoCreateMappingService() returns an instance 
-    * of the SRVC_RelAutoCreateSettingsMapper service class.
+    * of the MAPR_RELAutoCreateSettings service class.
     *************************************************************************************************************/ 
     @isTest 
     private static void getInstanceOfRelationshipAutoCreateMappingService(){
         Test.startTest();
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
-        SRVC_RelAutoCreateSettingsMapper srvcRelAutoCreateSettingsMapperInstance = relConTdtm.locateRelationshipAutoCreateMappingService();
+        MAPR_RELAutoCreateSettings srvcRelAutoCreateSettingsMapperInstance = relConTdtm.locateRelationshipAutoCreateMappingService();
         Test.stopTest();
         
         System.assertEquals(true, srvcRelAutoCreateSettingsMapperInstance != null, 'Instance of service class should be retrieved.');

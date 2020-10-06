@@ -67,19 +67,7 @@ public with sharing class MODL_ContactsRelationships {
     * @return True if a Relationship record matching the specified Contact and Type exists in the contactRelationshipsModelsByContactId map, False otherwise.
     **************************************************************************************************************************/ 
     public Boolean hasRelationship(Relationship__c relationship){
-        MODL_ContactRelationships contactRelationshipsModel = contactRelationshipsModelsByContactId.get(relationship.Contact__c);
-    
-        if (contactRelationshipsModel == null){
-            return null;
-        }
-
-        Relationship__c rel = contactRelationshipsModel.getRelationship(relationship.RelatedContact__c, relationship.Type__c);
-
-        if (rel == null){
-            return false;
-        }
-
-        return true;
+        return (this.getRelationship(relationship) != null);
     }
 
     /**************************************************************************************************************************
@@ -91,30 +79,20 @@ public with sharing class MODL_ContactsRelationships {
     }
 
     /************************************************************************************************************
-    * @description Removes a specified Relationship record from relationshipList.
-    * @param relationshipToRemove The Relationship record to remove.
-    ************************************************************************************************************/
-    public void removeRelationshipFromList(Relationship__c relationshipToRemove){
-        for (Integer i = 0; i < this.relationshipList.size(); i++){
-            if (this.relationshipList[i].Id == relationshipToRemove.Id){
-                this.relationshipList.remove(i);
-                break;
-            }
-        }
-    }
-
-    /************************************************************************************************************
     * @description Retrieves a specified Relationship record from the list of Contacts Relationships Model relationships.
     * @param relationshipToRetrieve The Relationship to retrieve
     * @return The matching Relationship record from the Contacts Relationships model.
     ************************************************************************************************************/ 
     public Relationship__c getRelationship(Relationship__c relationshipToRetrieve){
-        for (Relationship__c rel : this.relationshipList){
-            if (relationshipToRetrieve.Id == rel.Id){
-                return rel;
-            }
+        MODL_ContactRelationships contactRelationshipsModel =
+            contactRelationshipsModelsByContactId.get(relationshipToRetrieve.Contact__c);
+    
+        if (contactRelationshipsModel == null){
+            return null;
         }
-        
-        return null;
+
+        return contactRelationshipsModel.getRelationship(
+            relationshipToRetrieve.RelatedContact__c, relationshipToRetrieve.Type__c
+        );
     }
 }

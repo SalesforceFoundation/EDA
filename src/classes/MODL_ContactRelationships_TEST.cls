@@ -61,14 +61,7 @@ public with sharing class MODL_ContactRelationships_TEST {
             }
                     
             System.assertEquals(7, conRelsMod.relationshipList.size(), 'Contact Relationships model should have 5 new Relationship records added to existing 2 records.');
-            System.assertEquals(7, conRelsMod.relationshipByTypeByRelatedContactId.keySet().size(), 'There should be 7 total related contact mappings for Contact Relationships model.');
-
-            for (Id relConId : conRelsMod.relationshipByTypeByRelatedContactId.keySet()){
-                for (String relType : conRelsMod.relationshipByTypeByRelatedContactId.get(relConId).keySet()){
-                    System.assertEquals(true, (relType == 'Brother' || relType == 'Aunt'), 'Relationship types in Contact Relationships model should be Brother or Aunt only.');
-                }
-            }
-        
+            System.assertEquals(7, conRelsMod.relationshipByTypeByRelatedContactId.keySet().size(), 'There should be 7 total related contact mappings for Contact Relationships model.');        
         }
         Test.stopTest();
     }

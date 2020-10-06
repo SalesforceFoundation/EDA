@@ -103,8 +103,13 @@
         <members>FACT_ReciprocalRelService_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
+<<<<<<< HEAD
         <members>MAPR_ReciprocalRelationshipSettings</members>
         <members>MAPR_ReciprocalRelationshipSettings_TEST</members>
+=======
+        <members>MAPR_RELAutoCreateSettings</members>
+        <members>MAPR_RELAutoCreateSettings_TEST</members>
+>>>>>>> 747df0c146ce4184b77e121016209e8577a41667
         <members>MODL_ConRelationshipAutoCreateMapping</members>
         <members>MODL_ContactRelationships</members>
         <members>MODL_ContactRelationships_TEST</members>
