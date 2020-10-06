@@ -147,6 +147,7 @@
         <members>SRVC_ReciprocalRelationshipList</members>
         <members>SRVC_ReciprocalRelInversion_TEST</members>
         <members>SRVC_ReciprocalRelationship_TEST</members>
+        <members>SRVC_ReciprocalRelationshipList_TEST</members>
         <members>SRVC_RelAutoCreateSettingsMapper</members>
         <members>SRVC_RelAutoCreateSettingsMapper_TEST</members>
         <members>SRVC_UniqueRecord</members>
