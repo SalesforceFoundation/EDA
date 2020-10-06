@@ -131,54 +131,33 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         
         List<MODL_ConRelationshipAutoCreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
 
-        /** 
-         * Under construction
-         * TODO: get rid of comments when this is done!
-        */
-
-        //Create a ContactsRelationshipsModel for Contacts to Insert
         MODL_ContactsRelationships contactRelationshipsToCreate = new MODL_ContactsRelationships();
 
-        //Create a Map<Id,Contact> to update
-        //? Should this be relationships?
         Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id,Contact>();
 
-        //loop through contacts in newContactsById
         for (Contact newContact : newContactsById.values()) {
             Contact oldContact = oldContactsById.get(newContact.Id);
             MODL_ContactRelationships contactRelationshipsModel = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForUpdatedContact(newContact, oldContact, contactRelAutoCreateModelsList);
-            // if the ContactRelationshipsModel is not empty
+            
             if (contactRelationshipsModel.isEmpty() == false) {
-                // Add the model to the the ContactsRelationshipsModel
                 contactRelationshipsToCreate.addContactRelationshipsModel(contactRelationshipsModel);   
             }
                 
-            // If relationships should be updated for the contact per locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact,oldContact)
             if (this.locateReciprocalRelationshipService().shouldUpdateContactRelationships(newContact, oldContact) == true) {
-                // Add the new contact to the map of contactsby id to update.
                 newContactRelationshipToUpdateByIdMap.put(newContact.Id, newContact);
             }
         }
             
-        // If the ContactsRelationshipsModel is not empty
         if (contactRelationshipsToCreate.isEmpty() == false) {
-            // get the relationships to create using locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactsRelationshipsModel)
             List<Relationship__c> relationshipsToInsert = this.locateRelationshipAutoCreateService().getRelationshipsToInsertFromModel(contactRelationshipsToCreate);
-            // Add those relationships to the DmlWrapper
             dmlWrapper.objectsToInsert.addAll((List<SObject>)relationshipsToInsert);
         }
 
-        // If the map of contact by Id is not empty
         if (newContactRelationshipToUpdateByIdMap.values().isEmpty() == false) {
-            // Get relationships to update using getRelationshipsToUpdate
             List<Relationship__c> relationshipsToUpdate = this.getRelationshipsToUpdate(newContactRelationshipToUpdateByIdMap);
-            // Add those relationships to the DmlWrapper
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)relationshipsToUpdate);
         }
         
-        //  If we have relationships to insert or update
-            // Add the relationships to insert to a new dml wrapper
-            // process the wrapper
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
                 
         this.unsetUpdateRecursion();
