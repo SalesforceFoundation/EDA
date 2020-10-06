@@ -128,16 +128,16 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
-        <members>SRVC_Contact_PreventDeletion</members>
-        <members>SRVC_Contact_PreventDeletion_TEST</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_ContactRelationshipAutoCreate</members>
         <members>SRVC_ContactRelationshipAutoCreate_TEST</members>
-        <members>SRVC_RelAutoCreateSettingsMapper</members>
-        <members>SRVC_RelAutoCreateSettingsMapper_TEST</members>
+        <members>SRVC_Contact_PreventDeletion</members>
+        <members>SRVC_Contact_PreventDeletion_TEST</members>
         <members>SRVC_Contact_PrimaryAffiliations</members>
         <members>SRVC_Contact_PrimaryAffiliations_TEST</members>
+        <members>SRVC_RelAutoCreateSettingsMapper</members>
+        <members>SRVC_RelAutoCreateSettingsMapper_TEST</members>
         <members>SRVC_UniqueRecord</members>
         <members>SRVC_UniqueRecord_TEST</members>
         <members>STG_Base_CTRL</members>

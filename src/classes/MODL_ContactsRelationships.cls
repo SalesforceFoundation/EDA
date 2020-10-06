@@ -91,19 +91,6 @@ public with sharing class MODL_ContactsRelationships {
     }
 
     /************************************************************************************************************
-    * @description Removes a specified Relationship record from relationshipList.
-    * @param relationshipToRemove The Relationship record to remove.
-    ************************************************************************************************************/
-    public void removeRelationshipFromList(Relationship__c relationshipToRemove){
-        for (Integer i = 0; i < this.relationshipList.size(); i++){
-            if (this.relationshipList[i].Id == relationshipToRemove.Id){
-                this.relationshipList.remove(i);
-                break;
-            }
-        }
-    }
-
-    /************************************************************************************************************
     * @description Retrieves a specified Relationship record from the list of Contacts Relationships Model relationships.
     * @param relationshipToRetrieve The Relationship to retrieve
     * @return The matching Relationship record from the Contacts Relationships model.
