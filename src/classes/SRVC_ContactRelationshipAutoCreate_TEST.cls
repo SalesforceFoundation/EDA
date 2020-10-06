@@ -423,6 +423,7 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
         List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
         List<Relationship__c> relationshipsList = new List<Relationship__c>();
+        List<Relationship__c> duplicateRelationshipsList = new List<Relationship__c>();
 
         List<Contact> relatedContactsList = new List<Contact>();
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
@@ -443,51 +444,27 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
                                                              RelatedContact__c = relatedContactsList[i].Id,
                                                              Status__c = 'Current',
                                                              Type__c = 'Mother');
-
-            Relationship__c motherRel3 = new Relationship__c(Contact__c = contactsList[i].Id,
-                                                             RelatedContact__c = relatedContactsList[i].Id,
-                                                             Status__c = 'Current',
-                                                             Type__c = 'Mother');
-
+            duplicateRelationshipsList.add(motherRel1.clone());
             relationshipsList.add(motherRel1);
             relationshipsList.add(motherRel2);
-            relationshipsList.add(motherRel3);
         }
 
         insert relationshipsList;
 
-        Map<Id, List<Relationship__c>> relationshipsListByContactId = new Map<Id, List<Relationship__c>>();
 
-        for (Relationship__c rel : relationshipsList){
-            List<Relationship__c> tempRelList = relationshipsListByContactId.get(rel.Contact__c);
+        for (Relationship__c rel : duplicateRelationshipsList){
+            MODL_ContactRelationships contactRelationshipsModel = new MODL_ContactRelationships(rel.Contact__c);
+            contactRelationshipsModel.addRelationship(rel);
+            conRelsModelsList.add(contactRelationshipsModel);
 
-            if (tempRelList == null){
-                tempRelList = new List<Relationship__c>();
-            }
-
-            tempRelList.add(rel);
-            relationshipsListByContactId.put(rel.Contact__c, tempRelList);
-        }
-
-        for (Id conId : relationshipsListByContactId.keySet()){
-            List<Relationship__c> currentRelationshipsList = relationshipsListByContactId.get(conId);
-            MODL_ContactRelationships conRelModel = new MODL_ContactRelationships(conId);
-
-            for (Relationship__c rel : currentRelationshipsList){
-                conRelModel.addRelationship(rel);
-            }
-            
-            conRelsModelsList.add(conRelModel);
-        }        
-
-        for (MODL_ContactRelationships conRelsModel : conRelsModelsList){
-            contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
+            contactsRelationshipsModel.addContactRelationshipsModel(contactRelationshipsModel);
         }
         
         Test.startTest();
         List<Relationship__c> relationshipsResultsList = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(contactsRelationshipsModel);
-        System.assertEquals(0, relationshipsResultsList.size(), 'Duplicate relationships for each contact relationships model should be removed.'); 
         Test.stopTest();
+
+        System.assertEquals(0, relationshipsResultsList.size(), 'Duplicate relationships for each contact relationships model should be removed.'); 
     }
 
     /**************************************************************************************************************************
@@ -543,7 +520,7 @@ public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
         
         Test.startTest();
-        System.assertEquals(true, SRVC_ContactRelationshipAutoCreate.getInstance().getDuplicateRelationship(relToCompare, contactsRelationshipsModel) == null, 'There should be no duplicate Relationship record in Contacts Relationships model.');
+        System.assertEquals(null, SRVC_ContactRelationshipAutoCreate.getInstance().getDuplicateRelationship(relToCompare, contactsRelationshipsModel), 'There should be no duplicate Relationship record in Contacts Relationships model.');
         Test.stopTest();
     }
 
