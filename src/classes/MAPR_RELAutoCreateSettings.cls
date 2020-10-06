@@ -35,28 +35,28 @@
 * @description Service class for REL_Relationships_Con_TDTM; used to generate MODL_ConRelationshipAutoCreateMapping
 * models representing Relationship Auto Create mappings set for the Contact object. 
 */
-public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
+public virtual with sharing class MAPR_RELAutoCreateSettings {
     /***************************************************************************************************************************
     * @description Instance for Singleton Pattern.
     ***************************************************************************************************************************/
     @TestVisible
-    private static SRVC_RelAutoCreateSettingsMapper instance;
+    private static MAPR_RELAutoCreateSettings instance;
 
     /***************************************************************************************************************************
     * @description Empty constructor is not public for Singleton Pattern.
     ***************************************************************************************************************************/
-    protected SRVC_RelAutoCreateSettingsMapper() {}
+    protected MAPR_RELAutoCreateSettings() {}
 
     /***************************************************************************************************************************
     * @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_RelAutoCreateSettingsMapper.
+    * @return The instance of MAPR_RELAutoCreateSettings.
     ***************************************************************************************************************************/
-    public static SRVC_RelAutoCreateSettingsMapper getInstance() {
-        if (SRVC_RelAutoCreateSettingsMapper.instance == null) {
-            SRVC_RelAutoCreateSettingsMapper.instance = new SRVC_RelAutoCreateSettingsMapper();
+    public static MAPR_RELAutoCreateSettings getInstance() {
+        if (MAPR_RELAutoCreateSettings.instance == null) {
+            MAPR_RELAutoCreateSettings.instance = new MAPR_RELAutoCreateSettings();
         }
 
-        return SRVC_RelAutoCreateSettingsMapper.instance;
+        return MAPR_RELAutoCreateSettings.instance;
     }
 
     /***************************************************************************************************************************
