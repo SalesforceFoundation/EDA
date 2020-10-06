@@ -58,12 +58,12 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return A map containing a list of Relationship Auto Create settings for the Contact object
     ******************************************************************************************************/
     public static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> getAutoCreateSettingsForContact(){
-        if (relationshipAutoCreateBySObjectType != null){
-            return relationshipAutoCreateBySObjectType;
+        if (UTIL_CustomSettingsFacade.relationshipAutoCreateBySObjectType != null){
+            return UTIL_CustomSettingsFacade.relationshipAutoCreateBySObjectType;
         }
 
-        if (relationshipAutocreate == null || relationshipAutocreate.isEmpty() == true){
-            relationshipAutocreate = UTIL_CustomSettingsFacade.getAutocreateSettings();
+        if (UTIL_CustomSettingsFacade.relationshipAutocreate == null || UTIL_CustomSettingsFacade.relationshipAutocreate.isEmpty() == true){
+            UTIL_CustomSettingsFacade.relationshipAutocreate = UTIL_CustomSettingsFacade.getAutocreateSettings();
         }
 
         List<Relationship_Auto_Create__c> relationshipAutoCreateList = new List<Relationship_Auto_Create__c>();
@@ -74,30 +74,30 @@ public without sharing class UTIL_CustomSettingsFacade {
             }
         }
 
-        relationshipAutoCreateBySObjectType = new Map<Schema.SObjectType, List<Relationship_Auto_Create__c>>();
+        UTIL_CustomSettingsFacade.relationshipAutoCreateBySObjectType = new Map<Schema.SObjectType, List<Relationship_Auto_Create__c>>();
         relationshipAutoCreateBySObjectType.put(Contact.SObjectType, relationshipAutoCreateList);
 
-        return relationshipAutoCreateBySObjectType;
+        return UTIL_CustomSettingsFacade.relationshipAutoCreateBySObjectType;
     }
 
     /******************************************************************************************************
     * @description Generates a list of active Relationship Lookup mappings.
     * @return A list containing the current active Relationship Lookup mappings.
     ******************************************************************************************************/ 
-    public List<Relationship_Lookup__c> getActiveRelationshipLookups(){
-        if (activeRelationshipLookupList != null){
-            return activeRelationshipLookupList;
+    public static List<Relationship_Lookup__c> getActiveRelationshipLookups(){
+        if (UTIL_CustomSettingsFacade.activeRelationshipLookupList != null){
+            return UTIL_CustomSettingsFacade.activeRelationshipLookupList;
         }
 
-        activeRelationshipLookupList = new List<Relationship_Lookup__c>();
+        UTIL_CustomSettingsFacade.activeRelationshipLookupList = new List<Relationship_Lookup__c>();
 
-        for (Relationship_Lookup__c relLookup : activeRelationshipLookupList){
+        for (Relationship_Lookup__c relLookup : UTIL_CustomSettingsFacade.getReciprocalSettings()){
             if (relLookup.Active__c == true){
-                activeRelationshipLookupList.add(relLookup);
+                UTIL_CustomSettingsFacade.activeRelationshipLookupList.add(relLookup);
             }
         }
 
-        return activeRelationshipLookupList;
+        return UTIL_CustomSettingsFacade.activeRelationshipLookupList;
     }
     
     /*******************************************************************************************************
