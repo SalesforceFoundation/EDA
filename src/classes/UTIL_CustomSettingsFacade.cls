@@ -85,22 +85,13 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return A list containing the current active Relationship Lookup mappings.
     ******************************************************************************************************/ 
     public static List<Relationship_Lookup__c> getActiveRelationshipLookups(){
-<<<<<<< HEAD
-        if (activeRelationshipLookupList != null){
-            return activeRelationshipLookupList;
-=======
         if (UTIL_CustomSettingsFacade.activeRelationshipLookupList != null){
             return UTIL_CustomSettingsFacade.activeRelationshipLookupList;
->>>>>>> 747df0c146ce4184b77e121016209e8577a41667
         }
 
         UTIL_CustomSettingsFacade.activeRelationshipLookupList = new List<Relationship_Lookup__c>();
 
-<<<<<<< HEAD
-        for (Relationship_Lookup__c relLookup : Util_CustomSettingsFacade.getReciprocalSettings()){
-=======
         for (Relationship_Lookup__c relLookup : UTIL_CustomSettingsFacade.getReciprocalSettings()){
->>>>>>> 747df0c146ce4184b77e121016209e8577a41667
             if (relLookup.Active__c == true){
                 UTIL_CustomSettingsFacade.activeRelationshipLookupList.add(relLookup);
             }
