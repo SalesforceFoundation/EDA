@@ -196,12 +196,12 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Retrieves an instance of the SRVC_RelAutoCreateSettingsMapper service class.
-    * @return An instance of SRVC_RelAutoCreateSettingsMapper.
+    * @description Retrieves an instance of the MAPR_RELAutoCreateSettings service class.
+    * @return An instance of MAPR_RELAutoCreateSettings.
     *******************************************************************************************************/ 
     @TestVisible
-    private SRVC_RelAutoCreateSettingsMapper locateRelationshipAutoCreateMappingService(){
-        return SRVC_RelAutoCreateSettingsMapper.getInstance();
+    private MAPR_RELAutoCreateSettings locateRelationshipAutoCreateMappingService(){
+        return MAPR_RELAutoCreateSettings.getInstance();
     }
 
     /*******************************************************************************************************
