@@ -150,15 +150,17 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                       WHERE Contact__c in :contactsRelationshipsModel.contactIdsSet
                                                       AND RelatedContact__c in :contactsRelationshipsModel.relatedContactIdSet
                                                       LIMIT 2000];
-        
+
+        Set<Relationship__c> relationshipsToInsert = new Set<Relationship__c>(contactsRelationshipsModel.relationshipList);
+
         for (Relationship__c rel : contactRelationships){
             Relationship__c relToRemove = this.getDuplicateRelationship(rel, contactsRelationshipsModel);
             if (relToRemove != null){
-                contactsRelationshipsModel.removeRelationshipFromList(relToRemove);
+                relationshipsToInsert.remove(relToRemove);
             } 
         }
 
-        return contactsRelationshipsModel.relationshipList;
+        return new List<Relationship__c>(relationshipsToInsert);
     }
 
     /**************************************************************************************************************************
