@@ -1024,4 +1024,163 @@ public with sharing class REL_Relationships_Con_TEST {
             }
         }
     }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that unsetUpdateRecursion() updates the REL_Relationships_Con_TDTM
+    * recursion trigger flag from true to false.     
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void unsetUpdateRecursionTrue(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+            relConTdtm.unsetUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Update recursion trigger should be set to false.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that setUpdateRecursion() does not change the 
+    * REL_Relationships_Con_TDTM recursion trigger flag if already set to true.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void setUpdatetRecursionFalse(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+            relConTdtm.setUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Update recursion trigger should remain set to true.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that setUpdateRecursion() changes the 
+    * REL_Relationships_Con_TDTM recursion trigger flag from false to true.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void setUpdateRecursionTrue(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.setUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Update recursion trigger should be set to true.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that setUpdateRecursion() does not change the 
+    * REL_Relationships_Con_TDTM recursion trigger flag if already set to true.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void setUpdateRecursionFalse(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        relConTdtm.setUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Update recursion trigger should remain set to true.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that isUpdateRecursion() returns true when the 
+    * REL_Relationships_Con_TDTM recursion trigger flag is set to true.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void isUpdateRecursionTrue(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        System.assertEquals(true, relConTdtm.isUpdateRecursion(), 'Update recursion trigger should be true.');
+        Test.stopTest();
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to validate that isIUpdateRecursion() returns false when the 
+    * REL_Relationships_Con_TDTM recursion trigger flag is set to false.   
+    *********************************************************************************************************/ 
+    @isTest 
+    private static void isUpdateRecursionFalse(){
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
+
+        REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        Test.startTest();
+        System.assertEquals(false, relConTdtm.isUpdateRecursion(), 'Update recursion trigger should be false.');
+        Test.stopTest();
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateReciprocalRelationshipService method returns a new instance of the 
+    * SRVC_ReciprocalRelationshipInversion class when one does not already exist and reciprocal method is inversion.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void locateReciprocalRelationshipServiceInversionTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
+
+        REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
+        SRVC_ReciprocalRelationship srvcReciprocalRelationshipInversionInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
+        System.assertEquals(SRVC_ReciprocalRelationshipInversion.instance, srvcReciprocalRelationshipInversionInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(true, srvcReciprocalRelationshipInversionInstance != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateReciprocalRelationshipService method returns a new instance of the 
+    * SRVC_ReciprocalRelationshipInversion class when one does not already exist and reciprocal method is list.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void locateReciprocalRelationshipServiceListTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
+
+        REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
+        SRVC_ReciprocalRelationship srvcReciprocalRelationshipListInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
+        System.assertEquals(SRVC_ReciprocalRelationshipList.instance, srvcReciprocalRelationshipListInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(true, srvcReciprocalRelationshipListInstance != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateReciprocalRelationshipService method returns a new instance of the 
+    * SRVC_ReciprocalRelationshipInversion class when one does not already exist and reciprocal method is empty.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void locateReciprocalRelationshipServiceEmptyTest() {
+        REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
+        SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
+
+        System.assertEquals(new SRVC_ReciprocalRelationship(), srvcReciprocalRelationshipInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(true, srvcReciprocalRelationshipInstance != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getRelationshipsToUpdate method returns a a list of relationships to update based on contact map.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRelationshipsToUpdateTest() {
+        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
+        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
+        fatherContact.Gender__c = 'Male';
+        sonContact.Gender__c = 'Male';
+        insert new List<Contact>{fatherContact, sonContact};
+        Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
+        newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+
+        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
+        insert fatherRelationship;
+
+        Test.startTest();
+            REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
+            List<Relationship__c> relationshipsToUpdate = relRelationshipsConTDTM.getRelationshipsToUpdate(newContactRelationshipToUpdateByIdMap);
+        Test.stopTest();
+
+
+        System.assertEquals(1, relationshipsToUpdate.size());
+        System.assertEquals(fatherRelationship.Id, relationshipsToUpdate[0].Id);
+    }
 }
