@@ -195,8 +195,8 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * TODO: @description Retrieves an instance of the SRVC_ContactRelationshipAutoCreate service class.
-    * @return An instance of SRVC_ContactRelationshipAutoCreate.
+    * @description Retrieves an instance of the reciprocal relationship service through factory service.
+    * @return An instance of reciprocal relationship service depends on reciprocal method.
     *******************************************************************************************************/ 
     @TestVisible
     private SRVC_ReciprocalRelationship locateReciprocalRelationshipService(){
