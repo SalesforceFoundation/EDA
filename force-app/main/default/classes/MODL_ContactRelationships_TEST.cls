@@ -283,7 +283,7 @@ private with sharing class MODL_ContactRelationships_TEST {
     * @param contactsCount The number of Contacts to associate with Contact Relationships models.
     * @return A list of MODL_ContactRelationships.
     **************************************************************************************************************************/ 
-    public static List<MODL_ContactRelationships> getContactRelationshipsModelList(Integer contactsCount){
+    private static List<MODL_ContactRelationships> getContactRelationshipsModelList(Integer contactsCount){
         List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(contactsCount);
         
