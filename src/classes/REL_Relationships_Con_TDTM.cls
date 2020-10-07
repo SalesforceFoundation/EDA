@@ -91,7 +91,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         this.setInsertRecursion();
 
         List<Contact> newContactsList = (List<Contact>)newList;
-        List<MODL_ConRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();        
+        List<MODL_ConRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMapper().getContactMappingModelsFromSettings();        
         MODL_ContactsRelationships contactsRelationshipsMdl = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForContacts(newContactsList, contactRelAutoCreateModelsList);
 
         if (contactsRelationshipsMdl != null){
@@ -181,7 +181,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     * @return An instance of MAPR_RELAutoCreateSettings.
     *******************************************************************************************************/ 
     @TestVisible
-    private MAPR_RELAutoCreateSettings locateRelationshipAutoCreateMappingService(){
+    private MAPR_RELAutoCreateSettings locateRelationshipAutoCreateMapper(){
         return MAPR_RELAutoCreateSettings.getInstance();
     }
 

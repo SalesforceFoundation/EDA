@@ -46,7 +46,7 @@ private with sharing class REL_Relationships_Con_TEST {
     * generate a relationship or reciprocal relationship record.
     *********************************************************************************************************/
     @isTest 
-    private static void InsertContactWithoutRelationshipAutoCreate(){
+    private static void insertContactWithoutRelationshipAutoCreate(){
 
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
 
@@ -71,7 +71,7 @@ private with sharing class REL_Relationships_Con_TEST {
     * mappings results in an error.
     *********************************************************************************************************/
     @isTest 
-    private static void InsertContactWithInvalidRelationshipsAutoCreate(){
+    private static void insertContactWithInvalidRelationshipsAutoCreate(){
         List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
 
         Relationship_Auto_Create__c relAutoCreateInValid1 = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreateInvalid1', 
@@ -135,7 +135,7 @@ private with sharing class REL_Relationships_Con_TEST {
     * mappings results in an error.
     *********************************************************************************************************/
     @isTest 
-    private static void InsertContactWithValidAndInvalidRelationshipsAutoCreate(){
+    private static void insertContactWithValidAndInvalidRelationshipsAutoCreate(){
         List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
 
         Relationship_Auto_Create__c relAutoCreateInvalid = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreateInvalid', 
@@ -200,7 +200,7 @@ private with sharing class REL_Relationships_Con_TEST {
     * reciprocal relationship records.
     *********************************************************************************************************/
     @isTest
-    private static void InsertContactWithRelationshipAutoCreateFieldPopulated() {
+    private static void insertContactWithRelationshipAutoCreateFieldPopulated() {
         Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate', 
                                                                                                    Object__c = 'Contact',
                                                                                                    Field__c = 'ReportsToId', 
@@ -310,7 +310,7 @@ private with sharing class REL_Relationships_Con_TEST {
     * without populating a mapped Auto Creation field will not generate any relationship records.
     *********************************************************************************************************/
     @isTest 
-    private static void InsertContactWithoutRelationshipAutoCreateFieldPopulated(){
+    private static void insertContactWithoutRelationshipAutoCreateFieldPopulated(){
         Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate', 
                                                                                                    Object__c = 'Contact',
                                                                                                    Field__c = 'ReportsToId', 
@@ -368,7 +368,7 @@ private with sharing class REL_Relationships_Con_TEST {
     * generate duplicate relationship and reciprocal relationship records.
     *********************************************************************************************************/
     @isTest 
-    private static void UpdateContactWithRelationshipAutoCreateDuplicatesAllowed(){
+    private static void updateContactWithRelationshipAutoCreateDuplicatesAllowed(){
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = true));
 
         Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate', 
@@ -467,7 +467,7 @@ private with sharing class REL_Relationships_Con_TEST {
     * field only results in a single relationship and reciprocal relationship record.
     *********************************************************************************************************/
     @isTest 
-    private static void UpdateContactWithRelationshipAutoCreateDuplicatesNotAllowed(){
+    private static void updateContactWithRelationshipAutoCreateDuplicatesNotAllowed(){
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
         
         Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate', 
@@ -683,14 +683,14 @@ private with sharing class REL_Relationships_Con_TEST {
     }
 
     /************************************************************************************************************
-    * @description Test method to verify that the locateRelationshipAutoCreateMappingService() returns an instance 
+    * @description Test method to verify that the locateRelationshipAutoCreateMapper() returns an instance 
     * of the MAPR_RELAutoCreateSettings service class.
     *************************************************************************************************************/ 
     @isTest 
     private static void getInstanceOfRelationshipAutoCreateMappingService(){
         Test.startTest();
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
-        MAPR_RELAutoCreateSettings srvcRelAutoCreateSettingsMapperInstance = relConTdtm.locateRelationshipAutoCreateMappingService();
+        MAPR_RELAutoCreateSettings srvcRelAutoCreateSettingsMapperInstance = relConTdtm.locateRelationshipAutoCreateMapper();
         Test.stopTest();
         
         System.assertEquals(true, srvcRelAutoCreateSettingsMapperInstance != null, 'Instance of service class should be retrieved.');
