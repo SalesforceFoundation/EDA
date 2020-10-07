@@ -547,11 +547,11 @@ private with sharing class REL_Relationships_Con_TEST {
             System.assertEquals(1, testRelationshipMapperByContactId.get(contactId).testerRelationshipsList.size(), 'Each contact should only have 1 Tester relationship record.');
             System.assertEquals(1, testRelationshipMapperByContactId.get(contactId).testeeRelationshipsList.size(), 'Each contact should only have 1 Testee relationship record.');
         }
-    }    
+    } 
+
     /*********************************************************************************************************
-    * @description Test to verify that when Relationship Auto Creation is enabled and Auto-Created Duplicate 
-    * Relations is not, associating a Contact multiple times with the same value for an Auto Creation mapped 
-    * field only results in a single relationship and reciprocal relationship record.
+    * @description Test to verify the type of the relationship is inverted when the gender of the contact is updated and the 
+    * reciprocal method is value inversion.
     *********************************************************************************************************/
     @isTest 
     private static void updateContactGenderInversionReciprocalMethod(){
@@ -569,7 +569,88 @@ private with sharing class REL_Relationships_Con_TEST {
             update fatherContact;
         Test.stopTest();
 
-        System.assertEquals('Son-Father', fatherSonRelationship.Type__c);
+        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id = :fatherSonRelationship.Id limit 1];
+        
+        System.assertEquals(1, assertRelationships.size());
+        System.assertEquals('Son-Father', assertRelationships[0].Type__c);
+    }
+
+    /*********************************************************************************************************
+    * @description Test to verify the type of the relationship is updated based on the list reciprocal mappings
+    * and when the reciprocal method is list.
+    *********************************************************************************************************/
+    @isTest 
+    private static void updateContactGenderListReciprocalMethod(){
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Method'));
+
+        Relationship_Lookup__c sonRelationshipLookup = new Relationship_Lookup__c(Name = 'Son',
+                                                                                Active__c = true,
+                                                                                Female__c = 'Mother',
+                                                                                Male__c = 'Father',
+                                                                                Neutral__c = 'Parent');
+        insert sonRelationshipLookup;
+
+        Relationship_Lookup__c fatherRelationshipLookup = new Relationship_Lookup__c(Name = 'Father',
+                                                                                Active__c = true,
+                                                                                Female__c = 'Daughter',
+                                                                                Male__c = 'Son',
+                                                                                Neutral__c = 'Child');
+        insert fatherRelationshipLookup;
+        
+        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
+        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{fatherContact, sonContact};
+
+        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
+        insert fatherSonRelationship;
+
+        Test.startTest();
+            fatherContact.Gender__c = 'Female';
+            update fatherContact;
+        Test.stopTest();
+
+        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id = :fatherSonRelationship.Id limit 1];
+        
+        System.assertEquals(1, assertRelationships.size());
+        System.assertEquals('Mother', assertRelationships[0].Type__c);
+    }
+
+    /*********************************************************************************************************
+    * @description Test to verify the type of the relationship is updated to the reciprocal relationship's type
+    * when the reciprocal method is empty.
+    *********************************************************************************************************/
+    @isTest 
+    private static void updateContactGenderEmptyReciprocalMethod(){
+        Relationship_Lookup__c sonRelationshipLookup = new Relationship_Lookup__c(Name = 'Son',
+                                                                                Active__c = true,
+                                                                                Female__c = 'Mother',
+                                                                                Male__c = 'Father',
+                                                                                Neutral__c = 'Parent');
+        insert sonRelationshipLookup;
+
+        Relationship_Lookup__c fatherRelationshipLookup = new Relationship_Lookup__c(Name = 'Father',
+                                                                                Active__c = true,
+                                                                                Female__c = 'Daughter',
+                                                                                Male__c = 'Son',
+                                                                                Neutral__c = 'Child');
+        insert fatherRelationshipLookup;
+        
+        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
+        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{fatherContact, sonContact};
+
+        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
+        insert fatherSonRelationship;
+
+        Test.startTest();
+            fatherContact.Gender__c = 'Female';
+            update fatherContact;
+        Test.stopTest();
+
+        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id = :fatherSonRelationship.Id limit 1];
+        
+        System.assertEquals(1, assertRelationships.size());
+        System.assertEquals('Son', assertRelationships[0].Type__c);
     }
 
     /*********************************************************************************************************
