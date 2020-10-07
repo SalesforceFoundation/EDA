@@ -196,7 +196,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Retrieves an instance of the MAPR_RELAutoCreateSettings service class.
+    * @description Retrieves an instance of the MAPR_RELAutoCreateSettings mapper class.
     * @return An instance of MAPR_RELAutoCreateSettings.
     *******************************************************************************************************/ 
     @TestVisible
