@@ -35,7 +35,7 @@
 * @description Test class for MAPR_RELAutoCreateSettings
 */
 @isTest
-public with sharing class MAPR_RELAutoCreateSettings_TEST {
+private with sharing class MAPR_RELAutoCreateSettings_TEST {
     
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 

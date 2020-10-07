@@ -35,7 +35,7 @@
 * @description Test class for SRVC_ContactRelationshipAutoCreate
 */
 @isTest 
-public with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
+private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 

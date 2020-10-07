@@ -52,7 +52,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @return The instance of SRVC_ContactRelationshipAutoCreate.
     **************************************************************************************************************************/
     public static SRVC_ContactRelationshipAutoCreate getInstance() {
-        if (SRVC_ContactRelationshipAutoCreate.instance == NULL) {
+        if (SRVC_ContactRelationshipAutoCreate.instance == null) {
             SRVC_ContactRelationshipAutoCreate.instance = new SRVC_ContactRelationshipAutoCreate();
         }
 
@@ -85,7 +85,8 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @param  contactRelationShipAutoCreateMapModelsList A List of MODL_ConRelationshipAutoCreateMapping representing Relationship Auto Create mappings for Contact.
     * @return A MODL_ContactRelationships model representing the Relationships associated with the specified Contact record. 
     **************************************************************************************************************************/ 
-    public virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+    @TestVisible
+    protected virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MODL_ContactRelationships conRelationshipsModel; 
 
         for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
