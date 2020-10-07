@@ -36,37 +36,13 @@
 */
 @isTest
 private class SRVC_ReciprocalRelInversion_TEST {
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * SRVC_ReciprocalRelationshipInversion class when one does not already exist.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getInstanceNewTest() {
-        SRVC_ReciprocalRelationshipInversion srvcReciprocalRelationshipInversionInstance = SRVC_ReciprocalRelationshipInversion.getInstance();
-        System.assertEquals(SRVC_ReciprocalRelationshipInversion.instance, srvcReciprocalRelationshipInversionInstance, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(true, srvcReciprocalRelationshipInversionInstance != null, 'Instance of service class should not be null.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * SRVC_ReciprocalRelationshipInversion class when one already exists.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getInstanceExistingTest() {
-        SRVC_ReciprocalRelationshipInversion srvcReciprocalRelationshipInversionInstance1 = SRVC_ReciprocalRelationshipInversion.getInstance();
-        SRVC_ReciprocalRelationshipInversion srvcReciprocalRelationshipInversionInstance2 = SRVC_ReciprocalRelationshipInversion.getInstance();
- 
-        System.assertEquals(SRVC_ReciprocalRelationshipInversion.instance, srvcReciprocalRelationshipInversionInstance1, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(srvcReciprocalRelationshipInversionInstance1, srvcReciprocalRelationshipInversionInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
-        System.assertEquals(true, srvcReciprocalRelationshipInversionInstance1 != null, 'Instance of service class should not be null.');
-    }
 
     /**************************************************************************************************************************
     * @description Test for getInversedRelationship when the relationship type is a string with hyphen in the middle.
     ***************************************************************************************************************************/
     @isTest
     private static void getInversedRelationshipWithHyphenMiddleTest() {
-        String relationshipType = 'abc-def';
+        String relationshipType = 'abc' + Label.Relationship_Split + 'def';
  
         Test.startTest();
             String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
@@ -80,7 +56,7 @@ private class SRVC_ReciprocalRelInversion_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInversedRelationshipWithHyphenEndTest() {
-        String relationshipType = 'abc-';
+        String relationshipType = 'abc' + Label.Relationship_Split;
  
         Test.startTest();
             String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
@@ -94,13 +70,13 @@ private class SRVC_ReciprocalRelInversion_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInversedRelationshipWithHyphenBeginTest() {
-        String relationshipType = '-def';
+        String relationshipType = Label.Relationship_Split + 'def';
  
         Test.startTest();
             String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
         Test.stopTest();
 
-        System.assertEquals('def-', inversedRelationshipType);
+        System.assertEquals('def' + Label.Relationship_Split, inversedRelationshipType);
     }
 
     /**************************************************************************************************************************
@@ -108,13 +84,13 @@ private class SRVC_ReciprocalRelInversion_TEST {
     ***************************************************************************************************************************/
     /*@isTest
     private static void getInversedRelationshipWithOnlyHyphenTest() {
-        String relationshipType = '-';
+        String relationshipType = Label.Relationship_Split;
  
         Test.startTest();
             String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
         Test.stopTest();
 
-        System.assertEquals('-', inversedRelationshipType);
+        System.assertEquals(Label.Relationship_Split, inversedRelationshipType);
     }TODO: this is currently a bug or at least we are not preventing users from entering only hyphen*/ 
 
     /**************************************************************************************************************************
@@ -134,13 +110,13 @@ private class SRVC_ReciprocalRelInversion_TEST {
     ***************************************************************************************************************************/
     /*@isTest
     private static void getInversedRelationshipWithMoreThanTwoRelMiddleTest() {
-        String relationshipType = 'abc-def-ghi';
+        String relationshipType = 'abc' + Label.Relationship_Split + 'def' + Label.Relationship_Split + 'ghi';
  
         Test.startTest();
             String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
         Test.stopTest();
 
-        System.assertEquals('def-abc', inversedRelationshipType);
+        System.assertEquals('def' + Label.Relationship_Split + 'abc', inversedRelationshipType);
     }TODO: this is currently a bug. The result returns def-abc and we are not preventing users from entering long relationship type*/
 
     /**************************************************************************************************************************
@@ -155,7 +131,7 @@ private class SRVC_ReciprocalRelInversion_TEST {
         Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
         newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
 
-        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father-Son');
+        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father' + Label.Relationship_Split + 'Son');
         insert fatherSonRelationship;
 
         List<Relationship__c> relationships = [SELECT ID,
@@ -172,7 +148,7 @@ private class SRVC_ReciprocalRelInversion_TEST {
         
         System.assertEquals(1, relationshipsToUpdateList.size());
         System.assertEquals(fatherSonRelationship.Id, relationshipsToUpdateList[0].Id);
-        System.assertEquals('Son-Father', relationshipsToUpdateList[0].Type__c);
+        System.assertEquals('Son' + Label.Relationship_Split + 'Father', relationshipsToUpdateList[0].Type__c);
     }
 
     /**************************************************************************************************************************
