@@ -104,6 +104,42 @@ private with sharing class MAPR_RELAutoCreateSettings_TEST {
     }
 
     /***************************************************************************************************************************
+    * @description Test method to verify that getContactMappingModelsFromSettings() returns its cached value
+    ***************************************************************************************************************************/ 
+    @isTest 
+    private static void getContactMappingModelsFromSettingsCached(){
+        List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
+        Relationship_Auto_Create__c contactRelAutoCreate;
+        Relationship_Auto_Create__c accountRelAutoCreate;
+
+        for (Integer i = 0; i < 5; i++){
+            contactRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate' + i, 
+                                                                                               Object__c = 'Contact',
+                                                                                               Field__c = 'ReportsToId', 
+                                                                                               Relationship_Type__c = 'ContactTester' + i,
+                                                                                               Campaign_Types__c = '');
+
+            accountRelAutoCreate = new Relationship_Auto_Create__c(Name = 'AccountReportToAutoCreate' + i, 
+                                                                                               Object__c = 'Account',
+                                                                                               Field__c = 'Name', 
+                                                                                               Relationship_Type__c = 'AccountTester' + i,
+                                                                                               Campaign_Types__c = '');
+            relAutoCreateList.add(contactRelAutoCreate);
+            relAutoCreateList.add(accountRelAutoCreate);
+        }
+
+        insert relAutoCreateList;
+
+        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings();
+
+        Test.startTest();
+        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList2 = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings();
+        Test.stopTest();
+
+        System.assertEquals(conRelAutoCreateMappingList, conRelAutoCreateMappingList2, 'The relationship autocreate mapping models should be cached.');
+    }
+
+    /***************************************************************************************************************************
     * @description Test method to verify that getContactMappingModelsFromSettings() returns an empty list
     * when there are no Relationship Auto Create mappings for the Contact object set.
     ***************************************************************************************************************************/ 

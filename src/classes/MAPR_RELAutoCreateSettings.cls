@@ -43,6 +43,12 @@ public virtual with sharing class MAPR_RELAutoCreateSettings {
     private static MAPR_RELAutoCreateSettings instance;
 
     /***************************************************************************************************************************
+    * @description Cache for the relationship autocreate mappings
+    ***************************************************************************************************************************/
+    @TestVisible
+    private static List<MODL_ConRelationshipAutoCreateMapping> relationshipAutocreateMappingsCache;
+
+    /***************************************************************************************************************************
     * @description Empty constructor is not public for Singleton Pattern.
     ***************************************************************************************************************************/
     protected MAPR_RELAutoCreateSettings() {}
@@ -65,8 +71,16 @@ public virtual with sharing class MAPR_RELAutoCreateSettings {
     * @return A list of ContactRelationshipAutoCreateMapping models.
     **************************************************************************************************************************/
     public virtual List<MODL_ConRelationshipAutoCreateMapping> getContactMappingModelsFromSettings(){
-        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relAutoCreateListBySObjectType = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
-        return this.getContactMappingModelsFromMappings(relAutoCreateListBySObjectType.get(Contact.SObjectType));
+        if(MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache != null) {
+            return MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache;
+        }
+
+        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relAutoCreateListBySObjectType =
+            UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+        MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache =
+            this.getContactMappingModelsFromMappings(relAutoCreateListBySObjectType.get(Contact.SObjectType));
+
+        return MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache;
     }
 
     /***************************************************************************************************************************
