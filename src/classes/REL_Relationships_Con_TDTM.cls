@@ -129,7 +129,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         Map<Id, Contact> newContactsById = new Map<Id, Contact>((List<Contact>)newList);
         Map<Id, Contact> oldContactsById = new Map<Id, Contact>((List<Contact>)oldList);
         
-        List<MODL_ConRelationshipAutoCreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMappingService().getContactMappingModelsFromSettings();
+        List<MODL_ConRelationshipAutoCreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMapper().getContactMappingModelsFromSettings();
 
         MODL_ContactsRelationships contactRelationshipsToCreate = new MODL_ContactsRelationships();
 
