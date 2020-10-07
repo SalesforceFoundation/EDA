@@ -547,6 +547,29 @@ private with sharing class REL_Relationships_Con_TEST {
             System.assertEquals(1, testRelationshipMapperByContactId.get(contactId).testerRelationshipsList.size(), 'Each contact should only have 1 Tester relationship record.');
             System.assertEquals(1, testRelationshipMapperByContactId.get(contactId).testeeRelationshipsList.size(), 'Each contact should only have 1 Testee relationship record.');
         }
+    }    
+    /*********************************************************************************************************
+    * @description Test to verify that when Relationship Auto Creation is enabled and Auto-Created Duplicate 
+    * Relations is not, associating a Contact multiple times with the same value for an Auto Creation mapped 
+    * field only results in a single relationship and reciprocal relationship record.
+    *********************************************************************************************************/
+    @isTest 
+    private static void updateContactGenderInversionReciprocalMethod(){
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
+
+        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
+        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
+        insert new List<Contact>{fatherContact, sonContact};
+
+        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father-Son');
+        insert fatherSonRelationship;
+
+        Test.startTest();
+            fatherContact.Gender__c = 'Female';
+            update fatherContact;
+        Test.stopTest();
+
+        System.assertEquals('Son-Father', fatherSonRelationship.Type__c);
     }
 
     /*********************************************************************************************************
@@ -1182,36 +1205,5 @@ private with sharing class REL_Relationships_Con_TEST {
 
         System.assertEquals(1, relationshipsToUpdate.size());
         System.assertEquals(fatherRelationship.Id, relationshipsToUpdate[0].Id);
-    }
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the handleAfterUpdateTest method returns dmlwrapper for inserts and updates.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void handleAfterUpdateTest() {
-        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
-        for (Contact testContact : testContacts) {
-            testContact.Gender__c = 'Male';
-        }
-        insert testContacts;
-
-        List<Contact> oldContacts = new List<Contact>();
-        for (Contact testContact : testContacts) {
-            testContact.Gender__c = 'Female';
-            oldContacts.add(testContact);
-        }
-
-        Relationship__c testRelationship = UTIL_UnitTestData_TEST.getRelationship(testContacts[0].Id, testContacts[1].Id, 'Father');
-        insert testRelationship;
-
-        Test.startTest();
-            REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
-            TDTM_Runnable.DmlWrapper dmlwrapper = relRelationshipsConTDTM.handleAfterUpdate(testContacts, oldContacts);
-        Test.stopTest();
-
-
-        System.assertNotEquals(null, dmlwrapper);
-        //System.assertEquals(true, dmlwrapper.objectsToInsert.size() > 0);
-        System.assertEquals(true, dmlwrapper.objectsToUpdate.size() > 0);
     }
 }
