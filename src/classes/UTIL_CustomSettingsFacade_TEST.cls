@@ -62,7 +62,7 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
     }
 
     @isTest
-    public static void getAutoCreateSettings() {
+    private static void getAutoCreateSettings() {
         insert new Relationship_Auto_Create__c(Name = 'test'+ system.now(), Object__c = 'Contact', Field__c = 'coworker__c',
         Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
 
