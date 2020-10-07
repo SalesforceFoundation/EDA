@@ -35,7 +35,7 @@
 * @description Test class for MODL_ContactRelationships. 
 */
 @isTest
-public with sharing class MODL_ContactRelationships_TEST {
+private with sharing class MODL_ContactRelationships_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that addRelationship() appends additional Relationship records to an existing list of 
     * records for a Contact Relationships model.
