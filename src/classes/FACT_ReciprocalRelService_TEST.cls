@@ -83,6 +83,22 @@ private class FACT_ReciprocalRelService_TEST {
         System.assertEquals(true, srvcReciprocalRelationshipInstance != null, 'Instance of service class should not be null.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * SRVC_ReciprocalRelationshipInversion class when reciprocal method is empty and one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceEmptyExistingTest() {
+        Test.startTest();
+            SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance1 = FACT_ReciprocalRelationshipService.getInstance();
+            SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance2 = FACT_ReciprocalRelationshipService.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(new SRVC_ReciprocalRelationship(), srvcReciprocalRelationshipInstance1, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(srvcReciprocalRelationshipInstance1, srvcReciprocalRelationshipInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
+        System.assertEquals(true, srvcReciprocalRelationshipInstance1 != null, 'Instance of service class should not be null.');
+    }
+
     /*****************************************************************************
     * @description Test for getting the reciprocal method from custom setting if reciprocal method is inversion
     ******************************************************************************/
