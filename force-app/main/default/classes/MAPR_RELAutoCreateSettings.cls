@@ -32,7 +32,7 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Service class for REL_Relationships_Con_TDTM; used to generate MODL_ConRelationshipAutoCreateMapping
+* @description Mapper class for REL_Relationships_Con_TDTM; used to generate MODL_ConRelationshipAutoCreateMapping
 * models representing Relationship Auto Create mappings set for the Contact object. 
 */
 public virtual with sharing class MAPR_RELAutoCreateSettings {

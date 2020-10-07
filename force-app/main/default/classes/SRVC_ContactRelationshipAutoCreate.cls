@@ -52,7 +52,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @return The instance of SRVC_ContactRelationshipAutoCreate.
     **************************************************************************************************************************/
     public static SRVC_ContactRelationshipAutoCreate getInstance() {
-        if (SRVC_ContactRelationshipAutoCreate.instance == NULL) {
+        if (SRVC_ContactRelationshipAutoCreate.instance == null) {
             SRVC_ContactRelationshipAutoCreate.instance = new SRVC_ContactRelationshipAutoCreate();
         }
 
