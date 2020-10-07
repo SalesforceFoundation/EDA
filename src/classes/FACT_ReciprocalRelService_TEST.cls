@@ -98,34 +98,6 @@ private class FACT_ReciprocalRelService_TEST {
     }
 
     /*****************************************************************************
-    * @description Test for getting the reciprocal method from custom setting if reciprocal method is list
-    ******************************************************************************/
-    @isTest
-    private static void getReciprocalMethodFromSettingsListTest() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
-
-        Test.startTest();
-            String reciprocalMethod = FACT_ReciprocalRelationshipService.getReciprocalMethodFromSettings();
-        Test.stopTest();
-
-        System.assertEquals('List Setting', reciprocalMethod);
-    }
-
-    /*****************************************************************************
-    * @description Test for getting the reciprocal method from custom setting if reciprocal method is something else
-    ******************************************************************************/
-    @isTest
-    private static void getReciprocalMethodFromSettingsElseTest() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'abcdefg'));
-
-        Test.startTest();
-            String reciprocalMethod = FACT_ReciprocalRelationshipService.getReciprocalMethodFromSettings();
-        Test.stopTest();
-
-        System.assertEquals('abcdef', reciprocalMethod);
-    }
-
-    /*****************************************************************************
     * @description Test for getting the reciprocal method from custom setting if reciprocal method is empty
     ******************************************************************************/
     @isTest
