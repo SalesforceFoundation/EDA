@@ -1159,7 +1159,7 @@ public with sharing class REL_Relationships_Con_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getRelationshipsToUpdate method returns a a list of relationships to update based on contact map.
+    * @description Test method to verify that the getRelationshipsToUpdate method returns a list of relationships to update based on contact map.
     ***************************************************************************************************************************/
     @isTest
     private static void getRelationshipsToUpdateTest() {
@@ -1182,5 +1182,36 @@ public with sharing class REL_Relationships_Con_TEST {
 
         System.assertEquals(1, relationshipsToUpdate.size());
         System.assertEquals(fatherRelationship.Id, relationshipsToUpdate[0].Id);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the handleAfterUpdateTest method returns dmlwrapper for inserts and updates.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void handleAfterUpdateTest() {
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Contact testContact : testContacts) {
+            testContact.Gender__c = 'Male';
+        }
+        insert testContacts;
+
+        List<Contact> oldContacts = new List<Contact>();
+        for (Contact testContact : testContacts) {
+            testContact.Gender__c = 'Female';
+            oldContacts.add(testContact);
+        }
+
+        Relationship__c testRelationship = UTIL_UnitTestData_TEST.getRelationship(testContacts[0].Id, testContacts[1].Id, 'Father');
+        insert testRelationship;
+
+        Test.startTest();
+            REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
+            TDTM_Runnable.DmlWrapper dmlwrapper = relRelationshipsConTDTM.handleAfterUpdate(testContacts, oldContacts);
+        Test.stopTest();
+
+
+        System.assertNotEquals(null, dmlwrapper);
+        //System.assertEquals(true, dmlwrapper.objectsToInsert.size() > 0);
+        System.assertEquals(true, dmlwrapper.objectsToUpdate.size() > 0);
     }
 }
