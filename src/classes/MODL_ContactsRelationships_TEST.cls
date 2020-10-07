@@ -35,7 +35,7 @@
 * @description Test class for MODL_ContactsRelationships. 
 */
 @isTest
-public with sharing class MODL_ContactsRelationships_TEST {
+private with sharing class MODL_ContactsRelationships_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that addRelationshipWithExisting() adds a new Contact Relationships model and populates
     * all variables when the new Contact Relationships model is associated with relationships.
