@@ -75,7 +75,8 @@ public virtual with sharing class MAPR_RELAutoCreateSettings {
     * @param relAutoCreateList List of Relationship Auto Create settings to be used to generate mapping models.
     * @return A list of MODL_ConRelationshipAutoCreateMapping representing the Relationship Auto Create mappings provided.
     ***************************************************************************************************************************/ 
-    public virtual List<MODL_ConRelationshipAutoCreateMapping> getContactMappingModelsFromMappings(List<Relationship_Auto_Create__c> relAutoCreateList){
+    @TestVisible
+    protected  virtual List<MODL_ConRelationshipAutoCreateMapping> getContactMappingModelsFromMappings(List<Relationship_Auto_Create__c> relAutoCreateList){
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMapModelsList = new List<MODL_ConRelationshipAutoCreateMapping>();
 
         for (Relationship_Auto_Create__c relAutoCreate : relAutoCreateList){
@@ -95,7 +96,8 @@ public virtual with sharing class MAPR_RELAutoCreateSettings {
     * @param relAutoCreate A Relationship Auto Create mapping from which to generate a model.
     * @return A MODL_ConRelationshipAutoCreateMapping representing the specified Relationship Auto Create mapping.
     ***************************************************************************************************************************/
-    public virtual MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
+        @TestVisible
+    protected virtual MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
         Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe(relAutoCreate.Object__c, relAutoCreate.Field__c);
   
         if (fieldDescribe == null){

@@ -35,7 +35,7 @@
 * @description Testing for the Contact Relationship trigger functionality.
 */
 @isTest
-public with sharing class REL_Relationships_Con_TEST {
+private with sharing class REL_Relationships_Con_TEST {
 
     /*********************************************************************************************************
     ****************************** RELATIONSHIP AUTO CREATION FUNCTIONAL TESTS *******************************
