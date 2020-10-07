@@ -42,7 +42,7 @@ private with sharing class MODL_ConRelationshipAutoCreateMappi_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void constructor() {
-        Schema.DescribeFieldResult contactField = UTIL_Describe.getFieldDescribe('contact', 'Account');
+        Schema.DescribeFieldResult contactField = UTIL_Describe.getFieldDescribe('contact', 'LastName');
         String relationshipType = 'testType';
         String settingsContactValue = 'testSettingsContactValue';
 
