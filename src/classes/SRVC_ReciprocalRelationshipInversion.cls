@@ -35,28 +35,6 @@
 * @description Service class for reciprocal relationship inversion. 
 */
 public virtual with sharing class SRVC_ReciprocalRelationshipInversion extends SRVC_ReciprocalRelationship{
-    /*********************************************
-    * @description Instance for Singleton Pattern.
-    **********************************************/
-    @TestVisible
-    private static SRVC_ReciprocalRelationshipInversion instance;
-
-    /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern.
-    **********************************************************************/
-    protected SRVC_ReciprocalRelationshipInversion() {}
-
-    /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_ReciprocalRelationshipInversion.
-    ******************************************************************************/
-    public static SRVC_ReciprocalRelationshipInversion getInstance() {
-        if (SRVC_ReciprocalRelationshipInversion.instance == null) {
-            SRVC_ReciprocalRelationshipInversion.instance = new SRVC_ReciprocalRelationshipInversion();
-        }
-
-        return SRVC_ReciprocalRelationshipInversion.instance;
-    }
 
     /*****************************************************************************
     * @description Get the relationships to update from map of contact and map of relationship to update if reciprocal method is inversion.
