@@ -46,11 +46,13 @@ public virtual with sharing class SRVC_ReciprocalRelationshipInversion extends S
         List<Relationship__c> relationshipsToUpdateList = new List<Relationship__c>();
         
         for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
-            if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == false) {
-                Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
-                reciprocalRelationship.Type__c = this.getInversedRelationshipType(reciprocalRelationship.Type__c);
-                relationshipsToUpdateList.add(reciprocalRelationship);    
+            if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == true) {
+                continue;
             }
+
+            Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
+            reciprocalRelationship.Type__c = this.getInversedRelationshipType(reciprocalRelationship.Type__c);
+            relationshipsToUpdateList.add(reciprocalRelationship);  
         }
             
         return relationshipsToUpdateList;
