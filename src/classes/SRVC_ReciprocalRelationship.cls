@@ -51,8 +51,9 @@ public virtual with sharing class SRVC_ReciprocalRelationship {
 
             Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
             reciprocalRelationship.Type__c = relationship.Type__c;
-            relationshipsToUpdateList.add(reciprocalRelationship);
-            
+            relationshipsToUpdateList.add(reciprocalRelationship);   
+        }
+        
         return relationshipsToUpdateList;
     }
 
