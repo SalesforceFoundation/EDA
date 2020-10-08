@@ -41,14 +41,25 @@ private class SRVC_ReciprocalRelationshipList_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getRelationshipsToUpdateForContactsNoMappingTest() {
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        fatherContact.Gender__c = 'Male';
-        sonContact.Gender__c = 'Male';
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            testContacts[i].Gender__c = 'Male';
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
+        insert testContacts;
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         List<Relationship__c> relationships = [SELECT ID,
                                                     Contact__c,
@@ -61,16 +72,19 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
 
         Test.startTest();
-            fatherContact.Gender__c = 'Female';
-            fatherContact.Salutation = 'Mr.';
             Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
-            newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+            for (Integer i = 0; i < 5; i++) {
+                fatherContacts[i].Gender__c = 'Female';
+                fatherContacts[i].Salutation = 'Mr.';
+                newContactRelationshipToUpdateByIdMap.put(fatherContacts[i].Id, fatherContacts[i]);
+            }      
             List<Relationship__c> relationshipsToUpdate = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
         
-        System.assertEquals(1, relationshipsToUpdate.size());
-        System.assertEquals(fatherRelationship.Id, relationshipsToUpdate[0].Id);
-        System.assertEquals('Son', relationshipsToUpdate[0].Type__c);
+        System.assertEquals(5, relationshipsToUpdate.size());
+        for (Relationship__c resultRelationship : relationshipsToUpdate) {
+            System.assertEquals('Father', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -92,14 +106,25 @@ private class SRVC_ReciprocalRelationshipList_TEST {
                                                                             Neutral__c = 'Child');
         insert fatherRelationshipLookup;
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        fatherContact.Gender__c = 'Male';
-        sonContact.Gender__c = 'Male';
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            testContacts[i].Gender__c = 'Male';
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
+        insert testContacts;
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         List<Relationship__c> relationships = [SELECT ID,
                                                     Contact__c,
@@ -112,16 +137,19 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
 
         Test.startTest();
-            fatherContact.Gender__c = 'Female';
-            fatherContact.Salutation = 'Mr.';
             Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
-            newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+            for (Integer i = 0; i < 5; i++) {
+                fatherContacts[i].Gender__c = 'Female';
+                fatherContacts[i].Salutation = 'Mr.';
+                newContactRelationshipToUpdateByIdMap.put(fatherContacts[i].Id, fatherContacts[i]);
+            }      
             List<Relationship__c> relationshipsToUpdate = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
         
-        System.assertEquals(1, relationshipsToUpdate.size());
-        System.assertEquals(fatherRelationship.Id, relationshipsToUpdate[0].Id);
-        System.assertEquals('Mother', relationshipsToUpdate[0].Type__c);
+        System.assertEquals(5, relationshipsToUpdate.size());
+        for (Relationship__c resultRelationship : relationshipsToUpdate) {
+            System.assertEquals('Mother', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -143,14 +171,25 @@ private class SRVC_ReciprocalRelationshipList_TEST {
                                                                             Neutral__c = 'Child');
         insert fatherRelationshipLookup;
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        fatherContact.Gender__c = 'Male';
-        sonContact.Gender__c = 'Male';
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            testContacts[i].Gender__c = 'Male';
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
+        insert testContacts;
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         List<Relationship__c> relationships = [SELECT ID,
                                                     Contact__c,
@@ -163,15 +202,19 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
 
         Test.startTest();
-            fatherContact.Salutation = 'Ms.';
             Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
-            newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+            for (Integer i = 0; i < 5; i++) {
+                fatherContacts[i].Gender__c = '';
+                fatherContacts[i].Salutation = 'Ms.';
+                newContactRelationshipToUpdateByIdMap.put(fatherContacts[i].Id, fatherContacts[i]);
+            }      
             List<Relationship__c> relationshipsToUpdate = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
         
-        System.assertEquals(1, relationshipsToUpdate.size());
-        System.assertEquals(fatherRelationship.Id, relationshipsToUpdate[0].Id);
-        System.assertEquals('Mother', relationshipsToUpdate[0].Type__c);
+        System.assertEquals(5, relationshipsToUpdate.size());
+        for (Relationship__c resultRelationship : relationshipsToUpdate) {
+            System.assertEquals('Mother', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -179,21 +222,41 @@ private class SRVC_ReciprocalRelationshipList_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getRelationshipToUpdateWithoutMapping() {
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert testContacts;
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
        
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
 
         Test.startTest();
-            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateWithoutMapping(fatherRelationship, 'Son');
+            List<Relationship__c> resultRelationships = new List<Relationship__c>();
+            for (Integer i = 0; i < 5; i++) {
+                Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateWithoutMapping(fatherRelationships[i], 'Son');
+                if (relationshipToUpdate != null) {
+                    resultRelationships.add(relationshipToUpdate);
+                }
+            }    
         Test.stopTest();
         
-        System.assertNotEquals(null, relationshipToUpdate);
-        System.assertEquals('Son', relationshipToUpdate.Type__c);
+        System.assertEquals(5, resultRelationships.size());
+        for (Relationship__c resultRelationship : resultRelationships) {
+            System.assertEquals('Son', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -210,12 +273,24 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         
         MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups().get('Son');
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert testContacts;
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
 
@@ -223,12 +298,20 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Set<String> maleGenderSet = instance.getMaleGenderSet();
         
         Test.startTest();
-            fatherContact.Gender__c = 'Female';
-            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+            List<Relationship__c> resultRelationships = new List<Relationship__c>();
+            for (Integer i = 0; i < 5; i++) {
+                fatherContacts[i].Gender__c = 'Female';
+                Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationships[i], fatherContacts[i], reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+                if (relationshipToUpdate != null) {
+                    resultRelationships.add(relationshipToUpdate);
+                }
+            }          
         Test.stopTest();
         
-        System.assertNotEquals(null, relationshipToUpdate);
-        System.assertEquals('Mother', relationshipToUpdate.Type__c);
+        System.assertEquals(5, resultRelationships.size());
+        for (Relationship__c resultRelationship : resultRelationships) {
+            System.assertEquals('Mother', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -245,12 +328,24 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         
         MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups().get('Son');
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert testContacts;
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
 
@@ -258,12 +353,20 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Set<String> maleGenderSet = instance.getMaleGenderSet();
            
         Test.startTest();
-            fatherContact.Gender__c = 'Male';
-            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+            List<Relationship__c> resultRelationships = new List<Relationship__c>();
+            for (Integer i = 0; i < 5; i++) {
+                fatherContacts[i].Gender__c = 'Male';
+                Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationships[i], fatherContacts[i], reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+                if (relationshipToUpdate != null) {
+                    resultRelationships.add(relationshipToUpdate);
+                }
+            }          
         Test.stopTest();
         
-        System.assertNotEquals(null, relationshipToUpdate);
-        System.assertEquals('Father', relationshipToUpdate.Type__c);
+        System.assertEquals(5, resultRelationships.size());
+        for (Relationship__c resultRelationship : resultRelationships) {
+            System.assertEquals('Father', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -280,12 +383,24 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         
         MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups().get('Son');
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert testContacts;
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
         
@@ -293,11 +408,17 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Set<String> maleGenderSet = instance.getMaleGenderSet();
                
         Test.startTest();
-            fatherContact.Gender__c = 'Neutral';
-            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+        List<Relationship__c> resultRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            fatherContacts[i].Gender__c = 'Neutral';
+            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationships[i], fatherContacts[i], reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+            if (relationshipToUpdate != null) {
+                resultRelationships.add(relationshipToUpdate);
+            }
+        }  
         Test.stopTest();
         
-        System.assertEquals(null, relationshipToUpdate);
+        System.assertEquals(0, resultRelationships.size());
     }
 
     /**************************************************************************************************************************
@@ -314,12 +435,24 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         
         MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups().get('Son');
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert testContacts;
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
         
@@ -327,12 +460,20 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Set<String> maleSalutationSet = instance.getMaleSalutationSet();
         
         Test.startTest();
-            fatherContact.Salutation = 'Ms.';
-            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromSalutation(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
+            List<Relationship__c> resultRelationships = new List<Relationship__c>();
+            for (Integer i = 0; i < 5; i++) {
+                fatherContacts[i].Salutation = 'Ms.';
+                Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromSalutation(fatherRelationships[i], fatherContacts[i], reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
+                if (relationshipToUpdate != null) {
+                    resultRelationships.add(relationshipToUpdate);
+                }
+            }          
         Test.stopTest();
         
-        System.assertNotEquals(null, relationshipToUpdate);
-        System.assertEquals('Mother', relationshipToUpdate.Type__c);
+        System.assertEquals(5, resultRelationships.size());
+        for (Relationship__c resultRelationship : resultRelationships) {
+            System.assertEquals('Mother', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -349,12 +490,24 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         
         MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups().get('Son');
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert testContacts;
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
         
@@ -362,12 +515,20 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Set<String> maleSalutationSet = instance.getMaleSalutationSet();
                
         Test.startTest();
-            fatherContact.Salutation = 'Mr.';
-            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromSalutation(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
+            List<Relationship__c> resultRelationships = new List<Relationship__c>();
+            for (Integer i = 0; i < 5; i++) {
+                fatherContacts[i].Salutation = 'Mr.';
+                Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromSalutation(fatherRelationships[i], fatherContacts[i], reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
+                if (relationshipToUpdate != null) {
+                    resultRelationships.add(relationshipToUpdate);
+                }
+            }        
         Test.stopTest();
         
-        System.assertNotEquals(null, relationshipToUpdate);
-        System.assertEquals('Father', relationshipToUpdate.Type__c);
+        System.assertEquals(5, resultRelationships.size());
+        for (Relationship__c resultRelationship : resultRelationships) {
+            System.assertEquals('Father', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -419,8 +580,7 @@ private class SRVC_ReciprocalRelationshipList_TEST {
             }
         Test.stopTest();
         
-        
-        System.assertNotEquals(5, resultRelationships.size());
+        System.assertEquals(5, resultRelationships.size());
         for (Relationship__c resultRelationship : resultRelationships) {
             System.assertEquals('Parent', resultRelationship.Type__c);
         }

@@ -188,7 +188,11 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     *******************************************************************************************************/ 
     @TestVisible
     private List<String> getFemaleLabelList(){
-        return (Label.Female).split(',');
+        List<String> femaleLabelList = new List<String>();
+        for (String femaleLabel : (Label.Female).split(',')) {
+            femaleLabelList.add(femaleLabel.toLowerCase());
+        }
+        return femaleLabelList;
     }
 
     /*******************************************************************************************************
@@ -197,7 +201,11 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     *******************************************************************************************************/ 
     @TestVisible
     private List<String> getMaleLabelList(){
-        return (Label.Male).split(',');
+        List<String> maleLabelList = new List<String>();
+        for (String maleLabel : (Label.Male).split(',')) {
+            maleLabelList.add(maleLabel.toLowerCase());
+        }
+        return maleLabelList;    
     }
 
     /*******************************************************************************************************
