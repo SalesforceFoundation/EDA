@@ -69,7 +69,8 @@ public virtual with sharing class MAPR_ReciprocalRelationshipSettings {
         List<Relationship_Lookup__c> relationshipLookupsList = UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
 
         for (Relationship_Lookup__c relationshipLookup : relationshipLookupsList) {
-            reciprocalRelationshipMappingByNameMap.put(this.getModelFromMapping(relationshipLookup).getRelationshipName(), this.getModelFromMapping(relationshipLookup));
+            MODL_ReciprocalRelationshipMapping reciprocalRelationshipMapping = this.getModelFromMapping(relationshipLookup);
+            reciprocalRelationshipMappingByNameMap.put(reciprocalRelationshipMapping.getRelationshipName(), reciprocalRelationshipMapping);
         }
 
         return reciprocalRelationshipMappingByNameMap;
