@@ -49,7 +49,7 @@ private class FACT_ReciprocalRelService_TEST {
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipInversionInstance = FACT_ReciprocalRelationshipService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(SRVC_ReciprocalRelationshipInversion.instance, srvcReciprocalRelationshipInversionInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(new SRVC_ReciprocalRelationshipInversion(), srvcReciprocalRelationshipInversionInstance, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipInversionInstance != null, 'Instance of service class should not be null.');
     }
 
@@ -65,7 +65,7 @@ private class FACT_ReciprocalRelService_TEST {
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipListInstance = FACT_ReciprocalRelationshipService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(SRVC_ReciprocalRelationshipList.instance, srvcReciprocalRelationshipListInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(new SRVC_ReciprocalRelationshipList(), srvcReciprocalRelationshipListInstance, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipListInstance != null, 'Instance of service class should not be null.');
     }
 
