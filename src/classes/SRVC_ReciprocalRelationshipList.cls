@@ -35,28 +35,6 @@
 * @description Service class for reciprocal relationship list. 
 */
 public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_ReciprocalRelationship{
-    /*********************************************
-    * @description Instance for Singleton Pattern.
-    **********************************************/
-    @TestVisible
-    private static SRVC_ReciprocalRelationshipList instance;
-
-    /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern.
-    **********************************************************************/
-    protected SRVC_ReciprocalRelationshipList() {}
-
-    /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_ReciprocalRelationshipList.
-    ******************************************************************************/
-    public static SRVC_ReciprocalRelationshipList getInstance() {
-        if (SRVC_ReciprocalRelationshipList.instance == null) {
-            SRVC_ReciprocalRelationshipList.instance = new SRVC_ReciprocalRelationshipList();
-        }
-
-        return SRVC_ReciprocalRelationshipList.instance;
-    }
 
     /*****************************************************************************
     * @description Get the relationships to update from map of contact and map of relationship to update if reciprocal method is list.
@@ -249,4 +227,3 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
         return maleLabelsSet;
     }
 }
-
