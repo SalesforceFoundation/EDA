@@ -44,11 +44,13 @@ private class SRVC_ReciprocalRelInversion_TEST {
     private static void getInversedRelationshipWithHyphenMiddleTest() {
         String relationshipType = 'abc' + Label.Relationship_Split + 'def';
  
+        SRVC_ReciprocalRelationshipInversion instance = new SRVC_ReciprocalRelationshipInversion();
+
         Test.startTest();
-            String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
+            String inversedRelationshipType = instance.getInversedRelationshipType(relationshipType);
         Test.stopTest();
 
-        System.assertEquals('def-abc', inversedRelationshipType);
+        System.assertEquals('def' + Label.Relationship_Split + 'abc', inversedRelationshipType);
     }
 
     /**************************************************************************************************************************
@@ -57,9 +59,11 @@ private class SRVC_ReciprocalRelInversion_TEST {
     @isTest
     private static void getInversedRelationshipWithHyphenEndTest() {
         String relationshipType = 'abc' + Label.Relationship_Split;
+
+        SRVC_ReciprocalRelationshipInversion instance = new SRVC_ReciprocalRelationshipInversion();
  
         Test.startTest();
-            String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
+            String inversedRelationshipType = instance.getInversedRelationshipType(relationshipType);
         Test.stopTest();
 
         System.assertEquals('abc', inversedRelationshipType);
@@ -71,9 +75,11 @@ private class SRVC_ReciprocalRelInversion_TEST {
     @isTest
     private static void getInversedRelationshipWithHyphenBeginTest() {
         String relationshipType = Label.Relationship_Split + 'def';
+
+        SRVC_ReciprocalRelationshipInversion instance = new SRVC_ReciprocalRelationshipInversion();
  
         Test.startTest();
-            String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
+            String inversedRelationshipType = instance.getInversedRelationshipType(relationshipType);
         Test.stopTest();
 
         System.assertEquals('def' + Label.Relationship_Split, inversedRelationshipType);
@@ -87,7 +93,7 @@ private class SRVC_ReciprocalRelInversion_TEST {
         String relationshipType = Label.Relationship_Split;
  
         Test.startTest();
-            String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
+            String inversedRelationshipType = instance.getInversedRelationshipType(relationshipType);
         Test.stopTest();
 
         System.assertEquals(Label.Relationship_Split, inversedRelationshipType);
@@ -98,8 +104,10 @@ private class SRVC_ReciprocalRelInversion_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInversedRelationshipWithEmptyStringTest() { 
+        SRVC_ReciprocalRelationshipInversion instance = new SRVC_ReciprocalRelationshipInversion();
+
         Test.startTest();
-            String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType('');
+            String inversedRelationshipType = instance.getInversedRelationshipType('');
         Test.stopTest();
 
         System.assertEquals('', inversedRelationshipType);
@@ -113,7 +121,7 @@ private class SRVC_ReciprocalRelInversion_TEST {
         String relationshipType = 'abc' + Label.Relationship_Split + 'def' + Label.Relationship_Split + 'ghi';
  
         Test.startTest();
-            String inversedRelationshipType = SRVC_ReciprocalRelationshipInversion.getInstance().getInversedRelationshipType(relationshipType);
+            String inversedRelationshipType = instance.getInversedRelationshipType(relationshipType);
         Test.stopTest();
 
         System.assertEquals('def' + Label.Relationship_Split + 'abc', inversedRelationshipType);
@@ -142,8 +150,10 @@ private class SRVC_ReciprocalRelInversion_TEST {
                                                 FROM Relationship__c];
         Map<Id, Relationship__c> relationshipsByIdToUpdateMap = new Map<Id, Relationship__c>(relationships);
 
+        SRVC_ReciprocalRelationshipInversion instance = new SRVC_ReciprocalRelationshipInversion();
+
         Test.startTest();
-        List<Relationship__c> relationshipsToUpdateList = SRVC_ReciprocalRelationshipInversion.getInstance().getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
+        List<Relationship__c> relationshipsToUpdateList = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
         
         System.assertEquals(1, relationshipsToUpdateList.size());
@@ -156,8 +166,10 @@ private class SRVC_ReciprocalRelInversion_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getRelationshipsToUpdateForContactsNoRelationshipTest() {
+        SRVC_ReciprocalRelationshipInversion instance = new SRVC_ReciprocalRelationshipInversion();
+
         Test.startTest();
-            List<Relationship__c> relationshipsToUpdateList = SRVC_ReciprocalRelationshipInversion.getInstance().getRelationshipsToUpdateForContacts(new Map<Id,Contact>(), new Map<Id, Relationship__c>());
+            List<Relationship__c> relationshipsToUpdateList = instance.getRelationshipsToUpdateForContacts(new Map<Id,Contact>(), new Map<Id, Relationship__c>());
         Test.stopTest();
         
         System.assertEquals(0, relationshipsToUpdateList.size());

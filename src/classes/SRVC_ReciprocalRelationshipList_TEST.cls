@@ -37,31 +37,6 @@
 @isTest
 private class SRVC_ReciprocalRelationshipList_TEST {
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * SRVC_ReciprocalRelationshipList class when one does not already exist.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getInstanceNewTest() {
-        SRVC_ReciprocalRelationshipList srvcReciprocalRelationshipListInstance = SRVC_ReciprocalRelationshipList.getInstance();
-        System.assertEquals(SRVC_ReciprocalRelationshipList.instance, srvcReciprocalRelationshipListInstance, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(true, srvcReciprocalRelationshipListInstance != null, 'Instance of service class should not be null.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * SRVC_ReciprocalRelationshipList class when one already exists.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getInstanceExistingTest() {
-        SRVC_ReciprocalRelationshipList srvcReciprocalRelationshipListInstance1 = SRVC_ReciprocalRelationshipList.getInstance();
-        SRVC_ReciprocalRelationshipList srvcReciprocalRelationshipListInstance2 = SRVC_ReciprocalRelationshipList.getInstance();
- 
-        System.assertEquals(SRVC_ReciprocalRelationshipList.instance, srvcReciprocalRelationshipListInstance1, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(srvcReciprocalRelationshipListInstance1, srvcReciprocalRelationshipListInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
-        System.assertEquals(true, srvcReciprocalRelationshipListInstance1 != null, 'Instance of service class should not be null.');
-    }
-
-    /**************************************************************************************************************************
     * @description Test for getRelationshipsToUpdateForContacts no mapping.
     ***************************************************************************************************************************/
     @isTest
@@ -83,12 +58,14 @@ private class SRVC_ReciprocalRelationshipList_TEST {
                                                 FROM Relationship__c];
         Map<Id, Relationship__c> relationshipsByIdToUpdateMap = new Map<Id, Relationship__c>(relationships);
        
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
             fatherContact.Gender__c = 'Female';
             fatherContact.Salutation = 'Mr.';
             Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
             newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
-            List<Relationship__c> relationshipsToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
+            List<Relationship__c> relationshipsToUpdate = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
         
         System.assertEquals(1, relationshipsToUpdate.size());
@@ -131,13 +108,15 @@ private class SRVC_ReciprocalRelationshipList_TEST {
                                                     Type__c     
                                                 FROM Relationship__c];
         Map<Id, Relationship__c> relationshipsByIdToUpdateMap = new Map<Id, Relationship__c>(relationships);
-       
+        
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
             fatherContact.Gender__c = 'Female';
             fatherContact.Salutation = 'Mr.';
             Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
             newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
-            List<Relationship__c> relationshipsToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
+            List<Relationship__c> relationshipsToUpdate = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
         
         System.assertEquals(1, relationshipsToUpdate.size());
@@ -180,12 +159,14 @@ private class SRVC_ReciprocalRelationshipList_TEST {
                                                     Type__c     
                                                 FROM Relationship__c];
         Map<Id, Relationship__c> relationshipsByIdToUpdateMap = new Map<Id, Relationship__c>(relationships);
-       
+        
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
             fatherContact.Salutation = 'Ms.';
             Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
             newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
-            List<Relationship__c> relationshipsToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
+            List<Relationship__c> relationshipsToUpdate = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
         
         System.assertEquals(1, relationshipsToUpdate.size());
@@ -205,8 +186,10 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
         insert fatherRelationship;
        
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
-            Relationship__c relationshipToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipToUpdateWithoutMapping(fatherRelationship, 'Son');
+            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateWithoutMapping(fatherRelationship, 'Son');
         Test.stopTest();
         
         System.assertNotEquals(null, relationshipToUpdate);
@@ -234,12 +217,14 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
         insert fatherRelationship;
 
-        Set<String> femaleGenderSet = SRVC_ReciprocalRelationshipList.getInstance().getFemaleGenderSet();
-        Set<String> maleGenderSet = SRVC_ReciprocalRelationshipList.getInstance().getMaleGenderSet();
-       
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
+        Set<String> femaleGenderSet = instance.getFemaleGenderSet();
+        Set<String> maleGenderSet = instance.getMaleGenderSet();
+        
         Test.startTest();
             fatherContact.Gender__c = 'Female';
-            Relationship__c relationshipToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
         Test.stopTest();
         
         System.assertNotEquals(null, relationshipToUpdate);
@@ -267,12 +252,14 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
         insert fatherRelationship;
 
-        Set<String> femaleGenderSet = SRVC_ReciprocalRelationshipList.getInstance().getFemaleGenderSet();
-        Set<String> maleGenderSet = SRVC_ReciprocalRelationshipList.getInstance().getMaleGenderSet();
-       
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
+        Set<String> femaleGenderSet = instance.getFemaleGenderSet();
+        Set<String> maleGenderSet = instance.getMaleGenderSet();
+           
         Test.startTest();
             fatherContact.Gender__c = 'Male';
-            Relationship__c relationshipToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
         Test.stopTest();
         
         System.assertNotEquals(null, relationshipToUpdate);
@@ -300,12 +287,14 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
         insert fatherRelationship;
 
-        Set<String> femaleGenderSet = SRVC_ReciprocalRelationshipList.getInstance().getFemaleGenderSet();
-        Set<String> maleGenderSet = SRVC_ReciprocalRelationshipList.getInstance().getMaleGenderSet();
-       
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+        
+        Set<String> femaleGenderSet = instance.getFemaleGenderSet();
+        Set<String> maleGenderSet = instance.getMaleGenderSet();
+               
         Test.startTest();
             fatherContact.Gender__c = 'Neutral';
-            Relationship__c relationshipToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
+            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromGender(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet);
         Test.stopTest();
         
         System.assertEquals(null, relationshipToUpdate);
@@ -332,12 +321,14 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
         insert fatherRelationship;
 
-        Set<String> femaleSalutationSet = SRVC_ReciprocalRelationshipList.getInstance().getFemaleSalutationSet();
-        Set<String> maleSalutationSet = SRVC_ReciprocalRelationshipList.getInstance().getMaleSalutationSet();
-       
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+        
+        Set<String> femaleSalutationSet = instance.getFemaleSalutationSet();
+        Set<String> maleSalutationSet = instance.getMaleSalutationSet();
+        
         Test.startTest();
             fatherContact.Salutation = 'Ms.';
-            Relationship__c relationshipToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipToUpdateFromSalutation(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
+            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromSalutation(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
         Test.stopTest();
         
         System.assertNotEquals(null, relationshipToUpdate);
@@ -365,12 +356,14 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
         insert fatherRelationship;
 
-        Set<String> femaleSalutationSet = SRVC_ReciprocalRelationshipList.getInstance().getFemaleSalutationSet();
-        Set<String> maleSalutationSet = SRVC_ReciprocalRelationshipList.getInstance().getMaleSalutationSet();
-       
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+        
+        Set<String> femaleSalutationSet = instance.getFemaleSalutationSet();
+        Set<String> maleSalutationSet = instance.getMaleSalutationSet();
+               
         Test.startTest();
             fatherContact.Salutation = 'Mr.';
-            Relationship__c relationshipToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipToUpdateFromSalutation(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
+            Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromSalutation(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
         Test.stopTest();
         
         System.assertNotEquals(null, relationshipToUpdate);
@@ -391,32 +384,57 @@ private class SRVC_ReciprocalRelationshipList_TEST {
         
         MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel = MAPR_ReciprocalRelationshipSettings.getInstance().getActiveMappingModelsFromRelationshipLookups().get('Son');
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert testContacts;
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);  
+            }
+        }
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
-        Set<String> femaleSalutationSet = SRVC_ReciprocalRelationshipList.getInstance().getFemaleSalutationSet();
-        Set<String> maleSalutationSet = SRVC_ReciprocalRelationshipList.getInstance().getMaleSalutationSet();
-       
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+        
+        Set<String> femaleSalutationSet = instance.getFemaleSalutationSet();
+        Set<String> maleSalutationSet = instance.getMaleSalutationSet();
+               
         Test.startTest();
-            fatherContact.Salutation = 'Neutral';
-            Relationship__c relationshipToUpdate = SRVC_ReciprocalRelationshipList.getInstance().getRelationshipToUpdateFromSalutation(fatherRelationship, fatherContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
+            List<Relationship__c> resultRelationships = new List<Relationship__c>();
+            for (Integer i = 0; i < 5; i++) {
+                fatherContacts[i].Salutation = 'Neutral';
+                Relationship__c relationshipToUpdate = instance.getRelationshipToUpdateFromSalutation(fatherRelationships[i], fatherContacts[i], reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet);
+                if (relationshipToUpdate != null) {
+                    resultRelationships.add(relationshipToUpdate);
+                }
+            }
         Test.stopTest();
         
-        System.assertNotEquals(null, relationshipToUpdate);
-        System.assertEquals('Parent', relationshipToUpdate.Type__c);
+        
+        System.assertNotEquals(5, resultRelationships.size());
+        for (Relationship__c resultRelationship : resultRelationships) {
+            System.assertEquals('Parent', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************
     * @description Test for locateReciprocalRelationshipMapper.
     ***************************************************************************************************************************/
     @isTest
-    private static void locateReciprocalRelationshipMapperTest() {
+    private static void locateReciprocalRelationshipMapperTest() {   
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
-            MAPR_ReciprocalRelationshipSettings maprReciprocalRelationshipSettingsInstance = SRVC_ReciprocalRelationshipList.getInstance().locateReciprocalRelationshipMapper();
+            MAPR_ReciprocalRelationshipSettings maprReciprocalRelationshipSettingsInstance = instance.locateReciprocalRelationshipMapper();
         Test.stopTest();
 
         System.assertEquals(MAPR_ReciprocalRelationshipSettings.instance, maprReciprocalRelationshipSettingsInstance, 'Instance of service class returned should match static instance variable.');
@@ -428,8 +446,10 @@ private class SRVC_ReciprocalRelationshipList_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getFemaleGenderSetTest() {
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
-            Set<String> femaleGenderSet = SRVC_ReciprocalRelationshipList.getInstance().getFemaleGenderSet();
+            Set<String> femaleGenderSet = instance.getFemaleGenderSet();
         Test.stopTest();
 
         System.assertEquals(true, femaleGenderSet.size() > 0);
@@ -440,8 +460,10 @@ private class SRVC_ReciprocalRelationshipList_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getMaleGenderSetTest() {
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
-            Set<String> maleGenderSet = SRVC_ReciprocalRelationshipList.getInstance().getMaleGenderSet();
+            Set<String> maleGenderSet = instance.getMaleGenderSet();
         Test.stopTest();
 
         System.assertEquals(true, maleGenderSet.size() > 0);
@@ -452,8 +474,10 @@ private class SRVC_ReciprocalRelationshipList_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getFemaleLabelListTest() {
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
-            List<String> femaleLabelList = SRVC_ReciprocalRelationshipList.getInstance().getFemaleLabelList();
+            List<String> femaleLabelList = instance.getFemaleLabelList();
         Test.stopTest();
 
         System.assertEquals(true, femaleLabelList.size() > 0);
@@ -464,8 +488,10 @@ private class SRVC_ReciprocalRelationshipList_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getMaleLabelListTest() {
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
-            List<String> maleLabelList = SRVC_ReciprocalRelationshipList.getInstance().getMaleLabelList();
+            List<String> maleLabelList = instance.getMaleLabelList();
         Test.stopTest();
 
         System.assertEquals(true, maleLabelList.size() > 0);
@@ -476,8 +502,10 @@ private class SRVC_ReciprocalRelationshipList_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getFemaleSalutationSetTest() {
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
-            Set<String> femaleSalutationSet = SRVC_ReciprocalRelationshipList.getInstance().getFemaleSalutationSet();
+            Set<String> femaleSalutationSet = instance.getFemaleSalutationSet();
         Test.stopTest();
 
         System.assertEquals(true, femaleSalutationSet.size() >= 2);
@@ -488,8 +516,10 @@ private class SRVC_ReciprocalRelationshipList_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getMaleSalutationSetTest() {
+        SRVC_ReciprocalRelationshipList instance = new SRVC_ReciprocalRelationshipList();
+
         Test.startTest();
-            Set<String> maleSalutationSet = SRVC_ReciprocalRelationshipList.getInstance().getMaleSalutationSet();
+            Set<String> maleSalutationSet = instance.getMaleSalutationSet();
         Test.stopTest();
 
         System.assertEquals(true, maleSalutationSet.size() >= 1);

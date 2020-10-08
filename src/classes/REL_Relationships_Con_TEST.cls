@@ -1231,22 +1231,8 @@ private with sharing class REL_Relationships_Con_TEST {
 
         REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
         SRVC_ReciprocalRelationship srvcReciprocalRelationshipInversionInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
-        System.assertEquals(SRVC_ReciprocalRelationshipInversion.instance, srvcReciprocalRelationshipInversionInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(new SRVC_ReciprocalRelationshipInversion(), srvcReciprocalRelationshipInversionInstance, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipInversionInstance != null, 'Instance of service class should not be null.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the locateReciprocalRelationshipService method returns a new instance of the 
-    * SRVC_ReciprocalRelationshipInversion class when one does not already exist and reciprocal method is list.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void locateReciprocalRelationshipServiceListTest() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
-
-        REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
-        SRVC_ReciprocalRelationship srvcReciprocalRelationshipListInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
-        System.assertEquals(SRVC_ReciprocalRelationshipList.instance, srvcReciprocalRelationshipListInstance, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(true, srvcReciprocalRelationshipListInstance != null, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************
