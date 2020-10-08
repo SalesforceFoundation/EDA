@@ -53,14 +53,12 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
         if (FACT_ReciprocalRelationshipService.instance == null) {
             String reciprocalMethod = getReciprocalMethodFromSettings();
             if (reciprocalMethod == 'List Setting') {
-                return SRVC_ReciprocalRelationshipList.getInstance();
+                FACT_ReciprocalRelationshipService.instance =  new SRVC_ReciprocalRelationshipList();
+            } else if (reciprocalMethod == 'Value Inversion') {
+                FACT_ReciprocalRelationshipService.instance = new SRVC_ReciprocalRelationshipInversion();
+            } else {
+                FACT_ReciprocalRelationshipService.instance = new SRVC_ReciprocalRelationship();
             }
-
-            if (reciprocalMethod == 'Value Inversion') {
-                return SRVC_ReciprocalRelationshipInversion.getInstance();
-            }
-
-            return new SRVC_ReciprocalRelationship();
         }
 
         return FACT_ReciprocalRelationshipService.instance;
@@ -75,4 +73,3 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
         return UTIL_CustomSettingsFacade.getSettings().Reciprocal_Method__c;
     }
 }
-
