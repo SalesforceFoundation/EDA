@@ -49,8 +49,9 @@ private class SRVC_ReciprocalRelationship_TEST {
         
         Set<Id> contactIds = new Set<Id>{contact1.Id, contact2.Id};
         
+        SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+
         Test.startTest();
-            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
             Boolean isRelationshipReciprocal = instance.isRelationshipReciprocal(relationship, contactIds);
         Test.stopTest();
         
@@ -70,8 +71,9 @@ private class SRVC_ReciprocalRelationship_TEST {
         
         Set<Id> contactIds = new Set<Id>{contact1.Id, contact2.Id};
         
+        SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
+
         Test.startTest();
-            SRVC_ReciprocalRelationship instance = new SRVC_ReciprocalRelationship();
             Boolean isRelationshipReciprocal = instance.isRelationshipReciprocal(relationship, contactIds);
         Test.stopTest();
         

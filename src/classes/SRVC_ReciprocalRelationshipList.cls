@@ -74,32 +74,32 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
         Set<String> maleSalutationSet = this.getMaleSalutationSet();
 
         for (Relationship__c relationship : relationshipsByIdToUpdateMap.values()) {
-            if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == false) {
-                Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
+            if (this.isRelationshipReciprocal(relationship, newContactRelationshipToUpdateByIdMap.keySet()) == true) {
+                continue;
+            }
 
-                MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel = activeMappingModels.get(relationship.Type__c);
-       
-                if (reciprocalRelationshipMappingModel == null) {
-                    relationshipsToUpdateList.add(this.getRelationshipToUpdateWithoutMapping(reciprocalRelationship, relationship.Type__c));
-                    
+            Relationship__c reciprocalRelationship = relationshipsByIdToUpdateMap.get(relationship.ReciprocalRelationship__c);
+
+            MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel = activeMappingModels.get(relationship.Type__c);
+    
+            if (reciprocalRelationshipMappingModel == null) {
+                relationshipsToUpdateList.add(this.getRelationshipToUpdateWithoutMapping(reciprocalRelationship, relationship.Type__c));                
+                continue;
+            } 
+
+            Contact relatedContact = newContactRelationshipToUpdateByIdMap.get(reciprocalRelationship.RelatedContact__c);
+
+            if (String.isNotBlank(relatedContact.Gender__c)) {
+                Relationship__c relationshipToUpdate = this.getRelationshipToUpdateFromGender(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet); 
+                
+                if (relationshipToUpdate != null) {
+                    relationshipsToUpdateList.add(this.getRelationshipToUpdateFromGender(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet));                    
                     continue;
-                } 
+                }    
+            }
 
-                Contact relatedContact = newContactRelationshipToUpdateByIdMap.get(reciprocalRelationship.RelatedContact__c);
-
-                if (String.isNotBlank(relatedContact.Gender__c)) {
-                    Relationship__c relationshipToUpdate = this.getRelationshipToUpdateFromGender(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet); 
-                    
-                    if (relationshipToUpdate != null) {
-                        relationshipsToUpdateList.add(this.getRelationshipToUpdateFromGender(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, femaleGenderSet, maleGenderSet));    
-                        
-                        continue;
-                    }    
-                }
-
-                if (String.isNotBlank(relatedContact.Salutation)) {
-                    relationshipsToUpdateList.add(this.getRelationshipToUpdateFromSalutation(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet));
-                }
+            if (String.isNotBlank(relatedContact.Salutation)) {
+                relationshipsToUpdateList.add(this.getRelationshipToUpdateFromSalutation(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet));
             }
         }
             
