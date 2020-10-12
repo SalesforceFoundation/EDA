@@ -132,15 +132,30 @@ private class SRVC_ReciprocalRelInversion_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getRelationshipsToUpdateForContactsRelationshipsExistHyphenMiddleTest() {
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
-
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
         Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
-        newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+        for (Integer i = 0; i < 10; i++) {
+            testContacts[i].Gender__c = 'Male';
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);
+            }
+        }
+        insert testContacts;
 
-        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father' + Label.Relationship_Split + 'Son');
-        insert fatherSonRelationship;
+        for (Contact fatherContact : fatherContacts) {
+            newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+        }
+
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father' + Label.Relationship_Split + 'Son'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         List<Relationship__c> relationships = [SELECT ID,
                                                     Contact__c,
@@ -155,10 +170,11 @@ private class SRVC_ReciprocalRelInversion_TEST {
         Test.startTest();
         List<Relationship__c> relationshipsToUpdateList = instance.getRelationshipsToUpdateForContacts(newContactRelationshipToUpdateByIdMap, relationshipsByIdToUpdateMap);
         Test.stopTest();
-        
-        System.assertEquals(1, relationshipsToUpdateList.size());
-        System.assertEquals(fatherSonRelationship.Id, relationshipsToUpdateList[0].Id);
-        System.assertEquals('Son' + Label.Relationship_Split + 'Father', relationshipsToUpdateList[0].Type__c);
+
+        System.assertEquals(5, relationshipsToUpdateList.size());
+        for (Relationship__c resultRelationship : relationshipsToUpdateList) {
+            System.assertEquals('Son' + Label.Relationship_Split + 'Father', resultRelationship.Type__c);
+        }
     }
 
     /**************************************************************************************************************************

@@ -99,14 +99,14 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
-        <members>FACT_ReciprocalRelationshipService</members>
         <members>FACT_ReciprocalRelService_TEST</members>
+        <members>FACT_ReciprocalRelationshipService</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
-        <members>MAPR_ReciprocalRelationshipSettings</members>
-        <members>MAPR_ReciprocalRelationshipSettings_TEST</members>
         <members>MAPR_RELAutoCreateSettings</members>
         <members>MAPR_RELAutoCreateSettings_TEST</members>
+        <members>MAPR_ReciprocalRelationshipSettings</members>
+        <members>MAPR_ReciprocalRelationshipSettings_TEST</members>
         <members>MODL_ConRelationshipAutoCreateMappi_TEST</members>
         <members>MODL_ConRelationshipAutoCreateMapping</members>
         <members>MODL_ContactRelationships</members>
@@ -145,12 +145,12 @@
         <members>SRVC_Contact_PreventDeletion_TEST</members>
         <members>SRVC_Contact_PrimaryAffiliations</members>
         <members>SRVC_Contact_PrimaryAffiliations_TEST</members>
+        <members>SRVC_ReciprocalRelInversion_TEST</members>
         <members>SRVC_ReciprocalRelationship</members>
         <members>SRVC_ReciprocalRelationshipInversion</members>
         <members>SRVC_ReciprocalRelationshipList</members>
-        <members>SRVC_ReciprocalRelInversion_TEST</members>
-        <members>SRVC_ReciprocalRelationship_TEST</members>
         <members>SRVC_ReciprocalRelationshipList_TEST</members>
+        <members>SRVC_ReciprocalRelationship_TEST</members>
         <members>SRVC_UniqueRecord</members>
         <members>SRVC_UniqueRecord_TEST</members>
         <members>STG_Base_CTRL</members>
