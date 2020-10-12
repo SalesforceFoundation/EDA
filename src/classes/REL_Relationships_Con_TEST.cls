@@ -1171,7 +1171,7 @@ private with sharing class REL_Relationships_Con_TEST {
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
         Test.startTest();
-        relConTdtm.setUpdateRecursion();
+            relConTdtm.setUpdateRecursion();
         Test.stopTest();
 
         System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update), 'Update recursion trigger should be set to true.');
@@ -1187,7 +1187,7 @@ private with sharing class REL_Relationships_Con_TEST {
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
         Test.startTest();
-        relConTdtm.setUpdateRecursion();
+            relConTdtm.setUpdateRecursion();
         Test.stopTest();
 
         System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update), 'Update recursion trigger should remain set to true.');
@@ -1202,8 +1202,9 @@ private with sharing class REL_Relationships_Con_TEST {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+        
         Test.startTest();
-        System.assertEquals(true, relConTdtm.isUpdateRecursion(), 'Update recursion trigger should be true.');
+            System.assertEquals(true, relConTdtm.isUpdateRecursion(), 'Update recursion trigger should be true.');
         Test.stopTest();
     }
 
@@ -1216,8 +1217,9 @@ private with sharing class REL_Relationships_Con_TEST {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, false);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
+
         Test.startTest();
-        System.assertEquals(false, relConTdtm.isUpdateRecursion(), 'Update recursion trigger should be false.');
+            System.assertEquals(false, relConTdtm.isUpdateRecursion(), 'Update recursion trigger should be false.');
         Test.stopTest();
     }
 
@@ -1230,7 +1232,11 @@ private with sharing class REL_Relationships_Con_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
 
         REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
-        SRVC_ReciprocalRelationship srvcReciprocalRelationshipInversionInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
+        
+        Test.startTest();
+            SRVC_ReciprocalRelationship srvcReciprocalRelationshipInversionInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();        
+        Test.stopTest();
+
         System.assertEquals(new SRVC_ReciprocalRelationshipInversion(), srvcReciprocalRelationshipInversionInstance, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipInversionInstance != null, 'Instance of service class should not be null.');
     }
@@ -1242,7 +1248,10 @@ private with sharing class REL_Relationships_Con_TEST {
     @isTest
     private static void locateReciprocalRelationshipServiceEmptyTest() {
         REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
-        SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
+
+        Test.startTest();
+            SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
+        Test.stopTest();
 
         System.assertEquals(new SRVC_ReciprocalRelationship(), srvcReciprocalRelationshipInstance, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipInstance != null, 'Instance of service class should not be null.');
@@ -1264,8 +1273,9 @@ private with sharing class REL_Relationships_Con_TEST {
         Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
         insert fatherRelationship;
 
+        REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
+
         Test.startTest();
-            REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
             List<Relationship__c> relationshipsToUpdate = relRelationshipsConTDTM.getRelationshipsToUpdate(newContactRelationshipToUpdateByIdMap);
         Test.stopTest();
 
