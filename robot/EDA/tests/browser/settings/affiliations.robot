@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation   Validate relationships tab in EDA Settings
+Documentation   Validate affiliations tab in EDA Settings
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/AffiliationsSettingsPageObject.py
@@ -96,12 +96,14 @@ Verify dropdown values can retain values on save
     Click action button on EDA settings page    Edit
     Load Page Object                     System                          HEDA_Settings
     Update system dropdown value
-    ...     Status for Affiliations Not Deleted =--None--
-    ...     Role for Created Affiliations =--None--
-    ...     Status for Created Affiliations =--None--
+    ...         Status for Affiliations Not Deleted =--None--
+    ...         Role for Created Affiliations =--None--
+    ...         Status for Created Affiliations =--None--
     Click action button on EDA settings page    Save
     Go to EDA settings tab          Affiliations
     Verify dropdown value
-    ...     Status for Affiliations Not Deleted =--None--
-    ...     Role for Created Affiliations =--None--
-    ...     Status for Created Affiliations =--None--
+    ...         Status for Affiliations Not Deleted =--None--
+    ...         Role for Created Affiliations =--None--
+    ...         Status for Created Affiliations =--None--
+
+
