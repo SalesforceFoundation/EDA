@@ -76,9 +76,7 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
                 }    
             }
 
-            if (String.isNotBlank(relatedContact.Salutation)) {
-                relationshipsToUpdateList.add(this.getRelationshipToUpdateFromSalutation(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet));
-            }
+            relationshipsToUpdateList.add(this.getRelationshipToUpdateFromSalutation(reciprocalRelationship, relatedContact, reciprocalRelationshipMappingModel, femaleSalutationSet, maleSalutationSet));
         }
             
         return relationshipsToUpdateList;
@@ -138,16 +136,18 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     private Relationship__c getRelationshipToUpdateFromSalutation(Relationship__c reciprocalRelationship, Contact relatedContact, 
                                                             MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel, 
                                                             Set<String> femaleSalutationSet, Set<String> maleSalutationSet) {
-        if (reciprocalRelationshipMappingModel.hasFemaleValue() == true && femaleSalutationSet.contains(relatedContact.Salutation)) {
-            reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getFemaleRelationshipType();
-            
-            return reciprocalRelationship;
-        }
+        if (String.isNotBlank(relatedContact.Salutation)) {
+            if (reciprocalRelationshipMappingModel.hasFemaleValue() == true && femaleSalutationSet.contains(relatedContact.Salutation)) {
+                reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getFemaleRelationshipType();
+                
+                return reciprocalRelationship;
+            }
 
-        if (reciprocalRelationshipMappingModel.hasMaleValue() == true && maleSalutationSet.contains(relatedContact.Salutation)) {
-            reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getMaleRelationshipType();
-            
-            return reciprocalRelationship;
+            if (reciprocalRelationshipMappingModel.hasMaleValue() == true && maleSalutationSet.contains(relatedContact.Salutation)) {
+                reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getMaleRelationshipType();
+                
+                return reciprocalRelationship;
+            }
         }
             
         reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getNeutralRelationshipType();
