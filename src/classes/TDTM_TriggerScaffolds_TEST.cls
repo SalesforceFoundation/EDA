@@ -151,7 +151,7 @@ private class TDTM_TriggerScaffolds_TEST {
     }
 
     public static testmethod void tdtmContentDocumentLink() {
-        //Currently we don't have any Trigger_Handler__c record for Lead. This test is
+        //Currently we don't have any Trigger_Handler__c record for ContentDocumentLink. This test is
         //just for test coverage, and to verify no exception gets thrown.
         insert new ContentVersion(
             Title = 'Test',
