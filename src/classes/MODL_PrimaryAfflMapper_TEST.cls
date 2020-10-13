@@ -51,7 +51,7 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c);
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true);
         Test.stopTest();
 
         System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimayAfflModl.getAccountRecordTypeId());
@@ -77,7 +77,7 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c);
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true);
         Test.stopTest();
 
         System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getAccountRecordTypeId());
@@ -103,7 +103,7 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c);
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true);
         Test.stopTest();
 
         System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimayAfflModl.getAccountRecordTypeId());

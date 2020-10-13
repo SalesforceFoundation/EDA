@@ -36,6 +36,7 @@
 public class MODL_PrimaryAfflMapper {
 
     private Id accRecordTypeId;
+    private Boolean isValid;
     private String accRecTypeDeveloperName;
     private String accRecTypeName;
     private String contactFieldApiName;
@@ -50,8 +51,9 @@ public class MODL_PrimaryAfflMapper {
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
     *******************************************************************************************************/ 
-    public MODL_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue) {
+    public MODL_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue, Boolean isValid) {
         this.accRecordTypeId = accountRecordTypeInfo.getRecordTypeId();
+        this.isValid = isValid;
         this.accRecTypeDeveloperName = accountRecordTypeInfo.getDeveloperName();
         this.accRecTypeName = accountRecordTypeInfo.getName();
         this.contactFieldApiName = contactDescribeFieldResult.getName();
@@ -66,7 +68,8 @@ public class MODL_PrimaryAfflMapper {
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
     *******************************************************************************************************/ 
-    public MODL_PrimaryAfflMapper(Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue) {
+    public MODL_PrimaryAfflMapper(Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue, Boolean isValid) {
+        this.isValid = isValid;
         this.contactFieldApiName = contactDescribeFieldResult.getName();
         this.contactFieldLabel = contactDescribeFieldResult.getLabel();
         this.primaryAfflFieldValueFromSettings = settingsContactFieldValue;
@@ -79,8 +82,9 @@ public class MODL_PrimaryAfflMapper {
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
     *******************************************************************************************************/ 
-    public MODL_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, String settingsContactFieldValue, String settingsRecordTypeValue) {
+    public MODL_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, String settingsContactFieldValue, String settingsRecordTypeValue, Boolean isValid) {
         this.accRecordTypeId = accountRecordTypeInfo.getRecordTypeId();
+        this.isValid = isValid;
         this.accRecTypeDeveloperName = accountRecordTypeInfo.getDeveloperName();
         this.accRecTypeName = accountRecordTypeInfo.getName();
         this.primaryAfflFieldValueFromSettings = settingsContactFieldValue;
@@ -97,6 +101,14 @@ public class MODL_PrimaryAfflMapper {
             return this.accRecTypeValueFromSettings;
         }
         return (String)this.accRecordTypeId;
+    }
+
+    /*******************************************************************************************************
+    * @description Getter method to return the isValid property.
+    * @return True if setting is valid, False otherwise.
+    *******************************************************************************************************/ 
+    public Boolean getIsValid() {
+        return this.isValid;
     }
 
     /*******************************************************************************************************

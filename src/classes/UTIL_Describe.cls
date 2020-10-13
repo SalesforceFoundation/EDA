@@ -773,7 +773,7 @@ public class UTIL_Describe {
 
         // Obtain ALL Active Record Types for the given SObjectType objectType
         String soql = 'SELECT Id, Name, DeveloperName FROM RecordType ' + 'WHERE SObjectType = \''
-                        + String.escapeSingleQuotes(obj.getName()) + '\' ' + 'AND IsActive = TRUE';
+                        + String.escapeSingleQuotes(obj.getName()) + '\' ';
         List<SObject> results;
 
         try {

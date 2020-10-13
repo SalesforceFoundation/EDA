@@ -90,9 +90,14 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         try {
             for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
                 if (contact.get(eachModel.getContactFieldApiName()) == null) {
+                    if (eachModel.getIsValid() == false){
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    }
                     continue;
                 }
+
                 Affiliation__c afflToCreate;
+                
                 try {
                     afflToCreate = new Affiliation__c(Contact__c = contact.ID, Account__c = (Id)contact.get(eachModel.getContactFieldApiName()), Primary__c = true);
                 } catch (System.TypeException typeExc) {
@@ -167,17 +172,21 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 }
 
                 if (newContact.get(eachModel.getContactFieldApiName()) != null) {
-                         Affiliation__c afflToCreate;
-                         try {
-                             afflToCreate = new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true);
-                         } catch (System.TypeException typeExc) {
-                             newContact.addError(typeExc.getMessage());
-                             throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-                         } catch (System.StringException stringExc) {
-                             newContact.addError(stringExc.getMessage());
-                             throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-                         }
-                         affiliationsToCreateForEachContactList.add(afflToCreate);
+                    if (eachModel.getIsValid() == false){
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    }
+
+                    Affiliation__c afflToCreate;
+                    try {
+                        afflToCreate = new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true);
+                    } catch (System.TypeException typeExc) {
+                        newContact.addError(typeExc.getMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    } catch (System.StringException stringExc) {
+                        newContact.addError(stringExc.getMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    }
+                    affiliationsToCreateForEachContactList.add(afflToCreate);
                 }
 
                 if (oldContact.get(eachModel.getContactFieldApiName()) != null) {
