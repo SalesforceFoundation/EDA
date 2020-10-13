@@ -37,6 +37,6 @@ trigger TDTM_ContentDocumentLink on ContentDocumentLink (before insert, before u
         Trigger.isUndelete,
         Trigger.new,
         Trigger.old,
-        Schema.SObjectType.Event
+        Schema.SObjectType.ContentDocumentLink
     );
 }
