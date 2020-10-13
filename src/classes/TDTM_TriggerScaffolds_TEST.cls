@@ -44,7 +44,7 @@ private class TDTM_TriggerScaffolds_TEST {
         insert new Lead(Company = 'Pencil Makers', LastName = 'Smith');
 
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
-    }    
+    }
 
     public static testmethod void tdtmTask() {
         //Currently we don't have any Trigger_Handler__c record for Task. This test is
