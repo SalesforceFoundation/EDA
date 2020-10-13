@@ -555,24 +555,65 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/
     @isTest 
     private static void updateContactGenderInversionReciprocalMethod(){
+        Relationship_Lookup__c sonRelationshipLookup = new Relationship_Lookup__c(Name = 'Son',
+                                                                                Active__c = true,
+                                                                                Female__c = 'Mother',
+                                                                                Male__c = 'Father',
+                                                                                Neutral__c = 'Parent');
+        insert sonRelationshipLookup;
+
+        Relationship_Lookup__c fatherRelationshipLookup = new Relationship_Lookup__c(Name = 'Father',
+                                                                                Active__c = true,
+                                                                                Female__c = 'Daughter',
+                                                                                Male__c = 'Son',
+                                                                                Neutral__c = 'Child');
+        insert fatherRelationshipLookup;
+
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
 
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            testContacts[i].Gender__c = 'Male';
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);
+            }
+        }
+        insert testContacts;
 
-        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father-Son');
-        insert fatherSonRelationship;
+        for (Contact fatherContact : fatherContacts) {
+            newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+        }
+
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father' + Label.Relationship_Split + 'Son'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
+
+        Set<Id> fatherRelationshipIdsSet = new Set<Id>();
+        for (Relationship__c fatherRelationship : fatherRelationships) {
+            fatherRelationshipIdsSet.add(fatherRelationship.Id);
+        }
 
         Test.startTest();
-            fatherContact.Gender__c = 'Female';
-            update fatherContact;
+            for (Contact fatherContact : fatherContacts) {
+                fatherContact.Gender__c = 'Female';
+            }
+            update fatherContacts;
         Test.stopTest();
 
-        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id = :fatherSonRelationship.Id limit 1];
+        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id IN :fatherRelationshipIdsSet];
         
-        System.assertEquals(1, assertRelationships.size());
-        System.assertEquals('Son-Father', assertRelationships[0].Type__c);
+        System.assertEquals(5, assertRelationships.size());
+        for (Relationship__c resultRelationship : assertRelationships) {
+            System.assertEquals('Son' + Label.Relationship_Split + 'Father', resultRelationship.Type__c);
+        }
     }
 
     /*********************************************************************************************************
@@ -581,8 +622,6 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/
     @isTest 
     private static void updateContactGenderListReciprocalMethod(){
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Method'));
-
         Relationship_Lookup__c sonRelationshipLookup = new Relationship_Lookup__c(Name = 'Son',
                                                                                 Active__c = true,
                                                                                 Female__c = 'Mother',
@@ -596,23 +635,52 @@ private with sharing class REL_Relationships_Con_TEST {
                                                                                 Male__c = 'Son',
                                                                                 Neutral__c = 'Child');
         insert fatherRelationshipLookup;
-        
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
 
-        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherSonRelationship;
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
+
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            testContacts[i].Gender__c = 'Male';
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);
+            }
+        }
+        insert testContacts;
+
+        for (Contact fatherContact : fatherContacts) {
+            newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+        }
+
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
+
+        Set<Id> fatherRelationshipIdsSet = new Set<Id>();
+        for (Relationship__c fatherRelationship : fatherRelationships) {
+            fatherRelationshipIdsSet.add(fatherRelationship.Id);
+        }
 
         Test.startTest();
-            fatherContact.Gender__c = 'Female';
-            update fatherContact;
+            for (Contact fatherContact : fatherContacts) {
+                fatherContact.Gender__c = 'Female';
+            }
+            update fatherContacts;
         Test.stopTest();
 
-        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id = :fatherSonRelationship.Id limit 1];
+        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id IN :fatherRelationshipIdsSet];
         
-        System.assertEquals(1, assertRelationships.size());
-        System.assertEquals('Mother', assertRelationships[0].Type__c);
+        System.assertEquals(5, assertRelationships.size());
+        for (Relationship__c resultRelationship : assertRelationships) {
+            System.assertEquals('Mother', resultRelationship.Type__c);
+        }
     }
 
     /*********************************************************************************************************
@@ -621,6 +689,8 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/
     @isTest 
     private static void updateContactGenderEmptyReciprocalMethod(){
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = ''));
+
         Relationship_Lookup__c sonRelationshipLookup = new Relationship_Lookup__c(Name = 'Son',
                                                                                 Active__c = true,
                                                                                 Female__c = 'Mother',
@@ -635,22 +705,49 @@ private with sharing class REL_Relationships_Con_TEST {
                                                                                 Neutral__c = 'Child');
         insert fatherRelationshipLookup;
         
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
+        Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
+        for (Integer i = 0; i < 10; i++) {
+            testContacts[i].Gender__c = 'Male';
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);
+            }
+        }
+        insert testContacts;
 
-        Relationship__c fatherSonRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherSonRelationship;
+        for (Contact fatherContact : fatherContacts) {
+            newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+        }
+
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
+
+        Set<Id> fatherRelationshipIdsSet = new Set<Id>();
+        for (Relationship__c fatherRelationship : fatherRelationships) {
+            fatherRelationshipIdsSet.add(fatherRelationship.Id);
+        }
 
         Test.startTest();
-            fatherContact.Gender__c = 'Female';
-            update fatherContact;
+            for (Contact fatherContact : fatherContacts) {
+                fatherContact.Gender__c = 'Female';
+            }
+            update fatherContacts;
         Test.stopTest();
 
-        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id = :fatherSonRelationship.Id limit 1];
+        List<Relationship__c> assertRelationships = [SELECT Id, Type__c FROM Relationship__c WHERE Id IN :fatherRelationshipIdsSet];
         
-        System.assertEquals(1, assertRelationships.size());
-        System.assertEquals('Son', assertRelationships[0].Type__c);
+        System.assertEquals(5, assertRelationships.size());
+        for (Relationship__c resultRelationship : assertRelationships) {
+            System.assertEquals('Father', resultRelationship.Type__c);
+        }
     }
 
     /*********************************************************************************************************
@@ -1202,7 +1299,7 @@ private with sharing class REL_Relationships_Con_TEST {
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
-        
+
         Test.startTest();
             System.assertEquals(true, relConTdtm.isUpdateRecursion(), 'Update recursion trigger should be true.');
         Test.stopTest();
@@ -1262,16 +1359,30 @@ private with sharing class REL_Relationships_Con_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getRelationshipsToUpdateTest() {
-        Contact fatherContact = UTIL_UnitTestData_TEST.getContact();
-        Contact sonContact = UTIL_UnitTestData_TEST.getContact();
-        fatherContact.Gender__c = 'Male';
-        sonContact.Gender__c = 'Male';
-        insert new List<Contact>{fatherContact, sonContact};
+        List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> fatherContacts = new List<Contact>();
+        List<Contact> sonContacts = new List<Contact>();
         Map<Id, Contact> newContactRelationshipToUpdateByIdMap = new Map<Id, Contact>();
-        newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+        for (Integer i = 0; i < 10; i++) {
+            testContacts[i].Gender__c = 'Male';
+            if (i < 5) {
+                sonContacts.add(testContacts[i]); 
+            } else {
+                fatherContacts.add(testContacts[i]);
+            }
+        }
+        insert testContacts;
 
-        Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContact.Id, fatherContact.Id, 'Father');
-        insert fatherRelationship;
+        for (Contact fatherContact : fatherContacts) {
+            newContactRelationshipToUpdateByIdMap.put(fatherContact.Id, fatherContact);
+        }
+
+        List<Relationship__c> fatherRelationships = new List<Relationship__c>();
+        for (Integer i = 0; i < 5; i++) {
+            Relationship__c fatherRelationship = UTIL_UnitTestData_TEST.getRelationship(sonContacts[i].Id, fatherContacts[i].Id, 'Father'); 
+            fatherRelationships.add(fatherRelationship);
+        }
+        insert fatherRelationships;
 
         REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
 
@@ -1280,7 +1391,6 @@ private with sharing class REL_Relationships_Con_TEST {
         Test.stopTest();
 
 
-        System.assertEquals(1, relationshipsToUpdate.size());
-        System.assertEquals(fatherRelationship.Id, relationshipsToUpdate[0].Id);
+        System.assertEquals(5, relationshipsToUpdate.size());
     }
 }
