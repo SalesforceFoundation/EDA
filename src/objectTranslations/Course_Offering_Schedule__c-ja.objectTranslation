@@ -3,7 +3,7 @@
   <fields>
     <name>Course_Offering__c</name>
     <help>このスケジュールの対象の提供コース。</help>
-    <relationshipLabel>提供コーススケジュール</relationshipLabel>
+    <relationshipLabel>コース提供スケジュール</relationshipLabel>
     <label>提供コース</label>
   </fields>
   <fields>
@@ -14,7 +14,7 @@
   <fields>
     <name>Facility__c</name>
     <help>スケジュールされた提供コースの場所。</help>
-    <relationshipLabel>提供コーススケジュール</relationshipLabel>
+    <relationshipLabel>コース提供スケジュール</relationshipLabel>
     <label>施設</label>
   </fields>
   <fields>
@@ -74,10 +74,10 @@
       <section>Custom Links</section>
     </sections>
   </layouts>
-  <nameFieldLabel>提供コーススケジュール名</nameFieldLabel>
+  <nameFieldLabel>コース提供スケジュール名</nameFieldLabel>
   <standardFields>
     <name>Name</name>
-    <label>提供コーススケジュール名</label>
+    <label>コース提供スケジュール名</label>
   </standardFields>
   <caseValues>
     <plural>false</plural>

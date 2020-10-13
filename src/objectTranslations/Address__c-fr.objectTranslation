@@ -73,7 +73,7 @@
   </fields>
   <fields>
     <name>MailingStreet2__c</name>
-    <help>Informations complémentaires pour sur cette adresse, par exemple Suite ou Appartement.</help>
+    <help>Informations complémentaires sur cette adresse, par exemple Suite ou Appartement.</help>
     <label>Rue2</label>
   </fields>
   <fields>

@@ -2,7 +2,7 @@
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <name>AfflMappingsDescription</name>
-        <label>Les afiliacions primàries assignades apareixen en una secció especial d'afiliacions primàries al registre de contactes. El valor establert com a principal per a un tipus de registre del compte apareix als camps corresponents del registre de contacte, tal com es defineix a continuació. Per obtenir més informació, consulteu el</label>
+        <label>Les afiliacions primàries assignades apareixen en una secció especial d'afiliacions primàries al registre de contactes. El valor establert com a principal per a un tipus de registre del compte apareix als camps corresponents del registre de contacte, tal com es defineix a continuació. Per obtenir més informació, consulteu la documentació d'EDA. OR Per obtenir més informació, consulteu EDA documentation.</label>
     </customLabels>
     <customLabels>
         <name>AfflProgEnrollDeleted</name>

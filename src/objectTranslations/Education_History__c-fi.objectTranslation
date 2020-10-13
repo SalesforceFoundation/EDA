@@ -260,396 +260,396 @@
     <plural>false</plural>
     <caseType>Nominative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistoria</value>
+    <value>Koulutushistoria</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Nominative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriani</value>
+    <value>Koulutushistoriani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Nominative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriasi</value>
+    <value>Koulutushistoriasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Nominative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistoriat</value>
+    <value>Koulutushistoriat</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Nominative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriani</value>
+    <value>Koulutushistoriani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Nominative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriasi</value>
+    <value>Koulutushistoriasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Genitive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorian</value>
+    <value>Koulutushistorian</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Genitive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriani</value>
+    <value>Koulutushistoriani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Genitive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriasi</value>
+    <value>Koulutushistoriasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Genitive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioiden</value>
+    <value>Koulutushistorioiden</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Genitive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioideni</value>
+    <value>Koulutushistorioideni</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Genitive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioidesi</value>
+    <value>Koulutushistorioidesi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Inessive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistoriassa</value>
+    <value>Koulutushistoriassa</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Inessive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriassani</value>
+    <value>Koulutushistoriassani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Inessive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriassasi</value>
+    <value>Koulutushistoriassasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Inessive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioissa</value>
+    <value>Koulutushistorioissa</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Inessive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioissani</value>
+    <value>Koulutushistorioissani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Inessive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioissasi</value>
+    <value>Koulutushistorioissasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Elative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistoriasta</value>
+    <value>Koulutushistoriasta</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Elative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriastani</value>
+    <value>Koulutushistoriastani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Elative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriastasi</value>
+    <value>Koulutushistoriastasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Elative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioista</value>
+    <value>Koulutushistorioista</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Elative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioistani</value>
+    <value>Koulutushistorioistani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Elative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioistasi</value>
+    <value>Koulutushistorioistasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Illative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistoriaan</value>
+    <value>Koulutushistoriaan</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Illative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriaani</value>
+    <value>Koulutushistoriaani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Illative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriaasi</value>
+    <value>Koulutushistoriaasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Illative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioihin</value>
+    <value>Koulutushistorioihin</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Illative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioihini</value>
+    <value>Koulutushistorioihini</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Illative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioihisi</value>
+    <value>Koulutushistorioihisi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Adessive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorialla</value>
+    <value>Koulutushistorialla</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Adessive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriallani</value>
+    <value>Koulutushistoriallani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Adessive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriallasi</value>
+    <value>Koulutushistoriallasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Adessive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioilla</value>
+    <value>Koulutushistorioilla</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Adessive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioillani</value>
+    <value>Koulutushistorioillani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Adessive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioillasi</value>
+    <value>Koulutushistorioillasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Ablative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorialta</value>
+    <value>Koulutushistorialta</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Ablative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorialtani</value>
+    <value>Koulutushistorialtani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Ablative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorialtasi</value>
+    <value>Koulutushistorialtasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Ablative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioilta</value>
+    <value>Koulutushistorioilta</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Ablative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioiltani</value>
+    <value>Koulutushistorioiltani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Ablative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioiltasi</value>
+    <value>Koulutushistorioiltasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Allative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorialle</value>
+    <value>Koulutushistorialle</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Allative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorialleni</value>
+    <value>Koulutushistorialleni</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Allative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriallesi</value>
+    <value>Koulutushistoriallesi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Allative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioille</value>
+    <value>Koulutushistorioille</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Allative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioilleni</value>
+    <value>Koulutushistorioilleni</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Allative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioillesi</value>
+    <value>Koulutushistorioillesi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Essive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistoriana</value>
+    <value>Koulutushistoriana</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Essive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorianani</value>
+    <value>Koulutushistorianani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Essive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorianasi</value>
+    <value>Koulutushistorianasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Essive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioina</value>
+    <value>Koulutushistorioina</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Essive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioinani</value>
+    <value>Koulutushistorioinani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Essive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioinasi</value>
+    <value>Koulutushistorioinasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Translative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistoriaksi</value>
+    <value>Koulutushistoriaksi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Translative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriakseni</value>
+    <value>Koulutushistoriakseni</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Translative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriaksesi</value>
+    <value>Koulutushistoriaksesi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Translative</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioiksi</value>
+    <value>Koulutushistorioiksi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Translative</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioikseni</value>
+    <value>Koulutushistorioikseni</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Translative</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioiksesi</value>
+    <value>Koulutushistorioiksesi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Partitive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistoriaa</value>
+    <value>Koulutushistoriaa</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Partitive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistoriaani</value>
+    <value>Koulutushistoriaani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Partitive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistoriaasi</value>
+    <value>Koulutushistoriaasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Partitive</caseType>
     <possessive>None</possessive>
-    <value>Opetushistorioita</value>
+    <value>Koulutushistorioita</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Partitive</caseType>
     <possessive>First</possessive>
-    <value>Opetushistorioitani</value>
+    <value>Koulutushistorioitani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Partitive</caseType>
     <possessive>Second</possessive>
-    <value>Opetushistorioitasi</value>
+    <value>Koulutushistorioitasi</value>
   </caseValues>
 </CustomObjectTranslation>

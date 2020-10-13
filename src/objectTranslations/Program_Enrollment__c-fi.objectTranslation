@@ -62,7 +62,7 @@
   <fields>
     <name>Eligible_to_Enroll__c</name>
     <help>Valittuna tämä osoittaa, että opiskelija täyttää ohjelmavaatimukset ja on kelvollinen ilmoittautumaan.</help>
-    <label>Kelvollinen ilmoittautumaan</label>
+    <label>Kelvollinen rekisteröitymään</label>
   </fields>
   <fields>
     <name>End_Date__c</name>
@@ -72,7 +72,7 @@
   <fields>
     <name>Enrollment_Status__c</name>
     <help>Opiskelijan osallistumistila, esimerkiksi kokopäiväinen tai puoliaikainen.</help>
-    <label>Osallistumistila</label>
+    <label>Rekisteröinnin tila</label>
     <picklistValues>
       <masterLabel>Full-time</masterLabel>
       <translation>Kokoaikainen</translation>
@@ -114,10 +114,10 @@
       <section>Custom Links</section>
     </sections>
   </layouts>
-  <nameFieldLabel>Ohjelmaan ilmoittautumisen tunnus</nameFieldLabel>
+  <nameFieldLabel>Ohjelmaan rekisteröinnin tunnus</nameFieldLabel>
   <standardFields>
     <name>Name</name>
-    <label>Ohjelmaan ilmoittautumisen tunnus</label>
+    <label>Ohjelmaan rekisteröinnin tunnus</label>
   </standardFields>
   <caseValues>
     <plural>false</plural>

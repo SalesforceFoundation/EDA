@@ -4,7 +4,7 @@
     <name>Behavior_Involvement__c</name>
     <help>Käytösreaktio, jota tämä käytösreaktio koskee.</help>
     <relationshipLabel>Käytösreaktiot</relationshipLabel>
-    <label>Osallisuus käytöstilanteeseen</label>
+    <label>Riitatilanne</label>
   </fields>
   <fields>
     <name>Contact__c</name>
@@ -78,396 +78,396 @@
     <plural>false</plural>
     <caseType>Nominative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktio</value>
+    <value>Riitatilanteen seuraus</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Nominative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioni</value>
+    <value>Riitatilanteen seuraukseni</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Nominative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktiosi</value>
+    <value>Riitatilanteen seurauksesi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Nominative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktiot</value>
+    <value>Riitatilanteen seuraukset</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Nominative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioni</value>
+    <value>Riitatilanteen seuraukseni</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Nominative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktiosi</value>
+    <value>Riitatilanteen seurauksesi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Genitive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktion</value>
+    <value>Riitatilanteen seurauksen</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Genitive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioni</value>
+    <value>Riitatilanteen seuraukseni</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Genitive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktiosi</value>
+    <value>Riitatilanteen seurauksesi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Genitive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioiden</value>
+    <value>Riitatilanteen seurausten</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Genitive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioideni</value>
+    <value>Riitatilanteen seurausteni</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Genitive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioidesi</value>
+    <value>Riitatilanteen seuraustesi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Inessive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktiossa</value>
+    <value>Riitatilanteen seurauksessa</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Inessive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktiossani</value>
+    <value>Riitatilanteen seurauksessani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Inessive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktiossasi</value>
+    <value>Riitatilanteen seurauksessasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Inessive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioissa</value>
+    <value>Riitatilanteen seurauksissa</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Inessive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioissani</value>
+    <value>Riitatilanteen seurauksissani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Inessive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioissasi</value>
+    <value>Riitatilanteen seurauksissasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Elative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktiosta</value>
+    <value>Riitatilanteen seurauksesta</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Elative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktiostani</value>
+    <value>Riitatilanteen seurauksestani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Elative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktiostasi</value>
+    <value>Riitatilanteen seurauksestasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Elative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioista</value>
+    <value>Riitatilanteen seurauksista</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Elative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioistani</value>
+    <value>Riitatilanteen seurauksistani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Elative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioistasi</value>
+    <value>Riitatilanteen seurauksistasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Illative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioon</value>
+    <value>Riitatilanteen seuraukseen</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Illative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktiooni</value>
+    <value>Riitatilanteen seuraukseeni</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Illative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioosi</value>
+    <value>Riitatilanteen seuraukseesi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Illative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioihin</value>
+    <value>Riitatilanteen seurauksiin</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Illative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioihini</value>
+    <value>Riitatilanteen seurauksiini</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Illative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioihisi</value>
+    <value>Riitatilanteen seurauksiisi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Adessive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktiolla</value>
+    <value>Riitatilanteen seurauksella</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Adessive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktiollani</value>
+    <value>Riitatilanteen seurauksellani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Adessive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktiollasi</value>
+    <value>Riitatilanteen seurauksellasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Adessive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioilla</value>
+    <value>Riitatilanteen seurauksilla</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Adessive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioillani</value>
+    <value>Riitatilanteen seurauksillani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Adessive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioillasi</value>
+    <value>Riitatilanteen seurauksillasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Ablative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktiolta</value>
+    <value>Riitatilanteen seuraukselta</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Ablative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioltani</value>
+    <value>Riitatilanteen seuraukseltani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Ablative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioltasi</value>
+    <value>Riitatilanteen seuraukseltasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Ablative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioilta</value>
+    <value>Riitatilanteen seurauksilta</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Ablative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioiltani</value>
+    <value>Riitatilanteen seurauksiltani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Ablative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioiltasi</value>
+    <value>Riitatilanteen seurauksiltasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Allative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktiolle</value>
+    <value>Riitatilanteen seuraukselle</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Allative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktiolleni</value>
+    <value>Riitatilanteen seuraukselleni</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Allative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktiollesi</value>
+    <value>Riitatilanteen seurauksellesi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Allative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioille</value>
+    <value>Riitatilanteen seurauksille</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Allative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioilleni</value>
+    <value>Riitatilanteen seurauksilleni</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Allative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioillesi</value>
+    <value>Riitatilanteen seurauksillesi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Essive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktiona</value>
+    <value>Riitatilanteen seurauksena</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Essive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktionani</value>
+    <value>Riitatilanteen seurauksenani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Essive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktionasi</value>
+    <value>Riitatilanteen seurauksenasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Essive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioina</value>
+    <value>Riitatilanteen seurauksina</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Essive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioinani</value>
+    <value>Riitatilanteen seurauksinani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Essive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioinasi</value>
+    <value>Riitatilanteen seurauksinasi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Translative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioksi</value>
+    <value>Riitatilanteen seuraukseksi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Translative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktiokseni</value>
+    <value>Riitatilanteen seurauksekseni</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Translative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioksesi</value>
+    <value>Riitatilanteen seuraukseksesi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Translative</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioiksi</value>
+    <value>Riitatilanteen seurauksiksi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Translative</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioikseni</value>
+    <value>Riitatilanteen seurauksikseni</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Translative</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioiksesi</value>
+    <value>Riitatilanteen seurauksiksesi</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Partitive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktiota</value>
+    <value>Riitatilanteen seurausta</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Partitive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktiotani</value>
+    <value>Riitatilanteen seuraustani</value>
   </caseValues>
   <caseValues>
     <plural>false</plural>
     <caseType>Partitive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktiotasi</value>
+    <value>Riitatilanteen seuraustasi</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Partitive</caseType>
     <possessive>None</possessive>
-    <value>Käytösreaktioita</value>
+    <value>Riitatilanteen seurauksia</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Partitive</caseType>
     <possessive>First</possessive>
-    <value>Käytösreaktioitani</value>
+    <value>Riitatilanteen seurauksiani</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
     <caseType>Partitive</caseType>
     <possessive>Second</possessive>
-    <value>Käytösreaktioitasi</value>
+    <value>Riitatilanteen seurauksiasi</value>
   </caseValues>
 </CustomObjectTranslation>

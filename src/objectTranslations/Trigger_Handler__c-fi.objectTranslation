@@ -90,10 +90,10 @@
       <section>Custom Links</section>
     </sections>
   </layouts>
-  <nameFieldLabel>Käynnistyskäsittelijän nimi</nameFieldLabel>
+  <nameFieldLabel>Käynnistimen käsittelijän nimi</nameFieldLabel>
   <standardFields>
     <name>Name</name>
-    <label>Käynnistyskäsittelijän nimi</label>
+    <label>Käynnistimen käsittelijän nimi</label>
   </standardFields>
   <caseValues>
     <plural>false</plural>

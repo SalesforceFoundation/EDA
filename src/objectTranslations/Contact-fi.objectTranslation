@@ -3509,7 +3509,7 @@
   <fields>
     <name>Military_Background__c</name>
     <help>Kuvaile tämän henkilön asepalvelusta, esimerkiksi aselaji, palvelusajan kesto, eroamispäivä jne.</help>
-    <label>Tausta tuolustusvoimissa</label>
+    <label>Tausta puolustusvoimissa</label>
   </fields>
   <fields>
     <name>Military_Service__c</name>

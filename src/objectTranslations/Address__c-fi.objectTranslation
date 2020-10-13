@@ -61,7 +61,7 @@
   </fields>
   <fields>
     <name>MailingCounty__c</name>
-    <label>Postitusmaa</label>
+    <label>Postituspiirikunta</label>
   </fields>
   <fields>
     <name>MailingPostalCode__c</name>

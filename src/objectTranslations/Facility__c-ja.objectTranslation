@@ -19,7 +19,7 @@
   <fields>
     <name>Facility_Type__c</name>
     <help>この施設の種別を選択します (コンピュータ室、保健センター、講堂など)。</help>
-    <label>施設種別。</label>
+    <label>施設種別</label>
     <picklistValues>
       <masterLabel>Building</masterLabel>
       <translation>ビル</translation>

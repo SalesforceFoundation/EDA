@@ -53,7 +53,7 @@
   </fields>
   <fields>
     <name>Type__c</name>
-    <help>Décrit le lien entre le Contact associé et le Contact, par exemple ami, collègue tante, etc.</help>
+    <help>Décrit le lien entre le Contact associé et le Contact, par exemple ami, collègue, tante, etc.</help>
     <label>Type</label>
     <picklistValues>
       <masterLabel>Father</masterLabel>

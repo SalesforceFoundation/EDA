@@ -43,7 +43,7 @@
   <fields>
     <name>Sequence__c</name>
     <help>Tämän vaatimuksen paikka ohjelmasuunnitelmassa, esimerkiksi ”1” tarkoittaa ensimmäistä lukukautta. Käytä tätä kenttää osoittamaan koko ohjelmasuunnitelman yleinen eteneminen tai lajittelemaan alavaatimusten järjestys yhdessä pääsuunnitelmavaatimuksessa.</help>
-    <label>Sekvenssi</label>
+    <label>Järjestysnumero</label>
   </fields>
   <layouts>
     <layout>HEDA Plan Requirement Layout</layout>

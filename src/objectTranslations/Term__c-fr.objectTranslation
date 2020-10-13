@@ -29,7 +29,7 @@
   </fields>
   <fields>
     <name>Start_Date__c</name>
-    <help>La date à laquelle cette période se termine.</help>
+    <help>La date à laquelle cette période commence.</help>
     <label>Date de début</label>
   </fields>
   <fields>

@@ -666,7 +666,7 @@
     </customLabels>
     <customLabels>
         <name>stgHelpDefaultContactLanguageFluency</name>
-        <label>Sujuvuusarvo asetetaan uusille yhteyshenkilön kieletietueille automaattisesti, kun käyttäjät asettavat ensisijainen kieli -hakukentän yhteyshenkilölle.</label>
+        <label>Sujuvuusarvo asetetaan uusille yhteyshenkilön kielitietueille automaattisesti, kun käyttäjät asettavat ensisijainen kieli -hakukentän yhteyshenkilölle.</label>
     </customLabels>
     <customLabels>
         <name>stgHelpDefaultFacultyType</name>
@@ -686,7 +686,7 @@
     </customLabels>
     <customLabels>
         <name>stgHelpEnableCourseConnections</name>
-        <label>Kurssiyhteyksien tietueet yhdistävät yhteyshenkilön kurssitarjontaan. Tämän ominaisuuden ottaminen käyttöön antaa käyttäjien valita yhteyshenkilötyypin (opetushenkiöstö tai opiskelija), jolle kurssiyhteys luodaan. Kun otat tämän ominaisuuden käyttöön, sinun on myös asetettava alla oletusarvoinen aktiivinen opiskelijatietueen tyyppi ja opetushenkiöstön oletustietuetyyppi. Jos otat tämän ominaisuuden käyttöön ensimmäistä kertaa, suosittelemme, että suoritat kurssiyhteyksien täyttö -ominaisuuden.</label>
+        <label>Kurssiyhteyksien tietueet yhdistävät yhteyshenkilön kurssitarjontaan. Tämän ominaisuuden ottaminen käyttöön antaa käyttäjien valita yhteyshenkilötyypin (opetushenkilöstö tai opiskelija), jolle kurssiyhteys luodaan. Kun otat tämän ominaisuuden käyttöön, sinun on myös asetettava alla oletusarvoinen aktiivinen opiskelijatietueen tyyppi ja opetushenkilöstön oletustietuetyyppi. Jos otat tämän ominaisuuden käyttöön ensimmäistä kertaa, suosittelemme, että suoritat kurssiyhteyksien täyttö -ominaisuuden.</label>
     </customLabels>
     <customLabels>
         <name>stgHelpEnsureExistContactPreferEmail</name>

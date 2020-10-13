@@ -97,7 +97,7 @@
   </fields>
   <fields>
     <name>Default_Contact_Language_Fluency__c</name>
-    <help>Sujuvuusarvo asetetaan uusille yhteyshenkilön kieletietueille automaattisesti, kun käyttäjät asettavat ensisijainen kieli -hakukentän yhteyshenkilölle.</help>
+    <help>Sujuvuusarvo asetetaan uusille yhteyshenkilön kielitietueille automaattisesti, kun käyttäjät asettavat ensisijainen kieli -hakukentän yhteyshenkilölle.</help>
     <label>Yhteyshenkilön kielen oletussujuvuus</label>
   </fields>
   <fields>

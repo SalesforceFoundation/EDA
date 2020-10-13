@@ -7,7 +7,7 @@
   </fields>
   <fields>
     <name>Applicant__c</name>
-    <help>Le contact qui effectue une demande auprès de l'établissement ou pour la programme.</help>
+    <help>Le contact qui effectue une demande auprès de l'établissement ou pour le programme.</help>
     <relationshipLabel>Demandes (demandeur)</relationshipLabel>
     <label>Demandeur</label>
   </fields>

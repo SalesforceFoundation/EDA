@@ -26,7 +26,7 @@
   </fields>
   <fields>
     <name>Test_Date__c</name>
-    <help>Päivämäärä, jolloin hakija tai virallinen lähde osoittaa testi aloitettiin.</help>
+    <help>Päivämäärä, jolloin hakija tai virallinen lähde osoittaa testi alkaneen.</help>
     <label>Testipäivä</label>
   </fields>
   <fields>

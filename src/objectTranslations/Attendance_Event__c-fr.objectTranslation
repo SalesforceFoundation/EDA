@@ -60,7 +60,7 @@
   </fields>
   <fields>
     <name>Reason__c</name>
-    <help>Sélectionnez l'option avec le plus de précision le motif d'absence ou de retard de l'étudiant. Utilisez le champ Description du motif pour saisir des informations supplémentaires.</help>
+    <help>Sélectionnez l'option décrivant avec le plus de précision le motif d'absence ou de retard de l'étudiant. Utilisez le champ Description du motif pour saisir des informations supplémentaires.</help>
     <label>Motif</label>
     <picklistValues>
       <masterLabel>Family</masterLabel>
