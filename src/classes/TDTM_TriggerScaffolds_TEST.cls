@@ -44,7 +44,7 @@ private class TDTM_TriggerScaffolds_TEST {
         insert new Lead(Company = 'Pencil Makers', LastName = 'Smith');
 
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
-    }
+    }    
 
     public static testmethod void tdtmTask() {
         //Currently we don't have any Trigger_Handler__c record for Task. This test is
@@ -147,6 +147,22 @@ private class TDTM_TriggerScaffolds_TEST {
         //just for test coverage, and to verify no exception gets thrown.
         insert new Test_Score__c();
 
+        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
+    }
+
+    public static testmethod void tdtmContentDocumentLink() {
+        //Currently we don't have any Trigger_Handler__c record for Lead. This test is
+        //just for test coverage, and to verify no exception gets thrown.
+        insert new ContentVersion(
+            Title = 'Test',
+            PathOnClient = 'Test.jpg',
+            VersionData = Blob.valueOf('Test Content Data')
+        );
+        Application__c a = new Application__c();
+        insert a;
+        Id cdId = [Select Id from ContentDocument Limit 1].Id;
+        insert new ContentDocumentLink(ContentDocumentId = cdId, LinkedEntityId = a.Id);
+       
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
     }
 
