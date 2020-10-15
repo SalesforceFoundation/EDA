@@ -29,7 +29,7 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Mapper class for CON_Preferred_Email
+* @description Mapper class for CON_Preferred_Email. Returns MODL_PreferredEmailSettings model.
 */
 public virtual with sharing class MAPR_CON_PreferredEmailFields {
 
@@ -94,6 +94,8 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
         List<MODL_PreferredEmailField> prefEmailFieldModels = new List<MODL_PreferredEmailField>();
         EDAEmailFieldsModel edaEmailFieldModel = new EDAEmailFieldsModel(edaEmailFieldAPINamesByLabel);
 
+        /* Construct a List of MODL_PreferredEmailField.cls records and alternateEmailFieldPrefLabel
+           to be then used to create and return MODL_PreferredEmailSettings.cls record */
         for (String contactEmailfieldAPIName: contactEmailFieldsByApiName.keySet()) {
 
             String contactEmailFieldLabel = contactEmailFieldsByApiName.get(contactEmailfieldAPIName).getLabel();
@@ -102,7 +104,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
                 continue;
             }
 
-            String PreferredLabel = this.getPreferredLabelFromLabel(contactEmailFieldLabel, preferredEmailPicklistValuesByLabel, legacyPreferredEmailPicklistValuesByLabel);
+            String preferredLabel = this.getPreferredLabelFromLabel(contactEmailFieldLabel, preferredEmailPicklistValuesByLabel, legacyPreferredEmailPicklistValuesByLabel);
             MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField(contactEmailFieldLabel, contactEmailfieldAPIName, PreferredLabel);
 
             if (contactEmailfieldAPIName == UTIL_Namespace.StrTokenNSPrefix('AlternateEmail__c')) {
@@ -143,7 +145,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
     **************************************************************************************/
     @TestVisible
     private Boolean getPreferredEmailValidationEnabled() {
-        return UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Email_Enforcement__c;
+        return !UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Email_Enforcement__c;
     }
 
     /**************************************************************************************

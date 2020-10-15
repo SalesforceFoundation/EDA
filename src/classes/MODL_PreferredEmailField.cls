@@ -31,7 +31,7 @@
 * @group-content ../../ApexDocContent/
 * @description Model class for 
 */
-public class MODL_PreferredEmailField {
+public virtual with sharing class MODL_PreferredEmailField {
 
     public String emailTypeFieldLabel { get; private set; }
     public String emailTypeFieldApiName { get; private set; }

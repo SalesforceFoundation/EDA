@@ -187,7 +187,7 @@ private class MAPR_CON_PreferredEmailFields_TEST {
     }
 
     /******************************************************************************************************************************************************************
-    * @description Test method to verify that the getPreferredEmailValidationEnabled returns the value strored in Custom Settings
+    * @description Test method to verify that the getPreferredEmailValidationEnabled returns the negated value strored in Custom Settings
     ******************************************************************************************************************************************************************/
     @isTest
     private static void getPreferredEmailValidationEnabled() {
@@ -199,7 +199,7 @@ private class MAPR_CON_PreferredEmailFields_TEST {
             Boolean ispreferredEmailValidationEnabled = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailValidationEnabled();
         Test.stopTest();
         
-        System.assertEquals(true, ispreferredEmailValidationEnabled);
+        System.assertEquals(false, ispreferredEmailValidationEnabled);
         
     }
 
