@@ -249,7 +249,7 @@ private class CON_PreferredEmail_TEST {
             update testContact;
         Test.stopTest();
         
-        Contact updatedContact = [SELECT Id, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        Contact updatedContact = [SELECT Id, Email, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
         System.assertEquals(testContact.AlternateEmail__c, updatedContact.Email);
         System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
         
