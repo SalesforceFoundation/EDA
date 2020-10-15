@@ -29,16 +29,16 @@
 */
 /**
 * @author Salesforce.org
-* @date 2015
+* @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Test class for Preferred Email
+* @description Test class for Preferred Email functionality
 */
 @isTest
 private class CON_PreferredEmail_TEST {
 
 	@isTest 
-    static void preferredEmailNotBlankOnInsert() {
+    static void preferredEmailNotBlankOnInsertWithEnforcementEnabled() {
 		UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
             );
@@ -56,9 +56,29 @@ private class CON_PreferredEmail_TEST {
             System.assert(error.getMessage().contains(Label.PreferredEmailMatchNotNull));
         }
     }
+    
+    @isTest 
+    static void preferredEmailNotBlankOnInsertWithEnforcementDisabled() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        testContact.Preferred_Email__c = 'Alternate';
+        
+        try {
+            Test.startTest();
+            insert testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
+        } catch (DmlException error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailMatchNotNull));
+        }
+    }
 
     @isTest 
-    static void preferredEmailNotBlankOnUpdate() {
+    static void preferredEmailNotBlankOnUpdateWithEnforcementEnabled() {
 		UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
             );
@@ -71,6 +91,27 @@ private class CON_PreferredEmail_TEST {
         try {
             Test.startTest();
                 update testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
+        } catch (DmlException error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailMatchNotNull));
+        }
+    }
+    
+    @isTest 
+    static void preferredEmailNotBlankOnUpdateWithEnforcementDisabled() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        insert testContact;
+        
+        testContact.Preferred_Email__c = 'Alternate';
+        try {
+            Test.startTest();
+            update testContact;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
@@ -123,26 +164,26 @@ private class CON_PreferredEmail_TEST {
 
     @isTest 
     static void standardEmailNotBlankOnUpdate() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
-            );
-
+        );
+        
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Email = '';
         insert testContact;
-
+        
         Test.startTest();
             testContact.Email = 'test@sf.org';
             update testContact;
         Test.stopTest();
-
+        
         Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
-
+        
         System.assertEquals(updatedContact.AlternateEmail__c, testContact.Email);
         System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
-
+        
     }
-    
+
     @isTest 
     static void clearEmailFieldsOnUpdate() {
 		UTIL_CustomSettingsFacade.getSettingsForTests(
@@ -167,14 +208,14 @@ private class CON_PreferredEmail_TEST {
 
         Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
 
-        System.assertEquals('', testContact.Email);
         System.assertEquals('', testContact.AlternateEmail__c);
         System.assertEquals(null, updatedContact.Preferred_Email__c);
+        System.assertEquals('', testContact.Email);
 
     } 
     
 	@isTest 
-    static void singleEmailInsertSmartSet() {
+    static void singleEmailSmartSetOnInsert() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
@@ -187,9 +228,31 @@ private class CON_PreferredEmail_TEST {
             insert testContact;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        Contact updatedContact = [SELECT Id, Email, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        System.assertEquals(testContact.AlternateEmail__c, updatedContact.Email);
         System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
 
+    }
+    
+    @isTest 
+    static void singleEmailSmartSetOnUpdate() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        insert testContact;
+        
+        Test.startTest();
+            testContact.AlternateEmail__c = 'test@sf.org';
+            update testContact;
+        Test.stopTest();
+        
+        Contact updatedContact = [SELECT Id, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        System.assertEquals(testContact.AlternateEmail__c, updatedContact.Email);
+        System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
+        
     }
     
     @isTest 
@@ -212,11 +275,39 @@ private class CON_PreferredEmail_TEST {
             System.assert(error.getMessage().contains(Label.PreferredEmailRequiredError));
         }
     }
-
+    
     @isTest 
-    static void insertWithPreferredEmailMatchNotNullError() {
+    static void multipleEmailsOnUpdate() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
 
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        insert testContact;
+
+
+        try {
+            Test.startTest();
+                testContact.AlternateEmail__c = 'test@sf.org';
+                testContact.WorkEmail__c = 'test@sf.org';
+                update testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when multiple email fields have value and when Preferred Email is Blank.');
+        } catch (DmlException  error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailRequiredError));
+        }
+    }
+
+    @isTest 
+    static void insertWithPreferredEmailMatchNotNullErrorWithEnforcementEnabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
         testContact.Preferred_Email__c = 'Alternate Email';
         testContact.WorkEmail__c = 'test@sf.org';
 
@@ -230,9 +321,82 @@ private class CON_PreferredEmail_TEST {
         }
     }
     
+        
     @isTest 
-    static void copyValueToStandardField() {
+    static void insertWithPreferredEmailMatchNotNullErrorWithEnforcementDisabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        testContact.Preferred_Email__c = 'Alternate Email';
+        testContact.WorkEmail__c = 'test@sf.org';
+        
+        try {
+            Test.startTest();
+                insert testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
+        } catch (DmlException error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailMatchNotNull));
+        }
+    }
+    
+    @isTest 
+    static void updateWithPreferredEmailMatchNotNullErrorWithEnforcementEnabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        insert testContact;
 
+        try {
+            Test.startTest();
+                testContact.Preferred_Email__c = 'Alternate Email';
+                testContact.WorkEmail__c = 'test@sf.org';
+                update testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
+        } catch (DmlException error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailMatchNotNull));
+        }
+    }
+    
+    @isTest 
+    static void updateWithPreferredEmailMatchNotNullErrorWithEnforcementDisabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        insert testContact;
+
+        try {
+            Test.startTest();
+                testContact.Preferred_Email__c = 'Alternate Email';
+                testContact.WorkEmail__c = 'test@sf.org';
+                update testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
+        } catch (DmlException error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailMatchNotNull));
+        }
+    }
+
+    @isTest 
+    static void copyValueToStandardFieldOnInsertWithEnforcementEnabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+        
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'Work Email';
         testContact.WorkEmail__c = 'test@sf.org';
@@ -248,7 +412,76 @@ private class CON_PreferredEmail_TEST {
     }
     
     @isTest 
-    static void fieldNotFoundTest() {
+    static void copyValueToStandardFieldOnInsertWithEnforcementDisabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Preferred_Email__c = 'Work Email';
+        testContact.WorkEmail__c = 'test@sf.org';
+        testContact.Email = '';
+        
+        Test.startTest();
+            insert testContact;
+        Test.stopTest();
+        
+        Contact updatedContact = [SELECT Id, Email FROM Contact WHERE Id =: testContact.Id];
+        System.assertEquals(updatedContact.Email, testContact.WorkEmail__c);
+        
+    }
+    
+    @isTest 
+    static void copyValueToStandardFieldOnUpdateWithEnforcementEnabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        insert testContact;
+        
+        Test.startTest();
+            testContact.Preferred_Email__c = 'Work Email';
+            testContact.WorkEmail__c = 'test@sf.org';
+            update testContact;
+        Test.stopTest();
+        
+        Contact updatedContact = [SELECT Id, Email FROM Contact WHERE Id =: testContact.Id];
+        System.assertEquals(updatedContact.Email, testContact.WorkEmail__c);
+        
+    }
+    
+    @isTest 
+    static void copyValueToStandardFieldOnUpdateWithEnforcementDisabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Email = '';
+        insert testContact;
+        
+        Test.startTest();
+            testContact.Preferred_Email__c = 'Work Email';
+            testContact.WorkEmail__c = 'test@sf.org';
+            update testContact;
+        Test.stopTest();
+        
+        Contact updatedContact = [SELECT Id, Email FROM Contact WHERE Id =: testContact.Id];
+        System.assertEquals(updatedContact.Email, testContact.WorkEmail__c);
+        
+    }
+    
+    @isTest 
+    static void fieldNotFoundOnInsertWithEnforcementDisabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
 
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'Test sf Email';
@@ -261,6 +494,71 @@ private class CON_PreferredEmail_TEST {
         System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
         } catch (DmlException error) {
              System.assert(error.getMessage().contains(Label.PreferredEmailMatchMustExist));
+        }
+    }
+    
+    @isTest 
+    static void fieldNotFoundOnInsertWithEnforcementEnabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact.Preferred_Email__c = 'Test sf Email';
+        testContact.WorkEmail__c = 'test@sf.org';
+        
+        try {
+            Test.startTest();
+                insert testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
+        } catch (DmlException error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailMatchMustExist));
+        }
+    }
+    
+    @isTest 
+    static void fieldNotFoundOnUpdateWithEnforcementEnabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        insert testContact;
+
+        try {
+            Test.startTest();
+                testContact.Preferred_Email__c = 'Test sf Email';
+                testContact.WorkEmail__c = 'test@sf.org';
+                update testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
+        } catch (DmlException error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailMatchMustExist));
+        }
+    }
+    
+    @isTest 
+    static void fieldNotFoundOnUpdateWithEnforcementDisabled() {
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+        
+        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        insert testContact;
+        
+        try {
+            Test.startTest();
+                testContact.Preferred_Email__c = 'Test sf Email';
+                testContact.WorkEmail__c = 'test@sf.org';
+                update testContact;
+            Test.stopTest();
+            System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
+        } catch (DmlException error) {
+            System.assert(error.getMessage().contains(Label.PreferredEmailMatchMustExist));
         }
     }
 
