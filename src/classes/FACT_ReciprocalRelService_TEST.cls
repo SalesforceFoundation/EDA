@@ -49,7 +49,8 @@ private class FACT_ReciprocalRelService_TEST {
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipInversionInstance = FACT_ReciprocalRelationshipService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(true, srvcReciprocalRelationshipInversionInstance instanceof SRVC_ReciprocalRelationshipInversion, 'Instance of service class returned should match static instance variable.');
+        //Have to compare the class name the hard way because we don't have singleton for SRVC_ReciprocalRelationshipInversion
+        System.assertEquals('SRVC_ReciprocalRelationshipInversion', String.valueOf(srvcReciprocalRelationshipInversionInstance).split(':')[0], 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipInversionInstance != null, 'Instance of service class should not be null.');
     }
 
@@ -65,7 +66,8 @@ private class FACT_ReciprocalRelService_TEST {
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipListInstance = FACT_ReciprocalRelationshipService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(true, srvcReciprocalRelationshipListInstance instanceof SRVC_ReciprocalRelationshipList, 'Instance of service class returned should match static instance variable.');
+        //Have to compare the class name the hard way because we don't have singleton for SRVC_ReciprocalRelationshipList
+        System.assertEquals('SRVC_ReciprocalRelationshipList', String.valueOf(srvcReciprocalRelationshipListInstance).split(':')[0], 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipListInstance != null, 'Instance of service class should not be null.');
     }
 
@@ -75,11 +77,14 @@ private class FACT_ReciprocalRelService_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceEmptyTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = ''));
+
         Test.startTest();
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance = FACT_ReciprocalRelationshipService.getInstance();
-        Test.stopTest();
+        Test.stopTest();     
 
-        System.assertEquals(true, srvcReciprocalRelationshipInstance instanceof SRVC_ReciprocalRelationship, 'Instance of service class returned should match static instance variable.');
+        //Have to compare the class name the hard way because we don't have singleton for SRVC_ReciprocalRelationship
+        System.assertEquals('SRVC_ReciprocalRelationship', String.valueOf(srvcReciprocalRelationshipInstance).split(':')[0], 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipInstance != null, 'Instance of service class should not be null.');
     }
 
@@ -89,12 +94,15 @@ private class FACT_ReciprocalRelService_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceEmptyExistingTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = ''));
+
         Test.startTest();
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance1 = FACT_ReciprocalRelationshipService.getInstance();
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance2 = FACT_ReciprocalRelationshipService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(true, srvcReciprocalRelationshipInstance1 instanceof SRVC_ReciprocalRelationship, 'Instance of service class returned should match static instance variable.');
+        //Have to compare the class name the hard way because we don't have singleton for SRVC_ReciprocalRelationship
+        System.assertEquals('SRVC_ReciprocalRelationship', String.valueOf(srvcReciprocalRelationshipInstance1).split(':')[0], 'Instance of service class returned should match static instance variable.');
         System.assertEquals(srvcReciprocalRelationshipInstance1, srvcReciprocalRelationshipInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
         System.assertEquals(true, srvcReciprocalRelationshipInstance1 != null, 'Instance of service class should not be null.');
     }
