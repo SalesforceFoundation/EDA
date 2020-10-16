@@ -63,7 +63,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
-            return handleAfterUpdate(newList, oldList);
+            return this.handleAfterUpdate(newList, oldList);
         }
  
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
@@ -162,7 +162,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
                 
         this.unsetUpdateRecursion();
 
-        return dmlWrapper;
+        return null;
     }
 
     /*******************************************************************************************************
