@@ -895,20 +895,21 @@ private with sharing class CON_PrimaryAffls_TEST {
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
         }
 
-        try{        
-            Test.startTest();
-                insert contactsToBeInserted;
-            Test.stopTest();
-            System.assert(false, 'Always throw an exception when Primary Affl Field is not valid and when Affiliation Record Type is Enforced ');
-        } catch (System.DmlException ex) {
-            System.assert(ex.getMessage().contains(Label.afflAccoutMappingError));
+        Test.startTest();
+        insert contactsToBeInserted;
+        Test.stopTest();
+
+        List<Contact> conList = [SELECT Id, 
+                                    (SELECT Id FROM Affl_Accounts__r)
+                                 FROM Contact
+                                 WHERE Id IN :contactsToBeInserted];
+        //List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c];
+
+        System.assertEquals(5, conList.size(), 'Five Contacts should be created.');
+
+        for (Contact con : conList){
+            System.assertEquals(true, con.Affl_Accounts__r.isEmpty(), 'Enabling record type validation should prevent creation of affiliation records.');
         }
-
-        List<Contact> conList = [SELECT Id FROM Contact];
-        List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c];
-
-        System.assertEquals(true, afflList.isEmpty());
-        System.assertEquals(true, conList.isEmpty());
     }
 
     /*************************************************************************************************************************

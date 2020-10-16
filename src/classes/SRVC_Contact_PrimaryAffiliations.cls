@@ -112,6 +112,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
             return new List<Affiliation__c>();
         }
+
         return affiliationsToCreateForEachContactList;
     }
 
@@ -177,6 +178,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                     }
 
                     Affiliation__c afflToCreate;
+
                     try {
                         afflToCreate = new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true);
                     } catch (System.TypeException typeExc) {

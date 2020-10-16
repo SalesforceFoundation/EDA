@@ -785,18 +785,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = testAccounts[0].Id);
         AFFL_ContactAccChange_TEST.resetAfflFlags();
 
-        Test.startTest();
-            try {
-                insert contact;
-                System.assert(false, 'Always throw an exception when Account record type is not a part of Affiliation Mappings and when Affiliation Record Type is Enforced.');
-            } catch (System.DmlException error) {
-                System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
-            }
-        Test.stopTest();
-
         //Assert
         List<Affiliation__c> assertAffls = [SELECT ID FROM Affiliation__c];
-        System.assertEquals(0, assertAffls.size());
+        System.assertEquals(0, assertAffls.size(), 'Affiliation should not be created for invalid Account Record Type and Contact field mappings.');
     }
 
     /*********************************************************************************************************
@@ -1217,8 +1208,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
-       and Affilaiton Mappings have Record Type Names for Account Record Type */
-
+       and Affilation Mappings have Record Type Names for Account Record Type */
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecType() {
         AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndLabel();

@@ -45,11 +45,12 @@ public class MODL_PrimaryAfflMapper {
     private String accRecTypeValueFromSettings;
 
     /*******************************************************************************************************
-    * @description Constructor with 4 parameters
+    * @description Constructor with 5 parameters
     * @param accountRecordTypeInfo Schema.RecordTypeInfo of Account
     * @param contactDescribeFieldResult Schema.DescribeFieldResult for Contact's field
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
+    * @param isValid Boolean flag to indicate whether the Record Type Affiliation maps to a valid Account record type.
     *******************************************************************************************************/ 
     public MODL_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue, Boolean isValid) {
         this.accRecordTypeId = accountRecordTypeInfo.getRecordTypeId();
@@ -63,10 +64,11 @@ public class MODL_PrimaryAfflMapper {
     }
 
     /*******************************************************************************************************
-    * @description Constructor with 3 parameters
+    * @description Constructor with 4 parameters
     * @param contactDescribeFieldResult Schema.DescribeFieldResult for Contact's field
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
+    * @param isValid Boolean flag to indicate whether the Record Type Affiliation maps to a valid Account record type.
     *******************************************************************************************************/ 
     public MODL_PrimaryAfflMapper(Schema.DescribeFieldResult contactDescribeFieldResult, String settingsContactFieldValue, String settingsRecordTypeValue, Boolean isValid) {
         this.isValid = isValid;
@@ -77,10 +79,11 @@ public class MODL_PrimaryAfflMapper {
     }
 
     /*******************************************************************************************************
-    * @description Constructor with 3 parameters
+    * @description Constructor with 4 parameters
     * @param accountRecordTypeInfo Schema.RecordTypeInfo of Account
     * @param settingsContactFieldValue 'Contact Primary Affl Field' from EDA Settings.
     * @param settingsRecordTypeValue 'Account Record Type' value from EDA Settings.
+    * @param isValid Boolean flag to indicate whether the Record Type Affiliation maps to a valid Account record type.
     *******************************************************************************************************/ 
     public MODL_PrimaryAfflMapper(Schema.RecordTypeInfo accountRecordTypeInfo, String settingsContactFieldValue, String settingsRecordTypeValue, Boolean isValid) {
         this.accRecordTypeId = accountRecordTypeInfo.getRecordTypeId();
