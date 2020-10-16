@@ -1334,7 +1334,7 @@ private with sharing class REL_Relationships_Con_TEST {
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipInversionInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();        
         Test.stopTest();
 
-        System.assertEquals(new SRVC_ReciprocalRelationshipInversion(), srvcReciprocalRelationshipInversionInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals('SRVC_ReciprocalRelationshipInversion', String.valueOf(srvcReciprocalRelationshipInversionInstance).split(':')[0], 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipInversionInstance != null, 'Instance of service class should not be null.');
     }
 
@@ -1350,7 +1350,7 @@ private with sharing class REL_Relationships_Con_TEST {
             SRVC_ReciprocalRelationship srvcReciprocalRelationshipInstance = relRelationshipsConTDTM.locateReciprocalRelationshipService();
         Test.stopTest();
 
-        System.assertEquals(new SRVC_ReciprocalRelationship(), srvcReciprocalRelationshipInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals('SRVC_ReciprocalRelationship', String.valueOf(srvcReciprocalRelationshipInstance).split(':')[0], 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcReciprocalRelationshipInstance != null, 'Instance of service class should not be null.');
     }
 
