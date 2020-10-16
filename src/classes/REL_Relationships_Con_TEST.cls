@@ -1344,6 +1344,7 @@ private with sharing class REL_Relationships_Con_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void locateReciprocalRelationshipServiceEmptyTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = ''));
         REL_Relationships_Con_TDTM relRelationshipsConTDTM = new REL_Relationships_Con_TDTM();
 
         Test.startTest();
