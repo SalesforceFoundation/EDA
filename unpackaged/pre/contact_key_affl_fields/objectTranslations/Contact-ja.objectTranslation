@@ -3,7 +3,7 @@
   <fields>
     <name>Primary_Academic_Program__c</name>
     <relationshipLabel>学生</relationshipLabel>
-    <label>主学問的プログラム</label>
+    <label>主アカデミックプログラム</label>
   </fields>
   <fields>
     <name>Primary_Department__c</name>

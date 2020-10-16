@@ -2,8 +2,8 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <recordTypes>
     <name>Academic_Program</name>
-    <label>学問的プログラム</label>
-    <description>教育機関で提供される学問的プログラム。</description>
+    <label>アカデミックプログラム</label>
+    <description>教育機関で提供されるアカデミックプログラム。</description>
   </recordTypes>
   <recordTypes>
     <name>Administrative</name>

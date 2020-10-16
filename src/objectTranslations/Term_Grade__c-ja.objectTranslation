@@ -2,30 +2,30 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Contact__c</name>
-    <help>この評価が記録される学生。空白のままにした場合、保存時に有効なコース接続から取引先責任者が自動入力されます。</help>
+    <help>この評価が記録される学生。空白のままにした場合、保存時に有効な履修科目から取引先責任者が自動入力されます。</help>
     <relationshipLabel>学期評価</relationshipLabel>
     <label>取引先責任者</label>
   </fields>
   <fields>
     <name>Course_Connection__c</name>
-    <help>学生がこの評価を受けたクラス。学期評価上の取引先責任者と提供コースは、コース接続レコード上の取引先責任者と提供コースに一致する必要があります。</help>
+    <help>学生がこの評価を受けたクラス。学期評価上の取引先責任者と開講科目は、履修科目レコード上の取引先責任者と開講科目に一致する必要があります。</help>
     <relationshipLabel>学期評価</relationshipLabel>
-    <label>コース接続</label>
+    <label>履修科目</label>
   </fields>
   <fields>
     <name>Course_Offering__c</name>
-    <help>記録される評価に関連付けられた提供コース。空白のままにした場合、保存時に有効なコース接続から提供コースが自動入力されます。</help>
+    <help>記録される評価に関連付けられた開講科目。空白のままにした場合、保存時に有効な履修科目から開講科目が自動入力されます。</help>
     <relationshipLabel>学期評価</relationshipLabel>
-    <label>提供コース</label>
+    <label>開講科目</label>
   </fields>
   <fields>
     <name>Credits_Attempted__c</name>
-    <help>この学期で取得可能なこのコースの単位数。</help>
-    <label>試行単位数</label>
+    <help>この学期で取得可能なこの科目の単位数。</help>
+    <label>履修単位数</label>
   </fields>
   <fields>
     <name>Credits_Earned__c</name>
-    <help>この学期で学生が取得したこのコースの単位数。</help>
+    <help>この学期で学生が取得したこの科目の単位数。</help>
     <label>取得単位数</label>
   </fields>
   <fields>

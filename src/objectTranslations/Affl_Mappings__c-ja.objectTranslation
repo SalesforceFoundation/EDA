@@ -17,12 +17,12 @@
   </fields>
   <fields>
     <name>Auto_Program_Enrollment__c</name>
-    <help>選択した場合、ユーザがこのレコードタイプの取引先を使用してアフィリエーションレコードを作成したときにプログラム登録レコードが自動的に作成されます。</help>
+    <help>選択した場合、ユーザがこのレコードタイプの取引先を使用して所属レコードを作成したときにプログラム登録レコードが自動的に作成されます。</help>
     <label>自動登録</label>
   </fields>
   <fields>
     <name>Primary_Affl_Field__c</name>
     <help>このレコードタイプの主取引先の値を保持する取引先責任者項目の表示ラベル。</help>
-    <label>主アフィリエーション項目</label>
+    <label>主所属項目</label>
   </fields>
 </CustomObjectTranslation>

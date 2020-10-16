@@ -3,12 +3,12 @@
   <recordTypes>
     <name>Faculty</name>
     <label>教職員</label>
-    <description>教職員コース接続</description>
+    <description>教職員履修科目</description>
   </recordTypes>
   <recordTypes>
     <name>Student</name>
     <label>学生</label>
-    <description>学生コース接続</description>
+    <description>学生履修科目</description>
   </recordTypes>
   <recordTypes>
     <name>Default</name>

@@ -61,7 +61,7 @@
   </fields>
   <fields>
     <name>MailingCounty__c</name>
-    <label>郡(郵送先)</label>
+    <label>学区(郵送先)</label>
   </fields>
   <fields>
     <name>MailingPostalCode__c</name>

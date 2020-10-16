@@ -2,7 +2,7 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Account__c</name>
-    <help>この学期が適用される学問的プログラム、部門、または教育機関全体。学期が学校のすべてのプログラムおよび部門で一貫している場合は、教育機関を表す取引先責任者を選択します。</help>
+    <help>この学期が適用されるアカデミックプログラム、部門、または教育機関全体。学期が学校のすべてのプログラムおよび部門で一貫している場合は、教育機関を表す取引先責任者を選択します。</help>
     <relationshipLabel>学期</relationshipLabel>
     <label>取引先</label>
   </fields>

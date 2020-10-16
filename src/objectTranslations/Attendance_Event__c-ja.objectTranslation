@@ -36,12 +36,12 @@
     <name>Course_Connection__c</name>
     <help>学生が遅刻または欠席したクラスおよび期間。</help>
     <relationshipLabel>出席イベント</relationshipLabel>
-    <label>コース接続</label>
+    <label>履修科目</label>
   </fields>
   <fields>
     <name>Course_Name__c</name>
-    <help>学生が遅刻または欠席したコースの名前 (参照のみ)。</help>
-    <label>コース名</label>
+    <help>学生が遅刻または欠席した科目の名前 (参照のみ)。</help>
+    <label>科目名</label>
   </fields>
   <fields>
     <name>Date__c</name>

@@ -2,15 +2,15 @@
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <name>AfflMappingsDescription</name>
-        <label>対応付けられた主アフィリエーションは取引先責任者レコードの特別な [主アフィリエーション] セクションに表示されます。取引先レコードタイプで [主] として設定された値は、以下で定義されているとおりに取引先責任者レコードの対応する項目に表示されます。詳細は、次を参照してください。</label>
+        <label>対応付けられた主所属は取引先責任者レコードの特別な [主所属] セクションに表示されます。取引先レコードタイプで [主] として設定された値は、以下で定義されているとおりに取引先責任者レコードの対応する項目に表示されます。詳細は、次を参照してください。</label>
     </customLabels>
     <customLabels>
         <name>AfflProgEnrollDeleted</name>
-        <label>選択した場合、プログラム登録が削除されると、その関連アフィリエーションが削除されます。選択しない場合、アフィリエーションは維持され、その状況は、[削除されていないアフィリエーションの状況] で定義された値に設定されます。</label>
+        <label>選択した場合、プログラム登録が削除されると、その関連所属が削除されます。選択しない場合、所属は維持され、その状況は、[削除されていない所属の状況] で定義された値に設定されます。</label>
     </customLabels>
     <customLabels>
         <name>AttendanceCourseConnectionContactMismatch</name>
-        <label>この [出席イベント] で指定した取引先責任者と同じ取引先責任者を持つコース接続を指定してください。</label>
+        <label>この [出席イベント] で指定した取引先責任者と同じ取引先責任者を持つ履修科目を指定してください。</label>
     </customLabels>
     <customLabels>
         <name>AutoCreateFieldError</name>
@@ -26,7 +26,7 @@
     </customLabels>
     <customLabels>
         <name>CannotChangeContactAndCourseOffering</name>
-        <label>[学期評価] または [出席イベント] に関連付けられたコース接続の取引先責任者または提供コースを変更することはできません。別の取引先責任者または提供コースを使用するコース接続が必要な場合は、新しいコース接続を作成してください。</label>
+        <label>[学期評価] または [出席イベント] に関連付けられた履修科目の取引先責任者または開講科目を変更することはできません。別の取引先責任者または開講科目を使用する履修科目が必要な場合は、新しい履修科目を作成してください。</label>
     </customLabels>
     <customLabels>
         <name>CannotDelete</name>
@@ -58,23 +58,23 @@
     </customLabels>
     <customLabels>
         <name>MultipleCourseConnection</name>
-        <label>複数のコース接続がこの取引先責任者およびこの提供コースに関連付けられています。この学期評価に対するこの提供コースでの学生の登録を表すコース接続を指定してください。</label>
+        <label>複数の履修科目がこの取引先責任者およびこの開講科目に関連付けられています。この学期評価に対するこの開講科目での学生の登録を表す履修科目を指定してください。</label>
     </customLabels>
     <customLabels>
         <name>NoContactCOFound</name>
-        <label>取引先責任者と提供コースが指定されていないか、コース接続に一致しません。コース接続のみを指定するか、取引先責任者と提供コースの両方を指定して、このレコードを正しいデータで保存できるようにしてください。</label>
+        <label>取引先責任者と開講科目が指定されていないか、履修科目に一致しません。履修科目のみを指定するか、取引先責任者と開講科目の両方を指定して、このレコードを正しいデータで保存できるようにしてください。</label>
     </customLabels>
     <customLabels>
         <name>NoCourseConnection</name>
-        <label>この取引先責任者および提供コースに関連付けられたコース接続がありません。この学生がこの提供コースに登録されている場合は、コース接続を作成してください。</label>
+        <label>この取引先責任者および開講科目に関連付けられた履修科目がありません。この学生がこの開講科目に登録されている場合は、履修科目を作成してください。</label>
     </customLabels>
     <customLabels>
         <name>NoDataMatch</name>
-        <label>取引先責任者と提供コースがコース接続に一致しません。コース接続のみを指定するか、取引先責任者と提供コースの両方を指定して、このレコードを正しいデータで保存できるようにしてください。</label>
+        <label>取引先責任者と開講科目が履修科目に一致しません。履修科目のみを指定するか、取引先責任者と開講科目の両方を指定して、このレコードを正しいデータで保存できるようにしてください。</label>
     </customLabels>
     <customLabels>
         <name>NoFieldsPopulated</name>
-        <label>コース接続のみを指定するか、取引先責任者と提供コースの両方を指定してください。</label>
+        <label>履修科目のみを指定するか、取引先責任者と開講科目の両方を指定してください。</label>
     </customLabels>
     <customLabels>
         <name>NoneOption</name>
@@ -82,7 +82,7 @@
     </customLabels>
     <customLabels>
         <name>OnlyCourseConnectionPopulated</name>
-        <label>このコース接続に関連付けられた取引先責任者または提供コースがありません。有効なコース接続を選択してください。</label>
+        <label>この履修科目に関連付けられた取引先責任者または開講科目がありません。有効な履修科目を選択してください。</label>
     </customLabels>
     <customLabels>
         <name>PreferredEmailMatchMustExist</name>
@@ -170,19 +170,19 @@
     </customLabels>
     <customLabels>
         <name>affiliationWithSameAccExists</name>
-        <label>この取引先責任者には、指定された取引先への主アフィリエーションがすでに存在します。他のアフィリエーションの [主] 設定を選択解除してこのアフィリエーションを [主] として指定できるようにするか、[主] 値を指定せずにこのアフィリエーションを作成してください。</label>
+        <label>この取引先責任者には、指定された取引先への主所属がすでに存在します。他の所属の [主] 設定を選択解除してこの所属を [主] として指定できるようにするか、[主] 値を指定せずにこの所属を作成してください。</label>
     </customLabels>
     <customLabels>
         <name>afflAccountNoRecordType</name>
-        <label>指定された取引先にレコードタイプがないため、このアフィリエーションを作成できません。</label>
+        <label>指定された取引先にレコードタイプがないため、この所属を作成できません。</label>
     </customLabels>
     <customLabels>
         <name>afflAccoutMappingError</name>
-        <label>アフィリエーション対応付けに取引先レコードタイプのエラーがあるため、このレコードを保存できません。システム管理者に連絡して、この取引先レコードタイプが取引先責任者の主アフィリエーションに正しく対応付けられていることを確認するように依頼してください。</label>
+        <label>所属対応付けに取引先レコードタイプのエラーがあるため、このレコードを保存できません。システム管理者に連絡して、この取引先レコードタイプが取引先責任者の主所属に正しく対応付けられていることを確認するように依頼してください。</label>
     </customLabels>
     <customLabels>
         <name>afflNullPointerError</name>
-        <label>{0} 取引先レコードタイプが存在しません。システム管理者に連絡して、アフィリエーション対応付けのレコードタイプを確認するように依頼してください。</label>
+        <label>{0} 取引先レコードタイプが存在しません。システム管理者に連絡して、所属対応付けのレコードタイプを確認するように依頼してください。</label>
     </customLabels>
     <customLabels>
         <name>afflTypeEnforced</name>
@@ -190,7 +190,7 @@
     </customLabels>
     <customLabels>
         <name>afflTypeEnforcedDescription</name>
-        <label>選択した場合、ユーザが取引先を取引先責任者の主アフィリエーションとして指定すると、取引先にレコードタイプが必要になり、すべての取引先レコードタイプ値を、アフィリエーション対応付け内の対応する取引先責任者の [主アフィリエーション] 項目に正しく対応付ける必要があります。検証に失敗した場合、エラーによりアフィリエーションを保存できません。</label>
+        <label>選択した場合、ユーザが取引先を取引先責任者の主所属として指定すると、取引先にレコードタイプが必要になり、すべての取引先レコードタイプ値を、所属対応付け内の対応する取引先責任者の [主所属] 項目に正しく対応付ける必要があります。検証に失敗した場合、エラーにより所属を保存できません。</label>
     </customLabels>
     <customLabels>
         <name>automaticHHNaming</name>
@@ -282,7 +282,7 @@
     </customLabels>
     <customLabels>
         <name>nestedPlanRequirementPPExp</name>
-        <label>プラン要件では、プログラムプランまたは親のプラン要件のいずれかを指定できますが、両方を指定することはできません。このプラン要件が別のプラン要件の子の場合、親のプラン要件のみを指定してください。このプラン要件がプログラムプランの子の場合、プログラムプランのみを指定してください。</label>
+        <label>プラン要件では、プログラムプランまたは親プラン要件のいずれかを指定できますが、両方を指定することはできません。このプラン要件が別のプラン要件の子の場合、親プラン要件のみを指定してください。このプラン要件がプログラムプランの子の場合、プログラムプランのみを指定してください。</label>
     </customLabels>
     <customLabels>
         <name>noAccRecType</name>
@@ -290,7 +290,7 @@
     </customLabels>
     <customLabels>
         <name>noAfflMappings</name>
-        <label>作成されたアフィリエーション対応付けがありません。以下のフォームを使用して、新しいアフィリエーション対応付けを作成してください。</label>
+        <label>作成された所属対応付けがありません。以下のフォームを使用して、新しい所属対応付けを作成してください。</label>
     </customLabels>
     <customLabels>
         <name>noAutoCreateSettings</name>
@@ -338,35 +338,35 @@
     </customLabels>
     <customLabels>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
-        <label>アフィリエーションの終了日をプログラム登録からコピー</label>
+        <label>所属の終了日をプログラム登録からコピー</label>
     </customLabels>
     <customLabels>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
-        <label>アフィリエーションの開始日をプログラム登録からコピー</label>
+        <label>所属の開始日をプログラム登録からコピー</label>
     </customLabels>
     <customLabels>
         <name>stgAfflDeleteProgramEnrollment</name>
-        <label>削除されていないアフィリエーションの状況</label>
+        <label>削除されていない所属の状況</label>
     </customLabels>
     <customLabels>
         <name>stgAfflNotInserted</name>
-        <label>このアフィリエーションは、別のアフィリエーション対応付けによりすでに参照されているレコードタイプを参照しているため、対応付けることができません。アフィリエーションが翻訳されるようにこの対応付けを追加する必要がある場合は、[編集] をクリックして既存の対応付けを変更します。次に、[取引先責任者の主アフィリエーション項目] の下で項目の API 参照名を指定します。[取引先レコードタイプ] で指定された名前を変更しないでください。</label>
+        <label>この所属は、別の所属対応付けによりすでに参照されているレコードタイプを参照しているため、対応付けることができません。所属が翻訳されるようにこの対応付けを追加する必要がある場合は、[編集] をクリックして既存の対応付けを変更します。次に、[取引先責任者の主所属項目] の下で項目の API 参照名を指定します。[取引先レコードタイプ] で指定された名前を変更しないでください。</label>
     </customLabels>
     <customLabels>
         <name>stgAfflProgEnrollDeleteRelated</name>
-        <label>プログラム登録の削除時に関連アフィリエーションを削除</label>
+        <label>プログラム登録の削除時に関連所属を削除</label>
     </customLabels>
     <customLabels>
         <name>stgAfflProgEnrollSetRole</name>
-        <label>作成されたアフィリエーションの役割を指定</label>
+        <label>作成された所属の役割を指定</label>
     </customLabels>
     <customLabels>
         <name>stgAfflProgEnrollSetRoleValue</name>
-        <label>作成されたアフィリエーションの役割</label>
+        <label>作成された所属の役割</label>
     </customLabels>
     <customLabels>
         <name>stgAfflProgEnrollSetStatusValue</name>
-        <label>作成されたアフィリエーションの状況</label>
+        <label>作成された所属の状況</label>
     </customLabels>
     <customLabels>
         <name>stgAfterRunBackfill</name>
@@ -462,7 +462,7 @@
     </customLabels>
     <customLabels>
         <name>stgColContactPrimaryAfflField</name>
-        <label>取引先責任者の主アフィリエーション項目</label>
+        <label>取引先責任者の主所属項目</label>
     </customLabels>
     <customLabels>
         <name>stgColFemale</name>
@@ -518,7 +518,7 @@
     </customLabels>
     <customLabels>
         <name>stgCourseDescriptionCopyEmailSubject</name>
-        <label>コース説明のコピージョブが次の状況で完了しました:</label>
+        <label>科目説明のコピージョブが次の状況で完了しました:</label>
     </customLabels>
     <customLabels>
         <name>stgDefaultContactLanguageFluency</name>
@@ -546,7 +546,7 @@
     </customLabels>
     <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
-        <label>コース接続を有効化</label>
+        <label>履修科目を有効化</label>
     </customLabels>
     <customLabels>
         <name>stgEnablePreferredPhoneSync</name>
@@ -586,23 +586,23 @@
     </customLabels>
     <customLabels>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
-        <label>選択した場合、プログラム登録の終了日が新しいアフィリエーションレコードの終了日にコピーされます。選択しない場合、アフィリエーションの終了日は空白のままになります。</label>
+        <label>選択した場合、プログラム登録の終了日が新しい所属レコードの終了日にコピーされます。選択しない場合、所属の終了日は空白のままになります。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
-        <label>選択した場合、プログラム登録の開始日が新しいアフィリエーションレコードの開始日にコピーされます。選択しない場合、アフィリエーションの開始日は空白のままになります。</label>
+        <label>選択した場合、プログラム登録の開始日が新しい所属レコードの開始日にコピーされます。選択しない場合、所属の開始日は空白のままになります。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
-        <label>プログラム登録でアフィリエーションを作成</label>
+        <label>プログラム登録で所属を作成</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
-        <label>既存のアフィリエーションなしでプログラム登録レコードが作成された場合、以下で指定された値でアフィリエーションレコードが作成されます。</label>
+        <label>既存の所属なしでプログラム登録レコードが作成された場合、以下で指定された値で所属レコードが作成されます。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
-        <label>削除されたプログラム登録に関連するアフィリエーションに対して設定される状況。</label>
+        <label>削除されたプログラム登録に関連する所属に対して設定される状況。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
@@ -610,19 +610,19 @@
     </customLabels>
     <customLabels>
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
-        <label>削除されたプログラム登録のアフィリエーションレコードの処理方法を以下で指定します。関連するアフィリエーションレコードを削除するか、その状況を更新することができます。</label>
+        <label>削除されたプログラム登録の所属レコードの処理方法を以下で指定します。関連する所属レコードを削除するか、その状況を更新することができます。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAfflProgEnrollSetRole</name>
-        <label>選択した場合、新しいアフィリエーションの役割は、[作成されたアフィリエーションの役割] で定義された値に設定されます。選択しない場合、アフィリエーションの役割は空白のままです。</label>
+        <label>選択した場合、新しい所属の役割は、[作成された所属の役割] で定義された値に設定されます。選択しない場合、所属の役割は空白のままです。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
-        <label>プログラム登録で作成されたアフィリエーションに対して設定される役割。</label>
+        <label>プログラム登録で作成された所属に対して設定される役割。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
-        <label>プログラム登録で作成されたアフィリエーションに対して設定される状況。</label>
+        <label>プログラム登録で作成された所属に対して設定される状況。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpContactAddrs</name>
@@ -646,19 +646,19 @@
     </customLabels>
     <customLabels>
         <name>stgHelpCourseConnBackfillDescription</name>
-        <label>コース接続のバックフィルは、コース接続を初めて有効化する場合にのみ、かつ、コース接続機能の有効化前に提供コースとコース接続 (登録) が存在していた組織でのみ、使用する必要があります。バックフィルでは、コース接続 (登録) または提供コースで教職員としてリストされていたすべての取引先責任者が [デフォルトの教職員レコードタイプ] に変換された後、残りのコース接続 (登録) に存在する取引先責任者が [デフォルトの有効な学生レコードタイプ] に変換されます。</label>
+        <label>履修科目のバックフィルは、履修科目を初めて有効化する場合にのみ、かつ、履修科目機能の有効化前に開講科目と履修科目 (登録) が存在していた組織でのみ、使用する必要があります。バックフィルでは、履修科目 (登録) または開講科目で教職員としてリストされていたすべての取引先責任者が [デフォルトの教職員レコードタイプ] に変換された後、残りの履修科目 (登録) に存在する取引先責任者が [デフォルトの有効な学生レコードタイプ] に変換されます。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpCoursesDataMigration</name>
-        <label>EDA 1.30 では、より長いコース説明に対応するように [拡張説明] 項目が追加されました。</label>
+        <label>EDA 1.30 では、より長い科目説明に対応するように [拡張説明] 項目が追加されました。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
-        <label>このユーティリティでは、[コース説明] 項目から [拡張説明] 項目に値がコピーされます。処理に時間がかかる場合がありますが、このページを安全に閉じることができます。処理は引き続きバックグラウンドで実行されます。</label>
+        <label>このユーティリティでは、[科目説明] 項目から [拡張説明] 項目に値がコピーされます。処理に時間がかかる場合がありますが、このページを安全に閉じることができます。処理は引き続きバックグラウンドで実行されます。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
-        <label>コースに [拡張説明] の値がすでに含まれる場合、その値は上書きされません。</label>
+        <label>科目に [拡張説明] の値がすでに含まれる場合、その値は上書きされません。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
@@ -670,23 +670,23 @@
     </customLabels>
     <customLabels>
         <name>stgHelpDefaultFacultyType</name>
-        <label>教職員のコース接続を作成するときのデフォルトのレコードタイプ。</label>
+        <label>教職員の履修科目を作成するときのデフォルトのレコードタイプ。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpDefaultStudentType</name>
-        <label>有効な学生のコース接続を作成するときのデフォルトのレコードタイプ。</label>
+        <label>有効な学生の履修科目を作成するときのデフォルトのレコードタイプ。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
-        <label>コース接続のバックフィルを実行する前にコース接続を有効化する必要があります。</label>
+        <label>履修科目のバックフィルを実行する前に履修科目を有効化する必要があります。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
-        <label>レコードタイプを編集する前にコース接続を有効化する必要があります。</label>
+        <label>レコードタイプを編集する前に履修科目を有効化する必要があります。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpEnableCourseConnections</name>
-        <label>コース接続レコードでは取引先責任者を提供コースに接続します。この機能を有効化すると、ユーザは取引先責任者の種別 (教職員または学生) を選択して、そのコース接続を作成できます。この機能を有効化する場合、以下の [デフォルトの有効な学生レコードタイプ] と [デフォルトの教職員レコードタイプ] も設定する必要があります。この機能を初めて有効化する場合、コース接続のバックフィルを実行することを強くお勧めします。</label>
+        <label>履修科目レコードでは取引先責任者を開講科目に接続します。この機能を有効化すると、ユーザは取引先責任者の種別 (教職員または学生) を選択して、その履修科目を作成できます。この機能を有効化する場合、以下の [デフォルトの有効な学生レコードタイプ] と [デフォルトの教職員レコードタイプ] も設定する必要があります。この機能を初めて有効化する場合、履修科目のバックフィルを実行することを強くお勧めします。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpEnsureExistContactPreferEmail</name>
@@ -722,7 +722,7 @@
     </customLabels>
     <customLabels>
         <name>stgHelpNestedPlanRequirementPP</name>
-        <label>選択すると、プラン要件でプログラムプランまたは親のプラン要件を指定できます。ただし、この両方を指定することはできません。プログラムプランと親のプラン要件の両方を指定した場合、どちらか 1 つのみを選択するまで、エラーメッセージが出力され、保存できません。</label>
+        <label>選択すると、プラン要件でプログラムプランまたは親プラン要件を指定できます。ただし、この両方を指定することはできません。プログラムプランと親プラン要件の両方を指定した場合、どちらか 1 つのみを選択するまで、エラーメッセージが出力され、保存できません。</label>
     </customLabels>
     <customLabels>
         <name>stgHelpOrgAccountAddressMgmt</name>
@@ -758,7 +758,7 @@
     </customLabels>
     <customLabels>
         <name>stgNewAfflMapping</name>
-        <label>新規アフィリエーション対応付け</label>
+        <label>新規所属対応付け</label>
     </customLabels>
     <customLabels>
         <name>stgOptAllSysAdmins</name>
@@ -856,11 +856,11 @@
     </customLabels>
     <customLabels>
         <name>stgTabAffl</name>
-        <label>アフィリエーション</label>
+        <label>所属</label>
     </customLabels>
     <customLabels>
         <name>stgTabAfflMappings</name>
-        <label>アフィリエーション対応付け</label>
+        <label>所属対応付け</label>
     </customLabels>
     <customLabels>
         <name>stgTabAutocreation</name>
@@ -872,11 +872,11 @@
     </customLabels>
     <customLabels>
         <name>stgTabCourse</name>
-        <label>コース</label>
+        <label>科目</label>
     </customLabels>
     <customLabels>
         <name>stgTabCourseConn</name>
-        <label>コース接続</label>
+        <label>履修科目</label>
     </customLabels>
     <customLabels>
         <name>stgTabName</name>
@@ -884,7 +884,7 @@
     </customLabels>
     <customLabels>
         <name>stgTabPrimaryAfflField</name>
-        <label>取引先責任者の主アフィリエーション項目</label>
+        <label>取引先責任者の主所属項目</label>
     </customLabels>
     <customLabels>
         <name>stgTabProgramPlan</name>
@@ -916,11 +916,11 @@
     </customLabels>
     <customLabels>
         <name>stgTitleCourseConnectionBackfill</name>
-        <label>コース接続のバックフィル</label>
+        <label>履修科目のバックフィル</label>
     </customLabels>
     <customLabels>
         <name>stgTitleCoursesDescriptionDataMigration</name>
-        <label>コース: 説明データの移行</label>
+        <label>科目: 説明データの移行</label>
     </customLabels>
     <customLabels>
         <name>stgTitleHEDAConfig</name>
@@ -948,11 +948,11 @@
     </customLabels>
     <customLabels>
         <name>timeBlockEndTimeMismatch</name>
-        <label>提供コーススケジュールの終了時刻が、関連付けらた時間ブロックの終了時刻に一致しないため、提供コーススケジュールを保存できません。終了時刻を編集するか、異なる時間ブロックを指定するか、時間ブロックを指定しないでください。</label>
+        <label>開講科目スケジュールの終了時刻が、関連付けらた時間ブロックの終了時刻に一致しないため、開講科目スケジュールを保存できません。終了時刻を編集するか、異なる時間ブロックを指定するか、時間ブロックを指定しないでください。</label>
     </customLabels>
     <customLabels>
         <name>timeBlockStartTimeMismatch</name>
-        <label>提供コーススケジュールの開始時刻が、関連付けらた時間ブロックの開始時刻に一致しないため、提供コーススケジュールを保存できません。開始時刻を編集するか、異なる時間ブロックを指定するか、時間ブロックを指定しないでください。</label>
+        <label>開講科目スケジュールの開始時刻が、関連付けらた時間ブロックの開始時刻に一致しないため、開講科目スケジュールを保存できません。開始時刻を編集するか、異なる時間ブロックを指定するか、時間ブロックを指定しないでください。</label>
     </customLabels>
     <customTabs>
         <name>HEDA_Settings</name>

@@ -9,7 +9,7 @@
   <fields>
     <name>Affiliation_Type__c</name>
     <help>関係する取引先のレコードタイプ (学科、スポーツ団体など) (参照のみ)。</help>
-    <label>アフィリエーション種別</label>
+    <label>所属種別</label>
   </fields>
   <fields>
     <name>Contact__c</name>
@@ -24,12 +24,12 @@
   </fields>
   <fields>
     <name>EndDate__c</name>
-    <help>このアフィリエーションが終了したまたは終了する日付。</help>
+    <help>この所属が終了したまたは終了する日付。</help>
     <label>終了日</label>
   </fields>
   <fields>
     <name>Primary__c</name>
-    <help>これがこの個人の主要なアフィリエーションかどうかを示します。選択した場合、団体名が取引先責任者レコードの関連する [主アフィリエーション] 項目に保存されます。</help>
+    <help>これがこの個人の主要な所属かどうかを示します。選択した場合、団体名が取引先責任者レコードの関連する [主所属] 項目に保存されます。</help>
     <label>主</label>
   </fields>
   <fields>
@@ -46,7 +46,7 @@
     </picklistValues>
     <picklistValues>
       <masterLabel>Applicant</masterLabel>
-      <translation>申請者</translation>
+      <translation>出願者</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Faculty</masterLabel>
@@ -64,7 +64,7 @@
   </fields>
   <fields>
     <name>Status__c</name>
-    <help>これが現在または以前のどちらのアフィリエーションかを示します。</help>
+    <help>これが現在または以前のどちらの所属かを示します。</help>
     <label>状況</label>
     <picklistValues>
       <masterLabel>Current</masterLabel>
@@ -78,7 +78,7 @@
   <layouts>
     <layout>HEDA Affiliation Layout</layout>
     <sections>
-      <label>アフィリエーション情報</label>
+      <label>所属情報</label>
       <section>Affiliation Information</section>
     </sections>
     <sections>
@@ -86,10 +86,10 @@
       <section>Custom Links</section>
     </sections>
   </layouts>
-  <nameFieldLabel>アフィリエーションキー</nameFieldLabel>
+  <nameFieldLabel>所属キー</nameFieldLabel>
   <standardFields>
     <name>Name</name>
-    <label>アフィリエーションキー</label>
+    <label>所属キー</label>
   </standardFields>
   <caseValues>
     <plural>false</plural>

@@ -13,7 +13,7 @@
   </fields>
   <fields>
     <name>Source__c</name>
-    <help>申請者または公式ソースのどちらによりこのテストが報告されたかを示します。</help>
+    <help>出願者または公式ソースのどちらによりこのテストが報告されたかを示します。</help>
     <label>ソース</label>
     <picklistValues>
       <masterLabel>Self Reported</masterLabel>
@@ -26,7 +26,7 @@
   </fields>
   <fields>
     <name>Test_Date__c</name>
-    <help>テストが開始されたことを申請者または公式ソースが示している日付。</help>
+    <help>テストが開始されたことを出願者または公式ソースが示している日付。</help>
     <label>テスト日</label>
   </fields>
   <fields>

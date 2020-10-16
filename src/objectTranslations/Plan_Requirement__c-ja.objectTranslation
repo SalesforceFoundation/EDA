@@ -15,9 +15,9 @@
   </fields>
   <fields>
     <name>Course__c</name>
-    <help>このプラン要件に関連付けられたコース。ネストされたプラン要件を持つ親のプラン要件の場合は、空白のままにします。</help>
+    <help>このプラン要件に関連付けられた科目。ネストされたプラン要件を持つ親プラン要件の場合は、空白のままにします。</help>
     <relationshipLabel>プラン要件</relationshipLabel>
-    <label>コース</label>
+    <label>科目</label>
   </fields>
   <fields>
     <name>Credits__c</name>
@@ -30,13 +30,13 @@
   </fields>
   <fields>
     <name>Plan_Requirement__c</name>
-    <help>このプラン要件が複数の要件または複数レベルの要件のうちの 1 つの場合、親のプラン要件を指定します。この項目を使用して、一般的な要件を満たす省略可能なコースのリストをグループ化します。</help>
+    <help>このプラン要件が複数の要件または複数レベルの要件のうちの 1 つの場合、親プラン要件を指定します。この項目を使用して、一般的な要件を満たす省略可能な科目のリストをグループ化します。</help>
     <relationshipLabel>プラン要件</relationshipLabel>
-    <label>親のプラン要件</label>
+    <label>親プラン要件</label>
   </fields>
   <fields>
     <name>Program_Plan__c</name>
-    <help>この要件の対象のプログラムプラン。プラン要件を親のプラン要件の下でまとめている場合は、ベストプラクティスとして、最上位のプラン要件のみをプログラムプランにリンクすることをお勧めします。</help>
+    <help>この要件の対象のプログラムプラン。プラン要件を親プラン要件の下でまとめている場合は、ベストプラクティスとして、最上位のプラン要件のみをプログラムプランにリンクすることをお勧めします。</help>
     <relationshipLabel>プラン要件</relationshipLabel>
     <label>プログラムプラン</label>
   </fields>

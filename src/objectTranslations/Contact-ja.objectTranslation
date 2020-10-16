@@ -3458,7 +3458,7 @@
   <fields>
     <name>Financial_Aid_Applicant__c</name>
     <help>この学生が学資援助を申請したかどうかを示します。</help>
-    <label>学資援助申請者</label>
+    <label>学資援助出願者</label>
   </fields>
   <fields>
     <name>Former_First_Name__c</name>
@@ -3504,7 +3504,7 @@
   </fields>
   <fields>
     <name>Mailing_County__c</name>
-    <label>郡(郵送先)</label>
+    <label>学区(郵送先)</label>
   </fields>
   <fields>
     <name>Military_Background__c</name>
@@ -3535,7 +3535,7 @@
   </fields>
   <fields>
     <name>Other_County__c</name>
-    <label>郡(その他)</label>
+    <label>学区(その他)</label>
   </fields>
   <fields>
     <name>PreferredPhone__c</name>
@@ -3737,7 +3737,7 @@
       <section>Additional Information</section>
     </sections>
     <sections>
-      <label>主アフィリエーション</label>
+      <label>主所属</label>
       <section>Primary Affiliations</section>
     </sections>
     <sections>

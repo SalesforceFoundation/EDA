@@ -13,19 +13,19 @@
   </fields>
   <fields>
     <name>Affiliation__c</name>
-    <help>この項目は、このプログラムへの学生の登録を表すアフィリエーションレコードで自動入力されます。</help>
+    <help>この項目は、このプログラムへの学生の登録を表す所属レコードで自動入力されます。</help>
     <relationshipLabel>プログラム登録</relationshipLabel>
-    <label>アフィリエーション</label>
+    <label>所属</label>
   </fields>
   <fields>
     <name>Application_Submitted_Date__c</name>
     <help>学生がプログラムへの入学を申請した日付。</help>
-    <label>申請送信日</label>
+    <label>出願日</label>
   </fields>
   <fields>
     <name>Class_Standing__c</name>
     <help>プログラム内の学生のレベル (1 年生、2 年生、3 年生、4 年生など)。</help>
-    <label>クラス年次</label>
+    <label>年次</label>
     <picklistValues>
       <masterLabel>Freshman</masterLabel>
       <translation>1 年生</translation>
@@ -51,8 +51,8 @@
   </fields>
   <fields>
     <name>Credits_Attempted__c</name>
-    <help>学生がこれまでに完了を試みた単位数。これには、進行中の単位や、単位を取得できなかった不合格のコースの単位が含まれます。</help>
-    <label>試行単位数</label>
+    <help>学生がこれまでに完了を試みた単位数。これには、進行中の単位や、単位を取得できなかった不合格の科目の単位が含まれます。</help>
+    <label>履修単位数</label>
   </fields>
   <fields>
     <name>Credits_Earned__c</name>
@@ -94,7 +94,7 @@
   <fields>
     <name>Graduation_Year__c</name>
     <help>学生がこのプログラムから卒業することが予定される年。</help>
-    <label>クラス年</label>
+    <label>卒業年度</label>
   </fields>
   <fields>
     <name>Program_Plan__c</name>
