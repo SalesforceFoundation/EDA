@@ -14,7 +14,7 @@ Test Setup      Go to EDA settings tab          Affiliations
 Verify all checkboxes are unchecked and all dropdwons filled with none
     [Documentation]         Updates all checkbox values as unchecked and all dropdown fields filled
     ...                     with value 'None' in settings tab under affiliations
-    [tags]                    unstable        W-0000000     rbt:high
+    [tags]                    unstable        W-8188773     rbt:high
     Update checkbox value
     ...         Enable Record Type Validation=false
     ...         Delete Related Affiliation When Deleting Program Enrollment=false
@@ -44,7 +44,7 @@ Verify all checkboxes are unchecked and all dropdwons filled with none
 Verify all checkboxes are checked and all dropdwons filled other than none
     [Documentation]         Updates all checkbox values as checked and all dropdown fields filled
     ...                     with values other than 'None' in settings tab under affiliations
-    [tags]                    unstable        W-0000000     rbt:high
+    [tags]                    unstable        W-8188756     rbt:high
     Update checkbox value
     ...         Enable Record Type Validation=true
     ...         Delete Related Affiliation When Deleting Program Enrollment=true
