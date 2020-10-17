@@ -85,10 +85,11 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @param  contactRelationShipAutoCreateMapModelsList A List of MODL_ConRelationshipAutoCreateMapping representing Relationship Auto Create mappings for Contact.
     * @return A MODL_ContactRelationships model representing the Relationships associated with the specified Contact record. 
     **************************************************************************************************************************/ 
-    public virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
-        MODL_ContactRelationships conRelationshipsModel;
-        Id contactFieldValue;
-
+    @TestVisible
+    protected virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+        MODL_ContactRelationships conRelationshipsModel; 
+        Id contactFieldValue; 
+        
         for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
             try{
                 contactFieldValue = (Id)contact.get(conRelAutoCreateMap.contactFieldApiName);
