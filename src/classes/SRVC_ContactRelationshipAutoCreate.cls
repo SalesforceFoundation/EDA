@@ -88,7 +88,8 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     @TestVisible
     protected virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
         MODL_ContactRelationships conRelationshipsModel; 
-
+        Id contactFieldValue; 
+        
         for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
             try{
                 contactFieldValue = (Id)contact.get(conRelAutoCreateMap.contactFieldApiName);
