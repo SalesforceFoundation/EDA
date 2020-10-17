@@ -160,7 +160,6 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
         }
 
         MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c, isValid);
-
         return primaryAfflModel;
     }
 
