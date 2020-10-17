@@ -32,32 +32,32 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Test class for SRVC_RelAutoCreateSettingsMapper
+* @description Test class for MAPR_RELAutoCreateSettings
 */
 @isTest
-public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
+private with sharing class MAPR_RELAutoCreateSettings_TEST {
     
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
-    * SRVC_RelAutoCreateSettingsMapper class when one does not already exist.
+    * MAPR_RELAutoCreateSettings class when one does not already exist.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
-        SRVC_RelAutoCreateSettingsMapper srvcRelAutoCreateSettingMapper = SRVC_RelAutoCreateSettingsMapper.getInstance();
-        System.assertEquals(SRVC_RelAutoCreateSettingsMapper.instance, srvcRelAutoCreateSettingMapper, 'Instance of service class returned should match static instance variable.');
+        MAPR_RELAutoCreateSettings srvcRelAutoCreateSettingMapper = MAPR_RELAutoCreateSettings.getInstance();
+        System.assertEquals(MAPR_RELAutoCreateSettings.instance, srvcRelAutoCreateSettingMapper, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcRelAutoCreateSettingMapper != null, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * SRVC_RelAutoCreateSettingsMapper class when one already exists.
+    * MAPR_RELAutoCreateSettings class when one already exists.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-        SRVC_RelAutoCreateSettingsMapper srvcRelAutoCreateSettingsMapperInstance1 = SRVC_RelAutoCreateSettingsMapper.getInstance();
-        SRVC_RelAutoCreateSettingsMapper srvcRelAutoCreateSettingsMapperInstance2 = SRVC_RelAutoCreateSettingsMapper.getInstance();
+        MAPR_RELAutoCreateSettings srvcRelAutoCreateSettingsMapperInstance1 = MAPR_RELAutoCreateSettings.getInstance();
+        MAPR_RELAutoCreateSettings srvcRelAutoCreateSettingsMapperInstance2 = MAPR_RELAutoCreateSettings.getInstance();
  
-        System.assertEquals(SRVC_RelAutoCreateSettingsMapper.instance, srvcRelAutoCreateSettingsMapperInstance1, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(MAPR_RELAutoCreateSettings.instance, srvcRelAutoCreateSettingsMapperInstance1, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(srvcRelAutoCreateSettingsMapperInstance1, srvcRelAutoCreateSettingsMapperInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
         System.assertEquals(true, srvcRelAutoCreateSettingsMapperInstance1 != null, 'Instance of service class should not be null.');
     }
@@ -91,7 +91,7 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
         insert relAutoCreateList;
 
         Test.startTest();
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = SRVC_RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
+        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings();
         Test.stopTest();
 
         System.assertEquals(5, conRelAutoCreateMappingList.size(), 'There should be 5 Relationship Auto Create Mapping models for Contact.');
@@ -101,6 +101,42 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
             System.assertEquals('Reports To ID', conRelAutoCreateMappingList[i].contactFieldLabel, 'The contact field label set on model should correspond to the Relationship_Type__c for the Contact Relationship Auto Create mapping.');
             System.assertEquals('ContactTester' + i, conRelAutoCreateMappingList[i].relationshipType, 'The relationship type set on model should correspond to the Relationship_Type__c for the Contact Relationship Auto Create mapping.');
         }
+    }
+
+    /***************************************************************************************************************************
+    * @description Test method to verify that getContactMappingModelsFromSettings() returns its cached value
+    ***************************************************************************************************************************/ 
+    @isTest 
+    private static void getContactMappingModelsFromSettingsCached(){
+        List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
+        Relationship_Auto_Create__c contactRelAutoCreate;
+        Relationship_Auto_Create__c accountRelAutoCreate;
+
+        for (Integer i = 0; i < 5; i++){
+            contactRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate' + i, 
+                                                                                               Object__c = 'Contact',
+                                                                                               Field__c = 'ReportsToId', 
+                                                                                               Relationship_Type__c = 'ContactTester' + i,
+                                                                                               Campaign_Types__c = '');
+
+            accountRelAutoCreate = new Relationship_Auto_Create__c(Name = 'AccountReportToAutoCreate' + i, 
+                                                                                               Object__c = 'Account',
+                                                                                               Field__c = 'Name', 
+                                                                                               Relationship_Type__c = 'AccountTester' + i,
+                                                                                               Campaign_Types__c = '');
+            relAutoCreateList.add(contactRelAutoCreate);
+            relAutoCreateList.add(accountRelAutoCreate);
+        }
+
+        insert relAutoCreateList;
+
+        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings();
+
+        Test.startTest();
+        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList2 = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings();
+        Test.stopTest();
+
+        System.assertEquals(conRelAutoCreateMappingList, conRelAutoCreateMappingList2, 'The relationship autocreate mapping models should be cached.');
     }
 
     /***************************************************************************************************************************
@@ -115,7 +151,7 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
         delete relAutoCreateList;
 
         Test.startTest();
-        System.assertEquals(true, SRVC_RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings().isEmpty(), 'There should be no Relationship Auto Create Mapping models for Contact.');
+        System.assertEquals(true, MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings().isEmpty(), 'There should be no Relationship Auto Create Mapping models for Contact.');
         Test.stopTest();
     }
 
@@ -146,7 +182,7 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
         }
 
         Test.startTest();
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingsList = SRVC_RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
+        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingsList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
         Test.stopTest();
 
         System.assertEquals(10, conRelAutoCreateMappingsList.size(), 'There should be 10 MODL_ConRelationshipAutoCreateMapping returned.');
@@ -161,7 +197,7 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
         List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
 
         Test.startTest();
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingsList = SRVC_RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
+        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingsList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
         Test.stopTest();
 
         System.assertEquals(true, conRelAutoCreateMappingsList.isEmpty(), 'There should be no MODL_ConRelationshipAutoCreateMapping returned.');
@@ -195,7 +231,7 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
 
         Test.startTest();
         for (Relationship_Auto_Create__c relAutoCreate : relAutoCreateList){
-            MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMapping = SRVC_RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(relAutoCreate);
+            MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMapping = MAPR_RELAutoCreateSettings.getInstance().getModelFromMapping(relAutoCreate);
             if (conRelAutoCreateMapping.relationshipType.contains('ContactTester')){
                 System.assertEquals(true, conRelAutoCreateMapping.contactFieldApiName.contains('ReportsToId'));
                 System.assertEquals(true, conRelAutoCreateMapping.contactFieldLabel.contains('Reports To ID'));
@@ -213,10 +249,10 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
     ***************************************************************************************************************************/ 
     @isTest 
     private static void getModelFromMappingFalse(){
-        SRVC_RelAutoCreateSettingsMapper.instance = new STUB_NoRelAutoCreateMappingModel();
+        MAPR_RELAutoCreateSettings.instance = new STUB_NoRelAutoCreateMappingModel();
 
         Test.startTest();
-        System.assertEquals(null, SRVC_RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(new Relationship_Auto_Create__c()), 'Empty Relationship Auto Create record should return null');
+        System.assertEquals(null, MAPR_RELAutoCreateSettings.getInstance().getModelFromMapping(new Relationship_Auto_Create__c()), 'Empty Relationship Auto Create record should return null');
         Test.stopTest();
     }
 
@@ -226,9 +262,9 @@ public with sharing class SRVC_RelAutoCreateSettingsMapper_TEST {
 
     /************************************************************************************************************
     * @description Stub class to simulate a null response from the getModelFromMapping method in the
-    * SRVC_RelAutoCreateSettingsMapper.
+    * MAPR_RELAutoCreateSettings.
     *************************************************************************************************************/ 
-    private class STUB_NoRelAutoCreateMappingModel extends SRVC_RelAutoCreateSettingsMapper {
+    private class STUB_NoRelAutoCreateMappingModel extends MAPR_RELAutoCreateSettings {
         @TestVisible
         public override MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
             return null;

@@ -52,7 +52,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @return The instance of SRVC_ContactRelationshipAutoCreate.
     **************************************************************************************************************************/
     public static SRVC_ContactRelationshipAutoCreate getInstance() {
-        if (SRVC_ContactRelationshipAutoCreate.instance == NULL) {
+        if (SRVC_ContactRelationshipAutoCreate.instance == null) {
             SRVC_ContactRelationshipAutoCreate.instance = new SRVC_ContactRelationshipAutoCreate();
         }
 
@@ -85,9 +85,9 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @param  contactRelationShipAutoCreateMapModelsList A List of MODL_ConRelationshipAutoCreateMapping representing Relationship Auto Create mappings for Contact.
     * @return A MODL_ContactRelationships model representing the Relationships associated with the specified Contact record. 
     **************************************************************************************************************************/ 
-    public virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
-        MODL_ContactRelationships conRelationshipsModel;
-        Id contactFieldValue;
+    @TestVisible
+    protected virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
+        MODL_ContactRelationships conRelationshipsModel; 
 
         for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
             try{
@@ -155,15 +155,17 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                       WHERE Contact__c in :contactsRelationshipsModel.contactIdsSet
                                                       AND RelatedContact__c in :contactsRelationshipsModel.relatedContactIdSet
                                                       LIMIT 2000];
-        
+
+        Set<Relationship__c> relationshipsToInsert = new Set<Relationship__c>(contactsRelationshipsModel.relationshipList);
+
         for (Relationship__c rel : contactRelationships){
             Relationship__c relToRemove = this.getDuplicateRelationship(rel, contactsRelationshipsModel);
             if (relToRemove != null){
-                contactsRelationshipsModel.removeRelationshipFromList(relToRemove);
+                relationshipsToInsert.remove(relToRemove);
             } 
         }
 
-        return contactsRelationshipsModel.relationshipList;
+        return new List<Relationship__c>(relationshipsToInsert);
     }
 
     /**************************************************************************************************************************

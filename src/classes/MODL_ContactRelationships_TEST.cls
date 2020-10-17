@@ -35,7 +35,7 @@
 * @description Test class for MODL_ContactRelationships. 
 */
 @isTest
-public with sharing class MODL_ContactRelationships_TEST {
+private with sharing class MODL_ContactRelationships_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that addRelationship() appends additional Relationship records to an existing list of 
     * records for a Contact Relationships model.
@@ -61,14 +61,7 @@ public with sharing class MODL_ContactRelationships_TEST {
             }
                     
             System.assertEquals(7, conRelsMod.relationshipList.size(), 'Contact Relationships model should have 5 new Relationship records added to existing 2 records.');
-            System.assertEquals(7, conRelsMod.relationshipByTypeByRelatedContactId.keySet().size(), 'There should be 7 total related contact mappings for Contact Relationships model.');
-
-            for (Id relConId : conRelsMod.relationshipByTypeByRelatedContactId.keySet()){
-                for (String relType : conRelsMod.relationshipByTypeByRelatedContactId.get(relConId).keySet()){
-                    System.assertEquals(true, (relType == 'Brother' || relType == 'Aunt'), 'Relationship types in Contact Relationships model should be Brother or Aunt only.');
-                }
-            }
-        
+            System.assertEquals(7, conRelsMod.relationshipByTypeByRelatedContactId.keySet().size(), 'There should be 7 total related contact mappings for Contact Relationships model.');        
         }
         Test.stopTest();
     }
@@ -290,7 +283,7 @@ public with sharing class MODL_ContactRelationships_TEST {
     * @param contactsCount The number of Contacts to associate with Contact Relationships models.
     * @return A list of MODL_ContactRelationships.
     **************************************************************************************************************************/ 
-    public static List<MODL_ContactRelationships> getContactRelationshipsModelList(Integer contactsCount){
+    private static List<MODL_ContactRelationships> getContactRelationshipsModelList(Integer contactsCount){
         List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(contactsCount);
         

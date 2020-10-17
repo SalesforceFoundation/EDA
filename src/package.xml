@@ -101,6 +101,9 @@
         <members>FACI_CannotDelete_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
+        <members>MAPR_RELAutoCreateSettings</members>
+        <members>MAPR_RELAutoCreateSettings_TEST</members>
+        <members>MODL_ConRelationshipAutoCreateMappi_TEST</members>
         <members>MODL_ConRelationshipAutoCreateMapping</members>
         <members>MODL_ContactRelationships</members>
         <members>MODL_ContactRelationships_TEST</members>
