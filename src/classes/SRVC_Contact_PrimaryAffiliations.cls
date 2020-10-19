@@ -132,6 +132,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         for (Contact newContact: newContactsById.values()) {
             AffiliationsToProcess afflsToProcess;
             Set<Id> accIdSet;
+
             if (shouldCreateAffiliatons == true) {
                 afflsToProcess = this.getAffiliationsToCreateOrUpdateForContact(newContact, oldContactsById.get(newContact.Id), afflMappingsModelsList);
                 afflToBeAddedList.addAll(afflsToProcess.getAffiliationListToInsertClone());
@@ -174,6 +175,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
 
                 if (newContact.get(eachModel.getContactFieldApiName()) != null) {
                     if (eachModel.getIsValid() == false){
+                        newContact.addError(Label.afflAccoutMappingError);
                         throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
                     }
 

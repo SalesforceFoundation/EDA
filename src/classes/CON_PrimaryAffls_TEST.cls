@@ -766,6 +766,40 @@ private with sharing class CON_PrimaryAffls_TEST {
     ****************************************************** FUNCTIONAL TESTS ***************************************************
     **************************************************************************************************************************/
 
+    /*************************************************************************************************************
+    * @description Test case to verify that updating a primary affiliation field on Contact with record type
+    * validation enabled, a valid Contact field mapping and invalid Record Type mapping throws an error.
+    **************************************************************************************************************/
+    @isTest 
+    private static void updateContactAfflInvalidRecordTypeError(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        insert testContactsList;
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        // insert business account
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businessAccount1;
+
+        for (Contact con : testContactsList){
+            con.Primary_Organization__c = businessAccount1.Id;
+        }
+
+        Test.startTest();
+        try {
+            update testContactsList;
+        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
+            System.assertEquals(Label.afflAccoutMappingError, err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
+        
+        Test.stopTest();
+    }
 
     /*************************************************************************************************************
     * @description Positive bulk test to ensure affiliations are created on Contact insert
@@ -862,13 +896,13 @@ private with sharing class CON_PrimaryAffls_TEST {
                  System.assertEquals(eachUpdatedContact.Id, affiliation.Contact__c);
                  System.assertEquals(true, affiliation.Primary__c);
             }
-
         }
-
     }
 
     /****************************************************************************************************************
-    * @description Tests to ensure error is thrown when validation is On and mappings have incorrect values
+    * @description Tests to ensure that when a Contact is inserted with a primary affiliation field populated, the
+    * Contact is created, but no associated affiliation record is inserted when Record Type validation is On with 
+    * an invalid contact field mapping and valid Record Type mapping.
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactInsertWithWrongMappingsWithValidationOn() {
@@ -903,12 +937,11 @@ private with sharing class CON_PrimaryAffls_TEST {
                                     (SELECT Id FROM Affl_Accounts__r)
                                  FROM Contact
                                  WHERE Id IN :contactsToBeInserted];
-        //List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c];
 
         System.assertEquals(5, conList.size(), 'Five Contacts should be created.');
 
         for (Contact con : conList){
-            System.assertEquals(true, con.Affl_Accounts__r.isEmpty(), 'Enabling record type validation should prevent creation of affiliation records.');
+            System.assertEquals(true, con.Affl_Accounts__r.isEmpty(), 'Enabling record type validation with invalid mapping should prevent creation of affiliation records.');
         }
     }
 
@@ -951,7 +984,8 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
 
     /********************************************************************************************************************************
-    * @description Test to ensure new Primary affiliations are created and old ones become non-primary when Primary field is updated
+    * @description Test to ensure new Primary affiliations are created and old ones become non-primary when Primary affiliation field 
+    * is updated in a Contact record.
     ********************************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactupdates() {
@@ -1002,7 +1036,8 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
 
     /*************************************************************************************************************
-    * @description Test to ensure Primary Affiliations are made non-primary when Primary field is cleared
+    * @description Test to ensure Primary Affiliations are made non-primary when Primary field is cleared on 
+    * update of a Contact record.
     **************************************************************************************************************/
     @isTest
     private static void makeAffiliationNonPrimaryByClearingField() {
