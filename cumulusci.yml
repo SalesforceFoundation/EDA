@@ -182,7 +182,7 @@ flows:
             6:    
                 task: execute_primary_affiliation_mapping_apex
             # 7: 
-            #     task: run_tests test_name_match TESTNAMEMATCH
+            #     task: run_tests test_name_match TESTNAMEMATCH TODO: run tests in unmanaged test class
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
