@@ -15,8 +15,8 @@
     <name>Profile</name>
   </types>
   <types>
-    <members>%%%NAMESPACE%%%STG_UnmanagedInstall</members>
-    <members>%%%NAMESPACE%%%UTIL_Describe_Unmanaged_TEST</members>
+    <members>STG_UnmanagedInstall</members>
+    <members>UTIL_Describe_Unmanaged_TEST</members>
     <name>ApexClass</name>
   </types>
   <version>48.0</version>

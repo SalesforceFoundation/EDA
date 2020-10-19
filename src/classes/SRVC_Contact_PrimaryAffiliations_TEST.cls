@@ -454,8 +454,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
         Test.stopTest();
 
-        System.assertEquals(null, afflsToProcess.affiliationsToInsertList);
-        System.assertEquals(null, afflsToProcess.accountIdSet);
+        System.assertEquals(true, afflsToProcess.affiliationsToInsertList.isEmpty());
+        System.assertEquals(true, afflsToProcess.accountIdSet.isEmpty());
         
     }
 
@@ -488,8 +488,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, MAPR_PrimaryAffiliations.getInstance().getModelsFromSettings());
         Test.stopTest();
 
-        System.assertEquals(null, afflsToProcess.affiliationsToInsertList);
-        System.assertEquals(null, afflsToProcess.accountIdSet);
+        System.assertEquals(true, afflsToProcess.affiliationsToInsertList.isEmpty());
+        System.assertEquals(true, afflsToProcess.accountIdSet.isEmpty());
 
     }
 
