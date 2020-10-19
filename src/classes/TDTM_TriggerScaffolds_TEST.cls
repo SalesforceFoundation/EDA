@@ -161,7 +161,9 @@ private class TDTM_TriggerScaffolds_TEST {
         Application__c a = new Application__c();
         insert a;
         Id cdId = [Select Id from ContentDocument Limit 1].Id;
+        Test.startTest();
         insert new ContentDocumentLink(ContentDocumentId = cdId, LinkedEntityId = a.Id);
+        Test.stopTest();
        
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
     }
