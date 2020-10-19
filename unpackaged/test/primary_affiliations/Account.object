@@ -13,29 +13,29 @@
         <label>Inactive Test Type</label>
     </recordTypes>
     <fields>
-        <fullName>Active_Contact__c</fullName>
+        <fullName>Primary_Active_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the Contact record for the Active Test Type record type.</description>
         <externalId>false</externalId>
         <inlineHelpText>Lookup to the Contact record for the Active Test Type record type.</inlineHelpText>
-        <label>Active Contact</label>
+        <label>Primary Active Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Contacts (Active Contacts)</relationshipLabel>
-        <relationshipName>Contacts</relationshipName>
+        <relationshipLabel>Active Contacts</relationshipLabel>
+        <relationshipName>ActiveContacts</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Inactive_Contact__c</fullName>
+        <fullName>Primary_Inactive_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the Contact record for the Inactive Test Type record type.</description>
         <externalId>false</externalId>
         <inlineHelpText>Lookup to the Contact record for the Active Test Type record type.</inlineHelpText>
-        <label>Inactive Contact</label>
+        <label>Primary Inactive Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Contacts (Inactive Contacts)</relationshipLabel>
-        <relationshipName>Contacts</relationshipName>
+        <relationshipLabel>Inactive Contacts</relationshipLabel>
+        <relationshipName>InactiveContacts</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>

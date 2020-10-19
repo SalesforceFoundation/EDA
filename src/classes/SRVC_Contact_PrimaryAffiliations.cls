@@ -300,7 +300,10 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         @testVisible
         private Set<Id> accountIdSet;
 
-        public AffiliationsToProcess() {}
+        public AffiliationsToProcess(){
+            affiliationsToInsertList = new List<Affiliation__c>();
+            accountIdSet = new Set<Id>();
+        }
 
         public AffiliationsToProcess(List<Affiliation__c> affiliationsToInsertList, Set<Id> accountIdSet){
             this.affiliationsToInsertList = affiliationsToInsertList;
@@ -314,7 +317,5 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         public Set<Id> getAccountIdSet() {
             return accountIdSet.clone();
         }
-
     }
-
 }

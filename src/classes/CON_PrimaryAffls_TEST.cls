@@ -772,8 +772,10 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest 
     private static void updateContactAfflInvalidRecordTypeError(){
-        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
         insert testContactsList;
+
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -821,7 +823,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < 100; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -835,7 +837,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         //Ensure Primary Business Organization affiliations are created for each Contact
         List<Contact> updatedContactList = [SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r) FROM Contact WHERE Id IN: ContactsById.keySet()];
-        System.assertEquals(5, updatedContactList.size());
+        System.assertEquals(100, updatedContactList.size());
         for (Contact eachUpdatedContact: updatedContactList) {
             System.assertEquals(1, eachUpdatedContact.Affl_Accounts__r.size());
              for (Affiliation__c affiliation: eachUpdatedContact.Affl_Accounts__r) {
@@ -844,7 +846,6 @@ private with sharing class CON_PrimaryAffls_TEST {
                  System.assertEquals(true, affiliation.Primary__c);
              }
         }
-
     }
 
     /*************************************************************************************************************
@@ -867,7 +868,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < 100; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
         }
@@ -888,7 +889,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         //Ensure Primary Business Organization affiliations are created for each Contact
         List<Contact> updatedContactList = [SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r) FROM Contact WHERE Id IN: ContactsById.keySet()];
-        System.assertEquals(5, updatedContactList.size());
+        System.assertEquals(100, updatedContactList.size());
         for (Contact eachUpdatedContact: updatedContactList) {
             System.assertEquals(1, eachUpdatedContact.Affl_Accounts__r.size());
              for (Affiliation__c affiliation: eachUpdatedContact.Affl_Accounts__r) {
@@ -923,7 +924,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < 100; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -938,7 +939,7 @@ private with sharing class CON_PrimaryAffls_TEST {
                                  FROM Contact
                                  WHERE Id IN :contactsToBeInserted];
 
-        System.assertEquals(5, conList.size(), 'Five Contacts should be created.');
+        System.assertEquals(100, conList.size(), 'Five Contacts should be created.');
 
         for (Contact con : conList){
             System.assertEquals(true, con.Affl_Accounts__r.isEmpty(), 'Enabling record type validation with invalid mapping should prevent creation of affiliation records.');
@@ -965,7 +966,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < 100; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -978,9 +979,8 @@ private with sharing class CON_PrimaryAffls_TEST {
         List<Contact> conList = [SELECT Id FROM Contact];
         List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c];
 
-        System.assertEquals(5, conList.size());
+        System.assertEquals(100, conList.size());
         System.assertEquals(true, afflList.isEmpty());
-
     }
 
     /********************************************************************************************************************************
@@ -1004,7 +1004,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccountList;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < 100; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccountList[0].Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -1013,7 +1013,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert contactsToBeInserted;
 
         List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c WHERE Account__c =: businessAccountList[0].Id AND Primary__c = TRUE];
-        System.assertEquals(5, afflList.size());
+        System.assertEquals(100, afflList.size());
 
         List<Contact> contactToBeUpdatedList = new List<Contact>();
 
@@ -1031,8 +1031,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         System.assertEquals(0, afflListWithBizOrg1AsPrimary.size());
 
         List<Affiliation__c> afflListWithBizOrg2AsPrimary = [SELECT Id FROM Affiliation__c WHERE Account__c =: businessAccountList[1].Id AND Primary__c = TRUE];
-        System.assertEquals(5, afflListWithBizOrg2AsPrimary.size());
-        
+        System.assertEquals(100, afflListWithBizOrg2AsPrimary.size());
     }
 
     /*************************************************************************************************************
@@ -1081,7 +1080,5 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Affiliation__c> afflListWithBizOrg1AsPrimary = [SELECT Id FROM Affiliation__c WHERE Primary__c = TRUE];
         System.assertEquals(0, afflListWithBizOrg1AsPrimary.size());
-
     }
-
 }
