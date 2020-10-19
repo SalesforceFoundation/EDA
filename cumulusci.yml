@@ -29,14 +29,6 @@ tasks:
             path: unpackaged/config/dev
             unmanaged: True
 
-    deploy_primary_affiliations_config:
-        description: Deploys primary affiliation configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
-        class_path: cumulusci.tasks.salesforce.Deploy
-        options:
-            namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test/primary_affiliations/pre
-            unmanaged: True
-
     delete_dev_config:
         description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -62,6 +54,14 @@ tasks:
             path: unpackaged/config/spe
             namespace_inject: $project_config.project__package__namespace
 
+    deploy_primary_affiliations_config:
+        description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test/primary_affiliations/pre
+            unmanaged: True
+            
     assign_encryption_permset:
         group: 'Shield Platform Encryption'
         description: Assigns the Encryption permission set to the current user for Shield Platform Encryption testing.
@@ -89,7 +89,7 @@ tasks:
                 STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
 
     execute_primary_affiliation_mapping_apex:
-        description: Runs anonymous apex to insert unmanaged Affiliation mappings for development.
+        description: Runs anonymous apex for dev to configure and insert unmanaged Affiliation mappings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
