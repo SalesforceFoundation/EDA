@@ -134,7 +134,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             } catch (UTIL_Describe.SchemaDescribeException exp) {
                 return null;
             }
-        }     
+        }
 
         if (primaryAfflFieldDescribe == null) {
             // Affiliation mapping to Contact field that doesn't exist - skip mapping
