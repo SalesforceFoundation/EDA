@@ -200,7 +200,7 @@ private class MAPR_CON_PreferredEmailFields_TEST {
         Test.stopTest();
         
         System.assertEquals(false, ispreferredEmailValidationEnabled);
-        
+
     }
 
     /*********************************************************************************************************************************************

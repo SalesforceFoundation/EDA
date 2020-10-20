@@ -29,7 +29,7 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Mapper class for CON_Preferred_Email. Returns MODL_PreferredEmailSettings model.
+* @description Mapper class for Preferred Email functionality. Returns MODL_PreferredEmailSettings model.
 */
 public virtual with sharing class MAPR_CON_PreferredEmailFields {
 

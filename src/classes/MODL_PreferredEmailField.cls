@@ -29,7 +29,7 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Model class for 
+* @description Model class for Preferred Email functionality to store Email Type filed label, API name and value
 */
 public virtual with sharing class MODL_PreferredEmailField {
 

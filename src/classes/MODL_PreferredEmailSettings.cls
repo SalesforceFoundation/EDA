@@ -29,7 +29,8 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Model class for 
+* @description Model class for Preferred Email functionality to store email field models, standard email field label
+* Alternate Email preferred email, Preferred Email validaiton enabled custom setting's value and preferredEmailPicklistLabelByApiName map
 */
 public class MODL_PreferredEmailSettings {
 

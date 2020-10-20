@@ -29,7 +29,7 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Test class for MODL_PreferredEmailSettings
+* @description Test class for MODL_PreferredEmailSettings.cls
 */
 
 @isTest
