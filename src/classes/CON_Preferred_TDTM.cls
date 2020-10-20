@@ -44,8 +44,8 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
     * @param objResult the describe for Contacts
     * @return dmlWrapper
     ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist,
-                                   List<SObject> newlist,
+    public override DmlWrapper run(List<SObject> newList,
+                                   List<SObject> oldList,
                                    TDTM_Runnable.Action triggerAction,
                                    Schema.DescribeSObjectResult objResult) {
 
