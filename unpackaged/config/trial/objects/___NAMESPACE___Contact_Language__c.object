@@ -49,10 +49,10 @@
     <compactLayouts>
         <fullName>HEDA_Contact_Language_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>Language__c</fields>
-        <fields>Fluency__c</fields>
-        <fields>Primary_Language__c</fields>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%Language__c</fields>
+        <fields>%%%NAMESPACE%%%Fluency__c</fields>
+        <fields>%%%NAMESPACE%%%Primary_Language__c</fields>
         <label>HEDA Contact Language Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -66,7 +66,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
         <description>The person who speaks this language.</description>
         <externalId>false</externalId>
         <inlineHelpText>The person who speaks this language.</inlineHelpText>
@@ -81,7 +81,7 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
-        <fullName>Fluency__c</fullName>
+        <fullName>%%%NAMESPACE%%%Fluency__c</fullName>
         <description>The fluency with which this person speaks this language.</description>
         <externalId>false</externalId>
         <inlineHelpText>The fluency with which this person speaks this language.</inlineHelpText>
@@ -112,7 +112,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Language_Details__c</fullName>
+        <fullName>%%%NAMESPACE%%%Language_Details__c</fullName>
         <description>Additional details about this Contact&apos;s preferred language.</description>
         <externalId>false</externalId>
         <label>Language Details</label>
@@ -122,13 +122,13 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Language__c</fullName>
+        <fullName>%%%NAMESPACE%%%Language__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <description>A language this person speaks.</description>
         <externalId>false</externalId>
         <inlineHelpText>A language this person speaks.</inlineHelpText>
-        <label>Language</label>
-        <referenceTo>Language__c</referenceTo>
+        <label>%%%NAMESPACE%%%Language</label>
+        <referenceTo>%%%NAMESPACE%%%Language__c</referenceTo>
         <relationshipLabel>Contact Languages</relationshipLabel>
         <relationshipName>Contact_Languages</relationshipName>
         <required>false</required>
@@ -136,7 +136,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Primary_Language__c</fullName>
+        <fullName>%%%NAMESPACE%%%Primary_Language__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates this is the language of choice for this person.</description>
         <externalId>false</externalId>
@@ -158,14 +158,14 @@
     </nameField>
     <pluralLabel>Contact Languages</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields>Language__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>Language__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Language__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Contact__c</lookupPhoneDialogsAdditionalFields>
-        <searchResultsAdditionalFields>Language__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Language__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Contact__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>%%%NAMESPACE%%%Language__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>%%%NAMESPACE%%%Contact__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>%%%NAMESPACE%%%Language__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>%%%NAMESPACE%%%Contact__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Language__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Contact__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

@@ -57,7 +57,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Context_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Context_Type__c</fullName>
         <description>Context that generated the error, if known.</description>
         <externalId>false</externalId>
         <inlineHelpText>Context that generated the error, if known.</inlineHelpText>
@@ -67,7 +67,7 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Datetime__c</fullName>
+        <fullName>%%%NAMESPACE%%%Datetime__c</fullName>
         <defaultValue>now()</defaultValue>
         <description>Date &amp; time the error occurred.</description>
         <externalId>false</externalId>
@@ -78,7 +78,7 @@
         <type>DateTime</type>
     </fields>
     <fields>
-        <fullName>Email_Sent__c</fullName>
+        <fullName>%%%NAMESPACE%%%Email_Sent__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates whether an email notification has been sent regarding this error.</description>
         <externalId>false</externalId>
@@ -88,7 +88,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Error_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Error_Type__c</fullName>
         <description>Type of error that occurred.</description>
         <externalId>false</externalId>
         <inlineHelpText>Type of error that occurred.</inlineHelpText>
@@ -98,7 +98,7 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Full_Message__c</fullName>
+        <fullName>%%%NAMESPACE%%%Full_Message__c</fullName>
         <description>Full text of the error message.</description>
         <externalId>false</externalId>
         <inlineHelpText>Full text of the error message.</inlineHelpText>
@@ -109,7 +109,7 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
-        <fullName>Object_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Object_Type__c</fullName>
         <description>The object on which the error occurred, if known.</description>
         <externalId>false</externalId>
         <inlineHelpText>The object on which the error occurred, if known.</inlineHelpText>
@@ -119,7 +119,7 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Posted_in_Chatter__c</fullName>
+        <fullName>%%%NAMESPACE%%%Posted_in_Chatter__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates whether the error has been posted in Chatter.</description>
         <externalId>false</externalId>
@@ -129,7 +129,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Record_URL__c</fullName>
+        <fullName>%%%NAMESPACE%%%Record_URL__c</fullName>
         <description>A link to the record which caused the error, if available.</description>
         <externalId>false</externalId>
         <inlineHelpText>A link to the record which caused the error, if available.</inlineHelpText>
@@ -139,7 +139,7 @@
         <type>Url</type>
     </fields>
     <fields>
-        <fullName>Stack_Trace__c</fullName>
+        <fullName>%%%NAMESPACE%%%Stack_Trace__c</fullName>
         <description>Stack trace for the thrown error, if available at runtime.</description>
         <externalId>false</externalId>
         <inlineHelpText>Stack trace for the thrown error, if available at runtime.</inlineHelpText>
@@ -157,19 +157,19 @@
     </nameField>
     <pluralLabel>Errors</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields>Datetime__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Error_Type__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Object_Type__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Context_Type__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Email_Sent__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Posted_in_Chatter__c</customTabListAdditionalFields>
-        <searchFilterFields>Context_Type__c</searchFilterFields>
-        <searchResultsAdditionalFields>Datetime__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Error_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Object_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Context_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Email_Sent__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Posted_in_Chatter__c</searchResultsAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Datetime__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Error_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Object_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Context_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Email_Sent__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Posted_in_Chatter__c</customTabListAdditionalFields>
+        <searchFilterFields>%%%NAMESPACE%%%Context_Type__c</searchFilterFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Datetime__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Error_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Object_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Context_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Email_Sent__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Posted_in_Chatter__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

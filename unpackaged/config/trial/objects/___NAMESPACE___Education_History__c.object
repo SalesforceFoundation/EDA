@@ -145,9 +145,9 @@
     <compactLayouts>
         <fullName>EDA_Education_History_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Account__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
+        <fields>%%%NAMESPACE%%%Account__c</fields>
+        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
+        <fields>%%%NAMESPACE%%%End_Date__c</fields>
         <label>EDA Education History Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -163,7 +163,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>%%%NAMESPACE%%%Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Educational Institution Account related to this data.</description>
         <externalId>false</externalId>
@@ -174,9 +174,9 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields> 
+    </fields>
     <fields>
-        <fullName>Class_Percentile__c</fullName>
+        <fullName>%%%NAMESPACE%%%Class_Percentile__c</fullName>
         <description>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</description>
         <externalId>false</externalId>
         <inlineHelpText>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</inlineHelpText>
@@ -188,7 +188,7 @@
         <type>Percent</type>
     </fields>
     <fields>
-        <fullName>Class_Rank_Scale__c</fullName>
+        <fullName>%%%NAMESPACE%%%Class_Rank_Scale__c</fullName>
         <description>Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile.</description>
         <externalId>false</externalId>
         <inlineHelpText>Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile.</inlineHelpText>
@@ -229,7 +229,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Class_Rank_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Class_Rank_Type__c</fullName>
         <description>Tracks how the Class Rank was determined. For example, using a weighted or unweighted scale.</description>
         <externalId>false</externalId>
         <inlineHelpText>Tracks how the Class Rank was determined. For example, using a weighted or unweighted scale.</inlineHelpText>
@@ -255,7 +255,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Class_Rank__c</fullName>
+        <fullName>%%%NAMESPACE%%%Class_Rank__c</fullName>
         <description>The student&apos;s academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5.</description>
         <externalId>false</externalId>
         <inlineHelpText>The student&apos;s academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5.</inlineHelpText>
@@ -268,7 +268,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Class_Size__c</fullName>
+        <fullName>%%%NAMESPACE%%%Class_Size__c</fullName>
         <description>The number of students that were in the Contact&apos;s class.</description>
         <externalId>false</externalId>
         <inlineHelpText>The number of students that were in the Contact&apos;s class.</inlineHelpText>
@@ -281,7 +281,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Contact related to this historical data.</description>
         <externalId>false</externalId>
@@ -295,7 +295,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Degree_Earned__c</fullName>
+        <fullName>%%%NAMESPACE%%%Degree_Earned__c</fullName>
         <description>If applicable, the level of the degree the Contact earned at this Educational Institution.</description>
         <externalId>false</externalId>
         <inlineHelpText>If applicable, the level of the degree the Contact earned at this Educational Institution.</inlineHelpText>
@@ -376,7 +376,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Details__c</fullName>
+        <fullName>%%%NAMESPACE%%%Details__c</fullName>
         <description>Additional details about this student&apos;s educational history.</description>
         <externalId>false</externalId>
         <inlineHelpText>Additional details about this student&apos;s educational history.</inlineHelpText>
@@ -387,7 +387,7 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Education_History_JSON__c</fullName>
+        <fullName>%%%NAMESPACE%%%Education_History_JSON__c</fullName>
         <description>A system field that stores a large JSON structure used for integrations. Do not modify this field.</description>
         <externalId>false</externalId>
         <inlineHelpText></inlineHelpText>
@@ -398,7 +398,7 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Educational_Institution_Name__c</fullName>
+        <fullName>%%%NAMESPACE%%%Educational_Institution_Name__c</fullName>
         <description>The name of the Educational Institution related to this data.</description>
         <externalId>false</externalId>
         <label>Educational Institution Name</label>
@@ -409,7 +409,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>End_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%End_Date__c</fullName>
         <description>The date the Contact left this Educational Institution.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date the Contact left this Educational Institution.</inlineHelpText>
@@ -419,7 +419,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>GPA_Scale_Reporting__c</fullName>
+        <fullName>%%%NAMESPACE%%%GPA_Scale_Reporting__c</fullName>
         <description>The highest possible grade point average at this Educational Institution.</description>
         <externalId>false</externalId>
         <inlineHelpText>The highest possible grade point average at this Educational Institution.</inlineHelpText>
@@ -525,7 +525,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>GPA_Scale_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%GPA_Scale_Type__c</fullName>
         <description>Tracks how the GPA was determined. For example, using a weighted or unweighted scale.</description>
         <externalId>false</externalId>
         <inlineHelpText>Tracks how the GPA was determined. For example, using a weighted or unweighted scale.</inlineHelpText>
@@ -551,7 +551,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>GPA__c</fullName>
+        <fullName>%%%NAMESPACE%%%GPA__c</fullName>
         <description>The Contact&apos;s final grade point average.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Contact&apos;s final grade point average.</inlineHelpText>
@@ -564,7 +564,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Graduation_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Graduation_Date__c</fullName>
         <description>If applicable, the date the Contact graduated from this Educational Institution.</description>
         <externalId>false</externalId>
         <inlineHelpText>If applicable, the date the Contact graduated from this Educational Institution.</inlineHelpText>
@@ -574,7 +574,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Start_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Start_Date__c</fullName>
         <description>The date the Contact started at this Educational Institution.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date the Contact started at this Educational Institution.</inlineHelpText>
@@ -597,9 +597,9 @@
     </nameField>
     <pluralLabel>Education History</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%End_Date__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>

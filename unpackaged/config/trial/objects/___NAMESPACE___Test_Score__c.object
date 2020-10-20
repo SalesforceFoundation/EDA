@@ -54,7 +54,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Percentile__c</fullName>
+        <fullName>%%%NAMESPACE%%%Percentile__c</fullName>
         <description>The percentile ranking for this score.</description>
         <externalId>false</externalId>
         <inlineHelpText>The percentile ranking for this score.</inlineHelpText>
@@ -67,7 +67,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Score__c</fullName>
+        <fullName>%%%NAMESPACE%%%Score__c</fullName>
         <description>The numeric value of the score received.</description>
         <externalId>false</externalId>
         <inlineHelpText>The numeric value of the score received.</inlineHelpText>
@@ -80,7 +80,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Subject_Area__c</fullName>
+        <fullName>%%%NAMESPACE%%%Subject_Area__c</fullName>
         <description>The subject matter or category for this test score.</description>
         <externalId>false</externalId>
         <inlineHelpText>The subject matter or category for this test score.</inlineHelpText>
@@ -125,10 +125,10 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Test_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Test_Type__c</fullName>
         <description>Displays the Test Type name from the associated Test record. For example, SAT or GRE.</description>
         <externalId>false</externalId>
-        <formula>TEXT(Test__r.Test_Type__c)</formula>
+        <formula>TEXT(Test__r.%%%NAMESPACE%%%Test_Type__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Displays the Test Type name from the associated Test record. For example, SAT or GRE.</inlineHelpText>
         <label>Test Type</label>
@@ -138,13 +138,13 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Test__c</fullName>
+        <fullName>%%%NAMESPACE%%%Test__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Test for which this score is being recorded.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Test for which this score is being recorded.</inlineHelpText>
         <label>Test</label>
-        <referenceTo>Test__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Test__c</referenceTo>
         <relationshipLabel>Test Scores</relationshipLabel>
         <relationshipName>Test_Scores</relationshipName>
         <required>false</required>
@@ -164,11 +164,11 @@
     </nameField>
     <pluralLabel>Test Scores</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Test__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Subject_Area__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Score__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Percentile__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Test_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Test__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Subject_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Score__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Percentile__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

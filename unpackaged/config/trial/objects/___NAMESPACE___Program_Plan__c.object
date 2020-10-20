@@ -49,8 +49,8 @@
     <compactLayouts>
         <fullName>HEDA_Program_Plan_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
+        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
+        <fields>%%%NAMESPACE%%%End_Date__c</fields>
         <label>HEDA Program Plan Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -64,7 +64,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>%%%NAMESPACE%%%Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Academic Program this Program Plan is for, for example, BA in Philosophy.</description>
         <externalId>false</externalId>
@@ -78,7 +78,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
         <description>The description of Program Plan.</description>
         <externalId>false</externalId>
         <label>Description</label>
@@ -87,7 +87,7 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>End_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%End_Date__c</fullName>
         <description>The end date for the Program Plan.</description>
         <externalId>false</externalId>
         <inlineHelpText>The end date for the Program Plan.</inlineHelpText>
@@ -97,7 +97,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Is_Primary__c</fullName>
+        <fullName>%%%NAMESPACE%%%Is_Primary__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates this is the Program Plan currently in effect for the selected Academic Program.</description>
         <externalId>false</externalId>
@@ -107,7 +107,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Start_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Start_Date__c</fullName>
         <description>The date this Program Plan went into effect.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date this Program Plan went into effect.</inlineHelpText>
@@ -117,7 +117,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Status__c</fullName>
+        <fullName>%%%NAMESPACE%%%Status__c</fullName>
         <description>Select "Current" if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise, select "Archived."</description>
         <externalId>false</externalId>
         <inlineHelpText>Select "Current" if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise, select "Archived."</inlineHelpText>
@@ -142,7 +142,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Total_Required_Credits__c</fullName>
+        <fullName>%%%NAMESPACE%%%Total_Required_Credits__c</fullName>
         <description>The total number of credits a student needs to complete to satisfy this Program Plan.</description>
         <externalId>false</externalId>
         <inlineHelpText>The total number of credits a student needs to complete to satisfy this Program Plan.</inlineHelpText>
@@ -155,7 +155,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Version__c</fullName>
+        <fullName>%%%NAMESPACE%%%Version__c</fullName>
         <description>The version of the Program Plan, for example, Spring 2020.</description>
         <externalId>false</externalId>
         <inlineHelpText>The version of the Program Plan, for example, Spring 2020.</inlineHelpText>
@@ -175,14 +175,14 @@
     <listViews>
         <fullName>Primary_Program_Plan</fullName>
         <columns>NAME</columns>
-        <columns>Account__c</columns>
-        <columns>Start_Date__c</columns>
-        <columns>End_Date__c</columns>
-        <columns>Is_Primary__c</columns>
-        <columns>Status__c</columns>
+        <columns>%%%NAMESPACE%%%Account__c</columns>
+        <columns>%%%NAMESPACE%%%Start_Date__c</columns>
+        <columns>%%%NAMESPACE%%%End_Date__c</columns>
+        <columns>%%%NAMESPACE%%%Is_Primary__c</columns>
+        <columns>%%%NAMESPACE%%%Status__c</columns>
         <filterScope>Mine</filterScope>
         <filters>
-            <field>Is_Primary__c</field>
+            <field>%%%NAMESPACE%%%Is_Primary__c</field>
             <operation>equals</operation>
             <value>1</value>
         </filters>
@@ -194,11 +194,11 @@
     </nameField>
     <pluralLabel>Program Plans</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Is_Primary__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%End_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Is_Primary__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

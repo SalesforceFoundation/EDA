@@ -54,13 +54,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Behavior_Involvement__c</fullName>
+        <fullName>%%%NAMESPACE%%%Behavior_Involvement__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Behavior Involvement record this Behavior Response is for.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Behavior Involvement record this Behavior Response is for.</inlineHelpText>
         <label>Behavior Involvement</label>
-        <referenceTo>Behavior_Involvement__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Behavior_Involvement__c</referenceTo>
         <relationshipLabel>Behavior Responses</relationshipLabel>
         <relationshipName>Behavior_Responses</relationshipName>
         <required>false</required>
@@ -68,10 +68,10 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
         <description>The recipient of this Behavior Response (read-only).</description>
         <externalId>false</externalId>
-        <formula>HYPERLINK(&quot;/&quot; + Behavior_Involvement__r.Contact__c, Behavior_Involvement__r.Contact__r.FirstName + &quot; &quot; + Behavior_Involvement__r.Contact__r.LastName)</formula>
+        <formula>HYPERLINK(&quot;/&quot; + Behavior_Involvement__r.%%%NAMESPACE%%%Contact__c, Behavior_Involvement__r.%%%NAMESPACE%%%Contact__r.FirstName + &quot; &quot; + Behavior_Involvement__r.Contact__r.LastName)</formula>
         <inlineHelpText>The recipient of this Behavior Response (read-only).</inlineHelpText>
         <label>Contact</label>
         <required>false</required>
@@ -80,7 +80,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
         <description>A description of the response.</description>
         <externalId>false</externalId>
         <label>Description</label>
@@ -90,7 +90,7 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>End_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%End_Date__c</fullName>
         <description>The date the response is no longer in effect.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date the response is no longer in effect.</inlineHelpText>
@@ -100,7 +100,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Start_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Start_Date__c</fullName>
         <description>The date the response goes into effect.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date the response goes into effect.</inlineHelpText>
@@ -110,7 +110,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Status__c</fullName>
+        <fullName>%%%NAMESPACE%%%Status__c</fullName>
         <description>The status of the response taken.</description>
         <externalId>false</externalId>
         <label>Status</label>
@@ -145,7 +145,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Type__c</fullName>
         <description>The response to the behavior event, for example, Academic Probation, Expulsion, or Other.</description>
         <externalId>false</externalId>
         <inlineHelpText>The response to the behavior event, for example, Academic Probation, Expulsion, or Other.</inlineHelpText>
@@ -188,10 +188,10 @@
     </nameField>
     <pluralLabel>Behavior Responses</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Behavior_Involvement__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Behavior_Involvement__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

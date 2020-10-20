@@ -49,11 +49,11 @@
     <compactLayouts>
         <fullName>HEDA_Affiliation_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>Account__c</fields>
-        <fields>Primary__c</fields>
-        <fields>Status__c</fields>
-        <fields>Role__c</fields>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%Account__c</fields>
+        <fields>%%%NAMESPACE%%%Primary__c</fields>
+        <fields>%%%NAMESPACE%%%Status__c</fields>
+        <fields>%%%NAMESPACE%%%Role__c</fields>
         <label>HEDA Affiliation Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -67,7 +67,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>%%%NAMESPACE%%%Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The organization this person is affiliated with.</description>
         <externalId>false</externalId>
@@ -82,7 +82,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Affiliation_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Affiliation_Type__c</fullName>
         <externalId>false</externalId>
         <description>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</description>
         <inlineHelpText>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</inlineHelpText>
@@ -95,7 +95,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The person affiliated with this organization.</description>
         <externalId>false</externalId>
@@ -110,7 +110,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
         <externalId>false</externalId>
         <description>Details of how the person and organization are affiliated.</description>
         <inlineHelpText>Details of how the person and organization are affiliated.</inlineHelpText>
@@ -122,7 +122,7 @@
         <visibleLines>6</visibleLines>
     </fields>
     <fields>
-        <fullName>EndDate__c</fullName>
+        <fullName>%%%NAMESPACE%%%EndDate__c</fullName>
         <externalId>false</externalId>
         <description>The date this Affiliation ended or will end.</description>
         <inlineHelpText>The date this Affiliation ended or will end.</inlineHelpText>
@@ -133,7 +133,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Primary__c</fullName>
+        <fullName>%%%NAMESPACE%%%Primary__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates whether this is the main Affiliation for this person. If selected, the organization name is stored in the relevant Primary Affiliation field on the Contact record.</description>
         <externalId>false</externalId>
@@ -144,7 +144,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Role__c</fullName>
+        <fullName>%%%NAMESPACE%%%Role__c</fullName>
         <externalId>false</externalId>
         <description>The role this person has with the organization.</description>
         <inlineHelpText>The role this person has with the organization.</inlineHelpText>
@@ -185,7 +185,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>StartDate__c</fullName>
+        <fullName>%%%NAMESPACE%%%StartDate__c</fullName>
         <externalId>false</externalId>
         <description>The date this person became affiliated with this organization.</description>
         <inlineHelpText>The date this person became affiliated with this organization.</inlineHelpText>
@@ -196,7 +196,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Status__c</fullName>
+        <fullName>%%%NAMESPACE%%%Status__c</fullName>
         <externalId>false</externalId>
         <description>Indicates whether this is a current or former Affiliation.</description>
         <inlineHelpText>Indicates whether this is a current or former Affiliation.</inlineHelpText>
@@ -234,6 +234,6 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Affiliations</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

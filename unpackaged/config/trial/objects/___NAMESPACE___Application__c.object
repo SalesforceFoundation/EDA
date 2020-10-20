@@ -54,7 +54,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Applicant_Decision_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Applicant_Decision_Date__c</fullName>
         <description>The date when the student decides whether to enroll.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date when the student decides whether to enroll.</inlineHelpText>
@@ -65,7 +65,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Applicant__c</fullName>
+        <fullName>%%%NAMESPACE%%%Applicant__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Contact applying to the institution or program.</description>
         <externalId>false</externalId>
@@ -80,7 +80,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Application_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Application_Date__c</fullName>
         <description>The date and time when the application was submitted.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date and time when the application was submitted.</inlineHelpText>
@@ -91,7 +91,7 @@
         <type>DateTime</type>
     </fields>
     <fields>
-        <fullName>Application_Decision_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Application_Decision_Date__c</fullName>
         <description>The date when the institution decides whether to accept the applicant.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date when the institution decides whether to accept the applicant.</inlineHelpText>
@@ -102,7 +102,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Application_JSON__c</fullName>
+        <fullName>%%%NAMESPACE%%%Application_JSON__c</fullName>
         <description>A system field that stores a large JSON structure used for integrations. Do not modify this field.</description>
         <externalId>false</externalId>
         <inlineHelpText></inlineHelpText>
@@ -113,7 +113,7 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Application_Status__c</fullName>
+        <fullName>%%%NAMESPACE%%%Application_Status__c</fullName>
         <description>The status of the application process.</description>
         <externalId>false</externalId>
         <inlineHelpText>The status of the application process.</inlineHelpText>
@@ -184,7 +184,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Application_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Application_Type__c</fullName>
         <description>The type of program or track the applicant is applying to.</description>
         <externalId>false</externalId>
         <inlineHelpText>The type of program or track the applicant is applying to.</inlineHelpText>
@@ -215,7 +215,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Applying_To__c</fullName>
+        <fullName>%%%NAMESPACE%%%Applying_To__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The academic program or major the applicant is applying to.</description>
         <externalId>false</externalId>
@@ -230,7 +230,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Initial_Creation_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Initial_Creation_Date__c</fullName>
         <description>The date the application was initially created by the applicant.</description>
         <inlineHelpText>The date the application was initially created by the applicant.</inlineHelpText>
         <externalId>false</externalId>
@@ -241,7 +241,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Preparer__c</fullName>
+        <fullName>%%%NAMESPACE%%%Preparer__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Contact preparing the application, often a guardian.</description>
         <externalId>false</externalId>
@@ -256,13 +256,13 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Term__c</fullName>
+        <fullName>%%%NAMESPACE%%%Term__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The term when the applicant wants to enroll.</description>
         <externalId>false</externalId>
         <inlineHelpText>The term when the applicant wants to enroll.</inlineHelpText>
         <label>Term</label>
-        <referenceTo>Term__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Term__c</referenceTo>
         <relationshipLabel>Applications</relationshipLabel>
         <relationshipName>Applications</relationshipName>
         <required>false</required>
@@ -284,15 +284,15 @@
     </nameField>
     <pluralLabel>Applications</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Applicant__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Applying_To__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Application_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Term__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Application_Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Application_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Application_Decision_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Applicant_Decision_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Preparer__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Applicant__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Applying_To__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Application_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Term__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Application_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Application_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Application_Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Applicant_Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Preparer__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

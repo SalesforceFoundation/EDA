@@ -54,7 +54,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Educational_Institution__c</fullName>
+        <fullName>%%%NAMESPACE%%%Educational_Institution__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Educational Institution associated with this Time Block. For example, a school within a district.</description>
         <externalId>false</externalId>
@@ -69,7 +69,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>End_Time__c</fullName>
+        <fullName>%%%NAMESPACE%%%End_Time__c</fullName>
         <description>The time of day the Time Block ends.</description>
         <externalId>false</externalId>
         <inlineHelpText>The time of day the Time Block ends.</inlineHelpText>
@@ -80,7 +80,7 @@
         <type>Time</type>
     </fields>
     <fields>
-        <fullName>Start_Time__c</fullName>
+        <fullName>%%%NAMESPACE%%%Start_Time__c</fullName>
         <description>The time of day the Time Block starts.</description>
         <externalId>false</externalId>
         <inlineHelpText>The time of day the Time Block starts.</inlineHelpText>
@@ -94,8 +94,8 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>Start_Time__c</columns>
-        <columns>End_Time__c</columns>
+        <columns>%%%NAMESPACE%%%Start_Time__c</columns>
+        <columns>%%%NAMESPACE%%%End_Time__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -105,7 +105,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Time Blocks</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

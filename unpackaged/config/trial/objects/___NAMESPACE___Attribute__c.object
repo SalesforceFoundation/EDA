@@ -54,7 +54,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Agency__c</fullName>
+        <fullName>%%%NAMESPACE%%%Agency__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The agency that provided or certified the credential.</description>
         <externalId>false</externalId>
@@ -68,7 +68,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Attribute_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Attribute_Type__c</fullName>
         <description>The kind of credential or student Attribute.</description>
         <externalId>false</externalId>
         <inlineHelpText>The kind of credential or student Attribute.</inlineHelpText>
@@ -178,7 +178,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The person this Attribute applies to.</description>
         <externalId>false</externalId>
@@ -192,7 +192,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
         <description>More details about the credential or student Attribute.</description>
         <externalId>false</externalId>
         <inlineHelpText>More details about the credential or student Attribute.</inlineHelpText>
@@ -203,7 +203,7 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>End_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%End_Date__c</fullName>
         <description>The date when the credential or Attribute expires or requires renewal.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date when the credential or Attribute expires or requires renewal.</inlineHelpText>
@@ -213,10 +213,10 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Expired__c</fullName>
+        <fullName>%%%NAMESPACE%%%Expired__c</fullName>
         <description>Indicates whether the Attribute has expired. This is selected automatically if the Attribute End Date is in the past.</description>
         <externalId>false</externalId>
-        <formula>TODAY() &gt;  End_Date__c</formula>
+        <formula>TODAY() &gt;  %%%NAMESPACE%%%End_Date__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Indicates whether the Attribute has expired. This is selected automatically if the Attribute End Date is in the past.</inlineHelpText>
         <label>Expired</label>
@@ -224,7 +224,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Start_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Start_Date__c</fullName>
         <description>The issue date for the credential or Attribute.</description>
         <externalId>false</externalId>
         <inlineHelpText>The issue date for the credential or Attribute.</inlineHelpText>
@@ -234,7 +234,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Subject_Area__c</fullName>
+        <fullName>%%%NAMESPACE%%%Subject_Area__c</fullName>
         <description>The content or subject area that a credential is for.</description>
         <externalId>false</externalId>
         <inlineHelpText>The content or subject area that a credential is for.</inlineHelpText>
@@ -346,7 +346,7 @@
         <description>Allows educational institutions to track licenses, certifications, or endorsements earned by staff or students.</description>
         <label>Credential</label>
         <picklistValues>
-            <picklist>Attribute_Type__c</picklist>
+            <picklist>%%%NAMESPACE%%%Attribute_Type__c</picklist>
             <values>
                 <fullName>Certification</fullName>
                 <default>false</default>
@@ -365,7 +365,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Subject_Area__c</picklist>
+            <picklist>%%%NAMESPACE%%%Subject_Area__c</picklist>
             <values>
                 <fullName>Biology</fullName>
                 <default>false</default>
@@ -438,7 +438,7 @@
         <description>Allows educational institutions to track important student characteristics that might affect students&apos; education.</description>
         <label>Student Characteristic</label>
         <picklistValues>
-            <picklist>Attribute_Type__c</picklist>
+            <picklist>%%%NAMESPACE%%%Attribute_Type__c</picklist>
             <values>
                 <fullName>Accommodation</fullName>
                 <default>false</default>
@@ -505,7 +505,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Subject_Area__c</picklist>
+            <picklist>%%%NAMESPACE%%%Subject_Area__c</picklist>
             <values>
                 <fullName>Biology</fullName>
                 <default>false</default>
@@ -572,7 +572,7 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

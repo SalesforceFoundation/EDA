@@ -49,9 +49,9 @@
     <compactLayouts>
         <fullName>HEDA_Term_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Account__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
+        <fields>%%%NAMESPACE%%%Account__c</fields>
+        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
+        <fields>%%%NAMESPACE%%%End_Date__c</fields>
         <label>HEDA Term Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -65,7 +65,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>%%%NAMESPACE%%%Account__c</fullName>
         <externalId>false</externalId>
         <description>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</description>
         <inlineHelpText>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</inlineHelpText>
@@ -80,7 +80,7 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
-        <fullName>End_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%End_Date__c</fullName>
         <externalId>false</externalId>
         <description>The date this Term ends.</description>
         <inlineHelpText>The date this Term ends.</inlineHelpText>
@@ -90,7 +90,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Grading_Period_Sequence__c</fullName>
+        <fullName>%%%NAMESPACE%%%Grading_Period_Sequence__c</fullName>
         <description>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</description>
         <inlineHelpText>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</inlineHelpText>
         <externalId>false</externalId>
@@ -103,7 +103,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Instructional_Days__c</fullName>
+        <fullName>%%%NAMESPACE%%%Instructional_Days__c</fullName>
         <description>The total number of instructional days in this Term.</description>
         <inlineHelpText>The total number of instructional days in this Term.</inlineHelpText>
         <externalId>false</externalId>
@@ -116,13 +116,13 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Parent_Term__c</fullName>
+        <fullName>%%%NAMESPACE%%%Parent_Term__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</description>
         <inlineHelpText>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</inlineHelpText>
         <externalId>false</externalId>
         <label>Parent Term</label>
-        <referenceTo>Term__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Term__c</referenceTo>
         <relationshipLabel>Terms</relationshipLabel>
         <relationshipName>Terms</relationshipName>
         <required>false</required>
@@ -130,7 +130,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Start_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Start_Date__c</fullName>
         <externalId>false</externalId>
         <description>The date this Term starts.</description>
         <inlineHelpText>The date this Term starts.</inlineHelpText>
@@ -140,7 +140,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Type__c</fullName>
         <description>The type of Term, for example, Semester, Quarter, or School Year.</description>
         <inlineHelpText>The type of Term, for example, Semester, Quarter, or School Year.</inlineHelpText>
         <externalId>false</externalId>
@@ -185,6 +185,6 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Terms</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

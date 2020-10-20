@@ -49,10 +49,10 @@
     <compactLayouts>
         <fullName>HEDA_Relationship_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>RelatedContact__c</fields>
-        <fields>Type__c</fields>
-        <fields>Status__c</fields>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%RelatedContact__c</fields>
+        <fields>%%%NAMESPACE%%%Type__c</fields>
+        <fields>%%%NAMESPACE%%%Status__c</fields>
         <label>HEDA Relationship Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -66,7 +66,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <description>Select the person you want to create the Relationship record for.</description>
         <externalId>false</externalId>
@@ -81,7 +81,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
         <description>Additional information about how these two people are related.</description>
         <externalId>false</externalId>
         <inlineHelpText>Additional information about how these two people are related.</inlineHelpText>
@@ -93,7 +93,7 @@
         <visibleLines>6</visibleLines>
     </fields>
     <fields>
-        <fullName>Emergency_Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Emergency_Contact__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates the Related Contact is an emergency contact.</description>
         <externalId>false</externalId>
@@ -104,13 +104,13 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>ReciprocalRelationship__c</fullName>
+        <fullName>%%%NAMESPACE%%%ReciprocalRelationship__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the related Reciprocal Relationship record. This field is automatically populated. Manually updating this field could result in errors.</description>
         <externalId>false</externalId>
         <inlineHelpText>Lookup to the related Reciprocal Relationship record. This field is automatically populated. Manually updating this field could result in errors.</inlineHelpText>
         <label>Reciprocal Relationship</label>
-        <referenceTo>Relationship__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Relationship__c</referenceTo>
         <relationshipLabel>Relationships</relationshipLabel>
         <relationshipName>Relationships</relationshipName>
         <required>false</required>
@@ -119,7 +119,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>RelatedContact__c</fullName>
+        <fullName>%%%NAMESPACE%%%RelatedContact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <description>Select the person related to the Contact.</description>
@@ -134,13 +134,13 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Relationship_Explanation__c</fullName>
+        <fullName>%%%NAMESPACE%%%Relationship_Explanation__c</fullName>
         <description>Text formula that constructs a sentence explaining the relationship between the two Contacts</description>
         <inlineHelpText>A sentence that clarifies who&apos;s who in the Relationship. For example, &quot;&apos;s &quot; Joe Ada is Sara Cordova's employer.&quot;&apos;s &quot; This field is read-only.</inlineHelpText>
         <externalId>false</externalId>
         <formula>TEXT(RelatedContact__r.Salutation) + &quot; &quot; + RelatedContact__r.FirstName + &quot; &quot; + RelatedContact__r.LastName
 + &quot;  &quot;  +  $Label.Relationship_Explanation_Connector + &quot; &quot; +
-TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quot; + Contact__r.LastName + &quot;&apos;s &quot; + TEXT(Type__c)</formula>
+            TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quot; + Contact__r.LastName + &quot;&apos;s &quot; + TEXT(%%%NAMESPACE%%%Type__c)        </formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Relationship Explanation</label>
         <required>false</required>
@@ -150,7 +150,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>SYSTEM_SystemCreated__c</fullName>
+        <fullName>%%%NAMESPACE%%%SYSTEM_SystemCreated__c</fullName>
         <defaultValue>false</defaultValue>
         <description>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</description>
         <inlineHelpText>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</inlineHelpText>
@@ -161,7 +161,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Status__c</fullName>
+        <fullName>%%%NAMESPACE%%%Status__c</fullName>
         <description>Status of the Relationship, for example, Current or Former.</description>
         <externalId>false</externalId>
         <inlineHelpText>Status of the Relationship, for example, Current or Former.</inlineHelpText>
@@ -187,7 +187,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         </valueSet>
     </fields>
     <fields>
-        <fullName>Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Type__c</fullName>
         <description>Describes how the Related Contact is connected to the Contact, for example, friend, coworker, aunt, etc.</description>
         <externalId>false</externalId>
         <inlineHelpText>Describes how the Related Contact is connected to the Contact, for example, friend, coworker, aunt, etc.</inlineHelpText>
@@ -390,22 +390,22 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Relationships</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Contact_Do_Not_Change</fullName>
         <active>true</active>
         <description>Do not allow users to change the Contact value as it damages the paired relationship data.</description>
-        <errorConditionFormula>AND(NOT( ISNEW() ), ISCHANGED(  Contact__c ))</errorConditionFormula>
-        <errorDisplayField>Contact__c</errorDisplayField>
+        <errorConditionFormula>AND(NOT( ISNEW() ), ISCHANGED(  %%%NAMESPACE%%%Contact__c ))</errorConditionFormula>
+        <errorDisplayField>%%%NAMESPACE%%%Contact__c</errorDisplayField>
         <errorMessage>Instead of changing the Contacts in this Relationship, either delete this record, or if appropriate, add an end date and update the status to Former. Then create a new Relationship record between the new Contacts.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Related_Contact_Do_Not_Change</fullName>
         <active>true</active>
         <description>Do not allow user to change Related Contact value as it damages the paired relationship data</description>
-        <errorConditionFormula>and(not( ISNEW()), ISCHANGED( RelatedContact__c ))</errorConditionFormula>
-        <errorDisplayField>RelatedContact__c</errorDisplayField>
+        <errorConditionFormula>and(not( ISNEW()), ISCHANGED( %%%NAMESPACE%%%RelatedContact__c ))</errorConditionFormula>
+        <errorDisplayField>%%%NAMESPACE%%%RelatedContact__c</errorDisplayField>
         <errorMessage>Instead of changing the Contacts in this Relationship, either delete this record, or if appropriate, add an end date and update the status to Former. Then create a new Relationship record between the new Contacts.</errorMessage>
     </validationRules>
 </CustomObject>

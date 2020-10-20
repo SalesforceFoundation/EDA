@@ -4,7 +4,7 @@
     <description>Automatically generates a Relationship between a Contact and another Contact or a Contact and a Contact/Campaign Member based on a custom lookup field.</description>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Campaign_Types__c</fullName>
+        <fullName>%%%NAMESPACE%%%Campaign_Types__c</fullName>
         <description>For Auto-Create Relationships based on Campaign Members, the list of Campaign types the automation applies to. This field will be blank for Auto-Create Relationships based on Contacts.</description>
         <externalId>false</externalId>
         <inlineHelpText>For Auto-Create Relationships based on Campaign Members, the list of Campaign types the automation applies to. This field will be blank for Auto-Create Relationships based on Contacts.</inlineHelpText>
@@ -14,7 +14,7 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Field__c</fullName>
+        <fullName>%%%NAMESPACE%%%Field__c</fullName>
         <description>The label of the lookup field that triggers the creation of this Relationship when the field value is updated.</description>
         <externalId>false</externalId>
         <inlineHelpText>The label of the lookup field that triggers the creation of this Relationship when the field value is updated.</inlineHelpText>
@@ -26,7 +26,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Object__c</fullName>
+        <fullName>%%%NAMESPACE%%%Object__c</fullName>
         <description>The API name of the object (either Contact or CampaignMember) that the custom lookup field is on.</description>
         <externalId>false</externalId>
         <inlineHelpText>The API name of the object (either Contact or CampaignMember) that the custom lookup field is on.</inlineHelpText>
@@ -38,7 +38,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Relationship_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Relationship_Type__c</fullName>
         <description>The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object.</inlineHelpText>

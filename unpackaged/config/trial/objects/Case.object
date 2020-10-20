@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
-        <fullName>Category__c</fullName>
+        <fullName>%%%NAMESPACE%%%Category__c</fullName>
         <description>The type of Case being tracked.</description>
         <externalId>false</externalId>
         <inlineHelpText>The type of Case being tracked.</inlineHelpText>
@@ -39,7 +39,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Location__c</fullName>
+        <fullName>%%%NAMESPACE%%%Location__c</fullName>
         <description>The location where the Case took place.</description>
         <externalId>false</externalId>
         <inlineHelpText>The location where the Case took place.</inlineHelpText>
@@ -72,7 +72,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Occurrence_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Occurrence_Date__c</fullName>
         <description>The date and time when the behavior event that triggered the Case occurred.</description>
         <externalId>false</externalId>
         <inlineHelpText>The date and time when the behavior event that triggered the Case occurred.</inlineHelpText>

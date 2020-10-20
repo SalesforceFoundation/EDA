@@ -43,7 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Stores information about the people involved in a Case that represents a behavior event.</description>
+    <description>An instance of a student taking a test.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -54,103 +54,120 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Case__c</fullName>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Case that represents the event being reported.</description>
+        <description>The student who took the test.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Case that represents the event being reported.</inlineHelpText>
-        <label>Case</label>
-        <referenceTo>Case</referenceTo>
-        <relationshipLabel>Behavior Involvements</relationshipLabel>
-        <relationshipName>Behavior_Involvements</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>The student or faculty Contact who was directly involved in the event.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The student or faculty Contact who was directly involved in the event.</inlineHelpText>
+        <inlineHelpText>The student who took the test.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Behavior Involvements</relationshipLabel>
-        <relationshipName>Behavior_Involvements</relationshipName>
+        <relationshipLabel>Tests</relationshipLabel>
+        <relationshipName>Tests</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
-        <description>A description of a person&apos;s involvement in a behavior event.</description>
+        <fullName>%%%NAMESPACE%%%Date_Received__c</fullName>
+        <description>The date the test score is added to the system, either by manual upload or directly from an official source.</description>
         <externalId>false</externalId>
-        <label>Description</label>
-        <length>32768</length>
+        <inlineHelpText>The date the test score is added to the system, either by manual upload or directly from an official source.</inlineHelpText>
+        <label>Date Received</label>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <type>Date</type>
     </fields>
     <fields>
-        <fullName>Role__c</fullName>
-        <description>The role this person played in the event.</description>
+        <fullName>%%%NAMESPACE%%%Source__c</fullName>
+        <description>Indicates whether the applicant or an official source reported this test.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The role this person played in the event.</inlineHelpText>
-        <label>Role</label>
+        <inlineHelpText>Indicates whether the applicant or an official source reported this test.</inlineHelpText>
+        <label>Source</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Perpetrator</fullName>
+                    <fullName>Self Reported</fullName>
                     <default>false</default>
-                    <label>Perpetrator</label>
+                    <label>Self Reported</label>
                 </value>
                 <value>
-                    <fullName>Reporter</fullName>
+                    <fullName>Official</fullName>
                     <default>false</default>
-                    <label>Reporter</label>
-                </value>
-                <value>
-                    <fullName>Victim</fullName>
-                    <default>false</default>
-                    <label>Victim</label>
-                </value>
-                <value>
-                    <fullName>Witness</fullName>
-                    <default>false</default>
-                    <label>Witness</label>
-                </value>
-                <value>
-                    <fullName>Other</fullName>
-                    <default>false</default>
-                    <label>Other</label>
+                    <label>Official</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <label>Behavior Involvement</label>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Test_Date__c</fullName>
+        <description>The date the applicant or official source indicates the test was started.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the applicant or official source indicates the test was started.</inlineHelpText>
+        <label>Test Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Test_Type__c</fullName>
+        <description>The formal name for the test taken.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The formal name for the test taken.</inlineHelpText>
+        <label>Test Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SAT</fullName>
+                    <default>false</default>
+                    <label>SAT</label>
+                </value>
+                <value>
+                    <fullName>ACT</fullName>
+                    <default>false</default>
+                    <label>ACT</label>
+                </value>
+                <value>
+                    <fullName>GRE</fullName>
+                    <default>false</default>
+                    <label>GRE</label>
+                </value>
+                <value>
+                    <fullName>GMAT</fullName>
+                    <default>false</default>
+                    <label>GMAT</label>
+                </value>
+                <value>
+                    <fullName>TOEFL</fullName>
+                    <default>false</default>
+                    <label>TOEFL</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Test</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>
-        <displayFormat>BI-{0000}</displayFormat>
-        <label>Behavior Involvement Name</label>
+        <displayFormat>TST-{0000}</displayFormat>
+        <label>Test Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Behavior Involvements</pluralLabel>
+    <pluralLabel>Tests</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Role__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Case__c</customTabListAdditionalFields>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Role__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Case__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Test_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Test_Date__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

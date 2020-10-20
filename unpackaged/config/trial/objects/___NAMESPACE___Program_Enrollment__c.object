@@ -49,10 +49,10 @@
     <compactLayouts>
         <fullName>HEDA_Program_Enrollment_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>Account__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>GPA__c</fields>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%Account__c</fields>
+        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
+        <fields>%%%NAMESPACE%%%GPA__c</fields>
         <label>HEDA Program Enrollment Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -66,7 +66,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>%%%NAMESPACE%%%Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Program the student is enrolled in.</description>
         <externalId>false</externalId>
@@ -80,7 +80,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Admission_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Admission_Date__c</fullName>
         <externalId>false</externalId>
         <description>The date the student was admitted to the Program.</description>
         <inlineHelpText>The date the student was admitted to the Program.</inlineHelpText>
@@ -90,13 +90,13 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Affiliation__c</fullName>
+        <fullName>%%%NAMESPACE%%%Affiliation__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <description>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. </description>
         <externalId>false</externalId>
         <inlineHelpText>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. </inlineHelpText>
         <label>Affiliation</label>
-        <referenceTo>Affiliation__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Affiliation__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollment</relationshipName>
         <required>false</required>
@@ -104,7 +104,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Application_Submitted_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Application_Submitted_Date__c</fullName>
         <externalId>false</externalId>
         <description>The date the student applied for admission to the Program.</description>
         <inlineHelpText>The date the student applied for admission to the Program.</inlineHelpText>
@@ -114,7 +114,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Class_Standing__c</fullName>
+        <fullName>%%%NAMESPACE%%%Class_Standing__c</fullName>
         <externalId>false</externalId>
         <description>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</description>
         <inlineHelpText>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</inlineHelpText>
@@ -149,7 +149,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The student enrolled in this Program.</description>
         <externalId>false</externalId>
@@ -163,7 +163,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Credits_Attempted__c</fullName>
+        <fullName>%%%NAMESPACE%%%Credits_Attempted__c</fullName>
         <externalId>false</externalId>
         <description>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</description>
         <inlineHelpText>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</inlineHelpText>
@@ -176,7 +176,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Credits_Earned__c</fullName>
+        <fullName>%%%NAMESPACE%%%Credits_Earned__c</fullName>
         <externalId>false</externalId>
         <description>The number of credits the student has successfully completed to date.</description>
         <inlineHelpText>The number of credits the student has successfully completed to date.</inlineHelpText>
@@ -189,7 +189,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Eligible_to_Enroll__c</fullName>
+        <fullName>%%%NAMESPACE%%%Eligible_to_Enroll__c</fullName>
         <defaultValue>false</defaultValue>
         <description>When selected, indicates the student has met program requirements and is eligible to enroll.</description>
         <inlineHelpText>When selected, indicates the student has met program requirements and is eligible to enroll.</inlineHelpText>
@@ -199,7 +199,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>End_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%End_Date__c</fullName>
         <externalId>false</externalId>
         <description>The date the student is scheduled to complete the Program.</description>
         <inlineHelpText>The date the student is scheduled to complete the Program.</inlineHelpText>
@@ -209,7 +209,7 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Enrollment_Status__c</fullName>
+        <fullName>%%%NAMESPACE%%%Enrollment_Status__c</fullName>
         <externalId>false</externalId>
         <description>The student&apos;s enrollment status, for example, full-time or half-time.</description>
         <inlineHelpText>The student&apos;s enrollment status, for example, full-time or half-time.</inlineHelpText>
@@ -252,7 +252,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Graduation_Year__c</fullName>
+        <fullName>%%%NAMESPACE%%%Graduation_Year__c</fullName>
         <description>The year the student is expected to graduate from this Program.</description>
         <inlineHelpText>The year the student is expected to graduate from this Program.</inlineHelpText>
         <externalId>false</externalId>
@@ -264,13 +264,13 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Program_Plan__c</fullName>
+        <fullName>%%%NAMESPACE%%%Program_Plan__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Program Plan that contains all of the program requirements in effect for this student.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Program Plan that contains all of the program requirements in effect for this student.</inlineHelpText>
         <label>Program Plan</label>
-        <referenceTo>Program_Plan__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Program_Plan__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollments</relationshipName>
         <required>false</required>
@@ -278,7 +278,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Start_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Start_Date__c</fullName>
         <externalId>false</externalId>
         <description>The date the student started, or is expected to start, this Program.</description>
         <inlineHelpText>The date the student started, or is expected to start, this Program.</inlineHelpText>
@@ -299,6 +299,6 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Program Enrollments</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

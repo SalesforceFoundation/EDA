@@ -49,9 +49,9 @@
     <compactLayouts>
         <fullName>HEDA_Course_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Course_ID__c</fields>
-        <fields>Account__c</fields>
-        <fields>Credit_Hours__c</fields>
+        <fields>%%%NAMESPACE%%%Course_ID__c</fields>
+        <fields>%%%NAMESPACE%%%Account__c</fields>
+        <fields>%%%NAMESPACE%%%Credit_Hours__c</fields>
         <label>HEDA Course Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -65,7 +65,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>%%%NAMESPACE%%%Account__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The department (Account record) that offers this Course.</inlineHelpText>
         <description>The department (Account record) that offers this Course.</description>
@@ -80,7 +80,7 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
-        <fullName>Course_ID__c</fullName>
+        <fullName>%%%NAMESPACE%%%Course_ID__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The Course alphanumeric ID., for example, English 101.</inlineHelpText>
         <description>The Course alphanumeric ID., for example, English 101.</description>
@@ -92,7 +92,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Credit_Hours__c</fullName>
+        <fullName>%%%NAMESPACE%%%Credit_Hours__c</fullName>
         <externalId>false</externalId>
         <label>Credit Hours</label>
         <precision>6</precision>
@@ -103,7 +103,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses.</inlineHelpText>
         <description>This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses.</description>
@@ -113,7 +113,7 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Extended_Description__c</fullName>
+        <fullName>%%%NAMESPACE%%%Extended_Description__c</fullName>
         <description>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</description>
         <inlineHelpText>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</inlineHelpText>
         <externalId>false</externalId>
@@ -134,6 +134,6 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Courses</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

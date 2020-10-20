@@ -48,11 +48,11 @@
     <compactLayoutAssignment>HEDA_Address_Compact_Layout</compactLayoutAssignment>
     <compactLayouts>
         <fullName>HEDA_Address_Compact_Layout</fullName>
-        <fields>Formula_MailingAddress__c</fields>
-        <fields>Seasonal_Start_Day__c</fields>
-        <fields>Seasonal_Start_Month__c</fields>
-        <fields>Seasonal_End_Day__c</fields>
-        <fields>Seasonal_End_Month__c</fields>
+        <fields>%%%NAMESPACE%%%Formula_MailingAddress__c</fields>
+        <fields>%%%NAMESPACE%%%Seasonal_Start_Day__c</fields>
+        <fields>%%%NAMESPACE%%%Seasonal_Start_Month__c</fields>
+        <fields>%%%NAMESPACE%%%Seasonal_End_Day__c</fields>
+        <fields>%%%NAMESPACE%%%Seasonal_End_Month__c</fields>
         <label>HEDA Address Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -66,7 +66,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Address_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Address_Type__c</fullName>
         <externalId>false</externalId>
         <description>Select what kind of address this is, for example, Home, Work, Vacation Residence, or Other.</description>
         <inlineHelpText>Select what kind of address this is, for example, Home, Work, Vacation Residence, or Other.</inlineHelpText>
@@ -102,7 +102,7 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Default_Address__c</fullName>
+        <fullName>%%%NAMESPACE%%%Default_Address__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates whether this is the Default Address to use for the Household and its Contacts.</description>
         <externalId>false</externalId>
@@ -113,17 +113,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Formula_MailingAddress__c</fullName>
+        <fullName>%%%NAMESPACE%%%Formula_MailingAddress__c</fullName>
         <externalId>false</externalId>
         <description>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</description>
-         <inlineHelpText>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</inlineHelpText>
+        <inlineHelpText>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</inlineHelpText>
         <formula>MailingStreet__c &amp;
 BR() &amp; 
-IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
-IF(ISBLANK(MailingCity__c), &quot;&quot;, MailingCity__c &amp; &quot;, &quot;) &amp; 
-MailingState__c &amp; &quot; &quot; &amp; 
-MailingPostalCode__c 
-&amp; IF(ISBLANK(MailingCountry__c), &quot;&quot;, BR() &amp; MailingCountry__c)</formula>
+IF(ISBLANK(%%%NAMESPACE%%%MailingStreet2__c), &quot;&quot;, %%%NAMESPACE%%%MailingStreet2__c &amp; BR()) &amp; 
+IF(ISBLANK(%%%NAMESPACE%%%MailingCity__c), &quot;&quot;, %%%NAMESPACE%%%MailingCity__c &amp; &quot;, &quot;) &amp; 
+%%%NAMESPACE%%%MailingState__c &amp; &quot; &quot; &amp; 
+%%%NAMESPACE%%%MailingPostalCode__c 
+            &amp; IF(ISBLANK(%%%NAMESPACE%%%MailingCountry__c), &quot;&quot;, BR() &amp; %%%NAMESPACE%%%MailingCountry__c)        </formula>
         <label>Mailing Address</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -131,17 +131,17 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Formula_MailingStreetAddress__c</fullName>
+        <fullName>%%%NAMESPACE%%%Formula_MailingStreetAddress__c</fullName>
         <externalId>false</externalId>
         <description>The full mailing address, including mailing street 2 and country values, if not blank (read-only.)</description>
         <inlineHelpText>The full mailing address, including mailing street 2 and country values, if not blank (read-only.)</inlineHelpText>
         <formula>MailingStreet__c &amp;
 BR() &amp; 
-IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
-IF(ISBLANK(MailingCity__c), &quot;&quot;, MailingCity__c &amp; &quot;, &quot;) &amp; 
-MailingState__c &amp; &quot; &quot; &amp; 
-MailingPostalCode__c 
-&amp; IF(ISBLANK(MailingCountry__c), &quot;&quot;, BR() &amp; MailingCountry__c)</formula>
+IF(ISBLANK(%%%NAMESPACE%%%MailingStreet2__c), &quot;&quot;, %%%NAMESPACE%%%MailingStreet2__c &amp; BR()) &amp; 
+IF(ISBLANK(%%%NAMESPACE%%%MailingCity__c), &quot;&quot;, %%%NAMESPACE%%%MailingCity__c &amp; &quot;, &quot;) &amp; 
+%%%NAMESPACE%%%MailingState__c &amp; &quot; &quot; &amp; 
+%%%NAMESPACE%%%MailingPostalCode__c 
+            &amp; IF(ISBLANK(%%%NAMESPACE%%%MailingCountry__c), &quot;&quot;, BR() &amp; %%%NAMESPACE%%%MailingCountry__c)        </formula>
         <label>Mailing Street Address</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -149,7 +149,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Geolocation__c</fullName>
+        <fullName>%%%NAMESPACE%%%Geolocation__c</fullName>
         <description>The Address expressed as latitude and longitude.</description>
         <displayLocationInDecimal>true</displayLocationInDecimal>
         <externalId>false</externalId>
@@ -162,7 +162,7 @@ MailingPostalCode__c
         <type>Location</type>
     </fields>
     <fields>
-        <fullName>Latest_End_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Latest_End_Date__c</fullName>
         <externalId>false</externalId>
         <description>The most recent ending date that this Address was used. Generally used with Latest Start Date to track a date range for an Address that's no longer in use.</description>
         <inlineHelpText>The most recent ending date that this Address was used. Generally used with Latest Start Date to track a date range for an Address that's no longer in use.</inlineHelpText>
@@ -173,7 +173,7 @@ MailingPostalCode__c
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Latest_Start_Date__c</fullName>
+        <fullName>%%%NAMESPACE%%%Latest_Start_Date__c</fullName>
         <externalId>false</externalId>
         <description>The most recent starting date that this Address was used. Generally used with Latest End Date to track a date range for an Address that's no longer in use.</description>
         <inlineHelpText>The most recent starting date that this Address was used. Generally used with Latest End Date to track a date range for an Address that's no longer in use.</inlineHelpText>
@@ -184,7 +184,7 @@ MailingPostalCode__c
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>MailingCity__c</fullName>
+        <fullName>%%%NAMESPACE%%%MailingCity__c</fullName>
         <externalId>false</externalId>
         <label>Mailing City</label>
         <length>255</length>
@@ -195,7 +195,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>MailingCountry__c</fullName>
+        <fullName>%%%NAMESPACE%%%MailingCountry__c</fullName>
         <externalId>false</externalId>
         <label>Mailing Country</label>
         <length>255</length>
@@ -206,7 +206,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>MailingCounty__c</fullName>
+        <fullName>%%%NAMESPACE%%%MailingCounty__c</fullName>
         <description>The county detail for this Address.</description>
         <externalId>false</externalId>
         <label>Mailing County</label>
@@ -218,7 +218,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>MailingPostalCode__c</fullName>
+        <fullName>%%%NAMESPACE%%%MailingPostalCode__c</fullName>
         <externalId>false</externalId>
         <label>Mailing Zip/Postal Code</label>
         <length>255</length>
@@ -229,7 +229,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>MailingState__c</fullName>
+        <fullName>%%%NAMESPACE%%%MailingState__c</fullName>
         <externalId>false</externalId>
         <label>Mailing State/Province</label>
         <length>255</length>
@@ -240,7 +240,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>MailingStreet2__c</fullName>
+        <fullName>%%%NAMESPACE%%%MailingStreet2__c</fullName>
         <externalId>false</externalId>
         <description>Additional street address detail for this Address, such as Suite or Apt.</description>
         <inlineHelpText>Additional street address detail for this Address, such as Suite or Apt.</inlineHelpText>
@@ -251,7 +251,7 @@ MailingPostalCode__c
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>MailingStreet__c</fullName>
+        <fullName>%%%NAMESPACE%%%MailingStreet__c</fullName>
         <externalId>false</externalId>
         <label>Mailing Street</label>
         <length>255</length>
@@ -262,7 +262,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Parent_Account__c</fullName>
+        <fullName>%%%NAMESPACE%%%Parent_Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the Account associated with this Address.</description>
         <externalId>false</externalId>
@@ -277,7 +277,7 @@ MailingPostalCode__c
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Parent_Contact__c</fullName>
+        <fullName>%%%NAMESPACE%%%Parent_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The primary Contact for this Address.</description>
         <externalId>false</externalId>
@@ -292,7 +292,7 @@ MailingPostalCode__c
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Seasonal_End_Day__c</fullName>
+        <fullName>%%%NAMESPACE%%%Seasonal_End_Day__c</fullName>
         <externalId>false</externalId>
         <description>The day of the month when this Address no longer replaces the Default Address.</description>
         <inlineHelpText>The day of the month when this Address no longer replaces the Default Address.</inlineHelpText>
@@ -463,7 +463,7 @@ MailingPostalCode__c
         </valueSet>
     </fields>
     <fields>
-        <fullName>Seasonal_End_Month__c</fullName>
+        <fullName>%%%NAMESPACE%%%Seasonal_End_Month__c</fullName>
         <externalId>false</externalId>
         <description>The month of the year when this Address no longer replaces the Default Address.</description>
         <inlineHelpText>The month of the year when this Address no longer replaces the Default Address.</inlineHelpText>
@@ -539,7 +539,7 @@ MailingPostalCode__c
         </valueSet>
     </fields>
     <fields>
-        <fullName>Seasonal_End_Year__c</fullName>
+        <fullName>%%%NAMESPACE%%%Seasonal_End_Year__c</fullName>
         <description>The year that this Address no longer replaces the Default Address.</description>
         <externalId>false</externalId>
         <inlineHelpText>The year that this Address no longer replaces the Default Address.</inlineHelpText>
@@ -553,7 +553,7 @@ MailingPostalCode__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Seasonal_Start_Day__c</fullName>
+        <fullName>%%%NAMESPACE%%%Seasonal_Start_Day__c</fullName>
         <externalId>false</externalId>
         <description>The day of the month when this Address replaces the Default Address.</description>
         <inlineHelpText>The day of the month when this Address replaces the Default Address.</inlineHelpText>
@@ -724,7 +724,7 @@ MailingPostalCode__c
         </valueSet>
     </fields>
     <fields>
-        <fullName>Seasonal_Start_Month__c</fullName>
+        <fullName>%%%NAMESPACE%%%Seasonal_Start_Month__c</fullName>
         <externalId>false</externalId>
         <description>The month of the year when this Address replaces the Default Address.</description>
         <inlineHelpText>The month of the year when this Address replaces the Default Address.</inlineHelpText>
@@ -800,7 +800,7 @@ MailingPostalCode__c
         </valueSet>
     </fields>
     <fields>
-        <fullName>Seasonal_Start_Year__c</fullName>
+        <fullName>%%%NAMESPACE%%%Seasonal_Start_Year__c</fullName>
         <description>The year that this Address replaces the Default Address.</description>
         <externalId>false</externalId>
         <inlineHelpText>The year that this Address replaces the Default Address.</inlineHelpText>
@@ -827,15 +827,15 @@ MailingPostalCode__c
     </nameField>
     <pluralLabel>Addresses</pluralLabel>
     <searchLayouts>
-        <lookupDialogsAdditionalFields>Formula_MailingAddress__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Parent_Account__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Address_Type__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Formula_MailingAddress__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Parent_Account__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Address_Type__c</lookupPhoneDialogsAdditionalFields>
-        <searchFilterFields>Formula_MailingAddress__c</searchFilterFields>
-        <searchFilterFields>Parent_Account__c</searchFilterFields>
-        <searchFilterFields>Address_Type__c</searchFilterFields>
+        <lookupDialogsAdditionalFields>%%%NAMESPACE%%%Formula_MailingAddress__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>%%%NAMESPACE%%%Parent_Account__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>%%%NAMESPACE%%%Address_Type__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>%%%NAMESPACE%%%Formula_MailingAddress__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>%%%NAMESPACE%%%Parent_Account__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>%%%NAMESPACE%%%Address_Type__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>%%%NAMESPACE%%%Formula_MailingAddress__c</searchFilterFields>
+        <searchFilterFields>%%%NAMESPACE%%%Parent_Account__c</searchFilterFields>
+        <searchFilterFields>%%%NAMESPACE%%%Address_Type__c</searchFilterFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>

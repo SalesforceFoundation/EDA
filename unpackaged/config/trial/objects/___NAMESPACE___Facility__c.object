@@ -49,8 +49,8 @@
     <compactLayouts>
         <fullName>HEDA_Facility_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Facility_Type__c</fields>
-        <fields>Capacity__c</fields>
+        <fields>%%%NAMESPACE%%%Facility_Type__c</fields>
+        <fields>%%%NAMESPACE%%%Capacity__c</fields>
         <label>HEDA Facility Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -64,7 +64,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>%%%NAMESPACE%%%Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The organization responsible for this Facility, for example, a University Department.</description>
         <externalId>false</externalId>
@@ -78,7 +78,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Capacity__c</fullName>
+        <fullName>%%%NAMESPACE%%%Capacity__c</fullName>
         <description>The maximum number of occupants the Facility can hold.</description>
         <externalId>false</externalId>
         <inlineHelpText>The maximum number of occupants the Facility can hold.</inlineHelpText>
@@ -91,7 +91,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
         <description>A description of this Facility.</description>
         <externalId>false</externalId>
         <inlineHelpText>A description of this Facility.</inlineHelpText>
@@ -103,7 +103,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Facility_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Facility_Type__c</fullName>
         <description>Select the type of Facility this is, for example, a computer lab, health center, lecture hall, etc.</description>
         <externalId>false</externalId>
         <inlineHelpText>Select the type of Facility this is, for example, a computer lab, health center, lecture hall, etc.</inlineHelpText>
@@ -164,13 +164,13 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Parent_Facility__c</fullName>
+        <fullName>%%%NAMESPACE%%%Parent_Facility__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Optionally indicates the Facility that this one is a part of. For example, if this Facility is a classroom, the Parent Facility would be the building this classroom is in.</description>
         <externalId>false</externalId>
         <inlineHelpText>Optionally indicates the Facility that this one is a part of. For example, if this Facility is a classroom, the Parent Facility would be the building this classroom is in.</inlineHelpText>
         <label>Parent Facility</label>
-        <referenceTo>Facility__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Facility__c</referenceTo>
         <relationshipLabel>Facilities</relationshipLabel>
         <relationshipName>Facilities</relationshipName>
         <required>false</required>
@@ -189,12 +189,12 @@
     </nameField>
     <pluralLabel>Facilities</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields>Facility_Type__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Capacity__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>Facility_Type__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Facility_Type__c</lookupPhoneDialogsAdditionalFields>
-        <searchResultsAdditionalFields>Facility_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Capacity__c</searchResultsAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>%%%NAMESPACE%%%Capacity__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Capacity__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

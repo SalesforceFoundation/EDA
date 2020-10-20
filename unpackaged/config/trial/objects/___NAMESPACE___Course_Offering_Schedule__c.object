@@ -54,13 +54,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Course_Offering__c</fullName>
+        <fullName>%%%NAMESPACE%%%Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Course Offering this schedule is for.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Course Offering this schedule is for.</inlineHelpText>
         <label>Course Offering</label>
-        <referenceTo>Course_Offering__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Course_Offering__c</referenceTo>
         <relationshipLabel>Course Offering Schedules</relationshipLabel>
         <relationshipName>Course_Offering_Schedules</relationshipName>
         <required>false</required>
@@ -69,7 +69,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>End_Time__c</fullName>
+        <fullName>%%%NAMESPACE%%%End_Time__c</fullName>
         <description>The time of day the Course Offering ends. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</description>
         <externalId>false</externalId>
         <inlineHelpText>The time of day the Course Offering ends. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</inlineHelpText>
@@ -80,13 +80,13 @@
         <type>Time</type>
     </fields>
     <fields>
-        <fullName>Facility__c</fullName>
+        <fullName>%%%NAMESPACE%%%Facility__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <description>The location of the scheduled Course Offering.</description>
         <externalId>false</externalId>
         <inlineHelpText>The location of the scheduled Course Offering.</inlineHelpText>
         <label>Facility</label>
-        <referenceTo>Facility__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Facility__c</referenceTo>
         <relationshipLabel>Course Offering Schedules</relationshipLabel>
         <relationshipName>Course_Offering_Schedules</relationshipName>
         <required>false</required>
@@ -95,7 +95,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Friday__c</fullName>
+        <fullName>%%%NAMESPACE%%%Friday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Fridays. You can select multiple days.</description>
         <inlineHelpText>Select to indicate this Course Offering is on Fridays. You can select multiple days.</inlineHelpText>
@@ -106,7 +106,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Monday__c</fullName>
+        <fullName>%%%NAMESPACE%%%Monday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Mondays. You can select multiple days.</description>
         <inlineHelpText>Select to indicate this Course Offering is on Mondays. You can select multiple days.</inlineHelpText>
@@ -117,7 +117,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Saturday__c</fullName>
+        <fullName>%%%NAMESPACE%%%Saturday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</description>
         <inlineHelpText>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</inlineHelpText>
@@ -128,7 +128,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Start_Time__c</fullName>
+        <fullName>%%%NAMESPACE%%%Start_Time__c</fullName>
         <description>The time of day the Course Offering starts. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</description>
         <externalId>false</externalId>
         <inlineHelpText>The time of day the Course Offering starts. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank.</inlineHelpText>
@@ -139,7 +139,7 @@
         <type>Time</type>
     </fields>
     <fields>
-        <fullName>Sunday__c</fullName>
+        <fullName>%%%NAMESPACE%%%Sunday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Sundays. You can select multiple days.</description>
         <inlineHelpText>Select to indicate this Course Offering is on Sundays. You can select multiple days.</inlineHelpText>
@@ -150,7 +150,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Thursday__c</fullName>
+        <fullName>%%%NAMESPACE%%%Thursday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</description>
         <inlineHelpText>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</inlineHelpText>
@@ -161,13 +161,13 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Time_Block__c</fullName>
+        <fullName>%%%NAMESPACE%%%Time_Block__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Time Block in which this Course Offering is being held.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Time Block in which this Course Offering is being held.</inlineHelpText>
         <label>Time Block</label>
-        <referenceTo>Time_Block__c</referenceTo>
+        <referenceTo>%%%NAMESPACE%%%Time_Block__c</referenceTo>
         <relationshipLabel>Course Offering Schedules</relationshipLabel>
         <relationshipName>Course_Offering_Schedules</relationshipName>
         <required>false</required>
@@ -176,7 +176,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Tuesday__c</fullName>
+        <fullName>%%%NAMESPACE%%%Tuesday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</description>
         <inlineHelpText>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</inlineHelpText>
@@ -187,7 +187,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Wednesday__c</fullName>
+        <fullName>%%%NAMESPACE%%%Wednesday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</description>
         <inlineHelpText>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</inlineHelpText>
@@ -210,7 +210,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Course Offering Schedules</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

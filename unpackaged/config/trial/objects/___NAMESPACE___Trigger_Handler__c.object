@@ -57,7 +57,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Active__c</fullName>
+        <fullName>%%%NAMESPACE%%%Active__c</fullName>
         <defaultValue>true</defaultValue>
         <description>Indicates whether this Trigger Handler is in use.</description>
         <externalId>false</externalId>
@@ -67,7 +67,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Asynchronous__c</fullName>
+        <fullName>%%%NAMESPACE%%%Asynchronous__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates whether this class should run asynchronously in this transaction, for any of its After events.</description>
         <externalId>false</externalId>
@@ -77,7 +77,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Class__c</fullName>
+        <fullName>%%%NAMESPACE%%%Class__c</fullName>
         <description>The name of the class to run.</description>
         <externalId>false</externalId>
         <inlineHelpText>The name of the class to run.</inlineHelpText>
@@ -89,7 +89,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Filter_Field__c</fullName>
+        <fullName>%%%NAMESPACE%%%Filter_Field__c</fullName>
         <description>The name of the field used for filtering.</description>
         <externalId>false</externalId>
         <inlineHelpText>The name of the field used for filtering.</inlineHelpText>
@@ -101,7 +101,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Filter_Value__c</fullName>
+        <fullName>%%%NAMESPACE%%%Filter_Value__c</fullName>
         <description>The value of the field used for filtering.</description>
         <externalId>false</externalId>
         <inlineHelpText>The value of the field used for filtering.</inlineHelpText>
@@ -113,7 +113,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Load_Order__c</fullName>
+        <fullName>%%%NAMESPACE%%%Load_Order__c</fullName>
         <description>The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account.</description>
         <externalId>false</externalId>
         <inlineHelpText>The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account.</inlineHelpText>
@@ -126,7 +126,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Object__c</fullName>
+        <fullName>%%%NAMESPACE%%%Object__c</fullName>
         <description>The name of the object the class should act on, for example, Account, Contact, Opportunity.</description>
         <externalId>false</externalId>
         <inlineHelpText>The name of the object the class should act on, for example, Account, Contact, Opportunity.</inlineHelpText>
@@ -138,7 +138,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Owned_by_Namespace__c</fullName>
+        <fullName>%%%NAMESPACE%%%Owned_by_Namespace__c</fullName>
         <description>The namespace of the package or Org that will control this Trigger handler.</description>
         <inlineHelpText>The namespace of the package or Org that controls this Trigger Handler.</inlineHelpText>
         <externalId>false</externalId>
@@ -150,7 +150,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Trigger_Action__c</fullName>
+        <fullName>%%%NAMESPACE%%%Trigger_Action__c</fullName>
         <description>The context in which this class should run, for example, before a record is inserted, after a record is deleted, etc.</description>
         <externalId>false</externalId>
         <inlineHelpText>The context in which this class should run, for example, before a record is inserted, after a record is deleted, etc.</inlineHelpText>
@@ -201,7 +201,7 @@
         <visibleLines>7</visibleLines>
     </fields>
     <fields>
-        <fullName>User_Managed__c</fullName>
+        <fullName>%%%NAMESPACE%%%User_Managed__c</fullName>
         <defaultValue>false</defaultValue>
         <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</description>
         <externalId>false</externalId>
@@ -211,7 +211,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Usernames_to_Exclude__c</fullName>
+        <fullName>%%%NAMESPACE%%%Usernames_to_Exclude__c</fullName>
         <description>Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users.</description>
         <externalId>false</externalId>
         <inlineHelpText>Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users.</inlineHelpText>
@@ -229,12 +229,12 @@
     <listViews>
         <fullName>All_Main_Fields</fullName>
         <columns>NAME</columns>
-        <columns>Class__c</columns>
-        <columns>Object__c</columns>
-        <columns>Active__c</columns>
-        <columns>Load_Order__c</columns>
-        <columns>User_Managed__c</columns>
-        <columns>Owned_by_Namespace__c</columns>
+        <columns>%%%NAMESPACE%%%Class__c</columns>
+        <columns>%%%NAMESPACE%%%Object__c</columns>
+        <columns>%%%NAMESPACE%%%Active__c</columns>
+        <columns>%%%NAMESPACE%%%Load_Order__c</columns>
+        <columns>%%%NAMESPACE%%%User_Managed__c</columns>
+        <columns>%%%NAMESPACE%%%Owned_by_Namespace__c</columns>
         <filterScope>Everything</filterScope>
         <label>All - Main Fields</label>
     </listViews>
@@ -243,6 +243,6 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Trigger Handlers</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

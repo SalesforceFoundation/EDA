@@ -3,7 +3,7 @@
     <customSettingsType>List</customSettingsType>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Account_Record_Type__c</fullName>
+        <fullName>%%%NAMESPACE%%%Account_Record_Type__c</fullName>
         <description>The label of the Account record type that's being mapped.</description>
         <externalId>false</externalId>
         <inlineHelpText>The label of the Account record type that's being mapped.</inlineHelpText>
@@ -15,7 +15,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Auto_Program_Enrollment_Role__c</fullName>
+        <fullName>%%%NAMESPACE%%%Auto_Program_Enrollment_Role__c</fullName>
         <externalId>false</externalId>
         <description>The role to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</description>
         <inlineHelpText>The role to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</inlineHelpText>
@@ -27,7 +27,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Auto_Program_Enrollment_Status__c</fullName>
+        <fullName>%%%NAMESPACE%%%Auto_Program_Enrollment_Status__c</fullName>
         <externalId>false</externalId>
         <description>The status to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</description>
         <inlineHelpText>The status to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</inlineHelpText>
@@ -39,7 +39,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Auto_Program_Enrollment__c</fullName>
+        <fullName>%%%NAMESPACE%%%Auto_Program_Enrollment__c</fullName>
         <defaultValue>false</defaultValue>
         <description>If selected, a Program Enrollment record is auto created when a user creates an Affiliation record with an Account of this record type.</description>
         <externalId>false</externalId>
@@ -49,7 +49,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Primary_Affl_Field__c</fullName>
+        <fullName>%%%NAMESPACE%%%Primary_Affl_Field__c</fullName>
         <description>The label of the Contact field that holds the value of the primary Account for this record type.</description>
         <externalId>false</externalId>
         <inlineHelpText>The label of the Contact field that holds the value of the primary Account for this record type.</inlineHelpText>

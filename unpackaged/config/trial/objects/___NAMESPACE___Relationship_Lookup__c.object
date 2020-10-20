@@ -5,7 +5,7 @@
     <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Active__c</fullName>
+        <fullName>%%%NAMESPACE%%%Active__c</fullName>
         <defaultValue>true</defaultValue>
         <description>Indicates if this reciprocal lookup is active.</description>
         <externalId>false</externalId>
@@ -15,7 +15,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Female__c</fullName>
+        <fullName>%%%NAMESPACE%%%Female__c</fullName>
         <description>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Female gender.</description>
         <externalId>false</externalId>
         <inlineHelpText>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Female gender.</inlineHelpText>
@@ -27,7 +27,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Male__c</fullName>
+        <fullName>%%%NAMESPACE%%%Male__c</fullName>
         <description>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Male gender.</description>
         <externalId>false</externalId>
         <inlineHelpText>The value used for the Reciprocal Setting if the Contact&apos;s Gender or Salutation field indicates Male gender.</inlineHelpText>
@@ -39,7 +39,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Neutral__c</fullName>
+        <fullName>%%%NAMESPACE%%%Neutral__c</fullName>
         <description>The value used if the Contact&apos;s Gender and Saluation fields don't indicate gender.</description>
         <externalId>false</externalId>
         <inlineHelpText>The value used if the Contact&apos;s Gender and Saluation fields don't indicate gender.</inlineHelpText>
