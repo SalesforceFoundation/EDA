@@ -40,7 +40,7 @@ private class UTIL_Describe_Unmanaged_TEST {
     * @description Test Method to verify that UTIL_Describe.populateRecordTypeInfoForSObject() includes the
     * inactive Account Record type in its mapping when Record Type validation is enabled.
     *********************************************************************************************************/
-    @isTest()
+    @isTest
     private static void populateRecordTypeInfoForSObjectInactiveRTValidationOn() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
@@ -50,15 +50,15 @@ private class UTIL_Describe_Unmanaged_TEST {
 
         Schema.RecordTypeInfo recTypeInfoByDevName = Util_Describe.getRecordTypeInfoByDeveloperName('Account', 'An_Inactive_Record_Type');
         Schema.RecordTypeInfo recTypeInfoByName = Util_Describe.getRecordTypeInfoByName('Account', 'An Inactive Record Type');
-        System.assert(recTypeInfoByDevName != null, '\'An Inactive Record Type\' should be included in mapping by developer name.');
-        System.assert(recTypeInfoByName != null, '\'An Inactive Record Type\' should be included in mapping by label name.');
+        System.assertEquals(true, recTypeInfoByDevName != null, '\'An Inactive Record Type\' should be included in mapping by developer name.');
+        System.assertEquals(true, recTypeInfoByName != null, '\'An Inactive Record Type\' should be included in mapping by label name.');
     }
 
     /*********************************************************************************************************
     * @description Test Method to verify that UTIL_Describe.getRecordTypeInfoByDeveloperName() includes the
     * inactive Account Record type in its mapping when Record Type validation is enabled.
     *********************************************************************************************************/
-    @isTest()
+    @isTest
     private static void getRecordTypeInfoByDeveloperNameInactiveRTValidationOn() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
@@ -73,13 +73,13 @@ private class UTIL_Describe_Unmanaged_TEST {
     * @description Test Method to verify that UTIL_Describe.getRecordTypeInfoByName() includes the
     * inactive Account Record type in its mapping when Record Type validation is enabled.
     *********************************************************************************************************/
-    @isTest()
+    @isTest
     private static void getRecordTypeInfoByNameInactiveRTValidationOn() {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
         Test.startTest();
             Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByName('Account', 'An Inactive Record Type');
         Test.stopTest();
-        System.assert(true, recTypeInfo != null, '\'An Inactive Record Type\' should be included in mapping by label name.');
+        System.assertEquals(true, recTypeInfo != null, '\'An Inactive Record Type\' should be included in mapping by label name.');
     }
 }
