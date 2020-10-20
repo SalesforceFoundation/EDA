@@ -35,9 +35,6 @@
 * @description Implements relationships behavior on Contact.
 */
 public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
-
-    @testVisible
-    private static Boolean reentrancyPrevented;
 	
 	/*******************************************************************************************************
     * @description Trigger Handler on Contact that handles relationship autocreation and gender change.

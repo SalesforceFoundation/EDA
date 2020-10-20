@@ -348,44 +348,6 @@ private class REL_Relationships_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test method for auto creating relationships based on contact fields on contact update - reentrancy is prevented.
-    */
-    @isTest
-    public static void testContactUpdateReentrancyPrevented() {
-        setupRelationshipTestData(null);
-
-        // Install Default HEDA TDTM Configuration
-        List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
-        TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
-
-        // Add the Test TDTM for the Relationship object. This Test TDTM will simply update the contact that caused the relationship to be inserted.
-        // So the flow would be: contact updated -> relationship updated -> contact updated again
-        Trigger_Handler__c newTDTM = new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
-            Class__c = 'UTIL_UnitTestData_TEST.Test_TDTM', Load_Order__c = 1, Object__c = 'Relationship__c',
-            Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate');
-        insert newTDTM;
-
-        //insert a new Contact
-        Contact c = new Contact(LastName = 'ReportingIn', ReportsToId = c1.Id);
-        insert c;
-        c.ReportsToId = c2.Id;
-
-        // Ensure that the contact gets updated recursively
-        UTIL_UnitTestData_TEST.sObjectsToUpdate = new List<SObject>{ c };
-
-        Test.startTest();
-        update c;
-        Test.stopTest();
-
-        Relationship__c rel = [SELECT Id, Type__c, RelatedContact__c FROM Relationship__c WHERE Contact__c = :c.Id AND RelatedContact__c = :c2.Id LIMIT 1];
-        system.assertEquals('TestType', rel.Type__c);
-        system.assertEquals(c2.Id, rel.RelatedContact__c);
-
-        System.assert(REL_Relationships_Con_TDTM.reentrancyPrevented == true, 
-            'Expected the reentrancy check to have prevented the REL_Relationships_Con_TDTM trigger from processing again.');
-    }
-
-    /*********************************************************************************************************
     * @description Test value inversion reciprocal method, verify type.
     */
     @isTest
