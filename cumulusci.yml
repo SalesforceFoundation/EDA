@@ -186,8 +186,7 @@ flows:
                 task: run_tests 
                 options: 
                     test_name_match: '%Unmanaged_TEST'
-                    managed: true
-
+                    
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
         steps:
