@@ -220,7 +220,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreate() returns empty list of affiliations to create
-    * when Primary Affiliation field's value is null
+    * when Primary Affiliation field's value is null and record type validation is not enabled.
     ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateForContactNegativeTest() {
@@ -229,7 +229,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not A Valid Record Type', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
         mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = prefix + 'Primary_Household__c'));
         insert mappings;
 

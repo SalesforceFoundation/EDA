@@ -36,9 +36,10 @@
 @isTest
 private class UTIL_Describe_Unmanaged_TEST {
 	/*********************************************************************************************************
-    * @description Test Method to test sorting Contacts alphabetically by LastName FirstName
-    */
+    * @description Test Method to verify that UTIL_Describe.populateRecordTypeInfoForSObject() .... 
+    * when Record Type validation is enabled and an inactive record type mapping exists.
+    *********************************************************************************************************/
     @isTest()
-    private static void sortContactsLastFirstName() {
+    private static void populateRecordTypeInfoForSObjectPositive() {
     }
 }
