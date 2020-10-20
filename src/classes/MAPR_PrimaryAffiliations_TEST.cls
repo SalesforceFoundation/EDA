@@ -424,15 +424,16 @@ private class MAPR_PrimaryAffiliations_TEST {
     ***************************************************************************************************************************************/
     @isTest
     private static void getModelFromMappingTestWithAccurateRecordTypeAndInaccurateFieldLabelWithValidationOn() {
-
         MAPR_PrimaryAffiliations_TEST.insertAfflMappingsWithRecordTypeNameAndInaccuratePrimaryFieldLables();
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = new STUB_PrimaryAffiliationValidationOn();
 
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         Test.startTest();
-        System.assertEquals(null, maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]), 'Affiliation mapping with invalid Contact field should return null value.');
+        MODL_PrimaryAfflMapper primAffMapResult = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
+
+        System.assertEquals(null, primAffMapResult, 'Affiliation mapping with invalid Contact field should return null value when validation is enabled.');
     } 
 
     /**************************************************************************************************************************************
@@ -441,7 +442,6 @@ private class MAPR_PrimaryAffiliations_TEST {
     ***************************************************************************************************************************************/
     @isTest
     private static void getModelFromMappingTestWithAccurateRecordTypeAndInaccurateFieldLabelWithValidationOff() {
-
         MAPR_PrimaryAffiliations_TEST.insertAfflMappingsWithRecordTypeNameAndInaccuratePrimaryFieldLables();
         MAPR_PrimaryAffiliations maprPrimaryAfflInstance = new STUB_PrimaryAffiliationValidationOff();
 
@@ -451,7 +451,7 @@ private class MAPR_PrimaryAffiliations_TEST {
         MODL_PrimaryAfflMapper primaryAfflModel = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
 
-        System.assertEquals(null, primaryAfflModel);
+        System.assertEquals(null, primaryAfflModel, 'Affiliation mapping with invalid Contact field should return null value when validation is not enabled.');
     }
 
     /**************************************************************************************************************************************
@@ -499,8 +499,10 @@ private class MAPR_PrimaryAffiliations_TEST {
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         Test.startTest();
-        System.assertEquals(null, maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]), 'An invalid Contact field mapping should return null.');
+        MODL_PrimaryAfflMapper primAffMapResult = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
+
+        System.assertEquals(null, primAffMapResult, 'An invalid Contact field mapping should return null when validation is enabled.');
     } 
 
     /**************************************************************************************************************************************
@@ -555,7 +557,7 @@ private class MAPR_PrimaryAffiliations_TEST {
 
     /**************************************************************************************************************************************
     * @description Test method to verify that the getModelFromMapping method with 
-    * Inaccurate RecordType Name And inaccurate Primary Field Label in Settings when validation is off returns null
+    * Inaccurate RecordType Name And inaccurate Primary Field Label in EDA Settings when validation is off returns null
     ***************************************************************************************************************************************/
     @isTest
     private static void getModelFromMappingTestWithInaccurateRecordTypeAndFieldWithValidationOff() {
@@ -566,8 +568,10 @@ private class MAPR_PrimaryAffiliations_TEST {
         List<Affl_Mappings__c> primaryAfflMappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
 
         Test.startTest();
-        System.assertEquals(null, maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]));
+        MODL_PrimaryAfflMapper primAffMapResult = maprPrimaryAfflInstance.getModelFromMapping(primaryAfflMappings[0]);
         Test.stopTest();
+
+        System.assertEquals(null, primAffMapResult, 'Invalid Contact field and Record Type mappings should return null when validation is not enabled.');
     }
 
     /***************************************************************************************************************

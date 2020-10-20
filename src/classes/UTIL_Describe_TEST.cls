@@ -175,7 +175,7 @@ public with sharing class UTIL_Describe_TEST {
     ***********************************************************************************************/
     @isTest 
     private static void getRecordTypeInfoByDevNameStandardUserPositive(){
-        User stdUser = UTIL_Describe_TEST.getStandardUser();
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
 
         System.runAs(stdUser){
             Test.startTest();
@@ -192,7 +192,7 @@ public with sharing class UTIL_Describe_TEST {
     ***********************************************************************************************/
     @isTest 
     private static void getRecordTypeInfoByDevNameStandardUserNegative(){
-        User stdUser = UTIL_Describe_TEST.getStandardUser();
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
 
         System.runAs(stdUser){
             Test.startTest();
@@ -229,7 +229,7 @@ public with sharing class UTIL_Describe_TEST {
     ***********************************************************************************************/    
     @isTest
     private static void getRecordTypeInfoByNameStandardUserPositive() {
-        User stdUser = UTIL_Describe_TEST.getStandardUser();
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
 
         System.runAs(stdUser){
             Test.startTest();
@@ -246,7 +246,7 @@ public with sharing class UTIL_Describe_TEST {
     ***********************************************************************************************/
     @isTest
     private static void getRecordTypeInfoByNameStandardUserNegative() {
-        User stdUser = UTIL_Describe_TEST.getStandardUser();
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
 
         System.runAs(stdUser){
             Test.startTest();
@@ -278,7 +278,7 @@ public with sharing class UTIL_Describe_TEST {
 
     @isTest
     private static void populateRecordTypeInfoForSObjectStandardUser() {
-        User stdUser = UTIL_Describe_TEST.getStandardUser();
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
 
         System.runAs(stdUser){
             Test.startTest();
@@ -350,29 +350,5 @@ public with sharing class UTIL_Describe_TEST {
             Test.stopTest();
             System.assert(false, 'Invalid field label should throw an error'); 
         } catch (UTIL_Describe.SchemaDescribeException ex) {}
-    }
-
-    /****************************************************************************************
-    * @description Creates a user record assigned to the Standard User profile.
-    * @return A user record assigned to the Standard User profile.
-    ****************************************************************************************/
-    private static User getStandardUser(){
-        Profile stdUserProfile = [SELECT Id 
-                                  FROM Profile 
-                                  WHERE Name = 'Standard User'];
-
-        String uniqueUserName = 'standardUser' + DateTime.now().getTime() + '@test.com';
-
-        User stdUser = new User(Alias = 'stdUsr', 
-                                Email = 'standardUser@test.com',
-                                EmailEncodingKey = 'UTF-8', 
-                                LastName = 'Testing', 
-                                LanguageLocaleKey = 'en_US',
-                                LocaleSidKey ='en_US', 
-                                ProfileId = stdUserProfile.Id,
-                                TimeZoneSidKey = 'America/Los_Angeles',
-                                UserName = uniqueUserName);
-
-        return stdUser;
     }
 }

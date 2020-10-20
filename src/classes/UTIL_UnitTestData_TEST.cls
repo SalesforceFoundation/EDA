@@ -143,6 +143,30 @@ public class UTIL_UnitTestData_TEST {
         return u;
     }
 
+    /****************************************************************************************
+    * @description Creates a user record assigned to the Standard User profile.
+    * @return A user record assigned to the Standard User profile.
+    ****************************************************************************************/
+    public static User getStandardUser(){
+        Profile stdUserProfile = [SELECT Id 
+                                  FROM Profile 
+                                  WHERE Name = 'Standard User'];
+
+        String uniqueUserName = 'standardUser' + DateTime.now().getTime() + '@test.com';
+
+        User stdUser = new User(Alias = 'stdUsr', 
+                                Email = 'standardUser@test.com',
+                                EmailEncodingKey = 'UTF-8', 
+                                LastName = 'Testing', 
+                                LanguageLocaleKey = 'en_US',
+                                LocaleSidKey ='en_US', 
+                                ProfileId = stdUserProfile.Id,
+                                TimeZoneSidKey = 'America/Los_Angeles',
+                                UserName = uniqueUserName);
+
+        return stdUser;
+    }
+
     /*********************************************************************************************************
     * @description Initializes (but not inserts) N new Address objects.
     * @param addrCount the number of Address objects to create

@@ -37,6 +37,8 @@
 @isTest
 private with sharing class CON_PrimaryAffls_TEST {
 
+    private static Integer contactCount = 100; // used to determine number of test contact records to create
+
     /**************************************************************************************************************************
     ****************************************************** UNIT TESTS *********************************************************
     **************************************************************************************************************************/
@@ -809,6 +811,8 @@ private with sharing class CON_PrimaryAffls_TEST {
     @isTest
     private static void createAffiliationsOnBulkContactInsert() {
 
+        
+
        // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -823,7 +827,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 100; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -853,6 +857,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactupdate() {
+        
 
         // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
@@ -868,7 +873,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 100; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
         }
@@ -907,10 +912,11 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactInsertWithWrongMappingsWithValidationOn() {
+        
 
-       UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
-
-       // insert mappings
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
+        
+        // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
@@ -924,7 +930,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 100; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -966,7 +972,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 100; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -989,7 +995,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     ********************************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactupdates() {
-
         // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -1004,7 +1009,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccountList;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 100; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccountList[0].Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
