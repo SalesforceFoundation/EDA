@@ -93,7 +93,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
         for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
             try{
                 contactFieldValue = (Id)contact.get(conRelAutoCreateMap.contactFieldApiName);
-            } catch (System.TypeException ex){
+            } catch (System.StringException ex){
                 contact.addError(Label.AutoCreateFieldError);
             }
             
