@@ -91,5 +91,9 @@
         <members>%%%NAMESPACE%%%Test__c.All</members>
         <name>ListView</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>Layout</name>
+    </types>
     <version>48.0</version>
 </Package>
