@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>HEDA_Term_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Term_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Account__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <label>HEDA Term Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Unit of time in which academic activities are taking place.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <description>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</description>
+        <inlineHelpText>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</inlineHelpText>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Terms</relationshipLabel>
+        <relationshipName>Terms</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <description>The date this Term ends.</description>
+        <inlineHelpText>The date this Term ends.</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Grading_Period_Sequence__c</fullName>
+        <description>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</description>
+        <inlineHelpText>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</inlineHelpText>
+        <externalId>false</externalId>
+        <label>Grading Period Sequence</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Instructional_Days__c</fullName>
+        <description>The total number of instructional days in this Term.</description>
+        <inlineHelpText>The total number of instructional days in this Term.</inlineHelpText>
+        <externalId>false</externalId>
+        <label>Instructional Days</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Term__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</description>
+        <inlineHelpText>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</inlineHelpText>
+        <externalId>false</externalId>
+        <label>Parent Term</label>
+        <referenceTo>Term__c</referenceTo>
+        <relationshipLabel>Terms</relationshipLabel>
+        <relationshipName>Terms</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <description>The date this Term starts.</description>
+        <inlineHelpText>The date this Term starts.</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>The type of Term, for example, Semester, Quarter, or School Year.</description>
+        <inlineHelpText>The type of Term, for example, Semester, Quarter, or School Year.</inlineHelpText>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Quarter</fullName>
+                    <default>false</default>
+                    <label>Quarter</label>
+                </value>
+                <value>
+                    <fullName>Semester</fullName>
+                    <default>false</default>
+                    <label>Semester</label>
+                </value>
+                <value>
+                    <fullName>School Year</fullName>
+                    <default>false</default>
+                    <label>School Year</label>
+                </value>
+                <value>
+                    <fullName>Part of Term</fullName>
+                    <default>false</default>
+                    <label>Part of Term</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Term</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Term Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Terms</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores student grades for a specific grading period within a Term.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Term Grades</relationshipLabel>
+        <relationshipName>Term_Grades</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Course_Connection__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The class in which the student received this grade. The Contact and Course Offering on Term Grade must match the Contact and Course Offering on the Course Connection record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The class in which the student received this grade. The Contact and Course Offering on Term Grade must match the Contact and Course Offering on the Course Connection record.</inlineHelpText>
+        <label>Course Connection</label>
+        <referenceTo>Course_Enrollment__c</referenceTo>
+        <relationshipLabel>Term Grades</relationshipLabel>
+        <relationshipName>Term_Grades</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Course_Offering__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save.</inlineHelpText>
+        <label>Course Offering</label>
+        <referenceTo>Course_Offering__c</referenceTo>
+        <relationshipLabel>Term Grades</relationshipLabel>
+        <relationshipName>Term_Grades</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Credits_Attempted__c</fullName>
+        <description>The number of credits available this Term for this Course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of credits available this Term for this Course.</inlineHelpText>
+        <label>Credits Attempted</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credits_Earned__c</fullName>
+        <description>The number of credits the student earned this term for this course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of credits the student earned this term for this course.</inlineHelpText>
+        <label>Credits Earned</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Letter_Grade__c</fullName>
+        <description>If your school uses letter grades, enter the letter grade the student earned, for example, A, B, C, etc.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If your school uses letter grades, enter the letter grade the student earned, for example, A, B, C, etc.</inlineHelpText>
+        <label>Letter Grade</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Numerical_Grade__c</fullName>
+        <description>If your school uses numeric grades, enter the numeric grade the student earned.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If your school uses numeric grades, enter the numeric grade the student earned.</inlineHelpText>
+        <label>Numerical Grade</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Percent_Grade__c</fullName>
+        <description>If your school grades on a percentage basis, enter the percentage grade the student earned.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If your school grades on a percentage basis, enter the percentage grade the student earned.</inlineHelpText>
+        <label>Percent Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Result__c</fullName>
+        <description>The result of the student&apos;s performance for this grading period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The result of the student&apos;s performance for this grading period.</inlineHelpText>
+        <label>Result</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Audit</fullName>
+                    <default>false</default>
+                    <label>Audit</label>
+                </value>
+                <value>
+                    <fullName>Dropped</fullName>
+                    <default>false</default>
+                    <label>Dropped</label>
+                </value>
+                <value>
+                    <fullName>Fail</fullName>
+                    <default>false</default>
+                    <label>Fail</label>
+                </value>
+                <value>
+                    <fullName>Pass</fullName>
+                    <default>false</default>
+                    <label>Pass</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Term_Grade_Type__c</fullName>
+        <description>The type of grading period that this grade is for, for example, Mid-Term Grade, Final Grade, Exam Grade, Grading Period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of grading period that this grade is for, for example, Mid-Term Grade, Final Grade, Exam Grade, Grading Period.</inlineHelpText>
+        <label>Term Grade Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Exam Grade</fullName>
+                    <default>false</default>
+                    <label>Exam Grade</label>
+                </value>
+                <value>
+                    <fullName>Final Grade</fullName>
+                    <default>false</default>
+                    <label>Final Grade</label>
+                </value>
+                <value>
+                    <fullName>Grading Period</fullName>
+                    <default>false</default>
+                    <label>Grading Period</label>
+                </value>
+                <value>
+                    <fullName>Mid-Term Grade</fullName>
+                    <default>false</default>
+                    <label>Mid-Term Grade</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Term__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Indicates in which Term the student earned this grade.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates in which Term the student earned this grade.</inlineHelpText>
+        <label>Term</label>
+        <referenceTo>Term__c</referenceTo>
+        <relationshipLabel>Term Grades</relationshipLabel>
+        <relationshipName>Term_Grades</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Term Grade</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>TG-{0000}</displayFormat>
+        <label>Term Grade Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Term Grades</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Course_Offering__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Course_Offering__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contact__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Course_Offering__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Contact__c</searchFilterFields>
+        <searchFilterFields>Course_Offering__c</searchFilterFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Course_Offering__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

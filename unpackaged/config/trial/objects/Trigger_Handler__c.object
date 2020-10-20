@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores which classes to run in response to DML performed on an object.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Indicates whether this Trigger Handler is in use.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether this Trigger Handler is in use.</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Asynchronous__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether this class should run asynchronously in this transaction, for any of its After events.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether this class should run asynchronously in this transaction, for any of its After events.</inlineHelpText>
+        <label>Asynchronous</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Class__c</fullName>
+        <description>The name of the class to run.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of the class to run.</inlineHelpText>
+        <label>Class</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Filter_Field__c</fullName>
+        <description>The name of the field used for filtering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of the field used for filtering.</inlineHelpText>
+        <label>Filter Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Filter_Value__c</fullName>
+        <description>The value of the field used for filtering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value of the field used for filtering.</inlineHelpText>
+        <label>Filter Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Load_Order__c</fullName>
+        <description>The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account.</inlineHelpText>
+        <label>Load Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <description>The name of the object the class should act on, for example, Account, Contact, Opportunity.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of the object the class should act on, for example, Account, Contact, Opportunity.</inlineHelpText>
+        <label>Object</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owned_by_Namespace__c</fullName>
+        <description>The namespace of the package or Org that will control this Trigger handler.</description>
+        <inlineHelpText>The namespace of the package or Org that controls this Trigger Handler.</inlineHelpText>
+        <externalId>false</externalId>
+        <label>Owned by Namespace</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Trigger_Action__c</fullName>
+        <description>The context in which this class should run, for example, before a record is inserted, after a record is deleted, etc.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The context in which this class should run, for example, before a record is inserted, after a record is deleted, etc.</inlineHelpText>
+        <label>Trigger Action</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>BeforeInsert</fullName>
+                    <default>false</default>
+                    <label>BeforeInsert</label>
+                </value>
+                <value>
+                    <fullName>BeforeUpdate</fullName>
+                    <default>false</default>
+                    <label>BeforeUpdate</label>
+                </value>
+                <value>
+                    <fullName>BeforeDelete</fullName>
+                    <default>false</default>
+                    <label>BeforeDelete</label>
+                </value>
+                <value>
+                    <fullName>AfterInsert</fullName>
+                    <default>false</default>
+                    <label>AfterInsert</label>
+                </value>
+                <value>
+                    <fullName>AfterUpdate</fullName>
+                    <default>false</default>
+                    <label>AfterUpdate</label>
+                </value>
+                <value>
+                    <fullName>AfterDelete</fullName>
+                    <default>false</default>
+                    <label>AfterDelete</label>
+                </value>
+                <value>
+                    <fullName>AfterUndelete</fullName>
+                    <default>false</default>
+                    <label>AfterUndelete</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>User_Managed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</inlineHelpText>
+        <label>User Managed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Usernames_to_Exclude__c</fullName>
+        <description>Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users.</inlineHelpText>
+        <label>Usernames to Exclude</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Trigger Handler</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Main_Fields</fullName>
+        <columns>NAME</columns>
+        <columns>Class__c</columns>
+        <columns>Object__c</columns>
+        <columns>Active__c</columns>
+        <columns>Load_Order__c</columns>
+        <columns>User_Managed__c</columns>
+        <columns>Owned_by_Namespace__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All - Main Fields</label>
+    </listViews>
+    <nameField>
+        <label>Trigger Handler Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Trigger Handlers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>All hierarchy settings.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Account_Processor__c</fullName>
+        <description>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</inlineHelpText>
+        <label>Account Processor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Accounts_Addresses_Enabled__c</fullName>
+        <description>The record types of Accounts that should have multi-addresses enabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The record types of Accounts that should have multi-addresses enabled.</inlineHelpText>
+        <label>Multi-Address Accounts</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Accounts_to_Delete__c</fullName>
+        <description>The record types of Accounts to be automatically deleted if all their associated Contacts have been deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The record types of Accounts to be automatically deleted if all their associated Contacts have been deleted.</inlineHelpText>
+        <label>Accounts to Delete</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Admin_Account_Naming_Format__c</fullName>
+        <externalId>false</externalId>
+        <description>Stores the default format for Admin Account names.</description>
+        <inlineHelpText>Stores the default format for Admin Account names.</inlineHelpText>
+        <label>Admin Account Naming Format</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Admin_Other_Name_Setting__c</fullName>
+        <externalId>false</externalId>
+        <description>Stores other info about Admin Account naming format.</description>
+        <inlineHelpText>Stores other info about Admin Account naming format.</inlineHelpText>
+        <label>Admin Other Name Setting</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Administrative_Account_Record_Type__c</fullName>
+        <description>The Account record type used for Administrative Accounts. This setting affects management of Address records and the naming format of Administrative Accounts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Account record type used for Administrative Accounts. This setting affects management of Address records and the naming format of Administrative Accounts.</inlineHelpText>
+        <label>Administrative Account Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Advancement_Namespace__c</fullName>
+        <defaultValue>&quot;gem&quot;</defaultValue>
+        <description>The namespace of the Gift Entry Manager managed package.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The namespace of the Gift Entry Manager managed package.</inlineHelpText>
+        <label>GEM Namespace</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Affiliation_Record_Type_Enforced__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>If enabled, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in EDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If enabled, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in EDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</inlineHelpText>
+        <label>Affiliation Record Type Enforced</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Copy_End_Date__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</inlineHelpText>
+        <label>Affil End Date Copy from Prog Enroll</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Copy_Start_Date__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</inlineHelpText>
+        <label>Affil Start Date Copy from Prog Enroll</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
+        <description>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted.</inlineHelpText>
+        <label>Affil Status When Delete Prog Enroll</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Del__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll.</inlineHelpText>
+        <label>Affil Delete When Delete Prog Enroll</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Role_Map__c</fullName>
+        <description>If the related setting, Affil Set Role When Create Prog Enroll, is enabled, this setting specifies the value to set for the Role on the Affiliation created with a Program Enrollment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If the related setting, Affil Set Role When Create Prog Enroll, is enabled, this setting specifies the value to set for the Role on the Affiliation created with a Program Enrollment.</inlineHelpText>
+        <label>Affil Role When Create Prog Enroll</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Set_Role__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&apos;t specify a Role.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&apos;t specify a Role.</inlineHelpText>
+        <label>Affil Set Role When Create Prog Enroll</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Status_Map__c</fullName>
+        <description>The value set for the Status of an Affiliation record automatically created with a Program Enrollment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value set for the Status of an Affiliation record automatically created with a Program Enrollment.</inlineHelpText>
+        <label>Affil Status When Create Prog Enroll</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Allow_AutoCreated_Duplicates__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Auto-created Relationships are deduplicated to prevent duplication of Relationship records between Contacts. Select Allow Auto-Created Duplicate Relations to disable this behavior and allow multiple Relationships of the same type between two Contacts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Auto-created Relationships are deduplicated to prevent duplication of Relationship records between Contacts. Select Allow Auto-Created Duplicate Relations to disable this behavior and allow multiple Relationships of the same type between two Contacts.</inlineHelpText>
+        <label>Allow Auto-Created Duplicate Relations</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Async_Error_Check_Last_Run__c</fullName>
+        <description>The most recent execution date of the Async Job error logger.</description>
+        <inlineHelpText>The most recent execution date of the Async Job error logger.</inlineHelpText>
+        <externalId>false</externalId>
+        <label>Async Error Check Last Run</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Automatic_Household_Naming__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If enabled, the Household Name is automatically set based on the Household Name Format settings.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If enabled, the Household Name is automatically set based on the Household Name Format settings.</inlineHelpText>
+        <label>Automatic Household Naming</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contacts_Addresses_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Enables multi-address functionality for Contacts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enables multi-address functionality for Contacts.</inlineHelpText>
+        <label>Address management support for Contacts.</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Default_Contact_Language_Fluency__c</fullName>
+        <description>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</inlineHelpText>
+        <label>Default Contact Language Fluency</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Disable_Error_Handling__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If selected, the custom error handling framework is disabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected, the custom error handling framework is disabled.</inlineHelpText>
+        <label>Disable Error Handling</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_Preferred_Email_Enforcement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Disable the enforcement of the Preferred Email field for Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select to disable the enforcement of the Preferred Email field for Contacts.</inlineHelpText>
+        <label>Disable Preferred Email Enforcement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_Preferred_Phone_Enforcement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Disable the enforcement of the Preferred Phone field for Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select to disable the enforcement of the Preferred Phone field for Contacts.</inlineHelpText>
+        <label>Disable Preferred Phone Enforcement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_Course_Connections__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When enabled, allows users to choose the Contact type (Faculty or Student) when creating a Course Connection record. This feature requires default Contact record types to be set for active students and faculty.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When enabled, allows users to choose the Contact type (Faculty or Student) when creating a Course Connection record. This feature requires default Contact record types to be set for active students and faculty.</inlineHelpText>
+        <label>Enable Course Connections</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_Debug__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Select to enable debug statements in managed package code.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select to enable debug statements in managed package code.</inlineHelpText>
+        <label>Enable Debug</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_New_Preferred_Phone_Sync__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Turns on the Preferred Phone functionality that was released in EDA 1.82. This functionality syncs the Preferred Phone field to the Contact&apos;s standard Phone field and validates that the value in Preferred Phone exists and has a value.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validates that the value in Preferred Phone exists and has a value.</inlineHelpText>
+        <label>Enable New Preferred Phone Sync</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Error_Notifications_On__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If selected, notifications are posted for package-generated errors.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected, notifications are posted for package-generated errors.</inlineHelpText>
+        <label>Error Notifications</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Error_Notifications_To__c</fullName>
+        <description>Stores the type of user to send error notifications to.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores the type of user to send error notifications to.</inlineHelpText>
+        <label>Error Notification Recipients</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Faculty_RecType__c</fullName>
+        <description>The default Contact record type for Faculty when creating a Course Connection record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default Contact record type for Faculty when creating a Course Connection record.</inlineHelpText>
+        <label>Faculty Record Type</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Household_Account_Naming_Format__c</fullName>
+        <description>Stores the Household Account Naming Format.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores the Household Account Naming Format.</inlineHelpText>
+        <label>Household Account Naming Format</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Household_Addresses_RecType__c</fullName>
+        <description>The Account record type used for Household Accounts. This setting affects management of Address records and the naming format of Household Accounts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Account record type used for Household Accounts. This setting affects management of Address records and the naming format of Household Accounts.</inlineHelpText>
+        <label>Household Addresses Acc Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Household_Other_Name_Setting__c</fullName>
+        <externalId>false</externalId>
+        <description>Stores other information about the Household Account naming format.</description>
+        <inlineHelpText>Stores other information about the Household Account naming format.</inlineHelpText>
+        <label>Household Other Name Setting</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Preferred_Phone_Selection__c</fullName>
+        <description>Select a desired Preferred Phone when the Data Cleanup batch job runs.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select a desired Preferred Phone when the Data Cleanup batch job runs.</inlineHelpText>
+        <label>Preferred Phone Selection</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prevent_Account_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Account Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Address_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Address Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Affiliation_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Affiliation Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Behavior_Involvement_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Behavior Involvement Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Case_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Case Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Contact_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Contact Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Course_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Course Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Course_Connection_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Course Connection Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Facility_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Facility Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Course_Offering_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Course Offering Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Plan_Requirement_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Plan Requirement Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Program_Enrollment_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Program Enrollment Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Program_Plan_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Program Plan Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Term_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Term Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Test_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Test Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Time_Block_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Time Block Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reciprocal_Method__c</fullName>
+        <description>Determines the method used to generate the reciprocal relationship. Use List Setting to use custom settings by gender. Use Value Inversion to invert the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines the method used to generate the reciprocal relationship. Use List Setting to use custom settings by gender. Use Value Inversion to invert the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</inlineHelpText>
+        <label>Reciprocal Method</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relationship_Name_Field_Id__c</fullName>
+        <description>This field is currently not used.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is currently not used.</inlineHelpText>
+        <label>Relationship Name Field Id</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relationship_Name_Id_Field_Id__c</fullName>
+        <description>This field is currently not used.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is currently not used.</inlineHelpText>
+        <label>Relationship Name Id Field Id</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Simple_Address_Change_Treated_as_Update__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When enabled, changes to single address fields on Contact or Account are treated as updates to the existing address (for example, no new Address object is created). White space and case changes are treated as updates.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When enabled, changes to single address fields on Contact or Account are treated as updates to the existing address (for example, no new Address object is created). White space and case changes are treated as updates.</inlineHelpText>
+        <label>Simple Address Change Treated as Update</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Store_Errors_On__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Enable this feature to store errors.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enable this feature to store errors.</inlineHelpText>
+        <label>Store Errors</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Student_RecType__c</fullName>
+        <description>The default record type when creating Course Connections for active students.</description>
+        <externalId>false</externalId>
+        <label>Student Record Type</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Validate_Program_Plan_for_Nested_PR__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, an error message prevents saving until only one is selected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message prevents saving until only one is selected.</inlineHelpText>
+        <label>Validate Program Plan for Nested PR</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Hierarchy Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

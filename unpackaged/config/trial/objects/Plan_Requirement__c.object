@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>HEDA_Plan_Requirement_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Plan_Requirement_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Program_Plan__c</fields>
+        <fields>Category__c</fields>
+        <label>HEDA Plan Requirement Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>The various course requirements for completing a Program Plan.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Category__c</fullName>
+        <description>Indicates the type of Plan Requirement, for example, optional or required.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates the type of Plan Requirement, for example, optional or required.</inlineHelpText>
+        <label>Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Required</fullName>
+                    <default>false</default>
+                    <label>Required</label>
+                </value>
+                <value>
+                    <fullName>Optional</fullName>
+                    <default>false</default>
+                    <label>Optional</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Course__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Course associated with this Plan Requirement. Leave blank for a parent Plan Requirement with nested Plan Requirements.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Course associated with this Plan Requirement. Leave blank for a parent Plan Requirement with nested Plan Requirements.</inlineHelpText>
+        <label>Course</label>
+        <referenceTo>Course__c</referenceTo>
+        <relationshipLabel>Plan Requirements</relationshipLabel>
+        <relationshipName>Plan_Requirements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Credits__c</fullName>
+        <description>The number of credits a student receives for satisfying this requirement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of credits a student receives for satisfying this requirement.</inlineHelpText>
+        <label>Credits</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>The description of Plan Requirement.</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Plan_Requirement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>If the Plan Requirement is one of multiple requirements or multiple levels of requirements, specifies the parent Plan Requirement. Use this field to group a list of optional Courses that satisfy a generic requirement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If the Plan Requirement is one of multiple requirements or multiple levels of requirements, specifies the parent Plan Requirement. Use this field to group a list of optional Courses that satisfy a generic requirement.</inlineHelpText>
+        <label>Parent Plan Requirement</label>
+        <referenceTo>Plan_Requirement__c</referenceTo>
+        <relationshipLabel>Plan Requirements</relationshipLabel>
+        <relationshipName>Plan_Requirements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Program_Plan__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Program Plan this requirement is for. If you&apos;re grouping Plan Requirements together under a Parent Plan Requirement, best practice is to link only the top-level Plan Requirement to a Program Plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Program Plan this requirement is for. If you&apos;re grouping Plan Requirements together under a Parent Plan Requirement, best practice is to link only the top-level Plan Requirement to a Program Plan.</inlineHelpText>
+        <label>Program Plan</label>
+        <referenceTo>Program_Plan__c</referenceTo>
+        <relationshipLabel>Plan Requirements</relationshipLabel>
+        <relationshipName>Plan_Requirements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <description>This requirement's place in the Program Plan, for example, "1" indicates the first semester. Use this field to indicate the overall progression for the entire Program Plan, or to sort the order of sub-requirements within a single parent Plan Requirement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This requirement's place in the Program Plan, for example, "1" indicates the first semester. Use this field to indicate the overall progression for the entire Program Plan, or to sort the order of sub-requirements within a single parent Plan Requirement.</inlineHelpText>
+        <label>Sequence</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Plan Requirement</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Plan Requirement Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Plan Requirements</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Automatically generates a Relationship between a Contact and another Contact or a Contact and a Contact/Campaign Member based on a custom lookup field.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Campaign_Types__c</fullName>
+        <description>For Auto-Create Relationships based on Campaign Members, the list of Campaign types the automation applies to. This field will be blank for Auto-Create Relationships based on Contacts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For Auto-Create Relationships based on Campaign Members, the list of Campaign types the automation applies to. This field will be blank for Auto-Create Relationships based on Contacts.</inlineHelpText>
+        <label>Campaign Types</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Field__c</fullName>
+        <description>The label of the lookup field that triggers the creation of this Relationship when the field value is updated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The label of the lookup field that triggers the creation of this Relationship when the field value is updated.</inlineHelpText>
+        <label>Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <description>The API name of the object (either Contact or CampaignMember) that the custom lookup field is on.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The API name of the object (either Contact or CampaignMember) that the custom lookup field is on.</inlineHelpText>
+        <label>Object</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relationship_Type__c</fullName>
+        <description>The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object.</inlineHelpText>
+        <label>Relationship Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Relationship Auto-Create</label>
+    <visibility>Public</visibility>
+</CustomObject>

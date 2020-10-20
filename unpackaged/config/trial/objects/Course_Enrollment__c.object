@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>HEDA_Course_Enrollment_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Course_Enrollment_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Course_Offering__c</fields>
+        <fields>Program_Enrollment__c</fields>
+        <fields>Grade__c</fields>
+        <fields>Primary__c</fields>
+        <label>HEDA Course Connection Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Represents a connection to a Course Offering.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Academic Program that the student or faculty member is associated with.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Academic Program that the student or faculty member is associated with.</inlineHelpText>
+        <label>Contact&apos;s Academic Program</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Course Connections</relationshipLabel>
+        <relationshipName>Course_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Affiliation__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment's Affiliation. If both conditions aren&apos;t true, then this Affiliation field is left blank.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</inlineHelpText>
+        <label>Affiliation</label>
+        <referenceTo>Affiliation__c</referenceTo>
+        <relationshipLabel>Course Connection</relationshipLabel>
+        <relationshipName>Course_Enrollment</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The student or faculty member participating in this Course Offering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The student or faculty member participating in this Course Offering.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Course Connections</relationshipLabel>
+        <relationshipName>Student_Course_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Course_Offering__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Course Offering the student or faculty member is involved with.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Course Offering the student or faculty member is involved with.</inlineHelpText>
+        <label>Course Offering ID</label>
+        <referenceTo>Course_Offering__c</referenceTo>
+        <relationshipLabel>Course Connection</relationshipLabel>
+        <relationshipName>Course_Enrollment</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Credits_Attempted__c</fullName>
+        <externalId>false</externalId>
+        <description>The number of credits the student is trying to earn through this Course Offering.</description>
+        <inlineHelpText>The number of credits the student is trying to earn through this Course Offering.</inlineHelpText>
+        <label>Credits Attempted</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credits_Earned__c</fullName>
+        <externalId>false</externalId>
+        <description>The number of credits the student earned by completing this Course Offering.</description>
+        <inlineHelpText>The number of credits the student earned by completing this Course Offering.</inlineHelpText>
+        <label>Credits Earned</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade__c</fullName>
+        <externalId>false</externalId>
+        <description>The numeric grade the student earned in this Course Offering.</description>
+        <inlineHelpText>The numeric grade the student earned in this Course Offering.</inlineHelpText>
+        <label>Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>For faculty members, indicates they are the primary faculty (for example, lead instructor) for the Course Offering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For faculty members, indicates they are the primary faculty (for example, lead instructor) for the Course Offering.</inlineHelpText>
+        <label>Primary</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Program_Enrollment__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student's academic major.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</inlineHelpText>
+        <label>Program Enrollment ID</label>
+        <referenceTo>Program_Enrollment__c</referenceTo>
+        <relationshipLabel>Course Connections</relationshipLabel>
+        <relationshipName>Course_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Indicates whether this is a current or former Course Connection.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether this is a current or former Course Connection.</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Current</fullName>
+                    <default>true</default>
+                    <label>Current</label>
+                </value>
+                <value>
+                    <fullName>Former</fullName>
+                    <default>false</default>
+                    <label>Former</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Course Connection</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CC-{0000}</displayFormat>
+        <label>Course Connection ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Course Connections</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>
