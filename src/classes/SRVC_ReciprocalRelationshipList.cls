@@ -108,14 +108,20 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
     private Relationship__c getRelationshipToUpdateFromGender(Relationship__c reciprocalRelationship, Contact relatedContact, 
                                                             MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel, 
                                                             Set<String> femaleGenderSet, Set<String> maleGenderSet) {
-        if (reciprocalRelationshipMappingModel.hasFemaleValue() == true && femaleGenderSet.contains(relatedContact.Gender__c.toLowerCase())) {
-            reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getFemaleRelationshipType();
+        if (reciprocalRelationshipMappingModel.hasFemaleValue() == true
+            && femaleGenderSet.contains(relatedContact.Gender__c.toLowerCase())
+        ) {
+            reciprocalRelationship.Type__c =
+                reciprocalRelationshipMappingModel.getFemaleRelationshipType();
             
             return reciprocalRelationship;
         }
 
-        if (reciprocalRelationshipMappingModel.hasMaleValue() == true && maleGenderSet.contains(relatedContact.Gender__c.toLowerCase())) {
-            reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getMaleRelationshipType();
+        if (reciprocalRelationshipMappingModel.hasMaleValue() == true
+            && maleGenderSet.contains(relatedContact.Gender__c.toLowerCase())
+        ) {
+            reciprocalRelationship.Type__c =
+                reciprocalRelationshipMappingModel.getMaleRelationshipType();
             
             return reciprocalRelationship;
         }
