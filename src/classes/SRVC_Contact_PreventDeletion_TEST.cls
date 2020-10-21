@@ -95,6 +95,9 @@ private class SRVC_Contact_PreventDeletion_TEST {
         Course_Enrollment__c courseCxn = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
         insert courseCxn;
 
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        insert eduHis;
+
         Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id,  courseOffering.Id, courseCxn.Id);
         insert termGrade;
 
@@ -238,6 +241,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(1, contactsWithChildRecords[0].Behavior_Involvements__r.size());
         System.assertEquals(1, contactsWithChildRecords[0].Contact_Languages__r.size());
         System.assertEquals(1, contactsWithChildRecords[0].Courses_Taught__r.size());
+        System.assertEquals(1, contactsWithChildRecords[0].Education_History__r.size());
         System.assertEquals(1, contactsWithChildRecords[0].Program_Enrollments__r.size());
         System.assertEquals(1, contactsWithChildRecords[0].Student_Course_Enrollments__r.size());
         System.assertEquals(1, contactsWithChildRecords[0].Term_Grades__r.size());
@@ -269,6 +273,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
         System.assertEquals(0, contactsWithChildRecords[0].Behavior_Involvements__r.size());
         System.assertEquals(0, contactsWithChildRecords[0].Contact_Languages__r.size());
         System.assertEquals(0, contactsWithChildRecords[0].Courses_Taught__r.size());
+        System.assertEquals(0, contactsWithChildRecords[0].Education_History__r.size());
         System.assertEquals(0, contactsWithChildRecords[0].Program_Enrollments__r.size());
         System.assertEquals(0, contactsWithChildRecords[0].Student_Course_Enrollments__r.size());
         System.assertEquals(0, contactsWithChildRecords[0].Term_Grades__r.size());
@@ -293,6 +298,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
                        (SELECT ID FROM Behavior_Involvements__r LIMIT 1),
                        (SELECT ID FROM Contact_Languages__r LIMIT 1),
                        (SELECT ID FROM Courses_Taught__r LIMIT 1),
+                       (SELECT ID FROM Education_History__r LIMIT 1),
                        (SELECT ID FROM Program_Enrollments__r LIMIT 1),
                        (SELECT ID FROM Student_Course_Enrollments__r LIMIT 1),
                        (SELECT ID FROM Term_Grades__r LIMIT 1),
