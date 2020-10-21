@@ -55,7 +55,7 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
 
     deploy_language_translation_workbench_settings:
-        description: Deploys configuration for translation wokbench enablement. Enables end user languages, platform languages, and translation workbench.
+        description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
