@@ -126,8 +126,7 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
             contactModel.addError(Label.PreferredEmailMatchNotNull);
             return contactModel.Contact;
         }
-        
-        // added new condition
+
         if (preferredEmailSettingsModel.preferredEmailValidationEnabled == false || String.isBlank(contactModel.email) == true) {
             return null;
         }
