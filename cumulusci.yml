@@ -62,7 +62,7 @@ tasks:
             path: unpackaged/config/qa/language/settings
             unmanaged: True
 
-    deploy_translation_settings:
+    deploy_translations:
         description: Assigns languages and marks them as active.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
