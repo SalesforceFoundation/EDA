@@ -95,6 +95,7 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
                 (SELECT ID FROM Behavior_Involvements__r LIMIT 1),
                 (SELECT ID FROM Contact_Languages__r LIMIT 1),
                 (SELECT ID FROM Courses_Taught__r LIMIT 1),
+                (SELECT ID FROM Education_History__r LIMIT 1),
                 (SELECT ID FROM Program_Enrollments__r LIMIT 1),
                 (SELECT ID FROM Student_Course_Enrollments__r LIMIT 1),
                 (SELECT ID FROM Term_Grades__r LIMIT 1),
@@ -119,6 +120,7 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
                 con.Behavior_Involvements__r.isEmpty() == false ||
                 con.Contact_Languages__r.isEmpty() == false ||
                 con.Courses_Taught__r.isEmpty() == false ||
+                con.Education_History__r.isEmpty() == false ||
                 con.Program_Enrollments__r.isEmpty() == false ||
                 con.Student_Course_Enrollments__r.isEmpty() == false ||
                 con.Term_Grades__r.isEmpty() == false ||
