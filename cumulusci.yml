@@ -286,6 +286,7 @@ flows:
         steps:
             1:
                 flow: beta_dependencies
+                when: org_config.scratch
             2:
                 task: deploy_pre
                 options:
