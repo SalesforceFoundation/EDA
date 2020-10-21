@@ -137,14 +137,20 @@ public virtual with sharing class SRVC_ReciprocalRelationshipList extends SRVC_R
                                                             MODL_ReciprocalRelationshipMapping reciprocalRelationshipMappingModel, 
                                                             Set<String> femaleSalutationSet, Set<String> maleSalutationSet) {
         if (String.isNotBlank(relatedContact.Salutation)) {
-            if (reciprocalRelationshipMappingModel.hasFemaleValue() == true && femaleSalutationSet.contains(relatedContact.Salutation)) {
-                reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getFemaleRelationshipType();
+            if (reciprocalRelationshipMappingModel.hasFemaleValue() == true
+                && femaleSalutationSet.contains(relatedContact.Salutation)
+            ) {
+                reciprocalRelationship.Type__c =
+                    reciprocalRelationshipMappingModel.getFemaleRelationshipType();
                 
                 return reciprocalRelationship;
             }
 
-            if (reciprocalRelationshipMappingModel.hasMaleValue() == true && maleSalutationSet.contains(relatedContact.Salutation)) {
-                reciprocalRelationship.Type__c = reciprocalRelationshipMappingModel.getMaleRelationshipType();
+            if (reciprocalRelationshipMappingModel.hasMaleValue() == true
+                && maleSalutationSet.contains(relatedContact.Salutation)
+            ) {
+                reciprocalRelationship.Type__c =
+                    reciprocalRelationshipMappingModel.getMaleRelationshipType();
                 
                 return reciprocalRelationship;
             }
