@@ -117,6 +117,10 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     private DmlWrapper handleAfterUpdate(List<SObject> newList, List<SObject> oldList){
         DmlWrapper dmlWrapper = new DmlWrapper();
 
+        if (oldList == null || oldList.isEmpty() == true){
+            return null;
+        }
+
         if (this.isUpdateRecursion() == true){
             return null;
         }
