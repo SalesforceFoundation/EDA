@@ -51,7 +51,7 @@ public virtual with sharing class FACT_ReciprocalRelationshipService {
     ******************************************************************************/
     public static SRVC_ReciprocalRelationship getInstance() {
         if (FACT_ReciprocalRelationshipService.instance == null) {
-            String reciprocalMethod = getReciprocalMethodFromSettings();
+            String reciprocalMethod = FACT_ReciprocalRelationshipService.getReciprocalMethodFromSettings();
             if (reciprocalMethod == 'List Setting') {
                 FACT_ReciprocalRelationshipService.instance =  new SRVC_ReciprocalRelationshipList();
             } else if (reciprocalMethod == 'Value Inversion') {
