@@ -37,6 +37,10 @@
 @isTest
 private with sharing class CON_CannotDelete_TEST {
 
+    /**************************************************************************************************************************
+    ****************************************************** FUNCTIONAL TESTS ***************************************************
+    **************************************************************************************************************************/
+
     /*********************************************************************************************************
     * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and
     * Contact has an Address record associated to it, that it cannot be deleted.
@@ -450,6 +454,34 @@ private with sharing class CON_CannotDelete_TEST {
 
         //Verify that none of the Contact records were deleted
         System.assertEquals(2, returnContacts.size());
+        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
+    }
+
+    /*********************************************************************************************************
+    * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and
+    * Contact has an Education History record associated to it, that it cannot be deleted.
+    */
+    @isTest
+    private static void conCannotDeleteWithEduHistory() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Prevent_Contact_Deletion__c = true));
+
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        insert contacts;
+
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(null,contacts[0].Id);
+        insert eduHis;
+
+        Test.startTest();
+            List<Database.DeleteResult> results = Database.delete(contacts, false);
+        Test.stopTest();
+
+        List<Contact> returnContacts = [SELECT Id
+                                       FROM Contact
+                                       WHERE Id IN :contacts];
+
+        //Verify that only one of the Contact records was deleted
+        System.assertEquals(1, returnContacts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
 
@@ -1239,6 +1271,10 @@ private with sharing class CON_CannotDelete_TEST {
 
         update new List<Course_Offering__c> {courseOfferings1, courseOfferings2};
 
+        Education_History__c eduHis1 = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        Education_History__c eduHis2 = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[1].Id);
+        insert new List<Education_History__c> {eduHis1, eduHis2};
+
         Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOfferings1.Id, null);
         Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOfferings2.Id, null);
 
@@ -1328,6 +1364,9 @@ private with sharing class CON_CannotDelete_TEST {
         Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
         courseOffering.Faculty__c = contacts[1].Id;
         update courseOffering;
+        
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[1].Id);
+        insert eduHis;
 
         Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id,courseOffering.Id, null);
         insert termGrade;
@@ -1427,6 +1466,10 @@ private with sharing class CON_CannotDelete_TEST {
 
         update new List<Course_Offering__c> {courseOfferings1, courseOfferings2};
 
+        Education_History__c eduHis1 = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        Education_History__c eduHis2 = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[1].Id);
+        insert new List<Education_History__c> {eduHis1, eduHis2};
+
         Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOfferings1.Id, null);
         Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOfferings2.Id, null);
 
@@ -1512,6 +1555,9 @@ private with sharing class CON_CannotDelete_TEST {
         courseOffering.Faculty__c = contacts[1].Id;
         update courseOffering;
 
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[1].Id);
+        insert eduHis;
+
         Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[1].Id, courseOffering.Id, null);
         insert termGrade;
 
@@ -1538,6 +1584,10 @@ private with sharing class CON_CannotDelete_TEST {
         System.assertEquals(true, results[0].success);
         System.assertEquals(true, results[1].success);
     }
+
+    /**************************************************************************************************************************
+    ****************************************************** UNIT TESTS *********************************************************
+    **************************************************************************************************************************/
 
     /*************************************************************************************************************
     * @description NULL test for run method to verify new DmlWrapper(); is returned when oldList is null
@@ -1585,6 +1635,9 @@ private with sharing class CON_CannotDelete_TEST {
         Affiliation__c affiliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affiliation;
 
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        insert eduHis;
+
         List<SObject> oldList = new List<SObject>((List<SObject>)contacts);
 
         Map<Id, Contact> contactById = new Map<Id, Contact>(contacts);
@@ -1631,6 +1684,9 @@ private with sharing class CON_CannotDelete_TEST {
 
         Affiliation__c affiliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affiliation;
+
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        insert eduHis;
 
         List<SObject> oldList = new List<SObject>((List<SObject>)contacts);
 
@@ -1706,6 +1762,9 @@ private with sharing class CON_CannotDelete_TEST {
 
         Affiliation__c affiliation = new Affiliation__c(Account__c = acc.Id, Contact__c = contacts[0].Id);
         insert affiliation;
+
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        insert eduHis;
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
@@ -1813,6 +1872,10 @@ private with sharing class CON_CannotDelete_TEST {
         System.assertEquals(false, isContactDeletionPreventionEnabled);
 
     }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUB CLASS *********************************************************
+    **************************************************************************************************************************/
 
     /*************************************************************************************************************
     * STUB class which extends SRVC_Contact_PreventDeletion
