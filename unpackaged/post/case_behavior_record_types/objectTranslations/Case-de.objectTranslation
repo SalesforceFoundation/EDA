@@ -2,7 +2,7 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <recordTypes>
     <name>Incident</name>
-    <label>Incidència</label>
-    <description>Un esdeveniment del qual es fa un seguiment en aquest cas.</description>
+    <label>Vorfall</label>
+    <description>Ein Ereignis, das durch diesen Fall verfolgt wird.</description>
   </recordTypes>
 </CustomObjectTranslation>
