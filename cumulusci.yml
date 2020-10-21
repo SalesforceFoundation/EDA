@@ -54,6 +54,16 @@ tasks:
             path: unpackaged/config/spe
             namespace_inject: $project_config.project__package__namespace
 
+    deploy_trial_config:
+        description: Deploys metadata and configuration for TSOs.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        group: 'EDA: Trial'
+        ui_options:
+            name: Deploy Trial Metadata
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/trial
+
     assign_encryption_permset:
         group: 'Shield Platform Encryption'
         description: Assigns the Encryption permission set to the current user for Shield Platform Encryption testing.
@@ -267,6 +277,27 @@ flows:
                     namespaced: True
             3:
                 task: deploy_qa_config
+                options:
+                    unmanaged: False
+
+    trial_org:
+        description: Deploy trial configuration to an org.
+        group: 'EDA: Trial'
+        steps:
+            1:
+                flow: beta_dependencies
+            2:
+                task: deploy_pre
+                options:
+                    unmanaged: False
+            3:
+                task: install_managed
+            4:
+                task: deploy_post
+                options:
+                    unmanaged: False
+            5:
+                task: deploy_trial_config
                 options:
                     unmanaged: False
 
