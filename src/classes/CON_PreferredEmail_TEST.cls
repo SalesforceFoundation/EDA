@@ -32,7 +32,7 @@
 * @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Test class for CON_Preferred_TEDTM - Preferred Email functionality.
+* @description Test class for CON_Preferred_TDTM - Preferred Email functionality.
 */
 @isTest
 private class CON_PreferredEmail_TEST {
@@ -1566,4 +1566,412 @@ private class CON_PreferredEmail_TEST {
 
     }
 
+    /**************************************************************************************************************************
+    ******************************************* BULK FUNCTIONAL TESTS *********************************************************
+    **************************************************************************************************************************/
+
+    /*****************************************************************************************************************************
+    * @description Bulk test for Preferred Email in Insert context when Preferred Email Enforcement is enabled 
+    *****************************************************************************************************************************/
+    @isTest 
+    static void bulkTestToCoverAllPreferredEmailBeforeInsertScenariosWithEnforcementEnabled() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+
+        Contact testContact1 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact1.Email = '';
+        testContact1.Preferred_Email__c = 'Alternate Email';
+
+        Contact testContact2 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact2.Email = 'test@sf.org';
+
+        Contact testContact3 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact3.Email = '';
+        testContact3.AlternateEmail__c = 'test@sf.org';
+
+        Contact testContact4 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact4.Email = '';
+        testContact4.AlternateEmail__c = 'test@sf.org';
+        testContact4.WorkEmail__c = 'test@sf.org';
+
+        Contact testContact5 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact5.Email = '';
+        testContact5.Preferred_Email__c = 'Alternate Email';
+        testContact5.WorkEmail__c = 'test@sf.org';
+
+        Contact testContact6 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact6.Preferred_Email__c = 'Alternate Email';
+        testContact6.AlternateEmail__c = 'test@sf.org';
+        testContact6.Email = '';
+
+        Contact testContact7 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact7.Preferred_Email__c = 'Test sf Email';
+        testContact7.WorkEmail__c = 'test@sf.org';
+
+        Contact testContact8 = testContact6.clone(false);
+        Contact testContact9 = testContact2.clone(false);
+
+        List<Contact> contactsToBeInserted = new List<Contact> {
+            testContact1, testContact2, testContact3, testContact4, testContact5, testContact6, testContact7, testContact8, testContact9
+                };
+    
+        List<Database.saveResult> results = Database.insert(contactsToBeInserted, false);
+
+        System.assertEquals(true, results[1].success);
+        System.assertEquals(true, results[2].success);
+        System.assertEquals(true, results[5].success);
+        System.assertEquals(true, results[7].success);
+        System.assertEquals(true, results[8].success);
+        System.assertEquals(Label.PreferredEmailMatchNotNull, results[0].errors[0].message);
+        System.assertEquals(Label.PreferredEmailRequiredError, results[3].errors[0].message);
+        System.assertEquals(Label.PreferredEmailMatchNotNull, results[4].errors[0].message);
+        System.assertEquals(Label.PreferredEmailMatchMustExist, results[6].errors[0].message);
+
+        for (Contact contact : [SELECT Id, Preferred_Email__c, Email, AlternateEmail__c FROM Contact WHERE 
+                                Id =: results[1].getId() OR 
+                                Id =: results[2].getId() OR
+                                Id =: results[5].getId()]) {
+                                    
+           System.assertEquals(contact.AlternateEmail__c, contact.Email);
+           System.assertEquals('Alternate Email', contact.Preferred_Email__c);
+        }
+
+    }   
+
+    /*****************************************************************************************************************************
+    * @description Bulk test for Preferred Email in Insert context when Preferred Email Enforcement is disabled 
+    *****************************************************************************************************************************/
+    @isTest 
+    static void bulkTestToCoverAllPreferredEmailBeforeInsertScenariosWithEnforcementDisbaled() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+
+        Contact testContact1 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact1.Email = '';
+        testContact1.Preferred_Email__c = 'Alternate Email';
+
+        Contact testContact2 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact2.Email = 'test@sf.org';
+
+        Contact testContact3 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact3.Email = '';
+        testContact3.AlternateEmail__c = 'test@sf.org';
+
+        Contact testContact4 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact4.Email = '';
+        testContact4.AlternateEmail__c = 'test@sf.org';
+        testContact4.WorkEmail__c = 'test@sf.org';
+
+        Contact testContact5 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact5.Email = '';
+        testContact5.Preferred_Email__c = 'Alternate Email';
+        testContact5.WorkEmail__c = 'test@sf.org';
+
+        Contact testContact6 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact6.Preferred_Email__c = 'Alternate Email';
+        testContact6.AlternateEmail__c = 'test@sf.org';
+        testContact6.Email = '';
+
+        Contact testContact7 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact7.Preferred_Email__c = 'Test sf Email';
+        testContact7.WorkEmail__c = 'test@sf.org';
+
+        List<Contact> contactsToBeInserted = new List<Contact> {
+            testContact1, testContact2, testContact3, testContact4, testContact5, testContact6, testContact7
+                };
+       
+        List<Database.saveResult> results = Database.insert(contactsToBeInserted, false);
+
+        for (Database.saveResult eachResult: results) {
+            if (eachResult != results[0] && eachResult != results[4] && eachResult != results[6]) {
+                System.assertEquals(true, eachResult.success);   
+            } else if (eachResult == results[0] || eachResult == results[4]) {
+                System.assertEquals(Label.PreferredEmailMatchNotNull, results[0].errors[0].message);
+                System.assertEquals(Label.PreferredEmailMatchNotNull, results[4].errors[0].message);
+            } else {
+                System.assertEquals(Label.PreferredEmailMatchMustExist, results[6].errors[0].message);
+            }
+        }
+    }
+
+    /*****************************************************************************************************************************
+    * @description Bulk test for Preferred Email in Update context when Preferred Email Enforcement is enabled 
+    *****************************************************************************************************************************/
+    @isTest 
+    static void bulkTestToCoverAllPreferredEmailBeforeUpdateScenariosWithEnforcementEnabled() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+
+        Contact testContact1 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact1.Email = '';
+
+        Contact testContact2 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact2.Email = '';
+
+        Contact testContact3 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact3.Email = '';
+
+        Contact testContact4 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact4.Email = '';
+
+        Contact testContact5 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact5.Email = '';
+
+        Contact testContact6 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact6.Email = '';
+
+        Contact testContact7 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact7.Email = '';
+
+        Contact testContact8 = testContact6.clone(false);
+        Contact testContact9 = testContact2.clone(false);
+
+        List<Contact> contactsToBeInserted = new List<Contact> {
+            testContact1, testContact2, testContact3, testContact4, testContact5, testContact6, testContact7, testContact8, testContact9
+                };
+
+        insert contactsToBeInserted;
+
+        List<Contact> insertedContactList = [SELECT Id FROM Contact];
+        System.assertEquals(9, insertedContactList.size());
+
+        testContact1.Preferred_Email__c = 'Alternate Email';
+        testContact2.Email = 'test@sf.org';
+        testContact3.AlternateEmail__c = 'test@sf.org';
+        testContact4.AlternateEmail__c = 'test@sf.org';
+        testContact4.WorkEmail__c = 'test@sf.org';
+        testContact5.Preferred_Email__c = 'Alternate Email';
+        testContact5.WorkEmail__c = 'test@sf.org';
+        testContact6.Preferred_Email__c = 'Alternate Email';
+        testContact6.AlternateEmail__c = 'test@sf.org';
+        testContact7.Preferred_Email__c = 'Test sf Email';
+        testContact7.WorkEmail__c = 'test@sf.org';
+        testContact8.Preferred_Email__c = 'Alternate Email';
+        testContact8.AlternateEmail__c = 'test@sf.org';
+        testContact9.Email = 'test@sf.org';
+
+        List<Contact> contactsToBeUpdated = new List<Contact> {
+            testContact1, testContact2, testContact3, testContact4, testContact5, testContact6, testContact7, testContact8, testContact9
+                };
+
+        List<Database.saveResult> results = Database.update(contactsToBeUpdated, false);
+
+        System.assertEquals(true, results[1].success);
+        System.assertEquals(true, results[2].success);
+        System.assertEquals(true, results[5].success);
+        System.assertEquals(true, results[7].success);
+        System.assertEquals(true, results[8].success);
+        System.assertEquals(Label.PreferredEmailMatchNotNull, results[0].errors[0].message);
+        System.assertEquals(Label.PreferredEmailRequiredError, results[3].errors[0].message);
+        System.assertEquals(Label.PreferredEmailMatchNotNull, results[4].errors[0].message);
+        System.assertEquals(Label.PreferredEmailMatchMustExist, results[6].errors[0].message);
+
+        for (Contact contact : [SELECT Id, Preferred_Email__c, Email, AlternateEmail__c FROM Contact WHERE 
+                                Id =: results[1].getId() OR 
+                                Id =: results[2].getId() OR
+                                Id =: results[5].getId()]) {
+                                    
+           System.assertEquals(contact.AlternateEmail__c, contact.Email);
+           System.assertEquals('Alternate Email', contact.Preferred_Email__c);
+        }
+
+    }
+
+    /*****************************************************************************************************************************
+    * @description Bulk test for Preferred Email in Update context when Preferred Email Enforcement is disabled 
+    *****************************************************************************************************************************/
+    @isTest 
+    static void bulkTestToCoverAllPreferredEmailBeforeUpdateScenariosWithEnforcementDisabled() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+
+        Contact testContact1 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact1.Email = '';
+        
+        Contact testContact2 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact2.Email = '';
+
+        Contact testContact3 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact3.Email = '';
+
+        Contact testContact4 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact4.Email = '';
+
+        Contact testContact5 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact5.Email = '';
+
+        Contact testContact6 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact6.Email = '';
+
+        Contact testContact7 = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        testContact7.Email = '';
+
+        List<Contact> contactsToBeInserted = new List<Contact> {
+            testContact1, testContact2, testContact3, testContact4, testContact5, testContact6, testContact7
+                };
+
+        insert contactsToBeInserted;
+
+        List<Contact> insertedContactList = [SELECT Id FROM Contact];
+        System.assertEquals(7, insertedContactList.size());
+
+        testContact1.Preferred_Email__c = 'Alternate Email';
+        testContact2.Email = 'test@sf.org';
+        testContact3.AlternateEmail__c = 'test@sf.org';
+        testContact4.AlternateEmail__c = 'test@sf.org';
+        testContact4.WorkEmail__c = 'test@sf.org';
+        testContact5.Preferred_Email__c = 'Alternate Email';
+        testContact5.WorkEmail__c = 'test@sf.org';
+        testContact6.Preferred_Email__c = 'Alternate Email';
+        testContact6.AlternateEmail__c = 'test@sf.org';
+        testContact7.Preferred_Email__c = 'Test sf Email';
+        testContact7.WorkEmail__c = 'test@sf.org';
+
+        List<Contact> contactsToBeUpdated = new List<Contact> {
+            testContact1, testContact2, testContact3, testContact4, testContact5, testContact6, testContact7
+                };
+
+        List<Database.saveResult> results = Database.update(contactsToBeUpdated, false);
+
+        for (Database.saveResult eachResult: results) {
+            if (eachResult != results[0] && eachResult != results[4] && eachResult != results[6]) {
+                System.assertEquals(true, eachResult.success);   
+            } else if (eachResult == results[0] || eachResult == results[4]) {
+                System.assertEquals(Label.PreferredEmailMatchNotNull, results[0].errors[0].message);
+                System.assertEquals(Label.PreferredEmailMatchNotNull, results[4].errors[0].message);
+            } else {
+                System.assertEquals(Label.PreferredEmailMatchMustExist, results[6].errors[0].message);
+            }
+        }
+        
+    }
+
+    /*****************************************************************************************************************************
+    * @description Bulk test for Preferred Email in Batch context when Preferred Email Enforcement is enabled 
+    *****************************************************************************************************************************/
+	@isTest 
+    static void preferredEMailBatchBulkTest() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+        );
+
+		// Get contacts set up
+        List<Contact> contactList = UTIL_UnitTestData_API.getMultipleTestContacts(10);
+        for (Integer i = 0; i < 10; i++) {
+
+            contactList[i].LastName = 'ToAvoidDupeRule' + i;//Avoid duplicate matching
+            contactList[i].WorkEmail__c = ''; // clear email field set in getMultipleTestContacts
+            contactList[i].Preferred_Email__c = ''; // clear preferred field set in getMultipleTestContacts
+            System.assert(contactList[i].email == null);
+        }
+
+        insert contactList;
+
+		List<String> contIds = new List<String>();
+
+		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact];
+
+		String caseOneId;
+		String caseTwoId;
+
+		// Process the contact for testing
+        if(contacts.size() > 0) {
+
+	        for (Integer i = 0; i < contacts.size(); i++) {
+
+	        	// Setup special Case 1
+	        	if(i==5) {
+					contacts[5].Email = 'uniquwemailtest5nomatch@domainemail.com';
+					contacts[5].AlternateEmail__c = 'alternate5@domainemail.com';
+		        	contacts[5].UniversityEmail__c = null;
+		        	contacts[5].WorkEmail__c = null;
+					contacts[5].Preferred_Email__c = '';
+					caseOneId = contacts[5].Id;
+
+        		// Setup special Case 2
+				} else if (i==6) {
+					contacts[6].AlternateEmail__c = 'alternate6@domainemail.com';
+					contacts[6].Email = '';
+					contacts[6].WorkEmail__c = null;
+					contacts[6].Preferred_Email__c = '';
+					caseTwoId = contacts[6].Id;
+
+				} else {
+					contacts[i].Email = 'emailtest' + i + '@domainemail.com';
+		        	contacts[i].UniversityEmail__c = null;
+		        	contacts[i].WorkEmail__c = null;
+					contacts[i].AlternateEmail__c = null;
+					contacts[i].Preferred_Email__c = null;
+					contIds.add(contacts[i].Id);
+				}
+	        }
+
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
+	        update contacts;
+        }
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
+		// Run Batch
+		Test.startTest();
+	        CON_Email_BATCH contbatch = new CON_Email_BATCH(null);
+	    Database.executeBatch( contbatch );
+		Test.stopTest();
+
+		// After batch run assert leaving off the two contacts for special cases
+		contacts = [SELECT Id, Name, Email, AlternateEmail__c FROM Contact WHERE Id in: contIds AND Id!=:caseOneId AND Id !=: caseTwoId];
+		for(Contact contact : contacts) {
+			System.assertEquals(contact.AlternateEmail__c , contact.Email );
+		}
+
+	    // Check special Case 1
+		Contact contactOne = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseOneId LIMIT 1];
+		System.assertEquals('uniquwemailtest5nomatch@domainemail.com', contactOne.Email);
+		System.assertEquals(Label.preferredBatchDefaultEmail, contactOne.Preferred_Email__c);
+
+	    // Check special Case 2
+		Contact contactTwo = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseTwoId LIMIT 1];
+		System.assertEquals(contactTwo.Email, contactTwo.AlternateEmail__c);
+		System.assertEquals('Alternate Email', contactTwo.Preferred_Email__c);
+
+	}
+
+    /**************************************************************************************************************************
+    ******************************************* LEAD CONVERSION TEST *********************************************************
+    **************************************************************************************************************************/
+    @isTest 
+    static void testLeadConversion() {
+        // create a Lead
+        Lead testLead = new Lead(
+            FirstName='Joshua',
+            LastName='McTesterman',
+            Email='mctesterman@mctesersite.com',
+            Company='Test',
+            Status='Inquiry'
+        );
+
+        insert testLead;
+
+        Database.LeadConvert convertedLead = new Database.LeadConvert();
+        convertedLead.setLeadId(testLead.Id);
+
+        LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+        convertedLead.setConvertedStatus(convertStatus.MasterLabel);
+
+        Test.startTest();		
+            Database.LeadConvertResult convertedLeadResult = Database.convertLead(convertedLead);
+        Test.stopTest();
+
+        Contact contact = [SELECT Id, Name, Email FROM Contact WHERE Id =:convertedLeadResult.getContactId() LIMIT 1];
+
+        System.assertEquals(contact.Email, testLead.Email);
+    }
 }
