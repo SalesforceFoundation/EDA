@@ -63,7 +63,7 @@ tasks:
             unmanaged: True
 
     deploy_translation_settings:
-        description: Deploys configuration for translation workbench language supported language enablement. Assigns English (British),Spanish, Spanish (Mexico),French as active translantion workbench supported languages. Must have translation workbench and platform languages enabled for this task to work.
+        description: Assigns languages and marks them as active.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
