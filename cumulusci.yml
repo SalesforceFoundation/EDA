@@ -54,7 +54,7 @@ tasks:
             path: unpackaged/config/spe
             namespace_inject: $project_config.project__package__namespace
 
-    deploy_language_translation_workbench_settings:
+    deploy_translation_workbench_settings:
         description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
