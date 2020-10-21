@@ -36,11 +36,12 @@
 */
 @isTest
 public with sharing class ACCT_CannotDelete_TEST {
+
     /*********************************************************************************************************
     * @description Retrieves the Business Account record type Id. 
     */
     public static String bizAccRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID(); 
-    
+
     /*********************************************************************************************************
     * @description Test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
     * Account has an Address record associated to it, that it cannot be deleted.
@@ -295,7 +296,41 @@ public with sharing class ACCT_CannotDelete_TEST {
         System.assertEquals(2, returnAccounts.size());
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
-    
+
+    /************************************************************************************************************
+    * @description Bulk test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
+    * Account has a Education History record associated to it, that it cannot be deleted.
+    */
+    @isTest
+    public static void accCannotDeleteWithEducationHistoryBULK() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Account_Processor__c = bizAccRecordTypeId,
+                                                            Prevent_Account_Deletion__c = true));
+
+        List<Account> newAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAcademicAccRecTypeID()); 
+        insert newAccounts;
+
+        Education_History__c educationHistory1 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[0].Id, null);
+        Education_History__c educationHistory2 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[0].Id, null);
+        Education_History__c educationHistory3 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
+        Education_History__c educationHistory4 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
+        
+        insert new List<Education_History__c> {educationHistory1, educationHistory2, educationHistory3, educationHistory4};
+            
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(newAccounts, false);
+        Test.stopTest();
+        
+        List<Account> returnAccounts = [SELECT Id
+                                        FROM Account
+                                        WHERE Id IN :newAccounts];
+        
+        System.assertEquals(2, returnAccounts.size());
+        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
+        System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
+        
+    }
+
     /*********************************************************************************************************
     * @description Test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
     * Account has a Facility record associated to it, that it cannot be deleted.
@@ -701,7 +736,40 @@ public with sharing class ACCT_CannotDelete_TEST {
 
         System.assertEquals(0, returnAccounts.size()); 
     }
-    
+
+    /*********************************************************************************************************
+    * @description Bulk test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
+    * Account has a Education History record associated to it, that it can be deleted.
+    */
+    @isTest
+    public static void accCanDeleteWithEducationHistoryBULK() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                            (Account_Processor__c = bizAccRecordTypeId,
+                                                            Prevent_Account_Deletion__c = false));
+
+        List<Account> newAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAcademicAccRecTypeID()); 
+        insert newAccounts;
+
+        Education_History__c educationHistory1 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[0].Id, null);
+        Education_History__c educationHistory2 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[0].Id, null);
+        Education_History__c educationHistory3 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
+        Education_History__c educationHistory4 = UTIL_UnitTestData_TEST.getEduHistory(newAccounts[1].Id, null);
+
+        insert new List<Education_History__c> {educationHistory1, educationHistory2, educationHistory3, educationHistory4};
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(newAccounts, false);
+        Test.stopTest();
+
+        List<Account> returnAccounts = [SELECT Id
+                                        FROM Account
+                                        WHERE Id IN :newAccounts];
+
+        System.assertEquals(0, returnAccounts.size());
+
+    }
+
     /*********************************************************************************************************
     * @description Test method to test if Prevent_Account_Deletion__c is disabled in Hierarchy Settings, and
     * Account has a Facility record associated to it, that it can be deleted.
@@ -961,7 +1029,10 @@ public with sharing class ACCT_CannotDelete_TEST {
         insert term; 
 
         Time_Block__c timeBlock = new Time_Block__c (Name = 'TimeB', Educational_Institution__c = lastNameByContact.get('Willy').AccountId);
-        insert timeBlock; 
+        insert timeBlock;
+
+        Education_History__c educationHistory = UTIL_UnitTestData_TEST.getEduHistory(lastNameByContact.get('Willy').AccountId, null);
+        insert educationHistory;
 
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(newAccounts, false);
@@ -1022,7 +1093,10 @@ public with sharing class ACCT_CannotDelete_TEST {
         insert course; 
 
         Facility__c facility = new Facility__c (Name = 'MeetingRoom1', Account__c = lastNameByContact.get('Willy').AccountId);
-        insert facility; 
+        insert facility;
+
+        Education_History__c educationHistory = UTIL_UnitTestData_TEST.getEduHistory(lastNameByContact.get('Willy').AccountId, null);
+        insert educationHistory;
 
         Program_Enrollment__c pe = new Program_Enrollment__c (Contact__c = lastNameByContact.get('Willy').Id, Account__c = lastNameByContact.get('Willy').AccountId);
         insert pe; 
@@ -1046,5 +1120,4 @@ public with sharing class ACCT_CannotDelete_TEST {
 
         System.assertEquals(0, returnAccounts.size());
     }
-    
 }
