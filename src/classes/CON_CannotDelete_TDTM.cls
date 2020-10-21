@@ -34,7 +34,7 @@
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Stops a Contact from being deleted if it has any Address, Affiliation,
 * Application, Attendance Event, Attribute, Behavior Involement, Contact Language,
-* Course Offering, Course Enrollment, Program Enrollment,
+* Course Offering, Course Enrollment, Education History, Program Enrollment,
 * Term Grade, or Test child records.
 */
 public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
