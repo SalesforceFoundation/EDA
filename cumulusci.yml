@@ -287,7 +287,7 @@ flows:
                 options:
                     unmanaged: False
     translations:
-        description: Flow to be used to set up an org for translation regression testing. Enables Translation workbench, platform language settings and sets 5 languages to active.
+        description: Enables Translation workbench, platform language settings and sets languages as active.
         steps:
             1:
                 task: deploy_language_translation_workbench_settings
