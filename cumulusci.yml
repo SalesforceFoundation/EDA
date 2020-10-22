@@ -285,26 +285,14 @@ flows:
         group: 'EDA: Trial'
         steps:
             1:
-                task: update_dependencies
-                options:
-                    include_beta: False
-                when: not org_config.scratch
-            1.1:
-                task: update_dependencies
-                options:
-                    include_beta: True
-                when: org_config.scratch
+                flow: dependencies
             2:
-                task: deploy_pre
-                options:
-                    unmanaged: False
-            3:
                 task: install_managed
-            4:
+            3:
                 task: deploy_post
                 options:
                     unmanaged: False
-            5:
+            4:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
