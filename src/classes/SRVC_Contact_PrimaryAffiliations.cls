@@ -90,10 +90,11 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         try {
             for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
                 if (contact.get(eachModel.getContactFieldApiName()) == null) {
-                    if (eachModel.getIsValid() == false){
-                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-                    }
                     continue;
+                }
+
+                if (eachModel.getIsValid() == false){
+                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
                 }
 
                 Affiliation__c afflToCreate;
