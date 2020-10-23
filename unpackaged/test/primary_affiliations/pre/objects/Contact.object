@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">  
+    <fields>
+        <fullName>Primary_Active_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the Account record with 'An Active Record Type' record type for unmanaged primary affiliation testing.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup to the Account record with 'An Active Record Type' record type for unmanaged primary affiliation testing.</inlineHelpText>
+        <label>Primary Active Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Active Accounts</relationshipLabel>
+        <relationshipName>ActiveAccounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Inactive_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the Account record with 'An Inactive Record Type' record type for unmanaged primary affiliation testing.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup to the Account record with 'An Inactive Record Type' record type for unmanaged primary affiliation testing.</inlineHelpText>
+        <label>Primary Inactive Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Inactive Accounts</relationshipLabel>
+        <relationshipName>InactiveAccounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+</CustomObject>
