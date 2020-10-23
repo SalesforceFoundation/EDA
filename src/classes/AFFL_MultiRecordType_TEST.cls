@@ -742,54 +742,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(0, programEnrollments.size());
     }
 
-
-    /*********************************************************************************************************
-    * @description
-    * Enable Affiliation Type Enforcement and make Affiliation-Account mapping mismatch
-    * Make sure Affiliation is not created and a custom exception is thrown
-    */
-    @isTest
-    private static void incorrectAfflMappingsAfflTypeEnforced() {
-        //Note custom setup
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            new List<AffiliationMappingWrapper>();
-        String bizOrgContactFieldLabel =
-            AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldLabel();
-
-        affiliationMappingWrapperList.add(
-            new AfflMappingWrapperByNameAndApiName(
-                UTIL_Describe_API.getHhAccRecTypeID(),
-                bizOrgContactFieldLabel + 's'
-            )
-        );
-
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
-            Account_Processor__c = affiliationMappingWrapperList[0].getAccountRecordTypeId()
-        ));
-
-        affiliationMappingWrapperList[0].setAccountRecordTypeName(
-            'EDA: Not A Valid Record Type Name'
-        );
-
-        insert AFFL_MultiRecordType_TEST.createAffiliationMappings(
-            affiliationMappingWrapperList
-        );
-
-        AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
-        //Setup end
-
-        List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
-            1, UTIL_Describe_API.getHhAccRecTypeID());
-        insert testAccounts;
-
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = testAccounts[0].Id);
-        AFFL_ContactAccChange_TEST.resetAfflFlags();
-
-        //Assert
-        List<Affiliation__c> assertAffls = [SELECT ID FROM Affiliation__c];
-        System.assertEquals(0, assertAffls.size(), 'Affiliation should not be created for invalid Account Record Type and Contact field mappings.');
-    }
-
     /*********************************************************************************************************
     * @description
     * This method ensures there is no NPE when a primay affiliation 

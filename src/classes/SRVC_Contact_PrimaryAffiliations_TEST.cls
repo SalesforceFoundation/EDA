@@ -468,6 +468,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
         System.assertEquals(1, afflsToProcess.getAffiliationListToInsertClone().size());
         System.assertEquals(0, afflsToProcess.getAccountIdSet().size());
+        
     }
 
     /*****************************************************************************************************************************
