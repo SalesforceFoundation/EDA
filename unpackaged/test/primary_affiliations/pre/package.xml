@@ -7,7 +7,7 @@
     </types>
     <types>
         <members>Contact.Primary_Active_Account__c</members>
-        <members>Contact.Primary_Inactive_Account__c</members>
+        <members>Contact.%%%NAMESPACE%%%Primary_Inactive_Account__c</members>
         <name>CustomField</name>
     </types>
     <types>
