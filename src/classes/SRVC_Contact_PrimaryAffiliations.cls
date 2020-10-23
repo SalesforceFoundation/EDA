@@ -94,6 +94,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 }
 
                 if (eachModel.getIsValid() == false){
+                    eachModel.addError(Label.afflAccoutMappingError);
                     throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
                 }
 
