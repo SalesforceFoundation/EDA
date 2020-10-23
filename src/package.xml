@@ -221,6 +221,7 @@
         <members>TDTM_Case</members>
         <members>TDTM_Contact</members>
         <members>TDTM_ContactLanguage</members>
+        <members>TDTM_ContentDocumentLink</members>
         <members>TDTM_Course</members>
         <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
