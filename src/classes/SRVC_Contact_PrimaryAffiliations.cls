@@ -92,7 +92,14 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 if (contact.get(eachModel.getContactFieldApiName()) == null) {
                     continue;
                 }
+
+                if (eachModel.getIsValid() == false){
+                    contact.addError(Label.afflAccoutMappingError);
+                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                }
+
                 Affiliation__c afflToCreate;
+                
                 try {
                     afflToCreate = new Affiliation__c(Contact__c = contact.ID, Account__c = (Id)contact.get(eachModel.getContactFieldApiName()), Primary__c = true);
                 } catch (System.TypeException typeExc) {
@@ -107,6 +114,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException error) {
             return new List<Affiliation__c>();
         }
+
         return affiliationsToCreateForEachContactList;
     }
 
@@ -126,6 +134,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         for (Contact newContact: newContactsById.values()) {
             AffiliationsToProcess afflsToProcess;
             Set<Id> accIdSet;
+
             if (shouldCreateAffiliatons == true) {
                 afflsToProcess = this.getAffiliationsToCreateOrUpdateForContact(newContact, oldContactsById.get(newContact.Id), afflMappingsModelsList);
                 afflToBeAddedList.addAll(afflsToProcess.getAffiliationListToInsertClone());
@@ -167,17 +176,23 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 }
 
                 if (newContact.get(eachModel.getContactFieldApiName()) != null) {
-                         Affiliation__c afflToCreate;
-                         try {
-                             afflToCreate = new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true);
-                         } catch (System.TypeException typeExc) {
-                             newContact.addError(typeExc.getMessage());
-                             throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-                         } catch (System.StringException stringExc) {
-                             newContact.addError(stringExc.getMessage());
-                             throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-                         }
-                         affiliationsToCreateForEachContactList.add(afflToCreate);
+                    if (eachModel.getIsValid() == false){
+                        newContact.addError(Label.afflAccoutMappingError);
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    }
+
+                    Affiliation__c afflToCreate;
+
+                    try {
+                        afflToCreate = new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true);
+                    } catch (System.TypeException typeExc) {
+                        newContact.addError(typeExc.getMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    } catch (System.StringException stringExc) {
+                        newContact.addError(stringExc.getMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    }
+                    affiliationsToCreateForEachContactList.add(afflToCreate);
                 }
 
                 if (oldContact.get(eachModel.getContactFieldApiName()) != null) {
@@ -287,7 +302,10 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         @testVisible
         private Set<Id> accountIdSet;
 
-        public AffiliationsToProcess() {}
+        public AffiliationsToProcess(){
+            affiliationsToInsertList = new List<Affiliation__c>();
+            accountIdSet = new Set<Id>();
+        }
 
         public AffiliationsToProcess(List<Affiliation__c> affiliationsToInsertList, Set<Id> accountIdSet){
             this.affiliationsToInsertList = affiliationsToInsertList;
@@ -301,7 +319,5 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         public Set<Id> getAccountIdSet() {
             return accountIdSet.clone();
         }
-
     }
-
 }

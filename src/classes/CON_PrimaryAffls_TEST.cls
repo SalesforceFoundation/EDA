@@ -37,6 +37,8 @@
 @isTest
 private with sharing class CON_PrimaryAffls_TEST {
 
+    private static Integer contactCount = 100; // used to determine number of test contact records to create
+
     /**************************************************************************************************************************
     ****************************************************** UNIT TESTS *********************************************************
     **************************************************************************************************************************/
@@ -766,12 +768,50 @@ private with sharing class CON_PrimaryAffls_TEST {
     ****************************************************** FUNCTIONAL TESTS ***************************************************
     **************************************************************************************************************************/
 
+    /*************************************************************************************************************
+    * @description Test case to verify that updating a primary affiliation field on Contact with record type
+    * validation enabled, a valid Contact field mapping and invalid Record Type mapping throws an error.
+    **************************************************************************************************************/
+    @isTest 
+    private static void updateContactAfflInvalidRecordTypeError(){
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+        insert testContactsList;
+
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        // insert business account
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert businessAccount1;
+
+        for (Contact con : testContactsList){
+            con.Primary_Organization__c = businessAccount1.Id;
+        }
+
+        Test.startTest();
+        try {
+            update testContactsList;
+        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
+            System.assertEquals(Label.afflAccoutMappingError, err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
+        
+        Test.stopTest();
+    }
 
     /*************************************************************************************************************
     * @description Positive bulk test to ensure affiliations are created on Contact insert
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactInsert() {
+
+        
 
        // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
@@ -787,7 +827,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -801,7 +841,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         //Ensure Primary Business Organization affiliations are created for each Contact
         List<Contact> updatedContactList = [SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r) FROM Contact WHERE Id IN: ContactsById.keySet()];
-        System.assertEquals(5, updatedContactList.size());
+        System.assertEquals(100, updatedContactList.size());
         for (Contact eachUpdatedContact: updatedContactList) {
             System.assertEquals(1, eachUpdatedContact.Affl_Accounts__r.size());
              for (Affiliation__c affiliation: eachUpdatedContact.Affl_Accounts__r) {
@@ -810,7 +850,6 @@ private with sharing class CON_PrimaryAffls_TEST {
                  System.assertEquals(true, affiliation.Primary__c);
              }
         }
-
     }
 
     /*************************************************************************************************************
@@ -818,6 +857,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactupdate() {
+        
 
         // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
@@ -833,7 +873,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
         }
@@ -854,7 +894,7 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         //Ensure Primary Business Organization affiliations are created for each Contact
         List<Contact> updatedContactList = [SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r) FROM Contact WHERE Id IN: ContactsById.keySet()];
-        System.assertEquals(5, updatedContactList.size());
+        System.assertEquals(100, updatedContactList.size());
         for (Contact eachUpdatedContact: updatedContactList) {
             System.assertEquals(1, eachUpdatedContact.Affl_Accounts__r.size());
              for (Affiliation__c affiliation: eachUpdatedContact.Affl_Accounts__r) {
@@ -862,20 +902,21 @@ private with sharing class CON_PrimaryAffls_TEST {
                  System.assertEquals(eachUpdatedContact.Id, affiliation.Contact__c);
                  System.assertEquals(true, affiliation.Primary__c);
             }
-
         }
-
     }
 
     /****************************************************************************************************************
-    * @description Tests to ensure error is thrown when validation is On and mappings have incorrect values
+    * @description Tests to ensure that when a Contact is inserted with a primary affiliation field populated, the
+    * Contact is created, but no associated affiliation record is inserted when Record Type validation is On with 
+    * an invalid contact field mapping and valid Record Type mapping.
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactInsertWithWrongMappingsWithValidationOn() {
+        
 
-       UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
-
-       // insert mappings
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
+        
+        // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
 
@@ -889,26 +930,26 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
         }
 
-        try{        
-            Test.startTest();
-                insert contactsToBeInserted;
-            Test.stopTest();
-            System.assert(false, 'Always throw an exception when Primary Affl Field is not valid and when Affiliation Record Type is Enforced ');
-        } catch (System.DmlException ex) {
-            System.assert(ex.getMessage().contains(Label.afflAccoutMappingError));
+        Test.startTest();
+        insert contactsToBeInserted;
+        Test.stopTest();
+
+        List<Contact> conList = [SELECT Id, 
+                                    (SELECT Id FROM Affl_Accounts__r)
+                                 FROM Contact
+                                 WHERE Id IN :contactsToBeInserted];
+
+        System.assertEquals(100, conList.size(), 'Five Contacts should be created.');
+
+        for (Contact con : conList){
+            System.assertEquals(true, con.Affl_Accounts__r.isEmpty(), 'Enabling record type validation with invalid mapping should prevent creation of affiliation records.');
         }
-
-        List<Contact> conList = [SELECT Id FROM Contact];
-        List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c];
-
-        System.assertEquals(true, afflList.isEmpty());
-        System.assertEquals(true, conList.isEmpty());
     }
 
     /*************************************************************************************************************************
@@ -931,7 +972,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccount1;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccount1.Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -944,17 +985,16 @@ private with sharing class CON_PrimaryAffls_TEST {
         List<Contact> conList = [SELECT Id FROM Contact];
         List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c];
 
-        System.assertEquals(5, conList.size());
+        System.assertEquals(100, conList.size());
         System.assertEquals(true, afflList.isEmpty());
-
     }
 
     /********************************************************************************************************************************
-    * @description Test to ensure new Primary affiliations are created and old ones become non-primary when Primary field is updated
+    * @description Test to ensure new Primary affiliations are created and old ones become non-primary when Primary affiliation field 
+    * is updated in a Contact record.
     ********************************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactupdates() {
-
         // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -969,7 +1009,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert businessAccountList;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
-        for (integer i = 0; i < 5; i++) {
+        for (integer i = 0; i < contactCount; i++) {
             Contact contactWithPrimaryBusinessOrg = UTIL_UnitTestData_TEST.getUniqueContact(i);
             contactWithPrimaryBusinessOrg.Primary_Organization__c = businessAccountList[0].Id;
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
@@ -978,7 +1018,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert contactsToBeInserted;
 
         List<Affiliation__c> afflList = [SELECT Id FROM Affiliation__c WHERE Account__c =: businessAccountList[0].Id AND Primary__c = TRUE];
-        System.assertEquals(5, afflList.size());
+        System.assertEquals(100, afflList.size());
 
         List<Contact> contactToBeUpdatedList = new List<Contact>();
 
@@ -996,12 +1036,12 @@ private with sharing class CON_PrimaryAffls_TEST {
         System.assertEquals(0, afflListWithBizOrg1AsPrimary.size());
 
         List<Affiliation__c> afflListWithBizOrg2AsPrimary = [SELECT Id FROM Affiliation__c WHERE Account__c =: businessAccountList[1].Id AND Primary__c = TRUE];
-        System.assertEquals(5, afflListWithBizOrg2AsPrimary.size());
-        
+        System.assertEquals(100, afflListWithBizOrg2AsPrimary.size());
     }
 
     /*************************************************************************************************************
-    * @description Test to ensure Primary Affiliations are made non-primary when Primary field is cleared
+    * @description Test to ensure Primary Affiliations are made non-primary when Primary field is cleared on 
+    * update of a Contact record.
     **************************************************************************************************************/
     @isTest
     private static void makeAffiliationNonPrimaryByClearingField() {
@@ -1045,7 +1085,5 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Affiliation__c> afflListWithBizOrg1AsPrimary = [SELECT Id FROM Affiliation__c WHERE Primary__c = TRUE];
         System.assertEquals(0, afflListWithBizOrg1AsPrimary.size());
-
     }
-
 }

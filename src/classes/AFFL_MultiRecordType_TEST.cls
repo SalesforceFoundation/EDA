@@ -742,63 +742,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(0, programEnrollments.size());
     }
 
-
-    /*********************************************************************************************************
-    * @description
-    * Enable Affiliation Type Enforcement and make Affiliation-Account mapping mismatch
-    * Make sure Affiliation is not created and a custom exception is thrown
-    */
-    @isTest
-    private static void incorrectAfflMappingsAfflTypeEnforced() {
-        //Note custom setup
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList =
-            new List<AffiliationMappingWrapper>();
-        String bizOrgContactFieldLabel =
-            AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldLabel();
-
-        affiliationMappingWrapperList.add(
-            new AfflMappingWrapperByNameAndApiName(
-                UTIL_Describe_API.getHhAccRecTypeID(),
-                bizOrgContactFieldLabel + 's'
-            )
-        );
-
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
-            Account_Processor__c = affiliationMappingWrapperList[0].getAccountRecordTypeId()
-        ));
-
-        affiliationMappingWrapperList[0].setAccountRecordTypeName(
-            'EDA: Not A Valid Record Type Name'
-        );
-
-        insert AFFL_MultiRecordType_TEST.createAffiliationMappings(
-            affiliationMappingWrapperList
-        );
-
-        AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
-        //Setup end
-
-        List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
-            1, UTIL_Describe_API.getHhAccRecTypeID());
-        insert testAccounts;
-
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = testAccounts[0].Id);
-        AFFL_ContactAccChange_TEST.resetAfflFlags();
-
-        Test.startTest();
-            try {
-                insert contact;
-                System.assert(false, 'Always throw an exception when Account record type is not a part of Affiliation Mappings and when Affiliation Record Type is Enforced.');
-            } catch (System.DmlException error) {
-                System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
-            }
-        Test.stopTest();
-
-        //Assert
-        List<Affiliation__c> assertAffls = [SELECT ID FROM Affiliation__c];
-        System.assertEquals(0, assertAffls.size());
-    }
-
     /*********************************************************************************************************
     * @description
     * This method ensures there is no NPE when a primay affiliation 
@@ -1217,8 +1160,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
-       and Affilaiton Mappings have Record Type Names for Account Record Type */
-
+       and Affilation Mappings have Record Type Names for Account Record Type */
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecType() {
         AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndLabel();
