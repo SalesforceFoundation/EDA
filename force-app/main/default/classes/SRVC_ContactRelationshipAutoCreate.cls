@@ -176,7 +176,6 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     * @return True if a duplicate Relationship record is found, False otherwise.
     **************************************************************************************************************************/ 
     @TestVisible
-    //private Boolean isADuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
     private Relationship__c getDuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
         return contactsRelationshipsModel.getRelationship(relationship);
     }
