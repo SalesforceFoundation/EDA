@@ -468,7 +468,6 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
         System.assertEquals(1, afflsToProcess.getAffiliationListToInsertClone().size());
         System.assertEquals(0, afflsToProcess.getAccountIdSet().size());
-        
     }
 
     /*****************************************************************************************************************************
@@ -989,27 +988,41 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     }     
 
     /**************************************************************************************************************************
-    * @description Helper method to retrieve Record Type information for Business Organization Accounts
-    ***************************************************************************************************************************/
+    * @description Helper method to retrieve record type info for the Business Organization Account record type.
+    * @return Record Type Info for Business Organization Account record type.
+    **************************************************************************************************************************/
     private static Schema.RecordTypeInfo getBusinessOrganizationRecordTypeInfo() {
         return UTIL_Describe.getRecordTypeInfoByDeveloperName('Account','Business_Organization');
     }
 
     /**************************************************************************************************************************
-    * @description Helper method to retrieve Record Type information for Household Accounts
-    ***************************************************************************************************************************/
+    * @description Helper method to retrieve record type info for the Household Account record type.
+    * @return Record Type Info for Household Account record type.
+    **************************************************************************************************************************/
     private static Schema.RecordTypeInfo getHouseholdRecordTypeInfo() {
         return UTIL_Describe.getRecordTypeInfoByDeveloperName('Account','HH_Account');
     }
 
+    /**************************************************************************************************************************
+    * @description Helper method to retrieve namespaced field describe for the Primary Organization field on Contact.
+    * @return Field describe for the Primary Organization field on Contact
+    **************************************************************************************************************************/
     private static Schema.DescribeFieldResult getBusinessOrganizationMappedField() {
         return UTIL_Describe.getFieldDescribe('Contact', UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c'));
     }
 
+    /**************************************************************************************************************************
+    * @description Helper method to retrieve namespaced field describe for the Primary Household field on Contact.
+    * @return Field describe for the Primary Household field on Contact
+    **************************************************************************************************************************/
     private static Schema.DescribeFieldResult getHouseholdMappedField() {
         return UTIL_Describe.getFieldDescribe('Contact', UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c'));
     }
 
+    /**************************************************************************************************************************
+    * @description Helper method to generate a valid Business Account Primary Affiliation mapping model.
+    * @return A valid Business Account Primary Affiliation mapping model
+    **************************************************************************************************************************/
     private static MODL_PrimaryAfflMapper getValidBusinessOrgMapping() {
         return new MODL_PrimaryAfflMapper(
             SRVC_Contact_PrimaryAffiliations_TEST.getBusinessOrganizationRecordTypeInfo(),
@@ -1020,6 +1033,10 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+    * @description Helper method to generate a valid Household Account Primary Affiliation mapping model.
+    * @return A valid Household Account Primary Affiliation mapping model
+    **************************************************************************************************************************/ 
     private static MODL_PrimaryAfflMapper getValidHouseholdMapping() {
         return new MODL_PrimaryAfflMapper(
             SRVC_Contact_PrimaryAffiliations_TEST.getHouseholdRecordTypeInfo(),
@@ -1030,6 +1047,10 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+    * @description Helper method to generate an invalid Business Account Primary Affiliation mapping model.
+    * @return An invalid Business Account Primary Affiliation mapping model
+    **************************************************************************************************************************/ 
     private static MODL_PrimaryAfflMapper getInvalidBusinessOrgMappingOnRecordType() {
         return new MODL_PrimaryAfflMapper(
             SRVC_Contact_PrimaryAffiliations_TEST.getBusinessOrganizationMappedField(),
@@ -1039,6 +1060,10 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+    * @description Helper method to generate an invalid Household Account Primary Affiliation mapping model.
+    * @return An invalid Household Primary Affiliation mapping model
+    **************************************************************************************************************************/ 
     private static MODL_PrimaryAfflMapper getInvalidHouseholdMappingOnRecordType() {
         return new MODL_PrimaryAfflMapper(
             SRVC_Contact_PrimaryAffiliations_TEST.getHouseholdMappedField(),
