@@ -54,12 +54,12 @@ tasks:
             path: unpackaged/config/spe
             namespace_inject: $project_config.project__package__namespace
 
-    deploy_translation_workbench_settings:
+    deploy_workbench_translation_settings:
         description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/config/qa/language/settings
+            path: unpackaged/config/workbench/settings
             unmanaged: True
 
     deploy_translations:
@@ -67,7 +67,7 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/config/qa/language/translations
+            path: unpackaged/config/translations/
             unmanaged: True
 
     deploy_trial_config:
@@ -299,9 +299,9 @@ flows:
         description: Enables Translation workbench, platform language settings and sets languages as active.
         steps:
             1:
-                task: deploy_language_translation_workbench_settings
+                task: deploy_workbench_translation_settings
             2:
-                task: deploy_translation_settings
+                task: deploy_translations
 
     trial_org:
         description: Deploy trial configuration to an org.
