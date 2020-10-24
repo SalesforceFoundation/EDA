@@ -150,4 +150,22 @@ private class TDTM_TriggerScaffolds_TEST {
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
     }
 
+    public static testmethod void tdtmContentDocumentLink() {
+        //Currently we don't have any Trigger_Handler__c record for ContentDocumentLink. This test is
+        //just for test coverage, and to verify no exception gets thrown.
+        insert new ContentVersion(
+            Title = 'Test',
+            PathOnClient = 'Test.jpg',
+            VersionData = Blob.valueOf('Test Content Data')
+        );
+        Application__c a = new Application__c();
+        insert a;
+        Id cdId = [Select Id from ContentDocument Limit 1].Id;
+        Test.startTest();
+        insert new ContentDocumentLink(ContentDocumentId = cdId, LinkedEntityId = a.Id);
+        Test.stopTest();
+       
+        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
+    }
+
 }

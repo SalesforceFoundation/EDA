@@ -70,6 +70,15 @@ tasks:
             path: unpackaged/config/translations/
             unmanaged: True
 
+    deploy_primary_affiliations_config:
+        description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test/primary_affiliations/pre
+            unmanaged: True
+            
+
     deploy_trial_config:
         description: Deploys metadata and configuration for TSOs.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -105,6 +114,13 @@ tasks:
                 TDTM_Global_API.setTdtmConfig(TDTM_Global_API.getDefaultTdtmConfig(), 'hed');
                 STG_InstallScript.enablePreferredPhoneSync();
                 STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
+
+    execute_primary_affiliation_mapping_apex:
+        description: Runs anonymous apex for dev to configure and insert unmanaged Affiliation mappings.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                STG_UnmanagedInstall.mapAccountRecordTypesForAffiliationTesting();
 
     execute_qa_apex:
         description: Runs anonymous apex for qa to configure settings.
@@ -188,7 +204,16 @@ flows:
                 task: execute_install_apex
             4:
                 task: deploy_dev_config
-
+            5:
+                task: deploy_primary_affiliations_config
+            6:    
+                task: execute_primary_affiliation_mapping_apex
+            7: 
+                # execute tests in unmanaged package
+                task: run_tests 
+                options: 
+                    test_name_match: '%Unmanaged_TEST'
+                    
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
         steps:
