@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Primary_Academic_Program__c</name>
+    <relationshipLabel>学生</relationshipLabel>
+    <label>主アカデミックプログラム</label>
+  </fields>
+  <fields>
+    <name>Primary_Department__c</name>
+    <relationshipLabel>部門メンバー</relationshipLabel>
+    <label>主部門</label>
+  </fields>
+  <fields>
+    <name>Primary_Educational_Institution__c</name>
+    <relationshipLabel>機関メンバー</relationshipLabel>
+    <label>主教育機関</label>
+  </fields>
+  <fields>
+    <name>Primary_Sports_Organization__c</name>
+    <relationshipLabel>団体メンバー</relationshipLabel>
+    <label>主スポーツ団体</label>
+  </fields>
+</CustomObjectTranslation>

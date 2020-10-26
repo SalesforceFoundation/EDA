@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Display_Name__c</name>
+    <help>親名 (Thurgood Marshall Tower) と施設名 (Room 400) を組み合わせた名前 (例: Thurgood Marshall Tower - Room 400)。親施設が存在しない場合は、取引先の値が使用されます。取引先も存在しない場合は、施設名と表示名が同じになります。</help>
+    <label>表示名</label>
+  </fields>
+</CustomObjectTranslation>

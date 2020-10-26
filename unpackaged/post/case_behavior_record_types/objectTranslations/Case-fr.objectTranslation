@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <recordTypes>
-        <description><!-- An event that’s being tracked by this Case. --></description>
-        <label><!-- Incident --></label>
-        <name>Incident</name>
-    </recordTypes>
+  <recordTypes>
+    <name>Incident</name>
+    <label>Incident</label>
+    <description>Un événement suivi par cette requête.</description>
+  </recordTypes>
 </CustomObjectTranslation>

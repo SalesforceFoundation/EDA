@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Active__c</name>
+    <help>Osoittaa onko tämä vastavuoroinen haku aktiivinen.</help>
+    <label>Aktiivinen</label>
+  </fields>
+  <fields>
+    <name>Female__c</name>
+    <help>Vastavuoroisessa asetuksessa käytetty arvo, jos yhteyshenkilön sukupuoli tai tervehdys -kenttä osoittaa naissukupuolen.</help>
+    <label>Nainen</label>
+  </fields>
+  <fields>
+    <name>Male__c</name>
+    <help>Vastavuoroisessa asetuksessa käytetty arvo, jos yhteyshenkilön sukupuoli tai tervehdys -kenttä osoittaa miessukupuolen.</help>
+    <label>Mies</label>
+  </fields>
+  <fields>
+    <name>Neutral__c</name>
+    <help>Arvo, jota käytetään, jos yhteyshenkilön sukupuoli- ja tervehdys-kentät eivät osoita sukupuolta.</help>
+    <label>Neutraali</label>
+  </fields>
+</CustomObjectTranslation>

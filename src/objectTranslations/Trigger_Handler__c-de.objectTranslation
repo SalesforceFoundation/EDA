@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Active__c</name>
+    <help>Gibt an, dass diese Auslöserverarbeitung aktiv ist.</help>
+    <label>Aktiv</label>
+  </fields>
+  <fields>
+    <name>Asynchronous__c</name>
+    <help>Gibt an, ob dieses Modul in dieser Transaktion asynchron ausgeführt werden sollte, und zwar für alle seine "after"-Ereignisse.</help>
+    <label>Asynchron</label>
+  </fields>
+  <fields>
+    <name>Class__c</name>
+    <help>Der Name der auszuführenden Klasse.</help>
+    <label>Klasse</label>
+  </fields>
+  <fields>
+    <name>Filter_Field__c</name>
+    <help>Der Name des für die Filterung verwendeten Felds.</help>
+    <label>Filterfeld</label>
+  </fields>
+  <fields>
+    <name>Filter_Value__c</name>
+    <help>Der Wert des für die Filterung verwendeten Felds.</help>
+    <label>Filterwert</label>
+  </fields>
+  <fields>
+    <name>Load_Order__c</name>
+    <help>Die Reihenfolge, in der diese Klasse ausgeführt werden sollte. Die Reihenfolge steht in Beziehung zu anderen Auslösern für dasselbe Objekt mit denselben Auslöseraktionen, z. B. alle Auslöser vom Typ "before insert" für Account.</help>
+    <label>Ladereihenfolge</label>
+  </fields>
+  <fields>
+    <name>Object__c</name>
+    <help>Der Name des Objekts, auf das die Klasse angewendet werden soll, z. B. Account, Kontakt oder Opportunity.</help>
+    <label>Objekt</label>
+  </fields>
+  <fields>
+    <name>Owned_by_Namespace__c</name>
+    <help>Der Namespace des Pakets oder der Organisation, die diese Auslöserverarbeitung steuert.</help>
+    <label>Im Besitz vom Namespace</label>
+  </fields>
+  <fields>
+    <name>Trigger_Action__c</name>
+    <help>Der Kontext, in dem diese Klasse ausgeführt werden sollte, z. B. bevor ein Datensatz eingefügt wird, nachdem ein Datensatz gelöscht wird usw.</help>
+    <label>Auslöseraktion</label>
+    <picklistValues>
+      <masterLabel>BeforeInsert</masterLabel>
+      <translation>BeforeInsert</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BeforeUpdate</masterLabel>
+      <translation>BeforeUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BeforeDelete</masterLabel>
+      <translation>BeforeDelete</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterInsert</masterLabel>
+      <translation>AfterInsert</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterUpdate</masterLabel>
+      <translation>AfterUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterDelete</masterLabel>
+      <translation>AfterDelete</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterUndelete</masterLabel>
+      <translation>AfterUndelete</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>User_Managed__c</name>
+    <help>Falls ausgewählt, übertragen wir keine Updates mehr per Push an diese Auslöserverarbeitung. Wählen Sie diese Option aus, wenn Sie Änderungen vorgenommen haben, die nicht überschrieben werden sollen.</help>
+    <label>Vom Benutzer verwaltet</label>
+  </fields>
+  <fields>
+    <name>Usernames_to_Exclude__c</name>
+    <help>Eine durch Semikolon getrennte Liste von Salesforce-Benutzernamen, für die diese Auslöserverarbeitung NICHT erfolgt. Leer lassen, um sie für alle Benutzer auszuführen.</help>
+    <label>Auszuschließende Benutzernamen</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Trigger Handler Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Name der Auslöserverarbeitung</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Name der Auslöserverarbeitung</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Auslöserverarbeitung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Auslöserverarbeitung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Auslöserverarbeitung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Auslöserverarbeitung</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Auslöserverarbeitungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Auslöserverarbeitungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Auslöserverarbeitungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Auslöserverarbeitungen</value>
+  </caseValues>
+</CustomObjectTranslation>

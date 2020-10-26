@@ -23,12 +23,12 @@
   <recordTypes>
     <name>HH_Account</name>
     <label>Compte de foyer</label>
-    <description>Un foyer comptant un ou plusieurs individus.</description>
+    <description>Un foyer contenant un ou plusieurs individus.</description>
   </recordTypes>
   <recordTypes>
     <name>Sports_Organization</name>
-    <label>Organisation sportive</label>
-    <description>Une organisation sportive.</description>
+    <label>Organisme sportif</label>
+    <description>Un organisme sportif.</description>
   </recordTypes>
   <recordTypes>
     <name>University_Department</name>
