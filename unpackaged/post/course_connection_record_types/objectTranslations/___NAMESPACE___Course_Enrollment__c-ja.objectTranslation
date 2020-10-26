@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <recordTypes>
+    <name>Faculty</name>
+    <label>教職員</label>
+    <description>教職員履修科目</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Student</name>
+    <label>学生</label>
+    <description>学生履修科目</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Default</name>
+    <label>デフォルト</label>
+    <description>テストで使用するデフォルトレコードタイプ。このレコードタイプはシステム管理者に対してのみ有効化され、表示される必要があります。</description>
+  </recordTypes>
+</CustomObjectTranslation>

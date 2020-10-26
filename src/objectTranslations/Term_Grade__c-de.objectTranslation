@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Contact__c</name>
+    <help>Der Student, für den die Note aufgezeichnet wird. Bleibt das Feld leer, wird "Kontakt" beim Speichern automatisch anhand der gültigen Kursverbindung aufgefüllt.</help>
+    <relationshipLabel>Zeitabschnittsbezogene Noten</relationshipLabel>
+    <label>Kontakt</label>
+  </fields>
+  <fields>
+    <name>Course_Connection__c</name>
+    <help>Der Kurs, in dem der Student diese Note erhalten hat. "Kontakt" und "Kursangebot" für "Zeitabschnittsbezogene Note" müssen mit dem Kontakt und Kursangebot im Kursverbindungs-Datensatz übereinstimmen.</help>
+    <relationshipLabel>Zeitabschnittsbezogene Noten</relationshipLabel>
+    <label>Kursverbindung</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>Das mit der aufgezeichneten Note verknüpfte Kursangebot. Bleibt das Feld leer, wird "Kursangebot" beim Speichern automatisch anhand der gültigen Kursverbindung aufgefüllt.</help>
+    <relationshipLabel>Zeitabschnittsbezogene Noten</relationshipLabel>
+    <label>Kursangebot</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>Die Anzahl der Leistungspunkte, die in diesem Zeitabschnitt für diesen Kurs zu vergeben sind.</help>
+    <label>Angestrebte Leistungspunkte</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>Die Anzahl der Leistungspunkte, die der Student für diesen Kurs erzielt hat.</help>
+    <label>Erzielte Leistungspunkte</label>
+  </fields>
+  <fields>
+    <name>Letter_Grade__c</name>
+    <help>Wenn Ihre Bildungseinrichtung Buchstabennoten verwendet, geben Sie die Note des Schülers/Studenten ein, z. B. A, B, C usw.</help>
+    <label>Buchstabennote</label>
+  </fields>
+  <fields>
+    <name>Numerical_Grade__c</name>
+    <help>Wenn Ihre Bildungseinrichtung numerische Noten verwendet, geben Sie die Note des Schülers/Studenten ein.</help>
+    <label>Numerische Note</label>
+  </fields>
+  <fields>
+    <name>Percent_Grade__c</name>
+    <help>Wenn Ihre Bildungseinrichtung auf Prozentbasis benotet, geben Sie die Prozentnote des Schülers/Studenten ein.</help>
+    <label>Prozentnote</label>
+  </fields>
+  <fields>
+    <name>Result__c</name>
+    <help>Das Ergebnis der Leistung des Schülers/Studenten für diese Benotungsperiode.</help>
+    <label>Ergebnis</label>
+    <picklistValues>
+      <masterLabel>Audit</masterLabel>
+      <translation>Teilgenommen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dropped</masterLabel>
+      <translation>Gestrichen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fail</masterLabel>
+      <translation>Nicht bestanden</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pass</masterLabel>
+      <translation>Bestanden</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Term_Grade_Type__c</name>
+    <help>Die Art der Benotungsperiode für diese Benotung, z. B. Zwischennote, Abschlussnote, Prüfungsnote, Benotungsperiode.</help>
+    <label>Typ der zeitabschnittsbezogenen Note</label>
+    <picklistValues>
+      <masterLabel>Exam Grade</masterLabel>
+      <translation>Prüfungsnote</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Final Grade</masterLabel>
+      <translation>Abschlussnote</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grading Period</masterLabel>
+      <translation>Benotungsperiode</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mid-Term Grade</masterLabel>
+      <translation>Zwischennote</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <help>Gibt an, in welchem Zeitabschnitt der Schüler/Student diese Note erhalten hat.</help>
+    <relationshipLabel>Zeitabschnittsbezogene Noten</relationshipLabel>
+    <label>Zeitabschnitt</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Grade Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Name der zeitabschnittsbezogenen Note</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Name der zeitabschnittsbezogenen Note</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Zeitabschnittsbezogene Note</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Zeitabschnittsbezogene Note</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Zeitabschnittsbezogenen Note</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Zeitabschnittsbezogenen Note</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Zeitabschnittsbezogene Noten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Zeitabschnittsbezogenen Noten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Zeitabschnittsbezogenen Noten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Zeitabschnittsbezogenen Noten</value>
+  </caseValues>
+</CustomObjectTranslation>

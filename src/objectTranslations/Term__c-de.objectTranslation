@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <help>Studienprogramm, Fachbereich oder gesamte Bildungseinrichtung, für die der Zeitabschnitt gilt. Wählen Sie den Account, der Ihre Bildungseinrichtung darstellt, wenn "Zeitabschnitte" in allen Programmen und Fachbereichen der Bildungsinstitution gleich sind.</help>
+    <relationshipLabel>Zeitabschnitte</relationshipLabel>
+    <label>Account</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>Das Datum, an dem dieser Zeitabschnitt endet.</help>
+    <label>Enddatum</label>
+  </fields>
+  <fields>
+    <name>Grading_Period_Sequence__c</name>
+    <help>Gibt den aktuellen Zeitabschnitt an. Geben Sie z. B. "1" für das erste Quartal oder Semester, "2" für das zweite Quartal oder Semester usw. ein.</help>
+    <label>Benotungsperiode</label>
+  </fields>
+  <fields>
+    <name>Instructional_Days__c</name>
+    <help>Die Gesamtanzahl der Unterrichtstage in diesem Zeitabschnitt.</help>
+    <label>Unterrichtstage</label>
+  </fields>
+  <fields>
+    <name>Parent_Term__c</name>
+    <help>Wählen Sie optional den Zeitabschnitt aus, zu dem dieser Zeitabschnitt gehört. Wenn dieser Zeitabschnitt beispielsweise das Herbstquartal 2020 ist, kann das Studienjahr 2020/2021 der übergeordnete Zeitabschnitt sein.</help>
+    <relationshipLabel>Zeitabschnitte</relationshipLabel>
+    <label>Übergeordneter Zeitabschnitt</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>Das Datum, an dem dieser Zeitabschnitt beginnt.</help>
+    <label>Startdatum</label>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <help>Der Typ des Zeitabschnitts, z. B. Semester, Quartal oder Studienjahr.</help>
+    <label>Typ</label>
+    <picklistValues>
+      <masterLabel>Quarter</masterLabel>
+      <translation>Quartal</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Semester</masterLabel>
+      <translation>Semester</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>School Year</masterLabel>
+      <translation>Studienjahr</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Part of Term</masterLabel>
+      <translation>Teil des Zeitabschnitts</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Name des Zeitabschnitts</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Name des Zeitabschnitts</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Zeitabschnitt</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Zeitabschnitt</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Zeitabschnitt</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Zeitabschnitts</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Zeitabschnitte</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Zeitabschnitten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Zeitabschnitten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Zeitabschnitte</value>
+  </caseValues>
+</CustomObjectTranslation>

@@ -1,0 +1,72 @@
+{
+    "product": {
+        "title": {
+            "message": "Education Data Architecture (EDA)",
+            "description": "name of product"
+        },
+        "short_description": {
+            "message": "つながりのあるキャンパスのための基盤",
+            "description": "tagline of product"
+        },
+        "description": {
+            "message": "## EDA インストーラをご利用いただきありがとうございます。\r\n\r\nEDA をインストールしていただきありがとうございます。EDA に関するあらゆる質問については、Power of Us Hub の [Education Data Architecture トピック](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) にアクセスしてください。",
+            "description": "shown on product detail page (markdown)"
+        },
+        "click_through_agreement": {
+            "message": "Education Data Architecture テクノロジ (「EDA」) は、Salesforce.org (「SFDO」) が 3 条項 BSD ライセンス [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) の下でライセンスを供与するオープンソースパッケージです。お客様又はお客様の法人と SFDO との間のマスターサブスクリプション契約は、EDA の使用には適用されません。EDA は「現状有姿」及び「現状渡し」で提供され、SFDO は、準拠法により許容される最大限において、明示的、黙示的、法律上、その他一切の EDA に関するいかなる保証 (商品性、特定の目的に対する適合性、欠陥がないこと、不侵害の黙示的な保証を含むが、それに限定されない) も行いません。\r\n\r\nSFDO は、お客様の EDA の使用に起因する又はそれに関連する直接の損害、又は利益、収入、業務上の信用の喪失、又は間接的、特別、偶発的、派生的、懲罰的、補償、事業の中断による損害に関して、その行為が契約内か不法行為かどうか、あるいは責任論に関係なく、そのような損害の発生の可能性について予告がなされていた場合であっても、救済措置がその本来の目的を果たせなかった場合であっても、一切の責任を負わないものとします。上記の免責事項は、法律で禁止されている範囲においては適用されません。SFDO は、サードパーティのホスティングプロバイダによる損傷又は損害について、あらゆる法的責任及び賠償義務を負わないものとします。",
+            "description": "legal text shown in modal dialog"
+        },
+        "error_message": {
+            "message": "インストールで問題が発生した場合は、[Power of Us Hub](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) に投稿してください。",
+            "description": "shown after failed installation (markdown)"
+        }
+    },
+    "plan:install": {
+        "title": {
+            "message": "インストール",
+            "description": "title of installation plan"
+        }
+    },
+    "steps": {
+        "EDA - Account Record Types": {
+            "message": "EDA - 取引先レコードタイプ",
+            "description": "title of installation step"
+        },
+        "EDA - Contact Key Affiliation Fields": {
+            "message": "EDA - 取引先責任者の主所属項目",
+            "description": "title of installation step"
+        },
+        "Install {product} {version}": {
+            "message": "{product} {version} のインストール",
+            "description": "title of installation step"
+        },
+        "EDA - Case Behavior Record Types": {
+            "message": "EDA - ケースの行動レコードタイプ",
+            "description": "title of installation step"
+        },
+        "EDA - Course Connection Record Types": {
+            "message": "EDA - 履修科目レコードタイプ",
+            "description": "title of installation step"
+        },
+        "EDA - Facility Display Name Formula Field": {
+            "message": "EDA - 施設の表示名の数式項目",
+            "description": "title of installation step"
+        },
+        "Deploy Einstein Analytics Templates": {
+            "message": "Einstein Analytics テンプレートのリリース",
+            "description": "title of installation step"
+        }
+    },
+    "plan:ra_einstein_template": {
+        "title": {
+            "message": "Education Cloud Recruiting Analytics テンプレートのインストール",
+            "description": "title of installation plan"
+        }
+    },
+    "checks": {
+        "Einstein Analytics permission sets are not available.": {
+            "message": "Einstein Analytics 権限セットは使用できません。",
+            "description": "shown if validation fails"
+        }
+    }
+}
