@@ -1,0 +1,72 @@
+{
+    "product": {
+        "title": {
+            "message": "Education Data Architecture (EDA)",
+            "description": "name of product"
+        },
+        "short_description": {
+            "message": "Yhdistetyn kampuksen perusta",
+            "description": "tagline of product"
+        },
+        "description": {
+            "message": "## Tervetuloa EDA-asennusohjelmaan!\r\n\r\nKiitos EDA:n asentamisesta. Jos sinulla on kysyttävää EDA:sta, vieraile [Education Data Architecture -aiheessa](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) Power of Us -hubissa.",
+            "description": "shown on product detail page (markdown)"
+        },
+        "click_through_agreement": {
+            "message": "Education Data Architecture -teknologia (”EDA”) on avoimen lähdekoodin paketti, jonka Salesforce-organisaatio (”SFDO”) on lisensoinut osoitteesta [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) löytyvän BSD-3 Clause -lisenssin alaisesti. SINUN TAI YKSIKKÖSI JA SFDO:N VÄLINEN PÄÄTILAUSSOPIMUS EI KOSKE EDA:N KÄYTTÖÄSI. EDA tarjotaan “SELLAISENAAN” JA KÄYTETTÄVÄSSÄ MUODOSSA, EIKÄ SFDO ANNA MINKÄÄNLAISTA EDA:TA KOSKEVAA NIMENOMAISTA, OLETETTUA, LAKISÄÄTEISTÄ TAI MUUNTYYPPISTÄ TAKUUTA, MUKAAN LUKIEN MUUN MUASSA OLETETUT TAKUUT KOSKIEN TUOTTEEN SOVELTUVUUTTA KAUPANKÄYNNIN KOHTEEKSI TAI TIETTYYN KÄYTTÖTARKOITUKSEEN TAI TUOTTEEN VIKOJA TAI TAVARAMERKKIEN RIKKOMUKSIA, LAIN SALLIMISSA RAJOISSA.\r\n\r\nSFDO EI OLE VASTUUSSA MISTÄÄN EDA:N KÄYTÖSTÄSTI AIHEUTUVISTA TAI SIIHEN LIITTYVISTÄ SUORISTA VAHINGOISTA TAI MENETETYSTÄ VOITOSTA, TUOTOSTA TAI LIIKEARVOSTA TAI EPÄSUORISTA, ERITYISISTÄ, SATUNNAISISTA, ESIMERKILLISISTÄ, VÄLILLISISTÄ VAHINGOISTA, LIIKETOIMINNAN KESKEYTYKSISTÄ TAI RANGAISTUSLUONTEISISTA KORVAUKSISTA, OLIPA TOIMENPIDE SOPIMUKSEN MUKAINEN TAI SEN VASTAINEN JA RIIPPUMATTA VASTUUN TEORIASTA, VAIKKA TÄLLAISTEN VAHINKOJEN MAHDOLLISUUDESTA OLISI ILMOITETTU ETUKÄTEEN TAI JOS KORJAUSTOIMENPIDE EI MUUTOIN ONNISTU TARKOITUKSESSAAN. EDELLÄ KUVATTU VASTUUVAPAUSLAUSEKE PÄTEE VAIN LAIN SALLIMISSA RAJOISSA. SFDO IRTISANOUTUU KAIKKIEN KOLMANSIEN OSAPUOLTEN AIHEUTTAMIEN VAHINKOJEN TAI VAURIOIDEN KAIKISTA VASTUISTA JA KORVAUSVAATIMUKSISTA.",
+            "description": "legal text shown in modal dialog"
+        },
+        "error_message": {
+            "message": "Jos asennuksessa ilmenee ongelmia, ilmoita siitä [Power of Us -hubissa](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture).",
+            "description": "shown after failed installation (markdown)"
+        }
+    },
+    "plan:install": {
+        "title": {
+            "message": "Asenna",
+            "description": "title of installation plan"
+        }
+    },
+    "steps": {
+        "EDA - Account Record Types": {
+            "message": "EDA - Tilien tietuetyypit",
+            "description": "title of installation step"
+        },
+        "EDA - Contact Key Affiliation Fields": {
+            "message": "EDA - Yhteysavaimien liitoskentät",
+            "description": "title of installation step"
+        },
+        "Install {product} {version}": {
+            "message": "Asenna {product} {version}",
+            "description": "title of installation step"
+        },
+        "EDA - Case Behavior Record Types": {
+            "message": "EDA - Tapausten käyttäytymisen tietuetyypit",
+            "description": "title of installation step"
+        },
+        "EDA - Course Connection Record Types": {
+            "message": "EDA - Kurssiyhteyksien tietuetyypit",
+            "description": "title of installation step"
+        },
+        "EDA - Facility Display Name Formula Field": {
+            "message": "EDA - Laitoksen näyttönimen kaavakenttä",
+            "description": "title of installation step"
+        },
+        "Deploy Einstein Analytics Templates": {
+            "message": "Ota käyttöön Einstein Analytics -mallit",
+            "description": "title of installation step"
+        }
+    },
+    "plan:ra_einstein_template": {
+        "title": {
+            "message": "Asenna Education Cloud Recruiting Analytics -malli",
+            "description": "title of installation plan"
+        }
+    },
+    "checks": {
+        "Einstein Analytics permission sets are not available.": {
+            "message": "Einstein Analytics -käyttöoikeusjoukot eivät ole käytettävissä.",
+            "description": "shown if validation fails"
+        }
+    }
+}

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Capacity__c</name>
+    <help>Die maximale Anzahl von Schülern/Studenten für dieses Kursangebot.</help>
+    <label>Kapazität</label>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <relationshipLabel>Kursangebote</relationshipLabel>
+    <label>Kurs</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>Das Datum der letzten Veranstaltung für dieses Kursangebot.</help>
+    <label>Enddatum</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>Die Räumlichkeit, in der dieses Kursangebot stattfindet.</help>
+    <relationshipLabel>Kursangebote</relationshipLabel>
+    <label>Räumlichkeit</label>
+  </fields>
+  <fields>
+    <name>Faculty__c</name>
+    <help>Verweis auf den leitenden Dozenten dieses Kursangebots.</help>
+    <relationshipLabel>Kursangebote</relationshipLabel>
+    <label>Hauptlehrkraft</label>
+  </fields>
+  <fields>
+    <name>Section_ID__c</name>
+    <help>Die Abschnitts-ID dieses Kursangebots. Die Abschnitts-ID wird in der Regel verwendet, wenn ein Kurs mehrere Abschnitte während eines einzigen Zeitabschnitts umfasst.</help>
+    <label>Abschnitts-ID</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>Das Datum der ersten Veranstaltung für dieses Kursangebot.</help>
+    <label>Startdatum</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <relationshipLabel>Kursangebote</relationshipLabel>
+    <label>Zeitabschnitt</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <relationshipLabel>Kursangebote</relationshipLabel>
+    <label>Zeitblock</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Offering Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Kursangebots-ID</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Kursangebots-ID</label>
+  </standardFields>
+  <gender>Neuter</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Kursangebot</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Kursangebot</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Kursangebot</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Kursangebots</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Kursangebote</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Kursangeboten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Kursangeboten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Kursangebote</value>
+  </caseValues>
+</CustomObjectTranslation>

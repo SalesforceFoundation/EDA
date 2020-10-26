@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account_Record_Type__c</name>
+    <help>Kartoitettavan tilitietueen tyypin otsake.</help>
+    <label>Tilitietueen tyyppi</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment_Role__c</name>
+    <help>Rooli, joka asetetaan automaattisesti ohjelmaan ilmoittautumistietueeseen, jos automaattinen ohjelmiin ilmoittautuminen on valittu.</help>
+    <label>Automaattinen ilmoittautumisrooli</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment_Status__c</name>
+    <help>Tila, joka asetetaan automaattisesti ohjelmaan ilmoittautumistietueeseen, jos automaattinen ohjelmiin ilmoittautuminen on valittu.</help>
+    <label>Automaattinen ilmoittautumistila</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment__c</name>
+    <help>Jos tämä valitaan, ohjelmaan ilmoittautumistietue luodaan automaattisesti, kun käyttäjä luo jäsenyystietueen tämän tietueen tyyppisellä tilillä.</help>
+    <label>Automaattinen ilmoittautuminen</label>
+  </fields>
+  <fields>
+    <name>Primary_Affl_Field__c</name>
+    <help>Yhteyshenkilökentän otsake, joka pitää tämän tietuetyypin ensisijaisen tilin arvon.</help>
+    <label>Ensisijainen jäsenyyskenttä</label>
+  </fields>
+</CustomObjectTranslation>

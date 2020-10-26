@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Category__c</name>
+    <help>プラン要件の種別を示します (省略可能、必須など)。</help>
+    <label>カテゴリ</label>
+    <picklistValues>
+      <masterLabel>Required</masterLabel>
+      <translation>必須</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Optional</masterLabel>
+      <translation>省略可能</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <help>このプラン要件に関連付けられた科目。ネストされたプラン要件を持つ親プラン要件の場合は、空白のままにします。</help>
+    <relationshipLabel>プラン要件</relationshipLabel>
+    <label>科目</label>
+  </fields>
+  <fields>
+    <name>Credits__c</name>
+    <help>この要件を満たしたことに対して学生が受け取る単位数。</help>
+    <label>単位数</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>説明</label>
+  </fields>
+  <fields>
+    <name>Plan_Requirement__c</name>
+    <help>このプラン要件が複数の要件または複数レベルの要件のうちの 1 つの場合、親プラン要件を指定します。この項目を使用して、一般的な要件を満たす省略可能な科目のリストをグループ化します。</help>
+    <relationshipLabel>プラン要件</relationshipLabel>
+    <label>親プラン要件</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>この要件の対象のプログラムプラン。プラン要件を親プラン要件の下でまとめている場合は、ベストプラクティスとして、最上位のプラン要件のみをプログラムプランにリンクすることをお勧めします。</help>
+    <relationshipLabel>プラン要件</relationshipLabel>
+    <label>プログラムプラン</label>
+  </fields>
+  <fields>
+    <name>Sequence__c</name>
+    <help>プログラムプラン内のこの要件の位置、たとえば、「1」は第 1 セメスターを示します。この項目を使用して、プログラムプランの全体的な進行状況を示したり、1 つの親プラン要件内でサブ要件の順序を並び替えたりします。</help>
+    <label>シーケンス</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Plan Requirement Layout</layout>
+    <sections>
+      <label>カスタムリンク</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>プラン要件名</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>プラン要件名</label>
+  </standardFields>
+  <caseValues>
+    <plural>false</plural>
+    <value>プラン要件</value>
+  </caseValues>
+</CustomObjectTranslation>
