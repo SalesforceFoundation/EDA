@@ -18,6 +18,6 @@
   <fields>
     <name>Primary_Sports_Organization__c</name>
     <relationshipLabel>Membres de l'organisation</relationshipLabel>
-    <label>Organisation sportive principale</label>
+    <label>Organisme sportif principal</label>
   </fields>
 </CustomObjectTranslation>

@@ -1,41 +1,49 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Curso</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Cursos</value>
-    </caseValues>
-    <fields>
-        <label>Departamento</label>
-        <name>Account__c</name>
-        <relationshipLabel>Cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Id. de curso</label>
-        <name>Course_ID__c</name>
-    </fields>
-    <fields>
-        <label>Horas de crédito</label>
-        <name>Credit_Hours__c</name>
-    </fields>
-    <fields>
-        <label>Descripción</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <label>Descripción ampliada</label>
-        <name>Extended_Description__c</name>
-    </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Course Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre del curso</nameFieldLabel>
+  <fields>
+    <name>Account__c</name>
+    <help>El departamento (registro Cuenta) que ofrece este curso.</help>
+    <relationshipLabel>Cursos</relationshipLabel>
+    <label>Departamento</label>
+  </fields>
+  <fields>
+    <name>Course_ID__c</name>
+    <help>El Id. alfanumérico del curso, por ejemplo Inglés 101.</help>
+    <label>Id. de curso</label>
+  </fields>
+  <fields>
+    <name>Credit_Hours__c</name>
+    <label>Horas de crédito</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Este campo ha sido sustituido por el campo Descripción ampliada, que acomoda descripciones más largas. Su administrador puede migrar texto desde la Descripción al campo Descripción ampliada en Configuración de EDA | Cursos.</help>
+    <label>Descripción</label>
+  </fields>
+  <fields>
+    <name>Extended_Description__c</name>
+    <help>Utilice este campo para describir el curso, con un máximo de 131.000 caracteres. Este campo sustituye el campo Descripción.</help>
+    <label>Descripción ampliada</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nombre del curso</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nombre del curso</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Curso</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Cursos</value>
+  </caseValues>
 </CustomObjectTranslation>

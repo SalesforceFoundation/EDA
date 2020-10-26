@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <recordTypes>
+    <name>Faculty</name>
+    <label>Lehrpersonal</label>
+    <description>Eine Kursverbindung für Lehrpersonal</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Student</name>
+    <label>Schüler/Student</label>
+    <description>Eine Kursverbindung für Schüler/Studenten</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Default</name>
+    <label>Standard</label>
+    <description>Ein Standard-Datensatztyp für den Einsatz beim Tests. Dieser Datensatztyp darf nur für Systemadministratoren aktiviert und sichtbar sein.</description>
+  </recordTypes>
+</CustomObjectTranslation>

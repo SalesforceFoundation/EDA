@@ -1,0 +1,72 @@
+{
+    "product": {
+        "title": {
+            "message": "Education Data Architecture (EDA)",
+            "description": "name of product"
+        },
+        "short_description": {
+            "message": "Los cimientos del campus conectado",
+            "description": "tagline of product"
+        },
+        "description": {
+            "message": "## ¡Le damos la bienvenida al instalador de EDA!\r\n\r\nGracias por instalar EDA. Visite el [tema de Education Data Architecture](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) en Power of Us Hub si tiene alguna pregunta sobre EDA.",
+            "description": "shown on product detail page (markdown)"
+        },
+        "click_through_agreement": {
+            "message": "La tecnología de Education Data Architecture (“EDA”) es un paquete de código abierto con licencia de Salesforce.org (“SFDO”) bajo la licencia de la cláusula BSD-3, que se encuentra en [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause). CUALQUIER ACUERDO GENERAL DE SUSCRIPCIÓN QUE USTED O SU ENTIDAD TENGA CON SFDO NO SE APLICA A SU USO DE EDA. EDA SE PROPORCIONA “TAL CUAL” Y SEGÚN DISPONIBILIDAD, Y SFDO NO OFRECE GARANTÍA DE NINGÚN TIPO EN LO REFERENTE A EDA, EXPRESAS, IMPLÍCITAS O ESTABLECIDAS POR LEY CON RESPECTO A, INCLUYENDO, PERO SIN LIMITACIÓN CUALQUIER GARANTÍA QUE IMPLIQUE LA COMERCIALIZACIÓN, LA IDONEIDAD PARA UN PROPÓSITO EN PARTICULAR Y LA NO INFRACCIÓN, HASTA DONDE LO PERMITA LA LEY APLICABLE.\r\n\r\nSFDO NO TENDRÁ NINGUNA RESPONSABILIDAD PROCEDENTE O RELACIONADA CON SU USO DE EDA POR CUALQUIER DAÑO DIRECTO O PÉRDIDA DE BENEFICIOS, INGRESOS, CARIDAD O DAÑOS INDIRECTOS, ESPECIALES, FORTUITOS, RESULTANTES, EJEMPLARIZANTES, SUFRAGADOS, INTERRUPCIÓN DE ACTIVIDAD COMERCIAL O PUNITIVOS, INDEPENDIENTEMENTE DE QUE LA ACCIÓN ESTÉ EN CONTRATO O RESPONSABILIDAD CIVIL Y SIN PERJUICIO DE LA TEORÍA DE LA RESPONSABILIDAD, INCLUSO SI SE ALERTÓ DE LA POSIBILIDAD DE DICHOS DAÑOS O SI UN REMEDIO DE OTRO MODO FRACASA EN SU PROPÓSITO ESENCIAL. LA RENUNCIA ANTERIOR NO SE APLICARÁ HASTA LO ESTÉ PROHIBIDO POR LEY. SFDO DECLINA CUALQUIER RESPONSABILIDAD Y OBLIGACIONES DE INDEMNIZACIÓN POR CUALQUIER PERJUICIO O DAÑO CAUSADO POR CUALQUIER PROVEEDOR DE ALOJAMIENTO EXTERNO.",
+            "description": "legal text shown in modal dialog"
+        },
+        "error_message": {
+            "message": "Si sufre problemas con la instalación, publíquelo en [Power of Us Hub](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture).",
+            "description": "shown after failed installation (markdown)"
+        }
+    },
+    "plan:install": {
+        "title": {
+            "message": "Instalar",
+            "description": "title of installation plan"
+        }
+    },
+    "steps": {
+        "EDA - Account Record Types": {
+            "message": "EDA - Tipos de registros para cuenta",
+            "description": "title of installation step"
+        },
+        "EDA - Contact Key Affiliation Fields": {
+            "message": "EDA - Campos de afiliación clave de contactos",
+            "description": "title of installation step"
+        },
+        "Install {product} {version}": {
+            "message": "Instalar {product} {version}",
+            "description": "title of installation step"
+        },
+        "EDA - Case Behavior Record Types": {
+            "message": "EDA - Tipos de registros de comportamiento de casos",
+            "description": "title of installation step"
+        },
+        "EDA - Course Connection Record Types": {
+            "message": "EDA - Tipos de registros de conexión de cursos",
+            "description": "title of installation step"
+        },
+        "EDA - Facility Display Name Formula Field": {
+            "message": "EDA - Campo de fórmula de nombre de visualización de instalaciones",
+            "description": "title of installation step"
+        },
+        "Deploy Einstein Analytics Templates": {
+            "message": "Implementar plantillas de Einstein Analytics",
+            "description": "title of installation step"
+        }
+    },
+    "plan:ra_einstein_template": {
+        "title": {
+            "message": "Instalar la plantilla de Education Cloud Recruiting Analytics",
+            "description": "title of installation plan"
+        }
+    },
+    "checks": {
+        "Einstein Analytics permission sets are not available.": {
+            "message": "Los conjuntos de permisos de Einstein Analytics no están disponibles.",
+            "description": "shown if validation fails"
+        }
+    }
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Display_Name__c</name>
+    <help>Nimi, joka yhdistää ylätason nimen (Thurgood Marshall Tower) ja laitoksen nimen (Room 400), esimerkiksi Thurgood Marshall Tower - Room 400. Jos päälaitosta ei ole, käytetään Tili-arvoa. Jos tiliä ei ole, laitoksen nimi ja näyttönimi ovat identtisiä.</help>
+    <label>Näyttönimi</label>
+  </fields>
+</CustomObjectTranslation>
