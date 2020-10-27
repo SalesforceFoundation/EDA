@@ -201,15 +201,11 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
 
         String namespace = UTIL_Namespace.getNamespace();
 
-        if (Test.isRunningTest() && String.isBlank(namespace) && fieldApiName.endsWithIgnoreCase('__c')) {
-            return true;
+        if (String.isNotBlank(namespace)) {
+            return fieldApiName.startsWithIgnoreCase(namespace);
         }
 
-        if (String.isNotBlank(namespace) && fieldApiName.startsWithIgnoreCase(namespace)) {
-            return true;
-        }
-
-        return false;
+        return fieldApiName.endsWithIgnoreCase('__c');
     }
 
     /**************************************************************************************
