@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="ObjectSelector" icon-name="custom:custom67">
+        <template if:true={viewModel}>
+            <lightning-combobox
+                name="objectName"
+                label={labelReference.comboboxLabel}
+                value={value}
+                placeholder={labelReference.comboBoxPlaceHolder}
+                options={comboboxOptions}
+                onchange={handleComboboxChange}
+            ></lightning-combobox>
+        </template>
+    </lightning-card>
+</template>

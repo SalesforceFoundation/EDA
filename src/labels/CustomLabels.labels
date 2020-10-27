@@ -89,6 +89,14 @@
         <value>Household</value>
     </labels>
     <labels>
+        <fullName>errorCannotRetrieveData</fullName>
+        <categories>UI,Generic</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>generic data retrieval error</shortDescription>
+        <value>There was an issue retrieving the data.</value>
+    </labels>
+    <labels>
         <fullName>Female</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
@@ -159,6 +167,22 @@
         <protected>false</protected>
         <shortDescription>Provides a blank value option to custom built picklists</shortDescription>
         <value>--None--</value>
+    </labels>
+    <labels>
+        <fullName>objectSelectComboboxLabel</fullName>
+        <categories>UI,Generic</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select object label for generic combobox</shortDescription>
+        <value>Select an Object.</value>
+    </labels>
+    <labels>
+        <fullName>objectSelectComboboxPlaceholder</fullName>
+        <categories>UI,Generic</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Generic placeholder label for combobox</shortDescription>
+        <value>Placeholder.</value>
     </labels>
     <labels>
         <fullName>OnlyCourseConnectionPopulated</fullName>
