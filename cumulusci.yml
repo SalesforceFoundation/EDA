@@ -78,7 +78,6 @@ tasks:
             path: unpackaged/test/primary_affiliations/pre
             unmanaged: True
             
-
     deploy_trial_config:
         description: Deploys metadata and configuration for TSOs.
         class_path: cumulusci.tasks.salesforce.Deploy
