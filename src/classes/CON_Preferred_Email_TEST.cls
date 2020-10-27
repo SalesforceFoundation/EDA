@@ -35,7 +35,7 @@
 * @description Test class for CON_Preferred_TDTM - Preferred Email functionality.
 */
 @isTest
-private class CON_PreferredEmail_TEST {
+private class CON_Preferred_Email_TEST {
 
     /**************************************************************************************************************************
     ****************************************************** UNIT TESTS *********************************************************
