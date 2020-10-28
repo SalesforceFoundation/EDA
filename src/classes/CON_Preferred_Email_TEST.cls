@@ -449,20 +449,22 @@ private class CON_Preferred_Email_TEST {
     * @description Tests inserting a Contact with Preferred Email and no Email fields will throw PreferredEmailMatchNotNull Error
     * when Preferred Email Enforcement is Enabled
     *****************************************************************************************************************************/
-	@isTest 
+    @isTest 
     static void preferredEmailNotBlankOnInsertWithEnforcementEnabled() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
             );
     
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.Preferred_Email__c = 'Alternate Email';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = 'Alternate Email';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = 'Alternate Email';
 
         try {
             Test.startTest();
-                insert testContact;
+                insert testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
@@ -480,13 +482,15 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.Preferred_Email__c = 'Alternate Email';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = 'Alternate Email';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = 'Alternate Email';
 
         try {
             Test.startTest();
-                insert testContact;
+                insert testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
@@ -500,25 +504,29 @@ private class CON_Preferred_Email_TEST {
     *****************************************************************************************************************************/
     @isTest 
     static void preferredEmailNotBlankOnUpdateWithEnforcementEnabled() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
             );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
 
-        testContact.Preferred_Email__c = 'Alternate';
+        insert testContactList;
+        testContactList[0].Preferred_Email__c = 'Alternate';
+        testContactList[1].Preferred_Email__c = 'Alternate';
         try {
             Test.startTest();
-                update testContact;
+                update testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
             System.assert(error.getMessage().contains(Label.PreferredEmailMatchNotNull));
         }
     }
-    
+
     /*****************************************************************************************************************************
     * @description Tests Updating a Contact with Preferred Email and no Email fields will throw PreferredEmailMatchNotNull Error
     * when Preferred Email Enforcement is Disabled
@@ -529,14 +537,18 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
 
-        testContact.Preferred_Email__c = 'Alternate';
+        insert testContactList;
+        testContactList[0].Preferred_Email__c = 'Alternate';
+        testContactList[1].Preferred_Email__c = 'Alternate';
         try {
             Test.startTest();
-                update testContact;
+                update testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
@@ -550,21 +562,28 @@ private class CON_Preferred_Email_TEST {
     *********************************************************************************************************************************/
     @isTest 
     static void standardEmailNotBlankOnInsert() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
             );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].Email = 'test@sf.org';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].Email = 'test@sf.org';
 
         Test.startTest();
-            insert testContact;
+            insert testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(testContact.Email, updatedContact.AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
+        System.assertEquals(testContactList[0].Email, updatedContact[0].AlternateEmail__c);
+        System.assertEquals('Alternate Email', updatedContact[0].Preferred_Email__c);
+        System.assertEquals(testContactList[1].Email, updatedContact[1].AlternateEmail__c);
+        System.assertEquals('Alternate Email', updatedContact[1].Preferred_Email__c);
     }
     
     /*********************************************************************************************************************************
@@ -573,21 +592,28 @@ private class CON_Preferred_Email_TEST {
     *********************************************************************************************************************************/
     @isTest 
     static void standardEmailNotBlankOnInsertNegativeTest() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
             );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].Email = 'test@sf.org';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].Email = 'test@sf.org';
 
         Test.startTest();
-            insert testContact;
+            insert testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(null, testContact.AlternateEmail__c);
-        System.assertEquals(null, updatedContact.Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
     }
 
      /*********************************************************************************************************************************
@@ -596,24 +622,33 @@ private class CON_Preferred_Email_TEST {
     *********************************************************************************************************************************/
     @isTest 
     static void standardEmailNotBlankOnBatch() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
             );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].Email = 'test@sf.org';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].Email = 'test@sf.org';
+        
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
-        insert testContact;
+        insert testContactList;
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
         CON_Email_BATCH batch = new CON_Email_BATCH(null);
+        
         Test.startTest();
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
+        List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(testContact.Email, updatedContact.AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
+        System.assertEquals(testContactList[0].Email, updatedContactList[0].AlternateEmail__c);
+        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(testContactList[1].Email, updatedContactList[1].AlternateEmail__c);
+        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c);
 
     }
     
@@ -623,24 +658,33 @@ private class CON_Preferred_Email_TEST {
     *********************************************************************************************************************************/
     @isTest 
     static void standardEmailNotBlankOnBatchNegativeTest() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
             );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].Email = 'test@sf.org';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].Email = 'test@sf.org';
+        
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
-        insert testContact;
+        insert testContactList;
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
         CON_Email_BATCH batch = new CON_Email_BATCH(null);
+
         Test.startTest();
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
+        List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM COntact];
 
-        System.assertEquals(null, testContact.AlternateEmail__c);
-        System.assertEquals(null, updatedContact.Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
 
     }
 
@@ -654,19 +698,25 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
-
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        
+        insert testContactList;
+        testContactList[0].Email = 'test@sf.org';
+        testContactList[1].Email = 'test@sf.org';
         Test.startTest();
-            testContact.Email = 'test@sf.org';
-            update testContact;
+            update testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
+        List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(testContact.Email, updatedContact.AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
+        System.assertEquals(testContactList[0].Email, updatedContactList[0].AlternateEmail__c);
+        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(testContactList[1].Email, updatedContactList[1].AlternateEmail__c);
+        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c);
         
     }
     
@@ -680,19 +730,26 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        
+        insert testContactList;
+        testContactList[0].Email = 'test@sf.org';
+        testContactList[1].Email = 'test@sf.org';
 
         Test.startTest();
-            testContact.Email = 'test@sf.org';
-            update testContact;
+            update testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
+        List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(null, updatedContact.AlternateEmail__c);
-        System.assertEquals(null, updatedContact.Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
         
     }
 
@@ -702,32 +759,43 @@ private class CON_Preferred_Email_TEST {
     *********************************************************************************************************************************/
     @isTest 
     static void clearEmailFieldsOnUpdate() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
             );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.AlternateEmail__c = 'test@sf.org';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
+        insert testContactList;
 
-        Contact insertedContact = [SELECT Id, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
+        List<Contact> insertedContactList = [SELECT Id, Email, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(insertedContact.Email, testContact.AlternateEmail__c);
-        System.assertEquals(insertedContact.Preferred_Email__c, 'Alternate Email');
+        System.assertEquals(testContactList[0].AlternateEmail__c, insertedContactList[0].Email);
+        System.assertEquals('Alternate Email', insertedContactList[0].Preferred_Email__c);
+        System.assertEquals(testContactList[1].AlternateEmail__c, insertedContactList[1].Email);
+        System.assertEquals('Alternate Email', insertedContactList[1].Preferred_Email__c);
 
+        insertedContactList[0].AlternateEmail__c = '';
+        insertedContactList[0].Preferred_Email__c = null;
+        insertedContactList[1].AlternateEmail__c = '';
+        insertedContactList[1].Preferred_Email__c = null;
+        
         Test.startTest();
-            testContact.AlternateEmail__c = '';
-            testContact.Preferred_Email__c = null;
-            update testContact;
+            update insertedContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
+        List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals('', testContact.AlternateEmail__c);
-        System.assertEquals(null, updatedContact.Preferred_Email__c);
-        System.assertEquals('', testContact.Email);
-
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].Email);
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[1].Email);
     } 
     
     /*********************************************************************************************************************************
@@ -736,34 +804,50 @@ private class CON_Preferred_Email_TEST {
     *********************************************************************************************************************************/
     @isTest 
     static void clearEmailFieldsOnUpdateNegative() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
             );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.AlternateEmail__c = 'test@sf.org';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
+        insert testContactList;
 
-        Contact insertedContact = [SELECT Id, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
+        List<Contact> insertedContactList = [SELECT Id, Email, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(insertedContact.Email, testContact.AlternateEmail__c);
-        System.assertEquals(insertedContact.Preferred_Email__c, 'Alternate Email');
+        System.assertEquals(testContactList[0].AlternateEmail__c, insertedContactList[0].Email);
+        System.assertEquals('Alternate Email', insertedContactList[0].Preferred_Email__c);
+        System.assertEquals(testContactList[1].AlternateEmail__c, insertedContactList[1].Email);
+        System.assertEquals('Alternate Email', insertedContactList[1].Preferred_Email__c);
+
 
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
-        );
+        );        
+
+        System.assertEquals(true, UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Email_Enforcement__c);
+
+        insertedContactList[0].AlternateEmail__c = '';
+        insertedContactList[0].Preferred_Email__c = null;
+        insertedContactList[1].AlternateEmail__c = '';
+        insertedContactList[1].Preferred_Email__c = null;
+        
         Test.startTest();
-            testContact.AlternateEmail__c = '';
-            testContact.Preferred_Email__c = null;
-            update testContact;
+            update insertedContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE ID =: testContact.Id];
+        List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals('', testContact.AlternateEmail__c);
-        System.assertEquals(null, updatedContact.Preferred_Email__c);
-        System.assertEquals(testContact.AlternateEmail__c, testContact.Email);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(testContactList[0].AlternateEmail__c, updatedContactList[0].Email);
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c);
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
+        System.assertEquals(testContactList[1].AlternateEmail__c, updatedContactList[1].Email);
 
     } 
     
@@ -771,23 +855,29 @@ private class CON_Preferred_Email_TEST {
     * @description Tests Inserting a Contact with only one custom Email field will set it as Preferred Email and copy the value 
     * to standard the Email field when Preferred Email Enforcement is Enabled
     **************************************************************************************************************************/
-	@isTest 
+    @isTest
     static void singleEmailSmartSetOnInsert() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.AlternateEmail__c = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
 
         Test.startTest();
-            insert testContact;
+            insert testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Email, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
-        System.assertEquals(testContact.AlternateEmail__c, updatedContact.Email);
-        System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
+        List<Contact> updatedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
+        System.assertEquals(testContactList[0].AlternateEmail__c, updatedContactList[0].Email);
+        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(testContactList[1].AlternateEmail__c, updatedContactList[1].Email);
+        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c);
 
     }
     
@@ -795,23 +885,29 @@ private class CON_Preferred_Email_TEST {
     * @description Tests Inserting a Contact with only one custom Email field not set Preferred Email and will not copy the value 
     * to standard the Email field when Preferred Email Enforcement is disabled
     **************************************************************************************************************************/
-	@isTest 
+    @isTest 
     static void singleEmailSmartSetOnInsertNegativeTest() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.AlternateEmail__c = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
 
         Test.startTest();
-            insert testContact;
+            insert testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Email, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
-        System.assertEquals(null, updatedContact.Email);
-        System.assertEquals(null, updatedContact.Preferred_Email__c);
+        List<Contact> updatedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
+        System.assertEquals(null, updatedContactList[0].Email);
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[1].Email);
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
 
     }
     
@@ -825,46 +921,59 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        insert testContactList;
 
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
+        
         Test.startTest();
-            testContact.AlternateEmail__c = 'test@sf.org';
-            update testContact;
+            update testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Email, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
-        System.assertEquals(testContact.AlternateEmail__c, updatedContact.Email);
-        System.assertEquals('Alternate Email', updatedContact.Preferred_Email__c);
+        List<Contact> updatedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
+        System.assertEquals(testContactList[0].AlternateEmail__c, updatedContactList[0].Email);
+        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(testContactList[1].AlternateEmail__c, updatedContactList[1].Email);
+        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c);
 
     }
-    
+
     /*************************************************************************************************************************
     * @description Tests Updating a Contact with only one custom Email field will not set Preferred Email and will not copy 
     * the value to standard the Email field when Preferred Email Enforcement is disbaled
     **************************************************************************************************************************/
     @isTest 
-    static void singleEmailSmartSetOnNegativeTestOnUpdate() {
+    static void singleEmailSmartSetOnUpdateNegativeTest() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        insert testContactList;
 
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
         Test.startTest();
-            testContact.AlternateEmail__c = 'test@sf.org';
-            update testContact;
+            update testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Email, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
-        System.assertEquals(null, updatedContact.Email);
-        System.assertEquals(null, updatedContact.Preferred_Email__c);
+        List<Contact> updatedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
+        System.assertEquals(null, updatedContactList[0].Email);
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[1].Email);
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
 
     }
-    
+
     /*************************************************************************************************************************
     * @description Tests Inserting a Contact with more than one custom Email fields will throw PreferredEmailRequiredError
     * when Preferred Email Enforcement is Enabled
@@ -875,21 +984,24 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.AlternateEmail__c = 'test@sf.org';
-        testContact.WorkEmail__c = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
 
         try {
             Test.startTest();
-                insert testContact;
+                insert testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when multiple email fields have value and when Preferred Email is Blank.');
         } catch (DmlException  error) {
             System.assert(error.getMessage().contains(Label.PreferredEmailRequiredError));
         }
     }
-    
+
     /***********************************************************************************************************************************
     * @description Tests inserting a Contact with more than one custom Email fields will not throw any error and not set Preferred Email
     * and standard Email field when Preferred Email Enforcement is disabled
@@ -900,21 +1012,26 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.AlternateEmail__c = 'test@sf.org';
-        testContact.WorkEmail__c = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
 
         Test.startTest();
-            insert testContact;
+            insert testContactList;
         Test.stopTest();
 
-        Contact insertedContact = [SELECT Id, Email, Preferred_Email__c FROM Contact];
-        System.assertEquals(null, insertedContact.Preferred_Email__c);
-        System.assertEquals(null, insertedContact.Email);
+        List<Contact> insertedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
+        System.assertEquals(null, insertedContactList[0].Preferred_Email__c);
+        System.assertEquals(null, insertedContactList[0].Email);
+        System.assertEquals(null, insertedContactList[1].Preferred_Email__c);
+        System.assertEquals(null, insertedContactList[1].Email);
 
     }
-    
+
     /*************************************************************************************************************************
     * @description Tests updating a Contact with more than one custom Email fields will throw PreferredEmailRequiredError
     * when Preferred Email Enforcement is Enabled
@@ -925,22 +1042,27 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        insert testContactList;
 
         try {
+            testContactList[0].AlternateEmail__c = 'test@sf.org';
+            testContactList[0].WorkEmail__c = 'test@sf.org';
+            testContactList[1].AlternateEmail__c = 'test@sf.org';
+            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
-                testContact.AlternateEmail__c = 'test@sf.org';
-                testContact.WorkEmail__c = 'test@sf.org';
-                update testContact;
+                update testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when multiple email fields have value and when Preferred Email is Blank.');
         } catch (DmlException  error) {
             System.assert(error.getMessage().contains(Label.PreferredEmailRequiredError));
         }
     }
-    
+
     /*************************************************************************************************************************
     * @description Tests updating a Contact with more than one custom Email fields will not throw any Error
     * and will not set Preferred Email or standarad email when Preferred Email Enforcement is Disbaled
@@ -951,19 +1073,27 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        insert testContactList;
 
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        
         Test.startTest();
-            testContact.AlternateEmail__c = 'test@sf.org';
-            testContact.WorkEmail__c = 'test@sf.org';
-            update testContact;
+            update testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, preferred_Email__c, Email FROM Contact];
-        System.assertEquals(null, updatedContact.preferred_Email__c);
-        System.assertEquals(null, updatedContact.Email);
+        List<Contact> updatedContactList = [SELECT Id, preferred_Email__c, Email FROM Contact];
+        System.assertEquals(null, updatedContactList[0].preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].Email);
+        System.assertEquals(null, updatedContactList[1].preferred_Email__c);
+        System.assertEquals(null, updatedContactList[1].Email);
 
     }
 
@@ -978,14 +1108,17 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.Preferred_Email__c = 'Alternate Email';
-        testContact.WorkEmail__c = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].Preferred_Email__c = 'Alternate Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Email = '';
+        testContactList[1].Preferred_Email__c = 'Alternate Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
 
         try {
             Test.startTest();
-                insert testContact;
+                insert testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
@@ -1004,14 +1137,17 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.Preferred_Email__c = 'Alternate Email';
-        testContact.WorkEmail__c = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].Preferred_Email__c = 'Alternate Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Email = '';
+        testContactList[1].Preferred_Email__c = 'Alternate Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
 
         try {
             Test.startTest();
-                insert testContact;
+                insert testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
@@ -1030,15 +1166,22 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].WorkEmail__c = '';
+        testContactList[1].Email = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        insert testContactList;
 
         try {
+            testContactList[0].Preferred_Email__c = 'Alternate Email';
+            testContactList[0].WorkEmail__c = 'test@sf.org';
+            testContactList[1].Preferred_Email__c = 'Alternate Email';
+            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
-                testContact.Preferred_Email__c = 'Alternate Email';
-                testContact.WorkEmail__c = 'test@sf.org';
-                update testContact;
+                update testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
@@ -1057,15 +1200,22 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[0].WorkEmail__c = '';
+        testContactList[1].Email = '';
+        testContactList[1].Preferred_Email__c = '';
+        testContactList[1].WorkEmail__c = '';
+        insert testContactList;
 
         try {
+            testContactList[0].Preferred_Email__c = 'Alternate Email';
+            testContactList[0].WorkEmail__c = 'test@sf.org';
+            testContactList[1].Preferred_Email__c = 'Alternate Email';
+            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
-                testContact.Preferred_Email__c = 'Alternate Email';
-                testContact.WorkEmail__c = 'test@sf.org';
-                update testContact;
+                update testContactList;
             Test.stopTest();
             System.assert(false, 'Always throw an error when the value corresponding to Preferred Email is Blank.');
         } catch (DmlException error) {
@@ -1084,17 +1234,21 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Preferred_Email__c = 'Work Email';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.Email = '';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Preferred_Email__c = 'Work Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].Email = '';
+        testContactList[1].Preferred_Email__c = 'Work Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Email = '';
 
         Test.startTest();
-            insert testContact;
+            insert testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Email FROM Contact WHERE Id =: testContact.Id];
-        System.assertEquals(updatedContact.Email, testContact.WorkEmail__c);
+        List<Contact> updatedContactList = [SELECT Id, Email FROM Contact];
+        System.assertEquals(testContactList[0].WorkEmail__c, updatedContactList[0].Email);
+        System.assertEquals(testContactList[1].WorkEmail__c, updatedContactList[1].Email);
 
     }
 
@@ -1109,17 +1263,21 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Preferred_Email__c = 'Work Email';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.Email = '';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Preferred_Email__c = 'Work Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].Email = '';
+        testContactList[1].Preferred_Email__c = 'Work Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Email = '';
 
         Test.startTest();
-            insert testContact;
+            insert testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Email FROM Contact WHERE Id =: testContact.Id];
-        System.assertEquals(updatedContact.Email, testContact.WorkEmail__c);
+        List<Contact> updatedContactList = [SELECT Id, Email FROM Contact];
+        System.assertEquals(testContactList[0].WorkEmail__c, updatedContactList[0].Email);
+        System.assertEquals(testContactList[1].WorkEmail__c, updatedContactList[1].Email);
 
     }
 
@@ -1134,18 +1292,26 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].Email = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        insert testContactList;
 
+        testContactList[0].Preferred_Email__c = 'Work Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = 'Work Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
         Test.startTest();
-            testContact.Preferred_Email__c = 'Work Email';
-            testContact.WorkEmail__c = 'test@sf.org';
-            update testContact;
+            update testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Email FROM Contact WHERE Id =: testContact.Id];
-        System.assertEquals(updatedContact.Email, testContact.WorkEmail__c);
+        List<Contact> updatedContactList = [SELECT Id, Email FROM Contact];
+        System.assertEquals(testContactList[0].WorkEmail__c, updatedContactList[0].Email);
+        System.assertEquals(testContactList[1].WorkEmail__c, updatedContactList[1].Email);
 
     }
 
@@ -1160,44 +1326,27 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = '';
+        testContactList[1].Email = '';
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = '';
+        insert testContactList;
 
+        testContactList[0].Preferred_Email__c = 'Work Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = 'Work Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
         Test.startTest();
-            testContact.Preferred_Email__c = 'Work Email';
-            testContact.WorkEmail__c = 'test@sf.org';
-            update testContact;
+            update testContactList;
         Test.stopTest();
 
-        Contact updatedContact = [SELECT Id, Email FROM Contact WHERE Id =: testContact.Id];
-        System.assertEquals(updatedContact.Email, testContact.WorkEmail__c);
+        List<Contact> updatedContactList = [SELECT Id, Email FROM Contact];
+        System.assertEquals(testContactList[0].WorkEmail__c, updatedContactList[0].Email);
+        System.assertEquals(testContactList[1].WorkEmail__c, updatedContactList[1].Email);
 
-    }
-
-    /************************************************************************************************************************************
-    * @description Tests inserting a Contact with one custom Email field and Preferred Email which doesn't corresponds to any of the
-    * custom email fields will throw PreferredEmailMatchMustExist error when Preferred Email Enforcement is Disabled
-    *************************************************************************************************************************************/
-    @isTest 
-    static void fieldNotFoundOnInsertWithEnforcementDisabled() {
-
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
-        );
-
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Preferred_Email__c = 'Test sf Email';
-        testContact.WorkEmail__c = 'test@sf.org';
-
-        try {
-        Test.startTest();
-            insert testContact;
-        Test.stopTest();
-        System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
-        } catch (DmlException error) {
-             System.assert(error.getMessage().contains(Label.PreferredEmailMatchMustExist));
-        }
     }
 
     /************************************************************************************************************************************
@@ -1211,17 +1360,46 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Preferred_Email__c = 'Test sf Email';
-        testContact.WorkEmail__c = 'test@sf.org';
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Preferred_Email__c = 'Test sf Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = 'Test sf Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
 
         try {
-            Test.startTest();
-                insert testContact;
-            Test.stopTest();
-            System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
+        Test.startTest();
+            insert testContactList;
+        Test.stopTest();
+        System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
         } catch (DmlException error) {
-            System.assert(error.getMessage().contains(Label.PreferredEmailMatchMustExist));
+             System.assert(error.getMessage().contains(Label.PreferredEmailMatchMustExist));
+        }
+    }
+    
+    /************************************************************************************************************************************
+    * @description Tests inserting a Contact with one custom Email field and Preferred Email which doesn't corresponds to any of the
+    * custom email fields will throw PreferredEmailMatchMustExist error when Preferred Email Enforcement is Disabled
+    *************************************************************************************************************************************/
+    @isTest 
+    static void fieldNotFoundOnInsertWithEnforcementDisabled() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );
+
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Preferred_Email__c = 'Test sf Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = 'Test sf Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+
+        try {
+        Test.startTest();
+            insert testContactList;
+        Test.stopTest();
+        System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
+        } catch (DmlException error) {
+             System.assert(error.getMessage().contains(Label.PreferredEmailMatchMustExist));
         }
     }
 
@@ -1236,14 +1414,20 @@ private class CON_Preferred_Email_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = null; 
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = null; 
+        insert testContactList;
 
         try {
+            testContactList[0].Preferred_Email__c = 'Test sf Email';
+            testContactList[0].WorkEmail__c = 'test@sf.org';
+            testContactList[1].Preferred_Email__c = 'Test sf Email';
+            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
-                testContact.Preferred_Email__c = 'Test sf Email';
-                testContact.WorkEmail__c = 'test@sf.org';
-                update testContact;
+                update  testContactList[0];
             Test.stopTest();
             System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
         } catch (DmlException error) {
@@ -1261,15 +1445,20 @@ private class CON_Preferred_Email_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
-
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = '';
+        testContactList[0].Preferred_Email__c = null; 
+        testContactList[1].WorkEmail__c = '';
+        testContactList[1].Preferred_Email__c = null; 
+        insert testContactList;
 
         try {
+            testContactList[0].Preferred_Email__c = 'Test sf Email';
+            testContactList[0].WorkEmail__c = 'test@sf.org';
+            testContactList[1].Preferred_Email__c = 'Test sf Email';
+            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
-                testContact.Preferred_Email__c = 'Test sf Email';
-                testContact.WorkEmail__c = 'test@sf.org';
-                update testContact;
+                update  testContactList[0];
             Test.stopTest();
             System.assert(false, 'Always throw an error when the field corresponding to Preferred Email is not found.');
         } catch (DmlException error) {
@@ -1289,11 +1478,14 @@ private class CON_Preferred_Email_TEST {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = 'TestingEmail@sf.org';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.Preferred_Email__c = null;
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = 'TestingEmail@sf.org';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].Preferred_Email__c = null;
+        testContactList[1].Email = 'TestingEmail@sf.org';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = null;
+        insert testContactList;
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);  
         CON_Email_BATCH batch = new CON_Email_BATCH(null);
@@ -1301,9 +1493,10 @@ private class CON_Preferred_Email_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact contactAfterBatchUpdate = [SELECT Id, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(Label.preferredBatchDefaultEmail, contactAfterBatchUpdate.Preferred_Email__c);
+        System.assertEquals(Label.preferredBatchDefaultEmail, contactAfterBatchUpdateList[0].Preferred_Email__c);
+        System.assertEquals(Label.preferredBatchDefaultEmail, contactAfterBatchUpdateList[1].Preferred_Email__c);
 
     }
 
@@ -1319,11 +1512,14 @@ private class CON_Preferred_Email_TEST {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = 'TestingEmail@sf.org';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.Preferred_Email__c = null;
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = 'TestingEmail@sf.org';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].Preferred_Email__c = null;
+        testContactList[1].Email = 'TestingEmail@sf.org';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = null;
+        insert testContactList;
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
 
@@ -1336,9 +1532,10 @@ private class CON_Preferred_Email_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact contactAfterBatchUpdate = [SELECT Id, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(null, contactAfterBatchUpdate.Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
 
     }
     
@@ -1354,12 +1551,16 @@ private class CON_Preferred_Email_TEST {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = 'test@sf.org';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.UniversityEmail__c = 'testUniv@sf.org';
-        testContact.Preferred_Email__c = null;
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = 'test@sf.org';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].UniversityEmail__c = 'testUniv@sf.org';
+        testContactList[0].Preferred_Email__c = null;
+        testContactList[1].Email = 'test@sf.org';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].UniversityEmail__c = 'testUniv@sf.org';
+        testContactList[1].Preferred_Email__c = null;
+        insert testContactList;
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);  
         CON_Email_BATCH batch = new CON_Email_BATCH(null);
@@ -1367,9 +1568,10 @@ private class CON_Preferred_Email_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact contactAfterBatchUpdate = [SELECT Id, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c FROM Contact];
 
-        System.assertEquals('Work Email', contactAfterBatchUpdate.Preferred_Email__c);
+        System.assertEquals('Work Email', contactAfterBatchUpdateList[0].Preferred_Email__c);
+        System.assertEquals('Work Email', contactAfterBatchUpdateList[1].Preferred_Email__c);
 
     }
 
@@ -1385,12 +1587,16 @@ private class CON_Preferred_Email_TEST {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = 'test@sf.org';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.UniversityEmail__c = 'testUniv@sf.org';
-        testContact.Preferred_Email__c = null;
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = 'test@sf.org';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].UniversityEmail__c = 'testUniv@sf.org';
+        testContactList[0].Preferred_Email__c = null;
+        testContactList[1].Email = 'test@sf.org';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].UniversityEmail__c = 'testUniv@sf.org';
+        testContactList[1].Preferred_Email__c = null;
+        insert testContactList;
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
 
@@ -1403,9 +1609,10 @@ private class CON_Preferred_Email_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact contactAfterBatchUpdate = [SELECT Id, Preferred_Email__c FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(null, contactAfterBatchUpdate.Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
 
     }
     
@@ -1421,16 +1628,21 @@ private class CON_Preferred_Email_TEST {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.Preferred_Email__c = null;
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].Preferred_Email__c = null;
+        testContactList[1].Email = '';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = null;
+        insert testContactList;
 
-        Contact contactAfterInsert = [SELECT Id, Preferred_Email__c, Email FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterInsertList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, contactAfterInsert.Preferred_Email__c);
-        System.assertEquals(null, contactAfterInsert.Email);
+        System.assertEquals(null, contactAfterInsertList[0].Preferred_Email__c);
+        System.assertEquals(null, contactAfterInsertList[0].Email);
+        System.assertEquals(null, contactAfterInsertList[1].Preferred_Email__c);
+        System.assertEquals(null, contactAfterInsertList[1].Email);
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);  
         CON_Email_BATCH batch = new CON_Email_BATCH(null);
@@ -1438,10 +1650,12 @@ private class CON_Preferred_Email_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact contactAfterBatchUpdate = [SELECT Id, Preferred_Email__c, Email FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals('Work Email', contactAfterBatchUpdate.Preferred_Email__c);
-        System.assertEquals(testContact.WorkEmail__c, contactAfterBatchUpdate.Email);
+        System.assertEquals('Work Email', contactAfterBatchUpdateList[0].Preferred_Email__c);
+        System.assertEquals(testContactList[0].WorkEmail__c, contactAfterBatchUpdateList[0].Email);
+        System.assertEquals('Work Email', contactAfterBatchUpdateList[1].Preferred_Email__c);
+        System.assertEquals(testContactList[1].WorkEmail__c, contactAfterBatchUpdateList[1].Email);
 
     }
 
@@ -1457,16 +1671,21 @@ private class CON_Preferred_Email_TEST {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.Preferred_Email__c = null;
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].Preferred_Email__c = null;
+        testContactList[1].Email = '';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = null;
+        insert testContactList;
 
-        Contact contactAfterInsert = [SELECT Id, Preferred_Email__c, Email FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterInsert = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, contactAfterInsert.Preferred_Email__c);
-        System.assertEquals(null, contactAfterInsert.Email);
+        System.assertEquals(null, contactAfterInsert[0].Preferred_Email__c);
+        System.assertEquals(null, contactAfterInsert[0].Email);
+        System.assertEquals(null, contactAfterInsert[1].Preferred_Email__c);
+        System.assertEquals(null, contactAfterInsert[1].Email);
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
 
@@ -1479,10 +1698,12 @@ private class CON_Preferred_Email_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact contactAfterBatchUpdate = [SELECT Id, Preferred_Email__c, Email FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, contactAfterBatchUpdate.Preferred_Email__c);
-        System.assertEquals(null, contactAfterBatchUpdate.Email);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Email);
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Email);
 
     }
 
@@ -1498,17 +1719,23 @@ private class CON_Preferred_Email_TEST {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.UniversityEmail__c = 'test@sf.org';
-        testContact.Preferred_Email__c = null;
-        insert testContact;
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].UniversityEmail__c = 'test@sf.org';
+        testContactList[0].Preferred_Email__c = null;
+        testContactList[1].Email = '';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].UniversityEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = null;
+        insert testContactList;
 
-        Contact contactAfterInsert = [SELECT Id, Preferred_Email__c, Email FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterInsertList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, contactAfterInsert.Preferred_Email__c);
-        System.assertEquals(null, contactAfterInsert.Email);
+        System.assertEquals(null, contactAfterInsertList[0].Preferred_Email__c);
+        System.assertEquals(null, contactAfterInsertList[0].Email);
+        System.assertEquals(null, contactAfterInsertList[1].Preferred_Email__c);
+        System.assertEquals(null, contactAfterInsertList[1].Email);
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);  
         CON_Email_BATCH batch = new CON_Email_BATCH(null);
@@ -1517,10 +1744,12 @@ private class CON_Preferred_Email_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact contactAfterBatchUpdate = [SELECT Id, Preferred_Email__c, Email FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertNotEquals(null, contactAfterBatchUpdate.Preferred_Email__c);
-        System.assertEquals('test@sf.org', contactAfterBatchUpdate.Email);
+        System.assertNotEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
+        System.assertEquals('test@sf.org', contactAfterBatchUpdateList[0].Email);
+        System.assertNotEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
+        System.assertEquals('test@sf.org', contactAfterBatchUpdateList[1].Email);
 
     }
     
@@ -1535,21 +1764,25 @@ private class CON_Preferred_Email_TEST {
         );
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].Email = '';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[0].UniversityEmail__c = 'test@sf.org';
+        testContactList[0].Preferred_Email__c = null;
+        testContactList[1].Email = '';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        testContactList[1].UniversityEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = null;
+        insert testContactList;
 
-        Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
-        testContact.Email = '';
-        testContact.WorkEmail__c = 'test@sf.org';
-        testContact.UniversityEmail__c = 'test@sf.org';
-        testContact.Preferred_Email__c = null;
-        insert testContact;
+        List<Contact> contactAfterInsertList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        Contact contactAfterInsert = [SELECT Id, Preferred_Email__c, Email FROM Contact WHERE Id =: testContact.Id];
+        System.assertEquals(null, contactAfterInsertList[0].Preferred_Email__c);
+        System.assertEquals(null, contactAfterInsertList[0].Email);
+        System.assertEquals(null, contactAfterInsertList[1].Preferred_Email__c);
+        System.assertEquals(null, contactAfterInsertList[1].Email);
 
-        System.assertEquals(null, contactAfterInsert.Preferred_Email__c);
-        System.assertEquals(null, contactAfterInsert.Email);
 
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
-        
          UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
@@ -1559,10 +1792,12 @@ private class CON_Preferred_Email_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact contactAfterBatchUpdate = [SELECT Id, Preferred_Email__c, Email FROM Contact WHERE Id =: testContact.Id];
+        List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, contactAfterBatchUpdate.Preferred_Email__c);
-        System.assertEquals(null, contactAfterBatchUpdate.Email);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Email);
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Email);
 
     }
 
@@ -1857,14 +2092,14 @@ private class CON_Preferred_Email_TEST {
     /*****************************************************************************************************************************
     * @description Bulk test for Preferred Email in Batch context when Preferred Email Enforcement is enabled 
     *****************************************************************************************************************************/
-	@isTest 
+    @isTest 
     static void preferredEMailBatchBulkTest() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-		// Get contacts set up
+        // Get contacts set up
         List<Contact> contactList = UTIL_UnitTestData_API.getMultipleTestContacts(10);
         for (Integer i = 0; i < 10; i++) {
 
@@ -1876,73 +2111,73 @@ private class CON_Preferred_Email_TEST {
 
         insert contactList;
 
-		List<String> contIds = new List<String>();
+        List<String> contIds = new List<String>();
 
-		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact];
+        List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact];
 
-		String caseOneId;
-		String caseTwoId;
+        String caseOneId;
+        String caseTwoId;
 
-		// Process the contact for testing
+        // Process the contact for testing
         if(contacts.size() > 0) {
 
-	        for (Integer i = 0; i < contacts.size(); i++) {
+            for (Integer i = 0; i < contacts.size(); i++) {
 
-	        	// Setup special Case 1
-	        	if(i==5) {
-					contacts[5].Email = 'uniquwemailtest5nomatch@domainemail.com';
-					contacts[5].AlternateEmail__c = 'alternate5@domainemail.com';
-		        	contacts[5].UniversityEmail__c = null;
-		        	contacts[5].WorkEmail__c = null;
-					contacts[5].Preferred_Email__c = '';
-					caseOneId = contacts[5].Id;
+                // Setup special Case 1
+                if(i==5) {
+                    contacts[5].Email = 'uniquwemailtest5nomatch@domainemail.com';
+                    contacts[5].AlternateEmail__c = 'alternate5@domainemail.com';
+                    contacts[5].UniversityEmail__c = null;
+                    contacts[5].WorkEmail__c = null;
+                    contacts[5].Preferred_Email__c = '';
+                    caseOneId = contacts[5].Id;
 
-        		// Setup special Case 2
-				} else if (i==6) {
-					contacts[6].AlternateEmail__c = 'alternate6@domainemail.com';
-					contacts[6].Email = '';
-					contacts[6].WorkEmail__c = null;
-					contacts[6].Preferred_Email__c = '';
-					caseTwoId = contacts[6].Id;
+                // Setup special Case 2
+                } else if (i==6) {
+                    contacts[6].AlternateEmail__c = 'alternate6@domainemail.com';
+                    contacts[6].Email = '';
+                    contacts[6].WorkEmail__c = null;
+                    contacts[6].Preferred_Email__c = '';
+                    caseTwoId = contacts[6].Id;
 
-				} else {
-					contacts[i].Email = 'emailtest' + i + '@domainemail.com';
-		        	contacts[i].UniversityEmail__c = null;
-		        	contacts[i].WorkEmail__c = null;
-					contacts[i].AlternateEmail__c = null;
-					contacts[i].Preferred_Email__c = null;
-					contIds.add(contacts[i].Id);
-				}
-	        }
+                } else {
+                    contacts[i].Email = 'emailtest' + i + '@domainemail.com';
+                    contacts[i].UniversityEmail__c = null;
+                    contacts[i].WorkEmail__c = null;
+                    contacts[i].AlternateEmail__c = null;
+                    contacts[i].Preferred_Email__c = null;
+                    contIds.add(contacts[i].Id);
+                }
+            }
 
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
-	        update contacts;
+            update contacts;
         }
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
-		// Run Batch
-		Test.startTest();
-	        CON_Email_BATCH contbatch = new CON_Email_BATCH(null);
-	    Database.executeBatch( contbatch );
-		Test.stopTest();
+        // Run Batch
+        Test.startTest();
+            CON_Email_BATCH contbatch = new CON_Email_BATCH(null);
+        Database.executeBatch( contbatch );
+        Test.stopTest();
 
-		// After batch run assert leaving off the two contacts for special cases
-		contacts = [SELECT Id, Name, Email, AlternateEmail__c FROM Contact WHERE Id in: contIds AND Id!=:caseOneId AND Id !=: caseTwoId];
-		for(Contact contact : contacts) {
-			System.assertEquals(contact.AlternateEmail__c , contact.Email );
-		}
+        // After batch run assert leaving off the two contacts for special cases
+        contacts = [SELECT Id, Name, Email, AlternateEmail__c FROM Contact WHERE Id in: contIds AND Id!=:caseOneId AND Id !=: caseTwoId];
+        for(Contact contact : contacts) {
+            System.assertEquals(contact.AlternateEmail__c , contact.Email );
+        }
 
-	    // Check special Case 1
-		Contact contactOne = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseOneId LIMIT 1];
-		System.assertEquals('uniquwemailtest5nomatch@domainemail.com', contactOne.Email);
-		System.assertEquals(Label.preferredBatchDefaultEmail, contactOne.Preferred_Email__c);
+        // Check special Case 1
+        Contact contactOne = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseOneId LIMIT 1];
+        System.assertEquals('uniquwemailtest5nomatch@domainemail.com', contactOne.Email);
+        System.assertEquals(Label.preferredBatchDefaultEmail, contactOne.Preferred_Email__c);
 
-	    // Check special Case 2
-		Contact contactTwo = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseTwoId LIMIT 1];
-		System.assertEquals(contactTwo.Email, contactTwo.AlternateEmail__c);
-		System.assertEquals('Alternate Email', contactTwo.Preferred_Email__c);
+        // Check special Case 2
+        Contact contactTwo = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseTwoId LIMIT 1];
+        System.assertEquals(contactTwo.Email, contactTwo.AlternateEmail__c);
+        System.assertEquals('Alternate Email', contactTwo.Preferred_Email__c);
 
-	}
+    }
 
     /**************************************************************************************************************************
     ******************************************* LEAD CONVERSION TEST *********************************************************
