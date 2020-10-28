@@ -103,7 +103,7 @@
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
         <members>MAPR_Schema</members>
-        <members>MODL_DescribeObject</members>
+        <members>MODL_DescribeSObject</members>
         <members>MODL_GlobalDescribe</members>
         <members>MODL_PrimaryAfflMapper</members>
         <members>MODL_PrimaryAfflMapper_TEST</members>
@@ -695,6 +695,7 @@
         <members>defaultNamingConnector</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
+        <members>errorCannotRetrieveData</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
         <members>fieldWithHEDANamespace</members>
@@ -716,6 +717,8 @@
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
+        <members>objectSelectComboboxLabel</members>
+        <members>objectSelectComboboxPlaceholder</members>
         <members>preferredBatchDefaultEmail</members>
         <members>preferredBatchDefaultPhone</members>
         <members>stgAccModelTitle</members>
@@ -1343,7 +1346,8 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>*</members>
+        <members>objectSelector</members>
+        <members>toastHandler</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
