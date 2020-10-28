@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2020, Salesforce.org
     All rights reserved.
-    
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     
@@ -449,7 +449,7 @@ private class CON_Preferred_Email_TEST {
     * @description Tests inserting a Contact with Preferred Email and no Email fields will throw PreferredEmailMatchNotNull Error
     * when Preferred Email Enforcement is Enabled
     *****************************************************************************************************************************/
-    @isTest 
+    @isTest
     static void preferredEmailNotBlankOnInsertWithEnforcementEnabled() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(
@@ -502,18 +502,18 @@ private class CON_Preferred_Email_TEST {
     * @description Tests Updating a Contact with Preferred Email and no Email fields will throw PreferredEmailMatchNotNull Error
     * when Preferred Email Enforcement is Enabled
     *****************************************************************************************************************************/
-    @isTest 
+    @isTest
     static void preferredEmailNotBlankOnUpdateWithEnforcementEnabled() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
-            );
+        );
 
         List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         testContactList[0].WorkEmail__c = '';
         testContactList[0].Preferred_Email__c = '';
         testContactList[1].WorkEmail__c = '';
         testContactList[1].Preferred_Email__c = '';
-
+        
         insert testContactList;
         testContactList[0].Preferred_Email__c = 'Alternate';
         testContactList[1].Preferred_Email__c = 'Alternate';
@@ -526,7 +526,7 @@ private class CON_Preferred_Email_TEST {
             System.assert(error.getMessage().contains(Label.PreferredEmailMatchNotNull));
         }
     }
-
+    
     /*****************************************************************************************************************************
     * @description Tests Updating a Contact with Preferred Email and no Email fields will throw PreferredEmailMatchNotNull Error
     * when Preferred Email Enforcement is Disabled
@@ -542,7 +542,7 @@ private class CON_Preferred_Email_TEST {
         testContactList[0].Preferred_Email__c = '';
         testContactList[1].WorkEmail__c = '';
         testContactList[1].Preferred_Email__c = '';
-
+        
         insert testContactList;
         testContactList[0].Preferred_Email__c = 'Alternate';
         testContactList[1].Preferred_Email__c = 'Alternate';
@@ -580,10 +580,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> updatedContact = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(testContactList[0].Email, updatedContact[0].AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContact[0].Preferred_Email__c);
-        System.assertEquals(testContactList[1].Email, updatedContact[1].AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContact[1].Preferred_Email__c);
+        System.assertEquals('test@sf.org', updatedContact[0].AlternateEmail__c, 'Alternate Email should be same as standard email');
+        System.assertEquals('Alternate Email', updatedContact[0].Preferred_Email__c, 'Preferred Email should be set to Alternate Email');
+        System.assertEquals('test@sf.org', updatedContact[1].AlternateEmail__c, 'Alternate Email should be same as standard email');
+        System.assertEquals('Alternate Email', updatedContact[1].Preferred_Email__c, 'Preferred Email should be set to Alternate Email');
     }
     
     /*********************************************************************************************************************************
@@ -610,10 +610,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(null, updatedContactList[1].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c, 'Preferred Email should be cleared');
     }
 
      /*********************************************************************************************************************************
@@ -645,10 +645,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(testContactList[0].Email, updatedContactList[0].AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(testContactList[1].Email, updatedContactList[1].AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c);
+        System.assertEquals('test@sf.org', updatedContactList[0].AlternateEmail__c, 'Alternate Email should be same as standard email');
+        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c, 'Preferred Email should be alternate email');
+        System.assertEquals('test@sf.org', updatedContactList[1].AlternateEmail__c, 'Alternate Email should be same as standard email');
+        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c, 'Preferred Email should be alternate email');
 
     }
     
@@ -681,10 +681,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM COntact];
 
-        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(null, updatedContactList[1].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c , 'Preferred Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c , 'Preferred Email should be cleared');
 
     }
 
@@ -713,10 +713,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(testContactList[0].Email, updatedContactList[0].AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(testContactList[1].Email, updatedContactList[1].AlternateEmail__c);
-        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c);
+        System.assertEquals('test@sf.org', updatedContactList[0].AlternateEmail__c, 'Alternate Email should be same as standard email');
+        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c, 'Preferred Email should be alternate email');
+        System.assertEquals('test@sf.org', updatedContactList[1].AlternateEmail__c, 'Alternate Email should be same as standard email');
+        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c, 'Preferred Email should be alternate email');
         
     }
     
@@ -746,10 +746,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should be cleared');
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should be cleared');
         
     }
 
@@ -774,9 +774,9 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> insertedContactList = [SELECT Id, Email, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(testContactList[0].AlternateEmail__c, insertedContactList[0].Email);
+        System.assertEquals('test@sf.org', insertedContactList[0].Email);
         System.assertEquals('Alternate Email', insertedContactList[0].Preferred_Email__c);
-        System.assertEquals(testContactList[1].AlternateEmail__c, insertedContactList[1].Email);
+        System.assertEquals('test@sf.org', insertedContactList[1].Email);
         System.assertEquals('Alternate Email', insertedContactList[1].Preferred_Email__c);
 
         insertedContactList[0].AlternateEmail__c = '';
@@ -790,12 +790,12 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(null, updatedContactList[0].Email);
-        System.assertEquals(null, updatedContactList[1].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
-        System.assertEquals(null, updatedContactList[1].Email);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should be cleared');
+        System.assertEquals(null, updatedContactList[0].Email, 'Standard Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c, 'Preferred Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].Email, 'Standard Email should be cleared');
     } 
     
     /*********************************************************************************************************************************
@@ -819,18 +819,16 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> insertedContactList = [SELECT Id, Email, AlternateEmail__c, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(testContactList[0].AlternateEmail__c, insertedContactList[0].Email);
+        System.assertEquals('test@sf.org', insertedContactList[0].Email);
         System.assertEquals('Alternate Email', insertedContactList[0].Preferred_Email__c);
-        System.assertEquals(testContactList[1].AlternateEmail__c, insertedContactList[1].Email);
+        System.assertEquals('test@sf.org', insertedContactList[1].Email);
         System.assertEquals('Alternate Email', insertedContactList[1].Preferred_Email__c);
-        
-        // Clear the cache to make sure new value of Disable_Preferred_Email_Enforcement__c is retrieved 
+
         MAPR_CON_PreferredEmailFields.preferredEmailFieldSettingsModel = null;
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );        
 
-        System.assertEquals(true, UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Email_Enforcement__c);
 
         insertedContactList[0].AlternateEmail__c = '';
         insertedContactList[0].Preferred_Email__c = null;
@@ -843,12 +841,12 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, updatedContactList[0].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(testContactList[0].AlternateEmail__c, updatedContactList[0].Email);
-        System.assertEquals(null, updatedContactList[1].AlternateEmail__c);
-        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
-        System.assertEquals(testContactList[1].AlternateEmail__c, updatedContactList[1].Email);
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should be cleared');
+        System.assertEquals('test@sf.org', updatedContactList[0].Email, 'Standard Email should not be cleared');
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c, 'Preferred Email should be cleared');
+        System.assertEquals('test@sf.org', updatedContactList[1].Email, 'Standard Email should not be cleared');
 
     } 
     
@@ -875,10 +873,10 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> updatedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
-        System.assertEquals(testContactList[0].AlternateEmail__c, updatedContactList[0].Email);
-        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(testContactList[1].AlternateEmail__c, updatedContactList[1].Email);
-        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c);
+        System.assertEquals('test@sf.org', updatedContactList[0].Email, 'Email should be populated with Alternate Email value');
+        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c, 'Preferred Email shoule be Alternate Email');
+        System.assertEquals('test@sf.org', updatedContactList[1].Email, 'Email should be populated with Alternate Email value');
+        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c, 'Preferred Email shoule be Alternate Email');
 
     }
     
@@ -905,10 +903,10 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> updatedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
-        System.assertEquals(null, updatedContactList[0].Email);
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(null, updatedContactList[1].Email);
-        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].Email, 'Standard Email should not be popualted');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should not be popualted');
+        System.assertEquals(null, updatedContactList[1].Email, 'Standard Email should not be popualted');
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c, 'Preferred Email should not be popualted');
 
     }
     
@@ -937,13 +935,13 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> updatedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
-        System.assertEquals(testContactList[0].AlternateEmail__c, updatedContactList[0].Email);
-        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(testContactList[1].AlternateEmail__c, updatedContactList[1].Email);
-        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c);
+        System.assertEquals('test@sf.org', updatedContactList[0].Email,  'Email should be populated with Alternate Email value');
+        System.assertEquals('Alternate Email', updatedContactList[0].Preferred_Email__c, 'Preferred Email should not be popualted');
+        System.assertEquals('test@sf.org', updatedContactList[1].Email, 'Email should be populated with Alternate Email value');
+        System.assertEquals('Alternate Email', updatedContactList[1].Preferred_Email__c, 'Preferred Email should not be popualted');
 
     }
-
+    
     /*************************************************************************************************************************
     * @description Tests Updating a Contact with only one custom Email field will not set Preferred Email and will not copy 
     * the value to standard the Email field when Preferred Email Enforcement is disbaled
@@ -968,13 +966,13 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> updatedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
-        System.assertEquals(null, updatedContactList[0].Email);
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c);
-        System.assertEquals(null, updatedContactList[1].Email);
-        System.assertEquals(null, updatedContactList[1].Preferred_Email__c);
+        System.assertEquals(null, updatedContactList[0].Email, 'Standard Email should not be popualted');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should not be popualted');
+        System.assertEquals(null, updatedContactList[1].Email, 'Standard Email should not be popualted');
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c, 'Preferred Email should not be popualted');
 
     }
-
+    
     /*************************************************************************************************************************
     * @description Tests Inserting a Contact with more than one custom Email fields will throw PreferredEmailRequiredError
     * when Preferred Email Enforcement is Enabled
@@ -1002,7 +1000,7 @@ private class CON_Preferred_Email_TEST {
             System.assert(error.getMessage().contains(Label.PreferredEmailRequiredError));
         }
     }
-
+    
     /***********************************************************************************************************************************
     * @description Tests inserting a Contact with more than one custom Email fields will not throw any error and not set Preferred Email
     * and standard Email field when Preferred Email Enforcement is disabled
@@ -1026,13 +1024,13 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> insertedContactList = [SELECT Id, Email, Preferred_Email__c FROM Contact];
-        System.assertEquals(null, insertedContactList[0].Preferred_Email__c);
-        System.assertEquals(null, insertedContactList[0].Email);
-        System.assertEquals(null, insertedContactList[1].Preferred_Email__c);
-        System.assertEquals(null, insertedContactList[1].Email);
+        System.assertEquals(null, insertedContactList[0].Preferred_Email__c, 'Preferred Email should not be popualted');
+        System.assertEquals(null, insertedContactList[0].Email, 'Standard Email should not be popualted');
+        System.assertEquals(null, insertedContactList[1].Preferred_Email__c, 'Preferred Email should not be popualted');
+        System.assertEquals(null, insertedContactList[1].Email, 'Standard Email should not be popualted');
 
     }
-
+    
     /*************************************************************************************************************************
     * @description Tests updating a Contact with more than one custom Email fields will throw PreferredEmailRequiredError
     * when Preferred Email Enforcement is Enabled
@@ -1063,7 +1061,7 @@ private class CON_Preferred_Email_TEST {
             System.assert(error.getMessage().contains(Label.PreferredEmailRequiredError));
         }
     }
-
+    
     /*************************************************************************************************************************
     * @description Tests updating a Contact with more than one custom Email fields will not throw any Error
     * and will not set Preferred Email or standarad email when Preferred Email Enforcement is Disbaled
@@ -1091,10 +1089,10 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> updatedContactList = [SELECT Id, preferred_Email__c, Email FROM Contact];
-        System.assertEquals(null, updatedContactList[0].preferred_Email__c);
-        System.assertEquals(null, updatedContactList[0].Email);
-        System.assertEquals(null, updatedContactList[1].preferred_Email__c);
-        System.assertEquals(null, updatedContactList[1].Email);
+        System.assertEquals(null, updatedContactList[0].preferred_Email__c, 'Preferred Email should not be popualted');
+        System.assertEquals(null, updatedContactList[0].Email, 'Standard Email should not be popualted');
+        System.assertEquals(null, updatedContactList[1].preferred_Email__c, 'Preferred Email should not be popualted');
+        System.assertEquals(null, updatedContactList[1].Email, 'Standard Email should not be popualted');
 
     }
 
@@ -1176,11 +1174,12 @@ private class CON_Preferred_Email_TEST {
         testContactList[1].WorkEmail__c = '';
         insert testContactList;
 
+        testContactList[0].Preferred_Email__c = 'Alternate Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = 'Alternate Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        
         try {
-            testContactList[0].Preferred_Email__c = 'Alternate Email';
-            testContactList[0].WorkEmail__c = 'test@sf.org';
-            testContactList[1].Preferred_Email__c = 'Alternate Email';
-            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
                 update testContactList;
             Test.stopTest();
@@ -1210,11 +1209,12 @@ private class CON_Preferred_Email_TEST {
         testContactList[1].WorkEmail__c = '';
         insert testContactList;
 
+        testContactList[0].Preferred_Email__c = 'Alternate Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = 'Alternate Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        
         try {
-            testContactList[0].Preferred_Email__c = 'Alternate Email';
-            testContactList[0].WorkEmail__c = 'test@sf.org';
-            testContactList[1].Preferred_Email__c = 'Alternate Email';
-            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
                 update testContactList;
             Test.stopTest();
@@ -1277,8 +1277,8 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> updatedContactList = [SELECT Id, Email FROM Contact];
-        System.assertEquals(testContactList[0].WorkEmail__c, updatedContactList[0].Email);
-        System.assertEquals(testContactList[1].WorkEmail__c, updatedContactList[1].Email);
+        System.assertEquals('test@sf.org', updatedContactList[0].Email, 'Email should be same as Work Email');
+        System.assertEquals('test@sf.org', updatedContactList[1].Email, 'Email should be same as Work Email');
 
     }
 
@@ -1311,8 +1311,8 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> updatedContactList = [SELECT Id, Email FROM Contact];
-        System.assertEquals(testContactList[0].WorkEmail__c, updatedContactList[0].Email);
-        System.assertEquals(testContactList[1].WorkEmail__c, updatedContactList[1].Email);
+        System.assertEquals('test@sf.org', updatedContactList[0].Email, 'Email should be same as Work Email');
+        System.assertEquals('test@sf.org', updatedContactList[1].Email, 'Email should be same as Work Email');
 
     }
 
@@ -1345,8 +1345,8 @@ private class CON_Preferred_Email_TEST {
         Test.stopTest();
 
         List<Contact> updatedContactList = [SELECT Id, Email FROM Contact];
-        System.assertEquals(testContactList[0].WorkEmail__c, updatedContactList[0].Email);
-        System.assertEquals(testContactList[1].WorkEmail__c, updatedContactList[1].Email);
+        System.assertEquals('test@sf.org', updatedContactList[0].Email, 'Email should be same as Work Email');
+        System.assertEquals('test@sf.org', updatedContactList[1].Email, 'Email should be same as Work Email');
 
     }
 
@@ -1422,11 +1422,12 @@ private class CON_Preferred_Email_TEST {
         testContactList[1].Preferred_Email__c = null; 
         insert testContactList;
 
+        testContactList[0].Preferred_Email__c = 'Test sf Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = 'Test sf Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+
         try {
-            testContactList[0].Preferred_Email__c = 'Test sf Email';
-            testContactList[0].WorkEmail__c = 'test@sf.org';
-            testContactList[1].Preferred_Email__c = 'Test sf Email';
-            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
                 update  testContactList[0];
             Test.stopTest();
@@ -1453,11 +1454,12 @@ private class CON_Preferred_Email_TEST {
         testContactList[1].Preferred_Email__c = null; 
         insert testContactList;
 
+        testContactList[0].Preferred_Email__c = 'Test sf Email';
+        testContactList[0].WorkEmail__c = 'test@sf.org';
+        testContactList[1].Preferred_Email__c = 'Test sf Email';
+        testContactList[1].WorkEmail__c = 'test@sf.org';
+        
         try {
-            testContactList[0].Preferred_Email__c = 'Test sf Email';
-            testContactList[0].WorkEmail__c = 'test@sf.org';
-            testContactList[1].Preferred_Email__c = 'Test sf Email';
-            testContactList[1].WorkEmail__c = 'test@sf.org';
             Test.startTest();
                 update  testContactList[0];
             Test.stopTest();
@@ -1496,8 +1498,8 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(Label.preferredBatchDefaultEmail, contactAfterBatchUpdateList[0].Preferred_Email__c);
-        System.assertEquals(Label.preferredBatchDefaultEmail, contactAfterBatchUpdateList[1].Preferred_Email__c);
+        System.assertEquals(Label.preferredBatchDefaultEmail, contactAfterBatchUpdateList[0].Preferred_Email__c, 'Email should be populated with default email');
+        System.assertEquals(Label.preferredBatchDefaultEmail, contactAfterBatchUpdateList[1].Preferred_Email__c, 'Email should be populated with default email');
 
     }
 
@@ -1535,8 +1537,8 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
-        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c, 'Preferred Email should be null');
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c, 'Preferred Email should be null');
 
     }
     
@@ -1571,8 +1573,8 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c FROM Contact];
 
-        System.assertEquals('Work Email', contactAfterBatchUpdateList[0].Preferred_Email__c);
-        System.assertEquals('Work Email', contactAfterBatchUpdateList[1].Preferred_Email__c);
+        System.assertEquals('Work Email', contactAfterBatchUpdateList[0].Preferred_Email__c, 'Preferred Email should be Work Email');
+        System.assertEquals('Work Email', contactAfterBatchUpdateList[1].Preferred_Email__c, 'Preferred Email should be Work Email');
 
     }
 
@@ -1612,8 +1614,8 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c FROM Contact];
 
-        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
-        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c, 'Preferred Email should be null');
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c, 'Preferred Email should be null');
 
     }
     
@@ -1653,10 +1655,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals('Work Email', contactAfterBatchUpdateList[0].Preferred_Email__c);
-        System.assertEquals(testContactList[0].WorkEmail__c, contactAfterBatchUpdateList[0].Email);
-        System.assertEquals('Work Email', contactAfterBatchUpdateList[1].Preferred_Email__c);
-        System.assertEquals(testContactList[1].WorkEmail__c, contactAfterBatchUpdateList[1].Email);
+        System.assertEquals('Work Email', contactAfterBatchUpdateList[0].Preferred_Email__c, 'Preferred Email should work email');
+        System.assertEquals('test@sf.org', contactAfterBatchUpdateList[0].Email, 'Standard Email should be same as work email');
+        System.assertEquals('Work Email', contactAfterBatchUpdateList[1].Preferred_Email__c, 'Preferred Email should work email');
+        System.assertEquals('test@sf.org', contactAfterBatchUpdateList[1].Email, 'Standard Email should be same as work email');
 
     }
 
@@ -1701,10 +1703,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
-        System.assertEquals(null, contactAfterBatchUpdateList[0].Email);
-        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
-        System.assertEquals(null, contactAfterBatchUpdateList[1].Email);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c, 'Preferred Email should be null');
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Email, 'Standard Email is null');
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c, 'Preferred Email should be null');
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Email, 'Standard Email is null');
 
     }
 
@@ -1747,10 +1749,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertNotEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
-        System.assertEquals('test@sf.org', contactAfterBatchUpdateList[0].Email);
-        System.assertNotEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
-        System.assertEquals('test@sf.org', contactAfterBatchUpdateList[1].Email);
+        System.assertNotEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c, 'Preferred Email should be null');
+        System.assertEquals('test@sf.org', contactAfterBatchUpdateList[0].Email, 'Standard Email should be same as work email');
+        System.assertNotEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c, 'Preferred Email should be null');
+        System.assertEquals('test@sf.org', contactAfterBatchUpdateList[1].Email, 'Standard Email should be same as work email');
 
     }
     
@@ -1795,10 +1797,10 @@ private class CON_Preferred_Email_TEST {
 
         List<Contact> contactAfterBatchUpdateList = [SELECT Id, Preferred_Email__c, Email FROM Contact];
 
-        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c);
-        System.assertEquals(null, contactAfterBatchUpdateList[0].Email);
-        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c);
-        System.assertEquals(null, contactAfterBatchUpdateList[1].Email);
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Preferred_Email__c, 'Preferred Email should be null');
+        System.assertEquals(null, contactAfterBatchUpdateList[0].Email, 'Standard Email should be null');
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Preferred_Email__c, 'Preferred Email should be null');
+        System.assertEquals(null, contactAfterBatchUpdateList[1].Email, 'Standard Email should be null');
 
     }
 

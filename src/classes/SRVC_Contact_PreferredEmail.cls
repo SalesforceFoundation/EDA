@@ -192,7 +192,6 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
             return null;
         }
 
-        //MODL_ContactEmailField preferredContactEmailFieldModel = contactModel.preferredEmailModel;
         if (contactModel.hasPrefEmailField == false) {
             contactModel.addError(Label.PreferredEmailMatchMustExist);
             return contactModel.contact;
@@ -260,7 +259,7 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
     private MODL_Contact getModelFromContact(Contact contact, MODL_PreferredEmailSettings preferredEmailSettingsModel) {
 
         List<MODL_ContactEmailField> contactEmailFieldModelList = new List<MODL_ContactEmailField>();
-        //MODL_ContactEmailField preferredEmailFieldModel;
+
         Boolean hasPrefEmailField = false;
         String prefEmailFieldValue;
         
@@ -275,8 +274,6 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
             if (hasPrefEmailField == false) {
 
                 if (each.emailTypeFieldLabel == contact.Preferred_Email__c || each.preferredLabel ==  contact.Preferred_Email__c) {  
-                    //contactEmailFieldModel = new MODL_ContactEmailField(each.emailTypeFieldApiName, each.emailTypeFieldLabel, each.preferredLabel, fieldValue);
-                    //preferredEmailFieldModel = contactEmailFieldModel;
                     hasPrefEmailField = true;
                     prefEmailFieldValue = fieldValue;
                 }
