@@ -823,8 +823,9 @@ private class CON_Preferred_Email_TEST {
         System.assertEquals('Alternate Email', insertedContactList[0].Preferred_Email__c);
         System.assertEquals(testContactList[1].AlternateEmail__c, insertedContactList[1].Email);
         System.assertEquals('Alternate Email', insertedContactList[1].Preferred_Email__c);
-
-
+        
+        // Clear the cache to make sure new value of Disable_Preferred_Email_Enforcement__c is retrieved 
+        MAPR_CON_PreferredEmailFields.preferredEmailFieldSettingsModel = null;
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );        

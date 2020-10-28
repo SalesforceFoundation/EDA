@@ -42,7 +42,8 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
     /***********************************************
     * @description preferredEmailFieldSettingsModel
     ***********************************************/
-    static MODL_PreferredEmailSettings preferredEmailFieldSettingsModel;
+    @TestVisible
+    private static MODL_PreferredEmailSettings preferredEmailFieldSettingsModel;
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
