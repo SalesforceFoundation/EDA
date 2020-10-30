@@ -342,6 +342,16 @@ flows:
                 options:
                     unmanaged: False
             4:
+                task: update_admin_profile
+                options:
+                    managed: True
+                    namespaced: True
+            5:
+                task: execute_qa_apex
+                options:
+                    managed: True
+                    namespaced: True
+            6:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
