@@ -54,6 +54,40 @@ tasks:
             path: unpackaged/config/spe
             namespace_inject: $project_config.project__package__namespace
 
+    deploy_workbench_translation_settings:
+        description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/workbench
+            unmanaged: True
+
+    deploy_translations:
+        description: Assigns languages and marks them as active.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/translations/
+            unmanaged: True
+
+    deploy_primary_affiliations_config:
+        description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test/primary_affiliations/pre
+            unmanaged: True
+            
+    deploy_trial_config:
+        description: Deploys metadata and configuration for TSOs.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        group: 'EDA: Trial'
+        ui_options:
+            name: Deploy Trial Metadata
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/trial
+
     assign_encryption_permset:
         group: 'Shield Platform Encryption'
         description: Assigns the Encryption permission set to the current user for Shield Platform Encryption testing.
@@ -79,6 +113,13 @@ tasks:
                 TDTM_Global_API.setTdtmConfig(TDTM_Global_API.getDefaultTdtmConfig(), 'hed');
                 STG_InstallScript.enablePreferredPhoneSync();
                 STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
+
+    execute_primary_affiliation_mapping_apex:
+        description: Runs anonymous apex for dev to configure and insert unmanaged Affiliation mappings.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                STG_UnmanagedInstall.mapAccountRecordTypesForAffiliationTesting();
 
     execute_qa_apex:
         description: Runs anonymous apex for qa to configure settings.
@@ -162,7 +203,16 @@ flows:
                 task: execute_install_apex
             4:
                 task: deploy_dev_config
-
+            5:
+                task: deploy_primary_affiliations_config
+            6:    
+                task: execute_primary_affiliation_mapping_apex
+            7: 
+                # execute tests in unmanaged package
+                task: run_tests 
+                options: 
+                    test_name_match: '%Unmanaged_TEST'
+                    
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
         steps:
@@ -267,6 +317,32 @@ flows:
                     namespaced: True
             3:
                 task: deploy_qa_config
+                options:
+                    unmanaged: False
+
+
+    translations:
+        description: Enables Translation workbench, platform language settings and sets languages as active.
+        steps:
+            1:
+                task: deploy_workbench_translation_settings
+            2:
+                task: deploy_translations
+
+    trial_org:
+        description: Deploy trial configuration to an org.
+        group: 'EDA: Trial'
+        steps:
+            1:
+                flow: dependencies
+            2:
+                task: install_managed
+            3:
+                task: deploy_post
+                options:
+                    unmanaged: False
+            4:
+                task: deploy_trial_config
                 options:
                     unmanaged: False
 

@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Agency__c</name>
+    <help>資格を提供または認定した機関。</help>
+    <relationshipLabel>特記事項</relationshipLabel>
+    <label>機関</label>
+  </fields>
+  <fields>
+    <name>Attribute_Type__c</name>
+    <help>資格の種類または学生の特記事項。</help>
+    <label>特記事項種別</label>
+    <picklistValues>
+      <masterLabel>Certification</masterLabel>
+      <translation>証明書</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Endorsement</masterLabel>
+      <translation>保証</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Licensure</masterLabel>
+      <translation>免許</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Accommodation</masterLabel>
+      <translation>宿泊施設</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Asylee</masterLabel>
+      <translation>亡命希望者</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Economically Disadvantaged</masterLabel>
+      <translation>経済的に恵まれない人</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>English Learners</masterLabel>
+      <translation>英語学習者</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Family Consideration</masterLabel>
+      <translation>家族の考慮事項</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Foster Care</masterLabel>
+      <translation>里親</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Free Lunch</masterLabel>
+      <translation>無料昼食</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Homeless</masterLabel>
+      <translation>ホームレス</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Immigrant</masterLabel>
+      <translation>移民</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>International Student</masterLabel>
+      <translation>留学生</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>その他</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Parent in Military</masterLabel>
+      <translation>親が軍に所属</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pregnant</masterLabel>
+      <translation>妊婦</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Reduced Price Lunch</masterLabel>
+      <translation>割引昼食</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Refugee</masterLabel>
+      <translation>難民</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Section 504 Handicapped</masterLabel>
+      <translation>第 504 条障害者</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>この特記事項が適用される個人。</help>
+    <relationshipLabel>特記事項</relationshipLabel>
+    <label>取引先責任者</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>資格または学生の特記事項に関する詳細。</help>
+    <label>説明</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>資格または特記事項の期限が切れる日付、または更新が必要になる日付</help>
+    <label>終了日</label>
+  </fields>
+  <fields>
+    <name>Expired__c</name>
+    <help>特記事項が期限切れになったかどうかを示します。[特記事項終了日] が過去の日付の場合、これが自動的にオンになります。</help>
+    <label>期限切れ</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>資格または特記事項の発行日。</help>
+    <label>開始日</label>
+  </fields>
+  <fields>
+    <name>Subject_Area__c</name>
+    <help>資格の対象の内容または主題領域。</help>
+    <label>主題領域</label>
+    <picklistValues>
+      <masterLabel>Biology</masterLabel>
+      <translation>生物学</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Career and Technical Education</masterLabel>
+      <translation>キャリアおよび技術教育</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Economics</masterLabel>
+      <translation>経済学</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>English Language Arts</masterLabel>
+      <translation>英語芸術</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fine and Performing Arts</masterLabel>
+      <translation>美術および舞台芸術</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Foreign Language</masterLabel>
+      <translation>外国語</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>History</masterLabel>
+      <translation>歴史学</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Life and Physical Sciences</masterLabel>
+      <translation>生命科学および自然科学</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mathematics</masterLabel>
+      <translation>数学</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>その他</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Physical, Health, and Safety Education</masterLabel>
+      <translation>体育、保健、安全教育</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Physics</masterLabel>
+      <translation>物理学</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Psychology</masterLabel>
+      <translation>心理学</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Science</masterLabel>
+      <translation>科学</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Social Studies</masterLabel>
+      <translation>社会科</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sociology</masterLabel>
+      <translation>社会学</translation>
+    </picklistValues>
+  </fields>
+  <recordTypes>
+    <name>Credential</name>
+    <label>資格</label>
+    <description>スタッフまたは学生が取得したライセンス、証明書、または保証を教育機関が追跡できるようにします。</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Student_Characteristic</name>
+    <label>学生の特徴</label>
+    <description>学生の教育に影響する可能性がある学生の重要な特徴を教育機関が追跡できるようにします。</description>
+  </recordTypes>
+  <layouts>
+    <layout>EDA Student Characteristic Layout</layout>
+    <sections>
+      <label>カスタムリンク</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <layouts>
+    <layout>EDA Credential Layout</layout>
+    <sections>
+      <label>カスタムリンク</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>特記事項名</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>特記事項名</label>
+  </standardFields>
+  <caseValues>
+    <plural>false</plural>
+    <value>属性</value>
+  </caseValues>
+</CustomObjectTranslation>

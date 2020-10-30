@@ -1,75 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Test --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Test --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The student who took the test. --></help>
-        <label><!-- Contact --></label>
-        <name>Contact__c</name>
-        <relationshipLabel><!-- Tests --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The date the test score is added to the system, either by manual upload or directly from an official source. --></help>
-        <label><!-- Date Received --></label>
-        <name>Date_Received__c</name>
-    </fields>
-    <fields>
-        <help><!-- Indicates whether the applicant or an official source reported this test. --></help>
-        <label><!-- Source --></label>
-        <name>Source__c</name>
-        <picklistValues>
-            <masterLabel>Official</masterLabel>
-            <translation><!-- Official --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Self Reported</masterLabel>
-            <translation><!-- Self Reported --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help><!-- The date the applicant or official source indicates the test was started. --></help>
-        <label><!-- Test Date --></label>
-        <name>Test_Date__c</name>
-    </fields>
-    <fields>
-        <help><!-- The formal name for the test taken. --></help>
-        <label><!-- Test Type --></label>
-        <name>Test_Type__c</name>
-        <picklistValues>
-            <masterLabel>ACT</masterLabel>
-            <translation><!-- ACT --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GMAT</masterLabel>
-            <translation><!-- GMAT --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GRE</masterLabel>
-            <translation><!-- GRE --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SAT</masterLabel>
-            <translation><!-- SAT --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>TOEFL</masterLabel>
-            <translation><!-- TOEFL --></translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Test Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Test Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Contact__c</name>
+    <help>L’alumne que ha fet la prova.</help>
+    <relationshipLabel>Proves</relationshipLabel>
+    <label>Contacte</label>
+  </fields>
+  <fields>
+    <name>Date_Received__c</name>
+    <help>La data en què s’afegeix la puntuació de la prova al sistema, ja sigui mitjançant una càrrega manual o directament des d’una font oficial.</help>
+    <label>Data de recepció</label>
+  </fields>
+  <fields>
+    <name>Source__c</name>
+    <help>Indica si va informar d'aquesta prova el sol·licitant o una font oficial.</help>
+    <label>Font</label>
+    <picklistValues>
+      <masterLabel>Self Reported</masterLabel>
+      <translation>Autoinformat</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Official</masterLabel>
+      <translation>Oficial</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Test_Date__c</name>
+    <help>La data en què el sol·licitant o la font oficial indiquen que es va iniciar la prova.</help>
+    <label>Data de la prova</label>
+  </fields>
+  <fields>
+    <name>Test_Type__c</name>
+    <help>El nom formal de la prova realitzada.</help>
+    <label>Tipus de prova</label>
+    <picklistValues>
+      <masterLabel>SAT</masterLabel>
+      <translation>SAT</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>ACT</masterLabel>
+      <translation>ACT</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>GRE</masterLabel>
+      <translation>GRE</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>GMAT</masterLabel>
+      <translation>GMAT</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>TOEFL</masterLabel>
+      <translation>TOEFL</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>EDA Test Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de la prova</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de la prova</label>
+  </standardFields>
 </CustomObjectTranslation>

@@ -1,0 +1,72 @@
+{
+    "product": {
+        "title": {
+            "message": "Education Data Architecture (EDA)",
+            "description": "name of product"
+        },
+        "short_description": {
+            "message": "De basis voor de verbonden campus",
+            "description": "tagline of product"
+        },
+        "description": {
+            "message": "## Welkom bij het EDA-installatieprogramma!\r\n\r\nBedankt voor het installeren van EDA. Ga naar het [Education Data Architecture-onderwerp](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) in de Power of Us Hub als u vragen hebt over EDA.",
+            "description": "shown on product detail page (markdown)"
+        },
+        "click_through_agreement": {
+            "message": "De Education Data Architecture-technologie (\"EDA\") is een open-source pakket dat is gelicentieerd door Salesforce.org (\"SFDO\") volgens de BSD-3-clausulelicentie, die men aantreft op [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause). ELKE HOOFDABONNEMENTSOVEREENKOMST (\"MASTER SUBSCRIPTION AGREEMENT\") DIE U OF UW ENTITEIT MOGELIJK HEEFT MET SFDO, IS NIET VAN TOEPASSING OP UW GEBRUIK VAN EDA. EDA wordt geleverd \"AS IS\" EN ZOALS BESCHIKBAAR, WAARBIJ SFDO GEEN ENKELE GARANTIE OF WAARBORG GEEFT MET BETREKKING TOT EDA, NOCH EXPLICIET, NOCH IMPLICIET, VAN RECHTSWEGE OF ANDERS, INCLUSIEF, DOCH NIET BEPERKT TOT, ALLE IMPLICIETE GARANTIES VAN VERKOOPBAARHEID, GESCHIKTHEID VOOR EEN BEPAALD DOEL, VRIJ ZIJN VAN DEFECTEN OF NIET-INBREUK, MET INACHTNEMING VAN DE MAXIMALE DOOR DE VAN TOEPASSING ZIJNDE WET TOEGESTANE OMVANG.\r\n\r\nSFDO TREFT GEEN AANSPRAKELIJKHEID VOORTVLOEIEND UIT OF GERELATEERD AAN UW GEBRUIK VAN EDA VOOR ENIGE DIRECTE SCHADE OF VOOR ENIGE GEDERFDE WINSTEN, OMZETTEN, GOODWILL OF INDIRECTE, SPECIALE, INCIDENTELE, VOORTVLOEIENDE, VOORBEELD-, DEKKINGS-, BEDRIJFSONDERBREKINGS- OF ALS STRAF OPGELEGDE SCHADE, ONGEACHT OF EEN ACTIE PLAATSVINDT IN CONTRACT OF ALS ONRECHTMATIGE DAAD EN ONGEACHT ENIGE AANSPRAKELIJKHEIDSTHEORIE, ZELFS INDIEN OP DE HOOGTE GEBRACHT VAN DE MOGELIJKHEID VAN DERGELIJKE SCHADE, OF ALS EEN OPLOSSING ANDERSZINS MISLUKT OF NIET SLAAGT IN ZIJN OORSPRONKELIJKE OPZET. DE VOORAFGAANDE AFWIJZING VAN AANSPRAKELIJKHEID IS NIET VAN TOEPASSING IN DE MATE ZOALS VERBONDEN DOOR DE WET. SFDO WIJST ALLE AANSPRAKELIJKHEID EN VERPLICHTINGEN TOT SCHADELOOSSTELLING AF VOOR ALLE NADEEL OF SCHADE VEROORZAAKT DOOR ALLE OF ENIGE EXTERNE HOSTINGPROVIDERS.",
+            "description": "legal text shown in modal dialog"
+        },
+        "error_message": {
+            "message": "Als u een probleem met de installatie ervaart, plaatst u een bericht in de [Power of Us Hub](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture).",
+            "description": "shown after failed installation (markdown)"
+        }
+    },
+    "plan:install": {
+        "title": {
+            "message": "Installeren",
+            "description": "title of installation plan"
+        }
+    },
+    "steps": {
+        "EDA - Account Record Types": {
+            "message": "EDA - Recordtypen: account",
+            "description": "title of installation step"
+        },
+        "EDA - Contact Key Affiliation Fields": {
+            "message": "EDA - Belangrijkste affiliatievelden contactpersoon",
+            "description": "title of installation step"
+        },
+        "Install {product} {version}": {
+            "message": "{product} {version} installeren",
+            "description": "title of installation step"
+        },
+        "EDA - Case Behavior Record Types": {
+            "message": "EDA - Recordtypen: casegedrag",
+            "description": "title of installation step"
+        },
+        "EDA - Course Connection Record Types": {
+            "message": "EDA - Recordtypen: cursusverbinding",
+            "description": "title of installation step"
+        },
+        "EDA - Facility Display Name Formula Field": {
+            "message": "EDA - Formuleveld weergavenaam faciliteit",
+            "description": "title of installation step"
+        },
+        "Deploy Einstein Analytics Templates": {
+            "message": "Einstein Analytics-sjablonen implementeren",
+            "description": "title of installation step"
+        }
+    },
+    "plan:ra_einstein_template": {
+        "title": {
+            "message": "Analysesjabloon voor Education Cloud-werving installeren",
+            "description": "title of installation plan"
+        }
+    },
+    "checks": {
+        "Einstein Analytics permission sets are not available.": {
+            "message": "De Einstein Analytics-machtigingensets zijn niet beschikbaar.",
+            "description": "shown if validation fails"
+        }
+    }
+}

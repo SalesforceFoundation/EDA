@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Billing_County__c</name>
+    <label>Land (Rechnungsanschrift)</label>
+  </fields>
+  <fields>
+    <name>Current_Address__c</name>
+    <help>Verweis auf den aktuellen Adressdatensatz dieses Accounts. Das Feld "Rechnungsanschrift" des Accounts wird mit den Adressfeldern im aktuellen Adressdatensatz aufgefüllt.</help>
+    <relationshipLabel>Accounts (Aktuelle Adresse)</relationshipLabel>
+    <label>Aktuelle Adresse</label>
+  </fields>
+  <fields>
+    <name>Primary_Contact__c</name>
+    <help>Der Hauptansprechpartner für einen Haushalt- oder Verwaltungs-Account.</help>
+    <relationshipLabel>Account</relationshipLabel>
+    <label>Hauptansprechpartner</label>
+  </fields>
+  <fields>
+    <name>School_Code__c</name>
+    <help>Ein Code, der eine Bildungseinrichtung anhand von in Ihrer Region anerkannten Standards eindeutig identifiziert.</help>
+    <label>Code der Bildungseinrichtung</label>
+  </fields>
+  <fields>
+    <name>Shipping_County__c</name>
+    <label>Land (Lieferanschrift)</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Organization Layout</layout>
+    <sections>
+      <label>Felder</label>
+      <section>Fields</section>
+    </sections>
+    <sections>
+      <label>Adresse</label>
+      <section>Address</section>
+    </sections>
+    <sections>
+      <label>Beschreibung</label>
+      <section>Description</section>
+    </sections>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <layouts>
+    <layout>HEDA Household Layout</layout>
+    <sections>
+      <label>Felder</label>
+      <section>Fields</section>
+    </sections>
+    <sections>
+      <label>Adresse</label>
+      <section>Address</section>
+    </sections>
+    <sections>
+      <label>Beschreibung</label>
+      <section>Description</section>
+    </sections>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+</CustomObjectTranslation>
