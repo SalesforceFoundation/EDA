@@ -6,10 +6,14 @@
   </types>
   <types>
     <members>Contact-ca</members>
+    <members>Contact-de</members>
     <members>Contact-en_GB</members>
     <members>Contact-es_MX</members>
     <members>Contact-es</members>
+    <members>Contact-fi</members>
     <members>Contact-fr</members>
+    <members>Contact-ja</members>
+    <members>Contact-nl_NL</members>
     <name>CustomObjectTranslation</name>
   </types>
   <version>48.0</version>

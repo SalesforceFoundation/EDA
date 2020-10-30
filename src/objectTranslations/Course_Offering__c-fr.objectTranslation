@@ -1,63 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Choix de module</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Choix de modules</value>
-    </caseValues>
-    <fields>
-        <label>Capacité</label>
-        <name>Capacity__c</name>
-    </fields>
-    <fields>
-        <label>Modules</label>
-        <name>Course__c</name>
-        <relationshipLabel>Choix de modules</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Date de fin</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>L&apos;établissement associé à cette offre de cours.</help>
-        <label>Établissement</label>
-        <name>Facility__c</name>
-        <relationshipLabel>Choix de modules</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Professeur principal</label>
-        <name>Faculty__c</name>
-        <relationshipLabel>Choix de modules</relationshipLabel>
-    </fields>
-    <fields>
-        <label>ID de section</label>
-        <name>Section_ID__c</name>
-    </fields>
-    <fields>
-        <label>Date de début</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <label>Période</label>
-        <name>Term__c</name>
-        <relationshipLabel>Choix de modules</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Bloc de temps</label>
-        <name>Time_Block__c</name>
-        <relationshipLabel>Blocs de temps</relationshipLabel>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Course Offering Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;offre de cours</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
+  <fields>
+    <name>Capacity__c</name>
+    <help>Le nombre maximum d'étudiants pour cette offre de cours.</help>
+    <label>Capacité</label>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Cours</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>La date de la dernière session de cette offre de cours.</help>
+    <label>Date de fin</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>La structure dans laquelle cette offre de cours est dispensée.</help>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Structure</label>
+  </fields>
+  <fields>
+    <name>Faculty__c</name>
+    <help>Référence à l'instructeur principal de cette offre de cours.</help>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Professeur principal</label>
+  </fields>
+  <fields>
+    <name>Section_ID__c</name>
+    <help>L'ID de section de cette offre de cours. Il est généralement utilisé lorsqu'un cours offre plusieurs sections une période scolaire unique.</help>
+    <label>ID de section</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>La date de la première session de cette offre de cours.</help>
+    <label>Date de début</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Période scolaire</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Bloc de temps</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Offering Layout</layout>
+    <sections>
+      <label>Liens personnalisés</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>ID d'offre de cours</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>ID d'offre de cours</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <startsWith>Vowel</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Choix de module</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Choix de modules</value>
+  </caseValues>
 </CustomObjectTranslation>

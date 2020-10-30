@@ -169,6 +169,40 @@ public with sharing class UTIL_Describe_TEST {
         System.assertEquals(Util_Describe_API.getRecTypesMapByDevName('Account').values()[1], testCustomAdminAccRecTypeId);
     }
 
+    /***********************************************************************************************
+    * @description Test to verify that getRecordTypeInfoByDeveloperName() does not return null when
+    * there are no Account record types assigned and a valid Record Type is used.
+    ***********************************************************************************************/
+    @isTest 
+    private static void getRecordTypeInfoByDevNameStandardUserPositive(){
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
+
+        System.runAs(stdUser){
+            Test.startTest();
+            Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByDeveloperName('Account', 'Academic_Program');
+            Test.stopTest();
+
+            System.assertEquals(true, recTypeInfo != null, 'Should retrieve record type info for valid record type even when Account record types are not assigned.');
+        }
+    }
+
+    /***********************************************************************************************
+    * @description Test to verify that getRecordTypeInfoByDeveloperName() returns null when
+    * there are no Account record types assigned and an invalid Record Type is used.
+    ***********************************************************************************************/
+    @isTest 
+    private static void getRecordTypeInfoByDevNameStandardUserNegative(){
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
+
+        System.runAs(stdUser){
+            Test.startTest();
+            Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByName('Account', 'test only rec type');
+            Test.stopTest();
+            
+            System.assertEquals(true, recTypeInfo == null, 'Should not retrieve record type info for invalid record type when Account record types are not assigned.');
+        }
+    }
+
      // Positive test for getRecordTypeInfoByDevName
     @isTest
     private static void getRecordTypeInfoByDevNamePositiveTest() {
@@ -189,6 +223,39 @@ public with sharing class UTIL_Describe_TEST {
         System.assert(recTypeInfo == null);
     }
 
+    /***********************************************************************************************
+    * @description Test to verify that getRecordTypeInfoByName() does not return null when
+    * there are no Account record types assigned and an invalid Record Type is used.
+    ***********************************************************************************************/    
+    @isTest
+    private static void getRecordTypeInfoByNameStandardUserPositive() {
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
+
+        System.runAs(stdUser){
+            Test.startTest();
+            Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByName('Account', 'Academic Program');
+            Test.stopTest();
+
+            System.assertEquals(true, recTypeInfo != null, 'Should retrieve record type info for valid record type even if not assigned.');
+        }
+    }
+ 
+    /***********************************************************************************************
+    * @description Test to verify that getRecordTypeInfoByName() returns null when
+    * there are no Account record types assigned and an invalid Record Type is used.
+    ***********************************************************************************************/
+    @isTest
+    private static void getRecordTypeInfoByNameStandardUserNegative() {
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
+
+        System.runAs(stdUser){
+            Test.startTest();
+            Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByName('Account', 'test only rec type');
+            Test.stopTest();
+            System.assertEquals(true, recTypeInfo == null, 'Should not retrieve record type info for invalid record type even if not assigned.');
+        }
+    }
+
     // Positive test for getRecordTypeInfoByName
     @isTest
     private static void getRecordTypeInfoByNamePositiveTest() {
@@ -207,6 +274,22 @@ public with sharing class UTIL_Describe_TEST {
             Schema.RecordTypeInfo recTypeInfo = Util_Describe.getRecordTypeInfoByName('Account', 'test only rec type');
         Test.stopTest();
         System.assert(recTypeInfo == null);
+    }
+
+    @isTest
+    private static void populateRecordTypeInfoForSObjectStandardUser() {
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
+
+        System.runAs(stdUser){
+            Test.startTest();
+            Util_Describe.populateRecordTypeInfoForSObject('Contact');
+            Test.stopTest();
+
+            Schema.RecordTypeInfo recTypeInfoByDevName = Util_Describe.getRecordTypeInfoByDeveloperName('Account', 'Academic_Program');
+            Schema.RecordTypeInfo recTypeInfoByName = Util_Describe.getRecordTypeInfoByName('Account', 'Academic Program');
+            System.assertEquals(true, recTypeInfoByDevName != null, 'Should retrieve info for valid record type even when Account Record Types not assigned to profile.');
+            System.assertEquals(true, recTypeInfoByName != null, 'Should retrieve info for valid record type even when Account Record Types not assigned to profile.');
+        }
     }
 
     // Test method for populateRecordTypeInfoForSObject

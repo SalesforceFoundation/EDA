@@ -143,6 +143,30 @@ public class UTIL_UnitTestData_TEST {
         return u;
     }
 
+    /****************************************************************************************
+    * @description Creates a user record assigned to the Standard User profile.
+    * @return A user record assigned to the Standard User profile.
+    ****************************************************************************************/
+    public static User getStandardUser(){
+        Profile stdUserProfile = [SELECT Id 
+                                  FROM Profile 
+                                  WHERE Name = 'Standard User'];
+
+        String uniqueUserName = 'standardUser' + DateTime.now().getTime() + '@test.com';
+
+        User stdUser = new User(Alias = 'stdUsr', 
+                                Email = 'standardUser@test.com',
+                                EmailEncodingKey = 'UTF-8', 
+                                LastName = 'Testing', 
+                                LanguageLocaleKey = 'en_US',
+                                LocaleSidKey ='en_US', 
+                                ProfileId = stdUserProfile.Id,
+                                TimeZoneSidKey = 'America/Los_Angeles',
+                                UserName = uniqueUserName);
+
+        return stdUser;
+    }
+
     /*********************************************************************************************************
     * @description Initializes (but not inserts) N new Address objects.
     * @param addrCount the number of Address objects to create
@@ -370,6 +394,16 @@ public class UTIL_UnitTestData_TEST {
     public static Error__c getError() {
         Error__c error = new Error__c(Datetime__c = System.now());
         return error;
+    }
+
+    /*********************************************************************************************************
+    * @description Returns an instance Education History record
+    * @Param contactId id of the Contact record
+    * @return eduHistory The instance of education history record
+    **********************************************************************************************************/
+    public static Education_History__c getEduHistory(Id accId, Id contactId) {
+        Education_History__c eduHistory = new Education_History__c(Account__c = accId, Contact__c = contactId);
+        return eduHistory;
     }
 
     /*********************************************************************************************************
