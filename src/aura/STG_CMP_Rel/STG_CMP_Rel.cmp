@@ -6,7 +6,7 @@
     <aura:attribute name="Id" type="String" />
     <aura:attribute name="noRecSettings" type="String" />
     <aura:attribute name="noAutoCreateSettings" type="String" />
-    <aura:attribute name="reciprocalMethodOptions" type="String[]" default="List Setting,Value Inversion"/>
+	<aura:attribute name="reciprocalMethodOptions" type="String[]" default=""/>
 
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
