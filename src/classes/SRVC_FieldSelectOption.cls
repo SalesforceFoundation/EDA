@@ -28,20 +28,49 @@ public virtual with sharing class SRVC_FieldSelectOption {
     }
 
     /**
+     * @description Generate a list of models representing the metadata for each value of a specified picklist field.
+     * @param  objectAPIName A string representing the API name of the Object to describe
+     * @param  fieldAPIName  A string representing the API name of a picklist Field on the object to describe
+     * @return A list of FieldSelectOption models representing each value of a specified picklist field
+     */
+    public List<VMDL_FieldSelectOption> getViewModelForFieldOnObject(String objectAPIName, String fieldAPIName){
+        List<VMDL_FieldSelectOption> sObjectViewModelList = new List<VMDL_FieldSelectOption>();
+        // returns a list of sObjectDescribe models - which in this case if size = 1 (Contact)
+        List<MODL_DescribeSObject> sObjectModelList = SRVC_Schema.getInstance().getSObjectDescribeModelByApiNameList(new List<String>{objectAPIName});
+
+        for (MODL_DescribeSObject sObjModel : sObjectModelList){
+            // get fields
+            Map<String, Schema.SObjectField> objectFieldsByName = sObjModel.sObjectDescribeResult.fields.getMap();
+
+            // get schema for desired field
+            Schema.SObjectField sObjectField = objectFieldsByName.get(fieldAPIName);
+            Schema.DescribeFieldResult sObjectFieldDescribeResult = sObjectField.getDescribe(); // assuming we already know this is a picklist field
+
+            List<Schema.PicklistEntry> picklistEntryValuesList = sObjectFieldDescribeResult.getPicklistValues();
+            for (Schema.PicklistEntry picklistValue : picklistEntryValuesList){
+                // create view model for picklist entry
+                VMDL_FieldSelectOption fieldOptionViewMdl = new VMDL_FieldSelectOption(
+                    picklistValue.getValue(), 
+                    picklistValue.getLabel(),
+                    picklistValue.isActive()
+                );
+
+                sObjectViewModelList.add(fieldOptionViewMdl);
+            }
+        }
+
+        return sObjectViewModelList;
+    }
+
+    /**
     * @description Method to get view models specified by controller
     */
-    public List<VMDL_FieldSelectOption> getViewModelsFromApiNameList(
-            List<String> apiNameList
-    ) {
-        List<MODL_DescribeSObject> sObjectModelList = 
-            SRVC_Schema.getInstance().getSObjectDescribeModelByApiNameList(
-                apiNameList
-            );
+    public List<VMDL_FieldSelectOption> getViewModelsFromApiNameList(List<String> apiNameList) {
+        List<MODL_DescribeSObject> sObjectModelList = SRVC_Schema.getInstance().getSObjectDescribeModelByApiNameList(apiNameList);
 
-        List<VMDL_FieldSelectOption> sObjectViewModelList =
-            new List<VMDL_FieldSelectOption>();
+        List<VMDL_FieldSelectOption> sObjectViewModelList = new List<VMDL_FieldSelectOption>();
 
-        for(MODL_DescribeSObject sObjectModel : sObjectModelList) {
+        for (MODL_DescribeSObject sObjectModel : sObjectModelList) {
             VMDL_FieldSelectOption sObjectViewModel = 
                 new VMDL_FieldSelectOption(
                     sObjectModel.apiName,
@@ -68,6 +97,12 @@ public virtual with sharing class SRVC_FieldSelectOption {
             this.value = value;
             this.label = label;
             this.isValid = true;
+        }
+
+        public VMDL_FieldSelectOption(String value, String label, Boolean isValid) {
+            this.value = value;
+            this.label = label;
+            this.isValid = isValid;
         }
 
         /**
