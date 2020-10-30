@@ -1,4 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%HEDA_Facility_Compact_Layout</members>
+        <members>Account.%%%NAMESPACE%%%HEDA_Account_Compact_Layout</members>
+        <members>Contact.%%%NAMESPACE%%%HEDA_Contact_Compact_Layout</members>
+        <name>CompactLayout</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%HEDA</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Error__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>HasCustomAdministrativeAccountNaming</members>
+        <members>HasCustomHouseholdAccountNaming</members>
+        <members>HasDefaultAdministrativeAccountModel</members>
+        <members>HasDefaultHouseholdAccountModel</members>
+        <members>HasEDAInactiveTDTM</members>
+        <members>HasUserManagedTDTM</members>
+        <members>HasValueInversionReciprocalMethod</members>
+        <members>IsEnabled_AutomaticHouseholdNaming</members>
+        <members>IsEnabled_CourseConnections</members>
+        <members>IsEnabled_ErrorHandling</members>
+        <members>IsEnabled_StoreErrors</members>
+        <members>UsingOldContactEthnicity</members>
+        <members>UsingOldCourseDescription</members>
+        <name>FeatureParameterBoolean</name>
+    </types>
+    <types>
+        <members>Data_CountAdministrativeAccounts</members>
+        <members>Data_CountCampaignMemberRelationshipRules</members>
+        <members>Data_CountContactRelationshipRules</members>
+        <members>Data_CountCourseConnections</members>
+        <members>Data_CountCourseOfferingSchedules</members>
+        <members>Data_CountErrorLog</members>
+        <members>Data_CountFacilities</members>
+        <members>Data_CountHouseholdAccounts</members>
+        <members>Data_CountPlanRequirements</members>
+        <members>Data_CountProgramPlans</members>
+        <members>Data_CountTermGrades</members>
+        <members>Org_CountActiveCourseConnectionRecordTypes</members>
+        <name>FeatureParameterInteger</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c-%%%NAMESPACE%%%HEDA Course Offering Layout</members>
+        <members>%%%NAMESPACE%%%Facility__c-%%%NAMESPACE%%%HEDA Facility Layout</members>
+        <members>%%%NAMESPACE%%%Program_Enrollment__c-%%%NAMESPACE%%%HEDA Program Enrollment Layout</members>
+        <members>Account-%%%NAMESPACE%%%HEDA Household Layout</members>
+        <members>Account-%%%NAMESPACE%%%HEDA Organization Layout</members>
+        <members>Contact-%%%NAMESPACE%%%HEDA Contact Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%All</members>
+        <members>Account.All_Accounts</members>
+        <members>Contact.All_Contacts</members>
+        <name>ListView</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>PT1_profilePasswordPolicy1604015877434</members>
+        <name>ProfilePasswordPolicy</name>
+    </types>
+    <types>
+        <members>PT1_profileSessionSetting1604015877561</members>
+        <name>ProfileSessionSetting</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.Default</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.Faculty</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.Student</members>
+        <name>RecordType</name>
+    </types>
     <version>48.0</version>
 </Package>
