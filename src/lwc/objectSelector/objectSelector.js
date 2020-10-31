@@ -11,15 +11,15 @@ import objectSelectComboboxPlaceholder from '@salesforce/label/c.objectSelectCom
 
 export default class ObjectSelector extends LightningElement {
     // parameters will be passed in from the parent component - hardcoding for testing only
-    @api objectAPIName = 'Contact';
-    @api fieldAPIName = 'Country_of_Origin__c';
+    @api objectApiName = 'Contact';
+    @api fieldApiName = 'Country_of_Origin__c';
 
-    value = 'settingsValue';
+    selectedComboBoxValue = 'settingsValue';
 
     // load picklist field options based on object and field API names
     @wire(getPickListOptions, {
-        objectAPIName: '$objectAPIName', 
-        fieldAPIName: '$fieldAPIName',
+        objectAPIName: '$objectApiName', 
+        fieldAPIName: '$fieldApiName',
     }) wiredPicklistViewModel;
         // ({ error, data}){
         //     if (data){
@@ -29,9 +29,6 @@ export default class ObjectSelector extends LightningElement {
         //         console.log('error retrieving picklist values');
         //     }
         // };
-
-    //This can use an API to pull the information from the parent component
-    //@wire(getFieldSelectOptions, {apiNameList: ['Contact']}) viewModel;
 
     //This label reference object lets us embed labels
     labelReference = {
@@ -63,6 +60,11 @@ export default class ObjectSelector extends LightningElement {
 
     //This would kick off a new event to a parent component.
     handleComboboxChange(event) {
-        this.value = event.detail.value;
+        this.selectedComboBoxValue = event.detail.value;
+        console.log('Selected item: ' + this.selectedComboBoxValue);
+
+        this.dispatchEvent(new CustomEvent('picklistItemSelected', {
+            detail: {selectedItem: this.selectedComboBoxValue}
+        }));
     }
 }

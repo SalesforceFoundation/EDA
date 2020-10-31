@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForAllPageTypes, force:hasRecordId">
+    <aura:attribute name='objectAPIName' type="String" default="Contact"/>
+    <aura:attribute name='fieldAPIName' type="String" default='Gender__c'/>
+    <aura:attribute name='selectedItem' type='String' />
+    
+    <h1>Lightning Component Parent</h1>
+    <c:objectSelector objectAPIName="{!v.objectAPIName}" fieldAPIName="{!v.fieldAPIName}" onpicklistItemSelected="{!c.handlePicklistItemSelected}"/>
+
+</aura:component>	
