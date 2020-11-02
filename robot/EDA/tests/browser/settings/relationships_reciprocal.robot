@@ -8,7 +8,9 @@ Suite Setup     Run keywords
 ...             Go to EDA settings tab          Relationships      AND
 ...             Go to relationships sub tab     Reciprocal Settings     AND
 ...             Initialize test data
-Suite Teardown  Capture screenshot and delete records and close browser
+Suite Teardown  Run Keywords
+...             Delete inserted data        AND
+...             Capture screenshot and delete records and close browser
 
 Test Setup      Run keywords
 ...             Go to EDA settings tab          Relationships      AND
@@ -20,6 +22,21 @@ Initialize test data
     ...                         upon login and returns the count
     ${settings_count} =         Get total settings count
     Set Suite Variable          ${settings_count}
+
+Delete inserted data
+    [Documentation]             Validates reciprocal settings can be deleted. Also checks if those
+    ...                         values are retained after save. This test is added to clean the data
+    ...                         so this suite runs clean on every run.
+    Go to EDA settings tab          Relationships
+    Go to relationships sub tab     Reciprocal Settings
+    Click action button on EDA settings page    Edit
+    Click delete setting icon       Name=Name1
+    Handle alert
+    Sleep       1
+    Verify setting deleted          True        Name=Name1
+    Click action button on EDA settings page    Save
+    Scroll web page
+    Verify setting removed          Name=Name1
 
 *** Test Cases ***
 Verify reciprocal relationship settings can be added in both read and edit mode
@@ -111,17 +128,3 @@ Verify existing reciprocal setting can be edited and values retained on save
     ...                                    Female=Female1
     ...                                    Male=Male1
     ...                                    Neutral=Neutral1
-
-Verify reciprocal relationship settings can be deleted to clean data
-    [Documentation]         Validates reciprocal settings can be deleted. Also checks if those
-    ...                     values are retained after save. This test is added to clean the data
-    ...                     so this suite runs clean on every run.
-    [tags]                    unstable        rbt:high
-    Click action button on EDA settings page    Edit
-    Click delete setting icon       Name=Name1
-    Handle alert
-    Sleep       1
-    Verify setting deleted          True        Name=Name1
-    Click action button on EDA settings page    Save
-    Scroll web page
-    Verify setting removed          Name=Name1
