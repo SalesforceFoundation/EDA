@@ -38,8 +38,6 @@ export default class ObjectSelector extends LightningElement {
     };
 
     get comboboxOptions() {
-        console.log('Getting picklist for object....... ');
-
         if(!this.wiredPicklistViewModel.data) {
             return null;
         }
@@ -58,12 +56,11 @@ export default class ObjectSelector extends LightningElement {
         // return this.wiredPicklistViewModel.data.fieldSelectOptions;
     }
 
-    //This would kick off a new event to a parent component.
+    //pass the selected combobox value to the parent component
     handleComboboxChange(event) {
         this.selectedComboBoxValue = event.detail.value;
-        console.log('Selected item: ' + this.selectedComboBoxValue);
 
-        this.dispatchEvent(new CustomEvent('picklistItemSelected', {
+        this.dispatchEvent(new CustomEvent('picklistitemselected', {
             detail: {selectedItem: this.selectedComboBoxValue}
         }));
     }
