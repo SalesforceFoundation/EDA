@@ -748,8 +748,8 @@ private class CON_Preferred_Email_TEST {
 
         System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should be cleared');
         System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should be cleared');
-        System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should be cleared');
-        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c, 'Alternate Email should be cleared');
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c, 'Preferred Email should be cleared');
         
     }
 
