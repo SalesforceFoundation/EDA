@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <help>De organisatie waarmee deze persoon is geaffilieerd.</help>
+    <relationshipLabel>Geaffilieerde contactpersonen</relationshipLabel>
+    <label>Organisatie</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Type__c</name>
+    <help>Recordtype van de geaffilieerde account, bijvoorbeeld academische afdeling of sportorganisatie (alleen-lezen).</help>
+    <label>Affiliatietype</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>De persoon die met deze organisatie is geaffilieerd.</help>
+    <relationshipLabel>Geaffilieerde accounts</relationshipLabel>
+    <label>Contactpersoon</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Informatie over hoe de persoon en organisatie geaffilieerd zijn.</help>
+    <label>Beschrijving</label>
+  </fields>
+  <fields>
+    <name>EndDate__c</name>
+    <help>De datum dat deze affiliatie is geëindigd of zal eindigen.</help>
+    <label>Einddatum</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Geeft aan of dit de hoofdaffiliatie is voor deze persoon. Indien geselecteerd, wordt de organisatienaam opgeslagen in het relevante veld Primaire affiliatie op de contactpersoonrecord.</help>
+    <label>Primair</label>
+  </fields>
+  <fields>
+    <name>Role__c</name>
+    <help>De rol die deze persoon bij de organisatie heeft.</help>
+    <label>Rol</label>
+    <picklistValues>
+      <masterLabel>Student</masterLabel>
+      <translation>Student</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Prospect</masterLabel>
+      <translation>Mogelijke kandidaat</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Applicant</masterLabel>
+      <translation>Aanvrager</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faculty</masterLabel>
+      <translation>Staflid</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employee</masterLabel>
+      <translation>Werknemer</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>StartDate__c</name>
+    <help>De datum waarop deze persoon geaffilieerd raakte met deze organisatie.</help>
+    <label>Begindatum</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Geeft aan of dit een huidige of voormalige affiliatie is.</help>
+    <label>Status</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Huidig</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Voormalig</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Affiliation Layout</layout>
+    <sections>
+      <label>Affiliatiegegevens</label>
+      <section>Affiliation Information</section>
+    </sections>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Affiliatiesleutel</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Affiliatiesleutel</label>
+  </standardFields>
+</CustomObjectTranslation>

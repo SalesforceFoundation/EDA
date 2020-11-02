@@ -1,0 +1,72 @@
+{
+    "product": {
+        "title": {
+            "message": "Education Data Architecture (EDA)",
+            "description": "name of product"
+        },
+        "short_description": {
+            "message": "La Fundació per al Campus Connectat",
+            "description": "tagline of product"
+        },
+        "description": {
+            "message": "## Us donem la benvinguda al programa d'instal·lacio d'EDA.\r\n\r\nGràcies per instal·lar EDA. Visiteu el [Education Data Architecture topic](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) que trobareu al  Power of Us Hub si teniu qualsevol pregunta sobre EDA.",
+            "description": "shown on product detail page (markdown)"
+        },
+        "click_through_agreement": {
+            "message": "La tecnologia Education Data Architecture (\"EDA\") és un paquet de codi obert amb la llicència de Salesforce.org (\"SFDO\") sota la llicència BSD-3 Clause License, que es pot trobar a [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause). QUALSEVOL ACORD DE SUBSCRIPCIÓ PRINCIPAL QUE VÓS O LA VOSTRA ENTITAT PUGUEU TENIR AMB SFDO NO S’APLICA A L’ÚS D'EDA. EDA ES PROPORCIONA \"COM ÉS\" I COM ESTÀ DISPONIBLE, I SFDO NO OFEREIX CAP GARANTIA DE CAP MENA EN RELACIÓ AMB EDA, SIGUI EXPRESSA, IMPLÍCITA, ESTATUTÀRIA O D'UNA ALTRA MENA, INCLOSES, ENTRE D'ALTRES, TOTES LES GARANTIES IMPLÍCITES DE COMERCIALITZACIÓ, D'ADEQUACIÓ PER A UNA FINALITAT DETERMINADA, D'ABSÈNCIA DE DEFECTES I DE NO INFRACCIÓ, EN LA MESURA DEL QUE PERMET LA LLEI APLICABLE.\r\n\r\nSFDO NO ASSUMEIX CAP RESPONSABILITAT RELACIONADA AMB L’ÚS D'EDA PER QUALSEVOL DANY DIRECTE O PER PÈRDUES DE BENEFICIS, INGRESSOS, REPUTACIÓ O PER PÈRDUES INDIRECTES, ESPECIALS, INCIDENTALS, CONSEQÜENTS, EXEMPLARS, DE COBERTURA, INTERRUPCIÓ EMPRESARIAL O DANYS PUNITIUS, SIGUI UNA ACCIÓ QUE ES TROBA EN CONTRACTE O SIGUI DELICTUOSAMENT I INDEPENDENTMENT DE LA TEORIA DE LA RESPONSABILITAT ESTÀ EN CONTRACTE O TORT I SENYOR DE LA TEORIA DE LA RESPONSABILITAT, FINS I TOT SI SE L'INFORMA DE LA POSSIBILITAT D’AQUESTS DANYS O SI UN RECURS NO COMPLEIX LA SEVA FINALITAT ESSENCIAL. L’EXEMPCIÓ DE RESPONSABILITAT ANTERIOR NO S’APLICARÀ EN LA MESURA PROHIBIDA PER LA LLEI. SFDO DECLINA TOTA OBLIGACIÓ DE RESPONSABILITAT I INDEMNITZACIÓ PER QUALSEVOL DANY O PERJUDICI CAUSATS PER TERCERS PROVEÏDORS D’ALLOTJAMENT.",
+            "description": "legal text shown in modal dialog"
+        },
+        "error_message": {
+            "message": "Si teniu algun problema amb la instal·lació, publiqueu-lo a [Power of Us Hub](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture).",
+            "description": "shown after failed installation (markdown)"
+        }
+    },
+    "plan:install": {
+        "title": {
+            "message": "Instal·la",
+            "description": "title of installation plan"
+        }
+    },
+    "steps": {
+        "EDA - Account Record Types": {
+            "message": "EDA - Tipus de registres del compte",
+            "description": "title of installation step"
+        },
+        "EDA - Contact Key Affiliation Fields": {
+            "message": "EDA - Camps d’afiliació clau de contacte",
+            "description": "title of installation step"
+        },
+        "Install {product} {version}": {
+            "message": "Instal·la {product} {version}",
+            "description": "title of installation step"
+        },
+        "EDA - Case Behavior Record Types": {
+            "message": "EDA - Tipus de registres de comportament de cas",
+            "description": "title of installation step"
+        },
+        "EDA - Course Connection Record Types": {
+            "message": "EDA - Tipus de registres de connexions de cursos",
+            "description": "title of installation step"
+        },
+        "EDA - Facility Display Name Formula Field": {
+            "message": "EDA - Camp de fórmula de nom de visualització de la instal·lació",
+            "description": "title of installation step"
+        },
+        "Deploy Einstein Analytics Templates": {
+            "message": "Desplegueu les plantilles d'Einstein Analytics",
+            "description": "title of installation step"
+        }
+    },
+    "plan:ra_einstein_template": {
+        "title": {
+            "message": "Instal·leu la plantilla d'Analytics de contractació del núvol educatiu",
+            "description": "title of installation plan"
+        }
+    },
+    "checks": {
+        "Einstein Analytics permission sets are not available.": {
+            "message": "Els conjunts de permisos d'Einstein Analytics no estan disponibles.",
+            "description": "shown if validation fails"
+        }
+    }
+}

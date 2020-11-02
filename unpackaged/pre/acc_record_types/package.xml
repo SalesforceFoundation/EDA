@@ -6,10 +6,14 @@
   </types>
   <types>
     <members>Account-ca</members>
+    <members>Account-de</members>
     <members>Account-en_GB</members>
     <members>Account-es_MX</members>
     <members>Account-es</members>
+    <members>Account-fi</members>
     <members>Account-fr</members>
+    <members>Account-ja</members>
+    <members>Account-nl_NL</members>
     <name>CustomObjectTranslation</name>
   </types>
   <version>48.0</version>

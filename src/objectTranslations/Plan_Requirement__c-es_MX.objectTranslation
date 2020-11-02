@@ -1,66 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Requisito del plan</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Requisitos del plan</value>
-    </caseValues>
-    <fields>
-        <help>Especifique una categoría para el Requisito del plan.</help>
-        <label>Categoría</label>
-        <name>Category__c</name>
-        <picklistValues>
-            <masterLabel>Optional</masterLabel>
-            <translation>Opcional</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Required</masterLabel>
-            <translation>Obligatorio</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Haga clic para buscar un curso.</help>
-        <label>Curso</label>
-        <name>Course__c</name>
-        <relationshipLabel>Requisitos del plan</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Especifique el número de créditos que recibe un estudiante al satisfacer este requisito.</help>
-        <label>Créditos</label>
-        <name>Credits__c</name>
-    </fields>
-    <fields>
-        <help>Describa el requisito del plan.</help>
-        <label>Descripción</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help>Haga clic para buscar un requisito del plan.</help>
-        <label>Requisito del plan principal</label>
-        <name>Plan_Requirement__c</name>
-        <relationshipLabel>Requisitos del plan</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Haga clic para buscar un plan del programa.</help>
-        <label>Plan del programa</label>
-        <name>Program_Plan__c</name>
-        <relationshipLabel>Requisitos del plan</relationshipLabel>
-    </fields>
-    <fields>
-        <help>La evolución de cursos</help>
-        <label>Secuencia</label>
-        <name>Sequence__c</name>
-    </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Plan Requirement Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de requisito de plan</nameFieldLabel>
+  <fields>
+    <name>Category__c</name>
+    <help>Indica el tipo de requisito de plan, como por ejemplo, obligatorio u opcional.</help>
+    <label>Categoría</label>
+    <picklistValues>
+      <masterLabel>Required</masterLabel>
+      <translation>Obligatorio</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Optional</masterLabel>
+      <translation>Opcional</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <help>El curso asociado con este requisito de plan. Deje en blanco para un requisito de plan con requisitos de plan anidados.</help>
+    <relationshipLabel>Requisitos del plan</relationshipLabel>
+    <label>Curso</label>
+  </fields>
+  <fields>
+    <name>Credits__c</name>
+    <help>El número de créditos que recibe un estudiante al satisfacer este requisito.</help>
+    <label>Créditos</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>Descripción</label>
+  </fields>
+  <fields>
+    <name>Plan_Requirement__c</name>
+    <help>Si el requisito de plan es uno de los múltiples requisitos o múltiples niveles de requisitos, especifica el requisito del plan principal. Utilice este campo para agrupar una lista de cursos opcionales que satisfacen un requisito genérico.</help>
+    <relationshipLabel>Requisitos del plan</relationshipLabel>
+    <label>Requisito del plan principal</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>El plan del programa para el que es este requisito. Si está agrupando requisitos de planes juntos bajo un requisito del plan principal, la mejor práctica es vincular únicamente el requisito del plan de nivel superior con un plan de programa.</help>
+    <relationshipLabel>Requisitos del plan</relationshipLabel>
+    <label>Plan del programa</label>
+  </fields>
+  <fields>
+    <name>Sequence__c</name>
+    <help>El lugar de este requisito en el plan del programa; por ejemplo, "1" indica el primer semestre. Utilice este campo para indicar la progresión general del plan del programa completo, o para ordenar los requisitos secundarios dentro de un Requisito del plan principal único.</help>
+    <label>Secuencia</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Plan Requirement Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nombre de requisito de plan</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nombre de requisito de plan</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Requisito del plan</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Requisitos del plan</value>
+  </caseValues>
 </CustomObjectTranslation>

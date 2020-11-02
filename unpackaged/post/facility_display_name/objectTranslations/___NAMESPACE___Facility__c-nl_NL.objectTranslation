@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Display_Name__c</name>
+    <help>Een naam waarin de bovenliggende naam (Marshall Tower) en de faciliteit (#400) worden gecombineerd (Marshall Tower - #400). Geen bovenliggende faciliteit: de accountwaarde wordt gebruikt. Geen account: de faciliteit en de weergavenaam zijn hetzelfde.</help>
+    <label>Weergavenaam</label>
+  </fields>
+</CustomObjectTranslation>

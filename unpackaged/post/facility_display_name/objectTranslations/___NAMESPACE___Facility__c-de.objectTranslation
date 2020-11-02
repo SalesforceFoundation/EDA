@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Display_Name__c</name>
+    <help>Kombination aus Name des übergeordneten Elements (Bodo-Haus-Trakt) und Name der Einrichtung (Raum 400), hier "Bodo-Haus-Trakt – Raum 400". Account, wenn kein übergeordnetes Element besteht. Ohne Account sind Name der Einrichtung und Anzeigename gleich.</help>
+    <label>Anzeigename</label>
+  </fields>
+</CustomObjectTranslation>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Contact__c</name>
+    <help>De student waarvoor de score wordt geregistreerd. Als dit wordt leeggelaten, wordt de contactpersoon bij het opslaan automatisch ingevuld vanuit de geldige cursusverbinding.</help>
+    <relationshipLabel>Termijnscores</relationshipLabel>
+    <label>Contactpersoon</label>
+  </fields>
+  <fields>
+    <name>Course_Connection__c</name>
+    <help>Het vak waarvoor de student deze score heeft ontvangen. De contactpersoon en het cursusaanbod bij de termijnscore moeten overeenkomen met de contactpersoon en het cursusaanbod in de cursusverbindingsrecord.</help>
+    <relationshipLabel>Termijnscores</relationshipLabel>
+    <label>Cursusverbinding</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>Het cursusaanbod dat aan de geregistreerde score is gekoppeld. Als dit wordt leeggelaten, wordt het cursusaanbod bij het opslaan automatisch ingevuld vanuit de geldige cursusverbinding.</help>
+    <relationshipLabel>Termijnscores</relationshipLabel>
+    <label>Cursusaanbod</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>Het aantal credits dat deze termijn voor deze cursus behaald kan worden.</help>
+    <label>Theoretische credits</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>Het aantal credits dat de student deze termijn voor deze cursus heeft behaald.</help>
+    <label>Behaalde credits</label>
+  </fields>
+  <fields>
+    <name>Letter_Grade__c</name>
+    <help>Als uw school letterscores gebruikt, voert u hier de letterscore in die de student heeft behaald, bijvoorbeeld A, B, C, enz.</help>
+    <label>Letterscore</label>
+  </fields>
+  <fields>
+    <name>Numerical_Grade__c</name>
+    <help>Als uw school cijferscores gebruikt, voert u hier de cijferscore in die de student heeft behaald.</help>
+    <label>Cijferscore</label>
+  </fields>
+  <fields>
+    <name>Percent_Grade__c</name>
+    <help>Als uw school procentuele scores gebruikt, voert u hier de procentuele score in die de student heeft behaald.</help>
+    <label>Procentuele score</label>
+  </fields>
+  <fields>
+    <name>Result__c</name>
+    <help>Het resultaat van de prestaties van de student voor deze beoordelingsperiode.</help>
+    <label>Resultaat</label>
+    <picklistValues>
+      <masterLabel>Audit</masterLabel>
+      <translation>Controle</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dropped</masterLabel>
+      <translation>Laten vallen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fail</masterLabel>
+      <translation>Gezakt</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pass</masterLabel>
+      <translation>Geslaagd</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Term_Grade_Type__c</name>
+    <help>Het type beoordelingsperiode waar deze score voor geldt, bijvoorbeeld tussentijdse score, eindscore, examenscore of beoordelingsperiode.</help>
+    <label>Type termijnscore</label>
+    <picklistValues>
+      <masterLabel>Exam Grade</masterLabel>
+      <translation>Examenscore</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Final Grade</masterLabel>
+      <translation>Eindscore</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grading Period</masterLabel>
+      <translation>Beoordelingsperiode</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mid-Term Grade</masterLabel>
+      <translation>Tussentijdse score</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <help>Geeft aan in welke termijn de student deze score heeft behaald.</help>
+    <relationshipLabel>Termijnscores</relationshipLabel>
+    <label>Termijn</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Grade Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Naam van termijnscore</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Naam van termijnscore</label>
+  </standardFields>
+</CustomObjectTranslation>

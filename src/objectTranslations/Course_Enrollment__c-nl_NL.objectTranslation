@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <help>Het academische programma waaraan de student of het staflid is gekoppeld.</help>
+    <relationshipLabel>Cursusverbindingen</relationshipLabel>
+    <label>Academisch programma van contactpersoon</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <help>Het academische programma dat aan deze cursusverbinding is gekoppeld. Vertegenwoordigt een affiliatie tussen een contactpersoon en een account.</help>
+    <relationshipLabel>Cursusverbinding</relationshipLabel>
+    <label>Affiliatie</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>De student die of het staflid dat deelneemt aan dit cursusaanbod.</help>
+    <relationshipLabel>Cursusverbindingen</relationshipLabel>
+    <label>Contactpersoon</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>Het cursusaanbod waarbij de student of het staflid betrokken is.</help>
+    <relationshipLabel>Cursusverbinding</relationshipLabel>
+    <label>Cursusaanbod-ID</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>Het aantal credits dat de student via dit cursusaanbod probeert te behalen.</help>
+    <label>Theoretische credits</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>Het aantal credits dat de student heeft behaald door dit cursusaanbod te voltooien.</help>
+    <label>Behaalde credits</label>
+  </fields>
+  <fields>
+    <name>Grade__c</name>
+    <help>De numerieke score die de student bij dit cursusaanbod heeft behaald.</help>
+    <label>Score</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Dit geeft aan of een staflid het primaire staflid is (bijvoorbeeld de hoofdinstructeur) voor het cursusaanbod.</help>
+    <label>Primair</label>
+  </fields>
+  <fields>
+    <name>Program_Enrollment__c</name>
+    <help>De primaire programma-inschrijving van een student. In het hoger onderwijs is dit meestal de academische major van de student.</help>
+    <relationshipLabel>Cursusverbindingen</relationshipLabel>
+    <label>Programma-inschrijvings-ID</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Geeft aan of dit een huidige of voormalige cursusverbinding is.</help>
+    <label>Status</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Huidig</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Voormalig</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Enrollment Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Cursusverbindings-ID</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Cursusverbindings-ID</label>
+  </standardFields>
+</CustomObjectTranslation>

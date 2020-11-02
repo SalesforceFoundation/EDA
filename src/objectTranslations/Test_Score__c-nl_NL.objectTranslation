@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Percentile__c</name>
+    <help>De percentielrangschikking voor deze uitslag.</help>
+    <label>Percentiel</label>
+  </fields>
+  <fields>
+    <name>Score__c</name>
+    <help>De numerieke waarde van de ontvangen uitslag.</help>
+    <label>Uitslag</label>
+  </fields>
+  <fields>
+    <name>Subject_Area__c</name>
+    <help>Het onderwerp of de categorie voor deze toetsuitslag.</help>
+    <label>Vakgebied</label>
+    <picklistValues>
+      <masterLabel>Language</masterLabel>
+      <translation>Taal</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mathematics</masterLabel>
+      <translation>Wiskunde</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Reading</masterLabel>
+      <translation>Lezen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Science</masterLabel>
+      <translation>Wetenschap</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Writing</masterLabel>
+      <translation>Schrijven</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Overall</masterLabel>
+      <translation>Algemeen</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Test_Type__c</name>
+    <help>Geeft de naam van het toetstype uit de gekoppelde toetsrecord weer. Bijvoorbeeld SAT of GRE.</help>
+    <label>Toetstype</label>
+  </fields>
+  <fields>
+    <name>Test__c</name>
+    <help>De toets waarvoor deze uitslag wordt geregistreerd.</help>
+    <relationshipLabel>Toetsuitslagen</relationshipLabel>
+    <label>Toets</label>
+  </fields>
+  <layouts>
+    <layout>EDA Test Score Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Naam van toetsuitslag</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Naam van toetsuitslag</label>
+  </standardFields>
+</CustomObjectTranslation>

@@ -1,85 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Behavior Response --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Behavior Response --></value>
-    </caseValues>
-    <fields>
-        <help>El número generat pel sistema associat a aquest esdeveniment. Format: BI-{0000}.</help>
-        <label>Implicació de comportament</label>
-        <name>Behavior_Involvement__c</name>
-        <relationshipLabel>Resposta de comportament</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El destinatari d&apos;aquesta resposta.</help>
-        <label>Contacte</label>
-        <name>Contact__c</name>
-    </fields>
-    <fields>
-        <help>Una descripció de la resposta al comportament.</help>
-        <label>Descripció</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help>Data en què finalitza la resposta.</help>
-        <label>Data de finalització</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Data en què s&apos;inicia la resposta.</help>
-        <label>Data d&apos;inici</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <help>L&apos;estat de la resposta adoptada.</help>
-        <label>Estat</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Completed</masterLabel>
-            <translation>Completada</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Progress</masterLabel>
-            <translation>En progrés</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Altres</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Postponed</masterLabel>
-            <translation>Posposada</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>El tipus de resposta adoptada.</help>
-        <label>Tipus</label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Academic Probation</masterLabel>
-            <translation>Període de prova acadèmica</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Expulsion</masterLabel>
-            <translation>Expulsió</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Altres</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Behavior Response Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la resposta de comportament</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Behavior_Involvement__c</name>
+    <help>El registre d'implicació de comportament per a la qual es fa aquesta resposta de comportament.</help>
+    <relationshipLabel>Resposta de comportament</relationshipLabel>
+    <label>Implicació de comportament</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>El destinatari d'aquesta resposta de comportament (només de lectura).</help>
+    <label>Contacte</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>Descripció</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>La data en què la resposta ja no és efectiva.</help>
+    <label>Data de finalització</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>La data en què la resposta comença a ser efectiva.</help>
+    <label>Data d'inici</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <label>Estat</label>
+    <picklistValues>
+      <masterLabel>Completed</masterLabel>
+      <translation>Completada</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>In Progress</masterLabel>
+      <translation>En progrés</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Postponed</masterLabel>
+      <translation>Posposada</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Altres</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <help>La resposta a l’esdeveniment de comportament, per exemple, Període de prova acadèmica, Expulsió o Altres.</help>
+    <label>Tipus</label>
+    <picklistValues>
+      <masterLabel>Academic Probation</masterLabel>
+      <translation>Període de prova acadèmica</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Expulsion</masterLabel>
+      <translation>Expulsió</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Altres</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>EDA Behavior Response Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de la resposta de comportament</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de la resposta de comportament</label>
+  </standardFields>
 </CustomObjectTranslation>
