@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%HEDA_Facility_Compact_Layout</members>
-        <members>Account.%%%NAMESPACE%%%HEDA_Account_Compact_Layout</members>
-        <members>Contact.%%%NAMESPACE%%%HEDA_Contact_Compact_Layout</members>
-        <name>CompactLayout</name>
-    </types>
-    <types>
         <members>%%%NAMESPACE%%%HEDA</members>
         <name>CustomApplication</name>
     </types>
@@ -15,30 +9,8 @@
         <name>CustomTab</name>
     </types>
     <types>
-        <members>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</members>
-        <members>%%%NAMESPACE%%%Course_Offering__c-%%%NAMESPACE%%%HEDA Course Offering Layout</members>
-        <members>%%%NAMESPACE%%%Facility__c-%%%NAMESPACE%%%HEDA Facility Layout</members>
-        <members>%%%NAMESPACE%%%Program_Enrollment__c-%%%NAMESPACE%%%HEDA Program Enrollment Layout</members>
-        <members>Account-%%%NAMESPACE%%%HEDA Household Layout</members>
-        <members>Account-%%%NAMESPACE%%%HEDA Organization Layout</members>
-        <members>Contact-%%%NAMESPACE%%%HEDA Contact Layout</members>
-        <name>Layout</name>
-    </types>
-    <types>
-        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%All</members>
-        <members>Account.All_Accounts</members>
-        <members>Contact.All_Contacts</members>
-        <name>ListView</name>
-    </types>
-    <types>
         <members>Admin</members>
         <name>Profile</name>
-    </types>
-    <types>
-        <members>%%%NAMESPACE%%%Course_Enrollment__c.Default</members>
-        <members>%%%NAMESPACE%%%Course_Enrollment__c.Faculty</members>
-        <members>%%%NAMESPACE%%%Course_Enrollment__c.Student</members>
-        <name>RecordType</name>
     </types>
     <version>48.0</version>
 </Package>
