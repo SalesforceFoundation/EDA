@@ -65,6 +65,14 @@
         <value>This record can't be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don't see related records, or if you're unable to delete them, contact your System Administrator for assistance.</value>
     </labels>
     <labels>
+        <fullName>CitizenshipStatusSelectComboboxLabel</fullName>
+        <categories>UI,Generic</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Generic placeholder label for citizenship status combobox</shortDescription>
+        <value>Citizenship Status</value>
+    </labels>
+    <labels>
         <fullName>DefaultAccountName</fullName>
         <categories>Account Naming</categories>
         <language>en_US</language>
@@ -182,7 +190,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Generic placeholder label for combobox</shortDescription>
-        <value>Placeholder.</value>
+        <value>Select a value</value>
     </labels>
     <labels>
         <fullName>OnlyCourseConnectionPopulated</fullName>

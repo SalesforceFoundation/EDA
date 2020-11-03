@@ -5,23 +5,15 @@
 */
 public with sharing class MODL_GlobalDescribe {
 
+    public Map<String, Schema.SObjectType> sObjectTypeByApiName { get; private set; }
+    public Map<Schema.SObjectType, MODL_DescribeSObject> sObjectModelBySObjectType { get; private set; }
+
     public MODL_GlobalDescribe(Map<String, Schema.SObjectType> sObjectTypeByApiName) {
         this.sObjectTypeByApiName = sObjectTypeByApiName;
         this.sObjectModelBySObjectType = new Map<Schema.SObjectType, MODL_DescribeSObject>();
     }
 
-    public Map<String, Schema.SObjectType> sObjectTypeByApiName {
-        get; private set;
-    }
-
-    public Map<Schema.SObjectType, MODL_DescribeSObject> sObjectModelBySObjectType {
-        get; private set;
-    }
-
-    public void addSObjectDescribeModelToMap(
-        Schema.SObjectType sObjectType,
-        MODL_DescribeSObject describeSObjectModel
-    ) {
+    public void addSObjectDescribeModelToMap(Schema.SObjectType sObjectType, MODL_DescribeSObject describeSObjectModel) {
         this.sObjectModelBySObjectType.put(sObjectType,describeSObjectModel);
-    }
+    }    
 }

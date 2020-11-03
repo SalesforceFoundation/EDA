@@ -35,29 +35,29 @@ public virtual with sharing class SRVC_FieldSelectOption {
      */
     public List<VMDL_FieldSelectOption> getViewModelForFieldOnObject(String objectAPIName, String fieldAPIName){
         List<VMDL_FieldSelectOption> sObjectViewModelList = new List<VMDL_FieldSelectOption>();
-        // returns a list of sObjectDescribe models - which in this case if size = 1 (Contact)
-        List<MODL_DescribeSObject> sObjectModelList = SRVC_Schema.getInstance().getSObjectDescribeModelByApiNameList(new List<String>{objectAPIName});
+    //     // returns a list of sObjectDescribe models - which in this case if size = 1 (Contact)
+    //     List<MODL_DescribeSObject> sObjectModelList = SRVC_Schema.getInstance().getSObjectDescribeModelByApiNameList(new List<String>{objectAPIName});
 
-        for (MODL_DescribeSObject sObjModel : sObjectModelList){
-            // get fields
-            Map<String, Schema.SObjectField> objectFieldsByName = sObjModel.sObjectDescribeResult.fields.getMap();
+    //     for (MODL_DescribeSObject sObjModel : sObjectModelList){
+    //         // get fields
+    //         Map<String, Schema.SObjectField> objectFieldsByName = sObjModel.sObjectDescribeResult.fields.getMap();
 
-            // get schema for desired field
-            Schema.SObjectField sObjectField = objectFieldsByName.get(fieldAPIName);
-            Schema.DescribeFieldResult sObjectFieldDescribeResult = sObjectField.getDescribe(); // assuming we already know this is a picklist field
+    //         // get schema for desired field
+    //         Schema.SObjectField sObjectField = objectFieldsByName.get(fieldAPIName);
+    //         Schema.DescribeFieldResult sObjectFieldDescribeResult = sObjectField.getDescribe(); // assuming we already know this is a picklist field
 
-            List<Schema.PicklistEntry> picklistEntryValuesList = sObjectFieldDescribeResult.getPicklistValues();
-            for (Schema.PicklistEntry picklistValue : picklistEntryValuesList){
-                // create view model for picklist entry
-                VMDL_FieldSelectOption fieldOptionViewMdl = new VMDL_FieldSelectOption(
-                    picklistValue.getValue(), 
-                    picklistValue.getLabel(),
-                    picklistValue.isActive()
-                );
+    //         List<Schema.PicklistEntry> picklistEntryValuesList = sObjectFieldDescribeResult.getPicklistValues();
+    //         for (Schema.PicklistEntry picklistValue : picklistEntryValuesList){
+    //             // create view model for picklist entry
+    //             VMDL_FieldSelectOption fieldOptionViewMdl = new VMDL_FieldSelectOption(
+    //                 picklistValue.getValue(), 
+    //                 picklistValue.getLabel(),
+    //                 picklistValue.isActive()
+    //             );
 
-                sObjectViewModelList.add(fieldOptionViewMdl);
-            }
-        }
+    //             sObjectViewModelList.add(fieldOptionViewMdl);
+    //         }
+    //     }
 
         return sObjectViewModelList;
     }

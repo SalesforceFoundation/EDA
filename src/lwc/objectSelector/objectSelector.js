@@ -6,13 +6,15 @@ import getPickListOptions from '@salesforce/apex/CTRL_FieldSelectOption.getPickL
 import errorToast from 'c/toastHandler';
 
 import errorCannotRetrieveData from '@salesforce/label/c.errorCannotRetrieveData';
-import objectSelectComboboxLabel from '@salesforce/label/c.objectSelectComboboxLabel';
-import objectSelectComboboxPlaceholder from '@salesforce/label/c.objectSelectComboboxPlaceholder';
+// import objectSelectComboboxLabel from '@salesforce/label/c.objectSelectComboboxLabel';
+// import objectSelectComboboxPlaceholder from '@salesforce/label/c.objectSelectComboboxPlaceholder';
 
 export default class ObjectSelector extends LightningElement {
-    // parameters will be passed in from the parent component - hardcoding for testing only
-    @api objectApiName = 'Contact';
-    @api fieldApiName = 'Country_of_Origin__c';
+    // parameters will be passed in from the parent component
+    @api objectApiName;
+    @api fieldApiName;
+    @api comboBoxLabelName;
+    @api comboBoxPlaceholderValue;
 
     selectedComboBoxValue = 'settingsValue';
 
@@ -32,8 +34,10 @@ export default class ObjectSelector extends LightningElement {
 
     //This label reference object lets us embed labels
     labelReference = {
-        comboboxLabel: objectSelectComboboxLabel,
-        comboBoxPlaceHolder: objectSelectComboboxPlaceholder,
+        //comboboxLabel: objectSelectComboboxLabel,
+        comboBoxLabel: this.comboBoxLabelName,
+        //comboBoxPlaceHolder: objectSelectComboboxPlaceholder,
+        comboBoxPlaceholder: this.comboBoxPlaceholderValue,
         error: errorCannotRetrieveData
     };
 

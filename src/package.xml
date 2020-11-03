@@ -104,7 +104,9 @@
         <members>MAPR_PrimaryAffiliations_TEST</members>
         <members>MAPR_Schema</members>
         <members>MODL_DescribeSObject</members>
+        <members>MODL_FieldDescribe</members>
         <members>MODL_GlobalDescribe</members>
+        <members>MODL_PicklistFieldDescribe</members>
         <members>MODL_PrimaryAfflMapper</members>
         <members>MODL_PrimaryAfflMapper_TEST</members>
         <members>PPlan_CannotDelete_TDTM</members>
@@ -650,6 +652,7 @@
         <members>BothFieldAndValue</members>
         <members>CannotChangeContactAndCourseOffering</members>
         <members>CannotDelete</members>
+        <members>CitizenshipStatusSelectComboboxLabel</members>
         <members>DefaultAccountName</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>
