@@ -13,7 +13,7 @@ public with sharing class CTRL_FieldSelectOption {
 
     @AuraEnabled(cacheable=true)
     public static VMDL_Combobox getPickListOptions(String objectAPIName, String fieldAPIName){
-        return new VMDL_Combobox(SRVC_FieldSelectOption.getInstance().getViewModelForFieldOnObject(objectAPIName, fieldAPIName));
+        return new VMDL_Combobox(SRVC_FieldSelectOption.getInstance().getViewModelForPicklistFieldActiveEntriesOnObject(objectAPIName, fieldAPIName));
     }
 
     /**

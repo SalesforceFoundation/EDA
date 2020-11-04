@@ -45,6 +45,27 @@ public virtual with sharing class SRVC_Schema {
     }
 
     /**
+     * @description Retrieve a list of FieldDescribe models for specified SObject fields.
+     * @param  sOjbectApiName           The API name for the related SObject.
+     * @param  sObjectFieldApiNamesList A List of API names for SObject fields to model.
+     * @return                          A list of MODL_FieldDescribe modelling the specified SObject fields.
+     */
+    public List<MODL_FieldDescribe> getFieldDescribeModelsForSObjectByFieldApiNamesList(String sOjbectApiName, List<String> sObjectFieldApiNamesList){
+        List<MODL_FieldDescribe> fieldDescribeModelsList = new List<MODL_FieldDescribe>();
+
+        for (String fieldApi : sObjectFieldApiNamesList){
+            MODL_FieldDescribe fieldDescribeModel = this.locateSchemaMapper().getSObjectFieldDescribeModelByApiNames(sOjbectApiName, fieldApi);
+            fieldDescribeModelsList.add(fieldDescribeModel);
+        }
+        
+        return fieldDescribeModelsList;
+    }
+
+    // public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsByApiNamesList(){
+
+    // }
+
+    /**
     * @description Locates and returns an instance of the schema mapper
     */
     private MAPR_Schema locateSchemaMapper() {
