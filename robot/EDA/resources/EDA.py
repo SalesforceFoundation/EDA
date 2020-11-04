@@ -95,6 +95,16 @@ class EDA(BaseEDAPage):
             locator, error=f"Run action button with locator '{locator}' is not available")
         self.selenium.click_element(locator)
 
+    def click_add_new_setting_button(self,setting_type,button):
+        """ This method clicks the add setting/mapping button (blue in color) present in EDA settings sub
+            tabs in both edit and read mode. Pass the name of the setting and name of the button
+            from robot file.
+        """
+        locator = eda_lex_locators["eda_settings"]["add_setting_button"].format(setting_type,button)
+        self.selenium.wait_until_page_contains_element(
+            locator, error=f"Run action button with locator '{locator}' is not available")
+        self.selenium.click_element(locator)
+
     def verify_record(self, name):
         """ Checks for the record in the object page and returns true if found else returns false
         """
@@ -521,4 +531,12 @@ class EDA(BaseEDAPage):
         self.builtin.log("The text message is " + text)
         if "slds-hide" in text:
             raise Exception(f"The text message {textMessage} is not displayed")
+
+    def scroll_web_page(self):
+        """ This method will scroll to the bottom of the page and back to the top using javascript
+            page scroll commands
+        """
+        self.selenium.execute_javascript("window.scrollTo(0, document.body.scrollHeight)")
+        time.sleep(0.1)
+        self.selenium.execute_javascript("window.scrollTo(document.body.scrollHeight, 0)")
 
