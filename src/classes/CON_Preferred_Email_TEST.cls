@@ -848,7 +848,62 @@ private class CON_Preferred_Email_TEST {
         System.assertEquals(null, updatedContactList[1].Preferred_Email__c, 'Preferred Email should be cleared');
         System.assertEquals('test@sf.org', updatedContactList[1].Email, 'Standard Email should not be cleared');
 
-    } 
+    }
+
+    /*********************************************************************************************************************************
+    * @description Tests Updating a Contact by clearing Preferred Email and other custom email fields, leaving one email field populated
+    * will not repopule values in Standard Email and Preferred Email when Preferred Email Enforcement is disabled
+    *********************************************************************************************************************************/
+    @isTest 
+    static void clearStandEmailAndSomeEmailFieldsOnUpdateTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+            );
+
+        List<Contact> testContactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        testContactList[0].WorkEmail__c = 'demo@sf.org';
+        testContactList[0].Preferred_Email__c = 'Work Email';
+        testContactList[0].AlternateEmail__c = 'test@sf.org';
+        testContactList[1].WorkEmail__c = 'demo@sf.org';
+        testContactList[1].Preferred_Email__c = 'Work Email';
+        testContactList[1].AlternateEmail__c = 'test@sf.org';
+        insert testContactList;
+
+        List<Contact> insertedContactList = [SELECT Id, Email, AlternateEmail__c, Preferred_Email__c FROM Contact];
+
+        System.assertEquals('demo@sf.org', insertedContactList[0].Email, 'Standard Email should be same as Work Email');
+        System.assertEquals('demo@sf.org', insertedContactList[1].Email, 'Standard Email should be same as Work Email');
+
+        MAPR_CON_PreferredEmailFields.preferredEmailFieldSettingsModel = null;
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
+        );        
+
+        // Clear Alternate Email, Preferred Email and Standard Email leaving only work email populated
+        insertedContactList[0].AlternateEmail__c = '';
+        insertedContactList[0].Preferred_Email__c = null;
+        insertedContactList[0].Email = null;
+        insertedContactList[1].AlternateEmail__c = '';
+        insertedContactList[1].Preferred_Email__c = null;
+        insertedContactList[1].Email = null;
+
+        Test.startTest();
+            update insertedContactList;
+        Test.stopTest();
+
+        List<Contact> updatedContactList = [SELECT Id, AlternateEmail__c, Preferred_Email__c, WorkEmail__c, Email FROM Contact];
+
+        System.assertEquals('demo@sf.org', updatedContactList[0].WorkEmail__c, 'Work Email should not be cleared');
+        System.assertEquals('demo@sf.org', updatedContactList[1].WorkEmail__c, 'Work Email should not be cleared');
+        System.assertEquals(null, updatedContactList[0].AlternateEmail__c, 'Alternate Email should not be re-populated');
+        System.assertEquals(null, updatedContactList[0].Preferred_Email__c, 'Preferred Email should not be re-populated');
+        System.assertEquals(null, updatedContactList[0].Email, 'Standard Email should not not be re-populated');
+        System.assertEquals(null, updatedContactList[1].AlternateEmail__c, 'Alternate Email should not be re-populated');
+        System.assertEquals(null, updatedContactList[1].Preferred_Email__c, 'Preferred Email should not be re-populated');
+        System.assertEquals(null, updatedContactList[1].Email, 'Standard Email should not be re-populated');
+
+    }
+
     
     /*************************************************************************************************************************
     * @description Tests Inserting a Contact with only one custom Email field will set it as Preferred Email and copy the value 
