@@ -54,6 +54,22 @@ tasks:
             path: unpackaged/config/spe
             namespace_inject: $project_config.project__package__namespace
 
+    deploy_workbench_translation_settings:
+        description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/workbench
+            unmanaged: True
+
+    deploy_translations:
+        description: Assigns languages and marks them as active.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/translations/
+            unmanaged: True
+
     deploy_primary_affiliations_config:
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -303,6 +319,15 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
+
+
+    translations:
+        description: Enables Translation workbench, platform language settings and sets languages as active.
+        steps:
+            1:
+                task: deploy_workbench_translation_settings
+            2:
+                task: deploy_translations
 
     trial_org:
         description: Deploy trial configuration to an org.

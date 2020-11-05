@@ -53,6 +53,8 @@
 
 -   **`upgraded_org`** Simulates a push upgrade of EDA and dependencies to existing customer orgs, from the latest production release to the current beta. This means all push-upgradable components have been updated, but only the unpackaged metadata from the previous version will exist in the org (and not the unpackaged metadata from the current beta.) Use this when you want to see which manual configuration steps are required in order for existing customers to use new functionality.
 
+-   **`translations`** Enables platform encrpyted languages and sets specific languages to active. This flow will enable the platfrom encryption languages first, then deploy the given langauges with any translation file present. 
+
 ### Tasks
 
 -   **`execute_install_apex`:** Runs most of the install script methods from STG<sub>InstallScript</sub> class.
