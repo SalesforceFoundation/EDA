@@ -9,8 +9,15 @@ export default class LWC_Parent_component extends LightningElement {
     objectApiName = 'Contact';
     fieldApiName = 'Citizenship_Status__c';
 
-    comboBoxLabelName = comboBoxLabelText;
-    comboBoxPlaceholderValue = comboBoxPlaceholderText;
+    // comboBoxLabelName = comboBoxLabelText;
+    // comboBoxPlaceholderValue = comboBoxPlaceholderText;
+    comboBoxLabelName = 'Hardcoded Label Text';
+    comboBoxPlaceholderValue = 'Hardcoded Placeholder Text';
+
+    // label = {
+    //     comboBoxLabelText,
+    //     comboBoxPlaceholderText,
+    // };
 
     handlePicklistItemSelected(event){
         this.selectedPicklistValue = event.detail.selectedItem;

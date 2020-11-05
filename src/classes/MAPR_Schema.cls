@@ -52,28 +52,29 @@ public virtual with sharing class MAPR_Schema {
         return this.globalDescribeModel;
     }
 
-    /**
-    * @description A simple method to retrive a model based on a parameter.
-    * Note that a method that returns a list might be used in the case of SObject data to bulkify SOQL queries
-    */
-    private MODL_DescribeSObject getDescribeSObjectModelBySObjectType(Schema.SObjectType sObjectType) {
-        return new MODL_DescribeSObject(sObjectType.getDescribe());
-    }
-
-    /**
-    * getFieldDescribeModelBySObjectField description
-    * @param  sObjectField sObjectField description
-    * @return              return description
-    */ 
-    private MODL_FieldDescribe getFieldDescribeModelBySObjectField(Schema.SObjectField sObjectField){
-        return new MODL_FieldDescribe(sObjectField.getDescribe());
-    }
-
     /*
     * @description Gets an sObject model by its api name
     */
     public MODL_DescribeSObject getSObjectDescribeModelByApiName(String apiName) {
         Schema.SObjectType sObjectType = this.getSObjectTypeByApiName(apiName);
+
+        MODL_DescribeSObject describeSObjectModel =
+            this.globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
+
+        if(describeSObjectModel != null) {
+            return describeSObjectModel;
+        }
+
+        return this.getAndCacheSObjectDescribeModel(sObjectType);
+    }
+
+    /**
+     * TODO
+     * @param  labelName labelName description
+     * @return           return description
+     */ 
+    public MODL_DescribeSObject getSObjectDescribeModelByLabelName(String labelName) {
+        Schema.SObjectType sObjectType = this.getSObjectTypeByLabel(labelName);
 
         MODL_DescribeSObject describeSObjectModel =
             this.globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
@@ -99,6 +100,17 @@ public virtual with sharing class MAPR_Schema {
         return this.getCachedFieldDescribeModel(sObjectType, sObjectField);
     }
 
+   
+    // public MODL_FieldDescribe getSObjectFieldDescribeModelByLabelNames(String objectLabelName, String fieldLabelName){
+    //     Schema.SObjectType sObjectType =  this.getSObjectTypeByLabel(objectLabelName);
+    //     Schema.SObjectField sObjectField = this.getSObjectFieldByLabel(fieldLabelName);
+    //     //Schema.DescribeSObjectResult sObjectDescribe = sObjectType.getDescribe();
+
+    //     //Schema.SObjectField sObjectField = sObjectDescribe.fields.getMap().get(fieldLabelName);
+
+    //     return this.getCachedFieldDescribeModel(sObjectType, sObjectField);
+    // }
+
     /**
      * getPicklistFieldDescribeModelByApiNames description
      * @param  objectApiName 
@@ -116,7 +128,24 @@ public virtual with sharing class MAPR_Schema {
             return fieldDescribeModel.pickListFieldDescribeModel;
         }
 
-        return this.getAndCachePicklistFieldDescribeModel(fieldDescribeModel);
+        return this.getAndCachePicklistFieldDescribeModel(fieldDescribeModel, sObjectField);
+    }
+
+    /**
+    * @description A simple method to retrive a model based on a parameter.
+    * Note that a method that returns a list might be used in the case of SObject data to bulkify SOQL queries
+    */
+    private MODL_DescribeSObject getDescribeSObjectModelBySObjectType(Schema.SObjectType sObjectType) {
+        return new MODL_DescribeSObject(sObjectType.getDescribe());
+    }
+
+    /**
+    * getFieldDescribeModelBySObjectField description
+    * @param  sObjectField sObjectField description
+    * @return              return description
+    */ 
+    private MODL_FieldDescribe getFieldDescribeModelBySObjectField(Schema.SObjectField sObjectField){
+        return new MODL_FieldDescribe(sObjectField.getDescribe());
     }
 
     /**
@@ -135,11 +164,41 @@ public virtual with sharing class MAPR_Schema {
     }
 
     /**
+     * TODO @description
+     * @param  labelName labelName description
+     * @return           return description
+     */ 
+    private Schema.SObjectType getSObjectTypeByLabel(String labelName) {
+        Schema.SObjectType sObjectType =
+            this.globalDescribeModel.sObjectTypeByLabelName.get(labelName);
+
+        if(sObjectType != null) {
+            return sObjectType;
+        }
+
+        //TODO: Labelify
+        throw new InvalidParameterValueException('Object Name', labelName);
+    }
+
+    private Schema.SObjectField getSObjectFieldByLabel(Schema.SObjectType sObjectType, String fieldLabelName) {
+        //Schema.SObjectType sObjectType = this.globalDescribeModel.sObjectModelBySObjectType.get(labelName);
+        MODL_DescribeSObject sObjectModel = this.globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
+        Schema.SObjectField sObjectField = sObjectModel.sObjectFieldByLabel.get(fieldLabelName);
+
+        if(sObjectField != null) {
+            return sObjectField;
+        }
+
+        //TODO: Labelify
+        throw new InvalidParameterValueException('Object Name', fieldLabelName);
+    }
+
+    /**
      * getCachedSObjectDescribeModel description
      * @param  sObjectType sObjectType description
      * @return             return description
      */
-    public MODL_DescribeSObject getCachedSObjectDescribeModel(Schema.SObjectType sObjectType){
+    private MODL_DescribeSObject getCachedSObjectDescribeModel(Schema.SObjectType sObjectType){
         MODL_DescribeSObject cachedDescribeSObjectModel = this.globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
         if (cachedDescribeSObjectModel != null){
             return cachedDescribeSObjectModel;
@@ -153,8 +212,9 @@ public virtual with sharing class MAPR_Schema {
      * @param  sObjectField sObjectField description
      * @return              return description
      */ 
-    public MODL_FieldDescribe getCachedFieldDescribeModel(Schema.SObjectType sObjectType, Schema.SObjectField sObjectField){
+    private MODL_FieldDescribe getCachedFieldDescribeModel(Schema.SObjectType sObjectType, Schema.SObjectField sObjectField){
         MODL_FieldDescribe cachedFieldDescribeModel = this.getCachedSObjectDescribeModel(sObjectType).sObjectFieldModelBySObjectField.get(sObjectField);
+        
         if (cachedFieldDescribeModel != null){
             return cachedFieldDescribeModel;
         }
@@ -165,10 +225,8 @@ public virtual with sharing class MAPR_Schema {
     /**
     * @description Helper method that gets an SObject Describe and caches it
     */
-    public MODL_DescribeSObject getAndCacheSObjectDescribeModel(Schema.SObjectType sObjectType) {
-        MODL_DescribeSObject describeSObjectModel =
-            this.getDescribeSObjectModelBySObjectType(sObjectType);
-        
+    private MODL_DescribeSObject getAndCacheSObjectDescribeModel(Schema.SObjectType sObjectType) {
+        MODL_DescribeSObject describeSObjectModel = this.getDescribeSObjectModelBySObjectType(sObjectType);
         this.globalDescribeModel.addSObjectDescribeModelToMap(sObjectType, describeSObjectModel);
 
         return describeSObjectModel;
@@ -179,19 +237,40 @@ public virtual with sharing class MAPR_Schema {
      * @param  sObjectField The schema for the SObject field to model.
      * @return              A MODL_FieldDescribe for the specified SObject field.
      */
-    public MODL_FieldDescribe getAndCacheFieldDescribeModel(Schema.SObjectType sObjectType, Schema.SObjectField sObjectField){
+    private MODL_FieldDescribe getAndCacheFieldDescribeModel(Schema.SObjectType sObjectType, Schema.SObjectField sObjectField){
         MODL_FieldDescribe fieldDescribeModel = this.getFieldDescribeModelBySObjectField(sObjectField);
         
         // cache fieldDescribe model in describeSObject model
         MODL_DescribeSObject cachedDescribeSObjectModel = this.globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
-        cachedDescribeSObjectModel.addFieldDescribeModel(sObjectField, fieldDescribeModel);      
+        
+        // cast field to PicklistFieldDescribe if field is picklist type
+        if (sObjectField.getDescribe().getType() == Schema.DisplayType.PICKLIST){
+            castFieldDescribeToPicklistFieldDescribeModel(fieldDescribeModel, sObjectField);
+        }
+        
+        
         
         return fieldDescribeModel;
     }
 
-    public MODL_PicklistFieldDescribe getAndCachePicklistFieldDescribeModel(MODL_FieldDescribe fieldDescribeModel){
+    /**
+     * castFieldDescribeToPicklistFieldDescribeModel description
+     * @param  fieldDescribeModel fieldDescribeModel description
+     * @param  sObjectField       sObjectField description
+     */ 
+    private void castFieldDescribeToPicklistFieldDescribeModel(MODL_FieldDescribe fieldDescribeModel, Schema.SObjectField sObjectField){
+        fieldDescribeModel.addPicklistFieldDescribeModel(sObjectField);
+    }
+
+    /**
+     * getAndCachePicklistFieldDescribeModel description
+     * @param  fieldDescribeModel fieldDescribeModel description
+     * @param  sObjectField       sObjectField description
+     * @return                    return description
+     */ 
+    private MODL_PicklistFieldDescribe getAndCachePicklistFieldDescribeModel(MODL_FieldDescribe fieldDescribeModel, Schema.SObjectField sObjectField){
         // create and cache a picklist field describe model to field describe model
-        fieldDescribeModel.addPicklistFieldDescribeModel();
+        fieldDescribeModel.addPicklistFieldDescribeModel(sObjectField);
         return fieldDescribeModel.pickListFieldDescribeModel;
     }
 }

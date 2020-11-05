@@ -34,9 +34,7 @@ export default class ObjectSelector extends LightningElement {
 
     //This label reference object lets us embed labels
     labelReference = {
-        //comboboxLabel: objectSelectComboboxLabel,
         comboBoxLabel: this.comboBoxLabelName,
-        //comboBoxPlaceHolder: objectSelectComboboxPlaceholder,
         comboBoxPlaceholder: this.comboBoxPlaceholderValue,
         error: errorCannotRetrieveData
     };

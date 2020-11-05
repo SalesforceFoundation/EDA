@@ -35,8 +35,38 @@ public virtual with sharing class SRVC_Schema {
         List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
 
         for(String apiName : apiNameList) {
-            MODL_DescribeSObject sObjectModel =
-                this.locateSchemaMapper().getSObjectDescribeModelByApiName(apiName);
+            MODL_DescribeSObject sObjectModel = this.locateSchemaMapper().getSObjectDescribeModelByApiName(apiName);
+
+            if (sObjectModel == null){
+                // model not found by apiName, search by labelName
+                String labelName = this.locateSchemaMapper().getGlobalDescribeModel().sObjectLabelByApiName.get(apiName);
+                sObjectModel = this.locateSchemaMapper().getSObjectDescribeModelByLabelName(labelName);
+            } 
+
+            if (sObjectModel == null){
+                continue;
+            }
+
+            sObjectModelList.add(sObjectModel);
+        }
+
+        return sObjectModelList;
+    }
+
+    /**
+     * getSObjectDescribeModelByLabelNameList description
+     * @param  labelNameList labelNameList description
+     * @return               return description
+     */ 
+    public List<MODL_DescribeSObject> getSObjectDescribeModelByLabelNameList(List<String> labelNameList) {
+        List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
+
+        for(String labelName : labelNameList) {
+            MODL_DescribeSObject sObjectModel = this.locateSchemaMapper().getSObjectDescribeModelByLabelName(labelName);
+
+            if (sObjectModel == null){
+                continue;
+            }
 
             sObjectModelList.add(sObjectModel);
         }
@@ -61,9 +91,32 @@ public virtual with sharing class SRVC_Schema {
         return fieldDescribeModelsList;
     }
 
-    // public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsByApiNamesList(){
+    // public List<MODL_FieldDescribe> getFieldDescribeModelsForSObjectByFieldLabelNamesList(String sOjbectLabelName, List<String> sObjectFieldLabelNamesList){
+    //     List<MODL_FieldDescribe> fieldDescribeModelsList = new List<MODL_FieldDescribe>();
 
+    //     for (String fieldLabel : sObjectFieldLabelNamesList){
+    //         MODL_FieldDescribe fieldDescribeModel = this.locateSchemaMapper().getSObjectFieldDescribeModelByApiNames(sOjbectApiName, fieldLabel);
+    //         fieldDescribeModelsList.add(fieldDescribeModel);
+    //     }
+        
+    //     return fieldDescribeModelsList;
     // }
+
+    public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsByApiNamesList(String sOjbectApiName, List<String> sObjectFieldApiNamesList){
+        List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList = new List<MODL_PicklistFieldDescribe>();
+
+        for (String fieldApi : sObjectFieldApiNamesList){
+            MODL_FieldDescribe fieldDescribeModel = this.locateSchemaMapper().getSObjectFieldDescribeModelByApiNames(sOjbectApiName, fieldApi);
+
+            if (fieldDescribeModel.pickListFieldDescribeModel == null){
+                continue;
+            }
+
+            picklistFieldDescribeModelsList.add(fieldDescribeModel.pickListFieldDescribeModel);
+        }
+        
+        return picklistFieldDescribeModelsList;
+    }
 
     /**
     * @description Locates and returns an instance of the schema mapper

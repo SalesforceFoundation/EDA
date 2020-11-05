@@ -6,10 +6,23 @@ public with sharing class MODL_PicklistFieldDescribe extends MODL_FieldDescribe 
     public Map<String,Schema.PicklistEntry> picklistEntryByApiName { get; private set; }
     public Map<String, Schema.PicklistEntry> activePicklistEntryByApiName { get; private set; }
 
-    public MODL_PicklistFieldDescribe(){
+    // public MODL_PicklistFieldDescribe(){
+    //     picklistEntryLabelByApiName = new Map<String, String>();
+    //     picklistEntryByApiName = new Map<String,Schema.PicklistEntry>();
+    //     activePicklistEntryByApiName = new Map<String,Schema.PicklistEntry>();
+    // }
+
+    // TODO: add constructor that takes in list<Schema.PicklistEntry> and populates maps using addPicklistEntry
+    public MODL_PicklistFieldDescribe(Schema.SObjectField sObjectField){
         picklistEntryLabelByApiName = new Map<String, String>();
         picklistEntryByApiName = new Map<String,Schema.PicklistEntry>();
         activePicklistEntryByApiName = new Map<String,Schema.PicklistEntry>();
+
+        List<Schema.PicklistEntry> pickListEntriesList = sObjectField.getDescribe().getPicklistValues();
+
+        for (Schema.PicklistEntry pickListEntry : pickListEntriesList){
+            this.addPicklistEntry(picklistEntry);
+        }
     }
 
     /**

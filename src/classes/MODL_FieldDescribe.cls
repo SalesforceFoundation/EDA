@@ -23,19 +23,7 @@ public virtual with sharing class MODL_FieldDescribe {
     /**
      * @description Creates a MODL_PicklistFieldDescribe for SObject fields of type picklist.
      */
-    public void addPicklistFieldDescribeModel(){
-        if (pickListFieldDescribeModel == null){
-            pickListFieldDescribeModel = new MODL_PicklistFieldDescribe();
-        }
-
-        List<Schema.PicklistEntry> picklistEntriesList = this.describeFieldResult.getPicklistValues();
-
-        if (picklistEntriesList == null || picklistEntriesList.isEmpty()){
-            return;
-        }
-
-        for (Schema.PicklistEntry picklistEntry : picklistEntriesList){
-            pickListFieldDescribeModel.addPicklistEntry(picklistEntry);
-        }
+    public void addPicklistFieldDescribeModel(Schema.SObjectField sObjectField){
+       pickListFieldDescribeModel = new MODL_PicklistFieldDescribe(sObjectField);
     }
 }
