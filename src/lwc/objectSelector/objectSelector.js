@@ -6,15 +6,13 @@ import getPickListOptions from '@salesforce/apex/CTRL_FieldSelectOption.getPickL
 import errorToast from 'c/toastHandler';
 
 import errorCannotRetrieveData from '@salesforce/label/c.errorCannotRetrieveData';
-// import objectSelectComboboxLabel from '@salesforce/label/c.objectSelectComboboxLabel';
-// import objectSelectComboboxPlaceholder from '@salesforce/label/c.objectSelectComboboxPlaceholder';
 
 export default class ObjectSelector extends LightningElement {
     // parameters will be passed in from the parent component
     @api objectApiName;
     @api fieldApiName;
-    @api comboBoxLabelName;
-    @api comboBoxPlaceholderValue;
+    @api comboBoxLabel;
+    @api comboBoxPlaceholder;
 
     selectedComboBoxValue = 'settingsValue';
 
@@ -33,11 +31,11 @@ export default class ObjectSelector extends LightningElement {
         // };
 
     //This label reference object lets us embed labels
-    labelReference = {
-        comboBoxLabel: this.comboBoxLabelName,
-        comboBoxPlaceholder: this.comboBoxPlaceholderValue,
-        error: errorCannotRetrieveData
-    };
+    // labelReference = {
+    //     comboBoxLabel: this.comboBoxLabelName,
+    //     comboBoxPlaceholder: this.comboBoxPlaceholderValue,
+    //     error: errorCannotRetrieveData
+    // };
 
     get comboboxOptions() {
         if(!this.wiredPicklistViewModel.data) {
@@ -45,17 +43,6 @@ export default class ObjectSelector extends LightningElement {
         }
 
         return this.wiredPicklistViewModel.data.fieldSelectOptions;
-
-        // let fieldSelectModels = data[0].fieldSelectOptions;
-        // for (i=0; i<fieldSelectModels.length; i++){
-        //     console.log('picklist field name: ' + fieldSelectModels[i].value);
-        // }
-
-        // if (!this.wiredPicklistViewModel.data){
-        //     console.log('wiredPicklistViewModel null');
-        // }
-
-        // return this.wiredPicklistViewModel.data.fieldSelectOptions;
     }
 
     //pass the selected combobox value to the parent component

@@ -3,9 +3,9 @@
         <template if:true={wiredPicklistViewModel}>
             <lightning-combobox
                 name="objectName"
-                label={labelReference.comboboxLabel}
+                label={comboBoxLabel}
                 value={value}
-                placeholder={labelReference.comboBoxPlaceHolder}
+                placeholder={comboBoxPlaceholder}
                 options={comboboxOptions}
                 onchange={handleComboboxChange}
             ></lightning-combobox>
