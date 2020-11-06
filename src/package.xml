@@ -249,6 +249,7 @@
         <members>CMP_Picklist_Dropdown</members>
         <members>CMP_RecTypes</members>
         <members>CMP_RecTypes_Dropdown</members>
+        <members>LWC_ComboBox_TEST</members>
         <members>STG_App</members>
         <members>STG_CMP_Addr</members>
         <members>STG_CMP_Affl</members>
@@ -271,7 +272,6 @@
         <members>dataProviderInterface</members>
         <members>svgIcon</members>
         <members>svgIcon_EVT_Press</members>
-        <members>LWC_ComboBox_TEST</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
@@ -1351,9 +1351,9 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>lWC_Parent_component</members>
         <members>objectSelector</members>
         <members>toastHandler</members>
-        <members>lWC_Parent_component</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>

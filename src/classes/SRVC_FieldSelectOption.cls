@@ -37,7 +37,6 @@ public virtual with sharing class SRVC_FieldSelectOption {
         List<VMDL_FieldSelectOption> sObjectViewModelList = new List<VMDL_FieldSelectOption>();
         
         MODL_FieldDescribe fieldDescribeModel = SRVC_Schema.getInstance().getFieldDescribeModelsForSObjectByFieldApiNamesList(objectAPIName, new List<String>{fieldApiName})[0];
-        //fieldDescribeModel.addPicklistFieldDescribeModel(fieldDescribeModel.describeFieldResult.getSObjectField());
 
         for (Schema.PicklistEntry activePLEntry : fieldDescribeModel.pickListFieldDescribeModel.activePicklistEntryByApiName.values()){
             // create view model for picklist entry

@@ -14,16 +14,11 @@ public virtual with sharing class MODL_FieldDescribe {
         get { return describeFieldResult.getLocalName(); }
     }
 
-    public MODL_FieldDescribe(){}
-
-    public MODL_FieldDescribe(Schema.DescribeFieldResult describeFieldResult) {
-        this.describeFieldResult = describeFieldResult;
+    public MODL_FieldDescribe(Schema.SObjectField sobjectField) {
+        this.describeFieldResult = sobjectField.getDescribe();
     }
 
-    /**
-     * @description Creates a MODL_PicklistFieldDescribe for SObject fields of type picklist.
-     */
-    public void addPicklistFieldDescribeModel(Schema.SObjectField sObjectField){
-       pickListFieldDescribeModel = new MODL_PicklistFieldDescribe(sObjectField);
+    public void populatePicklistFieldDescribeModel(MODL_PicklistFieldDescribe pickListFieldDescribeModel){
+        this.pickListFieldDescribeModel = pickListFieldDescribeModel;
     }
 }
