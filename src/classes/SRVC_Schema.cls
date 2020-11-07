@@ -62,8 +62,9 @@ public virtual with sharing class SRVC_Schema {
     }
 
     /**********************************************************************************
-    * @description Gets an sObject model list by api names. Note that this would be 
-    * bulkified if it were not config
+    * @description Retrieve a list of DescribeSObject models by SObject API name.
+    * @param  apiNameList A list of SObject API names.
+    * @return A list of MODL_DescribeSObject models mapped by SObject API name, or label names if API name not found.
     **********************************************************************************/
     public List<MODL_DescribeSObject> getSObjectDescribeModelByApiNameList(List<String> apiNameList) {
         List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
@@ -88,9 +89,9 @@ public virtual with sharing class SRVC_Schema {
     }
 
     /**********************************************************************************
-    * getSObjectDescribeModelByLabelNameList description
-    * @param  labelNameList labelNameList description
-    * @return               return description
+    * @description Retrieve a list of DesribeSObject models by SObject label name.
+    * @param  labelNameList A list of SObject label names.
+    * @return A list of MODL_DescribeSObject models mapped by SObject lable names.
     **********************************************************************************/ 
     public List<MODL_DescribeSObject> getSObjectDescribeModelByLabelNameList(List<String> labelNameList) {
         List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
@@ -116,7 +117,6 @@ public virtual with sharing class SRVC_Schema {
     **********************************************************************************/
     public List<MODL_FieldDescribe> getFieldDescribeModelsForSObjectByFieldApiNamesList(String sOjbectApiName, List<String> sObjectFieldApiNamesList){
         
-        System.debug('MK DEBUG: Getting field describe model for : ' + sOjbectApiName + ', fields: ' + sObjectFieldApiNamesList);
         List<MODL_FieldDescribe> fieldDescribeModelsList = new List<MODL_FieldDescribe>();
 
         for (String fieldApi : sObjectFieldApiNamesList){
@@ -124,15 +124,16 @@ public virtual with sharing class SRVC_Schema {
             fieldDescribeModelsList.add(fieldDescribeModel);
         }
         
-        System.debug('MK DEBUG: fieldDescribeModelsList : ' + fieldDescribeModelsList);
         return fieldDescribeModelsList;
     }
-    
+
     /**********************************************************************************
-    * getPicklistFieldDescribeModelsByApiNamesList description
-    * @param  sOjbectApiName           sOjbectApiName description
-    * @param  sObjectFieldApiNamesList sObjectFieldApiNamesList description
-    * @return                          return description
+    * @description Retrieve a list of PicklistFieldDescribe models corresponding to a list of SObject
+    * Field API names for a specified SObject API Name.
+    * @param  sOjbectApiName An SObject Type API name.
+    * @param  sObjectFieldApiNamesList A list of SObject field API names for the specified SObject.
+    * @return a list of MODL_PicklistFieldDescribe models corresponding to the SObject field
+    * API names for the specified SObject type.
     **********************************************************************************/
     public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsByApiNamesList(String sOjbectApiName, List<String> sObjectFieldApiNamesList){
         List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList = new List<MODL_PicklistFieldDescribe>();
