@@ -87,7 +87,7 @@
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
         <members>CTRL_CustomLabels</members>
-        <members>CTRL_FieldSelectOption</members>
+        <members>CTRL_PicklistFieldEntry</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
@@ -135,7 +135,7 @@
         <members>SRVC_Contact_PreventDeletion_TEST</members>
         <members>SRVC_Contact_PrimaryAffiliations</members>
         <members>SRVC_Contact_PrimaryAffiliations_TEST</members>
-        <members>SRVC_FieldSelectOption</members>
+        <members>SRVC_PicklistFieldEntry</members>
         <members>SRVC_Schema</members>
         <members>SRVC_UniqueRecord</members>
         <members>SRVC_UniqueRecord_TEST</members>

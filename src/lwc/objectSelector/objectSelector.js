@@ -1,7 +1,7 @@
 import { LightningElement, wire, api } from 'lwc';
 
-//import getFieldSelectOptions from '@salesforce/apex/CTRL_FieldSelectOption.getFieldSelectOptions';
-import getPickListOptions from '@salesforce/apex/CTRL_FieldSelectOption.getPickListOptions';
+//import getFieldSelectOptions from '@salesforce/apex/CTRL_PicklistFieldEntry.getFieldSelectOptions';
+import getPickListOptions from '@salesforce/apex/CTRL_PicklistFieldEntry.getPickListOptions';
 
 import errorToast from 'c/toastHandler';
 

@@ -46,7 +46,7 @@ public with sharing class MODL_PicklistFieldDescribe extends MODL_FieldDescribe 
     }
 
     /**********************************************************************************
-    * @description Assigns a picklistFieldDescribe model to a FieldDescribe model.
+    * @description Assigns a picklistFieldDescribe model to parent FieldDescribe model.
     * @param  picklistFieldDescribeModel The picklistFieldDescribe model to assign.
     **********************************************************************************/ 
     public void addPicklistFieldDescribeModelToFieldDescribeModel(MODL_PicklistFieldDescribe picklistFieldDescribeModel){

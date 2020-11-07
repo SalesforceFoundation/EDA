@@ -89,7 +89,7 @@ public virtual with sharing class MAPR_Schema {
     /**********************************************************************************
     * @description Retrieve a cached DescribeSObject model for a specified SObject API name.
     * @param  apiName The API name of an SObject.
-    * @return A cached MODL_DescribeObject model representing the schema of the 
+    * @return A cached MODL_DescribeSObject model representing the schema of the 
     * specified SObject API name.
     **********************************************************************************/
     public MODL_DescribeSObject getSObjectDescribeModelByApiName(String apiName) {
@@ -369,7 +369,9 @@ public virtual with sharing class MAPR_Schema {
 
         // generate field describe model for picklist or other field type
         fieldDescribeModel = this.getNewFieldDescribeModelBySObjectFields(new List<Schema.SObjectField>{sObjectField})[0];
-        cachedDescribeSObjectModel.sObjectFieldModelBySObjectField.put(sObjectField, fieldDescribeModel);
+        //cachedDescribeSObjectModel.sObjectFieldModelBySObjectField.put(sObjectField, fieldDescribeModel);
+        cachedDescribeSObjectModel.addFieldDescribeModel(fieldDescribeModel);
+
         return fieldDescribeModel;
     }
 }

@@ -32,29 +32,29 @@
 * @date 2020
 * @group Schema
 * @group-content ../../ApexDocContent/Schema.htm
-* @description Model to view model mapper service
+* @description Model to view model mapper service for a picklist field entry
 * This ideally should return only view models
 * This is should be called by controllers or other view model mapper services and call services necessary to get the models it requires.
 */
-public virtual with sharing class SRVC_FieldSelectOption {
+public virtual with sharing class SRVC_PicklistFieldEntry {
     /**********************************************************************************
     * @description Instance for Singleton Pattern
     **********************************************************************************/
     @TestVisible
-    private static SRVC_FieldSelectOption instance;
+    private static SRVC_PicklistFieldEntry instance;
 
     /**********************************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************************/
-    protected SRVC_FieldSelectOption(){}
+    protected SRVC_PicklistFieldEntry(){}
 
     /**********************************************************************************
     * @description Static method to get the current instance for Singleton pattern
     * @return The instance of MAPR_Schema.
     **********************************************************************************/
-    public static SRVC_FieldSelectOption getInstance() {
+    public static SRVC_PicklistFieldEntry getInstance() {
         if (instance == null) {
-            instance = new SRVC_FieldSelectOption();
+            instance = new SRVC_PicklistFieldEntry();
         }
 
         return instance;
@@ -64,67 +64,67 @@ public virtual with sharing class SRVC_FieldSelectOption {
     * @description Retrieve a list of view models representing the active entries of a specified SObject picklist field.
     * @param  objectAPIName An SObject Type API Name.
     * @param  fieldAPIName  An SObject Picklist Field API Name for the specified SObject type.
-    * @return A list of VMDL_FieldSelectOption view models representing the active entries of a specified picklist field
+    * @return A list of VMDL_PicklistEntry view models representing the active entries of a specified picklist field
     **********************************************************************************/
-    public List<VMDL_FieldSelectOption> getViewModelForPicklistFieldActiveEntriesOnObject(String objectAPIName, String fieldApiName){
-        List<VMDL_FieldSelectOption> sObjectViewModelList = new List<VMDL_FieldSelectOption>();
+    public List<VMDL_PicklistEntry> getViewModelForPicklistFieldActiveEntriesOnObject(String objectAPIName, String fieldApiName){
+        List<VMDL_PicklistEntry> picklistEntryViewModelsLList = new List<VMDL_PicklistEntry>();
         
         MODL_FieldDescribe fieldDescribeModel = SRVC_Schema.getInstance().getFieldDescribeModelsForSObjectByFieldApiNamesList(objectAPIName, new List<String>{fieldApiName})[0];
 
         for (Schema.PicklistEntry activePLEntry : fieldDescribeModel.pickListFieldDescribeModel.activePicklistEntryByApiName.values()){
             // create view model for picklist entry
-            VMDL_FieldSelectOption fieldOptionViewMdl = new VMDL_FieldSelectOption(
+            VMDL_PicklistEntry picklistEntryViewModel = new VMDL_PicklistEntry(
                 activePLEntry.getValue(), 
                 activePLEntry.getLabel(),
                 activePLEntry.isActive()
             );
 
-            sObjectViewModelList.add(fieldOptionViewMdl);
+            picklistEntryViewModelsLList.add(picklistEntryViewModel);
         }
 
-        return sObjectViewModelList;
+        return picklistEntryViewModelsLList;
     }
 
     /**********************************************************************************
     * @description Retrieves a list of FieldSelectOption view models corresponding to a list of SObject Type API names.
     * @param  apiNameList A list of SObjectType API names.
-    * @return A list of VMDL_FieldSelectOption models corresponding to the specified Sobject types.
+    * @return A list of VMDL_PicklistEntry models corresponding to the specified Sobject types.
     **********************************************************************************/
-    public List<VMDL_FieldSelectOption> getViewModelsFromApiNameList(List<String> apiNameList) {
+    public List<VMDL_PicklistEntry> getViewModelsFromApiNameList(List<String> apiNameList) {
         List<MODL_DescribeSObject> sObjectModelList = SRVC_Schema.getInstance().getSObjectDescribeModelByApiNameList(apiNameList);
 
-        List<VMDL_FieldSelectOption> sObjectViewModelList = new List<VMDL_FieldSelectOption>();
+        List<VMDL_PicklistEntry> picklistEntryViewModelsLList = new List<VMDL_PicklistEntry>();
 
         for (MODL_DescribeSObject sObjectModel : sObjectModelList) {
-            VMDL_FieldSelectOption sObjectViewModel = 
-                new VMDL_FieldSelectOption(
+            VMDL_PicklistEntry sObjectViewModel = 
+                new VMDL_PicklistEntry(
                     sObjectModel.apiName,
                     sObjectModel.label
                 );
 
-            sObjectViewModelList.add(sObjectViewModel);
+            picklistEntryViewModelsLList.add(sObjectViewModel);
         }
 
-        return sObjectViewModelList;
+        return picklistEntryViewModelsLList;
     }
 
     /**
     * @description View model for field select options
     */
-    public with sharing class VMDL_FieldSelectOption {
-        public VMDL_FieldSelectOption(){}
+    public with sharing class VMDL_PicklistEntry {
+        public VMDL_PicklistEntry(){}
 
         /**
         * @description We could incorporate an invalid version of this model that overrides it.
         * In that case we would use the value and label as the 'bad' settings option.
         */
-        public VMDL_FieldSelectOption(String value, String label) {
+        public VMDL_PicklistEntry(String value, String label) {
             this.value = value;
             this.label = label;
             this.isValid = true;
         }
 
-        public VMDL_FieldSelectOption(String value, String label, Boolean isValid) {
+        public VMDL_PicklistEntry(String value, String label, Boolean isValid) {
             this.value = value;
             this.label = label;
             this.isValid = isValid;

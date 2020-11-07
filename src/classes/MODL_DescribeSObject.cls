@@ -80,7 +80,12 @@ public with sharing class MODL_DescribeSObject {
     * @param  sObjectField An SObject field token.
     * @param  sObjectFieldDescribeModel A MODL_FieldDescribe to add.
     **********************************************************************************/
-    public void addFieldDescribeModel(Schema.SObjectField sObjectField, MODL_FieldDescribe sObjectFieldDescribeModel){
+    // public void addFieldDescribeModel(Schema.SObjectField sObjectField, MODL_FieldDescribe sObjectFieldDescribeModel){
+    //     sObjectFieldModelBySObjectField.put(sObjectField, sObjectFieldDescribeModel);
+    // }
+
+    public void addFieldDescribeModel(MODL_FieldDescribe sObjectFieldDescribeModel){
+        Schema.SObjectField sObjectField = sObjectFieldDescribeModel.describeFieldResult.getSobjectField();
         sObjectFieldModelBySObjectField.put(sObjectField, sObjectFieldDescribeModel);
     }
 }
