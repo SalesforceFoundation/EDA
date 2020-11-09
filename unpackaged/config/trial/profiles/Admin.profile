@@ -186,5 +186,10 @@
         <apexClass>%%%NAMESPACE%%%UTIL_Describe</apexClass>
         <enabled>True</enabled>
     </classAccesses>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>%%%NAMESPACE%%%Facility__c.Display_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userLicense>Salesforce</userLicense>
 </Profile>
