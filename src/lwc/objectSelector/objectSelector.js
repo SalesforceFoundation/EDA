@@ -1,7 +1,6 @@
 import { LightningElement, wire, api } from 'lwc';
 
-//import getFieldSelectOptions from '@salesforce/apex/CTRL_PicklistFieldEntry.getFieldSelectOptions';
-import getPickListOptions from '@salesforce/apex/CTRL_PicklistFieldEntry.getPickListOptions';
+import getActivePickListOptions from '@salesforce/apex/CTRL_PicklistFieldEntry.getActivePickListOptions';
 
 import errorToast from 'c/toastHandler';
 
@@ -17,25 +16,10 @@ export default class ObjectSelector extends LightningElement {
     selectedComboBoxValue = 'settingsValue';
 
     // load picklist field options based on object and field API names
-    @wire(getPickListOptions, {
+    @wire(getActivePickListOptions, {
         objectAPIName: '$objectApiName', 
         fieldAPIName: '$fieldApiName',
     }) wiredPicklistViewModel;
-        // ({ error, data}){
-        //     if (data){
-        //         console.log('picklist values successfully retrieved! Data retrieved: ' + JSON.stringify(data));
-        //         //TODO: populate picklistItemsList with values retrieved from data
-        //     } else if (error){
-        //         console.log('error retrieving picklist values');
-        //     }
-        // };
-
-    //This label reference object lets us embed labels
-    // labelReference = {
-    //     comboBoxLabel: this.comboBoxLabelName,
-    //     comboBoxPlaceholder: this.comboBoxPlaceholderValue,
-    //     error: errorCannotRetrieveData
-    // };
 
     get comboboxOptions() {
         if(!this.wiredPicklistViewModel.data) {

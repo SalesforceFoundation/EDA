@@ -12,7 +12,8 @@ public with sharing class CTRL_PicklistFieldEntry {
     // }
 
     @AuraEnabled(cacheable=true)
-    public static VMDL_Combobox getPickListOptions(String objectAPIName, String fieldAPIName){
+    public static VMDL_Combobox getActivePickListOptions(String objectAPIName, String fieldAPIName){
+        //TODO: error if field/object combo aren't valid pair?
         return new VMDL_Combobox(SRVC_PicklistFieldEntry.getInstance().getViewModelForPicklistFieldActiveEntriesOnObject(objectAPIName, fieldAPIName));
     }
 

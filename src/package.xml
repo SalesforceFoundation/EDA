@@ -86,7 +86,6 @@
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
-        <members>CTRL_CustomLabels</members>
         <members>CTRL_PicklistFieldEntry</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
@@ -101,6 +100,10 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
+        <members>MAPR_DescribeSObject</members>
+        <members>MAPR_FieldDescribe</members>
+        <members>MAPR_GlobalDescribe</members>
+        <members>MAPR_PicklistFieldDescribe</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
         <members>MAPR_Schema</members>
@@ -135,6 +138,10 @@
         <members>SRVC_Contact_PreventDeletion_TEST</members>
         <members>SRVC_Contact_PrimaryAffiliations</members>
         <members>SRVC_Contact_PrimaryAffiliations_TEST</members>
+        <members>SRVC_DescribeSObject</members>
+        <members>SRVC_FieldDescribe</members>
+        <members>SRVC_GlobalDescribe</members>
+        <members>SRVC_PicklistFieldDescribe</members>
         <members>SRVC_PicklistFieldEntry</members>
         <members>SRVC_Schema</members>
         <members>SRVC_UniqueRecord</members>
