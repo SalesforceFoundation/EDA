@@ -50,16 +50,16 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static List<Relationship_Auto_Create__c> relationshipAutocreate;
     public static List<Relationship_Lookup__c> relationshipLookup;
 
-    private static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relationshipAutoCreateBySObjectType;
+    private static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relationshipAutoCreateListBySObjectType;
     private static List<Relationship_Lookup__c> activeRelationshipLookupList;
 
     /******************************************************************************************************
-    * @description Generates a map of Relationship Auto Create settings for Contact
-    * @return A map containing a list of Relationship Auto Create settings for the Contact object
+    * @description Generates a list of Relationship Auto Create settings for Contact
+    * @return A  of Relationship Auto Create settings specified for the Contact object
     ******************************************************************************************************/
-    public static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> getAutoCreateSettingsForContact(){
-        if (UTIL_CustomSettingsFacade.relationshipAutoCreateBySObjectType != null){
-            return UTIL_CustomSettingsFacade.relationshipAutoCreateBySObjectType;
+    public static List<Relationship_Auto_Create__c> getAutoCreateSettingsForContact(){
+        if (UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType != null){
+            return UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType.get(Contact.SObjectType);
         }
 
         if (UTIL_CustomSettingsFacade.relationshipAutocreate == null || UTIL_CustomSettingsFacade.relationshipAutocreate.isEmpty() == true){
@@ -74,10 +74,10 @@ public without sharing class UTIL_CustomSettingsFacade {
             }
         }
 
-        UTIL_CustomSettingsFacade.relationshipAutoCreateBySObjectType = new Map<Schema.SObjectType, List<Relationship_Auto_Create__c>>();
-        relationshipAutoCreateBySObjectType.put(Contact.SObjectType, relationshipAutoCreateList);
+        UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType = new Map<Schema.SObjectType, List<Relationship_Auto_Create__c>>();
+        relationshipAutoCreateListBySObjectType.put(Contact.SObjectType, relationshipAutoCreateList);
 
-        return UTIL_CustomSettingsFacade.relationshipAutoCreateBySObjectType;
+        return relationshipAutoCreateList;
     }
 
     /******************************************************************************************************

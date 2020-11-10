@@ -82,13 +82,12 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
         Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
 
         Test.startTest();
-        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relationshipMappingsbySObjectType =
+        List<Relationship_Auto_Create__c> relAutoCreateForContactList =
             UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
         Test.stopTest();
 
-        System.assertNotEquals(true,relationshipMappingsbySObjectType.isEmpty(),'Relationship auto create settings map should not be empty.');
-        System.assertNotEquals(true,relationshipMappingsbySObjectType.get(Contact.SObjectType).isEmpty(),'Relationship auto create settings for Contact should not be empty.');
-        System.assertEquals(1,relationshipMappingsbySObjectType.get(Contact.SObjectType).size(),'Only one relationship auto create mapping should exist for the Contact.');
+        System.assertNotEquals(true,relAutoCreateForContactList.isEmpty(),'Relationship auto create settings for Contact should not be empty.');
+        System.assertEquals(1,relAutoCreateForContactList.size(),'Only one relationship auto create mapping should exist for the Contact.');
     }
 
     /**
@@ -99,16 +98,15 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
         insert new Relationship_Auto_Create__c(Name = 'test'+ System.now(), Object__c = 'Contact', Field__c = 'coworker__c',
         Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
 
-        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relationshipMappingsbySObjectType =
+        List<Relationship_Auto_Create__c> relAutoCreateForContactList =
             UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
 
         Test.startTest();
-        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relationshipMappingsbySObjectTypeCached =
+        List<Relationship_Auto_Create__c> relAutoCreateForContactCachedList =
             UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
         Test.stopTest();
 
-        System.assertEquals(relationshipMappingsbySObjectType,relationshipMappingsbySObjectTypeCached,'Relationship auto create mappings should be cached.');
-        System.assertEquals(relationshipMappingsbySObjectType.get(Contact.SObjectType),relationshipMappingsbySObjectTypeCached.get(Contact.SObjectType),'Relationship auto create mappings for contact should be cached.');
+        System.assertEquals(relAutoCreateForContactList,relAutoCreateForContactCachedList,'Relationship auto create mappings for contact should be cached.');
     }
 
     @isTest

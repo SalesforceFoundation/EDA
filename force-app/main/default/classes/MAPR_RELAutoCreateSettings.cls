@@ -75,10 +75,11 @@ public virtual with sharing class MAPR_RELAutoCreateSettings {
             return MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache;
         }
 
-        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relAutoCreateListBySObjectType =
+        List<Relationship_Auto_Create__c> relAutoCreateForContactsList = 
             UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+            
         MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache =
-            this.getContactMappingModelsFromMappings(relAutoCreateListBySObjectType.get(Contact.SObjectType));
+            this.getContactMappingModelsFromMappings(relAutoCreateForContactsList);
 
         return MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache;
     }
