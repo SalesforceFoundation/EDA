@@ -228,7 +228,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     *******************************************************************************************************/ 
     @TestVisible
     private Boolean isUpdateRecursion(){
-        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update);
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM);
     }
 
     /*******************************************************************************************************
@@ -236,7 +236,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     *******************************************************************************************************/    
     @TestVisible
     private void setUpdateRecursion(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
     }
 
     /*******************************************************************************************************
@@ -244,7 +244,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     *******************************************************************************************************/ 
     @TestVisible
     private void unsetUpdateRecursion(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
     }
 
     /*******************************************************************************************************

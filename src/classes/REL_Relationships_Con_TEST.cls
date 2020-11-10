@@ -1232,14 +1232,14 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/ 
     @isTest 
     private static void unsetUpdateRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
         Test.startTest();
             relConTdtm.unsetUpdateRecursion();
         Test.stopTest();
 
-        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update), 'Update recursion trigger should be set to false.');
+        System.assertEquals(false, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Update recursion trigger should be set to false.');
     }
 
     /*********************************************************************************************************
@@ -1248,14 +1248,14 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/ 
     @isTest 
     private static void setUpdatetRecursionFalse(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
         Test.startTest();
             relConTdtm.setUpdateRecursion();
         Test.stopTest();
 
-        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update), 'Update recursion trigger should remain set to true.');
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Update recursion trigger should remain set to true.');
     }
 
     /*********************************************************************************************************
@@ -1264,14 +1264,14 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/ 
     @isTest 
     private static void setUpdateRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
         Test.startTest();
             relConTdtm.setUpdateRecursion();
         Test.stopTest();
 
-        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update), 'Update recursion trigger should be set to true.');
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Update recursion trigger should be set to true.');
     }
 
     /*********************************************************************************************************
@@ -1280,14 +1280,14 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/ 
     @isTest 
     private static void setUpdateRecursionFalse(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
         Test.startTest();
             relConTdtm.setUpdateRecursion();
         Test.stopTest();
 
-        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update), 'Update recursion trigger should remain set to true.');
+        System.assertEquals(true, TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM), 'Update recursion trigger should remain set to true.');
     }
 
     /*********************************************************************************************************
@@ -1296,7 +1296,7 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/ 
     @isTest 
     private static void isUpdateRecursionTrue(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
 
@@ -1311,7 +1311,7 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/ 
     @isTest 
     private static void isUpdateRecursionFalse(){
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
 
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
 
