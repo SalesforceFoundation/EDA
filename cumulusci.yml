@@ -115,7 +115,7 @@ tasks:
                 STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
 
     execute_automatic_household_naming:
-        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
@@ -124,7 +124,7 @@ tasks:
                 update hierSettings;
 
     execute_preferred_phone_selection:
-        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
@@ -133,7 +133,7 @@ tasks:
                 update hierSettings;
 
     execute_enable_course_connections:
-        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs anonymous apex to enable Course Connections.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
@@ -142,7 +142,7 @@ tasks:
                 update hierSettings;
 
     execute_send_error_notifications:
-        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs anonymous apex to enable Error Notifications.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
