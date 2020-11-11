@@ -124,7 +124,7 @@ tasks:
                 update hierSettings;
 
     execute_preferred_phone_selection:
-        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
