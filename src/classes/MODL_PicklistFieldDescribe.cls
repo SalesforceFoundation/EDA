@@ -41,16 +41,9 @@ public with sharing class MODL_PicklistFieldDescribe extends MODL_FieldDescribe 
 
     public MODL_PicklistFieldDescribe(Schema.SObjectField sObjectField){
         super(sObjectField);
-        List<Schema.PicklistEntry> pickListEntriesList = sObjectField.getDescribe().getPicklistValues();
+        //List<Schema.PicklistEntry> pickListEntriesList = sObjectField.getDescribe().getPicklistValues();
+        List<Schema.PicklistEntry> pickListEntriesList = super.describeFieldResult.getPicklistValues();
         this.populatePicklistEntryMaps(pickListEntriesList);
-    }
-
-    /**********************************************************************************
-    * @description Assigns a picklistFieldDescribe model to parent FieldDescribe model.
-    * @param  picklistFieldDescribeModel The picklistFieldDescribe model to assign.
-    **********************************************************************************/ 
-    public void addPicklistFieldDescribeModelToFieldDescribeModel(MODL_PicklistFieldDescribe picklistFieldDescribeModel){
-       super.populatePicklistFieldDescribeModel(picklistFieldDescribeModel);
     }
 
     /**********************************************************************************
@@ -64,6 +57,8 @@ public with sharing class MODL_PicklistFieldDescribe extends MODL_FieldDescribe 
 
         for (Schema.PicklistEntry pickListEntry : pickListEntriesList){
             this.addPicklistEntry(picklistEntry);
+
+            System.debug('adding picklist Entry: ' + picklistEntry);
         }
     }
 

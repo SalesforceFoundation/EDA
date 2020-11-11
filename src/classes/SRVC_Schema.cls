@@ -37,6 +37,28 @@
 * This is called by either another service to orchestrate functionality or by a service that maps models to view models.
 */
 public virtual with sharing class SRVC_Schema {
+    /**********************************************************************************
+    * @description Lazy loading cache for global describes.
+    **********************************************************************************/
+    private MODL_GlobalDescribe globalDescribeModel {
+        get {
+            if(this.globalDescribeModel != null) {
+                return this.globalDescribeModel;
+            }
+
+            this.globalDescribeModel = new MODL_GlobalDescribe(Schema.getGlobalDescribe());
+            return this.globalDescribeModel;
+        }
+        set;
+    }
+
+    /**********************************************************************************
+    * @description Retrive a cached GlobalDescribe model.
+    * @return A cached MODL_GlobalDescribe representing the Global Describe schema.
+    **********************************************************************************/
+    public MODL_GlobalDescribe getGlobalDescribeModel() {
+        return this.globalDescribeModel;
+    }
 
     /**********************************************************************************
     * @description Instance for Singleton Pattern
@@ -62,99 +84,43 @@ public virtual with sharing class SRVC_Schema {
     }
 
     /**********************************************************************************
-    * @description Retrieve a list of DescribeSObject models by SObject API name.
-    * @param  apiNameList A list of SObject API names.
-    * @return A list of MODL_DescribeSObject models mapped by SObject API name, or label names if API name not found.
-    **********************************************************************************/
-    public List<MODL_DescribeSObject> getSObjectDescribeModelByApiNameList(List<String> apiNameList) {
-        List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
-
-        for(String apiName : apiNameList) {
-            MODL_DescribeSObject sObjectModel = this.locateSchemaMapper().getSObjectDescribeModelByApiName(apiName);
-
-            if (sObjectModel == null){
-                // model not found by apiName, search by labelName
-                String labelName = this.locateSchemaMapper().getGlobalDescribeModel().sObjectLabelByApiName.get(apiName);
-                sObjectModel = this.locateSchemaMapper().getSObjectDescribeModelByLabelName(labelName);
-            } 
-
-            if (sObjectModel == null){
-                continue;
-            }
-
-            sObjectModelList.add(sObjectModel);
-        }
-
-        return sObjectModelList;
-    }
-
-    /**********************************************************************************
-    * @description Retrieve a list of DesribeSObject models by SObject label name.
-    * @param  labelNameList A list of SObject label names.
-    * @return A list of MODL_DescribeSObject models mapped by SObject lable names.
-    **********************************************************************************/ 
-    public List<MODL_DescribeSObject> getSObjectDescribeModelByLabelNameList(List<String> labelNameList) {
-        List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
-
-        for(String labelName : labelNameList) {
-            MODL_DescribeSObject sObjectModel = this.locateSchemaMapper().getSObjectDescribeModelByLabelName(labelName);
-
-            if (sObjectModel == null){
-                continue;
-            }
-
-            sObjectModelList.add(sObjectModel);
-        }
-
-        return sObjectModelList;
-    }
-
-    /**********************************************************************************
-    * @description Retrieve a list of FieldDescribe models for specified SObject fields.
-    * @param  sOjbectApiName The API name for the related SObject.
-    * @param  sObjectFieldApiNamesList A List of API names for SObject fields to model.
-    * @return A list of MODL_FieldDescribe modelling the specified SObject fields.
-    **********************************************************************************/
-    public List<MODL_FieldDescribe> getFieldDescribeModelsForSObjectByFieldApiNamesList(String sOjbectApiName, List<String> sObjectFieldApiNamesList){
-        
-        List<MODL_FieldDescribe> fieldDescribeModelsList = new List<MODL_FieldDescribe>();
-
-        for (String fieldApi : sObjectFieldApiNamesList){
-            MODL_FieldDescribe fieldDescribeModel = this.locateSchemaMapper().getSObjectFieldDescribeModelByApiNames(sOjbectApiName, fieldApi);
-            fieldDescribeModelsList.add(fieldDescribeModel);
-        }
-        
-        return fieldDescribeModelsList;
-    }
-
-    /**********************************************************************************
-    * @description Retrieve a list of PicklistFieldDescribe models corresponding to a list of SObject
-    * Field API names for a specified SObject API Name.
-    * @param  sOjbectApiName An SObject Type API name.
-    * @param  sObjectFieldApiNamesList A list of SObject field API names for the specified SObject.
-    * @return a list of MODL_PicklistFieldDescribe models corresponding to the SObject field
-    * API names for the specified SObject type.
-    **********************************************************************************/
-    public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsByApiNamesList(String sOjbectApiName, List<String> sObjectFieldApiNamesList){
-        List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList = new List<MODL_PicklistFieldDescribe>();
-
-        for (String fieldApi : sObjectFieldApiNamesList){
-            MODL_FieldDescribe fieldDescribeModel = this.locateSchemaMapper().getSObjectFieldDescribeModelByApiNames(sOjbectApiName, fieldApi);
-
-            if (fieldDescribeModel.pickListFieldDescribeModel == null){
-                continue;
-            }
-
-            picklistFieldDescribeModelsList.add(fieldDescribeModel.pickListFieldDescribeModel);
-        }
-        
-        return picklistFieldDescribeModelsList;
-    }
-
-    /**********************************************************************************
     * @description Locates and returns an instance of the schema mapper
     **********************************************************************************/
     private MAPR_Schema locateSchemaMapper() {
         return MAPR_Schema.getInstance();
+    }
+
+    /**********************************************************************************
+    * @description Helper method to retrieve an SObjectType token by API name.
+    * @param  apiName The API name of an SObjectType.
+    * @return The SObjectType token corresponding to the specified API name.
+    **********************************************************************************/ 
+    public Schema.SObjectType getSObjectTypeByApiName(String apiName) {
+        Schema.SObjectType sObjectType =
+            this.getGlobalDescribeModel().sObjectTypeByApiName.get(apiName);
+
+        if(sObjectType != null) {
+            return sObjectType;
+        }
+
+        //TODO: Labelify
+        throw new InvalidParameterValueException('Object Name',apiName);
+    }
+
+    /**********************************************************************************
+    * @description Helper method to retrieve an SObjectType token by Label name.
+    * @param  labelName The label name of an SObjectType.
+    * @return The SObjectType token corresponding to the specified label name.
+    **********************************************************************************/ 
+    public Schema.SObjectType getSObjectTypeByLabel(String labelName) {
+        Schema.SObjectType sObjectType =
+            this.getGlobalDescribeModel().sObjectTypeByLabelName.get(labelName);
+
+        if(sObjectType != null) {
+            return sObjectType;
+        }
+
+        //TODO: Labelify
+        throw new InvalidParameterValueException('Object Name', labelName);
     }
 }

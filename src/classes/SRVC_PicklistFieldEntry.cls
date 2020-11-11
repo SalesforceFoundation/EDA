@@ -69,9 +69,9 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
     public List<VMDL_PicklistEntry> getViewModelForPicklistFieldActiveEntriesOnObject(String objectAPIName, String fieldApiName){
         List<VMDL_PicklistEntry> picklistEntryViewModelsLList = new List<VMDL_PicklistEntry>();
         
-        MODL_FieldDescribe fieldDescribeModel = SRVC_Schema.getInstance().getFieldDescribeModelsForSObjectByFieldApiNamesList(objectAPIName, new List<String>{fieldApiName})[0];
+        MODL_PicklistFieldDescribe picklistFieldDescribeModel = SRVC_FieldDescribe.getInstance().getPicklistFieldDescribeModelsFromApiNames(objectAPIName, new List<String>{fieldApiName})[0];
 
-        for (Schema.PicklistEntry activePLEntry : fieldDescribeModel.pickListFieldDescribeModel.activePicklistEntryByApiName.values()){
+        for (Schema.PicklistEntry activePLEntry : picklistFieldDescribeModel.activePicklistEntryByApiName.values()){
             // create view model for picklist entry
             VMDL_PicklistEntry picklistEntryViewModel = new VMDL_PicklistEntry(
                 activePLEntry.getValue(), 
@@ -91,11 +91,11 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
     * @return A list of VMDL_PicklistEntry models corresponding to the specified Sobject types.
     **********************************************************************************/
     public List<VMDL_PicklistEntry> getViewModelsFromApiNameList(List<String> apiNameList) {
-        List<MODL_DescribeSObject> sObjectModelList = SRVC_Schema.getInstance().getSObjectDescribeModelByApiNameList(apiNameList);
+        List<MODL_DescribeSObject> describeSObjectModelList = SRVC_DescribeSObject.getInstance().getSObjectDescribeModelByApiNameList(apiNameList);
 
         List<VMDL_PicklistEntry> picklistEntryViewModelsLList = new List<VMDL_PicklistEntry>();
 
-        for (MODL_DescribeSObject sObjectModel : sObjectModelList) {
+        for (MODL_DescribeSObject sObjectModel : describeSObjectModelList) {
             VMDL_PicklistEntry sObjectViewModel = 
                 new VMDL_PicklistEntry(
                     sObjectModel.apiName,

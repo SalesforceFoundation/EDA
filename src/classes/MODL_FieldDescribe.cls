@@ -35,7 +35,7 @@
 * @description Model to represent the schema of an SObject field.
 */
 public virtual with sharing class MODL_FieldDescribe {
-    public MODL_PicklistFieldDescribe pickListFieldDescribeModel { get; private set; }
+    //public MODL_PicklistFieldDescribe pickListFieldDescribeModel { get; private set; }
     public Schema.DescribeFieldResult describeFieldResult { get; private set; }
 
     public String label { 
@@ -58,7 +58,7 @@ public virtual with sharing class MODL_FieldDescribe {
     * @description Populates the MODL_PicklistFieldDescribe variable.
     * @param  pickListFieldDescribeModel A PicklistFieldDescribe model.
     **********************************************************************************/ 
-    public void populatePicklistFieldDescribeModel(MODL_PicklistFieldDescribe pickListFieldDescribeModel){
-        this.pickListFieldDescribeModel = pickListFieldDescribeModel;
-    }
+    // public void populatePicklistFieldDescribeModel(MODL_PicklistFieldDescribe pickListFieldDescribeModel){
+    //     this.pickListFieldDescribeModel = pickListFieldDescribeModel;
+    // }
 }

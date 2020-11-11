@@ -63,29 +63,27 @@ public with sharing class MODL_DescribeSObject {
 
     public MODL_DescribeSObject(Schema.DescribeSObjectResult sObjectDescribeResult){
         this.sObjectDescribeResult = sObjectDescribeResult;
+
         this.sObjectFieldLabelByApiName = new Map<String, String>();
         this.sObjectFieldByLabel = new Map<String,Schema.SObjectField>();
         this.sObjectFieldModelBySObjectField = new Map<Schema.SObjectField, MODL_FieldDescribe>();
+        this.sObjectFieldByApiName = sObjectDescribeResult.fields.getMap();
 
-        Map<String, Schema.SObjectField> sObjectFieldByApiName = sObjectDescribeResult.fields.getMap();
+        System.debug('sObjectFieldByApiName: ' + sObjectFieldByApiName);
 
-        for (Schema.SObjectField objectField : sObjectFieldByApiName.values()){
-            sObjectFieldLabelByApiName.put(objectField.getDescribe().getName(), objectField.getDescribe().getLabel());
-            sObjectFieldByLabel.put(objectField.getDescribe().getLabel(), objectField);
+        for (Schema.SObjectField objectField : this.sObjectFieldByApiName.values()){
+            Schema.DescribeFieldResult describeFieldResult = objectField.getDescribe();
+            this.sObjectFieldLabelByApiName.put(describeFieldResult.getName(), describeFieldResult.getLabel());
+            this.sObjectFieldByLabel.put(describeFieldResult.getLabel(), objectField);
         }
     }
 
-    /**********************************************************************************
-    * @description Add a FieldDescribe model to map by SObject field.
-    * @param  sObjectField An SObject field token.
-    * @param  sObjectFieldDescribeModel A MODL_FieldDescribe to add.
-    **********************************************************************************/
-    // public void addFieldDescribeModel(Schema.SObjectField sObjectField, MODL_FieldDescribe sObjectFieldDescribeModel){
-    //     sObjectFieldModelBySObjectField.put(sObjectField, sObjectFieldDescribeModel);
-    // }
-
-    public void addFieldDescribeModel(MODL_FieldDescribe sObjectFieldDescribeModel){
-        Schema.SObjectField sObjectField = sObjectFieldDescribeModel.describeFieldResult.getSobjectField();
+    /**
+     * cacheFieldDescribeModel description
+     * @param  sObjectField              sObjectField description
+     * @param  sObjectFieldDescribeModel sObjectFieldDescribeModel description
+     */
+    public void cacheFieldDescribeModel(Schema.SObjectField sObjectField, MODL_FieldDescribe sObjectFieldDescribeModel){
         sObjectFieldModelBySObjectField.put(sObjectField, sObjectFieldDescribeModel);
     }
 }

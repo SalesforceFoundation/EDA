@@ -49,8 +49,9 @@ public with sharing class MODL_GlobalDescribe {
         this.sObjectTypeByLabelName = new Map<String, Schema.SObjectType>();
 
         for (Schema.SObjectType sObjectType : sObjectTypeByApiName.values()){
-            String sObjectLabelName =  sObjectType.getDescribe().getLabel();
-            this.sObjectLabelByApiName.put(sObjectType.getDescribe().getName(), sObjectLabelName);
+            Schema.DescribeSObjectResult describeSObjectResult = sObjectType.getDescribe();
+            String sObjectLabelName =  describeSObjectResult.getLabel();
+            this.sObjectLabelByApiName.put(describeSObjectResult.getName(), sObjectLabelName);
             this.sObjectTypeByLabelName.put(sObjectLabelName, sObjectType);
         }
 
@@ -62,7 +63,7 @@ public with sharing class MODL_GlobalDescribe {
     * @param  sObjectType An SObjectType token.
     * @param  describeSObjectModel A MODL_DescribeSObject model to map.
     **********************************************************************************/
-    public void addSObjectDescribeModelToMap(Schema.SObjectType sObjectType, MODL_DescribeSObject describeSObjectModel) {
-        this.sObjectModelBySObjectType.put(sObjectType,describeSObjectModel);
+    public void cacheSObjectDescribeModel(Schema.SObjectType sObjectType, MODL_DescribeSObject describeSObjectModel) {
+        this.sObjectModelBySObjectType.put(sObjectType, describeSObjectModel);
     }    
 }
