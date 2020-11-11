@@ -133,7 +133,7 @@ tasks:
                 update hierSettings;
 
     execute_enable_course_connections:
-        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs anonymous apex to enable Course Connections.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
