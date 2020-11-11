@@ -142,7 +142,7 @@ tasks:
                 update hierSettings;
 
     execute_send_error_notifications:
-        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs anonymous apex to enable Error Notifications.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
