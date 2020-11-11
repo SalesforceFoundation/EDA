@@ -382,32 +382,27 @@ flows:
                 options:
                     managed: True
                     namespaced: True
-            5:
-                task: execute_qa_apex
-                options:
-                    managed: True
-                    namespaced: True
-            6: 
+            5: 
                 task: execute_enable_course_connections
                 options:
                     managed: True
                     namespaced: True
-            7: 
+            6: 
                 task: execute_preferred_phone_selection
                 options:
                     managed: True
                     namespaced: True
-            8: 
+            7: 
                 task: execute_send_error_notifications
                 options:
                     managed: True
                     namespaced: True
-            9: 
+            8: 
                 task: execute_automatic_household_naming
                 options:
                     managed: True
                     namespaced: True
-            10:
+            9:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
