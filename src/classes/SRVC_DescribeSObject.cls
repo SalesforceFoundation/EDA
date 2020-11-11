@@ -35,7 +35,6 @@ public virtual with sharing class SRVC_DescribeSObject {
     * @return A list of MODL_DescribeSObject models mapped by SObject API name, or label names if API name not found.
     **********************************************************************************/
     public List<MODL_DescribeSObject> getSObjectDescribeModelByApiNameList(List<String> apiNameList) {
-        System.debug('MK DEBUG: getting MODL_DescribeSObject');
 
         List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
         MODL_GlobalDescribe globalDescribeModel = SRVC_Schema.getInstance().getGlobalDescribeModel();
@@ -63,6 +62,7 @@ public virtual with sharing class SRVC_DescribeSObject {
             sObjectModelList.add(sObjectModel);
         }
 
+        System.debug('SRVC_DescribeSObject sObjectModelList: ' + sObjectModelList);
         return sObjectModelList;
     }
 

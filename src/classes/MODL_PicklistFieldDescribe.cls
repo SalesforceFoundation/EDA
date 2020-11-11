@@ -41,8 +41,7 @@ public with sharing class MODL_PicklistFieldDescribe extends MODL_FieldDescribe 
 
     public MODL_PicklistFieldDescribe(Schema.SObjectField sObjectField){
         super(sObjectField);
-        //List<Schema.PicklistEntry> pickListEntriesList = sObjectField.getDescribe().getPicklistValues();
-        List<Schema.PicklistEntry> pickListEntriesList = super.describeFieldResult.getPicklistValues();
+        List<Schema.PicklistEntry> pickListEntriesList = this.describeFieldResult.getPicklistValues();
         this.populatePicklistEntryMaps(pickListEntriesList);
     }
 
@@ -57,8 +56,6 @@ public with sharing class MODL_PicklistFieldDescribe extends MODL_FieldDescribe 
 
         for (Schema.PicklistEntry pickListEntry : pickListEntriesList){
             this.addPicklistEntry(picklistEntry);
-
-            System.debug('adding picklist Entry: ' + picklistEntry);
         }
     }
 

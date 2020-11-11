@@ -53,12 +53,4 @@ public virtual with sharing class MODL_FieldDescribe {
     public MODL_FieldDescribe(Schema.SObjectField sobjectField) {
         this.describeFieldResult = sobjectField.getDescribe();
     }
-
-    /**********************************************************************************
-    * @description Populates the MODL_PicklistFieldDescribe variable.
-    * @param  pickListFieldDescribeModel A PicklistFieldDescribe model.
-    **********************************************************************************/ 
-    // public void populatePicklistFieldDescribeModel(MODL_PicklistFieldDescribe pickListFieldDescribeModel){
-    //     this.pickListFieldDescribeModel = pickListFieldDescribeModel;
-    // }
 }

@@ -69,8 +69,6 @@ public with sharing class MODL_DescribeSObject {
         this.sObjectFieldModelBySObjectField = new Map<Schema.SObjectField, MODL_FieldDescribe>();
         this.sObjectFieldByApiName = sObjectDescribeResult.fields.getMap();
 
-        System.debug('sObjectFieldByApiName: ' + sObjectFieldByApiName);
-
         for (Schema.SObjectField objectField : this.sObjectFieldByApiName.values()){
             Schema.DescribeFieldResult describeFieldResult = objectField.getDescribe();
             this.sObjectFieldLabelByApiName.put(describeFieldResult.getName(), describeFieldResult.getLabel());

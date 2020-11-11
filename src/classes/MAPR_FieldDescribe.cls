@@ -35,9 +35,9 @@ public virtual with sharing class MAPR_FieldDescribe {
         }
 
         Schema.SObjectField sObjectField = sObjectDescribeModel.sObjectFieldByApiName.get(fieldApiName);
-
-        if (sObjectField.getDescribe().getType() == Schema.DisplayType.PICKLIST){
-            return this.createAndCachePicklistFieldDescribeModel(sObjectDescribeModel, fieldApiName);
+        
+        if (sObjectField.getDescribe().getType().name().equalsIgnoreCase('PICKLIST')){
+            return (MODL_FieldDescribe)this.createAndCachePicklistFieldDescribeModel(sObjectDescribeModel, fieldApiName);
         }
 
         MODL_FieldDescribe fieldDescribeModel = this.createFieldDescribeModel(sObjectField);
@@ -53,6 +53,7 @@ public virtual with sharing class MAPR_FieldDescribe {
     * valid for specified SObject token.
     **********************************************************************************/
     public MODL_PicklistFieldDescribe createAndCachePicklistFieldDescribeModel(MODL_DescribeSObject sObjectDescribeModel, String fieldApiName){
+        
         if (sObjectDescribeModel.sObjectFieldByApiName.containsKey(fieldApiName) == false){
             // TODO: throw exception: invalid SObject/field name pair
         }

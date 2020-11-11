@@ -67,18 +67,13 @@ public virtual with sharing class SRVC_FieldDescribe {
     * @return A list of MODL_FieldDescribe models corresponding to the specified list of SObject fields of type picklist.
     **********************************************************************************/
     public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsFromApiNames(String sObjectApiName, List<String> apiNameList){
-        List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList;
+        List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList = new List<MODL_PicklistFieldDescribe>();
 
         try {
             for (MODL_FieldDescribe fieldDescribeModel : this.getFieldDescribeModelsFromApiNames(sObjectApiName, apiNameList)){
-                try{
-                    System.debug('fieldDescribeModel is null? ' + fieldDescribeModel);
-                    System.debug('f ' + fieldDescribeModel.describeFieldResult.getName());
-                    MODL_PicklistFieldDescribe picklistFieldDescribeModel = (MODL_PicklistFieldDescribe)fieldDescribeModel;
-                    picklistFieldDescribeModelsList.add(picklistFieldDescribeModel);
-                } catch (Exception e){
-                    System.debug('Error casting individual fieldDescribe model to picklist field describe: ' + e.getMessage());
-                }
+                MODL_PicklistFieldDescribe picklistFieldDescribeModel = (MODL_PicklistFieldDescribe)fieldDescribeModel;
+                picklistFieldDescribeModelsList.add(picklistFieldDescribeModel);
+                
             }
 
             // picklistFieldDescribeModelsList = 
@@ -86,11 +81,8 @@ public virtual with sharing class SRVC_FieldDescribe {
         // } catch(NotAPicklistException ape) {
         } catch(Exception e) {
             //TODO handle error: at least one of field API names provided are not associated with a picklist field
-            System.debug('Exception in SRVC_FieldDescribe: ' + e.getMessage());
         }
-
-        System.debug('picklistFieldDescribeModelsList: ' + picklistFieldDescribeModelsList);
-
+        
         return picklistFieldDescribeModelsList;
     }
 }

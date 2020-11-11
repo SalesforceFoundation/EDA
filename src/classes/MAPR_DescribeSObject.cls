@@ -37,7 +37,6 @@ public virtual with sharing class MAPR_DescribeSObject {
         Schema.SObjectType sObjectType = globalDescribeModel.sObjectTypeByApiName.get(sObjectApiName);
         MODL_DescribeSObject describeSObjectModel = this.createDescribeSObjectModel(sObjectType.getDescribe());
 
-        System.debug('MK DEBUG: describeSObjectModel-----: ' + describeSObjectModel);
         globalDescribeModel.cacheSObjectDescribeModel(sObjectType, describeSObjectModel);
 
         return describeSObjectModel;
