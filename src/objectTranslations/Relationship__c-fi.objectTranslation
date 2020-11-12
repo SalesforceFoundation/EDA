@@ -140,6 +140,22 @@
       <translation>Setä</translation>
     </picklistValues>
     <picklistValues>
+      <masterLabel>Parent&apos;s Sibling</masterLabel>
+      <translation><!-- Parent&apos;s Sibling --></translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Niece</masterLabel>
+      <translation><!-- Niece --></translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nephew</masterLabel>
+      <translation><!-- Nephew --></translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sibling&apos;s Child</masterLabel>
+      <translation><!-- Sibling&apos;s Child --></translation>
+    </picklistValues>
+    <picklistValues>
       <masterLabel>Cousin</masterLabel>
       <translation>Serkku</translation>
     </picklistValues>
