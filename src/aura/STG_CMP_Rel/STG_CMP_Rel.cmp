@@ -6,7 +6,7 @@
     <aura:attribute name="Id" type="String" />
     <aura:attribute name="noRecSettings" type="String" />
     <aura:attribute name="noAutoCreateSettings" type="String" />
-	<aura:attribute name="reciprocalMethodOptions" type="Map" />
+    <aura:attribute name="reciprocalMethodOptions" type="Map" />
     <aura:attribute name="defaultReciprocalMethodValue" type="String" />
     <aura:attribute name="defaultReciprocalMethodLabel" type="String" />
 
@@ -41,7 +41,7 @@
 					picklistEntries="{!v.reciprocalMethodOptions}"
 					enableNoneOptionOnViewPage="false"
 					enableNoneOptionOnEditPage="false"
-				/>
+                />
           </div>
           <div class="slds-col slds-size--1-of-1">
 		        <ui:outputText value="{!$Label.c.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />

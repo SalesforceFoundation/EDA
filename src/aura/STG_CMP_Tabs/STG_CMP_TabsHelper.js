@@ -295,7 +295,7 @@
         }
 
         // Set reciprocalMethodOptions
-		component.set('v.reciprocalMethodOptions', reciprocalMethodOptions);
+        component.set('v.reciprocalMethodOptions', reciprocalMethodOptions);
     },
 
     //We want to compare the list of all available Account Record Types with the list of those that have been
