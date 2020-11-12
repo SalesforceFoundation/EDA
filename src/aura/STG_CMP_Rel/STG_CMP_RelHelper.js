@@ -1,14 +1,5 @@
 ({
 	init: function(component) {
-        	
-		// load values to reciprocalMethodOptions attribute      	
-		const reciprocalMethodValues = [	
-			$A.get("$Label.c.stgReciprocalMethodListSetting"),	
-			$A.get("$Label.c.stgReciprocalMethodValueInversion"),	
-		];
-
-		component.set('v.reciprocalMethodOptions', reciprocalMethodValues);
-
 		$A.util.addClass(component.find("settsTab"), "slds-active");
 
 		$A.util.addClass(component.find("settsTabContent"), "slds-show");
