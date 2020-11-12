@@ -205,11 +205,11 @@
         <picklistValues>
             <masterLabel>Niece</masterLabel>
             <translation><!-- Niece --></translation>
-          </picklistValues>
-          <picklistValues>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Nephew</masterLabel>
             <translation><!-- Nephew --></translation>
-          </picklistValues>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Sibling&apos;s Child</masterLabel>
             <translation><!-- Sibling&apos;s Child --></translation>
