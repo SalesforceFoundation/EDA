@@ -66,14 +66,13 @@
         <members>CON_CannotDelete_TEST</members>
         <members>CON_DoNotContact_TDTM</members>
         <members>CON_DoNotContact_TEST</members>
-        <members>CON_Email</members>
         <members>CON_Email_BATCH</members>
-        <members>CON_Email_TEST</members>
         <members>CON_EthnicityRace_BATCH</members>
         <members>CON_EthnicityRace_TEST</members>
         <members>CON_Phone</members>
         <members>CON_PreferredPhone_TDTM</members>
         <members>CON_PreferredPhone_TEST</members>
+        <members>CON_Preferred_Email_TEST</members>
         <members>CON_Preferred_TDTM</members>
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>
@@ -99,8 +98,14 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
+        <members>MAPR_CON_PreferredEmailFields</members>
+        <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
+        <members>MODL_PreferredEmailField</members>
+        <members>MODL_PreferredEmailField_TEST</members>
+        <members>MODL_PreferredEmailSettings</members>
+        <members>MODL_PreferredEmailSettings_TEST</members>
         <members>MODL_PrimaryAfflMapper</members>
         <members>MODL_PrimaryAfflMapper_TEST</members>
         <members>PPlan_CannotDelete_TDTM</members>
@@ -124,6 +129,8 @@
         <members>REL_Utils</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
+        <members>SRVC_Contact_PreferredEmail</members>
+        <members>SRVC_Contact_PreferredEmail_TEST</members>
         <members>SRVC_Contact_PreventDeletion</members>
         <members>SRVC_Contact_PreventDeletion_TEST</members>
         <members>SRVC_Contact_PrimaryAffiliations</members>

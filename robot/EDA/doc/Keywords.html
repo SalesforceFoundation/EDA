@@ -197,6 +197,20 @@ pre {
                 <td class="kwdoc"><p>Clicks on the action (eg: Save, Cancel) button on the EDA Settings page</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Click Add New Setting Button">
+                <td class="kwname">
+                  Click Add New Setting Button
+                </td>
+                <td class="kwargs">
+                  
+                  <i>setting_type</i>, 
+                  
+                  <i>button</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method clicks the add setting/mapping button (blue in color) present in EDA settings sub tabs in both edit and read mode. Pass the name of the setting and name of the button from robot file.</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Click Dropdown">
                 <td class="kwname">
                   Click Dropdown
@@ -373,6 +387,16 @@ pre {
                 <td class="kwdoc"><p>Navigates to EDA settings URL and click on the tab passed by the parameter and then loads the page object identified by the tab name</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Go To Groups Home">
+                <td class="kwname">
+                  Go To Groups Home
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Navigates to the Home view of the groups tab</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Header Field Value">
                 <td class="kwname">
                   Header Field Value
@@ -457,6 +481,16 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Populate placeholder element as a locator and actual value of the place holder.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Scroll Web Page">
+                <td class="kwname">
+                  Scroll Web Page
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>This method will scroll to the bottom of the page and back to the top using javascript page scroll commands</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Select Checkbox In Eda Settings">
@@ -548,6 +582,18 @@ pre {
                 <td class="kwdoc"><p>Returns to main content, and out of iframe</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Update Checkbox Value">
+                <td class="kwname">
+                  Update Checkbox Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the checkbox field value passed in keyword arguments Pass the expected value to be set in the checkbox field from the tests true - checked, false - unchecked</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Update Dropdown Value">
                 <td class="kwname">
                   Update Dropdown Value
@@ -558,6 +604,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>This method will update the drop down field value passed in keyword arguments Pass the expected value to be set in the drop down field from the tests</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Action Button Status">
+                <td class="kwname">
+                  Verify Action Button Status
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify the action button is disabled/enabled for the user we have to pass the name of the button and the expected status of the action button as either enabled or disabled</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Verify App Exists">
@@ -572,6 +630,18 @@ pre {
                 <td class="kwdoc"><p>Verifies that the given app is present in the app launcher</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Verify Checkbox Value">
+                <td class="kwname">
+                  Verify Checkbox Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method validates the checkbox value for the field passed in kwargs Pass the field name and expected value to be verified from the tests using keyword arguments. true - checked, false - unchecked</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Verify Dropdown Field Status">
                 <td class="kwname">
                   Verify Dropdown Field Status
@@ -582,6 +652,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Verify the drop down field is disabled/enabled for the user we have to pass the name of the field and the expected status of the field as either enabled or disabled</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Dropdown Value">
+                <td class="kwname">
+                  Verify Dropdown Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method validates the dropdown value for the field passed in kwargs Pass the field name and expected value to be verified from the tests using keyword arguments</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Verify Record">
@@ -606,6 +688,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>This method will confirm if the value to be set in dropdown field is retained after save action Pass the expected value to be verified from the tests using keyword arguments</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify Text Appears">
+                <td class="kwname">
+                  Verify Text Appears
+                </td>
+                <td class="kwargs">
+                  
+                  <i>textMessage</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify the text message is displayed this message gets displayed when the 'Run copy' button is clicked in both read and edit mode</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Verify Toast Message">
@@ -682,6 +776,18 @@ pre {
           <table class="kwtable" title='Table of keywords'>
             <tbody>
               <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
+              
+              <tr class="kwrow" id="EDA.robot.API Create Collaboration Group">
+                <td class="kwname">
+                  API Create Collaboration Group
+                </td>
+                <td class="kwargs">
+                  
+                  <i>group_name</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Creates a collaboration group by sending name and collaboration type</p></td>
+              </tr>
               
               <tr class="kwrow" id="EDA.robot.API Create Contact">
                 <td class="kwname">
@@ -858,6 +964,42 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is checked. Set the checkbox if it is not already set. Do nothing if the checkbox is already checked.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Update Disable Preferred Phone Checkbox Value">
+                <td class="kwname">
+                  Update Disable Preferred Phone Checkbox Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the checkbox field value passed in keyword arguments Pass the expected value to be set in the checkbox field from the tests true - checked, false - unchecked</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Update Enable Preferred Phone Checkbox Value">
+                <td class="kwname">
+                  Update Enable Preferred Phone Checkbox Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the checkbox field value passed in keyword arguments Pass the expected value to be set in the checkbox field from the tests true - checked, false - unchecked</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Verify Disable Preferred Phone Enforcement Displayed">
+                <td class="kwname">
+                  Verify Disable Preferred Phone Enforcement Displayed
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verify disable preferred phone enforcement is displayed</p></td>
               </tr>
               
             </tbody>
@@ -1448,18 +1590,6 @@ pre {
 <p>The current page object is also returned as an object</p></td>
               </tr>
               
-              <tr class="kwrow" id="CoursesSettingsPageObject.py.Verify Text Appears">
-                <td class="kwname">
-                  Verify Text Appears
-                </td>
-                <td class="kwargs">
-                  
-                  <i>is_displayed</i>
-                  
-                </td>
-                <td class="kwdoc"><p>Verify the text message is displayed this message gets displayed when the 'Run copy' button is clicked in both read and edit mode</p></td>
-              </tr>
-              
             </tbody>
           </table>
         </div> 
@@ -1511,6 +1641,38 @@ pre {
 <p>The current page object is also returned as an object</p></td>
               </tr>
               
+              <tr class="kwrow" id="ProgramPlansSettingsPageObject.py.Uncheck Nested Plan Requirements">
+                <td class="kwname">
+                  Uncheck Nested Plan Requirements
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Unchecking the `Validate Program Plan for Nested Plan Requirements` checkbox (false) Check for the value and if it is not false, go into edit mode and uncheck to make it false.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ProgramPlansSettingsPageObject.py.Update Nested Plan Requirements Checkbox">
+                <td class="kwname">
+                  Update Nested Plan Requirements Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Set the checkbox for 'Nested plan requirements' field</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="ProgramPlansSettingsPageObject.py.Verify Nested Plan Requirements Checkbox">
+                <td class="kwname">
+                  Verify Nested Plan Requirements Checkbox
+                </td>
+                <td class="kwargs">
+                  
+                  <i>expectedCheckboxValue</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will verify the 'Validate Program Plan for Nested Plan Requirements' checkbox is set to the value passed in the arg</p></td>
+              </tr>
+              
             </tbody>
           </table>
         </div> 
@@ -1551,6 +1713,40 @@ pre {
             <tbody>
               <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
               
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Click Delete Setting Icon">
+                <td class="kwname">
+                  Click Delete Setting Icon
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will click the delete icon in edit mode Pass the name of the field to be deleted as keyword arguments from robot file</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Enter New Reciprocal Setting">
+                <td class="kwname">
+                  Enter New Reciprocal Setting
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will enter the new reciprocal settings Pass the expected value to be entered along with field name as keyword arguments</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Get Total Settings Count">
+                <td class="kwname">
+                  Get Total Settings Count
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>This method will return the number of rows in the reciprocal settings</p></td>
+              </tr>
+              
               <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Go To Relationships Sub Tab">
                 <td class="kwname">
                   Go To Relationships Sub Tab
@@ -1572,6 +1768,148 @@ pre {
                 </td>
                 <td class="kwdoc"><p>Logs the name of the current page object</p>
 <p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Set Reciprocal Setting Status">
+                <td class="kwname">
+                  Set Reciprocal Setting Status
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will set the active checkbox status to active/inactive Pass the expected value to be set in the checkbox field from the tests true - checked, false - unchecked</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Update Existing Reciprocal Setting">
+                <td class="kwname">
+                  Update Existing Reciprocal Setting
+                </td>
+                <td class="kwargs">
+                  
+                  <i>column</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the existing reciprocal settings Pass the expected value to be updated along with field name as keyword arguments</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Update Reciprocal Method Value">
+                <td class="kwname">
+                  Update Reciprocal Method Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the drop down field value passed in keyword arguments Pass the expected value to be set in the drop down field from the tests</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Verify New Reciprocal Setting">
+                <td class="kwname">
+                  Verify New Reciprocal Setting
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will validate the new reciprocal setting added recently which is always in in last row. Pass the name of the reciprocal relationship and its value as keyword args and this method will assign constant numeric value against each setting and validates the corresponding value</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Verify New Setting Checkbox Status">
+                <td class="kwname">
+                  Verify New Setting Checkbox Status
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Checks the expected status (True or False) of the checkbox for newly added setting Pass the expected value and field name from the tests true - checked, false - unchecked</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Verify New Setting Checkbox Status Edit Mode">
+                <td class="kwname">
+                  Verify New Setting Checkbox Status Edit Mode
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Checks the expected status (True or False) of the checkbox for newly added in edit mode Pass the expected value and field name from the tests true - checked, false - unchecked</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Verify Reciprocal Setting Edit Mode">
+                <td class="kwname">
+                  Verify Reciprocal Setting Edit Mode
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will validate the new reciprocal setting added recently which is always in in last row in edit mdoe. Pass the name of the reciprocal relationship and its value as keyword args and this method will assign constant numeric value against each setting and validates the corresponding value</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Verify Setting Deleted">
+                <td class="kwname">
+                  Verify Setting Deleted
+                </td>
+                <td class="kwargs">
+                  
+                  <i>expectedStatus</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will verify the setting is deleted or not based on the expected status sent Pass the name of the field and its value as keyword arguments and expected status</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Verify Setting Removed">
+                <td class="kwname">
+                  Verify Setting Removed
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will verify the setting is removed or not based on the expected status sent in read mode. Pass the name of the field and its value as keyword arguments and expected status</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Verify Settings Count">
+                <td class="kwname">
+                  Verify Settings Count
+                </td>
+                <td class="kwargs">
+                  
+                  <i>settings_count</i>, 
+                  
+                  <i>actual_count</i>, 
+                  
+                  <i>expected</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will compare the reciprocal relationship settings count. It accepts initial count, updated count and expected status as arguments</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="RelationshipsSettingsPageObject.py.Verify Updated Reciprocal Setting">
+                <td class="kwname">
+                  Verify Updated Reciprocal Setting
+                </td>
+                <td class="kwargs">
+                  
+                  <i>column</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will verify the updated reciprocal settings Pass the expected value to be verified along with field name as keyword arguments</p></td>
               </tr>
               
             </tbody>
@@ -1695,6 +2033,18 @@ pre {
             <tbody>
               <tr><th>Keyword</th><th>Arguments</th><th>Documentation</th></tr>
               
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Enter Account Name Format">
+                <td class="kwname">
+                  Enter Account Name Format
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will enter the account name format after selecting other in the drop down Pass the expected value to be set in the input field as arguments</p></td>
+              </tr>
+              
               <tr class="kwrow" id="SystemSettingsPageObject.py.Log Current Page Object">
                 <td class="kwname">
                   Log Current Page Object
@@ -1706,28 +2056,76 @@ pre {
 <p>The current page object is also returned as an object</p></td>
               </tr>
               
-              <tr class="kwrow" id="SystemSettingsPageObject.py.Verify Default Checkbox Value">
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Select Recipient">
                 <td class="kwname">
-                  Verify Default Checkbox Value
+                  Select Recipient
                 </td>
                 <td class="kwargs">
                   
                   <i>**kwargs</i>
                   
                 </td>
-                <td class="kwdoc"><p>This method validates the default checkbox value for the field passed in kwargs Pass the field name and expected value to be verified from the tests using keyword arguments</p></td>
+                <td class="kwdoc"><p>This method will select the lookup result for the recipient notification Pass the expected value to be selected as arguments</p></td>
               </tr>
               
-              <tr class="kwrow" id="SystemSettingsPageObject.py.Verify Default Dropdown Value">
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Select Recipient Type Value">
                 <td class="kwname">
-                  Verify Default Dropdown Value
+                  Select Recipient Type Value
                 </td>
                 <td class="kwargs">
                   
                   <i>**kwargs</i>
                   
                 </td>
-                <td class="kwdoc"><p>This method validates the default dropdown value for the field passed in kwargs Pass the field name and expected value to be verified from the tests using keyword arguments</p></td>
+                <td class="kwdoc"><p>This method will select the drop down field value passed in keyword arguments Pass the expected value to be selected in the drop down field from the tests</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Update System Dropdown Value">
+                <td class="kwname">
+                  Update System Dropdown Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the drop down field value passed in keyword arguments Pass the expected value to be set in the drop down field from the tests</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Verify Admin Toast Message">
+                <td class="kwname">
+                  Verify Admin Toast Message
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verifies the admin  toast message</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Verify Household Toast Message">
+                <td class="kwname">
+                  Verify Household Toast Message
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verifies the household specific toast message</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="SystemSettingsPageObject.py.Verify System Dropdown Value">
+                <td class="kwname">
+                  Verify System Dropdown Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method validates the dropdown value for the field passed in kwargs Pass the field name and expected value to be verified from the tests using keyword arguments</p></td>
               </tr>
               
             </tbody>
@@ -1738,7 +2136,7 @@ pre {
       
     </div>
     <div class="footer">
-      Generated on Monday August 17, 09:55 AM - cumulusci v3.15.0
+      Generated on Friday October 30, 03:28 PM - cumulusci v3.19.1
     </div>
   </body>
 </html>
