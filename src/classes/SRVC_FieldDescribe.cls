@@ -30,10 +30,10 @@ public virtual with sharing class SRVC_FieldDescribe {
     }
 
     /**********************************************************************************
-    * @description Retrieve cached FieldDescribe models for a specified list of SObject fields.
-    * @param  sObjectApiName The API name for and SObject token.
-    * @param  apiNameList A list of API names for fields on the same SObject.
-    * @return A list of MODL_FieldDescribe models corresponding to the specified list of SObject fields.
+    * @description Retrieve cached FieldDescribe models for a specified list of SObject field api names.
+    * @param  sObjectApiName The API name for an SObject.
+    * @param  apiNameList A list of API names for fields on the specified SObject.
+    * @return A list of MODL_FieldDescribe models corresponding to the specified list of SObject field api names.
     **********************************************************************************/
     public List<MODL_FieldDescribe> getFieldDescribeModelsFromApiNames(String sObjectApiName, List<String> apiNameList) {
         List<MODL_FieldDescribe> fieldDescribeModelList = new List<MODL_FieldDescribe>();
@@ -61,10 +61,101 @@ public virtual with sharing class SRVC_FieldDescribe {
     } 
 
     /**********************************************************************************
-    *  @description Retrieve cached PicklistFieldDescribe models for a specified list of SObject fields of type picklist.
-    * @param  sObjectApiName The API name for and SObject token.
-    * @param  apiNameList A list of API names for picklist fields on the same SObject.
-    * @return A list of MODL_FieldDescribe models corresponding to the specified list of SObject fields of type picklist.
+    * @description Retrieve cached FieldDescribe models for a specified list of SObject field label names.
+    * @param  sObjectApiName An SObject label name.
+    * @param  apiNameList A list of API names for fields for the specified SObject.
+    * @return A list of MODL_FieldDescribe models corresponding to the specified list of SObject field label names.
+    **********************************************************************************/
+    public List<MODL_FieldDescribe> getFieldDescribeModelsFromLabelNames(String sObjectLabelName, List<String> labelNameList) {
+        List<MODL_FieldDescribe> fieldDescribeModelList = new List<MODL_FieldDescribe>();
+
+        MODL_DescribeSObject describeSObjectModel = 
+            SRVC_DescribeSObject.getInstance().getSObjectDescribeModelByLabelNameList(new List<String>{sObjectLabelName})[0];
+
+        for (String fieldLabelName : labelNameList){
+            Schema.SObjectField sObjectField = describeSObjectModel.sObjectFieldByLabel.get(fieldLabelName);
+
+            if (sObjectField == null){
+                // TODO throw exception: field Label name is not valid for specified sObject type
+            }
+
+            MODL_FieldDescribe fieldDescribeModel = describeSObjectModel.sObjectFieldModelBySObjectField.get(sObjectField);
+
+            if (fieldDescribeModel == null){
+                fieldDescribeModel = this.locateFieldDescribeMapper().createAndCacheFieldDescribeModel(describeSObjectModel, fieldLabelName);
+            }
+
+            fieldDescribeModelList.add(fieldDescribeModel);
+        }
+
+        return fieldDescribeModelList;
+    } 
+
+    /**********************************************************************************
+    * @description Retrieve cached FieldDescribe models for a specified list of SObject field api names.
+    * @param  sObjectApiName An SObject token.
+    * @param  apiNameList A list of API names for fields on the specified SObject.
+    * @return A list of MODL_FieldDescribe models corresponding to the specified list of SObject field api names.
+    **********************************************************************************/
+    public List<MODL_FieldDescribe> getFieldDescribeModelsFromFieldApiNames(Schema.SObjectType sObjectType, List<String> apiNameList) {
+        List<MODL_FieldDescribe> fieldDescribeModelList = new List<MODL_FieldDescribe>();
+
+        MODL_DescribeSObject describeSObjectModel = SRVC_DescribeSObject.getInstance().getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0];
+
+        for (String fieldApiName : apiNameList){
+            Schema.SObjectField sObjectField = describeSObjectModel.sObjectFieldByApiName.get(fieldApiName);
+
+            if (sObjectField == null){
+                // TODO throw exception: field Label name is not valid for specified sObject type
+            }
+
+            MODL_FieldDescribe fieldDescribeModel = describeSObjectModel.sObjectFieldModelBySObjectField.get(sObjectField);
+
+            if (fieldDescribeModel == null){
+                fieldDescribeModel = this.locateFieldDescribeMapper().createAndCacheFieldDescribeModel(describeSObjectModel, fieldApiName);
+            }
+
+            fieldDescribeModelList.add(fieldDescribeModel);
+        }
+
+        return fieldDescribeModelList;
+    } 
+
+    /**********************************************************************************
+    * @description Retrieve cached FieldDescribe models for a specified list of SObject field label names.
+    * @param  sObjectApiName An SObject token.
+    * @param  apiNameList A list of label names for fields on the specified SObject.
+    * @return A list of MODL_FieldDescribe models corresponding to the specified list of SObject field label.
+    **********************************************************************************/
+    public List<MODL_FieldDescribe> getFieldDescribeModelsFromFieldLabelNames(Schema.SObjectType sObjectType, List<String> labelNameList) {
+        List<MODL_FieldDescribe> fieldDescribeModelList = new List<MODL_FieldDescribe>();
+
+        MODL_DescribeSObject describeSObjectModel = SRVC_DescribeSObject.getInstance().getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0];
+
+        for (String fieldLabelName : labelNameList){
+            Schema.SObjectField sObjectField = describeSObjectModel.sObjectFieldByLabel.get(fieldLabelName);
+
+            if (sObjectField == null){
+                // TODO throw exception: field Label name is not valid for specified sObject type
+            }
+
+            MODL_FieldDescribe fieldDescribeModel = describeSObjectModel.sObjectFieldModelBySObjectField.get(sObjectField);
+
+            if (fieldDescribeModel == null){
+                fieldDescribeModel = this.locateFieldDescribeMapper().createAndCacheFieldDescribeModel(describeSObjectModel, fieldLabelName);
+            }
+
+            fieldDescribeModelList.add(fieldDescribeModel);
+        }
+
+        return fieldDescribeModelList;
+    } 
+
+    /**********************************************************************************
+    *  @description Retrieve cached PicklistFieldDescribe models for a specified list of SObject field api names of type picklist.
+    * @param  sObjectApiName The label name for an SObject.
+    * @param  apiNameList A list of API names for picklist fields on the specified SObject.
+    * @return A list of MODL_FieldDescribe models corresponding to the specified list of SObject field api names of type picklist.
     **********************************************************************************/
     public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsFromApiNames(String sObjectApiName, List<String> apiNameList){
         List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList = new List<MODL_PicklistFieldDescribe>();
@@ -72,17 +163,120 @@ public virtual with sharing class SRVC_FieldDescribe {
         try {
             for (MODL_FieldDescribe fieldDescribeModel : this.getFieldDescribeModelsFromApiNames(sObjectApiName, apiNameList)){
                 MODL_PicklistFieldDescribe picklistFieldDescribeModel = (MODL_PicklistFieldDescribe)fieldDescribeModel;
-                picklistFieldDescribeModelsList.add(picklistFieldDescribeModel);
-                
+                picklistFieldDescribeModelsList.add(picklistFieldDescribeModel);    
             }
-
-            // picklistFieldDescribeModelsList = 
-            //     (List<MODL_PicklistFieldDescribe>)this.getFieldDescribeModelsFromApiNames(sObjectApiName, apiNameList);
         // } catch(NotAPicklistException ape) {
         } catch(Exception e) {
-            //TODO handle error: at least one of field API names provided are not associated with a picklist field
+            //TODO handle error: aField API name provided is not associated with a picklist field type
         }
-        
+
         return picklistFieldDescribeModelsList;
+    }
+
+    /**********************************************************************************
+    * @description Retrieve cached FieldDescribe models for a specified list of label names for SObject fields of type picklist.
+    * @param  sObjectLabelName An SObject label name.
+    * @param  fieldLabelNameList A list of label names for fields of type picklist on the specified SObject.
+    * @return A list of MODL_PicklistFieldDescribe models corresponding to the specified list of label names for SObject fields of type picklist.
+    **********************************************************************************/
+    public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsFromLabelNames(String sObjectLabelName, List<String> fieldLabelNameList) {
+        List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList = new List<MODL_PicklistFieldDescribe>();
+
+        try {
+            for (MODL_FieldDescribe fieldDescribeModel : this.getFieldDescribeModelsFromLabelNames(sObjectLabelName, fieldLabelNameList)){
+                MODL_PicklistFieldDescribe picklistFieldDescribeModel = (MODL_PicklistFieldDescribe)fieldDescribeModel;
+                picklistFieldDescribeModelsList.add(picklistFieldDescribeModel);    
+            }
+        // } catch(NotAPicklistException ape) {
+        } catch(Exception e) {
+            //TODO handle error: aField API name provided is not associated with a picklist field type
+        }
+
+        return picklistFieldDescribeModelsList;
+    } 
+
+    /**********************************************************************************
+    * @description Retrieve cached PicklistFieldDescribe models for a specified list of API names for SObject fields of type picklist.
+    * @param  sObjectType An SObject token.
+    * @param  fieldApiNameList A list of API names for fields of type picklist on the specified SObject.
+    * @return A list of MODL_PicklistFieldDescribe models corresponding to the specified list of API names for SObject fields of type picklist.
+    **********************************************************************************/
+    public List<MODL_PicklistFieldDescribe> getPicklistFieldDescribeModelsFromFieldApiNames(Schema.SObjectType sObjectType, List<String> fieldApiNameList) {
+        List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList = new List<MODL_PicklistFieldDescribe>();
+
+        try {
+            for (MODL_FieldDescribe fieldDescribeModel : this.getFieldDescribeModelsFromFieldApiNames(sObjectType, fieldApiNameList)){
+                MODL_PicklistFieldDescribe picklistFieldDescribeModel = (MODL_PicklistFieldDescribe)fieldDescribeModel;
+                picklistFieldDescribeModelsList.add(picklistFieldDescribeModel);    
+            }
+        // } catch(NotAPicklistException ape) {
+        } catch(Exception e) {
+            //TODO handle error: aField API name provided is not associated with a picklist field type
+        }
+
+        return picklistFieldDescribeModelsList;
+    } 
+
+    /**********************************************************************************
+    * @description Retrieve cached PicklistFieldDescribe models for a specified list of label names for SObject fields of type picklist.
+    * @param  sObjectType An SObject token.
+    * @param  fieldLabelNameList A list of label names for fields of type picklist on the specified SObject.
+    * @return A list of MODL_PicklistFieldDescribe models corresponding to the specified list of label names for SObject fields of type picklist.
+    **********************************************************************************/
+    public List<MODL_FieldDescribe> getPicklistFieldDescribeModelsFromFieldLabelNames(Schema.SObjectType sObjectType, List<String> fieldLabelNameList) {
+        List<MODL_PicklistFieldDescribe> picklistFieldDescribeModelsList = new List<MODL_PicklistFieldDescribe>();
+
+        try {
+            for (MODL_FieldDescribe fieldDescribeModel : this.getFieldDescribeModelsFromFieldLabelNames(sObjectType, fieldLabelNameList)){
+                MODL_PicklistFieldDescribe picklistFieldDescribeModel = (MODL_PicklistFieldDescribe)fieldDescribeModel;
+                picklistFieldDescribeModelsList.add(picklistFieldDescribeModel);    
+            }
+        // } catch(NotAPicklistException ape) {
+        } catch(Exception e) {
+            //TODO handle error: aField API name provided is not associated with a picklist field type
+        }
+
+        return picklistFieldDescribeModelsList;
+    } 
+
+    /**********************************************************************************
+    * @description Retrieve a list of FieldDescribeModels representing fields on an SObject with parents of type Account.
+    * @param  sObjectType An SObject token.
+    * @return A list of MODL_FieldDescribe models corresponding to fields that lookup to an Account on a specified SObject.
+    **********************************************************************************/ 
+    public List<MODL_FieldDescribe> getFilteredLookupFieldDescribeModelsFromSObjectType(Schema.SObjectType sObjectType, Schema.SObjectType parentSObjectTypeToFilterBy){
+        List<MODL_FieldDescribe> accountLookupFieldDescribeModelsList = new List<MODL_FieldDescribe>();        
+        
+        List<MODL_FieldDescribe> SObjectFieldDescribeModels = SRVC_DescribeSObject.getInstance().getAllSObjectFieldDescribeModels(sObjectType);
+
+        for (MODL_FieldDescribe fieldDescribeModel : SObjectFieldDescribeModels){
+            List<Schema.SObjectType> parentSObjectsList = fieldDescribeModel.lookupFields;
+
+            if (parentSObjectsList.isEmpty()){
+                continue;
+            }
+
+            for (Schema.SObjectType parentSObjectType : parentSObjectsList) {
+                if (parentSObjectType == parentSObjectTypeToFilterBy){
+                    accountLookupFieldDescribeModelsList.add(fieldDescribeModel);
+                }
+            }
+        }
+
+        return accountLookupFieldDescribeModelsList;
+    }
+
+
+    /**********************************************************************************
+    * @description Retrieve the field label name for a specified field API name.
+    * @param  sObjectType An SObject token.
+    * @param  fieldApiNamesList A field API name on the specified SObject.
+    * @return A field label name corresponding to the specified field API name.
+    **********************************************************************************/
+    public String getFieldLabelFromApiName(Schema.SObjectType sObjectType, String fieldApiName){
+        MODL_DescribeSObject describeSObjectModel = 
+            SRVC_DescribeSObject.getInstance().getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0];
+        
+            return describeSObjectModel.sObjectFieldLabelByApiName.get(fieldApiName);
     }
 }

@@ -23,18 +23,33 @@ public virtual with sharing class MAPR_DescribeSObject {
     }
 
     /**********************************************************************************
-    * createAndCacheDescribeSObjectModel description
+    * createAndCacheDescribeSObjectModelByApiName description
     * @param  globalDescribeModel globalDescribeModel description
     * @param  sObjectApiName      sObjectApiName description
     * @return                     return description
     **********************************************************************************/ 
-    public MODL_DescribeSObject createAndCacheDescribeSObjectModel(MODL_GlobalDescribe globalDescribeModel, String sObjectApiName){
+    public MODL_DescribeSObject createAndCacheDescribeSObjectModelByApiName(MODL_GlobalDescribe globalDescribeModel, String sObjectApiName){
 
         if (globalDescribeModel.sObjectTypeByApiName.containsKey(sObjectApiName) == false){
             // TODO: throw exception: invalid SObject API name provided
         }
     
         Schema.SObjectType sObjectType = globalDescribeModel.sObjectTypeByApiName.get(sObjectApiName);
+        MODL_DescribeSObject describeSObjectModel = this.createDescribeSObjectModel(sObjectType.getDescribe());
+
+        globalDescribeModel.cacheSObjectDescribeModel(sObjectType, describeSObjectModel);
+
+        return describeSObjectModel;
+    }
+
+    
+    public MODL_DescribeSObject createAndCacheDescribeSObjectModelByLabel(MODL_GlobalDescribe globalDescribeModel, String sObjectLabelName){
+
+        if (globalDescribeModel.sObjectTypeByLabelName.containsKey(sObjectLabelName) == false){
+            // TODO: throw exception: invalid SObject Label name provided
+        }
+    
+        Schema.SObjectType sObjectType = globalDescribeModel.sObjectTypeByLabelName.get(sObjectLabelName);
         MODL_DescribeSObject describeSObjectModel = this.createDescribeSObjectModel(sObjectType.getDescribe());
 
         globalDescribeModel.cacheSObjectDescribeModel(sObjectType, describeSObjectModel);

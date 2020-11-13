@@ -50,6 +50,14 @@ public virtual with sharing class MODL_FieldDescribe {
         get { return describeFieldResult.getLocalName(); }
     }
 
+    public List<Schema.sObjectType> lookupFields {
+        /**
+         * @description Retrieve a list of parent SObject tokens.
+         * @return A list of SObject tokens corresponding to Parent objects, if any.
+         */
+        get { return describeFieldResult.getReferenceTo(); }
+    }
+
     public MODL_FieldDescribe(Schema.SObjectField sobjectField) {
         this.describeFieldResult = sobjectField.getDescribe();
     }

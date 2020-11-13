@@ -64,16 +64,16 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
     * @description Retrieve a list of view models representing the active entries of a specified SObject picklist field.
     * @param  objectAPIName An SObject Type API Name.
     * @param  fieldAPIName  An SObject Picklist Field API Name for the specified SObject type.
-    * @return A list of VMDL_PicklistEntry view models representing the active entries of a specified picklist field
+    * @return A list of VMDL_ComboboxSelectItem view models representing the active entries of a specified picklist field
     **********************************************************************************/
-    public List<VMDL_PicklistEntry> getViewModelForPicklistFieldActiveEntriesOnObject(String objectAPIName, String fieldApiName){
-        List<VMDL_PicklistEntry> picklistEntryViewModelsLList = new List<VMDL_PicklistEntry>();
+    public List<VMDL_ComboboxSelectItem> getViewModelForPicklistFieldActiveEntriesOnObject(String objectAPIName, String fieldApiName){
+        List<VMDL_ComboboxSelectItem> picklistEntryViewModelsLList = new List<VMDL_ComboboxSelectItem>();
         
         MODL_PicklistFieldDescribe picklistFieldDescribeModel = SRVC_FieldDescribe.getInstance().getPicklistFieldDescribeModelsFromApiNames(objectAPIName, new List<String>{fieldApiName})[0];
 
         for (Schema.PicklistEntry activePLEntry : picklistFieldDescribeModel.activePicklistEntryByApiName.values()){
             // create view model for picklist entry
-            VMDL_PicklistEntry picklistEntryViewModel = new VMDL_PicklistEntry(
+            VMDL_ComboboxSelectItem picklistEntryViewModel = new VMDL_ComboboxSelectItem(
                 activePLEntry.getValue(), 
                 activePLEntry.getLabel(),
                 activePLEntry.isActive()
@@ -88,16 +88,16 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
     /**********************************************************************************
     * @description Retrieves a list of FieldSelectOption view models corresponding to a list of SObject Type API names.
     * @param  apiNameList A list of SObjectType API names.
-    * @return A list of VMDL_PicklistEntry models corresponding to the specified Sobject types.
+    * @return A list of VMDL_ComboboxSelectItem models corresponding to the specified Sobject types.
     **********************************************************************************/
-    public List<VMDL_PicklistEntry> getViewModelsFromApiNameList(List<String> apiNameList) {
+    public List<VMDL_ComboboxSelectItem> getViewModelsFromApiNameList(List<String> apiNameList) {
         List<MODL_DescribeSObject> describeSObjectModelList = SRVC_DescribeSObject.getInstance().getSObjectDescribeModelByApiNameList(apiNameList);
 
-        List<VMDL_PicklistEntry> picklistEntryViewModelsLList = new List<VMDL_PicklistEntry>();
+        List<VMDL_ComboboxSelectItem> picklistEntryViewModelsLList = new List<VMDL_ComboboxSelectItem>();
 
         for (MODL_DescribeSObject sObjectModel : describeSObjectModelList) {
-            VMDL_PicklistEntry sObjectViewModel = 
-                new VMDL_PicklistEntry(
+            VMDL_ComboboxSelectItem sObjectViewModel = 
+                new VMDL_ComboboxSelectItem(
                     sObjectModel.apiName,
                     sObjectModel.label
                 );
@@ -111,47 +111,47 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
     /**
     * @description View model for field select options
     */
-    public with sharing class VMDL_PicklistEntry {
-        public VMDL_PicklistEntry(){}
+    // public with sharing class VMDL_ComboboxSelectItem {
+    //     public VMDL_ComboboxSelectItem(){}
 
-        /**
-        * @description We could incorporate an invalid version of this model that overrides it.
-        * In that case we would use the value and label as the 'bad' settings option.
-        */
-        public VMDL_PicklistEntry(String value, String label) {
-            this.value = value;
-            this.label = label;
-            this.isValid = true;
-        }
+    //     /**
+    //     * @description We could incorporate an invalid version of this model that overrides it.
+    //     * In that case we would use the value and label as the 'bad' settings option.
+    //     */
+    //     public VMDL_ComboboxSelectItem(String value, String label) {
+    //         this.value = value;
+    //         this.label = label;
+    //         this.isValid = true;
+    //     }
 
-        public VMDL_PicklistEntry(String value, String label, Boolean isValid) {
-            this.value = value;
-            this.label = label;
-            this.isValid = isValid;
-        }
+    //     public VMDL_ComboboxSelectItem(String value, String label, Boolean isValid) {
+    //         this.value = value;
+    //         this.label = label;
+    //         this.isValid = isValid;
+    //     }
 
-        /**
-        * @description Aura enabled property for passing down to back-end
-        */
-        @AuraEnabled
-        public String value {
-            get; private set;
-        }
+    //     /**
+    //     * @description Aura enabled property for passing down to back-end
+    //     */
+    //     @AuraEnabled
+    //     public String value {
+    //         get; private set;
+    //     }
 
-        /**
-        * @description Aura enabled property for displaying value in localized format
-        */
-        @AuraEnabled
-        public String label {
-            get; private set;
-        }
+    //     /**
+    //     * @description Aura enabled property for displaying value in localized format
+    //     */
+    //     @AuraEnabled
+    //     public String label {
+    //         get; private set;
+    //     }
 
-        /**
-        * @description Aura enabled property for displaying value in localized format
-        */
-        @AuraEnabled
-        public Boolean isValid {
-            get; private set;
-        }
-    }
+    //     /**
+    //     * @description Aura enabled property for displaying value in localized format
+    //     */
+    //     @AuraEnabled
+    //     public Boolean isValid {
+    //         get; private set;
+    //     }
+    // }
 }

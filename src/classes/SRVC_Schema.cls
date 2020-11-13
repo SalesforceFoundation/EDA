@@ -123,4 +123,13 @@ public virtual with sharing class SRVC_Schema {
         //TODO: Labelify
         throw new InvalidParameterValueException('Object Name', labelName);
     }
+
+    /**********************************************************************************
+    * getFieldLabelNameFromApiName description
+    * @param  sObjectApiName An SObject API name.
+    * @return The label name corresponding to the specified SObject API name.
+    **********************************************************************************/
+    public String getSObjectLabelNameFromApiName(String sObjectApiName){
+        return this.getGlobalDescribeModel().sObjectLabelByApiName.get(sObjectApiName);
+    }
 }

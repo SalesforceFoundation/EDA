@@ -32,7 +32,7 @@ public virtual with sharing class SRVC_DescribeSObject {
     /**********************************************************************************
     * @description Retrieve a list of DescribeSObject models by SObject API name.
     * @param  apiNameList A list of SObject API names.
-    * @return A list of MODL_DescribeSObject models mapped by SObject API name, or label names if API name not found.
+    * @return A list of MODL_DescribeSObject models corresponding to the specified API names.
     **********************************************************************************/
     public List<MODL_DescribeSObject> getSObjectDescribeModelByApiNameList(List<String> apiNameList) {
 
@@ -48,43 +48,76 @@ public virtual with sharing class SRVC_DescribeSObject {
 
             MODL_DescribeSObject sObjectModel = globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
 
-            // if (sObjectModel == null){
-            //     // model not found by apiName, search by labelName
-            //     String sObjectLabel = globalDescribeModel.sObjectLabelByApiName(apiName);
-            //     Schema.SObjectType sObjectType = globalDescribeModel.sObjectTypeByLabelName(sObjectLabel);
-            //     MODL_DescribeSObject sObjectModel = globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
-            // } 
-
             if (sObjectModel == null){
-                sObjectModel = this.locateDescribeSObjectMapper().createAndCacheDescribeSObjectModel(globalDescribeModel, apiName);
+                sObjectModel = this.locateDescribeSObjectMapper().createAndCacheDescribeSObjectModelByApiName(globalDescribeModel, apiName);
             }
 
             sObjectModelList.add(sObjectModel);
         }
 
-        System.debug('SRVC_DescribeSObject sObjectModelList: ' + sObjectModelList);
         return sObjectModelList;
     }
 
     /**********************************************************************************
     * @description Retrieve a list of DesribeSObject models by SObject label name.
     * @param  labelNameList A list of SObject label names.
-    * @return A list of MODL_DescribeSObject models mapped by SObject lable names.
+    * @return A list of MODL_DescribeSObject models corresponding to the specified label names.
     **********************************************************************************/ 
-    // public List<MODL_DescribeSObject> getSObjectDescribeModelByLabelNameList(List<String> labelNameList) {
-    //     List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
+    public List<MODL_DescribeSObject> getSObjectDescribeModelByLabelNameList(List<String> labelNameList) {
+        List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
+        MODL_GlobalDescribe globalDescribeModel = SRVC_Schema.getInstance().getGlobalDescribeModel();
 
-    //     for(String labelName : labelNameList) {
-    //         MODL_DescribeSObject sObjectModel = this.locateDescribeSObjectMapper().getSObjectDescribeModelByLabelName(labelName);
+        for(String labelName : labelNameList) {
+            Schema.SObjectType sObjectType = globalDescribeModel.sObjectTypeByLabelName.get(labelName);
 
-    //         if (sObjectModel == null){
-    //             continue;
-    //         }
+            if (sObjectType == null){
+                // TODO: throw exception: sObject Label Name not associated with valid SObject token
+            }
 
-    //         sObjectModelList.add(sObjectModel);
-    //     }
+            MODL_DescribeSObject sObjectModel = globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
 
-    //     return sObjectModelList;
-    // }
+            if (sObjectModel == null){
+                sObjectModel = this.locateDescribeSObjectMapper().createAndCacheDescribeSObjectModelByLabel(globalDescribeModel, labelName);
+            }
 
+            sObjectModelList.add(sObjectModel);
+        }
+
+        return sObjectModelList;
+    }
+
+
+    /**********************************************************************************
+    * @description Retrieve a list of cached DesribeSObject models by SObject type.
+    * @param  labelNameList A list of SObject types.
+    * @return A list of MODL_DescribeSObject models corresponding to the specified SObject types.
+    **********************************************************************************/ 
+    public List<MODL_DescribeSObject> getSObjectDescribeModelBySObjectType(List<Schema.SObjectType> sObjectTypesList) {
+        List<MODL_DescribeSObject> sObjectModelList = new List<MODL_DescribeSObject>();
+        MODL_GlobalDescribe globalDescribeModel = SRVC_Schema.getInstance().getGlobalDescribeModel();
+
+        for (Schema.SObjectType sObjectType : sObjectTypesList){
+            MODL_DescribeSObject sObjectModel = globalDescribeModel.sObjectModelBySObjectType.get(sObjectType);
+
+            if (sObjectModel == null){
+                sObjectModel = this.locateDescribeSObjectMapper().createAndCacheDescribeSObjectModelByApiName(globalDescribeModel, sObjectType.getDescribe().getName());
+            }
+
+            sObjectModelList.add(sObjectModel);
+        }
+
+        return sObjectModelList;
+    }
+    
+    public Set<String> getAllSObjectFieldApiNames(Schema.SObjectType sObjectType){
+        return this.getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0].sObjectFieldByApiName.KeySet();
+    }
+
+    public Set<String> getAllSObjectFieldLabels(Schema.SObjectType sObjectType){
+        return this.getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0].sObjectFieldByLabel.KeySet();
+    }
+
+    public List<MODL_FieldDescribe> getAllSObjectFieldDescribeModels(Schema.SObjectType sObjectType){
+        return this.getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0].sObjectFieldModelBySObjectField.values();
+    }
 }
