@@ -132,8 +132,8 @@ tasks:
                 hierSettings.%%%NAMESPACE%%%Preferred_Phone_Selection__c = 'Other Phone';
                 update hierSettings;
 
-    execute_enable_course_connections:
-        description: Runs anonymous apex to enable Course Connections.
+    execute_enable_record_type_validation:
+        description: Runs anonymous apex to enable record type validation for EDA settings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
@@ -383,7 +383,7 @@ flows:
                     managed: True
                     namespaced: True
             5: 
-                task: execute_enable_course_connections
+                task: execute_enable_record_type_validation
                 options:
                     managed: True
                     namespaced: True
