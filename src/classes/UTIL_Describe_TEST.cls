@@ -351,4 +351,15 @@ public with sharing class UTIL_Describe_TEST {
             System.assert(false, 'Invalid field label should throw an error'); 
         } catch (UTIL_Describe.SchemaDescribeException ex) {}
     }
+
+    // Test for getPicklistEntriesApiToLabelMap
+    @isTest
+    private static void getPicklistEntriesApiToLabelMap() {
+
+        Test.startTest();
+            Map<String, String> picklistEntriesApiToLabel = Util_Describe.getPicklistEntriesApiToLabelMap('Account','Type');
+        Test.stopTest();
+
+        System.assertNotEquals(0, picklistEntriesApiToLabel.size()); 
+    }
 }
