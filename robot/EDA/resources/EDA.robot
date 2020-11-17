@@ -94,3 +94,12 @@ Create Organization Foundation
     ${account_id} =            Get Current Record Id
     Store Session Record       Account  ${account_id}
     [return]                   ${account_id}
+
+Get Records Count
+    [Documentation]         Returns the no of record identified by the given field_name and
+    ...                     field_value input for a specific object
+    [Arguments]             ${obj_name}             ${field_name}       ${field_value}
+    ${result} =             SOQL Query
+    ...                     SELECT COUNT(Name) FROM ${obj_name} where ${field_name}=${field_value}
+    &{Id} =                 Get From List  ${result['records']}  0
+    [return]                ${Id}[expr0]
