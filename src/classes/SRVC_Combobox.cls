@@ -36,25 +36,25 @@
 * This ideally should return only view models
 * This is should be called by controllers or other view model mapper services and call services necessary to get the models it requires.
 */
-public virtual with sharing class SRVC_PicklistFieldEntry {
+public virtual with sharing class SRVC_Combobox {
     /**********************************************************************************
     * @description Instance for Singleton Pattern
     **********************************************************************************/
     @TestVisible
-    private static SRVC_PicklistFieldEntry instance;
+    private static SRVC_Combobox instance;
 
     /**********************************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************************/
-    protected SRVC_PicklistFieldEntry(){}
+    protected SRVC_Combobox(){}
 
     /**********************************************************************************
     * @description Static method to get the current instance for Singleton pattern
     * @return The instance of MAPR_Schema.
     **********************************************************************************/
-    public static SRVC_PicklistFieldEntry getInstance() {
+    public static SRVC_Combobox getInstance() {
         if (instance == null) {
-            instance = new SRVC_PicklistFieldEntry();
+            instance = new SRVC_Combobox();
         }
 
         return instance;
@@ -67,7 +67,7 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
     * @return A list of VMDL_ComboboxSelectItem view models representing the active entries of a specified picklist field
     **********************************************************************************/
     public List<VMDL_ComboboxSelectItem> getViewModelForPicklistFieldActiveEntriesOnObject(String objectAPIName, String fieldApiName){
-        List<VMDL_ComboboxSelectItem> picklistEntryViewModelsLList = new List<VMDL_ComboboxSelectItem>();
+        List<VMDL_ComboboxSelectItem> picklistEntryViewModelsList = new List<VMDL_ComboboxSelectItem>();
         
         MODL_PicklistFieldDescribe picklistFieldDescribeModel = SRVC_FieldDescribe.getInstance().getPicklistFieldDescribeModelsFromApiNames(objectAPIName, new List<String>{fieldApiName})[0];
 
@@ -79,10 +79,10 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
                 activePLEntry.isActive()
             );
 
-            picklistEntryViewModelsLList.add(picklistEntryViewModel);
+            picklistEntryViewModelsList.add(picklistEntryViewModel);
         }
 
-        return picklistEntryViewModelsLList;
+        return picklistEntryViewModelsList;
     }
 
     /**********************************************************************************
@@ -93,7 +93,7 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
     public List<VMDL_ComboboxSelectItem> getViewModelsFromApiNameList(List<String> apiNameList) {
         List<MODL_DescribeSObject> describeSObjectModelList = SRVC_DescribeSObject.getInstance().getSObjectDescribeModelByApiNameList(apiNameList);
 
-        List<VMDL_ComboboxSelectItem> picklistEntryViewModelsLList = new List<VMDL_ComboboxSelectItem>();
+        List<VMDL_ComboboxSelectItem> picklistEntryViewModelsList = new List<VMDL_ComboboxSelectItem>();
 
         for (MODL_DescribeSObject sObjectModel : describeSObjectModelList) {
             VMDL_ComboboxSelectItem sObjectViewModel = 
@@ -102,10 +102,34 @@ public virtual with sharing class SRVC_PicklistFieldEntry {
                     sObjectModel.label
                 );
 
-            picklistEntryViewModelsLList.add(sObjectViewModel);
+            picklistEntryViewModelsList.add(sObjectViewModel);
         }
 
-        return picklistEntryViewModelsLList;
+        return picklistEntryViewModelsList;
+    }
+
+    /**
+     * getViewModelForComboxBoxFilteredByLookupObject description
+     * @param  objectApiName       objectApiName description
+     * @param  lookupObjectApiName lookupObjectApiName description
+     * @return                     return description
+     */ 
+    public List<VMDL_ComboboxSelectItem> getViewModelForComboxBoxFilteredByLookupObject(String objectApiName, String lookupObjectApiName){
+        List<VMDL_ComboboxSelectItem> filteredLookupComboboxItemViewModelsList = new List<VMDL_ComboboxSelectItem>();
+
+        List<MODL_FieldDescribe> lookupFieldDescribeModelsList = 
+            SRVC_FieldDescribe.getInstance().getFilteredLookupFieldDescribeModelsFromSObjectType(objectAPIName, lookupObjectApiName);
+        
+        for (MODL_FieldDescribe fieldDescribeModel : lookupFieldDescribeModelsList){
+            VMDL_ComboboxSelectItem lookupFieldSelection = new VMDL_ComboboxSelectItem(
+                fieldDescribeModel.apiName,
+                fieldDescribeModel.label
+            );
+
+            filteredLookupComboboxItemViewModelsList.add(lookupFieldSelection);
+        }
+
+        return filteredLookupComboboxItemViewModelsList;
     }
 
     /**

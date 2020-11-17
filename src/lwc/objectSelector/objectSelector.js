@@ -1,6 +1,6 @@
 import { LightningElement, wire, api } from 'lwc';
 
-import getActivePickListOptions from '@salesforce/apex/CTRL_PicklistFieldEntry.getActivePickListOptions';
+import getActivePickListOptions from '@salesforce/apex/CTRL_PicklistFieldComboBox.getActivePickListOptions';
 
 import errorToast from 'c/toastHandler';
 

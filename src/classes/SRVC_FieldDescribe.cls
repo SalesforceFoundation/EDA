@@ -240,14 +240,19 @@ public virtual with sharing class SRVC_FieldDescribe {
     } 
 
     /**********************************************************************************
-    * @description Retrieve a list of FieldDescribeModels representing fields on an SObject with parents of type Account.
-    * @param  sObjectType An SObject token.
-    * @return A list of MODL_FieldDescribe models corresponding to fields that lookup to an Account on a specified SObject.
+    * @description Retrieve a list of FieldDescribeModels representing fields on an SObject with parents of a specified SObject type.
+    * @param sObjectApiName The API name of an SObject.
+    * @param parentSObjectApiName The API name of the SObject referenced as a parent in a lookup relationship.
+    * @return A list of MODL_FieldDescribe models corresponding to fields that lookup to a specified parent object on a specified SObject.
     **********************************************************************************/ 
-    public List<MODL_FieldDescribe> getFilteredLookupFieldDescribeModelsFromSObjectType(Schema.SObjectType sObjectType, Schema.SObjectType parentSObjectTypeToFilterBy){
+    public List<MODL_FieldDescribe> getFilteredLookupFieldDescribeModelsFromSObjectType(String sObjectApiName, String parentSObjectApiName){
         List<MODL_FieldDescribe> accountLookupFieldDescribeModelsList = new List<MODL_FieldDescribe>();        
+
+        MODL_GlobalDescribe globalDescribeModel = SRVC_Schema.getInstance().getGlobalDescribeModel();
+        Schema.SObjectType sObjectType = globalDescribeModel.sObjectTypeByApiName.get(sObjectApiName);
+        Schema.SObjectType parentSObjectTypeToFilterBy = globalDescribeModel.sObjectTypeByApiName.get(parentSObjectApiName);
         
-        List<MODL_FieldDescribe> SObjectFieldDescribeModels = SRVC_DescribeSObject.getInstance().getAllSObjectFieldDescribeModels(sObjectType);
+        List<MODL_FieldDescribe> SObjectFieldDescribeModels = this.getAllFieldDescribeModelsForSObject(sObjectType);
 
         for (MODL_FieldDescribe fieldDescribeModel : SObjectFieldDescribeModels){
             List<Schema.SObjectType> parentSObjectsList = fieldDescribeModel.lookupFields;
@@ -278,5 +283,19 @@ public virtual with sharing class SRVC_FieldDescribe {
             SRVC_DescribeSObject.getInstance().getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0];
         
             return describeSObjectModel.sObjectFieldLabelByApiName.get(fieldApiName);
+    }
+
+    /**********************************************************************************
+    * @description Retrieve the FieldDescribe models for all fields on a specified SObject
+    * @param  sObjectType An SObject token
+    * @return A list of MODL_FieldDescribe models for the specified SObject
+    **********************************************************************************/ 
+    public List<MODL_FieldDescribe> getAllFieldDescribeModelsForSObject(Schema.SObjectType sObjectType){
+        MODL_DescribeSObject sObjectModel = 
+            SRVC_DescribeSObject.getInstance().getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0];
+        
+        List<String> sObjectFieldApiNamesList = new List<String>(sObjectModel.sObjectFieldByApiName.KeySet());
+
+        return this.getFieldDescribeModelsFromFieldApiNames(sObjectType, sObjectFieldApiNamesList);
     }
 }

@@ -87,7 +87,7 @@
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
         <members>CTRL_FilteredLookupComboBox</members>
-        <members>CTRL_PicklistFieldEntry</members>
+        <members>CTRL_PicklistFieldComboBox</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
@@ -131,6 +131,7 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>SRVC_Combobox</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_Contact_PreventDeletion</members>
@@ -140,7 +141,6 @@
         <members>SRVC_DescribeSObject</members>
         <members>SRVC_FieldDescribe</members>
         <members>SRVC_PicklistFieldDescribe</members>
-        <members>SRVC_PicklistFieldEntry</members>
         <members>SRVC_Schema</members>
         <members>SRVC_UniqueRecord</members>
         <members>SRVC_UniqueRecord_TEST</members>

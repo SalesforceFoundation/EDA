@@ -9,6 +9,8 @@ export default class LWC_Parent_component extends LightningElement {
     objectApiName = 'Contact';
     fieldApiName = 'Citizenship_Status__c';
 
+    lookupObjectApiName = 'Account';
+
     citizenshipStatusLabel = citizenshipStatusLabelText;
     citizenshipStatusPlaceholder = citizenshipStatusPlaceholderText;
     

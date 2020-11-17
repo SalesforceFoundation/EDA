@@ -4,7 +4,13 @@
                        field-api-name={fieldApiName} 
                        combo-box-label={citizenshipStatusLabel}
                        combo-box-placeholder={citizenshipStatusPlaceholder}
-                       onpicklistitemselected={handlePicklistItemSelected}>
+                       onpicklistitemselected={handlePicklistItemSelected} >
     </c-object-selector>
     <p>Selected value is: {selectedPicklistValue}</p>
+
+
+    <c-object-selector-lookup-filter object-api-name={objectApiName} 
+                                     parent-object-api-name={lookupObjectApiName} >
+    </c-object-selector-lookup-filter>
+    
 </template>

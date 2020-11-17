@@ -116,8 +116,4 @@ public virtual with sharing class SRVC_DescribeSObject {
     public Set<String> getAllSObjectFieldLabels(Schema.SObjectType sObjectType){
         return this.getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0].sObjectFieldByLabel.KeySet();
     }
-
-    public List<MODL_FieldDescribe> getAllSObjectFieldDescribeModels(Schema.SObjectType sObjectType){
-        return this.getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0].sObjectFieldModelBySObjectField.values();
-    }
 }

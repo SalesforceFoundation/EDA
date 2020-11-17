@@ -1,20 +1,19 @@
 /**
 * @description Top-level controller class for LWC component
 */
-public with sharing class CTRL_PicklistFieldEntry {
+public with sharing class CTRL_PicklistFieldComboBox {
 
     /**
     * @description Aura enabled entry point that calls appropriate services to pass view models to LWC component
     */
     // @AuraEnabled(cacheable=true)
     // public static VMDL_Combobox getFieldSelectOptions(List<String> apiNameList) {
-    //     return new VMDL_Combobox(SRVC_PicklistFieldEntry.getInstance().getViewModelsFromApiNameList(apiNameList));
+    //     return new VMDL_Combobox(SRVC_Combobox.getInstance().getViewModelsFromApiNameList(apiNameList));
     // }
 
     @AuraEnabled(cacheable=true)
     public static VMDL_Combobox getActivePickListOptions(String objectAPIName, String fieldAPIName){
-        //TODO: error if field/object combo aren't valid pair?
-        return new VMDL_Combobox(SRVC_PicklistFieldEntry.getInstance().getViewModelForPicklistFieldActiveEntriesOnObject(objectAPIName, fieldAPIName));
+        return new VMDL_Combobox(SRVC_Combobox.getInstance().getViewModelForPicklistFieldActiveEntriesOnObject(objectAPIName, fieldAPIName));
     }
 
     /**
