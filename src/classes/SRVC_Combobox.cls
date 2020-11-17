@@ -109,18 +109,18 @@ public virtual with sharing class SRVC_Combobox {
     }
 
     /**
-     * getViewModelForComboxBoxFilteredByLookupObject description
-     * @param  objectApiName       objectApiName description
-     * @param  lookupObjectApiName lookupObjectApiName description
-     * @return                     return description
-     */ 
+    * getViewModelForComboxBoxFilteredByLookupObject description
+    * @param  objectApiName       objectApiName description
+    * @param  lookupObjectApiName lookupObjectApiName description
+    * @return                     return description
+    */ 
     public List<VMDL_ComboboxSelectItem> getViewModelForComboxBoxFilteredByLookupObject(String objectApiName, String lookupObjectApiName){
         List<VMDL_ComboboxSelectItem> filteredLookupComboboxItemViewModelsList = new List<VMDL_ComboboxSelectItem>();
 
-        List<MODL_FieldDescribe> lookupFieldDescribeModelsList = 
+        List<MODL_FieldDescribe> fieldDescribeModelsForLookupsList = 
             SRVC_FieldDescribe.getInstance().getFilteredLookupFieldDescribeModelsFromSObjectType(objectAPIName, lookupObjectApiName);
         
-        for (MODL_FieldDescribe fieldDescribeModel : lookupFieldDescribeModelsList){
+        for (MODL_FieldDescribe fieldDescribeModel : fieldDescribeModelsForLookupsList){
             VMDL_ComboboxSelectItem lookupFieldSelection = new VMDL_ComboboxSelectItem(
                 fieldDescribeModel.apiName,
                 fieldDescribeModel.label
@@ -133,49 +133,26 @@ public virtual with sharing class SRVC_Combobox {
     }
 
     /**
-    * @description View model for field select options
-    */
-    // public with sharing class VMDL_ComboboxSelectItem {
-    //     public VMDL_ComboboxSelectItem(){}
+    * getViewModelForAffiliationMappings description
+    * @return   return description
+    */ 
+    public List<VMDL_ComboboxSelectItem> getViewModelForAffiliationMappings(){
+        List<VMDL_ComboboxSelectItem> afflMappingSelectItemsViewModelsList = new List<VMDL_ComboboxSelectItem>();
 
-    //     /**
-    //     * @description We could incorporate an invalid version of this model that overrides it.
-    //     * In that case we would use the value and label as the 'bad' settings option.
-    //     */
-    //     public VMDL_ComboboxSelectItem(String value, String label) {
-    //         this.value = value;
-    //         this.label = label;
-    //         this.isValid = true;
-    //     }
+        List<MODL_FieldDescribe> afflMappingFieldModelsList = 
+            SRVC_FieldDescribe.getInstance().getAllFieldDescribeModelsForSObject(Affl_Mappings__c.SObjectType);
 
-    //     public VMDL_ComboboxSelectItem(String value, String label, Boolean isValid) {
-    //         this.value = value;
-    //         this.label = label;
-    //         this.isValid = isValid;
-    //     }
+        for (MODL_FieldDescribe afflMappingFieldModel : afflMappingFieldModelsList){
+            VMDL_ComboboxSelectItem afflMappingSelectionItem = new VMDL_ComboboxSelectItem(
+                afflMappingFieldModel.apiName,
+                afflMappingFieldModel.label
+            );
 
-    //     /**
-    //     * @description Aura enabled property for passing down to back-end
-    //     */
-    //     @AuraEnabled
-    //     public String value {
-    //         get; private set;
-    //     }
+            afflMappingSelectItemsViewModelsList.add(afflMappingSelectionItem);
+        }
+        
 
-    //     /**
-    //     * @description Aura enabled property for displaying value in localized format
-    //     */
-    //     @AuraEnabled
-    //     public String label {
-    //         get; private set;
-    //     }
-
-    //     /**
-    //     * @description Aura enabled property for displaying value in localized format
-    //     */
-    //     @AuraEnabled
-    //     public Boolean isValid {
-    //         get; private set;
-    //     }
-    // }
+        System.debug('afflMappingSelectItemsViewModelsList: ' + afflMappingSelectItemsViewModelsList);
+        return afflMappingSelectItemsViewModelsList;
+    }
 }

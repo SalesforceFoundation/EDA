@@ -1,6 +1,7 @@
 import { LightningElement, wire, api } from 'lwc';
 
-import getAccountLookupFields from '@salesforce/apex/CTRL_FilteredLookupComboBox.getAccountLookupFields';
+import getLookupFields from '@salesforce/apex/CTRL_FilteredLookupComboBox.getLookupFields';
+import getAffiliationMappingFields from '@salesforce/apex/CTRL_FilteredLookupComboBox.getAffiliationMappingFields';
 
 
 export default class ObjectLookupSelector extends LightningElement {
@@ -10,14 +11,12 @@ export default class ObjectLookupSelector extends LightningElement {
     @api comboBoxLabel;
     @api comboBoxPlaceholder;
 
-    @wire(getAccountLookupFields, {
+    @wire(getLookupFields, {
         objectApiName: '$objectApiName', 
         lookupObjectApiName: '$parentObjectApiName',
     }) wiredLookupViewModel;
 
     get comboboxOptions(){
-
-        console.log('lookup data: ' + this.wiredLookupViewModel.data);
         if (!this.wiredLookupViewModel.data){
             return null;
         }
