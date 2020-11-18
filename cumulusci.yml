@@ -21,6 +21,26 @@ sources:
         release: latest
 
 tasks:
+    add_relationship_type_values: 
+        description: Adds Parent's Sibling,Niece,Nephew,and Sibling's Child as picklist values to the Releationship Object's Type picklist field.
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        group: 'EDA: Metadata'
+        options:
+            picklists: hed__Relationship__c.hed__Type__c
+            entries:
+                - fullName: "Parent's Sibling"
+                  label: "Parent's Sibling"
+                  add_before: "Husband"
+                - fullName: "Niece"
+                  label: "Niece"
+                  add_before: "Husband"
+                - fullName: "Nephew"
+                  label: "Nephew"
+                  add_before: "Husband"
+                - fullName: "Sibling's Child"
+                  label: "Sibling's Child"
+                  add_before: "Husband"
+
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -127,6 +147,7 @@ tasks:
         options:
             path: scripts/setup.cls
             apex: qaSetup();
+
 
     has_einstein_licenses:
         group: 'EDA: Einstein Templates'
@@ -345,6 +366,8 @@ flows:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
+            5:
+                task: add_relationship_type_values
 
 services:
     mockaroo:
