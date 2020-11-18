@@ -54,6 +54,28 @@ class RelationshipsSettingsPage(BaseEDAPage, BasePage):
             self.selenium.clear_element_text(locator)
             self.selenium.get_webelement(locator).send_keys(value)
 
+    def enter_new_autocreate_setting(self,**kwargs):
+        """ This method will enter the new autocreate settings
+            Pass the expected value to be entered along with field name as keyword arguments
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_relationships"]["new_autocreate_setting"].format(field)
+            self.selenium.wait_until_page_contains_element(locator,
+                                                error=f"'{field}' field is not available ")
+            self.selenium.clear_element_text(locator)
+            self.selenium.get_webelement(locator).send_keys(value)
+
+    def enter_campaign_type(self,**kwargs):
+        """ This method will enter the campaign type
+            Pass the expected value to be entered along with field name as keyword arguments
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_relationships"]["campaign_type_textarea"].format(field)
+            self.selenium.wait_until_page_contains_element(locator,
+                                                error=f"'{field}' field is not available ")
+            self.selenium.clear_element_text(locator)
+            self.selenium.get_webelement(locator).send_keys(value)
+
     def get_total_settings_count(self):
         """ This method will return the number of rows in the reciprocal settings"""
         locator = eda_lex_locators["eda_settings_relationships"]["settings_count"]
@@ -163,6 +185,26 @@ class RelationshipsSettingsPage(BaseEDAPage, BasePage):
                 locator = eda_lex_locators["eda_settings_relationships"]["new_settings"].format(2,str(field).lower(),value)
                 self.selenium.page_should_contain_element(locator)
 
+    def verify_new_autocreation_setting(self,**kwargs):
+        """ This method will validate the new autocreation setting added recently which is always in
+            in last row. Pass the name of the autocreation relationship and its value as keyword args
+            and this method will assign constant numeric value against each setting and validates
+            the corresponding value
+        """
+        for field,value in kwargs.items():
+            if str(field).lower() == "object":
+                locator = eda_lex_locators["eda_settings_relationships"]["new_settings_autoc"].format(4,str(field).lower(),value)
+                self.selenium.page_should_contain_element(locator)
+            elif str(field).lower() == "field":
+                locator = eda_lex_locators["eda_settings_relationships"]["new_settings_autoc"].format(3,str(field).lower(),value)
+                self.selenium.page_should_contain_element(locator)
+            elif str(field).lower() == "type":
+                locator = eda_lex_locators["eda_settings_relationships"]["new_settings_autoc"].format(2,str(field).lower(),value)
+                self.selenium.page_should_contain_element(locator)
+            else:
+                locator = eda_lex_locators["eda_settings_relationships"]["new_settings_autoc"].format(1,str(field).lower(),value)
+                self.selenium.page_should_contain_element(locator)
+
     def verify_reciprocal_setting_edit_mode(self,**kwargs):
         """ This method will validate the new reciprocal setting added recently which is always in
             in last row in edit mdoe. Pass the name of the reciprocal relationship and its value as
@@ -181,6 +223,26 @@ class RelationshipsSettingsPage(BaseEDAPage, BasePage):
                 self.selenium.page_should_contain_element(locator)
             else:
                 locator = eda_lex_locators["eda_settings_relationships"]["new_setting_edit"].format(2,str(field).lower(),field,value)
+                self.selenium.page_should_contain_element(locator)
+
+    def verify_autocreation_setting_edit_mode(self,**kwargs):
+        """ This method will validate the new autocreation setting added recently which is always in
+            in last row in edit mdoe. Pass the name of the autocreation relationship and its value as
+            keyword args and this method will assign constant numeric value against each setting
+            and validates the corresponding value
+        """
+        for field,value in kwargs.items():
+            if str(field).lower() == "object":
+                locator = eda_lex_locators["eda_settings_relationships"]["new_autoc_setting_edit"].format(4,str(field).lower(),field,value)
+                self.selenium.page_should_contain_element(locator)
+            elif str(field).lower() == "field":
+                locator = eda_lex_locators["eda_settings_relationships"]["new_autoc_setting_edit"].format(3,str(field).lower(),field,value)
+                self.selenium.page_should_contain_element(locator)
+            elif str(field).lower() == "type":
+                locator = eda_lex_locators["eda_settings_relationships"]["new_autoc_setting_edit"].format(2,str(field).lower(),field,"")
+                self.selenium.page_should_contain_element(locator)
+            else:
+                locator = eda_lex_locators["eda_settings_relationships"]["new_campaign_types_edit"].format(1,str(field).lower(),"Campaign Types",value)
                 self.selenium.page_should_contain_element(locator)
 
     def verify_settings_count(self, settings_count, actual_count, expected):
@@ -220,8 +282,12 @@ class RelationshipsSettingsPage(BaseEDAPage, BasePage):
             expected status
         """
         for field,value in kwargs.items():
-            locator = eda_lex_locators["eda_settings_relationships"]["removed_setting"].format(str(field).lower(),value)
-            self.selenium.page_should_not_contain_element(locator)
+            if str(field).lower() == "name":
+                locator = eda_lex_locators["eda_settings_relationships"]["removed_setting"].format(str(field).lower(),value)
+                self.selenium.page_should_not_contain_element(locator)
+            else:
+                locator = eda_lex_locators["eda_settings_relationships"]["removed_autoc_setting"].format(str(field).lower(),value)
+                self.selenium.page_should_not_contain_element(locator)
 
     def verify_updated_reciprocal_setting(self,column,**kwargs):
         """ This method will verify the updated reciprocal settings
