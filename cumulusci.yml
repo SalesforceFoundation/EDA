@@ -123,6 +123,13 @@ tasks:
                 hierSettings.%%%NAMESPACE%%%Automatic_Household_Naming__c = true;
                 update hierSettings;
 
+    execute_enable_course_connections:
+        description: Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/setup.cls
+            apex: configCourseConnections();
+
     execute_preferred_phone_selection:
         description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
@@ -403,6 +410,11 @@ flows:
                     managed: True
                     namespaced: True
             9:
+                task: execute_enable_course_connections
+                options:
+                    managed: True
+                    namespaced: True
+            10:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
