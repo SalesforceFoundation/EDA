@@ -241,10 +241,10 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
 
         private Boolean hasDuplicateLabelForEDAField(String fieldLabel, String fieldApiName) {
             if (edaEmailFieldApiNamesByLabel.keySet().contains(fieldLabel) == false || 
-                edaEmailFieldApiNamesByLabel.get(fieldLabel) != fieldApiName) {
-                return true;
+                edaEmailFieldApiNamesByLabel.get(fieldLabel) == fieldApiName) {
+                return false;
             }
-            return false;
+            return true;
         }
     }
 
