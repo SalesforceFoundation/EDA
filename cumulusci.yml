@@ -22,7 +22,7 @@ sources:
 
 tasks:
     add_relationship_type_values: 
-        description: Adds Parent's Sibling,Niece,Nephew,and Sibling's Child as picklist values to the Releationship Object's Type picklist field.
+        description: "Adds Parent's Sibling, Niece, Nephew, and Sibling's Child as picklist values to the Relationship__c.Type__c field."
         class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
         group: 'EDA: Metadata'
         options:
