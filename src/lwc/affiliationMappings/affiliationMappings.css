@@ -1,0 +1,14 @@
+.c-container {
+    border: 1px solid #d8dde6;
+    margin: 10px 0 20px 0;
+    background-color: #ffffff;
+}
+.header-column {
+    padding: 0 2rem;
+}
+.field-title {
+    font-size: .75rem;
+    line-height: 1.25;
+    color: #54698d;
+    margin-bottom: .25rem;
+}

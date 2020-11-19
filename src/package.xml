@@ -86,6 +86,7 @@
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
+        <members>CTRL_AffiliationMappings</members>
         <members>CTRL_FilteredLookupComboBox</members>
         <members>CTRL_PicklistFieldComboBox</members>
         <members>ERR_AsyncErrors</members>
@@ -1358,9 +1359,10 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>lWC_Parent_component</members>
+        <members>affiliationMappings</members>
         <members>objectSelector</members>
         <members>objectSelectorLookupFilter</members>
+        <members>objectSelectorRecordType</members>
         <members>toastHandler</members>
         <name>LightningComponentBundle</name>
     </types>

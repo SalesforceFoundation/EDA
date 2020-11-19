@@ -143,6 +143,10 @@ public virtual with sharing class SRVC_Combobox {
             SRVC_FieldDescribe.getInstance().getAllFieldDescribeModelsForSObject(Affl_Mappings__c.SObjectType);
 
         for (MODL_FieldDescribe afflMappingFieldModel : afflMappingFieldModelsList){
+            if (afflMappingFieldModel.isCustom == false){
+                continue;
+            }
+            
             VMDL_ComboboxSelectItem afflMappingSelectionItem = new VMDL_ComboboxSelectItem(
                 afflMappingFieldModel.apiName,
                 afflMappingFieldModel.label
@@ -151,8 +155,32 @@ public virtual with sharing class SRVC_Combobox {
             afflMappingSelectItemsViewModelsList.add(afflMappingSelectionItem);
         }
         
-
-        System.debug('afflMappingSelectItemsViewModelsList: ' + afflMappingSelectItemsViewModelsList);
         return afflMappingSelectItemsViewModelsList;
+    }
+
+    /**
+     * getViewModelForRecordTypes description
+     * @param  sObjectType sObjectType description
+     * @return             return description
+     */ 
+    public List<VMDL_ComboboxSelectItem> getViewModelForRecordTypes(Schema.SObjectType sObjectType){
+        List<VMDL_ComboboxSelectItem> recordTypeViewModelsList = new List<VMDL_ComboboxSelectItem>();
+        MODL_DescribeSObject describeSObjectModel = 
+            SRVC_DescribeSObject.getInstance().getSObjectDescribeModelBySObjectType(new List<Schema.SObjectType>{sObjectType})[0];
+
+        List<Schema.RecordTypeInfo> accountRecordTypesList = describeSObjectModel.sObjectDescribeResult.getRecordTypeInfos();
+
+        for (Schema.RecordTypeInfo rt : accountRecordTypesList){
+            VMDL_ComboboxSelectItem selectItem = new VMDL_ComboboxSelectItem(
+                rt.getDeveloperName(),
+                rt.getName(),
+                rt.isActive()
+            );
+
+            recordTypeViewModelsList.add(selectItem);
+        }
+
+        
+        return recordTypeViewModelsList;
     }
 }

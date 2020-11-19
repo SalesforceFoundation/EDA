@@ -1,0 +1,12 @@
+<template>
+    <template if:true={wiredRecordTypes}>
+        <lightning-combobox
+            name="recordTypeObjectName"
+            label={comboBoxLabel}
+            value={value}
+            placeholder={comboBoxPlaceholder}
+            options={comboboxOptionsForRecordTypes}
+            onchange={handleComboboxChange}
+        ></lightning-combobox>
+    </template>
+</template>

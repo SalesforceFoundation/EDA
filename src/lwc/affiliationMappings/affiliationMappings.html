@@ -1,0 +1,86 @@
+<!-- <template>
+    <lightning-card title="Affiliation Mappings" icon-name="custom:custom67"> -->
+        <!-- <c-object-selector-record-type combo-box-label={recordTypeLabel}
+                                       combo-box-placeholder={recordTypePlaceholder}
+                                       onpicklistitemselected={handleRecordTypeSelected}>
+        </c-object-selector-record-type> -->
+
+        <!-- <c-object-selector-lookup-filter object-api-name={contactApiName} 
+                                        parent-object-api-name={accountObjectApiName} 
+                                        combo-box-label={primaryAfflLabel}
+                                        combo-box-placeholder={primaryAfflPlaceholder}>
+        </c-object-selector-lookup-filter> -->
+
+        <!-- <lightning-input type="checkbox"
+                         label="Auto Enrollment">
+        </lightning-input> -->
+
+        <!-- <c-object-selector object-api-name={affiliationApiName} 
+                        field-api-name={statusFieldApiName} 
+                        combo-box-label={affiliationStatusLabel}
+                        combo-box-placeholder={affiliationStatusPlaceholder}>
+        </c-object-selector> -->
+
+        <!-- <c-object-selector object-api-name={affiliationApiName} 
+                        field-api-name={roleFieldApiName} 
+                        combo-box-label={affiliationRoleLabel}
+                        combo-box-placeholder={affiliationRolePlaceholder}>
+        </c-object-selector>
+
+    </lightning-card>
+</template> -->
+
+
+
+<template>
+<div class="c-container">
+    <lightning-layout>
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <p class="field-title" title={recordTypeLabel}>{recordTypeLabel}</p>
+                <c-object-selector-record-type combo-box-placeholder={recordTypePlaceholder}
+                                               onpicklistitemselected={handleRecordTypeSelected}>
+                </c-object-selector-record-type>
+            </div>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <p class="field-title" title={primaryAfflLabel}>{primaryAfflLabel}</p>
+                <c-object-selector-lookup-filter object-api-name={contactApiName} 
+                                                 parent-object-api-name={accountObjectApiName} 
+                                                 combo-box-placeholder={primaryAfflPlaceholder}>
+                </c-object-selector-lookup-filter>
+            </div>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <p class="field-title" title="Auto Enrollment">Auto Enrollment</p>
+                <lightning-input type="checkbox"></lightning-input>
+            </div>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <p class="field-title" title={affiliationStatusLabel}>{affiliationStatusLabel}</p>
+                <c-object-selector object-api-name={affiliationApiName} 
+                                   field-api-name={statusFieldApiName} 
+                                   combo-box-placeholder={affiliationStatusPlaceholder}>
+                </c-object-selector>
+            </div>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+            <div class="header-column">
+                <p class="field-title" title={affiliationRoleLabel}>{affiliationRoleLabel}</p>
+                <c-object-selector object-api-name={affiliationApiName} 
+                                   field-api-name={roleFieldApiName} 
+                                   combo-box-placeholder={affiliationRolePlaceholder}>
+                </c-object-selector>
+            </div>
+        </lightning-layout-item>
+
+    </lightning-layout>
+</div>
+</template>

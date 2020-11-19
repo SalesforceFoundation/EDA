@@ -1,13 +1,14 @@
 <template>
-    <lightning-card title="objectSelectorLookupFilter" icon-name="custom:custom67">
+    <!-- <lightning-card title="Affiliation Mappings" icon-name="custom:custom67"> -->
         <template if:true={wiredLookupViewModel}>
             <lightning-combobox
                 name="lookupObjectName"
                 label={comboBoxLabel}
                 value={value}
                 placeholder={comboBoxPlaceholder}
-                options={comboboxOptions}
+                options={comboboxOptionsForLookups}
+                onchange={handleComboboxChange}
             ></lightning-combobox>
         </template>
-    </lightning-card>
+    <!-- </lightning-card> -->
 </template>
