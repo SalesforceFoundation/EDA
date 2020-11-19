@@ -57,7 +57,7 @@
 
 ### Tasks
 
--   **`add_relationship_type_values`:** Adds Parent's Sibling,Niece,Nephew,and Sibling's Child as picklist values to the Releationship Object's Type picklist field.
+-   **`add_relationship_type_values`:** Adds Parent's Sibling, Niece, Nephew, and Sibling's Child as picklist values to the Relationship__c.Type__c field.
 
 -   **`execute_install_apex`:** Runs most of the install script methods from STG<sub>InstallScript</sub> class.
 
