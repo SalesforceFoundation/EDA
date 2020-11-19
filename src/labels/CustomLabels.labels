@@ -1588,7 +1588,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgReciprocalMethodListSetting</shortDescription>
+        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
         <value>List Setting</value>
     </labels>
     <labels>
@@ -1596,7 +1596,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgReciprocalMethodValueInversion</shortDescription>
+        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
         <value>Value Inversion</value>
     </labels>
     <labels>
