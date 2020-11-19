@@ -176,8 +176,11 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         this.setInsertRecursion();
 
         List<Contact> newContactsList = (List<Contact>)newList;
-        List<MODL_ConRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMapper().getContactMappingModelsFromSettings();        
+        List<MODL_ConRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMapper().getContactMappingModelsFromSettings();     
+        System.debug('MK DEBUG: contactRelAutoCreateModelsList: ' + contactRelAutoCreateModelsList);
+
         MODL_ContactsRelationships contactsRelationshipsMdl = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForContacts(newContactsList, contactRelAutoCreateModelsList);
+        System.debug('MK DEBUG: contactsRelationshipsMdl: ' + contactsRelationshipsMdl);
 
         if (contactsRelationshipsMdl != null){
             List<Relationship__c> contactRelationshipsToCreate = contactsRelationshipsMdl.relationshipList;

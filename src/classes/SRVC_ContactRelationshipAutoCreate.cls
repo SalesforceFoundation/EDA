@@ -87,7 +87,7 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
     **************************************************************************************************************************/ 
     @TestVisible
     protected virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
-        MODL_ContactRelationships conRelationshipsModel; 
+        MODL_ContactRelationships conRelationshipsModel = new MODL_ContactRelationships(contact.Id); 
         Id contactFieldValue; 
         
         for (MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
@@ -103,7 +103,6 @@ public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
                                                                            Type__c = conRelAutoCreateMap.relationshipType,
                                                                            Status__c = 'Current');
 
-                conRelationshipsModel = new MODL_ContactRelationships(contact.Id);
                 conRelationshipsModel.addRelationship(conRelationshipToAdd);
             }
         }
