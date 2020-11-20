@@ -212,10 +212,7 @@ tasks:
     update_admin_profile:
         # description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
         group: "EDA: Custom Tasks"
-        class_path: cumulusci.tasks.salesforce.ProfileGrantAllAccess
-        options:
-            namespaced_org: True
-            managed: True
+        class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
     setup_encryption:
@@ -389,6 +386,7 @@ flows:
                     unmanaged: False
             4:
                 task: update_admin_profile
+                class_path: cumulusci.tasks.salesforce.ProfileGrantAllAccess
                 options:
                     managed: True
                     namespaced: True
