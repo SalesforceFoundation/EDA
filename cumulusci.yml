@@ -114,6 +114,49 @@ tasks:
                 STG_InstallScript.enablePreferredPhoneSync();
                 STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
 
+    execute_automatic_household_naming:
+        description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Automatic_Household_Naming__c = true;
+                update hierSettings;
+
+    execute_enable_course_connections:
+        description: Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/setup.cls
+            apex: configCourseConnections();
+
+    execute_preferred_phone_selection:
+        description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Preferred_Phone_Selection__c = 'Other Phone';
+                update hierSettings;
+
+    execute_enable_record_type_validation:
+        description: Runs anonymous apex to enable record type validation for EDA settings.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Affiliation_Record_Type_Enforced__c = true;
+                update hierSettings;
+
+    execute_send_error_notifications:
+        description: Runs anonymous apex to enable Error Notifications.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Error_Notifications_On__c = true;
+                update hierSettings;
+
     execute_primary_affiliation_mapping_apex:
         description: Runs anonymous apex for dev to configure and insert unmanaged Affiliation mappings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
@@ -342,6 +385,37 @@ flows:
                 options:
                     unmanaged: False
             4:
+                task: update_admin_profile
+                class_path: cumulusci.tasks.salesforce.ProfileGrantAllAccess
+                options:
+                    managed: True
+                    namespaced: True
+            5: 
+                task: execute_enable_record_type_validation
+                options:
+                    managed: True
+                    namespaced: True
+            6: 
+                task: execute_preferred_phone_selection
+                options:
+                    managed: True
+                    namespaced: True
+            7: 
+                task: execute_send_error_notifications
+                options:
+                    managed: True
+                    namespaced: True
+            8: 
+                task: execute_automatic_household_naming
+                options:
+                    managed: True
+                    namespaced: True
+            9:
+                task: execute_enable_course_connections
+                options:
+                    managed: True
+                    namespaced: True
+            10:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
