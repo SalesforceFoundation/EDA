@@ -1,4 +1,4 @@
-minimum_cumulusci_version: 3.5.0
+minimum_cumulusci_version: 3.9.0
 project:
     name: EDA
     package:
@@ -168,8 +168,23 @@ tasks:
 
     update_admin_profile:
         # description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
-        group: "EDA: Custom Tasks"
-        class_path: tasks.salesforce.UpdateAdminProfile
+        options:
+            record_types:
+                - record_type: "Account.{namespaced_org}Administrative"
+                  default: true
+                - record_type: "Account.{namespaced_org}Academic_Program"
+                - record_type: "Account.{namespaced_org}Business_Organization"
+                - record_type: "Account.{namespaced_org}Educational_Institution"
+                - record_type: "Account.{namespaced_org}HH_Account"
+                - record_type: "Account.{namespaced_org}Sports_Organization"
+                - record_type: "Account.{namespaced_org}University_Department"
+                - record_type: "{managed}Attribute__c.{managed}Credential"
+                  default: true
+                - record_type: "{managed}Attribute__c.{managed}Student_Characteristic"
+                - record_type: "{managed}Course_Enrollment__c.{namespaced_org}Default"
+                - record_type: "{managed}Course_Enrollment__c.{namespaced_org}Faculty"
+                - record_type: "{managed}Course_Enrollment__c.{namespaced_org}Student"
+                  default: true
 
 flows:
     setup_encryption:
