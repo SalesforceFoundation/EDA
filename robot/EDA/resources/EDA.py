@@ -387,6 +387,13 @@ class EDA(BaseEDAPage):
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
+    def go_to_custom_settings_setup(self):
+        """ Navigates to the Home view of the custom settings tab in set up"""
+        url = self.cumulusci.org.lightning_base_url
+        url = "{}/lightning/setup/CustomSettings/home".format(url)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
     def click_edit_on_eda_settings_page(self):
         locator = eda_lex_locators["eda_settings"]["edit"]
         self.selenium.wait_until_page_contains_element(locator, error="Edit button is not available on the page")

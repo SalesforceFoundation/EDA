@@ -1,10 +1,12 @@
 from BaseObjects import BaseEDAPage
-from cumulusci.robotframework.pageobjects import HomePage
+from EDA import eda_lex_locators
+from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
-
+from selenium.webdriver.common.keys import Keys
+import time
 
 @pageobject("Home", "Setup")
-class SetupHomePage(BaseEDAPage, HomePage):
+class SetupHomePage(BaseEDAPage, BasePage):
 
     def _go_to_page(self):
         """ Navigate to the Setup Home via URL and switch to the new window """
@@ -13,9 +15,33 @@ class SetupHomePage(BaseEDAPage, HomePage):
         self.selenium.switch_window("Home | Salesforce")
         self.salesforce.wait_until_loading_is_complete()
 
+    def click_custom_settings(self, setting):
+        """ Clicks the custom settings using the name of the setting passed from the test
+        """
+        locator = eda_lex_locators["eda_setup"]["custom_settings"].format(setting)
+        self.selenium.wait_until_page_contains_element(locator)
+        self.selenium.wait_until_element_is_visible(locator)
+        self.selenium.click_element(locator)
+
+    def click_custom_settings_action_button(self, button):
+        """ Clicks the custom settings button using the name of the button passed from the test
+        """
+        locator = eda_lex_locators["eda_setup"]["settings_action_button"].format(button)
+        self.selenium.wait_until_page_contains_element(locator)
+        self.selenium.wait_until_element_is_visible(locator)
+        self.selenium.click_element(locator)
+
     def perform_a_quick_find_on(self, item):
         """ Searches for the given item through Quick Find on Setup page """
         self.eda.populate_placeholder("Quick Find", item)
+
+    def select_frame(self, value):
+        """ Selects iframe using the value passed from the test. The value can be iframe id, title
+            etc
+        """
+        locator = eda_lex_locators["eda_setup"]["frame"].format(value)
+        time.sleep(4)
+        self.selenium.select_frame(locator)
 
     def wait_and_refresh_static_page_until_text(self, search_text, wait_time, loc_frame, loc_text):
         """ Wait for text to appear on static page.  Note that the page is refreshed each 'wait_time' until
@@ -29,3 +55,12 @@ class SetupHomePage(BaseEDAPage, HomePage):
             self.selenium.driver.refresh()
             self.selenium.select_frame(loc_frame)
             text_portion = self.selenium.get_text(loc_text)
+
+    def verify_setup_owner_section(self, value):
+        """ Verifies the set up owner section"""
+        locator = eda_lex_locators["eda_setup"]["setup_owner"]
+        self.selenium.wait_until_page_contains_element(locator)
+        actual_value = self.selenium.get_webelement(locator).text
+        self.builtin.log("Set up owner table value :" + actual_value)
+        if not str(value).lower() == str(actual_value).lower() :
+                raise Exception (f"Expected {value} but it displayed {actual_value}")
