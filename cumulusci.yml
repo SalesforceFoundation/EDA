@@ -303,9 +303,15 @@ flows:
             1:
                 # Configure update_admin_profile
                 options:
-                    managed: True
-                    namespaced_org: True
-                    skip_record_types: True
+                    record_types:
+                        - record_type: "Account.Administrative"
+                          default: true
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
 
     config_qa:
         # descripton: Configure an org for use as a QA org after package metadata is deployed.
