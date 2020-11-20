@@ -61,6 +61,16 @@
 
 -   **`delete_dev_config`:** Deploys metadata found under `unpackaged/config/dev_delete` Removes the Record type visibilities, page layout assignments Required to remove an installed beta.
 
+-   **`execute_automatic_household_naming`:** Runs anonymous apex to set Automatic_Household_Naming__c to true, enabling Automatic Household Naming in EDA's settings.
+
+-   **`execute_enable_record_type_validation`:** Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
+
+-   **`execute_enable_record_type_validation`:** Runs anonymous apex to enable record type validation in EDA's settings. 
+
+-   **`execute_preferred_phone_selection`:** Runs anonymous apex to set Preferred Phone to 'Other Phone' in EDA's settings.
+
+-   **`execute_send_error_notifications`:** Runs anonymous apex to enable Error Notifications in EDA's settings. As a result errors will be sent to all listed.
+
 ## Unpackaged Metadata
 
 Unpackaged directory structure:
