@@ -192,7 +192,6 @@ tasks:
             path: scripts/setup.cls
             apex: qaSetup();
 
-
     has_einstein_licenses:
         group: 'EDA: Einstein Templates'
         description: Queries the target org for the existence of required permsets and returns true if found.
