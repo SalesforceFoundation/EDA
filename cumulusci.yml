@@ -1,4 +1,4 @@
-minimum_cumulusci_version: 3.5.0
+minimum_cumulusci_version: 3.9.0
 project:
     name: EDA
     package:
@@ -9,6 +9,7 @@ project:
     git:
         prefix_release: rel/
         repo_url: https://github.com/SalesforceFoundation/EDA
+        default_branch: main
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm
@@ -122,6 +123,49 @@ tasks:
                 STG_InstallScript.enablePreferredPhoneSync();
                 STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
 
+    execute_automatic_household_naming:
+        description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Automatic_Household_Naming__c = true;
+                update hierSettings;
+
+    execute_enable_course_connections:
+        description: Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/setup.cls
+            apex: configCourseConnections();
+
+    execute_preferred_phone_selection:
+        description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Preferred_Phone_Selection__c = 'Other Phone';
+                update hierSettings;
+
+    execute_enable_record_type_validation:
+        description: Runs anonymous apex to enable record type validation for EDA settings.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Affiliation_Record_Type_Enforced__c = true;
+                update hierSettings;
+
+    execute_send_error_notifications:
+        description: Runs anonymous apex to enable Error Notifications.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Error_Notifications_On__c = true;
+                update hierSettings;
+
     execute_primary_affiliation_mapping_apex:
         description: Runs anonymous apex for dev to configure and insert unmanaged Affiliation mappings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
@@ -176,8 +220,23 @@ tasks:
 
     update_admin_profile:
         # description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
-        group: "EDA: Custom Tasks"
-        class_path: tasks.salesforce.UpdateAdminProfile
+        options:
+            record_types:
+                - record_type: "Account.Administrative"
+                  default: true
+                - record_type: "Account.Academic_Program"
+                - record_type: "Account.Business_Organization"
+                - record_type: "Account.Educational_Institution"
+                - record_type: "Account.HH_Account"
+                - record_type: "Account.Sports_Organization"
+                - record_type: "Account.University_Department"
+                - record_type: "{managed}Attribute__c.{managed}Credential"
+                  default: true
+                - record_type: "{managed}Attribute__c.{managed}Student_Characteristic"
+                - record_type: "{managed}Course_Enrollment__c.Default"
+                - record_type: "{managed}Course_Enrollment__c.Faculty"
+                - record_type: "{managed}Course_Enrollment__c.Student"
+                  default: true
 
 flows:
     setup_encryption:
@@ -255,9 +314,15 @@ flows:
             1:
                 # Configure update_admin_profile
                 options:
-                    managed: True
-                    namespaced_org: True
-                    skip_record_types: True
+                    record_types:
+                        - record_type: "Account.Administrative"
+                          default: true
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
 
     config_qa:
         # descripton: Configure an org for use as a QA org after package metadata is deployed.
@@ -353,6 +418,36 @@ flows:
                 options:
                     unmanaged: False
             4:
+                task: update_admin_profile
+                options:
+                    managed: True
+                    namespaced: True
+            5: 
+                task: execute_enable_record_type_validation
+                options:
+                    managed: True
+                    namespaced: True
+            6: 
+                task: execute_preferred_phone_selection
+                options:
+                    managed: True
+                    namespaced: True
+            7: 
+                task: execute_send_error_notifications
+                options:
+                    managed: True
+                    namespaced: True
+            8: 
+                task: execute_automatic_household_naming
+                options:
+                    managed: True
+                    namespaced: True
+            9:
+                task: execute_enable_course_connections
+                options:
+                    managed: True
+                    namespaced: True
+            10:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
