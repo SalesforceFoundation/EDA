@@ -123,13 +123,12 @@ tasks:
             path: unpackaged/test/primary_affiliations/pre
             unmanaged: True
 
-    deploy_unpackaged_test_metadata:
-        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
-        class_path: cumulusci.tasks.salesforce.DeployBundles
-        group: 'EDA: Unpackaged Tests'
+    deploy_unpackaged_relationship_autocreate_config:
+        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing. 
+        class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_unpackaged
+            path: unpackaged/test_managed_only/relationship_autocreate
             unmanaged: True
             
     deploy_unpackaged_test_metadata:
@@ -361,7 +360,7 @@ flows:
             6:
                 task: execute_primary_affiliation_mapping_apex
             7:
-                task: deploy_unpackaged_test_metadata
+                task: deploy_unpackaged_relationship_autocreate_config
             8: 
                 # execute tests in unmanaged package
                 task: run_tests 
@@ -438,10 +437,7 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
-            4:
-                flow: eda_settings
-            5:
-                flow: preferred_email_testing
+                
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
