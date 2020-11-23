@@ -1,4 +1,4 @@
-minimum_cumulusci_version: 3.5.0
+minimum_cumulusci_version: 3.9.0
 project:
     name: EDA
     package:
@@ -9,6 +9,7 @@ project:
     git:
         prefix_release: rel/
         repo_url: https://github.com/SalesforceFoundation/EDA
+        default_branch: main
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm
@@ -211,8 +212,23 @@ tasks:
 
     update_admin_profile:
         # description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
-        group: "EDA: Custom Tasks"
-        class_path: tasks.salesforce.UpdateAdminProfile
+        options:
+            record_types:
+                - record_type: "Account.Administrative"
+                  default: true
+                - record_type: "Account.Academic_Program"
+                - record_type: "Account.Business_Organization"
+                - record_type: "Account.Educational_Institution"
+                - record_type: "Account.HH_Account"
+                - record_type: "Account.Sports_Organization"
+                - record_type: "Account.University_Department"
+                - record_type: "{managed}Attribute__c.{managed}Credential"
+                  default: true
+                - record_type: "{managed}Attribute__c.{managed}Student_Characteristic"
+                - record_type: "{managed}Course_Enrollment__c.Default"
+                - record_type: "{managed}Course_Enrollment__c.Faculty"
+                - record_type: "{managed}Course_Enrollment__c.Student"
+                  default: true
 
 flows:
     setup_encryption:
@@ -288,9 +304,15 @@ flows:
             1:
                 # Configure update_admin_profile
                 options:
-                    managed: True
-                    namespaced_org: True
-                    skip_record_types: True
+                    record_types:
+                        - record_type: "Account.Administrative"
+                          default: true
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
 
     config_qa:
         # descripton: Configure an org for use as a QA org after package metadata is deployed.
@@ -386,7 +408,6 @@ flows:
                     unmanaged: False
             4:
                 task: update_admin_profile
-                class_path: cumulusci.tasks.salesforce.ProfileGrantAllAccess
                 options:
                     managed: True
                     namespaced: True
