@@ -29,7 +29,6 @@ eda_lex_locators = {
         "custom_settings": "//a[text()='{}']",
         "settings_action_button": "//input[@type='submit' and @value='{}']",
         "setup_owner": "//table[@class='list']/descendant::td",
-        "frame": "//iframe[@title='{}']",
     },
     "eda_settings": {
         "action": "//div[@role='banner']/descendant::button[contains(@class, 'settings-{}-bttn')]",

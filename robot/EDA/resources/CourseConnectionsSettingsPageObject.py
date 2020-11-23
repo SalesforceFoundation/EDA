@@ -55,7 +55,7 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         self.selenium.wait_until_page_contains_element(locator)
 
         for i in range(3):
-            i += 1
+            self.builtin.log("Iteration: " + str(i))
             self.salesforce._jsclick(locator)
             time.sleep(2)
             actual_value = self.selenium.get_element_attribute(locator, "data-qa-checkbox-state")

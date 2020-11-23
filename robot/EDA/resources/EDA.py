@@ -8,6 +8,7 @@ from robot.libraries.BuiltIn import RobotNotRunningError
 
 from robot.utils import lower
 from selenium.common.exceptions import NoSuchWindowException
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 
 from locators_50 import eda_lex_locators as locators_50
@@ -355,7 +356,7 @@ class EDA(BaseEDAPage):
                     try:
                         self.selenium.select_frame(locator)
                         return
-                    except NoSuchWindowException:
+                    except WebDriverException:
                         self.builtin.log("Caught NoSuchWindowException; trying again..", "WARN")
                         i += 1
                         time.sleep(0.5)

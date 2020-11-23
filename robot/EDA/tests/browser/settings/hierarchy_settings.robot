@@ -8,6 +8,8 @@ Library         cumulusci.robotframework.PageObjects
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
+Test Teardown   Go to custom settings setup
+
 *** Test Cases ***
 Validate hierarchy settings under custom settings
     [Documentation]     Checks set up owner under hierarchy settings to make sure 'User User' is not
@@ -20,14 +22,14 @@ Validate hierarchy settings under custom settings
     Click action button on EDA settings page    Save
     Load Page Object                     Home                          Setup
     Go to custom settings setup
-    Select frame        Custom Settings ~ Salesforce - Developer Edition
-    Click custom settings       Hierarchy Settings
-    Select frame        Custom Setting Definition ~ Salesforce - Developer Edition
-    Click custom settings action button     Manage
-    Select frame        Custom Setting Hierarchy Settings ~ Salesforce - Developer Edition
-    Verify setup owner section      No records to display.
-    Unselect frame
-    Go to custom settings setup
+    Select hierarchy settings        Custom Settings ~ Salesforce - Developer Edition
+    ...                             Hierarchy Settings
+    Wait until loading is complete
+    Go to hierarchy settings view       Custom Setting Definition ~ Salesforce - Developer Edition
+    ...                                 Manage
+    Wait until loading is complete
+    Verify setup owner section      Custom Setting Hierarchy Settings ~ Salesforce - Developer Edition
+    ...                             No records to display.
 
 
 
