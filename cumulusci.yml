@@ -77,6 +77,14 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test/primary_affiliations/pre
             unmanaged: True
+
+    deploy_unpackaged_relationship_autocreate_config:
+        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing. 
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_managed_only/relationship_autocreate
+            unmanaged: True
             
     deploy_trial_config:
         description: Deploys metadata and configuration for TSOs.
@@ -207,7 +215,9 @@ flows:
                 task: deploy_primary_affiliations_config
             6:    
                 task: execute_primary_affiliation_mapping_apex
-            7: 
+            7:
+                task: deploy_unpackaged_relationship_autocreate_config
+            8: 
                 # execute tests in unmanaged package
                 task: run_tests 
                 options: 
@@ -273,6 +283,7 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
+                
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
