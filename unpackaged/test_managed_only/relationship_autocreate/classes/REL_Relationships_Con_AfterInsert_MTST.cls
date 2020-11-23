@@ -37,6 +37,8 @@
 @isTest
 private class REL_Relationships_Con_AfterInsert_MTST {
 
+    private static Integer loopCount = 250;
+
     /*********************************************************************************************************
     * @description Test to verify that when Relationship Auto Creation is enabled, inserting a Contact record 
     * with an Auto Creation mapped field populated generates the expected relationship  and reciprocal 
@@ -78,33 +80,30 @@ private class REL_Relationships_Con_AfterInsert_MTST {
         relationshipLookupsList.add(TesteeRelationshipLookup);
         insert relationshipLookupsList;
 
-        List<Contact> relatedContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
-        for (Integer i = 0; i < relatedContactsList.size(); i++){
-            relatedContactsList[i].FirstName = 'Test';
-            relatedContactsList[i].LastName = 'Related ' + i; 
-        }
-        insert relatedContactsList;
-        
-        Map<Id, Contact> relatedContactsById = new Map<Id, Contact>();
-        for (Contact con : relatedContactsList){
-            relatedContactsById.put(con.Id, con);
-        }
+        List<Contact> relContactsList = new List<Contact>();
+        Contact relatedContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        relatedContact.FirstName = 'Test';
+        relatedContact.LastName = 'Related'; 
 
-        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        Contact employerContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        employerContact.FirstName = 'Test';
+        employerContact.LastName = 'Employer'; 
+
+        relContactsList.add(employerContact);
+        relContactsList.add(relatedContact);
+        insert relContactsList;
+    
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++){
             contactsList[i].FirstName = 'Test';
             contactsList[i].LastName = 'Contact ' + i;
-            contactsList[i].ReportsToId = relatedContactsList[i].Id;
+            contactsList[i].ReportsToId = relatedContact.Id;
+            contactsList[i].Employer__c = employerContact.Id;
         }
 
         Test.startTest();
         insert contactsList;
         Test.stopTest();
-
-        Map<Id, Contact> contactsById = new Map<Id, Contact>();
-        for (Contact con : contactsList){
-            contactsById.put(con.Id, con);
-        }
 
         List<Relationship__c> relationshipResultsList = [SELECT Id, 
                                                                 Contact__c,
@@ -113,48 +112,28 @@ private class REL_Relationships_Con_AfterInsert_MTST {
                                                                 Type__c
                                                         FROM Relationship__c
                                                         WHERE Contact__c IN :contactsList
-                                                        OR Contact__c IN :relatedContactsList];
-
-        Map<Id, Relationship__c> relationshipsByContactId = new Map<Id, Relationship__c>();
-        for (Relationship__c rel : relationshipResultsList){
-            relationshipsByContactId.put(rel.Contact__c, rel);
-        }
+                                                        OR Contact__c = :relatedContact.Id
+                                                        OR Contact__c = :employerContact.Id];
 
         Map<Id, List<Relationship__c>> relationshipsListByContactId = new Map<Id, List<Relationship__c>>();
         for (Relationship__c rel : relationshipResultsList){
-            List<Relationship__c> associatedRelationshipsList;
+            List<Relationship__c> currentConRelationshipsList = relationshipsListByContactId.get(rel.Contact__c);
 
-            if (contactsById.containsKey(rel.Contact__c)){
-                associatedRelationshipsList = relationshipsListByContactId.get(rel.Contact__c);
-            } else {
-                associatedRelationshipsList = relationshipsListByContactId.get(rel.relatedContact__c);
+            if (currentConRelationshipsList == null){
+                currentConRelationshipsList = new List<Relationship__c>();
             }
-            
-            if (associatedRelationshipsList == null){
-                associatedRelationshipsList = new List<Relationship__c>();
-            }
+            currentConRelationshipsList.add(rel);
 
-            associatedRelationshipsList.add(rel);
-            relationshipsListByContactId.put(rel.Contact__c, associatedRelationshipsList);
+            relationshipsListByContactId.put(rel.Contact__c, currentConRelationshipsList);
         }
 
-        System.assertEquals(10, relationshipResultsList.size(), 'There should be 10 auto created relationship records.');
-
-        for (Id contactId : relationshipsListByContactId.keySet()){
-            System.assertEquals(2, relationshipsListByContactId.get(contactId).size(), 'Each contact should be associated with 1 relationship and 1 reciprocal relationship.');
-        }
-
-        for (Relationship__c rel : relationshipsByContactId.values()){
-            System.assertEquals(true, relationshipsByContactId.containsKey(rel.RelatedContact__c), 'Each relationship has a corresponding reciprocal relationship record.');
-            System.assertEquals(rel.Contact__c, relationshipsByContactId.get(rel.RelatedContact__c).RelatedContact__c, 'The related contact on the reciprocal relationships should match the contact on the current relationship.');
-            System.assertEquals('Current', rel.Status__c, 'Relationship status should be Current.');
-
-            if (rel.Type__c.contains('Tester')){
-                System.assertEquals(true, contactsById.containsKey(rel.Contact__c), 'Relationship contact should correspond with an inserted contact.');
-                System.assertEquals(true, relatedContactsById.containsKey(rel.RelatedContact__c), 'Relationship should be associated with a related contact.');
+        for (Id conId : relationshipsListByContactId.keySet()){
+            if (employerContact.Id == conId){
+                System.assertEquals(loopCount, relationshipsListByContactId.get(conId).size(), 'There should be ' + loopCount + ' reciprocal relationship created for the employer contact.');
+            } else if (relatedContact.Id == conId){
+                System.assertEquals(loopCount, relationshipsListByContactId.get(conId).size(), 'There should be ' + loopCount + ' reciprocal relationship created for the relatedTo contact.');
             } else {
-                System.assertEquals(true, relatedContactsById.containsKey(rel.Contact__c), 'Relationship contact should correspond with a related contact.');
-                System.assertEquals(true, contactsById.containsKey(rel.RelatedContact__c), 'Relationship should be associated with an inserted contact.');
+                System.assertEquals(2, relationshipsListByContactId.get(conId).size(), 'There should be 2 relationships created for the main contact.');
             }
         }
     }
