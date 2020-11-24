@@ -76,22 +76,31 @@ private class REL_Relationships_Con_AfterInsert_MTST {
                                                                                     Female__c = 'Tester-Female', 
                                                                                     Neutral__c = 'Tester');
 
+        Relationship_Lookup__c employerRelationshipLookup = new Relationship_Lookup__c(Name = 'Employer', 
+                                                                                    Male__c = 'Employee-Male',
+                                                                                    Female__c = 'Employee-Female', 
+                                                                                    Neutral__c = 'Employee');
+
+        Relationship_Lookup__c employeeRelationshipLookup = new Relationship_Lookup__c(Name = 'Employee', 
+                                                                                    Male__c = 'Employer-Male',
+                                                                                    Female__c = 'Employer-Female', 
+                                                                                    Neutral__c = 'Employer');
+
         relationshipLookupsList.add(TesterRelationshipLookup);
         relationshipLookupsList.add(TesteeRelationshipLookup);
+        relationshipLookupsList.add(employerRelationshipLookup);
+        relationshipLookupsList.add(employeeRelationshipLookup);
         insert relationshipLookupsList;
 
-        List<Contact> relContactsList = new List<Contact>();
         Contact relatedContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
         relatedContact.FirstName = 'Test';
         relatedContact.LastName = 'Related'; 
+        insert relatedContact;
 
         Contact employerContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
         employerContact.FirstName = 'Test';
         employerContact.LastName = 'Employer'; 
-
-        relContactsList.add(employerContact);
-        relContactsList.add(relatedContact);
-        insert relContactsList;
+        insert employerContact;
     
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++){
@@ -128,12 +137,27 @@ private class REL_Relationships_Con_AfterInsert_MTST {
         }
 
         for (Id conId : relationshipsListByContactId.keySet()){
+            List<Relationship__c> relationshipsList = relationshipsListByContactId.get(conId);
+
             if (employerContact.Id == conId){
-                System.assertEquals(loopCount, relationshipsListByContactId.get(conId).size(), 'There should be ' + loopCount + ' reciprocal relationship created for the employer contact.');
+                System.assertEquals(loopCount, relationshipsList.size(), 'There should be ' + loopCount + ' reciprocal relationship created for the employer contact.');
+                System.assertEquals('Employee', relationshipsList[0].Type__c, 'Relationships should be of type Employee.');
+                System.assertEquals('Current', relationshipsList[0].Status__c, 'Relationships should be current.');
             } else if (relatedContact.Id == conId){
-                System.assertEquals(loopCount, relationshipsListByContactId.get(conId).size(), 'There should be ' + loopCount + ' reciprocal relationship created for the relatedTo contact.');
+                System.assertEquals(loopCount, relationshipsList.size(), 'There should be ' + loopCount + ' reciprocal relationship created for the relatedTo contact.');
+                System.assertEquals('Testee', relationshipsList[0].Type__c, 'Relationships should be of type Testee.');
+                System.assertEquals('Current', relationshipsList[0].Status__c, 'Relationships should be current.');
             } else {
-                System.assertEquals(2, relationshipsListByContactId.get(conId).size(), 'There should be 2 relationships created for the main contact.');
+                System.assertEquals(2, relationshipsList.size(), 'There should be 2 relationships created for the main contact.');
+                for (Relationship__c rel : relationshipsList){
+                    System.assertEquals('Current', rel.Status__c, 'Relationship should be current.');
+
+                    if (rel.Type__c == 'Employer'){
+                        System.assertEquals(employerContact.Id, rel.RelatedContact__c, 'Employer contact should be associated with relationship of type Employer.');
+                    } else {
+                        System.assertEquals(relatedContact.Id, rel.RelatedContact__c, 'RelatedTo contact should be associated with relationship of type Tester.');
+                    }
+                }
             }
         }
     }

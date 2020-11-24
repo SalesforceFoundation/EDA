@@ -68,7 +68,7 @@ private with sharing class REL_Relationships_Con_TEST {
 
     /*********************************************************************************************************
     * @description Test to verify that inserting a Contact record with invalid Auto Creation 
-    * mappings results in an error.
+    * mappings results in an error when Contact is created and all fields associated with invalid mappings are populated.
     *********************************************************************************************************/
     @isTest 
     private static void insertContactWithInvalidRelationshipsAutoCreate(){
@@ -131,11 +131,74 @@ private with sharing class REL_Relationships_Con_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test to verify that inserting a Contact record with both valid and invalid Auto Creation 
-    * mappings results in an error.
+    * @description Test to verify that inserting a Contact record with invalid Auto Creation 
+    * mappings results in an error even when Contact is created and all fields associated with invalid mappings are not populated.
     *********************************************************************************************************/
     @isTest 
-    private static void insertContactWithValidAndInvalidRelationshipsAutoCreate(){
+    private static void insertContactWithInvalidRelationshipsAutoCreateUnpopulated(){
+        List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
+
+        Relationship_Auto_Create__c relAutoCreateInValid1 = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreateInvalid1', 
+                                                                                         Object__c = 'Contact',
+                                                                                         Field__c = 'FirstName', 
+                                                                                         Relationship_Type__c = 'Testee',
+                                                                                         Campaign_Types__c = '');
+
+        Relationship_Auto_Create__c relAutoCreateInValid2 = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreateInvalid2', 
+                                                                                         Object__c = 'Contact',
+                                                                                         Field__c = 'Birthdate', 
+                                                                                         Relationship_Type__c = 'Tester',
+                                                                                         Campaign_Types__c = '');
+
+        relAutoCreateList.add(relAutoCreateInValid1);
+        relAutoCreateList.add(relAutoCreateInValid2);
+        insert relAutoCreateList;
+
+        List<Relationship_Lookup__c> relationshipLookupsList = new List<Relationship_Lookup__c>();
+        Relationship_Lookup__c testerRelationshipLookup = new Relationship_Lookup__c(Name = 'Tester', 
+                                                                                   Male__c = 'Testee-Male',
+                                                                                   Female__c = 'Testee-Female', 
+                                                                                   Neutral__c = 'Testee');
+
+        Relationship_Lookup__c testeeRelationshipLookup = new Relationship_Lookup__c(Name = 'Testee', 
+                                                                                   Male__c = 'Tester-Male',
+                                                                                   Female__c = 'Tester-Female', 
+                                                                                   Neutral__c = 'Tester');
+
+        relationshipLookupsList.add(TesterRelationshipLookup);
+        relationshipLookupsList.add(TesteeRelationshipLookup);
+        insert relationshipLookupsList;
+
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Integer i = 0; i < contactsList.size(); i++){
+            contactsList[i].LastName = 'Contact ' + i;
+        }
+
+        Test.startTest();
+        try{
+            insert contactsList;
+        } catch (DmlException e){
+            System.assertEquals(true, e.getMessage().contains(Label.AutoCreateFieldError), 'Inserting a Contact with invalid Auto Create mappings should display an error even when mapped fields are not populated.');
+        }
+        Test.stopTest();
+
+        List<Relationship__c> relationshipResultsList = [SELECT Id, 
+                                                                Contact__c,
+                                                                RelatedContact__c,
+                                                                Status__c,
+                                                                Type__c
+                                                        FROM Relationship__c
+                                                        WHERE Contact__c IN :contactsList];
+
+        System.assertEquals(true, relationshipResultsList.isEmpty(), 'No Contact records should be inserted when invalid Auto Create mappings.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test to verify that inserting a Contact record with both valid and invalid Auto Creation 
+    * mappings results in an error when Contact is created and field associated with invalid mapping is populated.
+    *********************************************************************************************************/
+    @isTest 
+    private static void insertContactWithValidAndInvalidRelationshipsAutoCreateInvalidPopulated(){
         List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
 
         Relationship_Auto_Create__c relAutoCreateInvalid = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreateInvalid', 
@@ -173,6 +236,73 @@ private with sharing class REL_Relationships_Con_TEST {
         for (Integer i = 0; i < contactsList.size(); i++){
             contactsList[i].FirstName = 'Test';
             contactsList[i].LastName = 'Contact ' + i;
+        }
+
+        Test.startTest();
+        try{
+            insert contactsList;
+        } catch (DmlException e){
+            System.assertEquals(true, e.getMessage().contains(Label.AutoCreateFieldError), 'Inserting a Contact with invalid Auto Create mappings should display an error.');
+        }
+        Test.stopTest();
+
+        List<Relationship__c> relationshipResultsList = [SELECT Id, 
+                                                                Contact__c,
+                                                                RelatedContact__c,
+                                                                Status__c,
+                                                                Type__c
+                                                        FROM Relationship__c
+                                                        WHERE Contact__c IN :contactsList];
+
+        System.assertEquals(true, relationshipResultsList.isEmpty(), 'No Contact records should be inserted when invalid Auto Create mappings.');
+    }
+
+    /*********************************************************************************************************
+    * @description Test to verify that inserting a Contact record with both valid and invalid Auto Creation 
+    * mappings results in an error even when Contact is created and field associated with invalid mapping is not populated.
+    *********************************************************************************************************/
+    @isTest 
+    private static void insertContactWithValidAndInvalidRelationshipsAutoCreateInvalidUnpopulated(){
+        List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
+
+        Relationship_Auto_Create__c relAutoCreateInvalid = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreateInvalid', 
+                                                                                         Object__c = 'Contact',
+                                                                                         Field__c = 'FirstName', 
+                                                                                         Relationship_Type__c = 'Testee',
+                                                                                         Campaign_Types__c = '');
+
+        Relationship_Auto_Create__c relAutoCreateValid = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreateValid', 
+                                                                                         Object__c = 'Contact',
+                                                                                         Field__c = 'ReportsToId', 
+                                                                                         Relationship_Type__c = 'Tester',
+                                                                                         Campaign_Types__c = '');
+
+        relAutoCreateList.add(relAutoCreateInvalid);
+        relAutoCreateList.add(relAutoCreateValid);
+        insert relAutoCreateList;
+
+        Contact reportContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        insert reportContact;
+
+        List<Relationship_Lookup__c> relationshipLookupsList = new List<Relationship_Lookup__c>();
+        Relationship_Lookup__c testerRelationshipLookup = new Relationship_Lookup__c(Name = 'Tester', 
+                                                                                   Male__c = 'Testee-Male',
+                                                                                   Female__c = 'Testee-Female', 
+                                                                                   Neutral__c = 'Testee');
+
+        Relationship_Lookup__c testeeRelationshipLookup = new Relationship_Lookup__c(Name = 'Testee', 
+                                                                                   Male__c = 'Tester-Male',
+                                                                                   Female__c = 'Tester-Female', 
+                                                                                   Neutral__c = 'Tester');
+
+        relationshipLookupsList.add(TesterRelationshipLookup);
+        relationshipLookupsList.add(TesteeRelationshipLookup);
+        insert relationshipLookupsList;
+        
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Integer i = 0; i < contactsList.size(); i++){
+            contactsList[i].LastName = 'Contact ' + i;
+            contactsList[i].ReportsToId = reportContact.Id;
         }
 
         Test.startTest();
@@ -303,6 +433,63 @@ private with sharing class REL_Relationships_Con_TEST {
                 System.assertEquals(true, contactsById.containsKey(rel.RelatedContact__c), 'Relationship should be associated with an inserted contact.');
             }
         }
+    }
+
+    /*********************************************************************************************************
+    * @description Test to verify that when Relationship Auto Creation is enabled, inserting a Contact record 
+    * with an Auto Creation mapping, but leaving the corresponding field unpopulated on the contact inserted
+    * does not generate any relationships.
+    *********************************************************************************************************/
+    @isTest
+    private static void insertContactWithRelationshipAutoCreateFieldUnpopulated() {
+        Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreate', 
+                                                                                                   Object__c = 'Contact',
+                                                                                                   Field__c = 'ReportsToId', 
+                                                                                                   Relationship_Type__c = 'Tester',
+                                                                                                   Campaign_Types__c = '');
+
+        insert contactReportToRelAutoCreate;
+
+        List<Relationship_Lookup__c> relationshipLookupsList = new List<Relationship_Lookup__c>();
+        Relationship_Lookup__c testerRelationshipLookup = new Relationship_Lookup__c(Name = 'Tester', 
+                                                                                   Male__c = 'Testee-Male',
+                                                                                   Female__c = 'Testee-Female', 
+                                                                                   Neutral__c = 'Testee');
+
+        Relationship_Lookup__c testeeRelationshipLookup = new Relationship_Lookup__c(Name = 'Testee', 
+                                                                                   Male__c = 'Tester-Male',
+                                                                                   Female__c = 'Tester-Female', 
+                                                                                   Neutral__c = 'Tester');
+
+        relationshipLookupsList.add(TesterRelationshipLookup);
+        relationshipLookupsList.add(TesteeRelationshipLookup);
+        insert relationshipLookupsList;
+    
+        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        for (Integer i = 0; i < contactsList.size(); i++){
+            contactsList[i].FirstName = 'Test';
+            contactsList[i].LastName = 'Contact ' + i;
+        }
+
+        Test.startTest();
+        insert contactsList;
+        Test.stopTest();
+
+        Map<Id, Contact> contactsById = new Map<Id, Contact>();
+        for (Contact con : contactsList){
+            contactsById.put(con.Id, con);
+        }
+
+        List<Relationship__c> relationshipResultsList = [SELECT Id, 
+                                                                Contact__c,
+                                                                RelatedContact__c,
+                                                                Status__c,
+                                                                Type__c
+                                                        FROM Relationship__c
+                                                        WHERE Contact__c IN :contactsList
+                                                        OR RelatedContact__c IN :contactsList];
+        
+        System.assertEquals(true, relationshipResultsList.isEmpty(), 'No relationships should be created when mapped field is not populated.');
     }
 
     /*********************************************************************************************************
