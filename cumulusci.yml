@@ -365,10 +365,8 @@ flows:
                 # execute tests in unmanaged package
                 task: run_tests 
                 options: 
-                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
-            10:
-                flow: eda_settings_unmanaged
-
+                    test_name_match: '%MTST'
+                    
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
         steps:
