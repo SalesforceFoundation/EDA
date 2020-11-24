@@ -263,6 +263,9 @@ private with sharing class REL_Relationships_Con_TEST {
     *********************************************************************************************************/
     @isTest 
     private static void insertContactWithValidAndInvalidRelationshipsAutoCreateInvalidUnpopulated(){
+        Contact reportContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        insert reportContact;
+        
         List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
 
         Relationship_Auto_Create__c relAutoCreateInvalid = new Relationship_Auto_Create__c(Name = 'ConReportToAutoCreateInvalid', 
@@ -280,9 +283,6 @@ private with sharing class REL_Relationships_Con_TEST {
         relAutoCreateList.add(relAutoCreateInvalid);
         relAutoCreateList.add(relAutoCreateValid);
         insert relAutoCreateList;
-
-        Contact reportContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
-        insert reportContact;
 
         List<Relationship_Lookup__c> relationshipLookupsList = new List<Relationship_Lookup__c>();
         Relationship_Lookup__c testerRelationshipLookup = new Relationship_Lookup__c(Name = 'Tester', 
