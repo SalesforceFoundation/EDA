@@ -461,6 +461,7 @@ flows:
                 task: run_tests
                 options: 
                     test_name_match: '%_MTST'
+                    managed: False
 
     regression_org:
         description:
