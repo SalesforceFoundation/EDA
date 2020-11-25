@@ -30,9 +30,9 @@
         <name>Translations</name>
     </types>
     <types>
-        <members>PreferredEmailMatchMustExist</members>
-        <members>PreferredEmailMatchNotNull</members>
-        <members>PreferredEmailRequiredError</members>
+        <members>PrefEmailMatchMustExist</members>
+        <members>PrefEmailMatchNotNull</members>
+        <members>PrefEmailRequiredError</members>
         <name>CustomLabel</name>
     </types>
     <types>

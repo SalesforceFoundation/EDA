@@ -120,7 +120,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
             
             for (Database.SaveResult sr : results) {
                 if (sr.isSuccess() == false) {
-                    System.assertEquals(Label.PreferredEmailMatchMustExist, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                    System.assertEquals(Label.PrefEmailMatchMustExist, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
                 } else {
                     System.assert(false, 'No record should be updated as the Preferred Email value is still in Spanish.');
                 }
@@ -164,7 +164,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
             
             for (Database.SaveResult sr : results) {
                 if (sr.isSuccess() == false) {
-                    System.assertEquals(label.PreferredEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                    System.assertEquals(label.PrefEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
                 } else {
                     System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
                 }
@@ -286,7 +286,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
             
             for (Database.SaveResult sr : results) {
                 if (sr.isSuccess() == false) {
-                    System.assertEquals(Label.PreferredEmailMatchMustExist, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                    System.assertEquals(Label.PrefEmailMatchMustExist, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
                 } else {
                     System.assert(false, 'No record should be updated as the Preferred Email value is still in Spanish.');
                 }

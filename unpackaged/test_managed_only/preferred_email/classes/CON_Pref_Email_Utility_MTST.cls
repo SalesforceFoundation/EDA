@@ -164,7 +164,7 @@ public class CON_Pref_Email_Utility_MTST {
 
         for (Database.SaveResult sr : results) {
             if (sr.isSuccess() == false) {
-                System.assertEquals(label.PreferredEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                System.assertEquals(label.PrefEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
             } else {
                 System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
             }
@@ -210,7 +210,7 @@ public class CON_Pref_Email_Utility_MTST {
 
         for (Database.SaveResult sr : results) {
             if (sr.isSuccess() == false) {
-                System.assertEquals(label.PreferredEmailRequiredError, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                System.assertEquals(label.PrefEmailRequiredError, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
             } else {
                 System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
             }
@@ -414,7 +414,7 @@ public class CON_Pref_Email_Utility_MTST {
 
         for (Database.SaveResult sr : results) {
             if (sr.isSuccess() == false) {
-                System.assertEquals(Label.PreferredEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be updated.');
+                System.assertEquals(Label.PrefEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be updated.');
             } else {
                 System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
             }
@@ -469,7 +469,7 @@ public class CON_Pref_Email_Utility_MTST {
 
         for (Database.SaveResult sr : results) {
             if (sr.isSuccess() == false) {
-                System.assertEquals(Label.PreferredEmailRequiredError, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                System.assertEquals(Label.PrefEmailRequiredError, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
             } else {
                 System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
             }

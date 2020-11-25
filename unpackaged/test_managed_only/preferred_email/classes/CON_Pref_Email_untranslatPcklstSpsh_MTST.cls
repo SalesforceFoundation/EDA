@@ -89,7 +89,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
             
             for (Database.SaveResult sr : results) {
                 if (sr.isSuccess() == false) {
-                    System.assertEquals(label.PreferredEmailMatchMustExist, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted as the field is in Spanish and picklist is in English.');
+                    System.assertEquals(label.PrefEmailMatchMustExist, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted as the field is in Spanish and picklist is in English.');
                 } else {
                     System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
                 }
@@ -135,7 +135,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
             
             for (Database.SaveResult sr : results) {
                 if (sr.isSuccess() == false) {
-                    System.assertEquals(label.PreferredEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                    System.assertEquals(label.PrefEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
                 } else {
                     System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
                 }
@@ -211,7 +211,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
             
             for (Database.SaveResult sr : results) {
                 if (sr.isSuccess() == false) {
-                    System.assertEquals(label.PreferredEmailMatchMustExist, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted as the field is in Spanish and picklist is in English.');
+                    System.assertEquals(label.PrefEmailMatchMustExist, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted as the field is in Spanish and picklist is in English.');
                 } else {
                     System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
                 }
@@ -264,7 +264,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
             
             for (Database.SaveResult sr : results) {
                 if (sr.isSuccess() == false) {
-                    System.assertEquals(Label.PreferredEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be updated.');
+                    System.assertEquals(Label.PrefEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be updated.');
                 } else {
                     System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
                 }
