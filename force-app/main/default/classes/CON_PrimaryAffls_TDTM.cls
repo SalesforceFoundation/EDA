@@ -181,6 +181,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         // Get Primary Affiliation Mapping Models from the Primary Affiliation Settings Mapper
         List<MODL_PrimaryAfflMapper> primaryAffiliationModels = this.locateAffiliationSettingMapper().getModelsFromSettings();
 
+
         // Get the Affiliation records to create from the Contact Primary Affiliation Service
         List<Affiliation__c> affiliationsToInsert = this.locateContactAffiliationService().getAffiliationsToCreate(newContactById.values(), primaryAffiliationModels);
 

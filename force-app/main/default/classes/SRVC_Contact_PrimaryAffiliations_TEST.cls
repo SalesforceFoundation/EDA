@@ -1030,7 +1030,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             SRVC_Contact_PrimaryAffiliations_TEST.getBusinessOrganizationMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c'),
             'Business_Organization',
-            true
+            true,
+            ''
         );
     }
 
@@ -1044,7 +1045,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             SRVC_Contact_PrimaryAffiliations_TEST.getHouseholdMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c'),
             'HH_Account',
-            true
+            true,
+            ''
         );
     }
 
@@ -1057,7 +1059,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             SRVC_Contact_PrimaryAffiliations_TEST.getBusinessOrganizationMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c'),
             'Business_Organizatio',
-            false
+            false,
+            ''
         );
     }
 
@@ -1070,7 +1073,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             SRVC_Contact_PrimaryAffiliations_TEST.getHouseholdMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c'),
             'HH_Accoun',
-            false
+            false,
+            ''
         );
     }
 }
