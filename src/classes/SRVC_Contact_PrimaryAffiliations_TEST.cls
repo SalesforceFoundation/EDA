@@ -261,8 +261,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         for(Contact eachContact : contactList) {
             System.assertEquals(true, eachContact.hasErrors());
             System.assertEquals(1, eachContact.getErrors().size(),'Contacts should have two errors, one for the id');
-            System.assertEquals(Label.afflAccoutMappingError,
-                eachContact.getErrors().get(0).getMessage()
+            System.assertEquals(SRVC_Contact_PrimaryAffiliations_TEST.getInvalidBusinessOrgRecordTypeMappingError(), eachContact.getErrors().get(0).getMessage()
             );
         }
     }
@@ -510,7 +509,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     * when a Primary Affiliation field is updated on Contact with an invalid Record Type mapping in EDA settings.
     ******************************************************************************************************************************/
     @isTest
-    private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsertWhenPrimaryFiledIsChangedNegative() {
+    private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsertWhenPrimaryFieldIsChangedNegative() {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
 
@@ -537,8 +536,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
         System.assertEquals(true, newContact.hasErrors());
         System.assertEquals(1, newContact.getErrors().size(),'Contacts should have two errors, one for the id');
-        System.assertEquals(Label.afflAccoutMappingError, newContact.getErrors().get(0).getMessage()
-        );
+        System.assertEquals(SRVC_Contact_PrimaryAffiliations_TEST.getInvalidBusinessOrgRecordTypeMappingError(), newContact.getErrors().get(0).getMessage());
     }
 
     /*****************************************************************************************************************************
@@ -567,7 +565,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         };
 
         Test.startTest();
-            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, mappingModels);
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = 
+                SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, mappingModels);
         Test.stopTest();
 
         System.assertEquals(0, afflsToProcess.getAffiliationListToInsertClone().size()); 
@@ -1055,12 +1054,15 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     * @return An invalid Business Account Primary Affiliation mapping model
     **************************************************************************************************************************/ 
     private static MODL_PrimaryAfflMapper getInvalidBusinessOrgMappingOnRecordType() {
+        // set custom error message text for invalid record type mapping
+        String invalidRecordTypeErrorMessage = SRVC_Contact_PrimaryAffiliations_TEST.getInvalidBusinessOrgRecordTypeMappingError();
+
         return new MODL_PrimaryAfflMapper(
             SRVC_Contact_PrimaryAffiliations_TEST.getBusinessOrganizationMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c'),
             'Business_Organizatio',
             false,
-            ''
+            invalidRecordTypeErrorMessage 
         );
     }
 
@@ -1076,5 +1078,19 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             false,
             ''
         );
+    }
+
+    /**************************************************************************************************************************
+    * @description Helper method to generate a custom error message for an invalid mapping to a Business Organization record type.
+    * @return A string representing the custom error.
+    **************************************************************************************************************************/
+    private static String getInvalidBusinessOrgRecordTypeMappingError(){
+        List<String> params = new List<String>{
+            Label.stgColAccountRecordType,
+            'Business_Organizatio'
+        };
+
+        String invalidRecordTypeMappingError = String.format(label.invalidRecordTypeInAffiliationMapping, params);
+        return invalidRecordTypeMappingError;
     }
 }
