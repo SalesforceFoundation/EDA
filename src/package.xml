@@ -706,6 +706,8 @@
         <members>hhAccNameFormat</members>
         <members>hhAccNameFormatHelpText</members>
         <members>hhFamily</members>
+        <members>invalidContactFieldInAffiliationMapping</members>
+        <members>invalidRecordTypeInAffiliationMapping</members>
         <members>lastNameAdminAcc</members>
         <members>lastNameFamily</members>
         <members>lastNameFirstNameAdminAcc</members>
