@@ -189,7 +189,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreate() returns empty list of affiliations to create
-    * when the mapping is invalid for the record type
+    * when the mapped primary affiliation fields on Contact are empty and the mapping is invalid for the record type
     ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateEmptyTestWithMappingException() {
@@ -225,7 +225,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     
     /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreate() throws an error and returns an empty list of affiliations to
-    * create when the mapping is invalid for the record type and the primary affiliation field is populated
+    * create when the mapping is invalid for the record type and the mapped primary affiliation field is populated.
     ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateNegativeTestWithMappingException() {
@@ -1071,23 +1071,40 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     * @return An invalid Household Primary Affiliation mapping model
     **************************************************************************************************************************/ 
     private static MODL_PrimaryAfflMapper getInvalidHouseholdMappingOnRecordType() {
+        // set custom error message text for invalid record type mapping
+        String invalidRecordTypeErrorMessage = SRVC_Contact_PrimaryAffiliations_TEST.getInvalidHHRecordTypeMappingError();
+
         return new MODL_PrimaryAfflMapper(
             SRVC_Contact_PrimaryAffiliations_TEST.getHouseholdMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c'),
             'HH_Accoun',
             false,
-            ''
+            invalidRecordTypeErrorMessage
         );
     }
 
     /**************************************************************************************************************************
-    * @description Helper method to generate a custom error message for an invalid mapping to a Business Organization record type.
+    * @description Helper method to generate a custom error message for an invalid mapping to a Business Organization Account record type.
     * @return A string representing the custom error.
     **************************************************************************************************************************/
     private static String getInvalidBusinessOrgRecordTypeMappingError(){
         List<String> params = new List<String>{
             Label.stgColAccountRecordType,
             'Business_Organizatio'
+        };
+
+        String invalidRecordTypeMappingError = String.format(label.invalidRecordTypeInAffiliationMapping, params);
+        return invalidRecordTypeMappingError;
+    }
+
+    /**************************************************************************************************************************
+    * @description Helper method to generate a custom error message for an invalid mapping to a Household Account record type.
+    * @return A string representing the custom error.
+    **************************************************************************************************************************/
+    private static String getInvalidHHRecordTypeMappingError(){
+        List<String> params = new List<String>{
+            Label.stgColAccountRecordType,
+            'HH_Accoun'
         };
 
         String invalidRecordTypeMappingError = String.format(label.invalidRecordTypeInAffiliationMapping, params);
