@@ -168,16 +168,17 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
         }
 
         if (accountRecTypeInfo == null) {
-            List<String> params = new List<String>{
-                Label.stgColAccountRecordType,
-                afflMapping.Account_Record_Type__c
-            };
-
-            invalidErrorMessage = String.format(label.invalidRecordTypeInAffiliationMapping, params);
-
             if (this.isPrimaryAffiliationValidationOn() == true) {
                 // Affiliation mapping to invalid record type
                 isValid = false;
+
+                // set custom error message text
+                List<String> params = new List<String>{
+                    Label.stgColAccountRecordType,
+                    afflMapping.Account_Record_Type__c
+                };
+    
+                invalidErrorMessage = String.format(label.invalidRecordTypeInAffiliationMapping, params);
             }
 
             MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(
