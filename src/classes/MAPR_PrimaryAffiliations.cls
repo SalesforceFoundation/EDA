@@ -92,16 +92,6 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             MODL_PrimaryAfflMapper modelFromMapping = this.getModelFromMapping(mapping);
 
             if (modelFromMapping == null) {
-                // Contact field affiliation mapping invalid
-
-
-                // TODO: if I display error here, it will stop an insert even when a contact is created without a primary field populated
-                // List<String> params = new List<String>{
-                //     Label.stgColContactPrimaryAfflField,
-                //     mapping.Primary_Affl_Field__c
-                // };
-
-                // invalidErrorMessage = String.format(label.invalidContactFieldInAffiliationMapping, params);
                 continue;
             }
 
@@ -142,23 +132,27 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
                 primaryAfflFieldDescribe = UTIL_Describe.getFieldDescribeByLabel('Contact', afflMapping.Primary_Affl_Field__c);
             } catch (UTIL_Describe.SchemaDescribeException exp) {
                 return null;
-                //primaryAfflFieldDescribe = null;
             }
         }
 
         if (primaryAfflFieldDescribe == null) {
             // Affiliation mapping to Contact field that doesn't exist - skip mapping
             return null; 
-
-            // List<String> params = new List<String>{
-            //     Label.stgColContactPrimaryAfflField,
-            //     afflMapping.Primary_Affl_Field__c
-            // };
-
-            // invalidErrorMessage = String.format(label.invalidContactFieldInAffiliationMapping, params);
-
-            // throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(invalidErrorMessage);
         }
+
+        // Set<Schema.SObjectType> mappedLookupTypesSet = new Set<Schema.SObjectType>(primaryAfflFieldDescribe.getReferenceTo());
+        // if (mappedLookupTypesSet.isEmpty() == true || mappedLookupTypesSet.contains(Account.SObjectType) == false){
+
+        if (UTIL_Describe.isLookupFieldTo(primaryAfflFieldDescribe, Account.SObjectType) == false){
+            // Affiliation mapping to contact field that is not type Lookup(Account)
+            List<String> params = new List<String>{
+                Label.stgColContactPrimaryAfflField,
+                afflMapping.Primary_Affl_Field__c
+            };
+
+            invalidErrorMessage = String.format(label.invalidContactFieldInAffiliationMapping, params);
+        }
+            
         
         // Get the record type info by developer name
         Schema.RecordTypeInfo accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', afflMapping.Account_Record_Type__c);
@@ -202,5 +196,4 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
 
         return primaryAfflModel;
     }
-
 }

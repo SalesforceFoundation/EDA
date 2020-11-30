@@ -1068,4 +1068,20 @@ public class UTIL_Describe {
 
         return sObjectTypeToChildRelationshipNames.get(sObjectTypeName);
     }
+
+    /**
+    * @description Determine if a specified field is a lookup to the specified SObjectType
+    * @param  fieldDescribe The Schema.DescribeFieldResult of a specified field
+    * @param  sObjectType   The SObjectType for the lookup object
+    * @return True if the specified field is a lookup to the specified SObjectType, false otherwise
+    */ 
+    public static Boolean isLookupFieldTo(Schema.DescribeFieldResult fieldDescribe, SObjectType sObjectType){
+        Set<Schema.SObjectType> mappedLookupTypesSet = new Set<Schema.SObjectType>(fieldDescribe.getReferenceTo());
+
+        if (mappedLookupTypesSet.isEmpty() == true || mappedLookupTypesSet.contains(sObjectType) == false){
+            return false;
+        }
+
+        return true;
+    }
 }

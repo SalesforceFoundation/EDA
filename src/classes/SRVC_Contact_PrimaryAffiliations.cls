@@ -72,6 +72,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     ************************************************************************/
     public List<Affiliation__c> getAffiliationsToCreate(List<Contact> contactList, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
         List<Affiliation__c> affiliationsToCreateList = new List<Affiliation__c>();
+        
         for (Contact eachContact: contactList) {
             List<Affiliation__c> affiliationsToCreateForEachContactList = this.getAffiliationsToCreateForContact(eachContact, afflMappingsModelsList);
             affiliationsToCreateList.addAll(affiliationsToCreateForEachContactList);
@@ -87,9 +88,9 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     @TestVisible
     private List<Affiliation__c> getAffiliationsToCreateForContact(Contact contact, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
         List<Affiliation__c> affiliationsToCreateForEachContactList = new List<Affiliation__c>();
+
         try {
             for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
-
                 if (contact.get(eachModel.getContactFieldApiName()) == null) {
                     continue;
                 }
@@ -105,12 +106,12 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                     afflToCreate = new Affiliation__c(Contact__c = contact.ID, Account__c = (Id)contact.get(eachModel.getContactFieldApiName()), Primary__c = true);
                 } catch (System.TypeException typeExc) {
                     // mapped contact field is valid, but value provided is not a Lookup to a contact Id
-                    Contact.addError(typeExc.getMessage());
-                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    contact.addError(eachModel.getInvalidErrorMessage());
+                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                 } catch (System.StringException stringExc) {
                     // mapped contact field is valid, but value provided is not a string 
-                    Contact.addError(stringExc.getMessage());
-                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    contact.addError(eachModel.getInvalidErrorMessage());
+                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                 }
                 affiliationsToCreateForEachContactList.add(afflToCreate);
             }
