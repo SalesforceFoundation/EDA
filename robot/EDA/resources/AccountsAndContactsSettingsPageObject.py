@@ -167,6 +167,16 @@ class AccountsAndContactsSettingsPage(BaseEDAPage, BasePage):
                 "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
             )
 
+    def select_accounts_contacts_checkbox(self,**kwargs):
+        """ Selects the checkbox value using the field name and option using the key value pairs
+            passed from the test
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_accounts_contacts"]["checkbox"].format(field,value)
+            self.selenium.wait_until_page_contains_element(locator)
+            self.selenium.wait_until_element_is_visible(locator)
+            self.salesforce._jsclick(locator)
+
     def verify_disable_preferred_phone_enforcement_displayed(self,**kwargs):
         """ Verify disable preferred phone enforcement is displayed """
         for field,value in kwargs.items():
