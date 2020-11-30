@@ -8,6 +8,7 @@ from robot.libraries.BuiltIn import RobotNotRunningError
 
 from robot.utils import lower
 from selenium.common.exceptions import NoSuchWindowException
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 
 from locators_50 import eda_lex_locators as locators_50
@@ -355,7 +356,7 @@ class EDA(BaseEDAPage):
                     try:
                         self.selenium.select_frame(locator)
                         return
-                    except NoSuchWindowException:
+                    except WebDriverException:
                         self.builtin.log("Caught NoSuchWindowException; trying again..", "WARN")
                         i += 1
                         time.sleep(0.5)
@@ -384,6 +385,13 @@ class EDA(BaseEDAPage):
         """ Navigates to the Home view of the groups tab """
         url = self.cumulusci.org.lightning_base_url
         url = "{}/lightning/o/CollaborationGroup/list?filterName=Recent".format(url)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
+    def go_to_custom_settings_setup(self):
+        """ Navigates to the Home view of the custom settings tab in set up"""
+        url = self.cumulusci.org.lightning_base_url
+        url = "{}/lightning/setup/CustomSettings/home".format(url)
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
