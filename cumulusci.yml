@@ -77,7 +77,7 @@ tasks:
         options:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test_managed_only/preferred_email
-            unmanaged: True
+            namespaced_org: True
 
     deploy_primary_affiliations_config:
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.

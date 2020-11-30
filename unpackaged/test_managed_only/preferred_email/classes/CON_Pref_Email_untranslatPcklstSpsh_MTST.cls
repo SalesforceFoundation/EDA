@@ -62,7 +62,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
         System.runAs(spanishUser) {
             
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-                new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+                new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -75,7 +75,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
                 contactToBeInserted.put('Description', i + ' Contact Description ' + i );
                 contactToBeInserted.put('Department', i + ' Dept Num: ' + i);
                 contactToBeInserted.put('Untranslated_Picklist_Email__c', 'test@sf.org');
-                contactToBeInserted.put('hed__preferred_Email__c', 'Untranslated Picklist Email');
+                contactToBeInserted.put('%%%NAMESPACE%%%preferred_Email__c', 'Untranslated Picklist Email');
 
                 contactsToBeInsertedList.add(contactToBeInserted);
             }
@@ -108,7 +108,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
         System.runAs(spanishUser) {
             
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-                new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+                new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -120,7 +120,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
                 contactToBeInserted.put('FirstName', 'Preferred');
                 contactToBeInserted.put('Description', i + ' Contact Description ' + i );
                 contactToBeInserted.put('Department', i + ' Dept Num: ' + i);
-                contactToBeInserted.put('hed__preferred_Email__c', 'Untranslated Picklist Email');
+                contactToBeInserted.put('%%%NAMESPACE%%%preferred_Email__c', 'Untranslated Picklist Email');
                 
                 contactsToBeInsertedList.add(contactToBeInserted);
             }
@@ -177,7 +177,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
         System.runAs(spanishUser) {
             
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-                new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+                new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -200,7 +200,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
             
             for (Contact eachContact: [SELECT Id FROM Contact]) {
                 eachContact.put('Untranslated_Picklist_Email__c', 'test@sf.org');
-                eachContact.put('hed__preferred_Email__c', 'Untranslated Picklist Email');
+                eachContact.put('%%%NAMESPACE%%%preferred_Email__c', 'Untranslated Picklist Email');
                 
                 contactsToBeUpdatedList.add(eachContact);
             }
@@ -229,7 +229,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
         System.runAs(spanishUser) {
             
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-                new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+                new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -253,11 +253,11 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
             List<Database.saveResult> insertResults = Database.insert(contactsToBeInsertedList, dmo);
             
             for (Contact eachContact: [SELECT Id FROM Contact]) {
-                eachContact.put('hed__preferred_Email__c', 'Untranlated Picklist Email');
+                eachContact.put('%%%NAMESPACE%%%preferred_Email__c', 'Untranlated Picklist Email');
                 
                 contactsToBeUpdatedList.add(eachContact);
             }
-            
+
             Test.startTest();
                 List<Database.saveResult> results = Database.update(contactsToBeUpdatedList, false);
             Test.stopTest();

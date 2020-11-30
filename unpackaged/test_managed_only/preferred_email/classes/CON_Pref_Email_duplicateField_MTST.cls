@@ -45,7 +45,7 @@ private with sharing class CON_Pref_Email_duplicateField_MTST {
     public static void duplicateUniversityFieldLabelOnInsert() {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -69,12 +69,12 @@ private with sharing class CON_Pref_Email_duplicateField_MTST {
             List<Database.saveResult> results = Database.insert(contactsToBeInsertedList, dmo);
         Test.stopTest();
 
-        List<Contact> insertedContactList = [SELECT Id, University_Email__c, hed__Preferred_Email__c, Email FROM Contact];
+        List<Contact> insertedContactList = [SELECT Id, University_Email__c, %%%NAMESPACE%%%Preferred_Email__c, Email FROM Contact];
 
         System.assertEquals(contactCount,insertedContactList.size(), 'All the Contacts should be successfully inserted.');
 
         for (Contact eachContact: insertedContactList) {
-            System.assertEquals(null, eachContact.hed__Preferred_Email__c, 'Preferred Email should not be populated with duplicate University Email\'s label');
+            System.assertEquals(null, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should not be populated with duplicate University Email\'s label');
             System.assertEquals(null, eachContact.Email, 'Standard Email should not be populated with duplicate University Email\'s value');
         }
     }
@@ -87,7 +87,7 @@ private with sharing class CON_Pref_Email_duplicateField_MTST {
     private static void duplicateUniversityFieldLabelOnUpdate() {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -119,12 +119,12 @@ private with sharing class CON_Pref_Email_duplicateField_MTST {
             List<Database.saveResult> results = Database.update(contactsToBeUpdatedList, dmo);
         Test.stopTest();
 
-        List<Contact> updatedContactList = [SELECT Id, University_Email__c, hed__Preferred_Email__c, Email FROM Contact];
+        List<Contact> updatedContactList = [SELECT Id, University_Email__c, %%%NAMESPACE%%%Preferred_Email__c, Email FROM Contact];
 
         System.assertEquals(contactCount, updatedContactList.size(), 'All the Contacts should be successfully updated.');
 
         for (Contact eachContact: updatedContactList) {
-            System.assertEquals(null, eachContact.hed__Preferred_Email__c, 'Preferred Email should not be populated with duplicate University Email\'s label');
+            System.assertEquals(null, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should not be populated with duplicate University Email\'s label');
             System.assertEquals(null, eachContact.Email,'Standard Email should not be populated with duplicate University Email\'s value');
         }
     }

@@ -47,7 +47,7 @@ public class CON_Pref_Email_Utility_MTST {
 
         // Turn Preferred Email Enforcement on
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -70,14 +70,14 @@ public class CON_Pref_Email_Utility_MTST {
             List<Database.saveResult> results = Database.insert(contactsToBeInsertedList, dml);
         Test.stopTest();
 
-        List<Contact> insertedContactList = [SELECT Id, toLabel(hed__Preferred_Email__c), Email FROM Contact];
+        List<Contact> insertedContactList = [SELECT Id, toLabel(%%%NAMESPACE%%%Preferred_Email__c), Email FROM Contact];
 
         System.assertEquals(contactCount, insertedContactList.size(), 'All the Contacts should be successfully inserted.');
 
         String preferredFieldLabel = CON_Pref_Email_Utility_MTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (Contact eachContact: insertedContactList) {
-            System.assertEquals(preferredFieldLabel, eachContact.hed__Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
+            System.assertEquals(preferredFieldLabel, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
             System.assertEquals(fieldValue, eachContact.Email, 'Standard Email should be populated with Preferred Email\'s value');
         }
     }
@@ -91,7 +91,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void populateCustomAndPrefEmailOnInsert(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -106,7 +106,7 @@ public class CON_Pref_Email_Utility_MTST {
             contactToBeInserted.put('Description', i + ' Contact Description ' + i );
             contactToBeInserted.put('Department', i + ' Dept Num: ' + i);
             contactToBeInserted.put(fieldApiName, fieldValue);
-            contactToBeInserted.put('hed__preferred_Email__c', preferredFieldLabel);
+            contactToBeInserted.put('%%%NAMESPACE%%%preferred_Email__c', preferredFieldLabel);
 
             contactsToBeInsertedList.add(contactToBeInserted);
         }
@@ -118,11 +118,11 @@ public class CON_Pref_Email_Utility_MTST {
             List<Database.saveResult> results = Database.insert(contactsToBeInsertedList, dml);
         Test.stopTest();
 
-        List<Contact> insertedContactList = [SELECT Id, hed__Preferred_Email__c, Email FROM Contact];
+        List<Contact> insertedContactList = [SELECT Id, %%%NAMESPACE%%%Preferred_Email__c, Email FROM Contact];
         System.assertEquals(contactCount, insertedContactList.size(), 'All the Contacts should be successfully inserted.');
 
         for (Contact eachContact: insertedContactList) {
-            System.assertEquals(preferredFieldLabel, eachContact.hed__Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
+            System.assertEquals(preferredFieldLabel, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
             System.assertEquals(fieldValue, eachContact.Email, 'Standard Email should be populated with Preferred Email\'s value');
         }
     }
@@ -136,7 +136,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void customEmailEmptyOnInsert(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -150,7 +150,7 @@ public class CON_Pref_Email_Utility_MTST {
             contactToBeInserted.put('FirstName', 'Preferred');
             contactToBeInserted.put('Description', i + ' Contact Description ' + i );
             contactToBeInserted.put('Department', i + ' Dept Num: ' + i);
-            contactToBeInserted.put('hed__preferred_Email__c', preferredFieldLabel);
+            contactToBeInserted.put('%%%NAMESPACE%%%preferred_Email__c', preferredFieldLabel);
             
             contactsToBeInsertedList.add(contactToBeInserted);
         }
@@ -181,7 +181,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void populateCustomEmailAndAlternateEmailOnInsert(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -196,7 +196,7 @@ public class CON_Pref_Email_Utility_MTST {
             contactToBeInserted.put('Description', i + ' Contact Description ' + i );
             contactToBeInserted.put('Department', i + ' Dept Num: ' + i);
             contactToBeInserted.put(fieldApiName, fieldValue);
-            contactToBeInserted.put('hed__AlternateEmail__c', 'test@sf.com');
+            contactToBeInserted.put('%%%NAMESPACE%%%AlternateEmail__c', 'test@sf.com');
 
             contactsToBeInsertedList.add(contactToBeInserted);
         }
@@ -227,7 +227,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void populateCustomEmailWithEnforcementDisbaledOnInsert(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = true)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = true)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -252,12 +252,12 @@ public class CON_Pref_Email_Utility_MTST {
             List<Database.saveResult> results = Database.insert(contactsToBeInsertedList, dml);
         Test.stopTest();
 
-        List<Contact> insertedContactList = [SELECT Id, hed__Preferred_Email__c, Email FROM Contact];
+        List<Contact> insertedContactList = [SELECT Id, %%%NAMESPACE%%%Preferred_Email__c, Email FROM Contact];
 
         System.assertEquals(contactCount, insertedContactList.size(), 'All the Contacts should be successfully inserted.');
 
         for (Contact eachContact: insertedContactList) {
-            System.assertEquals(null, eachContact.hed__Preferred_Email__c, 'Preferred Email should be not be populated with Custom Email\'s label');
+            System.assertEquals(null, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be not be populated with Custom Email\'s label');
             System.assertEquals(null, eachContact.Email, 'Standard Email should not be populated with Preferred Email\'s value');
         }
     }
@@ -271,7 +271,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void populateCustomEmailOnUpdate(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -303,14 +303,14 @@ public class CON_Pref_Email_Utility_MTST {
             List<Database.saveResult> results = Database.update(contactsToBeUpdatedList, dml);
         Test.stopTest();
 
-        List<Contact> updatedContactList = [SELECT Id, toLabel(hed__Preferred_Email__c), Email FROM Contact];
+        List<Contact> updatedContactList = [SELECT Id, toLabel(%%%NAMESPACE%%%Preferred_Email__c), Email FROM Contact];
 
         System.assertEquals(contactCount, updatedContactList.size(), 'All the Contacts should be successfully inserted.');
 
         String preferredFieldLabel = CON_Pref_Email_Utility_MTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (Contact eachContact: updatedContactList) {
-            System.assertEquals(preferredFieldLabel, eachContact.hed__Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
+            System.assertEquals(preferredFieldLabel, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
             System.assertEquals(fieldValue, eachContact.Email, 'Standard Email should be populated with Preferred Email\'s value');
         }
     }
@@ -324,7 +324,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void populateCustomAndPrefEmailOnUpdate(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -350,7 +350,7 @@ public class CON_Pref_Email_Utility_MTST {
 
         for (Contact eachContact: [SELECT Id FROM Contact]) {
             eachContact.put(fieldApiName, fieldValue);
-            eachContact.put('hed__preferred_Email__c', preferredFieldLabel);
+            eachContact.put('%%%NAMESPACE%%%preferred_Email__c', preferredFieldLabel);
 
             contactsToBeUpdatedList.add(eachContact);
         }
@@ -359,12 +359,12 @@ public class CON_Pref_Email_Utility_MTST {
             List<Database.saveResult> results = Database.update(contactsToBeUpdatedList, dml);
         Test.stopTest();
 
-        List<Contact> updatedContactList = [SELECT Id, hed__Preferred_Email__c, Email FROM Contact];
+        List<Contact> updatedContactList = [SELECT Id, %%%NAMESPACE%%%Preferred_Email__c, Email FROM Contact];
 
         System.assertEquals(contactCount, updatedContactList.size(), 'All the Contacts should be successfully inserted.');
 
         for (Contact eachContact: updatedContactList) {
-            System.assertEquals(preferredFieldLabel, eachContact.hed__Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
+            System.assertEquals(preferredFieldLabel, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
             System.assertEquals(fieldValue, eachContact.Email, 'Standard Email should be populated with Preferred Email\'s value');
         }
     }
@@ -378,7 +378,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void customEmailEmptyOnUpdate(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -399,11 +399,11 @@ public class CON_Pref_Email_Utility_MTST {
 
         Database.DMLOptions dml = new Database.DMLOptions();
         dml.duplicateRuleHeader.allowSave = true;
-        
+
         List<Database.saveResult> insertedResults = Database.insert(contactsToBeInsertedList, dml);
 
         for (Contact eachContact: [SELECT Id FROM Contact]) {
-            eachContact.put('hed__preferred_Email__c', preferredFieldLabel);
+            eachContact.put('%%%NAMESPACE%%%preferred_Email__c', preferredFieldLabel);
 
             contactsToBeUpdatedList.add(eachContact);
         }
@@ -431,7 +431,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void populateCustomEmailAndAlternateEmailOnUpdate(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -457,7 +457,7 @@ public class CON_Pref_Email_Utility_MTST {
 
         for (Contact eachContact: [SELECT Id FROM Contact]) {
             eachContact.put(fieldApiName, fieldValue);
-            eachContact.put('hed__AlternateEmail__c', 'test@sf.com');
+            eachContact.put('%%%NAMESPACE%%%AlternateEmail__c', 'test@sf.com');
 
             contactsToBeUpdateList.add(eachContact);
         }
@@ -486,7 +486,7 @@ public class CON_Pref_Email_Utility_MTST {
     public static void populateCustomEmailWithEnforcementDisbaledOnUpdate(String fieldApiName, String fieldValue) {
 
         hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = true)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = true)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -518,13 +518,13 @@ public class CON_Pref_Email_Utility_MTST {
             List<Database.saveResult> results = Database.update(contactsToBeUpdatedList, dml);
         Test.stopTest();
 
-        String soqlQuery = 'SELECT Id, hed__Preferred_Email__c, Email FROM Contact';
+        String soqlQuery = 'SELECT Id, %%%NAMESPACE%%%Preferred_Email__c, Email FROM Contact';
         List<Contact> updatedContactList = database.query(soqlQuery);
 
         System.assertEquals(contactCount, updatedContactList.size(), 'All the Contacts should be successfully inserted.');
 
         for (Contact eachContact: updatedContactList) {
-            System.assertEquals(null, eachContact.hed__Preferred_Email__c, 'Preferred Email should be not be populated with Custom Email\'s label');
+            System.assertEquals(null, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be not be populated with Custom Email\'s label');
             System.assertEquals(null, eachContact.Email, 'Standard Email should not be populated with Preferred Email\'s value');
         }
     }
