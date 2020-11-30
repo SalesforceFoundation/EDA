@@ -25,6 +25,11 @@ eda_lex_locators = {
         "tab": "//div[@class='uiTabBar']/ul[@class='tabs__nav']/li[contains(@class,'uiTabItem')]/a[@class='tabHeader']/span[contains(text(), '{}')]",
         "spl-tab": "//div[@class='slds-tabs_default']//ul[@class='slds-tabs_default__nav']/li[contains(@class,'slds-tabs_default__item')]/a[text()= '{}']",
     },
+    "eda_setup": {
+        "custom_settings": "//a[text()='{}']",
+        "settings_action_button": "//input[@type='submit' and @value='{}']",
+        "setup_owner": "//table[@class='list']/descendant::td",
+    },
     "eda_settings": {
         "action": "//div[@role='banner']/descendant::button[contains(@class, 'settings-{}-bttn')]",
         "edit": "//div[@class='slds-page-header' and @role='banner']/descendant::span[text()='Edit']/parent::button",
@@ -118,6 +123,8 @@ eda_lex_locators = {
         "cc_sub_tabs": "//div[contains(@class, 'CourseConnections')]/descendant::a[text()='{}']",
         "backfill_button_status": "//span[text()='{}']/parent::button",
         "backfill_checkbox_status": "//input[contains(@class, 'backfill')]/following-sibling::span[contains(@class, 'checkbox')]",
+        "backfill_checkbox": "//span[text()='I understand and am ready to run Backfill.']/../span[contains(@class, 'checkbox')]",
+        "backfill_toast": "//div[@id='backFillToast']/descendant::span[text()='{}']",
     },
     "eda_settings_program_plans": {
         "checkbox_read": "(//span[text()='{}']/../following-sibling::div/descendant::img)[1]",
@@ -126,6 +133,9 @@ eda_lex_locators = {
     },
     "eda_settings_courses": {
         "text_message": "//span[text()='{}']",
+    },
+    "eda_settings_accounts_contacts": {
+        "checkbox": "//span[text()='{}']/following::div[1]/descendant::span[text()='{}']/parent::label/span[contains(@class, 'checkbox')]",
     },
     "eda_settings_relationships": {
         "dropdown_read": "//span[text()='{}']/../following-sibling::div[1]/descendant::span",
