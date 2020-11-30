@@ -46,7 +46,7 @@
         <type>Email</type>
     </fields>
     <fields>
-        <fullName>hed__Preferred_Email__c</fullName>
+        <fullName>%%%NAMESPACE%%%Preferred_Email__c</fullName>
         <description>The email (University, Work, Alternate) that this Contact prefers you to use.</description>
         <externalId>false</externalId>
         <inlineHelpText>The email (University, Work, Alternate) that this Contact prefers you to use.</inlineHelpText>

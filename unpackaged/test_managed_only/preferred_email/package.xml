@@ -6,7 +6,7 @@
         <members>Contact.Untranslated_Email__c</members>
         <members>Contact.Untranslated_Picklist_Email__c</members>
         <members>Contact.University_Email__c</members>
-        <members>Contact.hed__Preferred_Email__c</members>
+        <members>Contact.%%%NAMESPACE%%%Preferred_Email__c</members>
         <name>CustomField</name>
     </types>
     <types>

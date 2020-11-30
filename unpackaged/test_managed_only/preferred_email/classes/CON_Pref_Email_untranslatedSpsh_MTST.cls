@@ -36,17 +36,17 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
 
     private static Integer contactCount = 250; // used to determine number of test contact records to create
     private static User spanishUser = CON_Pref_Email_untranslatedSpsh_MTST.returnUserInSpanish();
-    
+
     /*************************************************************************************************************************************
     * @description Tests inserting a Contact with a Custom Email field(Untranslated Email) in Spanish Language updates Preferred Email and
     * standard Email with the custom email's label and value respectively when Preferred Email Enforcement is Enabled.
     **************************************************************************************************************************************/
     @isTest
     private static void populateCustomEmailOnInsertSpanish() {
-        
+
         System.runAs(spanishUser) {
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-            new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+            new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
 
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -67,21 +67,21 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
                 List<Database.saveResult> results = Database.insert(contactsToBeInsertedList, dml);
             Test.stopTest();
             
-            List<Contact> insertedContactList = [SELECT Id, Untranslated_Email__c, toLabel(hed__Preferred_Email__c), Email FROM Contact];
+            List<Contact> insertedContactList = [SELECT Id, Untranslated_Email__c, toLabel(%%%NAMESPACE%%%Preferred_Email__c), Email FROM Contact];
             System.assertEquals(contactCount, insertedContactList.size(), 'All the Contacts should be successfully inserted.');
 
             String preferredFieldLabel = CON_Pref_Email_untranslatedSpsh_MTST.getContactFieldLabelFromApi('Untranslated_Email__c');
 
             for (Contact eachContact: insertedContactList) {
-                System.assertEquals('Correo electrónico sin traducir', eachContact.hed__Preferred_Email__c, 'Preferred Email should be in Spanish');
+                System.assertEquals('Correo electrónico sin traducir', eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be in Spanish');
                 System.assertEquals('Untranslated Email', preferredFieldLabel, 'Preferred Email should be English as it does not have translations');
                 System.assertEquals('sf@test.org', eachContact.Email, 'Standard Email should be populated with Preferred Email\'s value');
             }
         }
         
         // Assert in English language
-        for (Contact eachContact: [SELECT Id, hed__Preferred_Email__c FROM Contact]) {
-            System.assertEquals('Untranslated Email', eachContact.hed__Preferred_Email__c, 'Preferred Email should be in English when running as English user');
+        for (Contact eachContact: [SELECT Id, %%%NAMESPACE%%%Preferred_Email__c FROM Contact]) {
+            System.assertEquals('Untranslated Email', eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be in English when running as English user');
         }
     }
 
@@ -94,7 +94,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
 
         System.runAs(spanishUser) {
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-                new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+                new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -107,7 +107,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
                 contactToBeInserted.put('Description', i + ' Contact Description ' + i );
                 contactToBeInserted.put('Department', i + ' Dept Num: ' + i);
                 contactToBeInserted.put('Untranslated_Email__c', 's@g.com');
-                contactToBeInserted.put('hed__preferred_Email__c', 'Correo electrónico sin traducir');
+                contactToBeInserted.put('%%%NAMESPACE%%%preferred_Email__c', 'Correo electrónico sin traducir');
                 
                 contactsToBeInsertedList.add(contactToBeInserted);
             }
@@ -137,7 +137,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
 
         System.runAs(spanishUser) {
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-                new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+                new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -149,7 +149,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
                 contactToBeInserted.put('FirstName', 'Preferred');
                 contactToBeInserted.put('Description', i + ' Contact Description ' + i );
                 contactToBeInserted.put('Department', i + ' Dept Num: ' + i);
-                contactToBeInserted.put('hed__preferred_Email__c', 'Correo electrónico sin traducir');
+                contactToBeInserted.put('%%%NAMESPACE%%%preferred_Email__c', 'Correo electrónico sin traducir');
                 
                 contactsToBeInsertedList.add(contactToBeInserted);
             }
@@ -193,7 +193,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
         
         System.runAs(spanishUser) {
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-                new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+                new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -222,21 +222,21 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
                 List<Database.saveResult> results = Database.update(contactsToBeUpdatedList, dml);
             Test.stopTest();
             
-            List<Contact> updatedContactList = [SELECT Id, Untranslated_Email__c, toLabel(hed__Preferred_Email__c), Email FROM Contact];
+            List<Contact> updatedContactList = [SELECT Id, Untranslated_Email__c, toLabel(%%%NAMESPACE%%%Preferred_Email__c), Email FROM Contact];
             
             System.assertEquals(contactCount, updatedContactList.size(), 'All the Contacts should be successfully updated.');
             
             String preferredFieldLabel = CON_Pref_Email_untranslatedSpsh_MTST.getContactFieldLabelFromApi('Untranslated_Email__c');
 
             for (Contact eachContact: updatedContactList) {
-                System.assertEquals('Correo electrónico sin traducir', eachContact.hed__Preferred_Email__c, 'Preferred Email should be in Spanish');
+                System.assertEquals('Correo electrónico sin traducir', eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be in Spanish');
                 System.assertEquals('Untranslated Email', preferredFieldLabel, 'Preferred Email should be English as it does not have translations');
                 System.assertEquals('sf@test.org', eachContact.Email, 'Standard Email should be populated with Preferred Email\'s value');
             }
         }
         
-        for (Contact eachContact: [SELECT Id, hed__Preferred_Email__c FROM Contact]) {
-            System.assertEquals('Untranslated Email', eachContact.hed__Preferred_Email__c, 'Preferred Email should be in English when running as English user');
+        for (Contact eachContact: [SELECT Id, %%%NAMESPACE%%%Preferred_Email__c FROM Contact]) {
+            System.assertEquals('Untranslated Email', eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be in English when running as English user');
         }
     }
 
@@ -250,7 +250,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
         System.runAs(spanishUser) {
             
             hed.UTIL_CustomSettings_API.getSettingsForTests(
-                new hed__Hierarchy_Settings__c(hed__Disable_Preferred_Email_Enforcement__c = false)
+                new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
             List<Contact> contactsToBeInsertedList = new List<Contact>();
@@ -273,7 +273,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
             
             for (Contact eachContact: [SELECT Id FROM Contact]) {
                 eachContact.put('Untranslated_Email__c', 'test@sf.org');
-                eachContact.put('hed__preferred_Email__c', 'Correo electrónico sin traducir');
+                eachContact.put('%%%NAMESPACE%%%preferred_Email__c', 'Correo electrónico sin traducir');
                 
                 contactsToBeUpdatedList.add(eachContact);
             }
@@ -282,7 +282,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_MTST {
                 List<Database.saveResult> results = Database.update(contactsToBeUpdatedList, dml);
             Test.stopTest();
             
-            List<Contact> updatedContactList = [SELECT Id, hed__Preferred_Email__c, Email FROM Contact];
+            List<Contact> updatedContactList = [SELECT Id, %%%NAMESPACE%%%Preferred_Email__c, Email FROM Contact];
             
             for (Database.SaveResult sr : results) {
                 if (sr.isSuccess() == false) {

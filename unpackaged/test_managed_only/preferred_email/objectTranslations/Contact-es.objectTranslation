@@ -13,7 +13,7 @@
     <label>Correo electrónico de lista de selección</label>
   </fields>
   <fields>
-    <name>hed__Preferred_Email__c</name>
+    <name>%%%NAMESPACE%%%Preferred_Email__c</name>
     <help>El correo electrónico (universidad, laboral, otro) que este contacto prefiere que utilice.</help>
     <label>Correo electrónico elegido</label>
     <picklistValues>
