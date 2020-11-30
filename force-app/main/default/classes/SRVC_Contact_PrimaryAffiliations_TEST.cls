@@ -1062,7 +1062,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c'),
             'Business_Organizatio',
             false,
-            invalidRecordTypeErrorMessage 
+            invalidRecordTypeErrorMessage
         );
     }
 
