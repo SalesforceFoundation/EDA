@@ -182,8 +182,6 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                     if (eachModel.getIsValid() == false){ 
                         newContact.addError(eachModel.getInvalidErrorMessage());
                         throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
-                        // newContact.addError(Label.afflAccoutMappingError);
-                        // throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
                     }
 
                     Affiliation__c afflToCreate;
@@ -191,11 +189,11 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                     try {
                         afflToCreate = new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true);
                     } catch (System.TypeException typeExc) {
-                        newContact.addError(typeExc.getMessage());
-                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                        newContact.addError(eachModel.getInvalidErrorMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                     } catch (System.StringException stringExc) {
-                        newContact.addError(stringExc.getMessage());
-                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                        newContact.addError(eachModel.getInvalidErrorMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                     }
                     affiliationsToCreateForEachContactList.add(afflToCreate);
                 }
