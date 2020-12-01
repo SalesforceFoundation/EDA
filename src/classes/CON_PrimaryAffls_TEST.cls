@@ -827,8 +827,8 @@ private with sharing class CON_PrimaryAffls_TEST {
         Test.startTest();
         try {
             insert testContactsList;
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+        } catch (System.DmlException err){
+            System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
         }
         
         Test.stopTest();
@@ -844,7 +844,6 @@ private with sharing class CON_PrimaryAffls_TEST {
         for (Contact con : testContactsList){
             con.Gender__c = 'Decline to State';
         }
-        //insert testContactsList;
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
@@ -859,8 +858,8 @@ private with sharing class CON_PrimaryAffls_TEST {
         Test.startTest();
         try {
             insert testContactsList;
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+        } catch (System.DmlException err){
+            System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
         }
         
         Test.stopTest();
@@ -888,8 +887,8 @@ private with sharing class CON_PrimaryAffls_TEST {
         Test.startTest();
         try {
             insert testContactsList;
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+        } catch (System.DmlException err){
+            System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
         }
         
         Test.stopTest();
@@ -917,8 +916,8 @@ private with sharing class CON_PrimaryAffls_TEST {
         Test.startTest();
         try {
             insert testContactsList;
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+        } catch (System.DmlException err){
+            System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
         }
         
         Test.stopTest();
