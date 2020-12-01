@@ -596,12 +596,12 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
         Contact oldContact = UTIL_UnitTestData_TEST.getContact();
         oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
-        oldContact.FirstName = 'OldTest';
+        oldContact.Gender__c = 'Female';
         oldContact.Primary_Organization__c = businesssAccount1.Id;
 
         Contact newContact = oldContact.clone(true);
         newContact.Primary_Organization__c = businesssAccount2.Id;
-        newContact.FirstName = 'NewTest';
+        newContact.Gender__c = 'Decline to State';
 
         List<MODL_PrimaryAfflMapper> mappingModels = new List<MODL_PrimaryAfflMapper>{
             SRVC_Contact_PrimaryAffiliations_TEST.getValidBusinessRTMappingWithNonLookupField(),
@@ -633,11 +633,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         Contact oldContact = UTIL_UnitTestData_TEST.getContact();
         oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
         oldContact.Primary_Organization__c = businesssAccount1.Id;
-        oldContact.FirstName = 'William';
+        oldContact.Gender__c = 'Male';
 
         Contact newContact = oldContact.clone(true);
         newContact.Primary_Organization__c = businesssAccount1.Id;
-        newContact.FirstName = 'Bill';
+        newContact.Gender__c = 'Decline to State';
 
         List<MODL_PrimaryAfflMapper> mappingModels = new List<MODL_PrimaryAfflMapper>{
             SRVC_Contact_PrimaryAffiliations_TEST.getInvalidBusinessOrgMappingOnRecordType(),
@@ -1100,11 +1100,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Helper method to retrieve namespaced field describe for the FirstName field on Contact.
-    * @return Field describe for the FirstName field on Contact
+    * @description Helper method to retrieve namespaced field describe for the Gender__c field on Contact.
+    * @return Field describe for the Gender__c field on Contact
     **************************************************************************************************************************/
-    private static Schema.DescribeFieldResult getFirstNameMappedField() {
-        return UTIL_Describe.getFieldDescribe('Contact', UTIL_Namespace.StrTokenNSPrefix('FirstName'));
+    private static Schema.DescribeFieldResult getGenderMappedField() {
+        return UTIL_Describe.getFieldDescribe('Contact', UTIL_Namespace.StrTokenNSPrefix('Gender__c'));
     }
 
     /**************************************************************************************************************************
@@ -1179,8 +1179,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         String invalidFieldErrorMessage = SRVC_Contact_PrimaryAffiliations_TEST.getInvalidFieldMappingError();
 
         return new MODL_PrimaryAfflMapper(
-            SRVC_Contact_PrimaryAffiliations_TEST.getFirstNameMappedField(),
-            UTIL_Namespace.StrTokenNSPrefix('FirstName'),
+            SRVC_Contact_PrimaryAffiliations_TEST.getGenderMappedField(),
+            UTIL_Namespace.StrTokenNSPrefix('Gender__c'),
             'Business Organization',
             true,
             invalidFieldErrorMessage
@@ -1221,7 +1221,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     private static String getInvalidFieldMappingError(){
         List<String> params = new List<String>{
             Label.stgColContactPrimaryAfflField,
-            'FirstName'
+            'Gender__c'
         };
 
         return String.format(label.invalidContactFieldInAffiliationMapping, params);
