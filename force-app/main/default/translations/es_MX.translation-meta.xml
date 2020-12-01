@@ -53,11 +53,19 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Contact. --></label>
+        <name>invalidContactFieldInAffiliationMapping</name>
+    </customLabels>
+    <customLabels>
         <label>El campo ingresado como el Campo de filtro no es válido. Los campos de filtro pueden ser cualquier campo estándar o personalizado en el objeto para el que es este desencadenador, así como campos en registros relacionados. Asegúrese de que utiliza el nombre de API del campo, y omite cualquier prefijo de espacio de nombres de EDA (&quot;hed__&quot;).</label>
         <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <label>Male</label>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Account record type. --></label>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+    </customLabels>
+    <customLabels>
+        <label>Male</label>>
         <name>Male</name>
     </customLabels>
     <customLabels>

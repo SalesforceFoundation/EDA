@@ -53,8 +53,16 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
+        <name>invalidContactFieldInAffiliationMapping</name>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Contact. --></label>
+    </customLabels>
+    <customLabels>
         <label>Le champ saisi dans le Champ de filtrage n&apos;est pas valide. Les champs de filtrage peuvent correspondre à n&apos;importe quel champ standard ou personnalisé dans l&apos;objet auquel ce déclencheur est destiné, ainsi qu&apos;à des champs dans des enregistrements associés. Assurez-vous d&apos;utiliser le nom d&apos;API du champ sans insérer le préfixe d&apos;espace de noms EDA (&quot;hed__&quot;).</label>
         <name>InvalidFilter</name>
+    </customLabels>
+    <customLabels>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Account record type. --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>

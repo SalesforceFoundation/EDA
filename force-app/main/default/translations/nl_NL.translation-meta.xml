@@ -53,8 +53,16 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
-        <label>Het veld dat als filterveld is ingevoerd is ongeldig. Filtervelden kunnen elk standaard of aangepast veld zijn op het object waarvoor deze trigger is, evenals een veld op een gerelateerde record. Zorg dat u de API-naam van het veld gebruikt en laat EDA-naamruimtevoorvoegsels (&quot;hed__&quot;) weg.</label>
+        <name>invalidContactFieldInAffiliationMapping</name>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Contact. --></label>
+    </customLabels>
+    <customLabels>
         <name>InvalidFilter</name>
+        <label>Het veld dat als filterveld is ingevoerd is ongeldig. Filtervelden kunnen elk standaard of aangepast veld zijn op het object waarvoor deze trigger is, evenals een veld op een gerelateerde record. Zorg dat u de API-naam van het veld gebruikt en laat EDA-naamruimtevoorvoegsels (&quot;hed__&quot;) weg.</label>
+    </customLabels>
+    <customLabels>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Account record type. --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>
