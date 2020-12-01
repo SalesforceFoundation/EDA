@@ -277,11 +277,13 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         Contact contact1 = UTIL_UnitTestData_TEST.getContact();
         contact1.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
         contact1.Primary_Organization__c = businesssAccount.id;
+        contact1.Gender__c = 'Female';
         contact1.Birthdate = System.today();
 
         Contact contact2 = UTIL_UnitTestData_TEST.getContact();
         contact2.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
         contact2.Primary_Organization__c = businesssAccount.id;
+        contact2.Gender__c = 'Male';
         contact2.Birthdate = System.today();
 
         List<Contact> contactList = new List<Contact> {contact1, contact2};
