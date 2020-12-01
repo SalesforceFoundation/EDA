@@ -140,9 +140,6 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             return null; 
         }
 
-        // Set<Schema.SObjectType> mappedLookupTypesSet = new Set<Schema.SObjectType>(primaryAfflFieldDescribe.getReferenceTo());
-        // if (mappedLookupTypesSet.isEmpty() == true || mappedLookupTypesSet.contains(Account.SObjectType) == false){
-
         if (UTIL_Describe.isLookupFieldTo(primaryAfflFieldDescribe, Account.SObjectType) == false){
             // Affiliation mapping to contact field that is not type Lookup(Account)
             List<String> params = new List<String>{
@@ -153,7 +150,6 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             invalidErrorMessage = String.format(label.invalidContactFieldInAffiliationMapping, params);
         }
             
-        
         // Get the record type info by developer name
         Schema.RecordTypeInfo accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', afflMapping.Account_Record_Type__c);
         // If we don’t have a record type info, get the record type info by name

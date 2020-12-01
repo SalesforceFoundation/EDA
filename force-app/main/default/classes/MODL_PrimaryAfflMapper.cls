@@ -165,5 +165,4 @@ public class MODL_PrimaryAfflMapper {
     public String getInvalidErrorMessage(){
         return this.invalidErrorMessage;
     }
-
 }
