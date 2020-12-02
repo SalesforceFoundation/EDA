@@ -292,8 +292,7 @@ flows:
         steps:
             3:
                 task: execute_install_apex
-            4:
-                flow: eda_picklists
+
 
     config_dev:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -312,7 +311,7 @@ flows:
                 options: 
                     test_name_match: '%Unmanaged_TEST'
             8:
-                flow: eda_picklists
+                flow: eda_settings_unmanaged
 
                     
     config_dev_namespaced:
@@ -331,7 +330,8 @@ flows:
             4:
                 task: deploy_dev_config
             5:
-                flow: eda_picklists
+                flow: eda_settings
+
 
     config_managed:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -342,8 +342,6 @@ flows:
                     unmanaged: False
             4:
                 task: deploy_einstein_templates
-            5:
-                flow: eda_picklists
 
     config_packaging:
         # description: Configure packaging org for upload after package metadata is deployed
@@ -373,7 +371,7 @@ flows:
             6:
                 task: deploy_qa_config
             7:
-                flow: eda_picklists
+                flow: eda_settings_unmanaged
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
@@ -388,7 +386,8 @@ flows:
                 options:
                     unmanaged: False
             4:
-                flow: eda_picklists
+                flow: eda_settings
+
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -405,8 +404,7 @@ flows:
                 options:
                     update_admin_profile:
                         namespaced_org: True
-            4:
-                flow: eda_picklists
+
 
     eda_picklists:
         description: Inspects metadata, adds appropriate picklist values using MetadataETL Framework.
@@ -415,7 +413,7 @@ flows:
                 task: add_relationship_type_values
 
     eda_settings:
-        description: Enables various settings on the EDA Settings tab.
+        description: Enables various settings in a managed context on the EDA Settings tab.
         steps:
             1:
                 task: execute_enable_record_type_validation
@@ -437,8 +435,32 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: True
-            6:
-                flow: eda_picklists
+
+    eda_settings_unmanaged:
+        description: Enables various settings on the EDA Settings tab.
+        steps:
+            1:
+                task: execute_enable_record_type_validation
+                options:
+                    managed: False
+            2:
+                task: execute_preferred_phone_selection
+                options:
+                    namespaced: False
+            3:
+                task: execute_send_error_notifications
+                options:
+                    namespaced: False
+            4:
+                task: execute_automatic_household_naming
+                options:
+                    namespaced: False
+            5:
+                task: execute_enable_course_connections
+                options:
+                    namespaced: False
+
+
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
@@ -455,8 +477,7 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
-            6:
-                flow: eda_picklists
+
 
     net_new_org:
         description: Simulates an EDA installation for a new customer. Installs the latest beta and dependencies.
@@ -472,8 +493,7 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
-            4:
-                flow: eda_picklists
+
 
 
     translations:
@@ -559,8 +579,6 @@ plans:
                         name: EDA - Case Behavior Record Types
                 options:
                     unmanaged: False
-            4:
-                flow: eda_settings
 
     ra_einstein_template:
         slug: ra_template
