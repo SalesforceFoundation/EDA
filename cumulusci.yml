@@ -531,6 +531,7 @@ flows:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
+                    namespaced_org: True
             6:
                 flow: eda_settings
             7:
