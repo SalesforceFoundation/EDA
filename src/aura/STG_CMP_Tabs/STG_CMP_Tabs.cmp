@@ -8,6 +8,9 @@
     <aura:attribute name="preferredPhonePicklistEntries" type="Map" />
     <aura:attribute name="defaultPreferredPhoneValue" type="String" />
     <aura:attribute name="defaultPreferredPhoneLabel" type="String" />
+    <aura:attribute name="reciprocalMethodOptions" type="Map" />
+    <aura:attribute name="defaultReciprocalMethodValue" type="String" />
+    <aura:attribute name="defaultReciprocalMethodLabel" type="String" />
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="courseConnectionRecTypes" type="Map" />
     <aura:attribute name="accRecTypeId" type="String" />
@@ -94,7 +97,13 @@
         </div>
         <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
 
-            <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+            <c:STG_CMP_Rel
+                hierarchySettings="{!v.hierarchySettings}" 
+                isView="{!v.isView}" 
+                namespacePrefix="{!v.namespacePrefix}" 
+                reciprocalMethodOptions = "{!v.reciprocalMethodOptions}"
+                defaultReciprocalMethodValue = "{!v.defaultReciprocalMethodValue}"
+                defaultReciprocalMethodLabel = "{!v.defaultReciprocalMethodLabel}"/>
         </div>
         <div aura:id="coursesTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
             <c:STG_CMP_Courses hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
