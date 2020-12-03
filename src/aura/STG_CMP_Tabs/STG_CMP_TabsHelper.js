@@ -37,6 +37,7 @@
                 component.set("v.affiliationStatusMapValue", settingsNoPrefix.Affl_ProgEnroll_Status_Map__c);
                 component.set("v.affiliationStatusDeleteMapValue", settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
                 component.set("v.defaultContactLanguageFluencyValue", settingsNoPrefix.Default_Contact_Language_Fluency__c);
+                component.set("v.defaultReciprocalMethodValue", settingsNoPrefix.Reciprocal_Method__c);
                 component.set("v.defaultPreferredPhoneValue", settingsNoPrefix.Preferred_Phone_Selection__c );
                 component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
                 component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
@@ -58,7 +59,8 @@
                 this.getFluencyPicklistEntries(component, settingsNoPrefix.Default_Contact_Language_Fluency__c);
                 // Get Preferrd Phone Picklists
                 this.getPreferredPhonePicklistEntries(component, settingsNoPrefix.Preferred_Phone_Selection__c);
-                
+                // Get ReciprocalMethod Picklist Entries
+                this.getReciprocalMethodOptions(component, settingsNoPrefix.Reciprocal_Method__c);
             } else if(response.getState() === "ERROR") {
                 this.displayError(response);
             }
@@ -276,6 +278,24 @@
             }
         });
         $A.enqueueAction(action);
+    },
+
+    getReciprocalMethodOptions : function(component, reciprocalMethodValue) {
+
+        // Load Reciprocal Method Options
+        var reciprocalMethodOptions = [];
+        reciprocalMethodOptions.push({picklistLabel: $A.get("$Label.c.stgReciprocalMethodListSetting"), picklistValue: "List Setting"});
+        reciprocalMethodOptions.push({picklistLabel: $A.get("$Label.c.stgReciprocalMethodValueInversion"), picklistValue: "Value Inversion"});
+
+        // Load default Reciprocal Label (List Setting)
+        if (reciprocalMethodValue == 'List Setting') {
+            component.set("v.defaultReciprocalMethodLabel", $A.get("$Label.c.stgReciprocalMethodListSetting"));                        
+        } else {
+            component.set("v.defaultReciprocalMethodLabel", $A.get("$Label.c.stgReciprocalMethodValueInversion")); 
+        }
+
+        // Set reciprocalMethodOptions
+        component.set('v.reciprocalMethodOptions', reciprocalMethodOptions);
     },
 
     //We want to compare the list of all available Account Record Types with the list of those that have been
