@@ -165,7 +165,7 @@ tasks:
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
             execute_preferred_phone_selection:
-                name: Enable EDA's Preffered Phone Selection Settings
+                name: Enable EDA's Preferred Phone Selection Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
