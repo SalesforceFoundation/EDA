@@ -29,6 +29,7 @@ tasks:
         ui_options:
             add_relationship_type_values:
                 name: Add Relationship Type Picklist Values
+
         options:
             picklists: hed__Relationship__c.hed__Type__c
             entries:
@@ -437,6 +438,7 @@ flows:
                 options:
                     namespaced: True
 
+
     eda_settings_unmanaged:
         description: Enables various settings on the EDA Settings tab.
         steps:
@@ -460,7 +462,6 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: False
-
 
 
     upgraded_org:
