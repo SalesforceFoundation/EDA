@@ -809,6 +809,14 @@
         <label>Actualiser tous les noms de compte de foyer</label>
     </customLabels>
     <customLabels>
+        <label><!-- stgReciprocalMethodListSetting --></label>
+        <name>stgReciprocalMethodListSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgReciprocalMethodValueInversion --></label>
+        <name>stgReciprocalMethodValueInversion</name>
+    </customLabels>
+    <customLabels>
         <name>stgRunCleanUp</name>
         <label>Exécuter le nettoyage</label>
     </customLabels>

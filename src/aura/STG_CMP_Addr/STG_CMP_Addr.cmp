@@ -30,7 +30,7 @@
                 picklistValue="{!v.defaultContactLanguageFluencyValue}"
                 picklistLabel="{!v.defaultContactLanguageFluencyLabel}"
                 picklistEntries="{!v.fluencyPicklistEntries}"
-                enableNoneOption="true" />
+                enableNoneOptionOnViewPage="true" />
         </div>
         <div class="slds-col slds-size--1-of-1">
             <ui:outputText value="{!$Label.c.stgHelpDefaultContactLanguageFluency}" class="slds-text-body--small" />
@@ -154,7 +154,7 @@
                 picklistValue="{!v.defaultPreferredPhoneValue}"
                 picklistLabel="{!v.defaultPreferredPhoneLabel}"
                 picklistEntries="{!v.preferredPhonePicklistEntries}"
-                enableNoneOption="true" />
+                enableNoneOptionOnViewPage="true" />
         
         
         </div>

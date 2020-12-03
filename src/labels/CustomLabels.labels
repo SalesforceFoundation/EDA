@@ -1584,6 +1584,22 @@
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
     </labels>
     <labels>
+        <fullName>stgReciprocalMethodListSetting</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <value>List Setting</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalMethodValueInversion</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <value>Value Inversion</value>
+    </labels>
+    <labels>
         <fullName>stgRefreshAdminAcctNameDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
