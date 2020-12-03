@@ -28,7 +28,6 @@ tasks:
         options:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/config/dev
-            unmanaged: True
 
     delete_dev_config:
         description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
@@ -318,10 +317,12 @@ flows:
         # descripton: Configure an org for use as a QA org after package metadata is deployed.
         steps:
             3:
+                when: "'hed' not in org_config.installed_packages"
                 task: execute_install_apex
             4:
                 task: deploy_dev_config
             5:
+                when: "'hed' not in org_config.installed_packages"
                 task: execute_qa_apex
             6:
                 task: deploy_qa_config
