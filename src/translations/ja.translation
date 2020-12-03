@@ -809,6 +809,14 @@
         <label>すべての世帯取引先名を更新</label>
     </customLabels>
     <customLabels>
+        <label><!-- stgReciprocalMethodListSetting --></label>
+        <name>stgReciprocalMethodListSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgReciprocalMethodValueInversion --></label>
+        <name>stgReciprocalMethodValueInversion</name>
+    </customLabels>
+    <customLabels>
         <name>stgRunCleanUp</name>
         <label>クリーンアップを実行</label>
     </customLabels>
