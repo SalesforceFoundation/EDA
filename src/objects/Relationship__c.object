@@ -305,6 +305,26 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                     <label>Uncle</label>
                 </value>
                 <value>
+                    <fullName>Parent&apos;s Sibling</fullName>
+                    <default>false</default>
+                    <label>Parent&apos;s Sibling</label>
+                </value>
+                <value>
+                    <fullName>Niece</fullName>
+                    <default>false</default>
+                    <label>Niece</label>
+                </value>
+                <value>
+                    <fullName>Nephew</fullName>
+                    <default>false</default>
+                    <label>Nephew</label>
+                </value>
+                <value>
+                    <fullName>Sibling&apos;s Child</fullName>
+                    <default>false</default>
+                    <label>Sibling&apos;s Child</label>
+                </value>
+                <value>
                     <fullName>Cousin</fullName>
                     <default>false</default>
                     <label>Cousin</label>
