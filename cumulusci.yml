@@ -440,7 +440,7 @@ flows:
 
 
     eda_settings_unmanaged:
-        description: Enables various settings on the EDA Settings tab.
+        description: Enables various settings in an unmanaged context on the EDA Settings tab.
         steps:
             1:
                 task: execute_enable_record_type_validation
