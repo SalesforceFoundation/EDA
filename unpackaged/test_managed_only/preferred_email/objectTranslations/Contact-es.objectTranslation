@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Custom_Email__c</name>
+    <label>Email personalizado</label>
+  </fields>
+  <fields>
+    <name>Picklist_Missing_Email__c</name>
+    <label>Falta correo electrónico selección</label>
+  </fields>
+  <fields>
+    <name>Untranslated_Picklist_Email__c</name>
+    <label>Correo electrónico de lista de selección</label>
+  </fields>
+  <fields>
+    <name>%%%NAMESPACE%%%Preferred_Email__c</name>
+    <help>El correo electrónico (universidad, laboral, otro) que este contacto prefiere que utilice.</help>
+    <label>Correo electrónico elegido</label>
+    <picklistValues>
+      <masterLabel>University Email</masterLabel>
+      <translation>Correo electrónico de la universidad</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Work Email</masterLabel>
+      <translation>Correo electrónico laboral</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Alternate Email</masterLabel>
+      <translation>Correo electrónico alternativo</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Custom Email</masterLabel>
+      <translation>Email personalizado</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Untranslated Email</masterLabel>
+      <translation>Correo electrónico sin traducir</translation>
+    </picklistValues>
+  </fields>
+</CustomObjectTranslation>
