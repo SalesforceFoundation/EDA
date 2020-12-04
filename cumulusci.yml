@@ -70,6 +70,14 @@ tasks:
             path: unpackaged/config/translations/
             unmanaged: True
 
+    deploy_preferred_email_config:
+        description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_managed_only/preferred_email
+            namespaced_org: True
+
     deploy_primary_affiliations_config:
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -336,6 +344,8 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
+            4:
+                flow: preferred_email_testing
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -436,6 +446,24 @@ flows:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
+
+    preferred_email_testing:
+        description: Deploys Preferred Email configuration and runs apex tests. 
+        steps:
+            1: 
+                task: deploy_preferred_email_config
+
+            2:
+                task: run_tests
+                options: 
+                    test_name_match: '%_MTST'
+                    managed: False
+
+    regression_org:
+        description:
+        steps:
+            0.1:
+                flow: translations
 
 services:
     mockaroo:
