@@ -445,7 +445,7 @@ flows:
             1:
                 task: execute_enable_record_type_validation
                 options:
-                    managed: False
+                    namespaced: False
             2:
                 task: execute_preferred_phone_selection
                 options:
