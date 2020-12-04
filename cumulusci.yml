@@ -44,7 +44,7 @@ tasks:
                   add_before: "Cousin"
                 - fullName: "Sibling's Child"
                   label: "Sibling's Child"
-                  add_before: "Husband"
+                  add_before: "Cousin"
 
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
