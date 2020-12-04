@@ -261,6 +261,7 @@ flows:
         steps:
             3:
                 task: execute_install_apex
+                when: "'hed' not in org_config.installed_packages"
 
     config_dev:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -330,7 +331,6 @@ flows:
             4:
                 task: deploy_dev_config
             5:
-                when: "'hed' not in org_config.installed_packages"
                 task: execute_qa_apex
             6:
                 task: deploy_qa_config
@@ -340,9 +340,6 @@ flows:
         steps:
             2:
                 task: execute_qa_apex
-                options:
-                    managed: True
-                    namespaced: True
             3:
                 task: deploy_qa_config
                 options:
@@ -381,6 +378,7 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
+
     net_new_org:
         description: Simulates an EDA installation for a new customer. Installs the latest beta and dependencies.
         steps:
@@ -388,9 +386,6 @@ flows:
                 flow: install_beta
             2:
                 task: execute_qa_apex
-                options:
-                    managed: True
-                    namespaced: True
             3:
                 task: deploy_qa_config
                 options:
