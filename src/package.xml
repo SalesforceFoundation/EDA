@@ -1346,6 +1346,12 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>healthCheck</members>
+        <members>healthCheckHighlightsPanel</members>
+        <members>healthCheckActionCard</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
         <members>Address__c.All</members>
         <members>Affiliation__c.All</members>
         <members>Application__c.All</members>

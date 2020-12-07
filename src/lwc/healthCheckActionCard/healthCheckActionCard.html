@@ -1,0 +1,13 @@
+<template>
+    <div class="slds-col slds-size_1-of-2 slds-align-bottom slds-text-body_small">
+        Last run: {lastRunDate}
+    </div>
+    <div class="slds-col slds-size_1-of-2 slds-col_bump-left slds-text-align_right slds-align-bottom">
+        <lightning-button
+            variant="brand-outline"
+            label={labelReference.runHealthCheckButton}
+            title={labelReference.runHealthCheckButton}
+            onclick={handleClick}
+        ></lightning-button>
+    </div>
+</template>
