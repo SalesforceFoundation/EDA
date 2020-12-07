@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">    
+    <customLabels>
+        <name>PrefEmailMatchMustExist</name>
+        <label>No podemos encontrar el correo electrónico especificado en Correo electrónico preferido. Asegúrese de que está introduciendo la etiqueta de campo de un campo de correo electrónico personalizado existente.</label>
+    </customLabels>
+    <customLabels>
+        <name>PrefEmailMatchNotNull</name>
+        <label>El campo de correo electrónico que seleccionó en Correo electrónico de preferencia está en blanco. Seleccione un Correo electrónico de preferencia diferente o agregue un valor para ese campo de correo electrónico.</label>
+    </customLabels>
+    <customLabels>
+        <name>PrefEmailRequiredError</name>
+        <label>Seleccione un valor para Correo electrónico de preferencia.</label>
+    </customLabels>
+</Translations>
