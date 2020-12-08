@@ -25,6 +25,6 @@ export default class HealthCheckActionCard extends LightningElement {
 
     runHealthCheck(event){
         console.log('Running health check...');
-        this.dispatchEvent(new CustomEvent('complete'));
+        this.dispatchEvent(new CustomEvent('run'));
     }
 }
