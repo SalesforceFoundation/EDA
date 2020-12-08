@@ -1,27 +1,14 @@
 <template>
-    <div class="slds-var-m-bottom_medium">
-        <lightning-card>
-            <h3 slot="title">
-                <div class="slds-grid">
-                    <div class="slds-col">
-                        <lightning-icon
-                            icon-name="standard:home"
-                            size="medium"
-                        ></lightning-icon>
-                    </div>
-                    <div class="slds-col slds-grid slds-wrap slds-var-p-left_small">
-                        <div class="slds-col slds-size_1-of-1 slds-text-body_small">
-                            {labelReference.edaSetup}
-                        </div>
-                        <div class="slds-col slds-size_1-of-1 headingBold">
-                            {labelReference.healthCheckTitle}
-                        </div>
-                    </div>
-                </div>
-            </h3>
-        </lightning-card>
-    </div>
-    <div class="slds-var-m-bottom_medium">
-        <c-health-check-highlights-panel></c-health-check-highlights-panel>
+    <div class="parentComponent">
+        <div class="slds-grid--vertical">
+            <div class="slds-col slds-p-vertical_small">
+                <c-health-check-highlights-panel></c-health-check-highlights-panel>
+            </div>
+            <div class="slds-col slds-p-vertical_small">
+                <c-health-check-action-card
+                    run-date={lastRunDate}>
+                </c-health-check-action-card>
+            </div>
+        </div>
     </div>
 </template>

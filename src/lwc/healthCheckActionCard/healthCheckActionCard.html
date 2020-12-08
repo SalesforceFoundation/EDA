@@ -1,13 +1,40 @@
 <template>
-    <div class="slds-col slds-size_1-of-2 slds-align-bottom slds-text-body_small">
-        Last run: {lastRunDate}
-    </div>
-    <div class="slds-col slds-size_1-of-2 slds-col_bump-left slds-text-align_right slds-align-bottom">
-        <lightning-button
-            variant="brand-outline"
-            label={labelReference.runHealthCheckButton}
-            title={labelReference.runHealthCheckButton}
-            onclick={handleClick}
-        ></lightning-button>
-    </div>
+    <lightning-card title={labelReference.stgEDASettingsHealthCheckTitle}>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col 
+                        slds-size--1-of-1 
+                        slds-p-horizontal_small 
+                        slds-p-vertical_small
+                        slds-text-body_regular">
+                <p>{labelReference.stgHealthCheckDescription}</p>
+            </div>
+
+            <div class="slds-col 
+                        slds-size--1-of-1 
+                        slds-medium-size--1-of-2 
+                        slds-large-size--1-of-2 
+                        slds-text-align_left
+                        slds-text-body_small 
+                        slds-p-horizontal_small
+                        slds-p-vertical_small">
+                {lastRunDate}
+            </div>
+            <div class="slds-col 
+                        slds-size--1-of-1 
+                        slds-medium-size--1-of-2 
+                        slds-large-size--1-of-2 
+                        slds-p-horizontal_small
+                        slds-p-vertical_small">
+                <lightning-button
+                    class="slds-float_left"
+                    label={labelReference.stgRunHealthCheckButton}
+                    title={labelReference.stgRunHealthCheckButton}
+                    onclick={runHealthCheck}
+                ></lightning-button>
+            </div>
+        </div>
+        
+        
+        
+    </lightning-card>
 </template>
