@@ -6,7 +6,8 @@
             </div>
             <div class="slds-col slds-p-vertical_small">
                 <c-health-check-action-card
-                    run-date={lastRunDate}>
+                    run-date={lastRunDate}
+                    oncomplete={handleHealthCheckComplete}>
                 </c-health-check-action-card>
             </div>
         </div>

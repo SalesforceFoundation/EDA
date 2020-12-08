@@ -7,14 +7,7 @@ export default class HealthCheck extends LightningElement {
 
     lastRunDate = new Date().toLocaleDateString("en-US"); // hardcoded for now
 
-    // labelReference = {
-    //     edaSetup: 'EDA Setup',
-    //     healthCheckTitle: 'Health Check',
-    //     runHealthCheckButton: 'Run Health Check',
-    //     passedChecks: 'Checks Passed: {0}/{1}',
-    //     statusColumnHeader: 'Status',
-    //     settingColumnHeader: 'Setting',
-    //     descriptionColumnHeader: 'Description',
-    //     recommendedFixColumnHeader: 'Recommended Fix',
-    // }
+    handleHealthCheckComplete(){
+        console.log('Health Check complete!');
+    }
 }
