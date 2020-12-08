@@ -1,0 +1,4 @@
+:host {
+    /* background-color: var(--lwc-colorBackground);  */
+    --sds-c-card-color-background: red;
+}
