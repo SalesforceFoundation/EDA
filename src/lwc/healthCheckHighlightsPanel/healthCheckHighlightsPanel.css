@@ -1,4 +1,11 @@
-:host {
-    /* background-color: var(--lwc-colorBackground);  */
-    --sds-c-card-color-background: red;
+/* :host {
+    --sds-c-card-color-background: var(--lwc-colorBackground);
+} */
+
+/* .cardBackground{
+    background-color: red;
 }
+
+body {
+    background-color: red;
+} */
