@@ -1,6 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 
-//import getViewModel from '@salesforce/apex/HealthCheckController.getViewModel';
+import getHealthCheckViewModel from '@salesforce/apex/HealthCheckController.getHealthCheckViewModel';
 
 export default class HealthCheck extends LightningElement {
     @track expanded = true;
@@ -13,8 +13,8 @@ export default class HealthCheck extends LightningElement {
         console.log('Health Check complete!');
     }
 
-    // @wire(getViewModel)
-    // healthCheckViewModel({error, data}){
-    //     console.log('Wiring view model');
-    // }
+    @wire(getHealthCheckViewModel)
+    healthCheckViewModel({error, data}){
+        console.log('Wiring view model');
+    }
 }

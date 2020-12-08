@@ -98,6 +98,7 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
+        <members>HealthCheckController</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
@@ -197,6 +198,8 @@
         <members>UTIL_SortContact_TEST</members>
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
+        <members>VMDL_HealthCheck</members>
+        <members>VMDL_HealthCheckDefinition</members>
         <name>ApexClass</name>
     </types>
     <types>
