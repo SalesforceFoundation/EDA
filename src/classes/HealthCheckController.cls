@@ -1,7 +1,7 @@
 public with sharing class HealthCheckController {
 
-    private VMPR_HealthCheck locateHealthCheckMapper() {
-        return VMPR_HealthCheck.getInstance();
+    private HealthCheckVMapper locateHealthCheckMapper() {
+        return HealthCheckVMapper.getInstance();
     }
 
     @AuraEnabled(cacheable=true)

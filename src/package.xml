@@ -99,6 +99,9 @@
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
         <members>HealthCheckController</members>
+        <members>HealthCheckVMapper</members>
+        <members>HealthCheckDefinitionVModel</members>
+        <members>HealthCheckVModel</members>
         <members>FeatureParameterDateModel</members>
         <members>FeatureParameterDateModel_TEST</members>
         <members>FeatureParameterMapper</members>
@@ -205,9 +208,6 @@
         <members>UTIL_SortContact_TEST</members>
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
-        <members>VMDL_HealthCheck</members>
-        <members>VMDL_HealthCheckDefinition</members>
-        <members>VMPR_HealthCheck</members>
         <name>ApexClass</name>
     </types>
     <types>

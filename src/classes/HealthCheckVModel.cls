@@ -1,4 +1,4 @@
-public with sharing class VMDL_HealthCheck {
+public with sharing class HealthCheckVModel {
     @AuraEnabled 
     public String lastRunDate { get; private set; }
     
@@ -6,11 +6,11 @@ public with sharing class VMDL_HealthCheck {
     public Integer numberOfHealthChecks { get; private set; }
     
     @AuraEnabled 
-    public List<VMDL_HealthCheckDefinition> healthChecksToRunList { get; private set; }
+    public List<HealthCheckDefinitionVModel> healthChecksToRunList { get; private set; }
 
-    public VMDL_HealthCheck(String lastRunDate, 
+    public HealthCheckVModel(String lastRunDate, 
                             Integer numberOfHealthChecks, 
-                            List<VMDL_HealthCheckDefinition> healthChecksToRunList) {
+                            List<HealthCheckDefinitionVModel> healthChecksToRunList) {
                                 
         this.lastRunDate = lastRunDate;
         this.numberOfHealthChecks = numberOfHealthChecks;
