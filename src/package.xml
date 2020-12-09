@@ -98,9 +98,7 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
-<<<<<<< HEAD
         <members>HealthCheckController</members>
-=======
         <members>FeatureParameterDateModel</members>
         <members>FeatureParameterDateModel_TEST</members>
         <members>FeatureParameterMapper</members>
@@ -108,7 +106,6 @@
         <members>FeatureParameterModel</members>
         <members>FeatureParameterService</members>
         <members>FeatureParameterService_TEST</members>
->>>>>>> feature/230__HealthCheck
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
