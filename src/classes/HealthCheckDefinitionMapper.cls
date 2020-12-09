@@ -29,39 +29,31 @@ POSSIBILITY OF SUCH DAMAGE.
 * @date 2020
 * @group
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Service class for Health Check
+* @description Mapper class for Health Check Definition
 */
-public virtual with sharing class HealthCheckDefinitionService {
+public virtual with sharing class HealthCheckDefinitionMapper {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static HealthCheckDefinitionService instance;
+    private static HealthCheckDefinitionMapper instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected HealthCheckDefinitionService() {}
+    protected HealthCheckDefinitionMapper() {}
 
     /******************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionService.
+    * @return The instance of HealthCheckDefinitionMapper.
     ******************************************************************************/
-    public static HealthCheckDefinitionService getInstance() {
+    public static HealthCheckDefinitionMapper getInstance() {
 
         if (instance == null) {
-            instance = new HealthCheckDefinitionService();
+            instance = new HealthCheckDefinitionMapper();
         }
 
         return instance;
     }
-
-    public List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
-
-    }
-
-    /*private HealthCheckDefinitionMapper locateHealthCheckDefinitionMapper() {
-
-    }*/
 }

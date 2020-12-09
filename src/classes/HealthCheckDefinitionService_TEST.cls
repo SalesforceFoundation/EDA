@@ -29,7 +29,7 @@ POSSIBILITY OF SUCH DAMAGE.
 * @date 2020
 * @group
 * @group-content ../../ApexDocContent/Tests.htm
-* @description Test class for HealthCheckDefinitionService.cls
+* @description Test class for HealthCheckDefinitionService
 */
 @isTest
 private class HealthCheckDefinitionService_TEST {

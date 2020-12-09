@@ -28,40 +28,24 @@ POSSIBILITY OF SUCH DAMAGE.
 * @author Salesforce.org
 * @date 2020
 * @group
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Service class for Health Check
+* @group-content ../../ApexDocContent/Tests.htm
+* @description Test class for HealthCheckDefinitionModel
 */
-public virtual with sharing class HealthCheckDefinitionService {
+@isTest
+private class HealthCheckDefinitonModel_TEST {
+    
+    /**************************************************************************************************************************     
+    * @description Tests getInstance() of HealthCheckDefinitionModel
+    */
+    @isTest
+    static void testGetInstance() {
 
-    /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
-    @TestVisible
-    private static HealthCheckDefinitionService instance;
+        HealthCheckDefinitionModel healthCheckDefinitionModel = HealthCheckDefinitionModel.getInstance();
+        System.assertEquals(HealthCheckDefinitionModel.instance, healthCheckDefinitionModel);
+        System.assertNotEquals(null, healthCheckDefinitionModel);
 
-    /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected HealthCheckDefinitionService() {}
-
-    /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionService.
-    ******************************************************************************/
-    public static HealthCheckDefinitionService getInstance() {
-
-        if (instance == null) {
-            instance = new HealthCheckDefinitionService();
-        }
-
-        return instance;
+        healthCheckDefinitionModel = HealthCheckDefinitionModel.getInstance();
+        System.assertEquals(HealthCheckDefinitionModel.instance, healthCheckDefinitionModel);
     }
-
-    public List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
-
-    }
-
-    /*private HealthCheckDefinitionMapper locateHealthCheckDefinitionMapper() {
-
-    }*/
 }
+
