@@ -33,10 +33,10 @@
 */
 public with sharing class FeatureParameterDateModel extends FeatureParameterModel{
 
-    public Datetime value { get; private set; }
+    public Date value { get; private set; }
 
     /* Constructor to set the properties */
-    public FeatureParameterDateModel(String name, Datetime value) {
+    public FeatureParameterDateModel(String name, Date value) {
         super(name);
         this.value = value;
     }

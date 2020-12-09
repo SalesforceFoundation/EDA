@@ -41,11 +41,11 @@ private class FeatureParameterDateModel_TEST {
     private static void FeatureParameterDateModelConstructor() {
 
         Test.startTest();
-            FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('testFeature', System.now());
+            FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('testFeature', Date.today());
         Test.stopTest();
 
         System.assertEquals('testFeature', featureParamDateModel.name, 'Feature Parameter Name should be the one which was passed');
-        System.assertEquals(System.now(), featureParamDateModel.value, 'Feature Parameter value should be the one which was passed');
+        System.assertEquals(Date.today(), featureParamDateModel.value, 'Feature Parameter value should be the one which was passed');
 
     }
 
@@ -56,12 +56,12 @@ private class FeatureParameterDateModel_TEST {
     private static void convertToString() {
 
         Test.startTest();
-            FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('testFeature', System.now());
+            FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('testFeature', Date.today());
         Test.stopTest();
 
         System.assertEquals('testFeature', featureParamDateModel.name, 'Feature Parameter Name should be the one which was passed');
-        System.assertEquals(System.now(), featureParamDateModel.value, 'Feature Parameter value should be the one which was passed');
-        System.assertEquals(System.now().format(), featureParamDateModel.convertToString(), 'Feature Parameter value should be converted to String');
+        System.assertEquals(Date.today(), featureParamDateModel.value, 'Feature Parameter value should be the one which was passed');
+        System.assertEquals(Date.today().format(), featureParamDateModel.convertToString(), 'Feature Parameter value should be converted to String');
 
     }
 }

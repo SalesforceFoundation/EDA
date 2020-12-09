@@ -62,8 +62,8 @@ public virtual with sharing class FeatureParameterMapper {
     * @Params featureParameter The feature Parameter to return the model for
     * @return featureParamDateModel The model for the featureParameter with with value set to the current datetime
     **************************************************************************************************************/
-    public FeatureParameterModel getFeatureParameterModel(String featureParameter) {
-        FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel(featureParameter, System.now());
+    public virtual FeatureParameterModel getFeatureParameterModel(String featureParameter) {
+        FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel(featureParameter, Date.today());
         return featureParamDateMdl;
     }
 }

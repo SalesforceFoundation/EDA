@@ -41,10 +41,7 @@ public abstract with sharing class FeatureParameterModel {
     }
 
     /******************************************************************************
-    * @description Virtual method to be overridden by child classes
-    * @return null
+    * @description abstract method to be overridden by child classes
     ******************************************************************************/
-    public virtual String convertToString() {
-        return null;
-    }
+    public abstract String convertToString();
 }

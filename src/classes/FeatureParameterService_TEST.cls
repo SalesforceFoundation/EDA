@@ -86,11 +86,29 @@ private class FeatureParameterService_TEST {
     @isTest
     private static void getFeatureParameterModel() {
 
+        FeatureParameterMapper.instance = new STUB_FeatureParameterDateModel();
         Test.startTest();
             FeatureParameterModel featureParamModel = FeatureParameterService.getInstance().getFeatureParameterModel();
         Test.stopTest();
 
         System.assertNotEquals(null, featureParamModel, 'should return a FeatureParameterModel');
+        System.assertEquals('Test Feature Param', featureParamModel.name, 'Feature Parameter Name should be returned');
+        System.assertEquals(Date.today(), ((featureParameterDateModel)featureParamModel).value, 'Feature Parameter value should be returned');
 
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUBS **************************************************************
+    **************************************************************************************************************************/
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from FeatureParameterMapper to return a new instance of a FeatureParameterDateModel
+    **************************************************************************************************************************************/ 
+    private class STUB_FeatureParameterDateModel extends FeatureParameterMapper {
+        @TestVisible 
+        public override FeatureParameterModel getFeatureParameterModel(String featureParameter){            
+            FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel('Test Feature Param', Date.today());
+            return featureParamDateMdl;
+        }
     }
 }
