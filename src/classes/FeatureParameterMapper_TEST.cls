@@ -77,7 +77,7 @@ private class FeatureParameterMapper_TEST {
         Test.stopTest();
 
         System.assertEquals('testFeatureParam', featureParamModel.name, 'Feature Parameter Name should be the one which was passed');
-        //System.assertEquals(System.now(), featureParamModel.value);
+        System.assertEquals(System.now(), ((featureParameterDateModel)featureParamModel).value, 'Feature Parameter value should be returned');
     }
 
 }

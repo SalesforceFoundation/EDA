@@ -39,6 +39,7 @@ private class FeatureParameterDateModel_TEST {
     **********************************************************************************************************************/
     @isTest
     private static void FeatureParameterDateModelConstructor() {
+
         Test.startTest();
             FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('testFeature', System.now());
         Test.stopTest();
@@ -53,6 +54,7 @@ private class FeatureParameterDateModel_TEST {
     **********************************************************************************************************************/
     @isTest
     private static void convertToString() {
+
         Test.startTest();
             FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('testFeature', System.now());
         Test.stopTest();
