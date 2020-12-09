@@ -52,13 +52,15 @@ public virtual with sharing class HealthCheckVMapper {
     **********************************************************************************/
     public HealthCheckVModel getHealthCheckViewModel(){
         FeatureParameterDateModel featureParamDateModel = (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel();
+        String lastRunDate = featureParamDateModel.convertToString(); 
+        // List<HealthCheckDefinitionVModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels();
+        // Integer numberOfRuns = healthCheckDefinitionList.size();
 
-        String lastRunDate = featureParamDateModel.toString(); 
-        //Integer numberOfRuns = healthChecksToRunList.size();
-        List<HealthCheckVModelDefinition> healthChecksToRunList = new List<HealthCheckVModelDefinition>();
 
-        HealthCheckVModel healthCheckViewModel = new HealthCheckVModel(lastRunDate, numberOfRuns, healthChecksToRunList);
+        // TODO: delete the next 2 lines when HealtCheckDefinition Service is complete
+        List<HealthCheckDefinitionVModel> healthCheckDefinitionList = new List<HealthCheckDefinitionVModel>();
+        Integer numberOfRuns = 5;
 
-        return healthCheckViewModel;
+        return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefinitionList);
     }
 }
