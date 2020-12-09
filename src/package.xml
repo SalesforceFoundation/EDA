@@ -98,6 +98,13 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
+        <members>FeatureParameterDateModel</members>
+        <members>FeatureParameterDateModel_TEST</members>
+        <members>FeatureParameterMapper</members>
+        <members>FeatureParameterMapper_TEST</members>
+        <members>FeatureParameterModel</members>
+        <members>FeatureParameterService</members>
+        <members>FeatureParameterService_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
