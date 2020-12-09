@@ -545,6 +545,14 @@
         <label>Desactiva l'aplicació de telèfon preferit</label>
     </customLabels>
     <customLabels>
+        <label><!-- The title for the EDA settings health check --></label>
+        <name>stgEDASettingsHealthCheckTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- The title for EDA Setup --></label>
+        <name>stgEDASetup</name>
+    </customLabels>
+    <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
         <label>Activa les connexions del curs</label>
     </customLabels>
@@ -567,6 +575,14 @@
     <customLabels>
         <name>stgFluent</name>
         <label>Avançat</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- The description for the EDA settings health check --></label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text for the last run date of the health check --></label>
+        <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
@@ -825,6 +841,10 @@
         <label>Executeu aquest procés de neteja de dades després d'haver activat el requisit de correu electrònic preferit o el telèfon preferit per primera vegada o després d'un període de no compliment del requisit.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text for the run health check button --></label>
+        <name>stgRunHealthCheckButton</name>
+    </customLabels>
+    <customLabels>
         <name>stgSaveSettings</name>
         <label>La configuració s'ha desat correctament.</label>
     </customLabels>
@@ -835,6 +855,10 @@
     <customLabels>
         <name>stgSendErrorsTitle</name>
         <label>Envia notificacions d'errors</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- The title for health check --></label>
+        <name>stgSettingsHealthCheckTitle</name>
     </customLabels>
     <customLabels>
         <name>stgSimpleAddressChangeUpdate</name>

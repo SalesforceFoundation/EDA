@@ -785,12 +785,16 @@
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgDisablePreferredEmailEnforcement</members>
         <members>stgDisablePreferredPhoneEnforcement</members>
+        <members>stgEDASettingsHealthCheckTitle</members>
+        <members>stgEDASetup</members>
         <members>stgEnableCourseConnectionsTitle</members>
         <members>stgEnablePreferredPhoneSync</members>
         <members>stgErrorNotiTo</members>
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
+        <members>stgHealthCheckDescription</members>
+        <members>stgHealthCheckLastRun</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -855,9 +859,11 @@
         <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
+        <members>stgRunHealthCheckButton</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
+        <members>stgSettingsHealthCheckTitle</members>
         <members>stgSimpleAddressChangeUpdate</members>
         <members>stgStoreErrorsTitle</members>
         <members>stgSuccess</members>
@@ -1351,6 +1357,12 @@
         <members>Time_Block__c-EDA Time Block Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>healthCheck</members>
+        <members>healthCheckHighlightsPanel</members>
+        <members>healthCheckActionCard</members>
+        <name>LightningComponentBundle</name>
     </types>
     <types>
         <members>Address__c.All</members>

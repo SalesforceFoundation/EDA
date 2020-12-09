@@ -545,6 +545,14 @@
         <label>Disable Preferred Phone Enforcement</label>
     </customLabels>
     <customLabels>
+        <label><!-- The title for the EDA settings health check --></label>
+        <name>stgEDASettingsHealthCheckTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- The title for EDA Setup --></label>
+        <name>stgEDASetup</name>
+    </customLabels>
+    <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
         <label>Enable Course Connections</label>
     </customLabels>
@@ -567,6 +575,14 @@
     <customLabels>
         <name>stgFluent</name>
         <label>Fluent</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- The description for the EDA settings health check --></label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text for the last run date of the health check --></label>
+        <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
@@ -825,6 +841,10 @@
         <label>Run this data cleanup process after you've enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text for the run health check button --></label>
+        <name>stgRunHealthCheckButton</name>
+    </customLabels>
+    <customLabels>
         <name>stgSaveSettings</name>
         <label>Settings successfully saved.</label>
     </customLabels>
@@ -835,6 +855,10 @@
     <customLabels>
         <name>stgSendErrorsTitle</name>
         <label>Send Error Notifications</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- The title for health check --></label>
+        <name>stgSettingsHealthCheckTitle</name>
     </customLabels>
     <customLabels>
         <name>stgSimpleAddressChangeUpdate</name>
