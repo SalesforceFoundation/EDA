@@ -200,6 +200,7 @@
         <members>UTIL_UnitTestData_TEST</members>
         <members>VMDL_HealthCheck</members>
         <members>VMDL_HealthCheckDefinition</members>
+        <members>VMPR_HealthCheck</members>
         <name>ApexClass</name>
     </types>
     <types>
