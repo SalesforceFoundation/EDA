@@ -183,7 +183,6 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                         newContact.addError(eachModel.getInvalidErrorMessage());
                         throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                     }
-
                     Affiliation__c afflToCreate;
 
                     try {
@@ -224,16 +223,10 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         Set<Id> accountIds = new Set<Id>();
 
         for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
-            //try{
             if (newContact.get(eachModel.getContactFieldApiName()) == oldContact.get(eachModel.getContactFieldApiName())) {
                 continue;
             }
-            // } catch (System.SObjectException e){
-            //     //continue;
-            //     newContact.addError(eachModel.getInvalidErrorMessage());
-            //     throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
-            // }
-
+            
             if (oldContact.get(eachModel.getContactFieldApiName()) != null) {
                 accountIds.add((Id)oldContact.get(eachModel.getContactFieldApiName()));
             }
