@@ -33,6 +33,18 @@
 */
 @isTest
 private class HealthCheckDefinitionModel_TEST {
+    /**************************************************************************************************************************
+    * @description Test method to verify that the constructor is working as expected.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+        Test.startTest();
+            HealthCheckDefinitionModel healthCheckDefinitionModel = new HealthCheckDefinitionModel('All Success', 'SRVC_HealthCheckGroupAPI', 'hed');
+        Test.stopTest();
 
+        System.assertEquals('All Success', healthCheckDefinitionModel.name);
+        System.assertEquals('SRVC_HealthCheckGroupAPI', healthCheckDefinitionModel.className);
+        System.assertEquals('hed', healthCheckDefinitionModel.namespace);
+    }
 }
 

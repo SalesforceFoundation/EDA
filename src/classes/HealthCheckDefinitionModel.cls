@@ -31,7 +31,7 @@
 * @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Model class for Health Check Definition
 */
-public virtual with sharing class HealthCheckDefinitionModel {
+public with sharing class HealthCheckDefinitionModel {
 
     public String name;
 

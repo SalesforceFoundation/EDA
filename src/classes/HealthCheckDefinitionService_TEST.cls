@@ -63,4 +63,31 @@ private class HealthCheckDefinitionService_TEST {
         System.assertEquals(healthCheckDefinitionServiceInstance1, healthCheckDefinitionServiceInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
         System.assertEquals(true, healthCheckDefinitionServiceInstance1 != null, 'Instance of service class should not be null.');
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getHealthCheckDefinitionModels method in Health Check Service class
+    * returns a list of Health Check Definition models
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getHealthCheckDefinitionModelsExistingFromService() {
+        Test.startTest();
+            List<HealthCheckDefinitionModel> healthCheckDefinitionModels = HealthCheckDefinitionService.getInstance().getHealthCheckDefinitionModels();
+        Test.stopTest();
+
+        System.assertEquals(3, healthCheckDefinitionModels.size());
+        //TODO: Update assert once HC models aren't hardcoded
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateHealthCheckDefinitionMapper method 
+    * returns an instance of HealthCheckDefinitionMapper
+    ***************************************************************************************************************************/
+    @isTest
+    private static void locateHealthCheckDefinitionMapperTest() {
+        Test.startTest();
+            HealthCheckDefinitionMapper healthCheckDefinitionMapperInstance = HealthCheckDefinitionMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(HealthCheckDefinitionMapper.instance, healthCheckDefinitionMapperInstance);
+    }
 }

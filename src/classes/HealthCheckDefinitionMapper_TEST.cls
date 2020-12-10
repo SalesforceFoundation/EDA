@@ -63,5 +63,19 @@ private class HealthCheckDefinitionMapper_TEST {
         System.assertEquals(healthCheckDefinitionMapperInstance1, healthCheckDefinitionMapperInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
         System.assertEquals(true, healthCheckDefinitionMapperInstance1 != null, 'Instance of service class should not be null.');
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getHealthCheckDefinitionModels method in Health Check Mapper class
+    * returns a list of Health Check Definition models
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getHealthCheckDefinitionModelsExistingFromMapper() {
+        Test.startTest();
+            List<HealthCheckDefinitionModel> healthCheckDefinitionModels = HealthCheckDefinitionMapper.getInstance().getHealthCheckDefinitionModels();
+        Test.stopTest();
+
+        System.assertEquals(3, healthCheckDefinitionModels.size());
+        //TODO: Update assert once HC models aren't hardcoded
+    }
 }
 
