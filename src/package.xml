@@ -105,6 +105,12 @@
         <members>FeatureParameterModel</members>
         <members>FeatureParameterService</members>
         <members>FeatureParameterService_TEST</members>
+        <members>HealthCheckDefinitionMapper</members>
+        <members>HealthCheckDefinitionMapper_TEST</members>
+        <members>HealthCheckDefinitionModel</members>
+        <members>HealthCheckDefinitionModel_TEST</members>
+        <members>HealthCheckDefinitionService</members>
+        <members>HealthCheckDefinitionService_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
