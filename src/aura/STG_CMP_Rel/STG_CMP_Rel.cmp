@@ -6,7 +6,9 @@
     <aura:attribute name="Id" type="String" />
     <aura:attribute name="noRecSettings" type="String" />
     <aura:attribute name="noAutoCreateSettings" type="String" />
-    <aura:attribute name="reciprocalMethodOptions" type="String[]" default="List Setting,Value Inversion"/>
+    <aura:attribute name="reciprocalMethodOptions" type="Map" />
+    <aura:attribute name="defaultReciprocalMethodValue" type="String" />
+    <aura:attribute name="defaultReciprocalMethodLabel" type="String" />
 
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
@@ -31,12 +33,15 @@
 					<ui:outputText value="{!$Label.c.stgTitleReciMethod}"/>
                 </div>
 			    <div class="slds-col slds-size--1-of-2">
-			        <ui:outputText value="{!v.hierarchySettings.Reciprocal_Method__c}" class="{!(v.isView ? '':'slds-hide ') + 'reciprocal-method'}" />
-              <ui:inputSelect aura:id="reciprocalMethodSelect" change="{!c.changeReciprocalMethodStg}" class="{!(v.isView ? 'slds-hide ':'') + 'reciprocal-method'}">
-                  <aura:iteration items="{!v.reciprocalMethodOptions}" var="method">
-                      <ui:inputSelectOption text="{!method}" label="{!method}" value="{!v.hierarchySettings.Reciprocal_Method__c == method}"/>
-                  </aura:iteration>
-              </ui:inputSelect>
+					<c:CMP_Picklist_Dropdown class="relationship-reciprocal-method-picklist"
+					setting="{!v.hierarchySettings.Reciprocal_Method__c}"
+					isView="{!v.isView}"
+					picklistValue="{!v.defaultReciprocalMethodValue}"
+					picklistLabel="{!v.defaultReciprocalMethodLabel}"
+					picklistEntries="{!v.reciprocalMethodOptions}"
+					enableNoneOptionOnViewPage="false"
+					enableNoneOptionOnEditPage="false"
+                />
           </div>
           <div class="slds-col slds-size--1-of-1">
 		        <ui:outputText value="{!$Label.c.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
