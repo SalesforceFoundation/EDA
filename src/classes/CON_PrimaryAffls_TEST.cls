@@ -804,7 +804,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     @isTest 
     private static void insertContactAfflInvalidRecordTypeError(){
         List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
-        //insert testContactsList;
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
@@ -982,59 +981,6 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         System.assertEquals(100, testContactResultsList.size());
     }
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /*************************************************************************************************************
     * @description Test case to verify that updating a primary affiliation field on Contact with record type
@@ -1303,19 +1249,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-
-
-
-
-
     /*************************************************************************************************************
     * @description Positive bulk test to ensure affiliations are created on Contact insert
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactInsert() {
-
-        
-
        // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -1360,8 +1298,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactupdate() {
-        
-
         // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -1415,8 +1351,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactInsertWithWrongMappingsWithValidationOn() {
-        
-
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
         
         // insert mappings
@@ -1460,7 +1394,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     *************************************************************************************************************************/
     @isTest
     private static void createAffiliationsOnBulkContactInsertWithWrongMappingsWithValidationOff() {
-
        // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
@@ -1548,7 +1481,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest
     private static void makeAffiliationNonPrimaryByClearingField() {
-
         // insert mappings
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
