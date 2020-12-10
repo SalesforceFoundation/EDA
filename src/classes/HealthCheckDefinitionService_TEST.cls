@@ -70,6 +70,7 @@ private class HealthCheckDefinitionService_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getHealthCheckDefinitionModelsExistingFromService() {
+        HealthCheckDefinitionMapper.instance = new STUB_HealthCheckDefinitionMapper();
         Test.startTest();
             List<HealthCheckDefinitionModel> healthCheckDefinitionModels = HealthCheckDefinitionService.getInstance().getHealthCheckDefinitionModels();
         Test.stopTest();
@@ -89,5 +90,28 @@ private class HealthCheckDefinitionService_TEST {
         Test.stopTest();
 
         System.assertEquals(HealthCheckDefinitionMapper.instance, healthCheckDefinitionMapperInstance);
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUB CLASS *********************************************************
+    **************************************************************************************************************************/
+
+    /*************************************************************************************************************
+    * @description Stub class to simulate the response from HealthCheckDefinitionMapper to return a list of HealthCheckDefinitionModel
+    */
+    private class STUB_HealthCheckDefinitionMapper extends HealthCheckDefinitionMapper {
+        public override List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
+            List<HealthCheckDefinitionModel> stubHealthCheckDefinitionModelList = new List<HealthCheckDefinitionModel>();
+            stubHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel('All Success',
+                                                                        'EDAHealthCheckGroupAPIService',
+                                                                        'hed'));
+            stubHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel('All Failure',
+                                                                        'EDAHealthCheckGroupAPIService',
+                                                                        'hed'));
+            stubHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel('Mixed',
+                                                                        'EDAHealthCheckGroupAPIService',
+                                                                        'hed'));
+            return stubHealthCheckDefinitionModelList;         
+        }
     }
 }
