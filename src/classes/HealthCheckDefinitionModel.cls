@@ -33,27 +33,15 @@
 */
 public virtual with sharing class HealthCheckDefinitionModel {
 
-    /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
-    @TestVisible
-    private static HealthCheckDefinitionModel instance;
+    public String name;
 
-    /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected HealthCheckDefinitionModel() {}
+    public String className;
 
-    /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionModel.
-    ******************************************************************************/
-    public static HealthCheckDefinitionModel getInstance() {
+    public String namespace;
 
-        if (instance == null) {
-            instance = new HealthCheckDefinitionModel();
-        }
-
-        return instance;
+    public HealthCheckDefinitionModel(String name, String className, String namespace) {
+        this.name = name;
+        this.className = className;
+        this.namespace = namespace;
     }
 }

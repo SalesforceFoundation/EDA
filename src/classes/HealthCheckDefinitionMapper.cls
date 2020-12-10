@@ -56,4 +56,22 @@ public virtual with sharing class HealthCheckDefinitionMapper {
 
         return instance;
     }
+
+    /******************************************************************************
+    * @description Get a list of Health Check Definition models (Hardcoded for 1.0)
+    * @return A list of HealthCheckDefinitionModel.
+    ******************************************************************************/
+    public List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
+        List<HealthCheckDefinitionModel> healthCheckDefinitionModels = new List<HealthCheckDefinitionModel>();
+        healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('All Success',
+                                                                        'SRVC_HealthCheckGroupAPI',
+                                                                        'hed'));
+        healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('All Failure',
+                                                                        'SRVC_HealthCheckGroupAPI',
+                                                                        'hed'));
+        healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('Mixed',
+                                                                        'SRVC_HealthCheckGroupAPI',
+                                                                        'hed'));
+        return healthCheckDefinitionModels;                                                                                                                             
+    }
 }

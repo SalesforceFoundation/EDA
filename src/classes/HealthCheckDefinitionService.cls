@@ -49,7 +49,6 @@ public virtual with sharing class HealthCheckDefinitionService {
     * @return The instance of HealthCheckDefinitionService.
     ******************************************************************************/
     public static HealthCheckDefinitionService getInstance() {
-
         if (instance == null) {
             instance = new HealthCheckDefinitionService();
         }
@@ -57,11 +56,20 @@ public virtual with sharing class HealthCheckDefinitionService {
         return instance;
     }
 
+    /******************************************************************************
+    * @description Get a list of Health Check Definition models
+    * @return A list of HealthCheckDefinitionModel.
+    ******************************************************************************/
     public List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
-        return new List<HealthCheckDefinitionModel>();
+        return this.locateHealthCheckDefinitionMapper().getHealthCheckDefinitionModels();
     }
 
-    /*private HealthCheckDefinitionMapper locateHealthCheckDefinitionMapper() {
-
-    }*/
+    /******************************************************************************
+    * @description Retrieves an instance of the HealthCheckDefinitionMapper class.
+    * @return An instance of HealthCheckDefinitionMapper.
+    ******************************************************************************/
+    @TestVisible
+    private HealthCheckDefinitionMapper locateHealthCheckDefinitionMapper() {
+        return HealthCheckDefinitionMapper.getInstance();
+    }
 }

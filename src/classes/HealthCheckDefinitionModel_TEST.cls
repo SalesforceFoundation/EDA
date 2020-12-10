@@ -33,35 +33,6 @@
 */
 @isTest
 private class HealthCheckDefinitionModel_TEST {
-    
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * HealthCheckDefinitionModel class when one does not already exist.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getInstanceNew() {
-        Test.startTest();
-            HealthCheckDefinitionModel healthCheckDefinitionModelInstance = HealthCheckDefinitionModel.getInstance();
-        Test.stopTest();
 
-        System.assertEquals(HealthCheckDefinitionModel.instance, healthCheckDefinitionModelInstance, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(true, healthCheckDefinitionModelInstance != null, 'Instance of service class should not be null.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * HealthCheckDefinitionModel class when one already exists.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getInstanceExisting() {
-        Test.startTest();
-            HealthCheckDefinitionModel healthCheckDefinitionModelInstance1 = HealthCheckDefinitionModel.getInstance();
-            HealthCheckDefinitionModel healthCheckDefinitionModelInstance2 = HealthCheckDefinitionModel.getInstance();
-        Test.stopTest();
-
-        System.assertEquals(HealthCheckDefinitionModel.instance, healthCheckDefinitionModelInstance1, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(healthCheckDefinitionModelInstance1, healthCheckDefinitionModelInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
-        System.assertEquals(true, healthCheckDefinitionModelInstance1 != null, 'Instance of service class should not be null.');
-    }
 }
 
