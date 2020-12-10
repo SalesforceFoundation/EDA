@@ -99,8 +99,11 @@
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
         <members>HealthCheckController</members>
+        <members>HealthCheckController_TEST</members>
         <members>HealthCheckVMapper</members>
+        <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckDefinitionVModel</members>
+        <members>HealthCheckDefinitionVModel_TEST</members>
         <members>HealthCheckVModel</members>
         <members>FeatureParameterDateModel</members>
         <members>FeatureParameterDateModel_TEST</members>

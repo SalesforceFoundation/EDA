@@ -29,29 +29,26 @@
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Controller for healthCheck LWC component.
+* @description Test class for HealthCheckController.
 */
-public with sharing class HealthCheckController {
+@isTest
+public with sharing class HealthCheckController_TEST {
 
-    /**********************************************************************************
-    * @description Locates and returns an instance of HealthCheckVMapper. 
-    **********************************************************************************/
-    @TestVisible
-    private HealthCheckVMapper locateHealthCheckMapper() {
-        return HealthCheckVMapper.getInstance();
-    }
+    /****************************************************************************************************************************
+    * @description Test method to verify that the locateHealthCheckMapper method returns instance of HealthCheckVMapper.
+    ****************************************************************************************************************************/
+    @isTest
+    private static void locateHealthCheckMapperValid() {
+        Test.startTest();
+            HealthCheckController hlthChkCtrl = new HealthCheckController();
+            HealthCheckVMapper healthChkVMapperInstance = hlthChkCtrl.locateHealthCheckMapper();
+        Test.stopTest();
 
-    /**********************************************************************************
-    * @description Retrieve a view model representing the Health Check to run.
-    * @return A HealthCheckVModel representing the view of the Health Check to run.
-    **********************************************************************************/
-    @AuraEnabled(cacheable=true)
-    public static HealthCheckVModel getHealthCheckViewModel(){
-        try {
-            return new HealthCheckVModel(Date.today().format(), 3, new List<HealthCheckDefinitionVModel>());
-            //return this.locateHealthCheckMapper().getHealthCheckViewModel(); // TODO: uncomment and delete previous line after Health Check Definition Service added
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
+        System.assertEquals(HealthCheckVMapper.getInstance(), healthChkVMapperInstance, 'Should return the instance of HealthCheckVMapper.');
+    } 
+
+    @isTest 
+    private static void getHealthCheckViewModelValid(){
+        
     }
 }
