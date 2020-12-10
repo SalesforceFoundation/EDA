@@ -64,13 +64,13 @@ public virtual with sharing class HealthCheckDefinitionMapper {
     public List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
         List<HealthCheckDefinitionModel> healthCheckDefinitionModels = new List<HealthCheckDefinitionModel>();
         healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('All Success',
-                                                                        'SRVC_HealthCheckGroupAPI',
+                                                                        'EDAHealthCheckGroupAPIService',
                                                                         'hed'));
         healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('All Failure',
-                                                                        'SRVC_HealthCheckGroupAPI',
+                                                                        'EDAHealthCheckGroupAPIService',
                                                                         'hed'));
         healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('Mixed',
-                                                                        'SRVC_HealthCheckGroupAPI',
+                                                                        'EDAHealthCheckGroupAPIService',
                                                                         'hed'));
         return healthCheckDefinitionModels;                                                                                                                             
     }
