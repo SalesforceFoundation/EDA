@@ -68,9 +68,10 @@ public virtual with sharing class HealthCheckVMapper {
     /**********************************************************************************
     * @description Locates and returns an instance of HealthCheckDefinitionService 
     **********************************************************************************/
-    // private HealthCheckDefinitionService locateHealthCheckDefinitionService() {
-    //     return HealthCheckDefinitionService.getInstance();
-    // }
+    @TestVisible
+    private HealthCheckDefinitionService locateHealthCheckDefinitionService() {
+        return HealthCheckDefinitionService.getInstance();
+    }
 
     /**********************************************************************************
     * @description Retrieves the current date associated with a feature model.
@@ -89,27 +90,27 @@ public virtual with sharing class HealthCheckVMapper {
     **********************************************************************************/
     public virtual HealthCheckVModel getHealthCheckViewModel(){
 
-        return new HealthCheckVModel('', 0, new List<HealthCheckDefinitionVModel>());
+       // return new HealthCheckVModel('', 0, new List<HealthCheckDefinitionVModel>());
 
         
-    //     FeatureParameterDateModel featureParamDateModel = 
-    //        (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel();
-    //     String lastRunDate = featureParamDateModel.convertToString(); 
+        FeatureParameterDateModel featureParamDateModel = 
+           (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel();
+        String lastRunDate = featureParamDateModel.convertToString(); 
         
-    //     List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
-    //     List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
+        List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
+        List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
 
-    //     for (HealthCheckDefinitionModel healthChkDefModel : healthCheckDefinitionList){
-               // Generate view model for current health check definition model
-    //         HealthCheckDefinitionVModel healthChkDefViewModel = new HealthCheckDefinitionVModel(healthChkDefModel.name,
-    //                                                                                             healthChkDefModel.className,
-    //                                                                                             healthChkDefModel.namespace);
+        for (HealthCheckDefinitionModel healthChkDefModel : healthCheckDefinitionList){
+            //Generate view model for current health check definition model
+            HealthCheckDefinitionVModel healthChkDefViewModel = new HealthCheckDefinitionVModel(healthChkDefModel.name,
+                                                                                                healthChkDefModel.className,
+                                                                                                healthChkDefModel.namespace);
 
-    //         healthCheckDefViewModelsList.add(healthChkDefViewModel);
-    //     }
+            healthCheckDefViewModelsList.add(healthChkDefViewModel);
+        }
 
-    //     Integer numberOfRuns = healthCheckDefinitionList.size();
+        Integer numberOfRuns = healthCheckDefinitionList.size();
 
-    //     return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefViewModelsList);
+        return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefViewModelsList);
     }
 }

@@ -37,7 +37,7 @@ public with sharing class HealthCheckController {
     * @description Locates and returns an instance of HealthCheckVMapper. 
     **********************************************************************************/
     @TestVisible
-    private HealthCheckVMapper locateHealthCheckMapper() {
+    private static HealthCheckVMapper locateHealthCheckMapper() {
         return HealthCheckVMapper.getInstance();
     }
 
@@ -48,8 +48,7 @@ public with sharing class HealthCheckController {
     @AuraEnabled(cacheable=true)
     public static HealthCheckVModel getHealthCheckViewModel(){
         try {
-            return new HealthCheckVModel(Date.today().format(), 3, new List<HealthCheckDefinitionVModel>());
-            //return this.locateHealthCheckMapper().getHealthCheckViewModel(); // TODO: uncomment and delete previous line after Health Check Definition Service added
+            return HealthCheckController.locateHealthCheckMapper().getHealthCheckViewModel();
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

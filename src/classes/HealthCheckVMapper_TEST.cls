@@ -86,14 +86,14 @@ public class HealthCheckVMapper_TEST {
     /****************************************************************************************************************************
     * @description Test method to verify that the locateHealthCheckDefinitionService method returns instance of HealthCheckDefinitionService.
     ****************************************************************************************************************************/
-    // @isTest
-    // private static void locateHealthCheckDefinitionServiceValid() {
-    //     Test.startTest();
-    //     HealthCheckDefinitionService healthCheckDefService = HealthCheckVMapper.getInstance().locateHealthCheckDefinitionService();
-    //     Test.stopTest();
+    @isTest
+    private static void locateHealthCheckDefinitionServiceValid() {
+        Test.startTest();
+        HealthCheckDefinitionService healthCheckDefService = HealthCheckVMapper.getInstance().locateHealthCheckDefinitionService();
+        Test.stopTest();
 
-    //     System.assertEquals(HealthCheckDefinitionService.getInstance(), healthCheckDefService, 'Should return the instance of HealthCheckDefinitionService.');
-    // }    
+        System.assertEquals(HealthCheckDefinitionService.getInstance(), healthCheckDefService, 'Should return the instance of HealthCheckDefinitionService.');
+    }    
 
     /****************************************************************************************************************************
     * @description Test to verify that updateHealthCheckLastRunDate method return a string representing the current date.
@@ -113,26 +113,26 @@ public class HealthCheckVMapper_TEST {
     /****************************************************************************************************************************
     * @description Test to verify that getHealthCheckViewModel method returns a Health Check View Model.
     ****************************************************************************************************************************/
-    // @isTest 
-    // private static void getHealthCheckViewModelValid(){
+    @isTest 
+    private static void getHealthCheckViewModelValid(){
 
-    //     FeatureParameterMapper.instance = new STUB_FeatureParameterDateModel();
-    //     HealthCheckDefinitionSerivce.instance = new STUB_HealthCheckDefinitionService();
+        FeatureParameterMapper.instance = new STUB_FeatureParameterDateModel();
+        HealthCheckDefinitionService.instance = new STUB_HealthCheckDefinitionService();
 
-    //     Test.startTest();
-    //     HealthCheckVModel healthChkViewMod = HealthCheckVMapper.getInstance().getHealthCheckViewModel();
-    //     Test.stopTest();
+        Test.startTest();
+        HealthCheckVModel healthChkViewMod = HealthCheckVMapper.getInstance().getHealthCheckViewModel();
+        Test.stopTest();
 
-    //     System.assertEquals(Date.today().addDays(-3).format(), healthChkViewMod.lastRunDate, 'Last run date should be 3 days before current date.');
-    //     System.assertEquals(10, healthChkViewMod.numberOfHealthChecks, 'Number of healt checks to run should equal 10.');
-    //     System.assertEquals(10, healthChkViewMod.healthCheckDefinitionList.size(), 'There should be 10 health check definition view models.');
+        System.assertEquals(Date.today().addDays(-3).format(), healthChkViewMod.lastRunDate, 'Last run date should be 3 days before current date.');
+        System.assertEquals(10, healthChkViewMod.numberOfHealthChecks, 'Number of healt checks to run should equal 10.');
+        System.assertEquals(10, healthChkViewMod.healthCheckDefinitionList.size(), 'There should be 10 health check definition view models.');
      
-    //     for (Integer i = 0; i < healthChkViewMod.healthCheckDefinitionList.size(); i++){
-    //         System.assertEquals('Test Health Check ' + i, healthChkViewMod.healthCheckDefinitionList[i].name, 'Name of health check view model should be \'Test Health Check ' + i + '\'');
-    //         System.assertEquals('Test Classname', healthChkViewMod.healthCheckDefinitionList[i].className, 'Classname of health check should be \'Test Classname\'');
-    //         System.assertEquals('TEST', healthChkViewMod.healthCheckDefinitionList[i].namespace, 'Classname of health check should be \'TEST\'');
-    //     }  
-    // }
+        for (Integer i = 0; i < healthChkViewMod.healthCheckDefinitionList.size(); i++){
+            System.assertEquals('Test Health Check ' + i, healthChkViewMod.healthCheckDefinitionList[i].name, 'Name of health check view model should be \'Test Health Check ' + i + '\'');
+            System.assertEquals('Test Classname', healthChkViewMod.healthCheckDefinitionList[i].className, 'Classname of health check should be \'Test Classname\'');
+            System.assertEquals('TEST', healthChkViewMod.healthCheckDefinitionList[i].namespace, 'Classname of health check should be \'TEST\'');
+        }  
+    }
 
 
     /**************************************************************************************************************************
@@ -153,19 +153,19 @@ public class HealthCheckVMapper_TEST {
     /**************************************************************************************************************************************
     * @description Stub class to simulate the response from HealthCheckDefinitionService to return a list of HealthCheckDefinitionVModels
     **************************************************************************************************************************************/ 
-    // private class STUB_HealthCheckDefinitionService extends HealthCheckDefinitionService {
-    //     @TestVisible
-    //     public override List<HealthCheckDefinitionVModel> getHealthCheckDefinitionModels(){
-    //         List<HealthCheckDefinitionModel> healthChkDefModelsList = new List<HealthCheckDefinitionModel>();
+    private class STUB_HealthCheckDefinitionService extends HealthCheckDefinitionService {
+        @TestVisible
+        public override List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels(){
+            List<HealthCheckDefinitionModel> healthChkDefModelsList = new List<HealthCheckDefinitionModel>();
 
-    //         for (Integer i = 0; i < 10; i++){
-    //             HealthCheckDefinitionModel healthChkDefMod = new HealthCheckDefinitionModel('Test Health Check ' + i, 'Test Classname', 'TEST');
-    //             healthChkDefModelsList.add(healthChkDefMod);
-    //         }
+            for (Integer i = 0; i < 10; i++){
+                HealthCheckDefinitionModel healthChkDefMod = new HealthCheckDefinitionModel('Test Health Check ' + i, 'Test Classname', 'TEST');
+                healthChkDefModelsList.add(healthChkDefMod);
+            }
 
-    //         return healthChkDefModelsList;
-    //     }
-    // }
+            return healthChkDefModelsList;
+        }
+    }
 }
 
 

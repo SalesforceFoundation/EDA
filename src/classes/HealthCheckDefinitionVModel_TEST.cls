@@ -55,7 +55,9 @@ public with sharing class HealthCheckDefinitionVModel_TEST {
         healthCheckDefModelsList.add(healthCheckDefMod5);
         healthCheckDefModelsList.add(healthCheckDefMod6);
     
+        Test.startTest();
         healthCheckDefModelsList.sort();
+        Test.stopTest();
 
         System.assertEquals('Apple', healthCheckDefModelsList[0].name, 'First name in sorted list should be \'Apple\'');
         System.assertEquals('Banana', healthCheckDefModelsList[1].name, 'Second name in sorted list should be \'Banana\'');
@@ -86,11 +88,9 @@ public with sharing class HealthCheckDefinitionVModel_TEST {
         healthCheckDefModelsList.add(healthCheckDefMod5);
         healthCheckDefModelsList.add(healthCheckDefMod6);
     
+        Test.startTest();
         healthCheckDefModelsList.sort();
-
-        for (HealthCheckDefinitionVModel hcDefVMod : healthCheckDefModelsList){
-            System.debug(hcDefVMod.name);
-        }
+        Test.stopTest();
 
         System.assertEquals('123Papaya', healthCheckDefModelsList[0].name, 'First name in sorted list should be \'123Papaya\'');
         System.assertEquals('Apple Pie', healthCheckDefModelsList[1].name, 'Second name in sorted list should be \'Apple Pie\'');
