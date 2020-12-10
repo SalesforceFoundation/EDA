@@ -98,13 +98,6 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
-        <members>HealthCheckController</members>
-        <members>HealthCheckController_TEST</members>
-        <members>HealthCheckVMapper</members>
-        <members>HealthCheckVMapper_TEST</members>
-        <members>HealthCheckDefinitionVModel</members>
-        <members>HealthCheckDefinitionVModel_TEST</members>
-        <members>HealthCheckVModel</members>
         <members>FeatureParameterDateModel</members>
         <members>FeatureParameterDateModel_TEST</members>
         <members>FeatureParameterMapper</members>
@@ -112,6 +105,13 @@
         <members>FeatureParameterModel</members>
         <members>FeatureParameterService</members>
         <members>FeatureParameterService_TEST</members>
+        <members>HealthCheckController</members>
+        <members>HealthCheckController_TEST</members>
+        <members>HealthCheckDefinitionVModel</members>
+        <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckVMapper</members>
+        <members>HealthCheckVMapper_TEST</members>
+        <members>HealthCheckVModel</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
@@ -1367,8 +1367,8 @@
     </types>
     <types>
         <members>healthCheck</members>
-        <members>healthCheckHighlightsPanel</members>
         <members>healthCheckActionCard</members>
+        <members>healthCheckHighlightsPanel</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
