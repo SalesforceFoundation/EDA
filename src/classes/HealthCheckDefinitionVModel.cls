@@ -48,11 +48,11 @@ public with sharing class HealthCheckDefinitionVModel implements Comparable {
         this.namespace = namespace;
     }
 
-    /**
+    /****************************************************************************************************************************
     * @description Implementation of compareTo() to sort HealthCheckDefinitionVModels by name.
     * @param  objectToCompareTo A HealthCheckDefinitionVModel to be used for comparison
     * @return 0 if names are equal, 1 if the current name is greater, -1 otherwise
-    */ 
+    ****************************************************************************************************************************/ 
     public Integer compareTo(Object objectToCompareTo){
         HealthCheckDefinitionVModel healthCheckDefToCompareTo = (HealthCheckDefinitionVModel)objectToCompareTo;
         

@@ -87,7 +87,11 @@ public virtual with sharing class HealthCheckVMapper {
     * @description Retrieve a view model representing a health check to run.
     * @return A HealthCheckVModel representing details of a health check to be run.
     **********************************************************************************/
-    // public HealthCheckVModel getHealthCheckViewModel(){
+    public virtual HealthCheckVModel getHealthCheckViewModel(){
+
+        return new HealthCheckVModel('', 0, new List<HealthCheckDefinitionVModel>());
+
+        
     //     FeatureParameterDateModel featureParamDateModel = 
     //        (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel();
     //     String lastRunDate = featureParamDateModel.convertToString(); 
@@ -107,5 +111,5 @@ public virtual with sharing class HealthCheckVMapper {
     //     Integer numberOfRuns = healthCheckDefinitionList.size();
 
     //     return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefViewModelsList);
-    // }
+    }
 }

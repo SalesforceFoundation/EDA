@@ -47,8 +47,47 @@ public with sharing class HealthCheckController_TEST {
         System.assertEquals(HealthCheckVMapper.getInstance(), healthChkVMapperInstance, 'Should return the instance of HealthCheckVMapper.');
     } 
 
-    @isTest 
-    private static void getHealthCheckViewModelValid(){
-        
+    /****************************************************************************************************************************
+    * @description Test method to verify that the getHealthCheckViewModel method returns a valid health check view model.
+    ****************************************************************************************************************************/
+    // @isTest 
+    // private static void getHealthCheckViewModelValid(){
+    //     HealthCheckVMapper.instance = new STUB_HealthCheckVMapper();
+
+    //     Test.startTest();
+    //     HealthCheckController healthChkCtrl = new HealthCheckController();
+    //     HealthCheckVModel hlthCheckVMod = healthChkCtrl.getHealthCheckViewModel();
+    //     Test.stopTest();
+
+    //     System.assertEquals(Date.today().addDays(-1).format(), hlthCheckVMod.lastRunDate, 'Last run date should be one day ago.');
+    //     System.assertEquals(5, hlthCheckVMod.numberOfHealthChecks, 'Should be 5 health checks to run.');
+    //     System.assertEquals(5, hlthCheckVMod.healthCheckDefinitionList.size(), 'Should be 5 health check definitions.');
+
+    //     for (Integer i = 0; i < hlthCheckVMod.healthCheckDefinitionList.size(); i++){
+    //         System.assertEquals('Test Name ' + i, hlthCheckVMod.healthCheckDefinitionList[i].name, 'Name of Health Check Definition view model should be \'Test Name ' + i + '\'');
+    //         System.assertEquals('TestClass', hlthCheckVMod.healthCheckDefinitionList[i].className, 'Classname of Health Check Definition view model should be \'TestClass\'');
+    //         System.assertEquals('TEST', hlthCheckVMod.healthCheckDefinitionList[i].namespace, 'Namespace of Health Check Definition view model should be \'TEST\'');
+    //     }
+    // }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUBS **************************************************************
+    **************************************************************************************************************************/
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from HealthCheckVMapper to return a HealthCheckVModel
+    **************************************************************************************************************************************/ 
+    private class STUB_HealthCheckVMapper extends HealthCheckVMapper {
+        @TestVisible 
+        public override HealthCheckVModel getHealthCheckViewModel(){            
+            List<HealthCheckDefinitionVModel> healthChkDefViewModelsList = new List<HealthCheckDefinitionVModel>();
+
+            for (Integer i = 0; i < 5; i++){
+                HealthCheckDefinitionVModel hthChkDefVMod = new HealthCheckDefinitionVModel('Test Name ' + i, 'TestClass', 'TEST');
+                healthChkDefViewModelsList.add(hthChkDefVMod);
+            }
+
+            return new HealthCheckVModel(Date.today().addDays(-1).format(), healthChkDefViewModelsList.size(), healthChkDefViewModelsList);
+        }
     }
 }
