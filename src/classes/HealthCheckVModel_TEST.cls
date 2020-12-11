@@ -29,20 +29,32 @@
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Class to model the view of a Health Check run.
+* @description Test class for HealthCheckVModel class
 */
+@isTest 
+public with sharing class HealthCheckVModel_TEST {
+    /****************************************************************************************************************************
+    * @description Test to verify constructor with 3 parameters initializes object with properties set as expected.
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void threeParamConstructorValid(){
+        List<HealthCheckDefinitionVModel> healthCheckDefinitionList = new List<HealthCheckDefinitionVModel>();
 
-public with sharing class HealthCheckVModel {
-    @AuraEnabled public String lastRunDate { get; private set; }
-    @AuraEnabled public Integer numberOfHealthChecks { get; private set; }
-    @AuraEnabled public List<HealthCheckDefinitionVModel> healthCheckDefinitionList { get; private set; }
+        for (Integer i=0; i<5; i++){
+            HealthCheckDefinitionVModel hlthChkDefVModl = new HealthCheckDefinitionVModel('Test ' + i, 'TestClass', 'TEST');
+            healthCheckDefinitionList.add(hlthChkDefVModl);
+        }
 
-    public HealthCheckVModel(String lastRunDate, 
-                            Integer numberOfHealthChecks, 
-                            List<HealthCheckDefinitionVModel> healthCheckDefinitionList) {
-                                
-        this.lastRunDate = lastRunDate;
-        this.numberOfHealthChecks = numberOfHealthChecks;
-        this.healthCheckDefinitionList = healthCheckDefinitionList;
+        Test.startTest();
+        HealthCheckVModel healthCheckVModl = new HealthCheckVModel(Date.today().format(), healthCheckDefinitionList.size(), healthCheckDefinitionList);
+        Test.stopTest();
+
+        System.assertEquals(Date.today().format(), healthCheckVModl.lastRunDate, 'Last run date should be today.');
+        System.assertEquals(5, healthCheckVModl.numberOfHealthChecks, 'Number of health checks to run should be 5.');
+
+        for (Integer i = 0; i < healthCheckVModl.healthCheckDefinitionList.size(); i++){
+            System.assertEquals('Test ' + i, healthCheckVModl.healthCheckDefinitionList[i].name, 'View model name should be \'Test ' + i + '\'.');
+        }
     }
+
 }

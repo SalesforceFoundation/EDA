@@ -34,9 +34,7 @@
 public with sharing class HealthCheckDefinitionModel {
 
     public String name;
-
     public String className;
-
     public String namespace;
 
     public HealthCheckDefinitionModel(String name, String className, String namespace) {

@@ -112,6 +112,7 @@
         <members>HealthCheckVMapper</members>
         <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckVModel</members>
+        <members>HealthCheckVModel_TEST</members>
         <members>HealthCheckDefinitionMapper</members>
         <members>HealthCheckDefinitionMapper_TEST</members>
         <members>HealthCheckDefinitionModel</members>
