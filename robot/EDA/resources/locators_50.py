@@ -25,6 +25,11 @@ eda_lex_locators = {
         "tab": "//div[@class='uiTabBar']/ul[@class='tabs__nav']/li[contains(@class,'uiTabItem')]/a[@class='tabHeader']/span[contains(text(), '{}')]",
         "spl-tab": "//div[@class='slds-tabs_default']//ul[@class='slds-tabs_default__nav']/li[contains(@class,'slds-tabs_default__item')]/a[text()= '{}']",
     },
+    "eda_setup": {
+        "custom_settings": "//a[text()='{}']",
+        "settings_action_button": "//input[@type='submit' and @value='{}']",
+        "setup_owner": "//table[@class='list']/descendant::td",
+    },
     "eda_settings": {
         "action": "//div[@role='banner']/descendant::button[contains(@class, 'settings-{}-bttn')]",
         "edit": "//div[@class='slds-page-header' and @role='banner']/descendant::span[text()='Edit']/parent::button",
@@ -118,6 +123,8 @@ eda_lex_locators = {
         "cc_sub_tabs": "//div[contains(@class, 'CourseConnections')]/descendant::a[text()='{}']",
         "backfill_button_status": "//span[text()='{}']/parent::button",
         "backfill_checkbox_status": "//input[contains(@class, 'backfill')]/following-sibling::span[contains(@class, 'checkbox')]",
+        "backfill_checkbox": "//span[text()='I understand and am ready to run Backfill.']/../span[contains(@class, 'checkbox')]",
+        "backfill_toast": "//div[@id='backFillToast']/descendant::span[text()='{}']",
     },
     "eda_settings_program_plans": {
         "checkbox_read": "(//span[text()='{}']/../following-sibling::div/descendant::img)[1]",
@@ -126,6 +133,9 @@ eda_lex_locators = {
     },
     "eda_settings_courses": {
         "text_message": "//span[text()='{}']",
+    },
+    "eda_settings_accounts_contacts": {
+        "checkbox": "//span[text()='{}']/following::div[1]/descendant::span[text()='{}']/parent::label/span[contains(@class, 'checkbox')]",
     },
     "eda_settings_relationships": {
         "dropdown_read": "//span[text()='{}']/../following-sibling::div[1]/descendant::span",
@@ -141,11 +151,17 @@ eda_lex_locators = {
         "new_setting_checkbox_edit": "(//div[@class='newrecsetting']/preceding-sibling::div[1]/div)[last()-1]/descendant::input[contains(@class, 'rec-settg-{}')]/../span[contains(@class, 'checkbox')]",
         "delete_setting_icon": "//span[text()='{}: {}']/following::lightning-icon[1][contains(@class, 'delete')]",
         "removed_setting": "//span[contains(@class, 'rec-settg-{}') and text()='{}']",
+        "removed_autoc_setting": "//span[contains(@class, 'autoc-settg-{}') and text()='{}']",
         "updtate_setting_name": "//span[text()='Name: {}']/../following-sibling::input[contains(@class, 'rec-settg-{}')]",
         "update_setting_name_cleared": "//span[text()='Name: ']/../following-sibling::input[contains(@class, 'rec-settg-name')]",
         "update_setting_rest": "(//span[text()='Name: {}']/following::input[contains(@class, 'rec-settg-{}')])[1]",
         "updated_setting": "//span[contains(@class, 'rec-settg-name') and text()='{}']/following::div/span[contains(@class, 'rec-settg-{}') and text()='{}']",
         "test_locator": "(//div[@class='newrecsetting']/preceding-sibling::div[1]/div)[last()-2]/descendant::input[contains(@class, 'rec-settg-neutral')]",
+        "new_autocreate_setting": "//div[contains(@class, 'newautocsetting')]/descendant::span[text()='{}']/following::input[1]",
+        "campaign_type_textarea": "//div[contains(@class, 'newautocsetting')]/descendant::span[text()='{}']/following::textarea",
+        "new_settings_autoc": "(//div[@class='newautocsetting']/preceding-sibling::div[1]/div)[last()-{}]/span[contains(@class, 'autoc-settg-{}') and text()='{}']",
+        "new_autoc_setting_edit": "(//div[@class='newautocsetting']/preceding-sibling::div[1]/div)[last()-{}]/descendant::input[contains(@class, 'autoc-settg-{}')]/../label/span[text()='{}: {}']",
+        "new_campaign_types_edit": "(//div[@class='newautocsetting']/preceding-sibling::div[1]/div)[last()-{}]/descendant::textarea[contains(@class, 'autoc-settg-{}')]/../label/span[text()='{}: {}']",
     },
     "eda_settings_system": {
         "default_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::img",

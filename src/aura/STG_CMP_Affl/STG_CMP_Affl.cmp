@@ -127,7 +127,7 @@
                         picklistLabel="{!v.affiliationStatusDeleteMapLabel}"
                         picklistEntries="{!v.affiliationStatusPicklistEntries}" 
                         dropdownDisabled="(!!v.hierarchySettings.Affl_ProgEnroll_Del__c)"
-                        enableNoneOption="true"
+                        enableNoneOptionOnViewPage="true"
                       />
                     </div>
                 </div>
@@ -186,7 +186,7 @@
                         picklistValue="{!v.affiliationRoleMapValue}"
                         picklistLabel="{!v.affiliationRoleMapLabel}"
                         picklistEntries="{!v.affiliationRolePicklistEntries}"
-                        enableNoneOption="true"
+                        enableNoneOptionOnViewPage="true"
                       />
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                         picklistValue="{!v.affiliationStatusMapValue}"
                         picklistLabel="{!v.affiliationStatusMapLabel}"
                         picklistEntries="{!v.affiliationStatusPicklistEntries}"
-                        enableNoneOption="true"
+                        enableNoneOptionOnViewPage="true"
                       />
                     </div>
                 </div>

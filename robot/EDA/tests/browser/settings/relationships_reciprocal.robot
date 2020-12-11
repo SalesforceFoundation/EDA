@@ -4,10 +4,8 @@ Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/RelationshipsSettingsPageObject.py
 Suite Setup     Run keywords
-...             Open Test Browser       AND
-...             Go to EDA settings tab          Relationships      AND
-...             Go to relationships sub tab     Reciprocal Settings     AND
 ...             Initialize test data
+...             Open Test Browser
 Suite Teardown  Run Keywords
 ...             Delete inserted data        AND
 ...             Capture screenshot and delete records and close browser
@@ -20,7 +18,7 @@ Test Setup      Run keywords
 Initialize test data
     [Documentation]             Reads the no of rows present in reciprocal relationship settings
     ...                         upon login and returns the count
-    ${settings_count} =         Get total settings count
+    ${settings_count} =         Get Records Count       Relationship_Lookup__c      Active__c       True
     Set Suite Variable          ${settings_count}
 
 Delete inserted data

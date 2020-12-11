@@ -2,9 +2,17 @@ public static void qaSetup() {
     configQACustomSettings();
 }
 
+//Wrapper class to config course connection custom settings
+private static void configCourseConnections() {
+    %%%NAMESPACE%%%Hierarchy_Settings__c orgSettings = %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettings();
+    enableCourseConnections(orgSettings);
+    upsert orgSettings;
+}
+
+
 //Wrapper class to config QA custom settings
 private static void configQACustomSettings() {
-    %%%NAMESPACE%%%Hierarchy_Settings__c orgSettings = %%%NAMESPACED_RT%%%UTIL_CustomSettings_API.getSettings();
+    %%%NAMESPACE%%%Hierarchy_Settings__c orgSettings = %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettings();
     enableCourseConnections(orgSettings);
     enableSpecifyRoleForCreatedAffiliations(orgSettings);
     enableCopyAffiliationStartDateFromProgramEnrollment(orgSettings);

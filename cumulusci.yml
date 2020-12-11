@@ -1,4 +1,4 @@
-minimum_cumulusci_version: 3.5.0
+minimum_cumulusci_version: 3.9.0
 project:
     name: EDA
     package:
@@ -9,6 +9,7 @@ project:
     git:
         prefix_release: rel/
         repo_url: https://github.com/SalesforceFoundation/EDA
+        default_branch: main
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm
@@ -41,7 +42,6 @@ tasks:
         options:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/config/dev
-            unmanaged: True
 
     delete_dev_config:
         description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
@@ -83,6 +83,14 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/config/translations/
             unmanaged: True
+
+    deploy_preferred_email_config:
+        description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_managed_only/preferred_email
+            namespaced_org: True
 
     deploy_primary_affiliations_config:
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
@@ -127,6 +135,49 @@ tasks:
                 TDTM_Global_API.setTdtmConfig(TDTM_Global_API.getDefaultTdtmConfig(), 'hed');
                 STG_InstallScript.enablePreferredPhoneSync();
                 STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
+
+    execute_automatic_household_naming:
+        description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Automatic_Household_Naming__c = true;
+                update hierSettings;
+
+    execute_enable_course_connections:
+        description: Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/setup.cls
+            apex: configCourseConnections();
+
+    execute_preferred_phone_selection:
+        description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Preferred_Phone_Selection__c = 'Other Phone';
+                update hierSettings;
+
+    execute_enable_record_type_validation:
+        description: Runs anonymous apex to enable record type validation for EDA settings.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Affiliation_Record_Type_Enforced__c = true;
+                update hierSettings;
+
+    execute_send_error_notifications:
+        description: Runs anonymous apex to enable Error Notifications.
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            apex: >
+                %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
+                hierSettings.%%%NAMESPACE%%%Error_Notifications_On__c = true;
+                update hierSettings;
 
     execute_primary_affiliation_mapping_apex:
         description: Runs anonymous apex for dev to configure and insert unmanaged Affiliation mappings.
@@ -182,8 +233,23 @@ tasks:
 
     update_admin_profile:
         # description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
-        group: "EDA: Custom Tasks"
-        class_path: tasks.salesforce.UpdateAdminProfile
+        options:
+            record_types:
+                - record_type: "Account.Administrative"
+                  default: true
+                - record_type: "Account.Academic_Program"
+                - record_type: "Account.Business_Organization"
+                - record_type: "Account.Educational_Institution"
+                - record_type: "Account.HH_Account"
+                - record_type: "Account.Sports_Organization"
+                - record_type: "Account.University_Department"
+                - record_type: "{managed}Attribute__c.{managed}Credential"
+                  default: true
+                - record_type: "{managed}Attribute__c.{managed}Student_Characteristic"
+                - record_type: "{managed}Course_Enrollment__c.Default"
+                - record_type: "{managed}Course_Enrollment__c.Faculty"
+                - record_type: "{managed}Course_Enrollment__c.Student"
+                  default: true
 
 flows:
     setup_encryption:
@@ -209,6 +275,7 @@ flows:
         steps:
             3:
                 task: execute_install_apex
+                when: "'hed' not in org_config.installed_packages"
 
     config_dev:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -259,14 +326,21 @@ flows:
             1:
                 # Configure update_admin_profile
                 options:
-                    managed: True
-                    namespaced_org: True
-                    skip_record_types: True
+                    record_types:
+                        - record_type: "Account.Administrative"
+                          default: true
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
 
     config_qa:
         # descripton: Configure an org for use as a QA org after package metadata is deployed.
         steps:
             3:
+                when: "'hed' not in org_config.installed_packages"
                 task: execute_install_apex
             4:
                 task: deploy_dev_config
@@ -280,13 +354,12 @@ flows:
         steps:
             2:
                 task: execute_qa_apex
-                options:
-                    managed: True
-                    namespaced: True
             3:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
+            4:
+                flow: preferred_email_testing
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -319,6 +392,7 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
+
     net_new_org:
         description: Simulates an EDA installation for a new customer. Installs the latest beta and dependencies.
         steps:
@@ -326,9 +400,6 @@ flows:
                 flow: install_beta
             2:
                 task: execute_qa_apex
-                options:
-                    managed: True
-                    namespaced: True
             3:
                 task: deploy_qa_config
                 options:
@@ -356,9 +427,57 @@ flows:
                 options:
                     unmanaged: False
             4:
+                task: update_admin_profile
+                options:
+                    managed: True
+                    namespaced: True
+            5: 
+                task: execute_enable_record_type_validation
+                options:
+                    managed: True
+                    namespaced: True
+            6: 
+                task: execute_preferred_phone_selection
+                options:
+                    managed: True
+                    namespaced: True
+            7: 
+                task: execute_send_error_notifications
+                options:
+                    managed: True
+                    namespaced: True
+            8: 
+                task: execute_automatic_household_naming
+                options:
+                    managed: True
+                    namespaced: True
+            9:
+                task: execute_enable_course_connections
+                options:
+                    managed: True
+                    namespaced: True
+            10:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
+
+    preferred_email_testing:
+        description: Deploys Preferred Email configuration and runs apex tests. 
+        steps:
+            1: 
+                task: deploy_preferred_email_config
+
+            2:
+                task: run_tests
+                options: 
+                    test_name_match: '%_MTST'
+                    managed: False
+
+    regression_org:
+        description:
+        steps:
+            0.1:
+                flow: translations
 
 services:
     mockaroo:

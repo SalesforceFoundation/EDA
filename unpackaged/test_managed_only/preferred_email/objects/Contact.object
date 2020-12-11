@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Custom_Email__c</fullName>
+        <description>A field simulating a customer-created email field.</description>
+        <externalId>false</externalId>
+        <label>Custom Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+    </fields>
+    <fields>
+        <fullName>Picklist_Missing_Email__c</fullName>
+        <description>A field simulating a customer-created email field that does not have a label in preferred email.</description>
+        <externalId>false</externalId>
+        <label>Picklist Missing Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+    </fields>
+    <fields>
+        <fullName>Untranslated_Email__c</fullName>
+        <description>A field simulating a customer-created email field that does not have a translation for its label.</description>
+        <externalId>false</externalId>
+        <label>Untranslated Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+    </fields>
+    <fields>
+        <fullName>Untranslated_Picklist_Email__c</fullName>
+        <description>A field simulating a customer-created email field that does not have a translation for its picklist value in the preferred email field.</description>
+        <externalId>false</externalId>
+        <label>Untranslated Picklist Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+    </fields>
+    <fields>
+        <fullName>University_Email__c</fullName>
+        <description>A field simulating a customer-created email field that matches a label for an EDA email field and should be ignored by Preferred Email.</description>
+        <externalId>false</externalId>
+        <label>University Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Preferred_Email__c</fullName>
+        <description>The email (University, Work, Alternate) that this Contact prefers you to use.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The email (University, Work, Alternate) that this Contact prefers you to use.</inlineHelpText>
+        <label>Preferred Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>University Email</fullName>
+                    <default>false</default>
+                    <label>University Email</label>
+                </value>
+                <value>
+                    <fullName>Work Email</fullName>
+                    <default>false</default>
+                    <label>Work Email</label>
+                </value>
+                <value>
+                    <fullName>Alternate Email</fullName>
+                    <default>false</default>
+                    <label>Alternate Email</label>
+                </value>
+                <value>
+                    <fullName>Custom Email</fullName>
+                    <default>false</default>
+                    <label>Custom Email</label>
+                </value>
+                <value>
+                    <fullName>Untranslated Email</fullName>
+                    <default>false</default>
+                    <label>Untranslated Email</label>
+                </value>
+                <value>
+                    <fullName>Untranslated Picklist Email</fullName>
+                    <default>false</default>
+                    <label>Untranslated Picklist Email</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+</CustomObject>
