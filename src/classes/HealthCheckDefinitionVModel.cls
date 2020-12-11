@@ -33,14 +33,9 @@
 */
 public with sharing class HealthCheckDefinitionVModel implements Comparable {
 
-    @AuraEnabled 
-    public String name { get; private set; }
-
-    @AuraEnabled 
-    public String className { get; private set; }
-
-    @AuraEnabled 
-    public String namespace { get; private set; }
+    @AuraEnabled public String name;
+    @AuraEnabled public String className;
+    @AuraEnabled public String namespace;
 
     public HealthCheckDefinitionVModel(String name, String className, String namespace) {
         this.name = name;
@@ -55,15 +50,6 @@ public with sharing class HealthCheckDefinitionVModel implements Comparable {
     ****************************************************************************************************************************/ 
     public Integer compareTo(Object objectToCompareTo){
         HealthCheckDefinitionVModel healthCheckDefToCompareTo = (HealthCheckDefinitionVModel)objectToCompareTo;
-        
-        if (this.name == healthCheckDefToCompareTo.name){
-            return 0;
-        }
-
-        if (this.name > healthCheckDefToCompareTo.name){
-            return 1;
-        }
-
-        return -1;
+        return this.name.compareTo(healthCheckDefToCompareTo.name);
     } 
 }
