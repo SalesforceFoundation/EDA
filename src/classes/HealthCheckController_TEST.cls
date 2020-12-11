@@ -78,8 +78,9 @@ public with sharing class HealthCheckController_TEST {
         Test.startTest();
         try{
             HealthCheckVModel hlthCheckVMod = HealthCheckController.getHealthCheckViewModel();
-        } catch (HealthCheckController_TEST.TestException ex){
-            System.assertEquals('Test exception thrown!', ex.getMessage(), 'Test exception should be thrown.');
+        } catch (System.AuraHandledException ex){
+            System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
+            System.assertEquals('Script-thrown exception', ex.getMessage(), 'AuraHandledException text should be associated with message when exception occurs.');
         }
         Test.stopTest();
     }
