@@ -29,7 +29,7 @@
 * @date 2021
 * @group
 * @group-content ../../ApexDocContent/
-* @description
+* @description Returns a Feature Parameter Model
 */
 public virtual with sharing class FeatureParameterService {
 
