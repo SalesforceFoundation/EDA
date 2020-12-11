@@ -12,7 +12,7 @@ export default class HealthCheck extends LightningElement {
 
         getHealthCheckViewModel()
         .then(result => {
-			this.lastRunDate = result.lastRunDate;
+            this.lastRunDate = result.lastRunDate;
         })
         
         console.log('Health Check complete!');
