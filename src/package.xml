@@ -1388,9 +1388,9 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>edaSetupHealthCheck</members>
-        <members>edaSetupHealthCheckRun</members>
-        <members>edaSetupHealthCheckHighlightsPanel</members>
+        <members>healthCheck</members>
+        <members>healthCheckHighlightsPanel</members>
+        <members>healthCheckRun</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
