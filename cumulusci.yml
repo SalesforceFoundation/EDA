@@ -28,12 +28,9 @@ tasks:
         options:
             picklists: Contact.hed__Citizenship_Status__c
             entries:
-                - fullName: "Non Resident"
-                  label: "Non Resident"
-                  add_before: "Other (Non-U.S.)"
                 - fullName: "Temporary Resident"
                   label: "Temporary Resident"
-                  add_before: "Non Resident"    
+                  add_before: "Other (Non-U.S.)"    
         
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
