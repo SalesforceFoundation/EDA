@@ -29,27 +29,32 @@
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Class to model the view of a Health Check Definition.
+* @description Test class for HealthCheckVModel class
 */
-public with sharing class HealthCheckDefinitionVModel implements Comparable {
+@isTest 
+public with sharing class HealthCheckVModel_TEST {
+    /****************************************************************************************************************************
+    * @description Test to verify constructor with 3 parameters initializes object with properties set as expected.
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void threeParamConstructorValid(){
+        List<HealthCheckDefinitionVModel> healthCheckDefinitionList = new List<HealthCheckDefinitionVModel>();
 
-    @AuraEnabled public String name;
-    @AuraEnabled public String className;
-    @AuraEnabled public String namespace;
+        for (Integer i=0; i<5; i++){
+            HealthCheckDefinitionVModel hlthChkDefVModl = new HealthCheckDefinitionVModel('Test ' + i, 'TestClass', 'TEST');
+            healthCheckDefinitionList.add(hlthChkDefVModl);
+        }
 
-    public HealthCheckDefinitionVModel(String name, String className, String namespace) {
-        this.name = name;
-        this.className = className;
-        this.namespace = namespace;
+        Test.startTest();
+        HealthCheckVModel healthCheckVModl = new HealthCheckVModel(Date.today().format(), healthCheckDefinitionList.size(), healthCheckDefinitionList);
+        Test.stopTest();
+
+        System.assertEquals(Date.today().format(), healthCheckVModl.lastRunDate, 'Last run date should be today.');
+        System.assertEquals(5, healthCheckVModl.numberOfHealthChecks, 'Number of health checks to run should be 5.');
+
+        for (Integer i = 0; i < healthCheckVModl.healthCheckDefinitionList.size(); i++){
+            System.assertEquals('Test ' + i, healthCheckVModl.healthCheckDefinitionList[i].name, 'View model name should be \'Test ' + i + '\'.');
+        }
     }
 
-    /****************************************************************************************************************************
-    * @description Implementation of compareTo() to sort HealthCheckDefinitionVModels by name.
-    * @param  objectToCompareTo A HealthCheckDefinitionVModel to be used for comparison
-    * @return 0 if names are equal, 1 if the current name is greater, -1 otherwise
-    ****************************************************************************************************************************/ 
-    public Integer compareTo(Object objectToCompareTo){
-        HealthCheckDefinitionVModel healthCheckDefToCompareTo = (HealthCheckDefinitionVModel)objectToCompareTo;
-        return this.name.compareTo(healthCheckDefToCompareTo.name);
-    } 
 }

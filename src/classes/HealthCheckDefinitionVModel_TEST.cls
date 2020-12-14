@@ -35,6 +35,20 @@
 public with sharing class HealthCheckDefinitionVModel_TEST {
 
     /****************************************************************************************************************************
+    * @description Test to verify constructor with 3 parameters initializes object with properties set as expected.
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void threeParamConstructorValid(){
+        Test.startTest();
+        HealthCheckDefinitionVModel hlthChkDefVModl = new HealthCheckDefinitionVModel('TestName', 'TestClass', 'TEST');
+        Test.stopTest();
+
+        System.assertEquals('TestName', hlthChkDefVModl.name, 'Name property should be \'TestName\'.');
+        System.assertEquals('TestClass', hlthChkDefVModl.className, 'Classname property should be \'TestClass\'.');
+        System.assertEquals('TEST', hlthChkDefVModl.namespace, 'Namespace property should be \'TEST\'.');
+    }
+
+    /****************************************************************************************************************************
     * @description Test to verify compareTo() properly sorts Health Check View models by name
     * in ascending order when no duplicates are not present.
     ****************************************************************************************************************************/

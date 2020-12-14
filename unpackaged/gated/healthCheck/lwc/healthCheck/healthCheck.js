@@ -1,6 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 
-//import getViewModel from '@salesforce/apex/HealthCheckController.getViewModel';
+import getHealthCheckViewModel from '@salesforce/apex/HealthCheckController.getHealthCheckViewModel';
 
 export default class HealthCheck extends LightningElement {
     @track expanded = true;
@@ -9,12 +9,16 @@ export default class HealthCheck extends LightningElement {
     @track lastRunDate = '';
 
     handleHealthCheckRun(){
-        this.lastRunDate = new Date().toLocaleDateString("en-US");
-        console.log('Health Check complete!');
+        var currentDate = new Date();
+        this.lastRunDate = currentDate.toLocaleDateString() + ' ' + currentDate.toLocaleTimeString();
     }
 
-    // @wire(getViewModel)
-    // healthCheckViewModel({error, data}){
-    //     console.log('Wiring view model');
-    // }
+    @wire(getHealthCheckViewModel)
+    healthCheckViewModel({error, data}){
+        if (data){
+            this.lastRunDate = data.lastRunDate;
+        } else if(error){
+
+        }
+    }
 }

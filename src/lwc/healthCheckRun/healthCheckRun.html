@@ -2,7 +2,7 @@
     <lightning-card title={labelReference.stgEDASettingsHealthCheckTitle}>
         <div class="slds-grid slds-wrap">
             <div class="slds-col 
-                        slds-size--1-of-1 
+                        slds-size--2-of-2 
                         slds-p-horizontal_small 
                         slds-p-vertical_small
                         slds-text-body_regular">
@@ -10,9 +10,7 @@
             </div>
 
             <div class="slds-col 
-                        slds-size--1-of-1 
-                        slds-medium-size--1-of-2 
-                        slds-large-size--1-of-2 
+                        slds-size--1-of-2 
                         slds-text-align_left
                         slds-text-body_small 
                         slds-p-horizontal_small
@@ -20,13 +18,12 @@
                 {lastRunDate}
             </div>
             <div class="slds-col 
-                        slds-size--1-of-1 
-                        slds-medium-size--1-of-2 
-                        slds-large-size--1-of-2 
+                        slds-col_bump-left 
+                        slds-text-align_right
+                        slds-size--1-of-2 
                         slds-p-horizontal_small
                         slds-p-vertical_small">
                 <lightning-button
-                    class="slds-float_left"
                     label={labelReference.stgRunHealthCheckButton}
                     title={labelReference.stgRunHealthCheckButton}
                     onclick={runHealthCheck}

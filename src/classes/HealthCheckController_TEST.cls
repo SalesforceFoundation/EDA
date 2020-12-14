@@ -68,6 +68,23 @@ public with sharing class HealthCheckController_TEST {
         }
     }
 
+    /****************************************************************************************************************************
+    * @description Test method to verify that the getHealthCheckViewModel method throws an exception when expected.
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void getHealthCheckViewModelException(){
+        HealthCheckVMapper.instance = new STUB_ExceptionHealthCheckVMapper();
+
+        Test.startTest();
+        try{
+            HealthCheckVModel hlthCheckVMod = HealthCheckController.getHealthCheckViewModel();
+        } catch (System.AuraHandledException ex){
+            System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
+            System.assertEquals('Script-thrown exception', ex.getMessage(), 'AuraHandledException text should be associated with message when exception occurs.');
+        }
+        Test.stopTest();
+    }
+
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
@@ -88,4 +105,16 @@ public with sharing class HealthCheckController_TEST {
             return new HealthCheckVModel(Date.today().addDays(-1).format(), healthChkDefViewModelsList.size(), healthChkDefViewModelsList);
         }
     }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from HealthCheckVMapper to throw an exception
+    **************************************************************************************************************************************/ 
+    private class STUB_ExceptionHealthCheckVMapper extends HealthCheckVMapper {
+        @TestVisible 
+        public override HealthCheckVModel getHealthCheckViewModel(){            
+            throw new TestException('Test exception thrown!');
+        }
+    }
+
+    public class TestException extends Exception {}
 }

@@ -5,6 +5,9 @@ Library         cumulusci.robotframework.PageObjects
 Library         robot/EDA/resources/EDA.py
 Library         DateTime
 
+*** Variables ***
+${NS}
+
 *** Keywords ***
 Capture Screenshot and Delete Records and Close Browser
     [Documentation]         Captures screenshot if a test fails, deletes session records
@@ -98,8 +101,9 @@ Create Organization Foundation
 Get Records Count
     [Documentation]         Returns the no of record identified by the given field_name and
     ...                     field_value input for a specific object
+    ${NS} =                 Get EDA namespace prefix
     [Arguments]             ${obj_name}             ${field_name}       ${field_value}
     ${result} =             SOQL Query
-    ...                     SELECT COUNT(Name) FROM ${obj_name} where ${field_name}=${field_value}
+    ...                     SELECT COUNT(Name) FROM ${NS}${obj_name} where ${NS}${field_name}=${field_value}
     &{Id} =                 Get From List  ${result['records']}  0
     [return]                ${Id}[expr0]

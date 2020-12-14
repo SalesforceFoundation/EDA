@@ -120,6 +120,12 @@
         <members>HealthCheckDefinitionModel_TEST</members>
         <members>HealthCheckDefinitionService</members>
         <members>HealthCheckDefinitionService_TEST</members>
+        <members>HealthCheckDefinitionVModel</members>
+        <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckVMapper</members>
+        <members>HealthCheckVMapper_TEST</members>
+        <members>HealthCheckVModel</members>
+        <members>HealthCheckVModel_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
@@ -1375,8 +1381,8 @@
     </types>
     <types>
         <members>healthCheck</members>
-        <members>healthCheckActionCard</members>
         <members>healthCheckHighlightsPanel</members>
+        <members>healthCheckRun</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
