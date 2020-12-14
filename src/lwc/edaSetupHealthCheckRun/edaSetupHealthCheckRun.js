@@ -17,10 +17,12 @@ export default class HealthCheckActionCard extends LightningElement {
     }
 
     get lastRunDate() {
-        console.log('getting last run date: ' + this.runDate);
-        return this.labelReference.stgHealthCheckLastRun.replace(
-            '{0}', this.runDate
-        );
+        if (this.runDate){
+            console.log('getting last run date: ' + this.runDate);
+            return this.labelReference.stgHealthCheckLastRun.replace(
+                '{0}', this.runDate
+            );
+        }
     }
 
     runHealthCheck(event){

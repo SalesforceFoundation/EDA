@@ -9,9 +9,10 @@ export default class HealthCheck extends LightningElement {
     @track lastRunDate = '';
 
     handleHealthCheckRun(){
-        var currentDate = new Date();
-        this.lastRunDate = currentDate.toLocaleDateString() + ' ' + currentDate.toLocaleTimeString();
-        console.log('Health Check complete!');
+        console.log('handling health check run');
+        // var currentDate = new Date();
+        // this.lastRunDate = currentDate.toLocaleDateString() + ' ' + currentDate.toLocaleTimeString();
+        // console.log('Health Check complete!');
     }
 
     @wire(getHealthCheckViewModel)
