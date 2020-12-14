@@ -840,6 +840,8 @@
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>
         <members>stgPreferredPhoneSelection</members>
+        <members>stgReciprocalMethodListSetting</members>
+        <members>stgReciprocalMethodValueInversion</members>
         <members>stgRefreshAdminAcctNameDesc</members>
         <members>stgRefreshAdminAcctNameTitle</members>
         <members>stgRefreshHHAcctNameDesc</members>

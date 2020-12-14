@@ -809,6 +809,14 @@
         <label>Refresh All Household Account Names</label>
     </customLabels>
     <customLabels>
+        <label><!-- stgReciprocalMethodListSetting --></label>
+        <name>stgReciprocalMethodListSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgReciprocalMethodValueInversion --></label>
+        <name>stgReciprocalMethodValueInversion</name>
+    </customLabels>
+    <customLabels>
         <name>stgRunCleanUp</name>
         <label>Run Cleanup</label>
     </customLabels>

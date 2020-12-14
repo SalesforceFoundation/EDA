@@ -23,6 +23,13 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
             error=f"Course Connections tab with locator '{locator_tab}' is not available on the page"
         )
 
+    def click_backfill_button(self):
+        """ This method will click the backfill button """
+        locator = eda_lex_locators["eda_settings_cc"]["backfill_button_status"].format("Run Backfill")
+        self.selenium.wait_until_page_contains_element(
+            locator, error=f"Backfill button with locator '{locator}' is not available")
+        self.selenium.click_element(locator)
+
     def set_enable_course_connections(self):
         """ Set the checkbox for 'Enable Course Connections' field """
         locator = eda_lex_locators["eda_settings"]["enable_checkbox"].format("Enable Course Connections")
@@ -41,6 +48,20 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
             if actual_value == "true":
                 return
         raise Exception("Clicking element 'Enable Course Connections' failed after multiple tries")
+
+    def select_backfill_checkbox(self):
+        """ Selects the backfill checkbox """
+        locator = eda_lex_locators["eda_settings_cc"]["backfill_checkbox"]
+        self.selenium.wait_until_page_contains_element(locator)
+
+        for i in range(3):
+            self.builtin.log("Iteration: " + str(i))
+            self.salesforce._jsclick(locator)
+            time.sleep(2)
+            actual_value = self.selenium.get_element_attribute(locator, "data-qa-checkbox-state")
+            if actual_value == "true":
+                return
+        raise Exception("Selecting checkbox 'I understand and ready to run Backfill.' failed after multiple tries")
 
     @capture_screenshot_on_error
     def update_enable_cc_to_default(self):
@@ -155,3 +176,8 @@ class CourseConnectionsSettingsPage(BaseEDAPage, BasePage):
         actual_value = self.selenium.get_element_attribute(locator, "data-qa-checkbox-state")
         if not str(expectedCheckboxValue).lower() == str(actual_value).lower():
             raise Exception(f"Value of 'I understand and am ready to run Backfill.' is not {expectedCheckboxValue} as expected")
+
+    def verify_backfill_toast_message(self, value):
+        """ Verifies the backfill toast message """
+        locator = eda_lex_locators["eda_settings_cc"]["backfill_toast"].format(value)
+        self.selenium.wait_until_page_contains_element(locator)
