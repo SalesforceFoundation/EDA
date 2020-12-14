@@ -109,6 +109,8 @@
         <members>HealthCheckController_TEST</members>
         <members>HealthCheckDefinitionVModel</members>
         <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckGroupModel</members>
+        <members>HealthCheckItemVModel</members>
         <members>HealthCheckVMapper</members>
         <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckVModel</members>
