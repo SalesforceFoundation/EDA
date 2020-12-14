@@ -60,7 +60,7 @@ public virtual with sharing class HealthCheckDefinitionService {
     * @description Get a list of Health Check Definition models
     * @return A list of HealthCheckDefinitionModel.
     ******************************************************************************/
-    public List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
+    public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
         return this.locateHealthCheckDefinitionMapper().getHealthCheckDefinitionModels();
     }
 

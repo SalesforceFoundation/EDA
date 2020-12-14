@@ -105,6 +105,14 @@
         <members>FeatureParameterModel</members>
         <members>FeatureParameterService</members>
         <members>FeatureParameterService_TEST</members>
+        <members>HealthCheckController</members>
+        <members>HealthCheckController_TEST</members>
+        <members>HealthCheckDefinitionVModel</members>
+        <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckVMapper</members>
+        <members>HealthCheckVMapper_TEST</members>
+        <members>HealthCheckVModel</members>
+        <members>HealthCheckVModel_TEST</members>
         <members>HealthCheckDefinitionMapper</members>
         <members>HealthCheckDefinitionMapper_TEST</members>
         <members>HealthCheckDefinitionModel</members>
@@ -1365,9 +1373,9 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>healthCheck</members>
-        <members>healthCheckHighlightsPanel</members>
-        <members>healthCheckActionCard</members>
+        <members>edaSetupHealthCheck</members>
+        <members>edaSetupHealthCheckRun</members>
+        <members>edaSetupHealthCheckHighlightsPanel</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
