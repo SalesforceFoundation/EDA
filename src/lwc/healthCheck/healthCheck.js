@@ -15,22 +15,10 @@ export default class HealthCheck extends LightningElement {
 
     @wire(getHealthCheckViewModel)
     healthCheckViewModel({error, data}){
-        console.log('Wiring view model');
-
         if (data){
-            let stringified = JSON.stringify(data);
-            console.log( 'Stringified is ' + stringified );
-
-            let tempData = JSON.parse( stringified );
-            console.log( 'Temp Data is ' + JSON.stringify(tempData) );
-            
+            this.lastRunDate = data.lastRunDate;
         } else if(error){
-            console.log('Error wiring healthCheckViewModel');
-            if ( Array.isArray( error.body ) )
-                console.log( 'Error is ' + error.body.map( e => e.message ).join( ', ' ) );
-            else if ( typeof error.body.message === 'string' )
-                console.log( 'Error is ' + error.body.message );
-        }
 
+        }
     }
 }
