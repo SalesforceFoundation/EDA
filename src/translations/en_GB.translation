@@ -581,12 +581,56 @@
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error while retrieving the last run date --></label>
+        <name>stgHealthCheckErrorLastRunDate</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Text for the last run date of the health check --></label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
         <label>For Higher Education institutions, we recommend the "Administrative" Account model. For K-12 schools, we recommend the "Household" Account model.</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckRecoFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
+        <name>stgHealthCheckRunError</name>
+    </customLabels>
+    <customLabels>
+            <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
+            <name>stgHealthCheckResultsCollapse</name>
+    </customLabels>
+    <customLabels>
+            <label><!-- Alt text for the icon to expand EDA Settings Health Check results--></label>
+            <name>stgHealthCheckResultsExpand</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Setting column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
+        <name>stgHealthCheckStatusFailed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
+        <name>stgHealthCheckStatusPassed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text in EDA Settings Health Check results indicating that all checks within a group passed --></label>
+        <name>stgHealthChecksAllPassed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text in EDA Settings Health Check results indicating the number passing checks within a group, out of the total number of checks --></label>
+        <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>

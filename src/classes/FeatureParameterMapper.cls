@@ -57,13 +57,53 @@ public virtual with sharing class FeatureParameterMapper {
         return instance;
     }
 
+    /**
+    * @description Each of these corresponds to the exact name of a FeatureParameter in the managed package.
+    */
+    public enum TelemetryParameterName {
+        Data_CountAdministrativeAccounts,
+        Data_CountHouseholdAccounts,
+        Data_CountCampaignMemberRelationshipRules,
+        Data_CountContactRelationshipRules,
+        Data_CountCourseConnections,
+        Data_CountCourseOfferingSchedules,
+        Data_CountErrorLog,
+        Data_CountFacilities,
+        Data_CountPlanRequirements,
+        Data_CountProgramPlans,
+        Data_CountTermGrades,
+        HasDefaultAdministrativeAccountModel,
+        HasDefaultHouseholdAccountModel,
+        HasCustomAdministrativeAccountNaming,
+        HasCustomHouseholdAccountNaming,
+        HasEDAInactiveTDTM,
+        HasUserManagedTDTM,
+        HasValueInversionReciprocalMethod,
+        IsEnabled_StoreErrors,
+        IsEnabled_AutomaticHouseholdNaming,
+        IsEnabled_CourseConnections,
+        IsEnabled_ErrorHandling,
+        Org_CountActiveCourseConnectionRecordTypes,
+        SettingsHealthCheckLastRunDate,
+        UsingOldContactEthnicity,
+        UsingOldCourseDescription
+    }
+  
     /*************************************************************************************************************
     * @description Method to return a featureParameterModel
     * @Params featureParameter The feature Parameter to return the model for
     * @return featureParamDateModel The model for the featureParameter with with value set to the current datetime
     **************************************************************************************************************/
     public virtual FeatureParameterModel getFeatureParameterModel(String featureParameter) {
-        FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel(featureParameter, Date.today());
-        return featureParamDateMdl;
+        try {
+            FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel(featureParameter, Date.today());
+            return featureParamDateMdl;
+        }
+        catch (Exception e) { 
+            throw new FeatureParameterMapperException('An error in Feature Parameter', e);
+		    }
     }
+  
+    public class FeatureParameterMapperException extends Exception {}
+
 }

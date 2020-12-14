@@ -107,18 +107,18 @@
         <members>FeatureParameterService_TEST</members>
         <members>HealthCheckController</members>
         <members>HealthCheckController_TEST</members>
-        <members>HealthCheckDefinitionVModel</members>
-        <members>HealthCheckDefinitionVModel_TEST</members>
-        <members>HealthCheckVMapper</members>
-        <members>HealthCheckVMapper_TEST</members>
-        <members>HealthCheckVModel</members>
-        <members>HealthCheckVModel_TEST</members>
         <members>HealthCheckDefinitionMapper</members>
         <members>HealthCheckDefinitionMapper_TEST</members>
         <members>HealthCheckDefinitionModel</members>
         <members>HealthCheckDefinitionModel_TEST</members>
         <members>HealthCheckDefinitionService</members>
         <members>HealthCheckDefinitionService_TEST</members>
+        <members>HealthCheckDefinitionVModel</members>
+        <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckVMapper</members>
+        <members>HealthCheckVMapper_TEST</members>
+        <members>HealthCheckVModel</members>
+        <members>HealthCheckVModel_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
@@ -808,7 +808,18 @@
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
+        <members>stgHealthCheckErrorLastRunDate</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckRecoFix</members>
+        <members>stgHealthCheckResultsCollapse</members>
+        <members>stgHealthCheckResultsExpand</members>
+        <members>stgHealthCheckRunError</members>
+        <members>stgHealthCheckSetting</members>
+        <members>stgHealthCheckStatus</members>
+        <members>stgHealthCheckStatusFailed</members>
+        <members>stgHealthCheckStatusPassed</members>
+        <members>stgHealthChecksAllPassed</members>
+        <members>stgHealthChecksNotAllPassed</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -1337,6 +1348,10 @@
         <members>Data_CountTermGrades</members>
         <members>Org_CountActiveCourseConnectionRecordTypes</members>
         <name>FeatureParameterInteger</name>
+    </types>
+    <types>
+        <members>SettingsHealthCheckLastRunDate</members>
+        <name>FeatureParameterDate</name>
     </types>
     <types>
         <members>Account-HEDA Household Layout</members>

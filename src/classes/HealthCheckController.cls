@@ -46,11 +46,20 @@ public with sharing class HealthCheckController {
     * @return A HealthCheckVModel representing the view of the Health Check to run.
     **********************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static HealthCheckVModel getHealthCheckViewModel(){
+    public static HealthCheckVModel getHealthCheckViewModel() {
         try {
             return HealthCheckController.locateHealthCheckMapper().getHealthCheckViewModel();
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
+    }
+
+    /**********************************************************************************
+    * @description Retrieve a view model representing the Health Check to run.
+    * @return A HealthCheckVModel representing the view of the Health Check to run.
+    **********************************************************************************/
+    @AuraEnabled
+    public static String updateHealthCheckLastRunDate() {
+        return HealthCheckController.locateHealthCheckMapper().updateHealthCheckLastRunDate();
     }
 }
