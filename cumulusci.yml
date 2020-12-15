@@ -22,6 +22,17 @@ sources:
         release: latest
 
 tasks:
+    add_citizenship_status_values:
+        group: 'EDA: Trial'
+        description: Adds additional picklist values to hed__Citizenship_Status__c on Contact
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        options:
+            picklists: Contact.hed__Citizenship_Status__c
+            entries:
+                - fullName: "Temporary Resident"
+                  label: "Temporary Resident"
+                  add_before: "Other (Non-U.S.)"    
+        
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
