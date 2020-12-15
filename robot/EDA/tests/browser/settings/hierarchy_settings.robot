@@ -22,13 +22,13 @@ Validate hierarchy settings under custom settings
     Click action button on EDA settings page    Save
     Load Page Object                     Home                          Setup
     Go to custom settings setup
-    Select hierarchy settings        Custom Settings ~ Salesforce - Developer Edition
+    Select hierarchy settings        Custom Settings
     ...                             Hierarchy Settings
     Wait until loading is complete
-    Go to hierarchy settings view       Custom Setting Definition ~ Salesforce - Developer Edition
+    Go to hierarchy settings view       Custom Setting Definition
     ...                                 Manage
     Wait until loading is complete
-    Verify setup owner section      Custom Setting Hierarchy Settings ~ Salesforce - Developer Edition
+    Verify setup owner section      Custom Setting Hierarchy
     ...                             No records to display.
 
 
