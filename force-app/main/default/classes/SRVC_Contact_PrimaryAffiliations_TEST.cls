@@ -425,7 +425,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
         System.assertEquals(0, affiliationsToCreate.size());
 
-    }
+    }   
     
     /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreateOrUpdate() returns affiliations to insert when 
