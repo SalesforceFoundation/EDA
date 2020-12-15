@@ -107,13 +107,6 @@
         <members>FeatureParameterService_TEST</members>
         <members>HealthCheckController</members>
         <members>HealthCheckController_TEST</members>
-        <members>HealthCheckDefinitionVModel</members>
-        <members>HealthCheckDefinitionVModel_TEST</members>
-        <members>HealthCheckGroupModel</members>
-        <members>HealthCheckItemVModel</members>
-        <members>HealthCheckVMapper</members>
-        <members>HealthCheckVMapper_TEST</members>
-        <members>HealthCheckVModel</members>
         <members>HealthCheckDefinitionMapper</members>
         <members>HealthCheckDefinitionMapper_TEST</members>
         <members>HealthCheckDefinitionModel</members>
@@ -122,6 +115,10 @@
         <members>HealthCheckDefinitionService_TEST</members>
         <members>HealthCheckDefinitionVModel</members>
         <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckGroupModel</members>
+        <members>HealthCheckGroupModel_TEST</members>
+        <members>HealthCheckItemVModel</members>
+        <members>HealthCheckItemVModel_TEST</members>
         <members>HealthCheckVMapper</members>
         <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckVModel</members>

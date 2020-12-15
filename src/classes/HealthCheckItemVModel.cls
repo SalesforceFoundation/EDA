@@ -1,11 +1,15 @@
 public virtual with sharing class HealthCheckItemVModel implements Comparable {
-    @AuraEnabled public String key;
-    @AuraEnabled public String setting;
-    @AuraEnabled public String status;
-    @AuraEnabled public String description;
-    @AuraEnabled public String recommendedFix;
+    @AuraEnabled public String key { get; private set; }
+    @AuraEnabled public String setting { get; private set; }
+    @AuraEnabled public String status { get; private set; }
+    @AuraEnabled public String description { get; private set; }
+    @AuraEnabled public String recommendedFix { get; private set; }
     
-    public HealthCheckItemVModel(String key, String setting, String status, String description, String recommendedFix) {
+    public HealthCheckItemVModel(String key, 
+                                 String setting, 
+                                 String status, 
+                                 String description, 
+                                 String recommendedFix) {
         this.key = key;
         this.setting = setting;
         this.status = status;
@@ -13,6 +17,11 @@ public virtual with sharing class HealthCheckItemVModel implements Comparable {
         this.recommendedFix = recommendedFix;
     }
 
+    /*****************************************************************************************
+    * compareTo description
+    * @param  compareTo compareTo description
+    * @return           return description
+    *****************************************************************************************/
     public virtual Integer compareTo(Object compareTo){
         return 0;
     }

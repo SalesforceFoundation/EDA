@@ -50,6 +50,6 @@ public with sharing class HealthCheckDefinitionVModel implements Comparable {
     ****************************************************************************************************************************/ 
     public Integer compareTo(Object objectToCompareTo){
         HealthCheckDefinitionVModel healthCheckDefToCompareTo = (HealthCheckDefinitionVModel)objectToCompareTo;
-        return this.name.compareTo(healthCheckDefToCompareTo.name);
+        return this.name.toLowerCase().compareTo(healthCheckDefToCompareTo.name.toLowerCase());
     } 
 }
