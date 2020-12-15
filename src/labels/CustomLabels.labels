@@ -101,7 +101,7 @@
         <categories>Affiliations</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error when an Affiliation Mapping doesn’t have a valid Contact.</shortDescription>
+        <shortDescription>Error when an Affiliation Mapping doesn’t have a valid Contact Primary Affl Field</shortDescription>
         <value>In this Affiliation Mapping, {0} isn’t a valid Account lookup field for Contact. Change the Affiliation Mapping that currently has {1} set to {0} to use an API name for the Account lookup field on Contact instead.</value>
     </labels>
     <labels>
@@ -117,7 +117,7 @@
         <categories>Affiliations</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error when an Affiliation Mapping doesn’t have a valid Account record type.</shortDescription>
+        <shortDescription>Error when an Affiliation Mapping doesn’t have a valid Account record type</shortDescription>
         <value>In this Affiliation Mapping, {0} isn’t a valid Account record type. Change the Affiliation Mapping that currently has {1} set to {0} to use an API name for the Account record type instead.</value>
     </labels>
     <labels>
