@@ -54,7 +54,7 @@
     </customLabels>
     <customLabels>
         <name>invalidContactFieldInAffiliationMapping</name>
-        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Contact. --></label>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Contact Primary Affl Field --></label>
     </customLabels>
     <customLabels>
         <label>Suodatinkentäksi syötetty kenttä ei kelpaa. Suodatinkentät voivat olla mitä tahansa vakio- tai mukautettuja kenttiä objektissa, jolle käynnistin on tarkoitettu, samoin kuin kentät liittyvissä tietueissa. Varmista, että käytät kentän API-nimeä ja jätä pois EDA-nimitilan etuliite (&quot;hed__&quot;).</label>
@@ -62,7 +62,7 @@
     </customLabels>
     <customLabels>
         <name>invalidRecordTypeInAffiliationMapping</name>
-        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Account record type. --></label>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Account record type --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>
