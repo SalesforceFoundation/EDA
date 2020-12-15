@@ -96,8 +96,14 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 }
 
                 if (eachModel.getIsValid() == false){
+                    // invalid record type mapping and validation is enabled
                     contact.addError(eachModel.getInvalidErrorMessage());
                     throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
+                }
+                
+				if (String.isBlank(eachModel.getInvalidErrorMessage()) == false){
+                    // mapped contact field not of type lookup to Account
+                    contact.addError(eachModel.getInvalidErrorMessage());
                 }
 
                 Affiliation__c afflToCreate;
