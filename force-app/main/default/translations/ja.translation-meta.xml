@@ -54,7 +54,7 @@
     </customLabels>
     <customLabels>
         <name>invalidContactFieldInAffiliationMapping</name>
-        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Contact Primary Affl Field --></label>
+        <label><!-- Error when an Affl Mapping doesn’t have a valid Contact Primary Affl Field --></label>
     </customLabels>
     <customLabels>
         <label>[検索条件項目] として入力された項目が無効です。[検索条件項目] には、このトリガの対象であるオブジェクトの標準またはカスタム項目のほか、関連レコードの項目を使用できます。項目の API 参照名を使用していることを確認し、EDA 名前空間プレフィックス (「hed__」) を除外してください。</label>
