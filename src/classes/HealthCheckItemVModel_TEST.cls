@@ -17,7 +17,7 @@ public with sharing class HealthCheckItemVModel_TEST {
         System.assertEquals('TestKey', hlthChkItemVMod.key, 'HealthCheckItemVModel key should be set to \'TestKey\'');
         System.assertEquals('TestSetting', hlthChkItemVMod.setting, 'HealthCheckItemVModel key should be set to \'TestSetting\'');
         System.assertEquals('TestStatus', hlthChkItemVMod.status, 'HealthCheckItemVModel key should be set to \'TestStatus\'');
-        System.assertEquals('TestStatus', hlthChkItemVMod.description, 'HealthCheckItemVModel key should be set to \'TestStatus\'');
+        System.assertEquals('TestDescription', hlthChkItemVMod.description, 'HealthCheckItemVModel key should be set to \'TestDescription\'');
         System.assertEquals('TextRecommendedFix', hlthChkItemVMod.recommendedFix, 'HealthCheckItemVModel key should be set to \'TextRecommendedFix\'');
     }
 
