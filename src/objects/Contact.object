@@ -1474,6 +1474,11 @@
                     <label>U.S. Refugee or Asylee</label>
                 </value>
                 <value>
+                    <fullName>Temporary Resident</fullName>
+                    <default>false</default>
+                    <label>Temporary Resident</label>
+                </value>
+                <value>
                     <fullName>Other (Non-U.S.)</fullName>
                     <default>false</default>
                     <label>Other (Non-U.S.)</label>
