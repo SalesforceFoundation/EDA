@@ -179,7 +179,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 }
                
                 if (newContact.get(eachModel.getContactFieldApiName()) != null) {
-                    if (eachModel.getIsValid() == false){ 
+                    if (eachModel.getIsValid() == false || String.isBlank(eachModel.getInvalidErrorMessage()) == false){ 
                         newContact.addError(eachModel.getInvalidErrorMessage());
                         throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                     }
