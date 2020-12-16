@@ -188,4 +188,27 @@ public with sharing class HealthCheckGroupModel_TEST {
         System.assertEquals(true, hlthChkGroupModelsList[5].label.equalsIgnoreCase('Zebra'));
         System.assertEquals(true, hlthChkGroupModelsList[5].status.equalsIgnoreCase('Pass'));
     }
+
+    private static void sortWithIncomparableObjectTypes(){
+        List<Object> objectsToSort = new List<Object>();
+        HealthCheckGroupModel hlthChkGroupMod = new HealthCheckGroupModel('Antelope',
+                                                                           'Pass', 
+                                                                           5, 
+                                                                           8,
+                                                                           new List<String>(), 
+                                                                           new List<HealthCheckItemVModel>());
+
+        Account testAccount = new Account(Name = 'TestAccount');
+        Contact testContact = new Contact(LastName = 'Testerson');
+
+        objectsToSort.add((Object)hlthChkGroupMod);
+        objectsToSort.add((Object)testAccount);
+        objectsToSort.add((Object)testContact);
+
+        Test.startTest();
+        objectsToSort.sort();
+        Test.stopTest();
+
+        //System.assertEquals('Antelope', (HealthCheckGroupModel)objectsToSort[0]);
+    }
 }

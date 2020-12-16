@@ -28,6 +28,12 @@ public virtual with sharing class HealthCheckGroupModel implements Comparable {
     * @return 
     *****************************************************************************************/ 
     public virtual Integer compareTo(Object compareTo){
+
+        // test by passing in Account x 2 to see if it doesn't get sorted
+        if (!compareTo instanceof HealthCheckGroupModel){
+            return 0;
+        }
+
         HealthCheckGroupModel hlthChkGroupModToCompareTo = (HealthCheckGroupModel)compareTo;
         Integer statusResult = this.status.toLowerCase().compareTo(hlthChkGroupModToCompareTo.status.toLowerCase());
         

@@ -115,6 +115,8 @@
         <members>HealthCheckDefinitionService_TEST</members>
         <members>HealthCheckDefinitionVModel</members>
         <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>EDAHealthCheckGroupAPIService</members>
+        <members>HealthCheckGroupAPIServiceInterface</members>
         <members>HealthCheckGroupModel</members>
         <members>HealthCheckGroupModel_TEST</members>
         <members>HealthCheckItemVModel</members>
