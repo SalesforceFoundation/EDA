@@ -1,19 +1,19 @@
 import { LightningElement, api } from 'lwc';
 
 // import custom labels
-import stgEDASettingsHealthCheckTitle from '@salesforce/label/c.stgEDASettingsHealthCheckTitle';
+import stgHealthCheckTitle from '@salesforce/label/c.stgHealthCheckTitle';
 import stgHealthCheckDescription from '@salesforce/label/c.stgHealthCheckDescription';
 import stgHealthCheckLastRun from '@salesforce/label/c.stgHealthCheckLastRun';
-import stgRunHealthCheckButton from '@salesforce/label/c.stgRunHealthCheckButton';
+import stgHealthCheckRunButton from '@salesforce/label/c.stgHealthCheckRunButton';
 
 export default class HealthCheckActionCard extends LightningElement {
     @api runDate;
 
     labelReference = {
-        stgEDASettingsHealthCheckTitle,
+        stgHealthCheckTitle,
         stgHealthCheckDescription,
         stgHealthCheckLastRun,
-        stgRunHealthCheckButton
+        stgHealthCheckRunButton
     }
 
     get lastRunDate() {

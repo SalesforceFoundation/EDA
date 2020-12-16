@@ -799,8 +799,7 @@
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgDisablePreferredEmailEnforcement</members>
         <members>stgDisablePreferredPhoneEnforcement</members>
-        <members>stgEDASettingsHealthCheckTitle</members>
-        <members>stgEDASetup</members>
+        <members>stgEDASetupTitle</members>
         <members>stgEnableCourseConnectionsTitle</members>
         <members>stgEnablePreferredPhoneSync</members>
         <members>stgErrorNotiTo</members>
@@ -809,6 +808,7 @@
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckTitle</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -873,11 +873,10 @@
         <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
-        <members>stgRunHealthCheckButton</members>
+        <members>stgHealthCheckRunButton</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
-        <members>stgSettingsHealthCheckTitle</members>
         <members>stgSimpleAddressChangeUpdate</members>
         <members>stgStoreErrorsTitle</members>
         <members>stgSuccess</members>
