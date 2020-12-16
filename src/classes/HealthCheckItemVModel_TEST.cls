@@ -10,15 +10,17 @@ public with sharing class HealthCheckItemVModel_TEST {
         HealthCheckItemVModel hlthChkItemVMod = new HealthCheckItemVModel('TestKey', 
                                                                           'TestSetting', 
                                                                           'TestStatus', 
+                                                                          'TestStatusLabel',
                                                                           'TestDescription', 
                                                                           'TextRecommendedFix');
         Test.stopTest();
 
         System.assertEquals('TestKey', hlthChkItemVMod.key, 'HealthCheckItemVModel key should be set to \'TestKey\'');
-        System.assertEquals('TestSetting', hlthChkItemVMod.setting, 'HealthCheckItemVModel key should be set to \'TestSetting\'');
-        System.assertEquals('TestStatus', hlthChkItemVMod.status, 'HealthCheckItemVModel key should be set to \'TestStatus\'');
-        System.assertEquals('TestDescription', hlthChkItemVMod.description, 'HealthCheckItemVModel key should be set to \'TestDescription\'');
-        System.assertEquals('TextRecommendedFix', hlthChkItemVMod.recommendedFix, 'HealthCheckItemVModel key should be set to \'TextRecommendedFix\'');
+        System.assertEquals('TestSetting', hlthChkItemVMod.setting, 'HealthCheckItemVModel setting should be set to \'TestSetting\'');
+        System.assertEquals('TestStatus', hlthChkItemVMod.status, 'HealthCheckItemVModel status should be set to \'TestStatus\'');
+        System.assertEquals('TestStatusLabel', hlthChkItemVMod.statusLabel, 'HealthCheckItemVModel statuslabel should be set to \'TestStatusLabel\'');
+        System.assertEquals('TestDescription', hlthChkItemVMod.description, 'HealthCheckItemVModel description should be set to \'TestDescription\'');
+        System.assertEquals('TextRecommendedFix', hlthChkItemVMod.recommendedFix, 'HealthCheckItemVModel recommendedFix should be set to \'TextRecommendedFix\'');
     }
 
     /*****************************************************************************************

@@ -2,7 +2,6 @@ public virtual with sharing class HealthCheckGroupModel implements Comparable {
     
     @AuraEnabled public String label { get; private set; }
     @AuraEnabled public String status { get; private set; }
-    @AuraEnabled public String statusLabel { get; private set; }
     @AuraEnabled public Integer passedChecks { get; private set; }
     @AuraEnabled public Integer totalChecks { get; private set; }
     @AuraEnabled public List<String> expandedRowsList { get; private set; }
@@ -10,14 +9,12 @@ public virtual with sharing class HealthCheckGroupModel implements Comparable {
 
     public HealthCheckGroupModel(String label, 
                                  String status, 
-                                 String statusLabel, 
                                  Integer passedChecks, 
                                  Integer totalChecks, 
                                  List<String> expandedRowsList, 
                                  List<HealthCheckItemVModel> healthCheckItemList) {
         this.label = label;
         this.status = status;
-        this.statusLabel = statusLabel;
         this.passedChecks = passedChecks;
         this.totalChecks = totalChecks;
         this.expandedRowsList = expandedRowsList;

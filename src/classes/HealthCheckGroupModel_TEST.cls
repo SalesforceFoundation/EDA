@@ -12,6 +12,7 @@ public with sharing class HealthCheckGroupModel_TEST {
             HealthCheckItemVModel hlthChkItemVMod = new HealthCheckItemVModel('TestKey' + i, 
                                                                           'TestSetting' + i, 
                                                                           'TestStatus' + i, 
+                                                                          'TestStatusLabel' + i,
                                                                           'TestDescription' + i, 
                                                                           'TextRecommendedFix' + i);
             healthCheckItemList.add(hlthChkItemVMod);
@@ -20,7 +21,6 @@ public with sharing class HealthCheckGroupModel_TEST {
         Test.startTest();
         HealthCheckGroupModel hlthChkGroupMod = new HealthCheckGroupModel('TestLabel',
                                                                           'TestStatus', 
-                                                                          'TestStatusLabel', 
                                                                           5, 
                                                                           8,
                                                                           expandedRowsList, 
@@ -29,7 +29,6 @@ public with sharing class HealthCheckGroupModel_TEST {
 
         System.assertEquals('TestLabel', hlthChkGroupMod.label, 'HealthCheckGroupModel label should be set to \'TestLabel\'..');
         System.assertEquals('TestStatus', hlthChkGroupMod.status, 'HealthCheckGroupModel status should be set to \'TestStatus\'.');
-        System.assertEquals('TestStatusLabel', hlthChkGroupMod.statusLabel, 'HealthCheckGroupModel statusLabel should be set to \'TestStatusLabel\'.');
         System.assertEquals(5, hlthChkGroupMod.passedChecks, 'HealthCheckGroupModel passedChecks should be 5.');
         System.assertEquals(8, hlthChkGroupMod.totalChecks, 'HealthCheckGroupModel totalChecks should be 8.');
         System.assertEquals(3, hlthChkGroupMod.expandedRowsList.size(), 'HealthCheckGroupModel expandedRowsList should contain 3 strings.');
@@ -48,7 +47,6 @@ public with sharing class HealthCheckGroupModel_TEST {
 
         HealthCheckGroupModel hlthChkGroupMod1 = new HealthCheckGroupModel('Zebra',
                                                                            'Fail', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -56,7 +54,6 @@ public with sharing class HealthCheckGroupModel_TEST {
 
         HealthCheckGroupModel hlthChkGroupMod2 = new HealthCheckGroupModel('zebra',
                                                                            'pass', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -64,7 +61,6 @@ public with sharing class HealthCheckGroupModel_TEST {
         
         HealthCheckGroupModel hlthChkGroupMod3 = new HealthCheckGroupModel('Baboon',
                                                                            'Pass', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -72,7 +68,6 @@ public with sharing class HealthCheckGroupModel_TEST {
        
         HealthCheckGroupModel hlthChkGroupMod4 = new HealthCheckGroupModel('Giraffe',
                                                                            'Fail', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -80,7 +75,6 @@ public with sharing class HealthCheckGroupModel_TEST {
         
         HealthCheckGroupModel hlthChkGroupMod5 = new HealthCheckGroupModel('Lion',
                                                                            'Pass', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -88,7 +82,6 @@ public with sharing class HealthCheckGroupModel_TEST {
         
         HealthCheckGroupModel hlthChkGroupMod6 = new HealthCheckGroupModel('Antelope',
                                                                            'Fail', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -131,7 +124,6 @@ public with sharing class HealthCheckGroupModel_TEST {
 
         HealthCheckGroupModel hlthChkGroupMod1 = new HealthCheckGroupModel('Zebra',
                                                                            'Pass', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -139,7 +131,6 @@ public with sharing class HealthCheckGroupModel_TEST {
 
         HealthCheckGroupModel hlthChkGroupMod2 = new HealthCheckGroupModel('zebra',
                                                                            'pass', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -147,7 +138,6 @@ public with sharing class HealthCheckGroupModel_TEST {
         
         HealthCheckGroupModel hlthChkGroupMod3 = new HealthCheckGroupModel('Meerkat',
                                                                            'Fail', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -155,7 +145,6 @@ public with sharing class HealthCheckGroupModel_TEST {
        
         HealthCheckGroupModel hlthChkGroupMod4 = new HealthCheckGroupModel('lion',
                                                                            'fail', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -163,7 +152,6 @@ public with sharing class HealthCheckGroupModel_TEST {
         
         HealthCheckGroupModel hlthChkGroupMod5 = new HealthCheckGroupModel('Lion',
                                                                            'fail', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
@@ -171,7 +159,6 @@ public with sharing class HealthCheckGroupModel_TEST {
         
         HealthCheckGroupModel hlthChkGroupMod6 = new HealthCheckGroupModel('Antelope',
                                                                            'Pass', 
-                                                                           'TestStatusLabel', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
