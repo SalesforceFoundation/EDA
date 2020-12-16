@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Contact.Custom_Email__c</members>
+        <members>Contact.Picklist_Missing_Email__c</members>
+        <members>Contact.Untranslated_Email__c</members>
+        <members>Contact.Untranslated_Picklist_Email__c</members>
+        <members>Contact.University_Email__c</members>
+        <members>Contact.%%%NAMESPACE%%%Preferred_Email__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+    <members>Contact-es</members>
+    <name>CustomObjectTranslation</name>
+    </types>
+  
+    <types>
+        <members>CON_Pref_Email_Utility_MTST</members>
+        <members>CON_Pref_Email_customEmailEnglish_MTST</members>
+        <members>CON_Pref_Email_customEmailSpanish_MTST</members>
+        <members>CON_Pref_Email_duplicateField_MTST</members>
+        <members>CON_Pref_Email_picklistMissingEmail_MTST</members>
+        <members>CON_Pref_Email_untranslatedSpsh_MTST</members>
+        <members>CON_Pref_Email_untranslatPcklstSpsh_MTST</members>
+        <members>Describe_Utility</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>es</members>
+        <name>Translations</name>
+    </types>
+    <types>
+        <members>PrefEmailMatchMustExist</members>
+        <members>PrefEmailMatchNotNull</members>
+        <members>PrefEmailRequiredError</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <version>48.0</version>
+</Package>

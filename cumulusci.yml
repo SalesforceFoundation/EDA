@@ -46,6 +46,17 @@ tasks:
                   label: "Sibling's Child"
                   add_before: "Cousin"
 
+    add_citizenship_status_values:
+        group: 'EDA: Trial'
+        description: Adds additional picklist values to hed__Citizenship_Status__c on Contact
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        options:
+            picklists: Contact.hed__Citizenship_Status__c
+            entries:
+                - fullName: "Temporary Resident"
+                  label: "Temporary Resident"
+                  add_before: "Other (Non-U.S.)"    
+        
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -93,6 +104,14 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/config/translations/
             unmanaged: True
+
+    deploy_preferred_email_config:
+        description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_managed_only/preferred_email
+            namespaced_org: True
 
     deploy_primary_affiliations_config:
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
@@ -292,6 +311,7 @@ flows:
         steps:
             3:
                 task: execute_install_apex
+                when: "'hed' not in org_config.installed_packages"
 
 
     config_dev:
@@ -368,7 +388,6 @@ flows:
             4:
                 task: deploy_dev_config
             5:
-                when: "'hed' not in org_config.installed_packages"
                 task: execute_qa_apex
             6:
                 task: deploy_qa_config
@@ -380,16 +399,14 @@ flows:
         steps:
             2:
                 task: execute_qa_apex
-                options:
-                    managed: True
-                    namespaced: True
             3:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
             4:
                 flow: eda_settings
-
+            5:
+                flow: preferred_email_testing
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -484,6 +501,7 @@ flows:
             7:
                 flow: eda_picklists
 
+
     net_new_org:
         description: Simulates an EDA installation for a new customer. Installs the latest beta and dependencies.
         steps:
@@ -491,9 +509,6 @@ flows:
                 flow: install_beta
             2:
                 task: execute_qa_apex
-                options:
-                    managed: True
-                    namespaced: True
             3:
                 task: deploy_qa_config
                 options:
@@ -539,6 +554,24 @@ flows:
             7:
                 flow: eda_picklists
 
+
+    preferred_email_testing:
+        description: Deploys Preferred Email configuration and runs apex tests. 
+        steps:
+            1: 
+                task: deploy_preferred_email_config
+
+            2:
+                task: run_tests
+                options: 
+                    test_name_match: '%_MTST'
+                    managed: False
+
+    regression_org:
+        description:
+        steps:
+            0.1:
+                flow: translations
 
 services:
     mockaroo:
