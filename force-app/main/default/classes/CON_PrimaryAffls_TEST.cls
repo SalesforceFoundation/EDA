@@ -794,7 +794,7 @@ private with sharing class CON_PrimaryAffls_TEST {
             affiliationMapping.Account_Record_Type__c
         };
 
-        return String.format(label.invalidRecordTypeInAffiliationMapping, params);
+        return String.format(Label.invalidRecordTypeInAffiliationMapping, params);
     }
 
     /*************************************************************************************************************
@@ -1389,6 +1389,122 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
+    /****************************************************************************************************************
+    * @description Tests to ensure that when a Contact is inserted with a primary affiliation field populated, but the 
+    * mapping is to a field that is not of type lookup to Account, an invalidContactFieldInAffiliationMapping error is thrown.
+    **************************************************************************************************************/
+    @isTest
+    private static void createContactInsertWithValidRecordTypeMappingAndInvalidFieldMappingToAccountLookup() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
+        
+        // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'ReportsToId'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
+        insert reportToContact;
+
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < contactCount; i++) {
+            Contact con = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            con.ReportsToId = reportToContact.Id;
+            contactsToBeInserted.add(con);
+        }
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
+
+        Test.startTest();
+        try{
+            insert contactsToBeInserted;
+        } catch (System.DmlException ex){
+            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidContactFieldInAffiliationMapping error should be thrown.');
+        }
+        Test.stopTest();
+    }
+
+    /****************************************************************************************************************
+    * @description Tests to ensure that when a Contact is inserted with a primary affiliation field populated, the
+    * mapping is to a field that is not of type lookup to Account, Record Type mapping is invalid and validation is 
+    * enabled, an invalidRecordTypeInAffiliationMapping error is thrown.
+    **************************************************************************************************************/
+    @isTest
+    private static void createContactInsertWithInvalidRTMappingAndInvalidFieldMappingToAccountLookupValidationOn() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
+        
+        // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization_Invalid', Primary_Affl_Field__c = prefix + 'ReportsToId'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
+        insert reportToContact;
+
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < contactCount; i++) {
+            Contact con = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            con.ReportsToId = reportToContact.Id;
+            contactsToBeInserted.add(con);
+        }
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getInvalidRecordTypeInAffiliationMappingMessage('Business_Organization_Invalid');
+
+        Test.startTest();
+        try{
+            insert contactsToBeInserted;
+        } catch (System.DmlException ex){
+            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidRecordTypeInAffiliationMapping error should be thrown.');
+        }        
+        Test.stopTest();
+    }
+
+    /****************************************************************************************************************
+    * @description Tests to ensure that when a Contact is inserted with a primary affiliation field populated,  the
+    * mapping is to a field that is not of type lookup to Account, Record Type mapping is invalid and validation is 
+    * disabled, an invalidContactFieldInAffiliationMapping error is thrown.
+    **************************************************************************************************************/
+    @isTest
+    private static void createContactInsertWithInvalidRTMappingAndInvalidFieldMappingToAccountLookupValidationOff() {
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));       
+        
+        // insert mappings
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization_Invalid', Primary_Affl_Field__c = prefix + 'ReportsToId'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        insert mappings;
+
+        Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
+        insert reportToContact;
+
+        List<Contact> contactsToBeInserted = new List<Contact>();
+        for (integer i = 0; i < contactCount; i++) {
+            Contact con = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            con.ReportsToId = reportToContact.Id;
+            contactsToBeInserted.add(con);
+        }
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
+
+        Test.startTest();
+        try{
+            insert contactsToBeInserted;
+        } catch (System.DmlException ex){
+            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidContactFieldInAffiliationMapping error should be thrown.');
+        }        
+        Test.stopTest();
+    }
+
     /*************************************************************************************************************************
     * @description Test to ensure Contacts are not created created when mappings have incorrect values and validation is off
     *************************************************************************************************************************/
@@ -1520,5 +1636,37 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         List<Affiliation__c> afflListWithBizOrg1AsPrimary = [SELECT Id FROM Affiliation__c WHERE Primary__c = TRUE];
         System.assertEquals(0, afflListWithBizOrg1AsPrimary.size());
+    }
+
+    /**************************************************************************************************************
+    * @description Helper method to generate invalidRecordTypeInAffiliationMapping with appropriate
+    * substitutions.
+    * @param  invalidRTName Name of invalid Record Type in affiliation mapping
+    * @return A string containing invalidRecordTypeInAffiliationMapping message text with appropriate
+    * substitutions.
+    **************************************************************************************************************/ 
+    private static String getInvalidRecordTypeInAffiliationMappingMessage(String invalidRTName){
+        List<String> params = new List<String>{
+            Label.stgColAccountRecordType,
+            invalidRTName
+        };
+
+        return String.format(label.invalidRecordTypeInAffiliationMapping, params);
+    }
+
+    /**************************************************************************************************************
+    * @description Helper method to generate invalidContactFieldInAffiliationMapping with appropriate
+    * substitutions.
+    * @param  invalidRTName Name of invalid Contact field in affiliation mapping
+    * @return A string containing invalidContactFieldInAffiliationMapping message text with appropriate
+    * substitutions.
+    **************************************************************************************************************/ 
+    private static String getinvalidContactFieldInAffiliationMappingMessage(String invalidContactFieldName){
+        List<String> params = new List<String>{
+            Label.stgColContactPrimaryAfflField,
+            invalidContactFieldName
+        };
+
+        return String.format(label.invalidContactFieldInAffiliationMapping, params);
     }
 }
