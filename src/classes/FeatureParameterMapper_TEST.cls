@@ -143,8 +143,13 @@ private class FeatureParameterMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getFeatureParameterModelSuccess() {
-        Date featureParameterDate = Date.valueOf('2015-12-31');
+
+        Date featureParameterDate = Date.valueOf('2015-1-1');
         String featureParameterName = 'SettingsHealthCheckLastRunDate';
+
+        // Set value for the Feature Parameter
+        System.FeatureManagement.setPackageDateValue(featureParameterName, featureParameterDate);
+
         Test.startTest();
             FeatureParameterModel featureParamModel = FeatureParameterMapper.getInstance().getFeatureParameterModel(featureParameterName);
         Test.stopTest();
@@ -194,6 +199,7 @@ private class FeatureParameterMapper_TEST {
     *********************************************************************************************************************************************/
      @isTest
      private static void updateFromFeatureParameterModel() {
+        FeatureParameterMapper.instance = new STUB_FeatureParameterMapperUpdate();
         Date featureParameterDate = System.Today();
         String featureParameterName = 'SettingsHealthCheckLastRunDate';
         FeatureParameterModel featureParamModel = new FeatureParameterDateModel(featureParameterName, featureParameterDate);
@@ -217,7 +223,7 @@ private class FeatureParameterMapper_TEST {
     /**************************************************************************************************************************************
     * @description Stub class to simulate the response from FeatureParameterMapper to return a new instance of a FeatureParameterDateModel
     **************************************************************************************************************************************/ 
-    public class FPMapperUpdateStub extends FeatureParameterMapper {
+    public class STUB_FeatureParameterMapperUpdate extends FeatureParameterMapper {
 
         @testVisible
         private FeatureParameterModel featureParameterModel;
