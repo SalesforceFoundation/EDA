@@ -1075,10 +1075,10 @@ public class UTIL_Describe {
     * @param  sObjectType   The SObjectType for the lookup object
     * @return True if the specified field is a lookup to the specified SObjectType, false otherwise
     */ 
-    public static Boolean isLookupFieldTo(Schema.DescribeFieldResult fieldDescribe, SObjectType sObjectType){
+    public static Boolean isLookupFieldTo(Schema.DescribeFieldResult fieldDescribe, SObjectType sObjectType) {
         Set<Schema.SObjectType> mappedLookupTypesSet = new Set<Schema.SObjectType>(fieldDescribe.getReferenceTo());
 
-        if (mappedLookupTypesSet.isEmpty() == true || mappedLookupTypesSet.contains(sObjectType) == false){
+        if (mappedLookupTypesSet.isEmpty() == true || mappedLookupTypesSet.contains(sObjectType) == false) {
             return false;
         }
 
