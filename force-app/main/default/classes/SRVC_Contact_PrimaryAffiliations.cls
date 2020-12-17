@@ -95,7 +95,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                     continue;
                 }
 
-                if (eachModel.getIsValid() == false || String.isBlank(eachModel.getInvalidErrorMessage()) == false){
+                if (eachModel.getIsValid() == false || String.isNotBlank(eachModel.getInvalidErrorMessage()) == true){
                     contact.addError(eachModel.getInvalidErrorMessage());
                     throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                 }
@@ -179,7 +179,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
                 }
                
                 if (newContact.get(eachModel.getContactFieldApiName()) != null) {
-                    if (eachModel.getIsValid() == false || String.isBlank(eachModel.getInvalidErrorMessage()) == false){ 
+                    if (eachModel.getIsValid() == false || String.isNotBlank(eachModel.getInvalidErrorMessage()) == true){ 
                         newContact.addError(eachModel.getInvalidErrorMessage());
                         throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                     }
