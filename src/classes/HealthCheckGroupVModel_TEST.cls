@@ -1,5 +1,5 @@
 @isTest 
-public with sharing class HealthCheckGroupModel_TEST {
+public with sharing class HealthCheckGroupVModel_TEST {
 
     /*****************************************************************************************
     * @description Test to verify constructor with 7 parameters generates model as expected.
@@ -19,7 +19,7 @@ public with sharing class HealthCheckGroupModel_TEST {
         }
 
         Test.startTest();
-        HealthCheckGroupModel hlthChkGroupMod = new HealthCheckGroupModel('TestLabel',
+        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('TestLabel',
                                                                           'TestStatus', 
                                                                           5, 
                                                                           8,
@@ -27,60 +27,60 @@ public with sharing class HealthCheckGroupModel_TEST {
                                                                           healthCheckItemList);
         Test.stopTest();
 
-        System.assertEquals('TestLabel', hlthChkGroupMod.label, 'HealthCheckGroupModel label should be set to \'TestLabel\'..');
-        System.assertEquals('TestStatus', hlthChkGroupMod.status, 'HealthCheckGroupModel status should be set to \'TestStatus\'.');
-        System.assertEquals(5, hlthChkGroupMod.passedChecks, 'HealthCheckGroupModel passedChecks should be 5.');
-        System.assertEquals(8, hlthChkGroupMod.totalChecks, 'HealthCheckGroupModel totalChecks should be 8.');
-        System.assertEquals(3, hlthChkGroupMod.expandedRowsList.size(), 'HealthCheckGroupModel expandedRowsList should contain 3 strings.');
-        System.assertEquals(5, hlthChkGroupMod.healthCheckItemList.size(), 'HealthCheckGroupModel healthCheckItemList should contain 5 healthCheckItem view models.');
+        System.assertEquals('TestLabel', hlthChkGroupMod.label, 'HealthCheckGroupVModel label should be set to \'TestLabel\'..');
+        System.assertEquals('TestStatus', hlthChkGroupMod.status, 'HealthCheckGroupVModel status should be set to \'TestStatus\'.');
+        System.assertEquals(5, hlthChkGroupMod.passedChecks, 'HealthCheckGroupVModel passedChecks should be 5.');
+        System.assertEquals(8, hlthChkGroupMod.totalChecks, 'HealthCheckGroupVModel totalChecks should be 8.');
+        System.assertEquals(3, hlthChkGroupMod.expandedRowsList.size(), 'HealthCheckGroupVModel expandedRowsList should contain 3 strings.');
+        System.assertEquals(5, hlthChkGroupMod.healthCheckItemList.size(), 'HealthCheckGroupVModel healthCheckItemList should contain 5 healthCheckItem view models.');
     }
 
     /*****************************************************************************************
-    * @description Test to verify compareTo() implementation separates HealthCheckGroupModels 
+    * @description Test to verify compareTo() implementation separates HealthCheckGroupVModels 
     * with 'Fail' status from those with 'Pass' status (Fail above Pass) and in ascending 
     * alphabetical order by label within each group when duplicates do not exist.
     *****************************************************************************************/
     @isTest
     private static void sortByStatusThenLabelWithoutDuplicates(){
-        List<HealthCheckGroupModel> hlthChkGroupModelsList = new List<HealthCheckGroupModel>();
+        List<HealthCheckGroupVModel> hlthChkGroupModelsList = new List<HealthCheckGroupVModel>();
 
 
-        HealthCheckGroupModel hlthChkGroupMod1 = new HealthCheckGroupModel('Zebra',
+        HealthCheckGroupVModel hlthChkGroupMod1 = new HealthCheckGroupVModel('Zebra',
                                                                            'Fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
 
-        HealthCheckGroupModel hlthChkGroupMod2 = new HealthCheckGroupModel('zebra',
+        HealthCheckGroupVModel hlthChkGroupMod2 = new HealthCheckGroupVModel('zebra',
                                                                            'pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupModel hlthChkGroupMod3 = new HealthCheckGroupModel('Baboon',
+        HealthCheckGroupVModel hlthChkGroupMod3 = new HealthCheckGroupVModel('Baboon',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
        
-        HealthCheckGroupModel hlthChkGroupMod4 = new HealthCheckGroupModel('Giraffe',
+        HealthCheckGroupVModel hlthChkGroupMod4 = new HealthCheckGroupVModel('Giraffe',
                                                                            'Fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupModel hlthChkGroupMod5 = new HealthCheckGroupModel('Lion',
+        HealthCheckGroupVModel hlthChkGroupMod5 = new HealthCheckGroupVModel('Lion',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupModel hlthChkGroupMod6 = new HealthCheckGroupModel('Antelope',
+        HealthCheckGroupVModel hlthChkGroupMod6 = new HealthCheckGroupVModel('Antelope',
                                                                            'Fail', 
                                                                            5, 
                                                                            8,
@@ -113,51 +113,51 @@ public with sharing class HealthCheckGroupModel_TEST {
     }
 
     /*****************************************************************************************
-    * @description Test to verify compareTo() implementation separates HealthCheckGroupModels 
+    * @description Test to verify compareTo() implementation separates HealthCheckGroupVModels 
     * with 'Fail' status from those with 'Pass' status (Fail above Pass) and in ascending 
     * alphabetical order by label within each group when duplicates exist.
     *****************************************************************************************/
     @isTest
     private static void sortByStatusThenLabelWithDuplicates(){
-        List<HealthCheckGroupModel> hlthChkGroupModelsList = new List<HealthCheckGroupModel>();
+        List<HealthCheckGroupVModel> hlthChkGroupModelsList = new List<HealthCheckGroupVModel>();
 
 
-        HealthCheckGroupModel hlthChkGroupMod1 = new HealthCheckGroupModel('Zebra',
+        HealthCheckGroupVModel hlthChkGroupMod1 = new HealthCheckGroupVModel('Zebra',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
 
-        HealthCheckGroupModel hlthChkGroupMod2 = new HealthCheckGroupModel('zebra',
+        HealthCheckGroupVModel hlthChkGroupMod2 = new HealthCheckGroupVModel('zebra',
                                                                            'pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupModel hlthChkGroupMod3 = new HealthCheckGroupModel('Meerkat',
+        HealthCheckGroupVModel hlthChkGroupMod3 = new HealthCheckGroupVModel('Meerkat',
                                                                            'Fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
        
-        HealthCheckGroupModel hlthChkGroupMod4 = new HealthCheckGroupModel('lion',
+        HealthCheckGroupVModel hlthChkGroupMod4 = new HealthCheckGroupVModel('lion',
                                                                            'fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupModel hlthChkGroupMod5 = new HealthCheckGroupModel('Lion',
+        HealthCheckGroupVModel hlthChkGroupMod5 = new HealthCheckGroupVModel('Lion',
                                                                            'fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupModel hlthChkGroupMod6 = new HealthCheckGroupModel('Antelope',
+        HealthCheckGroupVModel hlthChkGroupMod6 = new HealthCheckGroupVModel('Antelope',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
@@ -191,12 +191,12 @@ public with sharing class HealthCheckGroupModel_TEST {
 
     /*****************************************************************************************
     * @description Test to verify compareTo() implementation does not sort lists that 
-    * contain Object of type other than HealthCheckGroupModel, when the HealthCheckGroupModel
+    * contain Object of type other than HealthCheckGroupVModel, when the HealthCheckGroupVModel
     * is first in the list. 
     *****************************************************************************************/
     private static void sortWithIncomparableObjectTypesRightFirstInList(){
         List<Object> objectsToSort = new List<Object>();
-        HealthCheckGroupModel hlthChkGroupMod = new HealthCheckGroupModel('Antelope',
+        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('Antelope',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
@@ -214,19 +214,19 @@ public with sharing class HealthCheckGroupModel_TEST {
         objectsToSort.sort();
         Test.stopTest();
 
-        System.assertEquals(true, objectsToSort[0] instanceof HealthCheckGroupModel, 'List should not be sorted when object types are not equal.');
+        System.assertEquals(true, objectsToSort[0] instanceof HealthCheckGroupVModel, 'List should not be sorted when object types are not equal.');
         System.assertEquals(true, objectsToSort[1] instanceof Contact, 'List should not be sorted when object types are not equal.');
         System.assertEquals(true, objectsToSort[2] instanceof Account, 'List should not be sorted when object types are not equal.');
     }
 
     /*****************************************************************************************
     * @description Test to verify compareTo() implementation does not sort lists that 
-    * contain Object of type other than HealthCheckGroupModel, when the HealthCheckGroupModel
+    * contain Object of type other than HealthCheckGroupVModel, when the HealthCheckGroupVModel
     * is not first in the list. 
     *****************************************************************************************/
     private static void sortWithIncomparableObjectTypesWrongFirstInList(){
         List<Object> objectsToSort = new List<Object>();
-        HealthCheckGroupModel hlthChkGroupMod = new HealthCheckGroupModel('Antelope',
+        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('Antelope',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
@@ -259,7 +259,7 @@ public with sharing class HealthCheckGroupModel_TEST {
         Test.stopTest();
 
         System.assertEquals(true, objectsToSort[0] instanceof HealthCheckItemVModel, 'List should not be sorted when object types are not equal.');
-        System.assertEquals(true, objectsToSort[1] instanceof HealthCheckGroupModel, 'List should not be sorted when object types are not equal.');
+        System.assertEquals(true, objectsToSort[1] instanceof HealthCheckGroupVModel, 'List should not be sorted when object types are not equal.');
         System.assertEquals(true, objectsToSort[2] instanceof HealthCheckItemVModel, 'List should not be sorted when object types are not equal.');
     }
 }

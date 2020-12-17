@@ -1168,6 +1168,22 @@
         <value>Last Run: {0}</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckStatusFailed</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status text in EDA Settings Health Check results when a check failed</shortDescription>
+        <value>Failed</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckStatusPassed</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status text in EDA Settings Health Check results when a check passed</shortDescription>
+        <value>Passed</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAccountModel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

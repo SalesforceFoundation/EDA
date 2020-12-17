@@ -1,4 +1,4 @@
-public virtual with sharing class HealthCheckGroupModel implements Comparable {
+public virtual with sharing class HealthCheckGroupVModel implements Comparable {
     
     @AuraEnabled public String label { get; private set; }
     @AuraEnabled public String status { get; private set; }
@@ -7,7 +7,7 @@ public virtual with sharing class HealthCheckGroupModel implements Comparable {
     @AuraEnabled public List<String> expandedRowsList { get; private set; }
     @AuraEnabled public List<HealthCheckItemVModel> healthCheckItemList { get; private set; }
 
-    public HealthCheckGroupModel(String label, 
+    public HealthCheckGroupVModel(String label, 
                                  String status, 
                                  Integer passedChecks, 
                                  Integer totalChecks, 
@@ -20,20 +20,20 @@ public virtual with sharing class HealthCheckGroupModel implements Comparable {
         this.expandedRowsList = expandedRowsList;
         this.healthCheckItemList = healthCheckItemList;
     }
-
+    
     /*****************************************************************************************
     * @description Implementation of CompareTo() that sorts by status (Fail above Pass), then in
     * ascending alphabetical order on label.
-    * @param compareTo A HealthCheckGroupModel to compare to another
+    * @param compareTo A HealthCheckGroupVModel to compare to another
     * @return 
     *****************************************************************************************/ 
     public virtual Integer compareTo(Object compareTo){
 
-        if (!(compareTo instanceof HealthCheckGroupModel)){
+        if (!(compareTo instanceof HealthCheckGroupVModel)){
             return 0;
         }
 
-        HealthCheckGroupModel hlthChkGroupModToCompareTo = (HealthCheckGroupModel)compareTo;
+        HealthCheckGroupVModel hlthChkGroupModToCompareTo = (HealthCheckGroupVModel)compareTo;
         Integer statusResult = this.status.toLowerCase().compareTo(hlthChkGroupModToCompareTo.status.toLowerCase());
         
         if (statusResult != 0){

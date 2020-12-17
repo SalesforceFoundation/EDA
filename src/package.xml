@@ -117,8 +117,8 @@
         <members>HealthCheckDefinitionVModel_TEST</members>
         <members>EDAHealthCheckGroupAPIService</members>
         <members>HealthCheckGroupAPIServiceInterface</members>
-        <members>HealthCheckGroupModel</members>
-        <members>HealthCheckGroupModel_TEST</members>
+        <members>HealthCheckGroupVModel</members>
+        <members>HealthCheckGroupVModel_TEST</members>
         <members>HealthCheckItemVModel</members>
         <members>HealthCheckItemVModel_TEST</members>
         <members>HealthCheckVMapper</members>
@@ -814,6 +814,8 @@
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckStatusFailed</members>
+        <members>stgHealthCheckStatusPassed</members>
         <members>stgHealthCheckTitle</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
