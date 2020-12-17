@@ -152,7 +152,7 @@ private class FeatureParameterMapper_TEST {
         System.assertEquals(featureParameterName, featureParamModel.name, 'Feature Parameter name should be same as passed');
         System.assertEquals(featureParameterDate, ((FeatureParameterDateModel)featureParamModel).value, 'Feature Parmater model value should be today');
     }
-    
+
     /*****************************************************************************************************************************************
     * @description Test method to verify that the getFeatureParameterModel method throws an error when feature parameter is not a part of enum
     ******************************************************************************************************************************************/

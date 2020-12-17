@@ -545,12 +545,8 @@
         <label>電話連絡先の適用を無効化</label>
     </customLabels>
     <customLabels>
-        <label><!-- The title for the EDA settings health check --></label>
-        <name>stgEDASettingsHealthCheckTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- The title for EDA Setup --></label>
-        <name>stgEDASetup</name>
+        <label><!-- EDA Setup title --></label>
+        <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
@@ -577,15 +573,15 @@
         <label>流暢</label>
     </customLabels>
     <customLabels>
-        <label><!-- The description for the EDA settings health check --></label>
+        <label><!-- EDA Settings Health Check component description --></label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error while retrieving the last run date --></label>
+        <label><!-- Error when EDA Settings Health Check can't show the last run date --></label>
         <name>stgHealthCheckErrorLastRunDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text for the last run date of the health check --></label>
+        <label><!-- EDA Settings Health Check last run date --></label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
@@ -885,8 +881,8 @@
         <label>このデータクリーンアッププロセスは、メール連絡先または電話連絡先の要件が初めて有効化された後、または要件を適用しない期間が経過した後に実行されます。</label>
     </customLabels>
     <customLabels>
-        <label><!-- Text for the run health check button --></label>
-        <name>stgRunHealthCheckButton</name>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
         <name>stgSaveSettings</name>
@@ -901,8 +897,8 @@
         <label>エラー通知を送信</label>
     </customLabels>
     <customLabels>
-        <label><!-- The title for health check --></label>
-        <name>stgSettingsHealthCheckTitle</name>
+        <label><!-- EDA Settings Health Check component title--></label>
+        <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
         <name>stgSimpleAddressChangeUpdate</name>
