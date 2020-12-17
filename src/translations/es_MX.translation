@@ -545,12 +545,8 @@
         <label>Desactivar aplicación teléfono preferido</label>
     </customLabels>
     <customLabels>
-        <label><!-- The title for the EDA settings health check --></label>
-        <name>stgEDASettingsHealthCheckTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- The title for EDA Setup --></label>
-        <name>stgEDASetup</name>
+        <label><!-- EDA Setup title --></label>
+        <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
@@ -577,11 +573,11 @@
         <label>Fluido</label>
     </customLabels>
     <customLabels>
-        <label><!-- The description for the EDA settings health check --></label>
+        <label><!-- EDA Settings Health Check component description --></label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text for the last run date of the health check --></label>
+        <label><!-- EDA Settings Health Check last run date --></label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
@@ -841,8 +837,8 @@
         <label>Ejecute este proceso de limpieza de datos tras activar el requisito Email preferido o Teléfono preferido por primera vez o tras un periodo sin aplicar el requisito.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Text for the run health check button --></label>
-        <name>stgRunHealthCheckButton</name>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
         <name>stgSaveSettings</name>
@@ -857,8 +853,8 @@
         <label>Enviar notificaciones de error</label>
     </customLabels>
     <customLabels>
-        <label><!-- The title for health check --></label>
-        <name>stgSettingsHealthCheckTitle</name>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
         <name>stgSimpleAddressChangeUpdate</name>

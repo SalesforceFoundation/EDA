@@ -545,12 +545,12 @@
         <label>Erzwingung von "Bevorzugte Telefonnummer" deaktivieren</label>
     </customLabels>
     <customLabels>
-        <label><!-- The title for the EDA settings health check --></label>
-        <name>stgEDASettingsHealthCheckTitle</name>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- The title for EDA Setup --></label>
-        <name>stgEDASetup</name>
+        <label><!-- EDA Setup title --></label>
+        <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
@@ -577,11 +577,11 @@
         <label>Fließend</label>
     </customLabels>
     <customLabels>
-        <label><!-- The description for the EDA settings health check --></label>
+        <label><!-- EDA Settings Health Check component description --></label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text for the last run date of the health check --></label>
+        <label><!-- EDA Settings Health Check last run date --></label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
@@ -841,8 +841,8 @@
         <label>Führen Sie diesen Datenbereinigungsprozess aus, nachdem Sie die Anforderung "Bevorzugte E-Mail" oder "Bevorzugte Telefonnummer" zum ersten Mal aktiviert oder eine Zeit lang nicht erzwungen haben.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Text for the run health check button --></label>
-        <name>stgRunHealthCheckButton</name>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
         <name>stgSaveSettings</name>
@@ -855,10 +855,6 @@
     <customLabels>
         <name>stgSendErrorsTitle</name>
         <label>Fehlerbenachrichtigungen senden</label>
-    </customLabels>
-    <customLabels>
-        <label><!-- The title for health check --></label>
-        <name>stgSettingsHealthCheckTitle</name>
     </customLabels>
     <customLabels>
         <name>stgSimpleAddressChangeUpdate</name>
