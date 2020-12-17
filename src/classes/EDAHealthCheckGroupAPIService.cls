@@ -24,13 +24,19 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         return (HealthCheckGroupAPIServiceInterface)instance;
     }
 
+    /**
+    * getHealthCheckGroup description
+    * @param  name name description
+    * @return      return description
+    */
     public HealthCheckGroupVModel getHealthCheckGroup(String name){
+        String caseInsensitiveName = name.toLowerCase();
 
         List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
         List<String> rowKeysList = new List<String>();
 
-        switch on name {
-            when 'All Success'{
+        switch on caseInsensitiveName {
+            when 'all success'{
                 HealthCheckItemVModel hlthChkItemMod1 = 
                     new HealthCheckItemVModel('01', 
                                               'Passed Setting 1', 
@@ -50,9 +56,6 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                 hlthChkItemsList.add(hlthChkItemMod1);
                 hlthChkItemsList.add(hlthChkItemMod2);
 
-
-
-
                 return new HealthCheckGroupVModel('All Success',
                                                   'Pass',
                                                   2,
@@ -61,16 +64,7 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                                   hlthChkItemsList);
             }
 
-
-
-
-
-
-
-
-
-
-            when 'All Failure' {
+            when 'all failure' {
                 rowKeysList.add('01');
 
                 HealthCheckItemVModel hlthChkItemMod1 = 
@@ -119,10 +113,7 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                                   hlthChkItemsList);
             }
 
-
-
-            when else {
-                // 'Mixed'
+            when 'mixed' {
                 rowKeysList.add('01');
 
                 HealthCheckItemVModel hlthChkItemMod1 = 
@@ -187,6 +178,9 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                                   4,
                                                   rowKeysList,
                                                   hlthChkItemsList);
+            }
+            when else {
+                return null;                
             }
         }
     }
