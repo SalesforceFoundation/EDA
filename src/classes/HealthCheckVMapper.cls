@@ -110,7 +110,7 @@ public virtual with sharing class HealthCheckVMapper {
 
             return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefViewModelsList);
         }
-        catch (FeatureParameterMapper.FeatureParameterMapperException e) { 
+        catch (FeatureParameterMapper.FeatureParameterMapperException e) {
             throw new AuraHandledException(Label.stgHealthCheckErrorLastRunDate);
 		}
 

@@ -1335,6 +1335,10 @@
         <name>FeatureParameterBoolean</name>
     </types>
     <types>
+        <members>SettingsHealthCheckLastRunDate</members>
+        <name>FeatureParameterDate</name>
+    </types>
+    <types>
         <members>Data_CountAdministrativeAccounts</members>
         <members>Data_CountCampaignMemberRelationshipRules</members>
         <members>Data_CountContactRelationshipRules</members>
@@ -1348,10 +1352,6 @@
         <members>Data_CountTermGrades</members>
         <members>Org_CountActiveCourseConnectionRecordTypes</members>
         <name>FeatureParameterInteger</name>
-    </types>
-    <types>
-        <members>SettingsHealthCheckLastRunDate</members>
-        <name>FeatureParameterDate</name>
     </types>
     <types>
         <members>Account-HEDA Household Layout</members>

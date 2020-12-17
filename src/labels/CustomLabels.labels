@@ -1244,7 +1244,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Text in EDA Settings Health Check results indicating</shortDescription>
+        <shortDescription>Text in EDA Settings Health Check results when all checks within a group passed</shortDescription>
         <value>All checks passed</value>
     </labels>
     <labels>
@@ -1252,7 +1252,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Text in EDA Settings Health Check results indicating</shortDescription>
+        <shortDescription>Text in EDA Settings Health Check results shows group's passed and total checks</shortDescription>
         <value>{0}/{1} checks passed</value>
     </labels>
     <labels>

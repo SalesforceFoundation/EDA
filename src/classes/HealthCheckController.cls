@@ -55,11 +55,15 @@ public with sharing class HealthCheckController {
     }
 
     /**********************************************************************************
-    * @description Retrieve a view model representing the Health Check to run.
-    * @return A HealthCheckVModel representing the view of the Health Check to run.
+    * @description Updates and retireves the last run date of the health check
+    * @return The last run date of health check.
     **********************************************************************************/
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static String updateHealthCheckLastRunDate() {
-        return HealthCheckController.locateHealthCheckMapper().updateHealthCheckLastRunDate();
+
+        FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());
+        FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
+
+        return FeatureParameterService.getInstance().getFeatureParameterModel().convertToString();
     }
 }

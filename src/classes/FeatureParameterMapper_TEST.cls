@@ -67,17 +67,167 @@ private class FeatureParameterMapper_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Test method to verify getFeatureParameterType returns a map
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getFeatureParameterType() {
+
+        Test.startTest();
+             Map<FeatureParameterMapper.TelemetryParameterName, String> dataTypeByFeature = FeatureParameterMapper.getInstance().getFeatureParameterType();
+        Test.stopTest();
+
+        System.assertNotEquals(null, dataTypeByFeature.size(), 'The map with the values should be retrieved.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify  convertToEnum method returns the converted value
+    ***************************************************************************************************************************/
+    @isTest
+    private static void convertToEnumPositiveCheck() {
+
+        Test.startTest();
+             FeatureParameterMapper.TelemetryParameterName convertedValue = FeatureParameterMapper.getInstance().convertToEnum('SettingsHealthCheckLastRunDate');
+        Test.stopTest();
+
+        System.assertEquals(FeatureParameterMapper.TelemetryParameterName.SettingsHealthCheckLastRunDate, convertedValue, 'The map with the values should be retrieved.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Negative test for convertToEnum method
+    ***************************************************************************************************************************/
+    @isTest
+    private static void convertToEnumNegativeCheck() {
+
+        Test.startTest();
+             FeatureParameterMapper.TelemetryParameterName convertedValue = FeatureParameterMapper.getInstance().convertToEnum('Test');
+        Test.stopTest();
+
+        System.assertEquals(null, convertedValue, 'When there is no match null should be returned');
+    }
+
+    /**************************************************************************************************************************
     * @description Test method to verify that the getFeatureParameterModel method returns a FeatureParameterModel
     ***************************************************************************************************************************/
     @isTest
-    private static void getFeatureParameterModel() {
+    private static void getFeatureParameterModelStringNotAnEnum() {
 
-        Test.startTest();
-            FeatureParameterModel featureParamModel = FeatureParameterMapper.getInstance().getFeatureParameterModel('testFeatureParam');
-        Test.stopTest();
+        try {
+            Test.startTest();
+                FeatureParameterModel featureParamModel = FeatureParameterMapper.getInstance().getFeatureParameterModel('testFeatureParam');
+                System.assert(false, 'When Passed parameter string is not an enum an error is thrown');
+            Test.stopTest();
+        } catch (FeatureParameterMapper.FeatureParameterMapperException ex) {
+            System.assert(ex.getMessage().contains('An error in Feature Parameter'));
+        }
 
-        System.assertEquals('testFeatureParam', featureParamModel.name, 'Feature Parameter Name should be the one which was passed');
-        System.assertEquals(Date.today(), ((featureParameterDateModel)featureParamModel).value, 'Feature Parameter value should be returned');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getFeatureParameterModel method returns a FeatureParameterModel
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getFeatureParameterModelEnumNotDate() {
+        try {
+            Test.startTest();
+                FeatureParameterModel featureParamModel = FeatureParameterMapper.getInstance().getFeatureParameterModel('HasUserManagedTDTM');
+                System.assert(false, 'When Passed parameter string is not an enum an error is thrown');
+            Test.stopTest();
+        } catch (FeatureParameterMapper.FeatureParameterMapperException ex) {
+            System.assert(ex.getMessage().contains('An error in Feature Parameter'));
+        }
+
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getFeatureParameterModel method returns a FeatureParameterModel
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getFeatureParameterModelSuccess() {
+        Date featureParameterDate = System.Today();
+        String featureParameterName = 'SettingsHealthCheckLastRunDate';
+        Test.startTest();
+            FeatureParameterModel featureParamModel = FeatureParameterMapper.getInstance().getFeatureParameterModel(featureParameterName);
+        Test.stopTest();
+
+        System.assertEquals(featureParameterName, featureParamModel.name, 'REASON');
+        System.assertEquals(featureParameterDate, ((FeatureParameterDateModel)featureParamModel).value, 'REASON');
+    }
+    
+    /*****************************************************************************************************************************************
+    * @description Test method to verify that the getFeatureParameterModel method throws an error when feature parameter is not a part of enum
+    ******************************************************************************************************************************************/
+    @isTest
+    private static void updateFromFeatureParameterModelStringNotAnEnum() {
+
+        FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('testFeature', Date.today());
+        try {
+            Test.startTest();
+                FeatureParameterMapper.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
+                System.assert(false, 'When Passed parameter string is not an enum an error is thrown');
+            Test.stopTest();
+        } catch (FeatureParameterMapper.FeatureParameterMapperException ex) {
+            System.assert(ex.getMessage().contains('An error in Feature Parameter'));
+        }
+
+    }
+    
+    /********************************************************************************************************************************************
+    * @description Test method to verify that the getFeatureParameterModel method throws an error when data type is not date
+    *********************************************************************************************************************************************/
+    @isTest
+    private static void updateFromFeatureParameterModelStringNotADate() {
+
+        FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('HasUserManagedTDTM', Date.today());
+        try {
+            Test.startTest();
+                FeatureParameterMapper.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
+                System.assert(false, 'When Passed parameter string is not an enum an error is thrown');
+            Test.stopTest();
+        } catch (FeatureParameterMapper.FeatureParameterMapperException ex) {
+            System.assert(ex.getMessage().contains('An error in Feature Parameter'));
+        }
+
+    }
+
+    /********************************************************************************************************************************************
+    * @description Test method to verify that the updateFromFeatureParameterModel method updates the feature parameter date
+    *********************************************************************************************************************************************/
+     @isTest
+     private static void updateFromFeatureParameterModel() {
+        Date featureParameterDate = System.Today();
+        String featureParameterName = 'SettingsHealthCheckLastRunDate';
+        FeatureParameterModel featureParamModel = new FeatureParameterDateModel(featureParameterName, featureParameterDate);
+
+        Test.startTest();
+            FeatureParameterMapper.getInstance().updateFromFeatureParameterModel(featureParamModel);
+        Test.stopTest();
+
+        FeatureParameterModel featureParamModelRetrieved = FeatureParameterMapper.getInstance().getFeatureParameterModel(featureParameterName);
+
+        FeatureParameterDateModel featureParamDateModel = (FeatureParameterDateModel)featureParamModelRetrieved;
+
+        System.assertEquals(featureParameterName, featureParamDateModel.name,'Feature parameter should be the same as passed');
+        System.assertEquals(featureParameterDate, featureParamDateModel.value,'Feature parameter value should be updated');
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUBS **************************************************************
+    **************************************************************************************************************************/
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from FeatureParameterMapper to return a new instance of a FeatureParameterDateModel
+    **************************************************************************************************************************************/ 
+    public class FPMapperUpdateStub extends FeatureParameterMapper {
+
+        @testVisible
+        private FeatureParameterModel featureParameterModel;
+
+        public override void updateFromFeatureParameterModel(FeatureParameterModel featureParamModel) {
+            this.featureParameterModel = featureParamModel;
+        }
+
+        public override FeatureParameterModel getFeatureParameterModel(String featureParameter) {
+            return this.featureParameterModel;
+        }
+    }
 }

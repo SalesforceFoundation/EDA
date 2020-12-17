@@ -625,11 +625,11 @@
         <name>stgHealthCheckStatusPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results indicating that all checks within a group passedoup passed --></label>
+        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
         <name>stgHealthChecksAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results indicating the number passing checks within a group, out of the total number of checks --></label>
+        <label><!-- Text in EDA Settings Health Check results shows group's passed and total checks the number passing checks within a group, out of the total number of checks --></label>
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>

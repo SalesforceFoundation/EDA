@@ -85,6 +85,19 @@ public with sharing class HealthCheckController_TEST {
         Test.stopTest();
     }
 
+    /****************************************************************************************************************************
+    * @description Test method to verify that the updateHealthCheckLastRunDate method returns today's date.
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void updateHealthCheckLastRunDate(){
+        
+        Test.startTest();
+            String lastRunDate = HealthCheckController.updateHealthCheckLastRunDate();
+        Test.stopTest();
+        
+        System.assertEquals(Date.today().format(), lastRunDate, 'Last Run date should be today\'s');
+    }
+
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/

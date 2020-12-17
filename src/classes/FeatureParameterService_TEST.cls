@@ -98,6 +98,22 @@ private class FeatureParameterService_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Test method to verify updateFromFeatureParameterModel method
+    ***************************************************************************************************************************/
+    @isTest
+    private static void updateFromFeatureParameterModel() {
+
+        FeatureParameterMapper.instance = new STUB_FeatureParameterUpdate();
+        FeatureParameterModel featureParamModel = new FeatureParameterDateModel('example', System.Today());
+
+        Test.startTest();
+            FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamModel);
+        Test.stopTest();
+
+        System.assertEquals(FeatureParameterService.getInstance().getFeatureParameterModel(), featureParamModel);
+    }
+
+    /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
     
@@ -111,4 +127,21 @@ private class FeatureParameterService_TEST {
             return featureParamDateMdl;
         }
     }
+
+    /**********************************************************************************************************************************************************
+    * @description Stub class to simulate the response from FeatureParameterMapper to return a FeatureParameterDateModel and update from FeatureParameterModel
+    **********************************************************************************************************************************************************/ 
+     public class STUB_FeatureParameterUpdate extends FeatureParameterMapper {
+         
+         @testVisible
+         private FeatureParameterModel featureParameterModel;
+         
+         public override void updateFromFeatureParameterModel(FeatureParameterModel featureParamModel) {
+             this.featureParameterModel = featureParamModel;
+         }
+         
+         public override FeatureParameterModel getFeatureParameterModel(String featureParameter) {
+             return this.featureParameterModel;
+         }
+     }
 }
