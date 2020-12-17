@@ -355,6 +355,8 @@ flows:
                 task: execute_qa_apex
             6:
                 task: deploy_qa_config
+            7:
+                task: deploy_health_check_config 
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
