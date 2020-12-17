@@ -29,7 +29,7 @@ POSSIBILITY OF SUCH DAMAGE.
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Mapper class to return Feature Parameter Models and set feature parameter value
+* @description Mapper class to return Feature Parameter Models and sets feature parameter value
 */
 public virtual with sharing class FeatureParameterMapper {
 

@@ -149,8 +149,8 @@ private class FeatureParameterMapper_TEST {
             FeatureParameterModel featureParamModel = FeatureParameterMapper.getInstance().getFeatureParameterModel(featureParameterName);
         Test.stopTest();
 
-        System.assertEquals(featureParameterName, featureParamModel.name, 'REASON');
-        System.assertEquals(featureParameterDate, ((FeatureParameterDateModel)featureParamModel).value, 'REASON');
+        System.assertEquals(featureParameterName, featureParamModel.name, 'Feature Parameter name should be same as passed');
+        System.assertEquals(featureParameterDate, ((FeatureParameterDateModel)featureParamModel).value, 'Feature Parmater model value should be today');
     }
     
     /*****************************************************************************************************************************************
