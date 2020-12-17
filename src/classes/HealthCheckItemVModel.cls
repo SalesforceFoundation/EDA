@@ -26,6 +26,9 @@ public virtual with sharing class HealthCheckItemVModel implements Comparable {
     * @return           return description
     *****************************************************************************************/
     public virtual Integer compareTo(Object compareTo){
+        if (!(compareTo instanceof HealthCheckItemVModel)){
+            return 0;
+        }
         return 0;
     }
 }

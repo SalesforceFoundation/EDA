@@ -189,7 +189,12 @@ public with sharing class HealthCheckGroupModel_TEST {
         System.assertEquals(true, hlthChkGroupModelsList[5].status.equalsIgnoreCase('Pass'));
     }
 
-    private static void sortWithIncomparableObjectTypes(){
+    /*****************************************************************************************
+    * @description Test to verify compareTo() implementation does not sort lists that 
+    * contain Object of type other than HealthCheckGroupModel, when the HealthCheckGroupModel
+    * is first in the list. 
+    *****************************************************************************************/
+    private static void sortWithIncomparableObjectTypesRightFirstInList(){
         List<Object> objectsToSort = new List<Object>();
         HealthCheckGroupModel hlthChkGroupMod = new HealthCheckGroupModel('Antelope',
                                                                            'Pass', 
@@ -201,14 +206,60 @@ public with sharing class HealthCheckGroupModel_TEST {
         Account testAccount = new Account(Name = 'TestAccount');
         Contact testContact = new Contact(LastName = 'Testerson');
 
-        objectsToSort.add((Object)hlthChkGroupMod);
-        objectsToSort.add((Object)testAccount);
-        objectsToSort.add((Object)testContact);
+        objectsToSort.add(hlthChkGroupMod);
+        objectsToSort.add(testContact);
+        objectsToSort.add(testAccount);
 
         Test.startTest();
         objectsToSort.sort();
         Test.stopTest();
 
-        //System.assertEquals('Antelope', (HealthCheckGroupModel)objectsToSort[0]);
+        System.assertEquals(true, objectsToSort[0] instanceof HealthCheckGroupModel, 'List should not be sorted when object types are not equal.');
+        System.assertEquals(true, objectsToSort[1] instanceof Contact, 'List should not be sorted when object types are not equal.');
+        System.assertEquals(true, objectsToSort[2] instanceof Account, 'List should not be sorted when object types are not equal.');
+    }
+
+    /*****************************************************************************************
+    * @description Test to verify compareTo() implementation does not sort lists that 
+    * contain Object of type other than HealthCheckGroupModel, when the HealthCheckGroupModel
+    * is not first in the list. 
+    *****************************************************************************************/
+    private static void sortWithIncomparableObjectTypesWrongFirstInList(){
+        List<Object> objectsToSort = new List<Object>();
+        HealthCheckGroupModel hlthChkGroupMod = new HealthCheckGroupModel('Antelope',
+                                                                           'Pass', 
+                                                                           5, 
+                                                                           8,
+                                                                           new List<String>(), 
+                                                                           new List<HealthCheckItemVModel>());
+
+
+        HealthCheckItemVModel hlthChkItemVMod1 = new HealthCheckItemVModel('TestKey1', 
+                                                                          'TestSetting', 
+                                                                          'Fail', 
+                                                                          'TestStatusLabel',
+                                                                          'TestDescription', 
+                                                                          'TextRecommendedFix');
+
+        HealthCheckItemVModel hlthChkItemVMod2 = new HealthCheckItemVModel('TestKey2', 
+                                                                          'TestSetting', 
+                                                                          'Fail', 
+                                                                          'TestStatusLabel',
+                                                                          'TestDescription', 
+                                                                          'TextRecommendedFix');
+        Account testAccount = new Account(Name = 'TestAccount');
+        Contact testContact = new Contact(LastName = 'Testerson');
+
+        objectsToSort.add(hlthChkItemVMod1);
+        objectsToSort.add(hlthChkGroupMod);
+        objectsToSort.add(hlthChkItemVMod1);
+
+        Test.startTest();
+        objectsToSort.sort();
+        Test.stopTest();
+
+        System.assertEquals(true, objectsToSort[0] instanceof HealthCheckItemVModel, 'List should not be sorted when object types are not equal.');
+        System.assertEquals(true, objectsToSort[1] instanceof HealthCheckGroupModel, 'List should not be sorted when object types are not equal.');
+        System.assertEquals(true, objectsToSort[2] instanceof HealthCheckItemVModel, 'List should not be sorted when object types are not equal.');
     }
 }

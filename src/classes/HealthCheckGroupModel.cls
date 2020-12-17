@@ -29,8 +29,7 @@ public virtual with sharing class HealthCheckGroupModel implements Comparable {
     *****************************************************************************************/ 
     public virtual Integer compareTo(Object compareTo){
 
-        // test by passing in Account x 2 to see if it doesn't get sorted
-        if (!compareTo instanceof HealthCheckGroupModel){
+        if (!(compareTo instanceof HealthCheckGroupModel)){
             return 0;
         }
 
