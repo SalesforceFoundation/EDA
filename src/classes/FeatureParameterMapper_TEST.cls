@@ -143,7 +143,7 @@ private class FeatureParameterMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getFeatureParameterModelSuccess() {
-        Date featureParameterDate = System.Today();
+        Date featureParameterDate = Date.valueOf('2015-12-31');
         String featureParameterName = 'SettingsHealthCheckLastRunDate';
         Test.startTest();
             FeatureParameterModel featureParamModel = FeatureParameterMapper.getInstance().getFeatureParameterModel(featureParameterName);

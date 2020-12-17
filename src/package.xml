@@ -812,14 +812,15 @@
         <members>stgHealthCheckRecoFix</members>
         <members>stgHealthCheckResultsCollapse</members>
         <members>stgHealthCheckResultsExpand</members>
+        <members>stgHealthCheckRunButton</members>
         <members>stgHealthCheckRunError</members>
         <members>stgHealthCheckSetting</members>
         <members>stgHealthCheckStatus</members>
         <members>stgHealthCheckStatusFailed</members>
         <members>stgHealthCheckStatusPassed</members>
+        <members>stgHealthCheckTitle</members>
         <members>stgHealthChecksAllPassed</members>
         <members>stgHealthChecksNotAllPassed</members>
-        <members>stgHealthCheckTitle</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -884,7 +885,6 @@
         <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
-        <members>stgHealthCheckRunButton</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
