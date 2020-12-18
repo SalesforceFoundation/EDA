@@ -88,7 +88,7 @@ private class FeatureParameterService_TEST {
 
         FeatureParameterMapper.instance = new STUB_FeatureParameterDateModel();
         Test.startTest();
-            FeatureParameterModel featureParamModel = FeatureParameterService.getInstance().getFeatureParameterModel();
+            FeatureParameterModel featureParamModel = FeatureParameterService.getInstance().getFeatureParameterModel('Test Feature Param');
         Test.stopTest();
 
         System.assertNotEquals(null, featureParamModel, 'should return a FeatureParameterModel');
@@ -110,7 +110,7 @@ private class FeatureParameterService_TEST {
             FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamModel);
         Test.stopTest();
 
-        System.assertEquals(FeatureParameterService.getInstance().getFeatureParameterModel(), featureParamModel);
+        System.assertEquals(FeatureParameterService.getInstance().getFeatureParameterModel('example'), featureParamModel);
     }
 
     /**************************************************************************************************************************

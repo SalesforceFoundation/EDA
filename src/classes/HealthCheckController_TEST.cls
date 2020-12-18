@@ -90,7 +90,8 @@ public with sharing class HealthCheckController_TEST {
     ****************************************************************************************************************************/
     @isTest 
     private static void updateHealthCheckLastRunDate(){
-        
+        HealthCheckVMapper.instance = new STUB_HealthCheckVMapper();
+
         Test.startTest();
             String lastRunDate = HealthCheckController.updateHealthCheckLastRunDate();
         Test.stopTest();

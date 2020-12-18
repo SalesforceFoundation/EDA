@@ -80,32 +80,6 @@ private class FeatureParameterMapper_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify  convertToEnum method returns the converted value
-    ***************************************************************************************************************************/
-    @isTest
-    private static void convertToEnumPositiveCheck() {
-
-        Test.startTest();
-             FeatureParameterMapper.TelemetryParameterName convertedValue = FeatureParameterMapper.getInstance().convertToEnum('SettingsHealthCheckLastRunDate');
-        Test.stopTest();
-
-        System.assertEquals(FeatureParameterMapper.TelemetryParameterName.SettingsHealthCheckLastRunDate, convertedValue, 'The map with the values should be retrieved.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Negative test for convertToEnum method
-    ***************************************************************************************************************************/
-    @isTest
-    private static void convertToEnumNegativeCheck() {
-
-        Test.startTest();
-             FeatureParameterMapper.TelemetryParameterName convertedValue = FeatureParameterMapper.getInstance().convertToEnum('Test');
-        Test.stopTest();
-
-        System.assertEquals(null, convertedValue, 'When there is no match null should be returned');
-    }
-
-    /**************************************************************************************************************************
     * @description Test method to verify that the getFeatureParameterModel method returns a FeatureParameterModel
     ***************************************************************************************************************************/
     @isTest
@@ -117,7 +91,7 @@ private class FeatureParameterMapper_TEST {
                 System.assert(false, 'When Passed parameter string is not an enum an error is thrown');
             Test.stopTest();
         } catch (FeatureParameterMapper.FeatureParameterMapperException ex) {
-            System.assert(ex.getMessage().contains('An error in Feature Parameter'));
+            System.assert(ex.getMessage().contains('Could not find the Feature Parameter testFeatureParam'));
         }
 
     }
@@ -133,7 +107,8 @@ private class FeatureParameterMapper_TEST {
                 System.assert(false, 'When Passed parameter string is not an enum an error is thrown');
             Test.stopTest();
         } catch (FeatureParameterMapper.FeatureParameterMapperException ex) {
-            System.assert(ex.getMessage().contains('An error in Feature Parameter'));
+            System.assert(ex.getMessage().contains('Feature Parameter'));
+            System.assert(ex.getMessage().contains('is not defined.'));
         }
 
     }
@@ -171,7 +146,7 @@ private class FeatureParameterMapper_TEST {
                 System.assert(false, 'When Passed parameter string is not an enum an error is thrown');
             Test.stopTest();
         } catch (FeatureParameterMapper.FeatureParameterMapperException ex) {
-            System.assert(ex.getMessage().contains('An error in Feature Parameter'));
+            System.assert(ex.getMessage().contains('Could not find the Feature Parameter'));
         }
 
     }
@@ -189,7 +164,8 @@ private class FeatureParameterMapper_TEST {
                 System.assert(false, 'When Passed parameter string is not an enum an error is thrown');
             Test.stopTest();
         } catch (FeatureParameterMapper.FeatureParameterMapperException ex) {
-            System.assert(ex.getMessage().contains('An error in Feature Parameter'));
+            System.assert(ex.getMessage().contains('Feature Parameter'));
+            System.assert(ex.getMessage().contains('is not defined.'));
         }
 
     }

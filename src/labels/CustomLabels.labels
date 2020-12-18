@@ -1253,7 +1253,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Text in EDA Settings Health Check results shows group's passed and total checks</shortDescription>
-        <value>{0}/{1} checks passed</value>
+        <value>{0} of {1} checks passed</value>
     </labels>
     <labels>
         <fullName>stgHelpAccountModel</fullName>

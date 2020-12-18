@@ -47,20 +47,45 @@ public virtual with sharing class FeatureParameterMapper {
     /***************************************************************************
     * @description Map to hold Data Types(values) of the feature parameter(keys)
     ***************************************************************************/
-    Map<TelemetryParameterName, String> dataTypeByFeatureParameter = new Map<TelemetryParameterName, String>{TelemetryParameterName.SettingsHealthCheckLastRunDate => 'Date'};
+    private static final Map<TelemetryParameterName, String> dataTypeByFeatureParameter {
+        get {
+            if (dataTypeByFeatureParameter == null) {
+                dataTypeByFeatureParameter = new Map<TelemetryParameterName, String>();
+                dataTypeByFeatureParameter.put(TelemetryParameterName.SettingsHealthCheckLastRunDate, 'Date');
+            }
+            return dataTypeByFeatureParameter;
+        }  
+        private set;
+    }
+
+    /***************************************************************************
+    * @description Map to hold Enums by their string values
+    ***************************************************************************/
+    private static final Map<String, TelemetryParameterName> TelemetryParameterByString {
+        get {
+            if (TelemetryParameterByString == null) {
+                TelemetryParameterByString = new Map<String, TelemetryParameterName>();
+                for (TelemetryParameterName telmetryParam: TelemetryParameterName.values()) {
+                    TelemetryParameterByString.put(String.valueOf(telmetryParam), telmetryParam);
+                }
+            }
+            return TelemetryParameterByString;
+        }
+        private set;
+    }
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
     * @return The instance of FeatureParameterMapper.
     ******************************************************************************/
-        public static FeatureParameterMapper getInstance() {
-            
-            if (instance == null) {
-                instance = new FeatureParameterMapper();
-            }
+    public static FeatureParameterMapper getInstance() {
 
-            return instance;
+        if (instance == null) {
+            instance = new FeatureParameterMapper();
         }
+
+        return instance;
+    }
 
     /*********************************************************************************************************
     * @description Each of these corresponds to the exact name of a FeatureParameter in the managed package.
@@ -100,7 +125,7 @@ public virtual with sharing class FeatureParameterMapper {
     ********************************************************************************/
     @TestVisible
     private Map<TelemetryParameterName, String>  getFeatureParameterType() {
-        return dataTypeByFeatureParameter;
+        return FeatureParameterMapper.dataTypeByFeatureParameter;
     }
 
     /*************************************************************************************************************
@@ -110,22 +135,22 @@ public virtual with sharing class FeatureParameterMapper {
     **************************************************************************************************************/
     public virtual FeatureParameterModel getFeatureParameterModel(String featureParameter) {
 
-        TelemetryParameterName lastRunDate = this.convertToEnum(featureParameter);
+        TelemetryParameterName telemetryParameterName = FeatureParameterMapper.TelemetryParameterByString.get(featureParameter);
 
-        if (lastRunDate == null) {
-            throw new FeatureParameterMapperException('An error in Feature Parameter');
+        if (telemetryParameterName == null) {
+            throw new FeatureParameterMapperException('Could not find the Feature Parameter ' + featureParameter);
         }
 
-        String featureParameterDataType = this.getFeatureParameterType().get(lastRunDate);
+        String featureParameterDataType = this.getFeatureParameterType().get(telemetryParameterName);
 
         if (featureParameterDataType == 'Date') {
             UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
-            Date settingsLastRunDate = featureManager.checkPackageDateValue(String.valueOf(lastRunDate));
-            FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel(String.valueOf(lastRunDate), settingsLastRunDate);
+            Date featureParameterDate = featureManager.checkPackageDateValue(String.valueOf(telemetryParameterName));
+            FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel(String.valueOf(telemetryParameterName), featureParameterDate);
             return featureParamDateMdl;
-        } 
+        }
 
-        throw new FeatureParameterMapperException('An error in Feature Parameter');
+        throw new FeatureParameterMapperException('Feature Parameter ' + String.valueOf(telemetryParameterName) + ' is not defined.');
 
     }
 
@@ -135,40 +160,22 @@ public virtual with sharing class FeatureParameterMapper {
     **************************************************************************************************************/
     public virtual void updateFromFeatureParameterModel(FeatureParameterModel featureParamModel) {
 
-        TelemetryParameterName lastRunDate = this.convertToEnum(featureParamModel.name);
+        TelemetryParameterName telemetryParameterName = FeatureParameterMapper.TelemetryParameterByString.get(featureParamModel.name);
 
-        if (lastRunDate == null) {
-            throw new FeatureParameterMapperException('An error in Feature Parameter');
+        if (telemetryParameterName == null) {
+            throw new FeatureParameterMapperException('Could not find the Feature Parameter ' + featureParamModel.name);
         }
 
-        String dataType = this.getFeatureParameterType().get(lastRunDate);
+        String dataType = this.getFeatureParameterType().get(telemetryParameterName);
 
         if (dataType == 'Date') {
             FeatureParameterDateModel featureParamDateModel = (FeatureParameterDateModel)featureParamModel;
             UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
             featureManager.setPackageDateValue(featureParamDateModel.name, featureParamDateModel.value);
         } else {
-            throw new FeatureParameterMapperException('An error in Feature Parameter1');
+            throw new FeatureParameterMapperException('Feature Parameter ' + String.valueOf(telemetryParameterName) + ' is not defined.');
         }
 
-    }
-
-    /*************************************************************************************************************
-    * @description Returns the enum equivalent of a String if found else returns null
-    * @Params toBeConvertedString The String that needs to be converted to Enum
-    * @return TelemetryParameterName enum equivalent of the String passed
-    **************************************************************************************************************/
-    @TestVisible
-    private TelemetryParameterName convertToEnum(String toBeConvertedString) {
-        TelemetryParameterName TelemetryParameterNameMatch;
-        for (TelemetryParameterName telmetryParam: TelemetryParameterName.values()) {
-            if (telmetryParam.name() == toBeConvertedString) {
-                TelemetryParameterNameMatch = telmetryParam;
-                return TelemetryParameterNameMatch;
-            }
-        }
-
-        return null;
     }
 
     /*************************************************************************

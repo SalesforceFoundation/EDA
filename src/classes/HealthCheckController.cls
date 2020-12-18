@@ -64,6 +64,6 @@ public with sharing class HealthCheckController {
         FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());
         FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
 
-        return FeatureParameterService.getInstance().getFeatureParameterModel().convertToString();
+        return FeatureParameterService.getInstance().getFeatureParameterModel('SettingsHealthCheckLastRunDate').convertToString();
     }
 }

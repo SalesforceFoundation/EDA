@@ -59,10 +59,11 @@ public virtual with sharing class FeatureParameterService {
 
     /*******************************************************************************************************
     * @description Returns model for the feature parameter
+    * @param featureParameter The feature parameter to get the model for
     * @return MODL_FeatureParameterDate The model for the feature parameter
     ********************************************************************************************************/
-    public FeatureParameterModel getFeatureParameterModel() {
-        return this.locateFeatureParameterMapper().getFeatureParameterModel('SettingsHealthCheckLastRunDate');
+    public FeatureParameterModel getFeatureParameterModel(String featureParameter) {
+        return this.locateFeatureParameterMapper().getFeatureParameterModel(featureParameter);
     }
 
     /*******************************************************************************************************
