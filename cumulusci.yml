@@ -22,6 +22,30 @@ sources:
         release: latest
 
 tasks:
+    add_relationship_type_values: 
+        description: "Adds Parent's Sibling, Niece, Nephew, and Sibling's Child as picklist values to the Relationship__c.Type__c field."
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        group: 'EDA: Metadata'
+        ui_options:
+            add_relationship_type_values:
+                name: Add Relationship Type Picklist Values
+
+        options:
+            picklists: hed__Relationship__c.hed__Type__c
+            entries:
+                - fullName: "Parent's Sibling"
+                  label: "Parent's Sibling"
+                  add_before: "Cousin"
+                - fullName: "Niece"
+                  label: "Niece"
+                  add_before: "Cousin"
+                - fullName: "Nephew"
+                  label: "Nephew"
+                  add_before: "Cousin"
+                - fullName: "Sibling's Child"
+                  label: "Sibling's Child"
+                  add_before: "Cousin"
+
     add_citizenship_status_values:
         group: 'EDA: Trial'
         description: Adds additional picklist values to hed__Citizenship_Status__c on Contact
@@ -136,6 +160,9 @@ tasks:
     execute_automatic_household_naming:
         description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_automatic_household_naming:
+                name: Enable EDA's Automatic Household Naming Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
@@ -145,6 +172,9 @@ tasks:
     execute_enable_course_connections:
         description: Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_enable_course_connections:
+                name: Enable EDA's Course Connection Settings
         options:
             path: scripts/setup.cls
             apex: configCourseConnections();
@@ -152,6 +182,9 @@ tasks:
     execute_preferred_phone_selection:
         description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_preferred_phone_selection:
+                name: Enable EDA's Preferred Phone Selection Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
@@ -161,6 +194,9 @@ tasks:
     execute_enable_record_type_validation:
         description: Runs anonymous apex to enable record type validation for EDA settings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_enable_record_type_validation:
+                name: Enable EDA's RecordType Validation Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
@@ -170,6 +206,9 @@ tasks:
     execute_send_error_notifications:
         description: Runs anonymous apex to enable Error Notifications.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_send_error_notifications:
+                name: Enable EDA's Error Notifications Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
@@ -274,6 +313,7 @@ flows:
                 task: execute_install_apex
                 when: "'hed' not in org_config.installed_packages"
 
+
     config_dev:
         # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
@@ -290,6 +330,9 @@ flows:
                 task: run_tests 
                 options: 
                     test_name_match: '%Unmanaged_TEST'
+            8:
+                flow: eda_settings_unmanaged
+
                     
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -306,6 +349,9 @@ flows:
                 task: execute_install_apex
             4:
                 task: deploy_dev_config
+            5:
+                flow: eda_settings
+
 
     config_managed:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -345,6 +391,8 @@ flows:
                 task: execute_qa_apex
             6:
                 task: deploy_qa_config
+            7:
+                flow: eda_settings_unmanaged
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
@@ -356,6 +404,8 @@ flows:
                 options:
                     unmanaged: False
             4:
+                flow: eda_settings
+            5:
                 flow: preferred_email_testing
 
     deploy_unmanaged:
@@ -374,6 +424,63 @@ flows:
                     update_admin_profile:
                         namespaced_org: True
 
+
+    eda_picklists:
+        description: Inspects metadata, adds appropriate picklist values using MetadataETL Framework.
+        steps:
+            1:
+                task: add_relationship_type_values
+
+    eda_settings:
+        description: Enables various settings in a managed context on the EDA Settings tab.
+        steps:
+            1:
+                task: execute_enable_record_type_validation
+                options:
+                    namespaced: True
+            2:
+                task: execute_preferred_phone_selection
+                options:
+                    namespaced: True
+            3:
+                task: execute_send_error_notifications
+                options:
+                    namespaced: True
+            4:
+                task: execute_automatic_household_naming
+                options:
+                    namespaced: True
+            5:
+                task: execute_enable_course_connections
+                options:
+                    namespaced: True
+
+
+    eda_settings_unmanaged:
+        description: Enables various settings in an unmanaged context on the EDA Settings tab.
+        steps:
+            1:
+                task: execute_enable_record_type_validation
+                options:
+                    namespaced: False
+            2:
+                task: execute_preferred_phone_selection
+                options:
+                    namespaced: False
+            3:
+                task: execute_send_error_notifications
+                options:
+                    namespaced: False
+            4:
+                task: execute_automatic_household_naming
+                options:
+                    namespaced: False
+            5:
+                task: execute_enable_course_connections
+                options:
+                    namespaced: False
+
+
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
         steps:
@@ -389,6 +496,11 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
+            6:
+                flow: eda_settings
+            7:
+                flow: eda_picklists
+
 
     net_new_org:
         description: Simulates an EDA installation for a new customer. Installs the latest beta and dependencies.
@@ -401,6 +513,10 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
+            4:
+                flow: eda_settings
+            5:
+                flow: eda_picklists
 
 
     translations:
@@ -428,35 +544,16 @@ flows:
                 options:
                     managed: True
                     namespaced: True
-            5: 
-                task: execute_enable_record_type_validation
-                options:
-                    managed: True
-                    namespaced: True
-            6: 
-                task: execute_preferred_phone_selection
-                options:
-                    managed: True
-                    namespaced: True
-            7: 
-                task: execute_send_error_notifications
-                options:
-                    managed: True
-                    namespaced: True
-            8: 
-                task: execute_automatic_household_naming
-                options:
-                    managed: True
-                    namespaced: True
-            9:
-                task: execute_enable_course_connections
-                options:
-                    managed: True
-                    namespaced: True
-            10:
+            5:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
+                    namespaced_org: True
+            6:
+                flow: eda_settings
+            7:
+                flow: eda_picklists
+
 
     preferred_email_testing:
         description: Deploys Preferred Email configuration and runs apex tests. 
