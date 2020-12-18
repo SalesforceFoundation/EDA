@@ -57,7 +57,9 @@
 
 ### Tasks
 
--   **`execute_install_apex`:** Runs most of the install script methods from STG<sub>InstallScript</sub> class.
+-   **`add_relationship_type_values`:** Adds Parent's Sibling, Niece, Nephew, and Sibling's Child as picklist values to the Relationship__c.Type__c field.
+
+-   **`execute_install_apex`:** Runs most of the install script methods from STG_InstallScript class.
 
 -   **`delete_dev_config`:** Deploys metadata found under `unpackaged/config/dev_delete` Removes the Record type visibilities, page layout assignments Required to remove an installed beta.
 
