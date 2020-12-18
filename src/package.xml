@@ -117,6 +117,7 @@
         <members>HealthCheckDefinitionVModel_TEST</members>
         <members>EDAHealthCheckGroupAPIService</members>
         <members>HealthCheckGroupAPIServiceInterface</members>
+        <members>HealthCheckGroupController</members>
         <members>HealthCheckGroupService</members>
         <members>HealthCheckGroupVModel</members>
         <members>HealthCheckGroupVModel_TEST</members>
@@ -1382,6 +1383,7 @@
     </types>
     <types>
         <members>healthCheck</members>
+        <members>healthCheckDisplay</members>
         <members>healthCheckHighlightsPanel</members>
         <members>healthCheckRun</members>
         <name>LightningComponentBundle</name>

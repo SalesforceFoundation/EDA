@@ -30,9 +30,24 @@ public virtual with sharing class HealthCheckGroupService {
     * @return           return description
     */
     public HealthCheckGroupVModel getHealthCheckGroup(String name, String className, String namespace){
-        return this.locateHealthCheckGroupAPIService(className, namespace).getHealthCheckGroup(name);
+        HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface;
+
+        try{
+            hlthChkGroupServInterface = this.locateHealthCheckGroupAPIService(className, namespace);
+        } catch (HealthCheckNotFoundException hcEx){
+            // do something here
+            System.debug(hcEx.getMessage());
+        }
+
+        return hlthChkGroupServInterface.getHealthCheckGroup(name);
     }
 
+    /**
+     * locateHealthCheckGroupAPIService description
+     * @param  className className description
+     * @param  namespace namespace description
+     * @return           return description
+     */
     private HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){
         if (className.equalsIgnoreCase('EDAHealthCheckGroupAPIService') && namespace.equalsIgnoreCase('hed')){
             return EDAHealthCheckGroupAPIService.getInstance();
