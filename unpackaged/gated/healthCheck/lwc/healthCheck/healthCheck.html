@@ -7,8 +7,13 @@
             <div class="slds-col slds-p-vertical_small">
                 <c-health-check-run
                     run-date={lastRunDate}
-                    onrun={handleHealthCheckRun}>
+                    onrunhealthcheck={handleHealthCheckRun}>
                 </c-health-check-run>
+            </div>
+            <div class="slds-col slds-p-vertical_small">
+                <template if:true={displayHealthCheck}>
+                    <c-health-check-display></c-health-check-display>
+                </template>
             </div>
         </div>
     </div>
