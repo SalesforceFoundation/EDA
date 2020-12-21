@@ -545,6 +545,10 @@
         <label>Poista ensisij. puhelinvalvonta käytöstä</label>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Setup title --></label>
+        <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
         <label>Ota kurssiyhteydet käyttöön</label>
     </customLabels>
@@ -567,6 +571,14 @@
     <customLabels>
         <name>stgFluent</name>
         <label>Sujuva</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component description --></label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check last run date --></label>
+        <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
@@ -825,6 +837,10 @@
         <label>Suorita tämä tietojen puhdistusprosessi, kun olet ottanut ensisijaisen sähköpostin tai ensisijaisen puhelimen vaatimuksen käyttöön ensimmäistä kertaa tai sen jälkeen, kun vaatimusta ei ole pantu täytäntöön.</label>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
+    </customLabels>
+    <customLabels>
         <name>stgSaveSettings</name>
         <label>Asetusten tallennus onnistui.</label>
     </customLabels>
@@ -835,6 +851,10 @@
     <customLabels>
         <name>stgSendErrorsTitle</name>
         <label>Lähetä virheilmoitukset</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
         <name>stgSimpleAddressChangeUpdate</name>

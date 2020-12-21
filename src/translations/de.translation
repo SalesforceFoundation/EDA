@@ -545,6 +545,14 @@
         <label>Erzwingung von "Bevorzugte Telefonnummer" deaktivieren</label>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHealthCheckTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Setup title --></label>
+        <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
         <label>Kursverbindungen aktivieren</label>
     </customLabels>
@@ -567,6 +575,14 @@
     <customLabels>
         <name>stgFluent</name>
         <label>Fließend</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component description --></label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check last run date --></label>
+        <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
@@ -823,6 +839,10 @@
     <customLabels>
         <name>stgRunCleanUpEnableFirstTime</name>
         <label>Führen Sie diesen Datenbereinigungsprozess aus, nachdem Sie die Anforderung "Bevorzugte E-Mail" oder "Bevorzugte Telefonnummer" zum ersten Mal aktiviert oder eine Zeit lang nicht erzwungen haben.</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
         <name>stgSaveSettings</name>
