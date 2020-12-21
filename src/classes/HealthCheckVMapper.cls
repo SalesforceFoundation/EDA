@@ -74,17 +74,6 @@ public virtual with sharing class HealthCheckVMapper {
     }
 
     /**********************************************************************************
-    * @description Retrieves the current date associated with a feature model.
-    * @return A string representing the current date.
-    **********************************************************************************/
-    public String updateHealthCheckLastRunDate(){
-        FeatureParameterModel featureParamDateModel = 
-            (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel('SettingsHealthCheckLastRunDate');
-
-        return featureParamDateModel.convertToString(); 
-    }
-
-    /**********************************************************************************
     * @description Retrieve a view model representing a health check to run.
     * @return A HealthCheckVModel representing details of a health check to be run.
     **********************************************************************************/
@@ -92,7 +81,11 @@ public virtual with sharing class HealthCheckVMapper {
         try {
             FeatureParameterDateModel featureParamDateModel = 
                (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel('SettingsHealthCheckLastRunDate');
-            String lastRunDate = featureParamDateModel.convertToString(); 
+            String lastRunDate = featureParamDateModel.convertToString();
+
+            if (lastRunDate == '12/31/2015') {
+                lastRunDate = '';
+            }
 
             List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
             List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models

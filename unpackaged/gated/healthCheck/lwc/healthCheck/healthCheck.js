@@ -17,6 +17,11 @@ export default class HealthCheck extends LightningElement {
 
     }
 
-    @wire(getHealthCheckViewModel) healthCheckViewModel;
+    @wire(getHealthCheckViewModel)
+    healthCheckViewModel({ error, data}) {
+        if (data) {
+            this.lastRunDate = data.lastRunDate
+        } else if(error){}
+    }
 
 }

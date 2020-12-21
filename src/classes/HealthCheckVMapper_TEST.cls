@@ -93,21 +93,6 @@ public class HealthCheckVMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(HealthCheckDefinitionService.getInstance(), healthCheckDefService, 'Should return the instance of HealthCheckDefinitionService.');
-    }    
-
-    /****************************************************************************************************************************
-    * @description Test to verify that updateHealthCheckLastRunDate method return a string representing the current date.
-    ****************************************************************************************************************************/
-    @isTest 
-    private static void updateHealthCheckLastRunDateValid(){
-
-        FeatureParameterMapper.instance = new STUB_FeatureParameterDateModel();
-
-        Test.startTest();
-        String lastRunDate = HealthCheckVMapper.getInstance().updateHealthCheckLastRunDate();
-        Test.stopTest();
-
-        System.assertEquals(Date.today().addDays(-3).format(), lastRunDate, 'Last run date should be set to 3 days before current date.');
     }
 
     /****************************************************************************************************************************

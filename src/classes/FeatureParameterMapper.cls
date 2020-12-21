@@ -119,13 +119,13 @@ public virtual with sharing class FeatureParameterMapper {
             UsingOldCourseDescription
     }
 
-    /*******************************************************************************
-    * @description Returns the dataTypeByFeatureParameter map
-    * @return dataTypeByFeatureParameter The map of data types by feature parameters
-    ********************************************************************************/
+    /**********************************************************************************
+    * @description Returns the data type of the feature parameter passed
+    * @return dataTypeByFeatureParameter The data type of the feature parameter passed
+    **********************************************************************************/
     @TestVisible
-    private Map<TelemetryParameterName, String>  getFeatureParameterType() {
-        return FeatureParameterMapper.dataTypeByFeatureParameter;
+    private String getFeatureParameterType(TelemetryParameterName featureParameter) {
+        return FeatureParameterMapper.dataTypeByFeatureParameter.get(featureParameter);
     }
 
     /*************************************************************************************************************
@@ -141,7 +141,7 @@ public virtual with sharing class FeatureParameterMapper {
             throw new FeatureParameterMapperException('Could not find the Feature Parameter ' + featureParameter);
         }
 
-        String featureParameterDataType = this.getFeatureParameterType().get(telemetryParameterName);
+        String featureParameterDataType = this.getFeatureParameterType(telemetryParameterName);
 
         if (featureParameterDataType == 'Date') {
             UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
@@ -166,7 +166,7 @@ public virtual with sharing class FeatureParameterMapper {
             throw new FeatureParameterMapperException('Could not find the Feature Parameter ' + featureParamModel.name);
         }
 
-        String dataType = this.getFeatureParameterType().get(telemetryParameterName);
+        String dataType = this.getFeatureParameterType(telemetryParameterName);
 
         if (dataType == 'Date') {
             FeatureParameterDateModel featureParamDateModel = (FeatureParameterDateModel)featureParamModel;

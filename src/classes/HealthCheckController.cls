@@ -58,7 +58,7 @@ public with sharing class HealthCheckController {
     * @description Updates and retireves the last run date of the health check
     * @return The last run date of health check.
     **********************************************************************************/
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static String updateHealthCheckLastRunDate() {
 
         FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());

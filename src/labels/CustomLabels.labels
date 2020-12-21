@@ -1165,7 +1165,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error when EDA Settings Health Check can't show the last run date</shortDescription>
-        <value>We can't show the last run date because of an error</value>    
+        <value>We can&apos;t show the last run date because of an error</value>    
     </labels>
     <labels>
         <fullName>stgHealthCheckLastRun</fullName>
