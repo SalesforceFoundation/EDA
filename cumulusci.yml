@@ -402,8 +402,9 @@ flows:
             6:
                 task: deploy_qa_config
             7:
-                flow: eda_settings_unmanaged
                 task: deploy_health_check_config 
+            8:
+                flow: eda_settings_unmanaged
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
