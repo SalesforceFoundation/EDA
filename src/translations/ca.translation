@@ -545,6 +545,14 @@
         <label>Desactiva l'aplicació de telèfon preferit</label>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHealthCheckTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Setup title --></label>
+        <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
         <label>Activa les connexions del curs</label>
     </customLabels>
@@ -567,6 +575,14 @@
     <customLabels>
         <name>stgFluent</name>
         <label>Avançat</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component description --></label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check last run date --></label>
+        <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
@@ -823,6 +839,10 @@
     <customLabels>
         <name>stgRunCleanUpEnableFirstTime</name>
         <label>Executeu aquest procés de neteja de dades després d'haver activat el requisit de correu electrònic preferit o el telèfon preferit per primera vegada o després d'un període de no compliment del requisit.</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
         <name>stgSaveSettings</name>
