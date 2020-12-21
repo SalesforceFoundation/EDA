@@ -85,7 +85,7 @@ public virtual with sharing class HealthCheckVMapper {
             FeatureParameterDateModel featureParamDateModel = 
                (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel('SettingsHealthCheckLastRunDate');
 
-            if (featureParamDateModel.value != date.newinstance(2015, 12, 31) {
+            if (featureParamDateModel.value != date.newinstance(2015, 12, 31)) {
                 lastRunDate = featureParamDateModel.convertToString();
             }
 
