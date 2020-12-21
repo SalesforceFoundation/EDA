@@ -416,6 +416,7 @@ flows:
             4:
                 flow: eda_settings
             5:
+                flow: eda_settings_unmanaged
                 flow: preferred_email_testing
 
     deploy_unmanaged:
