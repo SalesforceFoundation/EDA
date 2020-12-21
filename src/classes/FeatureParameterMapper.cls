@@ -61,6 +61,7 @@ public virtual with sharing class FeatureParameterMapper {
     /***************************************************************************
     * @description Map to hold Enums by their string values
     ***************************************************************************/
+    @TestVisible
     private static final Map<String, TelemetryParameterName> TelemetryParameterByString {
         get {
             if (TelemetryParameterByString == null) {

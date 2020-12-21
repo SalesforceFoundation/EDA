@@ -170,7 +170,7 @@ private class FeatureParameterMapper_TEST {
     * @description Test method to verify that the updateFromFeatureParameterModel method updates the feature parameter date
     *********************************************************************************************************************************************/
      @isTest
-     private static void updateFromFeatureParameterModelPoistiveTest() {
+     private static void updateFromFeatureParameterModelPositiveTest() {
 
         Date featureParameterDate = System.Today();
         String featureParameterName = 'SettingsHealthCheckLastRunDate';

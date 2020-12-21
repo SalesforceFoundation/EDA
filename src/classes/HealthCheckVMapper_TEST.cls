@@ -119,6 +119,25 @@ public class HealthCheckVMapper_TEST {
         }  
     }
 
+    /****************************************************************************************************************************
+    * @description Test to verify that getHealthCheckViewModel throws AuraHandledException
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void getHealthCheckViewModelException(){
+
+        FeatureParameterMapper.instance = new STUB_FeatureParameterMapperError();
+        HealthCheckDefinitionService.instance = new STUB_HealthCheckDefinitionService();
+
+        try {
+            Test.startTest();
+                HealthCheckVModel healthChkViewMod = HealthCheckVMapper.getInstance().getHealthCheckViewModel();
+            Test.stopTest();
+            System.assert(false, 'Should throw an exception');
+        } catch (AuraHandledException ex) {
+            System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
+        } 
+    }
+
 
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
@@ -151,6 +170,16 @@ public class HealthCheckVMapper_TEST {
             return healthChkDefModelsList;
         }
     }
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the exception for FeatureParameterMapper
+    **************************************************************************************************************************************/ 
+    private class STUB_FeatureParameterMapperError extends FeatureParameterMapper {
+        
+        @TestVisible
+        public override FeatureParameterModel getFeatureParameterModel(String featureParameter){
+            TelemetryParameterName telemetryParameterName = FeatureParameterMapper.TelemetryParameterByString.get(featureParameter);
+            throw new FeatureParameterMapperException('Feature Parameter ' + String.valueOf(telemetryParameterName) + ' is not defined.');
+        }
+    }
 }
-
-
