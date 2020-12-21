@@ -402,7 +402,6 @@ flows:
             6:
                 task: deploy_qa_config
             7:
-                flow: eda_settings_unmanaged
                 task: deploy_health_check_config 
 
     config_regression:
