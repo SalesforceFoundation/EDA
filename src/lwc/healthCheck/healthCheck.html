@@ -12,7 +12,9 @@
             </div>
             <div class="slds-col slds-p-vertical_small">
                 <template if:true={displayHealthCheck}>
-                    <c-health-check-display></c-health-check-display>
+                    <c-health-check-display
+                        health-check-definitions-list={healthCheckViewModel}>
+                    </c-health-check-display>
                 </template>
             </div>
         </div>

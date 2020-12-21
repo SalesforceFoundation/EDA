@@ -1,7 +1,20 @@
 <template>
     <lightning-card title="HealthCheckDisplay">
         <div class="slds-grid slds-wrap">
-            Display results here...
+            <!-- <template iterator:hcdefinitionvmodel={healthCheckGroupLWCList}
+                onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}
+                display={displayHealthCheckDefinition}>
+                <li key={hcdefinitionvmodel.value.name}>
+                    {hcdefinitionvmodel.value.name}
+                </li>
+            </template> -->
+
+            <template iterator:hcdefinitionvmodel={healthCheckGroupLWCList}
+                onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}>
+                <li key={hcdefinitionvmodel.value.name}>
+                    {hcdefinitionvmodel.value.name}
+                </li>
+            </template>            
         </div>
     </lightning-card>
 </template>
