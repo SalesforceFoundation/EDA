@@ -85,6 +85,7 @@
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
+        <members>EDAHealthCheckGroupAPIService</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
@@ -115,7 +116,6 @@
         <members>HealthCheckDefinitionService_TEST</members>
         <members>HealthCheckDefinitionVModel</members>
         <members>HealthCheckDefinitionVModel_TEST</members>
-        <members>EDAHealthCheckGroupAPIService</members>
         <members>HealthCheckGroupAPIServiceInterface</members>
         <members>HealthCheckGroupController</members>
         <members>HealthCheckGroupService</members>
@@ -816,6 +816,7 @@
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckRunButton</members>
         <members>stgHealthCheckStatusFailed</members>
         <members>stgHealthCheckStatusPassed</members>
         <members>stgHealthCheckTitle</members>
@@ -883,7 +884,6 @@
         <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
-        <members>stgHealthCheckRunButton</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
