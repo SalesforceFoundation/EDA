@@ -36,7 +36,7 @@ private class RelationshipLookupSettingsService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
-    * AccountModelSettingsService class when one does not already exist.
+    * RelationshipLookupSettingsService class when one does not already exist.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
@@ -106,7 +106,7 @@ private class RelationshipLookupSettingsService_TEST {
     ***********************************************************************************************************************************/
 
     /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from RelationshipLookupMapper to return a AccountModelSettings model
+    * @description Stub class to simulate the response from RelationshipLookupMapper to return a RelationshipLookup model
     **************************************************************************************************************************************/ 
     private class STUB_RelationshipLookupMapper extends RelationshipLookupMapper {
 
