@@ -1,0 +1,19 @@
+<template>
+    <template if:true={isDisplayGroup}>
+        <lightning-card title={labelReference.stgHealthCheckTitle}>
+            <template if:true={isExpanded}>
+                <div class="slds-var-p-around_medium lgc-bg">
+                    <lightning-tree-grid
+                        columns={gridColumns}
+                        data={gridData}
+                        expanded-rows={gridExpandedRows}
+                        hide-checkbox-column="true"
+                        key-field="setting"
+                        ondataload={handleDataLoad}
+                    ></lightning-tree-grid>
+                </div>
+            </template>
+        </lightning-card>
+    </template>
+    
+</template>

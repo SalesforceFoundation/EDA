@@ -1384,6 +1384,7 @@
     <types>
         <members>healthCheck</members>
         <members>healthCheckDisplay</members>
+        <members>healthCheckGroup</members>
         <members>healthCheckHighlightsPanel</members>
         <members>healthCheckRun</members>
         <name>LightningComponentBundle</name>
