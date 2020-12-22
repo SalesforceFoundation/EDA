@@ -85,6 +85,20 @@ public with sharing class HealthCheckController_TEST {
         Test.stopTest();
     }
 
+    /****************************************************************************************************************************
+    * @description Test method to verify that the updateHealthCheckLastRunDate method returns today's date.
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void updateHealthCheckLastRunDate(){
+        FeatureParameterService.instance = new STUB_FeatureParameterService();
+
+        Test.startTest();
+            String lastRunDate = HealthCheckController.updateHealthCheckLastRunDate();
+        Test.stopTest();
+
+        System.assertEquals(Date.today().format(), lastRunDate, 'Last Run date should be today\'s');
+    }
+
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
@@ -114,6 +128,25 @@ public with sharing class HealthCheckController_TEST {
         public override HealthCheckVModel getHealthCheckViewModel(){            
             throw new TestException('Test exception thrown!');
         }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from FeatureParameterSerivce class to return models and update from models
+    **************************************************************************************************************************************/ 
+    private class STUB_FeatureParameterService extends FeatureParameterService {
+
+        @TestVisible 
+        public override void updateFromFeatureParameterModel(FeatureParameterModel featureParamModel) {
+            UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
+            featureManager.setPackageDateValue('SettingsHealthCheckLastRunDate',  Date.today());
+        }
+
+        @TestVisible 
+        public override FeatureParameterModel getFeatureParameterModel(String featureParamModel) {            
+            FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', Date.today());
+            return featureParamDateMdl;
+        }
+
     }
 
     public class TestException extends Exception {}

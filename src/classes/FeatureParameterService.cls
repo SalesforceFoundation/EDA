@@ -29,7 +29,7 @@
 * @date 2021
 * @group
 * @group-content ../../ApexDocContent/
-* @description
+* @description Returns a Feature Parameter Model and updates the last run date from the model.
 */
 public virtual with sharing class FeatureParameterService {
 
@@ -59,10 +59,19 @@ public virtual with sharing class FeatureParameterService {
 
     /*******************************************************************************************************
     * @description Returns model for the feature parameter
+    * @param featureParameter The feature parameter to get the model for
     * @return MODL_FeatureParameterDate The model for the feature parameter
     ********************************************************************************************************/
-    public FeatureParameterModel getFeatureParameterModel() {
-        return this.locateFeatureParameterMapper().getFeatureParameterModel('placeHolder');
+    public virtual FeatureParameterModel getFeatureParameterModel(String featureParameter) {
+        return this.locateFeatureParameterMapper().getFeatureParameterModel(featureParameter);
+    }
+
+    /*******************************************************************************************************
+    * @description Updates Last Run Date from Feature Paramerte model
+    * @Param featureParamModel The FeatureParameterDate to update the date from
+    ********************************************************************************************************/
+    public virtual void updateFromFeatureParameterModel(FeatureParameterModel featureParamModel) {
+        this.locateFeatureParameterMapper().updateFromFeatureParameterModel(featureParamModel);
     }
 
     /*******************************************************************************************************

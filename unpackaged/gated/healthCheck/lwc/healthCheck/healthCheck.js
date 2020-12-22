@@ -30,4 +30,5 @@ export default class HealthCheck extends LightningElement {
             console.log('error retrieving health check view model');
         }
     }
+
 }

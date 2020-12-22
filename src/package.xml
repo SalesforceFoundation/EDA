@@ -815,11 +815,21 @@
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
+        <members>stgHealthCheckErrorLastRunDate</members>
         <members>stgHealthCheckLastRun</members>
         <members>stgHealthCheckRunButton</members>
+        <members>stgHealthCheckRecoFix</members>
+        <members>stgHealthCheckResultsCollapse</members>
+        <members>stgHealthCheckResultsExpand</members>
+        <members>stgHealthCheckRunButton</members>
+        <members>stgHealthCheckRunError</members>
+        <members>stgHealthCheckSetting</members>
+        <members>stgHealthCheckStatus</members>
         <members>stgHealthCheckStatusFailed</members>
         <members>stgHealthCheckStatusPassed</members>
         <members>stgHealthCheckTitle</members>
+        <members>stgHealthChecksAllPassed</members>
+        <members>stgHealthChecksNotAllPassed</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -1331,6 +1341,10 @@
         <members>UsingOldContactEthnicity</members>
         <members>UsingOldCourseDescription</members>
         <name>FeatureParameterBoolean</name>
+    </types>
+    <types>
+        <members>SettingsHealthCheckLastRunDate</members>
+        <name>FeatureParameterDate</name>
     </types>
     <types>
         <members>Data_CountAdministrativeAccounts</members>
