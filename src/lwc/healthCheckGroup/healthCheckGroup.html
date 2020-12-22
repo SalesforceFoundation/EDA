@@ -1,6 +1,42 @@
 <template>
     <template if:true={isDisplayGroup}>
-        <lightning-card title={labelReference.stgHealthCheckTitle}>
+        <lightning-card>
+            <h3 slot="title">
+                <div class="slds-grid">
+                    <div class="slds-col 
+                                slds-size_1-of-12">
+                        <!-- <template if:true={isExpanded}>
+                            <lightning-button-icon 
+                                icon-name="utility:chevrondown"
+                                onclick={collapseGroup}
+                                alternative-text="Collapse group results">
+                            </lightning-button-icon>
+                        </template>
+                        <template if:false={isExpanded}>
+                            <lightning-button-icon 
+                                icon-name="utility:chevronright"
+                                onclick={expandGroup}
+                                alternative-text="Expand group results">
+                            </lightning-button-icon>
+                        </template> -->
+                        icon
+                    </div>
+                    <div class="slds-col 
+                                slds-size_1-of-12">
+                                Icon
+                    </div>
+                    <div class="slds-col 
+                                slds-size_3-of-12">
+                        Group Title
+                    </div>
+                    <div class="slds-col 
+                                slds-size_2-of-12">
+                        x of y passed
+                    </div>
+                </div>
+            </h3>
+
+
             <template if:true={isExpanded}>
                 <div class="slds-var-p-around_medium lgc-bg">
                     <lightning-tree-grid
