@@ -29,7 +29,7 @@
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Mapper class to return RelationshipLookupMapper model
+* @description Mapper class to return a list of RelationshipLookup models
 */
 public virtual with sharing class RelationshipLookupMapper {
 
@@ -58,8 +58,8 @@ public virtual with sharing class RelationshipLookupMapper {
     }
 
     /**********************************************************************************
-    * @description Returns a list of  RelationshipLookup models
-    * @return List<RelationshipLookupModel> The ist of  RelationshipLookup models
+    * @description Returns a list of RelationshipLookup models
+    * @return List<RelationshipLookupModel> A list of RelationshipLookup models
     **********************************************************************************/
     public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
 

@@ -66,9 +66,9 @@ private class  RelationshipLookupMapper_TEST {
         System.assertEquals(true, relationshipLookupMapperInstance1 != null, 'Instance of mapper class should not be null.');
     }
 
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getRelationshipLookupModels method returns the relationship lookup models
-    ***************************************************************************************************************************/
+    /****************************************************************************************************************************
+    * @description Test method to verify that the getRelationshipLookupModels method returns a list of relationship lookup models
+    *****************************************************************************************************************************/
     @isTest
     private static void getRelationshipLookupModels() {
 
