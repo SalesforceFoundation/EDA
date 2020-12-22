@@ -41,7 +41,7 @@ public with sharing class RelationshipLookupModel {
     public String neutralValue;
 
     // Constructor to set the values
-    public RelationshipLookupModel(String Name, Boolean isActive, String femaleValue, String maleValue, String neutralValue) {
+    public RelationshipLookupModel(String name, Boolean isActive, String femaleValue, String maleValue, String neutralValue) {
         this.name = name;
         this.isActive = isActive;
         this.femaleValue = femaleValue;
