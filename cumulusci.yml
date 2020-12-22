@@ -230,7 +230,6 @@ tasks:
             apex: qaSetup();
 
     github_release_notes:
-        description: Creates a section in github release notes for a trialforce template ID placeholder.
         options:
             trial_info: "`TBD`"
 
