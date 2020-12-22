@@ -143,6 +143,12 @@
         <members>PREQ_PreventPPlanParent_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
+        <members>RelationshipLookupMapper</members>
+        <members>RelationshipLookupMapper_TEST</members>
+        <members>RelationshipLookupModel</members>
+        <members>RelationshipLookupModel_TEST</members>
+        <members>RelationshipLookupSettingsService</members>
+        <members>RelationshipLookupSettingsService_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
