@@ -70,7 +70,7 @@ private class RecordTypeMapper_TEST {
     @isTest
     private static void getModelByIdMapForSObjectTypeAccountTest() {
         Test.startTest();
-            Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeMapper.getInstance().getModelByIdMapForSObjectType(SObjectType.Account);
+            Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeMapper.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
         Test.stopTest(); 
         
         System.assertEquals(true, recordTypeModelById.keySet().contains(Util_Describe.getAdminAccRecTypeID()));

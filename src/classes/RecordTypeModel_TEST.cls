@@ -42,10 +42,10 @@ private class RecordTypeModel_TEST {
             RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', 'hed');
         Test.stopTest();
 
-        System.assertEquals('000000000000000000', RecordTypeModel.id);
-        System.assertEquals('Household', RecordTypeModel.name);
-        System.assertEquals('Household Account', RecordTypeModel.developerName);
-        System.assertEquals('hed', RecordTypeModel.namespace);
+        System.assertEquals('000000000000000000', recordTypeModel.id);
+        System.assertEquals('Household', recordTypeModel.name);
+        System.assertEquals('Household Account', recordTypeModel.developerName);
+        System.assertEquals('hed', recordTypeModel.namespace);
     }
 }
 
