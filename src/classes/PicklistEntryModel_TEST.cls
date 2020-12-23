@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020, Salesforce.org
+    Copyright (c) 2021, Salesforce.org
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
@@ -26,7 +26,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2020
+* @date 2021
 * @group
 * @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for PicklistEntryModel
