@@ -62,7 +62,7 @@ public virtual with sharing class RecordTypeMapper {
     * @Param SObjectype
     * @return A map of Record Type Model By Id
     ******************************************************************************/
-    public Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+    public virtual Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
         Map<Id, RecordTypeModel> recordTypeModelById = new Map<Id, RecordTypeModel>();
         Map<String, Schema.RecordTypeInfo> recordTypeInfoByRecordTypeName = Util_Describe.getRecordTypeInfoDevNameMap(sObjectType.getDescribe().getName());
         

@@ -62,5 +62,19 @@ private class RecordTypeMapper_TEST {
         System.assertEquals(recordTypeMapperInstance1, recordTypeMapperInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
         System.assertEquals(true, recordTypeMapperInstance1 != null, 'Instance of service class should not be null.');
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getModelByIdMapForSObjectType returns correct record type model by id map.
+    * Since unit tests have access to record types in the org, we will only check if admin record type exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getModelByIdMapForSObjectTypeAccountTest() {
+        Test.startTest();
+            Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeMapper.getInstance().getModelByIdMapForSObjectType(SObjectType.Account);
+        Test.stopTest(); 
+        
+        System.assertEquals(true, recordTypeModelById.keySet().contains(Util_Describe.getAdminAccRecTypeID()));
+        System.assertEquals('Administrative', recordTypeModelById.get(Util_Describe.getAdminAccRecTypeID()).name);
+    }
 }
 

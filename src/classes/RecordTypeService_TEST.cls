@@ -62,5 +62,44 @@ private class RecordTypeService_TEST {
         System.assertEquals(recordTypeServiceInstance1, recordTypeServiceInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
         System.assertEquals(true, recordTypeServiceInstance1 != null, 'Instance of service class should not be null.');
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that a map of Record Type model by Id is returned by getModelByIdMapForSObjectType correctly
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getModelByIdMapForSObjectTypeTest() {
+        RecordTypeMapper.instance = new STUB_RecordTypeMapper();
+
+        Test.startTest();
+            Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(SObjectType.Account);
+        Test.stopTest();
+
+        System.assertEquals(true, recordTypeModelById.keySet().contains('000000000000000000'));
+        System.assertEquals('Household', recordTypeModelById.get('000000000000000000').name);
+        System.assertEquals('Household Account', recordTypeModelById.get('000000000000000000').developerName);
+        System.assertEquals('hed', recordTypeModelById.get('000000000000000000').namespace);
+    }
+
+
+
+    /**************************************************************************************************************************
+    ****************************************************** STUB CLASS *********************************************************
+    **************************************************************************************************************************/
+
+    /*************************************************************************************************************
+    * @description Stub class to simulate the response from RecordTypeMapper to return a map of Record Type model by Id
+    */
+    private class STUB_RecordTypeMapper extends RecordTypeMapper {
+        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+            Map<Id, RecordTypeModel> stubRecordTypeModelById = new Map<Id, RecordTypeModel>();
+
+            Id recordTypeModelFakeId = '000000000000000000';
+            RecordTypeModel recordTypeModel = new RecordTypeModel(recordTypeModelFakeId, 'Household', 'Household Account', 'hed');
+
+            stubRecordTypeModelById.put(recordTypeModelFakeId, recordTypeModel);
+            
+            return stubRecordTypeModelById;         
+        }
+    }
 }
 
