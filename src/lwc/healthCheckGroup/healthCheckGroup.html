@@ -1,42 +1,39 @@
 <template>
     <template if:true={isDisplayGroup}>
         <lightning-card>
+
+            <!-- Card Header -->
             <h3 slot="title">
                 <div class="slds-grid">
-                    <div class="slds-col 
-                                slds-size_1-of-12">
-                        <!-- <template if:true={isExpanded}>
-                            <lightning-button-icon 
-                                icon-name="utility:chevrondown"
-                                onclick={collapseGroup}
-                                alternative-text="Collapse group results">
-                            </lightning-button-icon>
-                        </template>
-                        <template if:false={isExpanded}>
-                            <lightning-button-icon 
-                                icon-name="utility:chevronright"
-                                onclick={expandGroup}
-                                alternative-text="Expand group results">
-                            </lightning-button-icon>
-                        </template> -->
-                        icon
-                    </div>
-                    <div class="slds-col 
-                                slds-size_1-of-12">
-                                Icon
-                    </div>
-                    <div class="slds-col 
-                                slds-size_3-of-12">
-                        Group Title
-                    </div>
-                    <div class="slds-col 
-                                slds-size_2-of-12">
-                        x of y passed
-                    </div>
+                    <div class="slds-col">
+                    <lightning-button-icon
+                        icon-name={collapsableIcon}
+                        variant="bare"
+                        onclick={toggleExpanded}
+                        alternative-text='mocked'
+                        aria-controls="courseCardBody"
+                        aria-expanded={expanded}
+                        aria-live="polite"
+                    ></lightning-button-icon>
+                </div>
+                <div class="slds-col">
+                    <lightning-icon
+                        icon-name="utility:error"
+                        size="small"
+                        variant="error"
+                        class="slds-var-p-left_small"
+                    ></lightning-icon>
+                </div>
+                <div class="slds-col slds-align-bottom slds-var-p-left_small">
+                    Health Check Example
+                </div>
+                <div class="slds-col slds-align-bottom slds-var-p-left_small">
+                    <div class="slds-text-body_small">{passedChecksDisplay}</div>
+                </div>
                 </div>
             </h3>
 
-
+            <!-- Card Body -->
             <template if:true={isExpanded}>
                 <div class="slds-var-p-around_medium lgc-bg">
                     <lightning-tree-grid

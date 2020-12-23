@@ -29,7 +29,7 @@ public virtual with sharing class HealthCheckGroupService {
     * @param  namespace namespace description
     * @return           return description
     */
-    public HealthCheckGroupVModel getHealthCheckGroup(String name, String className, String namespace){
+    public virtual HealthCheckGroupVModel getHealthCheckGroup(String name, String className, String namespace){
         HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface;
 
         try{

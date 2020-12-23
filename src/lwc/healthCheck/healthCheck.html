@@ -11,11 +11,9 @@
                 </c-health-check-run>
             </div>
             <div class="slds-col slds-p-vertical_small">
-                <template if:true={displayHealthCheck}>
-                    <c-health-check-display
-                        health-check-definitions-list={healthCheckViewModel}>
-                    </c-health-check-display>
-                </template>
+                <c-health-check-display
+                    health-check-definitions-list={healthCheckDefinitionsToDisplayList}>
+                </c-health-check-display>
             </div>
         </div>
     </div>

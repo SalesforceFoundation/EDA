@@ -55,31 +55,19 @@ public with sharing class HealthCheckController {
     }
 
     /**********************************************************************************
-<<<<<<< HEAD
     * @description Updates and retrieves the last run date of the health check
     * @return The last run date of health check.
     **********************************************************************************/
     @AuraEnabled(cacheable=true)
     public static String updateHealthCheckLastRunDate() {
-        return System.today().format() + ' ' + System.now().format();
-
-        // FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());
-        // FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
-
-        // return FeatureParameterService.getInstance().getFeatureParameterModel('SettingsHealthCheckLastRunDate').convertToString();
+        try {
+            FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());
+            FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
+            return FeatureParameterService.getInstance().getFeatureParameterModel('SettingsHealthCheckLastRunDate').convertToString();
+        } catch (Exception e) {
+            System.debug('MK DEBUG error in updateHealthCheckLastRunDate: ' + e.getMessage());
+            throw new AuraHandledException(e.getMessage());
+        }
+        
     }
 }
-=======
-    * @description Updates and retireves the last run date of the health check
-    * @return The last run date of health check.
-    **********************************************************************************/
-    @AuraEnabled
-    public static String updateHealthCheckLastRunDate() {
-
-        FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());
-        FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
-
-        return FeatureParameterService.getInstance().getFeatureParameterModel('SettingsHealthCheckLastRunDate').convertToString();
-    }
-}
->>>>>>> feature/230__HealthCheckGroup

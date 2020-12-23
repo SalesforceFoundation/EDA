@@ -1,20 +1,27 @@
 <template>
     <lightning-card title="HealthCheckDisplay">
         <div class="slds-grid slds-wrap">
-            <!-- <template iterator:hcdefinitionvmodel={healthCheckGroupLWCList}
-                onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}
-                display={displayHealthCheckDefinition}>
-                <li key={hcdefinitionvmodel.value.name}>
-                    {hcdefinitionvmodel.value.name}
-                </li>
-            </template> -->
-
-            <template iterator:hcdefinitionvmodel={healthCheckGroupLWCList}
-                onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}>
-                <li key={hcdefinitionvmodel.value.name}>
-                    {hcdefinitionvmodel.value.name}
-                </li>
-            </template>            
+            <ul>
+                <template if:true={isDisplayHealthCheckLWC} >
+                    <template if:true={healthCheckDefinitionsList} iterator:hcdefinition={healthCheckDefinitionsList}>
+                        <li key={hcdefinition.value.name}>
+                            <c-health-check-group
+                                is-display-group={isDisplayHealthCheckGroup}
+                                onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}
+                                aria-label={hcdefinition.value.name}>
+                            </c-health-check-group>    
+                        </li>
+                    </template>
+                </template>
+                <template if:false={isDisplayHealthCheckLWC} >
+                    <!-- Display spinner -->
+                    <lightning-spinner
+                        alternative-text="Loading..." 
+                        variant="brand"
+                        size="medium">
+                    </lightning-spinner>
+                </template>
+            </ul>
         </div>
     </lightning-card>
 </template>

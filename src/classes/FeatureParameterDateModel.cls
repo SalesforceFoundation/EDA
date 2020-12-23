@@ -33,7 +33,7 @@
 */
 public with sharing class FeatureParameterDateModel extends FeatureParameterModel{
 
-    public Date value { get; private set; }
+    @AuraEnabled public Date value { get; private set; }
 
     /* Constructor to set the properties */
     public FeatureParameterDateModel(String name, Date value) {

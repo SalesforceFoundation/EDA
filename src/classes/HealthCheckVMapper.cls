@@ -79,7 +79,6 @@ public virtual with sharing class HealthCheckVMapper {
     **********************************************************************************/
     public virtual HealthCheckVModel getHealthCheckViewModel() {
         try {
-
             String lastRunDate = '';
 
             FeatureParameterDateModel featureParamDateModel = 
@@ -108,6 +107,5 @@ public virtual with sharing class HealthCheckVMapper {
         catch (FeatureParameterMapper.FeatureParameterMapperException e) {
             throw new AuraHandledException(Label.stgHealthCheckErrorLastRunDate);
         }
-
     }
 }
