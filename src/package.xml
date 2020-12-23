@@ -158,6 +158,8 @@
         <members>RecordTypeMapper_TEST</members>
         <members>RecordTypeModel</members>
         <members>RecordTypeModel_TEST</members>
+        <members>RecordTypeService</members>
+        <members>RecordTypeService_TEST</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_Contact_PreferredEmail</members>
