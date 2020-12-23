@@ -31,6 +31,46 @@
 * @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Mapper class for Record Type
 */
-public with sharing class RecordTypeMapper {
+public virtual with sharing class RecordTypeMapper {
+
+    /*********************************************
+    * @description Instance for Singleton Pattern
+    **********************************************/
+    @TestVisible
+    private static RecordTypeMapper instance;
+
+    /*********************************************************************
+    * @description Empty constructor is not public for Singleton Pattern
+    **********************************************************************/
+    protected RecordTypeMapper() {}
+
+    /******************************************************************************
+    * @description Static method to get the current instance for Singleton pattern
+    * @return The instance of RecordTypeMapper.
+    ******************************************************************************/
+    public static RecordTypeMapper getInstance() {
+
+        if (instance == null) {
+            instance = new RecordTypeMapper();
+        }
+
+        return instance;
+    }
+
+    /******************************************************************************
+    * @description Get a map of Record Type Model By Id for specified SObjectType
+    * @return A map of Record Type Model By Id
+    ******************************************************************************/
+    public static Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(SObjectType sObjectType) {
+        Map<Id, RecordTypeModel> recordTypeModelById = new Map<Id, RecordTypeModel>();
+        Map<String, Schema.RecordTypeInfo> recordTypeInfoByRecordTypeName = getRecordTypeInfoDevNameMap(sObjectType.Name);
+        
+        for (Schema.RecordTypeInfo recordTypeInfo : recordTypeInfoByRecordTypeName.keySet()) {
+            RecordTypeModel recordTypeModel = new RecordTypeModel(recordTypeInfo.getRecordTypeId(), recordTypeInfo.getName(), recordTypeInfo.getDeveloperName(), 'hed');
+            recordTypeModelById.put(recordTypeModel.Id, recordTypeModel);
+        }
+
+        return recordTypeModelById;
+    }
 
 }

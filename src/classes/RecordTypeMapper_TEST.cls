@@ -33,6 +33,34 @@
 */
 @isTest
 private class RecordTypeMapper_TEST {
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * RecordTypeMapper class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
+        Test.startTest();
+        RecordTypeMapper recordTypeMapperInstance = RecordTypeMapper.getInstance();
+        Test.stopTest();
 
+        System.assertEquals(RecordTypeMapper.instance, recordTypeMapperInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(true, recordTypeMapperInstance != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * RecordTypeMapper class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+        Test.startTest();
+            RecordTypeMapper recordTypeMapperInstance1 = RecordTypeMapper.getInstance();
+            RecordTypeMapper recordTypeMapperInstance2 = RecordTypeMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(RecordTypeMapper.instance, recordTypeMapperInstance1, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(recordTypeMapperInstance1, recordTypeMapperInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
+        System.assertEquals(true, recordTypeMapperInstance1 != null, 'Instance of service class should not be null.');
+    }
 }
 
