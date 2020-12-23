@@ -13,6 +13,7 @@ export default class HealthCheckGroup extends LightningElement {
     @track groupName = 'all success';
     @track groupClassName = 'EDAHealthCheckGroupAPIService';
     @track groupNamespace = 'hed';
+    @track healthCheckGroupName = '';
 
     handleDataLoad(){}
 
@@ -33,6 +34,8 @@ export default class HealthCheckGroup extends LightningElement {
     iconReference = {
         expandedIcon: 'utility:chevrondown',
         collapsedIcon: 'utility:chevronright',
+        errorIcon: 'utility:error',
+        successIcon: 'utility:success',
     }
 
     collapseGroup(){
@@ -65,6 +68,8 @@ export default class HealthCheckGroup extends LightningElement {
 
             this.totalChecks = tempData.totalChecks;
             this.passedChecks = tempData.passedChecks;
+
+            this.healthCheckGroupName = tempData.label;
 
             let tempArray = [].concat(tempData.healthCheckItemList);
             console.log( 'Array is ' + JSON.stringify( tempData ) );
@@ -126,8 +131,15 @@ export default class HealthCheckGroup extends LightningElement {
         },
     ];
 
+    get statusIcon() {
+        return this.iconReference.successIcon;
+    } 
+    get statusIconVariant() {
+        return 'success';
+    }
+
     get collapsableIcon() {
-        if(this.expanded) {
+        if(this.isExpanded) {
             return this.iconReference.expandedIcon;
         }
 
@@ -135,7 +147,7 @@ export default class HealthCheckGroup extends LightningElement {
     }
 
     get notExpanded() {
-        return !this.expanded;
+        return !this.isExpanded;
     }
 
     get passedChecksDisplay() {
@@ -148,6 +160,6 @@ export default class HealthCheckGroup extends LightningElement {
     }
 
     toggleExpanded() {
-        this.expanded = !this.expanded;
+        this.isExpanded = !this.isExpanded;
     }
 }

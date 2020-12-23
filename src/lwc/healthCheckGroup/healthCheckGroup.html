@@ -10,7 +10,7 @@
                         icon-name={collapsableIcon}
                         variant="bare"
                         onclick={toggleExpanded}
-                        alternative-text='mocked'
+                        alternative-text='collapse group'
                         aria-controls="courseCardBody"
                         aria-expanded={expanded}
                         aria-live="polite"
@@ -18,14 +18,14 @@
                 </div>
                 <div class="slds-col">
                     <lightning-icon
-                        icon-name="utility:error"
+                        icon-name={statusIcon}
                         size="small"
-                        variant="error"
+                        variant={statusIconVariant}
                         class="slds-var-p-left_small"
                     ></lightning-icon>
                 </div>
                 <div class="slds-col slds-align-bottom slds-var-p-left_small">
-                    Health Check Example
+                    {healthCheckGroupName}
                 </div>
                 <div class="slds-col slds-align-bottom slds-var-p-left_small">
                     <div class="slds-text-body_small">{passedChecksDisplay}</div>
