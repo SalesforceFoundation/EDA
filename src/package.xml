@@ -149,6 +149,12 @@
         <members>PicklistEntryModel_TEST</members>
         <members>PicklistEntryService</members>
         <members>PicklistEntryService_TEST</members>
+        <members>RelationshipLookupMapper</members>
+        <members>RelationshipLookupMapper_TEST</members>
+        <members>RelationshipLookupModel</members>
+        <members>RelationshipLookupModel_TEST</members>
+        <members>RelationshipLookupSettingsService</members>
+        <members>RelationshipLookupSettingsService_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
