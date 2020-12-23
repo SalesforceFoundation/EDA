@@ -42,11 +42,11 @@ private class  PicklistEntryMapper_TEST {
     private static void getInstanceNew() {
 
         Test.startTest();
-            PicklistEntryMapper relationshipLookupMapperInstance = PicklistEntryMapper.getInstance();
+            PicklistEntryMapper picklistEntryMapperInstance = PicklistEntryMapper.getInstance();
         Test.stopTest();
 
-        System.assertEquals(PicklistEntryMapper.instance, relationshipLookupMapperInstance, 'Instance of mapper class returned should match static instance variable.');
-        System.assertEquals(true, relationshipLookupMapperInstance != null, 'Instance of mapper class should not be null.');
+        System.assertEquals(PicklistEntryMapper.instance, picklistEntryMapperInstance, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(true, picklistEntryMapperInstance != null, 'Instance of mapper class should not be null.');
     }
 
     /**************************************************************************************************************************
@@ -72,12 +72,16 @@ private class  PicklistEntryMapper_TEST {
     @isTest
     private static void getModelsByNameForSObjectField() {
 
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
+        String objectName = prefix + 'Relationship__c';
+        String fieldName = prefix + 'Type__c';
+
         Test.startTest();
             Map<String, PicklistEntryModel> picklistEntryModelByPicklistEntryName = 
-                PicklistEntryMapper.getInstance().getModelsByNameForSObjectField(Relationship__c.getSObjectType(), Relationship__c.Type__c.getDescribe().getSObjectField());
+                PicklistEntryMapper.getInstance().getModelsByNameForSObjectField(UTIL_Describe.getObjectDescribe(objectName).getSObjectType(), 
+                                                                                 UTIL_Describe.getFieldDescribe(objectName, fieldName).getSObjectField());
         Test.stopTest();
 
-        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
         List<Schema.PicklistEntry> picklistEntriesList = UTIL_Describe.getFieldPicklistEntries(prefix + 'Relationship__c', prefix + 'Type__c');
 
         System.assertEquals(picklistEntriesList.size(), picklistEntryModelByPicklistEntryName.size(), 'Each picklist entry should have a corresponding model');
