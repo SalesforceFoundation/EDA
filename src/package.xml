@@ -143,6 +143,12 @@
         <members>PREQ_PreventPPlanParent_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
+        <members>PicklistEntryMapper</members>
+        <members>PicklistEntryMapper_TEST</members>
+        <members>PicklistEntryModel</members>
+        <members>PicklistEntryModel_TEST</members>
+        <members>PicklistEntryService</members>
+        <members>PicklistEntryService_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
@@ -808,6 +814,7 @@
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckRunButton</members>
         <members>stgHealthCheckTitle</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
@@ -873,7 +880,6 @@
         <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
-        <members>stgHealthCheckRunButton</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
