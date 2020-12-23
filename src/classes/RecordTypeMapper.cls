@@ -28,24 +28,9 @@
 * @author Salesforce.org
 * @date 2020
 * @group
-* @group-content ../../ApexDocContent/Tests.htm
-* @description Test class for RecordTypeModel
+* @group-content ../../ApexDocContent/HealthCheck.htm
+* @description Mapper class for Record Type
 */
-@isTest
-private class RecordTypeModel_TEST {
-    /**************************************************************************************************************************
-    * @description Test method to verify that the constructor is working as expected.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void constructorTest() {
-        Test.startTest();
-            RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', 'hed');
-        Test.stopTest();
+public with sharing class RecordTypeMapper {
 
-        System.assertEquals('000000000000000000', RecordTypeModel.id);
-        System.assertEquals('Household', RecordTypeModel.name);
-        System.assertEquals('Household Account', RecordTypeModel.developerName);
-        System.assertEquals('hed', RecordTypeModel.namespace);
-    }
 }
-

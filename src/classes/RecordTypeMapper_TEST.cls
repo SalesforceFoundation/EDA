@@ -29,23 +29,10 @@
 * @date 2020
 * @group
 * @group-content ../../ApexDocContent/Tests.htm
-* @description Test class for RecordTypeModel
+* @description Test class for RecordTypeMapper
 */
 @isTest
-private class RecordTypeModel_TEST {
-    /**************************************************************************************************************************
-    * @description Test method to verify that the constructor is working as expected.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void constructorTest() {
-        Test.startTest();
-            RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', 'hed');
-        Test.stopTest();
+private class RecordTypeMapper_TEST {
 
-        System.assertEquals('000000000000000000', RecordTypeModel.id);
-        System.assertEquals('Household', RecordTypeModel.name);
-        System.assertEquals('Household Account', RecordTypeModel.developerName);
-        System.assertEquals('hed', RecordTypeModel.namespace);
-    }
 }
 
