@@ -10,10 +10,9 @@ export default class HealthCheckGroup extends LightningElement {
     @track gridData;
     @track gridExpandedRows;
 
-    @track groupName = 'all success';
-    @track groupClassName = 'EDAHealthCheckGroupAPIService';
-    @track groupNamespace = 'hed';
-    @track healthCheckGroupName = '';
+    @track healthCheckGroupName = 'all success';
+    @track healthCheckGroupClassName = 'EDAHealthCheckGroupAPIService';
+    @track healthCheckGroupNamespace = 'hed';
 
     handleDataLoad(){}
 
@@ -53,9 +52,9 @@ export default class HealthCheckGroup extends LightningElement {
     @wire(
         getHealthCheckGroupViewModel, 
         {
-            name: '$groupName', 
-            className: '$groupClassName', 
-            namespace: '$groupNamespace'
+            name: '$healthCheckGroupName', 
+            className: '$healthCheckGroupClassName', 
+            namespace: '$healthCheckGroupNamespace'
         })
     treeData({ error, data }) {
         console.log( 'Inside wire' );
