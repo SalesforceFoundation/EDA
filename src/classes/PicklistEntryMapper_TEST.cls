@@ -73,16 +73,18 @@ private class  PicklistEntryMapper_TEST {
     private static void getModelsByNameForSObjectField() {
 
         String prefix = UTIL_Namespace.StrTokenNSPrefix('');
-        String objectName = prefix + 'Relationship__c';
-        String fieldName = prefix + 'Type__c';
+        String objectName = UTIL_Namespace.StrTokenNSPrefix('Relationship__c');
+        String fieldName = UTIL_Namespace.StrTokenNSPrefix('Type__c');
+
+        SObjectType sObjectTypeName = UTIL_Describe.getObjectDescribe(objectName).getSObjectType();
+        SObjectField sObjectFieldName = UTIL_Describe.getFieldDescribe(objectName, fieldName).getSObjectField();
 
         Test.startTest();
             Map<String, PicklistEntryModel> picklistEntryModelByPicklistEntryName = 
-                PicklistEntryMapper.getInstance().getModelsByNameForSObjectField(UTIL_Describe.getObjectDescribe(objectName).getSObjectType(), 
-                                                                                 UTIL_Describe.getFieldDescribe(objectName, fieldName).getSObjectField());
+                PicklistEntryMapper.getInstance().getModelsByNameForSObjectField(sObjectTypeName, sObjectFieldName);
         Test.stopTest();
 
-        List<Schema.PicklistEntry> picklistEntriesList = UTIL_Describe.getFieldPicklistEntries(prefix + 'Relationship__c', prefix + 'Type__c');
+        List<Schema.PicklistEntry> picklistEntriesList = UTIL_Describe.getFieldPicklistEntries(objectName, fieldName);
 
         System.assertEquals(picklistEntriesList.size(), picklistEntryModelByPicklistEntryName.size(), 'Each picklist entry should have a corresponding model');
 
