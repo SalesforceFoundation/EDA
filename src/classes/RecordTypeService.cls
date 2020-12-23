@@ -59,7 +59,34 @@ public virtual with sharing class RecordTypeService {
 
     /******************************************************************************
     * @description Get a map of Record Type Model By Id for specified SObjectType
+    * @Param SObjectype
     * @return A map of Record Type Model By Id
     ******************************************************************************/
+    public Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+        return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
+    }
+
+    /******************************************************************************
+    * @description Get the Record Type Model from the map of record type model by id
+    * @Param A string of Record Type Id 
+    * @Param A map of Record Type Model By Id
+    * @return An instance of Record Type Model
+    ******************************************************************************/
+    public RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
+        try {
+            return recordTypeModelById.get(Id.valueOf(recordTypeId));
+        } catch (System.StringException ex) {
+            return null;
+        }
+    }
+
+    /******************************************************************************
+    * @description Retrieves an instance of the RecordTypeMapper class.
+    * @return An instance of RecordTypeMapper.
+    ******************************************************************************/
+    @TestVisible
+    private RecordTypeMapper locateRecordTypeMapper() {
+        return RecordTypeMapper.getInstance();
+    }
 
 }
