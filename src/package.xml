@@ -37,6 +37,12 @@
         <members>AFFL_MultiRecordType_TEST</members>
         <members>ATTD_CourseConnectionContact_TDTM</members>
         <members>ATTD_CourseConnectionContact_TEST</members>
+        <members>AccountModelSettingsMapper</members>
+        <members>AccountModelSettingsMapper_TEST</members>
+        <members>AccountModelSettingsModel</members>
+        <members>AccountModelSettingsModel_TEST</members>
+        <members>AccountModelSettingsService</members>
+        <members>AccountModelSettingsService_TEST</members>
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
@@ -810,6 +816,7 @@
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckRunButton</members>
         <members>stgHealthCheckTitle</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
@@ -875,7 +882,6 @@
         <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
-        <members>stgHealthCheckRunButton</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
