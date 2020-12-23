@@ -229,6 +229,10 @@ tasks:
             path: scripts/setup.cls
             apex: qaSetup();
 
+    github_release_notes:
+        options:
+            trial_info: "`TBD`"
+
     has_einstein_licenses:
         group: 'EDA: Einstein Templates'
         description: Queries the target org for the existence of required permsets and returns true if found.
