@@ -61,11 +61,11 @@ public virtual with sharing class RecordTypeMapper {
     * @description Get a map of Record Type Model By Id for specified SObjectType
     * @return A map of Record Type Model By Id
     ******************************************************************************/
-    public static Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(SObjectType sObjectType) {
+    public Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
         Map<Id, RecordTypeModel> recordTypeModelById = new Map<Id, RecordTypeModel>();
-        Map<String, Schema.RecordTypeInfo> recordTypeInfoByRecordTypeName = getRecordTypeInfoDevNameMap(sObjectType.Name);
+        Map<String, Schema.RecordTypeInfo> recordTypeInfoByRecordTypeName = Util_Describe.getRecordTypeInfoDevNameMap(sObjectType.getDescribe().getName());
         
-        for (Schema.RecordTypeInfo recordTypeInfo : recordTypeInfoByRecordTypeName.keySet()) {
+        for (Schema.RecordTypeInfo recordTypeInfo : recordTypeInfoByRecordTypeName.values()) {
             RecordTypeModel recordTypeModel = new RecordTypeModel(recordTypeInfo.getRecordTypeId(), recordTypeInfo.getName(), recordTypeInfo.getDeveloperName(), 'hed');
             recordTypeModelById.put(recordTypeModel.Id, recordTypeModel);
         }

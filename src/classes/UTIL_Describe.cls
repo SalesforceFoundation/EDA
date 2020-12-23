@@ -1073,7 +1073,7 @@ public class UTIL_Describe {
     * @description Get a map of Schema.RecordTypeInfo by Record Type name 
     * @return A map of Schema.RecordTypeInfo by Record Type name
     */
-    public Map<String, Schema.RecordTypeInfo> getRecordTypeInfoDevNameMap(String objectName) {
+    public static Map<String, Schema.RecordTypeInfo> getRecordTypeInfoDevNameMap(String objectName) {
         if (recordTypeInfoByDeveloperName.get(objectName) == null) {
             populateRecordTypeInfoForSObject(objectName);
         }
