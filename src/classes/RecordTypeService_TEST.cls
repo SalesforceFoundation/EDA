@@ -107,7 +107,7 @@ private class RecordTypeService_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that null is returned for valid id not in the map
+    * @description Test method to verify that a valid record type model is returned.
     ***************************************************************************************************************************/
     @isTest
     private static void getRecordTypeModelFromMapValidIdInMapTest() {
@@ -115,7 +115,7 @@ private class RecordTypeService_TEST {
 
         Test.startTest();
             Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
-            System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('000000000000000000', recordTypeModelById));
+            RecordTypeModel recordTypeModel = RecordTypeService.getInstance().getRecordTypeModelFromMap('000000000000000000', recordTypeModelById);
         Test.stopTest();
 
         System.assertEquals('000000000000000000', recordTypeModel.Id);
