@@ -81,19 +81,6 @@ private class RecordTypeService_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that null is returned for invalid id even it is in the map
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getRecordTypeModelFromMapInvalidIdInMapTest() {
-        RecordTypeMapper.instance = new STUB_RecordTypeMapper();
-
-        Test.startTest();
-            Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
-            System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('invalidId', recordTypeModelById));
-        Test.stopTest();
-    }
-
-    /**************************************************************************************************************************
     * @description Test method to verify that null is returned for valid id not in the map
     ***************************************************************************************************************************/
     @isTest
@@ -136,10 +123,8 @@ private class RecordTypeService_TEST {
             Map<Id, RecordTypeModel> stubRecordTypeModelById = new Map<Id, RecordTypeModel>();
 
             RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', 'hed');
-            RecordTypeModel invalidIdrecordTypeModel = new RecordTypeModel('invalidId', 'invalidName', 'invalidDeveloperName ', 'invalidNamespace');
 
             stubRecordTypeModelById.put('000000000000000000', recordTypeModel);
-            stubRecordTypeModelById.put('invalidId', invalidIdrecordTypeModel);
             
             return stubRecordTypeModelById;         
         }
