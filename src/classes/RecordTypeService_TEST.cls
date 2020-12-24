@@ -97,7 +97,7 @@ private class RecordTypeService_TEST {
     * @description Test method to verify that null is returned for invalid id
     ***************************************************************************************************************************/
     @isTest
-    private static void getRecordTypeModelFromMapValidIdNotInMapTest() {
+    private static void getRecordTypeModelFromMapInvalidIdTest() {
         RecordTypeMapper.instance = new STUB_RecordTypeMapper();
 
         Test.startTest();
