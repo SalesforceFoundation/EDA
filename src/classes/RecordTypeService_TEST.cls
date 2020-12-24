@@ -118,7 +118,7 @@ private class RecordTypeService_TEST {
             System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('000000000000000000', recordTypeModelById));
         Test.stopTest();
 
-        System.assertEquals('000000000000000000', recordTypeModel.id);
+        System.assertEquals('000000000000000000', recordTypeModel.Id);
         System.assertEquals('Household', recordTypeModel.name);
         System.assertEquals('Household Account', recordTypeModel.developerName);
         System.assertEquals('hed', recordTypeModel.namespace);
