@@ -1,5 +1,5 @@
 ({
-    init : function(component) {
+    init: function (component) {
         component.set("v.isView", true);
         $A.util.addClass(component.find("settsTab"), "slds-active");
         $A.util.addClass(component.find("settsTabContent"), "slds-show");
@@ -7,31 +7,35 @@
         this.loadAfflMappings(component);
     },
 
-    loadAfflMappings : function(component) {
+    loadAfflMappings: function (component) {
         var prefix = component.get("v.namespacePrefix");
         var action = component.get("c.getAfflMappings");
-        
-        action.setCallback(this, function(response) {
-            
-            if(response.getState() === "SUCCESS") {
-                
+
+        action.setCallback(this, function (response) {
+            if (response.getState() === "SUCCESS") {
                 var settings = response.getReturnValue();
-                if(settings.length === 0) {
-                    this.setMessageLabel(component, "v.noAfflMappings", prefix, "noAfflMappings");
+                if (settings.length === 0) {
+                    this.setMessageLabel(
+                        component,
+                        "v.noAfflMappings",
+                        prefix,
+                        "noAfflMappings"
+                    );
                 }
 
-                component.set("v.afflMappings", this.removePrefixListSettings(settings, prefix));
-            
-            } else if(response.getState() === "ERROR") {
+                component.set(
+                    "v.afflMappings",
+                    this.removePrefixListSettings(settings, prefix)
+                );
+            } else if (response.getState() === "ERROR") {
                 this.displayError(response);
             }
-            
         });
 
         $A.enqueueAction(action);
     },
 
-    settsLinkClicked : function(component) {
+    settsLinkClicked: function (component) {
         $A.util.addClass(component.find("settsTab"), "slds-active");
         $A.util.removeClass(component.find("mappingsTab"), "slds-active");
 
@@ -42,7 +46,7 @@
         this.hideTabContent(component, "mappingsTabContent");
     },
 
-    mappingsLinkClicked : function(component) {
+    mappingsLinkClicked: function (component) {
         $A.util.removeClass(component.find("settsTab"), "slds-active");
         $A.util.addClass(component.find("mappingsTab"), "slds-active");
 
@@ -53,17 +57,20 @@
         $A.util.addClass(mappingsTabContent, "slds-show");
     },
 
-    resetSettings : function(component) {
+    resetSettings: function (component) {
         this.loadAfflMappings(component);
     },
 
-    saveMappings : function(component) {
+    saveMappings: function (component) {
         var saveAction = component.get("c.saveAfflMappings");
-        var settings = this.addPrefixListSettings(component.get("v.afflMappings"), component.get("v.namespacePrefix"));
-        
-        saveAction.setParams({"mappings" : settings});
-        saveAction.setCallback(this, function(response) {
-            if(response.getState() === "ERROR") {
+        var settings = this.addPrefixListSettings(
+            component.get("v.afflMappings"),
+            component.get("v.namespacePrefix")
+        );
+
+        saveAction.setParams({ mappings: settings });
+        saveAction.setCallback(this, function (response) {
+            if (response.getState() === "ERROR") {
                 this.displayError(response);
             }
         });
@@ -71,7 +78,7 @@
         $A.enqueueAction(saveAction);
     },
 
-    newAfflMapping : function(component) {
+    newAfflMapping: function (component) {
         var accRecType = component.find("accRecType").get("v.value");
         var primaryField = component.find("primaryField").get("v.value");
         var autoEnroll = component.find("autoEnroll").get("v.value");
@@ -79,43 +86,66 @@
         var autoEnrollRole = component.find("autoEnrollRole").get("v.value");
 
         var newMappingAction = component.get("c.newAfflMpg");
-        newMappingAction.setParams({ "accRecType" : accRecType, "primaryField" : primaryField, "autoEnroll" : autoEnroll,
-            "autoEnrollStatus" : autoEnrollStatus, "autoEnrollRole" : autoEnrollRole });
-        
-        newMappingAction.setCallback(this, function(response) {
-            if(response.getState() === "SUCCESS") {
+        newMappingAction.setParams({
+            accRecType: accRecType,
+            primaryField: primaryField,
+            autoEnroll: autoEnroll,
+            autoEnrollStatus: autoEnrollStatus,
+            autoEnrollRole: autoEnrollRole
+        });
+
+        newMappingAction.setCallback(this, function (response) {
+            if (response.getState() === "SUCCESS") {
                 component.set("v.noAfflMappings", "");
                 var afflMappings = component.get("v.afflMappings");
-                afflMappings.push({ "Id" : response.getReturnValue(), "Account_Record_Type__c" : accRecType, "Primary_Affl_Field__c" : primaryField,
-                                "Auto_Program_Enrollment__c" : autoEnroll, "Auto_Program_Enrollment_Status__c" : autoEnrollStatus,
-                                "Auto_Program_Enrollment_Role__c" : autoEnrollRole });
+                afflMappings.push({
+                    Id: response.getReturnValue(),
+                    Account_Record_Type__c: accRecType,
+                    Primary_Affl_Field__c: primaryField,
+                    Auto_Program_Enrollment__c: autoEnroll,
+                    Auto_Program_Enrollment_Status__c: autoEnrollStatus,
+                    Auto_Program_Enrollment_Role__c: autoEnrollRole
+                });
                 component.set("v.afflMappings", afflMappings);
-                this.clearNewStgBoxes(component, ["accRecType", "primaryField", "autoEnroll", "autoEnrollStatus", "autoEnrollRole"]);
-                
+                this.clearNewStgBoxes(component, [
+                    "accRecType",
+                    "primaryField",
+                    "autoEnroll",
+                    "autoEnrollStatus",
+                    "autoEnrollRole"
+                ]);
+
                 // Re-Disable Add Setting button after successful completion
                 component.find("newAfflMappingBtn").set("v.disabled", true);
-                
-            } else if(response.getState() === "ERROR") {
+            } else if (response.getState() === "ERROR") {
                 var errors = JSON.stringify(response.getError());
-                if (errors.includes('FIELD_INTEGRITY_EXCEPTION')) {                
+                if (errors.includes("FIELD_INTEGRITY_EXCEPTION")) {
                     var tst = component.find("errorToast");
                     $A.util.removeClass(tst, "slds-hide");
                     $A.util.addClass(tst, "slds-show");
-                }    
+                }
                 this.displayError(response);
             }
         });
         $A.enqueueAction(newMappingAction);
     },
 
-    deleteAfflMappingRow : function(component, id, position) {
-        this.deleteRow(component, "c.deleteAfflMappingRecord", "v.afflMappings", id, position, "v.noAfflMappings", "noAfflMappings",
-                component.get("v.namespacePrefix"));
+    deleteAfflMappingRow: function (component, id, position) {
+        this.deleteRow(
+            component,
+            "c.deleteAfflMappingRecord",
+            "v.afflMappings",
+            id,
+            position,
+            "v.noAfflMappings",
+            "noAfflMappings",
+            component.get("v.namespacePrefix")
+        );
     },
 
-    closeErrorToast: function(component) {
+    closeErrorToast: function (component) {
         var tst = component.find("errorToast");
         $A.util.removeClass(tst, "slds-show");
         $A.util.addClass(tst, "slds-hide");
-   }
-})
+    }
+});

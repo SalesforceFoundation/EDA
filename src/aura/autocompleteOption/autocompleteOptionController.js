@@ -1,5 +1,5 @@
 ({
-    handleClick : function(component, event, helper) {
+    handleClick: function (component, event, helper) {
         helper.fireOptionSelectedEvent(component);
-    },
-})
+    }
+});

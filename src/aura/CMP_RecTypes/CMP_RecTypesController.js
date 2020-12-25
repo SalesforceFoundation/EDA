@@ -1,5 +1,5 @@
 ({
-	saveSettings : function(component, event, helper) {
-		helper.saveSettings(component);
-	}
-})
+    saveSettings: function (component, event, helper) {
+        helper.saveSettings(component);
+    }
+});

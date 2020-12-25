@@ -1,21 +1,21 @@
 ({
-	init : function(component, event, helper) {
-		helper.init(component);
-	},
+    init: function (component, event, helper) {
+        helper.init(component);
+    },
 
-	saveSettings : function(component, event, helper) {
-		helper.saveSettings(component);
-	},
+    saveSettings: function (component, event, helper) {
+        helper.saveSettings(component);
+    },
 
-	resetSettings : function(component, event, helper) {
-		helper.resetSettings(component);
-	},
+    resetSettings: function (component, event, helper) {
+        helper.resetSettings(component);
+    },
 
-	tabNavigationClick : function(component, event, helper) {
+    tabNavigationClick: function (component, event, helper) {
         helper.tabNavClick(component, event);
     },
-    
-    closeToast: function(component, event, helper) {
+
+    closeToast: function (component, event, helper) {
         helper.closeToast(component);
     }
-})
+});

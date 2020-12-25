@@ -1,5 +1,5 @@
 ({
-	startCourseDescriptionCopy : function(component, event, helper) {
-		helper.courseDescriptionCopy(component);
-	}
-})
+    startCourseDescriptionCopy: function (component, event, helper) {
+        helper.courseDescriptionCopy(component);
+    }
+});

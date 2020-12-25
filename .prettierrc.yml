@@ -14,3 +14,9 @@ overrides:
     - files: "**/lwc/**/*.js"
       options:
           trailingComma: "es5"
+    - files: "**/aura/**/*.{cmp,page,component,xml}"
+      options:
+          parser: "html"
+    - files: "**/aura/**/*.js"
+      options:
+          trailingComma: "none"

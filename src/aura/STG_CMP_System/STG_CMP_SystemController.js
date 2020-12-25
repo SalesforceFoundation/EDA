@@ -1,50 +1,50 @@
 ({
-	toggleIsView : function(component, event, helper) {
-		component.set("v.isView", event.getParam("isView"));
+    toggleIsView: function (component, event, helper) {
+        component.set("v.isView", event.getParam("isView"));
 
-		// setup the select for the error notificatio UI
-		if( !event.getParam("isView") ) {
-			var notifyTo = component.get("v.hierarchySettings.Error_Notifications_To__c"),
-				type = "All Sys Admins";
+        // setup the select for the error notificatio UI
+        if (!event.getParam("isView")) {
+            var notifyTo = component.get("v.hierarchySettings.Error_Notifications_To__c"),
+                type = "All Sys Admins";
 
-			if (notifyTo.startsWith("005")) { // User
-				type = "User";
-			} else if ( notifyTo.startsWith("0F9") ) { // Chatter Group
-				type = "Chatter Group";
-			}
+            if (notifyTo.startsWith("005")) {
+                // User
+                type = "User";
+            } else if (notifyTo.startsWith("0F9")) {
+                // Chatter Group
+                type = "Chatter Group";
+            }
 
-			component.set("v.errorNotificationType", type);
+            component.set("v.errorNotificationType", type);
 
-			// process dropdown to display select if necessary
-			helper.errorToSelect(component);
-
-		}
-	},
-	errorToSelect : function(component, event, helper) {
-		helper.errorToSelect(component);
-	},
-    handleAutocomplete : function(component, event) {
-        var selOpt = event.getParam('value');
+            // process dropdown to display select if necessary
+            helper.errorToSelect(component);
+        }
+    },
+    errorToSelect: function (component, event, helper) {
+        helper.errorToSelect(component);
+    },
+    handleAutocomplete: function (component, event) {
+        var selOpt = event.getParam("value");
         component.set("v.hierarchySettings.Error_Notifications_To__c", selOpt.value);
     },
 
-    settsLinkClicked : function(component, event, helper) {
+    settsLinkClicked: function (component, event, helper) {
         helper.settsLinkClicked(component, event, helper);
     },
-    bulkProcessLinkClicked : function(component, helper) {
+    bulkProcessLinkClicked: function (component, helper) {
         helper.bulkProcessLinkClicked(component, helper);
     },
 
-    handleRefreshHouseholdAccount : function(component, event, helper) {
+    handleRefreshHouseholdAccount: function (component, event, helper) {
         helper.handleRefreshHouseholdAccount(component, event, helper);
     },
 
-    handleRefreshAdminAccount : function(component, event, helper) {
+    handleRefreshAdminAccount: function (component, event, helper) {
         helper.handleRefreshAdminAccount(component, event, helper);
     },
 
-    closeToast : function(component, event, helper) {
-    helper.closeToast(component);
-
-  },
-})
+    closeToast: function (component, event, helper) {
+        helper.closeToast(component);
+    }
+});

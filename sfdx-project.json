@@ -1,10 +1,10 @@
 {
-  "packageDirectories": [
-    {
-      "path": "src",
-      "default": true
-    }
-  ],
-  "namespace": "hed",
-  "sourceApiVersion": "48.0"
+    "packageDirectories": [
+        {
+            "path": "src",
+            "default": true
+        }
+    ],
+    "namespace": "hed",
+    "sourceApiVersion": "48.0"
 }
