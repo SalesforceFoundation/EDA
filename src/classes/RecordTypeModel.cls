@@ -38,7 +38,7 @@ public with sharing class RecordTypeModel {
     public String developerName;
     public Boolean isActive;
 
-    public RecordTypeModel(Id id, String name, String developerName, String namespace) {
+    public RecordTypeModel(Id id, String name, String developerName, Boolean isActive) {
         this.Id = id;
         this.name = name;
         this.developerName = developerName;
