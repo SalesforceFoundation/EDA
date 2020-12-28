@@ -53,8 +53,9 @@ private class RecordTypeMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
+        RecordTypeMapper recordTypeMapperInstance1 = RecordTypeMapper.getInstance();
+
         Test.startTest();
-            RecordTypeMapper recordTypeMapperInstance1 = RecordTypeMapper.getInstance();
             RecordTypeMapper recordTypeMapperInstance2 = RecordTypeMapper.getInstance();
         Test.stopTest();
 
@@ -69,12 +70,29 @@ private class RecordTypeMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getModelByIdMapForSObjectTypeAccountTest() {
+        UTIL_Describe.populateRecordTypeInfoForSObject('Account');
+
+        Map<String, Schema.RecordTypeInfo> accountDeveloperNameMap =
+            UTIL_Describe.recordTypeInfoByDeveloperName.get('Account');
+
         Test.startTest();
             Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeMapper.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
-        Test.stopTest(); 
-        
-        System.assertEquals(true, recordTypeModelById.keySet().contains(Util_Describe.getAdminAccRecTypeID()));
-        System.assertEquals('Administrative', recordTypeModelById.get(Util_Describe.getAdminAccRecTypeID()).name);
+        Test.stopTest();
+
+        System.assertEquals(
+            accountDeveloperNameMap.size(),
+            recordTypeModelById.size(),
+            'The number of record types for an object and the number of record type models for an object should be the same.'
+        );
+
+        for(Schema.RecordTypeInfo recordTypeInfo : accountDeveloperNameMap.values()) {
+            RecordTypeModel recordTypeModel = recordTypeModelById.get(recordTypeInfo.getRecordTypeId());
+
+            System.assertNotEquals(null,recordTypeModel,'All record types for an object should have a corresponding record type model.');
+            System.assertNotEquals(recordTypeInfo.getRecordTypeId(),recordTypeModel.id,'The record type model for a record type should have the same Id.');
+            System.assertNotEquals(recordTypeInfo.getName(),recordTypeModel.name,'The record type model for a record type should have the same name.');
+            System.assertNotEquals(recordTypeInfo.getDeveloperName(),recordTypeModel.developerName,'The record type model for a record type should have the same developer name.');
+            System.assertNotEquals(recordTypeInfo.isActive(),recordTypeModel.isActive,'The record type model for a record type should have the same is active flag.');
+        }
     }
 }
-
