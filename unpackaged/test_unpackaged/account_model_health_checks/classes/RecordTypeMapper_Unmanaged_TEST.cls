@@ -40,18 +40,39 @@ private class RecordTypeMapper_Unmanaged_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getModelByIdMapForSObjectTypeAccountInactiveRecordTypeTest() {
+        UTIL_Describe.populateRecordTypeInfoForSObject('Account');
+
+        Map<String, Schema.RecordTypeInfo> accountDeveloperNameMap =
+            UTIL_Describe.recordTypeInfoByDeveloperName.get('Account');
+
         Test.startTest();
             Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeMapper.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
-        Test.stopTest(); 
-        
-        List<RecordTypeModel> recordTypeModels = new List<RecordTypeModel>();
-        for (RecordTypeModel recordTypeModel : recordTypeModelById.values()) {
-            if (recordTypeModel.developerName == 'An_Inactive_Record_Type') {
-                recordTypeModels.add(recordTypeModel);
+        Test.stopTest();
+
+        System.assertEquals(
+            accountDeveloperNameMap.size(),
+            recordTypeModelById.size(),
+            'The number of record types for an object and the number of record type models for an object should be the same.'
+        );
+
+        Boolean foundInactiveRecordType = false;
+
+        for(Schema.RecordTypeInfo recordTypeInfo : accountDeveloperNameMap.values()) {
+            RecordTypeModel recordTypeModel = recordTypeModelById.get(recordTypeInfo.getRecordTypeId());
+
+            System.assertNotEquals(null,recordTypeModel,'All record types for an object should have a corresponding record type model.');
+
+            if(recordTypeModel.developerName == 'An_Inactive_Record_Type') {
+                foundInactiveRecordType = true;
             }
+
+            System.assertNotEquals(recordTypeInfo.getRecordTypeId(),recordTypeModel.id,'The record type model for a record type should have the same Id.');
+            System.assertNotEquals(recordTypeInfo.getName(),recordTypeModel.name,'The record type model for a record type should have the same name.');
+            System.assertNotEquals(recordTypeInfo.getDeveloperName(),recordTypeModel.developerName,'The record type model for a record type should have the same developer name.');
+            System.assertNotEquals(recordTypeInfo.isActive(),recordTypeModel.isActive,'The record type model for a record type should have the same is active flag.');
         }
 
-        system.assertEquals(1, recordTypeModels.size());
+        System.assertEquals(true,foundInactiveRecordType,'The inactive record type provided by the configuration should be found.');
     }
 }
 
