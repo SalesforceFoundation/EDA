@@ -36,12 +36,12 @@ public with sharing class RecordTypeModel {
     public Id id;
     public String name;
     public String developerName;
-    public String namespace;
+    public Boolean isActive;
 
     public RecordTypeModel(Id id, String name, String developerName, String namespace) {
         this.Id = id;
         this.name = name;
         this.developerName = developerName;
-        this.namespace = namespace;
+        this.isActive = isActive;
     }
 }

@@ -45,14 +45,13 @@ private class RecordTypeMapper_Unmanaged_TEST {
         Test.stopTest(); 
         
         List<RecordTypeModel> recordTypeModels = new List<RecordTypeModel>();
-        for (RecordTypeModel recordTypeModel : recordTypeModelById.values) {
-            if (recordTypeModel.developerName = 'An_Inactive_Record_Type') {
+        for (RecordTypeModel recordTypeModel : recordTypeModelById.values()) {
+            if (recordTypeModel.developerName == 'An_Inactive_Record_Type') {
                 recordTypeModels.add(recordTypeModel);
             }
         }
 
-        system.assertEquals(0, recordTypeModels.size());
+        system.assertEquals(1, recordTypeModels.size());
     }
 }
-
 

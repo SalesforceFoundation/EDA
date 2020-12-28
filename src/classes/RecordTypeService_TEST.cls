@@ -60,7 +60,7 @@ private class RecordTypeService_TEST {
 
         System.assertEquals(RecordTypeService.instance, recordTypeServiceInstance1, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(recordTypeServiceInstance1, recordTypeServiceInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
-        System.assertEquals(true, recordTypeServiceInstance1 != null, 'Instance of service class should not be null.');
+        System.assertNotEquals(null, recordTypeServiceInstance1, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************
@@ -77,7 +77,7 @@ private class RecordTypeService_TEST {
         System.assertEquals(true, recordTypeModelById.keySet().contains('000000000000000000'));
         System.assertEquals('Household', recordTypeModelById.get('000000000000000000').name);
         System.assertEquals('Household Account', recordTypeModelById.get('000000000000000000').developerName);
-        System.assertEquals('hed', recordTypeModelById.get('000000000000000000').namespace);
+        System.assertEquals(true, recordTypeModelById.get('000000000000000000').isActive);
     }
 
     /**************************************************************************************************************************
@@ -89,8 +89,9 @@ private class RecordTypeService_TEST {
 
         Test.startTest();
             Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
-            System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('000000000000000001', recordTypeModelById));
         Test.stopTest();
+        
+        System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('000000000000000001', recordTypeModelById));
     }
 
     /**************************************************************************************************************************
@@ -102,8 +103,9 @@ private class RecordTypeService_TEST {
 
         Test.startTest();
             Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
-            System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('invalid', recordTypeModelById));
         Test.stopTest();
+        
+        System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('invalid', recordTypeModelById));
     }
 
     /**************************************************************************************************************************
@@ -113,15 +115,16 @@ private class RecordTypeService_TEST {
     private static void getRecordTypeModelFromMapValidIdInMapTest() {
         RecordTypeMapper.instance = new STUB_RecordTypeMapper();
 
+        Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
+        
         Test.startTest();
-            Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
             RecordTypeModel recordTypeModel = RecordTypeService.getInstance().getRecordTypeModelFromMap('000000000000000000', recordTypeModelById);
         Test.stopTest();
 
         System.assertEquals('000000000000000000', recordTypeModel.Id);
         System.assertEquals('Household', recordTypeModel.name);
         System.assertEquals('Household Account', recordTypeModel.developerName);
-        System.assertEquals('hed', recordTypeModel.namespace);
+        System.assertEquals(true, recordTypeModel.isActive);
     }
 
     /**************************************************************************************************************************
@@ -135,7 +138,7 @@ private class RecordTypeService_TEST {
         public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
             Map<Id, RecordTypeModel> stubRecordTypeModelById = new Map<Id, RecordTypeModel>();
 
-            RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', 'hed');
+            RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', true);
 
             stubRecordTypeModelById.put('000000000000000000', recordTypeModel);
             
@@ -143,4 +146,3 @@ private class RecordTypeService_TEST {
         }
     }
 }
-

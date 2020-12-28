@@ -67,7 +67,7 @@ public virtual with sharing class RecordTypeMapper {
         Map<String, Schema.RecordTypeInfo> recordTypeInfoByRecordTypeName = Util_Describe.getRecordTypeInfoDevNameMap(sObjectType.getDescribe().getName());
         
         for (Schema.RecordTypeInfo recordTypeInfo : recordTypeInfoByRecordTypeName.values()) {
-            RecordTypeModel recordTypeModel = new RecordTypeModel(recordTypeInfo.getRecordTypeId(), recordTypeInfo.getName(), recordTypeInfo.getDeveloperName(), 'hed');
+            RecordTypeModel recordTypeModel = new RecordTypeModel(recordTypeInfo.getRecordTypeId(), recordTypeInfo.getName(), recordTypeInfo.getDeveloperName(), recordTypeInfo.isActive());
             recordTypeModelById.put(recordTypeModel.Id, recordTypeModel);
         }
 

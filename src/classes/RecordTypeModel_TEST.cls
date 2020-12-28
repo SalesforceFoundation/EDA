@@ -39,13 +39,12 @@ private class RecordTypeModel_TEST {
     @isTest
     private static void constructorTest() {
         Test.startTest();
-            RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', 'hed');
+            RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', false);
         Test.stopTest();
 
         System.assertEquals('000000000000000000', recordTypeModel.id);
         System.assertEquals('Household', recordTypeModel.name);
         System.assertEquals('Household Account', recordTypeModel.developerName);
-        System.assertEquals('hed', recordTypeModel.namespace);
+        System.assertEquals(false, recordTypeModel.isActive);
     }
 }
-
