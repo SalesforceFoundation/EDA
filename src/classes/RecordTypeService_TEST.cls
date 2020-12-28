@@ -53,8 +53,9 @@ private class RecordTypeService_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
+        RecordTypeService recordTypeServiceInstance1 = RecordTypeService.getInstance();
+
         Test.startTest();
-            RecordTypeService recordTypeServiceInstance1 = RecordTypeService.getInstance();
             RecordTypeService recordTypeServiceInstance2 = RecordTypeService.getInstance();
         Test.stopTest();
 
@@ -74,10 +75,13 @@ private class RecordTypeService_TEST {
             Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
         Test.stopTest();
 
-        System.assertEquals(true, recordTypeModelById.keySet().contains('000000000000000000'));
-        System.assertEquals('Household', recordTypeModelById.get('000000000000000000').name);
-        System.assertEquals('Household Account', recordTypeModelById.get('000000000000000000').developerName);
-        System.assertEquals(true, recordTypeModelById.get('000000000000000000').isActive);
+        RecordTypeModel recordTypeModel = recordTypeModelById.get('000000000000000000');
+
+        System.assertNotEquals(null, recordTypeModel, 'A record type model should be retrieved for a valid record type Id.');
+        System.assertEquals(Id.valueOf('000000000000000000'), recordTypeModel.id,'The record type model for a record type should have the specified Id.');
+        System.assertEquals('Household', recordTypeModel.name, 'The record type model for a record type should have the specified name.');
+        System.assertEquals('Household Account', recordTypeModel.developerName, 'The record type model for a record type should have the specified developer name.');
+        System.assertEquals(true, recordTypeModelById.get('000000000000000000').isActive, 'The record type model for a record type should have the specified is active flag.');
     }
 
     /**************************************************************************************************************************
@@ -86,12 +90,17 @@ private class RecordTypeService_TEST {
     @isTest
     private static void getRecordTypeModelFromMapValidIdNotInMapTest() {
         RecordTypeMapper.instance = new STUB_RecordTypeMapper();
+        Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance(
+            ).getModelByIdMapForSObjectType(Account.getSobjectType());
 
         Test.startTest();
-            Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
+            RecordTypeModel recordTypeModel = RecordTypeService.getInstance(
+                ).getRecordTypeModelFromMap('000000000000000001', recordTypeModelById);
         Test.stopTest();
+
+
         
-        System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('000000000000000001', recordTypeModelById));
+        System.assertEquals(null, recordTypeModel, 'A record type model should not be returned for a record type that does not exist.');
     }
 
     /**************************************************************************************************************************
@@ -100,12 +109,15 @@ private class RecordTypeService_TEST {
     @isTest
     private static void getRecordTypeModelFromMapInvalidIdTest() {
         RecordTypeMapper.instance = new STUB_RecordTypeMapper();
+        Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance(
+            ).getModelByIdMapForSObjectType(Account.getSobjectType());
 
         Test.startTest();
-            Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
+            RecordTypeModel recordTypeModel = RecordTypeService.getInstance(
+                ).getRecordTypeModelFromMap('invalid', recordTypeModelById);
         Test.stopTest();
-        
-        System.assertEquals(null, RecordTypeService.getInstance().getRecordTypeModelFromMap('invalid', recordTypeModelById));
+
+        System.assertEquals(null, recordTypeModel, 'A record type model should not be returned for a non-id string value.');
     }
 
     /**************************************************************************************************************************
@@ -118,13 +130,16 @@ private class RecordTypeService_TEST {
         Map<Id, RecordTypeModel> recordTypeModelById = RecordTypeService.getInstance().getModelByIdMapForSObjectType(Account.getSobjectType());
         
         Test.startTest();
-            RecordTypeModel recordTypeModel = RecordTypeService.getInstance().getRecordTypeModelFromMap('000000000000000000', recordTypeModelById);
+            RecordTypeModel recordTypeModel = RecordTypeService.getInstance(
+                ).getRecordTypeModelFromMap('000000000000000000', recordTypeModelById);
         Test.stopTest();
 
-        System.assertEquals('000000000000000000', recordTypeModel.Id);
-        System.assertEquals('Household', recordTypeModel.name);
-        System.assertEquals('Household Account', recordTypeModel.developerName);
-        System.assertEquals(true, recordTypeModel.isActive);
+        System.assertNotEquals(null, recordTypeModel, 'A record type model should be retrieved for a valid record type Id.');
+        System.assertEquals(Id.valueOf('000000000000000000'), recordTypeModel.id,'The record type model for a record type should have the specified Id.');
+        System.assertEquals('Household', recordTypeModel.name, 'The record type model for a record type should have the specified name.');
+        System.assertEquals('Household Account', recordTypeModel.developerName, 'The record type model for a record type should have the specified developer name.');
+        System.assertEquals(true, recordTypeModelById.get('000000000000000000').isActive, 'The record type model for a record type should have the specified is active flag.');
+
     }
 
     /**************************************************************************************************************************
