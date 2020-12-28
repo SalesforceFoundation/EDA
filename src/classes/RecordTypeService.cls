@@ -77,8 +77,6 @@ public virtual with sharing class RecordTypeService {
             return recordTypeModelById.get(Id.valueOf(recordTypeId));
         } catch (System.StringException ex) {
             return null;
-        } catch (Exception ex) {
-            return null;
         }
     }
 
