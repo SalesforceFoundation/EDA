@@ -89,10 +89,10 @@ private class RecordTypeMapper_TEST {
             RecordTypeModel recordTypeModel = recordTypeModelById.get(recordTypeInfo.getRecordTypeId());
 
             System.assertNotEquals(null,recordTypeModel,'All record types for an object should have a corresponding record type model.');
-            System.assertNotEquals(recordTypeInfo.getRecordTypeId(),recordTypeModel.id,'The record type model for a record type should have the same Id.');
-            System.assertNotEquals(recordTypeInfo.getName(),recordTypeModel.name,'The record type model for a record type should have the same name.');
-            System.assertNotEquals(recordTypeInfo.getDeveloperName(),recordTypeModel.developerName,'The record type model for a record type should have the same developer name.');
-            System.assertNotEquals(recordTypeInfo.isActive(),recordTypeModel.isActive,'The record type model for a record type should have the same is active flag.');
+            System.assertEquals(recordTypeInfo.getRecordTypeId(),recordTypeModel.id,'The record type model for a record type should have the same Id.');
+            System.assertEquals(recordTypeInfo.getName(),recordTypeModel.name,'The record type model for a record type should have the same name.');
+            System.assertEquals(recordTypeInfo.getDeveloperName(),recordTypeModel.developerName,'The record type model for a record type should have the same developer name.');
+            System.assertEquals(recordTypeInfo.isActive(),recordTypeModel.isActive,'The record type model for a record type should have the same is active flag.');
         }
     }
 }
