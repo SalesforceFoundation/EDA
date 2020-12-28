@@ -9,7 +9,7 @@
         <name>Profile</name>
     </types>
     <types>
-        <members>RecordTypeMapper_Unmanaged_TEST</members>
+        <members>RecordTypeMapper_UTST</members>
         <name>ApexClass</name>
     </types>
     <version>48.0</version>
