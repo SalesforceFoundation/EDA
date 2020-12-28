@@ -32,7 +32,7 @@
 * @description Unmanaged test class for RecordTypeMapper
 */
 @isTest
-private class RecordTypeMapper_Unmanaged_TEST {
+private class RecordTypeMapper_UTST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getModelByIdMapForSObjectType returns correct record type model by id map.
@@ -66,13 +66,12 @@ private class RecordTypeMapper_Unmanaged_TEST {
                 foundInactiveRecordType = true;
             }
 
-            System.assertNotEquals(recordTypeInfo.getRecordTypeId(),recordTypeModel.id,'The record type model for a record type should have the same Id.');
-            System.assertNotEquals(recordTypeInfo.getName(),recordTypeModel.name,'The record type model for a record type should have the same name.');
-            System.assertNotEquals(recordTypeInfo.getDeveloperName(),recordTypeModel.developerName,'The record type model for a record type should have the same developer name.');
-            System.assertNotEquals(recordTypeInfo.isActive(),recordTypeModel.isActive,'The record type model for a record type should have the same is active flag.');
+            System.assertEquals(recordTypeInfo.getRecordTypeId(),recordTypeModel.id,'The record type model for a record type should have the same Id.');
+            System.assertEquals(recordTypeInfo.getName(),recordTypeModel.name,'The record type model for a record type should have the same name.');
+            System.assertEquals(recordTypeInfo.getDeveloperName(),recordTypeModel.developerName,'The record type model for a record type should have the same developer name.');
+            System.assertEquals(recordTypeInfo.isActive(),recordTypeModel.isActive,'The record type model for a record type should have the same is active flag.');
         }
 
         System.assertEquals(true,foundInactiveRecordType,'The inactive record type provided by the configuration should be found.');
     }
 }
-
