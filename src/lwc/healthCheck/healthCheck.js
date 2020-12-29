@@ -36,7 +36,7 @@ export default class HealthCheck extends LightningElement {
             this.lastRunDate = data.lastRunDate;                
             this.healthCheckDefinitionsToDisplayList = data.healthCheckDefinitionList;  
         } else if (error){
-            console.log('error retrieving health check view model');
+            console.log('error retrieving health check view model: ', error);
         }
     }
 
