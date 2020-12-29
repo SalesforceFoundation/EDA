@@ -118,6 +118,7 @@
         <members>HealthCheckDefinitionVModel_TEST</members>
         <members>HealthCheckGroupAPIServiceInterface</members>
         <members>HealthCheckGroupController</members>
+        <members>HealthCheckGroupController_TEST</members>
         <members>HealthCheckGroupService</members>
         <members>HealthCheckGroupService_TEST</members>
         <members>HealthCheckGroupVModel</members>
