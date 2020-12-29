@@ -29,7 +29,8 @@
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/
-* @description API service class for EDA HealthCheckGroup.
+* @description API service class for EDA HealthCheckGroup to retrieve HealthCheckGroup view models
+* corresponding to specified HealthCheckDefinition models.
 */
 public virtual with sharing class EDAHealthCheckGroupAPIService implements HealthCheckGroupAPIServiceInterface {
 
@@ -49,7 +50,6 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     * @return The instance of HealthCheckGroupAPIServiceInterface.
     ******************************************************************************/
     public static HealthCheckGroupAPIServiceInterface getInstance() {
-
         if (instance == null) {
             instance = new EDAHealthCheckGroupAPIService();
         }
@@ -57,11 +57,13 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         return instance;
     }
 
-    /**
-    * getHealthCheckGroup description
-    * @param  name name description
-    * @return      return description
-    */
+    /******************************************************************************************
+    * @description Retrieves a view model representing a health check group for a specified 
+    * HealthCheckDefinition.
+    * @param  name The name of a HealthCheckDefinition
+    * @return A HealthCheckGroupVModel representing a specified HealthCheckDefinition; null if one
+    * matching the name provided does not exist.
+    ******************************************************************************************/
     public HealthCheckGroupVModel getHealthCheckGroup(String name){
         String caseInsensitiveName = name.toLowerCase();
 
