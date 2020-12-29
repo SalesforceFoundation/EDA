@@ -9,7 +9,7 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected EDAHealthCheckGroupAPIService() {}
+    public EDAHealthCheckGroupAPIService() {}
 
     /******************************************************************************
     * @description Static method to get the current instance for Singleton pattern

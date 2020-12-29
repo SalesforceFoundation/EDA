@@ -30,30 +30,37 @@ public virtual with sharing class HealthCheckGroupService {
     * @return           return description
     */
     public virtual HealthCheckGroupVModel getHealthCheckGroup(String name, String className, String namespace){
-        HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface;
-
-        try{
-            hlthChkGroupServInterface = this.locateHealthCheckGroupAPIService(className, namespace);
-        } catch (HealthCheckNotFoundException hcEx){
-            // TODO: how should this exception be handled?
-            System.debug(hcEx.getMessage());
-        }
+        HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface = 
+            this.locateHealthCheckGroupAPIService(className, namespace);
 
         return hlthChkGroupServInterface.getHealthCheckGroup(name);
     }
 
     /**
-     * locateHealthCheckGroupAPIService description
-     * @param  className className description
-     * @param  namespace namespace description
-     * @return           return description
-     */
+    * locateHealthCheckGroupAPIService description
+    * @param  className className description
+    * @param  namespace namespace description
+    * @return           return description
+    */
+    @TestVisible
     private HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){
-        if (className.equalsIgnoreCase('EDAHealthCheckGroupAPIService') && namespace.equalsIgnoreCase('hed')){
-            return EDAHealthCheckGroupAPIService.getInstance();
+        HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface;
+        String namespacedClassName = className;
+
+        if (String.isNotBlank(namespace) && !namespace.equalsIgnoreCase('hed')){
+            namespacedClassName = namespace + '.' + className;
         }
 
-        throw new HealthCheckNotFoundException('Health Check not found for className ' + className + ' and namespace ' + namespace);
+        try{
+            Type healthCheckGroupType = Type.forName(namespacedClassName);
+            hlthChkGroupServInterface = (HealthCheckGroupAPIServiceInterface)healthCheckGroupType.newInstance();
+        } catch (System.NullPointerException e){
+            throw new HealthCheckNotFoundException(e.getMessage());
+        } catch (System.TypeException e){
+            throw new HealthCheckNotFoundException(e.getMessage());
+        }
+
+        return hlthChkGroupServInterface.getInstance();
     }
 
     public class HealthCheckNotFoundException extends Exception{}

@@ -16,13 +16,11 @@ export default class HealthCheckGroup extends LightningElement {
     @api isDisplayGroup;
     @api healthCheckDefinition;
 
-    @track statusIconVariant = 'success';
-    @track dataLoad;
     @track healthCheckItemList;
     @track expandedRowsList;
     @track totalChecks = 0;
     @track passedChecks = 0;
-    @track isExpanded = true;
+    @track isExpanded;
     
     labelReference = {
         stgHealthChecksAllPassed,
@@ -47,27 +45,33 @@ export default class HealthCheckGroup extends LightningElement {
         if (this.isExpanded){
             return this.iconReference.expandedIcon;
         }
-        
-        return this.iconReference.collapsedIcon;
+
+        return this.iconReference.collapsedIcon;        
     }
 
     get collapsableIconAltText(){
         if (this.isExpanded){
             return this.labelReference.stgHealthCheckResultsCollapse;
         }
-
+        
         return this.labelReference.stgHealthCheckResultsExpand;
     }
 
     get statusIcon() {
-        if (this.passedChecks == this.totalChecks){
-            this.statusIconVariant = 'success';
+        if (this.isAllSuccessStatus()){
             return this.iconReference.successIcon;
         }
-        
-        this.statusIconVariant = 'error';
-        return this.iconReference.errorIcon;
+
+        return this.iconReference.errorIcon;        
     } 
+
+    get statusIconVariant() {
+        if (this.isAllSuccessStatus()) {
+            return 'success';
+        }
+
+        return 'error';
+    }
 
     get passedChecksDisplay() {
         if (this.passedChecks == this.totalChecks){
@@ -81,9 +85,16 @@ export default class HealthCheckGroup extends LightningElement {
         );
     }
 
+    isAllSuccessStatus(){
+        if (this.passedChecks == this.totalChecks){
+            return true;
+        }
+
+        return false;
+    }
+
     toggleExpanded() {
-        console.log('toggle isExpanded!');
-        this.isExpanded = !this.isExpanded;
+        this.isExpanded = !this.isExpanded; 
     }
 
     @wire(
@@ -101,6 +112,8 @@ export default class HealthCheckGroup extends LightningElement {
 
             this.totalChecks = tempData.totalChecks;
             this.passedChecks = tempData.passedChecks;
+
+            this.isExpanded = !(this.isAllSuccessStatus());
 
             this.healthCheckGroupName = tempData.label;
 
