@@ -355,7 +355,6 @@ flows:
                 task: run_tests 
                 options: 
                     test_name_match: '%\_Unmanaged_TEST,%\_UTST'
-                    test_name_match: '%UTST'
             10:
                 flow: eda_settings_unmanaged
 
