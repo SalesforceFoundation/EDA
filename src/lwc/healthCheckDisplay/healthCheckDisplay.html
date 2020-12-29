@@ -1,27 +1,22 @@
 <template>
-    <lightning-card title="HealthCheckDisplay">
-        <div class="slds-grid slds-wrap">
-            <ul>
-                <template if:true={isDisplayHealthCheckLWC} >
-                    <template if:true={healthCheckDefinitionsList} iterator:hcdefinition={healthCheckDefinitionsList}>
-                        <li key={hcdefinition.value.name}>
-                            <c-health-check-group
-                                is-display-group={isDisplayHealthCheckGroup}
-                                onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}
-                                aria-label={hcdefinition.value.name}>
-                            </c-health-check-group>    
-                        </li>
-                    </template>
-                </template>
-                <template if:false={isDisplayHealthCheckLWC} >
-                    <!-- Display spinner -->
-                    <lightning-spinner
-                        alternative-text="Loading..." 
-                        variant="brand"
-                        size="medium">
-                    </lightning-spinner>
-                </template>
-            </ul>
-        </div>
-    </lightning-card>
+    <template if:false={isDisplayHealthCheckGroup}>
+        <!-- Display spinner -->
+        <lightning-spinner
+            alternative-text={LabelReference.spinnerLoadingAltText}
+            variant="brand"
+            size="medium">
+        </lightning-spinner>
+    </template>
+    <ul>
+        <template for:each={healthCheckDefinitionsList} for:item="hcdefinition">
+            <li key={hcdefinition.name} class="slds-p-top_small">
+                <c-health-check-group
+                    is-display-group={isDisplayHealthCheckGroup}
+                    health-check-definition={hcdefinition}
+                    onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}
+                    aria-label={hcdefinition.name}>
+                </c-health-check-group>    
+            </li>
+        </template>
+    </ul>
 </template>

@@ -462,10 +462,10 @@ flows:
                 task: execute_automatic_household_naming
                 options:
                     namespaced: True
-            5:
-                task: execute_enable_course_connections
-                options:
-                    namespaced: True
+            # 5:
+            #     task: execute_enable_course_connections
+            #     options:
+            #         namespaced: True
 
 
     eda_settings_unmanaged:
@@ -487,10 +487,10 @@ flows:
                 task: execute_automatic_household_naming
                 options:
                     namespaced: False
-            5:
-                task: execute_enable_course_connections
-                options:
-                    namespaced: False
+            # 5:
+            #     task: execute_enable_course_connections
+            #     options:
+            #         namespaced: False
 
 
     upgraded_org:

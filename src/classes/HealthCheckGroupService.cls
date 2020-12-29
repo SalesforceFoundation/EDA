@@ -24,7 +24,7 @@ public virtual with sharing class HealthCheckGroupService {
     }
 
     /**
-    * getHealthCheckGroup description
+    * @description
     * @param  className className description
     * @param  namespace namespace description
     * @return           return description
@@ -35,7 +35,7 @@ public virtual with sharing class HealthCheckGroupService {
         try{
             hlthChkGroupServInterface = this.locateHealthCheckGroupAPIService(className, namespace);
         } catch (HealthCheckNotFoundException hcEx){
-            // do something here
+            // TODO: how should this exception be handled?
             System.debug(hcEx.getMessage());
         }
 

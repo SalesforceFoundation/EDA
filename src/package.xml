@@ -817,9 +817,9 @@
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
         <members>stgHealthCheckLastRun</members>
-        <members>stgHealthCheckRunButton</members>
         <members>stgHealthCheckRecoFix</members>
         <members>stgHealthCheckResultsCollapse</members>
+        <members>stgHealthCheckResultsDescription</members>
         <members>stgHealthCheckResultsExpand</members>
         <members>stgHealthCheckRunButton</members>
         <members>stgHealthCheckRunError</members>

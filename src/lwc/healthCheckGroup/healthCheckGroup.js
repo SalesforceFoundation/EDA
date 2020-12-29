@@ -1,33 +1,39 @@
 import { LightningElement, track, wire, api } from 'lwc';
+
+import stgHealthChecksAllPassed from '@salesforce/label/c.stgHealthChecksAllPassed';
+import stgHealthChecksNotAllPassed from '@salesforce/label/c.stgHealthChecksNotAllPassed';
+import stgHealthCheckStatus from '@salesforce/label/c.stgHealthCheckStatus';
+import stgHealthCheckSetting from '@salesforce/label/c.stgHealthCheckSetting';
+import stgHealthCheckResultsDescription from '@salesforce/label/c.stgHealthCheckResultsDescription';
+import stgHealthCheckRecoFix from '@salesforce/label/c.stgHealthCheckRecoFix';
+import stgHealthCheckRunError from '@salesforce/label/c.stgHealthCheckRunError';
+import stgHealthCheckResultsExpand from '@salesforce/label/c.stgHealthCheckResultsExpand';
+import stgHealthCheckResultsCollapse from '@salesforce/label/c.stgHealthCheckResultsCollapse';
+
 import getHealthCheckGroupViewModel from '@salesforce/apex/HealthCheckGroupController.getHealthCheckGroupViewModel';
 
 export default class HealthCheckGroup extends LightningElement {
-    @api isDisplayGroup = false;
-    // @api isDisplayHealthCheckGroup = false;
+    @api isDisplayGroup;
+    @api healthCheckDefinition;
 
-    @track isExpanded = true;
+    @track statusIconVariant = 'success';
     @track dataLoad;
-    @track gridData;
-    @track gridExpandedRows;
-
-    @track healthCheckGroupName = 'all success';
-    @track healthCheckGroupClassName = 'EDAHealthCheckGroupAPIService';
-    @track healthCheckGroupNamespace = 'hed';
-
-    handleDataLoad(){}
-
+    @track healthCheckItemList;
+    @track expandedRowsList;
+    @track totalChecks = 0;
+    @track passedChecks = 0;
+    @track isExpanded = true;
+    
     labelReference = {
-        edaSetup: 'EDA Setup',
-        healthCheckTitle: 'Health Check',
-        edaSettingsHealthCheckTitle: 'EDA Settings Health Check',
-        healthCheckDescription: 'EDA Settings Health Check verifies that all of your EDA Settings are valid and not misconfigured. If any setting configuration is not valid, EDA Settings Health Check will tell you the setting, give a description of which setting is invalid, and how to fix it.',
-        runHealthCheckButton: 'Run Health Check',
-        healthCheckLastRun: 'Last run {0}',
-        passedChecks: 'Checks Passed: {0} of {1}',
-        statusColumnHeader: 'Status',
-        settingColumnHeader: 'Setting',
-        descriptionColumnHeader: 'Description',
-        recommendedFixColumnHeader: 'Recommended Fix',
+        stgHealthChecksAllPassed,
+        stgHealthChecksNotAllPassed,
+        stgHealthCheckStatus,
+        stgHealthCheckSetting,
+        stgHealthCheckResultsDescription,
+        stgHealthCheckRecoFix,
+        stgHealthCheckRunError,
+        stgHealthCheckResultsExpand,
+        stgHealthCheckResultsCollapse
     }
 
     iconReference = {
@@ -37,50 +43,73 @@ export default class HealthCheckGroup extends LightningElement {
         successIcon: 'utility:success',
     }
 
-    collapseGroup(){
-        console.log('collapse group clicked');
+    get collapsableIcon() {
+        if (this.isExpanded){
+            return this.iconReference.expandedIcon;
+        }
+        
+        return this.iconReference.collapsedIcon;
     }
 
-    expandGroup(){
-        console.log('expand group clicked');
+    get collapsableIconAltText(){
+        if (this.isExpanded){
+            return this.labelReference.stgHealthCheckResultsCollapse;
+        }
+
+        return this.labelReference.stgHealthCheckResultsExpand;
     }
 
-    labelReference = {
-        statusColumnHeader: 'Status'
+    get statusIcon() {
+        if (this.passedChecks == this.totalChecks){
+            this.statusIconVariant = 'success';
+            return this.iconReference.successIcon;
+        }
+        
+        this.statusIconVariant = 'error';
+        return this.iconReference.errorIcon;
+    } 
+
+    get passedChecksDisplay() {
+        if (this.passedChecks == this.totalChecks){
+            return this.labelReference.stgHealthChecksAllPassed;
+        }
+
+        return this.labelReference.stgHealthChecksNotAllPassed.replace(
+            '{0}', this.passedChecks
+        ).replace(
+            '{1}',this.totalChecks
+        );
+    }
+
+    toggleExpanded() {
+        console.log('toggle isExpanded!');
+        this.isExpanded = !this.isExpanded;
     }
 
     @wire(
         getHealthCheckGroupViewModel, 
         {
-            name: '$healthCheckGroupName', 
-            className: '$healthCheckGroupClassName', 
-            namespace: '$healthCheckGroupNamespace'
+            name: '$healthCheckDefinition.name', 
+            className: '$healthCheckDefinition.className', 
+            namespace: '$healthCheckDefinition.namespace'
         })
     treeData({ error, data }) {
-        console.log( 'Inside wire' );
+        console.log('wiring data');
         if ( data ) {
-            let stringified = JSON.stringify(data);
-            console.log( 'Stringified is ' + stringified );
-            
+            let stringified = JSON.stringify(data);            
             let tempData = JSON.parse( stringified );
-            console.log( 'Temp Data is ' + JSON.stringify(tempData) );
 
             this.totalChecks = tempData.totalChecks;
             this.passedChecks = tempData.passedChecks;
 
             this.healthCheckGroupName = tempData.label;
 
-            let tempArray = [].concat(tempData.healthCheckItemList);
-            console.log( 'Array is ' + JSON.stringify( tempData ) );
-            
+            let tempArray = [].concat(tempData.healthCheckItemList);            
             this.processChildren(tempArray);
-            console.log( 'Modified Array is ' + JSON.stringify( tempArray ) );
 
-            this.gridData = tempArray;
-            this.gridExpandedRows = tempData.expandedRows;
+            this.healthCheckItemList = tempArray;
+            this.expandedRowsList = tempData.expandedRows;
 
-            // first healthcheckgrouploaded event
-            console.log('sending group loaded event');
             this.dispatchEvent(new CustomEvent('healthcheckgrouploaded'));
 
         } else if ( error ) {
@@ -97,11 +126,14 @@ export default class HealthCheckGroup extends LightningElement {
         }
 
         for ( let i = 0; i < healthCheckItemArray.length; i++ ) {
+            if(healthCheckItemArray[ i ][ 'healthCheckItemList' ]) {
+                
+                if(healthCheckItemArray[ i ][ 'healthCheckItemList' ].length > 0) {
+                    healthCheckItemArray[ i ]._children = healthCheckItemArray[ i ][ 'healthCheckItemList' ];
+                    this.processChildren(healthCheckItemArray[ i ]._children);
+                }
 
-            if(healthCheckItemArray[ i ][ 'healthCheckItems' ]) {
-                healthCheckItemArray[ i ]._children = healthCheckItemArray[ i ][ 'healthCheckItems' ];
-                this.processChildren(healthCheckItemArray[ i ]._children);
-                delete healthCheckItemArray[ i ].healthCheckItems;
+                delete healthCheckItemArray[ i ].healthCheckItemList;
             }
         }
     }
@@ -110,55 +142,23 @@ export default class HealthCheckGroup extends LightningElement {
     gridColumns = [
         {
             type: 'text',
-            fieldName: 'status',
-            label: this.labelReference.statusColumnHeader,
+            fieldName: 'statusLabel',
+            label: this.labelReference.stgHealthCheckStatus,
         },
         {
             type: 'text',
             fieldName: 'setting',
-            label: 'Setting',
+            label: this.labelReference.stgHealthCheckSetting,
         },
         {
             type: 'text',
             fieldName: 'description',
-            label: 'Description',
+            label: this.labelReference.stgHealthCheckResultsDescription,
         },
         {
             type: 'text',
             fieldName: 'recommendedFix',
-            label: 'Recommended Fix',
+            label: this.labelReference.stgHealthCheckRecoFix,
         },
     ];
-
-    get statusIcon() {
-        return this.iconReference.successIcon;
-    } 
-    get statusIconVariant() {
-        return 'success';
-    }
-
-    get collapsableIcon() {
-        if(this.isExpanded) {
-            return this.iconReference.expandedIcon;
-        }
-
-        return this.iconReference.collapsedIcon;
-    }
-
-    get notExpanded() {
-        return !this.isExpanded;
-    }
-
-    get passedChecksDisplay() {
-        return this.labelReference.passedChecks;
-        // return this.labelReference.passedChecks.replace(
-        //     '{0}', this.passedChecks
-        // ).replace(
-        //     '{1}',this.totalChecks
-        // );
-    }
-
-    toggleExpanded() {
-        this.isExpanded = !this.isExpanded;
-    }
 }

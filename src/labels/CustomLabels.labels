@@ -1192,6 +1192,14 @@
         <value>Collapse these results</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckResultsDescription</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description column header in EDA Settings Health Check results</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckResultsExpand</fullName>
         <categories>Setup</categories>
         <language>en_US</language>

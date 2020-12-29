@@ -1,5 +1,7 @@
 import { LightningElement, track, wire } from 'lwc';
 
+import stgHealthCheckErrorLastRunDate from '@salesforce/label/c.stgHealthCheckErrorLastRunDate';
+
 import getHealthCheckViewModel from '@salesforce/apex/HealthCheckController.getHealthCheckViewModel';
 import updateHealthCheckLastRunDate from '@salesforce/apex/HealthCheckController.updateHealthCheckLastRunDate';
 
@@ -8,17 +10,23 @@ export default class HealthCheck extends LightningElement {
     @track totalChecks = 0;
     @track passedChecks = 0;
     @track lastRunDate = '';
+    @track isDisplayHealthCheckGroup = false;
 
     @track healthCheckDefinitionsToDisplayList = [];
 
+    LabelReference = {
+        stgHealthCheckErrorLastRunDate
+    }
+
     handleHealthCheckRun(){
-        console.log('handling health check run');
         updateHealthCheckLastRunDate()
             .then(result => {
                 this.lastRunDate = result;
+                this.isDisplayHealthCheckGroup = true;
             })
             .catch(error => {
-                console.log('error updating last run date: ', error);
+                // console.log('error updating last run date: ', error);
+                this.lastRunDate = this.LabelReference.stgHealthCheckErrorLastRunDate;
             });
     }
 
@@ -30,6 +38,10 @@ export default class HealthCheck extends LightningElement {
         } else if (error){
             console.log('error retrieving health check view model');
         }
+    }
+
+    get displayHealthCheck(){
+        return !(!this.isDisplayHealthCheckGroup || !this.healthCheckDefinitionsToDisplayList);
     }
 
 }

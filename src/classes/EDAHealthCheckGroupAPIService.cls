@@ -43,7 +43,8 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                               'Pass', 
                                               Label.stgHealthCheckStatusPassed, 
                                               'Mocked description 1', 
-                                              'Mocked recommended fix 1');
+                                              'Mocked recommended fix 1',
+                                              new List<HealthCheckItemVModel>());
                                                                                  
                 HealthCheckItemVModel hlthChkItemMod2 = 
                     new HealthCheckItemVModel('02',
@@ -51,7 +52,8 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                               'Pass',
                                               Label.stgHealthCheckStatusPassed,
                                               'Mocked description 2',
-                                              'Mocked recommended fix 2');
+                                              'Mocked recommended fix 2',
+                                              new List<HealthCheckItemVModel>());
                 
                 hlthChkItemsList.add(hlthChkItemMod1);
                 hlthChkItemsList.add(hlthChkItemMod2);
@@ -67,22 +69,14 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
             when 'all failure' {
                 rowKeysList.add('01');
 
-                HealthCheckItemVModel hlthChkItemMod1 = 
-                    new HealthCheckItemVModel('01', 
-                                              'Failed Setting 1', 
-                                              'Fail', 
-                                              Label.stgHealthCheckStatusFailed, 
-                                              'Mocked description 1', 
-                                              'Mocked recommended fix 1');
-
-
                 HealthCheckItemVModel hlthChkItemMod1_1 = 
                     new HealthCheckItemVModel('01.1', 
                                             'Failed Nested Setting 1', 
                                             'Fail', 
                                             Label.stgHealthCheckStatusFailed, 
                                             'Mocked nested description 1', 
-                                            'Mocked nested recommended fix 1');
+                                            'Mocked nested recommended fix 1',
+                                            new List<HealthCheckItemVModel>());
 
                 HealthCheckItemVModel hlthChkItemMod1_2 = 
                     new HealthCheckItemVModel('01.2', 
@@ -90,19 +84,28 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                             'Fail', 
                                             Label.stgHealthCheckStatusFailed, 
                                             'Mocked nested description 2', 
-                                            'Mocked nested recommended fix 2');
-                                                                                 
+                                            'Mocked nested recommended fix 2',
+                                            new List<HealthCheckItemVModel>());
+
+                HealthCheckItemVModel hlthChkItemMod1 = 
+                    new HealthCheckItemVModel('01', 
+                                              'Failed Setting 1', 
+                                              'Fail', 
+                                              Label.stgHealthCheckStatusFailed, 
+                                              'Mocked description 1', 
+                                              'Mocked recommended fix 1',
+                                              new List<HealthCheckItemVModel>{hlthChkItemMod1_1, hlthChkItemMod1_2});
+
                 HealthCheckItemVModel hlthChkItemMod2 = 
                     new HealthCheckItemVModel('02',
                                               'Failed Setting 2',
                                               'Fail',
                                               Label.stgHealthCheckStatusFailed,
                                               'Mocked description 2',
-                                              'Mocked recommended fix 2');
+                                              'Mocked recommended fix 2',
+                                              new List<HealthCheckItemVModel>());
 
                 hlthChkItemsList.add(hlthChkItemMod1);
-                hlthChkItemsList.add(hlthChkItemMod1_1);
-                hlthChkItemsList.add(hlthChkItemMod1_2);
                 hlthChkItemsList.add(hlthChkItemMod2);
 
                 return new HealthCheckGroupVModel('All Failure',
@@ -116,22 +119,14 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
             when 'mixed' {
                 rowKeysList.add('01');
 
-                HealthCheckItemVModel hlthChkItemMod1 = 
-                    new HealthCheckItemVModel('01', 
-                                              'Failed Setting 1', 
-                                              'Fail', 
-                                              Label.stgHealthCheckStatusFailed, 
-                                              'Mocked description 1', 
-                                              'Mocked recommended fix 1');
-
-
                 HealthCheckItemVModel hlthChkItemMod1_1 = 
                     new HealthCheckItemVModel('01.1', 
                                             'Failed Nested Setting 1', 
                                             'Fail', 
                                             Label.stgHealthCheckStatusFailed, 
                                             'Mocked nested description 1', 
-                                            'Mocked nested recommended fix 1');
+                                            'Mocked nested recommended fix 1',
+                                            new List<HealthCheckItemVModel>());
 
                 HealthCheckItemVModel hlthChkItemMod1_2 = 
                     new HealthCheckItemVModel('01.2', 
@@ -139,15 +134,18 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                             'Fail', 
                                             Label.stgHealthCheckStatusFailed, 
                                             'Mocked nested description 2', 
-                                            'Mocked nested recommended fix 2');
-                                                                                 
-                HealthCheckItemVModel hlthChkItemMod2 = 
-                    new HealthCheckItemVModel('02',
-                                              'Passed Setting 2',
-                                              'Pass',
-                                              Label.stgHealthCheckStatusPassed,
-                                              'Mocked description 2',
-                                              'Mocked recommended fix 2');
+                                            'Mocked nested recommended fix 2',
+                                            new List<HealthCheckItemVModel>());
+
+                HealthCheckItemVModel hlthChkItemMod1 = 
+                    new HealthCheckItemVModel('01', 
+                                              'Failed Setting 1', 
+                                              'Fail', 
+                                              Label.stgHealthCheckStatusFailed, 
+                                              'Mocked description 1', 
+                                              'Mocked recommended fix 1',
+                                              new List<HealthCheckItemVModel>{hlthChkItemMod1_1,hlthChkItemMod1_2});
+
 
                 HealthCheckItemVModel hlthChkItemMod2_1 = 
                     new HealthCheckItemVModel('02.1', 
@@ -155,7 +153,8 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                             'Pass', 
                                             Label.stgHealthCheckStatusPassed, 
                                             'Mocked nested description 1', 
-                                            'Mocked nested recommended fix 1');
+                                            'Mocked nested recommended fix 1',
+                                            new List<HealthCheckItemVModel>());
 
                 HealthCheckItemVModel hlthChkItemMod2_2 = 
                     new HealthCheckItemVModel('02.2', 
@@ -163,14 +162,20 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
                                             'Pass', 
                                             Label.stgHealthCheckStatusPassed, 
                                             'Mocked nested description 2', 
-                                            'Mocked nested recommended fix 2');
-
+                                            'Mocked nested recommended fix 2',
+                                            new List<HealthCheckItemVModel>());
+                          
+                HealthCheckItemVModel hlthChkItemMod2 = 
+                    new HealthCheckItemVModel('02',
+                                              'Passed Setting 2',
+                                              'Pass',
+                                              Label.stgHealthCheckStatusPassed,
+                                              'Mocked description 2',
+                                              'Mocked recommended fix 2',
+                                              new List<HealthCheckItemVModel>{hlthChkItemMod2_1, hlthChkItemMod2_2});
+            
                 hlthChkItemsList.add(hlthChkItemMod1);
-                hlthChkItemsList.add(hlthChkItemMod1_1);
-                hlthChkItemsList.add(hlthChkItemMod1_2);
                 hlthChkItemsList.add(hlthChkItemMod2);
-                hlthChkItemsList.add(hlthChkItemMod2_1);
-                hlthChkItemsList.add(hlthChkItemMod2_2);
 
                 return new HealthCheckGroupVModel('Mixed',
                                                   'Fail',
@@ -184,5 +189,4 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
             }
         }
     }
-    
 }

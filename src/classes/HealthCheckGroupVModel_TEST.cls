@@ -14,7 +14,8 @@ public with sharing class HealthCheckGroupVModel_TEST {
                                                                           'TestStatus' + i, 
                                                                           'TestStatusLabel' + i,
                                                                           'TestDescription' + i, 
-                                                                          'TextRecommendedFix' + i);
+                                                                          'TextRecommendedFix' + i,
+                                                                          new List<HealthCheckItemVModel>());
             healthCheckItemList.add(hlthChkItemVMod);
         }
 
@@ -239,20 +240,24 @@ public with sharing class HealthCheckGroupVModel_TEST {
                                                                           'Fail', 
                                                                           'TestStatusLabel',
                                                                           'TestDescription', 
-                                                                          'TextRecommendedFix');
+                                                                          'TextRecommendedFix',
+                                                                          new List<HealthCheckItemVModel>());
 
         HealthCheckItemVModel hlthChkItemVMod2 = new HealthCheckItemVModel('TestKey2', 
                                                                           'TestSetting', 
                                                                           'Fail', 
                                                                           'TestStatusLabel',
                                                                           'TestDescription', 
-                                                                          'TextRecommendedFix');
+                                                                          'TextRecommendedFix',
+                                                                          new List<HealthCheckItemVModel>());
         Account testAccount = new Account(Name = 'TestAccount');
         Contact testContact = new Contact(LastName = 'Testerson');
 
         objectsToSort.add(hlthChkItemVMod1);
         objectsToSort.add(hlthChkGroupMod);
         objectsToSort.add(hlthChkItemVMod1);
+        objectsToSort.add(testAccount);
+        objectsToSort.add(testContact);
 
         Test.startTest();
         objectsToSort.sort();
@@ -261,5 +266,7 @@ public with sharing class HealthCheckGroupVModel_TEST {
         System.assertEquals(true, objectsToSort[0] instanceof HealthCheckItemVModel, 'List should not be sorted when object types are not equal.');
         System.assertEquals(true, objectsToSort[1] instanceof HealthCheckGroupVModel, 'List should not be sorted when object types are not equal.');
         System.assertEquals(true, objectsToSort[2] instanceof HealthCheckItemVModel, 'List should not be sorted when object types are not equal.');
+        System.assertEquals(true, objectsToSort[3] instanceof Account, 'List should not be sorted when object types are not equal.');
+        System.assertEquals(true, objectsToSort[4] instanceof Contact, 'List should not be sorted when object types are not equal.');
     }
 }
