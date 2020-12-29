@@ -65,8 +65,8 @@ public with sharing class HealthCheckGroupService_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * HealthCheckGroupService class when one already exists.
+    * @description Test method to verify that the getHealthCheckGroup method returns a HealthCheckGroup view model when provided
+    * with valid HealthCheckDefinitionModel data.
     ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupValid(){
@@ -83,16 +83,67 @@ public with sharing class HealthCheckGroupService_TEST {
     }
 
     /**************************************************************************************************************************
-    ****************************************************** STUB CLASS *********************************************************
-    **************************************************************************************************************************/
+    * @description Test method to verify that the getHealthCheckGroup method returns a null HealthCheckGroup view model when 
+    * provided with invalid HealthCheckDefinitionModel data.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getHealthCheckGroupInValid(){
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = HealthCheckGroupService.getInstance().getHealthCheckGroup('Test Group Name Here', 'EDAHealthCheckGroupAPIService', 'hed');
+        Test.stopTest();
 
-    /*************************************************************************************************************
-    * @description Stub class to simulate the response from HealthCheckGroupService to return an instance of 
-    * EDAHealthCheckGroupAPIService
-    *************************************************************************************************************/
-    // private class STUB_LocateEDAHealthCheckGroupAPIService extends HealthCheckGroupService {
-    //     private override HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService() {
-    //         return EDAHealthCheckGroupAPIService.getInstance();    
-    //     }
-    // }
+        System.assertEquals(true, hlthChkGroupVMod == null, 'Health Check Group view model should be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateHealthCheckGroupAPIService method returns a valid instance of 
+    * HealthCheckGroupAPIServiceInterface when a valid classname and namespace corresponding to a Serivce that implements the 
+    * interface is provided.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void locateHealthCheckGroupAPIServiceValid(){
+        Test.startTest();
+        HealthCheckGroupAPIServiceInterface hlthChkGroupAPISrvInterface = 
+            HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('EDAHealthCheckGroupAPIService', 'hed');
+        Test.stopTest();
+
+        System.assertEquals(EDAHealthCheckGroupAPIService.getInstance(), hlthChkGroupAPISrvInterface.getInstance(), 
+                'HealthCheckGroupAPIServiceInterface should be instance of EDAHealthCheckGroupAPIService.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateHealthCheckGroupAPIService method throws a NullPointerException  
+    * when an invalid classname and blank namespace is provided.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void locateHealthCheckGroupAPIServiceInValidClassName(){
+        Test.startTest();
+        try{
+            HealthCheckGroupAPIServiceInterface hlthChkGroupAPISrvInterface = 
+            HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('Not a Valid Service Name', '');
+        } catch (System.NullPointerException e){
+            System.assertEquals(true, String.isNotBlank(e.getMessage()), 'Invalid className should throw NullPointerException.');
+        } catch (HealthCheckGroupService.HealthCheckNotFoundException hcNotFoundEx){
+            System.assertEquals(true, String.isNotBlank(hcNotFoundEx.getMessage()), 'NullPointerException should throw HealthCheckNotFoundException.');
+        }
+        Test.stopTest();
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateHealthCheckGroupAPIService method throws a TypeException  
+    * when a valid classname to a class that does not extend the HealthCheckGroupAPIServiceInterface and blank namespace is provided.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void locateHealthCheckGroupAPIServiceValidClassNameNotImplementingInterface(){
+        Test.startTest();
+        try{
+            HealthCheckGroupAPIServiceInterface hlthChkGroupAPISrvInterface = 
+            HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('HealthCheckVMapper', '');
+        } catch (System.TypeException e){
+            System.assertEquals(true, String.isNotBlank(e.getMessage()), 'Invalid className should throw TypeException.');
+        } catch (HealthCheckGroupService.HealthCheckNotFoundException hcNotFoundEx){
+            System.assertEquals(true, String.isNotBlank(hcNotFoundEx.getMessage()), 'TypeException should throw HealthCheckNotFoundException.');
+        }
+        Test.stopTest();
+    }
 }
