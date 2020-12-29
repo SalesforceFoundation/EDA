@@ -45,7 +45,7 @@ public with sharing class HealthCheckController {
     * @description Retrieve a view model representing the Health Check to run.
     * @return A HealthCheckVModel representing the view of the Health Check to run.
     **********************************************************************************/
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static HealthCheckVModel getHealthCheckViewModel() {
         try {
             return HealthCheckController.locateHealthCheckMapper().getHealthCheckViewModel();

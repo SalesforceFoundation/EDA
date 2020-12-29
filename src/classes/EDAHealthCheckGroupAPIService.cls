@@ -21,7 +21,7 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
             instance = new EDAHealthCheckGroupAPIService();
         }
 
-        return (HealthCheckGroupAPIServiceInterface)instance;
+        return instance;
     }
 
     /**

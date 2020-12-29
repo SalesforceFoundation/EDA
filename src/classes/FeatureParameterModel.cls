@@ -33,7 +33,7 @@
 */
 public abstract with sharing class FeatureParameterModel {
 
-    @AuraEnabled public String name { get; private set; }
+    public String name { get; private set; }
 
     /* Constructor to set the properties */
     public FeatureParameterModel(String name) {
