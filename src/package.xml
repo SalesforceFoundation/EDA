@@ -86,6 +86,7 @@
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
         <members>EDAHealthCheckGroupAPIService</members>
+        <members>EDAHealthCheckGroupAPIService_TEST</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
