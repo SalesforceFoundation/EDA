@@ -354,13 +354,9 @@ flows:
                 # execute tests in unmanaged package
                 task: run_tests 
                 options: 
-                    test_name_match: '%Unmanaged_TEST'
-            10: 
-                # execute tests in unmanaged package
-                task: run_tests 
-                options: 
+                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
                     test_name_match: '%UTST'
-            11:
+            10:
                 flow: eda_settings_unmanaged
 
                     
