@@ -99,6 +99,23 @@ public with sharing class HealthCheckController_TEST {
         System.assertEquals(Date.today().format(), lastRunDate, 'Last Run date should be today\'s');
     }
 
+    /****************************************************************************************************************************
+    * @description Test method to verify that the updateHealthCheckLastRunDate method throws an exception when expected.
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void updateHealthCheckLastRunDateException(){
+        FeatureParameterMapper.instance = new STUB_ExceptionFeatureParameterMapper();
+
+        try {
+            Test.startTest();
+            String lastRunDate = HealthCheckController.updateHealthCheckLastRunDate();
+            Test.stopTest();
+        } catch (System.AuraHandledException ex){
+            System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
+            System.assertEquals('Script-thrown exception', ex.getMessage(), 'AuraHandledException text should be associated with message when exception occurs.');
+        }
+    }
+
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
@@ -126,6 +143,16 @@ public with sharing class HealthCheckController_TEST {
     private class STUB_ExceptionHealthCheckVMapper extends HealthCheckVMapper {
         @TestVisible 
         public override HealthCheckVModel getHealthCheckViewModel(){            
+            throw new TestException('Test exception thrown!');
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from FeatureParameterMapper to throw an exception
+    **************************************************************************************************************************************/ 
+    private class STUB_ExceptionFeatureParameterMapper extends FeatureParameterMapper {
+        @TestVisible 
+        public override void updateFromFeatureParameterModel(FeatureParameterModel featureParamModel) {
             throw new TestException('Test exception thrown!');
         }
     }

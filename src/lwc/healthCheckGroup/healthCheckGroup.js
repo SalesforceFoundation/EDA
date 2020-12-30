@@ -41,21 +41,21 @@ export default class HealthCheckGroup extends LightningElement {
         successIcon: 'utility:success',
     }
 
-    get healthCheckResultsId(){
+    get healthCheckResultsId() {
         let tempString = this.healthCheckDefinition.name + 'Results';
         return tempString.split(" ").join("");
     }
 
     get collapsableIcon() {
-        if (this.isExpanded){
+        if (this.isExpanded) {
             return this.iconReference.expandedIcon;
         }
 
         return this.iconReference.collapsedIcon;        
     }
 
-    get collapsableIconAltText(){
-        if (this.isExpanded){
+    get collapsableIconAltText() {
+        if (this.isExpanded) {
             return this.labelReference.stgHealthCheckResultsCollapse;
         }
         
@@ -63,7 +63,7 @@ export default class HealthCheckGroup extends LightningElement {
     }
 
     get statusIcon() {
-        if (this.isAllSuccessStatus()){
+        if (this.isAllSuccessStatus()) {
             return this.iconReference.successIcon;
         }
 
@@ -79,7 +79,7 @@ export default class HealthCheckGroup extends LightningElement {
     }
 
     get passedChecksDisplay() {
-        if (this.passedChecks == this.totalChecks){
+        if (this.passedChecks == this.totalChecks) {
             return this.labelReference.stgHealthChecksAllPassed;
         }
 
@@ -90,8 +90,8 @@ export default class HealthCheckGroup extends LightningElement {
         );
     }
 
-    isAllSuccessStatus(){
-        if (this.passedChecks == this.totalChecks){
+    isAllSuccessStatus() {
+        if (this.passedChecks == this.totalChecks) {
             return true;
         }
 
@@ -131,11 +131,12 @@ export default class HealthCheckGroup extends LightningElement {
 
             this.dispatchEvent(new CustomEvent('healthcheckgrouploaded'));
 
-        } else if ( error ) {
-            if ( Array.isArray( error.body ) )
+        } else if (error) {
+            if (Array.isArray(error.body)) {
                 //console.log( 'Error is ' + error.body.map( e => e.message ).join( ', ' ) );
-            else if ( typeof error.body.message === 'string' )
+            } else if (typeof error.body.message === 'string') {
                 //console.log( 'Error is ' + error.body.message );
+            }
         }
     }
 
@@ -144,15 +145,15 @@ export default class HealthCheckGroup extends LightningElement {
             return;
         }
 
-        for ( let i = 0; i < healthCheckItemArray.length; i++ ) {
-            if(healthCheckItemArray[ i ][ 'healthCheckItemList' ]) {
+        for (let i = 0; i < healthCheckItemArray.length; i++) {
+            if (healthCheckItemArray[i]['healthCheckItemList']) {
                 
-                if(healthCheckItemArray[ i ][ 'healthCheckItemList' ].length > 0) {
-                    healthCheckItemArray[ i ]._children = healthCheckItemArray[ i ][ 'healthCheckItemList' ];
-                    this.generateHealthCheckItemRows(healthCheckItemArray[ i ]._children);
+                if (healthCheckItemArray[i]['healthCheckItemList'].length > 0) {
+                    healthCheckItemArray[i]._children = healthCheckItemArray[i]['healthCheckItemList'];
+                    this.generateHealthCheckItemRows(healthCheckItemArray[i]._children);
                 }
 
-                delete healthCheckItemArray[ i ].healthCheckItemList;
+                delete healthCheckItemArray[i].healthCheckItemList;
             }
         }
     }
