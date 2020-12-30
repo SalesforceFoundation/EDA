@@ -71,14 +71,14 @@ public with sharing class HealthCheckGroupController_TEST {
     private static void getHealthCheckGroupViewModelException(){
         HealthCheckGroupService.instance = new STUB_ExceptionHealthCheckGroupService();
 
-        Test.startTest();
         try{
+            Test.startTest();
             HealthCheckGroupVModel hlthCheckGroupVMod = HealthCheckGroupController.getHealthCheckGroupViewModel('Exception Bag', 'TestClassName', 'abc');
+            Test.stopTest();
         } catch (System.AuraHandledException ex){
             System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
             System.assertEquals('Script-thrown exception', ex.getMessage(), 'AuraHandledException text should be associated with message when exception occurs.');
         }
-        Test.stopTest();
     }
 
     /**************************************************************************************************************************
@@ -105,5 +105,8 @@ public with sharing class HealthCheckGroupController_TEST {
         }
     }
 
+    /**************************************************************************************
+    * @description Custom exception class for testing.
+    **************************************************************************************/
     public class TestException extends Exception {}
 }

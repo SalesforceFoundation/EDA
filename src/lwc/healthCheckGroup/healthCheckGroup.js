@@ -110,7 +110,6 @@ export default class HealthCheckGroup extends LightningElement {
             namespace: '$healthCheckDefinition.namespace'
         })
     treeData({ error, data }) {
-        console.log('wiring data');
         if ( data ) {
             let stringified = JSON.stringify(data);            
             let tempData = JSON.parse( stringified );

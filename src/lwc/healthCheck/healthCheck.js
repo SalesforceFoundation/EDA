@@ -25,7 +25,6 @@ export default class HealthCheck extends LightningElement {
                 this.isDisplayHealthCheckGroup = true;
             })
             .catch(error => {
-                // console.log('error updating last run date: ', error);
                 this.lastRunDate = this.LabelReference.stgHealthCheckErrorLastRunDate;
             });
     }

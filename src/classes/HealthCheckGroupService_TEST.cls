@@ -113,20 +113,20 @@ public with sharing class HealthCheckGroupService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the locateHealthCheckGroupAPIService method throws a NullPointerException  
-    * when an invalid classname and blank namespace is provided.
+    * when an invalid classname an an invalid namespace is provided.
     ***************************************************************************************************************************/
     @isTest 
     private static void locateHealthCheckGroupAPIServiceInValidClassName(){
-        Test.startTest();
         try{
+            Test.startTest();
             HealthCheckGroupAPIServiceInterface hlthChkGroupAPISrvInterface = 
-            HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('Not a Valid Service Name', '');
+            HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('Not a Valid Service Name', 'abc');
+            Test.stopTest();
         } catch (System.NullPointerException e){
             System.assertEquals(true, String.isNotBlank(e.getMessage()), 'Invalid className should throw NullPointerException.');
         } catch (HealthCheckGroupService.HealthCheckNotFoundException hcNotFoundEx){
             System.assertEquals(true, String.isNotBlank(hcNotFoundEx.getMessage()), 'NullPointerException should throw HealthCheckNotFoundException.');
         }
-        Test.stopTest();
     }
 
     /**************************************************************************************************************************
@@ -135,15 +135,15 @@ public with sharing class HealthCheckGroupService_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void locateHealthCheckGroupAPIServiceValidClassNameNotImplementingInterface(){
-        Test.startTest();
         try{
+            Test.startTest();
             HealthCheckGroupAPIServiceInterface hlthChkGroupAPISrvInterface = 
             HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('HealthCheckVMapper', '');
+            Test.stopTest();
         } catch (System.TypeException e){
             System.assertEquals(true, String.isNotBlank(e.getMessage()), 'Invalid className should throw TypeException.');
         } catch (HealthCheckGroupService.HealthCheckNotFoundException hcNotFoundEx){
             System.assertEquals(true, String.isNotBlank(hcNotFoundEx.getMessage()), 'TypeException should throw HealthCheckNotFoundException.');
         }
-        Test.stopTest();
     }
 }

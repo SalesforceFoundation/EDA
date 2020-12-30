@@ -75,14 +75,14 @@ public with sharing class HealthCheckController_TEST {
     private static void getHealthCheckViewModelException(){
         HealthCheckVMapper.instance = new STUB_ExceptionHealthCheckVMapper();
 
-        Test.startTest();
-        try{
-            HealthCheckVModel hlthCheckVMod = HealthCheckController.getHealthCheckViewModel();
+        try {
+            Test.startTest();
+                HealthCheckVModel hlthCheckVMod = HealthCheckController.getHealthCheckViewModel();
+            Test.stopTest();
         } catch (System.AuraHandledException ex){
             System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
             System.assertEquals('Script-thrown exception', ex.getMessage(), 'AuraHandledException text should be associated with message when exception occurs.');
         }
-        Test.stopTest();
     }
 
     /****************************************************************************************************************************
@@ -146,8 +146,10 @@ public with sharing class HealthCheckController_TEST {
             FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', Date.today());
             return featureParamDateMdl;
         }
-
     }
 
+    /**************************************************************************************
+    * @description Custom exception class for testing.
+    **************************************************************************************/
     public class TestException extends Exception {}
 }
