@@ -302,4 +302,26 @@ public with sharing class HealthCheckGroupVModel_TEST {
         System.assertEquals(true, objectsToSort[3] instanceof Account, 'List should not be sorted when object types are not equal.');
         System.assertEquals(true, objectsToSort[4] instanceof Contact, 'List should not be sorted when object types are not equal.');
     }
+
+    /*****************************************************************************************
+    * @description Test to verify compareTo() method returns 0 when an object that is not of 
+    * type HealthCheckGroupVModel is provided for comparison.
+    *****************************************************************************************/
+    @isTest 
+    private static void compareToIncompatibleObjectType(){
+        Account acct = new Account(Name = 'Test Account');
+
+        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('TestLabel',
+                                                                          'TestStatus', 
+                                                                          5, 
+                                                                          8,
+                                                                          new List<String>{'TestString'}, 
+                                                                          new List<HealthCheckItemVModel>());
+
+        Test.startTest();
+        Integer compareToResult = hlthChkGroupMod.compareTo(acct);
+        Test.stopTest();
+
+        System.assertEquals(0, compareToResult, 'Result comparing incompatible object types should be 0.');
+    }
 }

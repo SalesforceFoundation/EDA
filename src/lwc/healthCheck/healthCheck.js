@@ -10,7 +10,7 @@ export default class HealthCheck extends LightningElement {
     @track totalChecks = 0;
     @track passedChecks = 0;
     @track lastRunDate = '';
-    @track isDisplayHealthCheckGroup = false;
+    @track displayHealthCheckGroup = false;
 
     @track healthCheckDefinitionsToDisplayList = [];
 
@@ -22,7 +22,7 @@ export default class HealthCheck extends LightningElement {
         updateHealthCheckLastRunDate()
             .then(result => {
                 this.lastRunDate = result;
-                this.isDisplayHealthCheckGroup = true;
+                this.displayHealthCheckGroup = true;
             })
             .catch(error => {
                 this.lastRunDate = this.LabelReference.stgHealthCheckErrorLastRunDate;
@@ -40,7 +40,7 @@ export default class HealthCheck extends LightningElement {
     }
 
     get displayHealthCheck(){
-        return !(!this.isDisplayHealthCheckGroup || !this.healthCheckDefinitionsToDisplayList);
+        return !(!this.displayHealthCheckGroup || !this.healthCheckDefinitionsToDisplayList);
     }
 
 }

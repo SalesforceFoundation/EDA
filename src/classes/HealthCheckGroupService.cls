@@ -79,7 +79,7 @@ public virtual with sharing class HealthCheckGroupService {
     * @return A HealthCheckGroupAPIServiceInterface corresponding to the specified classname and namespace.
     ********************************************************************************************/
     @TestVisible
-    private HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){
+    private virtual HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){
         HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface;
         String namespacedClassName = className;
 

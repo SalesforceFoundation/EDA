@@ -122,7 +122,7 @@ export default class HealthCheckGroup extends LightningElement {
             this.healthCheckGroupName = tempData.label;
 
             let tempArray = [].concat(tempData.healthCheckItemList);            
-            this.processChildren(tempArray);
+            this.generateHealthCheckItemRows(tempArray);
 
             this.healthCheckItemList = tempArray;
             this.expandedRowsList = tempData.expandedRows;
@@ -137,7 +137,7 @@ export default class HealthCheckGroup extends LightningElement {
         }
     }
 
-    processChildren(healthCheckItemArray) {
+    generateHealthCheckItemRows(healthCheckItemArray) {
         if (!healthCheckItemArray) {
             return;
         }
@@ -147,7 +147,7 @@ export default class HealthCheckGroup extends LightningElement {
                 
                 if(healthCheckItemArray[ i ][ 'healthCheckItemList' ].length > 0) {
                     healthCheckItemArray[ i ]._children = healthCheckItemArray[ i ][ 'healthCheckItemList' ];
-                    this.processChildren(healthCheckItemArray[ i ]._children);
+                    this.generateHealthCheckItemRows(healthCheckItemArray[ i ]._children);
                 }
 
                 delete healthCheckItemArray[ i ].healthCheckItemList;

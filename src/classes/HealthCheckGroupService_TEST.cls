@@ -70,6 +70,8 @@ public with sharing class HealthCheckGroupService_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupValid(){
+        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
+
         Test.startTest();
         HealthCheckGroupVModel hlthChkGroupVMod = HealthCheckGroupService.getInstance().getHealthCheckGroup('All Success', 'EDAHealthCheckGroupAPIService', 'hed');
         Test.stopTest();
@@ -89,7 +91,7 @@ public with sharing class HealthCheckGroupService_TEST {
     @isTest 
     private static void getHealthCheckGroupInValid(){
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = HealthCheckGroupService.getInstance().getHealthCheckGroup('Test Group Name Here', 'EDAHealthCheckGroupAPIService', 'hed');
+        HealthCheckGroupVModel hlthChkGroupVMod = HealthCheckGroupService.getInstance().getHealthCheckGroup('Non-existent Health Check Group', 'EDAHealthCheckGroupAPIService', 'hed');
         Test.stopTest();
 
         System.assertEquals(true, hlthChkGroupVMod == null, 'Health Check Group view model should be null.');
@@ -144,6 +146,20 @@ public with sharing class HealthCheckGroupService_TEST {
             System.assertEquals(true, String.isNotBlank(e.getMessage()), 'Invalid className should throw TypeException.');
         } catch (HealthCheckGroupService.HealthCheckNotFoundException hcNotFoundEx){
             System.assertEquals(true, String.isNotBlank(hcNotFoundEx.getMessage()), 'TypeException should throw HealthCheckNotFoundException.');
+        }
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUBS **************************************************************
+    **************************************************************************************************************************/
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from HealthCheckGroupService to return an instance of EDAHealthCheckGroupAPIService
+    **************************************************************************************************************************************/ 
+    private class STUB_HealthCheckGroupServiceEDAHealthCheckAPI extends HealthCheckGroupService {
+        @TestVisible 
+        private override HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){ 
+            return EDAHealthCheckGroupAPIService.getInstance(); 
         }
     }
 }

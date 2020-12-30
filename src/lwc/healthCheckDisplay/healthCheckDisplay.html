@@ -1,5 +1,5 @@
 <template>
-    <template if:false={isDisplayHealthCheckGroup}>
+    <template if:false={displayHealthCheckGroup}>
         <!-- Display spinner -->
         <lightning-spinner
             alternative-text={LabelReference.spinnerLoadingAltText}
@@ -11,7 +11,7 @@
         <template for:each={healthCheckDefinitionsList} for:item="hcdefinition">
             <li key={hcdefinition.name} class="slds-p-top_small">
                 <c-health-check-group
-                    is-display-group={isDisplayHealthCheckGroup}
+                    is-display-group={displayHealthCheckGroup}
                     health-check-definition={hcdefinition}
                     onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}
                     aria-label={hcdefinition.name}>

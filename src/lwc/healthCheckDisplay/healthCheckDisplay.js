@@ -6,8 +6,8 @@ export default class HealthCheckDisplay extends LightningElement {
     @api healthCheckDefinitionsList;
     
     @track loadedHealthCheckDefCount = 0;
-    @track isDisplayHealthCheckGroup = false; // determines whether healthcheckgroup card is displayed
-
+    @track displayHealthCheckGroup = false; 
+    
     LabelReference = {
         spinnerLoadingAltText: stgLoadingSpinnerText
     }
@@ -16,7 +16,7 @@ export default class HealthCheckDisplay extends LightningElement {
         this.loadedHealthCheckDefCount++;
        
         if (this.loadedHealthCheckDefCount == this.healthCheckDefinitionsList.length){
-            this.isDisplayHealthCheckGroup = true;
+            this.displayHealthCheckGroup = true;
         } 
     }
 }
