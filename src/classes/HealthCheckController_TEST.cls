@@ -75,14 +75,14 @@ public with sharing class HealthCheckController_TEST {
     private static void getHealthCheckViewModelException(){
         HealthCheckVMapper.instance = new STUB_ExceptionHealthCheckVMapper();
 
-        Test.startTest();
-        try{
-            HealthCheckVModel hlthCheckVMod = HealthCheckController.getHealthCheckViewModel();
+        try {
+            Test.startTest();
+                HealthCheckVModel hlthCheckVMod = HealthCheckController.getHealthCheckViewModel();
+            Test.stopTest();
         } catch (System.AuraHandledException ex){
             System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
             System.assertEquals('Script-thrown exception', ex.getMessage(), 'AuraHandledException text should be associated with message when exception occurs.');
         }
-        Test.stopTest();
     }
 
     /****************************************************************************************************************************
@@ -97,6 +97,23 @@ public with sharing class HealthCheckController_TEST {
         Test.stopTest();
 
         System.assertEquals(Date.today().format(), lastRunDate, 'Last Run date should be today\'s');
+    }
+
+    /****************************************************************************************************************************
+    * @description Test method to verify that the updateHealthCheckLastRunDate method throws an exception when expected.
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void updateHealthCheckLastRunDateException(){
+        FeatureParameterMapper.instance = new STUB_ExceptionFeatureParameterMapper();
+
+        try {
+            Test.startTest();
+            String lastRunDate = HealthCheckController.updateHealthCheckLastRunDate();
+            Test.stopTest();
+        } catch (System.AuraHandledException ex){
+            System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
+            System.assertEquals('Script-thrown exception', ex.getMessage(), 'AuraHandledException text should be associated with message when exception occurs.');
+        }
     }
 
     /**************************************************************************************************************************
@@ -131,6 +148,16 @@ public with sharing class HealthCheckController_TEST {
     }
 
     /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from FeatureParameterMapper to throw an exception
+    **************************************************************************************************************************************/ 
+    private class STUB_ExceptionFeatureParameterMapper extends FeatureParameterMapper {
+        @TestVisible 
+        public override void updateFromFeatureParameterModel(FeatureParameterModel featureParamModel) {
+            throw new TestException('Test exception thrown!');
+        }
+    }
+
+    /**************************************************************************************************************************************
     * @description Stub class to simulate the response from FeatureParameterSerivce class to return models and update from models
     **************************************************************************************************************************************/ 
     private class STUB_FeatureParameterService extends FeatureParameterService {
@@ -146,8 +173,10 @@ public with sharing class HealthCheckController_TEST {
             FeatureParameterDateModel featureParamDateMdl = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', Date.today());
             return featureParamDateMdl;
         }
-
     }
 
+    /**************************************************************************************
+    * @description Custom exception class for testing.
+    **************************************************************************************/
     public class TestException extends Exception {}
 }

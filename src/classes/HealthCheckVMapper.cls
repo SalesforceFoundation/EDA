@@ -79,7 +79,6 @@ public virtual with sharing class HealthCheckVMapper {
     **********************************************************************************/
     public virtual HealthCheckVModel getHealthCheckViewModel() {
         try {
-
             String lastRunDate = '';
 
             FeatureParameterDateModel featureParamDateModel = 
@@ -91,7 +90,7 @@ public virtual with sharing class HealthCheckVMapper {
 
             List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
             List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
-
+            
             for (HealthCheckDefinitionModel healthChkDefModel : healthCheckDefinitionList) {
                 //Generate view model for current health check definition model
                 HealthCheckDefinitionVModel healthChkDefViewModel = new HealthCheckDefinitionVModel(healthChkDefModel.name,
@@ -108,6 +107,5 @@ public virtual with sharing class HealthCheckVMapper {
         catch (FeatureParameterMapper.FeatureParameterMapperException e) {
             throw new AuraHandledException(Label.stgHealthCheckErrorLastRunDate);
         }
-
     }
 }

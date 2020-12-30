@@ -601,6 +601,10 @@
             <name>stgHealthCheckResultsCollapse</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckResultsDescription</name>
+    </customLabels>
+    <customLabels>
             <label><!-- Alt text for the icon to expand EDA Settings Health Check results--></label>
             <name>stgHealthCheckResultsExpand</name>
     </customLabels>
@@ -807,6 +811,10 @@
     <customLabels>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
         <label>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
     </customLabels>
     <customLabels>
         <name>stgNestedPlanRequirementPP</name>

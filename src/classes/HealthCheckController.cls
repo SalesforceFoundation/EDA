@@ -55,15 +55,18 @@ public with sharing class HealthCheckController {
     }
 
     /**********************************************************************************
-    * @description Updates and retireves the last run date of the health check
+    * @description Updates and retrieves the last run date of the health check
     * @return The last run date of health check.
     **********************************************************************************/
     @AuraEnabled
     public static String updateHealthCheckLastRunDate() {
-
-        FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());
-        FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
-
-        return FeatureParameterService.getInstance().getFeatureParameterModel('SettingsHealthCheckLastRunDate').convertToString();
+        try {
+            FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());
+            FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
+            return FeatureParameterService.getInstance().getFeatureParameterModel('SettingsHealthCheckLastRunDate').convertToString();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+        
     }
 }
