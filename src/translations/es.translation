@@ -813,6 +813,10 @@
         <label>Si tenía informes o campos de fórmula que hacían referencia a los valores anteriores en el campo Etnia, actualícelos.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
+    </customLabels>
+    <customLabels>
         <name>stgNestedPlanRequirementPP</name>
         <label>Validar plan programa para Requisitos de planes anidados</label>
     </customLabels>

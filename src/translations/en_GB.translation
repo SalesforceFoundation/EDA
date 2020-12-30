@@ -813,6 +813,10 @@
         <label>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
+    </customLabels>
+    <customLabels>
         <name>stgNestedPlanRequirementPP</name>
         <label>Validate Program Plan for Nested Plan Requirements</label>
     </customLabels>

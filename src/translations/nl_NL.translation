@@ -813,6 +813,10 @@
         <label>Als u rapporten of formulevelden had die naar de vorige waarden in het veld Etniciteit verwezen, moet u die updaten.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
+    </customLabels>
+    <customLabels>
         <name>stgNestedPlanRequirementPP</name>
         <label>Programmaplan voor geneste planvereisten valideren</label>
     </customLabels>

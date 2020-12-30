@@ -813,6 +813,10 @@
         <label>[民族] 項目の以前の値を参照していたレポートまたは数式項目がある場合は、それらを更新してください。</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
+    </customLabels>
+    <customLabels>
         <name>stgNestedPlanRequirementPP</name>
         <label>ネストされたプラン要件のプログラムプランを検証</label>
     </customLabels>

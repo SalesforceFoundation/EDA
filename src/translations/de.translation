@@ -817,6 +817,10 @@
         <label>Wenn Sie Berichte oder Formelfelder hatten, die auf die vorherigen Werte im Feld "Ethnische Zugehörigkeit" verwiesen haben, aktualisieren Sie diese.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
+    </customLabels>
+    <customLabels>
         <name>stgNestedPlanRequirementPP</name>
         <label>Programmplan auf geschachtelte Plananforderungen prüfen</label>
     </customLabels>

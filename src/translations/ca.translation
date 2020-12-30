@@ -817,6 +817,10 @@
         <label>Si teniu informes o camps de fórmules que feien referència als valors anteriors al camp Ètnia, actualitzeu-los.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
+    </customLabels>
+    <customLabels>
         <name>stgNestedPlanRequirementPP</name>
         <label>Validar el pla del programa per als requisits del pla enclavat</label>
     </customLabels>

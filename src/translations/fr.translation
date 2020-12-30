@@ -813,6 +813,10 @@
         <label>Si vous avez des rapports ou des champs de formule qui référencent les valeurs antérieures du champ Appartenance ethnique, mettez-les à jour.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
+    </customLabels>
+    <customLabels>
         <name>stgNestedPlanRequirementPP</name>
         <label>Valider le plan du programme pour les exigences du plan imbriquées</label>
     </customLabels>

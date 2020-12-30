@@ -813,6 +813,10 @@
         <label>Jos sinulla on raportteja tai kaavakenttiä, jotka viittaavat aiempiin arvoihin etnisyyskentässä, päivitä ne.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Text that displays to indicate that a component is loading --></label>
+        <name>stgLoadingSpinnerText</name>
+    </customLabels>
+    <customLabels>
         <name>stgNestedPlanRequirementPP</name>
         <label>Vahvista sisäkkäisten suunnitelmavaatimukset sisältävä ohjelmasuunnitelma</label>
     </customLabels>
