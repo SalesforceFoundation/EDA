@@ -111,21 +111,23 @@ export default class HealthCheckGroup extends LightningElement {
         })
     treeData({ error, data }) {
         if ( data ) {
-            let stringified = JSON.stringify(data);            
-            let tempData = JSON.parse( stringified );
+            // Workaround to support lightning tree grid child format by addressing issue where a single-member array 
+            // evaluates only to the member of that array and prevent copying of the array to a differently-named array.
+            let stringifiedData = JSON.stringify(data);            
+            let arrayAssignmentDataHack = JSON.parse( stringifiedData );
 
-            this.totalChecks = tempData.totalChecks;
-            this.passedChecks = tempData.passedChecks;
+            this.totalChecks = arrayAssignmentDataHack.totalChecks;
+            this.passedChecks = arrayAssignmentDataHack.passedChecks;
 
             this.isExpanded = !(this.isAllSuccessStatus());
 
-            this.healthCheckGroupName = tempData.label;
+            this.healthCheckGroupName = arrayAssignmentDataHack.label;
 
-            let tempArray = [].concat(tempData.healthCheckItemList);            
+            let tempArray = [].concat(arrayAssignmentDataHack.healthCheckItemList);            
             this.generateHealthCheckItemRows(tempArray);
 
             this.healthCheckItemList = tempArray;
-            this.expandedRowsList = tempData.expandedRows;
+            this.expandedRowsList = arrayAssignmentDataHack.expandedRows;
 
             this.dispatchEvent(new CustomEvent('healthcheckgrouploaded'));
 
