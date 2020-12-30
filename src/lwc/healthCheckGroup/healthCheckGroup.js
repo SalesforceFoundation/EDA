@@ -131,9 +131,9 @@ export default class HealthCheckGroup extends LightningElement {
 
         } else if ( error ) {
             if ( Array.isArray( error.body ) )
-                console.log( 'Error is ' + error.body.map( e => e.message ).join( ', ' ) );
+                //console.log( 'Error is ' + error.body.map( e => e.message ).join( ', ' ) );
             else if ( typeof error.body.message === 'string' )
-                console.log( 'Error is ' + error.body.message );
+                //console.log( 'Error is ' + error.body.message );
         }
     }
 
