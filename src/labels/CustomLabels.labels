@@ -1632,6 +1632,14 @@
         <value>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</value>
     </labels>
     <labels>
+        <fullName>stgLoadingSpinnerText</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text that displays to indicate that a component is loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>
         <categories>Setting</categories>
         <language>en_US</language>

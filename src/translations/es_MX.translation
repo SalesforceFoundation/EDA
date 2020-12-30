@@ -601,6 +601,10 @@
             <name>stgHealthCheckResultsCollapse</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckResultsDescription</name>
+    </customLabels>
+    <customLabels>
             <label><!-- Alt text for the icon to expand EDA Settings Health Check results--></label>
             <name>stgHealthCheckResultsExpand</name>
     </customLabels>

@@ -57,8 +57,9 @@ public virtual with sharing class HealthCheckGroupVModel implements Comparable {
     /*****************************************************************************************
     * @description Implementation of CompareTo() that sorts by status (Fail above Pass), then in
     * ascending alphabetical order on label.
-    * @param compareTo A HealthCheckGroupVModel to compare to another
-    * @return 
+    * @param compareTo A HealthCheckGroupVModel object to compare to another
+    * @return 0 if the current object is greater than the object to compare, -1 if it is less, 0 if
+    * they are equal, or if the objec to compare is an incompatible type.
     *****************************************************************************************/ 
     public virtual Integer compareTo(Object compareTo){
 

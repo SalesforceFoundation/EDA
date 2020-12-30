@@ -9,6 +9,7 @@ export default class HealthCheckDisplay extends LightningElement {
     LabelReference = {
         spinnerLoadingAltText: 'Loading...'
     }
+    
     handleHealthCheckGroupLoaded(){
         this.loadedHealthCheckDefCount++;
        
