@@ -4,14 +4,13 @@
             <!-- Card Header -->
             <h3 slot="title">
                 <div class="slds-grid">
-                    <!-- <div class="slds-col" if:true={isCardDisplayed}> -->
                     <div class="slds-col">
                         <lightning-button-icon
                             icon-name={collapsableIcon}
                             variant="bare"
                             onclick={toggleExpanded}
                             alternative-text={collapsableIconAltText}
-                            aria-controls="healthCheckGoupCardHeader"
+                            aria-controls={healthCheckResultsId}
                             aria-expanded={isExpanded}
                             aria-live="polite"
                         ></lightning-button-icon>
@@ -40,7 +39,9 @@
 
             <!-- Card Body -->
             <template if:true={isExpanded}>
-                <div class="slds-var-p-around_medium lgc-bg">
+                <div class="slds-var-p-around_medium 
+                            lgc-bg"
+                     id={healthCheckResultsId}>
                     <lightning-tree-grid
                         columns={gridColumns}
                         data={healthCheckItemList}

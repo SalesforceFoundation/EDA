@@ -41,6 +41,11 @@ export default class HealthCheckGroup extends LightningElement {
         successIcon: 'utility:success',
     }
 
+    get healthCheckResultsId(){
+        let tempString = this.healthCheckDefinition.name + 'Results';
+        return tempString.split(" ").join("");
+    }
+
     get collapsableIcon() {
         if (this.isExpanded){
             return this.iconReference.expandedIcon;
