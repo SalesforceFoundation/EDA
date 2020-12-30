@@ -889,6 +889,10 @@
         <label>Ejecute este proceso de limpieza de datos tras activar el requisito Email preferido o Teléfono preferido por primera vez o tras un periodo sin aplicar el requisito.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>

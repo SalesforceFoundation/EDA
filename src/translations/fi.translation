@@ -889,6 +889,10 @@
         <label>Suorita tämä tietojen puhdistusprosessi, kun olet ottanut ensisijaisen sähköpostin tai ensisijaisen puhelimen vaatimuksen käyttöön ensimmäistä kertaa tai sen jälkeen, kun vaatimusta ei ole pantu täytäntöön.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>

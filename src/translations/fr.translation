@@ -889,6 +889,10 @@
         <label>Exécutez ce processus de nettoyage de données après l'activation initiale de l'exigence Adresse e-mail préférée ou Téléphone préféré après une période de non application de l'exigence.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>

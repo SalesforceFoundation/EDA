@@ -893,6 +893,10 @@
         <label>Executeu aquest procés de neteja de dades després d'haver activat el requisit de correu electrònic preferit o el telèfon preferit per primera vegada o després d'un període de no compliment del requisit.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>

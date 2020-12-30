@@ -893,6 +893,10 @@
         <label>Führen Sie diesen Datenbereinigungsprozess aus, nachdem Sie die Anforderung "Bevorzugte E-Mail" oder "Bevorzugte Telefonnummer" zum ersten Mal aktiviert oder eine Zeit lang nicht erzwungen haben.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>

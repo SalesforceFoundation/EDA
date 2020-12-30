@@ -58,7 +58,7 @@ public virtual with sharing class HealthCheckDefinitionMapper {
     }
 
     /******************************************************************************
-    * @description Get a list of Health Check Definition models (Hardcoded for 1.0)
+    * @description Get a list of Health Check Definition models
     * @return A list of HealthCheckDefinitionModel.
     ******************************************************************************/
     public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {

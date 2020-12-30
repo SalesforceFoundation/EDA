@@ -889,6 +889,10 @@
         <label>このデータクリーンアッププロセスは、メール連絡先または電話連絡先の要件が初めて有効化された後、または要件を適用しない期間が経過した後に実行されます。</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>

@@ -889,6 +889,10 @@
         <label>Run this data cleanup process after you've enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>
