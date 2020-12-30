@@ -29,27 +29,31 @@
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Class to model the view of a Health Check Definition.
+* @description Controller for healthCheckGroup LWC component.
 */
-public with sharing class HealthCheckDefinitionVModel implements Comparable {
+public with sharing class HealthCheckGroupController {
 
-    @AuraEnabled public String name;
-    @AuraEnabled public String className;
-    @AuraEnabled public String namespace;
-
-    public HealthCheckDefinitionVModel(String name, String className, String namespace) {
-        this.name = name;
-        this.className = className;
-        this.namespace = namespace;
+    /**********************************************************************************
+    * @description Locates and returns an instance of HealthCheckVMapper. 
+    **********************************************************************************/
+    @TestVisible
+    private static HealthCheckGroupService locateHealthCheckGroupService() {
+        return HealthCheckGroupService.getInstance();
     }
 
-    /****************************************************************************************************************************
-    * @description Implementation of compareTo() to sort HealthCheckDefinitionVModels by name.
-    * @param  objectToCompareTo A HealthCheckDefinitionVModel to be used for comparison
-    * @return 0 if names are equal, 1 if the current name is greater, -1 otherwise
-    ****************************************************************************************************************************/ 
-    public Integer compareTo(Object objectToCompareTo){
-        HealthCheckDefinitionVModel healthCheckDefToCompareTo = (HealthCheckDefinitionVModel)objectToCompareTo;
-        return this.name.toLowerCase().compareTo(healthCheckDefToCompareTo.name.toLowerCase());
-    } 
+    /**********************************************************************************
+    * getHealthCheckGroupViewModel description
+    * @param  name      name description
+    * @param  className className description
+    * @param  namespace namespace description
+    * @return           return description
+    **********************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static HealthCheckGroupVModel getHealthCheckGroupViewModel(String name, String className, String namespace){
+        try {
+            return HealthCheckGroupController.locateHealthCheckGroupService().getHealthCheckGroup(name, className, namespace);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }

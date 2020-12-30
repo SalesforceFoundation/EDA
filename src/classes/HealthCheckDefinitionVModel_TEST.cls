@@ -56,9 +56,9 @@ public with sharing class HealthCheckDefinitionVModel_TEST {
     private static void sortNamesWithoutDuplicates(){
         List<HealthCheckDefinitionVModel> healthCheckDefModelsList = new List<HealthCheckDefinitionVModel>();
         HealthCheckDefinitionVModel healthCheckDefMod1 = new HealthCheckDefinitionVModel('test1', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod2 = new HealthCheckDefinitionVModel('Pineapple', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefMod2 = new HealthCheckDefinitionVModel('pineapple', 'TestClass', 'TEST');
         HealthCheckDefinitionVModel healthCheckDefMod3 = new HealthCheckDefinitionVModel('Banana', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod4 = new HealthCheckDefinitionVModel('test4', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefMod4 = new HealthCheckDefinitionVModel('Test4', 'TestClass', 'TEST');
         HealthCheckDefinitionVModel healthCheckDefMod5 = new HealthCheckDefinitionVModel('Papaya', 'TestClass', 'TEST');
         HealthCheckDefinitionVModel healthCheckDefMod6 = new HealthCheckDefinitionVModel('Apple', 'TestClass', 'TEST');
         
@@ -76,9 +76,9 @@ public with sharing class HealthCheckDefinitionVModel_TEST {
         System.assertEquals('Apple', healthCheckDefModelsList[0].name, 'First name in sorted list should be \'Apple\'');
         System.assertEquals('Banana', healthCheckDefModelsList[1].name, 'Second name in sorted list should be \'Banana\'');
         System.assertEquals('Papaya', healthCheckDefModelsList[2].name, 'Third name in sorted list should be \'Papaya\'');
-        System.assertEquals('Pineapple', healthCheckDefModelsList[3].name, 'Fourth name in sorted list should be \'Pineapple\'');
+        System.assertEquals('pineapple', healthCheckDefModelsList[3].name, 'Fourth name in sorted list should be \'pineapple\'');
         System.assertEquals('test1', healthCheckDefModelsList[4].name, 'Fifth name in sorted list should be \'test1\'');
-        System.assertEquals('test4', healthCheckDefModelsList[5].name, 'Sixth name in sorted list should be \'test4\'');
+        System.assertEquals('Test4', healthCheckDefModelsList[5].name, 'Sixth name in sorted list should be \'Test4\'');
     }
 
     /****************************************************************************************************************************

@@ -88,13 +88,29 @@ private class FeatureParameterService_TEST {
 
         FeatureParameterMapper.instance = new STUB_FeatureParameterDateModel();
         Test.startTest();
-            FeatureParameterModel featureParamModel = FeatureParameterService.getInstance().getFeatureParameterModel();
+            FeatureParameterModel featureParamModel = FeatureParameterService.getInstance().getFeatureParameterModel('Test Feature Param');
         Test.stopTest();
 
         System.assertNotEquals(null, featureParamModel, 'should return a FeatureParameterModel');
         System.assertEquals('Test Feature Param', featureParamModel.name, 'Feature Parameter Name should be returned');
         System.assertEquals(Date.today(), ((featureParameterDateModel)featureParamModel).value, 'Feature Parameter value should be returned');
 
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify updateFromFeatureParameterModel method
+    ***************************************************************************************************************************/
+    @isTest
+    private static void updateFromFeatureParameterModel() {
+
+        FeatureParameterMapper.instance = new STUB_FeatureParameterUpdate();
+        FeatureParameterModel featureParamModel = new FeatureParameterDateModel('example', System.Today());
+
+        Test.startTest();
+            FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamModel);
+        Test.stopTest();
+
+        System.assertEquals(FeatureParameterService.getInstance().getFeatureParameterModel('example'), featureParamModel);
     }
 
     /**************************************************************************************************************************
@@ -111,4 +127,21 @@ private class FeatureParameterService_TEST {
             return featureParamDateMdl;
         }
     }
+
+    /**********************************************************************************************************************************************************
+    * @description Stub class to simulate the response from FeatureParameterMapper to return a FeatureParameterDateModel and update from FeatureParameterModel
+    **********************************************************************************************************************************************************/ 
+     public class STUB_FeatureParameterUpdate extends FeatureParameterMapper {
+         
+         @testVisible
+         private FeatureParameterModel featureParameterModel;
+         
+         public override void updateFromFeatureParameterModel(FeatureParameterModel featureParamModel) {
+             this.featureParameterModel = featureParamModel;
+         }
+         
+         public override FeatureParameterModel getFeatureParameterModel(String featureParameter) {
+             return this.featureParameterModel;
+         }
+     }
 }

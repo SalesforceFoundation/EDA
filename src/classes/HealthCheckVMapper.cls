@@ -33,7 +33,7 @@
 * last run.
 */
 public virtual with sharing class HealthCheckVMapper {
-    
+
     /**********************************************************************************
     * @description Instance for Singleton Pattern
     **********************************************************************************/
@@ -74,39 +74,38 @@ public virtual with sharing class HealthCheckVMapper {
     }
 
     /**********************************************************************************
-    * @description Retrieves the current date associated with a feature model.
-    * @return A string representing the current date.
-    **********************************************************************************/
-    public String updateHealthCheckLastRunDate(){
-        FeatureParameterModel featureParamDateModel = 
-            (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel();
-
-        return featureParamDateModel.convertToString(); 
-    }
-
-    /**********************************************************************************
     * @description Retrieve a view model representing a health check to run.
     * @return A HealthCheckVModel representing details of a health check to be run.
     **********************************************************************************/
-    public virtual HealthCheckVModel getHealthCheckViewModel(){
-        FeatureParameterDateModel featureParamDateModel = 
-           (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel();
-        String lastRunDate = featureParamDateModel.convertToString(); 
-        
-        List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
-        List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
+    public virtual HealthCheckVModel getHealthCheckViewModel() {
+        try {
+            String lastRunDate = '';
 
-        for (HealthCheckDefinitionModel healthChkDefModel : healthCheckDefinitionList){
-            //Generate view model for current health check definition model
-            HealthCheckDefinitionVModel healthChkDefViewModel = new HealthCheckDefinitionVModel(healthChkDefModel.name,
-                                                                                                healthChkDefModel.className,
-                                                                                                healthChkDefModel.namespace);
+            FeatureParameterDateModel featureParamDateModel = 
+               (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel('SettingsHealthCheckLastRunDate');
 
-            healthCheckDefViewModelsList.add(healthChkDefViewModel);
+            if (featureParamDateModel.value != date.newinstance(2015, 12, 31)) {
+                lastRunDate = featureParamDateModel.convertToString();
+            }
+
+            List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
+            List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
+            
+            for (HealthCheckDefinitionModel healthChkDefModel : healthCheckDefinitionList) {
+                //Generate view model for current health check definition model
+                HealthCheckDefinitionVModel healthChkDefViewModel = new HealthCheckDefinitionVModel(healthChkDefModel.name,
+                                                                                                    healthChkDefModel.className,
+                                                                                                    healthChkDefModel.namespace);
+
+                healthCheckDefViewModelsList.add(healthChkDefViewModel);
+            }
+
+            Integer numberOfRuns = healthCheckDefinitionList.size();
+
+            return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefViewModelsList);
         }
-
-        Integer numberOfRuns = healthCheckDefinitionList.size();
-
-        return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefViewModelsList);
+        catch (FeatureParameterMapper.FeatureParameterMapperException e) {
+            throw new AuraHandledException(Label.stgHealthCheckErrorLastRunDate);
+        }
     }
 }

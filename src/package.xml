@@ -91,6 +91,8 @@
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
+        <members>EDAHealthCheckGroupAPIService</members>
+        <members>EDAHealthCheckGroupAPIService_TEST</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
@@ -121,6 +123,15 @@
         <members>HealthCheckDefinitionService_TEST</members>
         <members>HealthCheckDefinitionVModel</members>
         <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckGroupAPIServiceInterface</members>
+        <members>HealthCheckGroupController</members>
+        <members>HealthCheckGroupController_TEST</members>
+        <members>HealthCheckGroupService</members>
+        <members>HealthCheckGroupService_TEST</members>
+        <members>HealthCheckGroupVModel</members>
+        <members>HealthCheckGroupVModel_TEST</members>
+        <members>HealthCheckItemVModel</members>
+        <members>HealthCheckItemVModel_TEST</members>
         <members>HealthCheckVMapper</members>
         <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckVModel</members>
@@ -813,9 +824,21 @@
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
+        <members>stgHealthCheckErrorLastRunDate</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckRecoFix</members>
+        <members>stgHealthCheckResultsCollapse</members>
+        <members>stgHealthCheckResultsDescription</members>
+        <members>stgHealthCheckResultsExpand</members>
         <members>stgHealthCheckRunButton</members>
+        <members>stgHealthCheckRunError</members>
+        <members>stgHealthCheckSetting</members>
+        <members>stgHealthCheckStatus</members>
+        <members>stgHealthCheckStatusFailed</members>
+        <members>stgHealthCheckStatusPassed</members>
         <members>stgHealthCheckTitle</members>
+        <members>stgHealthChecksAllPassed</members>
+        <members>stgHealthChecksNotAllPassed</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -862,6 +885,7 @@
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
         <members>stgHelpStoreErrorsOn</members>
         <members>stgHelpUpdateReportIfDependenciesEthnicity</members>
+        <members>stgLoadingSpinnerText</members>
         <members>stgNestedPlanRequirementPP</members>
         <members>stgNewAfflMapping</members>
         <members>stgOptAllSysAdmins</members>
@@ -1329,6 +1353,10 @@
         <name>FeatureParameterBoolean</name>
     </types>
     <types>
+        <members>SettingsHealthCheckLastRunDate</members>
+        <name>FeatureParameterDate</name>
+    </types>
+    <types>
         <members>Data_CountAdministrativeAccounts</members>
         <members>Data_CountCampaignMemberRelationshipRules</members>
         <members>Data_CountContactRelationshipRules</members>
@@ -1379,6 +1407,8 @@
     </types>
     <types>
         <members>healthCheck</members>
+        <members>healthCheckDisplay</members>
+        <members>healthCheckGroup</members>
         <members>healthCheckHighlightsPanel</members>
         <members>healthCheckRun</members>
         <name>LightningComponentBundle</name>
