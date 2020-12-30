@@ -33,10 +33,10 @@
 */
 public with sharing class RecordTypeModel {
 
-    public Id id;
-    public String name;
-    public String developerName;
-    public Boolean isActive;
+    public Id id {get; private set;}
+    public String name {get; private set;}
+    public String developerName {get; private set;}
+    public Boolean isActive {get; private set;}
 
     public RecordTypeModel(Id id, String name, String developerName, Boolean isActive) {
         this.Id = id;
