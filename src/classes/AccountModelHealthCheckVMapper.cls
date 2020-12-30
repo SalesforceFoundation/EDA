@@ -55,7 +55,64 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
         return instance;
     }
 
+    /**
+     * getHealthCheckGroup description
+     * @return   return description
+     */ 
     public HealthCheckGroupVModel getHealthCheckGroup(){
-        HealthCheckGroupVModel htlChkGroupVMod = new HealthCheckGroupVModel(Label.stgHealthCheckAccountModel);
+        AccountModelSettingsModel acctModSettingMod = this.locateAccountModelSettingsService().getAccountModelSettingsModel();
+        Map<Id, RecordTypeModel> accountRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
+
+        List<HealthCheckItemVModel> healthCheckItemList = new List<HealthCheckItemVModel>();
+
+        HealthCheckItemVModel hcItem1 = new HealthCheckItemVModel('01',
+                                                                   Label.stgAccModelTitle,
+                                                                   'Fail',
+                                                                   Label.stgHealthCheckStatusFailed,
+                                                                   String.format(Label.stgHCRecordTypeNotFound, 
+                                                                                 new List<Object>{'000000000000000000'}),
+                                                                   String.format(Label.stgHCAccountModelDefaultNotFoundFix,
+                                                                                 new List<Object>{acctModSettingMod.defaultAccountModelId}),
+                                                                   new List<HealthCheckItemVModel>());
+                                                                   
+        HealthCheckItemVModel hcItem2 = new HealthCheckItemVModel('02',
+                                                                   Label.stgAdminAccountRecordType,
+                                                                   'Fail',
+                                                                   Label.stgHealthCheckStatusFailed,
+                                                                   String.format(Label.stgHCRecordTypeInactive,
+                                                                                 new List<Object>{'Mock Admin Label', 'mock_admin_api'}),
+                                                                   String.format(Label.stgHCAccountModelAdminInactiveFix,
+                                                                                 new List<Object>{'Mock Admin Label', 'mock_admin_api'}),
+                                                                   new List<HealthCheckItemVModel>());
+
+
+        healthCheckItemList.add(hcItem1);
+        healthCheckItemList.add(hcItem2);
+
+        return new HealthCheckGroupVModel(Label.stgHealthCheckAccountModel,
+                                          'Fail',
+                                          2,
+                                          4,
+                                          new List<String>(),
+                                          healthCheckItemList);
+    }
+
+
+    /*****************************************************************************
+    * @description Retrieve an instance of the AccountModelSettingsService class.
+    * @return An instance of AccountModelSettingsService.
+    *****************************************************************************/
+    @TestVisible
+    private AccountModelSettingsService locateAccountModelSettingsService(){
+        return AccountModelSettingsService.getInstance();
+    }
+    
+    /*****************************************************************************
+    * @description Retrieve an instance of the RecordTypeService class.
+    * @return An instance of RecordTypeService.
+    *****************************************************************************/
+    @TestVisible
+    private RecordTypeService locateRecordTypeService(){
+        return RecordTypeService.getInstance();
     }
 }

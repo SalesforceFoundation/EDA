@@ -1088,6 +1088,54 @@
         <value>Disable Preferred Phone Enforcement</value>
     </labels>
     <labels>
+        <fullName>stgHCAccountModelAdminInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the Administrative Account Record Type is inactive</shortDescription>
+        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it's not correct, change the Administrative Account Record Type to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can't find Default Account Model record type</shortDescription>
+        <value>In EDA Settings, on the System tab, change the Default Account Model to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCRecordTypeInactive</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check finds an inactive record type</shortDescription>
+        <value>The {0} ({1}) record type isn’t active.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCRecordTypeNotFound</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check can't find the record type</shortDescription>
+        <value>We can’t find the {0} record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCRecordTypeValid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check finds a record type valid</shortDescription>
+        <value>The {0} ({1}) record type is valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckFixNotApplicable</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text when a check passes and no fix is recommended</shortDescription>
+        <value>Not applicable</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckTitle</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1790,6 +1838,14 @@
         <protected>true</protected>
         <shortDescription>Account Model group title in EDA Settings Health Check results</shortDescription>
         <value>Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckAccountModelTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field label for Account model</shortDescription>
+        <value>Default Account Model</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckRunButton</fullName>

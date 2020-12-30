@@ -830,8 +830,16 @@
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
+        <members>stgHCAccountModelAdminInactiveFix</members>
+        <members>stgHCAccountModelDefaultNotFoundFix</members>
+        <members>stgHCRecordTypeInactive</members>
+        <members>stgHCRecordTypeNotFound</members>
+        <members>stgHCRecordTypeValid</members>
+        <members>stgHealthCheckAccountModel</members>
+        <members>stgHealthCheckAccountModelTitle</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
+        <members>stgHealthCheckFixNotApplicable</members>
         <members>stgHealthCheckLastRun</members>
         <members>stgHealthCheckRecoFix</members>
         <members>stgHealthCheckResultsCollapse</members>
