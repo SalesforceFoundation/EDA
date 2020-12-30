@@ -35,7 +35,7 @@
 * @description Wrapper class to allow for FeatureManagement method mocking in tests.
 */
 public class UTIL_FeatureManagement {
-    
+
     /**
      * @description Wrapper for System.FeatureManagement.setPackageBooleanValue
      * @param apiName The name of the Feature Parameter
@@ -52,5 +52,23 @@ public class UTIL_FeatureManagement {
      */
     public void setPackageIntegerValue(String apiName, Integer value) {
         System.FeatureManagement.setPackageIntegerValue(apiName, value);
+    }
+
+    /**
+     * @description Wrapper for System.FeatureManagement.setPackageDateValue
+     * @param apiName The name of the Feature Parameter
+     * @param value The value of the Feature Parameter
+     */
+    public void setPackageDateValue(String apiName, Date value) {
+        System.FeatureManagement.setPackageDateValue(apiName, value);
+    }
+
+    /**
+     * @description Wrapper for System.FeatureManagement.checkPackageDateValue
+     * @param apiName The name of the Feature Parameter
+     * @return The Date value of the Feature Parameter
+     */
+    public Date checkPackageDateValue(String apiName) {
+        return System.FeatureManagement.checkPackageDateValue(apiName);
     }
 }
