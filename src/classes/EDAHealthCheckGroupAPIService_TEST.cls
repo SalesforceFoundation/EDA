@@ -66,6 +66,7 @@ public with sharing class EDAHealthCheckGroupAPIService_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that the getHealthCheckGroup method returns a valid HealthCheckGroupVModel when the 
     * name of a valid HealthCheckDefinitionModel is provided (case insensitive).
+    * TODO: Update test method when hardcoded models are removed from getHealthCheckGroup() in EDAHealthCheckGroupAPIService
     ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupValid(){
