@@ -180,7 +180,6 @@ private class EDAHealthCheckGroupAPIService_TEST {
     * ReciprocalRelHealthCheckVMapper to return a valid HealthCheckGroupVModel.
     ***************************************************************************/
     private class STUB_ReciprocalRelHealthCheckVMapper extends ReciprocalRelHealthCheckVMapper {
-        @TestVisible 
         public override HealthCheckGroupVModel getHealthCheckGroup(){
             return new HealthCheckGroupVModel(
                 'Reciprocal Relationships',
