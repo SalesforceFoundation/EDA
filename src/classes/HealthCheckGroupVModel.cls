@@ -34,9 +34,9 @@
 public virtual with sharing class HealthCheckGroupVModel implements Comparable {
     
     @AuraEnabled public String label { get; private set; }
-    @AuraEnabled public String status { get; private set; }
-    @AuraEnabled public Integer passedChecks { get; private set; }
-    @AuraEnabled public Integer totalChecks { get; private set; }
+    @AuraEnabled public String status;
+    @AuraEnabled public Integer passedChecks;
+    @AuraEnabled public Integer totalChecks;
     @AuraEnabled public List<String> expandedRowsList { get; private set; }
     @AuraEnabled public List<HealthCheckItemVModel> healthCheckItemList { get; private set; }
 
