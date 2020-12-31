@@ -34,10 +34,11 @@
 @isTest
 private class ReciprocalRelHealthCheckVMapper_TEST {
 
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * ReciprocalRelHealthCheckVMapper class when one does not already exist.
-    ***************************************************************************************************************************/
+    /***************************************************************************
+    * @description Test method to verify that the getInstance method returns a
+    * new instance of the ReciprocalRelHealthCheckVMapper class when one does
+    * not already exist.
+    ***************************************************************************/
     @isTest
     private static void getInstanceNew() {
 
@@ -59,10 +60,11 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         );
     }
 
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * ReciprocalRelHealthCheckVMapper class when one already exists.
-    ***************************************************************************************************************************/
+    /***************************************************************************
+    * @description Test method to verify that the getInstance method returns the
+    * existing instance of the ReciprocalRelHealthCheckVMapper class when one
+    * already exists.
+    ***************************************************************************/
     @isTest
     private static void getInstanceExisting() {
         ReciprocalRelHealthCheckVMapper expectedReciprocalRelHealthCheckVMapperInstance =
@@ -77,6 +79,118 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             expectedReciprocalRelHealthCheckVMapperInstance,
             reciprocalRelHealthCheckVMapperInstance,
             'Instance of mapper class returned should match cached value.'
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getHealthCheckGroup handles all
+    * passed health checks
+    * @TODO finish test
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupAllPassed() {
+        RelationshipLookupSettingsService.instance = 
+            new STUB_RelationshipLookupSettingsService();
+        PicklistEntryService.instance =
+            new STUB_PicklistEntryService();
+
+        STUB_ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapperStub =
+            new STUB_ReciprocalRelHealthCheckVMapper();
+        ReciprocalRelHealthCheckVMapper.instance = reciprocalRelHealthCheckVMapperStub;  
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+ 
+        List<RelationshipLookupModel> relationshipLookupModelList =
+            ReciprocalRelHealthCheckVMapper.getInstance(
+            ).locateRelationshipLookupSettingsService(
+            ).getRelationshipLookupModels();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            ReciprocalRelHealthCheckVMapper.getInstance(
+            ).getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        Set<String> duplicateMappingKeys = new Set<String>();
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapperStub.getHealthCheckGroup();
+        Test.stopTest();
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that
+    * getRelationshipLookupHealthCheckGroup returns the expected health check
+    ***************************************************************************/
+    @isTest
+    private static void getRelationshipLookupHealthCheckGroup() {
+        RelationshipLookupSettingsService.instance = 
+            new STUB_RelationshipLookupSettingsService();
+        PicklistEntryService.instance =
+            new STUB_PicklistEntryService();
+
+        STUB_ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapperStub =
+            new STUB_ReciprocalRelHealthCheckVMapper();
+        ReciprocalRelHealthCheckVMapper.instance = reciprocalRelHealthCheckVMapperStub;  
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+ 
+        List<RelationshipLookupModel> relationshipLookupModelList =
+            ReciprocalRelHealthCheckVMapper.getInstance(
+            ).locateRelationshipLookupSettingsService(
+            ).getRelationshipLookupModels();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            ReciprocalRelHealthCheckVMapper.getInstance(
+            ).getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        Set<String> duplicateMappingKeys = new Set<String>();
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapperStub.getRelationshipLookupHealthCheckGroup(
+                    relationshipLookupModel[0],
+                    picklistEntryModelByName,
+                    duplicateMappingKeys
+                );
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.label,
+            'Label should equal expected value of blank'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.status,
+            'Status should equal expected value of blank'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.passedChecks,
+            'Passed checks should equal expected value of 0'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.totalChecks,
+            'Total checks should equal expected value of 0'
+        );
+        System.assertEquals(
+            0,
+            expandedRowsList.size(),
+            'Expanded rows list should have a size of 0'
+        );
+        System.assertEquals(
+            0,
+            healthCheckItemList.size(),
+            'Health Check Item list should have a size of 0'
         );
     }
 
@@ -138,5 +252,137 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             relationshipLookupSettingsService,
             'Instance of service class from view model mapper should match the singleton instance.'
         );
+    }
+
+    /***************************************************************************
+    *********************************STUBS**************************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * ReciprocalRelHealthCheckVMapper to control individual health check methods
+    ***************************************************************************/
+    private class STUB_ReciprocalRelHealthCheckVMapper extends ReciprocalRelHealthCheckVMapper {
+    }
+    
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * RelationshipLookupSettingsService to return a predetermined set of models.
+    ***************************************************************************/
+    private class STUB_RelationshipLookupSettingsService extends RelationshipLookupSettingsService {
+
+        public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
+            List<RelationshipLookupModel> relationshipLookupModelList =
+                new List<RelationshipLookupModel>();
+            
+            RelationshipLookupModel relationshipLookupModel = 
+                new RelationshipLookupModel(
+                    'testvalue',
+                    true,
+                    'testfemalevalue',
+                    'testmalevalue',
+                    'testneutralvalue'
+                );
+
+            return relationshipLookupModelList;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * RelationshipLookupSettingsService to return a predetermined set of unfound
+    * models.
+    ***************************************************************************/
+    private class STUB_RelationshipLookupSettingsSvUnfound extends RelationshipLookupSettingsService {
+
+        public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
+            List<RelationshipLookupModel> relationshipLookupModelList =
+                new List<RelationshipLookupModel>();
+            
+            RelationshipLookupModel relationshipLookupModel = 
+                new RelationshipLookupModel(
+                    'testvalue',
+                    true,
+                    'testfemalevalue',
+                    'testmalevalue',
+                    'testneutralvalue'
+                );
+
+            return relationshipLookupModelList;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * PicklistEntryService to return a predetermined set of active models.
+    ***************************************************************************/
+    private class STUB_PicklistEntryService extends PicklistEntryService {
+        public override Map<String,PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            Map<String,PicklistEntryModel> picklistEntryModelByValue =
+                new Map<String,PicklistEntryModel>();
+            
+            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+                'testvalue',
+                'testlabel',
+                true
+            ));            
+            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+                'testfemalevalue',
+                'testfemalelabel',
+                true
+            ));            
+            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+                'testmalevalue',
+                'testmalelabel',
+                true
+            ));            
+            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+                'testneutralvalue',
+                'testneutrallabel',
+                true
+            ));
+
+            return picklistEntryModelByValue;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * PicklistEntryService to return a predetermined set of inactive models.
+    ***************************************************************************/
+    private class STUB_PicklistEntryServiceInactive extends PicklistEntryService {
+        public override Map<String,PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            Map<String,PicklistEntryModel> picklistEntryModelByValue =
+                new Map<String,PicklistEntryModel>();
+            
+            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+                'testvalue',
+                'testlabel',
+                false
+            ));            
+            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+                'testfemalevalue',
+                'testfemalelabel',
+                false
+            ));            
+            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+                'testmalevalue',
+                'testmalelabel',
+                false
+            ));            
+            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+                'testneutralvalue',
+                'testneutrallabel',
+                false
+            ));
+
+            return picklistEntryModelByValue;
+        }
     }
 }

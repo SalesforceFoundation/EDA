@@ -35,21 +35,22 @@
 */
 public virtual with sharing class ReciprocalRelHealthCheckVMapper {
 
-    /*********************************************
+    /***************************************************************************
     * @description Instance for Singleton Pattern
-    **********************************************/
+    ******************************************************************************/
     @TestVisible
     private static ReciprocalRelHealthCheckVMapper instance;
 
-    /*********************************************************************
+    /***************************************************************************
     * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
+    ***************************************************************************/
     protected ReciprocalRelHealthCheckVMapper() {}
 
-    /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
+    /***************************************************************************
+    * @description Static method to get the current instance for Singleton
+    * pattern
     * @return The instance of ReciprocalRelHealthCheckVMapper.
-    ******************************************************************************/
+    ***************************************************************************/
     public static ReciprocalRelHealthCheckVMapper getInstance() {
 
         if (instance == null) {
@@ -59,21 +60,92 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         return instance;
     }
 
-    /*****************************************************************************
+    /***************************************************************************
     * @description Provides comprehensive Health Check Group View Model for
     * Reciprocal Relationship Settings
     * @return The Health Check Group View Model for Reciprocal Relationship
     * Settings
-    ******************************************************************************/
+    ***************************************************************************/
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
             Label.stgHealthCheckReciprocalRelTitle,
-            'Pass',
-            '0',
-            '0',
+            Label.healthCheckGroupVModel.stgHealthCheckStatusPassed,
+            0,
+            0,
             new List<String>(),
             new List<HealthCheckItemVModel>()
         );
+
+        List<RelationshipLookupModel> relationshipLookupModelList =
+            this.locateRelationshipLookupSettingsService(
+            ).getRelationshipLookupModels();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            this.locateRelationshipLookupSettingsService(
+            ).getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        Set<String> duplicateMappingKeys = new Set<String>();
+
+        for(RelationshipLookupModel relationshipLookupModel : relationshipLookupModelList) {
+            HealthCheckGroupVModel relationshipLookupCheckResult =
+                this.getRelationshipHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModelByName,
+                    duplicateMappingKeys
+                );
+
+            healthCheckGroupVModel.passedChecks += 
+                relationshipLookupCheckResult.passedChecks;
+            healthCheckGroupVModel.totalChecks += 
+                relationshipLookupCheckResult.totalChecks;
+            
+            healthCheckGroupVModel.expandedRowsList.addAll(
+                relationshipLookupCheckResult.expandedRowsList
+            );
+            healthCheckGroupVModel.healthCheckItems.addAll(
+                relationshipLookupCheckResult.healthCheckItems
+            );
+        }
+
+        if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
+            healthCheckGroupVModel.status = stgHealthCheckStatusFailed;
+        }
+
+        healthCheckGroupVModel.healthCheckItems.sort();
+
+        return healthCheckGroupVModel;
+    }
+
+    /***************************************************************************
+    * @description Retrieves the health check for an individual Relationship
+    * Lookup Model 
+    * @param relationshipLookupModel The relationship lookup model to perform
+    * the health check on.
+    * @param picklistEntryModelByName The picklist entry model map by value for
+    * Relationship__c.Type__c
+    * @param duplicateMappingKeys The set of duplicate relationship mapping key
+    * values
+    * @return The health check for an individual Relationship Lookup Model 
+    ***************************************************************************/
+    @TestVisible
+    private HealthCheckGroupVModel getRelationshipLookupHealthCheckGroup(
+        RelationshipLookupModel relationshipLookupModel,
+        Map<String,PicklistEntryModel> picklistEntryModelByName,
+        Set<String> duplicateMappingKeys
+    ) {
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+            '',
+            '',
+            0,
+            0,
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
+
+        return healthCheckGroupVModel;
     }
 
     /***************************************************************************
