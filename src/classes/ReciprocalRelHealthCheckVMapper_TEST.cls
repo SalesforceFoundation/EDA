@@ -79,4 +79,64 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'Instance of mapper class returned should match cached value.'
         );
     }
+
+    /***************************************************************************
+    * @description Test method to verify that a PicklistEntryService is
+    * retrieved by the locator method.
+    ***************************************************************************/
+    @isTest 
+    private static void locatePicklistEntryService(){
+        PicklistEntryService expectedPicklistEntryService
+            = PicklistEntryService.getInstance();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Test.startTest();
+            PicklistEntryService picklistEntryService
+                = reciprocalRelHealthCheckVMapper.locatePicklistEntryService();
+        Test.stopTest();
+
+        System.assertNotEquals(
+            null,
+            picklistEntryService,
+            'Instance of service class should not be null.'
+        );
+
+        System.assertEquals(
+            expectedPicklistEntryService,
+            picklistEntryService,
+            'Instance of service class from view model mapper should match the singleton instance.'
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that a
+    * RelationshipLookupSettingsService is retrieved by the locator method.
+    ***************************************************************************/
+    @isTest 
+    private static void locateRelationshipLookupSettingsService(){
+        RelationshipLookupSettingsService expectedRelationshipLookupSettingsService
+            = RelationshipLookupSettingsService.getInstance();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Test.startTest();
+            RelationshipLookupSettingsService relationshipLookupSettingsService
+                = reciprocalRelHealthCheckVMapper.locateRelationshipLookupSettingsService();
+        Test.stopTest();
+
+        System.assertNotEquals(
+            null,
+            relationshipLookupSettingsService,
+            'Instance of service class should not be null.'
+        );
+
+        System.assertEquals(
+            expectedRelationshipLookupSettingsService,
+            relationshipLookupSettingsService,
+            'Instance of service class from view model mapper should match the singleton instance.'
+        );
+    }
 }

@@ -35,7 +35,6 @@
 */
 public virtual with sharing class ReciprocalRelHealthCheckVMapper {
 
-
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
@@ -58,5 +57,40 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         }
 
         return instance;
+    }
+
+    /*****************************************************************************
+    * @description Provides comprehensive Health Check Group View Model for
+    * Reciprocal Relationship Settings
+    * @return The Health Check Group View Model for Reciprocal Relationship
+    * Settings
+    ******************************************************************************/
+    public virtual HealthCheckGroupVModel getHealthCheckGroup() {
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+            Label.stgHealthCheckReciprocalRelTitle,
+            'Pass',
+            '0',
+            '0',
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
+    }
+
+    /***************************************************************************
+    * @description Retrieves an instance of PicklistEntryService. 
+    * @return An instance of PicklistEntryService.
+    ***************************************************************************/
+    @TestVisible
+    private PicklistEntryService locatePicklistEntryService(){
+        return PicklistEntryService.getInstance();
+    }
+
+    /***************************************************************************
+    * @description Retrieves an instance of RelationshipLookupSettingsService. 
+    * @return An instance of RelationshipLookupSettingsService.
+    ***************************************************************************/
+    @TestVisible
+    private RelationshipLookupSettingsService locateRelationshipLookupSettingsService(){
+        return RelationshipLookupSettingsService.getInstance();
     }
 }
