@@ -85,7 +85,6 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles all
     * passed health checks
-    * @TODO finish test
     ***************************************************************************/
     @isTest
     private static void getHealthCheckGroupAllPassed() {
@@ -100,24 +99,103 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
 
         ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
             ReciprocalRelHealthCheckVMapper.getInstance();
- 
-        List<RelationshipLookupModel> relationshipLookupModelList =
-            reciprocalRelHealthCheckVMapperStub.locateRelationshipLookupSettingsService(
-            ).getRelationshipLookupModels();
 
-        Map<String,PicklistEntryModel> picklistEntryModelByName =
-            reciprocalRelHealthCheckVMapperStub.locatePicklistEntryService(
-            ).getModelsByNameForSObjectField(
-                Relationship__c.SObjectType,
-                Relationship__c.Type__c
-            );
-
-        Set<String> duplicateMappingKeys = new Set<String>();
+        Integer numberOfHealthChecks = 1;
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
                 reciprocalRelHealthCheckVMapperStub.getHealthCheckGroup();
         Test.stopTest();
+
+        System.assertEquals(
+            Label.stgHealthCheckReciprocalRelTitle,
+            healthCheckGroupVModel.label,
+            'Label of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusPassed,
+            healthCheckGroupVModel.status,
+            'Status of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModel.passedChecks,
+            'Number of passed checks of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModel.totalChecks,
+            'Number of total checks of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.expandedRowsList.size(),
+            'No health checks should fail, making expanded rows list size not 0.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.healthCheckItemList.size(),
+            'Number of health check items of returned health check should be 1.'
+        );
+    }
+
+
+
+    /***************************************************************************
+    * @description Test method to verify that getHealthCheckGroup handles all
+    * passed health checks
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupAllFail() {
+        RelationshipLookupSettingsService.instance = 
+            new STUB_RelationshipLookupSettingsSUnfound();
+        PicklistEntryService.instance =
+            new STUB_PicklistEntryService();
+
+        STUB_ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapperStub =
+            new STUB_ReciprocalRelHealthCheckVMapper();
+        ReciprocalRelHealthCheckVMapper.instance = reciprocalRelHealthCheckVMapperStub;  
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Integer numberOfHealthChecks = 1;
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+            reciprocalRelHealthCheckVMapper.getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(
+            Label.stgHealthCheckReciprocalRelTitle,
+            healthCheckGroupVModel.label,
+            'Label of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed,
+            healthCheckGroupVModel.status,
+            'Status of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.passedChecks,
+            'Number of passed checks should be 0.'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModel.totalChecks,
+            'Number of total checks of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.expandedRowsList.size(),
+            'All health checks should fail, making expanded rows list size 1.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.healthCheckItemList.size(),
+            'Number of health check items of returned health check should be 1.'
+        );
     }
 
     /***************************************************************************
@@ -131,19 +209,16 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         PicklistEntryService.instance =
             new STUB_PicklistEntryService();
 
-        STUB_ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapperStub =
-            new STUB_ReciprocalRelHealthCheckVMapper();
-        ReciprocalRelHealthCheckVMapper.instance = reciprocalRelHealthCheckVMapperStub;  
-
+        //NOTE: Use stubs for this to control submethods for actual health check tests
         ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
             ReciprocalRelHealthCheckVMapper.getInstance();
  
         List<RelationshipLookupModel> relationshipLookupModelList =
-            reciprocalRelHealthCheckVMapperStub.locateRelationshipLookupSettingsService(
+            reciprocalRelHealthCheckVMapper.locateRelationshipLookupSettingsService(
             ).getRelationshipLookupModels();
 
         Map<String,PicklistEntryModel> picklistEntryModelByName =
-            reciprocalRelHealthCheckVMapperStub.locatePicklistEntryService(
+            reciprocalRelHealthCheckVMapper.locatePicklistEntryService(
             ).getModelsByNameForSObjectField(
                 Relationship__c.SObjectType,
                 Relationship__c.Type__c
@@ -153,7 +228,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
-                reciprocalRelHealthCheckVMapperStub.getRelationshipLookupHealthCheckGroup(
+                reciprocalRelHealthCheckVMapper.getRelationshipLookupHealthCheckGroup(
                     relationshipLookupModelList[0],
                     picklistEntryModelByName,
                     duplicateMappingKeys
@@ -186,9 +261,9 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'Expanded rows list should have a size of 0'
         );
         System.assertEquals(
-            0,
+            1,
             healthCheckGroupVModel.healthCheckItemList.size(),
-            'Health Check Item list should have a size of 0'
+            'Health Check Item list should have a size of 1'
         );
     }
 
@@ -259,8 +334,51 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     /***************************************************************************
     * @description Stub class to simulate the response from
     * ReciprocalRelHealthCheckVMapper to control individual health check methods
+    * for success
     ***************************************************************************/
     private class STUB_ReciprocalRelHealthCheckVMapper extends ReciprocalRelHealthCheckVMapper {
+        protected override HealthCheckGroupVModel getRelationshipLookupHealthCheckGroup(
+            RelationshipLookupModel relationshipLookupModel,
+            Map<String,PicklistEntryModel> picklistEntryModelByName,
+            Set<String> duplicateMappingKeys
+        ) {
+            //NOTE: Replace this with overrides for the submethods for better tests when we have real data
+            HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+                '',
+                '',
+                0,
+                0,
+                new List<String>(),
+                new List<HealthCheckItemVModel>()
+            );
+
+            PicklistEntryModel picklistEntryModel =
+                picklistEntryModelByName.get(relationshipLookupModel.name);
+    
+            HealthCheckItemVModel healthCheckItemVModel = 
+                this.getHealthCheckItemVModelForRelationshipLookupModel(
+                    relationshipLookupModel,
+                    picklistEntryModel
+                );
+
+            healthCheckGroupVModel.totalChecks += 1;
+
+            if(picklistEntryModel != null) {
+                healthCheckGroupVModel.passedChecks += 1;
+            }
+
+            if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
+                healthCheckItemVModel.status = 'Fail';
+                healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusFailed;
+                healthCheckGroupVModel.expandedRowsList.add(relationshipLookupModel.name);
+            }
+    
+            healthCheckItemVModel.healthCheckItemList.sort();
+    
+            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+
+            return healthCheckGroupVModel;
+        }
     }
     
     /***************************************************************************
@@ -282,6 +400,8 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                     'testneutralvalue'
                 );
 
+            relationshipLookupModelList.add(relationshipLookupModel);
+
             return relationshipLookupModelList;
         }
     }
@@ -291,7 +411,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     * RelationshipLookupSettingsService to return a predetermined set of unfound
     * models.
     ***************************************************************************/
-    private class STUB_RelationshipLookupSettingsSvUnfound extends RelationshipLookupSettingsService {
+    private class STUB_RelationshipLookupSettingsSUnfound extends RelationshipLookupSettingsService {
 
         public override List<RelationshipLookupModel> getRelationshipLookupModels() {
             List<RelationshipLookupModel> relationshipLookupModelList =
@@ -299,12 +419,14 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             
             RelationshipLookupModel relationshipLookupModel = 
                 new RelationshipLookupModel(
-                    'testvalue',
+                    'unfoundvalue',
                     true,
-                    'testfemalevalue',
-                    'testmalevalue',
-                    'testneutralvalue'
+                    'unfoundfemalevalue',
+                    'unfoundmalevalue',
+                    'unfoundneutralvalue'
                 );
+
+            relationshipLookupModelList.add(relationshipLookupModel);
 
             return relationshipLookupModelList;
         }
