@@ -61,7 +61,7 @@ public virtual with sharing class RelationshipLookupSettingsService {
     * @description Returns a List of RelationshipLookupModels
     * @return List<RelationshipLookupModel> The list of RelationshipLookupModels
     ********************************************************************************************************/
-    public List<RelationshipLookupModel> getRelationshipLookupModels() {
+    public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
         return this.locateRelationshipLookupMapper().getRelationshipLookupModels();
     }
 

@@ -61,8 +61,14 @@ public virtual with sharing class PicklistEntryService {
     * @description Returns a List of PicklistEntry Models
     * @return Map<String,PicklistEntryModel> The list of PicklistEntry Models
     ********************************************************************************************************/
-    public Map<String,PicklistEntryModel> getModelsByNameForSObjectField(SObjectType sObjectTypeName, SObjectField SObjectFieldName) {
-        return locatePicklistEntryMapper().getModelsByNameForSObjectField(sObjectTypeName, SObjectFieldName);
+    public virtual Map<String,PicklistEntryModel> getModelsByNameForSObjectField(
+        SObjectType sObjectTypeName,
+        SObjectField SObjectFieldName
+    ) {
+        return locatePicklistEntryMapper().getModelsByNameForSObjectField(
+            sObjectTypeName,
+            SObjectFieldName
+        );
     }
 
     /*******************************************************************************************************
