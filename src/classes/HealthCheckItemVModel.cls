@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Class to represent the view model for a Health Check Item.
 */
 public virtual with sharing class HealthCheckItemVModel implements Comparable {

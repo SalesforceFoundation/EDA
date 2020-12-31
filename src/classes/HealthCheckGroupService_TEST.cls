@@ -28,7 +28,7 @@
 * @author Salesforce.org
 * @date 2020
 * @group
-* @group-content ../../ApexDocContent/HealthCheck.htm
+* @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for HealthCheckGroupService class.
 */
 @isTest 
