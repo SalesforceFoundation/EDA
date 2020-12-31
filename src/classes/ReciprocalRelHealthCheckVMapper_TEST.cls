@@ -139,8 +139,6 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         );
     }
 
-
-
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles all
     * passed health checks
@@ -148,7 +146,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     @isTest
     private static void getHealthCheckGroupAllFail() {
         RelationshipLookupSettingsService.instance = 
-            new STUB_RelationshipLookupSettingsSUnfound();
+            new STUB_RelationshipLookupSettingsUnfound();
         PicklistEntryService.instance =
             new STUB_PicklistEntryService();
 
@@ -411,7 +409,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     * RelationshipLookupSettingsService to return a predetermined set of unfound
     * models.
     ***************************************************************************/
-    private class STUB_RelationshipLookupSettingsSUnfound extends RelationshipLookupSettingsService {
+    private class STUB_RelationshipLookupSettingsUnfound extends RelationshipLookupSettingsService {
 
         public override List<RelationshipLookupModel> getRelationshipLookupModels() {
             List<RelationshipLookupModel> relationshipLookupModelList =
