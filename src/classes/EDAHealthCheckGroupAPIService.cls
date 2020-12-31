@@ -83,8 +83,9 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
             when 'accountmodel' {
                 return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
             }
+
             when else {
-                return null;
+                return null;                
             }
         }
     }

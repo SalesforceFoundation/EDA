@@ -55,11 +55,11 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
         return instance;
     }
 
-    /**
-     * getHealthCheckGroup description
-     * @return   return description
-     */ 
-    public HealthCheckGroupVModel getHealthCheckGroup(){
+    /**********************************************************************************
+    * @description Retrieve a HealthCheckGroup view model for Account.
+    * @return A HealthCheckGroupVModel.
+    **********************************************************************************/ 
+    public virtual HealthCheckGroupVModel getHealthCheckGroup(){
         AccountModelSettingsModel acctModSettingMod = this.locateAccountModelSettingsService().getAccountModelSettingsModel();
         Map<Id, RecordTypeModel> accountRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
 
@@ -96,7 +96,6 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                           new List<String>(),
                                           healthCheckItemList);
     }
-
 
     /*****************************************************************************
     * @description Retrieve an instance of the AccountModelSettingsService class.
