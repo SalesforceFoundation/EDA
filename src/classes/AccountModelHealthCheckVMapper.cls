@@ -29,7 +29,9 @@
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Class to ....
+* @description Generate a HealthCheckGroup view model representing the results of
+* an Account model health check.  Verifies that mapped record types for 
+* Default Account, Administrative and Household Account Models are valid and active.
 */
 public virtual with sharing class AccountModelHealthCheckVMapper {
     /**********************************************************************************
@@ -56,6 +58,42 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     }
 
     /**********************************************************************************
+    * @description Retrieve the results for a for an AccountModel health check.
+    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
+    **********************************************************************************/ 
+    public virtual HealthCheckGroupVModel getHealthCheckGroup() {
+        AccountModelSettingsModel acctModSettingMod = this.locateAccountModelSettingsService().getAccountModelSettingsModel();
+        Map<Id, RecordTypeModel> accountRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
+
+        String hlthCheckGroupLabel = Label.stgHealthCheckAccountModel;
+        Integer hlthChkGroupPassedChecks = 0;
+        Integer hlthChkGroupTotalChecks = 0;
+
+        List<String> hlthChkGroupExpandedRowsList = new List<String>();
+        List<HealthCheckItemVModel> hlthChkGroupHlthChkItemsList = new List<HealthCheckItemVModel>();
+
+        HealthCheckGroupVModel defaultHlthChkGroupVMod = this.getDefaultAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById);        
+        
+        hlthChkGroupPassedChecks += defaultHlthChkGroupVMod.passedChecks;
+        hlthChkGroupTotalChecks += defaultHlthChkGroupVMod.totalChecks;
+
+        String hlthChkGroupStatus = this.updateHealthCheckStatus(hlthChkGroupPassedChecks, hlthChkGroupTotalChecks);
+
+        hlthChkGroupExpandedRowsList.addAll(defaultHlthChkGroupVMod.expandedRowsList);
+        hlthChkGroupHlthChkItemsList.addAll(defaultHlthChkGroupVMod.healthCheckItemList);
+
+        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(hlthCheckGroupLabel,
+                                                                             hlthChkGroupStatus,
+                                                                             hlthChkGroupPassedChecks,
+                                                                             hlthChkGroupTotalChecks,
+                                                                             hlthChkGroupExpandedRowsList,
+                                                                             hlthChkGroupHlthChkItemsList);
+
+        hlthChkGroupVMod.healthCheckItemList.sort();
+        return hlthChkGroupVMod;
+    }
+
+    /**********************************************************************************
     * @description Generates a default HealthCheckGroupVModel for an AccountModel health check
     * @param  acctModelSettingsMod An AccountModelSettingsModel
     * @param  recordTypeModelsById A map of Record Type models by Id
@@ -63,7 +101,7 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     **********************************************************************************/
     @TestVisible
     private HealthCheckGroupVModel getDefaultAccountModelHealthCheckItems(AccountModelSettingsModel acctModelSettingsMod, 
-                                                                          Map<Id,RecordTypeModel> recordTypeModelsById) {
+                                                                            Map<Id,RecordTypeModel> recordTypeModelsById) {
         
         String hlthCheckGroupLabel = Label.stgHealthCheckAccountModel;
 
@@ -134,42 +172,6 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
         }
 
         return Label.stgHealthCheckStatusFailed;
-    }
-
-    /**********************************************************************************
-    * @description Retrieve the results for a for an AccountModel health check.
-    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
-    **********************************************************************************/ 
-    public virtual HealthCheckGroupVModel getHealthCheckGroup() {
-        AccountModelSettingsModel acctModSettingMod = this.locateAccountModelSettingsService().getAccountModelSettingsModel();
-        Map<Id, RecordTypeModel> accountRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
-
-        String hlthCheckGroupLabel = Label.stgHealthCheckAccountModel;
-        Integer hlthChkGroupPassedChecks = 0;
-        Integer hlthChkGroupTotalChecks = 0;
-
-        List<String> hlthChkGroupExpandedRowsList = new List<String>();
-        List<HealthCheckItemVModel> hlthChkGroupHlthChkItemsList = new List<HealthCheckItemVModel>();
-
-        HealthCheckGroupVModel defaultHlthChkGroupVMod = this.getDefaultAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById);        
-        
-        hlthChkGroupPassedChecks += defaultHlthChkGroupVMod.passedChecks;
-        hlthChkGroupTotalChecks += defaultHlthChkGroupVMod.totalChecks;
-
-        String hlthChkGroupStatus = this.updateHealthCheckStatus(hlthChkGroupPassedChecks, hlthChkGroupTotalChecks);
-
-        hlthChkGroupExpandedRowsList.addAll(defaultHlthChkGroupVMod.expandedRowsList);
-        hlthChkGroupHlthChkItemsList.addAll(defaultHlthChkGroupVMod.healthCheckItemList);
-
-        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(hlthCheckGroupLabel,
-                                                                             hlthChkGroupStatus,
-                                                                             hlthChkGroupPassedChecks,
-                                                                             hlthChkGroupTotalChecks,
-                                                                             hlthChkGroupExpandedRowsList,
-                                                                             hlthChkGroupHlthChkItemsList);
-
-        hlthChkGroupVMod.healthCheckItemList.sort();
-        return hlthChkGroupVMod;
     }
 
     /*****************************************************************************
