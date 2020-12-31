@@ -84,17 +84,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
 
     /**************************************************************************************************************************
     * @description Test to verify getDefaultAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
-    * pass when a valid and active RT is specified for Default Account Model.
+    * pass when the ID provided as the defaultAccountModel Id in AccountSettingsModel is valid and matches to a RT for Default 
+    * Account Modelthat is valid and active.
     **************************************************************************************************************************/ 
     @isTest
-    private static void getDefaultAccountModelHealthCheckItemsValidAndActive(){
+    private static void getDefaultAccountModelHealthCheckItemsIdMatchFoundToRTValidAndActive(){
         RecordTypeService.instance = new STUB_RecordTypeServiceValidAndActiveDefaultModel();
 
         AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
                                                                                 '000000000000000002',
                                                                                 '000000000000000003');
 
-        Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>();
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000001',
+                                                      'Test Default Record Name',
+                                                      'testDefaultRecordDevName',
+                                                      true);
+                          
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
 
         Test.startTest();
         HealthCheckGroupVModel hlthChkGroupVMod = 
@@ -119,17 +125,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
 
     /**************************************************************************************************************************
     * @description Test to verify getDefaultAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
-    * fail when a valid, but inactive RT is specified for Default Account Model.
+    * fail when the ID provided as the defaultAccountModel Id in AccountSettingsModel is valid and matches to a RT for Default 
+    * Account Modelthat is valid, but inactive.
     **************************************************************************************************************************/ 
     @isTest
-    private static void getDefaultAccountModelHealthCheckItemsValidAndInactive(){
+    private static void getDefaultAccountModelHealthCheckItemsIdMatchFoundToRTValidAndInactive(){
         RecordTypeService.instance = new STUB_RecordTypeServiceValidAndInactiveDefaultModel();
 
         AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
                                                                                 '000000000000000002',
                                                                                 '000000000000000003');
 
-        Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>();
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000001',
+                                                      'Test Default Record Name',
+                                                      'testDefaultRecordDevName',
+                                                      false);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
 
         Test.startTest();
         HealthCheckGroupVModel hlthChkGroupVMod = 
@@ -153,19 +165,24 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be set.');
     }
 
-     /**************************************************************************************************************************
+    /**************************************************************************************************************************
     * @description Test to verify getDefaultAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
-    * fail when an invalid RT is specified for Default Account Model.
+    * fail when an the ID provided as the defaultAccountModel Id in AccountSettingsModel is not an ID.
     **************************************************************************************************************************/ 
     @isTest
-    private static void getDefaultAccountModelHealthCheckItemsInvalid(){
+    private static void getDefaultAccountModelHealthCheckItemsInvalidDefaultId(){
         RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
-                                                                                '000000000000000002',
-                                                                                '000000000000000003');
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('Not an ID default acct',
+                                                                                'Not an ID admin acct',
+                                                                                'Not an Id HH acct');
 
-        Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>();
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000111',
+                                                      'Account Name',
+                                                      'accountDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
 
         Test.startTest();
         HealthCheckGroupVModel hlthChkGroupVMod = 
@@ -179,14 +196,74 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
         System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000001'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'000000000000000001'});
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
+        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'000000000000000000'});
 
         System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
         System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
         System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'Failed\'.');
         System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be set.');
         System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getDefaultAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * fail when an invalid RT is specified for Default Account Model and the defaultAccountModel Id in AccountSettingsModel is a
+    * valid ID, but does not match any Ids in the RecordType map.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getDefaultAccountModelHealthCheckItemsValidIdNoMatchingRT(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000000',
+                                                                                '000000000000000000',
+                                                                                '000000000000000000');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000123',
+                                                      'Different Account Name',
+                                                      'differentAccountDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'Account Model\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'Fail\'.');
+        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
+        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'000000000000000000'});
+
+        System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
+        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'Failed\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHealthCheckGroup() returns a HealthCheckGroupVModel with a status of
+    * passed when a valid and active record type is specified for Default Account Model.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHealthCheckGroupValidAndActive(){
+        AccountModelSettingsService.instance = new STUB_AccountModelSettingsServiceValid();
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidAndActiveDefaultModel();
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVModel.status, 'Status should be \'Pass\'');
+
     }
 
     /**************************************************************************************************************************
@@ -258,6 +335,28 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             return new AccountModelSettingsModel('000000000000000001',
                                                  '000000000000000002',
                                                  '000000000000000003');
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from AccountModelSettingsService to return a set of invalid account model settings.
+    **************************************************************************************************************************************/ 
+    private class STUB_AccountModelSettingsServiceInvalid extends AccountModelSettingsService {
+        public override AccountModelSettingsModel getAccountModelSettingsModel() {
+            return new AccountModelSettingsModel('00000000000000000a',
+                                                 '00000000000000000b',
+                                                 '00000000000000000c');
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from AccountModelSettingsService to return a set of account model settings that are not Ids.
+    **************************************************************************************************************************************/ 
+    private class STUB_AccountModelSettingsServiceNotId extends AccountModelSettingsService {
+        public override AccountModelSettingsModel getAccountModelSettingsModel() {
+            return new AccountModelSettingsModel('Not an ID 1',
+                                                 'Not an ID 2',
+                                                 'Not an ID 3');
         }
     }
 }
