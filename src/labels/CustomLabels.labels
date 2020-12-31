@@ -1088,6 +1088,30 @@
         <value>Disable Preferred Phone Enforcement</value>
     </labels>
     <labels>
+        <fullName>stgHCPicklistValueInactive</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check finds an inactive picklist value</shortDescription>
+        <value>The {0} ({1}) picklist value isn't active.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCPicklistValueNotFound</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check can't find the picklist value</shortDescription>
+        <value>We can’t find the {0} picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCPicklistValueValid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings Health Check component title</shortDescription>
+        <value>The {0} ({1}) picklist value is valid.</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckTitle</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1174,6 +1198,30 @@
         <protected>true</protected>
         <shortDescription>EDA Settings Health Check last run date</shortDescription>
         <value>Last Run: {0}</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelDescription</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for a reciprocal setting in EDA Settings Health Check results</shortDescription>
+        <value>{0} Reciprocal Relationships are valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelSetting</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Row heading for a reciprocal setting in EDA Settings Health Check results</shortDescription>
+        <value>{0} Reciprocal Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckReciprocalRelTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Reciprocal Relationships group title in EDA Settings Health Check results</shortDescription>
+        <value>Reciprocal Relationships</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckRecoFix</fullName>
