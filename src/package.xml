@@ -835,6 +835,18 @@
         <members>stgHCPicklistValueNotFound</members>
         <members>stgHCPicklistValueValid</members>
         <members>stgHCReciprocalRelDescription</members>
+        <members>stgHCReciprocalRelFemaleInactiveFix</members>
+        <members>stgHCReciprocalRelFemaleNotFoundFix</members>
+        <members>stgHCReciprocalRelFemaleTitle</members>
+        <members>stgHCReciprocalRelMaleInactiveFix</members>
+        <members>stgHCReciprocalRelMaleNotFoundFix</members>
+        <members>stgHCReciprocalRelMaleTitle</members>
+        <members>stgHCReciprocalRelNameInactiveFix</members>
+        <members>stgHCReciprocalRelNameNotFoundFix</members>
+        <members>stgHCReciprocalRelNameTitle</members>
+        <members>stgHCReciprocalRelNeutralInactiveFix</members>
+        <members>stgHCReciprocalRelNeutralNotFoundFix</members>
+        <members>stgHCReciprocalRelNeutralTitle</members>
         <members>stgHCReciprocalRelSetting</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
