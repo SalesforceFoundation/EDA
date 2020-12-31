@@ -87,7 +87,8 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                          String.format(Label.stgHCRecordTypeNotFound, 
                                                                         new List<Object>{acctModelSettingsMod.defaultAccountModelId}),
                                                          String.format(Label.stgHCAccountModelDefaultNotFoundFix, 
-                                                                        new List<Object>{acctModelSettingsMod.defaultAccountModelId})));
+                                                                        new List<Object>{acctModelSettingsMod.defaultAccountModelId}),
+                                                         new List<HealthCheckItemVModel>()));
             hlthChkGroupTotalChecks++;
             return hlthChkGroupVMod;
         }
@@ -100,7 +101,8 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                          String.format(Label.stgHCRecordTypeInactive, 
                                                                         new List<Object>{accountRTModel.name}),
                                                          String.format(Label.stgHCAccountModelDefaultInactiveFix, 
-                                                                        new List<Object>{accountRTModel.developerName})));
+                                                                        new List<Object>{accountRTModel.developerName}),
+                                                         new List<HealthCheckItemVModel>()));
             hlthChkGroupTotalChecks++;
             return hlthChkGroupVMod;
         }
@@ -111,7 +113,8 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                      Label.stgHealthCheckStatusPassed,
                                                      String.format(Label.stgHCRecordTypeValid, 
                                                                    new List<Object>{accountRTModel.name, accountRTModel.developerName}),
-                                                     Label.stgHealthCheckFixNotApplicable));
+                                                     Label.stgHealthCheckFixNotApplicable,
+                                                     new List<HealthCheckItemVModel>()));
         hlthChkGroupTotalChecks++;
         hlthChkGroupPassedChecks++;
         return hlthChkGroupVMod;
@@ -139,45 +142,17 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                              hlthChkGroupTotalChecks,
                                                                              hlthChkGroupExpandedRowsList,
                                                                              hlthChkGroupHlthChkItemsList);
-        hlthChkGroupVMod.hlthChkGroupHlthChkItemsList.sort();
-        return hlthChkGroupVMod;
-        // HealthCheckGroupVModel hlthChkGroupVMod = this.getDefaultAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById);
+
+        HealthCheckGroupVModel defaultHlthChkGroupVMod = this.getDefaultAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById);
         
+        hlthChkGroupPassedChecks += defaultHlthChkGroupVMod.passedChecks;
+        hlthChkGroupTotalChecks += defaultHlthChkGroupVMod.totalChecks;
+        hlthChkGroupExpandedRowsList.addAll(defaultHlthChkGroupVMod.expandedRowsList);
+        hlthChkGroupHlthChkItemsList.addAll(defaultHlthChkGroupVMod.healthCheckItemList);
 
-        // return hlthChkGroupVMod;
+        hlthChkGroupVMod.healthCheckItemList.sort();
 
-        // List<HealthCheckItemVModel> healthCheckItemList = new List<HealthCheckItemVModel>();
-
-        // HealthCheckItemVModel hcItem1 = new HealthCheckItemVModel('01',
-        //                                                            Label.stgAccModelTitle,
-        //                                                            'Fail',
-        //                                                            Label.stgHealthCheckStatusFailed,
-        //                                                            String.format(Label.stgHCRecordTypeNotFound, 
-        //                                                                          new List<Object>{'000000000000000000'}),
-        //                                                            String.format(Label.stgHCAccountModelDefaultNotFoundFix,
-        //                                                                          new List<Object>{acctModSettingMod.defaultAccountModelId}),
-        //                                                            new List<HealthCheckItemVModel>());
-                                                                   
-        // HealthCheckItemVModel hcItem2 = new HealthCheckItemVModel('02',
-        //                                                            Label.stgAdminAccountRecordType,
-        //                                                            'Fail',
-        //                                                            Label.stgHealthCheckStatusFailed,
-        //                                                            String.format(Label.stgHCRecordTypeInactive,
-        //                                                                          new List<Object>{'Mock Admin Label', 'mock_admin_api'}),
-        //                                                            String.format(Label.stgHCAccountModelAdminInactiveFix,
-        //                                                                          new List<Object>{'Mock Admin Label', 'mock_admin_api'}),
-        //                                                            new List<HealthCheckItemVModel>());
-
-
-        // healthCheckItemList.add(hcItem1);
-        // healthCheckItemList.add(hcItem2);
-
-        // return new HealthCheckGroupVModel(Label.stgHealthCheckAccountModel,
-        //                                   'Fail',
-        //                                   2,
-        //                                   4,
-        //                                   new List<String>(),
-        //                                   healthCheckItemList);
+        return hlthChkGroupVMod;
     }
 
     /*****************************************************************************
