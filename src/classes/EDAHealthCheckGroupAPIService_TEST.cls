@@ -75,7 +75,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
         ReciprocalRelHealthCheckVMapper.instance =
             new STUB_ReciprocalRelHealthCheckVMapper();
 
-        EDAHealthCheckGroupAPIService eDAHealthCheckGroupAPIService
+        HealthCheckGroupAPIServiceInterface eDAHealthCheckGroupAPIService
             = EDAHealthCheckGroupAPIService.getInstance();
 
         Test.startTest();
@@ -124,7 +124,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
     ***************************************************************************/
     @isTest
     private static void getHealthCheckGroupInValid(){
-        EDAHealthCheckGroupAPIService eDAHealthCheckGroupAPIService
+        HealthCheckGroupAPIServiceInterface eDAHealthCheckGroupAPIService
             = EDAHealthCheckGroupAPIService.getInstance();
 
         Test.startTest();
@@ -151,7 +151,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
             = ReciprocalRelHealthCheckVMapper.getInstance();
 
         EDAHealthCheckGroupAPIService eDAHealthCheckGroupAPIService =
-            EDAHealthCheckGroupAPIService.getInstance();
+            (EDAHealthCheckGroupAPIService)EDAHealthCheckGroupAPIService.getInstance();
 
         Test.startTest();
             ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper
@@ -184,8 +184,8 @@ private class EDAHealthCheckGroupAPIService_TEST {
             return new HealthCheckGroupVModel(
                 'Reciprocal Relationships',
                 'Pass',
-                '1',
-                '1',
+                1,
+                1,
                 new List<String>(),
                 new List<HealthCheckItemVModel>()
             );

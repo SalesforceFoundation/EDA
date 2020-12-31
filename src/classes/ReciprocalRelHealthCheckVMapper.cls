@@ -69,7 +69,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
             Label.stgHealthCheckReciprocalRelTitle,
-            Label.healthCheckGroupVModel.stgHealthCheckStatusPassed,
+            Label.stgHealthCheckStatusPassed,
             0,
             0,
             new List<String>(),
@@ -81,7 +81,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
             ).getRelationshipLookupModels();
 
         Map<String,PicklistEntryModel> picklistEntryModelByName =
-            this.locateRelationshipLookupSettingsService(
+            this.locatePicklistEntryService(
             ).getModelsByNameForSObjectField(
                 Relationship__c.SObjectType,
                 Relationship__c.Type__c
@@ -91,7 +91,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
 
         for(RelationshipLookupModel relationshipLookupModel : relationshipLookupModelList) {
             HealthCheckGroupVModel relationshipLookupCheckResult =
-                this.getRelationshipHealthCheckGroup(
+                this.getRelationshipLookupHealthCheckGroup(
                     relationshipLookupModel,
                     picklistEntryModelByName,
                     duplicateMappingKeys
@@ -105,16 +105,16 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
             healthCheckGroupVModel.expandedRowsList.addAll(
                 relationshipLookupCheckResult.expandedRowsList
             );
-            healthCheckGroupVModel.healthCheckItems.addAll(
-                relationshipLookupCheckResult.healthCheckItems
+            healthCheckGroupVModel.healthCheckItemList.addAll(
+                relationshipLookupCheckResult.healthCheckItemList
             );
         }
 
         if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
-            healthCheckGroupVModel.status = stgHealthCheckStatusFailed;
+            healthCheckGroupVModel.status = Label.stgHealthCheckStatusFailed;
         }
 
-        healthCheckGroupVModel.healthCheckItems.sort();
+        healthCheckGroupVModel.healthCheckItemList.sort();
 
         return healthCheckGroupVModel;
     }
@@ -131,7 +131,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     * @return The health check for an individual Relationship Lookup Model 
     ***************************************************************************/
     @TestVisible
-    private HealthCheckGroupVModel getRelationshipLookupHealthCheckGroup(
+    protected virtual HealthCheckGroupVModel getRelationshipLookupHealthCheckGroup(
         RelationshipLookupModel relationshipLookupModel,
         Map<String,PicklistEntryModel> picklistEntryModelByName,
         Set<String> duplicateMappingKeys

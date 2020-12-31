@@ -102,12 +102,11 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             ReciprocalRelHealthCheckVMapper.getInstance();
  
         List<RelationshipLookupModel> relationshipLookupModelList =
-            ReciprocalRelHealthCheckVMapper.getInstance(
-            ).locateRelationshipLookupSettingsService(
+            reciprocalRelHealthCheckVMapperStub.locateRelationshipLookupSettingsService(
             ).getRelationshipLookupModels();
 
         Map<String,PicklistEntryModel> picklistEntryModelByName =
-            ReciprocalRelHealthCheckVMapper.getInstance(
+            reciprocalRelHealthCheckVMapperStub.locatePicklistEntryService(
             ).getModelsByNameForSObjectField(
                 Relationship__c.SObjectType,
                 Relationship__c.Type__c
@@ -140,12 +139,11 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             ReciprocalRelHealthCheckVMapper.getInstance();
  
         List<RelationshipLookupModel> relationshipLookupModelList =
-            ReciprocalRelHealthCheckVMapper.getInstance(
-            ).locateRelationshipLookupSettingsService(
+            reciprocalRelHealthCheckVMapperStub.locateRelationshipLookupSettingsService(
             ).getRelationshipLookupModels();
 
         Map<String,PicklistEntryModel> picklistEntryModelByName =
-            ReciprocalRelHealthCheckVMapper.getInstance(
+            reciprocalRelHealthCheckVMapperStub.locatePicklistEntryService(
             ).getModelsByNameForSObjectField(
                 Relationship__c.SObjectType,
                 Relationship__c.Type__c
@@ -156,19 +154,19 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
                 reciprocalRelHealthCheckVMapperStub.getRelationshipLookupHealthCheckGroup(
-                    relationshipLookupModel[0],
+                    relationshipLookupModelList[0],
                     picklistEntryModelByName,
                     duplicateMappingKeys
                 );
         Test.stopTest();
 
         System.assertEquals(
-            0,
+            '',
             healthCheckGroupVModel.label,
             'Label should equal expected value of blank'
         );
         System.assertEquals(
-            0,
+            '',
             healthCheckGroupVModel.status,
             'Status should equal expected value of blank'
         );
@@ -184,12 +182,12 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         );
         System.assertEquals(
             0,
-            expandedRowsList.size(),
+            healthCheckGroupVModel.expandedRowsList.size(),
             'Expanded rows list should have a size of 0'
         );
         System.assertEquals(
             0,
-            healthCheckItemList.size(),
+            healthCheckGroupVModel.healthCheckItemList.size(),
             'Health Check Item list should have a size of 0'
         );
     }
@@ -271,7 +269,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     ***************************************************************************/
     private class STUB_RelationshipLookupSettingsService extends RelationshipLookupSettingsService {
 
-        public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
+        public override List<RelationshipLookupModel> getRelationshipLookupModels() {
             List<RelationshipLookupModel> relationshipLookupModelList =
                 new List<RelationshipLookupModel>();
             
@@ -295,7 +293,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     ***************************************************************************/
     private class STUB_RelationshipLookupSettingsSvUnfound extends RelationshipLookupSettingsService {
 
-        public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
+        public override List<RelationshipLookupModel> getRelationshipLookupModels() {
             List<RelationshipLookupModel> relationshipLookupModelList =
                 new List<RelationshipLookupModel>();
             
@@ -321,7 +319,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             SObjectType sObjectTypeName,
             SObjectField SObjectFieldName
         ) {
-            Map<String,PicklistEntryModel> picklistEntryModelByValue =
+            Map<String,PicklistEntryModel> picklistEntryModelByName =
                 new Map<String,PicklistEntryModel>();
             
             picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
@@ -345,7 +343,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 true
             ));
 
-            return picklistEntryModelByValue;
+            return picklistEntryModelByName;
         }
     }
 
@@ -358,7 +356,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             SObjectType sObjectTypeName,
             SObjectField SObjectFieldName
         ) {
-            Map<String,PicklistEntryModel> picklistEntryModelByValue =
+            Map<String,PicklistEntryModel> picklistEntryModelByName =
                 new Map<String,PicklistEntryModel>();
             
             picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
@@ -382,7 +380,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 false
             ));
 
-            return picklistEntryModelByValue;
+            return picklistEntryModelByName;
         }
     }
 }
