@@ -70,12 +70,57 @@ private class HealthCheckDefinitionMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getHealthCheckDefinitionModelsExistingFromMapper() {
+        HealthCheckDefinitionMapper healthCheckDefinitionMapper = 
+            HealthCheckDefinitionMapper.getInstance();
+
+        List<HealthCheckDefinitionModel> expectedHealthCheckDefinitionModelList =
+            new List<HealthCheckDefinitionModel>();
+
+        expectedHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel(
+            'ReciprocalRelationship', 
+            'EDAHealthCheckGroupAPIService', 
+            'hed')
+        );
+
         Test.startTest();
-            List<HealthCheckDefinitionModel> healthCheckDefinitionModels = HealthCheckDefinitionMapper.getInstance().getHealthCheckDefinitionModels();
+            List<HealthCheckDefinitionModel> healthCheckDefinitionModelList =
+                healthCheckDefinitionMapper.getHealthCheckDefinitionModels();
         Test.stopTest();
 
-        System.assertEquals(3, healthCheckDefinitionModels.size());
-        //TODO: Update assert once HC models aren't hardcoded
+        System.assertEquals(
+            expectedHealthCheckDefinitionModelList.size(),
+            healthCheckDefinitionModelList.size(),
+            'Health Check Definition Model List size should equal ' + expectedHealthCheckDefinitionModelList.size() + ', that of the expected list.'
+        );
+
+        for(Integer i = 0; i < expectedHealthCheckDefinitionModelList.size(); i++) {
+            HealthCheckDefinitionModel expectedHealthCheckDefinitionModel = expectedHealthCheckDefinitionModelList[i];
+            HealthCheckDefinitionModel healthCheckDefinitionModel = healthCheckDefinitionModelList[i];
+
+            System.assertEquals(
+                expectedHealthCheckDefinitionModel.name,
+                healthCheckDefinitionModel.name,
+                'Health Check Definition Model Name for list item ' + i + ' should equal \'' +
+                    expectedHealthCheckDefinitionModel.name +
+                    '\' the expected value from the list.'
+            );
+
+            System.assertEquals(
+                expectedHealthCheckDefinitionModel.className,
+                healthCheckDefinitionModel.className,
+                'Health Check Definition Model Class Name for list item ' + i + ' should equal \'' +
+                    expectedHealthCheckDefinitionModel.className +
+                    '\' the expected value from the list.'
+            );
+
+            System.assertEquals(
+                expectedHealthCheckDefinitionModel.namespace,
+                healthCheckDefinitionModel.namespace,
+                'Health Check Definition Model Namespace for list item ' + i + ' should equal \'' +
+                    expectedHealthCheckDefinitionModel.namespace +
+                    '\' the expected value from the list.'
+            );
+        }
     }
 }
 
