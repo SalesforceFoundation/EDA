@@ -1093,7 +1093,15 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Administrative Account Record Type is inactive</shortDescription>
-        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it's not correct, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Administrative Account Record Type to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountModelDefaultInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the Default Account Model record type is inactive</shortDescription>
+        <value>Verify the Default Account Model record type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
@@ -1838,14 +1846,6 @@
         <protected>true</protected>
         <shortDescription>Account Model group title in EDA Settings Health Check results</shortDescription>
         <value>Account Model</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckAccountModelTitle</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Field label for Account model</shortDescription>
-        <value>Default Account Model</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckRunButton</fullName>

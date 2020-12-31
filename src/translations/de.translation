@@ -549,6 +549,10 @@
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels> 
     <customLabels>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <name>stgHCAccountModelDefaultInactiveFix</name>
+    </customLabels> 
+    <customLabels>
         <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels> 
