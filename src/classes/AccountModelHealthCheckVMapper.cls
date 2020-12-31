@@ -100,8 +100,8 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     * @return A HealthCheckGroupVModel with default values set for AccountModel
     **********************************************************************************/
     @TestVisible
-    private HealthCheckGroupVModel getDefaultAccountModelHealthCheckItems(AccountModelSettingsModel acctModelSettingsMod, 
-                                                                            Map<Id,RecordTypeModel> recordTypeModelsById) {
+    private virtual HealthCheckGroupVModel getDefaultAccountModelHealthCheckItems(AccountModelSettingsModel acctModelSettingsMod, 
+                                                                                    Map<Id,RecordTypeModel> recordTypeModelsById) {
         
         String hlthCheckGroupLabel = Label.stgHealthCheckAccountModel;
 
