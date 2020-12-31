@@ -145,6 +145,39 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
             new List<HealthCheckItemVModel>()
         );
 
+        PicklistEntryModel picklistEntryModel =
+            picklistEntryModelByName.get(relationshipLookupModel.name);
+        String picklistEntryModelName = relationshipLookupModel.name;
+
+        if(picklistEntryModel != null) {
+            picklistEntryModelName = picklistentryModel.name;
+        }
+
+        List<String> listForSettingsLabel =
+            new List<String>{relationshipLookupModel.name};
+        List<String> listForDescriptionLabel =
+            new List<String>{relationshipLookupModel.name,picklistEntryModelName};
+
+        HealthCheckItemVModel healthCheckItemVModel = new HealthCheckItemVModel(
+            relationshipLookupModel.name,
+            String.format(Label.stgHCReciprocalRelSetting,listForSettingsLabel),
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(Label.stgHealthCheckStatusPassed,listForDescriptionLabel),
+            '',
+            new List<HealthCheckItemVModel>()
+        );
+
+        if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
+            healthCheckItemVModel.status = 'Fail';
+            healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusFailed;
+            healthCheckGroupVModel.expandedRowsList.add(relationshipLookupModel.name);
+        }
+
+        healthCheckItemVModel.healthCheckItemList.sort();
+
+        healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+
         return healthCheckGroupVModel;
     }
 
