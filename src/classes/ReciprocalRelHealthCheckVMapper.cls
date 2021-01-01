@@ -154,6 +154,24 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
                 picklistEntryModel
             );
 
+        List<HealthCheckGroupVModel> healthCheckGroupVModelList =
+            new List<HealthCheckGroupVModel>();
+
+        HealthCheckGroupVModel nameHealthCheckGroupVModel =
+            this.getNameHealthCheckGroup(
+                relationshipLookupModel,
+                picklistEntryModel
+            );
+
+        healthCheckGroupVModelList.add(nameHealthCheckGroupVModel);
+
+        for(HealthCheckGroupVModel healthCheckGroupVModelItem : healthCheckGroupVModelList) {
+            healthCheckGroupVModel.passedChecks += healthCheckGroupVModelItem.passedChecks;
+            healthCheckGroupVModel.totalChecks += healthCheckGroupVModelItem.totalChecks;
+            healthCheckGroupVModel.expandedRowsList.addAll(healthCheckGroupVModelItem.expandedRowsList);
+            healthCheckItemVModel.healthCheckItemList.addAll(healthCheckGroupVModelItem.healthCheckItemList);
+        }
+
         //TODO: Make tests for this once we have actual health check data
         if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
             healthCheckItemVModel.status = 'Fail';
@@ -168,11 +186,97 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         return healthCheckGroupVModel;
     }
 
+    @TestVisible
+    protected virtual HealthCheckGroupVModel getNameHealthCheckGroup(
+        RelationshipLookupModel relationshipLookupModel,
+        PicklistEntryModel picklistEntryModel
+    ) {
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+            '',
+            '',
+            0,
+            0,
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
+
+        List<String> modelNameListForFormat =
+            new List<String>{relationshipLookupModel.name};
+
+        if(picklistEntryModel == null) {
+            HealthCheckItemVModel healthCheckItemVModel =
+                new healthCheckItemVModel(
+                    relationshipLookupModel.name + '01',
+                    Label.stgHCReciprocalRelNameTitle,
+                    'Fail',
+                    Label.stgHealthCheckStatusFailed,
+                    String.format(
+                        Label.stgHCPicklistValueNotFound,
+                        modelNameListForFormat
+                    ),
+                    String.format(
+                        Label.stgHCReciprocalRelNameNotFoundFix,
+                        modelNameListForFormat
+                    ),
+                    new List<HealthCheckItemVModel>()
+                );
+
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+            return healthCheckGroupVModel;
+        }
+
+        List<String> picklistLabelAndNameForFormat =
+            new List<String>{picklistEntryModel.label,picklistEntryModel.name};
+
+        if(picklistEntryModel.isActive == false) {
+            HealthCheckItemVModel healthCheckItemVModel =
+                new healthCheckItemVModel(
+                    relationshipLookupModel.name + '01',
+                    Label.stgHCReciprocalRelNameTitle,
+                    'Fail',
+                    Label.stgHealthCheckStatusFailed,
+                    String.format(
+                        Label.stgHCPicklistValueInactive,
+                        picklistLabelAndNameForFormat
+                    ),
+                    String.format(
+                        Label.stgHCReciprocalRelNameInactiveFix,
+                        picklistLabelAndNameForFormat
+                    ),
+                    new List<HealthCheckItemVModel>()
+                );
+
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+            return healthCheckGroupVModel;
+        }
+
+        HealthCheckItemVModel healthCheckItemVModel =
+            new healthCheckItemVModel(
+                relationshipLookupModel.name + '01',
+                Label.stgHCReciprocalRelNameTitle,
+                'Pass',
+                Label.stgHealthCheckStatusPassed,
+                String.format(
+                    Label.stgHCPicklistValueValid,
+                    picklistLabelAndNameForFormat
+                ),
+                Label.stgHealthCheckFixNotApplicable,
+                new List<HealthCheckItemVModel>()
+            );
+
+        healthCheckGroupVModel.passedChecks++;
+        healthCheckGroupVModel.totalChecks++;
+        healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+        return healthCheckGroupVModel;
+    }
+
     /***************************************************************************
     * @description Retrieves an instance of PicklistEntryService. 
     * @return An instance of PicklistEntryService.
     ***************************************************************************/
-    @TestVisible
+    @TestVisible//TODO: Make tests!
     protected virtual HealthCheckItemVModel getHealthCheckItemVModelForRelationshipLookupModel(
         RelationshipLookupModel relationshipLookupModel,
         PicklistEntryModel picklistEntryModel

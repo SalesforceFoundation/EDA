@@ -1310,6 +1310,14 @@
         <protected>true</protected>
         <shortDescription>Row heading for a reciprocal setting in EDA Settings Health Check results</shortDescription>
         <value>{0} Reciprocal Relationships</value>
+    </labels>stgHealthCheckFixNotApplicable
+    <labels>
+        <fullName>stgHealthCheckFixNotApplicable</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text when a check passes and no fix is recommended</shortDescription>
+        <value>Not applicable</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckReciprocalRelTitle</fullName>

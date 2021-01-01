@@ -266,6 +266,286 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     }
 
     /***************************************************************************
+    * @description Test method to verify that getNameHealthCheckGroup
+    * passes with an active picklist entry model for its relationship model's
+    * name
+    ***************************************************************************/
+    @isTest
+    private static void getNameHealthCheckGroupPass() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        PicklistEntryModel picklistEntryModel = new PicklistEntryModel(
+            'testvalue',
+            'testlabel',
+            true
+        );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getNameHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModel
+                );
+        Test.stopTest();
+
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.passedChecks,
+            'The Health Check Group View Model should have 1 passed check.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.totalChecks,
+            'The Health Check Group View Model should have 1 total check.'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.expandedRowsList.size(),
+            'The Health Check Group View Model should have 0 expanded rows.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.healthCheckItemList.size(),
+            'The Health Check Group View Model should have 1 health check item.'
+        );
+
+        HealthCheckItemVModel healthCheckItemVModel =
+            healthCheckGroupVModel.healthCheckItemList[0];
+        List<String> picklistLabelAndNameForFormat =
+            new List<String>{picklistEntryModel.label,picklistEntryModel.name};
+
+        System.assertEquals(
+            relationshipLookupModel.name + '01',
+            healthCheckItemVModel.key,
+            'The Health Check Item\'s key should match the relationship lookup model\'s name.'
+        );
+        System.assertEquals(
+            Label.stgHCReciprocalRelNameTitle,
+            healthCheckItemVModel.setting,
+            'The Health Check Item\'s setting should match the specified label.'
+        );
+        System.assertEquals(
+            'Pass',
+            healthCheckItemVModel.status,
+            'The Health Check Item\'s status should status should be Pass.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusPassed,
+            healthCheckItemVModel.statusLabel,
+            'The Health Check Item\'s status label should match the specified label.'
+        );
+        System.assertEquals(
+            String.format(
+                Label.stgHCPicklistValueValid,
+                picklistLabelAndNameForFormat
+            ),
+            healthCheckItemVModel.description,
+            'The Health Check Item\'s description should match the specified label.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckFixNotApplicable,
+            healthCheckItemVModel.recommendedFix,
+            'The Health Check Item\'s recommended fix should match the specified label.'
+        );                
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getNameHealthCheckGroupPass fails
+    * with an inactive picklist entry model for its relationship model's name
+    ***************************************************************************/
+    @isTest
+    private static void getNameHealthCheckGroupInactive() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        PicklistEntryModel picklistEntryModel = new PicklistEntryModel(
+            'testvalue',
+            'testlabel',
+            false
+        );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getNameHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModel
+                );
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.passedChecks,
+            'The Health Check Group View Model should have 0 passed checks.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.totalChecks,
+            'The Health Check Group View Model should have 1 total check.'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.expandedRowsList.size(),
+            'The Health Check Group View Model should have 0 expanded rows.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.healthCheckItemList.size(),
+            'The Health Check Group View Model should have 1 health check item.'
+        );
+
+        HealthCheckItemVModel healthCheckItemVModel =
+            healthCheckGroupVModel.healthCheckItemList[0];
+        List<String> picklistLabelAndNameForFormat =
+            new List<String>{picklistEntryModel.label,picklistEntryModel.name};
+
+        System.assertEquals(
+            relationshipLookupModel.name + '01',
+            healthCheckItemVModel.key,
+            'The Health Check Item\'s key should match the relationship lookup model\'s name.'
+        );
+        System.assertEquals(
+            Label.stgHCReciprocalRelNameTitle,
+            healthCheckItemVModel.setting,
+            'The Health Check Item\'s setting should match the specified label.'
+        );
+        System.assertEquals(
+            'Fail',
+            healthCheckItemVModel.status,
+            'The Health Check Item\'s status should status should be Fail.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed,
+            healthCheckItemVModel.statusLabel,
+            'The Health Check Item\'s status label should match the specified label.'
+        );
+        System.assertEquals(
+            String.format(
+                Label.stgHCPicklistValueInactive,
+                picklistLabelAndNameForFormat
+            ),
+            healthCheckItemVModel.description,
+            'The Health Check Item\'s description should match the specified label.'
+        );
+        System.assertEquals(
+            String.format(
+                Label.stgHCReciprocalRelNameInactiveFix,
+                picklistLabelAndNameForFormat
+            ),
+            healthCheckItemVModel.recommendedFix,
+            'The Health Check Item\'s recommended fix should match the specified label.'
+        );                
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getNameHealthCheckGroupPass fails
+    * with an unfound picklist entry model for its relationship model's name
+    ***************************************************************************/
+    @isTest
+    private static void getNameHealthCheckGroupNotFound() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getNameHealthCheckGroup(
+                    relationshipLookupModel,
+                    null
+                );
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.passedChecks,
+            'The Health Check Group View Model should have 0 passed checks.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.totalChecks,
+            'The Health Check Group View Model should have 1 total check.'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.expandedRowsList.size(),
+            'The Health Check Group View Model should have 0 expanded rows.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.healthCheckItemList.size(),
+            'The Health Check Group View Model should have 1 health check item.'
+        );
+
+        HealthCheckItemVModel healthCheckItemVModel =
+            healthCheckGroupVModel.healthCheckItemList[0];
+        List<String> modelNameListForFormat =
+            new List<String>{relationshipLookupModel.name};
+
+        System.assertEquals(
+            relationshipLookupModel.name + '01',
+            healthCheckItemVModel.key,
+            'The Health Check Item\'s key should match the relationship lookup model\'s name.'
+        );
+        System.assertEquals(
+            Label.stgHCReciprocalRelNameTitle,
+            healthCheckItemVModel.setting,
+            'The Health Check Item\'s setting should match the specified label.'
+        );
+        System.assertEquals(
+            'Fail',
+            healthCheckItemVModel.status,
+            'The Health Check Item\'s status should status should be Fail.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed,
+            healthCheckItemVModel.statusLabel,
+            'The Health Check Item\'s status label should match the specified label.'
+        );
+        System.assertEquals(
+            String.format(
+                Label.stgHCPicklistValueNotFound,
+                modelNameListForFormat
+            ),
+            healthCheckItemVModel.description,
+            'The Health Check Item\'s description should match the specified label.'
+        );
+        System.assertEquals(
+            String.format(
+                Label.stgHCReciprocalRelNameNotFoundFix,
+                modelNameListForFormat
+            ),
+            healthCheckItemVModel.recommendedFix,
+            'The Health Check Item\'s recommended fix should match the specified label.'
+        );                
+    }
+
+    /***************************************************************************
     * @description Test method to verify that a PicklistEntryService is
     * retrieved by the locator method.
     ***************************************************************************/

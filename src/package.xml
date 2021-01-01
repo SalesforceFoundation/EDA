@@ -850,6 +850,7 @@
         <members>stgHCReciprocalRelSetting</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
+        <members>stgHealthCheckFixNotApplicable</members>
         <members>stgHealthCheckLastRun</members>
         <members>stgHealthCheckReciprocalRelTitle</members>
         <members>stgHealthCheckRecoFix</members>
