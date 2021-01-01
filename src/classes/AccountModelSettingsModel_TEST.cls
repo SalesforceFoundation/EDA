@@ -47,4 +47,18 @@ private class AccountModelSettingsModel_TEST {
         System.assertEquals('01217000002Zs0pAAC', accModelSettingsModel.administrativeAccountRecordTypeId, 'administrativeAccountRecordTypeId should be set with the value that is passed');
         System.assertEquals('01217000002Zs0sAAC', accModelSettingsModel.householdAccountRecordTypeId, 'householdAccountRecordTypeId should be set with the value that is passed');
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the constructor set the properties for nulls
+    ***************************************************************************************************************************/
+    @isTest
+    private static void constructorNull() {
+        Test.startTest();
+            AccountModelSettingsModel accModelSettingsModel = new AccountModelSettingsModel(null, null, null);
+        Test.stopTest();
+
+        System.assertEquals('', accModelSettingsModel.defaultAccountModelId, 'defaultAccountModelId should be set with the value that is passed');
+        System.assertEquals('', accModelSettingsModel.administrativeAccountRecordTypeId, 'administrativeAccountRecordTypeId should be set with the value that is passed');
+        System.assertEquals('', accModelSettingsModel.householdAccountRecordTypeId, 'householdAccountRecordTypeId should be set with the value that is passed');
+    }
 }
