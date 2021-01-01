@@ -202,6 +202,15 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         return healthCheckGroupVModel;
     }
 
+    /***************************************************************************
+    * @description Retrieves the health check for the Relationship Lookup Model
+    * Name
+    * @param relationshipLookupModel The relationship lookup model to perform
+    * the health check on.
+    * @param picklistEntryModel The picklist entry model for the Relationship
+    * Lookup Model Name
+    * @return The health check for the Relationship Lookup Model Name
+    ***************************************************************************/
     @TestVisible
     protected virtual HealthCheckGroupVModel getNameHealthCheckGroup(
         RelationshipLookupModel relationshipLookupModel,
@@ -217,6 +226,15 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         );
     }
 
+    /***************************************************************************
+    * @description Retrieves the health check for the Relationship Lookup Model
+    * Female Value
+    * @param relationshipLookupModel The relationship lookup model to perform
+    * the health check on.
+    * @param picklistEntryModelByName The picklist entry model map by value for
+    * Relationship__c.Type__c
+    * @return The health check for the Relationship Lookup Model Female Value
+    ***************************************************************************/
     @TestVisible
     protected virtual HealthCheckGroupVModel getFemaleHealthCheckGroup(
         RelationshipLookupModel relationshipLookupModel,
@@ -236,12 +254,20 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         );
     }
 
+    /***************************************************************************
+    * @description Retrieves the health check for the Relationship Lookup Model
+    * Male Value
+    * @param relationshipLookupModel The relationship lookup model to perform
+    * the health check on.
+    * @param picklistEntryModelByName The picklist entry model map by value for
+    * Relationship__c.Type__c
+    * @return The health check for the Relationship Lookup Model Male Value
+    ***************************************************************************/
     @TestVisible
     protected virtual HealthCheckGroupVModel getMaleHealthCheckGroup(
         RelationshipLookupModel relationshipLookupModel,
         Map<String,PicklistEntryModel> picklistEntryModelByName
     ) {
-
         PicklistEntryModel picklistEntryModel =
             picklistEntryModelByName.get(relationshipLookupModel.maleValue);
 
@@ -255,6 +281,15 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         );
     }
 
+    /***************************************************************************
+    * @description Retrieves the health check for the Relationship Lookup Model
+    * Neutral Value
+    * @param relationshipLookupModel The relationship lookup model to perform
+    * the health check on.
+    * @param picklistEntryModelByName The picklist entry model map by value for
+    * Relationship__c.Type__c
+    * @return The health check for the Relationship Lookup Model Neutral Value
+    ***************************************************************************/
     @TestVisible
     protected virtual HealthCheckGroupVModel getNeutralHealthCheckGroup(
         RelationshipLookupModel relationshipLookupModel,
@@ -273,6 +308,21 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         );
     }
 
+    /***************************************************************************
+    * @description Retrieves the health check for an arbitrary picklist entry
+    * model
+    * @param picklistEntryModel The picklist entry model to perform the check
+    * against
+    * @param relationshipLookupModelFieldValue The value from the relationship
+    * lookup model to use for the key and label formatting
+    * @param indexString The index to use for the key
+    * @param settingsLabel The label for the setting of the Health Check
+    * @param notFoundFix The fix label for when a picklist entry model is
+    * unfound
+    * @param inactiveFix The fix label for when a picklist entry model is
+    * inactive
+    * @return The health check for the picklist entry model
+    ***************************************************************************/
     @TestVisible
     protected virtual HealthCheckGroupVModel getHealthCheckGroupForPicklistSetting(
         PicklistEntryModel picklistEntryModel,
