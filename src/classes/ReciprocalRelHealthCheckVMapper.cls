@@ -261,7 +261,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         Map<String,PicklistEntryModel> picklistEntryModelByName
     ) {
         PicklistEntryModel picklistEntryModel =
-            picklistEntryModelByName.get(relationshipLookupModel.maleValue);
+            picklistEntryModelByName.get(relationshipLookupModel.neutralValue);
 
         return this.getHealthCheckGroupForPicklistSetting(
             picklistEntryModel,

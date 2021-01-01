@@ -487,12 +487,559 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     ***************************************************************************/
 
     /***************************************************************************
+    * @description Test method to verify that getFemaleHealthCheckGroup
+    * passes with an active picklist entry model for its relationship model's
+    * female value
+    ***************************************************************************/
+    @isTest
+    private static void getFemaleHealthCheckGroupPass() {
+        STUB_PicklistEntryService picklistEntryServiceStub =
+            new STUB_PicklistEntryService();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            picklistEntryServiceStub.getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getFemaleHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModelByName
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            picklistEntryModelByName.get('testfemalevalue'),
+            healthCheckGroupVModel,
+            1,
+            relationshipLookupModel.femaleValue,
+            '02',
+            Label.stgHCReciprocalRelFemaleTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            Label.stgHCPicklistValueValid,
+            Label.stgHealthCheckFixNotApplicable
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getFemaleHealthCheckGroupPass
+    * fails with an inactive picklist entry model for its relationship model's
+    * female value
+    ***************************************************************************/
+    @isTest
+    private static void getFemaleHealthCheckGroupInactive() {
+        STUB_PicklistEntryServiceInactive picklistEntryServiceStub =
+            new STUB_PicklistEntryServiceInactive();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            picklistEntryServiceStub.getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getFemaleHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModelByName
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            picklistEntryModelByName.get('testfemalevalue'),
+            healthCheckGroupVModel,
+            0,
+            relationshipLookupModel.femaleValue,
+            '02',
+            Label.stgHCReciprocalRelFemaleTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueInactive,
+            Label.stgHCReciprocalRelFemaleInactiveFix
+        );               
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getFemaleHealthCheckGroupPass
+    * fails with an unfound picklist entry model for its relationship model's
+    * female value
+    ***************************************************************************/
+    @isTest
+    private static void getFemaleHealthCheckGroupNotFound() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getFemaleHealthCheckGroup(
+                    relationshipLookupModel,
+                    new Map<String,PicklistEntryModel>()
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            null,
+            healthCheckGroupVModel,
+            0,
+            relationshipLookupModel.femaleValue,
+            '02',
+            Label.stgHCReciprocalRelFemaleTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueNotFound,
+            Label.stgHCReciprocalRelFemaleNotFoundFix
+        );
+    }
+
+    /***************************************************************************
     **********************************MALE**************************************
     ***************************************************************************/
 
     /***************************************************************************
+    * @description Test method to verify that getMaleHealthCheckGroup
+    * passes with an active picklist entry model for its relationship model's
+    * male value
+    ***************************************************************************/
+    @isTest
+    private static void getMaleHealthCheckGroupPass() {
+        STUB_PicklistEntryService picklistEntryServiceStub =
+            new STUB_PicklistEntryService();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            picklistEntryServiceStub.getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testmalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getMaleHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModelByName
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            picklistEntryModelByName.get('testmalevalue'),
+            healthCheckGroupVModel,
+            1,
+            relationshipLookupModel.maleValue,
+            '03',
+            Label.stgHCReciprocalRelMaleTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            Label.stgHCPicklistValueValid,
+            Label.stgHealthCheckFixNotApplicable
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getMaleHealthCheckGroupPass
+    * fails with an inactive picklist entry model for its relationship model's
+    * male value
+    ***************************************************************************/
+    @isTest
+    private static void getMaleHealthCheckGroupInactive() {
+        STUB_PicklistEntryServiceInactive picklistEntryServiceStub =
+            new STUB_PicklistEntryServiceInactive();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            picklistEntryServiceStub.getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testmalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getMaleHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModelByName
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            picklistEntryModelByName.get('testmalevalue'),
+            healthCheckGroupVModel,
+            0,
+            relationshipLookupModel.maleValue,
+            '03',
+            Label.stgHCReciprocalRelMaleTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueInactive,
+            Label.stgHCReciprocalRelMaleInactiveFix
+        );               
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getMaleHealthCheckGroupPass
+    * fails with an unfound picklist entry model for its relationship model's
+    * male value
+    ***************************************************************************/
+    @isTest
+    private static void getMaleHealthCheckGroupNotFound() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testmalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getMaleHealthCheckGroup(
+                    relationshipLookupModel,
+                    new Map<String,PicklistEntryModel>()
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            null,
+            healthCheckGroupVModel,
+            0,
+            relationshipLookupModel.maleValue,
+            '03',
+            Label.stgHCReciprocalRelMaleTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueNotFound,
+            Label.stgHCReciprocalRelMaleNotFoundFix
+        );
+    }
+
+    /***************************************************************************
     ********************************NEUTRAL*************************************
     ***************************************************************************/
+
+    /***************************************************************************
+    * @description Test method to verify that getNeutralHealthCheckGroup
+    * passes with an active picklist entry model for its relationship model's
+    * neutral value
+    ***************************************************************************/
+    @isTest
+    private static void getNeutralHealthCheckGroupPass() {
+        STUB_PicklistEntryService picklistEntryServiceStub =
+            new STUB_PicklistEntryService();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            picklistEntryServiceStub.getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testneutralvalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getNeutralHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModelByName
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            picklistEntryModelByName.get('testneutralvalue'),
+            healthCheckGroupVModel,
+            1,
+            relationshipLookupModel.neutralValue,
+            '04',
+            Label.stgHCReciprocalRelNeutralTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            Label.stgHCPicklistValueValid,
+            Label.stgHealthCheckFixNotApplicable
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getNeutralHealthCheckGroupPass
+    * fails with an inactive picklist entry model for its relationship model's
+    * neutral value
+    ***************************************************************************/
+    @isTest
+    private static void getNeutralHealthCheckGroupInactive() {
+        STUB_PicklistEntryServiceInactive picklistEntryServiceStub =
+            new STUB_PicklistEntryServiceInactive();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            picklistEntryServiceStub.getModelsByNameForSObjectField(
+                Relationship__c.SObjectType,
+                Relationship__c.Type__c
+            );
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testneutralvalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getNeutralHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModelByName
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            picklistEntryModelByName.get('testneutralvalue'),
+            healthCheckGroupVModel,
+            0,
+            relationshipLookupModel.neutralValue,
+            '04',
+            Label.stgHCReciprocalRelNeutralTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueInactive,
+            Label.stgHCReciprocalRelNeutralInactiveFix
+        );               
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getNeutralHealthCheckGroupPass
+    * fails with an unfound picklist entry model for its relationship model's
+    * neutral value
+    ***************************************************************************/
+    @isTest
+    private static void getNeutralHealthCheckGroupNotFound() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testneutralvalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getNeutralHealthCheckGroup(
+                    relationshipLookupModel,
+                    new Map<String,PicklistEntryModel>()
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            null,
+            healthCheckGroupVModel,
+            0,
+            relationshipLookupModel.neutralValue,
+            '04',
+            Label.stgHCReciprocalRelNeutralTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueNotFound,
+            Label.stgHCReciprocalRelNeutralNotFoundFix
+        );
+    }
+
+    /***************************************************************************
+    ******************************PICKLIST HELPER*******************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    * @description Test method to verify that
+    * getHealthCheckGroupForPicklistSetting passes with an active picklist entry
+    * model
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupForPicklistSettingPass() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        PicklistEntryModel picklistEntryModel = new PicklistEntryModel(
+            'testvalue',
+            'testlabel',
+            true
+        );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getHealthCheckGroupForPicklistSetting(
+                    picklistEntryModel,
+                    'value',
+                    '01',
+                    'settingsLabel',
+                    'notFoundFix {0} {1}',
+                    'inactiveFix {0} {1}'
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            picklistEntryModel,
+            healthCheckGroupVModel,
+            1,
+            'value',
+            '01',
+            'settingsLabel',
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            Label.stgHCPicklistValueValid,
+            Label.stgHealthCheckFixNotApplicable
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that
+    * getHealthCheckGroupForPicklistSetting fails with an inactive picklist
+    * entry model
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupForPicklistSettingInactive() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        PicklistEntryModel picklistEntryModel = new PicklistEntryModel(
+            'testvalue',
+            'testlabel',
+            false
+        );
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getHealthCheckGroupForPicklistSetting(
+                    picklistEntryModel,
+                    'value',
+                    '01',
+                    'settingsLabel',
+                    'notFoundFix {0} {1}',
+                    'inactiveFix {0} {1}'
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            picklistEntryModel,
+            healthCheckGroupVModel,
+            0,
+            'value',
+            '01',
+            'settingsLabel',
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueInactive,
+            'inactiveFix {0} {1}'
+        );               
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that
+    * getHealthCheckGroupForPicklistSetting fails with an unfound picklist
+    * entry model
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupForPicklistSettingNotFound() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getHealthCheckGroupForPicklistSetting(
+                    null,
+                    'value',
+                    '01',
+                    'settingsLabel',
+                    'notFoundFix {0} {1}',
+                    'inactiveFix {0} {1}'
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            null,
+            healthCheckGroupVModel,
+            0,
+            'value',
+            '01',
+            'settingsLabel',
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueNotFound,
+            'notFoundFix {0} {1}'
+        );
+    }
 
     /***************************************************************************
     ****************************LOCATORS AND HELPERS***************************
@@ -811,8 +1358,6 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             if(picklistEntryModel != null) {
                 healthCheckGroupVModel.passedChecks += 1;
             }
-
-            System.debug(relationshipLookupModelFieldValue + ' is ' + healthCheckGroupVModel.passedChecks);
 
             if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
                 healthCheckItemVModel.status = 'Fail';

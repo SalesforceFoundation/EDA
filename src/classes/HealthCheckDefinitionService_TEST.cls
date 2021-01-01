@@ -76,7 +76,6 @@ private class HealthCheckDefinitionService_TEST {
         Test.stopTest();
 
         System.assertEquals(3, healthCheckDefinitionModels.size());
-        //TODO: Update assert once HC models aren't hardcoded
     }
 
     /**************************************************************************************************************************

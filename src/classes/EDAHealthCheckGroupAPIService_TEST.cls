@@ -67,8 +67,6 @@ private class EDAHealthCheckGroupAPIService_TEST {
     * @description Test method to verify that the getHealthCheckGroup method
     * returns a valid HealthCheckGroupVModel for Reciprocal Relationships when
     * the name of reciprocalrelationship is provided (case insensitive).
-    * TODO: Update test method when hardcoded models are removed from
-    * getHealthCheckGroup() in EDAHealthCheckGroupAPIService
     ***************************************************************************/
     @isTest 
     private static void getHealthCheckGroupReciprocalRelationshipValid(){
