@@ -106,7 +106,7 @@ private class RelationshipLookupSettingsService_TEST {
     * are retrieved.
     ***************************************************************************/
     @isTest
-    private static void getRelationshipLookupModels() {
+    private static void getDuplicateRelationshipModelNamesFromList() {
         RelationshipLookupModel uniqueRelationshipLookupModel =
             new RelationshipLookupModel(
                 'unique',
@@ -165,23 +165,6 @@ private class RelationshipLookupSettingsService_TEST {
             duplicateNameSet.contains('unique'),
             'Duplicate name set should not contain name for unique.'
         );
-    }
-
-    public (
-        List<RelationshipLookupModel> relationshipLookupModelList
-    ) {
-        Set<String> nameSet = new Set<String>();
-        Set<String> duplicateSet = new Set<String>();
-
-        for(RelationshipLookupModel relationshipLookupModel : relationshipLookupModelList) {
-            if(nameSet.contains(relationshipLookupModel.name)) {
-                duplicateSet.add(relationshipLookupModel.name);
-            } else {
-                nameSet.add(relationshipLookupModel.name);
-            }
-        }
-
-        return duplicateSet;
     }
 
     /***********************************************************************************************************************************

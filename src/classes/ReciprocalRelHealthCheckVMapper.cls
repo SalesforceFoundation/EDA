@@ -87,7 +87,8 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
                 Relationship__c.Type__c
             );
 
-        Set<String> duplicateMappingKeys = new Set<String>();
+        Set<String> duplicateMappingKeys = this.locateRelationshipLookupSettingsService(
+            ).getDuplicateRelationshipModelNamesFromList(relationshipLookupModelList);
 
         for(RelationshipLookupModel relationshipLookupModel : relationshipLookupModelList) {
             HealthCheckGroupVModel relationshipLookupCheckResult =
@@ -179,6 +180,14 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
             this.getNeutralHealthCheckGroup(
                 relationshipLookupModel,
                 picklistEntryModelByName
+            )
+        );
+
+        healthCheckGroupVModelList.add(
+            this.getUniquenessHealthCheckGroup(
+                relationshipLookupModel,
+                picklistEntryModel,
+                duplicateMappingKeys
             )
         );
 
@@ -342,6 +351,68 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         healthCheckItemVModel.description = String.format(
                 Label.stgHCPicklistValueValid,
                 picklistLabelAndNameForFormat
+            );
+        healthCheckItemVModel.recommendedFix = Label.stgHealthCheckFixNotApplicable;
+    
+        healthCheckGroupVModel.passedChecks++;
+    
+        return healthCheckGroupVModel;
+    }
+
+    @TestVisible
+    protected virtual HealthCheckGroupVModel getUniquenessHealthCheckGroup(
+        RelationshipLookupModel relationshipLookupModel,
+        PicklistEntryModel picklistEntryModel,
+        Set<String> duplciateNameSet
+    ) {
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+            '',
+            '',
+            0,
+            0,
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
+    
+        List<String> modelNameListForFormat =
+            new List<String>{relationshipLookupModel.name,relationshipLookupModel.name};
+
+        if(picklistEntryModel != null) {
+            modelNameListForFormat =
+                new List<String>{picklistEntryModel.label,picklistEntryModel.name};
+        }
+    
+        String key = relationshipLookupModel.name + '05';
+    
+        HealthCheckItemVModel healthCheckItemVModel =
+            new healthCheckItemVModel(
+                key,
+                Label.stgHCReciprocalRelNameUniqueTitle,
+                'Fail',
+                Label.stgHealthCheckStatusFailed,
+                String.format(
+                    Label.stgHCReciprocalRelNameNotUniqueDesc,
+                    modelNameListForFormat
+                ),
+                String.format(
+                    Label.stgHCReciprocalRelNameNotUniqueFix,
+                    modelNameListForFormat
+                ),
+                new List<HealthCheckItemVModel>()
+            );
+    
+        healthCheckGroupVModel.totalChecks++;
+        healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+    
+        if(duplciateNameSet.contains(relationshipLookupModel.name)) {
+            return healthCheckGroupVModel;
+        }
+    
+        healthCheckItemVModel.status = 'Pass';
+        healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusPassed;
+        healthCheckItemVModel.description = String.format(
+                Label.stgHCReciprocalRelNameUniqueDesc,
+                modelNameListForFormat
             );
         healthCheckItemVModel.recommendedFix = Label.stgHealthCheckFixNotApplicable;
     
