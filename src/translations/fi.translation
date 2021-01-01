@@ -925,6 +925,14 @@
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels> 
     <customLabels>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
+        <name>stgHCAccountModelHHInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
+        <name>stgHCAccountModelHHNotFoundFix</name>
+    </customLabels> 
+    <customLabels>
         <label><!-- Description when Health Check finds an inactive record type --></label>
         <name>stgHCRecordTypeInactive</name>
     </customLabels> 

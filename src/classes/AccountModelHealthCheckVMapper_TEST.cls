@@ -188,8 +188,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
         System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Default Record Name'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultInactiveFix, new List<Object>{'testDefaultRecordDevName'});
+        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Default Record Name', 'testDefaultRecordDevName'});
+        String expectedFix = String.format(Label.stgHCAccountModelDefaultInactiveFix, new List<Object>{'Test Default Record Name', 'testDefaultRecordDevName'});
 
         System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
         System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Fail\'.');
@@ -284,6 +284,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     /**************************************************************************************************************************
     * @description Test to verify getHealthCheckGroup() returns a HealthCheckGroupVModel with a status of
     * passed when a valid and active record type is specified for Default Account Model.
+    * TODO: update to include a GroupModel for Admin Account and update assertions to account for both account models
     **************************************************************************************************************************/ 
     @isTest
     private static void getHealthCheckGroupValidAndActive(){
