@@ -832,6 +832,7 @@
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
         <members>stgHCAccountModelAdminInactiveFix</members>
+        <members>stgHCAccountModelAdminNotFoundFix</members>
         <members>stgHCAccountModelDefaultInactiveFix</members>
         <members>stgHCAccountModelDefaultNotFoundFix</members>
         <members>stgHCRecordTypeInactive</members>
