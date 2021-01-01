@@ -504,6 +504,8 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         }
     }
 
+
+
     /***************************************************************************
     * @description Stub class to simulate the response from
     * PicklistEntryService to return a predetermined set of active models.
@@ -521,17 +523,17 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 'testlabel',
                 true
             ));            
-            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+            picklistEntryModelByName.put('testfemalevalue',new PicklistEntryModel(
                 'testfemalevalue',
                 'testfemalelabel',
                 true
             ));            
-            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+            picklistEntryModelByName.put('testmalevalue',new PicklistEntryModel(
                 'testmalevalue',
                 'testmalelabel',
                 true
             ));            
-            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+            picklistEntryModelByName.put('testneutralvalue',new PicklistEntryModel(
                 'testneutralvalue',
                 'testneutrallabel',
                 true
@@ -558,17 +560,17 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 'testlabel',
                 false
             ));            
-            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+            picklistEntryModelByName.put('testfemalevalue',new PicklistEntryModel(
                 'testfemalevalue',
                 'testfemalelabel',
                 false
             ));            
-            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+            picklistEntryModelByName.put('testmalevalue',new PicklistEntryModel(
                 'testmalevalue',
                 'testmalelabel',
                 false
             ));            
-            picklistEntryModelByName.put('testvalue',new PicklistEntryModel(
+            picklistEntryModelByName.put('testneutralvalue',new PicklistEntryModel(
                 'testneutralvalue',
                 'testneutrallabel',
                 false
