@@ -169,8 +169,8 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     }
 
     /***************************************************************************
-    * @description Retrieves an instance of PicklistEntryService. 
-    * @return An instance of PicklistEntryService.
+    * @description Retrieves a formatted HealthCheckItemVModel. 
+    * @return A formatted HealthCheckItemVModel.
     ***************************************************************************/
     @TestVisible
     protected virtual HealthCheckItemVModel getHealthCheckItemVModelForRelationshipLookupModel(

@@ -266,6 +266,80 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     }
 
     /***************************************************************************
+    * @description Test method to verify that a formatted HealthCheckItemVModel
+    * is returned
+    ***************************************************************************/
+    @isTest 
+    private static void getHealthCheckItemVModelForRelationshipLookupModel(){
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        PicklistEntryModel picklistEntryModel = new PicklistEntryModel(
+            'testvalue',
+            'testlabel',
+            false
+        );
+
+        Test.startTest();
+            HealthCheckItemVModel healthCheckItemVModel =
+                reciprocalRelHealthCheckVMapper.getHealthCheckItemVModelForRelationshipLookupModel(
+                    relationshipLookupModel,
+                    picklistEntryModel
+                );
+        Test.stopTest();
+
+        List<String> listForSettingsLabel =
+            new List<String>{relationshipLookupModel.name};
+        List<String> listForDescriptionLabel =
+            new List<String>{relationshipLookupModel.name,picklistEntryModel.name};
+
+        System.assertEquals(
+            relationshipLookupModel.name,
+            healthCheckItemVModel.key,
+            'Health Check Item View Model key should equal the relationship lookup model name.'
+        );
+        System.assertEquals(
+            String.format(Label.stgHCReciprocalRelSetting,listForSettingsLabel),
+            healthCheckItemVModel.setting,
+            'Health Check Item View Model setting should equal the formatted expected label.'
+        );
+        System.assertEquals(
+            'Pass',
+            healthCheckItemVModel.status,
+            'Health Check Item View Model status should equal Pass.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusPassed,
+            healthCheckItemVModel.statusLabel,
+            'Health Check Item View Model status should equal the expected label.'
+        );
+        System.assertEquals(
+            String.format(Label.stgHealthCheckStatusPassed,listForDescriptionLabel),
+            healthCheckItemVModel.description,
+            'Health Check Item View Model description should equal the expected formatted label.'
+        );
+        System.assertEquals(
+            '',
+            healthCheckItemVModel.recommendedFix,
+            'Health Check Item View Model recommended fix should be blank.'
+        );
+        System.assertEquals(
+            true,
+            healthCheckItemVModel.healthCheckItemList.isEmpty(),
+            'Health Check Item View Model health check item list should be empty.'
+        );
+    }
+
+    /***************************************************************************
     * @description Test method to verify that a PicklistEntryService is
     * retrieved by the locator method.
     ***************************************************************************/
