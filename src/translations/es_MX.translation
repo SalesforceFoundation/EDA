@@ -889,6 +889,10 @@
         <label>Ejecute este proceso de limpieza de datos tras activar el requisito Email preferido o Teléfono preferido por primera vez o tras un periodo sin aplicar el requisito.</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>
@@ -903,6 +907,34 @@
     <customLabels>
         <name>stgSendErrorsTitle</name>
         <label>Enviar notificaciones de error</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
+        <name>stgHCAccountModelAdminInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <name>stgHCAccountModelDefaultInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
+        <name>stgHCAccountModelDefaultNotFoundFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <name>stgHCRecordTypeInactive</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check can't find the record type --></label>
+        <name>stgHCRecordTypeNotFound</name>
+    </customLabels>    
+    <customLabels>
+        <label><!-- Description when Health Check finds a record type valid --></label>
+        <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text when a check passes and no fix is recommended --></label>
+        <name>stgHealthCheckFixNotApplicable</name>
     </customLabels>
     <customLabels>
         <label><!-- EDA Settings Health Check component title --></label>

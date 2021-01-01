@@ -61,7 +61,7 @@ public virtual with sharing class AccountModelSettingsService {
     * @description Returns model for the AccountModelSettingsModel
     * @return AccountModelSettingsModel The model for the AccountModelSettingsModel
     ********************************************************************************************************/
-    public AccountModelSettingsModel getAccountModelSettingsModel() {
+    public virtual AccountModelSettingsModel getAccountModelSettingsModel() {
         return this.locateAccountModelSettingsMapper().getAccountModelSettingsModel();
     }
 

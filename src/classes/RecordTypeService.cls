@@ -62,7 +62,7 @@ public virtual with sharing class RecordTypeService {
     * @Param SObjectype
     * @return A map of Record Type Model By Id
     ******************************************************************************/
-    public Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+    public virtual Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
         return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
     }
 
@@ -72,7 +72,7 @@ public virtual with sharing class RecordTypeService {
     * @Param A map of Record Type Model By Id
     * @return An instance of Record Type Model
     ******************************************************************************/
-    public RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
+    public virtual RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
         try {
             return recordTypeModelById.get(Id.valueOf(recordTypeId));
         } catch (System.StringException ex) {

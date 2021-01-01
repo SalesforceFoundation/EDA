@@ -889,6 +889,10 @@
         <label>このデータクリーンアッププロセスは、メール連絡先または電話連絡先の要件が初めて有効化された後、または要件を適用しない期間が経過した後に実行されます。</label>
     </customLabels>
     <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>
@@ -903,6 +907,34 @@
     <customLabels>
         <name>stgSendErrorsTitle</name>
         <label>エラー通知を送信</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
+        <name>stgHCAccountModelAdminInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <name>stgHCAccountModelDefaultInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
+        <name>stgHCAccountModelDefaultNotFoundFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <name>stgHCRecordTypeInactive</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check can't find the record type --></label>
+        <name>stgHCRecordTypeNotFound</name>
+    </customLabels>    
+    <customLabels>
+        <label><!-- Description when Health Check finds a record type valid --></label>
+        <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text when a check passes and no fix is recommended --></label>
+        <name>stgHealthCheckFixNotApplicable</name>
     </customLabels>
     <customLabels>
         <label><!-- EDA Settings Health Check component title--></label>

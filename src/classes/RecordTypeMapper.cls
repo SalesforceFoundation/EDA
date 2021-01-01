@@ -73,5 +73,4 @@ public virtual with sharing class RecordTypeMapper {
 
         return recordTypeModelById;
     }
-
 }

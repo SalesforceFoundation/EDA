@@ -70,21 +70,18 @@ public with sharing class EDAHealthCheckGroupAPIService_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupValid(){
+        AccountModelHealthCheckVMapper.instance = new STUB_AccountModelHealthCheckVMapperValidModel();
+
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('mIXEd');
+        HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('AccountModel');
         Test.stopTest();
 
-        System.assertEquals('Mixed', hlthChkGrpVMod.label, 'Label for HealthCheckGroupVModel should be \'Mixed\'');
-        System.assertEquals('Fail', hlthChkGrpVMod.status, 'Status for HealthCheckGroupVModel should be \'Fail\'');
-        System.assertEquals(2, hlthChkGrpVMod.passedChecks, 'PassedChecks for HealthCheckGroupVModel should be 2.');
+        System.assertEquals('AccountModel', hlthChkGrpVMod.label, 'Label for HealthCheckGroupVModel should be \'AccountModel\'');
+        System.assertEquals('Pass', hlthChkGrpVMod.status, 'Status for HealthCheckGroupVModel should be \'Pass\'');
+        System.assertEquals(4, hlthChkGrpVMod.passedChecks, 'PassedChecks for HealthCheckGroupVModel should be 2.');
         System.assertEquals(4, hlthChkGrpVMod.totalChecks, 'TotalChecks for HealthCheckGroupVModel should be 4.');
-        System.assertEquals(1, hlthChkGrpVMod.expandedRowsList.size(), 'ExpandedRowsList should contain 1 value.');
-        System.assertEquals('01', hlthChkGrpVMod.expandedRowsList[0], 'ExpandedRowsList should contain 1 value.');
-        System.assertEquals(2, hlthChkGrpVMod.healthCheckItemList.size(), 'HealthCheckItemList should contain 2 values.');
-
-        for (HealthCheckItemVModel hlthChkItmVMod : hlthChkGrpVMod.healthCheckItemList){
-            System.assertEquals(2, hlthChkItmVMod.healthCheckItemList.size(), 'Each HealthCheckItemVModel should contain 2 nested items.');
-        }
+        System.assertEquals(true, hlthChkGrpVMod.expandedRowsList.isEmpty(), 'ExpandedRowsList should be empty.');
+        System.assertEquals(true, hlthChkGrpVMod.healthCheckItemList.isEmpty(), 'HealthCheckItemList should be empty.');
     }
 
     /**************************************************************************************************************************
@@ -93,10 +90,46 @@ public with sharing class EDAHealthCheckGroupAPIService_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupInValid(){
+        AccountModelHealthCheckVMapper.instance = new STUB_AccountModelHealthCheckVMapperInvalidModel();
+
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('Not a Valid Health Check Definition Model Name');
+        HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('Invalid HealthCheckDefinition Model');
         Test.stopTest();
 
        System.assertEquals(null, hlthChkGrpVMod, 'Value returned should be null.');
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUBS **************************************************************
+    **************************************************************************************************************************/
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from AccountModelHealthCheckVMapper to return a valid HealthCheckGroupVModel.
+    **************************************************************************************************************************************/ 
+    private class STUB_AccountModelHealthCheckVMapperValidModel extends AccountModelHealthCheckVMapper {
+        @TestVisible 
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
+            return new HealthCheckGroupVModel('AccountModel',
+                                             'Pass',
+                                             4,
+                                             4,
+                                             new List<String>(),
+                                             new List<HealthCheckItemVModel>());
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from AccountModelHealthCheckVMapper to return an invalid HealthCheckGroupVModel.
+    **************************************************************************************************************************************/ 
+    private class STUB_AccountModelHealthCheckVMapperinvalidModel extends AccountModelHealthCheckVMapper {
+        @TestVisible 
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
+            return new HealthCheckGroupVModel('Invalid HealthCheckDefinition Model',
+                                             'Fail',
+                                             3,
+                                             4,
+                                             new List<String>(),
+                                             new List<HealthCheckItemVModel>());
+        }
     }
 }

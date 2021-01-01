@@ -81,14 +81,14 @@ public virtual with sharing class HealthCheckGroupService {
     @TestVisible
     private virtual HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){
         HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface;
-        String namespacedClassName = className;
-
-        if (String.isNotBlank(namespace) && !namespace.equalsIgnoreCase('hed')){
-            namespacedClassName = namespace + '.' + className;
+        String nonEDANamespace = namespace;
+        
+        if (namespace.equalsIgnoreCase('hed')){
+            nonEDANamespace = '';
         }
 
         try{
-            Type healthCheckGroupType = Type.forName(namespacedClassName);
+            Type healthCheckGroupType = Type.forName(nonEDANamespace, className);
             hlthChkGroupServInterface = (HealthCheckGroupAPIServiceInterface)healthCheckGroupType.newInstance();
         } catch (System.NullPointerException e){
             throw new HealthCheckNotFoundException(e.getMessage());

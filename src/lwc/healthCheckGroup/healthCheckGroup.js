@@ -127,7 +127,7 @@ export default class HealthCheckGroup extends LightningElement {
             this.generateHealthCheckItemRows(tempArray);
 
             this.healthCheckItemList = tempArray;
-            this.expandedRowsList = arrayAssignmentDataHack.expandedRows;
+            this.expandedRowsList = arrayAssignmentDataHack.expandedRowsList;
 
             this.dispatchEvent(new CustomEvent('healthcheckgrouploaded'));
 
