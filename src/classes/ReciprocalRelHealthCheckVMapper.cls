@@ -157,13 +157,30 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         List<HealthCheckGroupVModel> healthCheckGroupVModelList =
             new List<HealthCheckGroupVModel>();
 
-        HealthCheckGroupVModel nameHealthCheckGroupVModel =
+        healthCheckGroupVModelList.add(
             this.getNameHealthCheckGroup(
                 relationshipLookupModel,
                 picklistEntryModel
-            );
-
-        healthCheckGroupVModelList.add(nameHealthCheckGroupVModel);
+            )
+        );
+        healthCheckGroupVModelList.add(
+            this.getFemaleHealthCheckGroup(
+                relationshipLookupModel,
+                picklistEntryModelByName
+            )
+        );
+        healthCheckGroupVModelList.add(
+            this.getMaleHealthCheckGroup(
+                relationshipLookupModel,
+                picklistEntryModelByName
+            )
+        );
+        healthCheckGroupVModelList.add(
+            this.getNeutralHealthCheckGroup(
+                relationshipLookupModel,
+                picklistEntryModelByName
+            )
+        );
 
         for(HealthCheckGroupVModel healthCheckGroupVModelItem : healthCheckGroupVModelList) {
             healthCheckGroupVModel.passedChecks += healthCheckGroupVModelItem.passedChecks;
@@ -172,7 +189,6 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
             healthCheckItemVModel.healthCheckItemList.addAll(healthCheckGroupVModelItem.healthCheckItemList);
         }
 
-        //TODO: Make tests for this once we have actual health check data
         if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
             healthCheckItemVModel.status = 'Fail';
             healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusFailed;
@@ -191,6 +207,81 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         RelationshipLookupModel relationshipLookupModel,
         PicklistEntryModel picklistEntryModel
     ) {
+        return this.getHealthCheckGroupForPicklistSetting(
+            picklistEntryModel,
+            relationshipLookupModel.name,
+            '01',
+            Label.stgHCReciprocalRelNameTitle,
+            Label.stgHCReciprocalRelNameNotFoundFix,
+            Label.stgHCReciprocalRelNameInactiveFix
+        );
+    }
+
+    @TestVisible
+    protected virtual HealthCheckGroupVModel getFemaleHealthCheckGroup(
+        RelationshipLookupModel relationshipLookupModel,
+        Map<String,PicklistEntryModel> picklistEntryModelByName
+    ) {
+
+        PicklistEntryModel picklistEntryModel =
+            picklistEntryModelByName.get(relationshipLookupModel.femaleValue);
+
+        return this.getHealthCheckGroupForPicklistSetting(
+            picklistEntryModel,
+            relationshipLookupModel.femaleValue,
+            '02',
+            Label.stgHCReciprocalRelFemaleTitle,
+            Label.stgHCReciprocalRelFemaleNotFoundFix,
+            Label.stgHCReciprocalRelFemaleInactiveFix
+        );
+    }
+
+    @TestVisible
+    protected virtual HealthCheckGroupVModel getMaleHealthCheckGroup(
+        RelationshipLookupModel relationshipLookupModel,
+        Map<String,PicklistEntryModel> picklistEntryModelByName
+    ) {
+
+        PicklistEntryModel picklistEntryModel =
+            picklistEntryModelByName.get(relationshipLookupModel.maleValue);
+
+        return this.getHealthCheckGroupForPicklistSetting(
+            picklistEntryModel,
+            relationshipLookupModel.maleValue,
+            '03',
+            Label.stgHCReciprocalRelMaleTitle,
+            Label.stgHCReciprocalRelMaleNotFoundFix,
+            Label.stgHCReciprocalRelMaleInactiveFix
+        );
+    }
+
+    @TestVisible
+    protected virtual HealthCheckGroupVModel getNeutralHealthCheckGroup(
+        RelationshipLookupModel relationshipLookupModel,
+        Map<String,PicklistEntryModel> picklistEntryModelByName
+    ) {
+        PicklistEntryModel picklistEntryModel =
+            picklistEntryModelByName.get(relationshipLookupModel.maleValue);
+
+        return this.getHealthCheckGroupForPicklistSetting(
+            picklistEntryModel,
+            relationshipLookupModel.neutralValue,
+            '04',
+            Label.stgHCReciprocalRelNeutralTitle,
+            Label.stgHCReciprocalRelNeutralNotFoundFix,
+            Label.stgHCReciprocalRelNeutralInactiveFix
+        );
+    }
+
+    @TestVisible
+    protected virtual HealthCheckGroupVModel getHealthCheckGroupForPicklistSetting(
+        PicklistEntryModel picklistEntryModel,
+        String relationshipLookupModelFieldValue,
+        String indexString,
+        String settingsLabel,
+        String notFoundFix,
+        String inactiveFix
+    ) {
         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
             '',
             '',
@@ -199,76 +290,63 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
             new List<String>(),
             new List<HealthCheckItemVModel>()
         );
-
+    
         List<String> modelNameListForFormat =
-            new List<String>{relationshipLookupModel.name};
-
-        if(picklistEntryModel == null) {
-            HealthCheckItemVModel healthCheckItemVModel =
-                new healthCheckItemVModel(
-                    relationshipLookupModel.name + '01',
-                    Label.stgHCReciprocalRelNameTitle,
-                    'Fail',
-                    Label.stgHealthCheckStatusFailed,
-                    String.format(
-                        Label.stgHCPicklistValueNotFound,
-                        modelNameListForFormat
-                    ),
-                    String.format(
-                        Label.stgHCReciprocalRelNameNotFoundFix,
-                        modelNameListForFormat
-                    ),
-                    new List<HealthCheckItemVModel>()
-                );
-
-            healthCheckGroupVModel.totalChecks++;
-            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
-            return healthCheckGroupVModel;
-        }
-
-        List<String> picklistLabelAndNameForFormat =
-            new List<String>{picklistEntryModel.label,picklistEntryModel.name};
-
-        if(picklistEntryModel.isActive == false) {
-            HealthCheckItemVModel healthCheckItemVModel =
-                new healthCheckItemVModel(
-                    relationshipLookupModel.name + '01',
-                    Label.stgHCReciprocalRelNameTitle,
-                    'Fail',
-                    Label.stgHealthCheckStatusFailed,
-                    String.format(
-                        Label.stgHCPicklistValueInactive,
-                        picklistLabelAndNameForFormat
-                    ),
-                    String.format(
-                        Label.stgHCReciprocalRelNameInactiveFix,
-                        picklistLabelAndNameForFormat
-                    ),
-                    new List<HealthCheckItemVModel>()
-                );
-
-            healthCheckGroupVModel.totalChecks++;
-            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
-            return healthCheckGroupVModel;
-        }
-
+            new List<String>{relationshipLookupModelFieldValue};
+    
+        String key = relationshipLookupModelFieldValue + indexString;
+    
         HealthCheckItemVModel healthCheckItemVModel =
             new healthCheckItemVModel(
-                relationshipLookupModel.name + '01',
-                Label.stgHCReciprocalRelNameTitle,
-                'Pass',
-                Label.stgHealthCheckStatusPassed,
+                key,
+                settingsLabel,
+                'Fail',
+                Label.stgHealthCheckStatusFailed,
                 String.format(
-                    Label.stgHCPicklistValueValid,
-                    picklistLabelAndNameForFormat
+                    Label.stgHCPicklistValueNotFound,
+                    modelNameListForFormat
                 ),
-                Label.stgHealthCheckFixNotApplicable,
+                String.format(
+                    notFoundFix,
+                    modelNameListForFormat
+                ),
                 new List<HealthCheckItemVModel>()
             );
-
-        healthCheckGroupVModel.passedChecks++;
+    
         healthCheckGroupVModel.totalChecks++;
         healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+    
+        if(picklistEntryModel == null) {
+            return healthCheckGroupVModel;
+        }
+    
+        List<String> picklistLabelAndNameForFormat =
+            new List<String>{picklistEntryModel.label,picklistEntryModel.name};
+    
+        if(picklistEntryModel.isActive == false) {
+            healthCheckItemVModel.description =
+                String.format(
+                    Label.stgHCPicklistValueInactive,
+                    picklistLabelAndNameForFormat
+                );
+            healthCheckItemVModel.recommendedFix = 
+                String.format(
+                    inactiveFix,
+                    picklistLabelAndNameForFormat
+                );
+            return healthCheckGroupVModel;
+        }
+    
+        healthCheckItemVModel.status = 'Pass';
+        healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusPassed;
+        healthCheckItemVModel.description = String.format(
+                Label.stgHCPicklistValueValid,
+                picklistLabelAndNameForFormat
+            );
+        healthCheckItemVModel.recommendedFix = Label.stgHealthCheckFixNotApplicable;
+    
+        healthCheckGroupVModel.passedChecks++;
+    
         return healthCheckGroupVModel;
     }
 
@@ -276,7 +354,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     * @description Retrieves a formatted HealthCheckItemVModel. 
     * @return A formatted HealthCheckItemVModel.
     ***************************************************************************/
-    @TestVisible//TODO: Make tests!
+    @TestVisible
     protected virtual HealthCheckItemVModel getHealthCheckItemVModelForRelationshipLookupModel(
         RelationshipLookupModel relationshipLookupModel,
         PicklistEntryModel picklistEntryModel

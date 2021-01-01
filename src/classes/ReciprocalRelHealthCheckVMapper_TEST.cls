@@ -35,6 +35,10 @@
 private class ReciprocalRelHealthCheckVMapper_TEST {
 
     /***************************************************************************
+    *******************************INSTANCE*************************************
+    ***************************************************************************/
+
+    /***************************************************************************
     * @description Test method to verify that the getInstance method returns a
     * new instance of the ReciprocalRelHealthCheckVMapper class when one does
     * not already exist.
@@ -81,6 +85,10 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'Instance of mapper class returned should match cached value.'
         );
     }
+
+    /***************************************************************************
+    *************************HEALTH CHECK GROUP/ITEM****************************
+    ***************************************************************************/
 
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles all
@@ -130,7 +138,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         System.assertEquals(
             0,
             healthCheckGroupVModel.expandedRowsList.size(),
-            'No health checks should fail, making expanded rows list size not 0.'
+            'No health checks should fail, making expanded rows list size 0.'
         );
         System.assertEquals(
             1,
@@ -198,16 +206,19 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
 
     /***************************************************************************
     * @description Test method to verify that
-    * getRelationshipLookupHealthCheckGroup returns the expected health check
+    * getRelationshipLookupHealthCheckGroup returns the expected passed health
+    * check
     ***************************************************************************/
     @isTest
-    private static void getRelationshipLookupHealthCheckGroup() {
+    private static void getRelationshipLookupHealthCheckGroupPass() {
         RelationshipLookupSettingsService.instance = 
             new STUB_RelationshipLookupSettingsService();
         PicklistEntryService.instance =
             new STUB_PicklistEntryService();
 
-        //NOTE: Use stubs for this to control submethods for actual health check tests
+        ReciprocalRelHealthCheckVMapper.instance =
+            new STUB_ReciprocalRelHealthCheckVMapperSub();
+
         ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
             ReciprocalRelHealthCheckVMapper.getInstance();
  
@@ -223,6 +234,77 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             );
 
         Set<String> duplicateMappingKeys = new Set<String>();
+
+        Integer numberOfHealthChecks = 1;
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getRelationshipLookupHealthCheckGroup(
+                    relationshipLookupModelList[0],
+                    picklistEntryModelByName,
+                    duplicateMappingKeys
+                );
+        Test.stopTest();
+
+        System.assertEquals(
+            '',
+            healthCheckGroupVModel.label,
+            'Label should equal expected value of blank'
+        );
+        System.assertEquals(
+            '',
+            healthCheckGroupVModel.status,
+            'Status should equal expected value of blank'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModel.passedChecks,
+            'Passed checks should equal expected value of ' + numberOfHealthChecks
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModel.totalChecks,
+            'Total checks should equal expected value of ' + numberOfHealthChecks
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.expandedRowsList.size(),
+            'Expanded rows list should have a size of 0'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.healthCheckItemList.size(),
+            'Health Check Item list should have a size of 1'
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that
+    * getRelationshipLookupHealthCheckGroup returns the expected failed health
+    * check
+    ***************************************************************************/
+    @isTest
+    private static void getRelationshipLookupHealthCheckGroupFail() {
+        RelationshipLookupSettingsService.instance = 
+            new STUB_RelationshipLookupSettingsService();
+        PicklistEntryService.instance =
+            new STUB_PicklistEntryService();
+
+        ReciprocalRelHealthCheckVMapper.instance =
+            new STUB_ReciprocalRelHealthCheckVMapperSub();  
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+ 
+        List<RelationshipLookupModel> relationshipLookupModelList =
+            reciprocalRelHealthCheckVMapper.locateRelationshipLookupSettingsService(
+            ).getRelationshipLookupModels();
+
+        Map<String,PicklistEntryModel> picklistEntryModelByName =
+            new Map<String,PicklistEntryModel>();
+
+        Set<String> duplicateMappingKeys = new Set<String>();
+
+        Integer numberOfHealthChecks = 1;
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -249,14 +331,14 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'Passed checks should equal expected value of 0'
         );
         System.assertEquals(
-            0,
+            numberOfHealthChecks,
             healthCheckGroupVModel.totalChecks,
-            'Total checks should equal expected value of 0'
+            'Total checks should equal expected value of ' + numberOfHealthChecks
         );
         System.assertEquals(
-            0,
+            1,
             healthCheckGroupVModel.expandedRowsList.size(),
-            'Expanded rows list should have a size of 0'
+            'Expanded rows list should have a size of 1'
         );
         System.assertEquals(
             1,
@@ -264,6 +346,10 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'Health Check Item list should have a size of 1'
         );
     }
+
+    /***************************************************************************
+    **********************************NAME**************************************
+    ***************************************************************************/
 
     /***************************************************************************
     * @description Test method to verify that getNameHealthCheckGroup
@@ -355,7 +441,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             Label.stgHealthCheckFixNotApplicable,
             healthCheckItemVModel.recommendedFix,
             'The Health Check Item\'s recommended fix should match the specified label.'
-        );                
+        );
     }
 
     /***************************************************************************
@@ -480,10 +566,56 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        System.assertEquals(
+        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+            null,
+            healthCheckGroupVModel,
             0,
+            relationshipLookupModel.name,
+            '01',
+            Label.stgHCReciprocalRelNameTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCPicklistValueNotFound,
+            Label.stgHCReciprocalRelNameNotFoundFix
+        );
+    }
+
+    /***************************************************************************
+    *********************************FEMALE*************************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    **********************************MALE**************************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    ********************************NEUTRAL*************************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    ****************************LOCATORS AND HELPERS***************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    * @description A helper method to steamline standardized picklist value
+    * assertions and reduce eye strain.
+    ***************************************************************************/
+    private static void picklistValueAssertionHelper(
+        PicklistEntryModel picklistEntryModel,
+        HealthCheckGroupVModel healthCheckGroupVModel,
+        Integer passedChecks,
+        String picklistName,
+        String picklistIndex,
+        String setting,
+        String status,
+        String statusLabel,
+        String description,
+        String recommendedFix
+    ) {
+        System.assertEquals(
+            passedChecks,
             healthCheckGroupVModel.passedChecks,
-            'The Health Check Group View Model should have 0 passed checks.'
+            'The Health Check Group View Model should have ' + passedChecks + ' passed check(s).'
         );
         System.assertEquals(
             1,
@@ -491,7 +623,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'The Health Check Group View Model should have 1 total check.'
         );
         System.assertEquals(
-            0,
+            passedChecks,
             healthCheckGroupVModel.expandedRowsList.size(),
             'The Health Check Group View Model should have 0 expanded rows.'
         );
@@ -503,41 +635,44 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
 
         HealthCheckItemVModel healthCheckItemVModel =
             healthCheckGroupVModel.healthCheckItemList[0];
-        List<String> modelNameListForFormat =
-            new List<String>{relationshipLookupModel.name};
+        List<String> labelAndNameForFormat = new List<String>(picklistName);
+
+        if(picklistEntryModel != null) {
+            labelAndNameForFormat = new List<String>{picklistEntryModel.label,picklistEntryModel.name};
+        }
 
         System.assertEquals(
-            relationshipLookupModel.name + '01',
+            picklistName + picklistIndex,
             healthCheckItemVModel.key,
             'The Health Check Item\'s key should match the relationship lookup model\'s name.'
         );
         System.assertEquals(
-            Label.stgHCReciprocalRelNameTitle,
+            setting,
             healthCheckItemVModel.setting,
             'The Health Check Item\'s setting should match the specified label.'
-        );
+            );
         System.assertEquals(
-            'Fail',
+            status,
             healthCheckItemVModel.status,
-            'The Health Check Item\'s status should status should be Fail.'
+            'The Health Check Item\'s status should status should be ' + status + '.'
         );
         System.assertEquals(
-            Label.stgHealthCheckStatusFailed,
+            statusLabel,
             healthCheckItemVModel.statusLabel,
             'The Health Check Item\'s status label should match the specified label.'
         );
         System.assertEquals(
             String.format(
-                Label.stgHCPicklistValueNotFound,
-                modelNameListForFormat
+                description,
+                labelAndNameForFormat
             ),
             healthCheckItemVModel.description,
             'The Health Check Item\'s description should match the specified label.'
         );
         System.assertEquals(
             String.format(
-                Label.stgHCReciprocalRelNameNotFoundFix,
-                modelNameListForFormat
+                recommendedFix,
+                labelAndNameForFormat
             ),
             healthCheckItemVModel.recommendedFix,
             'The Health Check Item\'s recommended fix should match the specified label.'
@@ -684,8 +819,8 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
 
     /***************************************************************************
     * @description Stub class to simulate the response from
-    * ReciprocalRelHealthCheckVMapper to control individual health check methods
-    * for success
+    * ReciprocalRelHealthCheckVMapper to control
+    * getRelationshipLookupHealthCheckGroup
     ***************************************************************************/
     private class STUB_ReciprocalRelHealthCheckVMapper extends ReciprocalRelHealthCheckVMapper {
         protected override HealthCheckGroupVModel getRelationshipLookupHealthCheckGroup(
@@ -693,7 +828,6 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             Map<String,PicklistEntryModel> picklistEntryModelByName,
             Set<String> duplicateMappingKeys
         ) {
-            //NOTE: Replace this with overrides for the submethods for better tests when we have real data
             HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
                 '',
                 '',
@@ -728,6 +862,52 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     
             healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
 
+            return healthCheckGroupVModel;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * ReciprocalRelHealthCheckVMapper to control individual health check methods
+    * for success or failure
+    ***************************************************************************/
+    private class STUB_ReciprocalRelHealthCheckVMapperSub extends ReciprocalRelHealthCheckVMapper {
+        protected override HealthCheckGroupVModel getNameHealthCheckGroup(
+            RelationshipLookupModel relationshipLookupModel,
+            PicklistEntryModel picklistEntryModel
+        ) {
+            HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+                '',
+                '',
+                0,
+                0,
+                new List<String>(),
+                new List<HealthCheckItemVModel>()
+            );
+    
+            HealthCheckItemVModel healthCheckItemVModel =
+                new healthCheckItemVModel(
+                    '01',
+                    'MockSetting',
+                    'Pass',
+                    'MockStatusLabel',
+                    'MockDescription',
+                    'MockRecommendedFix',
+                    new List<HealthCheckItemVModel>()
+                );
+
+            healthCheckGroupVModel.totalChecks += 1;
+
+            if(picklistEntryModel != null) {
+                healthCheckGroupVModel.passedChecks += 1;
+            }
+
+            if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
+                healthCheckItemVModel.status = 'Fail';
+                healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusFailed;
+            }
+    
+            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
             return healthCheckGroupVModel;
         }
     }
