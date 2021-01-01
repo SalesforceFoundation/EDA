@@ -50,4 +50,21 @@ private class RelationshipLookupModel_TEST {
         System.assertEquals('Son', relLookupModel.maleValue, 'Male property on the RelationshipLookup model should be set with the value that is passed');
         System.assertEquals('Child', relLookupModel.neutralValue, 'Neutral property on the RelationshipLookup model should be set with the value that is passed');
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the constructor set the properties with nulls
+    ***************************************************************************************************************************/
+    @isTest
+    private static void constructorNull() {
+
+        Test.startTest();
+            RelationshipLookupModel relLookupModel = new RelationshipLookupModel(null, true, null, null, null);
+        Test.stopTest();
+
+        System.assertEquals('', relLookupModel.name, 'Name property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals(true, relLookupModel.isActive, 'Active property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals('', relLookupModel.femaleValue, 'Female property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals('', relLookupModel.maleValue, 'Male property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals('', relLookupModel.neutralValue, 'Neutral property on the RelationshipLookup model should be set with the value that is passed');
+    }
 }

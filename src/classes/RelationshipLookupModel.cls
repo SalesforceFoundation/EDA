@@ -42,10 +42,10 @@ public with sharing class RelationshipLookupModel {
 
     // Constructor to set the values
     public RelationshipLookupModel(String name, Boolean isActive, String femaleValue, String maleValue, String neutralValue) {
-        this.name = name;
+        this.name = (name != null ? name : '');
         this.isActive = isActive;
-        this.femaleValue = femaleValue;
-        this.maleValue = maleValue;
-        this.neutralValue = neutralValue;
+        this.femaleValue = (femaleValue != null ? femaleValue : '');
+        this.maleValue = (maleValue != null ? maleValue : '');
+        this.neutralValue = (neutralValue != null ? neutralValue : '');
     }
 }
