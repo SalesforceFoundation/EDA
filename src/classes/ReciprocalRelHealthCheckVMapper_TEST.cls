@@ -233,7 +233,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
 
         Set<String> duplicateMappingKeys = new Set<String>();
 
-        Integer numberOfHealthChecks = 4;
+        Integer numberOfHealthChecks = 5;
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -302,7 +302,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
 
         Set<String> duplicateMappingKeys = new Set<String>();
 
-        Integer numberOfHealthChecks = 4;
+        Integer numberOfHealthChecks = 5;
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -382,7 +382,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModel,
             healthCheckGroupVModel,
             1,
@@ -428,7 +428,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModel,
             healthCheckGroupVModel,
             0,
@@ -468,7 +468,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             null,
             healthCheckGroupVModel,
             0,
@@ -522,7 +522,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModelByName.get('testfemalevalue'),
             healthCheckGroupVModel,
             1,
@@ -572,7 +572,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModelByName.get('testfemalevalue'),
             healthCheckGroupVModel,
             0,
@@ -613,7 +613,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             null,
             healthCheckGroupVModel,
             0,
@@ -667,7 +667,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModelByName.get('testmalevalue'),
             healthCheckGroupVModel,
             1,
@@ -717,7 +717,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModelByName.get('testmalevalue'),
             healthCheckGroupVModel,
             0,
@@ -758,7 +758,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             null,
             healthCheckGroupVModel,
             0,
@@ -812,7 +812,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModelByName.get('testneutralvalue'),
             healthCheckGroupVModel,
             1,
@@ -862,7 +862,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModelByName.get('testneutralvalue'),
             healthCheckGroupVModel,
             0,
@@ -903,7 +903,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             null,
             healthCheckGroupVModel,
             0,
@@ -949,7 +949,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModel,
             healthCheckGroupVModel,
             1,
@@ -991,7 +991,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             picklistEntryModel,
             healthCheckGroupVModel,
             0,
@@ -1022,12 +1022,12 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                     'value',
                     '01',
                     'settingsLabel',
-                    'notFoundFix {0} {1}',
+                    'notFoundFix {0}',
                     'inactiveFix {0} {1}'
                 );
         Test.stopTest();
 
-        ReciprocalRelHealthCheckVMapper_TEST.picklistValueAssertionHelper(
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
             null,
             healthCheckGroupVModel,
             0,
@@ -1038,6 +1038,194 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             Label.stgHealthCheckStatusFailed,
             Label.stgHCPicklistValueNotFound,
             'notFoundFix {0} {1}'
+        );
+    }
+
+    /***************************************************************************
+    ********************************UNIQUENESS**********************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    * @description Test method to verify that getUniquenessHealthCheckGroup
+    * passes with a unique name
+    ***************************************************************************/
+    @isTest
+    private static void getUniquenessHealthCheckGroupUnique() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        PicklistEntryModel picklistEntryModel = new PicklistEntryModel(
+            'testvalue',
+            'testlabel',
+            true
+        );
+
+        Set<String> duplicateNameSet = new Set<String>();
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getUniquenessHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModel,
+                    duplicateNameSet
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
+            picklistEntryModel,
+            healthCheckGroupVModel,
+            1,
+            relationshipLookupModel.name,
+            '05',
+            Label.stgHCReciprocalRelNameUniqueTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            Label.stgHCReciprocalRelNameUniqueDesc,
+            Label.stgHealthCheckFixNotApplicable
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getUniquenessHealthCheckGroup
+    * passes with a unique name and unfound picklist entry model
+    ***************************************************************************/
+    @isTest
+    private static void getUniquenessHealthCheckGroupUniqueUnfoundPicklist() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Set<String> duplicateNameSet = new Set<String>();
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getUniquenessHealthCheckGroup(
+                    relationshipLookupModel,
+                    null,
+                    duplicateNameSet
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
+            null,
+            healthCheckGroupVModel,
+            1,
+            relationshipLookupModel.name,
+            '05',
+            Label.stgHCReciprocalRelNameUniqueTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            Label.stgHCReciprocalRelNameUniqueDesc,
+            Label.stgHealthCheckFixNotApplicable
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getUniquenessHealthCheckGroup
+    * fails with a duplicate name
+    ***************************************************************************/
+    @isTest
+    private static void getUniquenessHealthCheckGroupDuplicate() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        PicklistEntryModel picklistEntryModel = new PicklistEntryModel(
+            'testvalue',
+            'testlabel',
+            true
+        );
+
+        Set<String> duplicateNameSet = new Set<String>{'testvalue'};
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getUniquenessHealthCheckGroup(
+                    relationshipLookupModel,
+                    picklistEntryModel,
+                    duplicateNameSet
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
+            picklistEntryModel,
+            healthCheckGroupVModel,
+            0,
+            relationshipLookupModel.name,
+            '05',
+            Label.stgHCReciprocalRelNameUniqueTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCReciprocalRelNameNotUniqueDesc,
+            Label.stgHCReciprocalRelNameNotUniqueFix
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getUniquenessHealthCheckGroup
+    * fails with a duplicate name and unfound picklist entry model
+    ***************************************************************************/
+    @isTest
+    private static void getUniquenessHealthCheckGroupDuplicateUnfoundPicklist() {
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        RelationshipLookupModel relationshipLookupModel = 
+            new RelationshipLookupModel(
+                'testvalue',
+                true,
+                'testfemalevalue',
+                'testmalevalue',
+                'testneutralvalue'
+            );
+
+        Set<String> duplicateNameSet = new Set<String>{'testvalue'};
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                reciprocalRelHealthCheckVMapper.getUniquenessHealthCheckGroup(
+                    relationshipLookupModel,
+                    null,
+                    duplicateNameSet
+                );
+        Test.stopTest();
+
+        ReciprocalRelHealthCheckVMapper_TEST.healthCheckAssertionHelper(
+            null,
+            healthCheckGroupVModel,
+            0,
+            relationshipLookupModel.name,
+            '05',
+            Label.stgHCReciprocalRelNameUniqueTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            Label.stgHCReciprocalRelNameNotUniqueDesc,
+            Label.stgHCReciprocalRelNameNotUniqueFix
         );
     }
 
@@ -1078,7 +1266,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         Test.stopTest();
 
         List<String> listForSettingsLabel =
-            new List<String>{relationshipLookupModel.name};
+            new List<String>{relationshipLookupModel.name,relationshipLookupModel.name};
         List<String> listForDescriptionLabel =
             new List<String>{relationshipLookupModel.name,picklistEntryModel.name};
 
@@ -1187,7 +1375,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     * @description A helper method to steamline standardized picklist value
     * assertions and reduce eye strain.
     ***************************************************************************/
-    private static void picklistValueAssertionHelper(
+    private static void healthCheckAssertionHelper(
         PicklistEntryModel picklistEntryModel,
         HealthCheckGroupVModel healthCheckGroupVModel,
         Integer passedChecks,
@@ -1222,7 +1410,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
 
         HealthCheckItemVModel healthCheckItemVModel =
             healthCheckGroupVModel.healthCheckItemList[0];
-        List<String> labelAndNameForFormat = new List<String>{picklistName};
+        List<String> labelAndNameForFormat = new List<String>{picklistName,picklistName};
 
         if(picklistEntryModel != null) {
             labelAndNameForFormat = new List<String>{picklistEntryModel.label,picklistEntryModel.name};
@@ -1333,6 +1521,18 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             String notFoundFix,
             String inactiveFix
         ) {
+            return this.mockCheck(picklistEntryModel);
+        }
+
+        protected override HealthCheckGroupVModel getUniquenessHealthCheckGroup(
+            RelationshipLookupModel relationshipLookupModel,
+            PicklistEntryModel picklistEntryModel,
+            Set<String> duplciateNameSet
+        ) {
+            return this.mockCheck(picklistEntryModel);
+        }
+
+        private HealthCheckGroupVModel mockCheck(PicklistEntryModel picklistEntryModel) {
             HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
                 '',
                 '',

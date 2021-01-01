@@ -424,7 +424,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     protected virtual HealthCheckGroupVModel getUniquenessHealthCheckGroup(
         RelationshipLookupModel relationshipLookupModel,
         PicklistEntryModel picklistEntryModel,
-        Set<String> duplciateNameSet
+        Set<String> duplicateNameSet
     ) {
         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
             '',
@@ -465,7 +465,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         healthCheckGroupVModel.totalChecks++;
         healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
     
-        if(duplciateNameSet.contains(relationshipLookupModel.name)) {
+        if(duplicateNameSet.contains(relationshipLookupModel.name)) {
             return healthCheckGroupVModel;
         }
     
