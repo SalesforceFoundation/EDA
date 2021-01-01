@@ -1176,12 +1176,44 @@
         <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting's Name value to a valid, active picklist value.</value>
     </labels>
     <labels>
+        <fullName>stgHCReciprocalRelNameNotUniqueDesc</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Name isn't unique in reciprocal settings</shortDescription>
+        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object's Type field in Salesforce Setup and set the picklist value to Active. If it isn't correct, change the reciprocal setting's Name value to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameNotUniqueFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended Fix when Name isn't unique in reciprocal settings</shortDescription>
+        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, look for multiple rows specifying {0} ({1}) in the Name column. Edit those reciprocal settings so that this Name value appears in only one reciprocal setting row.</value>
+    </labels>
+    <labels>
         <fullName>stgHCReciprocalRelNameTitle</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>A check for the Name value in a reciprocal setting</shortDescription>
         <value>Reciprocal Setting's Name Value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameUniqueDesc</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Name is unique in reciprocal settings</shortDescription>
+        <value>The {0} ({1}) picklist value is used in only one reciprocal setting.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameUniqueTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for unique Name values in reciprocal settings</shortDescription>
+        <value>Unique Reciprocal Setting Name</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralInactiveFix</fullName>
