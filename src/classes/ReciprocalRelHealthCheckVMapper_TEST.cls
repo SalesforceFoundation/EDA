@@ -944,7 +944,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                     'value',
                     '01',
                     'settingsLabel',
-                    'notFoundFix {0} {1}',
+                    'notFoundFix {0}',
                     'inactiveFix {0} {1}'
                 );
         Test.stopTest();
@@ -986,7 +986,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
                     'value',
                     '01',
                     'settingsLabel',
-                    'notFoundFix {0} {1}',
+                    'notFoundFix {0}',
                     'inactiveFix {0} {1}'
                 );
         Test.stopTest();
@@ -1037,7 +1037,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'Fail',
             Label.stgHealthCheckStatusFailed,
             Label.stgHCPicklistValueNotFound,
-            'notFoundFix {0} {1}'
+            'notFoundFix {0}'
         );
     }
 
