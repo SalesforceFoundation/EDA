@@ -65,6 +65,29 @@ public virtual with sharing class RelationshipLookupSettingsService {
         return this.locateRelationshipLookupMapper().getRelationshipLookupModels();
     }
 
+    /***************************************************************************
+    * @description Retrieves a set of duplicate names from a list of models
+    * @param relationshipLookupModelList The relationship lookup model list to
+    * retrieve names from
+    * @return The set of duplicate names
+    ***************************************************************************/
+    public Set<String> getDuplicateRelationshipModelNamesFromList(
+        List<RelationshipLookupModel> relationshipLookupModelList
+    ) {
+        Set<String> nameSet = new Set<String>();
+        Set<String> duplicateSet = new Set<String>();
+
+        for(RelationshipLookupModel relationshipLookupModel : relationshipLookupModelList) {
+            if(nameSet.contains(relationshipLookupModel.name)) {
+                duplicateSet.add(relationshipLookupModel.name);
+            } else {
+                nameSet.add(relationshipLookupModel.name);
+            }
+        }
+
+        return duplicateSet;
+    }
+
     /*******************************************************************************************************
     * @description Returns the instance of RelationshipLookupMapper class
     * @return The instance of RelationshipLookupMapper class

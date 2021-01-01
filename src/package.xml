@@ -843,7 +843,11 @@
         <members>stgHCReciprocalRelMaleTitle</members>
         <members>stgHCReciprocalRelNameInactiveFix</members>
         <members>stgHCReciprocalRelNameNotFoundFix</members>
+        <members>stgHCReciprocalRelNameNotUniqueDesc</members>
+        <members>stgHCReciprocalRelNameNotUniqueFix</members>
         <members>stgHCReciprocalRelNameTitle</members>
+        <members>stgHCReciprocalRelNameUniqueDesc</members>
+        <members>stgHCReciprocalRelNameUniqueTitle</members>
         <members>stgHCReciprocalRelNeutralInactiveFix</members>
         <members>stgHCReciprocalRelNeutralNotFoundFix</members>
         <members>stgHCReciprocalRelNeutralTitle</members>
