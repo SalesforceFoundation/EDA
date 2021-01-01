@@ -409,6 +409,17 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
         return healthCheckGroupVModel;
     }
 
+    /***************************************************************************
+    * @description Retrieves the health check for the Relationship Lookup Model
+    * Name Uniqueness
+    * @param relationshipLookupModel The relationship lookup model to perform
+    * the health check on.
+    * @param picklistEntryModelByName The picklist entry model map by value for
+    * Relationship__c.Type__c
+    * @param duplicateMappingKeys The set of duplicate relationship mapping key
+    * values
+    * @return The health check for the Relationship Lookup Model Name Uniqueness
+    ***************************************************************************/
     @TestVisible
     protected virtual HealthCheckGroupVModel getUniquenessHealthCheckGroup(
         RelationshipLookupModel relationshipLookupModel,
