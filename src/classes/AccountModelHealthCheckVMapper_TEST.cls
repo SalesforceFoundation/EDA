@@ -119,8 +119,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
         System.assertEquals('Pass', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Pass\'.');
         System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'Passed\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be set.');
-        System.assertEquals(Label.stgHealthCheckFixNotApplicable, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be set.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(Label.stgHealthCheckFixNotApplicable, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
     }
 
     /**************************************************************************************************************************
@@ -161,8 +161,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
         System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Fail\'.');
         System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'Failed\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be set.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
     }
 
     /**************************************************************************************************************************
@@ -196,14 +196,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
         System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'000000000000000000'});
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID default acct'});
+        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'Not an ID default acct'});
 
         System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
         System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
         System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'Failed\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be set.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
     }
 
     /**************************************************************************************************************************
@@ -244,8 +244,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
         System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
         System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'Failed\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be set.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
     }
 
     /**************************************************************************************************************************
@@ -254,8 +254,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     **************************************************************************************************************************/ 
     @isTest
     private static void getHealthCheckGroupValidAndActive(){
-        AccountModelSettingsService.instance = new STUB_AccountModelSettingsServiceValid();
-        RecordTypeService.instance = new STUB_RecordTypeServiceValidAndActiveDefaultModel();
+        AccountModelSettingsService.instance = new STUB_AccountModelSettingsServiceValidDefaultAccountId();
+        RecordTypeService.instance = new STUB_RecordTypeServiceForGetHealtCheckGroupValid();
 
         Test.startTest();
         HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
@@ -263,7 +263,57 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
 
         System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
         System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVModel.status, 'Status should be \'Pass\'');
+    }
 
+    /**************************************************************************************************************************
+    * @description Test to verify getHealthCheckGroup() returns a HealthCheckGroupVModel with a status of
+    * failed when a valid, but inactive record type is specified for Default Account Model.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHealthCheckGroupValidAndInactive(){
+        AccountModelSettingsService.instance = new STUB_AccountModelSettingsServiceValidDefaultAccountId();
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidAndInactiveDefaultModel();
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'Fail\'');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHealthCheckGroup() returns a HealthCheckGroupVModel with a status of
+    * failed when a record type id that is not an ID is specified for Default Account Model.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHealthCheckGroupInvalidIdSpecified(){
+        AccountModelSettingsService.instance = new STUB_AccountModelSettingsServiceInvalidDefaultAccountId();
+        RecordTypeService.instance = new STUB_RecordTypeServiceForGetHealtCheckGroupInvalid();
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'Fail\'');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHealthCheckGroup() returns a HealthCheckGroupVModel with a status of
+    * failed when a record type id that is not an ID is specified for Default Account Model.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHealthCheckGroupNotAnIdSpecified(){
+        AccountModelSettingsService.instance = new STUB_AccountModelSettingsServiceNotId();
+        RecordTypeService.instance = new STUB_RecordTypeServiceForGetHealtCheckGroupValid();
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'Fail\'');
     }
 
     /**************************************************************************************************************************
@@ -271,7 +321,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     **************************************************************************************************************************/
     
     /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from RecordTypeService to return a valid and active RecordTypeModel.
+    * @description Stub class to simulate the response from RecordTypeService to return a valid and active RecordTypeModel from getRecordTypeModelFromMap.
     **************************************************************************************************************************************/ 
     private class STUB_RecordTypeServiceValidAndActiveDefaultModel extends RecordTypeService {
         @TestVisible 
@@ -281,19 +331,24 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                        'testDefaultRecordDevName',
                                        true);
         }
+    }
 
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from RecordTypeService to return a valid, but inactive RecordTypeModel from getModelByIdMapForSObjectType.
+    **************************************************************************************************************************************/ 
+    private class STUB_RecordTypeServiceForGetHealtCheckGroupValid extends RecordTypeService {
         public override  Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
             RecordTypeModel accRTModel = new RecordTypeModel('000000000000000001',
-                                                             'Test Default Record Name',
-                                                             'testDefaultRecordDevName',
-                                                             true);
+                                                            'Test Default Record Name',
+                                                            'testDefaultRecordDevName',
+                                                            true);
 
             return new Map<Id, RecordTypeModel>{accRTModel.id => accRTModel};
         }
     }
 
     /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from RecordTypeService to return a valid, but inactive RecordTypeModel.
+    * @description Stub class to simulate the response from RecordTypeService to return a valid, but inactive RecordTypeModel from getRecordTypeModelFromMap.
     **************************************************************************************************************************************/ 
     private class STUB_RecordTypeServiceValidAndInactiveDefaultModel extends RecordTypeService {
         @TestVisible 
@@ -303,11 +358,17 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                        'testDefaultRecordDevName',
                                        false);
         }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from RecordTypeService to return a valid, but inactive RecordTypeModel from getModelByIdMapForSObjectType.
+    **************************************************************************************************************************************/ 
+    private class STUB_RecordTypeServiceForGetHealtCheckGroupInvalid extends RecordTypeService {
         public override  Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
             RecordTypeModel accRTModel = new RecordTypeModel('000000000000000001',
-                                                             'Test Default Record Name',
-                                                             'testDefaultRecordDevName',
-                                                             false);
+                                                            'Test Default Record Name',
+                                                            'testDefaultRecordDevName',
+                                                            false);
 
             return new Map<Id, RecordTypeModel>{accRTModel.id => accRTModel};
         }
@@ -330,7 +391,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     /**************************************************************************************************************************************
     * @description Stub class to simulate the response from AccountModelSettingsService to return a valid set of account model settings.
     **************************************************************************************************************************************/ 
-    private class STUB_AccountModelSettingsServiceValid extends AccountModelSettingsService {
+    private class STUB_AccountModelSettingsServiceValidDefaultAccountId extends AccountModelSettingsService {
         public override AccountModelSettingsModel getAccountModelSettingsModel() {
             return new AccountModelSettingsModel('000000000000000001',
                                                  '000000000000000002',
@@ -341,11 +402,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     /**************************************************************************************************************************************
     * @description Stub class to simulate the response from AccountModelSettingsService to return a set of invalid account model settings.
     **************************************************************************************************************************************/ 
-    private class STUB_AccountModelSettingsServiceInvalid extends AccountModelSettingsService {
+    private class STUB_AccountModelSettingsServiceInvalidDefaultAccountId extends AccountModelSettingsService {
         public override AccountModelSettingsModel getAccountModelSettingsModel() {
-            return new AccountModelSettingsModel('00000000000000000a',
-                                                 '00000000000000000b',
-                                                 '00000000000000000c');
+            return new AccountModelSettingsModel('000aaaaaaaaaaaaaaa',
+                                                 '000aaaaaaaaaaaaaab',
+                                                 '000aaaaaaaaaaaaaac');
         }
     }
 

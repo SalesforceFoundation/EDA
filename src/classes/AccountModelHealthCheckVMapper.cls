@@ -102,9 +102,8 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     @TestVisible
     private virtual HealthCheckGroupVModel getDefaultAccountModelHealthCheckItems(AccountModelSettingsModel acctModelSettingsMod, 
                                                                                     Map<Id,RecordTypeModel> recordTypeModelsById) {
-        
+                                                                                  
         String hlthCheckGroupLabel = Label.stgHealthCheckAccountModel;
-
         HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(hlthCheckGroupLabel,
                                                                              Label.stgHealthCheckStatusPassed,
                                                                              0,
@@ -143,7 +142,6 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
             hlthChkGroupVMod.status = this.updateHealthCheckStatus(hlthChkGroupVMod.passedChecks, hlthChkGroupVMod.totalChecks);
             return hlthChkGroupVMod;
         }
-
     
         hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('01',
                                                                             Label.stgAccModelTitle,
