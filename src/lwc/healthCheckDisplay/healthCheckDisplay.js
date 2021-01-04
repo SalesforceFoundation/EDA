@@ -19,4 +19,15 @@ export default class HealthCheckDisplay extends LightningElement {
             this.displayHealthCheckGroup = true;
         } 
     }
+
+    @api refreshHealthCheck() {
+        this.loadedHealthCheckDefCount = 0;
+        this.displayHealthCheckGroup = false;
+
+        let healthCheckGroups = this.template.querySelectorAll('c-health-check-group');
+
+        healthCheckGroups.forEach(element => {
+            element.refreshHealthCheckGroup();
+        });
+    }
 }
