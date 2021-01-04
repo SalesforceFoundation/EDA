@@ -1527,7 +1527,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
         protected override HealthCheckGroupVModel getUniquenessHealthCheckGroup(
             RelationshipLookupModel relationshipLookupModel,
             PicklistEntryModel picklistEntryModel,
-            Set<String> duplciateNameSet
+            Set<String> duplicateNameSet
         ) {
             return this.mockCheck(picklistEntryModel);
         }
