@@ -116,6 +116,71 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Test to verify combineAccountHealthCheckGroupViewModels() returns a combined HealthCheckGroupVModel comprised of
+    * the combined properties of the group view models passed as arguments.
+    **************************************************************************************************************************/ 
+    @isTest 
+    private static void combineAccountHealthCheckGroupViewModelsValid(){
+
+        List<HealthCheckGroupVModel> tstHlthChkGroupModelsList = new List<HealthCheckGroupVModel>();
+        List<HealthCheckItemVModel> group1HlthChkItemList = new List<HealthCheckItemVModel>();
+
+        group1HlthChkItemList.add(new HealthCheckItemVModel('Key1',
+                                                            'Setting-X',
+                                                            'Pass',
+                                                            'PassedLabel',
+                                                            'Description',
+                                                            'RecommendedFix',
+                                                            new List<HealthCheckItemVModel>()));
+                                                            
+        group1HlthChkItemList.add(new HealthCheckItemVModel('Key2',
+                                                            'Setting-B',
+                                                            'Pass',
+                                                            'PassedLabel',
+                                                            'Description',
+                                                            'RecommendedFix',
+                                                            new List<HealthCheckItemVModel>()));
+
+        group1HlthChkItemList.add(new HealthCheckItemVModel('Key3',
+                                                            'Setting-Y',
+                                                            'Fail',
+                                                            'FailedLabel',
+                                                            'Description',
+                                                            'RecommendedFix',
+                                                            new List<HealthCheckItemVModel>()));
+
+
+        tstHlthChkGroupModelsList.add(new HealthCheckGroupVModel('SubGroup1',
+                                                                 'Fail',
+                                                                 2,
+                                                                 3,
+                                                                 new List<String>(),
+                                                                 group1HlthChkItemList));
+
+        tstHlthChkGroupModelsList.add(new HealthCheckGroupVModel('SubGroup2',
+                                                                 'Pass',
+                                                                 1,
+                                                                 1,
+                                                                 new List<String>(),
+                                                                 new List<HealthCheckItemVModel>()));
+
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = AccountModelHealthCheckVMapper.getInstance().combineAccountHealthCheckGroupViewModels(tstHlthChkGroupModelsList);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Group label should be \'' + Label.stgHealthCheckAccountModel + '\'');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Group status should be \'' + Label.stgHealthCheckStatusFailed + '\'');
+        System.assertEquals(3, hlthChkGroupVMod.passedChecks, 'Group passed checks should be \'' + hlthChkGroupVMod.passedChecks + '\'');
+        System.assertEquals(4, hlthChkGroupVMod.totalChecks, 'Group total checks should be \'' + hlthChkGroupVMod.totalChecks + '\'');
+        System.assertEquals(3, hlthChkGroupVMod.healthCheckItemList.size(), 'Group HealthCheckItems list should have \'' + hlthChkGroupVMod.healthCheckItemList.size() + '\' items');
+
+        System.assertEquals('Setting-Y', hlthChkGroupVMod.healthCheckItemList[0].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+        System.assertEquals('Setting-B', hlthChkGroupVMod.healthCheckItemList[1].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+        System.assertEquals('Setting-X', hlthChkGroupVMod.healthCheckItemList[2].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+    }
+
+    /**************************************************************************************************************************
     * @description Test to verify getDefaultAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
     * pass when the ID provided as the defaultAccountModel Id in AccountSettingsModel is valid and matches to a RT for Default 
     * Account Modelthat is valid and active.
@@ -129,8 +194,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                 '000000000000000003');
 
         RecordTypeModel rtModel = new RecordTypeModel('000000000000000001',
-                                                      'Test Default Record Name',
-                                                      'testDefaultRecordDevName',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
                                                       true);
                           
         Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
@@ -147,7 +212,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
         System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Default Record Name', 'testDefaultRecordDevName'});
+        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
 
         System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
         System.assertEquals('Pass', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Pass\'.');
@@ -170,8 +235,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                 '000000000000000003');
 
         RecordTypeModel rtModel = new RecordTypeModel('000000000000000001',
-                                                      'Test Default Record Name',
-                                                      'testDefaultRecordDevName',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
                                                       false);
 
         Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
@@ -188,8 +253,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
         System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Default Record Name', 'testDefaultRecordDevName'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultInactiveFix, new List<Object>{'Test Default Record Name', 'testDefaultRecordDevName'});
+        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedFix = String.format(Label.stgHCAccountModelDefaultInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
 
         System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
         System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Fail\'.');
@@ -232,9 +297,9 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID default acct'});
         String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'Not an ID default acct'});
 
-        System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
+        System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccModelTitle + '\'.');
         System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'Failed\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
         System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
         System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
     }
@@ -282,9 +347,340 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Test to verify getAdministrativeAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the administrative AccountModel Id in AccountSettingsModel is valid and matches to a RT for Admin 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getAdministrativeAccountModelHealthCheckItemsIdMatchFoundToRTValidAndActive(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidAndActiveDefaultModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
+                                                                                '000000000000000002',
+                                                                                '000000000000000003');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      true);
+                          
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusPassed + '\'.');
+        System.assertEquals(1, hlthChkGroupVMod.passedChecks, 'Should have 1 passed check.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+
+        System.assertEquals(Label.stgAdminAccountRecordType, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAdminAccountRecordType + '\'.');
+        System.assertEquals('Pass', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Pass\'.');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'' + Label.stgHealthCheckStatusPassed + '\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(Label.stgHealthCheckFixNotApplicable, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getAdministrativeAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * fail when the ID provided as the administrativeAccountModel Id in AccountSettingsModel is valid and matches to a RT for Admin 
+    * Account Modelthat is valid, but inactive.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getAdministrativeAccountModelHealthCheckItemsIdMatchFoundToRTValidAndInactive(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidAndInactiveDefaultModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
+                                                                                '000000000000000002',
+                                                                                '000000000000000003');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      false);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedFix = String.format(Label.stgHCAccountModelAdminInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
+
+        System.assertEquals(Label.stgAdminAccountRecordType, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAdminAccountRecordType + '\'.');
+        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Fail\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getAdministrativeAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * fail when an the ID provided as the administrativeAccountModel Id in AccountSettingsModel is not an ID.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getAdministrativeAccountModelHealthCheckItemsInvalidDefaultId(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('Not an ID default acct',
+                                                                                'Not an ID admin acct',
+                                                                                'Not an Id HH acct');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000111',
+                                                      'Account Name',
+                                                      'accountDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID admin acct'});
+        String expectedFix = String.format(Label.stgHCAccountModelAdminNotFoundFix, new List<Object>{'Not an ID admin acct'});
+
+        System.assertEquals(Label.stgAdminAccountRecordType, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAdminAccountRecordType + '\'.');
+        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getAdministrativeAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * fail when an invalid RT is specified for Administrative Account Model and the adminAccountModel Id in AccountSettingsModel is a
+    * valid ID, but does not match any Ids in the RecordType map.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getAdministrativeAccountModelHealthCheckItemsValidIdNoMatchingRT(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000000',
+                                                                                '000000000000000000',
+                                                                                '000000000000000000');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000123',
+                                                      'Different Account Name',
+                                                      'differentAccountDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
+        String expectedFix = String.format(Label.stgHCAccountModelAdminNotFoundFix, new List<Object>{'000000000000000000'});
+
+        System.assertEquals(Label.stgAdminAccountRecordType, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAdminAccountRecordType + '\'.');
+        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHouseholdAccountModelHealthCheckItemsIdMatchFoundToRTValidAndActive(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidAndActiveDefaultModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
+                                                                                '000000000000000002',
+                                                                                '000000000000000003');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000003',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      true);
+                          
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusPassed + '\'.');
+        System.assertEquals(1, hlthChkGroupVMod.passedChecks, 'Should have 1 passed check.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+
+        System.assertEquals(Label.stgAccountRecordTypeSupportsHHAddress, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccountRecordTypeSupportsHHAddress + '\'.');
+        System.assertEquals('Pass', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Pass\'.');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'' + Label.stgHealthCheckStatusPassed + '\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(Label.stgHealthCheckFixNotApplicable, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * fail when the ID provided as the householdAccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Model that is valid, but inactive.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHouseholdAccountModelHealthCheckItemsIdMatchFoundToRTValidAndInactive(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidAndInactiveDefaultModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
+                                                                                '000000000000000002',
+                                                                                '000000000000000003');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000003',
+                                                      'Test HH Record Name',
+                                                      'testHHRecordDevName',
+                                                      false);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedFix = String.format(Label.stgHCAccountModelHHInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
+
+        System.assertEquals(Label.stgAccountRecordTypeSupportsHHAddress, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccountRecordTypeSupportsHHAddress + '\'.');
+        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Fail\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * fail when an the ID provided as the administrativeAccountModel Id in AccountSettingsModel is not an ID.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHouseholdAccountModelHealthCheckItemsInvalidDefaultId(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('Not an ID default acct',
+                                                                                'Not an ID admin acct',
+                                                                                'Not an ID HH acct');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000111',
+                                                      'Account Name',
+                                                      'accountDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID HH acct'});
+        String expectedFix = String.format(Label.stgHCAccountModelHHNotFoundFix, new List<Object>{'Not an ID HH acct'});
+
+        System.assertEquals(Label.stgAccountRecordTypeSupportsHHAddress, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccountRecordTypeSupportsHHAddress + '\'.');
+        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * fail when an invalid RT is specified for Administrative Account Model and the adminAccountModel Id in AccountSettingsModel is a
+    * valid ID, but does not match any Ids in the RecordType map.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHouseholdAccountModelHealthCheckItemsValidIdNoMatchingRT(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
+
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000000',
+                                                                                '000000000000000000',
+                                                                                '000000000000000000');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000123',
+                                                      'Different Account Name',
+                                                      'differentAccountDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
+        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
+        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
+        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
+        String expectedFix = String.format(Label.stgHCAccountModelHHNotFoundFix, new List<Object>{'000000000000000000'});
+
+        System.assertEquals(Label.stgAccountRecordTypeSupportsHHAddress, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccountRecordTypeSupportsHHAddress + '\'.');
+        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
+        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+    }
+
+    /**************************************************************************************************************************
     * @description Test to verify getHealthCheckGroup() returns a HealthCheckGroupVModel with a status of
-    * passed when a valid and active record type is specified for Default Account Model.
-    * TODO: update to include a GroupModel for Admin Account and update assertions to account for both account models
+    * passed when valid and active record types are specified for Default, Administrative and Household Account Models.
     **************************************************************************************************************************/ 
     @isTest
     private static void getHealthCheckGroupValidAndActive(){
@@ -295,8 +691,9 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVModel.status, 'Status should be \'Pass\'');
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'' + Label.stgHealthCheckAccountModel + '\'');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVModel.status, 'Status should be \'' + Label.stgHealthCheckStatusPassed + '\'');
+        System.assertEquals(3, hlthChkGroupVModel.healthCheckItemList.size(), 'Should contain Health Check Items for Default, Admin and HH Account models.');
     }
 
     /**************************************************************************************************************************
@@ -312,8 +709,9 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'Fail\'');
+        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'' + Label.stgHealthCheckAccountModel + '\'');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'' + Label.stgHealthCheckStatusFailed + '\'');
+        System.assertEquals(3, hlthChkGroupVModel.healthCheckItemList.size(), 'Should contain Health Check Items for Default, Admin and HH Account models.');
     }
 
     /**************************************************************************************************************************
@@ -331,6 +729,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
 
         System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
         System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'Fail\'');
+        System.assertEquals(3, hlthChkGroupVModel.healthCheckItemList.size(), 'Should contain Health Check Items for Default, Admin and HH Account models.');
     }
 
     /**************************************************************************************************************************
@@ -348,6 +747,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
 
         System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
         System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'Fail\'');
+        System.assertEquals(3, hlthChkGroupVModel.healthCheckItemList.size(), 'Should contain Health Check Items for Default, Admin and HH Account models.');
     }
 
     /**************************************************************************************************************************
@@ -361,8 +761,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         @TestVisible 
         public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
             return new RecordTypeModel('000000000000000001',
-                                       'Test Default Record Name',
-                                       'testDefaultRecordDevName',
+                                       'Test Record Name',
+                                       'testRecordDevName',
                                        true);
         }
     }
@@ -372,12 +772,29 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     **************************************************************************************************************************************/ 
     private class STUB_RecordTypeServiceForGetHealtCheckGroupValid extends RecordTypeService {
         public override  Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
-            RecordTypeModel accRTModel = new RecordTypeModel('000000000000000001',
-                                                            'Test Default Record Name',
-                                                            'testDefaultRecordDevName',
-                                                            true);
 
-            return new Map<Id, RecordTypeModel>{accRTModel.id => accRTModel};
+            Map<Id, RecordTypeModel> accRTModelsById = new Map<Id, RecordTypeModel>();
+
+            RecordTypeModel defaultAccRTModel = new RecordTypeModel('000000000000000001',
+                                                                    'Test Record Name',
+                                                                    'testRecordDevName',
+                                                                    true);
+                                                                    
+            RecordTypeModel adminAccRTModel = new RecordTypeModel('000000000000000002',
+                                                                  'Test Admin Record Name',
+                                                                  'testAdminRecordDevName',
+                                                                  true);
+                                                                    
+            RecordTypeModel hhAccRTModel = new RecordTypeModel('000000000000000003',
+                                                               'Test HH Record Name',
+                                                               'testHHRecordDevName',
+                                                               true);
+                                                                    
+            accRTModelsById.put(defaultAccRTModel.id, defaultAccRTModel);
+            accRTModelsById.put(adminAccRTModel.id, adminAccRTModel);
+            accRTModelsById.put(hhAccRTModel.id, hhAccRTModel);
+            
+            return accRTModelsById;
         }
     }
 
@@ -388,8 +805,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         @TestVisible 
         public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
             return new RecordTypeModel('000000000000000001',
-                                       'Test Default Record Name',
-                                       'testDefaultRecordDevName',
+                                       'Test Record Name',
+                                       'testRecordDevName',
                                        false);
         }
     }
@@ -400,8 +817,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private class STUB_RecordTypeServiceForGetHealtCheckGroupInvalid extends RecordTypeService {
         public override  Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
             RecordTypeModel accRTModel = new RecordTypeModel('000000000000000001',
-                                                            'Test Default Record Name',
-                                                            'testDefaultRecordDevName',
+                                                            'Test Record Name',
+                                                            'testRecordDevName',
                                                             false);
 
             return new Map<Id, RecordTypeModel>{accRTModel.id => accRTModel};
