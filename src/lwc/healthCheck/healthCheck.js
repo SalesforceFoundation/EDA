@@ -22,7 +22,14 @@ export default class HealthCheck extends LightningElement {
         updateHealthCheckLastRunDate()
             .then(result => {
                 this.lastRunDate = result;
-                this.displayHealthCheckGroup = true;
+
+                if(!this.displayHealthCheckGroup) {
+                    this.displayHealthCheckGroup = true;
+                    return;
+                }
+
+                let healthCheckDisplay = this.template.querySelector('c-health-check-display');
+                healthCheckDisplay.refreshHealthCheck();
             })
             .catch(error => {
                 this.lastRunDate = this.LabelReference.stgHealthCheckErrorLastRunDate;
