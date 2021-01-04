@@ -57,8 +57,8 @@ private class AccountModelSettingsModel_TEST {
             AccountModelSettingsModel accModelSettingsModel = new AccountModelSettingsModel(null, null, null);
         Test.stopTest();
 
-        System.assertEquals('', accModelSettingsModel.defaultAccountModelId, 'defaultAccountModelId should be set with the value that is passed');
-        System.assertEquals('', accModelSettingsModel.administrativeAccountRecordTypeId, 'administrativeAccountRecordTypeId should be set with the value that is passed');
-        System.assertEquals('', accModelSettingsModel.householdAccountRecordTypeId, 'householdAccountRecordTypeId should be set with the value that is passed');
+        System.assertEquals('""', accModelSettingsModel.defaultAccountModelId, 'defaultAccountModelId should be set with the value that is passed');
+        System.assertEquals('""', accModelSettingsModel.administrativeAccountRecordTypeId, 'administrativeAccountRecordTypeId should be set with the value that is passed');
+        System.assertEquals('""', accModelSettingsModel.householdAccountRecordTypeId, 'householdAccountRecordTypeId should be set with the value that is passed');
     }
 }
