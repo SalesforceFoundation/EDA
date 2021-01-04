@@ -1,4 +1,5 @@
 import { LightningElement, track, wire, api } from 'lwc';
+import { refreshApex } from '@salesforce/apex';
 
 import stgHealthChecksAllPassed from '@salesforce/label/c.stgHealthChecksAllPassed';
 import stgHealthChecksNotAllPassed from '@salesforce/label/c.stgHealthChecksNotAllPassed';
@@ -22,6 +23,8 @@ export default class HealthCheckGroup extends LightningElement {
     @track passedChecks = 0;
     @track isExpanded;
     
+    treeDataResult;
+
     labelReference = {
         stgHealthChecksAllPassed,
         stgHealthChecksNotAllPassed,
@@ -109,7 +112,10 @@ export default class HealthCheckGroup extends LightningElement {
             className: '$healthCheckDefinition.className', 
             namespace: '$healthCheckDefinition.namespace'
         })
-    treeData({ error, data }) {
+    treeData(result) {
+        this.treeDataResult = result;
+        const { error, data } = result;
+
         if ( data ) {
             // Workaround to support lightning tree grid child format by addressing issue where a single-member array 
             // evaluates only to the member of that array and prevent copying of the array to a differently-named array.
@@ -130,7 +136,7 @@ export default class HealthCheckGroup extends LightningElement {
             this.expandedRowsList = arrayAssignmentDataHack.expandedRowsList;
 
             this.dispatchEvent(new CustomEvent('healthcheckgrouploaded'));
-
+            return;
         } else if (error) {
             if (Array.isArray(error.body)) {
                 //console.log( 'Error is ' + error.body.map( e => e.message ).join( ', ' ) );
@@ -156,6 +162,12 @@ export default class HealthCheckGroup extends LightningElement {
                 delete healthCheckItemArray[i].healthCheckItemList;
             }
         }
+    }
+
+    @api refreshHealthCheckGroup() {
+        refreshApex(this.treeDataResult).then(() => {
+            this.dispatchEvent(new CustomEvent('healthcheckgrouploaded'));
+        });
     }
 
     // definition of columns for the tree grid
