@@ -1114,4 +1114,8 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <label>Wir können den Zeitplan für das Kursangebot nicht speichern, weil seine Startzeit nicht mit der Startzeit des zugehörigen Zeitblocks übereinstimmt. Bearbeiten Sie entweder die Startzeit, geben Sie einen anderen Zeitblock oder keinen Zeitblock an.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customTabs>
+        <label>EDA-Einstellungen</label>
+        <name>HEDA_Settings</name>
+    </customTabs>
 </Translations>

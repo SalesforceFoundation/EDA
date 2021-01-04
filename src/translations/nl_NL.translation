@@ -593,6 +593,7 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
         <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
@@ -641,6 +642,8 @@
         <name>stgHCReciprocalRelNeutralTitle</name>
     </customLabels>
     <customLabels>
+=======
+>>>>>>> feature/230__ReciprocalRelationship__APIAndVMapper
         <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
