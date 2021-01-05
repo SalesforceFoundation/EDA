@@ -81,6 +81,12 @@
         <members>CON_PrimaryLanguage_TEST</members>
         <members>COS_StartEndTime_TDTM</members>
         <members>COS_StartEndTime_TEST</members>
+        <members>CourseConnectionSettingsModel</members>
+        <members>CourseConnectionSettingsModel_TEST</members>
+        <members>CourseConnectionSettingsMapper</members>
+        <members>CourseConnectionSettingsMapper_TEST</members>
+        <members>CourseConnectionSettingsService</members>
+        <members>CourseConnectionSettingsService_TEST</members>
         <members>COUR_CannotDelete_TDTM</members>
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
@@ -808,6 +814,7 @@
         <members>stgFluent</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckRunButton</members>
         <members>stgHealthCheckTitle</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
@@ -873,7 +880,6 @@
         <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
-        <members>stgHealthCheckRunButton</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
