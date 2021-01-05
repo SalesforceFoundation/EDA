@@ -585,6 +585,10 @@
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
+        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <name>stgHealthCheckLoadingIndicator</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>Para instituciones educativas superiores, recomendamos el modelo de cuenta "Administrativo". Para escuelas de primaria, recomendamos el modelo de cuenta "Hogar".</label>
     </customLabels>
@@ -811,10 +815,6 @@
     <customLabels>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
         <label>Si tenía reportes o campos de fórmula que hacían referencia a los valores anteriores en el campo Etnia, actualícelos.</label>
-    </customLabels>
-    <customLabels>
-        <label><!-- Text that displays to indicate that a component is loading --></label>
-        <name>stgLoadingSpinnerText</name>
     </customLabels>
     <customLabels>
         <name>stgNestedPlanRequirementPP</name>
