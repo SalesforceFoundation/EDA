@@ -51,7 +51,7 @@ private class CourseConnectionSettingsService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * AccountModelSettingsService class when one already exists.
+    * CourseConnectionSettingsService class when one already exists.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
@@ -79,10 +79,10 @@ private class CourseConnectionSettingsService_TEST {
         System.assertEquals(CourseConnectionSettingsMapper.getInstance(), courseConnSettingsMapper, 'Should return the instance of CourseConnectionSettingsService');
 
     }
-    
-    /***********************************************************************************************************************************
-    * @description Test method to verify that the getCourseConnectionSettingsModel method returns instance of AccountModelSettings Model
-    ***********************************************************************************************************************************/
+
+    /****************************************************************************************************************************************
+    * @description Test method to verify that the getCourseConnectionSettingsModel method returns instance of CourseConnectionsSettings Model
+    ****************************************************************************************************************************************/
     @isTest
     private static void getCourseConnectionSettingsModel() {
 
