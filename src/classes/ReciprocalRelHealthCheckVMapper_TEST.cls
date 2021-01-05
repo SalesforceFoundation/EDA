@@ -1103,7 +1103,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'Health Check Item View Model status should equal the expected label.'
         );
         System.assertEquals(
-            String.format(Label.stgHealthCheckStatusPassed,listForDescriptionLabel),
+            '',
             healthCheckItemVModel.description,
             'Health Check Item View Model description should equal the expected formatted label.'
         );
