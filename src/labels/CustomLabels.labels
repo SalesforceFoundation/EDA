@@ -1136,6 +1136,14 @@
         <value>Fluent</value>
     </labels>
     <labels>
+        <fullName>stgHCCourseConnectionsTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Course Connections group title in EDA Settings Health Check results</shortDescription>
+        <value>Course Connections</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAccountModel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

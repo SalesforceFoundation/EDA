@@ -569,6 +569,10 @@
         <label>Vloeiend</label>
     </customLabels>
     <customLabels>
+        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <name>stgHCCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>Voor instellingen voor hoger onderwijs raden we het accountmodel 'Administratief' aan. Voor het basis- en middelbaar onderwijs raden we het accountmodel 'Huishouden' aan.</label>
     </customLabels>

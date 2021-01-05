@@ -569,6 +569,10 @@
         <label>流暢</label>
     </customLabels>
     <customLabels>
+        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <name>stgHCCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>高等教育機関では、「管理」取引先モデルをお勧めします。K-12 の学校 (幼稚園から高等学校) では、「世帯」取引先モデルをお勧めします。</label>
     </customLabels>
