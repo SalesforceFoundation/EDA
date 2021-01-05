@@ -70,6 +70,7 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
         accountHlthCheckGroupVModelsList.add(this.getDefaultAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById));        
         accountHlthCheckGroupVModelsList.add(this.getAdministrativeAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById));        
         accountHlthCheckGroupVModelsList.add(this.getHouseholdAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById));        
+        accountHlthCheckGroupVModelsList.add(this.getAccountRecordTypeUniquenessHealthCheckItems(acctModSettingMod));        
 
         return this.combineAccountHealthCheckGroupViewModels(accountHlthCheckGroupVModelsList);
     }
@@ -82,7 +83,7 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     * Default, Administrative and Household Accounts.
     **********************************************************************************/ 
     @TestVisible
-    private HealthCheckGroupVModel combineAccountHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList){
+    private HealthCheckGroupVModel combineAccountHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList) {
         String hlthCheckGroupLabel = Label.stgHealthCheckAccountModel;
         Integer hlthChkGroupPassedChecks = 0;
         Integer hlthChkGroupTotalChecks = 0;
@@ -90,7 +91,7 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
         List<String> hlthChkGroupExpandedRowsList = new List<String>();
         List<HealthCheckItemVModel> hlthChkGroupHlthChkItemsList = new List<HealthCheckItemVModel>();
 
-        for (HealthCheckGroupVModel hlthChkGroupVMod : healthCheckGroupVModelsList){
+        for (HealthCheckGroupVModel hlthChkGroupVMod : healthCheckGroupVModelsList) {
             hlthChkGroupPassedChecks += hlthChkGroupVMod.passedChecks;
             hlthChkGroupTotalChecks += hlthChkGroupVMod.totalChecks;
 
@@ -308,6 +309,55 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
         return hlthChkGroupVMod;
     }
 
+    /**********************************************************************************
+    * @description Generates a HealthCheckGroupVModel for an Account Model health check based
+    * on whether the Administrative and Household RT settings are the same.
+    * @param  accountSettingsMod An AccountModelSettingsModel
+    * @return A HealthCheckGroupVModel with a status of Fail if the Admin and HH Accounts are not
+    * unique; a HealthCheckGroupVModel with a status of Pass otherwise.
+    **********************************************************************************/
+    private HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckItems(AccountModelSettingsModel accountSettingsMod) {
+
+        List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
+        String hlthCheckGroupLabel = Label.stgHealthCheckAccountModel;
+
+        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(hlthCheckGroupLabel,
+                                                                             Label.stgHealthCheckStatusPassed,
+                                                                             0,
+                                                                             0,
+                                                                             new List<String>(),
+                                                                             hlthChkItemsList);
+                                                                             
+        Boolean isAdminAndHHAcctModelsUnique = (accountSettingsMod.administrativeAccountRecordTypeId == accountSettingsMod.householdAccountRecordTypeId);
+        
+        if (isAdminAndHHAcctModelsUnique == false) {
+            hlthChkItemsList.add(new HealthCheckItemVModel('04',
+                                                           Label.stgHCAccountRecordTypeSettingsUnique,
+                                                           'Fail',
+                                                           Label.stgHealthCheckStatusFailed,
+                                                           Label.stgHCAccountRecordTypesNotUnique,
+                                                           Label.stgHCAccountRecordTypesNotUniqueFix,
+                                                           new List<HealthCheckItemVModel>()));
+
+            hlthChkGroupVMod.totalChecks++;
+            this.updateHealthCheckStatus(hlthChkGroupVMod.passedChecks, hlthChkGroupVMod.totalChecks);
+            return hlthChkGroupVMod;
+        }
+
+        hlthChkItemsList.add(new HealthCheckItemVModel('04',
+                                                       Label.stgHCAccountRecordTypeSettingsUnique,
+                                                       'Pass',
+                                                       Label.stgHealthCheckStatusPassed,
+                                                       Label.stgHCAccountRecordTypesUnique,
+                                                       Label.stgHealthCheckFixNotApplicable,
+                                                       new List<HealthCheckItemVModel>()));
+
+        hlthChkGroupVMod.totalChecks++;
+        hlthChkGroupVMod.passedChecks++;
+        this.updateHealthCheckStatus(hlthChkGroupVMod.passedChecks, hlthChkGroupVMod.totalChecks);
+        return hlthChkGroupVMod;
+    }
+
     /*********************************************************************************************************************
     * @description Helper method to update the status of a HealthCheckGroupVModel based on the number of passing health checks. 
     * @param  passedCheckCount The number of health checks passed.
@@ -315,8 +365,8 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     * @return Pass if all checks executed passed, Fail otherwise
     *********************************************************************************************************************/
     @TestVisible
-    private String updateHealthCheckStatus(Integer passedCheckCount, Integer totalCheckCount){      
-        if (passedCheckCount == totalCheckCount){
+    private String updateHealthCheckStatus(Integer passedCheckCount, Integer totalCheckCount) {      
+        if (passedCheckCount == totalCheckCount) {
             return Label.stgHealthCheckStatusPassed;
         }
 

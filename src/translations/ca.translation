@@ -569,6 +569,22 @@
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels> 
     <customLabels>
+        <label><!-- A check for unique container Account record type settings --></label>
+        <name>stgHCAccountRecordTypeSettingsUnique</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Administrative and Household Account Record Types aren't unique --></label>
+        <name>stgHCAccountRecordTypesNotUnique</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types are same --></label>
+        <name>stgHCAccountRecordTypesNotUniqueFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Administrative and Household Account Record Types are unique --></label>
+        <name>stgHCAccountRecordTypesUnique</name>
+    </customLabels> 
+    <customLabels>
         <label><!-- Description when Health Check finds an inactive record type --></label>
         <name>stgHCRecordTypeInactive</name>
     </customLabels> 

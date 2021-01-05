@@ -837,6 +837,10 @@
         <members>stgHCAccountModelDefaultNotFoundFix</members>
         <members>stgHCAccountModelHHInactiveFix</members>
         <members>stgHCAccountModelHHNotFoundFix</members>
+        <members>stgHCAccountRecordTypeSettingsUnique</members>
+        <members>stgHCAccountRecordTypesNotUnique</members>
+        <members>stgHCAccountRecordTypesNotUniqueFix</members>
+        <members>stgHCAccountRecordTypesUnique</members>
         <members>stgHCRecordTypeInactive</members>
         <members>stgHCRecordTypeNotFound</members>
         <members>stgHCRecordTypeValid</members>
