@@ -507,7 +507,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
             String.format(Label.stgHCReciprocalRelSetting,listForSettingsLabel),
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(Label.stgHealthCheckStatusPassed,listForDescriptionLabel),
+            '',
             '',
             new List<HealthCheckItemVModel>()
         );
