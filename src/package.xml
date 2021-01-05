@@ -784,6 +784,27 @@
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
+        <members>stgHCAffiliationMappingSettingDesc</members>
+        <members>stgHCAffiliationMappingSettingHeading</members>
+        <members>stgHCAfflMapAccRecordTypeInactiveFix</members>
+        <members>stgHCAfflMapAccRecordTypeNotFoundFix</members>
+        <members>stgHCAfflMapAccRecordTypeNotUnique</members>
+        <members>stgHCAfflMapAccRecordTypeTitle</members>
+        <members>stgHCAfflMapAccRecordTypeUnique</members>
+        <members>stgHCAfflMapAccRecordTypeUniqueFix</members>
+        <members>stgHCAfflMapAccRecordTypeUniqueTitle</members>
+        <members>stgHCAfflMapAutoEnrollStatusInactive</members>
+        <members>stgHCAfflMapAutoEnrollStatusTitle</members>
+        <members>stgHCAfflMapAutoEnrollStatusValid</members>
+        <members>stgHCAfflMapContPrimaryFieldInvalidFix</members>
+        <members>stgHCAfflMapContPrimaryFieldUniqueTitle</members>
+        <members>stgHCAfflMapContactPrimaryFieldInvalid</members>
+        <members>stgHCAfflMapContactPrimaryFieldNotUnique</members>
+        <members>stgHCAfflMapContactPrimaryFieldTitle</members>
+        <members>stgHCAfflMapContactPrimaryFieldUnique</members>
+        <members>stgHCAfflMapContactPrimaryFieldUniqueFix</members>
+        <members>stgHCAfflMapContactPrimaryFieldValid</members>
+        <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
