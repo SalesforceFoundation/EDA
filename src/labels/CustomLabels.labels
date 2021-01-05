@@ -1136,6 +1136,38 @@
         <value>In EDA Settings, on the Accounts and Contacts tab, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
+        <fullName>stgHCAccountRecordTypeSettingsUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for unique container Account record type settings</shortDescription>
+        <value>Unique Administrative and Household Account Record Type Settings.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountRecordTypesNotUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Administrative and Household Account Record Types aren't unique</shortDescription>
+        <value>The Administrative Account and Household Account Record Type settings specify the same record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountRecordTypesNotUniqueFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Administrative and Household Account Record Types are same</shortDescription>
+        <value>In EDA Settings, in the Accounts and Contacts tab, change either the Administrative Account Record Type or the Household Account Record Type so that each specifies a unique record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountRecordTypesUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Administrative and Household Account Record Types are unique</shortDescription>
+        <value>The Administrative Account and Household Account Record Type settings specify different record types.</value>
+    </labels>
+    <labels>
         <fullName>stgHCRecordTypeInactive</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
