@@ -81,16 +81,17 @@
         <members>CON_PrimaryLanguage_TEST</members>
         <members>COS_StartEndTime_TDTM</members>
         <members>COS_StartEndTime_TEST</members>
-        <members>CourseConnectionSettingsModel</members>
-        <members>CourseConnectionSettingsModel_TEST</members>
-        <members>CourseConnectionSettingsMapper</members>
-        <members>CourseConnectionSettingsMapper_TEST</members>
-        <members>CourseConnectionSettingsService</members>
-        <members>CourseConnectionSettingsService_TEST</members>
         <members>COUR_CannotDelete_TDTM</members>
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
+        <members>CourseConSettingHealthCheckVMapper</members>
+        <members>CourseConnectionSettingsMapper</members>
+        <members>CourseConnectionSettingsMapper_TEST</members>
+        <members>CourseConnectionSettingsModel</members>
+        <members>CourseConnectionSettingsModel_TEST</members>
+        <members>CourseConnectionSettingsService</members>
+        <members>CourseConnectionSettingsService_TEST</members>
         <members>EDAHealthCheckGroupAPIService</members>
         <members>EDAHealthCheckGroupAPIService_TEST</members>
         <members>ERR_AsyncErrors</members>
@@ -165,6 +166,9 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>RecordTypeMapper</members>
+        <members>RecordTypeModel</members>
+        <members>RecordTypeService</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_Contact_PreferredEmail</members>
@@ -826,7 +830,6 @@
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
         <members>stgHealthCheckLastRun</members>
-        <members>stgHealthCheckRunButton</members>
         <members>stgHealthCheckRecoFix</members>
         <members>stgHealthCheckResultsCollapse</members>
         <members>stgHealthCheckResultsDescription</members>
