@@ -45,7 +45,7 @@ public with sharing class RelationshipLookupModel {
         this.name = (String.isBlank(name) ? '""' : name );
         this.isActive = isActive;
         this.femaleValue = (String.isBlank(femaleValue) ? '""' : femaleValue );
-        this.maleValue = (String.isBlank(maleValue) ? '""') : maleValue );
+        this.maleValue = (String.isBlank(maleValue) ? '""' : maleValue );
         this.neutralValue = (String.isBlank(neutralValue) ? '""' : neutralValue);
     }
 }
