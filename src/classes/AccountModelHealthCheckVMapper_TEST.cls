@@ -100,7 +100,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         String hcStatus = AccountModelHealthCheckVMapper.getInstance().updateHealthCheckStatus(5, 5);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hcStatus, 'Should return \'Pass\'.');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, hcStatus, 'Should return \'' + Label.stgHealthCheckStatusPassed + '\'.');
     }
 
     /**************************************************************************************************************************
@@ -112,7 +112,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         String hcStatus = AccountModelHealthCheckVMapper.getInstance().updateHealthCheckStatus(2, 5);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hcStatus, 'Should return \'Fail\'.');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hcStatus, 'Should return \'' + Label.stgHealthCheckStatusFailed + '\'.');
     }
 
     /**************************************************************************************************************************
@@ -205,20 +205,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'Account Model\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.status, 'Should have status of \'Pass\'.');
-        System.assertEquals(1, hlthChkGroupVMod.passedChecks, 'Should have 1 passed check.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                              Label.stgHealthCheckStatusPassed,
+                                                                              1,
+                                                                              1,
+                                                                              0,
+                                                                              1,
+                                                                              hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedFix = Label.stgHealthCheckFixNotApplicable;
 
-        System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
-        System.assertEquals('Pass', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Pass\'.');
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'Passed\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(Label.stgHealthCheckFixNotApplicable, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
+                                                                           'Pass', 
+                                                                           Label.stgHealthCheckStatusPassed, 
+                                                                           expectedDescription, 
+                                                                           expectedFix, 
+                                                                           hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -246,21 +249,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'Account Model\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'Fail\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                              Label.stgHealthCheckStatusFailed,
+                                                                              0,
+                                                                              1,
+                                                                              0,
+                                                                              1,
+                                                                              hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
         String expectedFix = String.format(Label.stgHCAccountModelDefaultInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
 
-        System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'Failed\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -287,21 +292,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'Account Model\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'Fail\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                              Label.stgHealthCheckStatusFailed,
+                                                                              0,
+                                                                              1,
+                                                                              0,
+                                                                              1,
+                                                                              hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID default acct'});
         String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'Not an ID default acct'});
 
-        System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccModelTitle + '\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
+                                                                           'Fail', 
+                                                                           Label.stgHealthCheckStatusFailed, 
+                                                                           expectedDescription, 
+                                                                           expectedFix, 
+                                                                           hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -329,21 +336,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'Account Model\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'Fail\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
         String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'000000000000000000'});
 
-        System.assertEquals(Label.stgAccModelTitle, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'Default Account Model\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'Failed\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -371,20 +380,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusPassed + '\'.');
-        System.assertEquals(1, hlthChkGroupVMod.passedChecks, 'Should have 1 passed check.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusPassed,
+                                                                                   1,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
-
-        System.assertEquals(Label.stgAdminAccountRecordType, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAdminAccountRecordType + '\'.');
-        System.assertEquals('Pass', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Pass\'.');
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'' + Label.stgHealthCheckStatusPassed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(Label.stgHealthCheckFixNotApplicable, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        String expectedFix = Label.stgHealthCheckFixNotApplicable;
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
+                                                                                'Pass', 
+                                                                                Label.stgHealthCheckStatusPassed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -412,21 +424,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
         String expectedFix = String.format(Label.stgHCAccountModelAdminInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
-
-        System.assertEquals(Label.stgAdminAccountRecordType, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAdminAccountRecordType + '\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -453,21 +467,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID admin acct'});
         String expectedFix = String.format(Label.stgHCAccountModelAdminNotFoundFix, new List<Object>{'Not an ID admin acct'});
-
-        System.assertEquals(Label.stgAdminAccountRecordType, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAdminAccountRecordType + '\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -495,21 +511,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
         String expectedFix = String.format(Label.stgHCAccountModelAdminNotFoundFix, new List<Object>{'000000000000000000'});
-
-        System.assertEquals(Label.stgAdminAccountRecordType, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAdminAccountRecordType + '\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -537,20 +555,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusPassed + '\'.');
-        System.assertEquals(1, hlthChkGroupVMod.passedChecks, 'Should have 1 passed check.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusPassed,
+                                                                                   1,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
-
-        System.assertEquals(Label.stgAccountRecordTypeSupportsHHAddress, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccountRecordTypeSupportsHHAddress + '\'.');
-        System.assertEquals('Pass', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Pass\'.');
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'' + Label.stgHealthCheckStatusPassed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(Label.stgHealthCheckFixNotApplicable, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        String expectedFix = Label.stgHealthCheckFixNotApplicable;
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
+                                                                                'Pass', 
+                                                                                Label.stgHealthCheckStatusPassed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -578,21 +599,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
         String expectedFix = String.format(Label.stgHCAccountModelHHInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
-
-        System.assertEquals(Label.stgAccountRecordTypeSupportsHHAddress, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccountRecordTypeSupportsHHAddress + '\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Health Check Item status should be \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Health Check Item status label should be \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -619,21 +642,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID HH acct'});
         String expectedFix = String.format(Label.stgHCAccountModelHHNotFoundFix, new List<Object>{'Not an ID HH acct'});
-
-        System.assertEquals(Label.stgAccountRecordTypeSupportsHHAddress, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccountRecordTypeSupportsHHAddress + '\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -661,21 +686,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Should have \'' + Label.stgHealthCheckAccountModel + '\' label.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Should have status of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(0, hlthChkGroupVMod.passedChecks, 'Should have 0 passed checks.');
-        System.assertEquals(1, hlthChkGroupVMod.totalChecks, 'Should have 1 check.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Should have no expanded rows.');
-        System.assertEquals(1, hlthChkGroupVMod.healthCheckItemList.size(), 'Should have 1 health check item.');
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
         String expectedFix = String.format(Label.stgHCAccountModelHHNotFoundFix, new List<Object>{'000000000000000000'});
-
-        System.assertEquals(Label.stgAccountRecordTypeSupportsHHAddress, hlthChkGroupVMod.healthCheckItemList[0].setting, 'Health Check Item setting should be \'' + Label.stgAccountRecordTypeSupportsHHAddress + '\'.');
-        System.assertEquals('Fail', hlthChkGroupVMod.healthCheckItemList[0].status, 'Should have status of \'Fail\'.');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.healthCheckItemList[0].statusLabel, 'Should have status label of \'' + Label.stgHealthCheckStatusFailed + '\'.');
-        System.assertEquals(expectedDescription, hlthChkGroupVMod.healthCheckItemList[0].description, 'Health Check Item description should be correctly set.');
-        System.assertEquals(expectedFix, hlthChkGroupVMod.healthCheckItemList[0].recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -870,5 +897,47 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                  'Not an ID 2',
                                                  'Not an ID 3');
         }
+    }
+
+    /**************************************************************************************************************************
+    ************************************************* HELPER METHODS **********************************************************
+    **************************************************************************************************************************/
+
+    /**************************************************************************************************************************
+    * @description Helper method to validate assertions for HealthCheckGroupVModel tests.
+    **************************************************************************************************************************/
+    private static void verifyHealthCheckGroupVModelAssertions(String expectedLabel, 
+                                                               String expectedStatus, 
+                                                               Integer expectedPassedCheckCount, 
+                                                               Integer expectedTotalCheckCount, 
+                                                               Integer expectedExpandedRowSize, 
+                                                               Integer expectedHealthCheckItemListSize,
+                                                               HealthCheckGroupVModel hlthCheckGroupResult){
+
+        System.assertEquals(expectedLabel, hlthCheckGroupResult.label, 'Should have \'' + expectedLabel + '\' label.');
+        System.assertEquals(expectedStatus, hlthCheckGroupResult.status, 'Should have status of \'' + expectedStatus + '\'.');
+        System.assertEquals(expectedPassedCheckCount, hlthCheckGroupResult.passedChecks, 'Should have ' + expectedPassedCheckCount + ' passed checks.');
+        System.assertEquals(expectedTotalCheckCount, hlthCheckGroupResult.totalChecks, 'Should have ' + expectedTotalCheckCount + ' check.');
+        System.assertEquals(expectedExpandedRowSize, hlthCheckGroupResult.expandedRowsList.size(), 'Should have ' + expectedExpandedRowSize + ' expanded rows.');
+        System.assertEquals(expectedHealthCheckItemListSize, hlthCheckGroupResult.healthCheckItemList.size(), 'Should have ' + expectedHealthCheckItemListSize + ' health check item.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Helper method to validate assertions for HealthCheckGroupVModel HealthCheckItems.
+    **************************************************************************************************************************/
+    private static void verifyHealthCheckItemListAssertions(String expectedSetting,
+                                                            String expectedStatus, 
+                                                            String expectedStatusLabel,
+                                                            String expectedDescription,
+                                                            String expectedFix,
+                                                            List<HealthCheckItemVModel> healthCheckItemList){
+
+        for (HealthCheckItemVModel hlthChkItmVMod : healthCheckItemList){
+            System.assertEquals(expectedSetting, hlthChkItmVMod.setting, 'Health Check Item setting should be \'' + expectedSetting + '\'.');
+            System.assertEquals(expectedStatus, hlthChkItmVMod.status, 'Health Check Item status should be \'' + expectedStatus + '\'.');
+            System.assertEquals(expectedStatusLabel, hlthChkItmVMod.statusLabel, 'Health Check Item status label should be \'' + expectedStatusLabel + '\'.');
+            System.assertEquals(expectedDescription, hlthChkItmVMod.description, 'Health Check Item description should be correctly set.');
+            System.assertEquals(expectedFix, hlthChkItmVMod.recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        }        
     }
 }
