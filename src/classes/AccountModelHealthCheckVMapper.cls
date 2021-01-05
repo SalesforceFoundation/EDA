@@ -316,6 +316,7 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     * @return A HealthCheckGroupVModel with a status of Fail if the Admin and HH Accounts are not
     * unique; a HealthCheckGroupVModel with a status of Pass otherwise.
     **********************************************************************************/
+    @TestVisible
     private HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckItems(AccountModelSettingsModel accountSettingsMod) {
 
         List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
@@ -328,9 +329,9 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                              new List<String>(),
                                                                              hlthChkItemsList);
                                                                              
-        Boolean isAdminAndHHAcctModelsUnique = (accountSettingsMod.administrativeAccountRecordTypeId == accountSettingsMod.householdAccountRecordTypeId);
-        
-        if (isAdminAndHHAcctModelsUnique == false) {
+        Boolean isAdminEqualToHHAcctRT = (accountSettingsMod.administrativeAccountRecordTypeId == accountSettingsMod.householdAccountRecordTypeId);
+
+        if (isAdminEqualToHHAcctRT == true) {
             hlthChkItemsList.add(new HealthCheckItemVModel('04',
                                                            Label.stgHCAccountRecordTypeSettingsUnique,
                                                            'Fail',

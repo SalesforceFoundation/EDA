@@ -707,7 +707,8 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
 
     /**************************************************************************************************************************
     * @description Test to verify getHealthCheckGroup() returns a HealthCheckGroupVModel with a status of
-    * passed when valid and active record types are specified for Default, Administrative and Household Account Models.
+    * passed when valid and active record types are specified for Default, Administrative and Household Account Models and the
+    * record types specified for HH and Admin accounts are unique.
     **************************************************************************************************************************/ 
     @isTest
     private static void getHealthCheckGroupValidAndActive(){
@@ -718,9 +719,21 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'' + Label.stgHealthCheckAccountModel + '\'');
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupVModel.status, 'Status should be \'' + Label.stgHealthCheckStatusPassed + '\'');
-        System.assertEquals(3, hlthChkGroupVModel.healthCheckItemList.size(), 'Should contain Health Check Items for Default, Admin and HH Account models.');
+        System.assertEquals(
+            Label.stgHealthCheckAccountModel, 
+            hlthChkGroupVModel.label, 
+            'Label should be \'' + Label.stgHealthCheckAccountModel + '\''
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusPassed, 
+            hlthChkGroupVModel.status, 
+            'Status should be \'' + Label.stgHealthCheckStatusPassed + '\''
+        );
+        System.assertEquals(
+            4, 
+            hlthChkGroupVModel.healthCheckItemList.size(), 
+            'Should contain Health Check Items for Default, Admin and HH Account models and Admin and HH Account Uniqueness.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -736,9 +749,21 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'' + Label.stgHealthCheckAccountModel + '\'');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'' + Label.stgHealthCheckStatusFailed + '\'');
-        System.assertEquals(3, hlthChkGroupVModel.healthCheckItemList.size(), 'Should contain Health Check Items for Default, Admin and HH Account models.');
+        System.assertEquals(
+            Label.stgHealthCheckAccountModel, 
+            hlthChkGroupVModel.label, 
+            'Label should be \'' + Label.stgHealthCheckAccountModel + '\''
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed, 
+            hlthChkGroupVModel.status, 
+            'Status should be \'' + Label.stgHealthCheckStatusFailed + '\''
+        );
+        System.assertEquals(
+            4, 
+            hlthChkGroupVModel.healthCheckItemList.size(), 
+            'Should contain Health Check Items for Default, Admin and HH Account models and Admin and HH Account Uniqueness.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -754,9 +779,21 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'Fail\'');
-        System.assertEquals(3, hlthChkGroupVModel.healthCheckItemList.size(), 'Should contain Health Check Items for Default, Admin and HH Account models.');
+        System.assertEquals(
+            Label.stgHealthCheckAccountModel, 
+            hlthChkGroupVModel.label, 
+            'Label should be \'' + Label.stgHealthCheckAccountModel + '\''
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed, 
+            hlthChkGroupVModel.status, 
+            'Status should be \'' + Label.stgHealthCheckStatusFailed + '\''
+        );
+        System.assertEquals(
+            4, 
+            hlthChkGroupVModel.healthCheckItemList.size(), 
+            'Should contain Health Check Items for Default, Admin and HH Account models and Admin and HH Account Uniqueness.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -772,9 +809,117 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
         HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVModel.label, 'Label should be \'Account Model\'');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVModel.status, 'Status should be \'Fail\'');
-        System.assertEquals(3, hlthChkGroupVModel.healthCheckItemList.size(), 'Should contain Health Check Items for Default, Admin and HH Account models.');
+        System.assertEquals(
+            Label.stgHealthCheckAccountModel, 
+            hlthChkGroupVModel.label, 
+            'Label should be \'' + Label.stgHealthCheckAccountModel + '\''
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed, 
+            hlthChkGroupVModel.status, 
+            'Status should be \'' + Label.stgHealthCheckStatusFailed + '\''
+        );
+        System.assertEquals(
+            4, 
+            hlthChkGroupVModel.healthCheckItemList.size(), 
+            'Should contain Health Check Items for Default, Admin and HH Account models and Admin and HH Account Uniqueness.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHealthCheckGroup() returns a HealthCheckGroupVModel with a status of
+    * failed when Admin and HH account record types are the same.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getHealthCheckGroupNotUnique(){
+        AccountModelSettingsService.instance = new STUB_AccountModelSettingsServiceNotUnique();
+        RecordTypeService.instance = new STUB_RecordTypeServiceForGetHealtCheckGroupValid();
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVModel = AccountModelHealthCheckVMapper.getInstance().getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(
+            Label.stgHealthCheckAccountModel, 
+            hlthChkGroupVModel.label, 
+            'Label should be \'' + Label.stgHealthCheckAccountModel + '\''
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed, 
+            hlthChkGroupVModel.status, 
+            'Status should be \'' + Label.stgHealthCheckStatusFailed + '\''
+        );
+        System.assertEquals(
+            4, 
+            hlthChkGroupVModel.healthCheckItemList.size(), 
+            'Should contain Health Check Items for Default, Admin and HH Account models and Admin and HH Account Uniqueness.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getAccountRecordTypeUniquenessHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * passed when Admin and HH account record types are not the same.
+    **************************************************************************************************************************/ 
+    private static void getHouseholdAccountModelHealthCheckItemsUnique(){
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
+                                                                                '000000000000000002',
+                                                                                '000000000000000003');
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getAccountRecordTypeUniquenessHealthCheckItems(accModSettMod);
+        Test.stopTest();
+
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusPassed,
+                                                                                   1,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
+
+        String expectedDescription = Label.stgHCAccountRecordTypesUnique;
+        String expectedFix = Label.stgHealthCheckFixNotApplicable;
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgHCAccountRecordTypeSettingsUnique, 
+                                                                                'Pass', 
+                                                                                Label.stgHealthCheckStatusPassed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getAccountRecordTypeUniquenessHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * failed when Admin and HH account record types are the same.
+    **************************************************************************************************************************/ 
+    private static void getHouseholdAccountModelHealthCheckItemsNotUnique(){
+        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
+                                                                                '000000000000000005',
+                                                                                '000000000000000005');
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            AccountModelHealthCheckVMapper.getInstance().getAccountRecordTypeUniquenessHealthCheckItems(accModSettMod);
+        Test.stopTest();
+
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   hlthChkGroupVMod);
+
+        String expectedDescription = Label.stgHCAccountRecordTypesNotUnique;
+        String expectedFix = Label.stgHCAccountRecordTypesNotUniqueFix;
+        
+        AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgHCAccountRecordTypeSettingsUnique, 
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                hlthChkGroupVMod.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -896,6 +1041,18 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
             return new AccountModelSettingsModel('Not an ID 1',
                                                  'Not an ID 2',
                                                  'Not an ID 3');
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from AccountModelSettingsService to return a set of account model settings with the
+    * same RT set for both Admin and HH accounts.
+    **************************************************************************************************************************************/ 
+    private class STUB_AccountModelSettingsServiceNotUnique extends AccountModelSettingsService {
+        public override AccountModelSettingsModel getAccountModelSettingsModel() {
+            return new AccountModelSettingsModel('123000000000000001',
+                                                 '123000000000000005',
+                                                 '123000000000000005');
         }
     }
 
