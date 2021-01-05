@@ -573,6 +573,10 @@
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <name>stgHealthCheckStatusWarning</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>Per a les institucions d’educació superior, recomanem el model de compte “Administratiu”. A les escoles K-12, recomanem el model de compte "Llar".</label>
     </customLabels>

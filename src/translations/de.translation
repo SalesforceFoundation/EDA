@@ -569,6 +569,14 @@
         <label>Fließend</label>
     </customLabels>
     <customLabels>
+        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <name>stgHCCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <name>stgHealthCheckStatusWarning</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>Für höhere Bildungseinrichtungen empfehlen wir das Accountmodell "Verwaltung". Für Grund- und weiterführende Schulen empfehlen wir das Accountmodell "Haushalt".</label>
     </customLabels>

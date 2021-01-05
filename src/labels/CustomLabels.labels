@@ -1144,6 +1144,14 @@
         <value>Course Connections</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckStatusWarning</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status text in EDA Settings Health Check results when a check prompts a warning</shortDescription>
+        <value>Warning</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAccountModel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

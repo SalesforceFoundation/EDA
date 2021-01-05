@@ -573,6 +573,10 @@
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <name>stgHealthCheckStatusWarning</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>高等教育機関では、「管理」取引先モデルをお勧めします。K-12 の学校 (幼稚園から高等学校) では、「世帯」取引先モデルをお勧めします。</label>
     </customLabels>

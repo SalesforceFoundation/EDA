@@ -573,6 +573,10 @@
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <name>stgHealthCheckStatusWarning</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>For Higher Education institutions, we recommend the "Administrative" Account model. For K-12 schools, we recommend the "Household" Account model.</label>
     </customLabels>

@@ -573,6 +573,10 @@
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <name>stgHealthCheckStatusWarning</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>Pour les établissements d’enseignement supérieur, nous recommandons le modèle de compte « administratif ». Pour les écoles de niveau primaire et secondaire, nous recommandons le modèle de compte « foyer ».</label>
     </customLabels>
