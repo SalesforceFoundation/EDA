@@ -609,8 +609,44 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels> 
     <customLabels>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
+        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
+    </customLabels> 
+    <customLabels>
         <label><!-- A check for Auto-Enrollment Status in Affiliation mappings --></label>
         <name>stgHCAfflMapAutoEnrollStatusTitle</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when a mapping's Auto-Enrollment Role isn't active --></label>
+        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
+        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Role --></label>
+        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
+        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- A check for Auto-Enrollment Role in Affiliation mappings --></label>
+        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when a mapping's Auto-Enrollment Role is valid --></label>
+        <name>stgHCAfflMapAutoEnrollRoleValid</name>
     </customLabels> 
     <customLabels>
         <label><!-- Description when a mapping's Auto-Enrollment Status is valid --></label>

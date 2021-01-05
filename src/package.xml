@@ -794,7 +794,16 @@
         <members>stgHCAfflMapAccRecordTypeUniqueFix</members>
         <members>stgHCAfflMapAccRecordTypeUniqueTitle</members>
         <members>stgHCAfflMapAutoEnrollStatusInactive</members>
+        <members>stgHCAfflMapAutoEnrollStatusNotFound</members>
+        <members>stgHCAfflMapAutoEnrollStatusNotFoundFix</members>
+        <members>stgHCAfflMapAutoEnrollStatusInactiveFix</members>
         <members>stgHCAfflMapAutoEnrollStatusTitle</members>
+        <members>stgHCAfflMapAutoEnrollRoleInactive</members>
+        <members>stgHCAfflMapAutoEnrollRoleInactiveFix</members>
+        <members>stgHCAfflMapAutoEnrollRoleNotFound</members>
+        <members>stgHCAfflMapAutoEnrollRoleNotFoundFix</members>
+        <members>stgHCAfflMapAutoEnrollRoleTitle</members>
+        <members>stgHCAfflMapAutoEnrollRoleValid</members>
         <members>stgHCAfflMapAutoEnrollStatusValid</members>
         <members>stgHCAfflMapContPrimaryFieldInvalidFix</members>
         <members>stgHCAfflMapContPrimaryFieldUniqueTitle</members>
