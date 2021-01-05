@@ -101,6 +101,72 @@ private class RelationshipLookupSettingsService_TEST {
 
     }
 
+    /***************************************************************************
+    * @description Test Method to verify that duplicate relationship model names
+    * are retrieved.
+    ***************************************************************************/
+    @isTest
+    private static void getDuplicateRelationshipModelNamesFromList() {
+        RelationshipLookupModel uniqueRelationshipLookupModel =
+            new RelationshipLookupModel(
+                'unique',
+                true,
+                'uniquefemale',
+                'uniquemale',
+                'uniqueneutral'
+            );
+
+        RelationshipLookupModel duplicateRelationshipLookupModel1 =
+            new RelationshipLookupModel(
+                'duplicate',
+                true,
+                'duplicatefemale1',
+                'duplicatemale1',
+                'duplicateneutral1'
+            );
+        RelationshipLookupModel duplicateRelationshipLookupModel2 =
+            new RelationshipLookupModel(
+                'duplicate',
+                true,
+                'duplicatefemale2',
+                'duplicatemale2',
+                'duplicateneutral2'
+            );
+
+        List<RelationshipLookupModel> relationshipLookupModelList
+            = new List<RelationshipLookupModel>{
+                uniqueRelationshipLookupModel,
+                duplicateRelationshipLookupModel1,
+                duplicateRelationshipLookupModel2
+            };
+
+        RelationshipLookupSettingsService relationshipLookupSettingsService
+            = RelationshipLookupSettingsService.getInstance(); 
+
+        Test.startTest();
+            Set<String> duplicateNameSet =
+                relationshipLookupSettingsService.getDuplicateRelationshipModelNamesFromList(
+                    relationshipLookupModelList
+                );
+        Test.stopTest();
+
+        System.assertEquals(
+            1,
+            duplicateNameSet.size(),
+            'Duplicate name set size should equal 1'
+        );
+        System.assertEquals(
+            true,
+            duplicateNameSet.contains('duplicate'),
+            'Duplicate name set should contain name for duplicate'
+        );
+        System.assertNotEquals(
+            true,
+            duplicateNameSet.contains('unique'),
+            'Duplicate name set should not contain name for unique.'
+        );
+    }
+
     /***********************************************************************************************************************************
     ****************************************************** STUBS ***********************************************************************
     ***********************************************************************************************************************************/

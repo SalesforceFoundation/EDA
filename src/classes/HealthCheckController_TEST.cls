@@ -27,12 +27,12 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group
+* @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for HealthCheckController.
 */
 @isTest
-public with sharing class HealthCheckController_TEST {
+private class HealthCheckController_TEST {
 
     /****************************************************************************************************************************
     * @description Test method to verify that the locateHealthCheckMapper method returns instance of HealthCheckVMapper.
