@@ -61,10 +61,10 @@ private class RelationshipLookupModel_TEST {
             RelationshipLookupModel relLookupModel = new RelationshipLookupModel(null, true, null, null, null);
         Test.stopTest();
 
-        System.assertEquals('', relLookupModel.name, 'Name property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals('""', relLookupModel.name, 'Name property on the RelationshipLookup model should be set with the value that is passed');
         System.assertEquals(true, relLookupModel.isActive, 'Active property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('', relLookupModel.femaleValue, 'Female property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('', relLookupModel.maleValue, 'Male property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('', relLookupModel.neutralValue, 'Neutral property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals('""', relLookupModel.femaleValue, 'Female property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals('""', relLookupModel.maleValue, 'Male property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals('""', relLookupModel.neutralValue, 'Neutral property on the RelationshipLookup model should be set with the value that is passed');
     }
 }
