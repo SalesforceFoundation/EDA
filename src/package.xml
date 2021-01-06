@@ -98,6 +98,27 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
+        <members>FeatureParameterDateModel</members>
+        <members>FeatureParameterDateModel_TEST</members>
+        <members>FeatureParameterMapper</members>
+        <members>FeatureParameterMapper_TEST</members>
+        <members>FeatureParameterModel</members>
+        <members>FeatureParameterService</members>
+        <members>FeatureParameterService_TEST</members>
+        <members>HealthCheckController</members>
+        <members>HealthCheckController_TEST</members>
+        <members>HealthCheckDefinitionMapper</members>
+        <members>HealthCheckDefinitionMapper_TEST</members>
+        <members>HealthCheckDefinitionModel</members>
+        <members>HealthCheckDefinitionModel_TEST</members>
+        <members>HealthCheckDefinitionService</members>
+        <members>HealthCheckDefinitionService_TEST</members>
+        <members>HealthCheckDefinitionVModel</members>
+        <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckVMapper</members>
+        <members>HealthCheckVMapper_TEST</members>
+        <members>HealthCheckVModel</members>
+        <members>HealthCheckVModel_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
@@ -778,6 +799,7 @@
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgDisablePreferredEmailEnforcement</members>
         <members>stgDisablePreferredPhoneEnforcement</members>
+        <members>stgEDASetupTitle</members>
         <members>stgEnableCourseConnectionsTitle</members>
         <members>stgEnablePreferredPhoneSync</members>
         <members>stgErrorNotiTo</members>
@@ -826,6 +848,9 @@
         <members>stgHCCourseConStudentInactiveFix</members>
         <members>stgHCCourseConStudentNotFoundFix</members>
         <members>stgHealthCheckStatusWarning</members>
+        <members>stgHealthCheckDescription</members>
+        <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckTitle</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -890,6 +915,7 @@
         <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
+        <members>stgHealthCheckRunButton</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
@@ -1386,6 +1412,12 @@
         <members>Time_Block__c-EDA Time Block Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>healthCheck</members>
+        <members>healthCheckHighlightsPanel</members>
+        <members>healthCheckRun</members>
+        <name>LightningComponentBundle</name>
     </types>
     <types>
         <members>Address__c.All</members>

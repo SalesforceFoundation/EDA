@@ -1088,6 +1088,22 @@
         <value>Disable Preferred Phone Enforcement</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings Health Check component title</shortDescription>
+        <value>EDA Settings Health Check</value>
+    </labels>
+    <labels>
+        <fullName>stgEDASetupTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Setup title</shortDescription>
+        <value>EDA Setup</value>
+    </labels>
+    <labels>
         <fullName>stgEnableCourseConnectionsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1470,6 +1486,20 @@
         <protected>true</protected>
         <shortDescription>Status text in EDA Settings Health Check results when a check prompts a warning</shortDescription>
         <value>Warning</value>
+        <fullName>stgHealthCheckDescription</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings Health Check component description</shortDescription>
+        <value>EDA Settings Health Check checks your EDA Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings.</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckLastRun</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings Health Check last run date</shortDescription>
+        <value>Last Run: {0}</value>
     </labels>
     <labels>
         <fullName>stgHelpAccountModel</fullName>
@@ -1982,6 +2012,14 @@
         <protected>true</protected>
         <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckRunButton</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings Run Health Check button label</shortDescription>
+        <value>Run Health Check</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>

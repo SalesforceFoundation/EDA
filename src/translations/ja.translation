@@ -545,6 +545,10 @@
         <label>電話連絡先の適用を無効化</label>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Setup title --></label>
+        <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
         <label>履修科目を有効化</label>
     </customLabels>
@@ -735,6 +739,12 @@
     <customLabels>
         <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
         <name>stgHealthCheckStatusWarning</name>
+        <label><!-- EDA Settings Health Check component description --></label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check last run date --></label>
+        <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
@@ -993,6 +1003,10 @@
         <label>このデータクリーンアッププロセスは、メール連絡先または電話連絡先の要件が初めて有効化された後、または要件を適用しない期間が経過した後に実行されます。</label>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
+    </customLabels>
+    <customLabels>
         <name>stgSaveSettings</name>
         <label>設定が正常に保存されました。</label>
     </customLabels>
@@ -1003,6 +1017,10 @@
     <customLabels>
         <name>stgSendErrorsTitle</name>
         <label>エラー通知を送信</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component title--></label>
+        <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
         <name>stgSimpleAddressChangeUpdate</name>

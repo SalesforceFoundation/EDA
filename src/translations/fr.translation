@@ -545,6 +545,10 @@
         <label>Désactiver applic. du téléphone préféré</label>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Setup title --></label>
+        <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
         <label>Activer les connexions aux cours</label>
     </customLabels>
@@ -735,6 +739,12 @@
     <customLabels>
         <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
         <name>stgHealthCheckStatusWarning</name>
+        <label><!-- EDA Settings Health Check component description --></label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check last run date --></label>
+        <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
@@ -993,6 +1003,10 @@
         <label>Exécutez ce processus de nettoyage de données après l'activation initiale de l'exigence Adresse e-mail préférée ou Téléphone préféré après une période de non application de l'exigence.</label>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
+    </customLabels>
+    <customLabels>
         <name>stgSaveSettings</name>
         <label>Paramètres enregistrés avec succès.</label>
     </customLabels>
@@ -1003,6 +1017,10 @@
     <customLabels>
         <name>stgSendErrorsTitle</name>
         <label>Envoyer des notifications d'erreur</label>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
         <name>stgSimpleAddressChangeUpdate</name>
