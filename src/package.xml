@@ -820,6 +820,7 @@
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
         <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckLoadingIndicator</members>
         <members>stgHealthCheckRecoFix</members>
         <members>stgHealthCheckResultsCollapse</members>
         <members>stgHealthCheckResultsDescription</members>
@@ -879,7 +880,6 @@
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
         <members>stgHelpStoreErrorsOn</members>
         <members>stgHelpUpdateReportIfDependenciesEthnicity</members>
-        <members>stgLoadingSpinnerText</members>
         <members>stgNestedPlanRequirementPP</members>
         <members>stgNewAfflMapping</members>
         <members>stgOptAllSysAdmins</members>
