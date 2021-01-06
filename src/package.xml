@@ -784,6 +784,36 @@
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
+        <members>stgHCAffiliationMappingSettingDesc</members>
+        <members>stgHCAffiliationMappingSettingHeading</members>
+        <members>stgHCAfflMapAccRecordTypeInactiveFix</members>
+        <members>stgHCAfflMapAccRecordTypeNotFoundFix</members>
+        <members>stgHCAfflMapAccRecordTypeNotUnique</members>
+        <members>stgHCAfflMapAccRecordTypeTitle</members>
+        <members>stgHCAfflMapAccRecordTypeUnique</members>
+        <members>stgHCAfflMapAccRecordTypeUniqueFix</members>
+        <members>stgHCAfflMapAccRecordTypeUniqueTitle</members>
+        <members>stgHCAfflMapAutoEnrollStatusInactive</members>
+        <members>stgHCAfflMapAutoEnrollStatusNotFound</members>
+        <members>stgHCAfflMapAutoEnrollStatusNotFoundFix</members>
+        <members>stgHCAfflMapAutoEnrollStatusInactiveFix</members>
+        <members>stgHCAfflMapAutoEnrollStatusTitle</members>
+        <members>stgHCAfflMapAutoEnrollRoleInactive</members>
+        <members>stgHCAfflMapAutoEnrollRoleInactiveFix</members>
+        <members>stgHCAfflMapAutoEnrollRoleNotFound</members>
+        <members>stgHCAfflMapAutoEnrollRoleNotFoundFix</members>
+        <members>stgHCAfflMapAutoEnrollRoleTitle</members>
+        <members>stgHCAfflMapAutoEnrollRoleValid</members>
+        <members>stgHCAfflMapAutoEnrollStatusValid</members>
+        <members>stgHCAfflMapContPrimaryFieldInvalidFix</members>
+        <members>stgHCAfflMapContPrimaryFieldUniqueTitle</members>
+        <members>stgHCAfflMapContactPrimaryFieldInvalid</members>
+        <members>stgHCAfflMapContactPrimaryFieldNotUnique</members>
+        <members>stgHCAfflMapContactPrimaryFieldTitle</members>
+        <members>stgHCAfflMapContactPrimaryFieldUnique</members>
+        <members>stgHCAfflMapContactPrimaryFieldUniqueFix</members>
+        <members>stgHCAfflMapContactPrimaryFieldValid</members>
+        <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHCCourseConEnable</members>
         <members>stgHCCourseConEnableFix</members>
         <members>stgHCCourseConFacultyInactiveFix</members>

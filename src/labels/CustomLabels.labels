@@ -30,14 +30,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error when invalid autocreate relationship configured</shortDescription>
-        <value>There's an invalid autocreate relationship setting configured in EDA Settings | Relationships | Autocreation. Delete or edit the invalid setting, then try again.</value>
+        <value>There&apos;s an invalid autocreate relationship setting configured in EDA Settings | Relationships | Autocreation. Delete or edit the invalid setting, then try again.</value>
     </labels>
     <labels>
         <fullName>BatchJobRunningProblem</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Batch message when there's a problem starting</shortDescription>
+        <shortDescription>Batch message when there&apos;s a problem starting</shortDescription>
         <value>There was a problem starting the Batch.</value>
     </labels>
     <labels>
@@ -62,14 +62,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error when deleting a record with child records</shortDescription>
-        <value>This record can't be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don't see related records, or if you're unable to delete them, contact your System Administrator for assistance.</value>
+        <value>This record can&apos;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&apos;t see related records, or if you&apos;re unable to delete them, contact your System Administrator for assistance.</value>
     </labels>
     <labels>
         <fullName>DefaultAccountName</fullName>
         <categories>Account Naming</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Default text appended to Contact's last name for Acct Name (not HH or Admin)</shortDescription>
+        <shortDescription>Default text appended to Contact&apos;s last name for Acct Name (not HH or Admin)</shortDescription>
         <value>Account</value>
     </labels>
     <labels>
@@ -102,7 +102,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality</shortDescription>
-        <value>The field entered as the Filter Field isn't valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field's API name, and omit any EDA namespace prefix ("hed__").</value>
+        <value>The field entered as the Filter Field isn&apos;t valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field&apos;s API name, and omit any EDA namespace prefix (&quot;hed__&quot;).</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
@@ -125,7 +125,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when Contact and Course Offering don't match</shortDescription>
+        <shortDescription>Error when Contact and Course Offering don&apos;t match</shortDescription>
         <value>The Contact and Course Offering are not specified or don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
@@ -141,7 +141,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when Contact and Course Offering don't match</shortDescription>
+        <shortDescription>Error when Contact and Course Offering don&apos;t match</shortDescription>
         <value>The Contact and Course Offering don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
@@ -149,7 +149,7 @@
         <categories>TermGrade</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when required fields aren't populated</shortDescription>
+        <shortDescription>Error when required fields aren&apos;t populated</shortDescription>
         <value>Either specify only a Course Connection or both a Contact and a Course Offering.</value>
     </labels>
     <labels>
@@ -197,7 +197,7 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when Preferred Phone value doesn't exist</shortDescription>
+        <shortDescription>Error when Preferred Phone value doesn&apos;t exist</shortDescription>
         <value>We can&apos;t find the Phone specified in Preferred Phone. Make sure that you&apos;re entering the field label of an existing custom Phone field.</value>
     </labels>
     <labels>
@@ -229,7 +229,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Word separator when the Reciprocal Method setting is set to "Value Inversion"</shortDescription>
+        <shortDescription>Word separator when the Reciprocal Method setting is set to &quot;Value Inversion&quot;</shortDescription>
         <value>-</value>
     </labels>
     <labels>
@@ -294,7 +294,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error when multiple seasonal Addr records have overlapping dates</shortDescription>
-        <value>There's an existing Address record for this Account or Contact with seasonal start and end dates that overlap the seasonal dates for this record. Adjust the seasonal dates so that they don't overlap with the other Address record.</value>
+        <value>There&apos;s an existing Address record for this Account or Contact with seasonal start and end dates that overlap the seasonal dates for this record. Adjust the seasonal dates so that they don&apos;t overlap with the other Address record.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalPartial</fullName>
@@ -302,7 +302,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error when some but not all start and end date fields have values</shortDescription>
-        <value>An address can't have partial Seasonal Start and End Dates. Either enter values for all of the Seasonal Start and End date fields, or leave all of them blank.</value>
+        <value>An address can&apos;t have partial Seasonal Start and End Dates. Either enter values for all of the Seasonal Start and End date fields, or leave all of them blank.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalPartialYear</fullName>
@@ -310,7 +310,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error when some but not all start and end date fields have values</shortDescription>
-        <value>An address can't have partial Seasonal Start and End Dates. Either enter values for all of the Seasonal Start and End date fields, or leave all of them blank.</value>
+        <value>An address can&apos;t have partial Seasonal Start and End Dates. Either enter values for all of the Seasonal Start and End date fields, or leave all of them blank.</value>
     </labels>
     <labels>
         <fullName>addrValidParentObjects</fullName>
@@ -365,7 +365,7 @@
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when Affiliation created and Acct RT doesn't exist</shortDescription>
+        <shortDescription>Error when Affiliation created and Acct RT doesn&apos;t exist</shortDescription>
         <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in Affiliation Mappings.</value>
     </labels>
     <labels>
@@ -446,7 +446,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error when validation rule prevents processing</shortDescription>
-        <value>A validation rule is preventing this record from being processed. The validation rule might be on this record, or on a related record that's being updated. VALIDATION MESSAGE: </value>
+        <value>A validation rule is preventing this record from being processed. The validation rule might be on this record, or on a related record that&apos;s being updated. VALIDATION MESSAGE:</value>
     </labels>
     <labels>
         <fullName>fieldWithHEDANamespace</fullName>
@@ -454,7 +454,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>TDTM filter err msg</shortDescription>
-        <value>The Filter Field can't include namespace prefixes such as hed__. Remove the namespace prefix and try again.</value>
+        <value>The Filter Field can&apos;t include namespace prefixes such as hed__. Remove the namespace prefix and try again.</value>
     </labels>
     <labels>
         <fullName>firstNameLastNameAdminACC</fullName>
@@ -596,7 +596,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Empty state message for Reciprocal Settings </shortDescription>
+        <shortDescription>Empty state message for Reciprocal Settings</shortDescription>
         <value>No Reciprocal Settings have been defined. Use the form below to create a new Reciprocal Setting.</value>
     </labels>
     <labels>
@@ -620,7 +620,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Account model </shortDescription>
+        <shortDescription>Field label for Account model</shortDescription>
         <value>Default Account Model</value>
     </labels>
     <labels>
@@ -924,7 +924,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Affiliation Mappings Settings</shortDescription> 
+        <shortDescription>Col header for Affiliation Mappings Settings</shortDescription>
         <value>Contact Primary Affl Field</value>
     </labels>
     <labels>
@@ -1136,6 +1136,246 @@
         <value>Fluent</value>
     </labels>
     <labels>
+        <fullName>stgHCAffiliationMappingSettingDesc</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for an Affiliation mapping in EDA Settings Health Check results</shortDescription>
+        <value>The {0} Affiliation mapping is valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAffiliationMappingSettingHeading</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Row heading for an Affiliation mapping in EDA Settings Health Check results</shortDescription>
+        <value>{0} Affiliation Mapping</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAccRecordTypeInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type is inactive</shortDescription>
+        <value>Verify the Affiliation mapping for  {0} ({1}) specified in EDA Settings, on the Affiliations tab. If {0} ({1}) is correct, go to the Account object in Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Affiliation mapping&apos;s record type to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAccRecordTypeNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist</shortDescription>
+        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Affiliation mapping to a valid, active record type for the Account object.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAccRecordTypeNotUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Account record types in Affiliation mappings are not unique</shortDescription>
+        <value>The {0} ({1}) record type is mapped to multiple Contact Primary Affiliation fields.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAccRecordTypeTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for Account record type in Affiliation mapping settings</shortDescription>
+        <value>Account Record Type</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAccRecordTypeUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Account record types in Affiliation mappings are unique</shortDescription>
+        <value>The {0} ({1}) record type is mapped to a single Contact Primary Affiliation field.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAccRecordTypeUniqueFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Account record types in Affiliation mappings aren&apos;t unique</shortDescription>
+        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, look in the Account Record Type column for multiple mappings specifying {0} ({1}). Edit those Affiliation mappings so that this record type is mapped to only one Contact Primary Affiliation field.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAccRecordTypeUniqueTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for unique Account record types in Affiliation mappings</shortDescription>
+        <value>Unique Affiliation Mapping Record Type</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusInactive</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
+        <value>The {0} ({1}) picklist value isn’t active.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when a mapping's Auto-Enrollment Status isn't active</shortDescription>
+        <value>Verify the {0} ({1}) specified for an Affiliation mapping's Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object's Status field in Salesforce Setup and set the picklist value to Active. If it isn't correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusNotFound</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
+        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Program Enrollment object.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status</shortDescription>
+        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Status to a valid, active picklist value for the Status field on the Program Enrollment object.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for Auto-Enrollment Status in Affiliation mappings</shortDescription>
+        <value>Auto-Enrollment Status Value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollRoleInactive</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when a mapping's Auto-Enrollment Role isn't active</shortDescription>
+        <value>The {0} ({1}) picklist value isn’t active.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollRoleInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when a mapping's Auto-Enrollment Role isn't active</shortDescription>
+        <value>Verify the {0} ({1}) specified for an Affiliation mapping's Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object's Role field in Salesforce Setup and set the picklist value to Active. If it isn't correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollRoleNotFound</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
+        <value>We can’t find the {0} picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollRoleNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
+        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Program Enrollment object.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollRoleTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for Auto-Enrollment Role in Affiliation mappings</shortDescription>
+        <value>Auto-Enrollment Role Value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollRoleValid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when a mapping's Auto-Enrollment Role is valid</shortDescription>
+        <value>The {0} ({1}) picklist value is valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusValid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when a mapping&apos;s Auto-Enrollment Status is valid</shortDescription>
+        <value>The {0} ({1}) picklist value is valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapContPrimaryFieldInvalidFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid</shortDescription>
+        <value>Verify the {0} specified in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. It must be a valid lookup field on the Contact object.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapContPrimaryFieldUniqueTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for unique Contact Primary Affiliation fields in Affiliation mappings</shortDescription>
+        <value>Unique Contact Primary Affiliation Field</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapContactPrimaryFieldInvalid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid</shortDescription>
+        <value>{0} isn&apos;t a valid Contact field.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapContactPrimaryFieldNotUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique</shortDescription>
+        <value>The {0} ({1}) field is mapped to multiple Account record types.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapContactPrimaryFieldTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for Contact Primary Affiliation field in Affiliation mapping settings</shortDescription>
+        <value>Contact Primary Affiliation Field</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapContactPrimaryFieldUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when mappings&apos; Contact Primary Affiliation fields are unique</shortDescription>
+        <value>The {0} ({1}) field is mapped to a single Account record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapContactPrimaryFieldUniqueFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique</shortDescription>
+        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, look in the Contact Primary Affl Field column for multiple mappings specifying {0} ({1}). Edit those mappings so that this field is mapped in only one Affiliation mapping.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapContactPrimaryFieldValid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when a mapping&apos;s Contact Primary Affiliation field is valid</shortDescription>
+        <value>The {0} ({1}) field is valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckAffiliationMappings</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Affiliation Mappings group title in EDA Settings Health Check results</shortDescription>
+        <value>Affiliation Mappings</value>
+    </labels>
+    <labels>
         <fullName>stgHCCourseConEnable</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1325,7 +1565,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Info text for enable set role on Affiliations</shortDescription>
-        <value>If selected, set the new Affiliation's role to the value defined in Role for Created Affiliations. Otherwise, leave the Affiliation's role blank.</value>
+        <value>If selected, set the new Affiliation&apos;s role to the value defined in Role for Created Affiliations. Otherwise, leave the Affiliation&apos;s role blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetRoleValue</fullName>
@@ -1452,7 +1692,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when Enable Course Connections field isn't selected</shortDescription>
+        <shortDescription>Error when Enable Course Connections field isn&apos;t selected</shortDescription>
         <value>You must enable Course Connections before running the Course Connections Backfill.</value>
     </labels>
     <labels>
@@ -1460,7 +1700,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when Enable Course Connections Field isn't selected</shortDescription>
+        <shortDescription>Error when Enable Course Connections Field isn&apos;t selected</shortDescription>
         <value>You must enable Course Connections before editing record types.</value>
     </labels>
     <labels>
@@ -1469,7 +1709,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>Course Connection records connect a Contact with a Course Offering. Enabling this feature allows users to choose the type of Contact (Faculty or Student) to create the Course Connection for. When you enable this feature, you also need to set the Default Active Student Record Type and Default Faculty Record Type, below. If you're enabling this feature for the first time, we highly recommend you run the Course Connections Backfill.</value>
+        <value>Course Connection records connect a Contact with a Course Offering. Enabling this feature allows users to choose the type of Contact (Faculty or Student) to create the Course Connection for. When you enable this feature, you also need to set the Default Active Student Record Type and Default Faculty Record Type, below. If you&apos;re enabling this feature for the first time, we highly recommend you run the Course Connections Backfill.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnsureExistContactPreferEmail</fullName>
@@ -1485,7 +1725,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Select to disable the product's error handling framework.</value>
+        <value>Select to disable the product&apos;s error handling framework.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyOn</fullName>
@@ -1501,7 +1741,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Specify who should receive email error notifications. Valid values are 'All Sys Admins', the ID of a user in your org, or the ID of a Chatter group. You can enter only one value.</value>
+        <value>Specify who should receive email error notifications. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can enter only one value.</value>
     </labels>
     <labels>
         <fullName>stgHelpEthnicityRaceBackfill</fullName>
@@ -1557,7 +1797,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Relationships Settings</shortDescription>
-        <value>Auto-created Relationships are deduplicated by default to prevent duplicate Relationship records from being created between two Contacts. Select "Allow Auto-Created Duplicate Relations" to disable this behavior and allow multiple Relationships of the same type between two Contacts.</value>
+        <value>Auto-created Relationships are deduplicated by default to prevent duplicate Relationship records from being created between two Contacts. Select &quot;Allow Auto-Created Duplicate Relations&quot; to disable this behavior and allow multiple Relationships of the same type between two Contacts.</value>
     </labels>
     <labels>
         <fullName>stgHelpRelReciprocalMethod</fullName>
@@ -1565,7 +1805,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Relationships Settings</shortDescription>
-        <value>The method used to populate the type field when creating a Reciprocal Relationship. "List Setting" uses the custom settings defined on the Reciprocal Relationships tab with male, female, and neutral values. "Value Inversion" inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
+        <value>The method used to populate the type field when creating a Reciprocal Relationship. &quot;List Setting&quot; uses the custom settings defined on the Reciprocal Relationships tab with male, female, and neutral values. &quot;Value Inversion&quot; inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
     </labels>
     <labels>
         <fullName>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</fullName>
@@ -1918,7 +2158,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-       <shortDescription>Settings tab name</shortDescription>
+        <shortDescription>Settings tab name</shortDescription>
         <value>System</value>
     </labels>
     <labels>
