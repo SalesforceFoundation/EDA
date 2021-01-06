@@ -75,7 +75,7 @@ private class HealthCheckDefinitionMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(false, healthCheckDefinitionModels.isEmpty(), 'Should return EDAHealthCheck definition model.');
-        System.assertEquals('CourseConnectionSettings', healthCheckDefinitionModels[0].name, 'Name of the model should be \'CourseConnectionModel\'.');
+        System.assertEquals('courseconnectionsettings', healthCheckDefinitionModels[0].name, 'Name of the model should be \'CourseConnectionModel\'.');
         System.assertEquals('EDAHealthCheckGroupAPIService', healthCheckDefinitionModels[0].className, 'ClassName of the model should be \'EDAHealthCheckGroupAPIService\'.');
         System.assertEquals('hed', healthCheckDefinitionModels[0].namespace, 'Namespace of the model should be \'hed\'.');
     }

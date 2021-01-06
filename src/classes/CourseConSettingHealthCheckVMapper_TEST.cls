@@ -124,8 +124,8 @@ private class CourseConSettingHealthCheckVMapper_TEST {
         System.assertEquals('Label.stgDefaultFacultyTypeTitle', hCGroupVMdl.healthCheckItemList[0].setting, 'Faculty should be sorted as first element');
         System.assertEquals('Label.stgDefaultStudentTypeTitle', hCGroupVMdl.healthCheckItemList[1].setting, 'Student should be sorted as first element');
         System.assertEquals('Label.stgEnableCourseConnectionsTitle', hCGroupVMdl.healthCheckItemList[2].setting, 'Course Connection Enable check should be sorted last');
-        System.assertEquals('Label.stgHealthCheckStatusFailed', hCGroupVMdl.status, 'The status of the checks should be retrieved');
-        
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hCGroupVMdl.status, 'The status of the checks should be retrieved');
+
     }
 
     /***************************************************************************
@@ -190,7 +190,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
 
 
     /***************************************************************************
-    *******************************INSTANCE*************************************
+    ******************************* STUBS *************************************
     ***************************************************************************/
 
     /***************************************************************************
@@ -227,7 +227,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                     'Faculty',
                     true
                 );
-            
+
             Map<Id, RecordTypeModel> recTypemodelByID = new Map<Id, RecordTypeModel>{'0121A000002Zs0pAAA' => recTypeModel};
             
             return recTypemodelByID;
