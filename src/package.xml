@@ -784,6 +784,18 @@
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
+        <members>stgHCCourseConEnable</members>
+        <members>stgHCCourseConEnableFix</members>
+        <members>stgHCCourseConFacultyInactiveFix</members>
+        <members>stgHCCourseConFacultyNotFoundFix</members>
+        <members>stgHCCourseConnectionsTitle</members>
+        <members>stgHCCourseConRecordTypesNotUnique</members>
+        <members>stgHCCourseConRecordTypesNotUniqueFix</members>
+        <members>stgHCCourseConRecordTypesUnique</members>
+        <members>stgHCCourseConRecordTypesUniqueDesc</members>
+        <members>stgHCCourseConStudentInactiveFix</members>
+        <members>stgHCCourseConStudentNotFoundFix</members>
+        <members>stgHealthCheckStatusWarning</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
