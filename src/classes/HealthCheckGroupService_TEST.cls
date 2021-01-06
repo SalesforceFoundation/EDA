@@ -70,13 +70,14 @@ public with sharing class HealthCheckGroupService_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupValid(){
+        CourseConSettingHealthCheckVMapper.instance = new STUB_CourseConSettingHealthCheckVMapper();
         HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = HealthCheckGroupService.getInstance().getHealthCheckGroup('All Success', 'EDAHealthCheckGroupAPIService', 'hed');
+        HealthCheckGroupVModel hlthChkGroupVMod = HealthCheckGroupService.getInstance().getHealthCheckGroup('courseconnectionsettings', 'EDAHealthCheckGroupAPIService', 'hed');
         Test.stopTest();
 
-        System.assertEquals('All Success', hlthChkGroupVMod.label, 'Label for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+        System.assertEquals('Mocked', hlthChkGroupVMod.label, 'Label for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
         System.assertEquals('Pass', hlthChkGroupVMod.status, 'Status for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
         System.assertEquals(2, hlthChkGroupVMod.passedChecks, 'Passed Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
         System.assertEquals(2, hlthChkGroupVMod.totalChecks, 'Total Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
@@ -160,6 +161,52 @@ public with sharing class HealthCheckGroupService_TEST {
         @TestVisible 
         private override HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){ 
             return EDAHealthCheckGroupAPIService.getInstance(); 
+        }
+    }
+    
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * EDAHealthCheckGroupAPIService to control for a static response
+    ***************************************************************************/
+    private class STUB_CourseConSettingHealthCheckVMapper extends CourseConSettingHealthCheckVMapper {
+
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
+            List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
+            List<String> rowKeysList = new List<String>();
+
+            HealthCheckItemVModel hlthChkItemMod1 = 
+                new HealthCheckItemVModel(
+                    '01', 
+                    'Passed Setting 1', 
+                    'Pass', 
+                    Label.stgHealthCheckStatusPassed, 
+                    'Mocked description 1', 
+                    'Mocked recommended fix 1',
+                    new List<HealthCheckItemVModel>()
+                );
+
+            HealthCheckItemVModel hlthChkItemMod2 = 
+                new HealthCheckItemVModel(
+                    '02',
+                    'Passed Setting 2',
+                    'Pass',
+                    Label.stgHealthCheckStatusPassed,
+                    'Mocked description 2',
+                    'Mocked recommended fix 2',
+                    new List<HealthCheckItemVModel>()
+                );
+
+            hlthChkItemsList.add(hlthChkItemMod1);
+            hlthChkItemsList.add(hlthChkItemMod2);
+
+            return new HealthCheckGroupVModel(
+                'Mocked',
+                'Pass',
+                2,
+                2,
+                rowKeysList,
+                hlthChkItemsList
+            );
         }
     }
 }
