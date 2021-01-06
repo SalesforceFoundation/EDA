@@ -1374,6 +1374,8 @@
         <protected>true</protected>
         <shortDescription>Affiliation Mappings group title in EDA Settings Health Check results</shortDescription>
         <value>Affiliation Mappings</value>
+    </labels>
+    <labels>
         <fullName>stgHCCourseConEnable</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
