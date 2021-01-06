@@ -113,9 +113,6 @@ private class CourseConSettingHealthCheckVMapper_TEST {
         CourseConnectionSettingsService.instance =
             new STUB_CourseConnectionSettingsService();
 
-        CourseConSettingHealthCheckVMapper courseConSettingHealthCheckVMapperInstance =
-            CourseConSettingHealthCheckVMapper.getInstance();
-
         Test.startTest();
             HealthCheckGroupVModel hCGroupVMdl = CourseConSettingHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
