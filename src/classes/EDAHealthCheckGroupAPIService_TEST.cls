@@ -31,7 +31,7 @@
 * @group-content ../../ApexDocContent/
 * @description Test class for EDAHealthCheckGroupAPIService.
 */
-@isTest 
+@isTest
 public with sharing class EDAHealthCheckGroupAPIService_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
@@ -70,21 +70,17 @@ public with sharing class EDAHealthCheckGroupAPIService_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupValid(){
+        CourseConSettingHealthCheckVMapper.instance = new STUB_CourseConSettingHealthCheckVMapperValidModel();
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('mIXEd');
+            HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('courseconnectionsettings');
         Test.stopTest();
 
-        System.assertEquals('Mixed', hlthChkGrpVMod.label, 'Label for HealthCheckGroupVModel should be \'Mixed\'');
-        System.assertEquals('Fail', hlthChkGrpVMod.status, 'Status for HealthCheckGroupVModel should be \'Fail\'');
-        System.assertEquals(2, hlthChkGrpVMod.passedChecks, 'PassedChecks for HealthCheckGroupVModel should be 2.');
-        System.assertEquals(4, hlthChkGrpVMod.totalChecks, 'TotalChecks for HealthCheckGroupVModel should be 4.');
-        System.assertEquals(1, hlthChkGrpVMod.expandedRowsList.size(), 'ExpandedRowsList should contain 1 value.');
-        System.assertEquals('01', hlthChkGrpVMod.expandedRowsList[0], 'ExpandedRowsList should contain 1 value.');
-        System.assertEquals(2, hlthChkGrpVMod.healthCheckItemList.size(), 'HealthCheckItemList should contain 2 values.');
-
-        for (HealthCheckItemVModel hlthChkItmVMod : hlthChkGrpVMod.healthCheckItemList){
-            System.assertEquals(2, hlthChkItmVMod.healthCheckItemList.size(), 'Each HealthCheckItemVModel should contain 2 nested items.');
-        }
+        System.assertEquals('Course Connections', hlthChkGrpVMod.label, 'Label for HealthCheckGroupVModel should be \'Course Connections\'');
+        System.assertEquals('Pass', hlthChkGrpVMod.status, 'Status for HealthCheckGroupVModel should be \'Pass\'');
+        System.assertEquals(3, hlthChkGrpVMod.passedChecks, 'PassedChecks for HealthCheckGroupVModel should be 3.');
+        System.assertEquals(3, hlthChkGrpVMod.totalChecks, 'TotalChecks for HealthCheckGroupVModel should be 3.');
+        System.assertEquals(true, hlthChkGrpVMod.expandedRowsList.isEmpty(), 'ExpandedRowsList should be empty.');
+        System.assertEquals(true, hlthChkGrpVMod.healthCheckItemList.isEmpty(), 'HealthCheckItemList should be empty.');
     }
 
     /**************************************************************************************************************************
@@ -98,5 +94,43 @@ public with sharing class EDAHealthCheckGroupAPIService_TEST {
         Test.stopTest();
 
        System.assertEquals(null, hlthChkGrpVMod, 'Value returned should be null.');
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that a ReciprocalRelHealthCheckVMapper
+    * is retrieved by the locator method.
+    ***************************************************************************/
+    @isTest 
+    private static void locateReciprocalRelHealthCheckVMapper(){
+        CourseConSettingHealthCheckVMapper expectedCourseConHealthCheckVMapper = CourseConSettingHealthCheckVMapper.getInstance();
+
+        EDAHealthCheckGroupAPIService eDAHealthCheckGroupAPIService = (EDAHealthCheckGroupAPIService)EDAHealthCheckGroupAPIService.getInstance();
+
+        Test.startTest();
+            CourseConSettingHealthCheckVMapper courseConHealthCheckVMapper = eDAHealthCheckGroupAPIService.locateCourseConSettingHealthCheckVMapper();
+        Test.stopTest();
+
+        System.assertNotEquals(null, courseConHealthCheckVMapper, 'Instance of mapper class should not be null.');
+
+        System.assertEquals(expectedCourseConHealthCheckVMapper, courseConHealthCheckVMapper,'Instance of view model mapper class from service should match the singleton instance.');
+    }
+    
+    /**************************************************************************************************************************
+    ****************************************************** STUBS **************************************************************
+    **************************************************************************************************************************/
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from CourseConSettingHealthCheckVMapper to return a valid HealthCheckGroupVModel.
+    **************************************************************************************************************************************/ 
+    private class STUB_CourseConSettingHealthCheckVMapperValidModel extends CourseConSettingHealthCheckVMapper {
+        @TestVisible 
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
+            return new HealthCheckGroupVModel('Course Connections',
+                                             'Pass',
+                                             3,
+                                             3,
+                                             new List<String>(),
+                                             new List<HealthCheckItemVModel>());
+        }
     }
 }

@@ -61,7 +61,7 @@ public virtual with sharing class CourseConnectionSettingsService {
     * @description Returns model for the CourseConnectionSettingsModel
     * @return CourseConnectionSettingsModel The model for the CourseConnectionSettingsModel
     ********************************************************************************************************/
-    public CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
+    public virtual CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
         return this.locateCourseConnectionSettingsMapper().getCourseConnectionSettingsModel();
     }
 

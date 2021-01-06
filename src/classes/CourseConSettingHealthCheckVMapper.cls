@@ -65,15 +65,15 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
 
         CourseConnectionSettingsModel courseConnSettingsModel = this.locateCourseConnectionSettingsService().getCourseConnectionSettingsModel();
 
-        String objectName = UTIL_Namespace.StrTokenNSPrefix('Course_Connection__c');
+        String objectName = UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c');
         SObjectType courseConnSObjectType = UTIL_Describe.getObjectDescribe(objectName).getSObjectType();
 
-        Map<Id, RecordTypeModel> accountRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(courseConnSObjectType);
+        Map<Id, RecordTypeModel> courseConnRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(courseConnSObjectType);
 
-        String hlthCheckGroupLabel = 'Label.stgHealthCheckAccountModel';
+        String hlthCheckGroupLabel = 'Label.stgHCCourseConnectionsTitle';
         Integer hlthChkGroupPassedChecks = 0;
-        Integer hlthChkGroupTotalChecks = 0;
-        String hlthChkGroupStatus = (hlthChkGroupPassedChecks == hlthChkGroupTotalChecks) ? 'Label.stgHealthCheckStatusPassed' : 'Label.stgHealthCheckStatusFailed';
+        Integer hlthChkGroupTotalChecks = 3;
+        String hlthChkGroupStatus = (hlthChkGroupPassedChecks == hlthChkGroupTotalChecks) ? Label.stgHealthCheckStatusPassed : Label.stgHealthCheckStatusFailed;
         
         List<String> hlthChkGroupExpandedRowsList = new List<String>();
         List<HealthCheckItemVModel> healthCheckItemList = new List<HealthCheckItemVModel>();
@@ -81,7 +81,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
         HealthCheckItemVModel hcItem1 = new HealthCheckItemVModel('01',
                                                                    'Label.stgEnableCourseConnectionsTitle',
                                                                    'Fail',
-                                                                   'Label.stgHealthCheckStatusFailed',
+                                                                   Label.stgHealthCheckStatusFailed,
                                                                    'Label.stgHCCourseConEnable',
                                                                    'Label.stgHCCourseConEnableFix',
                                                                    new List<HealthCheckItemVModel>());
@@ -89,8 +89,8 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
         HealthCheckItemVModel hcItem2 = new HealthCheckItemVModel('02',
                                                                    'Label.stgDefaultStudentTypeTitle',
                                                                    'Fail',
-                                                                   'Label.stgHealthCheckStatusFailed',
-                                                                    String.format('Label.stgHCCourseConStudentInactiveFix',
+                                                                   Label.stgHealthCheckStatusFailed,
+                                                                  String.format('Label.stgHCCourseConStudentInactiveFix {0} {1}',
                                                                                  new List<Object>{'mock_recordtype_api', 'Mock Record Type Label'}),
                                                                    'Label.stgHCCourseConStudentNotFoundFix',
                                                                    new List<HealthCheckItemVModel>());
@@ -98,8 +98,8 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
         HealthCheckItemVModel hcItem3 = new HealthCheckItemVModel('03',
                                                                   'Label.stgDefaultFacultyTypeTitle',
                                                                   'Fail',
-                                                                  'Label.stgHealthCheckStatusFailed',
-                                                                   String.format('Label.stgHCCourseConFacultyInactiveFix',
+                                                                  Label.stgHealthCheckStatusFailed,
+                                                                   String.format('Label.stgHCCourseConFacultyInactiveFix {0} {1}',
                                                                                 new List<Object>{'mock_recordtype_api', 'Mock Record Type Label'}),
                                                                   'Label.stgHCCourseConFacultyNotFoundFix',
                                                                   new List<HealthCheckItemVModel>());
