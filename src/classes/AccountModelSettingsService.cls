@@ -49,11 +49,10 @@ public virtual with sharing class AccountModelSettingsService {
     * @return The instance of AccountModelSettingsService.
     ******************************************************************************/
     public static AccountModelSettingsService getInstance() {
-
         if (instance == null) {
             instance = new AccountModelSettingsService();
         }
-
+        
         return instance;
     }
 
