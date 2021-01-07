@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description API service class for EDA HealthCheckGroup to retrieve HealthCheckGroup view models
 * corresponding to specified HealthCheckDefinition models.
 */
