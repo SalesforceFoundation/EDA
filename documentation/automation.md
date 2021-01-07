@@ -3,7 +3,7 @@
 ## Key Workflows
 
 | Workflow                  | Flow                 | Org Type         | Managed | Namespace |
-|---------------------------|----------------------|------------------|---------|-----------|
+| ------------------------- | -------------------- | ---------------- | ------- | --------- |
 | Development               | `dev_org`            | `dev`            |         |           |
 | Development (Namespaced)  | `dev_org_namespaced` | `dev_namespaced` |         | ✔         |
 | QA                        | `qa_org`             | `dev`            |         |           |
@@ -22,7 +22,7 @@
     git checkout master
     git pull
     cci org scratch release <orgname> --default
-    cci flow run regression_org 
+    cci flow run regression_org
     cci org browser <orgname>
 
 ##### Regression Testing EDA Beta on a Net-New Org:
@@ -38,7 +38,7 @@
     git checkout master
     git pull
     cci org scratch release <orgname> --default
-    cci flow run upgraded_org 
+    cci flow run upgraded_org
     cci org browser <orgname>
 
 ## Utility Tasks and Flows
@@ -53,21 +53,21 @@
 
 -   **`upgraded_org`** Simulates a push upgrade of EDA and dependencies to existing customer orgs, from the latest production release to the current beta. This means all push-upgradable components have been updated, but only the unpackaged metadata from the previous version will exist in the org (and not the unpackaged metadata from the current beta.) Use this when you want to see which manual configuration steps are required in order for existing customers to use new functionality.
 
--   **`translations`** Enables platform encrpyted languages and sets specific languages to active. This flow will enable the platfrom encryption languages first, then deploy the given langauges with any translation file present. 
+-   **`translations`** Enables platform encrpyted languages and sets specific languages to active. This flow will enable the platfrom encryption languages first, then deploy the given langauges with any translation file present.
 
 ### Tasks
 
--   **`add_relationship_type_values`:** Adds Parent's Sibling, Niece, Nephew, and Sibling's Child as picklist values to the Relationship__c.Type__c field.
+-   **`add_relationship_type_values`:** Adds Parent's Sibling, Niece, Nephew, and Sibling's Child as picklist values to the Relationship**c.Type**c field.
 
 -   **`execute_install_apex`:** Runs most of the install script methods from STG_InstallScript class.
 
 -   **`delete_dev_config`:** Deploys metadata found under `unpackaged/config/dev_delete` Removes the Record type visibilities, page layout assignments Required to remove an installed beta.
 
--   **`execute_automatic_household_naming`:** Runs anonymous apex to set Automatic_Household_Naming__c to true, enabling Automatic Household Naming in EDA's settings.
+-   **`execute_automatic_household_naming`:** Runs anonymous apex to set Automatic_Household_Naming\_\_c to true, enabling Automatic Household Naming in EDA's settings.
 
 -   **`execute_enable_record_type_validation`:** Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
 
--   **`execute_enable_record_type_validation`:** Runs anonymous apex to enable record type validation in EDA's settings. 
+-   **`execute_enable_record_type_validation`:** Runs anonymous apex to enable record type validation in EDA's settings.
 
 -   **`execute_preferred_phone_selection`:** Runs anonymous apex to set Preferred Phone to 'Other Phone' in EDA's settings.
 
@@ -87,7 +87,7 @@ Unpackaged directory structure:
 Each directory is used as follows:
 
 | Directory           | Purpose                                 | Deploy task                 | Retrieve task         |
-|---------------------|-----------------------------------------|-----------------------------|-----------------------|
+| ------------------- | --------------------------------------- | --------------------------- | --------------------- |
 | `config/analytics`  | Einstein Analytics R&A templates        | `deploy_einstein_templates` |                       |
 | `config/dev`        | Development metadata                    | `deploy_dev_config`         | `retrieve_config_dev` |
 | `config/dev_delete` | Deletes development metadata            | `delete_dev_config`         |                       |
