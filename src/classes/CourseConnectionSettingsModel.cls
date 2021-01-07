@@ -40,8 +40,10 @@ public with sharing class CourseConnectionSettingsModel {
 
     // Constructor to set the values
     public CourseConnectionSettingsModel(Boolean courseConnectionsEnabled, String studentRecordTypeId, String facultyRecordTypeId) {
+
         this.courseConnectionsEnabled = courseConnectionsEnabled;
-        this.studentRecordTypeId = studentRecordTypeId;
-        this.facultyRecordTypeId = facultyRecordTypeId;
+        this.studentRecordTypeId = String.isBlank(studentRecordTypeId) ? '' : studentRecordTypeId;
+        this.facultyRecordTypeId = String.isBlank(facultyRecordTypeId) ? '' : facultyRecordTypeId;
+
     }
 }

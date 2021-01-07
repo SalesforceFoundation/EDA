@@ -49,4 +49,20 @@ private class CourseConnectionSettingsModel_TEST {
         System.assertEquals('01217000002Zs0pAAC', courseConnSettingsModel.facultyRecordTypeId, 'facultyRecordTypeId property on the CourseConnectionSettings model should be set with the value that is passed.');
 
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the constructor set the properties when blank values are passed
+    ***************************************************************************************************************************/
+    @isTest
+    private static void constructorWithBlankValues() {
+
+        Test.startTest();
+            CourseConnectionSettingsModel courseConnSettingsModel = new CourseConnectionSettingsModel(true, '', '');
+        Test.stopTest();
+
+        System.assertEquals(true, courseConnSettingsModel.courseConnectionsEnabled, 'courseConnectionsEnabled property on the CourseConnectionSettings model should be set with the value that is passed.');
+        System.assertEquals('', courseConnSettingsModel.studentRecordTypeId, 'studentRecordTypeId property on the CourseConnectionSettings model should be set with the value that is passed.');
+        System.assertEquals('', courseConnSettingsModel.facultyRecordTypeId, 'facultyRecordTypeId property on the CourseConnectionSettings model should be set with the value that is passed.');
+
+    }
 }
