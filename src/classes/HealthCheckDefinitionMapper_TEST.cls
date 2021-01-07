@@ -74,8 +74,10 @@ private class HealthCheckDefinitionMapper_TEST {
             List<HealthCheckDefinitionModel> healthCheckDefinitionModels = HealthCheckDefinitionMapper.getInstance().getHealthCheckDefinitionModels();
         Test.stopTest();
 
-        System.assertEquals(3, healthCheckDefinitionModels.size());
-        //TODO: Update assert once HC models aren't hardcoded
+        System.assertEquals(false, healthCheckDefinitionModels.isEmpty(), 'Should return EDAHealthCheck definition model.');
+        System.assertEquals('courseconnectionsettings', healthCheckDefinitionModels[0].name, 'Name of the model should be \'CourseConnectionModel\'.');
+        System.assertEquals('EDAHealthCheckGroupAPIService', healthCheckDefinitionModels[0].className, 'ClassName of the model should be \'EDAHealthCheckGroupAPIService\'.');
+        System.assertEquals('hed', healthCheckDefinitionModels[0].namespace, 'Namespace of the model should be \'hed\'.');
     }
 }
 

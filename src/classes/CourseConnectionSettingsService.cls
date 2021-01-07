@@ -27,66 +27,50 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
+* @group
 * @group-content ../../ApexDocContent/
-* @description API service class for EDA HealthCheckGroup to retrieve HealthCheckGroup view models
-* corresponding to specified HealthCheckDefinition models.
+* @description Returns an CourseConnectionSettings model.
 */
-public virtual with sharing class EDAHealthCheckGroupAPIService implements HealthCheckGroupAPIServiceInterface {
+public virtual with sharing class CourseConnectionSettingsService {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static EDAHealthCheckGroupAPIService instance;
+    private static CourseConnectionSettingsService instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    public EDAHealthCheckGroupAPIService() {}
+    protected CourseConnectionSettingsService() {}
 
-    /******************************************************************************
+    /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckGroupAPIServiceInterface.
+    * @return The instance of CourseConnectionSettingsService.
     ******************************************************************************/
-    public static HealthCheckGroupAPIServiceInterface getInstance() {
+    public static CourseConnectionSettingsService getInstance() {
+
         if (instance == null) {
-            instance = new EDAHealthCheckGroupAPIService();
+            instance = new CourseConnectionSettingsService();
         }
 
         return instance;
     }
 
-    /******************************************************************************************
-    * @description Retrieves an instance of CourseConSettingHealthCheckVMapper. 
-    * @return An instance of CourseConSettingHealthCheckVMapper.
-    ******************************************************************************************/
-    @TestVisible 
-    private CourseConSettingHealthCheckVMapper locateCourseConSettingHealthCheckVMapper(){
-        return CourseConSettingHealthCheckVMapper.getInstance();
+    /*******************************************************************************************************
+    * @description Returns model for the CourseConnectionSettingsModel
+    * @return CourseConnectionSettingsModel The model for the CourseConnectionSettingsModel
+    ********************************************************************************************************/
+    public virtual CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
+        return this.locateCourseConnectionSettingsMapper().getCourseConnectionSettingsModel();
     }
 
-    /******************************************************************************************
-    * @description Retrieves a view model representing a health check group for a specified 
-    * HealthCheckDefinition.
-    * @param  name The name of a HealthCheckDefinition
-    * @return A HealthCheckGroupVModel representing a specified HealthCheckDefinition; null if one
-    * matching the name provided does not exist.
-    ******************************************************************************************/
-    public HealthCheckGroupVModel getHealthCheckGroup(String name){
-        String caseInsensitiveName = name.toLowerCase();
-
-        List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
-        List<String> rowKeysList = new List<String>();
-
-        switch on caseInsensitiveName {
-            when 'courseconnectionsettings' {
-                return this.locateCourseConSettingHealthCheckVMapper().getHealthCheckGroup();
-            }
-
-            when else {
-                return null;                
-            }
-        }
+    /*******************************************************************************************************
+    * @description Returns the instance of CourseConnectionSettingsMapper class
+    * @return The instance of CourseConnectionSettingsMapper class
+    ********************************************************************************************************/
+    @TestVisible
+    private CourseConnectionSettingsMapper locateCourseConnectionSettingsMapper() {
+        return CourseConnectionSettingsMapper.getInstance();
     }
 }

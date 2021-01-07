@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2020, Salesforce.org
+    Copyright (c) 2021, Salesforce.org
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+    notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
+    notice, this List of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
     its contributors may be used to endorse or promote products derived
@@ -26,46 +26,50 @@
 */
 /**
 * @author Salesforce.org
-* @date 2020
-* @group
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Mapper class for Health Check Definition
+* @date 2021
+* @group 
+* @group-content ../../ApexDocContent/
+* @description Mapper class to return CourseConnectionSettings Model
 */
-public virtual with sharing class HealthCheckDefinitionMapper {
+public virtual with sharing class CourseConnectionSettingsMapper {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static HealthCheckDefinitionMapper instance;
+    private static CourseConnectionSettingsMapper instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected HealthCheckDefinitionMapper() {}
+    protected CourseConnectionSettingsMapper() {}
 
-    /******************************************************************************
+    /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionMapper.
+    * @return The instance of CourseConnectionSettingsMapper.
     ******************************************************************************/
-    public static HealthCheckDefinitionMapper getInstance() {
+    public static CourseConnectionSettingsMapper getInstance() {
 
         if (instance == null) {
-            instance = new HealthCheckDefinitionMapper();
+            instance = new CourseConnectionSettingsMapper();
         }
 
         return instance;
     }
 
-    /******************************************************************************
-    * @description Get a list of Health Check Definition models (Hardcoded for 1.0)
-    * @return A list of HealthCheckDefinitionModel.
-    ******************************************************************************/
-    public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
-        List<HealthCheckDefinitionModel> healthCheckDefinitionModels = new List<HealthCheckDefinitionModel>();
-        healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('courseconnectionsettings', 
-                                                                        'EDAHealthCheckGroupAPIService', 
-                                                                        'hed'));
-        return healthCheckDefinitionModels;                                                                                                                             
+    /**********************************************************************************
+    * @description Returns the CourseConnectionSettings Model
+    * @return CourseConnectionSettingsModel The CourseConnectionSettings model
+    **********************************************************************************/
+    public virtual CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
+
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
+
+        CourseConnectionSettingsModel courseConnSettingsModel = 
+            new CourseConnectionSettingsModel(hierarchySettings.Enable_Course_Connections__c,
+                                              hierarchySettings.Student_RecType__c,
+                                              hierarchySettings.Faculty_RecType__c);
+
+       return courseConnSettingsModel;
     }
 }

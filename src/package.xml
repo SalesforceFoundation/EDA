@@ -85,6 +85,14 @@
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
+        <members>CourseConSettingHealthCheckVMapper</members>
+        <members>CourseConSettingHealthCheckVMapper_TEST</members>
+        <members>CourseConnectionSettingsMapper</members>
+        <members>CourseConnectionSettingsMapper_TEST</members>
+        <members>CourseConnectionSettingsModel</members>
+        <members>CourseConnectionSettingsModel_TEST</members>
+        <members>CourseConnectionSettingsService</members>
+        <members>CourseConnectionSettingsService_TEST</members>
         <members>EDAHealthCheckGroupAPIService</members>
         <members>EDAHealthCheckGroupAPIService_TEST</members>
         <members>ERR_AsyncErrors</members>
@@ -159,6 +167,9 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>RecordTypeMapper</members>
+        <members>RecordTypeModel</members>
+        <members>RecordTypeService</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_Contact_PreferredEmail</members>
