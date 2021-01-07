@@ -573,6 +573,172 @@
         <label>Sujuva</label>
     </customLabels>
     <customLabels>
+        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+        <name>stgHCAffiliationMappingSettingDesc</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Row heading for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <name>stgHCAffiliationMappingSettingHeading</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
+        <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
+        <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Account record types in Affiliation mappings are not unique --></label>
+        <name>stgHCAfflMapAccRecordTypeNotUnique</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- A check for Account record type in Affiliation mapping settings --></label>
+        <name>stgHCAfflMapAccRecordTypeTitle</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Account record types in Affiliation mappings are unique --></label>
+        <name>stgHCAfflMapAccRecordTypeUnique</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
+        <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- A check for unique Account record types in Affiliation mappings --></label>
+        <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when a mapping's Auto-Enrollment Status isn't active --></label>
+        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
+        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- A check for Auto-Enrollment Status in Affiliation mappings --></label>
+        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when a mapping's Auto-Enrollment Role isn't active --></label>
+        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
+        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Role --></label>
+        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
+        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- A check for Auto-Enrollment Role in Affiliation mappings --></label>
+        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when a mapping's Auto-Enrollment Role is valid --></label>
+        <name>stgHCAfflMapAutoEnrollRoleValid</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when a mapping's Auto-Enrollment Status is valid --></label>
+        <name>stgHCAfflMapAutoEnrollStatusValid</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when a mapping's Contact Primary Affiliation field isn't valid --></label>
+        <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- A check for unique Contact Primary Affiliation fields in Affiliation mappings --></label>
+        <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when a mapping's Contact Primary Affiliation field isn't valid --></label>
+        <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when mappings' Contact Primary Affiliation fields aren't unique --></label>
+        <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- A check for Contact Primary Affiliation field in Affiliation mapping settings --></label>
+        <name>stgHCAfflMapContactPrimaryFieldTitle</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when mappings' Contact Primary Affiliation fields are unique --></label>
+        <name>stgHCAfflMapContactPrimaryFieldUnique</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Recommended fix when mappings' Contact Primary Affiliation fields aren't unique --></label>
+        <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when a mapping's Contact Primary Affiliation field is valid --></label>
+        <name>stgHCAfflMapContactPrimaryFieldValid</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAffiliationMappings</name>
+    </customLabels> 
+    <customLabels>
+        <label><!-- Description when Health Check finds Course Connections not enabled --></label>
+        <name>stgHCCourseConEnable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
+        <name>stgHCCourseConEnableFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
+        <name>stgHCCourseConFacultyInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
+        <name>stgHCCourseConFacultyNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <name>stgHCCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when student and faculty Course Connection record types not unique --></label>
+        <name>stgHCCourseConRecordTypesNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when student and faculty Course Connection record types are same --></label>
+        <name>stgHCCourseConRecordTypesNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for unique Course Connection record type settings --></label>
+        <name>stgHCCourseConRecordTypesUnique</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when student and faculty Course Connection record types are unique --></label>
+        <name>stgHCCourseConRecordTypesUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the Default Active Student Record Type is inactive --></label>
+        <name>stgHCCourseConStudentInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can't find Default Active Student Record Type --></label>
+        <name>stgHCCourseConStudentNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <name>stgHealthCheckStatusWarning</name>
         <label><!-- EDA Settings Health Check component description --></label>
         <name>stgHealthCheckDescription</name>
     </customLabels>

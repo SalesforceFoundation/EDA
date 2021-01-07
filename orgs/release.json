@@ -1,13 +1,13 @@
 {
-  "orgName": "EDA - Release Test Org",
-  "edition": "Enterprise",
-  "features": ["DevelopmentWave"],
-  "settings": {
-    "lightningExperienceSettings": {
-      "enableS1DesktopEnabled": true
-    },
-    "chatterSettings": {
-      "enableChatter": true
+    "orgName": "EDA - Release Test Org",
+    "edition": "Enterprise",
+    "features": ["DevelopmentWave"],
+    "settings": {
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "chatterSettings": {
+            "enableChatter": true
+        }
     }
-  }
 }
