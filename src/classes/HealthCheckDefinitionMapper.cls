@@ -71,13 +71,6 @@ public virtual with sharing class HealthCheckDefinitionMapper {
                 'hed'
             ));
 
-        healthCheckDefinitionModels.add(
-            new HealthCheckDefinitionModel(
-                'AffiliationMappings',
-                'EDAHealthCheckGroupAPIService',
-                'hed'
-            ));
-
         return healthCheckDefinitionModels;                                                                                                                             
     }
 }
