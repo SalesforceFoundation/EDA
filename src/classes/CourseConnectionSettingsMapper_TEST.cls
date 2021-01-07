@@ -72,11 +72,17 @@ private class  CourseConnectionSettingsMapper_TEST {
     @isTest
     private static void getCourseConnectionSettingsModel() {
 
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettingsForTests(
+                                                      new Hierarchy_Settings__c(
+                                                          Enable_Course_Connections__c = true,
+                                                          Faculty_RecType__c = '01217000002Zs0pAAC',
+                                                          Student_RecType__c = '01217000002Zs0pAAD'
+                                                       )
+                                                  );
+
         Test.startTest();
             CourseConnectionSettingsModel courseConnSettingsModel = CourseConnectionSettingsMapper.getInstance().getCourseConnectionSettingsModel();
         Test.stopTest();
-
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
         System.assertEquals(hierarchySettings.Enable_Course_Connections__c, courseConnSettingsModel.courseConnectionsEnabled, 'Retrieved model\'s courseConnectionsEnabled should be same as \'Enable Course Connections\' from settings.');
         System.assertEquals(hierarchySettings.Student_RecType__c, courseConnSettingsModel.studentRecordTypeId, 'Retrieved model\'s Student RecordType Id should be same as \'Student RecType\' from settings.');
