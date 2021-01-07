@@ -1,17 +1,17 @@
 {
-  "orgName": "EDA - Prerelease Dev Workspace",
-  "edition": "Developer",
-  "instance": "CS46",
-  "features": ["DevelopmentWave"],
-  "settings": {
-    "lightningExperienceSettings": {
-      "enableS1DesktopEnabled": true
-    },
-    "languageSettings": {
-      "enableTranslationWorkbench": true
-    },
-    "chatterSettings": {
-      "enableChatter": true
+    "orgName": "EDA - Prerelease Dev Workspace",
+    "edition": "Developer",
+    "instance": "CS46",
+    "features": ["DevelopmentWave"],
+    "settings": {
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "languageSettings": {
+            "enableTranslationWorkbench": true
+        },
+        "chatterSettings": {
+            "enableChatter": true
+        }
     }
-  }
 }
