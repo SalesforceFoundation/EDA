@@ -42,8 +42,8 @@ public with sharing class CourseConnectionSettingsModel {
     public CourseConnectionSettingsModel(Boolean courseConnectionsEnabled, String studentRecordTypeId, String facultyRecordTypeId) {
 
         this.courseConnectionsEnabled = courseConnectionsEnabled;
-        this.studentRecordTypeId = String.isBlank(studentRecordTypeId) ? '' : studentRecordTypeId;
-        this.facultyRecordTypeId = String.isBlank(facultyRecordTypeId) ? '' : facultyRecordTypeId;
+        this.studentRecordTypeId = String.isBlank(studentRecordTypeId) ? '""' : studentRecordTypeId;
+        this.facultyRecordTypeId = String.isBlank(facultyRecordTypeId) ? '""' : facultyRecordTypeId;
 
     }
 }

@@ -61,8 +61,8 @@ private class CourseConnectionSettingsModel_TEST {
         Test.stopTest();
 
         System.assertEquals(true, courseConnSettingsModel.courseConnectionsEnabled, 'courseConnectionsEnabled property on the CourseConnectionSettings model should be set with the value that is passed.');
-        System.assertEquals('', courseConnSettingsModel.studentRecordTypeId, 'studentRecordTypeId property on the CourseConnectionSettings model should be set with the value that is passed.');
-        System.assertEquals('', courseConnSettingsModel.facultyRecordTypeId, 'facultyRecordTypeId property on the CourseConnectionSettings model should be set with the value that is passed.');
+        System.assertEquals('""', courseConnSettingsModel.studentRecordTypeId, 'studentRecordTypeId property on the CourseConnectionSettings model should be set with the value that is passed.');
+        System.assertEquals('""', courseConnSettingsModel.facultyRecordTypeId, 'facultyRecordTypeId property on the CourseConnectionSettings model should be set with the value that is passed.');
 
     }
 }
