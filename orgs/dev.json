@@ -1,16 +1,16 @@
 {
-  "orgName": "EDA - Dev Workspace",
-  "edition": "Developer",
-  "features": ["DevelopmentWave"],
-  "settings": {
-    "lightningExperienceSettings": {
-      "enableS1DesktopEnabled": true
-    },
-    "languageSettings": {
-      "enableTranslationWorkbench": true
-    },
-    "chatterSettings": {
-      "enableChatter": true
+    "orgName": "EDA - Dev Workspace",
+    "edition": "Developer",
+    "features": ["DevelopmentWave"],
+    "settings": {
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "languageSettings": {
+            "enableTranslationWorkbench": true
+        },
+        "chatterSettings": {
+            "enableChatter": true
+        }
     }
-  }
 }

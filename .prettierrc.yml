@@ -1,0 +1,22 @@
+printWidth: 90
+tabWidth: 4
+overrides:
+    - files: "*.{json,yml,yaml}"
+      options:
+          tabWidth: 4
+          endOfLine: "auto"
+    - files: "cumulusci.yml"
+      options:
+          tabWidth: 4
+    - files: "**/lwc/**/*.html"
+      options:
+          parser: lwc
+    - files: "**/lwc/**/*.js"
+      options:
+          trailingComma: "es5"
+    - files: "**/aura/**/*.{cmp,page,component,xml}"
+      options:
+          parser: "html"
+    - files: "**/aura/**/*.js"
+      options:
+          trailingComma: "none"
