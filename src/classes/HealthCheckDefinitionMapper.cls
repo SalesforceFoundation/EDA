@@ -58,14 +58,26 @@ public virtual with sharing class HealthCheckDefinitionMapper {
     }
 
     /******************************************************************************
-    * @description Get a list of Health Check Definition models
+    * @description Get a list of Health Check Definition models to determine which
+    * Health Checks to run.
     * @return A list of HealthCheckDefinitionModel.
     ******************************************************************************/
     public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
         List<HealthCheckDefinitionModel> healthCheckDefinitionModels = new List<HealthCheckDefinitionModel>();
-        healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('AccountModel', 
-                                                                        'EDAHealthCheckGroupAPIService', 
-                                                                        'hed'));
+        healthCheckDefinitionModels.add(
+            new HealthCheckDefinitionModel(
+                'AccountModel', 
+                'EDAHealthCheckGroupAPIService', 
+                'hed'
+            ));
+
+        healthCheckDefinitionModels.add(
+            new HealthCheckDefinitionModel(
+                'AffiliationMappings',
+                'EDAHealthCheckGroupAPIService',
+                'hed'
+            ));
+
         return healthCheckDefinitionModels;                                                                                                                             
     }
 }

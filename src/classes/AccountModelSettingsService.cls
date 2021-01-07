@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Returns an AccountModelSettings model.
 */
 public virtual with sharing class AccountModelSettingsService {
