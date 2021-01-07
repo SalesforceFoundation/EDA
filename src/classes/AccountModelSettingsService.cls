@@ -52,7 +52,7 @@ public virtual with sharing class AccountModelSettingsService {
         if (instance == null) {
             instance = new AccountModelSettingsService();
         }
-        
+
         return instance;
     }
 
