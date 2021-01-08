@@ -113,9 +113,9 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                               0,
                                                                               0,
                                                                               hCGroupVMdl);
-        
+
     }
-    
+
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles
     * failed health check when Course Connection is disabled
@@ -282,9 +282,50 @@ private class CourseConSettingHealthCheckVMapper_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+    ************************************************* HELPER METHODS **********************************************************
+    **************************************************************************************************************************/
+
+    /**************************************************************************************************************************
+    * @description Helper method to validate assertions for HealthCheckGroupVModel tests.
+    **************************************************************************************************************************/
+    private static void verifyHealthCheckGroupVModelAssertions(String expectedLabel, 
+                                                               String expectedStatus, 
+                                                               Integer expectedPassedCheckCount, 
+                                                               Integer expectedTotalCheckCount, 
+                                                               Integer expectedExpandedRowSize, 
+                                                               Integer expectedHealthCheckItemListSize,
+                                                               HealthCheckGroupVModel hlthCheckGroupResult){
+
+        System.assertEquals(expectedLabel, hlthCheckGroupResult.label, 'Should have \'' + expectedLabel + '\' label.');
+        System.assertEquals(expectedStatus, hlthCheckGroupResult.status, 'Should have status of \'' + expectedStatus + '\'.');
+        System.assertEquals(expectedPassedCheckCount, hlthCheckGroupResult.passedChecks, 'Should have ' + expectedPassedCheckCount + ' passed checks.');
+        System.assertEquals(expectedTotalCheckCount, hlthCheckGroupResult.totalChecks, 'Should have ' + expectedTotalCheckCount + ' check.');
+        System.assertEquals(expectedExpandedRowSize, hlthCheckGroupResult.expandedRowsList.size(), 'Should have ' + expectedExpandedRowSize + ' expanded rows.');
+        System.assertEquals(expectedHealthCheckItemListSize, hlthCheckGroupResult.healthCheckItemList.size(), 'Should have ' + expectedHealthCheckItemListSize + ' health check item.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Helper method to validate assertions for HealthCheckGroupVModel HealthCheckItems.
+    **************************************************************************************************************************/
+    private static void verifyHealthCheckItemListAssertions(String expectedSetting,
+                                                            String expectedStatus, 
+                                                            String expectedStatusLabel,
+                                                            String expectedDescription,
+                                                            String expectedFix,
+                                                            List<HealthCheckItemVModel> healthCheckItemList){
+
+        for (HealthCheckItemVModel hlthChkItmVMod : healthCheckItemList){
+            System.assertEquals(expectedSetting, hlthChkItmVMod.setting, 'Health Check Item setting should be \'' + expectedSetting + '\'.');
+            System.assertEquals(expectedStatus, hlthChkItmVMod.status, 'Health Check Item status should be \'' + expectedStatus + '\'.');
+            System.assertEquals(expectedStatusLabel, hlthChkItmVMod.statusLabel, 'Health Check Item status label should be \'' + expectedStatusLabel + '\'.');
+            System.assertEquals(expectedDescription, hlthChkItmVMod.description, 'Health Check Item description should be correctly set.');
+            System.assertEquals(expectedFix, hlthChkItmVMod.recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        }        
+    }
 
     /*********************************************************************************************************
-    ******************************* STUB *******************************************************************
+    ********************************* STUB *******************************************************************
     *********************************************************************************************************/
 
     /*************************************************************************************************
@@ -342,50 +383,8 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                 );
 
             Map<Id, RecordTypeModel> recTypemodelByID = new Map<Id, RecordTypeModel>{'0121A000002Zs0pAAA' => recTypeModel};
-    
+
             return recTypemodelByID;
         }
-    }
-
-    /**************************************************************************************************************************
-    ************************************************* HELPER METHODS **********************************************************
-    **************************************************************************************************************************/
-
-    /**************************************************************************************************************************
-    * @description Helper method to validate assertions for HealthCheckGroupVModel tests.
-    **************************************************************************************************************************/
-    private static void verifyHealthCheckGroupVModelAssertions(String expectedLabel, 
-                                                               String expectedStatus, 
-                                                               Integer expectedPassedCheckCount, 
-                                                               Integer expectedTotalCheckCount, 
-                                                               Integer expectedExpandedRowSize, 
-                                                               Integer expectedHealthCheckItemListSize,
-                                                               HealthCheckGroupVModel hlthCheckGroupResult){
-
-        System.assertEquals(expectedLabel, hlthCheckGroupResult.label, 'Should have \'' + expectedLabel + '\' label.');
-        System.assertEquals(expectedStatus, hlthCheckGroupResult.status, 'Should have status of \'' + expectedStatus + '\'.');
-        System.assertEquals(expectedPassedCheckCount, hlthCheckGroupResult.passedChecks, 'Should have ' + expectedPassedCheckCount + ' passed checks.');
-        System.assertEquals(expectedTotalCheckCount, hlthCheckGroupResult.totalChecks, 'Should have ' + expectedTotalCheckCount + ' check.');
-        System.assertEquals(expectedExpandedRowSize, hlthCheckGroupResult.expandedRowsList.size(), 'Should have ' + expectedExpandedRowSize + ' expanded rows.');
-        System.assertEquals(expectedHealthCheckItemListSize, hlthCheckGroupResult.healthCheckItemList.size(), 'Should have ' + expectedHealthCheckItemListSize + ' health check item.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Helper method to validate assertions for HealthCheckGroupVModel HealthCheckItems.
-    **************************************************************************************************************************/
-    private static void verifyHealthCheckItemListAssertions(String expectedSetting,
-                                                            String expectedStatus, 
-                                                            String expectedStatusLabel,
-                                                            String expectedDescription,
-                                                            String expectedFix,
-                                                            List<HealthCheckItemVModel> healthCheckItemList){
-
-        for (HealthCheckItemVModel hlthChkItmVMod : healthCheckItemList){
-            System.assertEquals(expectedSetting, hlthChkItmVMod.setting, 'Health Check Item setting should be \'' + expectedSetting + '\'.');
-            System.assertEquals(expectedStatus, hlthChkItmVMod.status, 'Health Check Item status should be \'' + expectedStatus + '\'.');
-            System.assertEquals(expectedStatusLabel, hlthChkItmVMod.statusLabel, 'Health Check Item status label should be \'' + expectedStatusLabel + '\'.');
-            System.assertEquals(expectedDescription, hlthChkItmVMod.description, 'Health Check Item description should be correctly set.');
-            System.assertEquals(expectedFix, hlthChkItmVMod.recommendedFix, 'Health Check Item recommended fix should be correctly set.');
-        }        
     }
 }

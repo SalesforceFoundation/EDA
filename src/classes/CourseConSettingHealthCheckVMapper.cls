@@ -27,7 +27,7 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
+* @group
 * @group-content ../../ApexDocContent/
 * @description Generate a HealthCheckGroup view model representing the results of
 * an Course Connection settings health check.  Verifies Course connection is enabled. 
@@ -125,9 +125,6 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
             
             return healthCheckGroupVModel;
         }
-
-        healthCheckGroupVModel.totalChecks++;
-        healthCheckGroupVModel.passedChecks++;
 
         return HealthCheckGroupVModel;
     }    
