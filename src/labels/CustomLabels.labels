@@ -1088,14 +1088,6 @@
         <value>Disable Preferred Phone Enforcement</value>
     </labels>
     <labels>
-        <fullName>stgHealthCheckTitle</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>EDA Settings Health Check component title</shortDescription>
-        <value>EDA Settings Health Check</value>
-    </labels>
-    <labels>
         <fullName>stgEDASetupTitle</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1488,6 +1480,14 @@
         <value>EDA Settings Health Check checks your EDA Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings.</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckErrorLastRunDate</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when EDA Settings Health Check can't show the last run date</shortDescription>
+        <value>We can&apos;t show the last run date because of an error</value>    
+    </labels>
+    <labels>
         <fullName>stgHealthCheckLastRun</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1496,12 +1496,116 @@
         <value>Last Run: {0}</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckLoadingIndicator</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text indicating that an EDA Settings Health Check component is loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckRecoFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended Fix column header in EDA Settings Health Check results</shortDescription>
+        <value>Recommended Fix</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckResultsCollapse</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for the icon to collapse EDA Settings Health Check results</shortDescription>
+        <value>Collapse these results</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckResultsDescription</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description column header in EDA Settings Health Check results</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckResultsExpand</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for the icon to expand EDA Settings Health Check results</shortDescription>
+        <value>Expand these results</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckRunError</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when EDA Settings Health Check can&apos;t be run</shortDescription>
+        <value>We can&apos;t run Health Check because of an error. Try running it again.</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckSetting</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Setting column header in EDA Settings Health Check results</shortDescription>
+        <value>Setting</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckStatus</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status column header in EDA Settings Health Check results</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckStatusFailed</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status text in EDA Settings Health Check results when a check failed</shortDescription>
+        <value>Failed</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckStatusPassed</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status text in EDA Settings Health Check results when a check passed</shortDescription>
+        <value>Passed</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckStatusWarning</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Status text in EDA Settings Health Check results when a check prompts a warning</shortDescription>
         <value>Warning</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthChecksAllPassed</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text in EDA Settings Health Check results when all checks within a group passed</shortDescription>
+        <value>All checks passed</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthChecksNotAllPassed</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text in EDA Settings Health Check results shows group's passed and total checks</shortDescription>
+        <value>{0} of {1} checks passed</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings Health Check component title</shortDescription>
+        <value>EDA Settings Health Check</value>
     </labels>
     <labels>
         <fullName>stgHelpAccountModel</fullName>
