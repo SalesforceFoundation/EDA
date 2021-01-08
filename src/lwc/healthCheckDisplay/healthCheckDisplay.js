@@ -1,6 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 
-import stgLoadingSpinnerText from '@salesforce/label/c.stgLoadingSpinnerText';
+import stgHealthCheckLoadingIndicator from '@salesforce/label/c.stgHealthCheckLoadingIndicator';
 
 export default class HealthCheckDisplay extends LightningElement {
     @api healthCheckDefinitionsList;
@@ -9,7 +9,7 @@ export default class HealthCheckDisplay extends LightningElement {
     @track displayHealthCheckGroup = false; 
     
     LabelReference = {
-        spinnerLoadingAltText: stgLoadingSpinnerText
+        spinnerLoadingAltText: stgHealthCheckLoadingIndicator
     }
     
     handleHealthCheckGroupLoaded(){
