@@ -1088,110 +1088,6 @@
         <value>Disable Preferred Phone Enforcement</value>
     </labels>
     <labels>
-        <fullName>stgHCAccountModelAdminInactiveFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when the Administrative Account Record Type is inactive</shortDescription>
-        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Administrative Account Record Type to a valid, active record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountModelAdminNotFoundFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find Administrative Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Administrative Account Record Type to a valid, active record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountModelDefaultInactiveFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when the Default Account Model record type is inactive</shortDescription>
-        <value>Verify the Default Account Model record type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Account Model to a valid, active record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find Default Account Model record type</shortDescription>
-        <value>In EDA Settings, on the System tab, change the Default Account Model to a valid, active record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountModelHHInactiveFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when the Household Account Record Type is inactive</shortDescription>
-        <value>Verify the Household Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Household Account Record Type to a valid, active record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountModelHHNotFoundFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find the Household Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Household Account Record Type to a valid, active record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountRecordTypeSettingsUnique</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>A check for unique container Account record type settings</shortDescription>
-        <value>Unique Administrative and Household Account Record Type Settings.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountRecordTypesNotUnique</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description when Administrative and Household Account Record Types aren't unique</shortDescription>
-        <value>The Administrative Account and Household Account Record Type settings specify the same record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountRecordTypesNotUniqueFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when Administrative and Household Account Record Types are same</shortDescription>
-        <value>In EDA Settings, in the Accounts and Contacts tab, change either the Administrative Account Record Type or the Household Account Record Type so that each specifies a unique record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAccountRecordTypesUnique</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description when Administrative and Household Account Record Types are unique</shortDescription>
-        <value>The Administrative Account and Household Account Record Type settings specify different record types.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCRecordTypeInactive</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description when Health Check finds an inactive record type</shortDescription>
-        <value>The {0} ({1}) record type isn’t active.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCRecordTypeNotFound</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description when Health Check can't find the record type</shortDescription>
-        <value>We can’t find the {0} record type.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCRecordTypeValid</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description when Health Check finds a record type valid</shortDescription>
-        <value>The {0} ({1}) record type is valid.</value>
-    </labels>
-    <labels>
         <fullName>stgEDASetupTitle</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1246,6 +1142,86 @@
         <protected>true</protected>
         <shortDescription>Picklist value for Accounts and Contacts Settings</shortDescription>
         <value>Fluent</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountModelAdminInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the Administrative Account Record Type is inactive</shortDescription>
+        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountModelAdminNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Administrative Account Record Type</shortDescription>
+        <value>In EDA Settings, on the Accounts and Contacts tab, change the Administrative Account Record Type to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountModelDefaultInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the Default Account Model record type is inactive</shortDescription>
+        <value>Verify the Default Account Model record type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Default Account Model record type</shortDescription>
+        <value>In EDA Settings, on the System tab, change the Default Account Model to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountModelHHInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the Household Account Record Type is inactive</shortDescription>
+        <value>Verify the Household Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountModelHHNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can&apos;t find the Household Account Record Type</shortDescription>
+        <value>In EDA Settings, on the Accounts and Contacts tab, change the Household Account Record Type to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountRecordTypeSettingsUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for unique container Account record type settings</shortDescription>
+        <value>Unique Administrative and Household Account Record Type Settings.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountRecordTypesNotUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Administrative and Household Account Record Types aren&apos;t unique</shortDescription>
+        <value>The Administrative Account and Household Account Record Type settings specify the same record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountRecordTypesNotUniqueFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Administrative and Household Account Record Types are same</shortDescription>
+        <value>In EDA Settings, in the Accounts and Contacts tab, change either the Administrative Account Record Type or the Household Account Record Type so that each specifies a unique record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAccountRecordTypesUnique</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Administrative and Household Account Record Types are unique</shortDescription>
+        <value>The Administrative Account and Household Account Record Type settings specify different record types.</value>
     </labels>
     <labels>
         <fullName>stgHCAffiliationMappingSettingDesc</fullName>
@@ -1566,6 +1542,38 @@
         <protected>true</protected>
         <shortDescription>Course Connections group title in EDA Settings Health Check results</shortDescription>
         <value>Course Connections</value>
+    </labels>
+    <labels>
+        <fullName>stgHCRecordTypeInactive</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check finds an inactive record type</shortDescription>
+        <value>The {0} ({1}) record type isn’t active.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCRecordTypeNotFound</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check can&apos;t find the record type</shortDescription>
+        <value>We can’t find the {0} record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCRecordTypeValid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check finds a record type valid</shortDescription>
+        <value>The {0} ({1}) record type is valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckAccountModel</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Account Model group title in EDA Settings Health Check results</shortDescription>
+        <value>Account Model</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckAffiliationMappings</fullName>
@@ -2238,14 +2246,6 @@
         <protected>true</protected>
         <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckAccountModel</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Account Model group title in EDA Settings Health Check results</shortDescription>
-        <value>Account Model</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>
