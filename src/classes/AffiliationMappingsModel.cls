@@ -48,7 +48,8 @@ public with sharing class AffiliationMappingsModel {
         String autoProgramEnrollmentRole
     ) {
         this.name = name;
-        this.accountRecordTypeId = accountRecordTypeId;
+        this.accountRecordTypeId = 
+            (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId).getRecordTypeId();
         this.primaryAffiliationField = primaryAffiliationField;
         this.autoProgramEnrollment = autoProgramEnrollment;
         this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;
