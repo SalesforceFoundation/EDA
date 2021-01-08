@@ -745,12 +745,60 @@
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error when EDA Settings Health Check can&apos;t show the last run date --></label>
+        <name>stgHealthCheckErrorLastRunDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text when a check passes and no fix is recommended --></label>
+        <name>stgHealthCheckFixNotApplicable</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Health Check last run date --></label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
+        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <name>stgHealthCheckLoadingIndicator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckRecoFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
+        <name>stgHealthCheckResultsCollapse</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckResultsDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for the icon to expand EDA Settings Health Check results --></label>
+        <name>stgHealthCheckResultsExpand</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EDA Settings Run Health Check button label --></label>
         <name>stgHealthCheckRunButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
+        <name>stgHealthCheckRunError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Setting column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
+        <name>stgHealthCheckStatusFailed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
+        <name>stgHealthCheckStatusPassed</name>
     </customLabels>
     <customLabels>
         <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
@@ -759,6 +807,14 @@
     <customLabels>
         <label><!-- EDA Settings Health Check component title --></label>
         <name>stgHealthCheckTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
+        <name>stgHealthChecksAllPassed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text in EDA Settings Health Check results shows group&apos;s passed and total checks --></label>
+        <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
         <label>Für höhere Bildungseinrichtungen empfehlen wir das Accountmodell &quot;Verwaltung&quot;. Für Grund- und weiterführende Schulen empfehlen wir das Accountmodell &quot;Haushalt&quot;.</label>
@@ -1154,10 +1210,6 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <label>Wir können den Zeitplan für das Kursangebot nicht speichern, weil seine Startzeit nicht mit der Startzeit des zugehörigen Zeitblocks übereinstimmt. Bearbeiten Sie entweder die Startzeit, geben Sie einen anderen Zeitblock oder keinen Zeitblock an.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
-    <customTabs>
-        <label><!-- EDA Health Check --></label>
-        <name>EDA_Health_Check</name>
-    </customTabs>
     <customTabs>
         <label>EDA-Einstellungen</label>
         <name>HEDA_Settings</name>

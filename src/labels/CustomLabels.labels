@@ -1472,6 +1472,14 @@
         <value>Affiliation Mappings</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckDescription</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings Health Check component description</shortDescription>
+        <value>EDA Settings Health Check checks your EDA Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings.</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckErrorLastRunDate</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1496,6 +1504,14 @@
         <value>Last Run: {0}</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckLoadingIndicator</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text indicating that an EDA Settings Health Check component is loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckRecoFix</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1510,22 +1526,6 @@
         <protected>true</protected>
         <shortDescription>Alt text for the icon to collapse EDA Settings Health Check results</shortDescription>
         <value>Collapse these results</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckDescription</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>EDA Settings Health Check component description</shortDescription>
-        <value>EDA Settings Health Check checks your EDA Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings.</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckLoadingIndicator</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text indicating that an EDA Settings Health Check component is loading</shortDescription>
-        <value>Loading...</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckResultsDescription</fullName>
