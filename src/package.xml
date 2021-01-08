@@ -826,17 +826,17 @@
         <members>stgHCAfflMapAccRecordTypeUnique</members>
         <members>stgHCAfflMapAccRecordTypeUniqueFix</members>
         <members>stgHCAfflMapAccRecordTypeUniqueTitle</members>
-        <members>stgHCAfflMapAutoEnrollStatusInactive</members>
-        <members>stgHCAfflMapAutoEnrollStatusNotFound</members>
-        <members>stgHCAfflMapAutoEnrollStatusNotFoundFix</members>
-        <members>stgHCAfflMapAutoEnrollStatusInactiveFix</members>
-        <members>stgHCAfflMapAutoEnrollStatusTitle</members>
         <members>stgHCAfflMapAutoEnrollRoleInactive</members>
         <members>stgHCAfflMapAutoEnrollRoleInactiveFix</members>
         <members>stgHCAfflMapAutoEnrollRoleNotFound</members>
         <members>stgHCAfflMapAutoEnrollRoleNotFoundFix</members>
         <members>stgHCAfflMapAutoEnrollRoleTitle</members>
         <members>stgHCAfflMapAutoEnrollRoleValid</members>
+        <members>stgHCAfflMapAutoEnrollStatusInactive</members>
+        <members>stgHCAfflMapAutoEnrollStatusInactiveFix</members>
+        <members>stgHCAfflMapAutoEnrollStatusNotFound</members>
+        <members>stgHCAfflMapAutoEnrollStatusNotFoundFix</members>
+        <members>stgHCAfflMapAutoEnrollStatusTitle</members>
         <members>stgHCAfflMapAutoEnrollStatusValid</members>
         <members>stgHCAfflMapContPrimaryFieldInvalidFix</members>
         <members>stgHCAfflMapContPrimaryFieldUniqueTitle</members>
@@ -846,21 +846,21 @@
         <members>stgHCAfflMapContactPrimaryFieldUnique</members>
         <members>stgHCAfflMapContactPrimaryFieldUniqueFix</members>
         <members>stgHCAfflMapContactPrimaryFieldValid</members>
-        <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHCCourseConEnable</members>
         <members>stgHCCourseConEnableFix</members>
         <members>stgHCCourseConFacultyInactiveFix</members>
         <members>stgHCCourseConFacultyNotFoundFix</members>
-        <members>stgHCCourseConnectionsTitle</members>
         <members>stgHCCourseConRecordTypesNotUnique</members>
         <members>stgHCCourseConRecordTypesNotUniqueFix</members>
         <members>stgHCCourseConRecordTypesUnique</members>
         <members>stgHCCourseConRecordTypesUniqueDesc</members>
         <members>stgHCCourseConStudentInactiveFix</members>
         <members>stgHCCourseConStudentNotFoundFix</members>
-        <members>stgHealthCheckStatusWarning</members>
+        <members>stgHCCourseConnectionsTitle</members>
+        <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
+        <members>stgHealthCheckFixNotApplicable</members>
         <members>stgHealthCheckLastRun</members>
         <members>stgHealthCheckLoadingIndicator</members>
         <members>stgHealthCheckRecoFix</members>
@@ -873,6 +873,7 @@
         <members>stgHealthCheckStatus</members>
         <members>stgHealthCheckStatusFailed</members>
         <members>stgHealthCheckStatusPassed</members>
+        <members>stgHealthCheckStatusWarning</members>
         <members>stgHealthCheckTitle</members>
         <members>stgHealthChecksAllPassed</members>
         <members>stgHealthChecksNotAllPassed</members>
