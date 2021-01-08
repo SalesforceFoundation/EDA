@@ -1216,51 +1216,11 @@
         <value>Unique Affiliation Mapping Record Type</value>
     </labels>
     <labels>
-        <fullName>stgHCAfflMapAutoEnrollStatusInactive</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
-        <value>The {0} ({1}) picklist value isn’t active.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAfflMapAutoEnrollStatusInactiveFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when a mapping's Auto-Enrollment Status isn't active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping's Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object's Status field in Salesforce Setup and set the picklist value to Active. If it isn't correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAfflMapAutoEnrollStatusNotFound</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Program Enrollment object.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAfflMapAutoEnrollStatusNotFoundFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Status to a valid, active picklist value for the Status field on the Program Enrollment object.</value>
-    </labels>
-    <labels>
-        <fullName>stgHCAfflMapAutoEnrollStatusTitle</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>A check for Auto-Enrollment Status in Affiliation mappings</shortDescription>
-        <value>Auto-Enrollment Status Value</value>
-    </labels>
-    <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleInactive</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when a mapping's Auto-Enrollment Role isn't active</shortDescription>
+        <shortDescription>Description when a mapping&apos;s Auto-Enrollment Role isn&apos;t active</shortDescription>
         <value>The {0} ({1}) picklist value isn’t active.</value>
     </labels>
     <labels>
@@ -1268,15 +1228,15 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when a mapping's Auto-Enrollment Role isn't active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping's Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object's Role field in Salesforce Setup and set the picklist value to Active. If it isn't correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
+        <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active</shortDescription>
+        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleNotFound</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
+        <shortDescription>Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
         <value>We can’t find the {0} picklist value.</value>
     </labels>
     <labels>
@@ -1284,7 +1244,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
         <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Program Enrollment object.</value>
     </labels>
     <labels>
@@ -1300,8 +1260,48 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when a mapping's Auto-Enrollment Role is valid</shortDescription>
+        <shortDescription>Description when a mapping&apos;s Auto-Enrollment Role is valid</shortDescription>
         <value>The {0} ({1}) picklist value is valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusInactive</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
+        <value>The {0} ({1}) picklist value isn’t active.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
+        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusNotFound</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
+        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Program Enrollment object.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status</shortDescription>
+        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Status to a valid, active picklist value for the Status field on the Program Enrollment object.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCAfflMapAutoEnrollStatusTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for Auto-Enrollment Status in Affiliation mappings</shortDescription>
+        <value>Auto-Enrollment Status Value</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusValid</fullName>
@@ -1376,14 +1376,6 @@
         <value>The {0} ({1}) field is valid.</value>
     </labels>
     <labels>
-        <fullName>stgHealthCheckAffiliationMappings</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Affiliation Mappings group title in EDA Settings Health Check results</shortDescription>
-        <value>Affiliation Mappings</value>
-    </labels>
-    <labels>
         <fullName>stgHCCourseConEnable</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1396,7 +1388,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Course Connections isn't enabled</shortDescription>
+        <shortDescription>Recommended fix when Course Connections isn&apos;t enabled</shortDescription>
         <value>Enable Course Connections, which includes configuring Course Connection record types.</value>
     </labels>
     <labels>
@@ -1405,23 +1397,15 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Faculty Record Type is inactive</shortDescription>
-        <value>Verify the Default Faculty Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Faculty Record Type to a valid, active record type.</value>
+        <value>Verify the Default Faculty Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Faculty Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyNotFoundFix</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find Default Faculty Record Type</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Default Faculty Record Type</shortDescription>
         <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Faculty Record Type to a valid, active record type.</value>
-    </labels>  
-    <labels>
-        <fullName>stgHCCourseConnectionsTitle</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Course Connections group title in EDA Settings Health Check results</shortDescription>
-        <value>Course Connections</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesNotUnique</fullName>
@@ -1461,15 +1445,31 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Active Student Record Type is inactive</shortDescription>
-        <value>Verify the Default Active Student Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Active Student Record Type to a valid, active record type.</value>
+        <value>Verify the Default Active Student Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Active Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConStudentNotFoundFix</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find Default Active Student Record Type</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Default Active Student Record Type</shortDescription>
         <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCCourseConnectionsTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Course Connections group title in EDA Settings Health Check results</shortDescription>
+        <value>Course Connections</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckAffiliationMappings</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Affiliation Mappings group title in EDA Settings Health Check results</shortDescription>
+        <value>Affiliation Mappings</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckDescription</fullName>
@@ -1480,14 +1480,6 @@
         <value>EDA Settings Health Check checks your EDA Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings.</value>
     </labels>
     <labels>
-        <fullName>stgHealthCheckErrorLastRunDate</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Error when EDA Settings Health Check can't show the last run date</shortDescription>
-        <value>We can&apos;t show the last run date because of an error</value>    
-    </labels>
-    <labels>
         <fullName>stgHealthCheckLastRun</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1496,84 +1488,12 @@
         <value>Last Run: {0}</value>
     </labels>
     <labels>
-        <fullName>stgHealthCheckLoadingIndicator</fullName>
+        <fullName>stgHealthCheckRunButton</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Text indicating that an EDA Settings Health Check component is loading</shortDescription>
-        <value>Loading...</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckRecoFix</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Recommended Fix column header in EDA Settings Health Check results</shortDescription>
-        <value>Recommended Fix</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckResultsCollapse</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Alt text for the icon to collapse EDA Settings Health Check results</shortDescription>
-        <value>Collapse these results</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckResultsDescription</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description column header in EDA Settings Health Check results</shortDescription>
-        <value>Description</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckResultsExpand</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Alt text for the icon to expand EDA Settings Health Check results</shortDescription>
-        <value>Expand these results</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckRunError</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Error when EDA Settings Health Check can&apos;t be run</shortDescription>
-        <value>We can&apos;t run Health Check because of an error. Try running it again.</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckSetting</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Setting column header in EDA Settings Health Check results</shortDescription>
-        <value>Setting</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckStatus</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Status column header in EDA Settings Health Check results</shortDescription>
-        <value>Status</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckStatusFailed</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Status text in EDA Settings Health Check results when a check failed</shortDescription>
-        <value>Failed</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckStatusPassed</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Status text in EDA Settings Health Check results when a check passed</shortDescription>
-        <value>Passed</value>
+        <shortDescription>EDA Settings Run Health Check button label</shortDescription>
+        <value>Run Health Check</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckStatusWarning</fullName>
@@ -1582,22 +1502,6 @@
         <protected>true</protected>
         <shortDescription>Status text in EDA Settings Health Check results when a check prompts a warning</shortDescription>
         <value>Warning</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthChecksAllPassed</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text in EDA Settings Health Check results when all checks within a group passed</shortDescription>
-        <value>All checks passed</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthChecksNotAllPassed</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text in EDA Settings Health Check results shows group's passed and total checks</shortDescription>
-        <value>{0} of {1} checks passed</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckTitle</fullName>
@@ -2118,14 +2022,6 @@
         <protected>true</protected>
         <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
-    </labels>
-    <labels>
-        <fullName>stgHealthCheckRunButton</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>EDA Settings Run Health Check button label</shortDescription>
-        <value>Run Health Check</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>
