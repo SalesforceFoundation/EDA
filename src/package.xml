@@ -841,20 +841,6 @@
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
-        <members>stgHCAccountModelAdminInactiveFix</members>
-        <members>stgHCAccountModelAdminNotFoundFix</members>
-        <members>stgHCAccountModelDefaultInactiveFix</members>
-        <members>stgHCAccountModelDefaultNotFoundFix</members>
-        <members>stgHCAccountModelHHInactiveFix</members>
-        <members>stgHCAccountModelHHNotFoundFix</members>
-        <members>stgHCAccountRecordTypeSettingsUnique</members>
-        <members>stgHCAccountRecordTypesNotUnique</members>
-        <members>stgHCAccountRecordTypesNotUniqueFix</members>
-        <members>stgHCAccountRecordTypesUnique</members>
-        <members>stgHCRecordTypeInactive</members>
-        <members>stgHCRecordTypeNotFound</members>
-        <members>stgHCRecordTypeValid</members>
-        <members>stgHealthCheckAccountModel</members>
         <members>stgHCAffiliationMappingSettingDesc</members>
         <members>stgHCAffiliationMappingSettingHeading</members>
         <members>stgHCAfflMapAccRecordTypeInactiveFix</members>
