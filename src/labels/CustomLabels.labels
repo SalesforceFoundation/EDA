@@ -1502,7 +1502,6 @@
         <protected>true</protected>
         <shortDescription>Status text in EDA Settings Health Check results when a check prompts a warning</shortDescription>
         <value>Warning</value>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHelpAccountModel</fullName>
