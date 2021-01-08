@@ -108,8 +108,8 @@ private class CourseConSettingHealthCheckVMapper_TEST {
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHCCourseConnectionsTitle,
                                                                               Label.stgHealthCheckStatusPassed,
-                                                                              1,
-                                                                              1,
+                                                                              0,
+                                                                              0,
                                                                               0,
                                                                               0,
                                                                               hCGroupVMdl);
@@ -213,8 +213,8 @@ private class CourseConSettingHealthCheckVMapper_TEST {
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
                                                                                        '',
-                                                                                       1,
-                                                                                       1,
+                                                                                       0,
+                                                                                       0,
                                                                                        0,
                                                                                        0,
                                                                                        hCGroupVMdl);
