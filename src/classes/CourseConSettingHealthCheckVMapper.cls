@@ -63,7 +63,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
 
         HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(
-            Label.stgHCCourseConnectionsTitle
+            Label.stgHCCourseConnectionsTitle,
             Label.stgHealthCheckStatusPassed,
             0,
             0,
@@ -115,19 +115,19 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
 
         if (courseConnSettingsModel.courseConnectionsEnabled == false) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('01',
-                                                                      Label.stgEnableCourseConnectionsTitle
+                                                                      Label.stgEnableCourseConnectionsTitle,
                                                                       'Fail',
                                                                       Label.stgHealthCheckStatusFailed,
-                                                                      Label.stgHCCourseConEnable
-                                                                      Label.stgHCCourseConEnableFix
+                                                                      Label.stgHCCourseConEnable,
+                                                                      Label.stgHCCourseConEnableFix,
                                                                       new List<HealthCheckItemVModel>()));
             healthCheckGroupVModel.totalChecks++;
-            
+
             return healthCheckGroupVModel;
         }
 
         return HealthCheckGroupVModel;
-    }    
+    }
 
     /*****************************************************************************
     * @description Retrieve an instance of the CourseConnectionSettingsService class.

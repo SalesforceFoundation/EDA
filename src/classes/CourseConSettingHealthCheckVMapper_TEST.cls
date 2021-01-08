@@ -106,7 +106,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
             HealthCheckGroupVModel hCGroupVMdl = CourseConSettingHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
 
-        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHCCourseConnectionsTitle
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHCCourseConnectionsTitle,
                                                                               Label.stgHealthCheckStatusPassed,
                                                                               1,
                                                                               1,
@@ -136,12 +136,12 @@ private class CourseConSettingHealthCheckVMapper_TEST {
             HealthCheckGroupVModel hCGroupVMdl = CourseConSettingHealthCheckVMapper.getInstance().getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHCCourseConnectionsTitle hCGroupVMdl.label, 'The label of the Course Connection Health Check should be retrieved.');
+        System.assertEquals(Label.stgHCCourseConnectionsTitle, hCGroupVMdl.label, 'The label of the Course Connection Health Check should be retrieved.');
         System.assertEquals(1, hCGroupVMdl.healthCheckItemList.size(), 'No group items should be in the item list as Course Connection is enabled.');
-        System.assertEquals(Label.stgEnableCourseConnectionsTitle hCGroupVMdl.healthCheckItemList[0].setting, 'The setting in the group item should be of Course Connection Enablement');
+        System.assertEquals(Label.stgEnableCourseConnectionsTitle, hCGroupVMdl.healthCheckItemList[0].setting, 'The setting in the group item should be of Course Connection Enablement');
         System.assertEquals(Label.stgHealthCheckStatusFailed, hCGroupVMdl.status, 'The status of the checks should be fail.');
 
-        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHCCourseConnectionsTitle
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHCCourseConnectionsTitle,
                                                                                        Label.stgHealthCheckStatusFailed,
                                                                                        0,
                                                                                        1,
@@ -150,11 +150,11 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        hCGroupVMdl);
         
   
-       CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgEnableCourseConnectionsTitle
+       CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgEnableCourseConnectionsTitle,
                                                                                   'Fail',
                                                                                   Label.stgHealthCheckStatusFailed,
-                                                                                  Label.stgHCCourseConEnable
-                                                                                  Label.stgHCCourseConEnableFix
+                                                                                  Label.stgHCCourseConEnable,
+                                                                                  Label.stgHCCourseConEnableFix,
                                                                                   hCGroupVMdl.healthCheckItemList); 
     }
 
@@ -186,11 +186,11 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hCGroupVMdl);
 
-        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgEnableCourseConnectionsTitle
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgEnableCourseConnectionsTitle,
                                                                                     'Fail',
                                                                                     Label.stgHealthCheckStatusFailed,
-                                                                                    Label.stgHCCourseConEnable
-                                                                                    Label.stgHCCourseConEnableFix
+                                                                                    Label.stgHCCourseConEnable,
+                                                                                    Label.stgHCCourseConEnableFix,
                                                                                     hCGroupVMdl.healthCheckItemList); 
     }
 
