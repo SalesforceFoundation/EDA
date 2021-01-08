@@ -31,8 +31,7 @@
 * @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for AffiliationMappingsHealthCheckVMapper class.
 */
-public with sharing class AffiliationMappingsHealthCheckVMapper_TEST {
-    public AffiliationMappingsHealthCheckVMapper_TEST() {
+@isTest 
+public with sharing class AfflMappingsHealthCheckVMapper_TEST {
 
-    }
 }

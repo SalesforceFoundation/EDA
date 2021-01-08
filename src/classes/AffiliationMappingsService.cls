@@ -68,6 +68,7 @@ public virtual with sharing class AffiliationMappingsService {
     * @description Retrieves an instance of the AffiliationMappingsMapper.
     * @return The instance of AffiliationMappingsMapper.
     ******************************************************************************/
+    @TestVisible
     private AffiliationMappingsMapper locateAffiliationMappingsMapper(){
         return AffiliationMappingsMapper.getInstance();
     }

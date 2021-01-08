@@ -153,7 +153,7 @@ public with sharing class AffiliationMappingsService_TEST {
     private static void locateAffiliationMappingsMapper() {
 
         Test.startTest();
-            AffiliationMappingsMapper accModelSettingsMapper = AccountModelSettingsService.getInstance().locateAffiliationMappingsMapper();
+            AffiliationMappingsMapper accModelSettingsMapper = AffiliationMappingsService.getInstance().locateAffiliationMappingsMapper();
         Test.stopTest();
 
         System.assertEquals(AffiliationMappingsMapper.getInstance(), accModelSettingsMapper, 'Should return the instance of AffiliationMappingsMapper');

@@ -49,7 +49,7 @@
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
         <members>AffiliationMappingsHealthCheckVMapper</members>
-        <members>AffiliationMappingsHealthCheckVMapper_TEST</members>
+        <members>AfflMappingsHealthCheckVMapper_TEST</members>
         <members>AffiliationMappingsMapper</members>
         <members>AffiliationMappingsMapper_TEST</members>
         <members>AffiliationMappingsModel</members>

@@ -71,14 +71,14 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         );
 
         Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
-        List<AffiliationMappingsMapperModel> afflMappingSettingMod = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
+        List<AffiliationMappingsModel> afflMappingSettingMod = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
 
-        for (AffiliationMappingsMapperModel afflMappingMod : afflMappingSettingMod){
+        for (AffiliationMappingsModel afflMappingMod : afflMappingSettingMod){
 
         }
         
         healthCheckGroupVMod.status = 
-            (hlthChkGroupPassedChecks == hlthChkGroupTotalChecks) ? 
+            (healthCheckGroupVMod.passedChecks == healthCheckGroupVMod.totalChecks) ? 
             Label.stgHealthCheckStatusPassed : 
             Label.stgHealthCheckStatusFailed;
 
@@ -94,34 +94,34 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * @return A HealthCheckGroupVModel representing the health check results for 
     * Default, Administrative and Household Accounts.
     **********************************************************************************/ 
-    @TestVisible
-    private HealthCheckGroupVModel combineAffiliationMappingHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList) {
-        String hlthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
-        Integer hlthChkGroupPassedChecks = 0;
-        Integer hlthChkGroupTotalChecks = 0;
+    // @TestVisible
+    // private HealthCheckGroupVModel combineAffiliationMappingHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList) {
+    //     String hlthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
+    //     Integer hlthChkGroupPassedChecks = 0;
+    //     Integer hlthChkGroupTotalChecks = 0;
 
-        List<String> hlthChkGroupExpandedRowsList = new List<String>();
-        List<HealthCheckItemVModel> hlthChkGroupHlthChkItemsList = new List<HealthCheckItemVModel>();
+    //     List<String> hlthChkGroupExpandedRowsList = new List<String>();
+    //     List<HealthCheckItemVModel> hlthChkGroupHlthChkItemsList = new List<HealthCheckItemVModel>();
 
-        for (HealthCheckGroupVModel hlthChkGroupVMod : healthCheckGroupVModelsList) {
-            hlthChkGroupPassedChecks += hlthChkGroupVMod.passedChecks;
-            hlthChkGroupTotalChecks += hlthChkGroupVMod.totalChecks;
+    //     for (HealthCheckGroupVModel hlthChkGroupVMod : healthCheckGroupVModelsList) {
+    //         hlthChkGroupPassedChecks += hlthChkGroupVMod.passedChecks;
+    //         hlthChkGroupTotalChecks += hlthChkGroupVMod.totalChecks;
 
-            hlthChkGroupExpandedRowsList.addAll(hlthChkGroupVMod.expandedRowsList);
-            hlthChkGroupHlthChkItemsList.addAll(hlthChkGroupVMod.healthCheckItemList);
-        }
+    //         hlthChkGroupExpandedRowsList.addAll(hlthChkGroupVMod.expandedRowsList);
+    //         hlthChkGroupHlthChkItemsList.addAll(hlthChkGroupVMod.healthCheckItemList);
+    //     }
 
-        String hlthChkGroupStatus = this.updateHealthCheckStatus(hlthChkGroupPassedChecks, hlthChkGroupTotalChecks);
+    //     String hlthChkGroupStatus = this.updateHealthCheckStatus(hlthChkGroupPassedChecks, hlthChkGroupTotalChecks);
 
-        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(hlthCheckGroupLabel,
-                                                                             hlthChkGroupStatus,
-                                                                             hlthChkGroupPassedChecks,
-                                                                             hlthChkGroupTotalChecks,
-                                                                             hlthChkGroupExpandedRowsList,
-                                                                             hlthChkGroupHlthChkItemsList);
-        hlthChkGroupVMod.healthCheckItemList.sort();
-        return hlthChkGroupVMod;
-    }
+    //     HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(hlthCheckGroupLabel,
+    //                                                                          hlthChkGroupStatus,
+    //                                                                          hlthChkGroupPassedChecks,
+    //                                                                          hlthChkGroupTotalChecks,
+    //                                                                          hlthChkGroupExpandedRowsList,
+    //                                                                          hlthChkGroupHlthChkItemsList);
+    //     hlthChkGroupVMod.healthCheckItemList.sort();
+    //     return hlthChkGroupVMod;
+    // }
 
     /*****************************************************************************
     * @description Retrieve an instance of the AffiliationMappingsService class.
