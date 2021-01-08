@@ -146,6 +146,8 @@
         <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckVModel</members>
         <members>HealthCheckVModel_TEST</members>
+        <members>LookupFieldService</members>
+        <members>LookupFieldService_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
