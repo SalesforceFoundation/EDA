@@ -673,7 +673,6 @@
         <members>Trigger_Handler__c.Usernames_to_Exclude__c</members>
         <name>CustomField</name>
     </types>
-
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
@@ -861,6 +860,7 @@
         <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
+        <members>stgHealthCheckFixNotApplicable</members>
         <members>stgHealthCheckLastRun</members>
         <members>stgHealthCheckLoadingIndicator</members>
         <members>stgHealthCheckRecoFix</members>
