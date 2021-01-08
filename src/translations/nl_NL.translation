@@ -753,6 +753,10 @@
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
+        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <name>stgHealthCheckLoadingIndicator</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>Voor instellingen voor hoger onderwijs raden we het accountmodel 'Administratief' aan. Voor het basis- en middelbaar onderwijs raden we het accountmodel 'Huishouden' aan.</label>
     </customLabels>
@@ -979,10 +983,9 @@
     <customLabels>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
         <label>Als u rapporten of formulevelden had die naar de vorige waarden in het veld Etniciteit verwezen, moet u die updaten.</label>
-    </customLabels>
-    <customLabels>
-        <label><!-- Text that displays to indicate that a component is loading --></label>
-        <name>stgLoadingSpinnerText</name>
+    </customLabels>    <customLabels>
+        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <name>stgHealthCheckLoadingIndicator</name>
     </customLabels>
     <customLabels>
         <name>stgNestedPlanRequirementPP</name>

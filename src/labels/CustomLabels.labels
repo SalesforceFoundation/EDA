@@ -1624,6 +1624,14 @@
         <value>Last Run: {0}</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckLoadingIndicator</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text indicating that an EDA Settings Health Check component is loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckRecoFix</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -2078,14 +2086,6 @@
         <protected>true</protected>
         <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</value>
-    </labels>
-    <labels>
-        <fullName>stgLoadingSpinnerText</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text that displays to indicate that a component is loading</shortDescription>
-        <value>Loading...</value>
     </labels>
     <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>

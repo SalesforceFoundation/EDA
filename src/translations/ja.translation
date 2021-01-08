@@ -753,6 +753,10 @@
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
+        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <name>stgHealthCheckLoadingIndicator</name>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAccountModel</name>
         <label>高等教育機関では、「管理」取引先モデルをお勧めします。K-12 の学校 (幼稚園から高等学校) では、「世帯」取引先モデルをお勧めします。</label>
     </customLabels>
@@ -979,10 +983,6 @@
     <customLabels>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
         <label>[民族] 項目の以前の値を参照していたレポートまたは数式項目がある場合は、それらを更新してください。</label>
-    </customLabels>
-    <customLabels>
-        <label><!-- Text that displays to indicate that a component is loading --></label>
-        <name>stgLoadingSpinnerText</name>
     </customLabels>
     <customLabels>
         <name>stgNestedPlanRequirementPP</name>
