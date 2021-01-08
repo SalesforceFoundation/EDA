@@ -337,10 +337,8 @@ flows:
             6:
                 task: execute_primary_affiliation_mapping_apex
             7:
-                task: deploy_unpackaged_test_metadata
-            8:
                 task: deploy_health_check_config
-            9: 
+            8: 
                 # execute tests in unmanaged package
                 task: run_tests
                 options:

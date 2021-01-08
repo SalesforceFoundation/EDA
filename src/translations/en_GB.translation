@@ -577,6 +577,46 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
+        <name>stgHCAccountModelAdminInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
+        <name>stgHCAccountModelAdminNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <name>stgHCAccountModelDefaultInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
+        <name>stgHCAccountModelDefaultNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
+        <name>stgHCAccountModelHHInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
+        <name>stgHCAccountModelHHNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for unique container Account record type settings --></label>
+        <name>stgHCAccountRecordTypeSettingsUnique</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Administrative and Household Account Record Types aren&apos;t unique --></label>
+        <name>stgHCAccountRecordTypesNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types are same --></label>
+        <name>stgHCAccountRecordTypesNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Administrative and Household Account Record Types are unique --></label>
+        <name>stgHCAccountRecordTypesUnique</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description for an Affiliation mapping in EDA Settings Health Check results --></label>
         <name>stgHCAffiliationMappingSettingDesc</name>
     </customLabels>
@@ -735,6 +775,22 @@
     <customLabels>
         <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
         <name>stgHCCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <name>stgHCRecordTypeInactive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check can&apos;t find the record type --></label>
+        <name>stgHCRecordTypeNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check finds a record type valid --></label>
+        <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
     </customLabels>
     <customLabels>
         <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
@@ -1043,6 +1099,50 @@
     <customLabels>
         <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
         <name>stgReciprocalMethodListSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <name>stgReciprocalMethodValueInversion</name>
+    </customLabels>
+    <customLabels>
+        <label>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</label>
+        <name>stgRefreshAdminAcctNameDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Refresh All Administrative Account Names</label>
+        <name>stgRefreshAdminAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</label>
+        <name>stgRefreshHHAcctNameDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Refresh All Household Account Names</label>
+        <name>stgRefreshHHAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Run Cleanup</label>
+        <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
+        <label>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</label>
+        <name>stgRunCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label>Settings successfully saved.</label>
+        <name>stgSaveSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Select recipient type:</label>
+        <name>stgSelectReciType</name>
+    </customLabels>
+    <customLabels>
+        <label>Send Error Notifications</label>
+        <name>stgSendErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Simple Address Change Treated as Update</label>
+        <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
         <label>Store Errors</label>
