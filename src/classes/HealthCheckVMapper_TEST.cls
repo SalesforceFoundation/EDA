@@ -93,21 +93,6 @@ public class HealthCheckVMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(HealthCheckDefinitionService.getInstance(), healthCheckDefService, 'Should return the instance of HealthCheckDefinitionService.');
-    }    
-
-    /****************************************************************************************************************************
-    * @description Test to verify that updateHealthCheckLastRunDate method return a string representing the current date.
-    ****************************************************************************************************************************/
-    @isTest 
-    private static void updateHealthCheckLastRunDateValid(){
-
-        FeatureParameterMapper.instance = new STUB_FeatureParameterDateModel();
-
-        Test.startTest();
-        String lastRunDate = HealthCheckVMapper.getInstance().updateHealthCheckLastRunDate();
-        Test.stopTest();
-
-        System.assertEquals(Date.today().addDays(-3).format(), lastRunDate, 'Last run date should be set to 3 days before current date.');
     }
 
     /****************************************************************************************************************************
@@ -132,6 +117,25 @@ public class HealthCheckVMapper_TEST {
             System.assertEquals('Test Classname', healthChkViewMod.healthCheckDefinitionList[i].className, 'Classname of health check should be \'Test Classname\'');
             System.assertEquals('TEST', healthChkViewMod.healthCheckDefinitionList[i].namespace, 'Classname of health check should be \'TEST\'');
         }  
+    }
+
+    /****************************************************************************************************************************
+    * @description Test to verify that getHealthCheckViewModel throws AuraHandledException
+    ****************************************************************************************************************************/
+    @isTest 
+    private static void getHealthCheckViewModelException(){
+
+        FeatureParameterMapper.instance = new STUB_FeatureParameterMapperError();
+        HealthCheckDefinitionService.instance = new STUB_HealthCheckDefinitionService();
+
+        try {
+            Test.startTest();
+                HealthCheckVModel healthChkViewMod = HealthCheckVMapper.getInstance().getHealthCheckViewModel();
+            Test.stopTest();
+            System.assert(false, 'Should throw an exception');
+        } catch (AuraHandledException ex) {
+            System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
+        } 
     }
 
 
@@ -166,6 +170,16 @@ public class HealthCheckVMapper_TEST {
             return healthChkDefModelsList;
         }
     }
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the exception for FeatureParameterMapper
+    **************************************************************************************************************************************/ 
+    private class STUB_FeatureParameterMapperError extends FeatureParameterMapper {
+        
+        @TestVisible
+        public override FeatureParameterModel getFeatureParameterModel(String featureParameter){
+            TelemetryParameterName telemetryParameterName = FeatureParameterMapper.TelemetryParameterByString.get(featureParameter);
+            throw new FeatureParameterMapperException('Feature Parameter ' + String.valueOf(telemetryParameterName) + ' is not defined.');
+        }
+    }
 }
-
-
