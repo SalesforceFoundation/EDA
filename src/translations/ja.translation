@@ -905,191 +905,191 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>高等教育機関では、「管理」取引先モデルをお勧めします。K-12 の学校 (幼稚園から高等学校) では、「世帯」取引先モデルをお勧めします。</label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>関連付けられたすべての取引先責任者が削除された場合に自動的に削除される取引先のレコードタイプ。</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>複数の住所の管理をサポートする取引先レコードタイプ。</label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>管理取引先で使用する取引先レコードタイプ。この設定は、住所レコードの管理と管理取引先の命名形式に影響します。</label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>選択した場合、プログラム登録の終了日が新しい所属レコードの終了日にコピーされます。選択しない場合、所属の終了日は空白のままになります。</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>選択した場合、プログラム登録の開始日が新しい所属レコードの開始日にコピーされます。選択しない場合、所属の開始日は空白のままになります。</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>プログラム登録で所属を作成</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>既存の所属なしでプログラム登録レコードが作成された場合、以下で指定された値で所属レコードが作成されます。</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>削除されたプログラム登録に関連する所属に対して設定される状況。</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>プログラム登録の削除</label>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for how Program Enrollment delete affects Affiliation --></label>
+        <label>削除されたプログラム登録の所属レコードの処理方法を以下で指定します。関連する所属レコードを削除するか、その状況を更新することができます。</label>
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for enable set role on Affiliations --></label>
+        <label>選択した場合、新しい所属の役割は、[作成された所属の役割] で定義された値に設定されます。選択しない場合、所属の役割は空白のままです。</label>
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations role --></label>
+        <label>プログラム登録で作成された所属に対して設定される役割。</label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>プログラム登録で作成された所属に対して設定される状況。</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts address mgmt --></label>
+        <label>取引先の複数の住所の管理を有効にするには、このオプションを選択します。</label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Preferred Email --></label>
+        <label>取引先責任者のメール連絡先を必要としません。</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>取引先責任者の電話連絡先を必要としません。</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>[電話連絡先] 項目を取引先責任者の標準の [電話] 項目と同期し、電話連絡先の値が存在することを検証します。</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation msg for Run Copy button on Courses --></label>
+        <label>プロセスがキューに正常に登録されました。ジョブの完了時にメールが送信されます。</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections backfill --></label>
+        <label>履修科目のバックフィルは、履修科目を初めて有効化する場合にのみ、かつ、履修科目機能の有効化前に開講科目と履修科目 (登録) が存在していた組織でのみ、使用する必要があります。バックフィルでは、履修科目 (登録) または開講科目で教職員としてリストされていたすべての取引先責任者が [デフォルトの教職員レコードタイプ] に変換された後、残りの履修科目 (登録) に存在する取引先責任者が [デフォルトの有効な学生レコードタイプ] に変換されます。</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses description field data migration --></label>
+        <label>EDA 1.30 では、より長い科目説明に対応するように [拡張説明] 項目が追加されました。</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>このユーティリティでは、[科目説明] 項目から [拡張説明] 項目に値がコピーされます。処理に時間がかかる場合がありますが、このページを安全に閉じることができます。処理は引き続きバックグラウンドで実行されます。</label>
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>科目に [拡張説明] の値がすでに含まれる場合、その値は上書きされません。</label>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>処理が完了したら、[説明] 項目を参照するアプリケーションのページレイアウトと他の領域を更新してください。</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>ユーザが取引先責任者の [第一言語] 参照項目を設定した場合に、新しく作成される取引先責任者の言語レコードで自動的に設定される [流暢さ] の値。</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>教職員の履修科目を作成するときのデフォルトのレコードタイプ。</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>有効な学生の履修科目を作成するときのデフォルトのレコードタイプ。</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections field isn&apos;t selected --></label>
+        <label>履修科目のバックフィルを実行する前に履修科目を有効化する必要があります。</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections Field isn&apos;t selected --></label>
+        <label>レコードタイプを編集する前に履修科目を有効化する必要があります。</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>履修科目レコードでは取引先責任者を開講科目に接続します。この機能を有効化すると、ユーザは取引先責任者の種別 (教職員または学生) を選択して、その履修科目を作成できます。この機能を有効化する場合、以下の [デフォルトの有効な学生レコードタイプ] と [デフォルトの教職員レコードタイプ] も設定する必要があります。この機能を初めて有効化する場合、履修科目のバックフィルを実行することを強くお勧めします。</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>メール連絡先または電話連絡先が指定されていない既存の取引先責任者の場合、クリーンアップにより、取引先責任者の標準またはカスタムのメールアドレスまたは電話番号のいずれかが連絡先値として設定されます。</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>製品のエラー処理フレームワークを無効にする場合に選択します。</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>選択した場合、製品により生成されたエラーの通知が投稿されます。</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>メールエラー通知の受信者を指定します。有効な値は [すべてのシステム管理者]、組織のユーザの ID、または Chatter グループの ID です。入力できる値は 1 つのみです。</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>[人種] 項目が追加される前に組織で [民族] 項目が使用され、EDA バージョン 1.28 の時点で [民族] 項目から値が削除された場合のみ、民族および人種のバックフィルを使用します。取引先責任者の [民族] 項目の値が [ヒスパニックまたはラテン系ではない] または [ヒスパニックまたはラテン系] に一致しない場合、バックフィルにより値が [人種] 項目にコピーされます。標準選択リスト値と、追加された可能性があるカスタム値の両方がコピーの対象になります。</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>選択すると、管理取引先と世帯取引先の住所管理が有効になります。</label>
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>世帯取引先で使用する取引先レコードタイプ。この設定は、住所レコードの管理と世帯取引先の命名形式に影響します。</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>[人種] 項目で使用できるようにする [民族] 項目に組織がカスタム選択リスト値を以前追加している場合、そのカスタム選択リスト値を [人種] 項目にコピーします。</label>
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Program Plans Settings --></label>
+        <label>選択すると、プラン要件でプログラムプランまたは親プラン要件を指定できます。ただし、この両方を指定することはできません。プログラムプランと親プラン要件の両方を指定した場合、どちらか 1 つのみを選択するまで、エラーメッセージが出力され、保存できません。</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>選択すると、団体取引先の住所管理が有効になります。</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>自動作成されたリレーションでは、デフォルトで重複が排除されるため、2 つの取引先責任者間で重複リレーションレコードが作成されなくなります。[自動作成された重複リレーションを許可] を選択すると、この動作が無効になり、2 つの取引先責任者間で同じ種別の複数のリレーションが許可されます。</label>
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>相互関係の作成時に種別項目を入力するために使用する方法。「リスト設定」では、[相互関係] タブで [男性]、[女性]、または [どちらでもない] の値で定義されたカスタム設定が使用されます。「値反転」では、元のリレーションレコードの種別が必要に応じて反転します。たとえば、元のリレーションが親-子の場合、相互関係は子-親になります。</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>[ヒスパニックまたはラテン系] と [ヒスパニックまたはラテン系ではない] を除き、[民族] 項目からすべての選択リスト値を削除してください。値を既存のレコードから完全に削除するのではなく、削除する各値を残りの有効な値のいずれかに置き換えることをお勧めします。EDA バージョン 1.28 の時点では、有効な [民族] の値は [ヒスパニックまたはラテン系ではない] と [ヒスパニックまたはラテン系] のみです。</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>1 つの取引先責任者または取引先の住所項目の変更が既存の住所の更新として扱われます (新しい住所オブジェクトが作成されない)。また、空白や大文字/小文字の変更も更新として扱われます。</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>選択すると、エラーがカスタムエラーオブジェクトに保存されます。エラーオブジェクトのタブを作成すると、保存されたすべてのエラーのリストを表示できます。</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>[民族] 項目の以前の値を参照していたレポートまたは数式項目がある場合は、それらを更新してください。</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Program Plans Settings --></label>
+        <label>ネストされたプラン要件のプログラムプランを検証</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1298,10 +1298,6 @@
         <label>開講科目スケジュールの開始時刻が、関連付けらた時間ブロックの開始時刻に一致しないため、開講科目スケジュールを保存できません。開始時刻を編集するか、異なる時間ブロックを指定するか、時間ブロックを指定しないでください。</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
-    <customTabs>
-        <label><!-- EDA Health Check --></label>
-        <name>EDA_Health_Check</name>
-    </customTabs>
     <customTabs>
         <label>EDA 設定</label>
         <name>HEDA_Settings</name>

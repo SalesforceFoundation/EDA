@@ -905,191 +905,191 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Para instituciones educativas superiores, recomendamos el modelo de cuenta &quot;Administrativo&quot;. Para escuelas de primaria, recomendamos el modelo de cuenta &quot;Hogar&quot;.</label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Tipos de registros de cuentas que se eliminarán automáticamente si se han eliminado sus contactos asociados.</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Los tipos de registro de cuenta compatibles con la gestión de múltiples direcciones.</label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>El tipo de registro de Cuenta utilizado para Cuentas administrativas. Esta configuración afecta a la gestión de registros de dirección y el formato de nomenclatura de Cuentas administrativas.</label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Si se selecciona, la Fecha de finalización de Inscripción de programa se copia en la Fecha de finalización de nuevos registros Afiliación. En caso contrario, la Fecha de finalización de Afiliación se deja en blanco.</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Si se selecciona, la Fecha de inicio de Inscripción de programa se copia en la Fecha de inicio de nuevos registros Afiliación. En caso contrario, la Fecha de inicio de Afiliación se deja en blanco.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Afiliaciones creadas con inscripciones del programa</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Cuando un registro Inscripción de programa se crea sin una afiliación existente, se crea un registro Afiliación con los valores especificados a continuación.</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>El Estado establecido en la afiliación relacionada con una inscripción de programa eliminada.</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Eliminaciones de inscripción del programa</label>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for how Program Enrollment delete affects Affiliation --></label>
+        <label>Especifique cómo desea que se traten los registros Afiliación de inscripciones de programas eliminadas. El registro Afiliación relacionado puede eliminarse o actualizarse su estado.</label>
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for enable set role on Affiliations --></label>
+        <label>Si se selecciona, establezca la función de la nueva afiliación al valor definido en Función para afiliaciones creadas. De lo contrario, deje la función de la afiliación en blanco.</label>
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations role --></label>
+        <label>La función establecida en la afiliación creada con una inscripción de programa.</label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>El estado establecido en la afiliación creada con una inscripción de programa.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts address mgmt --></label>
+        <label>Seleccione esta opción para activar la gestión de múltiples direcciones para Contactos.</label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Preferred Email --></label>
+        <label>No requiere que Contactos tenga un Correo electrónico preferido.</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>No requiere que Contactos tenga un Teléfono preferido.</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Sincroniza el campo Teléfono de preferencia con el campo Teléfono estándar del contacto y valida que el valor en Teléfono de preferencia existe y tiene un valor.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation msg for Run Copy button on Courses --></label>
+        <label>El proceso se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el trabajo.</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections backfill --></label>
+        <label>El Relleno de enlaces de curso se debe utilizar únicamente al activar enlaces de curso por primera vez y únicamente en organizaciones donde Ofertas de cursos y Enlaces de curso (Inscripciones) existían antes de activar la función Enlaces de curso. El relleno convierte todos los contactos que se indicaron como facultad en un Enlace de curso (Inscripción) u Oferta de curso al Tipo de registro de facultad predeterminado. El relleno a continuación convierte los contactos en los enlaces de curso restantes (Inscripciones) al Tipo de registro de estudiante activo predeterminado.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses description field data migration --></label>
+        <label>En EDA 1.30, se agregó el campo Descripción ampliada para adaptarse a descripciones de curso más largas.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Esta utilidad copia valores del campo Descripción de curso en el campo Descripción ampliada. Este proceso podría tardar, pero puede cerrar esta página de forma segura y el proceso continuará en segundo plano.</label>
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Si un curso ya tiene un valor para Descripción ampliada, no lo sobrescribimos.</label>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Una vez completado el proceso, recuerde actualizar formatos de página y otras áreas de la aplicación que hacen referencia a los campos Descripción.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>El valor de Fluidez se establece automáticamente en registros de Idioma de contacto recién creados cuando los usuarios establecen el campo de búsqueda Idioma principal en un contacto.</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>El tipo de registro predeterminado al crear Enlaces de curso para un miembro de la facultad.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>El tipo de registro predeterminado al crear Enlaces de curso para un estudiante activo.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections field isn&apos;t selected --></label>
+        <label>Debe activar Enlaces de curso antes de ejecutar el Relleno de enlaces de curso.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections Field isn&apos;t selected --></label>
+        <label>Debe activar Enlaces de curso antes de modificar tipos de registro.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Los registros Conexiones de curso conectan un contacto con una oferta de curso. Al activar esta función se permite a los usuarios elegir el tipo de contacto (Facultad o Estudiante) para crear el Enlace del curso. Cuando activa esta función, también necesita establecer el Tipo de registro de estudiante activo predeterminado y el Tipo de registro de facultad predeterminado a continuación. Si está activando esta función por primera vez, recomendamos encarecidamente que ejecute el Relleno de enlace de curso.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Para Contactos existentes que no especificaron un Correo electrónico preferido o un Teléfono preferido, la limpieza garantiza que una de las direcciones de correo electrónico estándar o personalizadas o los números de teléfono están establecidos como el valor preferido.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Seleccione para desactivar el marco de trabajo de control de errores del producto.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Si se selecciona, las notificaciones se publican para errores generados por el producto.</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Especifique quién debe recibir las notificaciones de errores por correo electrónico. Los valores válidos son &quot;Todos los administradores del sistema&quot;, el Id. de un usuario de su organización, o el Id. de un grupo de Chatter. Solo puede introducir un valor.</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Utilice el relleno Etnia y Raza solo si su organización utilizó el campo Etnia antes de que se agregara el campo Raza y se eliminaran valores del campo Etnia a partir de la versión 1.28 de EDA. Si el valor en le campo Etnia del Contacto no es igual a “No Hispano o Latino” o “Hispano o Latino”, el Relleno copia el valor en el campo Raza. Ambos valores de lista de selección estándar y cualquier valor personalizado que pudo agregar se pueden copiar.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Activa la gestión de direcciones para cuentas administrativas y domésticas cuando se selecciona.</label>
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>El tipo de registro de Cuenta utilizado para Cuentas domésticas. Esta configuración afecta a la gestión de registros Dirección y el formato de nomenclatura de Cuentas domésticas.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Si su organización agregó anteriormente valores de lista de selección personalizados al campo Etnia que desea que esté disponible en el campo Raza, copie esos valores de lista de selección personalizados en el campo Raza.</label>
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Program Plans Settings --></label>
+        <label>Al seleccionar Requisitos de plan puede especificar un Plan de programa o un Requisito de plan principal, pero no ambos. Si especifica un Plan de programa y un Requisito de plan principal un error evitará que guarde hasta que se seleccione solo uno.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Habilita direcciones para Cuenta Organización cuando esta seleccionado.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>Se anulan automáticamente los duplicados de las relaciones creadas automáticamente de forma predeterminada para evitar que se creen registros de relaciones duplicados entre dos contactos. Seleccione Permitir relaciones de duplicados creadas automáticamente para desactivar este comportamiento y permitir la creación de múltiples relaciones del mismo tipo entre dos contactos.</label>
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>El método utilizado para rellenar el campo de tipo al crear una relación recíproca. &quot;Configuración de lista&quot; utiliza la configuración personalizada definida en la ficha Relaciones recíprocas con valores masculinos, femeninos y neutros. &quot;Inversión de valores&quot; invierte el tipo del registro Relación original cuando sea apropiado. Por ejemplo, si la relación que origina es Padre-Hijo, la Relación reciproca será Hijo-Padre.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Elimine todos los valores de lista de selección del campo Etnia excepto para “Hispano o Latino” y “No Hispano o Latino”. Le recomendamos sustituir cada valor eliminado con uno de los valores válidos restantes, en vez de eliminarlos por completo de los registros existentes. A partir de la versión 1.28 de EDA, los únicos valores válidos de Etnia con “No Hispano o Latino” e “Hispano o Latino”.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Trata los cambios en campos de dirección de Contacto o Cuenta únicos como actualizaciones a la dirección existente (por ejemplo, no se crea ningún objeto Dirección nuevo). Además, hace que los cambios de caso y espacio en blanco se traten como actualizaciones.</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Cuando se selecciona, los errores se almacenan en un objeto Error personalizado. Puede crear una ficha para el objeto Error para ver una lista de todos los errores almacenados.</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Si tenía informes o campos de fórmula que hacían referencia a los valores anteriores en el campo Etnia, actualícelos.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Program Plans Settings --></label>
+        <label>Validar plan programa para Requisitos de planes anidados</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1296,10 +1296,6 @@
         <label>No podemos guardar la Programación de ofertas de cursos porque su hora de inicio no coincide con la hora de inicio de su bloque de tiempo asociado. Modifique la hora de inicio, especifique un bloque de tiempo diferente o no especifique un bloque de tiempo.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
-    <customTabs>
-        <label><!-- EDA Health Check --></label>
-        <name>EDA_Health_Check</name>
-    </customTabs>
     <customTabs>
         <label>Configuración de EDA</label>
         <name>HEDA_Settings</name>

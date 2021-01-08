@@ -905,191 +905,191 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Voor instellingen voor hoger onderwijs raden we het accountmodel &apos;Administratief&apos; aan. Voor het basis- en middelbaar onderwijs raden we het accountmodel &apos;Huishouden&apos; aan.</label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Recordtypen voor accounts die automatisch worden verwijderd als alle gekoppelde contactpersonen zijn verwijderd.</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>De accountrecordtypen die beheer van meerdere adressen ondersteunen.</label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Het accountrecordtype dat voor administratieve accounts wordt gebruikt. Deze instelling is van invloed op het beheer van adresrecords en de naamindeling van administratieve accounts.</label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Indien geselecteerd, wordt de einddatum voor de programma-inschrijving gekopieerd naar de einddatum op nieuwe affiliatierecords. In andere gevallen blijft de einddatum voor de affiliatie leeg.</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Indien geselecteerd, wordt de begindatum voor de programma-inschrijving gekopieerd naar de begindatum op nieuwe affiliatierecords. In andere gevallen blijft de begindatum voor de affiliatie leeg.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Bij programma-inschrijving gemaakte affiliaties</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Als een programma-inschrijvingsrecord wordt gemaakt zonder bestaande affiliatie, maakt u een affiliatierecord met de hieronder opgegeven waarden.</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>De status die wordt ingesteld op de affiliatie die aan een verwijderde programma-inschrijving is gerelateerd.</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Verwijdering van programma-inschrijvingen</label>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for how Program Enrollment delete affects Affiliation --></label>
+        <label>Geef hieronder op wat u wilt dat er gebeurt met affiliatierecords voor verwijderde programma-inschrijvingen. De gerelateerde affiliatierecord kan worden verwijderd of de status ervan kan worden geüpdatet.</label>
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for enable set role on Affiliations --></label>
+        <label>Indien geselecteerd, stelt u de rol van de nieuwe affiliatie in op de waarde die is gedefinieerd in Rol voor gemaakte affiliaties. In andere gevallen laat u de rol van de affiliatie leeg.</label>
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations role --></label>
+        <label>De rol die wordt ingesteld op de affiliatie die bij een programma-inschrijving wordt gemaakt.</label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>De status die wordt ingesteld op de affiliatie die bij een programma-inschrijving wordt gemaakt.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts address mgmt --></label>
+        <label>Selecteer deze optie om beheer van meerdere adressen mogelijk te maken voor contactpersonen.</label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Preferred Email --></label>
+        <label>Geen voorkeurs-e-mail vereisen voor contactpersonen.</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Geen voorkeurstelefoonnummer vereisen voor contactpersonen.</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Synchroniseert het veld Voorkeurstelefoonnummer naar het standaard telefoonnummerveld van de contactpersoon en valideert dat de waarde in Voorkeurstelefoonnummer bestaat.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation msg for Run Copy button on Courses --></label>
+        <label>Het proces is in de wachtrij geplaatst. Er wordt een e-mail verzonden bij voltooiing van de taak.</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections backfill --></label>
+        <label>Gebruik de backfill voor cursusverbindingen alleen als u cursusverbindingen voor het eerst inschakelt voor organisaties waarin al voor het inschakelen van de cursusverbindingsfunctie een cursusaanbod en cursusverbindingen (inschrijvingen) bestonden. De backfill zet alle contactpersonen die op een cursusverbinding (inschrijving) of cursusaanbod als staflid stonden vermeld om naar het standaard recordtype voor stafleden. De backfill zet dan de contactpersonen op de resterende cursusverbindingen (inschrijvingen) om naar het standaard recordtype voor actieve studenten.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses description field data migration --></label>
+        <label>In EDA 1.30 is het veld Uitgebreide beschrijving toegevoegd om ruimte te bieden voor langere cursusbeschrijvingen.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Deze functionaliteit kopieert waarden uit het veld Cursusbeschrijving naar het veld Uitgebreide beschrijving. Dit proces kan enige tijd in beslag nemen, maar u kunt deze pagina veilig afsluiten terwijl het proces op de achtergrond verder wordt uitgevoerd.</label>
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Als een cursus al een waarde voor Uitgebreide beschrijving heeft, wordt deze niet overschreven.</label>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Vergeet na voltooiing van het proces niet om paginalay-outs en andere delen van de applicatie die naar de beschrijvingsvelden verwijzen te updaten.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>De beheersingswaarde die automatisch wordt ingesteld voor nieuw gemaakte records voor de taal van een contactpersoon wanneer gebruikers het opzoekveld Primaire taal instellen voor een contactpersoon.</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Het standaard recordtype bij het maken van cursusverbindingen voor een staflid.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Het standaard recordtype bij het maken van cursusverbindingen voor actieve studenten.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections field isn&apos;t selected --></label>
+        <label>U moet cursusverbindingen inschakelen voordat u de backfill voor cursusverbindingen uitvoert.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections Field isn&apos;t selected --></label>
+        <label>U moet cursusverbindingen inschakelen voordat u recordtypen bewerkt.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Cursusverbindingsrecords verbinden een contactpersoon met een cursusaanbod. Als u deze functie inschakelt, kunnen gebruikers het type contactpersoon (staflid of student) kiezen waarvoor ze de cursusverbinding willen maken. Als u deze functie inschakelt, moet u ook het standaard recordtype voor actieve student en het standaard recordtype voor staflid hieronder instellen. Als u deze functie voor het eerst inschakelt, raden we u ten zeerste aan om de backfill voor cursusverbindingen uit te voeren.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>De opschoning zorgt ervoor dat bij bestaande contactpersonen die geen voorkeurs-e-mail of voorkeurstelefoonnummer hebben opgegeven een van de standaard of aangepaste e-mailadressen of telefoonnummers wordt ingesteld als de voorkeurswaarde.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Selecteer dit om het foutafhandelingsraamwerk van het product uit te schakelen.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Als dit is geselecteerd, worden meldingen gepost voor door het product gegenereerde fouten.</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Specificeer wie e-mails met foutmeldingen moet ontvangen. Geldige waarden zijn &apos;Alle systeembeheerders&apos;, de ID van een gebruiker in uw organisatie of de ID van een Chatter-groep. U kunt slechts één waarde invoeren.</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Gebruik de backfill voor etniciteit en ras alleen als uw organisatie het veld Etniciteit al gebruikte voordat het veld Ras werd toegevoegd en er in EDA-versie 1.28 waarden uit het veld Etniciteit zijn verwijderd. Als de waarde in het veld Etniciteit van de contactpersoon niet gelijk is aan &apos;Niet Spaans of Latino&apos; of &apos;Spaans of Latino&apos;, kopieert de backfill de waarde naar het veld Ras. Zowel standaard keuzelijstwaarden als alle toegevoegde aangepaste waarden kunnen worden gekopieerd.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Indien geselecteerd, wordt adresbeheer ingeschakeld voor administratieve en huishoudenaccounts.</label>
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Het accountrecordtype dat voor huishoudenaccounts wordt gebruikt. Deze instelling is van invloed op het beheer van adresrecords en de naamindeling van huishoudenaccounts.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Als uw organisatie eerder aangepaste keuzelijstwaarden aan het veld Etniciteit heeft toegevoegd die u beschikbaar wilt maken in het veld Ras, kopieert u die aangepaste keuzelijstwaarden naar het veld Ras.</label>
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Program Plans Settings --></label>
+        <label>Als dit is geselecteerd, kunnen planvereisten een programmaplan of een bovenliggende planvereiste specificeren, maar niet beide. Als u toch beide opgeeft, ziet u een foutbericht en kunt u pas opslaan als er slechts één is geselecteerd.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Indien geselecteerd, wordt adresbeheer ingeschakeld voor organisatieaccounts.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>Automatisch gemaakte relaties worden standaard gededupliceerd om te voorkomen dat er dubbele relatierecords worden gemaakt tussen twee contactpersonen. Selecteer &apos;Autom. gem. duplicaatrelaties toestaan&apos; om dit gedrag uit te schakelen en meerdere relaties van hetzelfde type tussen twee contactpersonen toe te staan.</label>
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>De methode die wordt gebruikt om het typeveld in te vullen bij het maken van een wederzijdse relatie. &apos;Instellingen lijst&apos; gebruikt de aangepaste instellingen die op het tabblad Wederzijdse relaties zijn gedefinieerd met de waarden Man, Vrouw en Neutraal. &apos;Waarde-inversie&apos; keert waar van toepassing het type op de oorspronkelijke relatierecord om. Als de oorspronkelijke relatie bijvoorbeeld ouder-kind is, wordt de wederzijdse relatie kind-ouder.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Verwijder alle keuzelijstwaarden uit het veld Etniciteit behalve &apos;Spaans of Latino&apos; en &apos;Niet Spaans of Latino&apos;. We raden u aan om alle verwijderde waarden te vervangen door een van de resterende geldige waarden, in plaats van ze gewoonweg van bestaande records te verwijderen. Sinds EDA-versie 1.28 zijn de enige geldige etniciteitswaarden &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos;.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Ziet wijzigingen van enkele adresvelden voor een contactpersoon of account als updates van het bestaande adres (d.w.z. er wordt geen nieuw adresobject gemaakt). Wijzigingen van spaties en hoofd- of kleine letters worden ook als updates gezien.</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Indien geselecteerd, worden fouten bewaard in een aangepast foutenobject. U kunt een tabblad voor het foutenobject maken om een lijst van alle bewaarde fouten te bekijken.</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Als u rapporten of formulevelden had die naar de vorige waarden in het veld Etniciteit verwezen, moet u die updaten.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Program Plans Settings --></label>
+        <label>Programmaplan voor geneste planvereisten valideren</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1298,10 +1298,6 @@
         <label>Het rooster voor het cursusaanbod kan niet worden opgeslagen omdat de begintijd niet overeenkomt met de begintijd van het gekoppelde tijdblok. Bewerk de begintijd, geef een ander tijdblok op of geef geen tijdblok op.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
-    <customTabs>
-        <label><!-- EDA Health Check --></label>
-        <name>EDA_Health_Check</name>
-    </customTabs>
     <customTabs>
         <label>EDA-instellingen</label>
         <name>HEDA_Settings</name>

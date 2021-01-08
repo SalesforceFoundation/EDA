@@ -905,191 +905,191 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Korkeakouluille suosittelemme hallintatili-mallia. K-12-kouluille suosittelemme kotitaloustili-mallia.</label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Tilien tietuetyypit, jotka poistetaan automaattisesti, jos kaikki niihin liittyvät yhteyshenkilöt on poistettu.</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Tilitietueen tyypit, jotka tukevat monien osoitteiden hallintaa.</label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Hallintatileihin käytetty tilitietueen tyyppi. Tämä asetus vaikuttaa osoitetietueiden hallintaan ja hallintatilien nimeämismuotoon.</label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Jos tämä on valittuna, ohjelman rekisteröinnin päättymispäivä kopioidaan uusien jäsenyystietueiden päättymispäiväksi. Muussa tapauksessa jäsenyyden päättymispäivä jätetään tyhjäksi.</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Jos tämä on valittuna, ohjelman rekisteröinnin alkamispäivä kopioidaan uusien jäsenyystietueiden alkamispäiväksi. Muussa tapauksessa jäsenyyden alkamispäivä jätetään tyhjäksi.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Ohjelmaan ilmoittautumisella luodut jäsenyydet</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Kun ohjelmaan ilmoittautumistietue luodaan ilman olemassa olevaa jäsenyyttä, luo jäsenyystietue alla määritellyillä arvoilla.</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>Jäsenyyteen asetettu tila, joka liittyy poistettuun ohjelmaan ilmoittautumiseen.</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Ohjelmaan ilmoittautumisen poistamiset</label>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for how Program Enrollment delete affects Affiliation --></label>
+        <label>Määritä alla miten haluat, että poistettujen ohjelmaan ilmoittautumisten jäsenyystietueet käsitellään. Liittyvä jäsenyystietue voidaan joko poistaa tai sen tila voidaan päivittää.</label>
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for enable set role on Affiliations --></label>
+        <label>Jos tämä on valittuna, aseta uuden jäsenyyden rooli arvoon, joka on määritetty kohdassa Luotujen jäsenyyksien rooli. Muussa tapauksessa jätä jäsenyyden rooli tyhjäksi.</label>
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations role --></label>
+        <label>Ohjelmaan ilmoittautumisella luotuun jäsenyyteen asetettu rooli.</label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>Ohjelmaan ilmoittautumisella luotuun jäsenyyteen asetettu tila.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts address mgmt --></label>
+        <label>Valitse tämä vaihtoehto, jos haluat ottaa käyttöön yhteyshenkilöiden monien osoitteiden hallinnan.</label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Preferred Email --></label>
+        <label>Älä vaadi yhteyshenkilöiltä ensisijaista sähköpostiosoitetta.</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Älä vaadi yhteyshenkilöiltä ensisijaista puhelinta.</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Synkronoi ensisijainen puhelin -kenttä yhteyshenkilön vakiopuhelin-kenttään ja tarkista, että ensisijaisen puhelimen arvo on olemassa ja että sillä on arvo.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation msg for Run Copy button on Courses --></label>
+        <label>Prosessi asettaminen jonoon onnistui. Työn valmistuttua siitä lähetetään sähköposti.</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections backfill --></label>
+        <label>Kurssiyhteyksien täyttöä tulisi käyttää vain, kun kurssiyhteydet otetaan käyttöön ensimmäistä kertaa, ja vain organisaatioissa, joissa kurssitarjonta ja kurssiyhteydet (ilmoittautumiset) oli olemassa ennen kurssiyhteydet-ominaisuuden käyttöönottoa. Täyttö täyttää kaikki yhteyshenkilöt, jotka lueteltiin opetushenkilöstöksi kurssiyhteydessä (ilmoittautumisessa) tai kurssitarjouksessa opetushenkilöstön oletustietuetyypiksi. Tällöin täyttö muuntaa jäljellä olevien kurssiyhteyksien (ilmoittautumiset) yhteyshenkilöt aktiiviseksi oletusarvoiseksi opiskelijatietueen tyypiksi.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses description field data migration --></label>
+        <label>Kohdassa EDA 1.30 lisättiin laajennettu kuvaus -kenttä pidempien kurssikuvausten varalta.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Tämä apuohjelma kopioi arvot kurssikuvaus-kentästä laajennettu kuvaus-kenttään. Tämä prosessi voi kestää jonkin aikaa, mutta voit sulkea tämän sivun turvallisesti ja prosessi jatkuu taustalla.</label>
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Jos kurssilla on jo laajennetun kuvauksen arvo, emme korvaa sitä.</label>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Kun prosessi on valmis, muista päivittää sivuasettelut ja muut sovelluksen alueet, jotka viittaavat kuvauskenttiin.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Sujuvuusarvo asetetaan uusille yhteyshenkilön kielitietueille automaattisesti, kun käyttäjät asettavat ensisijainen kieli -hakukentän yhteyshenkilölle.</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Oletusarvoinen tietuetyyppi, kun luodaan kurssiyhteyksiä opetushenkilöstön jäsenelle.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Oletusarvoinen tietuetyyppi, kun luodaan kurssiyhteyksiä aktiivisille opiskelijoille.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections field isn&apos;t selected --></label>
+        <label>Kurssiyhteydet on otettava käyttöön ennen kurssiyhteyksien täyttö -toiminnon suorittamista.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections Field isn&apos;t selected --></label>
+        <label>Kurssiyhteydet on otettava käyttöön ennen tietuetyyppien muokkaamista.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Kurssiyhteyksien tietueet yhdistävät yhteyshenkilön kurssitarjontaan. Tämän ominaisuuden ottaminen käyttöön antaa käyttäjien valita yhteyshenkilötyypin (opetushenkilöstö tai opiskelija), jolle kurssiyhteys luodaan. Kun otat tämän ominaisuuden käyttöön, sinun on myös asetettava alla oletusarvoinen aktiivinen opiskelijatietueen tyyppi ja opetushenkilöstön oletustietuetyyppi. Jos otat tämän ominaisuuden käyttöön ensimmäistä kertaa, suosittelemme, että suoritat kurssiyhteyksien täyttö -ominaisuuden.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Siivous varmistaa, että yksi yhteyshenkilön vakio- tai mukautetuista sähköpostiosoitteista tai puhelinnumeroista asetetaan ensisijaiseksi arvoksi niille yhteyshenkilöille, jotka eivät ole määrittäneet ensisijaista sähköpostiosoitetta tai ensisijaista puhelinta.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Valinnalla poistat tuotteen virhekäsittelykehyksen käytöstä.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Jos tämä on valittuna, lähetetään ilmoitukset tuotteen luomista virheistä.</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Määritä kenelle virheilmoitukset lähetetään sähköpostilla. Kelvolliset arvot ovat kaikki pääkäyttäjät, organisaation käyttäjän tunnus tai Chatter-ryhmän tunnus. Voit syöttää vain yhden arvon.</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Käytä etnistä alkuperää ja rodun täyttöä vain, jos organisaatio käytti etnisyyskenttää ennen rotukentän lisäämistä ja arvot poistettiin etnisyyskentästä EDA-versiosta 1.28 lähtien. Jos yhteyshenkilön etnisyyskentän arvo ei ole yhtä suuri kuin ”ei latinalaisamerikkalainen tai latino” tai “latinalaisamerikkalainen tai latino”, täyttö kopioi arvon rotukenttään. Sekä tavalliset valintaluettelon arvot että mahdollisesti lisätyt mukautetut arvot voidaan kopioida.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Valittuna ottaa hallinta- ja kotitaloustlien osoitteenhallinnan käyttöön.</label>
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Kotitaloustileille käytetty tilin tietuetyyppi. Tämä asetus vaikuttaa osoitetietueiden hallintaan ja kotitaloustilien nimeämismuotoon.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Jos organisaatio lisäsi aiemmin mukautettuja valintaluettelon arvoja etnisyyskenttään, jonka haluat käyttää rotukentässä, kopioi nämä mukautetut valintaluettelon arvot rotukenttään.</label>
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Program Plans Settings --></label>
+        <label>Kun tämä valitaan, suunnitelmavaatimukset voivat määrittää joko ohjelmasuunnitelman tai pääsuunnitelman vaatimuksen, mutta eivät molempia. Jos määrität sekä ohjelmasuunnitelman että pääsuunnitelman vaatimuksen, virheilmoitus estää sinua tallentamasta, kunnes vain yksi on valittuna.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Valittuna ottaa käyttöön organisaatiotilien osoitteenhallinnan.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>Automaattisesti luotujen suhteiden kopiot poistetaan oletusarvoisesti, jotta estetään päällekkäisten suhdetietueiden luominen kahden yhteyshenkilön välille. Valitse ”Salli automaattisesti luodut päällekkäiset suhteet” poistaaksesi tämän toiminnon ja salli useita samantyyppisiä suhteita kahden yhteyshenkilön välillä.</label>
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>Menetelmä, jota käytetään tyyppikentän täyttämiseen, kun luodaan vastavuoroista suhdetta. Luetteloasetus käyttää Vastavuoroiset suhteet -välilehdessä määritettyjä mukautettuja asetuksia miesten, naisten ja neutraalien arvojen kanssa. Arvonkääntö kääntää tyypin alkuperäiseen suhdetietueeseen tarvittaessa. Esimerkiksi, jos alkuperäinen suhde on Vanhempi-Lapsi, vastavuoroinen suhde on Lapsi-Vanhempi.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Poista kaikki valintaluettelon arvot etnisyyskentästä paitsi ”latinalaisamerikkalainen tai latino” ja ”ei latinalaisamerikkalainen tai latino”. Suosittelemme, että korvaat jokaisen poistetun arvon yhdellä jäljellä olevista kelvollisista arvoista sen sijaan, että poistat ne suoraan olemassa olevista tietueista. EDA-versiosta 1.28 lähtien ainoat voimassa olevat etniset arvot ovat ”ei latinalaisamerikkalainen tai latino” ja ”latinalaisamerikkalainen tai latino”.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Käsittelee yksittäisen yhteyshenkilön tai tilin osoitekenttien muutokset päivityksinä olemassa olevaan osoitteeseen (ts. uutta osoiteobjektia ei luoda). Aiheuttaa myös välilyönnin ja kirjainkoon muutosten käsittelyn päivityksinä.</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Kun tämä valitaan, virheet tallennetaan mukautettuun virhe-objektiin. Voit luoda välilehden virheet-objektille nähdäksesi luettelon kaikista tallennetuista virheistä.</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Jos sinulla on raportteja tai kaavakenttiä, jotka viittaavat aiempiin arvoihin etnisyyskentässä, päivitä ne.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Program Plans Settings --></label>
+        <label>Vahvista sisäkkäisten suunnitelmavaatimukset sisältävä ohjelmasuunnitelma</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1298,10 +1298,6 @@
         <label>Emme voi tallentaa kurssitarjonnan aikataulua, koska sen aloitusaika ei ole sama kuin siihen liittyvän aikalohkon aloitusaika. Joko muokkaa aloitusaikaa, määritä toinen aikalohko tai älä määritä aikalohkoa.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
-    <customTabs>
-        <label><!-- EDA Health Check --></label>
-        <name>EDA_Health_Check</name>
-    </customTabs>
     <customTabs>
         <label>EDA-asetukset</label>
         <name>HEDA_Settings</name>

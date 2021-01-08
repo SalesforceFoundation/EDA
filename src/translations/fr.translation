@@ -905,191 +905,191 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Pour les établissements d’enseignement supérieur, nous recommandons le modèle de compte « administratif ». Pour les écoles de niveau primaire et secondaire, nous recommandons le modèle de compte « foyer ».</label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Les types d&apos;enregistrement des comptes qui sont automatiquement supprimés si tous leurs contacts associés ont été supprimés.</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Les types d&apos;enregistrement de compte qui prennent en charge la gestion des adresses multiples.</label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Le type d&apos;enregistrement Compte utilisé pour des Comptes administratifs. Ce paramètre affecte la gestion des enregistrements d&apos;adresse et le format de nommage des comptes administratifs.</label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Si cette option s&apos;est sélectionnée, la Date de fin d&apos;inscription au programme est copiée dans la date de fin des nouveaux enregistrements Affiliation. Sinon, la date de fin d&apos;affiliation reste vide.</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Si cette option s&apos;est sélectionnée, la Date de début d&apos;inscription au programme est copiée dans la date de début des nouveaux enregistrements Affiliation. Sinon, la date de début d&apos;affiliation reste vide.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Affiliations créées avec des inscriptions au programme</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Lorsqu&apos;un enregistrement Inscription au programme est créé sans Affiliation existante, créez un enregistrement Affiliation sans les valeurs spécifiées ci-dessous.</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>Le Statut défini dans l&apos;affiliation associée à une Inscription au programme supprimée.</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Suppressions d&apos;inscription au programme</label>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for how Program Enrollment delete affects Affiliation --></label>
+        <label>Spécifiez le traitement des enregistrements Affiliation des Inscriptions au programme supprimées. L&apos;enregistrement associé Affiliation peut être supprimé ou son Statut être mis à jour.</label>
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for enable set role on Affiliations --></label>
+        <label>Si cette option est sélectionnée, définissez le rôle de la nouvelle affiliation sur la valeur définie dans Rôle pour Affiliations créées. Sinon, laissez le rôle de l&apos;affiliation vide.</label>
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations role --></label>
+        <label>Le rôle défini dans l&apos;affiliation créée avec une inscription au programme.</label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>Le statut défini dans l&apos;affiliation créée avec une l&apos;inscription au programme.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts address mgmt --></label>
+        <label>Sélectionnez cette option pour activer la gestion des adresses multiples pour les contacts.</label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Preferred Email --></label>
+        <label>Ne pas exiger une adresse e-mail préférée pour les contacts.</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Ne pas exiger un téléphone préféré pour les contacts.</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Synchronisez le champ Téléphone préféré avec le champ Téléphone standard du contact et vérifiez que la valeur dans Téléphone préféré existe et a une valeur.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation msg for Run Copy button on Courses --></label>
+        <label>Le processus a été mis en file d&apos;attente avec succès. Un e-mail sera envoyé une fois la tâche terminée.</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections backfill --></label>
+        <label>Le Remplissage des connexions aux cours doit être utilisé uniquement lors de l&apos;activation initiale des Connexions au cours, et seulement dans les organisations dans lesquelles des Offres de cours et des Connexions aux cours (inscriptions) existaient avant l&apos;activation de la fonctionnalité Connexions au cours. Le Remplissage convertit tous les Contacts répertoriés en tant que professeurs dans une Connexion au cours (inscription) ou une Offre de cours en Type d&apos;enregistrement de professeur par défaut. Le Remplissage convertit ensuite les Contacts des Connexions aux cours (inscriptions) restantes en Type d&apos;enregistrement d&apos;étudiant actif par défaut.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses description field data migration --></label>
+        <label>Dans EDA 1.30, le champ Description étendue a été ajouté pour pouvoir saisir des descriptions de cours plus longues.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Cet utilitaire copie les valeurs du champ Description du cours dans le champ Description étendue. Ce processus peut prendre du temps, mais vous pouvez fermer cette page en toute sécurité, le processus continuera en arrière-plan.</label>
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Si un Cours a déjà une valeur de Description étendue, nous ne la remplaçons pas.</label>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Une fois le processus terminé, pensez à mettre à jour les présentations de page et les autres zones de l&apos;application qui référencent les champs Description.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>La valeur Maîtrise linguistique automatiquement définie dans les enregistrements de langue du contact créés lorsque les utilisateurs définissent le champ Langue principale dans un contact.</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour un membre professeur.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour des étudiants actifs.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections field isn&apos;t selected --></label>
+        <label>Vous devez activer les Connexions aux cours avant d&apos;exécuter le Remplissage des connexions aux cours.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections Field isn&apos;t selected --></label>
+        <label>Vous devez activer les Connexions aux cours avant de modifier les types d&apos;enregistrement.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Les enregistrements Connexion au cours connectent un Contact à une Offre de cours. L&apos;activation de cette fonctionnalité permet aux utilisateurs de choisir le type de Contact (Professeur ou Étudiant) à créer pour la Connexion au cours. Lorsque vous activez cette fonctionnalité, vous devez également définir ci-dessous le Type d&apos;enregistrement d&apos;étudiant actif par défaut et Type d&apos;enregistrement de professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, nous recommandons vivement d&apos;exécuter le Remplissage des connexions au cours.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Pour les contacts existants qui n&apos;ont pas spécifié d&apos;adresse e-mail préférée ou de téléphone préféré, le processus de nettoyage vérifie qu&apos;une adresse e-mail ou qu&apos;un numéro de téléphone standard ou personnalisé du contact est défini en tant que valeur préférée.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Sélectionnez cette option pour désactiver l&apos;infrastructure de traitement des erreurs du produit.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Si cette option est sélectionnée, des notifications sont publiées pour les erreurs générées par le produit.</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Spécifiez qui doit recevoir les notifications d&apos;erreur par e-mail. Les valeurs valides sont « Tous les administrateurs système », l&apos;ID d&apos;un utilisateur de votre organisation ou l&apos;ID d&apos;un groupe Chatter. Vous ne pouvez saisir qu&apos;une seule valeur.</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Utilisez le Remplissage de l&apos;appartenance ethnique et de la race uniquement si votre organisation a utilisé le champ Appartenance ethnique avant l&apos;ajout du champ Race et le retrait des valeurs du champ Appartenance ethnique dans la version 1.28 d&apos;EDA. Si la valeur Appartenance ethnique du contact est différente de « Non Hispanique ou Latino-Américain » ou « Hispanique ou Latino-Américain », le Remplissage copie les valeurs dans le champ Race. Les valeurs de liste de sélection standard et toutes les valeurs personnalisées que vous avez ajoutées sont éligibles pour la copie.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Cochez cette case pour activer la gestion des adresses de comptes administratifs et de foyer.</label>
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Le type d&apos;enregistrement Compte utilisé pour des Comptes de foyer. Ce paramètre affecte la gestion des enregistrements Adresse et le format de nommage des comptes de foyer.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Si votre organisation a déjà ajouté au champ Appartenance ethnique des valeurs de liste de sélection personnalisées que vous souhaitez utiliser dans le champ Race, copiez ces valeurs dans le champ Race.</label>
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Program Plans Settings --></label>
+        <label>Une fois sélectionnées, les exigences du plan peuvent spécifier un plan de programme ou une exigence de plan parente, mais pas les deux. Si vous spécifiez les deux, un message d’erreur empêche leur enregistrement jusqu&apos;à ce qu&apos;un seul soit sélectionné.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Cochez cette case pour activer la gestion des adresses de comptes d’organisation.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>Les relations automatiquement créées sont dédupliquées par défaut afin d&apos;empêcher la création d’enregistrements de relation en double entre deux contacts. Sélectionnez « Autoriser les relations dupliquées automatiquement créées » pour désactiver ce comportement et autoriser plusieurs Relations de même type entre deux Contacts.</label>
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>La méthode utilisée pour remplir le champ type lors de la création d&apos;une Relation réciproque. « Paramètre de la liste » utilise les paramètres personnalisés définis sous l&apos;onglet Relations réciproques pour les valeurs homme, femme et neutre. « Inversion de valeur » inverse le type dans l&apos;enregistrement Relation d&apos;origine, le cas échéant. Par exemple, si la relation d&apos;origine est Parent-Enfant, la relation réciproque est Enfant-Parent.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Retirez toutes les valeurs de liste de sélection du champ Appartenance ethnique, à l&apos;exception de « Non Hispanique ou Latino-Américain » et « Hispanique ou Latino-Américain ». Nous recommandons de remplacer chaque valeur retirée par l&apos;une des valeurs valides restantes, plutôt que de les supprimer des enregistrements existants. À compter de la version 1.28 d&apos;EDA, « Non Hispanique ou Latino-Américain » et « Hispanique ou Latino-Américain » sont les seules valeurs d&apos;Appartenance ethnique valides.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Traite les modifications apportées aux champs d&apos;adresse individuels Contact ou Compte en tant que mises à jour de l&apos;adresse existante (c&apos;est-à-dire, sans créer un autre objet Adresse). Traite également les espaces vides et les modifications des requêtes en tant que mises à jour.</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Lorsque cette option est sélectionnée, les erreurs sont stockées dans un objet Erreur personnalisé. Vous pouvez créer un onglet pour l&apos;objet Erreurs afin de consulter la liste des erreurs stockées.</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Si vous avez des rapports ou des champs de formule qui référencent les valeurs antérieures du champ Appartenance ethnique, mettez-les à jour.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Program Plans Settings --></label>
+        <label>Valider le plan du programme pour les exigences du plan imbriquées</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1296,10 +1296,6 @@
         <label>Nous ne pouvons pas enregistrer le Calendrier de l&apos;offre de cours car son heure de début ne correspond pas à l’heure de début du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
-    <customTabs>
-        <label><!-- EDA Health Check --></label>
-        <name>EDA_Health_Check</name>
-    </customTabs>
     <customTabs>
         <label>Paramètres EDA</label>
         <name>HEDA_Settings</name>

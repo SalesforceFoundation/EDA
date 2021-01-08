@@ -905,207 +905,207 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Per a les institucions d’educació superior, recomanem el model de compte “Administratiu”. A les escoles K-12, recomanem el model de compte &quot;Llar&quot;.</label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Registre els tipus dels comptes que s&apos;eliminaran automàticament si s&apos;han eliminat tots els contactes associats.</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Els tipus de registre del compte que admeten la gestió d&apos;adreces múltiples.</label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>El tipus de registre del compte utilitzat per als comptes administratius. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes administratius.</label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Si se selecciona, la data de finalització de la inscripció al programa es copia a la data de finalització en els nous registres d’afiliació. En cas contrari, la data de finalització de l’afiliació es deixa en blanc.</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Si se selecciona, la data d&apos;inici de la inscripció al programa es copia a la data d&apos;inici en els nous registres d’afiliació. En cas contrari, la data d&apos;inici de l’afiliació es deixa en blanc.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Afiliacions creades amb inscripcions al programa</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations Settings --></label>
+        <label>Quan vulgueu crear un registre d’inscripció al programa sense cap afiliació existent, creeu un registre d’afiliació amb els valors especificats a continuació.</label>
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>L&apos;estat establert a l’afiliació relacionada amb una inscripció de programa suprimida.</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliations Settings --></label>
+        <label>Supressions d&apos;inscripcions al programa</label>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for how Program Enrollment delete affects Affiliation --></label>
+        <label>Especifiqueu a continuació com voleu que es gestionin els registres d’afiliació d&apos;inscripcions al programa suprimides. El registre d’afiliació relacionat es pot suprimir o se&apos;n pot actualitzar l&apos;estat.</label>
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for enable set role on Affiliations --></label>
+        <label>Si se selecciona, establiu la funció d’afiliació nova al valor definit a la funció per a les afiliacions creades. En cas contrari, deixeu la funció de l’afiliació en blanc.</label>
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations role --></label>
+        <label>La funció establerta a l’afiliació creada amb una inscripció de programa.</label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Affiliations status --></label>
+        <label>L&apos;estat establert a l’afiliació creada amb una inscripció de programa.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts address mgmt --></label>
+        <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Preferred Email --></label>
+        <label>No requereix que els contactes tinguin un correu electrònic preferit.</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>No requereix que els contactes tinguin un telèfon preferit.</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Sincronitza el camp del telèfon preferit amb el camp de telèfon estàndard del contacte i valida que el valor del telèfon preferent existeixi i que tingui un valor.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation msg for Run Copy button on Courses --></label>
+        <label>El procés s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el treball.</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections backfill --></label>
+        <label>El reenviament de connexions del curs s&apos;ha d&apos;utilitzar només quan s&apos;activen les connexions del curs per primera vegada i només a les organitzacions on hi ha hagut ofertes per a cursos i connexions per a cursos (inscripcions) abans d&apos;activar la funció Connexions del curs. El reenviament converteix tots els contactes que es van incloure com a professors en una connexió de curs (inscripció) o oferta de cursos en el tipus de registre predeterminat del professorat. El reenviament converteix els contactes de les connexions restants del curs (inscripcions) en el tipus predeterminat de registre d&apos;estudiant actiu.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses description field data migration --></label>
+        <label>A EDA 1.30, el camp Descripció ampliada s’ha afegit per adaptar-se a les descripcions més llargues del curs.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Aquesta utilitat copia els valors del camp Descripció del curs al camp de Descripció ampliada. Aquest procés pot trigar una mica, però podeu tancar aquesta pàgina amb seguretat i el procés continuarà en segon pla.</label>
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Si un curs ja té un valor per a la Descripció ampliada, no la sobreescriurem.</label>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Courses Settings --></label>
+        <label>Un cop finalitzat el procés, recordeu actualitzar els dissenys de pàgines i altres àrees de l&apos;aplicació que fan referència als camps de la descripció.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>El valor de domini s&apos;estableix automàticament als registres d&apos;idioma de contacte de nova creació quan els usuaris estableixen el camp de cerca d&apos;idioma principal en un contacte.</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>El tipus de gravació predeterminat quan es creen connexions de curs per a un membre de la facultat.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>El tipus de gravació predeterminat quan es creen connexions de curs per a estudiants actius.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections field isn&apos;t selected --></label>
+        <label>Heu d&apos;habilitar les connexions del curs abans d&apos;executar el reenviament de connexions del curs.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Enable Course Connections Field isn&apos;t selected --></label>
+        <label>Heu d&apos;habilitar les connexions del curs abans d&apos;editar els tipus de registre.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Course Connections Settings --></label>
+        <label>Els registres de connexió del curs connecten un contacte amb una oferta de curs. L&apos;activació d&apos;aquesta funció permet als usuaris triar el tipus de contacte (professorat o estudiant) per crear la connexió del curs. Quan activeu aquesta funció, també haureu d’establir el tipus de registre actiu predeterminat de l’alumne i el tipus de registre predeterminat de professorat, a continuació. Si activeu aquesta funció per primera vegada, us recomanem que executeu el reenviament de les connexions del curs.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Per als contactes existents que no han especificat un correu electrònic preferit o un telèfon preferit, la neteja assegura que una de les adreces de correu electrònic estàndard o un dels números de telèfon preferits personalitzats del contacte s&apos;estableixi com a valor preferit.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Seleccioneu aquesta opció per desactivar el marc de gestió d&apos;errors del producte.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Si se selecciona, es publicaran notificacions per detectar errors generats pel producte.</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Systems Settings --></label>
+        <label>Especifiqueu qui ha de rebre notificacions d&apos;errors per correu electrònic. Els valors vàlids són &quot;Tots els administradors de sistemes&quot;, l&apos;identificador d&apos;un usuari de la vostra organització o l&apos;identificador d&apos;un grup de Chatter. Només podeu introduir un valor.</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Utilitzeu la reposició d&apos;Ètnia i de Raça només si la vostra organització utilitzava el camp Ètnia abans que s&apos;afegís el camp Raça i s&apos;eliminessin els valors del camp Ètnia a partir de la versió 1.28 d’EDA. Si el valor del camp Ètnia del contacte no és igual a &quot;No hispà ni llatí&quot; o &quot;Hispà o llatí&quot;, la reposició copia el valor al camp Raça. Es poden copiar tant els valors de la llista de selecció estàndard com els valors personalitzats que hàgiu afegit com a aptes per a copiar.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Activa la gestió d&apos;adreces de comptes administratius i de les llars quan se selecciona.</label>
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>El tipus de registre del compte utilitzat per als comptes domèstics. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes domèstics.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Si la vostra organització ha afegit prèviament valors de llista de selecció personalitzats al camp Ètnia que voleu que estigui disponible al camp Raça, copieu els valors de llista de selecció personalitzats al camp Raça.</label>
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Program Plans Settings --></label>
+        <label>Quan estigui seleccionada aquesta opció, els requisits del pla poden especificar un pla del programa o un requisit del pla principal, però no tots dos. Si especifiqueu tant un pla de programa com un requisit de pla principal, un missatge d&apos;error evitarà que es desi fins que no se&apos;n seleccioni només un.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <label>Activa la gestió d&apos;adreces dels comptes d&apos;organització quan se selecciona.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>Les relacions creades automàticament es dedueixen de manera predeterminada per evitar que es creïn registres de relacions duplicats entre dos contactes. Seleccioneu &quot;Permetre relacions duplicades creades automàticament&quot; per desactivar aquest comportament i permetre que es creïn diverses relacions del mateix tipus entre dos Contactes.</label>
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Relationships Settings --></label>
+        <label>El mètode utilitzat per omplir el camp de tipus quan es crea una relació recíproca. &quot;Configuració de la llista&quot; utilitza la configuració personalitzada definida a la pestanya Relacions recíproques amb valors masculins, femenins i neutres. &quot;Inversió de valor&quot; inverteix el tipus del registre de relació original, si escau. Per exemple, si la relació originària és pare-fill, la relació recíproca serà fill-pare.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Traieu tots els valors de la llista de selecció del camp Ètnia, excepte &quot;Hispà o llatí&quot; i &quot;No hispà ni llatí&quot;. Us recomanem que substituïu cada valor eliminat per un dels valors vàlids restants, en lloc de suprimir-los directament dels registres existents. A partir de la versió 1.28 d&apos;EDA, els únics valors d&apos;ètnia vàlids són &quot;No hispà ni llatí&quot; i &quot;Hispà o llatí&quot;.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Tracta els canvis en els camps d&apos;adreça de contacte o un únic compte com a actualitzacions de l&apos;adreça existent (és a dir, no es crea cap nou objecte d&apos;adreça). També provoca que l&apos;espai en blanc i els canvis de cas siguin tractats com a actualitzacions.</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for System Settings --></label>
+        <label>Quan se selecciona, els errors s&apos;emmagatzemen en un objecte d&apos;error personalitzat. Podeu crear una pestanya per a l&apos;objecte Errors per veure una llista de tots els errors emmagatzemats.</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <label>Si teniu informes o camps de fórmules que feien referència als valors anteriors al camp Ètnia, actualitzeu-los.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Program Plans Settings --></label>
+        <label>Validar el pla del programa per als requisits del pla enclavat</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section header for Affiliation Mappings Settings --></label>
+        <label>Nova assignació d&apos;afiliació</label>
         <name>stgNewAfflMapping</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for System Settings Error Notification --></label>
+        <label>Tots els administradors de sistemes</label>
         <name>stgOptAllSysAdmins</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for System Settings Error Notification --></label>
+        <label>Grup de Chatter</label>
         <name>stgOptChatterGroup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for System Settings Error Notification --></label>
+        <label>Selecciona...</label>
         <name>stgOptSelect</name>
     </customLabels>
     <customLabels>
@@ -1296,10 +1296,6 @@
         <label>No podem desar els horaris de l’oferta de cursos perquè l&apos;hora d&apos;inici no coincideix amb l’hora d&apos;inici del bloc de temps associat. Editeu l&apos;hora d&apos;inici, especifiqueu un bloc de temps diferent o bé no especifiqueu cap bloc de temps.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
-    <customTabs>
-        <label><!-- EDA Health Check --></label>
-        <name>EDA_Health_Check</name>
-    </customTabs>
     <customTabs>
         <label>Configuració d&apos;EDA</label>
         <name>HEDA_Settings</name>
