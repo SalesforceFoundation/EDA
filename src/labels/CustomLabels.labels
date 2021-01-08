@@ -1456,6 +1456,14 @@
         <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
+        <fullName>stgHCCourseConnectionsTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Course Connections group title in EDA Settings Health Check results</shortDescription>
+        <value>Course Connections</value>
+    </labels>
+    <labels>
         <fullName>stgHCPicklistValueInactive</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1624,14 +1632,6 @@
         <value>{0} Reciprocal Relationships</value>
     </labels>
     <labels>
-        <fullName>stgHCCourseConnectionsTitle</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Course Connections group title in EDA Settings Health Check results</shortDescription>
-        <value>Course Connections</value>
-    </labels>
-    <labels>
         <fullName>stgHealthCheckAffiliationMappings</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1672,20 +1672,20 @@
         <value>Last Run: {0}</value>
     </labels>
     <labels>
-        <fullName>stgHealthCheckReciprocalRelTitle</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Reciprocal Relationships group title in EDA Settings Health Check results</shortDescription>
-        <value>Reciprocal Relationships</value>
-    </labels>
-    <labels>
         <fullName>stgHealthCheckLoadingIndicator</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Text indicating that an EDA Settings Health Check component is loading</shortDescription>
         <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckReciprocalRelTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Reciprocal Relationships group title in EDA Settings Health Check results</shortDescription>
+        <value>Reciprocal Relationships</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckRecoFix</fullName>

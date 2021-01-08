@@ -733,6 +733,382 @@
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
+        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <name>stgHCCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check finds an inactive picklist value --></label>
+        <name>stgHCPicklistValueInactive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check can&apos;t find the picklist value --></label>
+        <name>stgHCPicklistValueNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHCPicklistValueValid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for a reciprocal setting in EDA Settings Health Check results --></label>
+        <name>stgHCReciprocalRelDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
+        <name>stgHCReciprocalRelFemaleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
+        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for the Female value in a reciprocal setting --></label>
+        <name>stgHCReciprocalRelFemaleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
+        <name>stgHCReciprocalRelMaleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
+        <name>stgHCReciprocalRelMaleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for the Male value in a reciprocal setting --></label>
+        <name>stgHCReciprocalRelMaleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
+        <name>stgHCReciprocalRelNameInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
+        <name>stgHCReciprocalRelNameNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Name isn&apos;t unique in reciprocal settings --></label>
+        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended Fix when Name isn&apos;t unique in reciprocal settings --></label>
+        <name>stgHCReciprocalRelNameNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for the Name value in a reciprocal setting --></label>
+        <name>stgHCReciprocalRelNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Name is unique in reciprocal settings --></label>
+        <name>stgHCReciprocalRelNameUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for unique Name values in reciprocal settings --></label>
+        <name>stgHCReciprocalRelNameUniqueTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
+        <name>stgHCReciprocalRelNeutralInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
+        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for the Neutral value in a reciprocal setting --></label>
+        <name>stgHCReciprocalRelNeutralTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
+        <name>stgHCReciprocalRelSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAffiliationMappings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component description --></label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when EDA Settings Health Check can&apos;t show the last run date --></label>
+        <name>stgHealthCheckErrorLastRunDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text when a check passes and no fix is recommended --></label>
+        <name>stgHealthCheckFixNotApplicable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check last run date --></label>
+        <name>stgHealthCheckLastRun</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <name>stgHealthCheckLoadingIndicator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reciprocal Relationships group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckReciprocalRelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckRecoFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
+        <name>stgHealthCheckResultsCollapse</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckResultsDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for the icon to expand EDA Settings Health Check results --></label>
+        <name>stgHealthCheckResultsExpand</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Run Health Check button label --></label>
+        <name>stgHealthCheckRunButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
+        <name>stgHealthCheckRunError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Setting column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status column header in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
+        <name>stgHealthCheckStatusFailed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
+        <name>stgHealthCheckStatusPassed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <name>stgHealthCheckStatusWarning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHealthCheckTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
+        <name>stgHealthChecksAllPassed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text in EDA Settings Health Check results shows group&apos;s passed and total checks --></label>
+        <name>stgHealthChecksNotAllPassed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for System Settings --></label>
+        <name>stgHelpAccountModel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpAdminRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Affiliations Settings --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Affiliations Settings --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section header for Affiliations Settings --></label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Affiliations Settings --></label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Affiliations status --></label>
+        <name>stgHelpAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section header for Affiliations Settings --></label>
+        <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for how Program Enrollment delete affects Affiliation --></label>
+        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for enable set role on Affiliations --></label>
+        <name>stgHelpAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Affiliations role --></label>
+        <name>stgHelpAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Affiliations status --></label>
+        <name>stgHelpAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts address mgmt --></label>
+        <name>stgHelpContactAddrs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Preferred Email --></label>
+        <name>stgHelpContactPreferredEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpContactPreferredPhone</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpContactPreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation msg for Run Copy button on Courses --></label>
+        <name>stgHelpCopyQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Course Connections backfill --></label>
+        <name>stgHelpCourseConnBackfillDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Courses description field data migration --></label>
+        <name>stgHelpCoursesDataMigration</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Courses Settings --></label>
+        <name>stgHelpCoursesDataMigrationCopiesValues</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Courses Settings --></label>
+        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Courses Settings --></label>
+        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpDefaultContactLanguageFluency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Course Connections Settings --></label>
+        <name>stgHelpDefaultFacultyType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Course Connections Settings --></label>
+        <name>stgHelpDefaultStudentType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when Enable Course Connections field isn&apos;t selected --></label>
+        <name>stgHelpEnableCourseConnBeforeBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when Enable Course Connections Field isn&apos;t selected --></label>
+        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Course Connections Settings --></label>
+        <name>stgHelpEnableCourseConnections</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpEnsureExistContactPreferEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Systems Settings --></label>
+        <name>stgHelpErrorDisable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Systems Settings --></label>
+        <name>stgHelpErrorNotifyOn</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Systems Settings --></label>
+        <name>stgHelpErrorNotifyTo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpEthnicityRaceBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <name>stgHelpHouseAdmAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpHouseholdRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Program Plans Settings --></label>
+        <name>stgHelpNestedPlanRequirementPP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpOrgAccountAddressMgmt - DEPRECATED --></label>
+        <name>stgHelpOrgAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Relationships Settings --></label>
+        <name>stgHelpRelAutoCreatedDup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Relationships Settings --></label>
+        <name>stgHelpRelReciprocalMethod</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpSimpleAddrChangeIsUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for System Settings --></label>
+        <name>stgHelpStoreErrorsOn</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Accounts and Contacts Settings --></label>
+        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Field label for Program Plans Settings --></label>
+        <name>stgNestedPlanRequirementPP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section header for Affiliation Mappings Settings --></label>
+        <name>stgNewAfflMapping</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Picklist value for System Settings Error Notification --></label>
+        <name>stgOptAllSysAdmins</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Picklist value for System Settings Error Notification --></label>
+        <name>stgOptChatterGroup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Picklist value for System Settings Error Notification --></label>
+        <name>stgOptSelect</name>
+    </customLabels>
+    <customLabels>
         <label>Usuari</label>
         <name>stgOptUser</name>
     </customLabels>
@@ -920,6 +1296,10 @@
         <label>No podem desar els horaris de l’oferta de cursos perquè l&apos;hora d&apos;inici no coincideix amb l’hora d&apos;inici del bloc de temps associat. Editeu l&apos;hora d&apos;inici, especifiqueu un bloc de temps diferent o bé no especifiqueu cap bloc de temps.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customTabs>
+        <label><!-- EDA Health Check --></label>
+        <name>EDA_Health_Check</name>
+    </customTabs>
     <customTabs>
         <label>Configuració d&apos;EDA</label>
         <name>HEDA_Settings</name>
