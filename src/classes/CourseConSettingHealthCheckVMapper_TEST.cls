@@ -86,14 +86,13 @@ private class CourseConSettingHealthCheckVMapper_TEST {
         );
     }
 
-    
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles
     * passed health check when Course Connection is enabled
     ***************************************************************************/
     @isTest
     private static void getHealthCheckGroupCourseConnectionEnabled() {
-        
+
         RecordTypeService.instance = 
             new STUB_RecordTypeService();
 
@@ -119,11 +118,11 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles
-    * failed health check when Course Connection disabled
+    * failed health check when Course Connection is disabled
     ***************************************************************************/
     @isTest
     private static void getHealthCheckGroupCourseConnectionDisabled() {
-        
+
         RecordTypeService.instance = 
             new STUB_RecordTypeService();
 
@@ -141,7 +140,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
         System.assertEquals(1, hCGroupVMdl.healthCheckItemList.size(), 'No group items should be in the item list as Course Connection is enabled.');
         System.assertEquals('Label.stgEnableCourseConnectionsTitle', hCGroupVMdl.healthCheckItemList[0].setting, 'The setting in the group item should be of Course Connection Enablement');
         System.assertEquals(Label.stgHealthCheckStatusFailed, hCGroupVMdl.status, 'The status of the checks should be fail.');
-        
+
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('Label.stgHCCourseConnectionsTitle',
                                                                                        Label.stgHealthCheckStatusFailed,
                                                                                        0,
@@ -150,7 +149,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hCGroupVMdl);
         
-                
+  
        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions('Label.stgEnableCourseConnectionsTitle',
                                                                                   'Fail',
                                                                                   Label.stgHealthCheckStatusFailed,
@@ -158,7 +157,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                   'Label.stgHCCourseConEnableFix',
                                                                                   hCGroupVMdl.healthCheckItemList); 
     }
-    
+
     /*****************************************************************************************
     * @description Test method to verify that getCourseConnectionsNotEnabledHealthCheckItems
     * handles all failed check when Course Connection is disabled
@@ -176,10 +175,9 @@ private class CourseConSettingHealthCheckVMapper_TEST {
             HealthCheckGroupVModel hCGroupVMdl = CourseConSettingHealthCheckVMapper.getInstance().getCourseConnectionsNotEnabledHealthCheckItems(courseConnSettingsModel);
         Test.stopTest();
 
-
         System.assertEquals(0, hCGroupVMdl.passedChecks, 'The setting in the group item should be of Course Connection Enablement');
         System.assertEquals(1, hCGroupVMdl.totalChecks, 'The setting in the group item should be of Course Connection Enablement');
-        
+
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
                                                                                        '',
                                                                                        0,
@@ -187,7 +185,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        0,
                                                                                        1,
                                                                                        hCGroupVMdl);
-        
+
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions('Label.stgEnableCourseConnectionsTitle',
                                                                                     'Fail',
                                                                                     Label.stgHealthCheckStatusFailed,
@@ -195,7 +193,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                     'Label.stgHCCourseConEnableFix',
                                                                                     hCGroupVMdl.healthCheckItemList); 
     }
-    
+
     /*********************************************************************************************
     * @description Test method to verify that getCourseConnectionsNotEnabledHealthCheckItems
     * handles all passed checks when Course Connection is enabled
@@ -220,7 +218,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        0,
                                                                                        0,
                                                                                        hCGroupVMdl);
-   
+
     }
 
     /******************************************************************************
@@ -229,6 +227,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     ******************************************************************************/
     @isTest 
     private static void locateCourseConnectionSettingsService(){
+
         CourseConnectionSettingsService expectedCourseConnectionSettingsService
             = CourseConnectionSettingsService.getInstance();
 
@@ -295,7 +294,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     private class STUB_CourseConnectionSettingsService_Enabled extends CourseConnectionSettingsService {
 
         public override CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
-            
+
             CourseConnectionSettingsModel courseConnSettingsModel = 
                 new CourseConnectionSettingsModel(
                     true,
@@ -314,7 +313,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     private class STUB_CourseConnectionSettingsService_Disbaled extends CourseConnectionSettingsService {
 
         public override CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
-            
+
             CourseConnectionSettingsModel courseConnSettingsModel = 
                 new CourseConnectionSettingsModel(
                     false,
@@ -325,7 +324,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
             return courseConnSettingsModel;
         }
     }
-    
+
     /****************************************************************************
     * @description Stub class to simulate the response from
     * RecordTypeService to return a predetermined map of Id to Record type models
@@ -333,7 +332,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     private class STUB_RecordTypeService extends RecordTypeService {
 
         public override  Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
-            
+
             RecordTypeModel recTypeModel = 
                 new RecordTypeModel(
                     '0121A000002Zs0pAAA',
@@ -341,13 +340,13 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                     'Faculty',
                     true
                 );
-            
+
             Map<Id, RecordTypeModel> recTypemodelByID = new Map<Id, RecordTypeModel>{'0121A000002Zs0pAAA' => recTypeModel};
-            
+    
             return recTypemodelByID;
         }
     }
-    
+
     /**************************************************************************************************************************
     ************************************************* HELPER METHODS **********************************************************
     **************************************************************************************************************************/
