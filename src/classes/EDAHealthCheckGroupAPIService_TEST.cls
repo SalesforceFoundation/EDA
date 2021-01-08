@@ -72,10 +72,10 @@ public with sharing class EDAHealthCheckGroupAPIService_TEST {
         AccountModelHealthCheckVMapper.instance = new STUB_AccountModelHealthCheckVMapper();
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('AccountModel');
+        HealthCheckGroupVModel healthCheckGroupVModel = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('AccountModel');
         Test.stopTest();
         
-        EDAHealthCheckGroupAPIService_TEST.verifyHealthCheckGroupVModelAssertions('Account Model', 'Pass', 4, 4);
+        EDAHealthCheckGroupAPIService_TEST.verifyHealthCheckGroupVModelAssertions('Account Model', 'Pass', 4, 4, healthCheckGroupVModel);
     }
 
     /***************************************************************************
@@ -98,7 +98,7 @@ public with sharing class EDAHealthCheckGroupAPIService_TEST {
                 );
         Test.stopTest();
 
-        EDAHealthCheckGroupAPIService_TEST.verifyHealthCheckGroupVModelAssertions('Affiliation Mappings', 'Pass', 4, 4);
+        EDAHealthCheckGroupAPIService_TEST.verifyHealthCheckGroupVModelAssertions('Affiliation Mappings', 'Pass', 4, 4, healthCheckGroupVModel);
     }
 
     /***************************************************************************
@@ -136,36 +136,37 @@ public with sharing class EDAHealthCheckGroupAPIService_TEST {
         String expectedHealthCheckGroupVModLabel,
         String expectedHealthCheckGroupVModStatus,
         Integer expectedHealthCheckGroupVModPassedCheckCount,
-        Integer expectedHealthCheckGroupVModTotalCheckCount
+        Integer expectedHealthCheckGroupVModTotalCheckCount,
+        HealthCheckGroupVModel actualHealthCheckGroupVModel
     ){
         System.assertEquals(
             expectedHealthCheckGroupVModLabel,
-            healthCheckGroupVModel.label,
+            actualHealthCheckGroupVModel.label,
             'Label for HealthCheckGroupVModel should be \'' + expectedHealthCheckGroupVModLabel + '\''
         );
         System.assertEquals(
             expectedHealthCheckGroupVModStatus,
-            healthCheckGroupVModel.status,
+            actualHealthCheckGroupVModel.status,
             'Status for HealthCheckGroupVModel should be \'' + expectedHealthCheckGroupVModStatus + '\''
         );
         System.assertEquals(
             expectedHealthCheckGroupVModPassedCheckCount,
-            healthCheckGroupVModel.passedChecks,
+            actualHealthCheckGroupVModel.passedChecks,
             'PassedChecks for HealthCheckGroupVModel should be ' + expectedHealthCheckGroupVModPassedCheckCount + '.'
         );
         System.assertEquals(
             expectedHealthCheckGroupVModTotalCheckCount,
-            healthCheckGroupVModel.totalChecks,
+            actualHealthCheckGroupVModel.totalChecks,
             'TotalChecks for HealthCheckGroupVModel should be ' + expectedHealthCheckGroupVModTotalCheckCount + '.'
         );
         System.assertEquals(
             true,
-            healthCheckGroupVModel.expandedRowsList.isEmpty(),
+            actualHealthCheckGroupVModel.expandedRowsList.isEmpty(),
             'ExpandedRowsList should be empty.'
         );
         System.assertEquals(
             true,
-            healthCheckGroupVModel.healthCheckItemList.isEmpty(),
+            actualHealthCheckGroupVModel.healthCheckItemList.isEmpty(),
             'HealthCheckItemList should be empty.'
         );
     }
