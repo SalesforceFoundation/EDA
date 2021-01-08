@@ -4,4 +4,7 @@
     <masterLabel>EDA Settings Health Check</masterLabel>
     <apiVersion>50.0</apiVersion>
     <isExposed>false</isExposed>
+    <targets>
+        <target>lightning__Tab</target>
+    </targets>
 </LightningComponentBundle>

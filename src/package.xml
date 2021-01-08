@@ -48,6 +48,12 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>AffiliationMappingsHealthCheckVMapper</members>
+        <members>AffiliationMappingsHealthCheckVMapper_TEST</members>
+        <members>AffiliationMappingsMapper</members>
+        <members>AffiliationMappingsMapper_TEST</members>
+        <members>AffiliationMappingsModel</members>
+        <members>AffiliationMappingsModel_TEST</members>
         <members>BEH_CannotDelete_TDTM</members>
         <members>BEH_CannotDelete_TEST</members>
         <members>CASE_CannotDelete_TDTM</members>
