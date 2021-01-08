@@ -1127,17 +1127,16 @@
     <customLabels>
         <label>Exécutez ce processus de nettoyage de données après l&apos;activation initiale de l&apos;exigence Adresse e-mail préférée ou Téléphone préféré après une période de non application de l&apos;exigence.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation msg for Settings Save action --></label>
+    </customLabels>    <customLabels>
+        <label>Paramètres enregistrés avec succès.</label>
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for error notification recipients --></label>
+        <label>Sélectionner un type de destinataire :</label>
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for error notifications --></label>
+        <label>Envoyer des notifications d&apos;erreur</label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>

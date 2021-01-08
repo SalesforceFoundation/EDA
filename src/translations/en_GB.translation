@@ -1125,23 +1125,23 @@
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Accounts and Contacts Settings --></label>
+        <label>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation msg for Settings Save action --></label>
+        <label>Settings successfully saved.</label>
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for error notification recipients --></label>
+        <label>Select recipient type:</label>
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for error notifications --></label>
+        <label>Send Error Notifications</label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Address mgmt Setting --></label>
+        <label>Simple Address Change Treated as Update</label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>

@@ -1129,15 +1129,15 @@
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation msg for Settings Save action --></label>
+        <label>Asetusten tallennus onnistui.</label>
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for error notification recipients --></label>
+        <label>Valitse vastaanottajan tyyppi:</label>
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for error notifications --></label>
+        <label>Lähetä virheilmoitukset</label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>

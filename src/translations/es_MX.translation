@@ -1141,7 +1141,7 @@
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Address mgmt Setting --></label>
+        <label>Cambios en dirección son actualizaciones</label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
