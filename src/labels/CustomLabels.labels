@@ -1480,12 +1480,6 @@
         <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
-        <fullName>stgHealthCheckStatusWarning</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Status text in EDA Settings Health Check results when a check prompts a warning</shortDescription>
-        <value>Warning</value>
         <fullName>stgHealthCheckDescription</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1500,6 +1494,15 @@
         <protected>true</protected>
         <shortDescription>EDA Settings Health Check last run date</shortDescription>
         <value>Last Run: {0}</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckStatusWarning</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status text in EDA Settings Health Check results when a check prompts a warning</shortDescription>
+        <value>Warning</value>
+        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHelpAccountModel</fullName>

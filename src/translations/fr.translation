@@ -737,14 +737,16 @@
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
-        <name>stgHealthCheckStatusWarning</name>
         <label><!-- EDA Settings Health Check component description --></label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
         <label><!-- EDA Settings Health Check last run date --></label>
         <name>stgHealthCheckLastRun</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <name>stgHealthCheckStatusWarning</name>
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
