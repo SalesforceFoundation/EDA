@@ -1220,7 +1220,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when a mapping's Auto-Enrollment Role isn't active</shortDescription>
+        <shortDescription>Description when a mapping&apos;s Auto-Enrollment Role isn&apos;t active</shortDescription>
         <value>The {0} ({1}) picklist value isn’t active.</value>
     </labels>
     <labels>
@@ -1228,15 +1228,15 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when a mapping's Auto-Enrollment Role isn't active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping's Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object's Role field in Salesforce Setup and set the picklist value to Active. If it isn't correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
+        <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active</shortDescription>
+        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleNotFound</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
+        <shortDescription>Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
         <value>We can’t find the {0} picklist value.</value>
     </labels>
     <labels>
@@ -1244,7 +1244,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
         <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Program Enrollment object.</value>
     </labels>
     <labels>
@@ -1260,7 +1260,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when a mapping's Auto-Enrollment Role is valid</shortDescription>
+        <shortDescription>Description when a mapping&apos;s Auto-Enrollment Role is valid</shortDescription>
         <value>The {0} ({1}) picklist value is valid.</value>
     </labels>
     <labels>
@@ -1276,15 +1276,15 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when a mapping's Auto-Enrollment Status isn't active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping's Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object's Status field in Salesforce Setup and set the picklist value to Active. If it isn't correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
+        <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
+        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrollment object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusNotFound</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
         <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Program Enrollment object.</value>
     </labels>
     <labels>
@@ -1292,7 +1292,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status</shortDescription>
         <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Status to a valid, active picklist value for the Status field on the Program Enrollment object.</value>
     </labels>
     <labels>
@@ -1388,7 +1388,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Course Connections isn't enabled</shortDescription>
+        <shortDescription>Recommended fix when Course Connections isn&apos;t enabled</shortDescription>
         <value>Enable Course Connections, which includes configuring Course Connection record types.</value>
     </labels>
     <labels>
@@ -1397,23 +1397,15 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Faculty Record Type is inactive</shortDescription>
-        <value>Verify the Default Faculty Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Faculty Record Type to a valid, active record type.</value>
+        <value>Verify the Default Faculty Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Faculty Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyNotFoundFix</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find Default Faculty Record Type</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Default Faculty Record Type</shortDescription>
         <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Faculty Record Type to a valid, active record type.</value>
-    </labels>  
-    <labels>
-        <fullName>stgHCCourseConnectionsTitle</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Course Connections group title in EDA Settings Health Check results</shortDescription>
-        <value>Course Connections</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesNotUnique</fullName>
@@ -1453,14 +1445,14 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Active Student Record Type is inactive</shortDescription>
-        <value>Verify the Default Active Student Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Active Student Record Type to a valid, active record type.</value>
+        <value>Verify the Default Active Student Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Active Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConStudentNotFoundFix</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can't find Default Active Student Record Type</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Default Active Student Record Type</shortDescription>
         <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
@@ -1632,6 +1624,14 @@
         <value>{0} Reciprocal Relationships</value>
     </labels>
     <labels>
+        <fullName>stgHCCourseConnectionsTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Course Connections group title in EDA Settings Health Check results</shortDescription>
+        <value>Course Connections</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckAffiliationMappings</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1678,6 +1678,14 @@
         <protected>true</protected>
         <shortDescription>Reciprocal Relationships group title in EDA Settings Health Check results</shortDescription>
         <value>Reciprocal Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckLoadingIndicator</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text indicating that an EDA Settings Health Check component is loading</shortDescription>
+        <value>Loading...</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckRecoFix</fullName>
@@ -2158,14 +2166,6 @@
         <protected>true</protected>
         <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</value>
-    </labels>
-    <labels>
-        <fullName>stgLoadingSpinnerText</fullName>
-        <categories>Setup</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text that displays to indicate that a component is loading</shortDescription>
-        <value>Loading...</value>
     </labels>
     <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>

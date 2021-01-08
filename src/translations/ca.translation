@@ -576,132 +576,128 @@
         <label>Avançat</label>
         <name>stgFluent</name>
     </customLabels>
-   <customLabels>
-        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+    <customLabels>
+        <label><!-- Description for an Affiliation mapping in EDA Settings Health Check results --></label>
         <name>stgHCAffiliationMappingSettingDesc</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- Row heading for an Affiliation mapping in EDA Settings Health Check results --></label>
         <name>stgHCAffiliationMappingSettingHeading</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
+        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
+        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- Description when Account record types in Affiliation mappings are not unique --></label>
         <name>stgHCAfflMapAccRecordTypeNotUnique</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- A check for Account record type in Affiliation mapping settings --></label>
         <name>stgHCAfflMapAccRecordTypeTitle</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- Description when Account record types in Affiliation mappings are unique --></label>
         <name>stgHCAfflMapAccRecordTypeUnique</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- A check for unique Account record types in Affiliation mappings --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping's Auto-Enrollment Status isn't active --></label>
-        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
-    </customLabels> 
-    <customLabels>
-        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
-        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
-    </customLabels> 
-    <customLabels>
-        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
-        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
-    </customLabels> 
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
-        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
-    </customLabels> 
-    <customLabels>
-        <label><!-- A check for Auto-Enrollment Status in Affiliation mappings --></label>
-        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
-    </customLabels> 
-    <customLabels>
-        <label><!-- Description when a mapping's Auto-Enrollment Role isn't active --></label>
+        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
+        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Role --></label>
+        <label><!-- Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- A check for Auto-Enrollment Role in Affiliation mappings --></label>
         <name>stgHCAfflMapAutoEnrollRoleTitle</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping's Auto-Enrollment Role is valid --></label>
+        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role is valid --></label>
         <name>stgHCAfflMapAutoEnrollRoleValid</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping's Auto-Enrollment Status is valid --></label>
+        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for Auto-Enrollment Status in Affiliation mappings --></label>
+        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status is valid --></label>
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping's Contact Primary Affiliation field isn't valid --></label>
+        <label><!-- Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- A check for unique Contact Primary Affiliation fields in Affiliation mappings --></label>
         <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping's Contact Primary Affiliation field isn't valid --></label>
+        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
         <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Description when mappings' Contact Primary Affiliation fields aren't unique --></label>
+        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- A check for Contact Primary Affiliation field in Affiliation mapping settings --></label>
         <name>stgHCAfflMapContactPrimaryFieldTitle</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Description when mappings' Contact Primary Affiliation fields are unique --></label>
+        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields are unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when mappings' Contact Primary Affiliation fields aren't unique --></label>
+        <label><!-- Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping's Contact Primary Affiliation field is valid --></label>
+        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field is valid --></label>
         <name>stgHCAfflMapContactPrimaryFieldValid</name>
-    </customLabels> 
-    <customLabels>
-        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
-        <name>stgHealthCheckAffiliationMappings</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
         <label><!-- Description when Health Check finds Course Connections not enabled --></label>
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
+        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
@@ -709,12 +705,8 @@
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
-        <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Description when student and faculty Course Connection record types not unique --></label>
@@ -737,376 +729,8 @@
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find Default Active Student Record Type --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find Default Active Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description when Health Check finds an inactive picklist value --></label>
-        <name>stgHCPicklistValueInactive</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the picklist value --></label>
-        <name>stgHCPicklistValueNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
-        <name>stgHCPicklistValueValid</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description for a reciprocal setting in EDA Settings Health Check results --></label>
-        <name>stgHCReciprocalRelDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
-        <name>stgHCReciprocalRelFemaleInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- A check for the Female value in a reciprocal setting --></label>
-        <name>stgHCReciprocalRelFemaleTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
-        <name>stgHCReciprocalRelMaleInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelMaleNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- A check for the Male value in a reciprocal setting --></label>
-        <name>stgHCReciprocalRelMaleTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
-        <name>stgHCReciprocalRelNameInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelNameNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description when Name isn&apos;t unique in reciprocal settings --></label>
-        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended Fix when Name isn&apos;t unique in reciprocal settings --></label>
-        <name>stgHCReciprocalRelNameNotUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- A check for the Name value in a reciprocal setting --></label>
-        <name>stgHCReciprocalRelNameTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description when Name is unique in reciprocal settings --></label>
-        <name>stgHCReciprocalRelNameUniqueDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- A check for unique Name values in reciprocal settings --></label>
-        <name>stgHCReciprocalRelNameUniqueTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
-        <name>stgHCReciprocalRelNeutralInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- A check for the Neutral value in a reciprocal setting --></label>
-        <name>stgHCReciprocalRelNeutralTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
-        <name>stgHCReciprocalRelSetting</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- EDA Settings Health Check component description --></label>
-        <name>stgHealthCheckDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t show the last run date --></label>
-        <name>stgHealthCheckErrorLastRunDate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Text when a check passes and no fix is recommended --></label>
-        <name>stgHealthCheckFixNotApplicable</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- EDA Settings Health Check last run date --></label>
-        <name>stgHealthCheckLastRun</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Reciprocal Relationships group title in EDA Settings Health Check results --></label>
-        <name>stgHealthCheckReciprocalRelTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
-        <name>stgHealthCheckRecoFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
-        <name>stgHealthCheckResultsCollapse</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description column header in EDA Settings Health Check results --></label>
-        <name>stgHealthCheckResultsDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for the icon to expand EDA Settings Health Check results --></label>
-        <name>stgHealthCheckResultsExpand</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- EDA Settings Run Health Check button label --></label>
-        <name>stgHealthCheckRunButton</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
-        <name>stgHealthCheckRunError</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Setting column header in EDA Settings Health Check results --></label>
-        <name>stgHealthCheckSetting</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Status column header in EDA Settings Health Check results --></label>
-        <name>stgHealthCheckStatus</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
-        <name>stgHealthCheckStatusFailed</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
-        <name>stgHealthCheckStatusPassed</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
-        <name>stgHealthCheckStatusWarning</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
-        <name>stgHealthCheckTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
-        <name>stgHealthChecksAllPassed</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Text in EDA Settings Health Check results shows group&apos;s passed and total checks --></label>
-        <name>stgHealthChecksNotAllPassed</name>
-    </customLabels>
-    <customLabels>
-        <label>Per a les institucions d’educació superior, recomanem el model de compte “Administratiu”. A les escoles K-12, recomanem el model de compte &quot;Llar&quot;.</label>
-        <name>stgHelpAccountModel</name>
-    </customLabels>
-    <customLabels>
-        <label>Registre els tipus dels comptes que s&apos;eliminaran automàticament si s&apos;han eliminat tots els contactes associats.</label>
-        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
-    </customLabels>
-    <customLabels>
-        <label>Els tipus de registre del compte que admeten la gestió d&apos;adreces múltiples.</label>
-        <name>stgHelpAddressAccRecType</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipus de registre del compte utilitzat per als comptes administratius. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes administratius.</label>
-        <name>stgHelpAdminRecType</name>
-    </customLabels>
-    <customLabels>
-        <label>Si se selecciona, la data de finalització de la inscripció al programa es copia a la data de finalització en els nous registres d’afiliació. En cas contrari, la data de finalització de l’afiliació es deixa en blanc.</label>
-        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
-    </customLabels>
-    <customLabels>
-        <label>Si se selecciona, la data d&apos;inici de la inscripció al programa es copia a la data d&apos;inici en els nous registres d’afiliació. En cas contrari, la data d&apos;inici de l’afiliació es deixa en blanc.</label>
-        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
-    </customLabels>
-    <customLabels>
-        <label>Afiliacions creades amb inscripcions al programa</label>
-        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
-    </customLabels>
-    <customLabels>
-        <label>Quan vulgueu crear un registre d’inscripció al programa sense cap afiliació existent, creeu un registre d’afiliació amb els valors especificats a continuació.</label>
-        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
-    </customLabels>
-    <customLabels>
-        <label>L&apos;estat establert a l’afiliació relacionada amb una inscripció de programa suprimida.</label>
-        <name>stgHelpAfflDeleteProgramEnrollment</name>
-    </customLabels>
-    <customLabels>
-        <label>Supressions d&apos;inscripcions al programa</label>
-        <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
-    </customLabels>
-    <customLabels>
-        <label>Especifiqueu a continuació com voleu que es gestionin els registres d’afiliació d&apos;inscripcions al programa suprimides. El registre d’afiliació relacionat es pot suprimir o se&apos;n pot actualitzar l&apos;estat.</label>
-        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
-    </customLabels>
-    <customLabels>
-        <label>Si se selecciona, establiu la funció d’afiliació nova al valor definit a la funció per a les afiliacions creades. En cas contrari, deixeu la funció de l’afiliació en blanc.</label>
-        <name>stgHelpAfflProgEnrollSetRole</name>
-    </customLabels>
-    <customLabels>
-        <label>La funció establerta a l’afiliació creada amb una inscripció de programa.</label>
-        <name>stgHelpAfflProgEnrollSetRoleValue</name>
-    </customLabels>
-    <customLabels>
-        <label>L&apos;estat establert a l’afiliació creada amb una inscripció de programa.</label>
-        <name>stgHelpAfflProgEnrollSetStatusValue</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>
-        <name>stgHelpContactAddrs</name>
-    </customLabels>
-    <customLabels>
-        <label>No requereix que els contactes tinguin un correu electrònic preferit.</label>
-        <name>stgHelpContactPreferredEmail</name>
-    </customLabels>
-    <customLabels>
-        <label>No requereix que els contactes tinguin un telèfon preferit.</label>
-        <name>stgHelpContactPreferredPhone</name>
-    </customLabels>
-    <customLabels>
-        <label>Sincronitza el camp del telèfon preferit amb el camp de telèfon estàndard del contacte i valida que el valor del telèfon preferent existeixi i que tingui un valor.</label>
-        <name>stgHelpContactPreferredPhoneSync</name>
-    </customLabels>
-    <customLabels>
-        <label>El procés s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el treball.</label>
-        <name>stgHelpCopyQueuedEmailSent</name>
-    </customLabels>
-    <customLabels>
-        <label>El reenviament de connexions del curs s&apos;ha d&apos;utilitzar només quan s&apos;activen les connexions del curs per primera vegada i només a les organitzacions on hi ha hagut ofertes per a cursos i connexions per a cursos (inscripcions) abans d&apos;activar la funció Connexions del curs. El reenviament converteix tots els contactes que es van incloure com a professors en una connexió de curs (inscripció) o oferta de cursos en el tipus de registre predeterminat del professorat. El reenviament converteix els contactes de les connexions restants del curs (inscripcions) en el tipus predeterminat de registre d&apos;estudiant actiu.</label>
-        <name>stgHelpCourseConnBackfillDescription</name>
-    </customLabels>
-    <customLabels>
-        <label>A EDA 1.30, el camp Descripció ampliada s’ha afegit per adaptar-se a les descripcions més llargues del curs.</label>
-        <name>stgHelpCoursesDataMigration</name>
-    </customLabels>
-    <customLabels>
-        <label>Aquesta utilitat copia els valors del camp Descripció del curs al camp de Descripció ampliada. Aquest procés pot trigar una mica, però podeu tancar aquesta pàgina amb seguretat i el procés continuarà en segon pla.</label>
-        <name>stgHelpCoursesDataMigrationCopiesValues</name>
-    </customLabels>
-    <customLabels>
-        <label>Si un curs ja té un valor per a la Descripció ampliada, no la sobreescriurem.</label>
-        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
-    </customLabels>
-    <customLabels>
-        <label>Un cop finalitzat el procés, recordeu actualitzar els dissenys de pàgines i altres àrees de l&apos;aplicació que fan referència als camps de la descripció.</label>
-        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor de domini s&apos;estableix automàticament als registres d&apos;idioma de contacte de nova creació quan els usuaris estableixen el camp de cerca d&apos;idioma principal en un contacte.</label>
-        <name>stgHelpDefaultContactLanguageFluency</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipus de gravació predeterminat quan es creen connexions de curs per a un membre de la facultat.</label>
-        <name>stgHelpDefaultFacultyType</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipus de gravació predeterminat quan es creen connexions de curs per a estudiants actius.</label>
-        <name>stgHelpDefaultStudentType</name>
-    </customLabels>
-    <customLabels>
-        <label>Heu d&apos;habilitar les connexions del curs abans d&apos;executar el reenviament de connexions del curs.</label>
-        <name>stgHelpEnableCourseConnBeforeBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label>Heu d&apos;habilitar les connexions del curs abans d&apos;editar els tipus de registre.</label>
-        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
-    </customLabels>
-    <customLabels>
-        <label>Els registres de connexió del curs connecten un contacte amb una oferta de curs. L&apos;activació d&apos;aquesta funció permet als usuaris triar el tipus de contacte (professorat o estudiant) per crear la connexió del curs. Quan activeu aquesta funció, també haureu d’establir el tipus de registre actiu predeterminat de l’alumne i el tipus de registre predeterminat de professorat, a continuació. Si activeu aquesta funció per primera vegada, us recomanem que executeu el reenviament de les connexions del curs.</label>
-        <name>stgHelpEnableCourseConnections</name>
-    </customLabels>
-    <customLabels>
-        <label>Per als contactes existents que no han especificat un correu electrònic preferit o un telèfon preferit, la neteja assegura que una de les adreces de correu electrònic estàndard o un dels números de telèfon preferits personalitzats del contacte s&apos;estableixi com a valor preferit.</label>
-        <name>stgHelpEnsureExistContactPreferEmail</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccioneu aquesta opció per desactivar el marc de gestió d&apos;errors del producte.</label>
-        <name>stgHelpErrorDisable</name>
-    </customLabels>
-    <customLabels>
-        <label>Si se selecciona, es publicaran notificacions per detectar errors generats pel producte.</label>
-        <name>stgHelpErrorNotifyOn</name>
-    </customLabels>
-    <customLabels>
-        <label>Especifiqueu qui ha de rebre notificacions d&apos;errors per correu electrònic. Els valors vàlids són &quot;Tots els administradors de sistemes&quot;, l&apos;identificador d&apos;un usuari de la vostra organització o l&apos;identificador d&apos;un grup de Chatter. Només podeu introduir un valor.</label>
-        <name>stgHelpErrorNotifyTo</name>
-    </customLabels>
-    <customLabels>
-        <label>Utilitzeu la reposició d&apos;Ètnia i de Raça només si la vostra organització utilitzava el camp Ètnia abans que s&apos;afegís el camp Raça i s&apos;eliminessin els valors del camp Ètnia a partir de la versió 1.28 d’EDA. Si el valor del camp Ètnia del contacte no és igual a &quot;No hispà ni llatí&quot; o &quot;Hispà o llatí&quot;, la reposició copia el valor al camp Raça. Es poden copiar tant els valors de la llista de selecció estàndard com els valors personalitzats que hàgiu afegit com a aptes per a copiar.</label>
-        <name>stgHelpEthnicityRaceBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label>Activa la gestió d&apos;adreces de comptes administratius i de les llars quan se selecciona.</label>
-        <name>stgHelpHouseAdmAccountAddressMgmt</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipus de registre del compte utilitzat per als comptes domèstics. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes domèstics.</label>
-        <name>stgHelpHouseholdRecType</name>
-    </customLabels>
-    <customLabels>
-        <label>Si la vostra organització ha afegit prèviament valors de llista de selecció personalitzats al camp Ètnia que voleu que estigui disponible al camp Raça, copieu els valors de llista de selecció personalitzats al camp Raça.</label>
-        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
-    </customLabels>
-    <customLabels>
-        <label>Quan estigui seleccionada aquesta opció, els requisits del pla poden especificar un pla del programa o un requisit del pla principal, però no tots dos. Si especifiqueu tant un pla de programa com un requisit de pla principal, un missatge d&apos;error evitarà que es desi fins que no se&apos;n seleccioni només un.</label>
-        <name>stgHelpNestedPlanRequirementPP</name>
-    </customLabels>
-    <customLabels>
-        <label>Activa la gestió d&apos;adreces dels comptes d&apos;organització quan se selecciona.</label>
-        <name>stgHelpOrgAccountAddressMgmt</name>
-    </customLabels>
-    <customLabels>
-        <label>Les relacions creades automàticament es dedueixen de manera predeterminada per evitar que es creïn registres de relacions duplicats entre dos contactes. Seleccioneu &quot;Permetre relacions duplicades creades automàticament&quot; per desactivar aquest comportament i permetre que es creïn diverses relacions del mateix tipus entre dos Contactes.</label>
-        <name>stgHelpRelAutoCreatedDup</name>
-    </customLabels>
-    <customLabels>
-        <label>El mètode utilitzat per omplir el camp de tipus quan es crea una relació recíproca. &quot;Configuració de la llista&quot; utilitza la configuració personalitzada definida a la pestanya Relacions recíproques amb valors masculins, femenins i neutres. &quot;Inversió de valor&quot; inverteix el tipus del registre de relació original, si escau. Per exemple, si la relació originària és pare-fill, la relació recíproca serà fill-pare.</label>
-        <name>stgHelpRelReciprocalMethod</name>
-    </customLabels>
-    <customLabels>
-        <label>Traieu tots els valors de la llista de selecció del camp Ètnia, excepte &quot;Hispà o llatí&quot; i &quot;No hispà ni llatí&quot;. Us recomanem que substituïu cada valor eliminat per un dels valors vàlids restants, en lloc de suprimir-los directament dels registres existents. A partir de la versió 1.28 d&apos;EDA, els únics valors d&apos;ètnia vàlids són &quot;No hispà ni llatí&quot; i &quot;Hispà o llatí&quot;.</label>
-        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
-    </customLabels>
-    <customLabels>
-        <label>Tracta els canvis en els camps d&apos;adreça de contacte o un únic compte com a actualitzacions de l&apos;adreça existent (és a dir, no es crea cap nou objecte d&apos;adreça). També provoca que l&apos;espai en blanc i els canvis de cas siguin tractats com a actualitzacions.</label>
-        <name>stgHelpSimpleAddrChangeIsUpdate</name>
-    </customLabels>
-    <customLabels>
-        <label>Quan se selecciona, els errors s&apos;emmagatzemen en un objecte d&apos;error personalitzat. Podeu crear una pestanya per a l&apos;objecte Errors per veure una llista de tots els errors emmagatzemats.</label>
-        <name>stgHelpStoreErrorsOn</name>
-    </customLabels>
-    <customLabels>
-        <label>Si teniu informes o camps de fórmules que feien referència als valors anteriors al camp Ètnia, actualitzeu-los.</label>
-        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Text that displays to indicate that a component is loading --></label>
-        <name>stgLoadingSpinnerText</name>
-    </customLabels>
-    <customLabels>
-        <label>Validar el pla del programa per als requisits del pla enclavat</label>
-        <name>stgNestedPlanRequirementPP</name>
-    </customLabels>
-    <customLabels>
-        <label>Nova assignació d&apos;afiliació</label>
-        <name>stgNewAfflMapping</name>
-    </customLabels>
-    <customLabels>
-        <label>Tots els administradors de sistemes</label>
-        <name>stgOptAllSysAdmins</name>
-    </customLabels>
-    <customLabels>
-        <label>Grup de Chatter</label>
-        <name>stgOptChatterGroup</name>
-    </customLabels>
-    <customLabels>
-        <label>Selecciona...</label>
-        <name>stgOptSelect</name>
     </customLabels>
     <customLabels>
         <label>Usuari</label>
