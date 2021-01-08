@@ -29,28 +29,27 @@
 * @date 2021
 * @group Health Check
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Abstracts database data for Primary Affiliation Mappings, mapping them
-* to AffiliationMappingsModels.
+* @description Acts as service layer to AffiliationMappingsMapper.
 */
-public virtual with sharing class AffiliationMappingsMapper {
+public virtual with sharing class AffiliationMappingsService {
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static AffiliationMappingsMapper instance;
+    private static AffiliationMappingsService instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected AffiliationMappingsMapper() {}
+    protected AffiliationMappingsService() {}
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AffiliationMappingsMapper.
+    * @return The instance of AffiliationMappingsService.
     ******************************************************************************/
-    public static AffiliationMappingsMapper getInstance() {
+    public static AffiliationMappingsService getInstance() {
         if (instance == null) {
-            instance = new AffiliationMappingsMapper();
+            instance = new AffiliationMappingsService();
         }
 
         return instance;
@@ -61,21 +60,15 @@ public virtual with sharing class AffiliationMappingsMapper {
     * configured in EDA Settings.
     * @return A list of AffiliationMappingsModel
     *****************************************************************************/
-    public virtual List<AffiliationMappingsModel> getAffiliationMappingsModel() {
-        List<AffiliationMappingsModel> primaryAfflMappinModelsList = new List<AffiliationMappingsModel>();
-        List<Affl_Mappings__c> primaryAfflMappingsList = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+    public List<AffiliationMappingsModel> getAffiliationMappingsModels(){
+        return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
+    }
 
-        for (Affl_Mappings__c afflMapping : primaryAfflMappingsList){
-            primaryAfflMappinModelsList.add(new AffiliationMappingsModel(
-                afflMapping.Name,
-                afflMapping.Account_Record_Type__c,
-                afflMapping.Primary_Affl_Field__c,
-                afflMapping.Auto_Program_Enrollment__c,
-                afflMapping.Auto_Program_Enrollment_Status__c,
-                afflMapping.Auto_Program_Enrollment_Role__c
-            ));
-        }
-
-        return primaryAfflMappinModelsList;
+    /*****************************************************************************
+    * @description Retrieves an instance of the AffiliationMappingsMapper.
+    * @return The instance of AffiliationMappingsMapper.
+    ******************************************************************************/
+    private AffiliationMappingsMapper locateAffiliationMappingsMapper(){
+        return AffiliationMappingsMapper.getInstance();
     }
 }

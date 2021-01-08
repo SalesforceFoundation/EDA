@@ -33,7 +33,7 @@
 */
 @isTest
 public with sharing class AffiliationMappingsMapper_TEST {
-    
+
     /*****************************************************************************
     * @description Test to verify getAffiliationMappingsModelValid() generates
     * models matching the affiliation mappings set in EDA Settings. 
@@ -89,5 +89,37 @@ public with sharing class AffiliationMappingsMapper_TEST {
                 'Affiliation Mapping Model auto enrollment role should match Primary Affiliation.'
             );
         }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * AffiliationMappingsMapper class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
+
+        Test.startTest();
+            AffiliationMappingsMapper AffiliationMappingsMapperInstance = AffiliationMappingsMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(AffiliationMappingsMapper.instance, AffiliationMappingsMapperInstance, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(true, AffiliationMappingsMapperInstance != null, 'Instance of mapper class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * AffiliationMappingsMapper class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+
+        Test.startTest();
+            AffiliationMappingsMapper AffiliationMappingsMapperInstance1 = AffiliationMappingsMapper.getInstance();
+            AffiliationMappingsMapper AffiliationMappingsMapperInstance2 = AffiliationMappingsMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(AffiliationMappingsMapper.instance, AffiliationMappingsMapperInstance1, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(AffiliationMappingsMapperInstance1, AffiliationMappingsMapperInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
+        System.assertEquals(true, AffiliationMappingsMapperInstance1 != null, 'Instance of mapper class should not be null.');
     }
 }
