@@ -123,7 +123,7 @@ tasks:
 
     deploy_health_check_config:
         description: Deploys configuration for testing of EDA Settings Health Check.
-        class_path: cumulugsci.tasks.salesforce.Deploy
+        class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/gated/healthCheck
