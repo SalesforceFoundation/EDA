@@ -27,11 +27,10 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
+* @group
 * @group-content ../../ApexDocContent/
 * @description Generate a HealthCheckGroup view model representing the results of
-* an Account model health check.  Verifies that mapped record types for 
-* Default Account, Administrative and Household Account Models are valid and active.
+* an Course Connection settings health check.  Verifies Course connection is enabled. 
 */
 public virtual with sharing class CourseConSettingHealthCheckVMapper {
     /**********************************************************************************
@@ -57,71 +56,79 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
         return instance;
     }
 
-    /**********************************************************************************
-    * @description Retrieve the results for a for an AccountModel health check.
-    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
-    **********************************************************************************/ 
+    /********************************************************************************************
+    * @description Retrieve the results for a for an Course Connection Settings health check.
+    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Course Connection.
+    ********************************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
+
+        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(
+            Label.stgHCCourseConnectionsTitle,
+            Label.stgHealthCheckStatusPassed,
+            0,
+            0,
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
 
         CourseConnectionSettingsModel courseConnSettingsModel = this.locateCourseConnectionSettingsService().getCourseConnectionSettingsModel();
 
         String objectName = UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c');
         SObjectType courseConnSObjectType = UTIL_Describe.getObjectDescribe(objectName).getSObjectType();
-
         Map<Id, RecordTypeModel> courseConnRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(courseConnSObjectType);
 
-        String hlthCheckGroupLabel = 'Label.stgHCCourseConnectionsTitle';
-        Integer hlthChkGroupPassedChecks = 0;
-        Integer hlthChkGroupTotalChecks = 3;
-        String hlthChkGroupStatus = (hlthChkGroupPassedChecks == hlthChkGroupTotalChecks) ? Label.stgHealthCheckStatusPassed : Label.stgHealthCheckStatusFailed;
-        
-        List<String> hlthChkGroupExpandedRowsList = new List<String>();
-        List<HealthCheckItemVModel> healthCheckItemList = new List<HealthCheckItemVModel>();
+        HealthCheckGroupVModel courseConnEnableCheckResult = this.getCourseConnectionsNotEnabledHealthCheckItems(courseConnSettingsModel);
 
-        HealthCheckItemVModel hcItem1 = new HealthCheckItemVModel('01',
-                                                                   'Label.stgEnableCourseConnectionsTitle',
-                                                                   'Fail',
-                                                                   Label.stgHealthCheckStatusFailed,
-                                                                   'Label.stgHCCourseConEnable',
-                                                                   'Label.stgHCCourseConEnableFix',
-                                                                   new List<HealthCheckItemVModel>());
+        hlthChkGroupVMod.passedChecks += courseConnEnableCheckResult.passedChecks;
+        hlthChkGroupVMod.totalChecks +=  courseConnEnableCheckResult.totalChecks;
+        hlthChkGroupVMod.expandedRowsList.addAll(courseConnEnableCheckResult.expandedRowsList);
+        hlthChkGroupVMod.healthCheckItemList.addAll(courseConnEnableCheckResult.healthCheckItemList);
 
-        HealthCheckItemVModel hcItem2 = new HealthCheckItemVModel('02',
-                                                                   'Label.stgDefaultStudentTypeTitle',
-                                                                   'Fail',
-                                                                   Label.stgHealthCheckStatusFailed,
-                                                                  String.format('Label.stgHCCourseConStudentInactiveFix {0} {1}',
-                                                                                 new List<Object>{'mock_recordtype_api', 'Mock Record Type Label'}),
-                                                                   'Label.stgHCCourseConStudentNotFoundFix',
-                                                                   new List<HealthCheckItemVModel>());
-
-        HealthCheckItemVModel hcItem3 = new HealthCheckItemVModel('03',
-                                                                  'Label.stgDefaultFacultyTypeTitle',
-                                                                  'Fail',
-                                                                  Label.stgHealthCheckStatusFailed,
-                                                                   String.format('Label.stgHCCourseConFacultyInactiveFix {0} {1}',
-                                                                                new List<Object>{'mock_recordtype_api', 'Mock Record Type Label'}),
-                                                                  'Label.stgHCCourseConFacultyNotFoundFix',
-                                                                  new List<HealthCheckItemVModel>());
-
-
-        healthCheckItemList.add(hcItem1);
-        healthCheckItemList.add(hcItem2);
-        healthCheckItemList.add(hcItem3);
-
-        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(hlthCheckGroupLabel,
-                                                                             hlthChkGroupStatus,
-                                                                             hlthChkGroupPassedChecks,
-                                                                             hlthChkGroupTotalChecks,
-                                                                             hlthChkGroupExpandedRowsList,
-                                                                             healthCheckItemList);
-
+        if(hlthChkGroupVMod.passedChecks < hlthChkGroupVMod.totalChecks) {
+            hlthChkGroupVMod.status = Label.stgHealthCheckStatusFailed;
+        }
 
         hlthChkGroupVMod.healthCheckItemList.sort();
         return hlthChkGroupVMod;
 
     }
-    
+
+    /*******************************************************************************
+    * @description Retrieves the health check for a Course Connection Settings Model
+    * @param CourseConnectionSettingsModel The courseConnSettingsModel model to perform
+    * the health check on.
+    * @return The health check for the Course Connection Settings Model
+    *******************************************************************************/
+    @TestVisible
+    protected virtual HealthCheckGroupVModel getCourseConnectionsNotEnabledHealthCheckItems(
+        CourseConnectionSettingsModel courseConnSettingsModel
+    ) {
+
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+            '',
+            '',
+            0,
+            0,
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
+
+        if (courseConnSettingsModel.courseConnectionsEnabled == false) {
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('01',
+                                                                      Label.stgEnableCourseConnectionsTitle,
+                                                                      'Fail',
+                                                                      Label.stgHealthCheckStatusFailed,
+                                                                      Label.stgHCCourseConEnable,
+                                                                      Label.stgHCCourseConEnableFix,
+                                                                      new List<HealthCheckItemVModel>()));
+            healthCheckGroupVModel.totalChecks++;
+
+            return healthCheckGroupVModel;
+        }
+
+        return HealthCheckGroupVModel;
+    }
+
     /*****************************************************************************
     * @description Retrieve an instance of the CourseConnectionSettingsService class.
     * @return An instance of CourseConnectionSettingsService.
@@ -130,7 +137,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
     private CourseConnectionSettingsService locateCourseConnectionSettingsService() {
         return CourseConnectionSettingsService.getInstance();
     }
-    
+
     /*****************************************************************************
     * @description Retrieve an instance of the RecordTypeService class.
     * @return An instance of RecordTypeService.
