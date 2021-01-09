@@ -84,31 +84,25 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     **********************************************************************************/ 
     @TestVisible
     private HealthCheckGroupVModel combineAccountHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList) {
-        String healthCheckGroupLabel = Label.stgHealthCheckAccountModel;
-        Integer healthChkGroupPassedChecks = 0;
-        Integer healthChkGroupTotalChecks = 0;
-
-        List<String> hlthChkGroupExpandedRowsList = new List<String>();
-        List<HealthCheckItemVModel> hlthChkGroupHlthChkItemsList = new List<HealthCheckItemVModel>();
+        HealthCheckGroupVModel parentHealthCheckGroupVMod = new HealthCheckGroupVModel(Label.stgHealthCheckAccountModel,
+                                                                                        '',
+                                                                                        0,
+                                                                                        0,
+                                                                                        new List<String>(),
+                                                                                        new List<HealthCheckItemVModel>());
 
         for (HealthCheckGroupVModel healthCheckGroupVMod : healthCheckGroupVModelsList) {
-            healthChkGroupPassedChecks += healthCheckGroupVMod.passedChecks;
-            healthChkGroupTotalChecks += healthCheckGroupVMod.totalChecks;
+            parentHealthCheckGroupVMod.passedChecks += healthCheckGroupVMod.passedChecks;
+            parentHealthCheckGroupVMod.totalChecks += healthCheckGroupVMod.totalChecks;
 
-            hlthChkGroupExpandedRowsList.addAll(healthCheckGroupVMod.expandedRowsList);
-            hlthChkGroupHlthChkItemsList.addAll(healthCheckGroupVMod.healthCheckItemList);
+            parentHealthCheckGroupVMod.expandedRowsList.addAll(healthCheckGroupVMod.expandedRowsList);
+            parentHealthCheckGroupVMod.healthCheckItemList.addAll(healthCheckGroupVMod.healthCheckItemList);
         }
 
-        String hlthChkGroupStatus = '';
-
-        HealthCheckGroupVModel healthCheckGroupVMod = new HealthCheckGroupVModel(healthCheckGroupLabel,
-                                                                             hlthChkGroupStatus,
-                                                                             healthChkGroupPassedChecks,
-                                                                             healthChkGroupTotalChecks,
-                                                                             hlthChkGroupExpandedRowsList,
-                                                                             hlthChkGroupHlthChkItemsList);
-        healthCheckGroupVMod.healthCheckItemList.sort();
-        return healthCheckGroupVMod;
+        parentHealthCheckGroupVMod.updateHealthCheckStatus();
+        parentHealthCheckGroupVMod.healthCheckItemList.sort();
+        
+        return parentHealthCheckGroupVMod;
     }
 
     /**********************************************************************************
