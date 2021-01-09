@@ -55,7 +55,70 @@ public virtual with sharing class LookupFieldService {
             return instance;
     }
 
+    /********************************************************************************************
+    * @description Retrieve a map of LookupFieldModels by Name for a specified SObject 
+    * that is a lookup to the same SObject type.
+    * @param  sObjectType An SObject type 
+    * @return A Map<String, LookupFieldModel>
+    ********************************************************************************************/
     public Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType) {
         Map<String,LookupFieldModel> lookupFieldModelByName = new Map<String, LookupFieldModel>();
+
+        List<LookupFieldModel> lookupFieldModelList = 
+            this.locateLookupFieldMapper().getLookupFieldModelsForSObjectType(sObjectType, sObjectType);
+
+        for (LookupFieldModel lookupFieldMod : lookupFieldModelList) {
+            lookupFieldModelByName.put(lookupFieldMod.name, lookupFieldMod);
+        }
+
+        return lookupFieldModelByName;
+    }
+
+    /********************************************************************************************
+    * @description Retrieve a map of LookupFieldModels by Label for a specified SObject 
+    * that is a lookup to the same SObject type.
+    * @param  sObjectType An SObject type 
+    * @return A Map<String, LookupFieldModel>
+    ********************************************************************************************/
+    public Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType) {
+        Map<String,LookupFieldModel> lookupFieldModelByLabel = new Map<String, LookupFieldModel>();
+
+        List<LookupFieldModel> lookupFieldModelList = 
+            this.locateLookupFieldMapper().getLookupFieldModelsForSObjectType(sObjectType, sObjectType);
+
+        for (LookupFieldModel lookupFieldMod : lookupFieldModelList) {
+            lookupFieldModelByLabel.put(lookupFieldMod.label, lookupFieldMod);
+        }
+
+        return lookupFieldModelByLabel;
+    }
+
+    /********************************************************************************************
+    * @description Retrieve a LookupField model for a specified SObject and field name.
+    * @param  sObjectType An SObject Type
+    * @param  fieldName  An SObject field name
+    * @return A LookupFieldModel
+    ********************************************************************************************/ 
+    public LookupFieldModel getLookupFieldModelFromNameMap(SObjectType sObjectType, String fieldName) {
+        return this.getModelByNameMapForSObjectType(sObjectType)?.get(fieldName);
+    }
+
+    /********************************************************************************************
+    * @description Retrieve a LookupField model for a specified SObject and field label.
+    * @param  sObjectType An SObject Type
+    * @param  fieldLabel  An SObject field name
+    * @return A LookupFieldModel
+    ********************************************************************************************/ 
+    public LookupFieldModel getLookupFieldModelFromLabelMap(SObjectType sObjectType, String fieldLabel) {
+        return this.getModelByLabelMapForSObjectType(sObjectType)?.get(fieldLabel);
+    }
+
+    /*****************************************************************************
+    * @description Retrieves an instance of the LookupFieldMapper.
+    * @return The instance of LookupFieldMapper.
+    ******************************************************************************/
+    @TestVisible
+    private LookupFieldMapper locateLookupFieldMapper(){
+        return LookupFieldMapper.getInstance();
     }
 }
