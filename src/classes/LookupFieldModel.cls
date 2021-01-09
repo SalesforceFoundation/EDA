@@ -29,30 +29,14 @@
 * @date 2021
 * @group Health Check
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Model representing an abstraction of Affiliation Mappings in EDA Settings.
+* @description Generate a model serving as an abstraction of lookup field for Affiliation.
 */
-public with sharing class AffiliationMappingsModel {
+public with sharing class LookupFieldModel {
     public String name;
-    public String accountRecordTypeId;
-    public String primaryAffiliationField;
-    public Boolean autoProgramEnrollment;
-    public String autoProgramEnrollmentStatus;
-    public String autoProgramEnrollmentRole;
+    public String label;
 
-    public AffiliationMappingsModel(
-        String name,
-        String accountRecordTypeId,
-        String primaryAffiliationField,
-        Boolean autoProgramEnrollment,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
-    ) {
+    public LookupFieldModel(String name, String label) {
         this.name = name;
-        this.accountRecordTypeId = 
-            (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
-        this.primaryAffiliationField = primaryAffiliationField;
-        this.autoProgramEnrollment = autoProgramEnrollment;
-        this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;
-        this.autoProgramEnrollmentRole = autoProgramEnrollmentRole;
+        this.label = label;
     }
 }

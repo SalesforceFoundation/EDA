@@ -1079,4 +1079,29 @@ public class UTIL_Describe {
         }
         return recordTypeInfoByDeveloperName.get(objectName);
     }
+
+    /*******************************************************************************************************
+    * @description Determine if a specified field is a lookup to the specified SObjectType
+    * @param  fieldDescribe The Schema.DescribeFieldResult of a specified field
+    * @param  sObjectType   The SObjectType for the lookup object
+    * @return True if the specified field is a lookup to the specified SObjectType, false otherwise
+    *******************************************************************************************************/ 
+    public static Boolean isLookupFieldTo(Schema.DescribeFieldResult fieldDescribe, SObjectType sObjectType) {
+        Set<Schema.SObjectType> mappedLookupTypesSet = new Set<Schema.SObjectType>(fieldDescribe.getReferenceTo());
+
+        if (mappedLookupTypesSet.isEmpty() == true || mappedLookupTypesSet.contains(sObjectType) == false) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /*******************************************************************************************************
+    * @description Retrieve a map of all fields for a specified SObject by field name.
+    * @param  sObjectName The name of an SObject type
+    * @return A Map<String, Schema.SObjectField> if the specified SObject name exists, null otherwise.
+    *******************************************************************************************************/
+    public static Map<String, Schema.SObjectField> getAllFieldsForSObject(String sObjectName){
+        return Schema.getGlobalDescribe().get(sObjectName)?.getDescribe().fields.getMap();
+    }
 }

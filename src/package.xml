@@ -146,6 +146,10 @@
         <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckVModel</members>
         <members>HealthCheckVModel_TEST</members>
+        <members>LookupFieldMapper</members>
+        <members>LookupFieldMapper_TEST</members>
+        <members>LookupFieldModel</members>
+        <members>LookupFieldModel_TEST</members>
         <members>LookupFieldService</members>
         <members>LookupFieldService_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>

@@ -324,4 +324,40 @@ public with sharing class HealthCheckGroupVModel_TEST {
 
         System.assertEquals(0, compareToResult, 'Result comparing incompatible object types should be 0.');
     }
+
+    /**************************************************************************************************************************
+    * @description Test to verify updateHealthCheckStatus() returns Pass when all health checks executed pass.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void updateHealthCheckStatusPass(){
+        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('TestLabel',
+                                                                          'TestStatus', 
+                                                                          5, 
+                                                                          5,
+                                                                          new List<String>{'TestString'}, 
+                                                                          new List<HealthCheckItemVModel>());
+        Test.startTest();
+        hlthChkGroupMod.updateHealthCheckStatus();
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckStatusPassed, hlthChkGroupMod.status, 'Should return \'' + Label.stgHealthCheckStatusPassed + '\'.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify updateHealthCheckStatus() returns Fail when any health checks executed fail.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void updateHealthCheckStatusFail(){
+        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('TestLabel',
+                                                                          'TestStatus', 
+                                                                          5, 
+                                                                          10,
+                                                                          new List<String>{'TestString'}, 
+                                                                          new List<HealthCheckItemVModel>());
+        Test.startTest();
+        hlthChkGroupMod.updateHealthCheckStatus();
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupMod.status, 'Should return \'' + Label.stgHealthCheckStatusFailed + '\'.');
+    }
 }

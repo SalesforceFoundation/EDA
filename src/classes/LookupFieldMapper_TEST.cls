@@ -27,32 +27,11 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Model representing an abstraction of Affiliation Mappings in EDA Settings.
+* @group 
+* @group-content ../../ApexDocContent/Tests.htm
+* @description Test class for LookupFieldMapper class.
 */
-public with sharing class AffiliationMappingsModel {
-    public String name;
-    public String accountRecordTypeId;
-    public String primaryAffiliationField;
-    public Boolean autoProgramEnrollment;
-    public String autoProgramEnrollmentStatus;
-    public String autoProgramEnrollmentRole;
-
-    public AffiliationMappingsModel(
-        String name,
-        String accountRecordTypeId,
-        String primaryAffiliationField,
-        Boolean autoProgramEnrollment,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
-    ) {
-        this.name = name;
-        this.accountRecordTypeId = 
-            (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
-        this.primaryAffiliationField = primaryAffiliationField;
-        this.autoProgramEnrollment = autoProgramEnrollment;
-        this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;
-        this.autoProgramEnrollmentRole = autoProgramEnrollmentRole;
-    }
+@isTest
+public with sharing class LookupFieldMapper_TEST {
+    
 }

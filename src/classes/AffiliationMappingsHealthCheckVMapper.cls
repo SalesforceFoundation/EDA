@@ -130,9 +130,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 ));
 
                 healthCheckGroupVMod.totalChecks++;
-                // healthCheckGroupVMod.updateHealthCheckStatus();
-                
-                // return healthCheckGroupVMod;
             }
 
             else if (acctRTModel.isActive == false) {
@@ -153,9 +150,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 ));
 
                 healthCheckGroupVMod.totalChecks++;
-                //healthCheckGroupVMod.updateHealthCheckStatus();
-
-                //return healthCheckGroupVMod;
             }
 
             else {
@@ -181,44 +175,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         return healthCheckGroupVMod;
     }
 
-    
-
-    /**********************************************************************************
-    * @description Generates a HealthCheckGroupVModel comprised of the combined health 
-    * check results for Default Account, Administrative and Household accounts. 
-    * @param  healthCheckGroupVModelsList A list of HealthCheckGroupVModels
-    * @return A HealthCheckGroupVModel representing the health check results for 
-    * Default, Administrative and Household Accounts.
-    **********************************************************************************/ 
-    // @TestVisible
-    // private HealthCheckGroupVModel combineAffiliationMappingHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList) {
-    //     String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
-    //     Integer hlthChkGroupPassedChecks = 0;
-    //     Integer hlthChkGroupTotalChecks = 0;
-
-    //     List<String> hlthChkGroupExpandedRowsList = new List<String>();
-    //     List<HealthCheckItemVModel> hlthChkGroupHlthChkItemsList = new List<HealthCheckItemVModel>();
-
-    //     for (HealthCheckGroupVModel healthCheckGroupVMod : healthCheckGroupVModelsList) {
-    //         hlthChkGroupPassedChecks += healthCheckGroupVMod.passedChecks;
-    //         hlthChkGroupTotalChecks += healthCheckGroupVMod.totalChecks;
-
-    //         hlthChkGroupExpandedRowsList.addAll(healthCheckGroupVMod.expandedRowsList);
-    //         hlthChkGroupHlthChkItemsList.addAll(healthCheckGroupVMod.healthCheckItemList);
-    //     }
-
-    //     String hlthChkGroupStatus = this.updateHealthCheckStatus(hlthChkGroupPassedChecks, hlthChkGroupTotalChecks);
-
-    //     HealthCheckGroupVModel healthCheckGroupVMod = new HealthCheckGroupVModel(healthCheckGroupLabel,
-    //                                                                          hlthChkGroupStatus,
-    //                                                                          hlthChkGroupPassedChecks,
-    //                                                                          hlthChkGroupTotalChecks,
-    //                                                                          hlthChkGroupExpandedRowsList,
-    //                                                                          hlthChkGroupHlthChkItemsList);
-    //     healthCheckGroupVMod.healthCheckItemList.sort();
-    //     return healthCheckGroupVMod;
-    // }
-
     /*****************************************************************************
     * @description Retrieve an instance of the AffiliationMappingsService class.
     * @return An instance of AffiliationMappingsService.
@@ -236,5 +192,4 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     private RecordTypeService locateRecordTypeService() {
         return RecordTypeService.getInstance();
     }
-
 }

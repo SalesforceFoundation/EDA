@@ -43,7 +43,7 @@ public with sharing class AffiliationMappingsModel_TEST {
         Test.startTest();
         AffiliationMappingsModel afflMappingMod = new AffiliationMappingsModel(
             'TestAfflMappingModel',
-            '000000000000000001',
+            'HH_Account',
             'Test Primary Affl Field',
             true,
             'Test Status',
@@ -52,7 +52,32 @@ public with sharing class AffiliationMappingsModel_TEST {
         Test.stopTest();
 
         System.assertEquals('TestAfflMappingModel', afflMappingMod.name, 'Name should be set.');
-        System.assertEquals('000000000000000001', afflMappingMod.accountRecordTypeId, 'Record Type Id should be set.');
+        System.assertEquals('0120t000001ecZDAAY', afflMappingMod.accountRecordTypeId, 'Record Type Id for HH_Account should be set.');
+        System.assertEquals('Test Primary Affl Field', afflMappingMod.primaryAffiliationField, 'Primary Affiliation Field should be set.');
+        System.assertEquals(true, afflMappingMod.autoProgramEnrollment, 'Auto Enrollment should be true');
+        System.assertEquals('Test Status', afflMappingMod.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
+        System.assertEquals('Test Role', afflMappingMod.autoProgramEnrollmentRole, 'Auto Enrollment Role should be set.');
+    }
+
+    /*****************************************************************************
+    * @description Test to verify constructor with six arguments instantiates a 
+    * model with the appropriate data when an invalid record type developer name is specified.
+    *****************************************************************************/
+    @isTest 
+    private static void affiliationMappingsModelNullRecordTypeId(){
+        Test.startTest();
+        AffiliationMappingsModel afflMappingMod = new AffiliationMappingsModel(
+            'TestAfflMappingModel',
+            'Not a Valid Record Type Dev Name',
+            'Test Primary Affl Field',
+            true,
+            'Test Status',
+            'Test Role'
+        );
+        Test.stopTest();
+
+        System.assertEquals('TestAfflMappingModel', afflMappingMod.name, 'Name should be set.');
+        System.assertEquals(null, afflMappingMod.accountRecordTypeId, 'Record Type Id should be null.');
         System.assertEquals('Test Primary Affl Field', afflMappingMod.primaryAffiliationField, 'Primary Affiliation Field should be set.');
         System.assertEquals(true, afflMappingMod.autoProgramEnrollment, 'Auto Enrollment should be true');
         System.assertEquals('Test Status', afflMappingMod.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');

@@ -92,30 +92,6 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test to verify updateHealthCheckStatus() returns Pass when all health checks executed pass.
-    **************************************************************************************************************************/ 
-    @isTest
-    private static void updateHealthCheckStatusPass(){
-        Test.startTest();
-        String hcStatus = AccountModelHealthCheckVMapper.getInstance().updateHealthCheckStatus(5, 5);
-        Test.stopTest();
-
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hcStatus, 'Should return \'' + Label.stgHealthCheckStatusPassed + '\'.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Test to verify updateHealthCheckStatus() returns Fail when any health checks executed fail.
-    **************************************************************************************************************************/ 
-    @isTest
-    private static void updateHealthCheckStatusFail(){
-        Test.startTest();
-        String hcStatus = AccountModelHealthCheckVMapper.getInstance().updateHealthCheckStatus(2, 5);
-        Test.stopTest();
-
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hcStatus, 'Should return \'' + Label.stgHealthCheckStatusFailed + '\'.');
-    }
-
-    /**************************************************************************************************************************
     * @description Test to verify combineAccountHealthCheckGroupViewModels() returns a combined HealthCheckGroupVModel comprised of
     * the combined properties of the group view models passed as arguments.
     **************************************************************************************************************************/ 
