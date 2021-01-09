@@ -73,20 +73,25 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
         List<AffiliationMappingsModel> afflMappingSettingMod = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
 
-        for (AffiliationMappingsModel afflMappingMod : afflMappingSettingMod){
+        HealthCheckGroupVModel afflMappingsHealthCheckCombinedGroupModel = 
+            this.getValidRecordTypeHealthCheckGroupVModel(afflMappingSettingMod, accRTModelsById);
 
-        }
-        
-        healthCheckGroupVMod.status = 
-            (healthCheckGroupVMod.passedChecks == healthCheckGroupVMod.totalChecks) ? 
-            Label.stgHealthCheckStatusPassed : 
-            Label.stgHealthCheckStatusFailed;
+        healthCheckGroupVMod.passedChecks += afflMappingsHealthCheckCombinedGroupModel.passedChecks;
+        healthCheckGroupVMod.totalChecks += afflMappingsHealthCheckCombinedGroupModel.totalChecks;
+        healthCheckGroupVMod.expandedRowsList.addAll(afflMappingsHealthCheckCombinedGroupModel.expandedRowsList);
+        healthCheckGroupVMod.healthCheckItemList.addAll(afflMappingsHealthCheckCombinedGroupModel.healthCheckItemList);
 
+        healthCheckGroupVMod.updateHealthCheckStatus();
         healthCheckGroupVMod.healthCheckItemList.sort();
         
         return healthCheckGroupVMod;
     }
 
+    /**********************************************************************************
+    * @description Retrieves a HealthCheckGroup view model representing the health check
+    * results for all affiliation mappings in EDA Settings.
+    * @return A HealthCheckGroupVModel
+    **********************************************************************************/ 
     private HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
         List<AffiliationMappingsModel> affiliationMappingModels, 
         Map<Id,RecordTypeModel> recordTypeModelsById

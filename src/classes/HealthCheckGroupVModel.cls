@@ -52,7 +52,6 @@ public virtual with sharing class HealthCheckGroupVModel implements Comparable {
         this.totalChecks = totalChecks;
         this.expandedRowsList = expandedRowsList;
         this.healthCheckItemList = healthCheckItemList;
-        //System.debug(Label.stgAccModelTitle);
     }
 
     /*********************************************************************************************************************
@@ -60,7 +59,7 @@ public virtual with sharing class HealthCheckGroupVModel implements Comparable {
     *********************************************************************************************************************/
     public void updateHealthCheckStatus() {      
         this.status = (this.passedChecks == this.totalChecks) ? 
-            Label.stgHealthCheckStatusPassed : Label.stgHealthCheckStatusFailed;
+            System.Label.stgHealthCheckStatusPassed : System.Label.stgHealthCheckStatusFailed;
     }
     
     /*****************************************************************************************
