@@ -31,7 +31,7 @@ Delete inserted data
 Verify autocreation relationship settings can be added in both read and edit mode
     [Documentation]         Validates autocreation settings can be added in read and edit mode. Also
     ...                     checks if those values are retained after save.
-    [tags]                  unstable        W-8380706     rbt:high
+    [tags]                  W-8380706     rbt:high
     Enter new autocreate setting
     ...         Object API Name=Campaign Member
     ...         Field Label=Referee__c
@@ -64,7 +64,7 @@ Verify autocreation relationship settings can be added in both read and edit mod
 
 Verify autocreation relationship settings can be deleted
     [Documentation]         Validates autocreation settings can be deleted.
-    [tags]                  unstable        W-8380720     rbt:high
+    [tags]                  W-8380720     rbt:high
     Click action button on EDA settings page    Edit
     Click delete setting icon       Object=Campaign Member
     Handle alert
