@@ -33,5 +33,81 @@
 */
 @isTest 
 public with sharing class AfflMappingsHealthCheckVMapper_TEST {
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * AffiliationMappingsHealthCheckVMapper class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
 
+        Test.startTest();
+            AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance = AffiliationMappingsHealthCheckVMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(AffiliationMappingsHealthCheckVMapper.instance, AffiliationMappingsHealthCheckVMapperInstance, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(true, AffiliationMappingsHealthCheckVMapperInstance != null, 'Instance of mapper class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * AffiliationMappingsHealthCheckVMapper class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+
+        Test.startTest();
+            AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance1 = AffiliationMappingsHealthCheckVMapper.getInstance();
+            AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance2 = AffiliationMappingsHealthCheckVMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(AffiliationMappingsHealthCheckVMapper.instance, AffiliationMappingsHealthCheckVMapperInstance1, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(AffiliationMappingsHealthCheckVMapperInstance1, AffiliationMappingsHealthCheckVMapperInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
+        System.assertEquals(true, AffiliationMappingsHealthCheckVMapperInstance1 != null, 'Instance of mapper class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify locateRecordTypeService() returns an instance of the RecordTypeService class.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void locateRecordTypeServiceValid(){
+        Test.startTest();
+        RecordTypeService recordTypeServiceInstance = AccountModelHealthCheckVMapper.getInstance().locateRecordTypeService();
+        Test.stopTest();
+
+        System.assertEquals(RecordTypeService.getInstance(), recordTypeServiceInstance, 'Should return instance of RecordTypeService class.');
+        System.assertEquals(true, recordTypeServiceInstance != null, 'Instance of RecordTypeService class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify locateAffiliationMappingsService() returns an instance of the AffiliationMappingsService class.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void locateAffiliationMappingsServiceValid(){
+        Test.startTest();
+        AffiliationMappingsService AffiliationMappingsServiceInstance = AccountModelHealthCheckVMapper.getInstance().locateAffiliationMappingsService();
+        Test.stopTest();
+
+        System.assertEquals(AffiliationMappingsService.getInstance(), AffiliationMappingsServiceInstance, 'Should return instance of AffiliationMappingsService class.');
+        System.assertEquals(true, AffiliationMappingsServiceInstance != null, 'Instance of AffiliationMappingsService class should not be null.');
+    }
+
+    @isTest 
+    private static void getValidRecordTypeHealthCheckGroupVModelValid(){
+
+    }
+
+    @isTest 
+    private static void getValidRecordTypeHealthCheckGroupVModelNullRT(){
+        
+    }
+
+    @isTest 
+    private static void getValidRecordTypeHealthCheckGroupVModelInactiveRT(){
+        
+    }
+
+    @isTest 
+    private static void getValidRecordTypeHealthCheckGroupVModelNonExistentRT(){
+        
+    }
 }

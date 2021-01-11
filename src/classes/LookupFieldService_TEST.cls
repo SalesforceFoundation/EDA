@@ -72,10 +72,11 @@ public with sharing class LookupFieldService_TEST {
     @isTest 
     private static void getModelByNameMapForSObjectTypeValid(){
         LookupFieldMapper.instance = new STUB_LookupFieldMapperValid();
+        LookupFieldMapper lookupFieldMapperInstance = LookupFieldService.getInstance();
 
         Test.startTest();
         Map<String, LookupFieldModel> lookupFieldModelByNameResults = 
-            LookupFieldService.getInstance().getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
+            lookupFieldMapperInstance.getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
         Test.stopTest();
 
         System.assertEquals(3, lookupFieldModelByNameResults.values().size(), 'Should return 3 mappings to Account lookup fields.');
@@ -91,10 +92,11 @@ public with sharing class LookupFieldService_TEST {
     @isTest 
     private static void getModelByLabelMapForSObjectTypeValid(){
         LookupFieldMapper.instance = new STUB_LookupFieldMapperValid();
+        LookupFieldMapper lookupFieldMapperInstance = LookupFieldService.getInstance();
 
         Test.startTest();
         Map<String, LookupFieldModel> lookupFieldModelByLabelResults = 
-            LookupFieldService.getInstance().getModelByLabelMapForSObjectType(Contact.SObjectType, Account.SObjectType);
+            lookupFieldMapperInstance.getModelByLabelMapForSObjectType(Contact.SObjectType, Account.SObjectType);
         Test.stopTest();
 
         System.assertEquals(3, lookupFieldModelByLabelResults.values().size(), 'Should return 3 mappings to Account lookup fields.');
@@ -110,10 +112,11 @@ public with sharing class LookupFieldService_TEST {
     @isTest 
     private static void getModelByNameMapForSObjectTypeEmpty(){
         LookupFieldMapper.instance = new STUB_LookupFieldMapperEmpty();
+        LookupFieldMapper lookupFieldMapperInstance = LookupFieldService.getInstance();
 
         Test.startTest();
         Map<String, LookupFieldModel> lookupFieldModelByNameResults = 
-            LookupFieldService.getInstance().getModelByNameMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
+            lookupFieldMapperInstance.getModelByNameMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
         Test.stopTest();
 
         System.assertEquals(0, lookupFieldModelByNameResults.values().size(), 'Should no mappings to AssetDowntimePeriod lookup fields.');

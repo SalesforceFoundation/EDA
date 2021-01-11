@@ -51,8 +51,10 @@ public with sharing class AffiliationMappingsModel_TEST {
         );
         Test.stopTest();
 
+        String expectedRTString = (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('HH_Account').getRecordTypeId();
+
         System.assertEquals('TestAfflMappingModel', afflMappingMod.name, 'Name should be set.');
-        System.assertEquals('0120t000001ecZDAAY', afflMappingMod.accountRecordTypeId, 'Record Type Id for HH_Account should be set.');
+        System.assertEquals(expectedRTString, afflMappingMod.accountRecordTypeId, 'Record Type Id for HH_Account should be set.');
         System.assertEquals('Test Primary Affl Field', afflMappingMod.primaryAffiliationField, 'Primary Affiliation Field should be set.');
         System.assertEquals(true, afflMappingMod.autoProgramEnrollment, 'Auto Enrollment should be true');
         System.assertEquals('Test Status', afflMappingMod.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
