@@ -57,25 +57,50 @@ public virtual with sharing class LookupFieldMapper {
     }
 
     /**********************************************************************************************************
-    * @description Retrieve a list of LookupField models representing fields on a specified owner SObject type
-    * that is a lookup to a specified target SObject type.
-    * @param  ownerObjectType  The SObject type where the field originates
-    * @param  targetObjectType The SObject type where the field lookup targets
-    * @return A List<LookupFieldModel>
+    * @description Retrieve a map of LookupField models representing fields on a specified owner SObject type
+    * that is a lookup to a specified target SObject type by field name.
+    * @param  sObjectType  The SObject type where the field originates
+    * @param  lookupToSObjectType The SObject type where the field lookup targets
+    * @return Map<String, LookupFieldModel>
     **********************************************************************************************************/ 
-    public List<LookupFieldModel> getLookupFieldModelsForSObjectType(SObjectType ownerObjectType, SObjectType targetObjectType) {
-        List<LookupFieldModel> lookupFieldModelList = new List<LookupFieldModel>();
-        Map<String, Schema.SObjectField> sObjectFieldsByName = UTIL_Describe.getAllFieldsForSObject(ownerObjectType.getDescribe().name);
+    public  Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+        Map<String, LookupFieldModel> lookupFieldModelByName = new Map<String, LookupFieldModel>();
+        Map<String, Schema.SObjectField> sObjectFieldsByName = UTIL_Describe.getAllFieldsForSObject(sObjectType.getDescribe().name);
 
         for (Schema.SObjectField field : sObjectFieldsByName.values()){
             DescribeFieldResult cachedFieldDescribe = field.getDescribe();
-            Boolean isLookupToTarget = UTIL_Describe.isLookupFieldTo(cachedFieldDescribe, targetObjectType);
+            Boolean isLookupToTargetSObjectType = UTIL_Describe.isLookupFieldTo(cachedFieldDescribe, lookupToSObjectType);
 
-            if (isLookupToTarget == true) {
-                lookupFieldModelList.add(new LookupFieldModel(cachedFieldDescribe.getName(), cachedFieldDescribe.getLabel()));
+            if (isLookupToTargetSObjectType == true) {
+                LookupFieldModel lookupFieldModel = new LookupFieldModel(cachedFieldDescribe.getName(), cachedFieldDescribe.getLabel());
+                lookupFieldModelByName.put(lookupFieldModel.name, lookupFieldModel);
             }
         }
 
-        return lookupFieldModelList;
+        return lookupFieldModelByName;
+    }
+
+    /**********************************************************************************************************
+    * @description Retrieve a map of LookupField models representing fields on a specified owner SObject type
+    * that is a lookup to a specified target SObject type by field label.
+    * @param  sObjectType  The SObject type where the field originates
+    * @param  lookupToSObjectType The SObject type where the field lookup targets
+    * @return Map<String, LookupFieldModel>
+    **********************************************************************************************************/ 
+    public  Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+        Map<String, LookupFieldModel> lookupFieldModelByLabel = new Map<String, LookupFieldModel>();
+        Map<String, Schema.SObjectField> sObjectFieldsByName = UTIL_Describe.getAllFieldsForSObject(sObjectType.getDescribe().name);
+
+        for (Schema.SObjectField field : sObjectFieldsByName.values()){
+            DescribeFieldResult cachedFieldDescribe = field.getDescribe();
+            Boolean isLookupToTargetSObjectType = UTIL_Describe.isLookupFieldTo(cachedFieldDescribe, lookupToSObjectType);
+
+            if (isLookupToTargetSObjectType == true) {
+                LookupFieldModel lookupFieldModel = new LookupFieldModel(cachedFieldDescribe.getName(), cachedFieldDescribe.getLabel());
+                lookupFieldModelByLabel.put(lookupFieldModel.label, lookupFieldModel);
+            }
+        }
+
+        return lookupFieldModelByLabel;
     }
 }

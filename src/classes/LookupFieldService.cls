@@ -57,61 +57,43 @@ public virtual with sharing class LookupFieldService {
 
     /********************************************************************************************
     * @description Retrieve a map of LookupFieldModels by Name for a specified SObject 
-    * that is a lookup to the same SObject type.
-    * @param  sObjectType An SObject type 
+    * that is a lookup to a specified SObject type.
+    * @param  sObjectType The SObject type of the field model
+    * @param lookupToSObjectType The SObject type that the field model looks up to 
     * @return A Map<String, LookupFieldModel>
     ********************************************************************************************/
-    public Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType) {
-        Map<String,LookupFieldModel> lookupFieldModelByName = new Map<String, LookupFieldModel>();
-
-        List<LookupFieldModel> lookupFieldModelList = 
-            this.locateLookupFieldMapper().getLookupFieldModelsForSObjectType(sObjectType, sObjectType);
-
-        for (LookupFieldModel lookupFieldMod : lookupFieldModelList) {
-            lookupFieldModelByName.put(lookupFieldMod.name, lookupFieldMod);
-        }
-
-        return lookupFieldModelByName;
+    public Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+        return this.locateLookupFieldMapper().getModelByNameMapForSObjectType(sObjectType, lookupToSObjectType);
     }
 
     /********************************************************************************************
     * @description Retrieve a map of LookupFieldModels by Label for a specified SObject 
-    * that is a lookup to the same SObject type.
-    * @param  sObjectType An SObject type 
+    * that is a lookup to a specified SObject type.
+    * @param  sObjectType The SObject type of the field model
+    * @param lookupToSObjectType The SObject type that the field model looks up to 
     * @return A Map<String, LookupFieldModel>
     ********************************************************************************************/
-    public Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType) {
-        Map<String,LookupFieldModel> lookupFieldModelByLabel = new Map<String, LookupFieldModel>();
-
-        List<LookupFieldModel> lookupFieldModelList = 
-            this.locateLookupFieldMapper().getLookupFieldModelsForSObjectType(sObjectType, sObjectType);
-
-        for (LookupFieldModel lookupFieldMod : lookupFieldModelList) {
-            lookupFieldModelByLabel.put(lookupFieldMod.label, lookupFieldMod);
-        }
-
-        return lookupFieldModelByLabel;
+    public Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+        return this.locateLookupFieldMapper().getModelByLabelMapForSObjectType(sObjectType, lookupToSObjectType);
     }
 
     /********************************************************************************************
-    * @description Retrieve a LookupField model for a specified SObject and field name.
-    * @param  sObjectType An SObject Type
+    * @description Retrieve a LookupField model corresponding to a specified field name.
     * @param  fieldName  An SObject field name
     * @return A LookupFieldModel
     ********************************************************************************************/ 
-    public LookupFieldModel getLookupFieldModelFromNameMap(SObjectType sObjectType, String fieldName) {
-        return this.getModelByNameMapForSObjectType(sObjectType)?.get(fieldName);
-    }
+    // public LookupFieldModel getLookupFieldModelFromNameMap(String fieldName) {
+    //     return this.locateLookupFieldMapper().getModelByNameMapForSObjectType(?,?).get(fieldName);
+    // }
 
     /********************************************************************************************
-    * @description Retrieve a LookupField model for a specified SObject and field label.
-    * @param  sObjectType An SObject Type
-    * @param  fieldLabel  An SObject field name
+    * @description Retrieve a LookupField model corresponding to a specified field label.
+    * @param  fieldLabel  An SObject field label
     * @return A LookupFieldModel
     ********************************************************************************************/ 
-    public LookupFieldModel getLookupFieldModelFromLabelMap(SObjectType sObjectType, String fieldLabel) {
-        return this.getModelByLabelMapForSObjectType(sObjectType)?.get(fieldLabel);
-    }
+    // public LookupFieldModel getLookupFieldModelFromLabelMap(String fieldLabel) {
+    //     return this.locateLookupFieldMapper().getModelByLabelMapForSObjectType(?,?).get(fieldLabel);
+    // }
 
     /*****************************************************************************
     * @description Retrieves an instance of the LookupFieldMapper.
