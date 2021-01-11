@@ -31,8 +31,153 @@
 * @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for LookupFieldService class.
 */
+@isTest
 public with sharing class LookupFieldService_TEST {
-    public LookupFieldService_TEST() {
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * LookupFieldService class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
 
+        Test.startTest();
+            LookupFieldService LookupFieldServiceInstance = LookupFieldService.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(LookupFieldService.instance, LookupFieldServiceInstance, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(true, LookupFieldServiceInstance != null, 'Instance of mapper class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * LookupFieldService class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+
+        Test.startTest();
+            LookupFieldService LookupFieldServiceInstance1 = LookupFieldService.getInstance();
+            LookupFieldService LookupFieldServiceInstance2 = LookupFieldService.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(LookupFieldService.instance, LookupFieldServiceInstance1, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(LookupFieldServiceInstance1, LookupFieldServiceInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
+        System.assertEquals(true, LookupFieldServiceInstance1 != null, 'Instance of mapper class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getModelByNameMapForSObjectType method returns the a map of LookupField models
+    * by name when an SObject contains fields that lookup to the specified SObject type.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getModelByNameMapForSObjectTypeValid(){
+        LookupFieldMapper.instance = new STUB_LookupFieldMapperValid();
+
+        Test.startTest();
+        Map<String, LookupFieldModel> lookupFieldModelByNameResults = 
+            LookupFieldService.getInstance().getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
+        Test.stopTest();
+
+        System.assertEquals(3, lookupFieldModelByNameResults.values().size(), 'Should return 3 mappings to Account lookup fields.');
+        System.assertEquals(true, lookupFieldModelByNameResults.containsKey('testName1'), 'Should contain mapping for \'testName1\' field name.');
+        System.assertEquals(true, lookupFieldModelByNameResults.containsKey('testName2'), 'Should contain mapping for \'testName2\' field name.');
+        System.assertEquals(true, lookupFieldModelByNameResults.containsKey('testName3'), 'Should contain mapping for \'testName3\' field name.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getModelByLabelMapForSObjectType method returns the a map of LookupField models
+    * by label when an SObject contains fields that lookup to the specified SObject type.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getModelByLabelMapForSObjectTypeValid(){
+        LookupFieldMapper.instance = new STUB_LookupFieldMapperValid();
+
+        Test.startTest();
+        Map<String, LookupFieldModel> lookupFieldModelByLabelResults = 
+            LookupFieldService.getInstance().getModelByLabelMapForSObjectType(Contact.SObjectType, Account.SObjectType);
+        Test.stopTest();
+
+        System.assertEquals(3, lookupFieldModelByLabelResults.values().size(), 'Should return 3 mappings to Account lookup fields.');
+        System.assertEquals(true, lookupFieldModelByLabelResults.containsKey('testLabel1'), 'Should contain mapping for \'testLabel1\' field label.');
+        System.assertEquals(true, lookupFieldModelByLabelResults.containsKey('testLabel2'), 'Should contain mapping for \'testLabel2\' field label.');
+        System.assertEquals(true, lookupFieldModelByLabelResults.containsKey('testLabel3'), 'Should contain mapping for \'testLabel3\' field label.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getModelByNameMapForSObjectType method returns an empty map of LookupField models
+    * by name when an SObject does not contain fields that lookup to the specified SObject type.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getModelByNameMapForSObjectTypeEmpty(){
+        LookupFieldMapper.instance = new STUB_LookupFieldMapperEmpty();
+
+        Test.startTest();
+        Map<String, LookupFieldModel> lookupFieldModelByNameResults = 
+            LookupFieldService.getInstance().getModelByNameMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
+        Test.stopTest();
+
+        System.assertEquals(0, lookupFieldModelByNameResults.values().size(), 'Should no mappings to AssetDowntimePeriod lookup fields.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getModelByLabelMapForSObjectType method returns an empty map of LookupField models
+    * by label when an SObject does not contain fields that lookup to the specified SObject type.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getModelByLabelMapForSObjectTypeEmpty(){
+        LookupFieldMapper.instance = new STUB_LookupFieldMapperEmpty();
+
+        Test.startTest();
+        Map<String, LookupFieldModel> lookupFieldModelByLabelResults = 
+            LookupFieldService.getInstance().getModelByLabelMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
+        Test.stopTest();
+
+        System.assertEquals(0, lookupFieldModelByLabelResults.values().size(), 'Should no mappings to AssetDowntimePeriod lookup fields.');
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUB CLASS *********************************************************
+    **************************************************************************************************************************/
+
+    /*************************************************************************************************************
+    * @description Stub class to simulate the response from LookupFieldMapper to return Map<String, LookupFieldModel> 
+    * for LookupField models by name and by label with valid mappings
+    *************************************************************************************************************/
+    private class STUB_LookupFieldMapperValid extends LookupFieldMapper {
+        public override Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+            Map<String, LookupFieldModel> testLookupFieldModelsByName = new Map<String, LookupFieldModel>();
+
+            testLookupFieldModelsByName.put('testName1', new LookupFieldModel('testName1', 'testLabel1'));
+            testLookupFieldModelsByName.put('testName2', new LookupFieldModel('testName2', 'testLabel2'));
+            testLookupFieldModelsByName.put('testName3', new LookupFieldModel('testName3', 'testLabel3'));
+
+            return testLookupFieldModelsByName;
+        }
+
+        public override Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+            Map<String, LookupFieldModel> testLookupFieldModelsByLabel = new Map<String, LookupFieldModel>();
+
+            testLookupFieldModelsByLabel.put('testLabel1', new LookupFieldModel('testName1', 'testLabel1'));
+            testLookupFieldModelsByLabel.put('testLabel2', new LookupFieldModel('testName2', 'testLabel2'));
+            testLookupFieldModelsByLabel.put('testLabel3', new LookupFieldModel('testName3', 'testLabel3'));
+
+            return testLookupFieldModelsByLabel;
+        }
+    }
+
+    /*************************************************************************************************************
+    * @description Stub class to simulate the response from LookupFieldMapper to return Map<String, LookupFieldModel> 
+    * for LookupField models by name and by label with empty mappings
+    *************************************************************************************************************/
+    private class STUB_LookupFieldMapperEmpty extends LookupFieldMapper {
+        public override Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+            return new Map<String, LookupFieldModel>();
+        }
+
+        public override Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+            return new Map<String, LookupFieldModel>();
+        }
     }
 }
+
+

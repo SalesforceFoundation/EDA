@@ -63,7 +63,7 @@ public virtual with sharing class LookupFieldMapper {
     * @param  lookupToSObjectType The SObject type where the field lookup targets
     * @return Map<String, LookupFieldModel>
     **********************************************************************************************************/ 
-    public  Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+    public virtual Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
         Map<String, LookupFieldModel> lookupFieldModelByName = new Map<String, LookupFieldModel>();
         Map<String, Schema.SObjectField> sObjectFieldsByName = UTIL_Describe.getAllFieldsForSObject(sObjectType.getDescribe().name);
 
@@ -87,7 +87,7 @@ public virtual with sharing class LookupFieldMapper {
     * @param  lookupToSObjectType The SObject type where the field lookup targets
     * @return Map<String, LookupFieldModel>
     **********************************************************************************************************/ 
-    public  Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+    public virtual Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
         Map<String, LookupFieldModel> lookupFieldModelByLabel = new Map<String, LookupFieldModel>();
         Map<String, Schema.SObjectField> sObjectFieldsByName = UTIL_Describe.getAllFieldsForSObject(sObjectType.getDescribe().name);
 
