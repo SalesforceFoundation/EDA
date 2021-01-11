@@ -126,14 +126,100 @@ public with sharing class LookupFieldService_TEST {
     @isTest 
     private static void getModelByLabelMapForSObjectTypeEmpty(){
         LookupFieldMapper.instance = new STUB_LookupFieldMapperEmpty();
+        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
 
         Test.startTest();
         Map<String, LookupFieldModel> lookupFieldModelByLabelResults = 
-            LookupFieldService.getInstance().getModelByLabelMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
+            lookupFieldServiceInstance.getModelByLabelMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
         Test.stopTest();
 
         System.assertEquals(0, lookupFieldModelByLabelResults.values().size(), 'Should no mappings to AssetDowntimePeriod lookup fields.');
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getLookupFieldModelFromNameMap method returns a valid LookupField model when
+    * searching by a name that matches one of the values in the provided map.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getLookupFieldModelFromNameMapValid() {
+        Map<String, LookupFieldModel> lookupFieldModelByName = new Map<String, LookupFieldModel>();
+
+        lookupFieldModelByName.put('TestName1', new LookupFieldModel('TestName1', 'TestLabel1'));
+        lookupFieldModelByName.put('TestName2', new LookupFieldModel('TestName2', 'TestLabel2'));
+        lookupFieldModelByName.put('TestName3', new LookupFieldModel('TestName3', 'TestLabel3'));
+
+        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
+
+        Test.startTest();
+        LookupFieldModel lookupFieldModelResult = lookupFieldServiceInstance.getLookupFieldModelFromNameMap('TestName1', lookupFieldModelByName);
+        Test.stopTest();
+
+        System.assertEquals('TestLabel1', LookupFieldModelResult.label, 'Field model should have \'TestLabel1\' as label value.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getLookupFieldModelFromLabelMap method returns a valid LookupField model when
+    * searching by a label that matches one of the values in the provided map.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getLookupFieldModelFromLabelMapValid() {
+        Map<String, LookupFieldModel> lookupFieldModelByLabel = new Map<String, LookupFieldModel>();
+
+        lookupFieldModelByLabel.put('TestLabel1', new LookupFieldModel('TestName1', 'TestLabel1'));
+        lookupFieldModelByLabel.put('TestLabel2', new LookupFieldModel('TestName2', 'TestLabel2'));
+        lookupFieldModelByLabel.put('TestLabel3', new LookupFieldModel('TestName3', 'TestLabel3'));
+
+        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
+
+        Test.startTest();
+        LookupFieldModel lookupFieldModelResult = lookupFieldServiceInstance.getLookupFieldModelFromLabelMap('TestLabel1', lookupFieldModelByLabel);
+        Test.stopTest();
+
+        System.assertEquals('TestName1', LookupFieldModelResult.name, 'Field model should have \'TestName1\' as name value.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getLookupFieldModelFromNameMap method returns a null LookupField model when
+    * searching by name that does not match the values in the provided map.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getLookupFieldModelFromNameMapInValid() {
+        Map<String, LookupFieldModel> lookupFieldModelByName = new Map<String, LookupFieldModel>();
+
+        lookupFieldModelByName.put('TestName1', new LookupFieldModel('TestName1', 'TestLabel1'));
+        lookupFieldModelByName.put('TestName2', new LookupFieldModel('TestName2', 'TestLabel2'));
+        lookupFieldModelByName.put('TestName3', new LookupFieldModel('TestName3', 'TestLabel3'));
+
+        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
+
+        Test.startTest();
+        LookupFieldModel lookupFieldModelResult = lookupFieldServiceInstance.getLookupFieldModelFromNameMap('InvalidName', lookupFieldModelByName);
+        Test.stopTest();
+
+        System.assertEquals(null, lookupFieldModelResult, 'Should return null value.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getLookupFieldModelFromLabelMap method returns a null LookupField model when
+    * searching by label that does not match the values in the provided map.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getLookupFieldModelFromLabelMapInValid() {
+        Map<String, LookupFieldModel> lookupFieldModelByLabel = new Map<String, LookupFieldModel>();
+
+        lookupFieldModelByLabel.put('TestLabel1', new LookupFieldModel('TestName1', 'TestLabel1'));
+        lookupFieldModelByLabel.put('TestLabel2', new LookupFieldModel('TestName2', 'TestLabel2'));
+        lookupFieldModelByLabel.put('TestLabel3', new LookupFieldModel('TestName3', 'TestLabel3'));
+
+        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
+
+        Test.startTest();
+        LookupFieldModel lookupFieldModelResult = lookupFieldServiceInstance.getLookupFieldModelFromLabelMap('InvalidName', lookupFieldModelByLabel);
+        Test.stopTest();
+
+        System.assertEquals(null, lookupFieldModelResult, 'Should return null value.');
+    }
+
 
     /**************************************************************************************************************************
     ****************************************************** STUB CLASS *********************************************************
