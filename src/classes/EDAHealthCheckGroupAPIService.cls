@@ -73,7 +73,7 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     * @return A HealthCheckGroupVModel representing a specified HealthCheckDefinition; null if one
     * matching the name provided does not exist.
     ******************************************************************************************/
-    public HealthCheckGroupVModel getHealthCheckGroup(String name){
+    public virtual HealthCheckGroupVModel getHealthCheckGroup(String name){
         String caseInsensitiveName = name.toLowerCase();
 
         List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
@@ -83,10 +83,21 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
             when 'accountmodel' {
                 return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
             }
-
+            when 'reciprocalrelationship' {
+                return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();
+            }
             when else {
                 return null;                
             }
         }
+    }
+
+    /***************************************************************************
+    * @description Retrieves an instance of ReciprocalRelHealthCheckVMapper. 
+    * @return An instance of ReciprocalRelHealthCheckVMapper.
+    ***************************************************************************/
+    @TestVisible
+    private ReciprocalRelHealthCheckVMapper locateReciprocalRelHealthCheckVMapper(){
+        return ReciprocalRelHealthCheckVMapper.getInstance();
     }
 }

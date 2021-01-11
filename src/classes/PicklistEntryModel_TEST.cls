@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020, Salesforce.org
+    Copyright (c) 2021, Salesforce.org
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
@@ -26,20 +26,27 @@
 */
 /**
 * @author Salesforce.org
-* @date 2020
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Model class for Health Check Definition
+* @date 2021
+* @group
+* @group-content ../../ApexDocContent/Tests.htm
+* @description Test class for PicklistEntryModel
 */
-public with sharing class HealthCheckDefinitionModel {
+@isTest
+private class PicklistEntryModel_TEST {
 
-    public String name;
-    public String className;
-    public String namespace;
+    /**************************************************************************************************************************
+    * @description Test method to verify that the constructor set the properties 
+    ***************************************************************************************************************************/
+    @isTest
+    private static void constructor() {
 
-    public HealthCheckDefinitionModel(String name, String className, String namespace) {
-        this.name = name;
-        this.className = className;
-        this.namespace = namespace;
+        Test.startTest();
+            PicklistEntryModel picklistEntryMdl = new PicklistEntryModel('University Email', 'University Email', true);
+        Test.stopTest();
+
+        System.assertEquals('University Email', picklistEntryMdl.name, 'Name property on the PicklistEntry model should be set with the value that is passed');
+        System.assertEquals('University Email', picklistEntryMdl.label, 'Label property on the PicklistEntry model should be set with the value that is passed');
+        System.assertEquals(true, picklistEntryMdl.isActive, 'isActive property on the PicklistEntry model should be set with the value that is passed');
+
     }
 }

@@ -32,7 +32,7 @@
 * @description Test class for HealthCheckController.
 */
 @isTest
-public with sharing class HealthCheckController_TEST {
+private class HealthCheckController_TEST {
 
     /****************************************************************************************************************************
     * @description Test method to verify that the locateHealthCheckMapper method returns instance of HealthCheckVMapper.

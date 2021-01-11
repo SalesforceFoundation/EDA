@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2020, Salesforce.org
+    Copyright (c) 2021, Salesforce.org
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+    notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
+    notice, this List of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
     its contributors may be used to endorse or promote products derived
@@ -26,57 +26,51 @@
 */
 /**
 * @author Salesforce.org
-* @date 2020
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Mapper class for Health Check Definition
+* @date 2021
+* @group 
+* @group-content ../../ApexDocContent/
+* @description Mapper class to return a list of RelationshipLookup models
 */
-public virtual with sharing class HealthCheckDefinitionMapper {
+public virtual with sharing class RelationshipLookupMapper {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static HealthCheckDefinitionMapper instance;
+    private static RelationshipLookupMapper instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected HealthCheckDefinitionMapper() {}
+    protected RelationshipLookupMapper() {}
 
-    /******************************************************************************
+    /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionMapper.
+    * @return The instance of RelationshipLookupMapper.
     ******************************************************************************/
-    public static HealthCheckDefinitionMapper getInstance() {
+    public static RelationshipLookupMapper getInstance() {
 
         if (instance == null) {
-            instance = new HealthCheckDefinitionMapper();
+            instance = new RelationshipLookupMapper();
         }
 
         return instance;
     }
 
-    /******************************************************************************
-    * @description Get a list of Health Check Definition models to determine which
-    * Health Checks to run.
-    * @return A list of HealthCheckDefinitionModel.
-    ******************************************************************************/
-    public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
-        List<HealthCheckDefinitionModel> healthCheckDefinitionModelList = new List<HealthCheckDefinitionModel>();
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'AccountModel', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'ReciprocalRelationship', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
+    /**********************************************************************************
+    * @description Returns a list of RelationshipLookup models
+    * @return List<RelationshipLookupModel> A list of RelationshipLookup models
+    **********************************************************************************/
+    public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
 
-        return healthCheckDefinitionModelList;                                                                                                                             
+        List<RelationshipLookupModel> relationshipLookupModelsList = new List<RelationshipLookupModel>();
+        List<Relationship_Lookup__c> relationshipLookupSettingsList = UTIL_CustomSettingsFacade.getReciprocalSettings();
+
+        for (Relationship_Lookup__c each: relationshipLookupSettingsList) {
+            RelationshipLookupModel relLookUpModel = new RelationshipLookupModel(each.Name, each.Active__c, each.Female__c, each.Male__c, each.Neutral__c);
+            relationshipLookupModelsList.add(relLookUpModel);
+        }
+
+       return relationshipLookupModelsList;
     }
 }

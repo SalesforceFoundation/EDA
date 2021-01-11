@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2020, Salesforce.org
+    Copyright (c) 2021, Salesforce.org
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+    notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
+    notice, this List of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
     its contributors may be used to endorse or promote products derived
@@ -26,20 +26,26 @@
 */
 /**
 * @author Salesforce.org
-* @date 2020
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Model class for Health Check Definition
+* @date 2021
+* @group 
+* @group-content ../../ApexDocContent/
+* @description Model class for Relationship Lookup
 */
-public with sharing class HealthCheckDefinitionModel {
+public with sharing class RelationshipLookupModel {
 
+    // Properties for this model
     public String name;
-    public String className;
-    public String namespace;
+    public Boolean isActive;
+    public String femaleValue;
+    public String maleValue;
+    public String neutralValue;
 
-    public HealthCheckDefinitionModel(String name, String className, String namespace) {
-        this.name = name;
-        this.className = className;
-        this.namespace = namespace;
+    // Constructor to set the values
+    public RelationshipLookupModel(String name, Boolean isActive, String femaleValue, String maleValue, String neutralValue) {
+        this.name = (String.isBlank(name) ? '""' : name );
+        this.isActive = isActive;
+        this.femaleValue = (String.isBlank(femaleValue) ? '""' : femaleValue );
+        this.maleValue = (String.isBlank(maleValue) ? '""' : maleValue );
+        this.neutralValue = (String.isBlank(neutralValue) ? '""' : neutralValue);
     }
 }
