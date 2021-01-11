@@ -1165,7 +1165,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Account Model record type is inactive</shortDescription>
-        <value>Verify the Default Account Model record type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
+        <value>Verify the Default Account Model record type specified in EDA Settings, on the System tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
