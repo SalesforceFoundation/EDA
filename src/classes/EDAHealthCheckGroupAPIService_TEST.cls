@@ -135,30 +135,6 @@ private class EDAHealthCheckGroupAPIService_TEST {
     }
 
     /***************************************************************************
-    * @description Test method to verify that the getHealthCheckGroup method
-    * returns null when an invalid name for a HealthCheckDefinitionModel is
-    * provided (case insensitive).
-    ***************************************************************************/
-    @isTest
-    private static void getHealthCheckGroupInValid(){
-        HealthCheckGroupAPIServiceInterface eDAHealthCheckGroupAPIService
-            = EDAHealthCheckGroupAPIService.getInstance();
-
-        Test.startTest();
-            HealthCheckGroupVModel healthCheckGroupVModel =
-                eDAHealthCheckGroupAPIService.getHealthCheckGroup(
-                    'Always Going To Be Null'
-                );
-        Test.stopTest();
-
-       System.assertEquals(
-           null,
-           healthCheckGroupVModel,
-           'Value returned should be null.'
-        );
-    }
-
-    /***************************************************************************
     * @description Test method to verify that a ReciprocalRelHealthCheckVMapper
     * is retrieved by the locator method.
     ***************************************************************************/
