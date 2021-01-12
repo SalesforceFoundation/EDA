@@ -4,13 +4,5 @@
         <members>EDA_Health_Check</members>
         <name>CustomTab</name>
     </types>
-    <types>
-        <members>healthCheck</members>
-        <name>LightningComponentBundle</name>
-    </types>
-    <types>
-        <members>Admin</members>
-        <name>Profile</name>
-    </types>
     <version>50.0</version>
 </Package>
