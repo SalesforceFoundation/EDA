@@ -27,7 +27,7 @@
 /**
 * @author Salesforce.org
 * @date 2020
-* @group
+* @group Health Check
 * @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Mapper class for Health Check Definition
 */
@@ -62,10 +62,24 @@ public virtual with sharing class HealthCheckDefinitionMapper {
     * @return A list of HealthCheckDefinitionModel.
     ******************************************************************************/
     public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
+<<<<<<< HEAD
         List<HealthCheckDefinitionModel> healthCheckDefinitionModels = new List<HealthCheckDefinitionModel>();
         healthCheckDefinitionModels.add(new HealthCheckDefinitionModel('AccountModel', 
                                                                         'EDAHealthCheckGroupAPIService', 
                                                                         'hed'));
         return healthCheckDefinitionModels;                                                                                                                             
+=======
+        List<HealthCheckDefinitionModel> healthCheckDefinitionModelList =
+            new List<HealthCheckDefinitionModel>();
+
+        healthCheckDefinitionModelList.add(
+            new HealthCheckDefinitionModel(
+                'ReciprocalRelationship', 
+                'EDAHealthCheckGroupAPIService', 
+                'hed')
+            );
+
+        return healthCheckDefinitionModelList;                                                                                                                             
+>>>>>>> feature/230
     }
 }

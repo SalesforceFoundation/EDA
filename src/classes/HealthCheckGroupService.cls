@@ -27,7 +27,7 @@
 /**
 * @author Salesforce.org
 * @date 2020
-* @group
+* @group Health Check
 * @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Service class for Health Check Group.
 */
