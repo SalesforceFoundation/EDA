@@ -51,8 +51,11 @@ public with sharing class STG_InstallScript_TEST {
         Test.testInstall(new STG_InstallScript(), null);
         Test.stopTest();
 
-        List<Affl_Mappings__c> mappings = [SELECT Account_Record_Type__c, Primary_Affl_Field__c FROM Affl_Mappings__c];
+        List<Affl_Mappings__c> mappings = [SELECT COUNT() FROM Affl_Mappings__c];
         System.assertEquals(6, mappings.size());
+
+        List<Relationship_Lookup__c> mappings = [SELECT COUNT() FROM Relationship_Lookup__c];
+        System.assertEquals(35, mappings.size());
 
         List<Trigger_Handler__c> tdtmHandlers = [SELECT Name, Owned_by_Namespace__c FROM Trigger_Handler__c];
         System.assertEquals(TDTM_DefaultConfig.getDefaultRecords().size(), tdtmHandlers.size());
