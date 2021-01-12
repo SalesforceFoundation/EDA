@@ -167,7 +167,7 @@ public with sharing class HealthCheckGroupService_TEST {
     **************************************************************************************************************************/
     
     /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from HealthCheckGroupService to return a valid HealthCheckGroupVModel.
+    * @description Stub class to simulate the response from HealthCheckGroupService to return instance of EDAHealthCheckGroupAPIService.
     **************************************************************************************************************************************/ 
     private class STUB_HealthCheckGroupServiceEDAHealthCheckAPI extends HealthCheckGroupService {
         @TestVisible 

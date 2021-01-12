@@ -83,7 +83,7 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     * matching the name provided does not exist.
     ******************************************************************************************/
     public virtual HealthCheckGroupVModel getHealthCheckGroup(String name){
-        String caseInsensitiveName = name.toLowerCase();
+        String lowercasedHCGroupName = name.toLowerCase();
 
         List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
         List<String> rowKeysList = new List<String>();

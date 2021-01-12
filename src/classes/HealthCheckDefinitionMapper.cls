@@ -70,7 +70,7 @@ public virtual with sharing class HealthCheckDefinitionMapper {
             'EDAHealthCheckGroupAPIService', 
             'hed'
         ));
-
+        
         healthCheckDefinitionModelList.add(
             new HealthCheckDefinitionModel(
                 'ReciprocalRelationship', 

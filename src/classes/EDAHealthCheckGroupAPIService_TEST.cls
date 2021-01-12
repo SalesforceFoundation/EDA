@@ -69,7 +69,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
     * the name of reciprocalrelationship is provided (case insensitive).
     ***************************************************************************/
     @isTest 
-    private static void getHealthCheckGroupReciprocalRelationshipValid() {
+    private static void getHealthCheckGroupReciprocalRelationshipValid(){
         ReciprocalRelHealthCheckVMapper.instance =
             new STUB_ReciprocalRelHealthCheckVMapper();
 
@@ -167,7 +167,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
     * is retrieved by the locator method.
     ***************************************************************************/
     @isTest 
-    private static void locateReciprocalRelHealthCheckVMapper() {
+    private static void locateReciprocalRelHealthCheckVMapper(){
         ReciprocalRelHealthCheckVMapper expectedReciprocalRelHealthCheckVMapper
             = ReciprocalRelHealthCheckVMapper.getInstance();
 
@@ -262,7 +262,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
     * ReciprocalRelHealthCheckVMapper to return a valid HealthCheckGroupVModel.
     ***************************************************************************/
     private class STUB_ReciprocalRelHealthCheckVMapper extends ReciprocalRelHealthCheckVMapper {
-        public override HealthCheckGroupVModel getHealthCheckGroup() {
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
             return new HealthCheckGroupVModel(
                 'Reciprocal Relationships',
                 'Pass',
