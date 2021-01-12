@@ -176,6 +176,12 @@
         <members>PREQ_PreventPPlanParent_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
+        <members>PicklistEntryMapper</members>
+        <members>PicklistEntryMapper_TEST</members>
+        <members>PicklistEntryModel</members>
+        <members>PicklistEntryModel_TEST</members>
+        <members>PicklistEntryService</members>
+        <members>PicklistEntryService_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
@@ -918,16 +924,13 @@
         <members>stgHCReciprocalRelNeutralNotFoundFix</members>
         <members>stgHCReciprocalRelNeutralTitle</members>
         <members>stgHCReciprocalRelSetting</members>
-        <members>stgHCRecordTypeInactive</members>
-        <members>stgHCRecordTypeNotFound</members>
-        <members>stgHCRecordTypeValid</members>
-        <members>stgHealthCheckAccountModel</members>
         <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
         <members>stgHealthCheckFixNotApplicable</members>
         <members>stgHealthCheckLastRun</members>
         <members>stgHealthCheckLoadingIndicator</members>
+        <members>stgHealthCheckReciprocalRelTitle</members>
         <members>stgHealthCheckRecoFix</members>
         <members>stgHealthCheckResultsCollapse</members>
         <members>stgHealthCheckResultsDescription</members>

@@ -64,10 +64,10 @@ private class HealthCheckDefinitionMapper_TEST {
         System.assertEquals(true, healthCheckDefinitionMapperInstance1 != null, 'Instance of service class should not be null.');
     }
 
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getHealthCheckDefinitionModels method in Health Check Mapper class
-    * returns a list of Health Check Definition models
-    ***************************************************************************************************************************/
+    /******************************************************************************
+    * @description Test method to verify that the getHealthCheckDefinitionModels
+    * method in Health Check Mapper class
+    ******************************************************************************/
     @isTest
     private static void getHealthCheckDefinitionModelsExistingFromMapper() {
         HealthCheckDefinitionMapper healthCheckDefinitionMapper = 
@@ -77,13 +77,13 @@ private class HealthCheckDefinitionMapper_TEST {
             new List<HealthCheckDefinitionModel>();
 
         expectedHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel(
-            'AccountModel', 
+            'AffiliationMappings', 
             'EDAHealthCheckGroupAPIService', 
             'hed')
         );
 
         expectedHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel(
-            'AffiliationMappings', 
+            'ReciprocalRelationship', 
             'EDAHealthCheckGroupAPIService', 
             'hed')
         );

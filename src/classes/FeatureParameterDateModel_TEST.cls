@@ -28,7 +28,7 @@
 * @author Salesforce.org
 * @date 2021
 * @group 
-* @group-content ../../ApexDocContent/
+* @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for FeatureParameterModel class
 */
 @isTest
