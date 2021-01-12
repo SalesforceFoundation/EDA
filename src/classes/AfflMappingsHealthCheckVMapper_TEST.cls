@@ -84,7 +84,7 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
     @isTest
     private static void locateAffiliationMappingsServiceValid(){
         Test.startTest();
-        AffiliationMappingsService AffiliationMappingsServiceInstance = AccountModelHealthCheckVMapper.getInstance().locateAffiliationMappingsService();
+        AffiliationMappingsService AffiliationMappingsServiceInstance = AffiliationMappingsHealthCheckVMapper.getInstance().locateAffiliationMappingsService();
         Test.stopTest();
 
         System.assertEquals(AffiliationMappingsService.getInstance(), AffiliationMappingsServiceInstance, 'Should return instance of AffiliationMappingsService class.');
