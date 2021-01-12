@@ -1,9 +1,12 @@
 <template>
     <div>
         <div class="slds-grid--vertical">
-            <div class="slds-col">
-                <c-health-check-highlights-panel></c-health-check-highlights-panel>
-            </div>
+            <template if:false="true">
+                <!--Hidden until Settings Work-->
+                <div class="slds-col">
+                    <c-health-check-highlights-panel></c-health-check-highlights-panel>
+                </div>
+            </template>
             <div class="slds-col slds-p-top_small">
                 <c-health-check-run
                     run-date={lastRunDate}
