@@ -79,7 +79,7 @@ public with sharing class AffiliationMappingsModel_TEST {
         Test.stopTest();
 
         System.assertEquals('TestAfflMappingModel', afflMappingMod.name, 'Name should be set.');
-        System.assertEquals(null, afflMappingMod.accountRecordTypeId, 'Record Type Id should be null.');
+        System.assertEquals('Not a Valid Record Type Dev Name', afflMappingMod.accountRecordTypeId, 'Record Type Id should be \'Not a Valid Record Type Dev Name\'.');
         System.assertEquals('Test Primary Affl Field', afflMappingMod.primaryAffiliationField, 'Primary Affiliation Field should be set.');
         System.assertEquals(true, afflMappingMod.autoProgramEnrollment, 'Auto Enrollment should be true');
         System.assertEquals('Test Status', afflMappingMod.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');

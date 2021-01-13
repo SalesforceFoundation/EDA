@@ -94,7 +94,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     **********************************************************************************/ 
     @TestVisible
     private virtual HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
-        List<AffiliationMappingsModel> affiliationMappingModels, 
+        List<AffiliationMappingsModel> affiliationMappingModelsList, 
         Map<Id,RecordTypeModel> recordTypeModelsById
     ) {
         List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
@@ -107,13 +107,16 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                                                                                  new List<String>(),
                                                                                  healthCheckItemsList);
 
-        for (AffiliationMappingsModel afflMappingMod : affiliationMappingModels) {            
+                                                                                 System.debug('affiliationMappingModelsList: ' + affiliationMappingModelsList);
+        for (AffiliationMappingsModel afflMappingMod : affiliationMappingModelsList) {            
             RecordTypeModel acctRTModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
                 afflMappingMod.accountRecordTypeId, 
                 recordTypeModelsById
             );
 
+            System.debug('afflMappingMod id: ' + afflMappingMod.accountRecordTypeId);
             if (acctRTModel == null) {
+                System.debug('executing null');
                 healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel(
                     '01',
                     Label.stgHCAfflMapAccRecordTypeTitle,

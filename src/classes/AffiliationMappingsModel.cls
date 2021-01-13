@@ -41,15 +41,19 @@ public with sharing class AffiliationMappingsModel {
 
     public AffiliationMappingsModel(
         String name,
-        String accountRecordTypeId,
+        String accountRecordTypeId, 
         String primaryAffiliationField,
         Boolean autoProgramEnrollment,
         String autoProgramEnrollmentStatus,
         String autoProgramEnrollmentRole
     ) {
-        this.name = name;
+        Id matchingRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
+
         this.accountRecordTypeId = 
-            (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
+            (matchingRecordTypeId == null) ?
+            accountRecordTypeId : matchingRecordTypeId;
+        
+        this.name = name;
         this.primaryAffiliationField = primaryAffiliationField;
         this.autoProgramEnrollment = autoProgramEnrollment;
         this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;
