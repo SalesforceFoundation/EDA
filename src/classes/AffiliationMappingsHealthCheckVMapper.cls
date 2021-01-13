@@ -80,8 +80,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         healthCheckGroupVMod.totalChecks += afflMappingsHealthCheckCombinedGroupModel.totalChecks;
         healthCheckGroupVMod.expandedRowsList.addAll(afflMappingsHealthCheckCombinedGroupModel.expandedRowsList);
         healthCheckGroupVMod.healthCheckItemList.addAll(afflMappingsHealthCheckCombinedGroupModel.healthCheckItemList);
-
-        healthCheckGroupVMod.updateHealthCheckStatus();
+        
+        healthCheckGroupVMod.updateHealthCheckStatus();        
         healthCheckGroupVMod.healthCheckItemList.sort();
         
         return healthCheckGroupVMod;
@@ -92,7 +92,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * results for all affiliation mappings in EDA Settings.
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
-    private HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
+    @TestVisible
+    private virtual HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
         List<AffiliationMappingsModel> affiliationMappingModels, 
         Map<Id,RecordTypeModel> recordTypeModelsById
     ) {

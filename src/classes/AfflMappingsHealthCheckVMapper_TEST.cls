@@ -71,7 +71,7 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
     @isTest
     private static void locateRecordTypeServiceValid(){
         Test.startTest();
-        RecordTypeService recordTypeServiceInstance = AccountModelHealthCheckVMapper.getInstance().locateRecordTypeService();
+        RecordTypeService recordTypeServiceInstance = AffiliationMappingsHealthCheckVMapper.getInstance().locateRecordTypeService();
         Test.stopTest();
 
         System.assertEquals(RecordTypeService.getInstance(), recordTypeServiceInstance, 'Should return instance of RecordTypeService class.');
@@ -89,6 +89,121 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
 
         System.assertEquals(AffiliationMappingsService.getInstance(), AffiliationMappingsServiceInstance, 'Should return instance of AffiliationMappingsService class.');
         System.assertEquals(true, AffiliationMappingsServiceInstance != null, 'Instance of AffiliationMappingsService class should not be null.');
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getHealthCheckGroup handles all
+    * passed health checks
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupAllPassed() {
+        AffiliationMappingsService.instance = 
+            new STUB_AffiliationMappingsService();
+        RecordTypeService.instance =
+            new STUB_RecordTypeService();
+
+        AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperStub =
+            new STUB_AffiliationMappingsHealthCheckVMapper();
+        AffiliationMappingsHealthCheckVMapper.instance = AffiliationMappingsHealthCheckVMapperStub;  
+
+        AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        Integer numberOfHealthChecks = 1;
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                AffiliationMappingsHealthCheckVMapperStub.getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(
+            Label.stgHealthCheckAffiliationMappings,
+            healthCheckGroupVModel.label,
+            'Label of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusPassed,
+            healthCheckGroupVModel.status,
+            'Status of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModel.passedChecks,
+            'Number of passed checks of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModel.totalChecks,
+            'Number of total checks of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.expandedRowsList.size(),
+            'No health checks should fail, making expanded rows list size 0.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.healthCheckItemList.size(),
+            'Number of health check items of returned health check should be 1.'
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getHealthCheckGroup handles all
+    * passed health checks
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupAllFail() {
+        AffiliationMappingsService.instance = 
+            new STUB_AffiliationMappingsServiceUnfound();
+        RecordTypeService.instance =
+            new STUB_RecordTypeService();
+
+        AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperStub =
+            new STUB_AffiliationMappingsHealthCheckVMapper();
+
+        AffiliationMappingsHealthCheckVMapper.instance = AffiliationMappingsHealthCheckVMapperStub;  
+
+        AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        Integer numberOfHealthChecks = 1;
+
+        Test.startTest();
+            HealthCheckGroupVModel healthCheckGroupVModel =
+                AffiliationMappingsHealthCheckVMapper.getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(
+            Label.stgHealthCheckAffiliationMappings,
+            healthCheckGroupVModel.label,
+            'Label of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed,
+            healthCheckGroupVModel.status,
+            'Status of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.passedChecks,
+            'Number of passed checks should be 0.'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModel.totalChecks,
+            'Number of total checks of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModel.expandedRowsList.size(),
+            'All health checks should fail, making expanded rows list size 0.'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModel.healthCheckItemList.size(),
+            'Number of health check items of returned health check should be 1.'
+        );
     }
 
     @isTest 
@@ -109,5 +224,171 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
     @isTest 
     private static void getValidRecordTypeHealthCheckGroupVModelNonExistentRT(){
         
+    }
+
+    /***************************************************************************
+    *********************************STUBS**************************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * AffiliationMappingsHealthCheckVMapper to control individual health check methods
+    * for success or failure
+    ***************************************************************************/
+    private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
+        private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
+            List<AffiliationMappingsModel> affiliationMappingModels, 
+            Map<Id,RecordTypeModel> recordTypeModelsById
+        ) {
+            return this.mockCheck(affiliationMappingModels);
+        }
+
+        // protected override HealthCheckGroupVModel getUniquenessHealthCheckGroup(
+        //     RelationshipLookupModel relationshipLookupModel,
+        //     RecordTypeModel RecordTypeModel,
+        //     Set<String> duplicateNameSet
+        // ) {
+        //     return this.mockCheck(RecordTypeModel);
+        // }
+
+        private HealthCheckGroupVModel mockCheck(List<AffiliationMappingsModel> affiliationMappingModels) {
+            HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+                '',
+                '',
+                0,
+                0,
+                new List<String>(),
+                new List<HealthCheckItemVModel>()
+            );
+    
+            HealthCheckItemVModel healthCheckItemVModel =
+                new healthCheckItemVModel(
+                    'Mock',
+                    'MockSetting',
+                    'Pass',
+                    'MockStatusLabel',
+                    'MockDescription',
+                    'MockRecommendedFix',
+                    new List<HealthCheckItemVModel>()
+                );
+
+            healthCheckGroupVModel.totalChecks += 1;
+
+            if(affiliationMappingModels != null) {
+                healthCheckGroupVModel.passedChecks += 1;
+            }
+
+            if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
+                healthCheckItemVModel.status = 'Fail';
+                healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusFailed;
+            }
+    
+            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+            return healthCheckGroupVModel;
+        }
+    }
+    
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * AffiliationMappingsService to return a predetermined set of models.
+    ***************************************************************************/
+    private class STUB_AffiliationMappingsService extends AffiliationMappingsService {
+        public override List<AffiliationMappingsModel> getAffiliationMappingsModels(){
+            List<AffiliationMappingsModel> AffiliationMappingsModelList =
+                new List<AffiliationMappingsModel>();
+            
+            AffiliationMappingsModel AffiliationMappingsModel = 
+                new AffiliationMappingsModel(
+                    'testName',
+                    '000000000000000001',
+                    'testPrimaryAfflField',
+                    true,
+                    'testStatus',
+                    'testRole'
+                );
+
+            AffiliationMappingsModelList.add(AffiliationMappingsModel);
+
+            return AffiliationMappingsModelList;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * AffiliationMappingsService to return a predetermined set of unfound
+    * models.
+    ***************************************************************************/
+    private class STUB_AffiliationMappingsServiceUnfound extends AffiliationMappingsService {
+        public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
+            return null;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * RecordTypeService to return a predetermined set of active models.
+    ***************************************************************************/
+    private class STUB_RecordTypeService extends RecordTypeService {
+        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+            Map<Id, RecordTypeModel> recordTypeModelById =
+                new Map<Id, RecordTypeModel>();
+            
+            recordTypeModelById.put('000000000000000001', new RecordTypeModel(
+                '000000000000000001',
+                'Active RecordType Test Name1',
+                'activeRTTestDeveloperName1',
+                true
+            ));         
+                 
+            recordTypeModelById.put('000000000000000002', new RecordTypeModel(
+                '000000000000000002',
+                'Active RecordType Test Name2',
+                'activeRTTestDeveloperName2',
+                true
+            ));         
+
+            recordTypeModelById.put('000000000000000003', new RecordTypeModel(
+                '000000000000000003',
+                'Active RecordType Test Name3',
+                'activeRTTestDeveloperName3',
+                true
+            ));         
+            
+            return recordTypeModelById;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * RecordTypeService to return a predetermined set of inactive models.
+    ***************************************************************************/
+    private class STUB_RecordTypeServiceInactive extends RecordTypeService {
+        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+            Map<Id, RecordTypeModel> recordTypeModelById =
+                new Map<Id, RecordTypeModel>();
+            
+            recordTypeModelById.put('000000000000000001', new RecordTypeModel(
+                '000000000000000001',
+                'Inactive RecordType Test Name1',
+                'InactiveRTTestDeveloperName1',
+                false
+            ));         
+                 
+            recordTypeModelById.put('000000000000000002', new RecordTypeModel(
+                '000000000000000002',
+                'Inactive RecordType Test Name2',
+                'InactiveRTTestDeveloperName2',
+                false
+            ));         
+
+            recordTypeModelById.put('000000000000000003', new RecordTypeModel(
+                '000000000000000003',
+                'Inactive RecordType Test Name3',
+                'InactiveRTTestDeveloperName3',
+                false
+            ));         
+            
+            return recordTypeModelById;
+        }
     }
 }

@@ -61,10 +61,10 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     * @description Retrieves an instance of AccountModelHealthCheckVMapper. 
     * @return An instance of AccountModelHealthCheckVMapper.
     ******************************************************************************************/
-    @TestVisible 
-    private AccountModelHealthCheckVMapper locateAccountModelHealthCheckVMapper(){
-        return AccountModelHealthCheckVMapper.getInstance();
-    }
+    // @TestVisible 
+    // private AccountModelHealthCheckVMapper locateAccountModelHealthCheckVMapper(){
+    //     return AccountModelHealthCheckVMapper.getInstance();
+    // }
 
     /******************************************************************************************
     * @description Retrieves an instance of AffiliationMappingsHealthCheckVMapper. 
