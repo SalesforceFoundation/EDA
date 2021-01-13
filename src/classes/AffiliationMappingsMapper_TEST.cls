@@ -40,20 +40,40 @@ public with sharing class AffiliationMappingsMapper_TEST {
     *****************************************************************************/
     @isTest 
     private static void getAffiliationMappingsModelValid(){
-        Test.startTest();
-        List<AffiliationMappingsModel> afflMappingModelsList = 
-            AffiliationMappingsMapper.getInstance().getAffiliationMappingsModel();
-        Test.stopTest();
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
-        List<Affl_Mappings__c> primaryAfflMappingsList = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+        List<Affl_Mappings__c> primaryAfflMappingsList = new List<Affl_Mappings__c>();
+        primaryAfflMappingsList.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization', 
+                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
+            ));
+
+        primaryAfflMappingsList.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  prefix + 'Primary_Household__c'
+            )
+        );
+        
+        insert primaryAfflMappingsList;
+
         Map<String, Affl_Mappings__c> primaryAfflMappingByName = new Map<String, Affl_Mappings__c>();
 
         for (Affl_Mappings__c primaryAfflMapping : primaryAfflMappingsList){
             primaryAfflMappingByName.put(primaryAfflMapping.Name, primaryAfflMapping);
         }
 
+        Test.startTest();
+        List<AffiliationMappingsModel> afflMappingModelsList = 
+            AffiliationMappingsMapper.getInstance().getAffiliationMappingsModel();
+        Test.stopTest();        
+
         for (AffiliationMappingsModel afflMappingModel : afflMappingModelsList){
             Affl_Mappings__c matchingPrimaryAffl = primaryAfflMappingByName.get(afflMappingModel.name);
+
             System.assertEquals(
                 matchingPrimaryAffl.Name, 
                 afflMappingModel.name, 
@@ -67,7 +87,7 @@ public with sharing class AffiliationMappingsMapper_TEST {
             );
 
             System.assertEquals(
-                matchingPrimaryAffl.Account_Record_Type__c, 
+                (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(matchingPrimaryAffl.Account_Record_Type__c)?.getRecordTypeId(), 
                 afflMappingModel.accountRecordTypeId, 
                 'Affiliation Mapping Model account record type should match Primary Affiliation.'
             );
