@@ -62,24 +62,7 @@ public virtual with sharing class LookupFieldMapper {
     * @param  sObjectType  The SObject type where the field originates
     * @param  lookupToSObjectType The SObject type where the field lookup targets
     * @return Map<String, LookupFieldModel>
-    TODO: Refactor using UTL_Describe.getFieldsOfType() to shorten list and iterate ensuring caching
     **********************************************************************************************************/ 
-    // public virtual Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
-    //     Map<String, LookupFieldModel> lookupFieldModelByName = new Map<String, LookupFieldModel>();
-    //     Map<String, Schema.SObjectField> sObjectFieldsByName = UTIL_Describe.getAllFieldsForSObject(sObjectType.getDescribe().name);
-
-    //     for (Schema.SObjectField field : sObjectFieldsByName.values()){
-    //         DescribeFieldResult cachedFieldDescribe = field.getDescribe();
-    //         Boolean isLookupToTargetSObjectType = UTIL_Describe.isLookupFieldTo(cachedFieldDescribe, lookupToSObjectType);
-
-    //         if (isLookupToTargetSObjectType == true) {
-    //             LookupFieldModel lookupFieldModel = new LookupFieldModel(cachedFieldDescribe.getName(), cachedFieldDescribe.getLabel());
-    //             lookupFieldModelByName.put(lookupFieldModel.name, lookupFieldModel);
-    //         }
-    //     }
-
-    //     return lookupFieldModelByName;
-    // }
     public virtual Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
         Map<String, LookupFieldModel> lookupFieldModelByName = new Map<String, LookupFieldModel>();
 

@@ -48,6 +48,7 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>AffiliationMappingsHCVMapper_TEST</members>
         <members>AffiliationMappingsHealthCheckVMapper</members>
         <members>AffiliationMappingsMapper</members>
         <members>AffiliationMappingsMapper_TEST</members>
@@ -55,7 +56,6 @@
         <members>AffiliationMappingsModel_TEST</members>
         <members>AffiliationMappingsService</members>
         <members>AffiliationMappingsService_TEST</members>
-        <members>AfflMappingsHealthCheckVMapper_TEST</members>
         <members>BEH_CannotDelete_TDTM</members>
         <members>BEH_CannotDelete_TEST</members>
         <members>CASE_CannotDelete_TDTM</members>

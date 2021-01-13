@@ -32,7 +32,7 @@
 * @description Test class for AffiliationMappingsHealthCheckVMapper class.
 */
 @isTest 
-public with sharing class AfflMappingsHealthCheckVMapper_TEST {
+public with sharing class AffiliationMappingsHCVMapper_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
     * AffiliationMappingsHealthCheckVMapper class when one does not already exist.
@@ -245,7 +245,7 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
             );
         Test.stopTest();
 
-        AfflMappingsHealthCheckVMapper_TEST.validateAssertions(
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusPassed,
@@ -304,7 +304,7 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
             );
         Test.stopTest();
 
-        AfflMappingsHealthCheckVMapper_TEST.validateAssertions(
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusFailed,
@@ -366,7 +366,7 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
             );
         Test.stopTest();
 
-        AfflMappingsHealthCheckVMapper_TEST.validateAssertions(
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusFailed,
@@ -428,7 +428,7 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
             );
         Test.stopTest();
 
-        AfflMappingsHealthCheckVMapper_TEST.validateAssertions(
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusFailed,
