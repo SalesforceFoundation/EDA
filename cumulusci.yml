@@ -128,6 +128,15 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/gated/healthCheck
             unmanaged: True
+
+    deploy_unpackaged_test_metadata:
+        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
+        group: 'EDA: Unpackaged Tests'
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_unpackaged
+            unmanaged: True
               
     deploy_trial_config:
         description: Deploys metadata and configuration for TSOs.
@@ -337,13 +346,15 @@ flows:
             6:
                 task: execute_primary_affiliation_mapping_apex
             7:
-                task: deploy_health_check_config            
-            8: 
+                task: deploy_unpackaged_test_metadata
+            8:
+                task: deploy_health_check_config
+            9: 
                 # execute tests in unmanaged package
-                task: run_tests
-                options:
-                    test_name_match: "%Unmanaged_TEST"
-            9:
+                task: run_tests 
+                options: 
+                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
+            10:
                 flow: eda_settings_unmanaged
 
     config_dev_namespaced:
@@ -403,7 +414,7 @@ flows:
             6:
                 task: deploy_qa_config
             7:
-                task: deploy_health_check_config 
+                task: deploy_health_check_config
             8:
                 flow: eda_settings_unmanaged
 
