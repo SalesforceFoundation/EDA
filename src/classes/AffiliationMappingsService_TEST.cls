@@ -65,86 +65,92 @@ public with sharing class AffiliationMappingsService_TEST {
         System.assertEquals(true, AffiliationMappingsServiceInstance1 != null, 'Instance of mapper class should not be null.');
     }
 
-    // @isTest 
-    // private static void test(){
-    //     AffiliationMappingsMapper.instance = new STUB_AffiliationMappingsMapper();
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getAffiliationMappingsModels method returns a list of Affiliation Mappings
+    * models corresponding to affiliation mappings specified in EDA Settings.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getAffiliationMappingsModelsValid(){
+        AffiliationMappingsMapper.instance = new STUB_AffiliationMappingsMapper();
 
-    //     Test.startTest();
-    //     List<AffiliationMappingsModel> afflMappingsModelList = AffiliationMappingsService.getInstance().getAffiliationMappingsModels();
-    //     Test.stopTest();
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
 
-    //     System.assertEquals(
-    //         'Test Academic Program', 
-    //         afflMappingsModelList[0].name, 
-    //         'Affiliation Model name should match primary affiliation.'
-    //     );
+        Test.startTest();
+        List<AffiliationMappingsModel> afflMappingsModelList = affiliationMappingsServiceInstance.getAffiliationMappingsModels();
+        Test.stopTest();
 
-    //     System.assertEquals(
-    //         'Test_Academic_Program', 
-    //         afflMappingsModelList[0].accountRecordTypeId, 
-    //         'Affiliation Model record type should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            'Test Academic Program', 
+            afflMappingsModelList[0].name, 
+            'Affiliation Model name should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         'Test Primary Academic Program', 
-    //         afflMappingsModelList[0].primaryAffiliationField, 
-    //         'Affiliation Model primary affiliation field should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            'Test_Academic_Program', 
+            afflMappingsModelList[0].accountRecordTypeId, 
+            'Affiliation Model record type should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         true, 
-    //         afflMappingsModelList[0].autoProgramEnrollment, 
-    //         'Affiliation Model auto enrollment should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            'Test Primary Academic Program', 
+            afflMappingsModelList[0].primaryAffiliationField, 
+            'Affiliation Model primary affiliation field should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         'Test Current', 
-    //         afflMappingsModelList[0].autoProgramEnrollmentStatus, 
-    //         'Affiliation Model auto enrollment status should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            true, 
+            afflMappingsModelList[0].autoProgramEnrollment, 
+            'Affiliation Model auto enrollment should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         'Test Student', 
-    //         afflMappingsModelList[0].autoProgramEnrollmentRole, 
-    //         'Affiliation Model auto enrollment role should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            'Test Current', 
+            afflMappingsModelList[0].autoProgramEnrollmentStatus, 
+            'Affiliation Model auto enrollment status should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         'Test Household Account', 
-    //         afflMappingsModelList[1].name, 
-    //         'Affiliation Model name should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            'Test Student', 
+            afflMappingsModelList[0].autoProgramEnrollmentRole, 
+            'Affiliation Model auto enrollment role should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         'Test_HH_Account', 
-    //         afflMappingsModelList[1].accountRecordTypeId, 
-    //         'Affiliation Model record type should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            'Test Household Account', 
+            afflMappingsModelList[1].name, 
+            'Affiliation Model name should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         'Test Primary Household', 
-    //         afflMappingsModelList[1].primaryAffiliationField, 
-    //         'Affiliation Model primary affiliation field should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            'Test_HH_Account', 
+            afflMappingsModelList[1].accountRecordTypeId, 
+            'Affiliation Model record type should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         false, 
-    //         afflMappingsModelList[1].autoProgramEnrollment, 
-    //         'Affiliation Model auto enrollment should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            'Test Primary Household', 
+            afflMappingsModelList[1].primaryAffiliationField, 
+            'Affiliation Model primary affiliation field should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         '', 
-    //         afflMappingsModelList[1].autoProgramEnrollmentStatus, 
-    //         'Affiliation Model auto enrollment status should match primary affiliation.'
-    //     );
+        System.assertEquals(
+            false, 
+            afflMappingsModelList[1].autoProgramEnrollment, 
+            'Affiliation Model auto enrollment should match primary affiliation.'
+        );
 
-    //     System.assertEquals(
-    //         '', 
-    //         afflMappingsModelList[1].autoProgramEnrollmentRole, 
-    //         'Affiliation Model auto enrollment role should match primary affiliation.'
-    //     );
-    // }
+        System.assertEquals(
+            '', 
+            afflMappingsModelList[1].autoProgramEnrollmentStatus, 
+            'Affiliation Model auto enrollment status should match primary affiliation.'
+        );
+
+        System.assertEquals(
+            '', 
+            afflMappingsModelList[1].autoProgramEnrollmentRole, 
+            'Affiliation Model auto enrollment role should match primary affiliation.'
+        );
+    }
 
     /***********************************************************************************************************************************
     * @description Test method to verify that the locateAffiliationMappingsMapper method returns instance of AffiliationMappingsMapper
@@ -152,12 +158,13 @@ public with sharing class AffiliationMappingsService_TEST {
     @isTest
     private static void locateAffiliationMappingsMapper() {
 
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+
         Test.startTest();
-            AffiliationMappingsMapper accModelSettingsMapper = AffiliationMappingsService.getInstance().locateAffiliationMappingsMapper();
+            AffiliationMappingsMapper accModelSettingsMapper = affiliationMappingsServiceInstance.locateAffiliationMappingsMapper();
         Test.stopTest();
 
         System.assertEquals(AffiliationMappingsMapper.getInstance(), accModelSettingsMapper, 'Should return the instance of AffiliationMappingsMapper');
-
     }
 
     /***********************************************************************************************************************************

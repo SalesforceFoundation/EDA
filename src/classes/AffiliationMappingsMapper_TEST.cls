@@ -52,9 +52,9 @@ public with sharing class AffiliationMappingsMapper_TEST {
 
         primaryAfflMappingsList.add(
             new Affl_Mappings__c(
-                Name = 'Household Account', 
-                Account_Record_Type__c = 'HH_Account', 
-                Primary_Affl_Field__c =  prefix + 'Primary_Household__c'
+                Name = 'Invalid Affiliation Mapping', 
+                Account_Record_Type__c = 'Invalid Mapping', 
+                Primary_Affl_Field__c =  prefix + 'Invalid_Mapping__c'
             )
         );
         
@@ -86,12 +86,20 @@ public with sharing class AffiliationMappingsMapper_TEST {
                 'Affiliation Mapping Model Field Name should match Primary Affiliation.'
             );
 
-            System.assertEquals(
-                (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(matchingPrimaryAffl.Account_Record_Type__c)?.getRecordTypeId(), 
-                afflMappingModel.accountRecordTypeId, 
-                'Affiliation Mapping Model account record type should match Primary Affiliation.'
-            );
-
+            if (afflMappingModel.name == 'Invalid Affiliation Mapping'){
+                System.assertEquals(
+                    'Invalid Mapping', 
+                    afflMappingModel.accountRecordTypeId, 
+                    'Affiliation Mapping Model account record type should match developer name listed in affiliation mapping when no matching record type exists in org.'
+                );
+            } else {
+                System.assertEquals(
+                    (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(matchingPrimaryAffl.Account_Record_Type__c)?.getRecordTypeId(), 
+                    afflMappingModel.accountRecordTypeId, 
+                    'Affiliation Mapping Model account record type should match Id for record type matching specified developer name in affiliation mapping when one exists in org.'
+                );
+            }
+            
             System.assertEquals(
                 matchingPrimaryAffl.Auto_Program_Enrollment__c, 
                 afflMappingModel.autoProgramEnrollment, 
