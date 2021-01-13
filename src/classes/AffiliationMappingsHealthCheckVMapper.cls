@@ -80,8 +80,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         healthCheckGroupVMod.totalChecks += afflMappingsHealthCheckCombinedGroupModel.totalChecks;
         healthCheckGroupVMod.expandedRowsList.addAll(afflMappingsHealthCheckCombinedGroupModel.expandedRowsList);
         healthCheckGroupVMod.healthCheckItemList.addAll(afflMappingsHealthCheckCombinedGroupModel.healthCheckItemList);
-        
-        healthCheckGroupVMod.updateHealthCheckStatus();        
+
+        healthCheckGroupVMod.updateHealthCheckStatus();
         healthCheckGroupVMod.healthCheckItemList.sort();
         
         return healthCheckGroupVMod;

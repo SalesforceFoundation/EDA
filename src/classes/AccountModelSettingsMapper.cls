@@ -4,13 +4,13 @@
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-      notice, this List of conditions and the following disclaimer.
+    notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-      notice, this List of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
+    notice, this List of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
-      its contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
+    its contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -27,49 +27,44 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Acts as service layer to AffiliationMappingsMapper.
+* @group 
+* @group-content ../../ApexDocContent/
+* @description Mapper class to return AccountModelSettings model
 */
-public virtual with sharing class AffiliationMappingsService {
+public virtual with sharing class AccountModelSettingsMapper {
+
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static AffiliationMappingsService instance;
+    private static AccountModelSettingsMapper instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected AffiliationMappingsService() {}
+    protected AccountModelSettingsMapper() {}
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AffiliationMappingsService.
+    * @return The instance of AccountModelSettingsMapper.
     ******************************************************************************/
-    public static AffiliationMappingsService getInstance() {
+    public static AccountModelSettingsMapper getInstance() {
         if (instance == null) {
-            instance = new AffiliationMappingsService();
+            instance = new AccountModelSettingsMapper();
         }
 
         return instance;
     }
 
-    /*****************************************************************************
-    * @description Retrieves a list of models representing all Affiliation Mappings
-    * configured in EDA Settings.
-    * @return A list of AffiliationMappingsModel
-    *****************************************************************************/
-    public List<AffiliationMappingsModel> getAffiliationMappingsModels(){
-        return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
-    }
+    /**********************************************************************************
+    * @description Returns the AccountModelSettings Model
+    * @return AccountModelSettingsModel The AccountModelSettings model
+    **********************************************************************************/
+    public virtual AccountModelSettingsModel getAccountModelSettingsModel() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
+        AccountModelSettingsModel accModelSettingsModel = 
+             new AccountModelSettingsModel(hierarchySettings.Account_Processor__c, hierarchySettings.Administrative_Account_Record_Type__c, hierarchySettings.Household_Addresses_RecType__c);
 
-    /*****************************************************************************
-    * @description Retrieves an instance of the AffiliationMappingsMapper.
-    * @return The instance of AffiliationMappingsMapper.
-    ******************************************************************************/
-    @TestVisible
-    private AffiliationMappingsMapper locateAffiliationMappingsMapper(){
-        return AffiliationMappingsMapper.getInstance();
+       return accModelSettingsModel;
     }
 }

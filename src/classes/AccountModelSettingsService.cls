@@ -27,49 +27,50 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Acts as service layer to AffiliationMappingsMapper.
+* @group
+* @group-content ../../ApexDocContent/
+* @description Returns an AccountModelSettings model.
 */
-public virtual with sharing class AffiliationMappingsService {
+public virtual with sharing class AccountModelSettingsService {
+
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static AffiliationMappingsService instance;
+    private static AccountModelSettingsService instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected AffiliationMappingsService() {}
+    protected AccountModelSettingsService() {}
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AffiliationMappingsService.
+    * @return The instance of AccountModelSettingsService.
     ******************************************************************************/
-    public static AffiliationMappingsService getInstance() {
+    public static AccountModelSettingsService getInstance() {
+
         if (instance == null) {
-            instance = new AffiliationMappingsService();
+            instance = new AccountModelSettingsService();
         }
 
         return instance;
     }
 
-    /*****************************************************************************
-    * @description Retrieves a list of models representing all Affiliation Mappings
-    * configured in EDA Settings.
-    * @return A list of AffiliationMappingsModel
-    *****************************************************************************/
-    public List<AffiliationMappingsModel> getAffiliationMappingsModels(){
-        return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
+    /*******************************************************************************************************
+    * @description Returns model for the AccountModelSettingsModel
+    * @return AccountModelSettingsModel The model for the AccountModelSettingsModel
+    ********************************************************************************************************/
+    public virtual AccountModelSettingsModel getAccountModelSettingsModel() {
+        return this.locateAccountModelSettingsMapper().getAccountModelSettingsModel();
     }
 
-    /*****************************************************************************
-    * @description Retrieves an instance of the AffiliationMappingsMapper.
-    * @return The instance of AffiliationMappingsMapper.
-    ******************************************************************************/
+    /*******************************************************************************************************
+    * @description Returns the instance of AccountModelSettingsMapper class
+    * @return The instance of AccountModelSettingsMapper class
+    ********************************************************************************************************/
     @TestVisible
-    private AffiliationMappingsMapper locateAffiliationMappingsMapper(){
-        return AffiliationMappingsMapper.getInstance();
+    private AccountModelSettingsMapper locateAccountModelSettingsMapper() {
+        return AccountModelSettingsMapper.getInstance();
     }
 }

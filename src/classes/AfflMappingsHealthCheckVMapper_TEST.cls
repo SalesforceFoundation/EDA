@@ -71,7 +71,7 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
     @isTest
     private static void locateRecordTypeServiceValid() {
         Test.startTest();
-        RecordTypeService recordTypeServiceInstance = AffiliationMappingsHealthCheckVMapper.getInstance().locateRecordTypeService();
+        RecordTypeService recordTypeServiceInstance = AccountModelHealthCheckVMapper.getInstance().locateRecordTypeService();
         Test.stopTest();
 
         System.assertEquals(RecordTypeService.getInstance(), recordTypeServiceInstance, 'Should return instance of RecordTypeService class.');
@@ -206,7 +206,7 @@ public with sharing class AfflMappingsHealthCheckVMapper_TEST {
         );
     }
 
-     /*****************************************************************************************
+    /*****************************************************************************************
     * @description Test method to verify getValidRecordTypeHealthCheckGroupVModel returns a 
     * HealthCheckGroupVModel with a Passed status when an affiliation mapping is mapped to
     * an Account record type that is valid and active.
