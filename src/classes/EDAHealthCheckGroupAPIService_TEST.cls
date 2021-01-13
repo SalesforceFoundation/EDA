@@ -267,33 +267,6 @@ private class EDAHealthCheckGroupAPIService_TEST {
     /***************************************************************************
     *********************************STUBS**************************************
     ***************************************************************************/
-    private class STUB_ReciprocalRelHealthCheckVMapper extends ReciprocalRelHealthCheckVMapper {
-        public override HealthCheckGroupVModel getHealthCheckGroup(){
-            return new HealthCheckGroupVModel(
-                'Reciprocal Relationships',
-                'Pass',
-                1,
-                1,
-                new List<String>(),
-                new List<HealthCheckItemVModel>()
-            );
-        }
-    }
-    
-    /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from AffiliationMappingsHealthCheckVMapper to return a valid HealthCheckGroupVModel.
-    **************************************************************************************************************************************/ 
-    private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
-        @TestVisible 
-        public override HealthCheckGroupVModel getHealthCheckGroup() {
-            return new HealthCheckGroupVModel('Affiliation Mappings',
-                                             'Pass',
-                                             4,
-                                             4,
-                                             new List<String>(),
-                                             new List<HealthCheckItemVModel>());
-        }
-    }
 
     /***************************************************************************
     * @description Stub class to simulate the response from
@@ -309,6 +282,36 @@ private class EDAHealthCheckGroupAPIService_TEST {
                 new List<String>(),
                 new List<HealthCheckItemVModel>()
             );
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from AccountModelHealthCheckVMapper to return a valid HealthCheckGroupVModel.
+    **************************************************************************************************************************************/ 
+    private class STUB_AccountModelHealthCheckVMapperValidModel extends AccountModelHealthCheckVMapper {
+        @TestVisible 
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
+            return new HealthCheckGroupVModel('AccountModel',
+                                             'Pass',
+                                             4,
+                                             4,
+                                             new List<String>(),
+                                             new List<HealthCheckItemVModel>());
+        }
+    }
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from AffiliationMappingsHealthCheckVMapper to return a valid HealthCheckGroupVModel.
+    **************************************************************************************************************************************/ 
+    private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
+        @TestVisible 
+        public override HealthCheckGroupVModel getHealthCheckGroup() {
+            return new HealthCheckGroupVModel('Affiliation Mappings',
+                                             'Pass',
+                                             4,
+                                             4,
+                                             new List<String>(),
+                                             new List<HealthCheckItemVModel>());
         }
     }
 }

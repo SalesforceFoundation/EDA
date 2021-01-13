@@ -71,7 +71,7 @@ public with sharing class HealthCheckGroupService_TEST {
     @isTest 
     private static void getHealthCheckGroupValid(){
         ReciprocalRelHealthCheckVMapper.instance = new STUB_ReciprocalRelHealthCheckVMapper();
-        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceValidModel();
+        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
         HealthCheckGroupService healthCheckGroupService =
             HealthCheckGroupService.getInstance();
 
