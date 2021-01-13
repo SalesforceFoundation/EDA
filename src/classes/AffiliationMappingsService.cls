@@ -60,7 +60,7 @@ public virtual with sharing class AffiliationMappingsService {
     * configured in EDA Settings.
     * @return A list of AffiliationMappingsModel
     *****************************************************************************/
-    public List<AffiliationMappingsModel> getAffiliationMappingsModels(){
+    public virtual List<AffiliationMappingsModel> getAffiliationMappingsModels(){
         return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
     }
 
