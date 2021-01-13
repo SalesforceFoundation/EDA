@@ -77,6 +77,12 @@ private class HealthCheckDefinitionMapper_TEST {
             new List<HealthCheckDefinitionModel>();
 
         expectedHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel(
+            'AccountModel', 
+            'EDAHealthCheckGroupAPIService', 
+            'hed')
+        );
+        
+        expectedHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel(
             'AffiliationMappings', 
             'EDAHealthCheckGroupAPIService', 
             'hed')

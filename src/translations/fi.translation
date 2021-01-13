@@ -861,6 +861,22 @@
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <name>stgHCRecordTypeInactive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check can&apos;t find the record type --></label>
+        <name>stgHCRecordTypeNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check finds a record type valid --></label>
+        <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
         <name>stgHealthCheckAffiliationMappings</name>
     </customLabels>

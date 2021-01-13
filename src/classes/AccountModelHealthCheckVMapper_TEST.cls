@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group
+* @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for AccountModelHealthCheckVMapper.
 */
 @isTest

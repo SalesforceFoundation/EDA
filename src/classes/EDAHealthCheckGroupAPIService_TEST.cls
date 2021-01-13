@@ -62,13 +62,33 @@ private class EDAHealthCheckGroupAPIService_TEST {
         System.assertEquals(EDAHealthCheckGroupAPIServiceInstance1, EDAHealthCheckGroupAPIServiceInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
         System.assertEquals(true, EDAHealthCheckGroupAPIServiceInstance1 != null, 'Instance of service class should not be null.');
     }
+    /***************************************************************************
+    * @description Test method to verify that the getHealthCheckGroup method
+    * returns a valid HealthCheckGroupVModel for Account Settings when
+    * the name of accountmodel is provided (case insensitive).
+    ***************************************************************************/
+    @isTest 
+    private static void getHealthCheckGroupValid(){
+        AccountModelHealthCheckVMapper.instance = new STUB_AccountModelHealthCheckVMapperValidModel();
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('AccountModel');
+        Test.stopTest();
+
+        System.assertEquals('AccountModel', hlthChkGrpVMod.label, 'Label for HealthCheckGroupVModel should be \'AccountModel\'');
+        System.assertEquals('Pass', hlthChkGrpVMod.status, 'Status for HealthCheckGroupVModel should be \'Pass\'');
+        System.assertEquals(4, hlthChkGrpVMod.passedChecks, 'PassedChecks for HealthCheckGroupVModel should be 2.');
+        System.assertEquals(4, hlthChkGrpVMod.totalChecks, 'TotalChecks for HealthCheckGroupVModel should be 4.');
+        System.assertEquals(true, hlthChkGrpVMod.expandedRowsList.isEmpty(), 'ExpandedRowsList should be empty.');
+        System.assertEquals(true, hlthChkGrpVMod.healthCheckItemList.isEmpty(), 'HealthCheckItemList should be empty.');
+    }
 
     /***************************************************************************
     * @description Test method to verify that the getHealthCheckGroup method
     * returns a valid HealthCheckGroupVModel for Reciprocal Relationships when
     * the name of reciprocalrelationship is provided (case insensitive).
     ***************************************************************************/
-    @isTest 
+    @isTest
     private static void getHealthCheckGroupReciprocalRelationshipValid(){
         ReciprocalRelHealthCheckVMapper.instance =
             new STUB_ReciprocalRelHealthCheckVMapper();
@@ -135,7 +155,13 @@ private class EDAHealthCheckGroupAPIService_TEST {
                 );
         Test.stopTest();
 
-        EDAHealthCheckGroupAPIService_TEST.verifyHealthCheckGroupVModelAssertions('Affiliation Mappings', 'Pass', 4, 4, healthCheckGroupVModel);
+        EDAHealthCheckGroupAPIService_TEST.verifyHealthCheckGroupVModelAssertions(
+            'Affiliation Mappings', 
+            'Pass', 
+            4, 
+            4, 
+            healthCheckGroupVModel
+        );
     }
 
     /***************************************************************************
@@ -144,7 +170,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
     * provided (case insensitive).
     ***************************************************************************/
     @isTest
-    private static void getHealthCheckGroupInValid() {
+    private static void getHealthCheckGroupInValid(){
         HealthCheckGroupAPIServiceInterface eDAHealthCheckGroupAPIService
             = EDAHealthCheckGroupAPIService.getInstance();
 
@@ -241,7 +267,19 @@ private class EDAHealthCheckGroupAPIService_TEST {
     /***************************************************************************
     *********************************STUBS**************************************
     ***************************************************************************/
-
+    private class STUB_ReciprocalRelHealthCheckVMapper extends ReciprocalRelHealthCheckVMapper {
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
+            return new HealthCheckGroupVModel(
+                'Reciprocal Relationships',
+                'Pass',
+                1,
+                1,
+                new List<String>(),
+                new List<HealthCheckItemVModel>()
+            );
+        }
+    }
+    
     /**************************************************************************************************************************************
     * @description Stub class to simulate the response from AffiliationMappingsHealthCheckVMapper to return a valid HealthCheckGroupVModel.
     **************************************************************************************************************************************/ 

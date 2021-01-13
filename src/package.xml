@@ -187,12 +187,20 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>ReciprocalRelHealthCheckVMapper</members>
+        <members>ReciprocalRelHealthCheckVMapper_TEST</members>
         <members>RecordTypeMapper</members>
         <members>RecordTypeMapper_TEST</members>
         <members>RecordTypeModel</members>
         <members>RecordTypeModel_TEST</members>
         <members>RecordTypeService</members>
         <members>RecordTypeService_TEST</members>
+        <members>RelationshipLookupMapper</members>
+        <members>RelationshipLookupMapper_TEST</members>
+        <members>RelationshipLookupModel</members>
+        <members>RelationshipLookupModel_TEST</members>
+        <members>RelationshipLookupSettingsService</members>
+        <members>RelationshipLookupSettingsService_TEST</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_Contact_PreferredEmail</members>

@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Returns an AccountModelSettings model.
 */
 public virtual with sharing class AccountModelSettingsService {
@@ -49,7 +49,6 @@ public virtual with sharing class AccountModelSettingsService {
     * @return The instance of AccountModelSettingsService.
     ******************************************************************************/
     public static AccountModelSettingsService getInstance() {
-
         if (instance == null) {
             instance = new AccountModelSettingsService();
         }

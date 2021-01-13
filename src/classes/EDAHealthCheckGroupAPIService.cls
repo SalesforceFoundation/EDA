@@ -89,7 +89,9 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         List<String> rowKeysList = new List<String>();
 
         switch on lowercasedHCGroupName {
-            when 'affiliationmappings' {
+            when 'accountmodel' {
+                return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
+            } when 'affiliationmappings' {
                 return this.locateAffiliationMappingsHealthCheckVMapper().getHealthCheckGroup();
             } when 'reciprocalrelationship' {
                 return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();

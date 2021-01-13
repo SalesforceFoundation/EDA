@@ -340,10 +340,10 @@ flows:
                 task: deploy_health_check_config
             8: 
                 # execute tests in unmanaged package
-                task: run_tests
-                options:
-                    test_name_match: "%Unmanaged_TEST"
-            9:
+                task: run_tests 
+                options: 
+                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
+            10:
                 flow: eda_settings_unmanaged
 
     config_dev_namespaced:
