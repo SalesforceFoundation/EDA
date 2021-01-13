@@ -1464,6 +1464,174 @@
         <value>Course Connections</value>
     </labels>
     <labels>
+        <fullName>stgHCPicklistValueInactive</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check finds an inactive picklist value</shortDescription>
+        <value>The {0} ({1}) picklist value isn&apos;t active.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCPicklistValueNotFound</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check can&apos;t find the picklist value</shortDescription>
+        <value>We can’t find the {0} picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCPicklistValueValid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings Health Check component title</shortDescription>
+        <value>The {0} ({1}) picklist value is valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelDescription</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for a reciprocal setting in EDA Settings Health Check results</shortDescription>
+        <value>{0} Reciprocal Relationships are valid.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelFemaleInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value is inactive</shortDescription>
+        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Female, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelFemaleNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist</shortDescription>
+        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Female value to a valid, active picklist value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelFemaleTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for the Female value in a reciprocal setting</shortDescription>
+        <value>Reciprocal Setting&apos;s Female Value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelMaleInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value is inactive</shortDescription>
+        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Male, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelMaleNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist</shortDescription>
+        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Male value to a valid, active picklist value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelMaleTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for the Male value in a reciprocal setting</shortDescription>
+        <value>Reciprocal Setting&apos;s Male Value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value is inactive</shortDescription>
+        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist</shortDescription>
+        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameNotUniqueDesc</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Name isn&apos;t unique in reciprocal settings</shortDescription>
+        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameNotUniqueFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended Fix when Name isn&apos;t unique in reciprocal settings</shortDescription>
+        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, look for multiple rows specifying {0} ({1}) in the Name column. Edit those reciprocal settings so that this Name value appears in only one reciprocal setting row.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for the Name value in a reciprocal setting</shortDescription>
+        <value>Reciprocal Setting&apos;s Name Value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameUniqueDesc</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Name is unique in reciprocal settings</shortDescription>
+        <value>The {0} ({1}) picklist value is used in only one reciprocal setting.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNameUniqueTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for unique Name values in reciprocal settings</shortDescription>
+        <value>Unique Reciprocal Setting Name</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNeutralInactiveFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value is inactive</shortDescription>
+        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNeutralNotFoundFix</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist</shortDescription>
+        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Neutral value to a valid, active picklist value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelNeutralTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A check for the Neutral value in a reciprocal setting</shortDescription>
+        <value>Reciprocal Setting&apos;s Neutral Value</value>
+    </labels>
+    <labels>
+        <fullName>stgHCReciprocalRelSetting</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Row heading for a reciprocal setting in EDA Settings Health Check results</shortDescription>
+        <value>{0} Reciprocal Relationships</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckAffiliationMappings</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1510,6 +1678,14 @@
         <protected>true</protected>
         <shortDescription>Text indicating that an EDA Settings Health Check component is loading</shortDescription>
         <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckReciprocalRelTitle</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Reciprocal Relationships group title in EDA Settings Health Check results</shortDescription>
+        <value>Reciprocal Relationships</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckRecoFix</fullName>
