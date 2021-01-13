@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2020, Salesforce.org
+    Copyright (c) 2021, Salesforce.org
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+    notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
+    notice, this List of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
     its contributors may be used to endorse or promote products derived
@@ -26,57 +26,46 @@
 */
 /**
 * @author Salesforce.org
-* @date 2020
+* @date 2021
 * @group Health Check
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Mapper class for Health Check Definition
+* @description Mapper class to return AccountModelSettings model
 */
-public virtual with sharing class HealthCheckDefinitionMapper {
+public virtual with sharing class AccountModelSettingsMapper {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static HealthCheckDefinitionMapper instance;
+    private static AccountModelSettingsMapper instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected HealthCheckDefinitionMapper() {}
+    protected AccountModelSettingsMapper() {}
 
-    /******************************************************************************
+    /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionMapper.
+    * @return The instance of AccountModelSettingsMapper.
     ******************************************************************************/
-    public static HealthCheckDefinitionMapper getInstance() {
+    public static AccountModelSettingsMapper getInstance() {
 
         if (instance == null) {
-            instance = new HealthCheckDefinitionMapper();
+            instance = new AccountModelSettingsMapper();
         }
 
         return instance;
     }
 
-    /******************************************************************************
-    * @description Get a list of Health Check Definition models to determine which
-    * Health Checks to run.
-    * @return A list of HealthCheckDefinitionModel.
-    ******************************************************************************/
-    public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
-        List<HealthCheckDefinitionModel> healthCheckDefinitionModelList = new List<HealthCheckDefinitionModel>();
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'AccountModel', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'ReciprocalRelationship', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
+    /**********************************************************************************
+    * @description Returns the AccountModelSettings Model
+    * @return AccountModelSettingsModel The AccountModelSettings model
+    **********************************************************************************/
+    public virtual AccountModelSettingsModel getAccountModelSettingsModel() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
+        AccountModelSettingsModel accModelSettingsModel = 
+             new AccountModelSettingsModel(hierarchySettings.Account_Processor__c, hierarchySettings.Administrative_Account_Record_Type__c, hierarchySettings.Household_Addresses_RecType__c);
 
-        return healthCheckDefinitionModelList;                                                                                                                             
+       return accModelSettingsModel;
     }
 }

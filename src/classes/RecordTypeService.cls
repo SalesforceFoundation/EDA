@@ -27,56 +27,66 @@
 /**
 * @author Salesforce.org
 * @date 2020
-* @group Health Check
+* @group
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Mapper class for Health Check Definition
+* @description Service class for Record Type
 */
-public virtual with sharing class HealthCheckDefinitionMapper {
+public virtual with sharing class RecordTypeService {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static HealthCheckDefinitionMapper instance;
+    private static RecordTypeService instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected HealthCheckDefinitionMapper() {}
+    protected RecordTypeService() {}
 
     /******************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionMapper.
+    * @return The instance of RecordTypeService.
     ******************************************************************************/
-    public static HealthCheckDefinitionMapper getInstance() {
+    public static RecordTypeService getInstance() {
 
         if (instance == null) {
-            instance = new HealthCheckDefinitionMapper();
+            instance = new RecordTypeService();
         }
 
         return instance;
     }
 
     /******************************************************************************
-    * @description Get a list of Health Check Definition models to determine which
-    * Health Checks to run.
-    * @return A list of HealthCheckDefinitionModel.
+    * @description Get a map of Record Type Model By Id for specified SObjectType
+    * @Param SObjectype
+    * @return A map of Record Type Model By Id
     ******************************************************************************/
-    public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
-        List<HealthCheckDefinitionModel> healthCheckDefinitionModelList = new List<HealthCheckDefinitionModel>();
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'AccountModel', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'ReciprocalRelationship', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
-
-        return healthCheckDefinitionModelList;                                                                                                                             
+    public virtual Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+        return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
     }
+
+    /******************************************************************************
+    * @description Get the Record Type Model from the map of record type model by id
+    * @Param A string of Record Type Id 
+    * @Param A map of Record Type Model By Id
+    * @return An instance of Record Type Model
+    ******************************************************************************/
+    public virtual RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
+        try {
+            return recordTypeModelById.get(Id.valueOf(recordTypeId));
+        } catch (System.StringException ex) {
+            return null;
+        }
+    }
+
+    /******************************************************************************
+    * @description Retrieves an instance of the RecordTypeMapper class.
+    * @return An instance of RecordTypeMapper.
+    ******************************************************************************/
+    @TestVisible
+    private RecordTypeMapper locateRecordTypeMapper() {
+        return RecordTypeMapper.getInstance();
+    }
+
 }

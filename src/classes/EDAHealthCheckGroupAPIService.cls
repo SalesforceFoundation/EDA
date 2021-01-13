@@ -58,6 +58,15 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     }
 
     /******************************************************************************************
+    * @description Retrieves an instance of AccountModelHealthCheckVMapper. 
+    * @return An instance of AccountModelHealthCheckVMapper.
+    ******************************************************************************************/
+    @TestVisible 
+    private AccountModelHealthCheckVMapper locateAccountModelHealthCheckVMapper(){
+        return AccountModelHealthCheckVMapper.getInstance();
+    }
+
+    /******************************************************************************************
     * @description Retrieves a view model representing a health check group for a specified 
     * HealthCheckDefinition.
     * @param  name The name of a HealthCheckDefinition
@@ -71,10 +80,12 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         List<String> rowKeysList = new List<String>();
 
         switch on caseInsensitiveName {
+            when 'accountmodel' {
+                return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
+            }
             when 'reciprocalrelationship' {
                 return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();
             }
-
             when else {
                 return null;                
             }

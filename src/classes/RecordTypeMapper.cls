@@ -27,56 +27,50 @@
 /**
 * @author Salesforce.org
 * @date 2020
-* @group Health Check
+* @group
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Mapper class for Health Check Definition
+* @description Mapper class for Record Type
 */
-public virtual with sharing class HealthCheckDefinitionMapper {
+public virtual with sharing class RecordTypeMapper {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static HealthCheckDefinitionMapper instance;
+    private static RecordTypeMapper instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected HealthCheckDefinitionMapper() {}
+    protected RecordTypeMapper() {}
 
     /******************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionMapper.
+    * @return The instance of RecordTypeMapper.
     ******************************************************************************/
-    public static HealthCheckDefinitionMapper getInstance() {
+    public static RecordTypeMapper getInstance() {
 
         if (instance == null) {
-            instance = new HealthCheckDefinitionMapper();
+            instance = new RecordTypeMapper();
         }
 
         return instance;
     }
 
     /******************************************************************************
-    * @description Get a list of Health Check Definition models to determine which
-    * Health Checks to run.
-    * @return A list of HealthCheckDefinitionModel.
+    * @description Get a map of Record Type Model By Id for specified SObjectType
+    * @Param SObjectype
+    * @return A map of Record Type Model By Id
     ******************************************************************************/
-    public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
-        List<HealthCheckDefinitionModel> healthCheckDefinitionModelList = new List<HealthCheckDefinitionModel>();
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'AccountModel', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'ReciprocalRelationship', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
+    public virtual Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+        Map<Id, RecordTypeModel> recordTypeModelById = new Map<Id, RecordTypeModel>();
+        Map<String, Schema.RecordTypeInfo> recordTypeInfoByRecordTypeName = Util_Describe.getRecordTypeInfoDevNameMap(sObjectType.getDescribe().getName());
+        
+        for (Schema.RecordTypeInfo recordTypeInfo : recordTypeInfoByRecordTypeName.values()) {
+            RecordTypeModel recordTypeModel = new RecordTypeModel(recordTypeInfo.getRecordTypeId(), recordTypeInfo.getName(), recordTypeInfo.getDeveloperName(), recordTypeInfo.isActive());
+            recordTypeModelById.put(recordTypeModel.Id, recordTypeModel);
+        }
 
-        return healthCheckDefinitionModelList;                                                                                                                             
+        return recordTypeModelById;
     }
 }
