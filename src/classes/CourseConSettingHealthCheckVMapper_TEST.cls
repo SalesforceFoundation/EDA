@@ -87,112 +87,237 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     }
 
     /***************************************************************************
-    * @description Test method to verify that getHealthCheckGroup handles
-    * passed health check when Course Connection is enabled
+    ************************ HEALTH CHECK GROUP ********************************
+    ***************************************************************************/
+
+    /***************************************************************************
+    * @description Test method to verify that getHealthCheckGroup handles all
+    * passed health checks
     ***************************************************************************/
     @isTest
-    private static void getHealthCheckGroupCourseConnectionEnabled() {
+    private static void getHealthCheckGroupAllPassed() {
 
-        RecordTypeService.instance = 
-            new STUB_RecordTypeService();
-
-        CourseConnectionSettingsService.instance =
+        CourseConnectionSettingsService.instance = 
             new STUB_CourseConnectionSettingsService_Enabled();
 
-        CourseConSettingHealthCheckVMapper courseConSettingHealthCheckVMapperInstance =
-            CourseConSettingHealthCheckVMapper.getInstance();
+        RecordTypeService.instance =
+            new STUB_RecordTypeServiceAll();
 
+        CourseConSettingHealthCheckVMapper courseConHealthCheckVMapperInstance =
+            CourseConSettingHealthCheckVMapper.getInstance();
+ 
         Test.startTest();
-            HealthCheckGroupVModel hCGroupVMdl = CourseConSettingHealthCheckVMapper.getInstance().getHealthCheckGroup();
+            HealthCheckGroupVModel healthChkVModel = courseConHealthCheckVMapperInstance.getHealthCheckGroup();
         Test.stopTest();
 
-        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHCCourseConnectionsTitle,
-                                                                              Label.stgHealthCheckStatusPassed,
-                                                                              0,
-                                                                              0,
-                                                                              0,
-                                                                              0,
-                                                                              hCGroupVMdl);
-
+        System.assertEquals(
+            Label.stgHCCourseConnectionsTitle,
+            healthChkVModel.label,
+            'Label of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusPassed,
+            healthChkVModel.status,
+            'Status of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            3,
+            healthChkVModel.passedChecks,
+            'Number of passed checks of returned health check should be 3.'
+        );
+        System.assertEquals(
+            3,
+            healthChkVModel.totalChecks,
+            'Number of total checks of returned health check should be 3.'
+        );
+        System.assertEquals(
+            0,
+            healthChkVModel.expandedRowsList.size(),
+            'No health checks should fail, making expanded rows list size 0.'
+        );
+        System.assertEquals(
+            3,
+            healthChkVModel.healthCheckItemList.size(),
+            'Number of health check items of returned health check should be 3.'
+        );
     }
 
     /***************************************************************************
-    * @description Test method to verify that getHealthCheckGroup handles
-    * failed health check when Course Connection is disabled
+    * @description Test method to verify that getHealthCheckGroup handles all
+    * failed health checks when Course Connection is enabled
     ***************************************************************************/
     @isTest
-    private static void getHealthCheckGroupCourseConnectionDisabled() {
+    private static void getHealthCheckGroupAllFailedWhenCourseConnEnabled() {
 
-        RecordTypeService.instance = 
-            new STUB_RecordTypeService();
+        CourseConnectionSettingsService.instance = 
+            new STUB_CourseConnectionSettingsService_EnabledWithSameIds();
 
-        CourseConnectionSettingsService.instance =
-            new STUB_CourseConnectionSettingsService_Disbaled();
+        RecordTypeService.instance =
+            new STUB_RecordTypeServiceAll();
 
-        CourseConSettingHealthCheckVMapper courseConSettingHealthCheckVMapperInstance =
+        CourseConSettingHealthCheckVMapper courseConHealthCheckVMapperInstance =
             CourseConSettingHealthCheckVMapper.getInstance();
-
+ 
         Test.startTest();
-            HealthCheckGroupVModel hCGroupVMdl = CourseConSettingHealthCheckVMapper.getInstance().getHealthCheckGroup();
+            HealthCheckGroupVModel healthChkVModel = courseConHealthCheckVMapperInstance.getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHCCourseConnectionsTitle, hCGroupVMdl.label, 'The label of the Course Connection Health Check should be retrieved.');
-        System.assertEquals(1, hCGroupVMdl.healthCheckItemList.size(), 'No group items should be in the item list as Course Connection is enabled.');
-        System.assertEquals(Label.stgEnableCourseConnectionsTitle, hCGroupVMdl.healthCheckItemList[0].setting, 'The setting in the group item should be of Course Connection Enablement');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hCGroupVMdl.status, 'The status of the checks should be fail.');
-
-        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHCCourseConnectionsTitle,
-                                                                                       Label.stgHealthCheckStatusFailed,
-                                                                                       0,
-                                                                                       1,
-                                                                                       0,
-                                                                                       1,
-                                                                                       hCGroupVMdl);
-        
-  
-       CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgEnableCourseConnectionsTitle,
-                                                                                  'Fail',
-                                                                                  Label.stgHealthCheckStatusFailed,
-                                                                                  Label.stgHCCourseConEnable,
-                                                                                  Label.stgHCCourseConEnableFix,
-                                                                                  hCGroupVMdl.healthCheckItemList); 
-    }
-
-    /*****************************************************************************************
-    * @description Test method to verify that getCourseConnectionsNotEnabledHealthCheckItems
-    * handles all failed check when Course Connection is disabled
-    *****************************************************************************************/
-    @isTest
-    private static void getCourseConnectionsNotEnabledHealthCheckItemsFail() {
-
-        CourseConnectionSettingsModel courseConnSettingsModel = new CourseConnectionSettingsModel(
-            false,
-            '01217000002Zs0pAAC',
-            '01217000002Zs0pAAC'
+        System.assertEquals(
+            Label.stgHCCourseConnectionsTitle,
+            healthChkVModel.label,
+            'Label of returned health check should match expected custom label.'
         );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed,
+            healthChkVModel.status,
+            'Status of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            0,
+            healthChkVModel.passedChecks,
+            'No health check should be passed.'
+        );
+        System.assertEquals(
+            3,
+            healthChkVModel.totalChecks,
+            'Number of total checks of returned health check should be 4.'
+        );
+        System.assertEquals(
+            0,
+            healthChkVModel.expandedRowsList.size(),
+            'No health checks should fail, making expanded rows list size 0.'
+        );
+        System.assertEquals(
+            3,
+            healthChkVModel.healthCheckItemList.size(),
+            'Number of health check items of returned health check should be 4.'
+        );
+    }
 
+    /***************************************************************************
+    * @description Test method to verify that getHealthCheckGroup handles only
+    * one health check when Course Connection is disabled
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupCourseConDisabled() {
+
+        CourseConnectionSettingsService.instance = 
+            new STUB_CourseConnectionSettingsService_Disabled();
+
+        RecordTypeService.instance =
+            new STUB_RecordTypeServiceAll();
+
+        CourseConSettingHealthCheckVMapper courseConHealthCheckVMapperInstance =
+            CourseConSettingHealthCheckVMapper.getInstance();
+ 
         Test.startTest();
-            HealthCheckGroupVModel hCGroupVMdl = CourseConSettingHealthCheckVMapper.getInstance().getCourseConnectionsNotEnabledHealthCheckItems(courseConnSettingsModel);
+            HealthCheckGroupVModel healthChkVModel = courseConHealthCheckVMapperInstance.getHealthCheckGroup();
         Test.stopTest();
 
-        System.assertEquals(0, hCGroupVMdl.passedChecks, 'The setting in the group item should be of Course Connection Enablement');
-        System.assertEquals(1, hCGroupVMdl.totalChecks, 'The setting in the group item should be of Course Connection Enablement');
-
-        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
-                                                                                       '',
-                                                                                       0,
-                                                                                       1,
-                                                                                       0,
-                                                                                       1,
-                                                                                       hCGroupVMdl);
-
-        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgEnableCourseConnectionsTitle,
-                                                                                    'Fail',
-                                                                                    Label.stgHealthCheckStatusFailed,
-                                                                                    Label.stgHCCourseConEnable,
-                                                                                    Label.stgHCCourseConEnableFix,
-                                                                                    hCGroupVMdl.healthCheckItemList); 
+        System.assertEquals(
+            Label.stgHCCourseConnectionsTitle,
+            healthChkVModel.label,
+            'Label of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed,
+            healthChkVModel.status,
+            'Status of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            0,
+            healthChkVModel.passedChecks,
+            'No health check should be passed.'
+        );
+        System.assertEquals(
+            1,
+            healthChkVModel.totalChecks,
+            'Number of total checks of returned health check should be 1 as we do not run other health checks if Course Connection is disabled.'
+        );
+        System.assertEquals(
+            0,
+            healthChkVModel.expandedRowsList.size(),
+            'No health checks should fail, making expanded rows list size 0.'
+        );
+        System.assertEquals(
+            1,
+            healthChkVModel.healthCheckItemList.size(),
+            'Number of health check items of returned health check should be 4.'
+        );
     }
+
+    /*************************************************************************************
+    *************** combineAccountHealthCheckGroupViewModels *****************************
+    *************************************************************************************/
+
+    /**************************************************************************************************************************
+    * @description Test to verify combineAccountHealthCheckGroupViewModels() returns a combined HealthCheckGroupVModel comprised of
+    * the combined properties of the group view models passed as arguments.
+    **************************************************************************************************************************/ 
+    @isTest 
+    private static void combineAccountHealthCheckGroupViewModelsValid(){
+
+        List<HealthCheckGroupVModel> tstHlthChkGroupModelsList = new List<HealthCheckGroupVModel>();
+        List<HealthCheckItemVModel> group1HlthChkItemList = new List<HealthCheckItemVModel>();
+
+        group1HlthChkItemList.add(new HealthCheckItemVModel('Key1',
+                                                            'Setting-X',
+                                                            'Pass',
+                                                            'PassedLabel',
+                                                            'Description',
+                                                            'RecommendedFix',
+                                                            new List<HealthCheckItemVModel>()));
+                                                            
+        group1HlthChkItemList.add(new HealthCheckItemVModel('Key2',
+                                                            'Setting-B',
+                                                            'Pass',
+                                                            'PassedLabel',
+                                                            'Description',
+                                                            'RecommendedFix',
+                                                            new List<HealthCheckItemVModel>()));
+
+        group1HlthChkItemList.add(new HealthCheckItemVModel('Key3',
+                                                            'Setting-Y',
+                                                            'Fail',
+                                                            'FailedLabel',
+                                                            'Description',
+                                                            'RecommendedFix',
+                                                            new List<HealthCheckItemVModel>()));
+
+
+        tstHlthChkGroupModelsList.add(new HealthCheckGroupVModel('SubGroup1',
+                                                                 'Fail',
+                                                                 2,
+                                                                 3,
+                                                                 new List<String>(),
+                                                                 group1HlthChkItemList));
+
+        tstHlthChkGroupModelsList.add(new HealthCheckGroupVModel('SubGroup2',
+                                                                 'Pass',
+                                                                 1,
+                                                                 1,
+                                                                 new List<String>(),
+                                                                 new List<HealthCheckItemVModel>()));
+
+
+        Test.startTest();
+            HealthCheckGroupVModel hlthChkGroupVMod = CourseConSettingHealthCheckVMapper.getInstance().combineAccountHealthCheckGroupViewModels(tstHlthChkGroupModelsList);
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHCCourseConnectionsTitle, hlthChkGroupVMod.label, 'Group label should be \'' + Label.stgHCCourseConnectionsTitle + '\'');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Group status should be \'' + Label.stgHealthCheckStatusFailed + '\'');
+        System.assertEquals(3, hlthChkGroupVMod.passedChecks, 'Group passed checks should be \'' + hlthChkGroupVMod.passedChecks + '\'');
+        System.assertEquals(4, hlthChkGroupVMod.totalChecks, 'Group total checks should be \'' + hlthChkGroupVMod.totalChecks + '\'');
+        System.assertEquals(3, hlthChkGroupVMod.healthCheckItemList.size(), 'Group HealthCheckItems list should have \'' + hlthChkGroupVMod.healthCheckItemList.size() + '\' items');
+
+        System.assertEquals('Setting-Y', hlthChkGroupVMod.healthCheckItemList[0].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+        System.assertEquals('Setting-B', hlthChkGroupVMod.healthCheckItemList[1].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+        System.assertEquals('Setting-X', hlthChkGroupVMod.healthCheckItemList[2].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+    }
+
+    /***************************************************************************
+    *************** Course Connection Enable/Disable ***************************
+    ***************************************************************************/
 
     /*********************************************************************************************
     * @description Test method to verify that getCourseConnectionsNotEnabledHealthCheckItems
@@ -221,6 +346,482 @@ private class CourseConSettingHealthCheckVMapper_TEST {
 
     }
 
+    /*****************************************************************************************
+    * @description Test method to verify that getCourseConnectionsNotEnabledHealthCheckItems
+    * handles all failed check when Course Connection is disabled
+    *****************************************************************************************/
+    @isTest
+    private static void getCourseConnectionsNotEnabledHealthCheckItemsFail() {
+
+        CourseConnectionSettingsModel courseConnSettingsModel = new CourseConnectionSettingsModel(
+            false,
+            '01217000002Zs0pAAC',
+            '01217000002Zs0pAAC'
+        );
+
+        Test.startTest();
+            HealthCheckGroupVModel hCGroupVMdl = CourseConSettingHealthCheckVMapper.getInstance().getCourseConnectionsNotEnabledHealthCheckItems(courseConnSettingsModel);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       0,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hCGroupVMdl);
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgEnableCourseConnectionsTitle,
+                                                                                    'Fail',
+                                                                                    Label.stgHealthCheckStatusFailed,
+                                                                                    Label.stgHCCourseConEnable,
+                                                                                    Label.stgHCCourseConEnableFix,
+                                                                                    hCGroupVMdl.healthCheckItemList); 
+    }
+
+    /***************************************************************************
+    *************** Student Health Check Items ********************************
+    ***************************************************************************/
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getStudentHealthCheckItemsNotAnID(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNUllModel();
+
+        CourseConnectionSettingsModel courseConnModSettMod = 
+                                            new CourseConnectionSettingsModel(true,
+                                                                              '000000000000000002',
+                                                                              'test');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000003',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      true);
+                          
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getStudentHealthCheckItems(courseConnModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       0,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.studentRecordTypeId});
+        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{courseConnModSettMod.studentRecordTypeId});
+        
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultStudentTypeTitle, 
+                                                                                   'Fail', 
+                                                                                   Label.stgHealthCheckStatusFailed, 
+                                                                                   expectedDescription, 
+                                                                                   expectedFix, 
+                                                                                   hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getStudentHealthCheckItemsIDNotInTheMap(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNUllModel();
+
+        CourseConnectionSettingsModel courseConnModSettMod = new CourseConnectionSettingsModel(true,
+                                                                                        '000000000000000002',
+                                                                                        '000000000000000003');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000004',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getStudentHealthCheckItems(courseConnModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       0,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.studentRecordTypeId});
+        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{courseConnModSettMod.studentRecordTypeId});
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultStudentTypeTitle, 
+                                                                                   'Fail', 
+                                                                                   Label.stgHealthCheckStatusFailed, 
+                                                                                   expectedDescription, 
+                                                                                   expectedFix, 
+                                                                                   hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getStudentHealthCheckItemsNotActive(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidInactive();
+
+        CourseConnectionSettingsModel courseConnModSettMod = new CourseConnectionSettingsModel(true,
+                                                                                              '000000000000000001',
+                                                                                              '000000000000000002');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000001',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      false);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getStudentHealthCheckItems(courseConnModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       0,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{rtModel.name, rtModel.developerName});
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultStudentTypeTitle, 
+                                                                                   'Fail', 
+                                                                                   Label.stgHealthCheckStatusFailed, 
+                                                                                   expectedDescription, 
+                                                                                   expectedFix, 
+                                                                                   hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getStudentHealthCheckItems(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidActive();
+
+        CourseConnectionSettingsModel courseConnModSettMod = new CourseConnectionSettingsModel(true,
+                                                                                              '000000000000000001',
+                                                                                              '000000000000000002');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000001',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getStudentHealthCheckItems(courseConnModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       1,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedFix = Label.stgHealthCheckFixNotApplicable;
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultStudentTypeTitle, 
+                                                                                   'Pass', 
+                                                                                   Label.stgHealthCheckStatusPassed, 
+                                                                                   expectedDescription, 
+                                                                                   expectedFix, 
+                                                                                   hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /***************************************************************************
+    *************** Faculty Health Check Items ********************************
+    ***************************************************************************/
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getFacultyHealthCheckItemsNotAnID(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNUllModel();
+
+        CourseConnectionSettingsModel courseConnModSettMod = new CourseConnectionSettingsModel(true,
+                                                                                        '000000000000000002',
+                                                                                        'test');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000003',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      true);
+                          
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getFacultyHealthCheckItems(courseConnModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       0,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
+        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
+        
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
+                                                                                   'Fail', 
+                                                                                   Label.stgHealthCheckStatusFailed, 
+                                                                                   expectedDescription, 
+                                                                                   expectedFix, 
+                                                                                   hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getFacultyHealthCheckItemsIDNotInTheMap(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceNUllModel();
+
+        CourseConnectionSettingsModel courseConnModSettMod = new CourseConnectionSettingsModel(true,
+                                                                                        '000000000000000002',
+                                                                                        '000000000000000003');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000004',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getFacultyHealthCheckItems(courseConnModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       0,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
+        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
+                                                                                   'Fail', 
+                                                                                   Label.stgHealthCheckStatusFailed, 
+                                                                                   expectedDescription, 
+                                                                                   expectedFix, 
+                                                                                   hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getFacultyHealthCheckItemsNotActive(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidInactive();
+
+        CourseConnectionSettingsModel courseConnModSettMod = new CourseConnectionSettingsModel(true,
+                                                                                              '000000000000000001',
+                                                                                              '000000000000000002');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      false);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getFacultyHealthCheckItems(courseConnModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       0,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{rtModel.name, rtModel.developerName});
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
+                                                                                   'Fail', 
+                                                                                   Label.stgHealthCheckStatusFailed, 
+                                                                                   expectedDescription, 
+                                                                                   expectedFix, 
+                                                                                   hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountModelHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * pass when the ID provided as the household AccountModel Id in AccountSettingsModel is valid and matches to a RT for HH 
+    * Account Modelthat is valid and active.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getFacultyHealthCheckItems(){
+        RecordTypeService.instance = new STUB_RecordTypeServiceValidActive();
+
+        CourseConnectionSettingsModel courseConnModSettMod = new CourseConnectionSettingsModel(true,
+                                                                                              '000000000000000001',
+                                                                                              '000000000000000002');
+
+        RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
+                                                      'Test Record Name',
+                                                      'testRecordDevName',
+                                                      true);
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getFacultyHealthCheckItems(courseConnModSettMod, recordTypeModelsById);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       1,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedFix = Label.stgHealthCheckFixNotApplicable;
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
+                                                                                   'Pass', 
+                                                                                   Label.stgHealthCheckStatusPassed, 
+                                                                                   expectedDescription, 
+                                                                                   expectedFix, 
+                                                                                   hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /*******************************************************************************************************
+    *************** getCourseConnectionRecordTypeUniquenessHealthCheckItems ********************************
+    *******************************************************************************************************/
+
+    /**************************************************************************************************************************
+    * @description Test to verify getAccountRecordTypeUniquenessHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * passed when Admin and HH account record types are not the same.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getCourseConnectionRecordTypeUniquenessHealthCheckItemsPass(){
+
+        CourseConnectionSettingsModel courseConnSettingsModel = new CourseConnectionSettingsModel(
+            true,
+            '01217000002Zs0pAAC',
+            '01217000002Zs0pAAZ'
+        );
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getCourseConnectionRecordTypeUniquenessHealthCheckItems(courseConnSettingsModel);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       1,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = Label.stgHCCourseConRecordTypesUniqueDesc;
+        String expectedFix = Label.stgHealthCheckFixNotApplicable;
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgHCCourseConRecordTypesUnique, 
+                                                                                    'Pass', 
+                                                                                    Label.stgHealthCheckStatusPassed, 
+                                                                                    expectedDescription, 
+                                                                                    expectedFix, 
+                                                                                    hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getAccountRecordTypeUniquenessHealthCheckItems() returns a HealthCheckGroupVModel with a status of
+    * passed when Admin and HH account record types are not the same.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void getCourseConnectionRecordTypeUniquenessHealthCheckItemsFail(){
+
+        CourseConnectionSettingsModel courseConnSettingsModel = new CourseConnectionSettingsModel(
+            true,
+            '01217000002Zs0pAAz',
+            '01217000002Zs0pAAz'
+        );
+
+        Test.startTest();
+        HealthCheckGroupVModel hlthChkGroupVMod = 
+            CourseConSettingHealthCheckVMapper.getInstance().getCourseConnectionRecordTypeUniquenessHealthCheckItems(courseConnSettingsModel);
+        Test.stopTest();
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions('',
+                                                                                       '',
+                                                                                       0,
+                                                                                       1,
+                                                                                       0,
+                                                                                       1,
+                                                                                       hlthChkGroupVMod);
+
+        String expectedDescription = Label.stgHCCourseConRecordTypesNotUnique;
+        String expectedFix = Label.stgHCCourseConRecordTypesNotUniqueFix;
+
+        CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgHCCourseConRecordTypesUnique, 
+                                                                                    'Fail', 
+                                                                                    Label.stgHealthCheckStatusFailed, 
+                                                                                    expectedDescription, 
+                                                                                    expectedFix, 
+                                                                                    hlthChkGroupVMod.healthCheckItemList);
+    }
+
+    /***************************************************************************
+    *****************************  LOCATORS ************************************
+    ***************************************************************************/
+    
     /******************************************************************************
     * @description Test method to verify that a CourseConnectionSettingsService is
     * retrieved by the locator method.
@@ -339,8 +940,8 @@ private class CourseConSettingHealthCheckVMapper_TEST {
             CourseConnectionSettingsModel courseConnSettingsModel = 
                 new CourseConnectionSettingsModel(
                     true,
-                    '01217000002Zs0pAAC',
-                    '01217000002Zs0pAAC'
+                    '0121A000002Zs0pAAC',
+                    '0121A000002Zs0pAAB'
                 );
 
             return courseConnSettingsModel;
@@ -351,15 +952,34 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     * @description Stub class to simulate the response from CourseConnectionSettingsService
     *  to return a predetermined a Course Connection model with Course Connection Enabled as False.
     **************************************************************************************************/
-    private class STUB_CourseConnectionSettingsService_Disbaled extends CourseConnectionSettingsService {
+    private class STUB_CourseConnectionSettingsService_Disabled extends CourseConnectionSettingsService {
 
         public override CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
 
             CourseConnectionSettingsModel courseConnSettingsModel = 
                 new CourseConnectionSettingsModel(
                     false,
-                    '01217000002Zs0pAAC',
-                    '01217000002Zs0pAAC'
+                    '000000000000000000',
+                    '000000000000000000'
+                );
+
+            return courseConnSettingsModel;
+        }
+    }
+    
+    /*************************************************************************************************
+    * @description Stub class to simulate the response from CourseConnectionSettingsService
+    *  to return a predetermined a Course Connection model with Course Connection Enabled as True.
+    **************************************************************************************************/
+    private class STUB_CourseConnectionSettingsService_EnabledWithSameIds extends CourseConnectionSettingsService {
+
+        public override CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
+
+            CourseConnectionSettingsModel courseConnSettingsModel = 
+                new CourseConnectionSettingsModel(
+                    true,
+                    '000000000000000000',
+                    '000000000000000000'
                 );
 
             return courseConnSettingsModel;
@@ -369,22 +989,66 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     /****************************************************************************
     * @description Stub class to simulate the response from
     * RecordTypeService to return a predetermined map of Id to Record type models
-    ***************************************************************************/
-    private class STUB_RecordTypeService extends RecordTypeService {
+    *****************************************************************************/
+    private class STUB_RecordTypeServiceAll extends RecordTypeService {
 
         public override  Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
 
-            RecordTypeModel recTypeModel = 
+            RecordTypeModel recTypeModel1 = 
                 new RecordTypeModel(
-                    '0121A000002Zs0pAAA',
-                    'Faculty',
-                    'Faculty',
+                    '01217000002Zs0pAAC',
+                    'test1 name',
+                    'test1 dev name',
                     true
                 );
 
-            Map<Id, RecordTypeModel> recTypemodelByID = new Map<Id, RecordTypeModel>{'0121A000002Zs0pAAA' => recTypeModel};
+            RecordTypeModel recTypeModel2 = 
+                new RecordTypeModel(
+                    '01217000002Zs0pAAB',
+                    'test2 name',
+                    'test2 dev name',
+                    true
+                );
+
+            Map<Id, RecordTypeModel> recTypemodelByID = new Map<Id, RecordTypeModel>{'0121A000002Zs0pAAC' => recTypeModel1, 
+                                                                                     '0121A000002Zs0pAAB' => recTypeModel2};
 
             return recTypemodelByID;
+        }
+    }
+
+    /****************************************************************************************************************************************************
+    * @description Stub class to simulate the response from RecordTypeService to return a valid and active RecordTypeModel from getRecordTypeModelFromMap.
+    *****************************************************************************************************************************************************/ 
+    private class STUB_RecordTypeServiceNUllModel extends RecordTypeService {
+        public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
+            return null;
+        }
+    }
+
+    /****************************************************************************************************************************************************
+    * @description Stub class to simulate the response from RecordTypeService to return a valid and active RecordTypeModel from getRecordTypeModelFromMap.
+    ****************************************************************************************************************************************************/ 
+    private class STUB_RecordTypeServiceValidInactive extends RecordTypeService {
+        public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
+            RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
+                                                          'Test Record Name',
+                                                          'testRecordDevName',
+                                                          false);
+            return rtModel;
+        }
+    }
+
+    /****************************************************************************************************************************************************
+    * @description Stub class to simulate the response from RecordTypeService to return a valid and active RecordTypeModel from getRecordTypeModelFromMap.
+    ****************************************************************************************************************************************************/ 
+    private class STUB_RecordTypeServiceValidActive extends RecordTypeService {
+        public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
+            RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
+                                                          'Test Record Name',
+                                                          'testRecordDevName',
+                                                          true);
+            return rtModel;
         }
     }
 }

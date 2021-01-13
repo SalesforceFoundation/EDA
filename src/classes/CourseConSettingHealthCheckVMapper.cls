@@ -62,27 +62,52 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
     ********************************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
 
-        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(
-            Label.stgHCCourseConnectionsTitle,
-            Label.stgHealthCheckStatusPassed,
-            0,
-            0,
-            new List<String>(),
-            new List<HealthCheckItemVModel>()
-        );
-
         CourseConnectionSettingsModel courseConnSettingsModel = this.locateCourseConnectionSettingsService().getCourseConnectionSettingsModel();
+        Map<Id, RecordTypeModel> courseConnRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Course_Enrollment__c.SObjectType);
 
-        String objectName = UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c');
-        SObjectType courseConnSObjectType = UTIL_Describe.getObjectDescribe(objectName).getSObjectType();
-        Map<Id, RecordTypeModel> courseConnRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(courseConnSObjectType);
+        List<HealthCheckGroupVModel> courseConSettingtHlthCheckGroupVModelsList = new List<HealthCheckGroupVModel>();
+        courseConSettingtHlthCheckGroupVModelsList.add(this.getCourseConnectionsNotEnabledHealthCheckItems(courseConnSettingsModel));
+        if (courseConSettingtHlthCheckGroupVModelsList[0].healthCheckItemList.size() > 0) {
+            return this.combineAccountHealthCheckGroupViewModels(courseConSettingtHlthCheckGroupVModelsList);
+        }
+        courseConSettingtHlthCheckGroupVModelsList.add(this.getStudentHealthCheckItems(courseConnSettingsModel, courseConnRTModelsById));
+        courseConSettingtHlthCheckGroupVModelsList.add(this.getFacultyHealthCheckItems(courseConnSettingsModel, courseConnRTModelsById));
+        courseConSettingtHlthCheckGroupVModelsList.add(this.getCourseConnectionRecordTypeUniquenessHealthCheckItems(courseConnSettingsModel));
 
-        HealthCheckGroupVModel courseConnEnableCheckResult = this.getCourseConnectionsNotEnabledHealthCheckItems(courseConnSettingsModel);
+        return this.combineAccountHealthCheckGroupViewModels(courseConSettingtHlthCheckGroupVModelsList);
 
-        hlthChkGroupVMod.passedChecks += courseConnEnableCheckResult.passedChecks;
-        hlthChkGroupVMod.totalChecks +=  courseConnEnableCheckResult.totalChecks;
-        hlthChkGroupVMod.expandedRowsList.addAll(courseConnEnableCheckResult.expandedRowsList);
-        hlthChkGroupVMod.healthCheckItemList.addAll(courseConnEnableCheckResult.healthCheckItemList);
+    }
+
+    /**********************************************************************************
+    * @description Generates a HealthCheckGroupVModel comprised of the combined health 
+    * check results for Default Account, Administrative and Household accounts. 
+    * @param  healthCheckGroupVModelsList A list of HealthCheckGroupVModels
+    * @return A HealthCheckGroupVModel representing the health check results for 
+    * Default, Administrative and Household Accounts.
+    **********************************************************************************/ 
+    @TestVisible
+    private HealthCheckGroupVModel combineAccountHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList) {
+
+        Integer hlthChkGroupPassedChecks = 0;
+        Integer hlthChkGroupTotalChecks = 0;
+
+        List<String> hlthChkGroupExpandedRowsList = new List<String>();
+        List<HealthCheckItemVModel> hlthChkGroupHlthChkItemsList = new List<HealthCheckItemVModel>();
+
+        for (HealthCheckGroupVModel hlthChkGroupVMod : healthCheckGroupVModelsList) {
+            hlthChkGroupPassedChecks += hlthChkGroupVMod.passedChecks;
+            hlthChkGroupTotalChecks += hlthChkGroupVMod.totalChecks;
+
+            hlthChkGroupExpandedRowsList.addAll(hlthChkGroupVMod.expandedRowsList);
+            hlthChkGroupHlthChkItemsList.addAll(hlthChkGroupVMod.healthCheckItemList);
+        }
+
+        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(Label.stgHCCourseConnectionsTitle,
+                                                                             Label.stgHealthCheckStatusPassed,
+                                                                             hlthChkGroupPassedChecks,
+                                                                             hlthChkGroupTotalChecks,
+                                                                             hlthChkGroupExpandedRowsList,
+                                                                             hlthChkGroupHlthChkItemsList);
 
         if(hlthChkGroupVMod.passedChecks < hlthChkGroupVMod.totalChecks) {
             hlthChkGroupVMod.status = Label.stgHealthCheckStatusFailed;
@@ -90,7 +115,6 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
 
         hlthChkGroupVMod.healthCheckItemList.sort();
         return hlthChkGroupVMod;
-
     }
 
     /*******************************************************************************
@@ -127,6 +151,185 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
         }
 
         return HealthCheckGroupVModel;
+    }
+
+    /**********************************************************************************
+    * @description Generates a HealthCheckGroupVModel for a Default Account Model health check
+    * @param  acctModelSettingsMod An AccountModelSettingsModel
+    * @param  recordTypeModelsById A map of Record Type models by Id
+    * @return A HealthCheckGroupVModel with representing a Default Account Model Health Check
+    **********************************************************************************/
+    @TestVisible
+    private virtual HealthCheckGroupVModel getStudentHealthCheckItems(CourseConnectionSettingsModel courseConnectionSettingsModel, 
+                                                                      Map<Id, RecordTypeModel> recordTypeModelsById) {
+                     
+        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(
+            '',
+            '',
+            0,
+            0,
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
+                                           
+        RecordTypeModel studentRecTypeModel =   
+            this.locateRecordTypeService().getRecordTypeModelFromMap(courseConnectionSettingsModel.studentRecordTypeId, recordTypeModelsById);
+
+        if (studentRecTypeModel == null) {
+            hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('02',
+                                                                                Label.stgDefaultStudentTypeTitle,
+                                                                                'Fail',
+                                                                                Label.stgHealthCheckStatusFailed,
+                                                                                String.format(Label.stgHCRecordTypeNotFound, 
+                                                                                                new List<Object>{courseConnectionSettingsModel.studentRecordTypeId}),
+                                                                                String.format(Label.stgHCCourseConStudentInactiveFix, 
+                                                                                                new List<Object>{courseConnectionSettingsModel.studentRecordTypeId}),
+                                                                                new List<HealthCheckItemVModel>()));
+            hlthChkGroupVMod.totalChecks++;
+            return hlthChkGroupVMod;
+        }
+
+        if (studentRecTypeModel.isActive == false) {
+            hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('02',
+                                                                                Label.stgDefaultStudentTypeTitle,
+                                                                                'Fail',
+                                                                                Label.stgHealthCheckStatusFailed,
+                                                                                String.format(Label.stgHCRecordTypeInactive, 
+                                                                                                new List<Object>{studentRecTypeModel.name, studentRecTypeModel.developerName}),
+                                                                                String.format(Label.stgHCCourseConStudentInactiveFix, 
+                                                                                                new List<Object>{studentRecTypeModel.name, studentRecTypeModel.developerName}),
+                                                                                new List<HealthCheckItemVModel>()));
+            hlthChkGroupVMod.totalChecks++;
+            return hlthChkGroupVMod;
+        }
+
+       hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('02',
+                                                                          Label.stgDefaultStudentTypeTitle,
+                                                                          'Pass',
+                                                                          Label.stgHealthCheckStatusPassed,
+                                                                          String.format(Label.stgHCRecordTypeValid, 
+                                                                                      new List<Object>{studentRecTypeModel.name, studentRecTypeModel.developerName}),
+                                                                          Label.stgHealthCheckFixNotApplicable,
+                                                                          new List<HealthCheckItemVModel>()));
+        hlthChkGroupVMod.totalChecks++;
+        hlthChkGroupVMod.passedChecks++;
+
+        return hlthChkGroupVMod;
+    }
+
+    /**********************************************************************************
+    * @description Generates a HealthCheckGroupVModel for a Default Account Model health check
+    * @param  acctModelSettingsMod An AccountModelSettingsModel
+    * @param  recordTypeModelsById A map of Record Type models by Id
+    * @return A HealthCheckGroupVModel with representing a Default Account Model Health Check
+    **********************************************************************************/
+    @TestVisible
+    private virtual HealthCheckGroupVModel getFacultyHealthCheckItems(CourseConnectionSettingsModel courseConnectionSettingsModel, 
+                                                                      Map<Id,RecordTypeModel> recordTypeModelsById) {
+                               
+        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(
+            '',
+            '',
+            0,
+            0,
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
+                                                              
+        RecordTypeModel facultyRecTypeModel =   
+            this.locateRecordTypeService().getRecordTypeModelFromMap(courseConnectionSettingsModel.facultyRecordTypeId, recordTypeModelsById);
+                                
+        if (facultyRecTypeModel == null) {
+            hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('03',
+                                                                                Label.stgDefaultFacultyTypeTitle,
+                                                                                'Fail',
+                                                                                Label.stgHealthCheckStatusFailed,
+                                                                                String.format(Label.stgHCRecordTypeNotFound, 
+                                                                                                new List<Object>{courseConnectionSettingsModel.facultyRecordTypeId}),
+                                                                                String.format(Label.stgHCCourseConStudentInactiveFix, 
+                                                                                                new List<Object>{courseConnectionSettingsModel.facultyRecordTypeId}),
+                                                                                new List<HealthCheckItemVModel>()));
+            hlthChkGroupVMod.totalChecks++;
+            return hlthChkGroupVMod;
+        }
+
+        if (facultyRecTypeModel.isActive == false) {
+            hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('03',
+                                                                                Label.stgDefaultFacultyTypeTitle,
+                                                                                'Fail',
+                                                                                Label.stgHealthCheckStatusFailed,
+                                                                                String.format(Label.stgHCRecordTypeInactive, 
+                                                                                                new List<Object>{facultyRecTypeModel.name, facultyRecTypeModel.developerName}),
+                                                                                String.format(Label.stgHCCourseConStudentInactiveFix, 
+                                                                                                new List<Object>{facultyRecTypeModel.name, facultyRecTypeModel.developerName}),
+                                                                                new List<HealthCheckItemVModel>()));
+            hlthChkGroupVMod.totalChecks++;
+            return hlthChkGroupVMod;
+        }
+
+       hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('03',
+                                                                          Label.stgDefaultFacultyTypeTitle,
+                                                                          'Pass',
+                                                                          Label.stgHealthCheckStatusPassed,
+                                                                          String.format(Label.stgHCRecordTypeValid, 
+                                                                                      new List<Object>{facultyRecTypeModel.name, facultyRecTypeModel.developerName}),
+                                                                          Label.stgHealthCheckFixNotApplicable,
+                                                                          new List<HealthCheckItemVModel>()));
+        hlthChkGroupVMod.totalChecks++;
+        hlthChkGroupVMod.passedChecks++;
+
+        return hlthChkGroupVMod;                                                                                      
+
+    }
+
+    /**********************************************************************************
+    * @description Generates a HealthCheckGroupVModel for an Account Model health check based
+    * on whether the Administrative and Household RT settings are the same.
+    * @param  accountSettingsMod An AccountModelSettingsModel
+    * @return A HealthCheckGroupVModel with a status of Fail if the Admin and HH Accounts are not
+    * unique; a HealthCheckGroupVModel with a status of Pass otherwise.
+    **********************************************************************************/
+    @TestVisible
+    private HealthCheckGroupVModel getCourseConnectionRecordTypeUniquenessHealthCheckItems(CourseConnectionSettingsModel courseConnectionSettingsModel) {
+
+        List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
+
+        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel(
+            '',
+            '',
+            0,
+            0,
+            new List<String>(),
+            new List<HealthCheckItemVModel>()
+        );
+                                    
+        Boolean isStudentEqualToFacultyRT = (courseConnectionSettingsModel.facultyRecordTypeId == courseConnectionSettingsModel.studentRecordTypeId);
+
+        if (isStudentEqualToFacultyRT == true) {
+            hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('04',
+                                                           Label.stgHCCourseConRecordTypesUnique,
+                                                           'Fail',
+                                                           Label.stgHealthCheckStatusFailed,
+                                                           Label.stgHCCourseConRecordTypesNotUnique,
+                                                           Label.stgHCCourseConRecordTypesNotUniqueFix,
+                                                           new List<HealthCheckItemVModel>()));
+
+            hlthChkGroupVMod.totalChecks++;
+            return hlthChkGroupVMod;
+        }
+
+        hlthChkGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('04',
+                                                       Label.stgHCCourseConRecordTypesUnique,
+                                                       'Pass',
+                                                       Label.stgHealthCheckStatusPassed,
+                                                       Label.stgHCCourseConRecordTypesUniqueDesc,
+                                                       Label.stgHealthCheckFixNotApplicable,
+                                                       new List<HealthCheckItemVModel>()));
+
+        hlthChkGroupVMod.totalChecks++;
+        hlthChkGroupVMod.passedChecks++;
+
+        return hlthChkGroupVMod;
     }
 
     /*****************************************************************************
