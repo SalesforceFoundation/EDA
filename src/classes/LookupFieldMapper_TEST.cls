@@ -94,32 +94,32 @@ public with sharing class LookupFieldMapper_TEST {
         System.assertEquals(true, lookupFieldModelByNameResult.isEmpty(), 'Account object should have no fields that lookup to AssetDowntimePeriod.');
     }
 
-    /**************************************************************************************************************************
-    * @description Test to verify getModelByLabelMapForSObjectTypeValid() returns a map with valid lookup field mappings
-    * when a specified SObject contains fields that lookup to a specified SObject type.
-    **************************************************************************************************************************/
-    @isTest 
-    private static void getModelByLabelMapForSObjectTypeValid(){
-        Test.startTest();
-        Map<String, LookupFieldModel> lookupFieldModelByLabelResult = 
-            LookupFieldMapper.getInstance().getModelByLabelMapForSObjectType(Contact.SObjectType, Account.SObjectType);
-        Test.stopTest();
+    // /**************************************************************************************************************************
+    // * @description Test to verify getModelByLabelMapForSObjectTypeValid() returns a map with valid lookup field mappings
+    // * when a specified SObject contains fields that lookup to a specified SObject type.
+    // **************************************************************************************************************************/
+    // @isTest 
+    // private static void getModelByLabelMapForSObjectTypeValid(){
+    //     Test.startTest();
+    //     Map<String, LookupFieldModel> lookupFieldModelByLabelResult = 
+    //         LookupFieldMapper.getInstance().getModelByLabelMapForSObjectType(Contact.SObjectType, Account.SObjectType);
+    //     Test.stopTest();
 
-        System.assertEquals(false, lookupFieldModelByLabelResult.isEmpty(), 'Contact object should have fields that lookup to Account.');
-        System.assertEquals(true, lookupFieldModelByLabelResult.containsKey('Primary Household'), 'Contact object should have field model for \'Primary Household\' field label.');
-    }
+    //     System.assertEquals(false, lookupFieldModelByLabelResult.isEmpty(), 'Contact object should have fields that lookup to Account.');
+    //     System.assertEquals(true, lookupFieldModelByLabelResult.containsKey('Primary Household'), 'Contact object should have field model for \'Primary Household\' field label.');
+    // }
 
-    /**************************************************************************************************************************
-    * @description Test to verify getModelByLabelMapForSObjectTypeValid() returns an empty map when a specified SObject 
-    * does not contain fields that lookup to a specified SObject type.
-    **************************************************************************************************************************/
-    @isTest 
-    private static void getModelByLabelMapForSObjectTypeEmpty(){
-        Test.startTest();
-        Map<String, LookupFieldModel> lookupFieldModelByLabelResult = 
-            LookupFieldMapper.getInstance().getModelByLabelMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
-        Test.stopTest();
+    // /**************************************************************************************************************************
+    // * @description Test to verify getModelByLabelMapForSObjectTypeValid() returns an empty map when a specified SObject 
+    // * does not contain fields that lookup to a specified SObject type.
+    // **************************************************************************************************************************/
+    // @isTest 
+    // private static void getModelByLabelMapForSObjectTypeEmpty(){
+    //     Test.startTest();
+    //     Map<String, LookupFieldModel> lookupFieldModelByLabelResult = 
+    //         LookupFieldMapper.getInstance().getModelByLabelMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
+    //     Test.stopTest();
 
-        System.assertEquals(true, lookupFieldModelByLabelResult.isEmpty(), 'Account object should have no fields that lookup to AssetDowntimePeriod.');
-    }
+    //     System.assertEquals(true, lookupFieldModelByLabelResult.isEmpty(), 'Account object should have no fields that lookup to AssetDowntimePeriod.');
+    // }
 }
