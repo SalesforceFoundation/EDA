@@ -1102,6 +1102,7 @@ public class UTIL_Describe {
     * @return A Map<String, Schema.SObjectField> if the specified SObject name exists, null otherwise.
     *******************************************************************************************************/
     public static Map<String, Schema.SObjectField> getAllFieldsForSObject(String sObjectName){
-        return Schema.getGlobalDescribe().get(sObjectName)?.getDescribe().fields.getMap();
+        UTIL_Describe.objectDescribes(sObjectName);
+        return objectDescribesget(sObjectName).fields.getMap();
     }
 }
