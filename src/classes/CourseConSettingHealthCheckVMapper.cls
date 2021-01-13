@@ -63,13 +63,13 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
 
         CourseConnectionSettingsModel courseConnSettingsModel = this.locateCourseConnectionSettingsService().getCourseConnectionSettingsModel();
-
-        String objectName = UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c');
-        SObjectType courseConnSObjectType = UTIL_Describe.getObjectDescribe(objectName).getSObjectType();
-        Map<Id, RecordTypeModel> courseConnRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(courseConnSObjectType);
+        Map<Id, RecordTypeModel> courseConnRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Course_Enrollment__c.SObjectType);
 
         List<HealthCheckGroupVModel> courseConSettingtHlthCheckGroupVModelsList = new List<HealthCheckGroupVModel>();
         courseConSettingtHlthCheckGroupVModelsList.add(this.getCourseConnectionsNotEnabledHealthCheckItems(courseConnSettingsModel));
+        if (courseConSettingtHlthCheckGroupVModelsList[0].healthCheckItemList.size() > 0) {
+            return this.combineAccountHealthCheckGroupViewModels(courseConSettingtHlthCheckGroupVModelsList);
+        }
         courseConSettingtHlthCheckGroupVModelsList.add(this.getStudentHealthCheckItems(courseConnSettingsModel, courseConnRTModelsById));
         courseConSettingtHlthCheckGroupVModelsList.add(this.getFacultyHealthCheckItems(courseConnSettingsModel, courseConnRTModelsById));
         courseConSettingtHlthCheckGroupVModelsList.add(this.getCourseConnectionRecordTypeUniquenessHealthCheckItems(courseConnSettingsModel));

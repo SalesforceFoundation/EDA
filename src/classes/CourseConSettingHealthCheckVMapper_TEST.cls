@@ -91,7 +91,6 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     ***************************************************************************/
 
     /***************************************************************************
-    /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles all
     * passed health checks
     ***************************************************************************/
@@ -145,10 +144,62 @@ private class CourseConSettingHealthCheckVMapper_TEST {
 
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles all
-    * passed health checks
+    * failed health checks when Course Connection is enabled
     ***************************************************************************/
     @isTest
-    private static void getHealthCheckGroupAllFailed() {
+    private static void getHealthCheckGroupAllFailedWhenCourseConnEnabled() {
+
+        CourseConnectionSettingsService.instance = 
+            new STUB_CourseConnectionSettingsService_EnabledWithSameIds();
+
+        RecordTypeService.instance =
+            new STUB_RecordTypeServiceAll();
+
+        CourseConSettingHealthCheckVMapper courseConHealthCheckVMapperInstance =
+            CourseConSettingHealthCheckVMapper.getInstance();
+ 
+        Test.startTest();
+            HealthCheckGroupVModel healthChkVModel = courseConHealthCheckVMapperInstance.getHealthCheckGroup();
+        Test.stopTest();
+
+        System.assertEquals(
+            Label.stgHCCourseConnectionsTitle,
+            healthChkVModel.label,
+            'Label of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            Label.stgHealthCheckStatusFailed,
+            healthChkVModel.status,
+            'Status of returned health check should match expected custom label.'
+        );
+        System.assertEquals(
+            0,
+            healthChkVModel.passedChecks,
+            'No health check should be passed.'
+        );
+        System.assertEquals(
+            3,
+            healthChkVModel.totalChecks,
+            'Number of total checks of returned health check should be 4.'
+        );
+        System.assertEquals(
+            0,
+            healthChkVModel.expandedRowsList.size(),
+            'No health checks should fail, making expanded rows list size 0.'
+        );
+        System.assertEquals(
+            3,
+            healthChkVModel.healthCheckItemList.size(),
+            'Number of health check items of returned health check should be 4.'
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that getHealthCheckGroup handles only
+    * one health check when Course Connection is disabled
+    ***************************************************************************/
+    @isTest
+    private static void getHealthCheckGroupCourseConDisabled() {
 
         CourseConnectionSettingsService.instance = 
             new STUB_CourseConnectionSettingsService_Disabled();
@@ -179,9 +230,9 @@ private class CourseConSettingHealthCheckVMapper_TEST {
             'No health check should be passed.'
         );
         System.assertEquals(
-            4,
+            1,
             healthChkVModel.totalChecks,
-            'Number of total checks of returned health check should be 4.'
+            'Number of total checks of returned health check should be 1 as we do not run other health checks if Course Connection is disabled.'
         );
         System.assertEquals(
             0,
@@ -189,7 +240,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
             'No health checks should fail, making expanded rows list size 0.'
         );
         System.assertEquals(
-            4,
+            1,
             healthChkVModel.healthCheckItemList.size(),
             'Number of health check items of returned health check should be 4.'
         );
@@ -899,7 +950,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
     
     /*************************************************************************************************
     * @description Stub class to simulate the response from CourseConnectionSettingsService
-    *  to return a predetermined a Course Connection model with Course Connection Enabled as True.
+    *  to return a predetermined a Course Connection model with Course Connection Enabled as False.
     **************************************************************************************************/
     private class STUB_CourseConnectionSettingsService_Disabled extends CourseConnectionSettingsService {
 
@@ -915,11 +966,30 @@ private class CourseConSettingHealthCheckVMapper_TEST {
             return courseConnSettingsModel;
         }
     }
+    
+    /*************************************************************************************************
+    * @description Stub class to simulate the response from CourseConnectionSettingsService
+    *  to return a predetermined a Course Connection model with Course Connection Enabled as True.
+    **************************************************************************************************/
+    private class STUB_CourseConnectionSettingsService_EnabledWithSameIds extends CourseConnectionSettingsService {
+
+        public override CourseConnectionSettingsModel getCourseConnectionSettingsModel() {
+
+            CourseConnectionSettingsModel courseConnSettingsModel = 
+                new CourseConnectionSettingsModel(
+                    true,
+                    '000000000000000000',
+                    '000000000000000000'
+                );
+
+            return courseConnSettingsModel;
+        }
+    }
 
     /****************************************************************************
     * @description Stub class to simulate the response from
     * RecordTypeService to return a predetermined map of Id to Record type models
-    ***************************************************************************/
+    *****************************************************************************/
     private class STUB_RecordTypeServiceAll extends RecordTypeService {
 
         public override  Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
@@ -947,18 +1017,18 @@ private class CourseConSettingHealthCheckVMapper_TEST {
         }
     }
 
-    /**************************************************************************************************************************************
+    /****************************************************************************************************************************************************
     * @description Stub class to simulate the response from RecordTypeService to return a valid and active RecordTypeModel from getRecordTypeModelFromMap.
-    **************************************************************************************************************************************/ 
+    *****************************************************************************************************************************************************/ 
     private class STUB_RecordTypeServiceNUllModel extends RecordTypeService {
         public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
             return null;
         }
     }
 
-    /**************************************************************************************************************************************
+    /****************************************************************************************************************************************************
     * @description Stub class to simulate the response from RecordTypeService to return a valid and active RecordTypeModel from getRecordTypeModelFromMap.
-    **************************************************************************************************************************************/ 
+    ****************************************************************************************************************************************************/ 
     private class STUB_RecordTypeServiceValidInactive extends RecordTypeService {
         public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
             RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
@@ -969,9 +1039,9 @@ private class CourseConSettingHealthCheckVMapper_TEST {
         }
     }
 
-    /**************************************************************************************************************************************
+    /****************************************************************************************************************************************************
     * @description Stub class to simulate the response from RecordTypeService to return a valid and active RecordTypeModel from getRecordTypeModelFromMap.
-    **************************************************************************************************************************************/ 
+    ****************************************************************************************************************************************************/ 
     private class STUB_RecordTypeServiceValidActive extends RecordTypeService {
         public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
             RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
