@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2020, Salesforce.org
+    Copyright (c) 2021, Salesforce.org
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+    notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
+    notice, this List of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
     its contributors may be used to endorse or promote products derived
@@ -26,22 +26,20 @@
 */
 /**
 * @author Salesforce.org
-* @date 2020
-* @group
+* @date 2021
+* @group Health Check
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Model class for Record Type
+* @description Model class for Account Model Settings
 */
-public with sharing class RecordTypeModel {
+public with sharing class AccountModelSettingsModel {
 
-    public Id id {get; private set;}
-    public String name {get; private set;}
-    public String developerName {get; private set;}
-    public Boolean isActive {get; private set;}
+    public String defaultAccountModelId;
+    public String administrativeAccountRecordTypeId;
+    public String householdAccountRecordTypeId;
 
-    public RecordTypeModel(Id id, String name, String developerName, Boolean isActive) {
-        this.Id = id;
-        this.name = name;
-        this.developerName = developerName;
-        this.isActive = isActive;
+    public AccountModelSettingsModel(String defaultAccountModelId, String administrativeAccountRecordTypeId, String householdAccountRecordTypeId) {
+        this.defaultAccountModelId = (String.isBlank(defaultAccountModelId)) ? '""' : defaultAccountModelId;
+        this.administrativeAccountRecordTypeId = (String.isBlank(administrativeAccountRecordTypeId)) ? '""' : administrativeAccountRecordTypeId;
+        this.householdAccountRecordTypeId = (String.isBlank(householdAccountRecordTypeId)) ? '""' : householdAccountRecordTypeId;
     }
 }

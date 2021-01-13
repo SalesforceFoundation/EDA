@@ -28,20 +28,23 @@
 * @author Salesforce.org
 * @date 2020
 * @group
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Model class for Record Type
+* @group-content ../../ApexDocContent/Tests.htm
+* @description Test class for RecordTypeModel
 */
-public with sharing class RecordTypeModel {
+@isTest
+private class RecordTypeModel_TEST {
+    /**************************************************************************************************************************
+    * @description Test method to verify that the constructor is working as expected.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void constructorTest() {
+        Test.startTest();
+            RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000000', 'Household', 'Household Account', false);
+        Test.stopTest();
 
-    public Id id {get; private set;}
-    public String name {get; private set;}
-    public String developerName {get; private set;}
-    public Boolean isActive {get; private set;}
-
-    public RecordTypeModel(Id id, String name, String developerName, Boolean isActive) {
-        this.Id = id;
-        this.name = name;
-        this.developerName = developerName;
-        this.isActive = isActive;
+        System.assertEquals('000000000000000000', recordTypeModel.id);
+        System.assertEquals('Household', recordTypeModel.name);
+        System.assertEquals('Household Account', recordTypeModel.developerName);
+        System.assertEquals(false, recordTypeModel.isActive);
     }
 }

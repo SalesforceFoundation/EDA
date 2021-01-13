@@ -71,12 +71,13 @@ public with sharing class HealthCheckGroupService_TEST {
     @isTest 
     private static void getHealthCheckGroupValidReciprocal(){
         ReciprocalRelHealthCheckVMapper.instance = new STUB_ReciprocalRelHealthCheckVMapper();
-        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
+        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceValidModel();
+        HealthCheckGroupService healthCheckGroupService =
+            HealthCheckGroupService.getInstance();
 
         Test.startTest();
             HealthCheckGroupVModel hlthChkGroupVMod =
-                HealthCheckGroupService.getInstance(
-                ).getHealthCheckGroup(
+                healthCheckGroupService.getHealthCheckGroup(
                     'reciprocalrelationship',
                     'EDAHealthCheckGroupAPIService',
                     'hed'
@@ -190,9 +191,9 @@ public with sharing class HealthCheckGroupService_TEST {
     **************************************************************************************************************************/
     
     /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from HealthCheckGroupService to return an instance of EDAHealthCheckGroupAPIService
+    * @description Stub class to simulate the response from HealthCheckGroupService to return a valid HealthCheckGroupVModel.
     **************************************************************************************************************************************/ 
-    private class STUB_HealthCheckGroupServiceEDAHealthCheckAPI extends HealthCheckGroupService {
+    private class STUB_HealthCheckGroupServiceValidModel extends HealthCheckGroupService {
         @TestVisible 
         private override HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(
             String className,

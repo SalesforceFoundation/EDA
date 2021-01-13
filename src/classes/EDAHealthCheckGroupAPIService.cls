@@ -67,6 +67,15 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     }
 
     /******************************************************************************************
+    * @description Retrieves an instance of AccountModelHealthCheckVMapper. 
+    * @return An instance of AccountModelHealthCheckVMapper.
+    ******************************************************************************************/
+    @TestVisible 
+    private AccountModelHealthCheckVMapper locateAccountModelHealthCheckVMapper(){
+        return AccountModelHealthCheckVMapper.getInstance();
+    }
+
+    /******************************************************************************************
     * @description Retrieves a view model representing a health check group for a specified 
     * HealthCheckDefinition.
     * @param  name The name of a HealthCheckDefinition
@@ -82,11 +91,13 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         switch on caseInsensitiveName {
             when 'courseconnectionsettings' {
                 return this.locateCourseConSettingHealthCheckVMapper().getHealthCheckGroup();
+            }    
+            when 'accountmodel' {
+                return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
             }
             when 'reciprocalrelationship' {
                 return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();
             }
-
             when else {
                 return null;                
             }

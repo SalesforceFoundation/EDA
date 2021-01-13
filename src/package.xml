@@ -37,6 +37,14 @@
         <members>AFFL_MultiRecordType_TEST</members>
         <members>ATTD_CourseConnectionContact_TDTM</members>
         <members>ATTD_CourseConnectionContact_TEST</members>
+        <members>AccountModelHealthCheckVMapper</members>
+        <members>AccountModelHealthCheckVMapper_TEST</members>
+        <members>AccountModelSettingsMapper</members>
+        <members>AccountModelSettingsMapper_TEST</members>
+        <members>AccountModelSettingsModel</members>
+        <members>AccountModelSettingsModel_TEST</members>
+        <members>AccountModelSettingsService</members>
+        <members>AccountModelSettingsService_TEST</members>
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
@@ -176,8 +184,11 @@
         <members>ReciprocalRelHealthCheckVMapper</members>
         <members>ReciprocalRelHealthCheckVMapper_TEST</members>
         <members>RecordTypeMapper</members>
+        <members>RecordTypeMapper_TEST</members>
         <members>RecordTypeModel</members>
+        <members>RecordTypeModel_TEST</members>
         <members>RecordTypeService</members>
+        <members>RecordTypeService_TEST</members>
         <members>RelationshipLookupMapper</members>
         <members>RelationshipLookupMapper_TEST</members>
         <members>RelationshipLookupModel</members>
@@ -842,6 +853,16 @@
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
+        <members>stgHCAccountModelAdminInactiveFix</members>
+        <members>stgHCAccountModelAdminNotFoundFix</members>
+        <members>stgHCAccountModelDefaultInactiveFix</members>
+        <members>stgHCAccountModelDefaultNotFoundFix</members>
+        <members>stgHCAccountModelHHInactiveFix</members>
+        <members>stgHCAccountModelHHNotFoundFix</members>
+        <members>stgHCAccountRecordTypeSettingsUnique</members>
+        <members>stgHCAccountRecordTypesNotUnique</members>
+        <members>stgHCAccountRecordTypesNotUniqueFix</members>
+        <members>stgHCAccountRecordTypesUnique</members>
         <members>stgHCAffiliationMappingSettingDesc</members>
         <members>stgHCAffiliationMappingSettingHeading</members>
         <members>stgHCAfflMapAccRecordTypeInactiveFix</members>
@@ -906,6 +927,7 @@
         <members>stgHCRecordTypeInactive</members>
         <members>stgHCRecordTypeNotFound</members>
         <members>stgHCRecordTypeValid</members>
+        <members>stgHealthCheckAccountModel</members>
         <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>

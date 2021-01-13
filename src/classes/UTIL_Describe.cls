@@ -1079,5 +1079,4 @@ public class UTIL_Describe {
         }
         return recordTypeInfoByDeveloperName.get(objectName);
     }
-
 }
