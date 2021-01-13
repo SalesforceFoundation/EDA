@@ -92,11 +92,15 @@ public with sharing class HealthCheckGroupService_TEST {
         System.assertEquals(2, hlthChkGroupVMod.healthCheckItemList.size(), 'Health Check items list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getHealthCheckGroup method returns a HealthCheckGroup view model when provided
+    * with valid HealthCheckDefinitionModel data.
+    ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupValidCourseConn(){
 
         CourseConSettingHealthCheckVMapper.instance = new STUB_CourseConSettingHealthCheckVMapper();
-        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
+        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceValidModel();
 
         Test.startTest();
             HealthCheckGroupVModel hlthChkGroupVMod = 
