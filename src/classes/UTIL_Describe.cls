@@ -290,10 +290,8 @@ public class UTIL_Describe {
     * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
     * @return DescribeFieldResult Map of DescribeFieldResult
     */
-    
     public static Map<String, Schema.DescribeFieldResult> getFieldsOfType(String objectName, String type) {
 
-        
         Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
         Map<String, Schema.DescribeFieldResult> fields = new Map<String, Schema.DescribeFieldResult>();
 
@@ -1102,7 +1100,7 @@ public class UTIL_Describe {
     * @return A Map<String, Schema.SObjectField> if the specified SObject name exists, null otherwise.
     *******************************************************************************************************/
     public static Map<String, Schema.SObjectField> getAllFieldsForSObject(String sObjectName){
-        UTIL_Describe.objectDescribes(sObjectName);
-        return objectDescribesget(sObjectName).fields.getMap();
+        Schema.DescribeSObjectResult describeSObjectResult = UTIL_Describe.objectDescribes.get(sObjectName);
+        return describeSObjectResult.fields.getMap();
     }
 }

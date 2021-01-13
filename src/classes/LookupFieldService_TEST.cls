@@ -86,26 +86,6 @@ public with sharing class LookupFieldService_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getModelByLabelMapForSObjectType method returns the a map of LookupField models
-    * by label when an SObject contains fields that lookup to the specified SObject type.
-    ***************************************************************************************************************************/
-    @isTest 
-    private static void getModelByLabelMapForSObjectTypeValid(){
-        LookupFieldMapper.instance = new STUB_LookupFieldMapperValid();
-        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
-
-        Test.startTest();
-        Map<String, LookupFieldModel> lookupFieldModelByLabelResults = 
-            lookupFieldServiceInstance.getModelByLabelMapForSObjectType(Contact.SObjectType, Account.SObjectType);
-        Test.stopTest();
-
-        System.assertEquals(3, lookupFieldModelByLabelResults.values().size(), 'Should return 3 mappings to Account lookup fields.');
-        System.assertEquals(true, lookupFieldModelByLabelResults.containsKey('testLabel1'), 'Should contain mapping for \'testLabel1\' field label.');
-        System.assertEquals(true, lookupFieldModelByLabelResults.containsKey('testLabel2'), 'Should contain mapping for \'testLabel2\' field label.');
-        System.assertEquals(true, lookupFieldModelByLabelResults.containsKey('testLabel3'), 'Should contain mapping for \'testLabel3\' field label.');
-    }
-
-    /**************************************************************************************************************************
     * @description Test method to verify that the getModelByNameMapForSObjectType method returns an empty map of LookupField models
     * by name when an SObject does not contain fields that lookup to the specified SObject type.
     ***************************************************************************************************************************/
@@ -123,20 +103,26 @@ public with sharing class LookupFieldService_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getModelByLabelMapForSObjectType method returns an empty map of LookupField models
-    * by label when an SObject does not contain fields that lookup to the specified SObject type.
+    * @description Test method to verify that the getModelByLabelMapForSObjectType method returns an map of LookupField models
+    * by label when a valid map of lookup field models by name is provided.
     ***************************************************************************************************************************/
     @isTest 
-    private static void getModelByLabelMapForSObjectTypeEmpty(){
-        LookupFieldMapper.instance = new STUB_LookupFieldMapperEmpty();
+    private static void getModelByLabelMapForSObjectTypeValid(){
+        Map<String, LookupFieldModel> lookupFieldsByName = new Map<String, LookupFieldModel>();
+        lookupFieldsByName.put('LookupFieldName1', new LookupFieldModel('LookupFieldName1', 'LookupFieldLabel1'));
+        lookupFieldsByName.put('LookupFieldName2', new LookupFieldModel('LookupFieldName2', 'LookupFieldLabel2'));
+        lookupFieldsByName.put('LookupFieldName3', new LookupFieldModel('LookupFieldName3', 'LookupFieldLabel3'));
+
         LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
 
         Test.startTest();
         Map<String, LookupFieldModel> lookupFieldModelByLabelResults = 
-            lookupFieldServiceInstance.getModelByLabelMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
+            lookupFieldServiceInstance.getModelByLabelMapForSObjectType(lookupFieldsByName);
         Test.stopTest();
 
-        System.assertEquals(0, lookupFieldModelByLabelResults.values().size(), 'Should no mappings to AssetDowntimePeriod lookup fields.');
+        for (String lookupFieldKey : lookupFieldModelByLabelResults.keySet()) {
+            System.assertEquals(true, lookupFieldKey.containsIgnoreCase('LookupFieldLabel'), 'Lookup field models should be mapped by Label');
+        }
     }
 
     /**************************************************************************************************************************
@@ -242,16 +228,6 @@ public with sharing class LookupFieldService_TEST {
 
             return testLookupFieldModelsByName;
         }
-
-        public override Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
-            Map<String, LookupFieldModel> testLookupFieldModelsByLabel = new Map<String, LookupFieldModel>();
-
-            testLookupFieldModelsByLabel.put('testLabel1', new LookupFieldModel('testName1', 'testLabel1'));
-            testLookupFieldModelsByLabel.put('testLabel2', new LookupFieldModel('testName2', 'testLabel2'));
-            testLookupFieldModelsByLabel.put('testLabel3', new LookupFieldModel('testName3', 'testLabel3'));
-
-            return testLookupFieldModelsByLabel;
-        }
     }
 
     /*************************************************************************************************************
@@ -260,10 +236,6 @@ public with sharing class LookupFieldService_TEST {
     *************************************************************************************************************/
     private class STUB_LookupFieldMapperEmpty extends LookupFieldMapper {
         public override Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
-            return new Map<String, LookupFieldModel>();
-        }
-
-        public override Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
             return new Map<String, LookupFieldModel>();
         }
     }

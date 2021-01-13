@@ -67,19 +67,14 @@ public virtual with sharing class LookupFieldService {
     }
 
     /********************************************************************************************
-    * @description Retrieve a map of LookupFieldModels by Label for a specified SObject 
-    * that is a lookup to a specified SObject type.
-    * @param  sObjectType The SObject type of the field model
-    * @param lookupToSObjectType The SObject type that the field model looks up to 
+    * @description Retrieve a map of LookupFieldModels by Label for lookup fields on an SObject.
+    * @param  lookupFieldModelsByName A map of lookup fields on an SObject by developer name.
     * @return A Map<String, LookupFieldModel>
     ********************************************************************************************/
-    // public Map<String, LookupFieldModel> getModelByLabelMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
-    //     return this.locateLookupFieldMapper().getModelByLabelMapForSObjectType(sObjectType, lookupToSObjectType);
-    // }
-    public Map<String,LookupFieldModel> getModelByLabelMapForSObjectType(Map<String,LookupFieldModel> lookupFieldModelsByLabel) {
+    public Map<String,LookupFieldModel> getModelByLabelMapForSObjectType(Map<String,LookupFieldModel> lookupFieldModelsByName) {
         Map<String, LookupFieldModel> lookupFieldModelsByLabel = new Map<String, LookupFieldModel>();
 
-        for (LookupFieldModel lookupFieldMod : lookupFieldModelsByLabel.values()) {
+        for (LookupFieldModel lookupFieldMod : lookupFieldModelsByName.values()) {
             lookupFieldModelsByLabel.put(lookupFieldMod.label, lookupFieldMod);
         }
 
