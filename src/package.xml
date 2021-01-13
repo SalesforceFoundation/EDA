@@ -903,6 +903,9 @@
         <members>stgHCReciprocalRelNeutralNotFoundFix</members>
         <members>stgHCReciprocalRelNeutralTitle</members>
         <members>stgHCReciprocalRelSetting</members>
+        <members>stgHCRecordTypeInactive</members>
+        <members>stgHCRecordTypeNotFound</members>
+        <members>stgHCRecordTypeValid</members>
         <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>

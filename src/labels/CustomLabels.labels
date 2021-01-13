@@ -1632,6 +1632,30 @@
         <value>{0} Reciprocal Relationships</value>
     </labels>
     <labels>
+        <fullName>stgHCRecordTypeInactive</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check finds an inactive record type</shortDescription>
+        <value>The {0} ({1}) record type isn’t active.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCRecordTypeNotFound</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check can&apos;t find the record type</shortDescription>
+        <value>We can’t find the {0} record type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHCRecordTypeValid</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description when Health Check finds a record type valid</shortDescription>
+        <value>The {0} ({1}) record type is valid.</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckAffiliationMappings</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
