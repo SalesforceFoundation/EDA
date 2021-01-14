@@ -86,7 +86,10 @@ public virtual with sharing class LookupFieldService {
     * @param  fieldName  An SObject field name
     * @return A LookupFieldModel
     ********************************************************************************************/ 
-    public LookupFieldModel getLookupFieldModelFromNameMap(String fieldName, Map<String, LookupFieldModel> lookupFieldModelByName) {
+    public virtual LookupFieldModel getLookupFieldModelFromNameMap(
+        String fieldName, 
+        Map<String, LookupFieldModel> lookupFieldModelByName) 
+    {
         return lookupFieldModelByName.get(fieldName);
     }
 
@@ -95,7 +98,10 @@ public virtual with sharing class LookupFieldService {
     * @param  fieldLabel  An SObject field label
     * @return A LookupFieldModel
     ********************************************************************************************/ 
-    public LookupFieldModel getLookupFieldModelFromLabelMap(String fieldLabel, Map<String, LookupFieldModel> lookupFieldModelByLabel) {
+    public virtual LookupFieldModel getLookupFieldModelFromLabelMap(
+        String fieldLabel, 
+        Map<String, LookupFieldModel> lookupFieldModelByLabel) 
+    {
         return lookupFieldModelByLabel.get(fieldLabel);
     }
 
