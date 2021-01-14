@@ -88,21 +88,21 @@ public virtual with sharing class HealthCheckVMapper {
                 lastRunDate = featureParamDateModel.convertToString();
             }
 
-            List<HealthCheckDefinitionVModel> healthCheckDefinitionVModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
-            List<HealthCheckDefinitionModel> healthCheckDefinitionModelsList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
+            List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
+            List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
             
-            for (HealthCheckDefinitionModel healthChkDefModel : healthCheckDefinitionModelsList) {
+            for (HealthCheckDefinitionModel healthCheckDefinitionModel : healthCheckDefinitionList) {
                 //Generate view model for current health check definition model
-                HealthCheckDefinitionVModel healthCheckDefinitionVModel = new HealthCheckDefinitionVModel(healthChkDefModel.name,
-                                                                                                    healthChkDefModel.className,
-                                                                                                    healthChkDefModel.namespace);
+                HealthCheckDefinitionVModel healthCheckDefinitionVModel = new HealthCheckDefinitionVModel(healthCheckDefinitionModel.name,
+                                                                                                    healthCheckDefinitionModel.className,
+                                                                                                    healthCheckDefinitionModel.namespace);
 
-                healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel);
+                healthCheckDefViewModelsList.add(healthCheckDefinitionVModel);
             }
 
-            Integer numberOfRuns = healthCheckDefinitionModelsList.size();
+            Integer numberOfRuns = healthCheckDefinitionList.size();
 
-            return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefinitionVModelsList);
+            return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefViewModelsList);
         }
         catch (FeatureParameterMapper.FeatureParameterMapperException e) {
             throw new AuraHandledException(Label.stgHealthCheckErrorLastRunDate);
