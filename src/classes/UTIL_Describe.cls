@@ -1093,14 +1093,4 @@ public class UTIL_Describe {
 
         return true;
     }
-
-    /*******************************************************************************************************
-    * @description Retrieve a map of all fields for a specified SObject by field name.
-    * @param  sObjectName The name of an SObject type
-    * @return A Map<String, Schema.SObjectField> if the specified SObject name exists, null otherwise.
-    *******************************************************************************************************/
-    public static Map<String, Schema.SObjectField> getAllFieldsForSObject(String sObjectName){
-        Schema.DescribeSObjectResult describeSObjectResult = UTIL_Describe.objectDescribes.get(sObjectName);
-        return describeSObjectResult.fields.getMap();
-    }
 }
