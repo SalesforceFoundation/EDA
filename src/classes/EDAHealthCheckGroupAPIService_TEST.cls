@@ -71,7 +71,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
     * the name of accountmodel is provided (case insensitive).
     ***************************************************************************/
     @isTest 
-    private static void getHealthCheckGroupValid(){
+    private static void getHealthCheckGroupAccountModelValid(){
         AccountModelHealthCheckVMapper.instance = new STUB_AccountModelHealthCheckVMapperValidModel();
 
         Test.startTest();
@@ -178,10 +178,10 @@ private class EDAHealthCheckGroupAPIService_TEST {
             = EDAHealthCheckGroupAPIService.getInstance();
 
         Test.startTest();
-            HealthCheckGroupVModel healthCheckGroupVModel =
-                eDAHealthCheckGroupAPIService.getHealthCheckGroup(
-                    'Always Going To Be Null'
-                );
+        HealthCheckGroupVModel healthCheckGroupVModel =
+            eDAHealthCheckGroupAPIService.getHealthCheckGroup(
+                'Always Going To Be Null'
+            );
         Test.stopTest();
 
        System.assertEquals(
@@ -287,7 +287,7 @@ private class EDAHealthCheckGroupAPIService_TEST {
             );
         }
     }
-
+    
     /**************************************************************************************************************************************
     * @description Stub class to simulate the response from AccountModelHealthCheckVMapper to return a valid HealthCheckGroupVModel.
     **************************************************************************************************************************************/ 

@@ -91,11 +91,14 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         switch on lowercasedHCGroupName {
             when 'accountmodel' {
                 return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
-            } when 'affiliationmappings' {
+            } 
+            when 'affiliationmappings' {
                 return this.locateAffiliationMappingsHealthCheckVMapper().getHealthCheckGroup();
-            } when 'reciprocalrelationship' {
+            } 
+            when 'reciprocalrelationship' {
                 return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();
-            } when else {
+            } 
+            when else {
                 return null;                
             }
         }

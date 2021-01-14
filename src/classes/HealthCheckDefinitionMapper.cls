@@ -63,7 +63,6 @@ public virtual with sharing class HealthCheckDefinitionMapper {
     * @return A list of HealthCheckDefinitionModel.
     ******************************************************************************/
     public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
- 
         List<HealthCheckDefinitionModel> healthCheckDefinitionModelList = new List<HealthCheckDefinitionModel>();
 
         healthCheckDefinitionModelList.add(
