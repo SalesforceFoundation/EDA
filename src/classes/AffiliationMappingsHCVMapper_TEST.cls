@@ -404,7 +404,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        List<AffiliationMappingsModel> affiliationMappingModelsList = new List<AffiliationMappingsModel> {
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
                 'HH_Account', // will be converted to matching RT id value
@@ -427,7 +427,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModelsList,
+                affiliationMappingsModelsList,
                 recordTypeModelsById
             );
         Test.stopTest();
@@ -466,10 +466,10 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        List<AffiliationMappingsModel> affiliationMappingModelsList = new List<AffiliationMappingsModel> {
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
-                'Not An Account Record Type ID', 
+                'Not An Account Record Type ID', // will be stored as raw string value entered
                 'Test Primary Field',
                 true,
                 'Test Status',
@@ -489,7 +489,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModelsList,
+                affiliationMappingsModelsList,
                 recordTypeModelsById
             );
         Test.stopTest();
@@ -517,161 +517,182 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         ); 
     }
 
+    /*****************************************************************************************
+    * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Passed status when an Primary Affilition field specified
+    * in affiliation mappings matches the developer name of a field that corresponds to a  
+    * lookup to Account on Contact. 
+    *****************************************************************************************/
+    @isTest 
+    private static void getValidContactPrimaryFieldHealthCheckGroupVModelValidByName() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceDevNameMatch();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                'Valid Contact Lookup Field Name',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
+            'Valid Contact Lookup Field Name' => new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            ),
+
+            'Primary Field Name' => new LookupFieldModel(
+                'Primary Field Name',
+                'Primary Field Label'
+            )
+        };
+
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
+            'Valid Contact Lookup Field Label' => new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            ),
 
 
+            'Primary Field Label' => new LookupFieldModel(
+                'Primary Field Name',
+                'Primary Field Label'
+            )
+        };
 
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
+                affiliationMappingsModelsList,
+                accountlookupFieldOnContactFieldModelByName,
+                accountlookupFieldOnContactFieldModelByLabel
+            );
+        Test.stopTest();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1,
+            Label.stgHCAfflMapContactPrimaryFieldTitle,  
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldValid, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].primaryAffiliationField, 
+                    affiliationMappingsModelsList[0].accountRecordTypeId}
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        );
+    }
 
     /*****************************************************************************************
     * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
-    * HealthCheckGroupVModel with a Passed status when an affiliation mapping specifies a 
-    * Primary Affl Field that corresponds to a field that is a lookup to Account on Contact.
+    * HealthCheckGroupVModel with a Passed status when an Primary Affilition field specified
+    * in affiliation mappings matches the label name of a field that corresponds to a  
+    * lookup to Account on Contact. 
     *****************************************************************************************/
-    // @isTest 
-    // private static void getValidContactPrimaryFieldHealthCheckGroupVModelValid() {
-    //     RecordTypeService.instance = new STUB_RecordTypeService();
-    //     AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
-    //         AffiliationMappingsHealthCheckVMapper.getInstance();
+    @isTest 
+    private static void getValidContactPrimaryFieldHealthCheckGroupVModelValidByLabel() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceLabelMatch();
 
-    //     List<AffiliationMappingsModel> affiliationMappingModels = new List<AffiliationMappingsModel> {
-    //         new AffiliationMappingsModel(
-    //             'Test Affiliation Mapping',
-    //             '000000000000000006',
-    //             'Test Primary Field',
-    //             true,
-    //             'Test Status',
-    //             'Test Role'
-    //         )
-    //     };
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
 
-    //     Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel> {
-    //         '000000000000000006' => new RecordTypeModel(
-    //             '000000000000000006',
-    //             'Active RecordType Name',
-    //             'activeRTDevName',
-    //             true
-    //         )
-    //     };
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                'Valid Contact Lookup Field Name',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
 
-    //     Test.startTest();
-    //     HealthCheckGroupVModel healthCheckGroupVModelResult = 
-    //         afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
-    //             affiliationMappingModels,
-    //             recordTypeModelsById
-    //         );
-    //     Test.stopTest();
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
+            'Valid Contact Lookup Field Name' => new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            ),
 
-    //     AffiliationMappingsHCVMapper_TEST.validateAssertions(
-    //         healthCheckGroupVModelResult,
-    //         Label.stgHealthCheckAffiliationMappings,
-    //         Label.stgHealthCheckStatusPassed,
-    //         1,
-    //         1,
-    //         0,
-    //         1,
-    //         Label.stgHCAfflMapAccRecordTypeTitle,
-    //         'Pass',
-    //         Label.stgHealthCheckStatusPassed,
-    //         String.format(
-    //             Label.stgHCRecordTypeValid, 
-    //             new List<Object> {'Active RecordType Name', 'activeRTDevName'}
-    //         ),
-    //         Label.stgHealthCheckFixNotApplicable,
-    //         0
-    //     );
-    // }
+            'Primary Field Name' => new LookupFieldModel(
+                'Primary Field Name',
+                'Primary Field Label'
+            )
+        };
 
-    // /*****************************************************************************************
-    // * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
-    // * HealthCheckGroupVModel with a Failed status when an affiliation mapping specifies a 
-    // * Primary Affl Field that does not corresponds to a field that is a lookup to Account on Contact.
-    // *****************************************************************************************/
-    // @isTest 
-    // private static void getValidContactPrimaryFieldHealthCheckGroupVModelInvalidLookupFieldOnContact() {
-    //     RecordTypeService.instance = new STUB_RecordTypeServiceInactive();
-    //     AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
-    //         AffiliationMappingsHealthCheckVMapper.getInstance();
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
+            'Valid Contact Lookup Field Label' => new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            ),
 
-    //     List<AffiliationMappingsModel> affiliationMappingModels = new List<AffiliationMappingsModel> {
-    //         new AffiliationMappingsModel(
-    //             'Test Affiliation Mapping',
-    //             '000000000000000005',
-    //             'Test Primary Field',
-    //             true,
-    //             'Test Status',
-    //             'Test Role'
-    //         )
-    //     };
 
-    //     Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel> {
-    //         '000000000000000005' => new RecordTypeModel(
-    //             '000000000000000005',
-    //             'Inactive RecordType Name',
-    //             'inactiveRTDevName',
-    //             false
-    //         )
-    //     };
+            'Primary Field Label' => new LookupFieldModel(
+                'Primary Field Name',
+                'Primary Field Label'
+            )
+        };
 
-    //     Test.startTest();
-    //     HealthCheckGroupVModel healthCheckGroupVModelResult = 
-    //         afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
-    //             affiliationMappingModels,
-    //             recordTypeModelsById
-    //         );
-    //     Test.stopTest();
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
+                affiliationMappingsModelsList,
+                accountlookupFieldOnContactFieldModelByName,
+                accountlookupFieldOnContactFieldModelByLabel
+            );
+        Test.stopTest();
 
-    //     AffiliationMappingsHCVMapper_TEST.validateAssertions(
-    //         healthCheckGroupVModelResult,
-    //         Label.stgHealthCheckAffiliationMappings,
-    //         Label.stgHealthCheckStatusFailed,
-    //         0,
-    //         1,
-    //         0,
-    //         1,
-    //         Label.stgHCAfflMapAccRecordTypeTitle,
-    //         'Fail',
-    //         Label.stgHealthCheckStatusFailed,
-    //         String.format(
-    //             Label.stgHCRecordTypeInactive, 
-    //             new List<Object> {'Inactive RecordType Name', 'inactiveRTDevName'}
-    //         ),
-    //         String.format(
-    //             Label.stgHCAfflMapAccRecordTypeInactiveFix, 
-    //             new List<Object> {'Inactive RecordType Name', 'inactiveRTDevName'}
-    //         ),
-    //         0
-    //     );  
-    // }
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1,
+            Label.stgHCAfflMapContactPrimaryFieldTitle,  
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldValid, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].primaryAffiliationField, 
+                    affiliationMappingsModelsList[0].accountRecordTypeId}
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        );
+    }
 
     /*****************************************************************************************
     * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
     * HealthCheckGroupVModel with a Failed status when mapping specifies a 
-    * Primary Affl Field that does not correspond to a field on Contact.
+    * Primary Affl Field that does not match a field on Contact (by dev name or label name).
     *****************************************************************************************/
     @isTest 
-    private static void getValidContactPrimaryFieldHealthCheckGroupVModelNullContactField() {
+    private static void getValidContactPrimaryFieldHealthCheckGroupVModelNoContactFieldMatch() {
         LookupFieldService.instance = new STUB_LookupFieldServiceNull();
 
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        List<AffiliationMappingsModel> affiliationMappingModelsList = new List<AffiliationMappingsModel> {
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
-                'HH_Account', // will be converted to matching RT id value
+                'Test Record Type Name', 
                 'Test Primary Field',
                 true,
                 'Test Status',
@@ -706,7 +727,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
-                affiliationMappingModelsList,
+                affiliationMappingsModelsList,
                 accountlookupFieldOnContactFieldModelByName,
                 accountlookupFieldOnContactFieldModelByLabel
             );
@@ -725,11 +746,90 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHealthCheckStatusFailed,
             String.format(
                 Label.stgHCAfflMapContactPrimaryFieldInvalid, 
-                new List<Object> {'Test Primary Field'}
+                new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
             ),
             String.format(
                 Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
-                new List<Object> {'Test Primary Field'}
+                new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
+            ),
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when mapping specifies a 
+    * Primary Affl Field is empty.
+    *****************************************************************************************/
+    @isTest 
+    private static void getValidContactPrimaryFieldHealthCheckGroupVModelNullField() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
+            'Primary Field Name 1' => new LookupFieldModel(
+                'Primary Field Name 1',
+                'Primary Field Label 1'
+            ),
+
+            'Primary Field Name 2' => new LookupFieldModel(
+                'Primary Field Name 2',
+                'Primary Field Label 2'
+            )
+        };
+
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
+            'Primary Field Label 1' => new LookupFieldModel(
+                'Primary Field Name 1',
+                'Primary Field Label 1'
+            ),
+
+            'Primary Field Label 2' => new LookupFieldModel(
+                'Primary Field Name 2',
+                'Primary Field Label 2'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
+                affiliationMappingsModelsList,
+                accountlookupFieldOnContactFieldModelByName,
+                accountlookupFieldOnContactFieldModelByLabel
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1,
+            Label.stgHCAfflMapContactPrimaryFieldTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldInvalid, 
+                new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
+            ),
+            String.format(
+                Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
+                new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
             ),
             0
         ); 
@@ -1018,6 +1118,47 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private class STUB_RecordTypeServiceNull extends RecordTypeService {
         public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
             return null;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * LookupFieldService to return a valid lookup field model for a Contact
+    * field that is a lookup to Account matching my field dev name.
+    ***************************************************************************/
+    private class STUB_LookupFieldServiceDevNameMatch extends LookupFieldService {
+        public override LookupFieldModel getLookupFieldModelFromNameMap(
+            String fieldName, 
+            Map<String, LookupFieldModel> lookupFieldModelByName
+        ){
+            return new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            );
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * LookupFieldService to return a valid lookup field model for a Contact
+    * field that is a lookup to Account matching my field label name.
+    ***************************************************************************/
+    private class STUB_LookupFieldServiceLabelMatch extends LookupFieldService {
+        public override LookupFieldModel getLookupFieldModelFromNameMap(
+            String fieldName, 
+            Map<String, LookupFieldModel> lookupFieldModelByName 
+        ){
+            return null;
+        }
+        
+        public override LookupFieldModel getLookupFieldModelFromLabelMap(
+            String fieldLabel, 
+            Map<String, LookupFieldModel> lookupFieldModelByLabel) 
+        {
+            return new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            );
         }
     }
 
