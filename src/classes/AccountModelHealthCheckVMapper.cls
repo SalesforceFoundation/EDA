@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Generate a HealthCheckGroup view model representing the results of
 * an Account model health check.  Verifies that mapped record types for 
 * Default Account, Administrative and Household Account Models are valid and active.

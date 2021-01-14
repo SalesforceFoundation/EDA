@@ -80,9 +80,13 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         List<String> rowKeysList = new List<String>();
 
         switch on caseInsensitiveName {
+            when 'accountmodel' {
+                return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
+            }
             when 'reciprocalrelationship' {
                 return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();
-            } when else {
+            }
+            when else {
                 return null;                
             }
         }

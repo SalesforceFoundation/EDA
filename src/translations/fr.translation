@@ -861,6 +861,22 @@
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <name>stgHCRecordTypeInactive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check can&apos;t find the record type --></label>
+        <name>stgHCRecordTypeNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check finds a record type valid --></label>
+        <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
         <name>stgHealthCheckAffiliationMappings</name>
     </customLabels>
@@ -1199,7 +1215,8 @@
     <customLabels>
         <label>Exécutez ce processus de nettoyage de données après l&apos;activation initiale de l&apos;exigence Adresse e-mail préférée ou Téléphone préféré après une période de non application de l&apos;exigence.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
-    </customLabels>    <customLabels>
+    </customLabels>
+    <customLabels>
         <label>Paramètres enregistrés avec succès.</label>
         <name>stgSaveSettings</name>
     </customLabels>

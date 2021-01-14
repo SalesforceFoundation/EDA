@@ -175,6 +175,12 @@
         <members>REL_Utils</members>
         <members>ReciprocalRelHealthCheckVMapper</members>
         <members>ReciprocalRelHealthCheckVMapper_TEST</members>
+        <members>RecordTypeMapper</members>
+        <members>RecordTypeMapper_TEST</members>
+        <members>RecordTypeModel</members>
+        <members>RecordTypeModel_TEST</members>
+        <members>RecordTypeService</members>
+        <members>RecordTypeService_TEST</members>
         <members>RelationshipLookupMapper</members>
         <members>RelationshipLookupMapper_TEST</members>
         <members>RelationshipLookupModel</members>
@@ -910,6 +916,10 @@
         <members>stgHCReciprocalRelNeutralNotFoundFix</members>
         <members>stgHCReciprocalRelNeutralTitle</members>
         <members>stgHCReciprocalRelSetting</members>
+        <members>stgHCRecordTypeInactive</members>
+        <members>stgHCRecordTypeNotFound</members>
+        <members>stgHCRecordTypeValid</members>
+        <members>stgHealthCheckAccountModel</members>
         <members>stgHealthCheckAffiliationMappings</members>
         <members>stgHealthCheckDescription</members>
         <members>stgHealthCheckErrorLastRunDate</members>
