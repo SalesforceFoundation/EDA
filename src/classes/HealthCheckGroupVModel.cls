@@ -75,13 +75,13 @@ public virtual with sharing class HealthCheckGroupVModel implements Comparable {
             return 0;
         }
 
-        HealthCheckGroupVModel hlthChkGroupModToCompareTo = (HealthCheckGroupVModel)compareTo;
-        Integer statusResult = this.status.toLowerCase().compareTo(hlthChkGroupModToCompareTo.status.toLowerCase());
+        HealthCheckGroupVModel healthCheckGroupVModelToCompareTo = (HealthCheckGroupVModel)compareTo;
+        Integer statusResult = this.status.toLowerCase().compareTo(healthCheckGroupVModelToCompareTo.status.toLowerCase());
         
         if (statusResult != 0){
             return statusResult;
         }
         
-        return this.label.toLowerCase().compareTo(hlthChkGroupModToCompareTo.label.toLowerCase());
+        return this.label.toLowerCase().compareTo(healthCheckGroupVModelToCompareTo.label.toLowerCase());
     }
 }

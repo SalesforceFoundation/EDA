@@ -41,13 +41,13 @@ public with sharing class LookupFieldModel_TEST {
     @isTest 
     private static void LookupFieldModelValid(){
         Test.startTest();
-        LookupFieldModel lookupFieldMod = new LookupFieldModel(
+        LookupFieldModel lookupFieldModel = new LookupFieldModel(
 			'TestName',
 			'Test Label'
         );
         Test.stopTest();
 
-        System.assertEquals('TestName', lookupFieldMod.name, 'Name should be set.');
-        System.assertEquals('Test Label', lookupFieldMod.label, 'Label should be set.');
+        System.assertEquals('TestName', lookupFieldModel.name, 'Name should be set.');
+        System.assertEquals('Test Label', lookupFieldModel.label, 'Label should be set.');
     }
 }

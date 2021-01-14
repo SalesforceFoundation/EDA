@@ -62,15 +62,15 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
     **********************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
-        AccountModelSettingsModel acctModSettingMod = this.locateAccountModelSettingsService().getAccountModelSettingsModel();
+        AccountModelSettingsModel accountModelSettingModel = this.locateAccountModelSettingsService().getAccountModelSettingsModel();
         Map<Id, RecordTypeModel> accountRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
 
         List<HealthCheckGroupVModel> accountHealthCheckGroupVModelsList = new List<HealthCheckGroupVModel>();
 
-        accountHealthCheckGroupVModelsList.add(this.getDefaultAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById));        
-        accountHealthCheckGroupVModelsList.add(this.getAdministrativeAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById));        
-        accountHealthCheckGroupVModelsList.add(this.getHouseholdAccountModelHealthCheckItems(acctModSettingMod, accountRTModelsById));        
-        accountHealthCheckGroupVModelsList.add(this.getAccountRecordTypeUniquenessHealthCheckItems(acctModSettingMod));        
+        accountHealthCheckGroupVModelsList.add(this.getDefaultAccountModelHealthCheckItems(accountModelSettingModel, accountRTModelsById));        
+        accountHealthCheckGroupVModelsList.add(this.getAdministrativeAccountModelHealthCheckItems(accountModelSettingModel, accountRTModelsById));        
+        accountHealthCheckGroupVModelsList.add(this.getHouseholdAccountModelHealthCheckItems(accountModelSettingModel, accountRTModelsById));        
+        accountHealthCheckGroupVModelsList.add(this.getAccountRecordTypeUniquenessHealthCheckItems(accountModelSettingModel));        
 
         return this.combineAccountHealthCheckGroupViewModels(accountHealthCheckGroupVModelsList);
     }
@@ -84,63 +84,63 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     **********************************************************************************/ 
     @TestVisible
     private HealthCheckGroupVModel combineAccountHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList) {
-        HealthCheckGroupVModel parentHealthCheckGroupVMod = new HealthCheckGroupVModel(Label.stgHealthCheckAccountModel,
+        HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(Label.stgHealthCheckAccountModel,
                                                                                         '',
                                                                                         0,
                                                                                         0,
                                                                                         new List<String>(),
                                                                                         new List<HealthCheckItemVModel>());
 
-        for (HealthCheckGroupVModel healthCheckGroupVMod : healthCheckGroupVModelsList) {
-            parentHealthCheckGroupVMod.passedChecks += healthCheckGroupVMod.passedChecks;
-            parentHealthCheckGroupVMod.totalChecks += healthCheckGroupVMod.totalChecks;
+        for (HealthCheckGroupVModel healthCheckGroupVModel : healthCheckGroupVModelsList) {
+            parentHealthCheckGroupVModel.passedChecks += healthCheckGroupVModel.passedChecks;
+            parentHealthCheckGroupVModel.totalChecks += healthCheckGroupVModel.totalChecks;
 
-            parentHealthCheckGroupVMod.expandedRowsList.addAll(healthCheckGroupVMod.expandedRowsList);
-            parentHealthCheckGroupVMod.healthCheckItemList.addAll(healthCheckGroupVMod.healthCheckItemList);
+            parentHealthCheckGroupVModel.expandedRowsList.addAll(healthCheckGroupVModel.expandedRowsList);
+            parentHealthCheckGroupVModel.healthCheckItemList.addAll(healthCheckGroupVModel.healthCheckItemList);
         }
 
-        parentHealthCheckGroupVMod.updateHealthCheckStatus();
-        parentHealthCheckGroupVMod.healthCheckItemList.sort();
+        parentHealthCheckGroupVModel.updateHealthCheckStatus();
+        parentHealthCheckGroupVModel.healthCheckItemList.sort();
         
-        return parentHealthCheckGroupVMod;
+        return parentHealthCheckGroupVModel;
     }
 
     /**********************************************************************************
     * @description Generates a HealthCheckGroupVModel for a Default Account Model health check
-    * @param  acctModelSettingsMod An AccountModelSettingsModel
+    * @param  accountModelSettingsModel An AccountModelSettingsModel
     * @param  recordTypeModelsById A map of Record Type models by Id
     * @return A HealthCheckGroupVModel with representing a Default Account Model Health Check
     **********************************************************************************/
     @TestVisible
-    private virtual HealthCheckGroupVModel getDefaultAccountModelHealthCheckItems(AccountModelSettingsModel acctModelSettingsMod, 
+    private virtual HealthCheckGroupVModel getDefaultAccountModelHealthCheckItems(AccountModelSettingsModel accountModelSettingsModel, 
                                                                                     Map<Id,RecordTypeModel> recordTypeModelsById) {
         String healthCheckGroupLabel = Label.stgHealthCheckAccountModel;
-        HealthCheckGroupVModel healthCheckGroupVMod = new HealthCheckGroupVModel(healthCheckGroupLabel,
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
                                                                              Label.stgHealthCheckStatusPassed,
                                                                              0,
                                                                              0,
                                                                              new List<String>(),
                                                                              new List<HealthCheckItemVModel>());
         RecordTypeModel defaultAccountRTModel = 
-            this.locateRecordTypeService().getRecordTypeModelFromMap(acctModelSettingsMod.defaultAccountModelId, recordTypeModelsById);
+            this.locateRecordTypeService().getRecordTypeModelFromMap(accountModelSettingsModel.defaultAccountModelId, recordTypeModelsById);
 
         if (defaultAccountRTModel == null) {
-            healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('01',
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('01',
                                                                                 Label.stgAccModelTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
                                                                                 String.format(Label.stgHCRecordTypeNotFound, 
-                                                                                                new List<Object>{acctModelSettingsMod.defaultAccountModelId}),
+                                                                                                new List<Object>{accountModelSettingsModel.defaultAccountModelId}),
                                                                                 String.format(Label.stgHCAccountModelDefaultNotFoundFix, 
-                                                                                                new List<Object>{acctModelSettingsMod.defaultAccountModelId}),
+                                                                                                new List<Object>{accountModelSettingsModel.defaultAccountModelId}),
                                                                                 new List<HealthCheckItemVModel>()));
-            healthCheckGroupVMod.totalChecks++;
-            healthCheckGroupVMod.updateHealthCheckStatus();
-            return healthCheckGroupVMod;
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
         }
 
         if (defaultAccountRTModel.isActive == false) {
-            healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('01',
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('01',
                                                                                 Label.stgAccModelTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
@@ -149,12 +149,12 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 String.format(Label.stgHCAccountModelDefaultInactiveFix, 
                                                                                                 new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}),
                                                                                 new List<HealthCheckItemVModel>()));
-            healthCheckGroupVMod.totalChecks++;
-            healthCheckGroupVMod.updateHealthCheckStatus();
-            return healthCheckGroupVMod;
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
         }
 
-        healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('01',
+        healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('01',
                                                                             Label.stgAccModelTitle,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
@@ -162,25 +162,25 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                         new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}),
                                                                             Label.stgHealthCheckFixNotApplicable,
                                                                             new List<HealthCheckItemVModel>()));
-        healthCheckGroupVMod.totalChecks++;
-        healthCheckGroupVMod.passedChecks++;
-        healthCheckGroupVMod.updateHealthCheckStatus();
+        healthCheckGroupVModel.totalChecks++;
+        healthCheckGroupVModel.passedChecks++;
+        healthCheckGroupVModel.updateHealthCheckStatus();
 
-        return healthCheckGroupVMod;
+        return healthCheckGroupVModel;
     }
 
     /**********************************************************************************
     * @description Generates a HealthCheckGroupVModel for an Administrative Account Model health check
-    * @param  acctModelSettingsMod An AccountModelSettingsModel
+    * @param  accountModelSettingsModel An AccountModelSettingsModel
     * @param  recordTypeModelsById A map of Record Type models by Id
     * @return A HealthCheckGroupVModel with representing an Administrative Account Model Health Check
     **********************************************************************************/
     @TestVisible
-    private virtual HealthCheckGroupVModel getAdministrativeAccountModelHealthCheckItems(AccountModelSettingsModel acctModelSettingsMod, 
+    private virtual HealthCheckGroupVModel getAdministrativeAccountModelHealthCheckItems(AccountModelSettingsModel accountModelSettingsModel, 
                                                                                     Map<Id,RecordTypeModel> recordTypeModelsById) {
                                                                                   
         String healthCheckGroupLabel = Label.stgHealthCheckAccountModel;
-        HealthCheckGroupVModel healthCheckGroupVMod = new HealthCheckGroupVModel(healthCheckGroupLabel,
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
                                                                              Label.stgHealthCheckStatusPassed,
                                                                              0,
                                                                              0,
@@ -188,27 +188,27 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                              new List<HealthCheckItemVModel>());
 
         RecordTypeModel adminAccountRTModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
-                                                    acctModelSettingsMod.administrativeAccountRecordTypeId, 
+                                                    accountModelSettingsModel.administrativeAccountRecordTypeId, 
                                                     recordTypeModelsById
                                                 );
 
         if (adminAccountRTModel == null) {
-            healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('02',
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('02',
                                                                                 Label.stgAdminAccountRecordType,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
                                                                                 String.format(Label.stgHCRecordTypeNotFound, 
-                                                                                                new List<Object>{acctModelSettingsMod.administrativeAccountRecordTypeId}),
+                                                                                                new List<Object>{accountModelSettingsModel.administrativeAccountRecordTypeId}),
                                                                                 String.format(Label.stgHCAccountModelAdminNotFoundFix, 
-                                                                                                new List<Object>{acctModelSettingsMod.administrativeAccountRecordTypeId}),
+                                                                                                new List<Object>{accountModelSettingsModel.administrativeAccountRecordTypeId}),
                                                                                 new List<HealthCheckItemVModel>()));
-            healthCheckGroupVMod.totalChecks++;
-            healthCheckGroupVMod.updateHealthCheckStatus();
-            return healthCheckGroupVMod;
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
         }
 
         if (adminAccountRTModel.isActive == false) {
-            healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('02',
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('02',
                                                                                 Label.stgAdminAccountRecordType,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
@@ -217,12 +217,12 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 String.format(Label.stgHCAccountModelAdminInactiveFix, 
                                                                                                 new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}),
                                                                                 new List<HealthCheckItemVModel>()));
-            healthCheckGroupVMod.totalChecks++;
-            healthCheckGroupVMod.updateHealthCheckStatus();
-            return healthCheckGroupVMod;
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
         }
     
-        healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('02',
+        healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('02',
                                                                             Label.stgAdminAccountRecordType,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
@@ -230,24 +230,24 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                         new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}),
                                                                             Label.stgHealthCheckFixNotApplicable,
                                                                             new List<HealthCheckItemVModel>()));
-        healthCheckGroupVMod.totalChecks++;
-        healthCheckGroupVMod.passedChecks++;
-        healthCheckGroupVMod.updateHealthCheckStatus();
-        return healthCheckGroupVMod;
+        healthCheckGroupVModel.totalChecks++;
+        healthCheckGroupVModel.passedChecks++;
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        return healthCheckGroupVModel;
     }
 
     /**********************************************************************************
     * @description Generates a HealthCheckGroupVModel for a Household Account Model health check
-    * @param  acctModelSettingsMod An AccountModelSettingsModel
+    * @param  accountModelSettingsModel An AccountModelSettingsModel
     * @param  recordTypeModelsById A map of Record Type models by Id
     * @return A HealthCheckGroupVModel with representing an Household Account Model Health Check
     **********************************************************************************/
     @TestVisible
-    private virtual HealthCheckGroupVModel getHouseholdAccountModelHealthCheckItems(AccountModelSettingsModel acctModelSettingsMod, 
+    private virtual HealthCheckGroupVModel getHouseholdAccountModelHealthCheckItems(AccountModelSettingsModel accountModelSettingsModel, 
                                                                                     Map<Id,RecordTypeModel> recordTypeModelsById) {
                                                                                   
         String healthCheckGroupLabel = Label.stgHealthCheckAccountModel;
-        HealthCheckGroupVModel healthCheckGroupVMod = new HealthCheckGroupVModel(healthCheckGroupLabel,
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
                                                                              Label.stgHealthCheckStatusPassed,
                                                                              0,
                                                                              0,
@@ -255,27 +255,27 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                              new List<HealthCheckItemVModel>());
 
         RecordTypeModel hhAccountRTModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
-                                                    acctModelSettingsMod.householdAccountRecordTypeId, 
+                                                    accountModelSettingsModel.householdAccountRecordTypeId, 
                                                     recordTypeModelsById
                                                 );
 
         if (hhAccountRTModel == null) {
-            healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('03',
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('03',
                                                                                 Label.stgAccountRecordTypeSupportsHHAddress,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
                                                                                 String.format(Label.stgHCRecordTypeNotFound, 
-                                                                                                new List<Object>{acctModelSettingsMod.householdAccountRecordTypeId}),
+                                                                                                new List<Object>{accountModelSettingsModel.householdAccountRecordTypeId}),
                                                                                 String.format(Label.stgHCAccountModelHHNotFoundFix, 
-                                                                                                new List<Object>{acctModelSettingsMod.householdAccountRecordTypeId}),
+                                                                                                new List<Object>{accountModelSettingsModel.householdAccountRecordTypeId}),
                                                                                 new List<HealthCheckItemVModel>()));
-            healthCheckGroupVMod.totalChecks++;
-            healthCheckGroupVMod.updateHealthCheckStatus();
-            return healthCheckGroupVMod;
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
         }
 
         if (hhAccountRTModel.isActive == false) {
-            healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('03',
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('03',
                                                                                 Label.stgAccountRecordTypeSupportsHHAddress,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
@@ -284,12 +284,12 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 String.format(Label.stgHCAccountModelHHInactiveFix, 
                                                                                                 new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}),
                                                                                 new List<HealthCheckItemVModel>()));
-            healthCheckGroupVMod.totalChecks++;
-            healthCheckGroupVMod.updateHealthCheckStatus();
-            return healthCheckGroupVMod;
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
         }
     
-        healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel('03',
+        healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('03',
                                                                             Label.stgAccountRecordTypeSupportsHHAddress,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
@@ -297,36 +297,37 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                         new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}),
                                                                             Label.stgHealthCheckFixNotApplicable,
                                                                             new List<HealthCheckItemVModel>()));
-        healthCheckGroupVMod.totalChecks++;
-        healthCheckGroupVMod.passedChecks++;
-        healthCheckGroupVMod.updateHealthCheckStatus();
-        return healthCheckGroupVMod;
+        healthCheckGroupVModel.totalChecks++;
+        healthCheckGroupVModel.passedChecks++;
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        return healthCheckGroupVModel;
     }
 
     /**********************************************************************************
     * @description Generates a HealthCheckGroupVModel for an Account Model health check based
     * on whether the Administrative and Household RT settings are the same.
-    * @param  accountSettingsMod An AccountModelSettingsModel
+    * @param  accountModelSettingsModel An AccountModelSettingsModel
     * @return A HealthCheckGroupVModel with a status of Fail if the Admin and HH Accounts are not
     * unique; a HealthCheckGroupVModel with a status of Pass otherwise.
     **********************************************************************************/
     @TestVisible
-    private HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckItems(AccountModelSettingsModel accountSettingsMod) {
+    private HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckItems(AccountModelSettingsModel accountModelSettingsModel) {
 
-        List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
+        List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
         String healthCheckGroupLabel = Label.stgHealthCheckAccountModel;
 
-        HealthCheckGroupVModel healthCheckGroupVMod = new HealthCheckGroupVModel(healthCheckGroupLabel,
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
                                                                              Label.stgHealthCheckStatusPassed,
                                                                              0,
                                                                              0,
                                                                              new List<String>(),
-                                                                             hlthChkItemsList);
+                                                                             healthCheckItemsList);
                                                                              
-        Boolean isAdminEqualToHHAcctRT = (accountSettingsMod.administrativeAccountRecordTypeId == accountSettingsMod.householdAccountRecordTypeId);
+        Boolean isAdminEqualToHHAcctRT = 
+            (accountModelSettingsModel.administrativeAccountRecordTypeId == accountModelSettingsModel.householdAccountRecordTypeId);
 
         if (isAdminEqualToHHAcctRT == true) {
-            hlthChkItemsList.add(new HealthCheckItemVModel('04',
+            healthCheckItemsList.add(new HealthCheckItemVModel('04',
                                                            Label.stgHCAccountRecordTypeSettingsUnique,
                                                            'Fail',
                                                            Label.stgHealthCheckStatusFailed,
@@ -334,12 +335,12 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                            Label.stgHCAccountRecordTypesNotUniqueFix,
                                                            new List<HealthCheckItemVModel>()));
 
-            healthCheckGroupVMod.totalChecks++;
-            healthCheckGroupVMod.updateHealthCheckStatus();
-            return healthCheckGroupVMod;
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
         }
 
-        hlthChkItemsList.add(new HealthCheckItemVModel('04',
+        healthCheckItemsList.add(new HealthCheckItemVModel('04',
                                                        Label.stgHCAccountRecordTypeSettingsUnique,
                                                        'Pass',
                                                        Label.stgHealthCheckStatusPassed,
@@ -347,11 +348,11 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                        Label.stgHealthCheckFixNotApplicable,
                                                        new List<HealthCheckItemVModel>()));
 
-        healthCheckGroupVMod.totalChecks++;
-        healthCheckGroupVMod.passedChecks++;
-        healthCheckGroupVMod.updateHealthCheckStatus();
+        healthCheckGroupVModel.totalChecks++;
+        healthCheckGroupVModel.passedChecks++;
+        healthCheckGroupVModel.updateHealthCheckStatus();
         
-        return healthCheckGroupVMod;
+        return healthCheckGroupVModel;
     }
 
     /*****************************************************************************

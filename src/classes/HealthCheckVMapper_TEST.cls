@@ -89,10 +89,10 @@ public class HealthCheckVMapper_TEST {
     @isTest
     private static void locateHealthCheckDefinitionServiceValid() {
         Test.startTest();
-        HealthCheckDefinitionService healthCheckDefService = HealthCheckVMapper.getInstance().locateHealthCheckDefinitionService();
+        HealthCheckDefinitionService healthCheckDefinitionService = HealthCheckVMapper.getInstance().locateHealthCheckDefinitionService();
         Test.stopTest();
 
-        System.assertEquals(HealthCheckDefinitionService.getInstance(), healthCheckDefService, 'Should return the instance of HealthCheckDefinitionService.');
+        System.assertEquals(HealthCheckDefinitionService.getInstance(), healthCheckDefinitionService, 'Should return the instance of HealthCheckDefinitionService.');
     }
 
     /****************************************************************************************************************************
@@ -105,17 +105,17 @@ public class HealthCheckVMapper_TEST {
         HealthCheckDefinitionService.instance = new STUB_HealthCheckDefinitionService();
 
         Test.startTest();
-        HealthCheckVModel healthChkViewMod = HealthCheckVMapper.getInstance().getHealthCheckViewModel();
+        HealthCheckVModel healthCheckViewModel = HealthCheckVMapper.getInstance().getHealthCheckViewModel();
         Test.stopTest();
 
-        System.assertEquals(Date.today().addDays(-3).format(), healthChkViewMod.lastRunDate, 'Last run date should be 3 days before current date.');
-        System.assertEquals(10, healthChkViewMod.numberOfHealthChecks, 'Number of healt checks to run should equal 10.');
-        System.assertEquals(10, healthChkViewMod.healthCheckDefinitionList.size(), 'There should be 10 health check definition view models.');
+        System.assertEquals(Date.today().addDays(-3).format(), healthCheckViewModel.lastRunDate, 'Last run date should be 3 days before current date.');
+        System.assertEquals(10, healthCheckViewModel.numberOfHealthChecks, 'Number of healt checks to run should equal 10.');
+        System.assertEquals(10, healthCheckViewModel.healthCheckDefinitionList.size(), 'There should be 10 health check definition view models.');
      
-        for (Integer i = 0; i < healthChkViewMod.healthCheckDefinitionList.size(); i++){
-            System.assertEquals('Test Health Check ' + i, healthChkViewMod.healthCheckDefinitionList[i].name, 'Name of health check view model should be \'Test Health Check ' + i + '\'');
-            System.assertEquals('Test Classname', healthChkViewMod.healthCheckDefinitionList[i].className, 'Classname of health check should be \'Test Classname\'');
-            System.assertEquals('TEST', healthChkViewMod.healthCheckDefinitionList[i].namespace, 'Classname of health check should be \'TEST\'');
+        for (Integer i = 0; i < healthCheckViewModel.healthCheckDefinitionList.size(); i++){
+            System.assertEquals('Test Health Check ' + i, healthCheckViewModel.healthCheckDefinitionList[i].name, 'Name of health check view model should be \'Test Health Check ' + i + '\'');
+            System.assertEquals('Test Classname', healthCheckViewModel.healthCheckDefinitionList[i].className, 'Classname of health check should be \'Test Classname\'');
+            System.assertEquals('TEST', healthCheckViewModel.healthCheckDefinitionList[i].namespace, 'Classname of health check should be \'TEST\'');
         }  
     }
 
@@ -130,14 +130,13 @@ public class HealthCheckVMapper_TEST {
 
         try {
             Test.startTest();
-                HealthCheckVModel healthChkViewMod = HealthCheckVMapper.getInstance().getHealthCheckViewModel();
+                HealthCheckVModel healthCheckViewModel = HealthCheckVMapper.getInstance().getHealthCheckViewModel();
             Test.stopTest();
             System.assert(false, 'Should throw an exception');
         } catch (AuraHandledException ex) {
             System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
         } 
     }
-
 
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
@@ -160,14 +159,14 @@ public class HealthCheckVMapper_TEST {
     private class STUB_HealthCheckDefinitionService extends HealthCheckDefinitionService {
         @TestVisible
         public override List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels(){
-            List<HealthCheckDefinitionModel> healthChkDefModelsList = new List<HealthCheckDefinitionModel>();
+            List<HealthCheckDefinitionModel> healthCheckDefinitionModelsList = new List<HealthCheckDefinitionModel>();
 
             for (Integer i = 0; i < 10; i++){
-                HealthCheckDefinitionModel healthChkDefMod = new HealthCheckDefinitionModel('Test Health Check ' + i, 'Test Classname', 'TEST');
-                healthChkDefModelsList.add(healthChkDefMod);
+                HealthCheckDefinitionModel healthCheckDefinitionModel = new HealthCheckDefinitionModel('Test Health Check ' + i, 'Test Classname', 'TEST');
+                healthCheckDefinitionModelsList.add(healthCheckDefinitionModel);
             }
 
-            return healthChkDefModelsList;
+            return healthCheckDefinitionModelsList;
         }
     }
     

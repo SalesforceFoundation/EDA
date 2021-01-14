@@ -161,10 +161,11 @@ public with sharing class AffiliationMappingsService_TEST {
         AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
 
         Test.startTest();
-            AffiliationMappingsMapper accModelSettingsMapper = affiliationMappingsServiceInstance.locateAffiliationMappingsMapper();
+            AffiliationMappingsMapper affiliationMappingsMapperInstance = 
+                affiliationMappingsServiceInstance.locateAffiliationMappingsMapper();
         Test.stopTest();
 
-        System.assertEquals(AffiliationMappingsMapper.getInstance(), accModelSettingsMapper, 'Should return the instance of AffiliationMappingsMapper');
+        System.assertEquals(AffiliationMappingsMapper.getInstance(), affiliationMappingsMapperInstance, 'Should return the instance of AffiliationMappingsMapper');
     }
 
     /***********************************************************************************************************************************

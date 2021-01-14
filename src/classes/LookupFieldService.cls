@@ -74,8 +74,8 @@ public virtual with sharing class LookupFieldService {
     public Map<String,LookupFieldModel> getModelByLabelMapForSObjectType(Map<String,LookupFieldModel> lookupFieldModelsByName) {
         Map<String, LookupFieldModel> lookupFieldModelsByLabel = new Map<String, LookupFieldModel>();
 
-        for (LookupFieldModel lookupFieldMod : lookupFieldModelsByName.values()) {
-            lookupFieldModelsByLabel.put(lookupFieldMod.label, lookupFieldMod);
+        for (LookupFieldModel lookupFieldModel : lookupFieldModelsByName.values()) {
+            lookupFieldModelsByLabel.put(lookupFieldModel.label, lookupFieldModel);
         }
 
         return lookupFieldModelsByLabel;

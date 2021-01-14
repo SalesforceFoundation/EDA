@@ -71,49 +71,49 @@ public with sharing class AffiliationMappingsMapper_TEST {
             AffiliationMappingsMapper.getInstance().getAffiliationMappingsModel();
         Test.stopTest();        
 
-        for (AffiliationMappingsModel afflMappingModel : afflMappingModelsList){
-            Affl_Mappings__c matchingPrimaryAffl = primaryAfflMappingByName.get(afflMappingModel.name);
+        for (AffiliationMappingsModel affiliationMappingsModel : afflMappingModelsList){
+            Affl_Mappings__c matchingPrimaryAffl = primaryAfflMappingByName.get(affiliationMappingsModel.name);
 
             System.assertEquals(
                 matchingPrimaryAffl.Name, 
-                afflMappingModel.name, 
+                affiliationMappingsModel.name, 
                 'Affiliation Mapping Model name should match Primary Affiliation.'
             );
 
             System.assertEquals(
                 matchingPrimaryAffl.Primary_Affl_Field__c, 
-                afflMappingModel.primaryAffiliationField, 
+                affiliationMappingsModel.primaryAffiliationField, 
                 'Affiliation Mapping Model Field Name should match Primary Affiliation.'
             );
 
-            if (afflMappingModel.name == 'Invalid Affiliation Mapping'){
+            if (affiliationMappingsModel.name == 'Invalid Affiliation Mapping'){
                 System.assertEquals(
                     'Invalid Mapping', 
-                    afflMappingModel.accountRecordTypeId, 
+                    affiliationMappingsModel.accountRecordTypeId, 
                     'Affiliation Mapping Model account record type should match developer name listed in affiliation mapping when no matching record type exists in org.'
                 );
             } else {
                 System.assertEquals(
                     (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(matchingPrimaryAffl.Account_Record_Type__c)?.getRecordTypeId(), 
-                    afflMappingModel.accountRecordTypeId, 
+                    affiliationMappingsModel.accountRecordTypeId, 
                     'Affiliation Mapping Model account record type should match Id for record type matching specified developer name in affiliation mapping when one exists in org.'
                 );
             }
             
             System.assertEquals(
                 matchingPrimaryAffl.Auto_Program_Enrollment__c, 
-                afflMappingModel.autoProgramEnrollment, 
+                affiliationMappingsModel.autoProgramEnrollment, 
                 'Affiliation Mapping Model auto enrollment should match Primary Affiliation.'
             );
             System.assertEquals(
                 matchingPrimaryAffl.Auto_Program_Enrollment_Status__c, 
-                afflMappingModel.autoProgramEnrollmentStatus, 
+                affiliationMappingsModel.autoProgramEnrollmentStatus, 
                 'Affiliation Mapping Model auto enrollment status should match Primary Affiliation.'
             );
 
             System.assertEquals(
                 matchingPrimaryAffl.Auto_Program_Enrollment_Role__c, 
-                afflMappingModel.autoProgramEnrollmentRole, 
+                affiliationMappingsModel.autoProgramEnrollmentRole, 
                 'Affiliation Mapping Model auto enrollment role should match Primary Affiliation.'
             );
         }

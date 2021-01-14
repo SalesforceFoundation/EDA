@@ -41,7 +41,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private static void getInstanceNew() {
 
         Test.startTest();
-            AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance = AffiliationMappingsHealthCheckVMapper.getInstance();
+        AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(AffiliationMappingsHealthCheckVMapper.instance, AffiliationMappingsHealthCheckVMapperInstance, 'Instance of mapper class returned should match static instance variable.');
@@ -56,8 +57,10 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private static void getInstanceExisting() {
 
         Test.startTest();
-            AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance1 = AffiliationMappingsHealthCheckVMapper.getInstance();
-            AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance2 = AffiliationMappingsHealthCheckVMapper.getInstance();
+        AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance1 = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+        AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance2 = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(AffiliationMappingsHealthCheckVMapper.instance, AffiliationMappingsHealthCheckVMapperInstance1, 'Instance of mapper class returned should match static instance variable.');
@@ -97,10 +100,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     ***************************************************************************/
     @isTest
     private static void getHealthCheckGroupAllPassed() {
-        AffiliationMappingsService.instance = 
-            new STUB_AffiliationMappingsService();
-        RecordTypeService.instance =
-            new STUB_RecordTypeService();
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+        RecordTypeService.instance = new STUB_RecordTypeService();
 
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperStub =
             new STUB_AffiliationMappingsHealthCheckVMapper();
@@ -154,10 +155,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     ***************************************************************************/
     @isTest
     private static void getHealthCheckGroupAllFail() {
-        AffiliationMappingsService.instance = 
-            new STUB_AffiliationMappingsServiceUnfound();
-        RecordTypeService.instance =
-            new STUB_RecordTypeService();
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceUnfound();
+        RecordTypeService.instance = new STUB_RecordTypeService();
 
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperStub =
             new STUB_AffiliationMappingsHealthCheckVMapper();

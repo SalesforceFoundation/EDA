@@ -37,7 +37,11 @@ public with sharing class AccountModelSettingsModel {
     public String administrativeAccountRecordTypeId;
     public String householdAccountRecordTypeId;
 
-    public AccountModelSettingsModel(String defaultAccountModelId, String administrativeAccountRecordTypeId, String householdAccountRecordTypeId) {
+    public AccountModelSettingsModel(
+        String defaultAccountModelId, 
+        String administrativeAccountRecordTypeId, 
+        String householdAccountRecordTypeId
+    ) {
         this.defaultAccountModelId = (String.isBlank(defaultAccountModelId)) ? '""' : defaultAccountModelId;
         this.administrativeAccountRecordTypeId = (String.isBlank(administrativeAccountRecordTypeId)) ? '""' : administrativeAccountRecordTypeId;
         this.householdAccountRecordTypeId = (String.isBlank(householdAccountRecordTypeId)) ? '""' : householdAccountRecordTypeId;

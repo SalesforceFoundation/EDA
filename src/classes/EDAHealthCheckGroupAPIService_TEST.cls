@@ -40,7 +40,8 @@ private class EDAHealthCheckGroupAPIService_TEST {
     @isTest
     private static void getInstanceNew() {
         Test.startTest();
-        HealthCheckGroupAPIServiceInterface EDAHealthCheckGroupAPIServiceInstance = EDAHealthCheckGroupAPIService.getInstance();
+        HealthCheckGroupAPIServiceInterface EDAHealthCheckGroupAPIServiceInstance = 
+            EDAHealthCheckGroupAPIService.getInstance();
         Test.stopTest();
 
         System.assertEquals(EDAHealthCheckGroupAPIService.instance, EDAHealthCheckGroupAPIServiceInstance, 'Instance of service class returned should match static instance variable.');
@@ -54,8 +55,10 @@ private class EDAHealthCheckGroupAPIService_TEST {
     @isTest
     private static void getInstanceExisting() {
         Test.startTest();
-        HealthCheckGroupAPIServiceInterface EDAHealthCheckGroupAPIServiceInstance1 = EDAHealthCheckGroupAPIService.getInstance();
-        HealthCheckGroupAPIServiceInterface EDAHealthCheckGroupAPIServiceInstance2 = EDAHealthCheckGroupAPIService.getInstance();
+        HealthCheckGroupAPIServiceInterface EDAHealthCheckGroupAPIServiceInstance1 = 
+            EDAHealthCheckGroupAPIService.getInstance();
+        HealthCheckGroupAPIServiceInterface EDAHealthCheckGroupAPIServiceInstance2 = 
+            EDAHealthCheckGroupAPIService.getInstance();
         Test.stopTest();
 
         System.assertEquals(EDAHealthCheckGroupAPIService.instance, EDAHealthCheckGroupAPIServiceInstance1, 'Instance of service class returned should match static instance variable.');
@@ -72,15 +75,15 @@ private class EDAHealthCheckGroupAPIService_TEST {
         AccountModelHealthCheckVMapper.instance = new STUB_AccountModelHealthCheckVMapperValidModel();
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGrpVMod = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('AccountModel');
+        HealthCheckGroupVModel healthCheckGroupVModel = EDAHealthCheckGroupAPIService.getInstance().getHealthCheckGroup('AccountModel');
         Test.stopTest();
 
-        System.assertEquals('AccountModel', hlthChkGrpVMod.label, 'Label for HealthCheckGroupVModel should be \'AccountModel\'');
-        System.assertEquals('Pass', hlthChkGrpVMod.status, 'Status for HealthCheckGroupVModel should be \'Pass\'');
-        System.assertEquals(4, hlthChkGrpVMod.passedChecks, 'PassedChecks for HealthCheckGroupVModel should be 2.');
-        System.assertEquals(4, hlthChkGrpVMod.totalChecks, 'TotalChecks for HealthCheckGroupVModel should be 4.');
-        System.assertEquals(true, hlthChkGrpVMod.expandedRowsList.isEmpty(), 'ExpandedRowsList should be empty.');
-        System.assertEquals(true, hlthChkGrpVMod.healthCheckItemList.isEmpty(), 'HealthCheckItemList should be empty.');
+        System.assertEquals('AccountModel', healthCheckGroupVModel.label, 'Label for HealthCheckGroupVModel should be \'AccountModel\'');
+        System.assertEquals('Pass', healthCheckGroupVModel.status, 'Status for HealthCheckGroupVModel should be \'Pass\'');
+        System.assertEquals(4, healthCheckGroupVModel.passedChecks, 'PassedChecks for HealthCheckGroupVModel should be 2.');
+        System.assertEquals(4, healthCheckGroupVModel.totalChecks, 'TotalChecks for HealthCheckGroupVModel should be 4.');
+        System.assertEquals(true, healthCheckGroupVModel.expandedRowsList.isEmpty(), 'ExpandedRowsList should be empty.');
+        System.assertEquals(true, healthCheckGroupVModel.healthCheckItemList.isEmpty(), 'HealthCheckItemList should be empty.');
     }
 
     /***************************************************************************

@@ -47,7 +47,8 @@ public with sharing class AffiliationMappingsModel {
         String autoProgramEnrollmentStatus,
         String autoProgramEnrollmentRole
     ) {
-        Id matchingRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
+        Id matchingRecordTypeId = 
+            Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
 
         this.accountRecordTypeId = 
             (matchingRecordTypeId == null) ?

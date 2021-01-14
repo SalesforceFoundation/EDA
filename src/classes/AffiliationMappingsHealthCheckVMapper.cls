@@ -61,7 +61,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
     **********************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
-        HealthCheckGroupVModel healthCheckGroupVMod = new HealthCheckGroupVModel(
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
             Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusPassed,
             0,
@@ -71,20 +71,20 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         );
 
         Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
-        List<AffiliationMappingsModel> afflMappingSettingMod = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
 
-        HealthCheckGroupVModel afflMappingsHealthCheckCombinedGroupModel = 
-            this.getValidRecordTypeHealthCheckGroupVModel(afflMappingSettingMod, accRTModelsById);
+        HealthCheckGroupVModel affiliationMappingsHealthCheckCombinedGroupModel = 
+            this.getValidRecordTypeHealthCheckGroupVModel(affiliationMappingsModelsList, accRTModelsById);
 
-        healthCheckGroupVMod.passedChecks += afflMappingsHealthCheckCombinedGroupModel.passedChecks;
-        healthCheckGroupVMod.totalChecks += afflMappingsHealthCheckCombinedGroupModel.totalChecks;
-        healthCheckGroupVMod.expandedRowsList.addAll(afflMappingsHealthCheckCombinedGroupModel.expandedRowsList);
-        healthCheckGroupVMod.healthCheckItemList.addAll(afflMappingsHealthCheckCombinedGroupModel.healthCheckItemList);
+        healthCheckGroupVModel.passedChecks += affiliationMappingsHealthCheckCombinedGroupModel.passedChecks;
+        healthCheckGroupVModel.totalChecks += affiliationMappingsHealthCheckCombinedGroupModel.totalChecks;
+        healthCheckGroupVModel.expandedRowsList.addAll(affiliationMappingsHealthCheckCombinedGroupModel.expandedRowsList);
+        healthCheckGroupVModel.healthCheckItemList.addAll(affiliationMappingsHealthCheckCombinedGroupModel.healthCheckItemList);
 
-        healthCheckGroupVMod.updateHealthCheckStatus();
-        healthCheckGroupVMod.healthCheckItemList.sort();
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        healthCheckGroupVModel.healthCheckItemList.sort();
         
-        return healthCheckGroupVMod;
+        return healthCheckGroupVModel;
     }
 
     /**********************************************************************************
@@ -100,80 +100,80 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
         String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
 
-        HealthCheckGroupVModel healthCheckGroupVMod = new HealthCheckGroupVModel(healthCheckGroupLabel,
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
                                                                                  Label.stgHealthCheckStatusPassed,
                                                                                  0,
                                                                                  0,
                                                                                  new List<String>(),
                                                                                  healthCheckItemsList);
 
-        for (AffiliationMappingsModel afflMappingMod : affiliationMappingModelsList) {            
-            RecordTypeModel acctRTModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
-                afflMappingMod.accountRecordTypeId, 
+        for (AffiliationMappingsModel affliliationMappingsModel : affiliationMappingModelsList) {            
+            RecordTypeModel accountRTModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
+                affliliationMappingsModel.accountRecordTypeId, 
                 recordTypeModelsById
             );
 
-            if (acctRTModel == null) {
-                healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel(
+            if (accountRTModel == null) {
+                healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                     '01',
                     Label.stgHCAfflMapAccRecordTypeTitle,
                     'Fail',
                     Label.stgHealthCheckStatusFailed,
                     String.format(
                         Label.stgHCRecordTypeNotFound, 
-                        new List<Object>{afflMappingMod.accountRecordTypeId}
+                        new List<Object>{affliliationMappingsModel.accountRecordTypeId}
                     ),
                     String.format(
                         Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
-                        new List<Object>{afflMappingMod.accountRecordTypeId}
+                        new List<Object>{affliliationMappingsModel.accountRecordTypeId}
                     ),
                     new List<HealthCheckItemVModel>()
                 ));
 
-                healthCheckGroupVMod.totalChecks++;
+                healthCheckGroupVModel.totalChecks++;
             }
 
-            else if (acctRTModel.isActive == false) {
-                healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel(
+            else if (accountRTModel.isActive == false) {
+                healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                     '01',
                     Label.stgHCAfflMapAccRecordTypeTitle,
                     'Fail',
                     Label.stgHealthCheckStatusFailed,
                     String.format(
                         Label.stgHCRecordTypeInactive, 
-                        new List<Object>{acctRTModel.name, acctRTModel.developerName}
+                        new List<Object>{accountRTModel.name, accountRTModel.developerName}
                     ),
                     String.format(
                         Label.stgHCAfflMapAccRecordTypeInactiveFix, 
-                        new List<Object>{acctRTModel.name, acctRTModel.developerName}
+                        new List<Object>{accountRTModel.name, accountRTModel.developerName}
                     ),
                     new List<HealthCheckItemVModel>()
                 ));
 
-                healthCheckGroupVMod.totalChecks++;
+                healthCheckGroupVModel.totalChecks++;
             }
 
             else {
-                healthCheckGroupVMod.healthCheckItemList.add(new HealthCheckItemVModel(
+                healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                     '01',
                     Label.stgHCAfflMapAccRecordTypeTitle,
                     'Pass',
                     Label.stgHealthCheckStatusPassed,
                     String.format(
                         Label.stgHCRecordTypeValid, 
-                        new List<Object>{acctRTModel.name, acctRTModel.developerName}
+                        new List<Object>{accountRTModel.name, accountRTModel.developerName}
                     ),
                     Label.stgHealthCheckFixNotApplicable,
                     new List<HealthCheckItemVModel>()
                 ));
 
-                healthCheckGroupVMod.totalChecks++;
-                healthCheckGroupVMod.passedChecks++;
+                healthCheckGroupVModel.totalChecks++;
+                healthCheckGroupVModel.passedChecks++;
             }
         }
 
-        healthCheckGroupVMod.updateHealthCheckStatus();
-        return healthCheckGroupVMod;
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        return healthCheckGroupVModel;
     }
 
     /*****************************************************************************

@@ -41,7 +41,7 @@ public with sharing class AffiliationMappingsModel_TEST {
     @isTest 
     private static void affiliationMappingsModelValid(){
         Test.startTest();
-        AffiliationMappingsModel afflMappingMod = new AffiliationMappingsModel(
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
             'TestAfflMappingModel',
             'HH_Account',
             'Test Primary Affl Field',
@@ -53,12 +53,12 @@ public with sharing class AffiliationMappingsModel_TEST {
 
         String expectedRTString = (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('HH_Account').getRecordTypeId();
 
-        System.assertEquals('TestAfflMappingModel', afflMappingMod.name, 'Name should be set.');
-        System.assertEquals(expectedRTString, afflMappingMod.accountRecordTypeId, 'Record Type Id for HH_Account should be set.');
-        System.assertEquals('Test Primary Affl Field', afflMappingMod.primaryAffiliationField, 'Primary Affiliation Field should be set.');
-        System.assertEquals(true, afflMappingMod.autoProgramEnrollment, 'Auto Enrollment should be true');
-        System.assertEquals('Test Status', afflMappingMod.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
-        System.assertEquals('Test Role', afflMappingMod.autoProgramEnrollmentRole, 'Auto Enrollment Role should be set.');
+        System.assertEquals('TestAfflMappingModel', affiliationMappingsModel.name, 'Name should be set.');
+        System.assertEquals(expectedRTString, affiliationMappingsModel.accountRecordTypeId, 'Record Type Id for HH_Account should be set.');
+        System.assertEquals('Test Primary Affl Field', affiliationMappingsModel.primaryAffiliationField, 'Primary Affiliation Field should be set.');
+        System.assertEquals(true, affiliationMappingsModel.autoProgramEnrollment, 'Auto Enrollment should be true');
+        System.assertEquals('Test Status', affiliationMappingsModel.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
+        System.assertEquals('Test Role', affiliationMappingsModel.autoProgramEnrollmentRole, 'Auto Enrollment Role should be set.');
     }
 
     /*****************************************************************************
@@ -68,7 +68,7 @@ public with sharing class AffiliationMappingsModel_TEST {
     @isTest 
     private static void affiliationMappingsModelNullRecordTypeId(){
         Test.startTest();
-        AffiliationMappingsModel afflMappingMod = new AffiliationMappingsModel(
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
             'TestAfflMappingModel',
             'Not a Valid Record Type Dev Name',
             'Test Primary Affl Field',
@@ -78,11 +78,11 @@ public with sharing class AffiliationMappingsModel_TEST {
         );
         Test.stopTest();
 
-        System.assertEquals('TestAfflMappingModel', afflMappingMod.name, 'Name should be set.');
-        System.assertEquals('Not a Valid Record Type Dev Name', afflMappingMod.accountRecordTypeId, 'Record Type Id should be \'Not a Valid Record Type Dev Name\'.');
-        System.assertEquals('Test Primary Affl Field', afflMappingMod.primaryAffiliationField, 'Primary Affiliation Field should be set.');
-        System.assertEquals(true, afflMappingMod.autoProgramEnrollment, 'Auto Enrollment should be true');
-        System.assertEquals('Test Status', afflMappingMod.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
-        System.assertEquals('Test Role', afflMappingMod.autoProgramEnrollmentRole, 'Auto Enrollment Role should be set.');
+        System.assertEquals('TestAfflMappingModel', affiliationMappingsModel.name, 'Name should be set.');
+        System.assertEquals('Not a Valid Record Type Dev Name', affiliationMappingsModel.accountRecordTypeId, 'Record Type Id should be \'Not a Valid Record Type Dev Name\'.');
+        System.assertEquals('Test Primary Affl Field', affiliationMappingsModel.primaryAffiliationField, 'Primary Affiliation Field should be set.');
+        System.assertEquals(true, affiliationMappingsModel.autoProgramEnrollment, 'Auto Enrollment should be true');
+        System.assertEquals('Test Status', affiliationMappingsModel.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
+        System.assertEquals('Test Role', affiliationMappingsModel.autoProgramEnrollmentRole, 'Auto Enrollment Role should be set.');
     }
 }
