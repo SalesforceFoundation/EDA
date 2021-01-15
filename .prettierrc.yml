@@ -3,11 +3,7 @@ tabWidth: 4
 overrides:
     - files: "*.{json,yml,yaml}"
       options:
-          tabWidth: 4
           endOfLine: "auto"
-    - files: "cumulusci.yml"
-      options:
-          tabWidth: 4
     - files: "**/lwc/**/*.html"
       options:
           parser: lwc
