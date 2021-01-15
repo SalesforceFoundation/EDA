@@ -1228,7 +1228,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description for an Affiliation mapping in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Description for an Affiliation mapping in Settings Health Check results</shortDescription>
         <value>The {0} Affiliation mapping is valid.</value>
     </labels>
     <labels>
@@ -1236,7 +1236,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Row heading for an Affiliation mapping in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Row heading for an Affiliation mapping in Settings Health Check results</shortDescription>
         <value>{0} Affiliation Mapping</value>
     </labels>
     <labels>
@@ -1540,7 +1540,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Course Connections group title in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Course Connections group title in Settings Health Check results</shortDescription>
         <value>Course Connections</value>
     </labels>
     <labels>
@@ -1564,7 +1564,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>EDA Settings Health Check' component title</shortDescription>
+        <shortDescription>Description when Health Check finds a picklist value valid</shortDescription>
         <value>The {0} ({1}) picklist value is valid.</value>
     </labels>
     <labels>
@@ -1572,7 +1572,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description for a reciprocal setting in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Description for a reciprocal setting in Settings Health Check results</shortDescription>
         <value>{0} Reciprocal Relationships are valid.</value>
     </labels>
     <labels>
@@ -1708,7 +1708,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Row heading for a reciprocal setting in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Row heading for a reciprocal setting in Settings Health Check results</shortDescription>
         <value>{0} Reciprocal Relationships</value>
     </labels>
     <labels>
@@ -1740,7 +1740,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Account Model group title in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Account Model group title in Settings Health Check results</shortDescription>
         <value>Account Model</value>
     </labels>
     <labels>
@@ -1748,7 +1748,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Affiliation Mappings group title in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Affiliation Mappings group title in Settings Health Check results</shortDescription>
         <value>Affiliation Mappings</value>
     </labels>
     <labels>
@@ -1756,15 +1756,15 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>EDA Settings Health Check' component description</shortDescription>
-        <value>EDA Settings Health Check' checks your EDA Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings.</value>
+        <shortDescription>Settings Health Check component description</shortDescription>
+        <value>Settings Health Check checks your EDA Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings.</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckErrorLastRunDate</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when EDA Settings Health Check' can&apos;t show the last run date</shortDescription>
+        <shortDescription>Error when Settings Health Check can&apos;t show the last run date</shortDescription>
         <value>We can&apos;t show the last run date because of an error</value>
     </labels>
     <labels>
@@ -1780,7 +1780,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>EDA Settings Health Check' last run date</shortDescription>
+        <shortDescription>Settings Health Check last run date</shortDescription>
         <value>Last Run: {0}</value>
     </labels>
     <labels>
@@ -1788,7 +1788,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Text indicating that an EDA Settings Health Check' component is loading</shortDescription>
+        <shortDescription>Text indicating that a Settings Health Check component is loading</shortDescription>
         <value>Loading...</value>
     </labels>
     <labels>
@@ -1796,7 +1796,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Reciprocal Relationships group title in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Reciprocal Relationships group title in Settings Health Check results</shortDescription>
         <value>Reciprocal Relationships</value>
     </labels>
     <labels>
@@ -1804,7 +1804,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended Fix column header in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Recommended Fix column header in Settings Health Check results</shortDescription>
         <value>Recommended Fix</value>
     </labels>
     <labels>
@@ -1812,7 +1812,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Alt text for the icon to collapse EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Alt text for the icon to collapse Settings Health Check results</shortDescription>
         <value>Collapse these results</value>
     </labels>
     <labels>
@@ -1820,7 +1820,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description column header in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Description column header in Settings Health Check results</shortDescription>
         <value>Description</value>
     </labels>
     <labels>
@@ -1828,7 +1828,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Alt text for the icon to expand EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Alt text for the icon to expand Settings Health Check results</shortDescription>
         <value>Expand these results</value>
     </labels>
     <labels>
@@ -1844,15 +1844,15 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when EDA Settings Health Check' can&apos;t be run</shortDescription>
-        <value>We can&apos;t run Health Check because of an error. Try running it again.</value>
+        <shortDescription>Error when Settings Health Check can&apos;t be run</shortDescription>
+        <value>We can&apos;t run Settings Health Check because of an error. Try running it again.</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckSetting</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting column header in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Setting column header in Settings Health Check results</shortDescription>
         <value>Setting</value>
     </labels>
     <labels>
@@ -1860,7 +1860,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Status column header in EDA Settings Health Check' results</shortDescription>
+        <shortDescription>Status column header in Settings Health Check results</shortDescription>
         <value>Status</value>
     </labels>
     <labels>
@@ -1868,7 +1868,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Status text in EDA Settings Health Check' results when a check failed</shortDescription>
+        <shortDescription>Status text in Settings Health Check results when a check failed</shortDescription>
         <value>Failed</value>
     </labels>
     <labels>
@@ -1876,7 +1876,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Status text in EDA Settings Health Check' results when a check passed</shortDescription>
+        <shortDescription>Status text in Settings Health Check results when a check passed</shortDescription>
         <value>Passed</value>
     </labels>
     <labels>
@@ -1884,7 +1884,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Status text in EDA Settings Health Check' results when a check prompts a warning</shortDescription>
+        <shortDescription>Status text in Settings Health Check results when a check prompts a warning</shortDescription>
         <value>Warning</value>
     </labels>
     <labels>
@@ -1892,15 +1892,15 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>EDA Settings Health Check' component title</shortDescription>
-        <value>EDA Settings Health Check'</value>
+        <shortDescription>Settings Health Check component title</shortDescription>
+        <value>Settings Health Check</value>
     </labels>
     <labels>
         <fullName>stgHealthChecksAllPassed</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Text in EDA Settings Health Check' results when all checks within a group passed</shortDescription>
+        <shortDescription>Text in Settings Health Check results when all checks within a group passed</shortDescription>
         <value>All checks passed</value>
     </labels>
     <labels>
@@ -1908,7 +1908,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Text in EDA Settings Health Check' results shows group&apos;s passed and total checks</shortDescription>
+        <shortDescription>Text in Settings Health Check results shows group&apos;s passed and total checks</shortDescription>
         <value>{0} of {1} checks passed</value>
     </labels>
     <labels>
