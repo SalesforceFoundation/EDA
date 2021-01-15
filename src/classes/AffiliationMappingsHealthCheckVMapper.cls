@@ -70,6 +70,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             this.locateLookupFieldService().getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName = 
             this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
+        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName = 
+            this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
 
         List<HealthCheckGroupVModel> childAffiliationHCGroupVModelsList = new List<HealthCheckGroupVModel>();
         
@@ -87,6 +89,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         childAffiliationHCGroupVModelsList.add(this.getActiveExistingRoleHealthCheckGroupVModel(
             affiliationMappingsModelsList,
             affilationRolePicklistEntryModelByName
+        ));
+
+        childAffiliationHCGroupVModelsList.add(this.getActiveExistingStatusHealthCheckGroupVModel(
+            affiliationMappingsModelsList,
+            affilationStatusPicklistEntryModelByName
         ));
 
         return this.combineAffiliationMappingsHealthCheckGroupViewModels(childAffiliationHCGroupVModelsList);
@@ -123,6 +130,106 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         parentHealthCheckGroupVModel.healthCheckItemList.sort();
         
         return parentHealthCheckGroupVModel;
+    }
+
+    /**********************************************************************************
+    * @description Retrieve a HealthCheckGroup view model reprenting whether enrollment
+    * statuses specified in affiliation mappings correspond to valid picklist field values
+    * listed in the Status picklist field on Affiliation__c.
+    * @return A HealthCheckGroupVModel
+    **********************************************************************************/ 
+    @TestVisible
+    private virtual HealthCheckGroupVModel getActiveExistingStatusHealthCheckGroupVModel(
+        List<AffiliationMappingsModel> affiliationMappingsModelsList,
+        Map<String, PicklistEntryModel> picklistEntryModelByName
+    ) {
+        List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
+        String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
+
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
+                                                                                 Label.stgHealthCheckStatusPassed,
+                                                                                 0,
+                                                                                 0,
+                                                                                 new List<String>(),
+                                                                                 healthCheckItemsList);
+
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
+            if (String.isBlank(affiliationMappingsModel.autoProgramEnrollmentStatus)) {
+                // TODO: Ask if Auto-Enrollment Status are required for affilation mappings, this
+                // line assumes they are optional
+                continue;
+            }
+
+            if (picklistEntryModelByName.keySet().contains(affiliationMappingsModel.autoProgramEnrollmentStatus) == false) {
+                // invalid mapping 
+                healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                    '05',
+                    Label.stgHCAfflMapAutoEnrollStatusTitle,
+                    'Fail',
+                    Label.stgHealthCheckStatusFailed,
+                    String.format(
+                        Label.stgHCAfflMapAutoEnrollStatusNotFound, 
+                        new List<Object>{affiliationMappingsModel.autoProgramEnrollmentStatus}
+                    ),
+                    Label.stgHCAfflMapAutoEnrollStatusNotFoundFix, 
+                    new List<HealthCheckItemVModel>()
+                ));
+
+                healthCheckGroupVModel.totalChecks++;
+                continue;
+            }
+
+            if (picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentStatus)?.isActive == false) {
+                // valid mapping, but inactive
+                healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                    '05',
+                    Label.stgHCAfflMapAutoEnrollStatusTitle,
+                    'Fail',
+                    Label.stgHealthCheckStatusFailed,
+                    String.format(
+                        Label.stgHCAfflMapAutoEnrollStatusInactive, 
+                        new List<Object>{
+                            affiliationMappingsModel.autoProgramEnrollmentStatus, 
+                            picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentStatus).name
+                        }
+                    ),
+                    String.format(
+                        Label.stgHCAfflMapAutoEnrollStatusInactiveFix, 
+                        new List<Object>{
+                            affiliationMappingsModel.autoProgramEnrollmentStatus, 
+                            picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentStatus).name
+                        }
+                    ),
+                    new List<HealthCheckItemVModel>()
+                ));
+
+                healthCheckGroupVModel.totalChecks++;
+                continue;
+            }
+
+            // valid and active
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                '05',
+                Label.stgHCAfflMapAutoEnrollStatusTitle,
+                'Pass',
+                Label.stgHealthCheckStatusPassed,
+                String.format(
+                    Label.stgHCAfflMapAutoEnrollStatusValid, 
+                    new List<Object>{
+                        picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentStatus).label, 
+                        picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentStatus).name
+                    }
+                ),
+                Label.stgHealthCheckFixNotApplicable,
+                new List<HealthCheckItemVModel>()
+            ));
+
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.passedChecks++;
+        }
+
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        return healthCheckGroupVModel;
     }
 
     /**********************************************************************************

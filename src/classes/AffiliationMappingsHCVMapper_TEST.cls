@@ -95,6 +95,32 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Test to verify locateLookupFieldService() returns an instance of the LookupFieldService class.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void locateLookupFieldServiceValid() {
+        Test.startTest();
+        LookupFieldService LookupFieldServiceInstance = AffiliationMappingsHealthCheckVMapper.getInstance().locateLookupFieldService();
+        Test.stopTest();
+
+        System.assertEquals(LookupFieldService.getInstance(), LookupFieldServiceInstance, 'Should return instance of LookupFieldService class.');
+        System.assertEquals(true, LookupFieldServiceInstance != null, 'Instance of LookupFieldService class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify locatePicklistEntryService() returns an instance of the PicklistEntryService class.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void locatePicklistEntryServiceValid() {
+        Test.startTest();
+        PicklistEntryService PicklistEntryServiceInstance = AffiliationMappingsHealthCheckVMapper.getInstance().locatePicklistEntryService();
+        Test.stopTest();
+
+        System.assertEquals(PicklistEntryService.getInstance(), PicklistEntryServiceInstance, 'Should return instance of PicklistEntryService class.');
+        System.assertEquals(true, PicklistEntryServiceInstance != null, 'Instance of PicklistEntryService class should not be null.');
+    }
+
+    /**************************************************************************************************************************
     * @description Test to verify combineAffiliationMappingsHealthCheckGroupViewModels() returns a combined 
     * HealthCheckGroupVModel comprised of the combined properties of the group view models passed as arguments.
     **************************************************************************************************************************/ 
@@ -175,7 +201,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 3;
+        Integer numberOfHealthChecks = 4;
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -231,7 +257,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 3;
+        Integer numberOfHealthChecks = 4;
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -1270,6 +1296,13 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         }
 
         private override HealthCheckGroupVModel getActiveExistingRoleHealthCheckGroupVModel(
+            List<AffiliationMappingsModel> affiliationMappingsModelsList,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return this.mockCheck(affiliationMappingsModelsList);
+        }
+
+        private override HealthCheckGroupVModel getActiveExistingStatusHealthCheckGroupVModel(
             List<AffiliationMappingsModel> affiliationMappingsModelsList,
             Map<String, PicklistEntryModel> picklistEntryModelByName
         ) {
