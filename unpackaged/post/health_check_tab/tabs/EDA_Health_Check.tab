@@ -3,5 +3,5 @@
     <description>Check EDA Settings for invalid configurations and use the results to identify and fix invalid settings.</description>
     <label>Settings Health Check</label>
     <lwcComponent>%%%NAMESPACE%%%healthCheck</lwcComponent>
-    <motif>Custom86: Red Cross</motif>
+    <motif>Custom94: Stethoscope</motif>
 </CustomTab>
