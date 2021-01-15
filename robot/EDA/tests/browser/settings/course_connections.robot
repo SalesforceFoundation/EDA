@@ -17,7 +17,8 @@ Validate drop down values appear when checkbox is unchecked
     ...                     unchecked. Checks the dropdown field is disabled for Default Active
     ...                     Student Record Type and Default Faculty Record Type. The value of the
     ...                     dropdown field status is True when disbaled and False when enabled.
-    [tags]                                      unstable        W-041782        rbt:high
+    [tags]                                      W-041782        rbt:high
+    Go to EDA settings tab          Course Connections
     Click action button on EDA settings page    Edit
     Verify enable course connections warning    true
     Sleep                                       10
@@ -33,7 +34,7 @@ Validate Edit Mode For Course Connections, Settings
     ...                     connections, Default Active Student Record Type and Default Faculty
     ...                     Record Type are reatined upon saving which also includes the validation
     ...                     of fields in non edit mode.
-    [tags]                      unstable        W-041783        W-041784        rbt:high
+    [tags]                      W-041783        W-041784        rbt:high
     Click action button on EDA settings page    Edit
     Verify enable course connections warning    true
     Set enable course connections

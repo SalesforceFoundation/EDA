@@ -136,6 +136,9 @@ eda_lex_locators = {
     },
     "eda_settings_accounts_contacts": {
         "checkbox": "//span[text()='{}']/following::div[1]/descendant::span[text()='{}']/parent::label/span[contains(@class, 'checkbox')]",
+        "checkbox_value": "//span[text()='{}']/following::label[1][contains(@class, 'checkbox')]/span[contains(@class, 'checkbox')]",
+        "checkbox_list": "//span[text()='{}']/../../following-sibling::div[1]/descendant::span[contains(@class, 'checkbox')]",
+        "checkbox_list_read": "//span[text()='{}']/../../following-sibling::div[1]/descendant::img",
     },
     "eda_settings_relationships": {
         "dropdown_read": "//span[text()='{}']/../following-sibling::div[1]/descendant::span",

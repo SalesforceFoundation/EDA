@@ -73,7 +73,7 @@ class SystemSettingsPage(BaseEDAPage, BasePage):
         """ Verifies the admin  toast message """
         locator = eda_lex_locators["eda_settings_system"]["admin_success_toast"]
         time.sleep(0.5) # This wait is needed for the toast message validation
-        self.selenium.wait_until_page_contains_element(locator)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
         actual_value = self.selenium.get_webelement(locator).text
         self.builtin.log("Toast message :" + actual_value)
         if not str(value).lower() == str(actual_value).lower() :
@@ -83,7 +83,7 @@ class SystemSettingsPage(BaseEDAPage, BasePage):
         """ Verifies the household specific toast message """
         locator = eda_lex_locators["eda_settings_system"]["hh_success_toast"]
         time.sleep(0.5) # This wait is needed for the toast message validation
-        self.selenium.wait_until_page_contains_element(locator)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
         actual_value = self.selenium.get_webelement(locator).text
         self.builtin.log("Toast message :" + actual_value)
         if not str(value).lower() == str(actual_value).lower() :
