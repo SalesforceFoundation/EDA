@@ -101,6 +101,7 @@ class RelationshipsSettingsPage(BaseEDAPage, BasePage):
                                                 error=f"'{locator_edit}' is not available ")
                 self.selenium.click_element(locator_edit)
                 self.eda.click_action_button_on_eda_settings_page("Save")
+                time.sleep(0.5) #This wait is necessary to avoid inconsistency display of toast message
 
     def set_reciprocal_setting_status(self,**kwargs):
         """ This method will set the active checkbox status to active/inactive
