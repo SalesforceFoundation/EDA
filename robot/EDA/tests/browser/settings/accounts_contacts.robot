@@ -60,3 +60,47 @@ Verify disable preferred phone enforcement shows and hides as expected
     ...                       Enable Enhanced Preferred Phone Functionality=false
     Verify disable preferred phone enforcement displayed
     ...                       Disable Preferred Phone Enforcement=false
+
+Validate all checkboxes can retain value on save in accounts and contacts settings
+    [Documentation]         Validates that all checkbox fields in accounts and contacts settings
+    ...                     page retains value after clicking on save button. The status of checkbox
+    ...                     is true if checked and false if unchecked
+    [tags]                  unstable        W-8620850       rbt:high
+    Click action button on EDA settings page    Edit
+    Set checkbox value
+    ...                 Disable Preferred Email Enforcement=true
+    ...                 Enable Enhanced Preferred Phone Functionality=true
+    ...                 Disable Preferred Phone Enforcement=true
+    ...                 Contact Multi-Addresses Enabled=true
+    ...                 Simple Address Change Treated as Update=true
+    Set multi account contact checkbox
+    ...                 Account Types with Multi-Addresses Enabled=true
+    ...                 Account Types without Contacts to Delete=true
+    Click action button on EDA settings page    Save
+    Verify checkbox value
+    ...                 Disable Preferred Email Enforcement=true
+    ...                 Enable Enhanced Preferred Phone Functionality=true
+    ...                 Disable Preferred Phone Enforcement=true
+    ...                 Contact Multi-Addresses Enabled=true
+    ...                 Simple Address Change Treated as Update=true
+    Verify multi account contact checkbox
+    ...                 Account Types with Multi-Addresses Enabled=true
+    ...                 Account Types without Contacts to Delete=true
+    Click action button on EDA settings page    Edit
+    Set checkbox value
+    ...                 Disable Preferred Email Enforcement=false
+    ...                 Enable Enhanced Preferred Phone Functionality=false
+    ...                 Contact Multi-Addresses Enabled=false
+    ...                 Simple Address Change Treated as Update=false
+    Set multi account contact checkbox
+    ...                 Account Types with Multi-Addresses Enabled=false
+    ...                 Account Types without Contacts to Delete=false
+    Click action button on EDA settings page    Save
+    Verify checkbox value
+    ...                 Disable Preferred Email Enforcement=false
+    ...                 Enable Enhanced Preferred Phone Functionality=false
+    ...                 Contact Multi-Addresses Enabled=false
+    ...                 Simple Address Change Treated as Update=false
+    Verify multi account contact checkbox
+    ...                 Account Types with Multi-Addresses Enabled=false
+    ...                 Account Types without Contacts to Delete=false

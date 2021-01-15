@@ -3,6 +3,7 @@ from EDA import eda_lex_locators
 from cumulusci.robotframework.pageobjects import BasePage
 from cumulusci.robotframework.pageobjects import pageobject
 from selenium.webdriver.common.keys import Keys
+import time
 
 
 @pageobject("Accounts_and_Contacts", "HEDA_Settings")
@@ -214,3 +215,68 @@ class AccountsAndContactsSettingsPage(BaseEDAPage, BasePage):
                 self.selenium.wait_until_page_contains_element(locator)
                 self.selenium.wait_until_element_is_visible(locator)
                 self.salesforce._jsclick(locator)
+
+    def set_checkbox_value(self,**kwargs):
+        """ This method will set the value of a checkbox using the key value pairs passed from
+            the test. Checked - true, unchecked - false
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_accounts_contacts"]["checkbox_value"].format(field)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator)
+            actual_value = self.selenium.get_element_attribute(locator, "data-qa-checkbox-state")
+            self.builtin.log("Locator " + locator + "actual value is " + actual_value)
+            if not str(actual_value).lower() == str(value).lower():
+                for i in range(3):
+                    self.builtin.log("Iteration: " + str(i) + "for locator" + locator)
+                    self.selenium.click_element(locator)
+                    time.sleep(1)
+                    actual_value = self.selenium.get_element_attribute(locator, "data-qa-checkbox-state")
+                    if actual_value == str(value).lower():
+                        self.builtin.log("The checkbox value in edit mode is" + actual_value)
+                        self.builtin.log("Updated locator " + locator)
+                        break
+                    else:
+                        continue
+
+    def set_multi_account_contact_checkbox(self,**kwargs):
+        """ This method will set the value of checkboxes present under 'Account Types with Multi
+            Addresses Enabled' and 'Account Types without Contacts to Delete' based on the key
+            value pairs passed from the test. Checked - true, Unchecked - false.
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_accounts_contacts"]["checkbox_list"].format(field)
+            elements = self.selenium.get_webelements(locator)
+            if not len(elements) == 0:
+                for element in elements:
+                    self.selenium.wait_until_page_contains_element(element, timeout=60)
+                    self.selenium.wait_until_element_is_visible(element)
+                    actual_value = self.selenium.get_element_attribute(element, "data-qa-checkbox-state")
+                    if not str(actual_value).lower() == str(value).lower():
+                        for i in range(3):
+                            self.builtin.log("Iteration: " + str(i))
+                            self.selenium.click_element(element)
+                            time.sleep(1)
+                            actual_value = self.selenium.get_element_attribute(element, "data-qa-checkbox-state")
+                            if actual_value == str(value).lower():
+                                self.builtin.log("The checkbox value in edit mode is" + actual_value)
+                                break
+                            else:
+                                continue
+
+    def verify_multi_account_contact_checkbox(self,**kwargs):
+        """ This method will verify the value of checkboxes present under 'Account Types with Multi
+            Addresses Enabled' and 'Account Types without Contacts to Delete' based on the key
+            value pairs passed from the test. Checked - true, Unchecked - false.
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_accounts_contacts"]["checkbox_list_read"].format(field)
+            elements = self.selenium.get_webelements(locator)
+            if not len(elements) == 0:
+                for element in elements:
+                    self.selenium.wait_until_page_contains_element(element, timeout=60)
+                    self.selenium.wait_until_element_is_visible(element)
+                    actual_value = self.selenium.get_element_attribute(element, "alt")
+                    if not str(value).lower() == str(actual_value).lower() :
+                        raise Exception (f"Checkbox value in {field} is {actual_value} but it should be {value}")
+
