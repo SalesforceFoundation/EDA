@@ -30,6 +30,7 @@ Verify system settings can retain value on save
     ...                     after saving it.
     [tags]                    unstable        W-8042700     W-8119542     rbt:high
     Go to EDA settings tab    System
+    Scroll web page
     Update checkbox value
     ...                       Store Errors=false
     ...                       Send Error Notifications=true
