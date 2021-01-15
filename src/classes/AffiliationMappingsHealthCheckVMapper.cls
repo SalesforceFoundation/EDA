@@ -57,7 +57,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     }
 
     /**********************************************************************************
-    * @description Retrieve the results for a for an AccountModel health check.
+    * @description Retrieve the results for a for an AffiliationMappings health check.
     * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
     **********************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
