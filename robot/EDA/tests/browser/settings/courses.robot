@@ -16,7 +16,7 @@ Validate run copy button is active in read and edit mode
     ...                     and edit mode. Also validates the text "The process was queued
     ...                     successfully. An email will be sent at the completion of the job."
     ...                     appears after the button is clicked in both modes.
-    [tags]                                      unstable        W-041780        rbt:high
+    [tags]                                      W-041780        rbt:high
     Click run action button                     Run Copy
     Verify text appears
     ...     The process was queued successfully. An email will be sent at the completion of the job.

@@ -420,7 +420,7 @@ class EDA(BaseEDAPage):
         """
         for field,value in kwargs.items():
             locator = eda_lex_locators["eda_settings_program_plans"]["checkbox_read"].format(field)
-            self.selenium.wait_until_page_contains_element(locator)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
             self.selenium.wait_until_element_is_visible(locator)
             actual_value = self.selenium.get_element_attribute(locator, "alt")
             self.builtin.log("Locator " + locator + "actual value is " + actual_value)
@@ -430,8 +430,8 @@ class EDA(BaseEDAPage):
                 self.selenium.wait_until_page_contains_element(locator_edit,
                                                 error=f"'{locator_edit}' is not available ")
                 for i in range(3):
-                    i += 1
-                    self.salesforce._jsclick(locator_edit)
+                    self.builtin.log("Iteration: " + str(i) + "for locator" + locator_edit)
+                    self.selenium.click_element(locator_edit)
                     time.sleep(1)
                     actual_value = self.selenium.get_element_attribute(locator_edit, "data-qa-checkbox-state")
                     if actual_value == str(value).lower():
@@ -439,6 +439,7 @@ class EDA(BaseEDAPage):
                         self.builtin.log("Updated locator " + locator_edit)
                         break
                 self.click_action_button_on_eda_settings_page("Save")
+                time.sleep(0.25) #This wait is necessary to avoid toast message inconsistencies
 
     def update_dropdown_value(self,**kwargs):
         """ This method will update the drop down field value passed in keyword arguments
@@ -469,7 +470,7 @@ class EDA(BaseEDAPage):
         """
         for field,expected_value in kwargs.items():
             locator = eda_lex_locators["eda_settings"]["dropdown_field"].format(field)
-            self.selenium.page_should_contain_element(locator)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= f"Element '{field}' is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).get_attribute(expected_value)
@@ -502,7 +503,7 @@ class EDA(BaseEDAPage):
         """
         for field,expected_value in kwargs.items():
             locator = eda_lex_locators["eda_settings_system"]["default_dropdown_value"].format(field,expected_value)
-            self.selenium.page_should_contain_element(locator)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).text

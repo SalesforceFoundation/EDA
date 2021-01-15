@@ -14,7 +14,7 @@ Test Teardown   Go to custom settings setup
 Validate hierarchy settings under custom settings
     [Documentation]     Checks set up owner under hierarchy settings to make sure 'User User' is not
     ...                 displayed.
-    [tags]              unstable        W-8448341         rbt:high
+    [tags]              W-8448341         rbt:high
     Go to EDA settings tab      Accounts and Contacts
     Click action button on EDA settings page    Edit
     Select accounts contacts checkbox
