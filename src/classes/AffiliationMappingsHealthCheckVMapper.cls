@@ -56,30 +56,48 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         return instance;
     }
 
-    /**********************************************************************************
-    * @description Retrieve the results for a for an AccountModel health check.
-    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
+        /**********************************************************************************
+    * @description Retrieve the results for a for Affiliation Mappings health check.
+    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Affiliation Mappings.
     **********************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
-        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
-            Label.stgHealthCheckAffiliationMappings,
-            Label.stgHealthCheckStatusPassed,
-            0,
-            0,
-            new List<String>(),
-            new List<HealthCheckItemVModel>()
-        );
+        Map<Id, RecordTypeModel> accountRecordTypeModelById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
+        List<AffiliationMappingsModel> affiliationMappingsModelList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
+        List<HealthCheckGroupVModel> affiliationMappingsHealthCheckGroupVModelsList = new List<HealthCheckGroupVModel>();
 
-        Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
-        List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
+        affiliationMappingsHealthCheckGroupVModelsList.add(this.getValidRecordTypeHealthCheckGroupVModel(affiliationMappingsModelList, accountRecordTypeModelById));      
+        affiliationMappingsHealthCheckGroupVModelsList.add(this.getValidRecordTypeHealthCheckGroupVModel(affiliationMappingsModelList, accountRecordTypeModelById));      
 
-        HealthCheckGroupVModel affiliationMappingsHealthCheckCombinedGroupModel = 
-            this.getValidRecordTypeHealthCheckGroupVModel(affiliationMappingsModelsList, accRTModelsById);
+        return this.combineHealthCheckGroupViewModels(affiliationMappingsHealthCheckGroupVModelsList);
+    }
 
-        healthCheckGroupVModel.passedChecks += affiliationMappingsHealthCheckCombinedGroupModel.passedChecks;
-        healthCheckGroupVModel.totalChecks += affiliationMappingsHealthCheckCombinedGroupModel.totalChecks;
-        healthCheckGroupVModel.expandedRowsList.addAll(affiliationMappingsHealthCheckCombinedGroupModel.expandedRowsList);
-        healthCheckGroupVModel.healthCheckItemList.addAll(affiliationMappingsHealthCheckCombinedGroupModel.healthCheckItemList);
+    /**********************************************************************************
+    * @description Generates a HealthCheckGroupVModel comprised of the combined health 
+    * check results for Affiliation Mappings. 
+    * @param  healthCheckGroupVModelsList A list of HealthCheckGroupVModels
+    * @return A HealthCheckGroupVModel representing the health check results for 
+    * Affiliation Mappings.
+    **********************************************************************************/ 
+    @TestVisible
+    private HealthCheckGroupVModel combineHealthCheckGroupViewModels(List<HealthCheckGroupVModel> healthCheckGroupVModelsList) {
+        Integer healthCheckGroupPassedChecks = 0;
+        Integer healthCheckGroupTotalChecks = 0;
+        List<String> healthCheckGroupExpandedRowsList = new List<String>();
+        List<HealthCheckItemVModel> healthCheckGrouphealthCheckItemsList = new List<HealthCheckItemVModel>();
+
+        for (HealthCheckGroupVModel healthCheckGroupVModel : healthCheckGroupVModelsList) {
+            healthCheckGroupPassedChecks += healthCheckGroupVModel.passedChecks;
+            healthCheckGroupTotalChecks += healthCheckGroupVModel.totalChecks;
+            healthCheckGroupExpandedRowsList.addAll(healthCheckGroupVModel.expandedRowsList);
+            healthCheckGrouphealthCheckItemsList.addAll(healthCheckGroupVModel.healthCheckItemList);
+        }
+
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(Label.stgHealthCheckAffiliationMappings,
+                                                                            Label.stgHealthCheckStatusPassed,
+                                                                            healthCheckGroupPassedChecks,
+                                                                            healthCheckGroupTotalChecks,
+                                                                            healthCheckGroupExpandedRowsList,
+                                                                            healthCheckGrouphealthCheckItemsList);
 
         healthCheckGroupVModel.updateHealthCheckStatus();
         healthCheckGroupVModel.healthCheckItemList.sort();
@@ -171,6 +189,71 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 healthCheckGroupVModel.passedChecks++;
             }
         }
+
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        return healthCheckGroupVModel;
+    }
+
+    /**********************************************************************************
+    * @description Retrieves a HealthCheckGroup view model representing the health check
+    * results for if Account Record Type is Mapped to More than One Contact Primary Affiliation Field* .
+    * @return A HealthCheckGroupVModel
+    **********************************************************************************/ 
+    @TestVisible
+    private virtual HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+        List<AffiliationMappingsModel> affiliationMappingModelsList,
+        Map<Id,RecordTypeModel> recordTypeModelsById
+    ) {
+        List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
+        String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
+        Map<String, Integer> countByAccountRecordTypeId = new Map<String, Integer>();
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
+                                                                                 Label.stgHealthCheckStatusPassed,
+                                                                                 0,
+                                                                                 0,
+                                                                                 new List<String>(),
+                                                                                 healthCheckItemsList);
+
+        for (AffiliationMappingsModel affiliationMappingModel : affiliationMappingModelsList) {            
+            if (countByAccountRecordTypeId.containsKey(affiliationMappingModel.accountRecordTypeId)) {
+                healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                    '02',
+                    Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+                    'Fail',
+                    Label.stgHealthCheckStatusFailed,
+                    String.format(
+                        Label.stgHCAfflMapAccRecordTypeNotUnique, 
+                        new List<Object>{
+                            recordTypeModelsById.get(affiliationMappingModel.accountRecordTypeId).name, 
+                            recordTypeModelsById.get(affiliationMappingModel.accountRecordTypeId).developerName}),
+                    String.format(
+                        Label.stgHCAfflMapAccRecordTypeUniqueFix, 
+                        new List<Object>{
+                            recordTypeModelsById.get(affiliationMappingModel.accountRecordTypeId).name, 
+                            recordTypeModelsById.get(affiliationMappingModel.accountRecordTypeId).developerName}),
+                    new List<HealthCheckItemVModel>()
+                ));
+
+                healthCheckGroupVModel.totalChecks++;
+
+                return healthCheckGroupVModel;
+            } else {
+                countByAccountRecordTypeId.put(affiliationMappingModel.accountRecordTypeId, 1);
+            }
+        }
+
+        healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+            '02',
+            Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            Label.stgHCAfflMapAccRecordTypeUnique,
+            Label.stgHealthCheckFixNotApplicable,
+            new List<HealthCheckItemVModel>()
+        ));
+
+        healthCheckGroupVModel.totalChecks++;
+        healthCheckGroupVModel.passedChecks++;
 
         healthCheckGroupVModel.updateHealthCheckStatus();
         return healthCheckGroupVModel;
