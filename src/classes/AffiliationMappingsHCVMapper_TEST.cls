@@ -891,8 +891,6 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         ); 
     }
 
-
-
     /*****************************************************************************************
     * @description Test method to verify getActiveExistingRoleHealthCheckGroupVModel returns a 
     * HealthCheckGroupVModel with a Passed status when the Auto Enrollment Role is populated and
@@ -912,14 +910,14 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 '',
                 true,
                 'Test Status',
-                'Test Auto Enrollment Role'
+                'Test Auto Enrollment'
             )
         };
 
         Map<String, PicklistEntryModel> affiliationRolePicklistEntryModelByName = new Map<String, PicklistEntryModel> {
-            'Test Auto Enrollment Role' => new PicklistEntryModel(
-                'Test Auto Enrollment Role',
-                'Auto Enrollment Role Label',
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
                 true
             ),
 
@@ -984,14 +982,14 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 '',
                 true,
                 'Test Status',
-                'Test Auto Enrollment Role'
+                'Test Auto Enrollment'
             )
         };
 
         Map<String, PicklistEntryModel> affiliationRolePicklistEntryModelByName = new Map<String, PicklistEntryModel> {
-            'Test Auto Enrollment Role' => new PicklistEntryModel(
-                'Test Auto Enrollment Role',
-                'Auto Enrollment Role Label',
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
                 false
             ),
 
@@ -1067,9 +1065,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         };
 
         Map<String, PicklistEntryModel> affiliationRolePicklistEntryModelByName = new Map<String, PicklistEntryModel> {
-            'Test Auto Enrollment Role' => new PicklistEntryModel(
-                'Test Auto Enrollment Role',
-                'Auto Enrollment Role Label',
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
                 true
             ),
 
@@ -1136,9 +1134,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         };
 
         Map<String, PicklistEntryModel> affiliationRolePicklistEntryModelByName = new Map<String, PicklistEntryModel> {
-            'Test Auto Enrollment Role' => new PicklistEntryModel(
-                'Test Auto Enrollment Role',
-                'Auto Enrollment Role Label',
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
                 true
             ),
 
@@ -1154,6 +1152,296 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             afflMappingHealthCheckVMapperInstance.getActiveExistingRoleHealthCheckGroupVModel(
                 affiliationMappingsModelsList,
                 affiliationRolePicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            0,
+            0,
+            0,
+            0
+        );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Passed status when the Auto Enrollment Status is populated and
+    * corresponds to a value in the Status picklist field on Affiliation__c that is active.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelValidAndActivePicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceValid();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Auto Enrollment',
+                'Test Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Status Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Status Name 2',
+                'Auto Enrollment Status Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList,
+                affiliationStatusPicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollStatusTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusValid, 
+                new List<Object> {
+                                    affiliationStatusPicklistEntryModelByName
+.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).label, 
+                                    affiliationStatusPicklistEntryModelByName
+.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).name
+                }
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        ); 
+    }
+    
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the Auto Enrollment Status is populated and
+    * corresponds to a value in the Status picklist field on Affiliation__c that is inactive.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelValidAndInActivePicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceInactive();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Auto Enrollment',
+                'Test Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                false
+            ),
+
+            'Auto Enrollment Status Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Status Name 2',
+                'Auto Enrollment Status Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList,
+                affiliationStatusPicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollStatusTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusInactive, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].autoProgramEnrollmentStatus, 
+                                    affiliationStatusPicklistEntryModelByName
+.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).name
+                }
+            ),
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusInactiveFix, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].autoProgramEnrollmentStatus, 
+                                    affiliationStatusPicklistEntryModelByName
+.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).name
+                }
+            ),
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the Auto Enrollment Status is populated and
+    * does not correspond to a value in the Status picklist field on Affiliation__c.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelInvalidPicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Invalid Auto Enrollment Status',
+                'Test Enrollment Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Status Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Status Name 2',
+                'Auto Enrollment Status Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList,
+                affiliationStatusPicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollStatusTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusNotFound, 
+                new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentStatus}
+            ),
+            Label.stgHCAfflMapAutoEnrollStatusNotFoundFix,
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns an
+    * empty HealthCheckGroupVModel with a Passed status when the Auto Enrollment Status is not 
+    * populated for an affiliation mapping.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelBlankRole() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                '',
+                'Test Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Status Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Status Name 2',
+                'Auto Enrollment Status Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList,
+                affiliationStatusPicklistEntryModelByName
             );
         Test.stopTest();
 
@@ -1549,9 +1837,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             SObjectField SObjectFieldName
         ) {
             return new Map<String,PicklistEntryModel>{
-                'Test Auto Enrollment Role' => new PicklistEntryModel(
-                'Test Auto Enrollment Role',
-                'Auto Enrollment Role Label',
+                'Test Auto Enrollment Name' => new PicklistEntryModel(
+                'Test Auto Enrollment Name',
+                'Auto Enrollment Label',
                 true)
             };
         }
@@ -1567,9 +1855,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             SObjectField SObjectFieldName
         ) {
             return new Map<String,PicklistEntryModel>{
-                'Test Auto Enrollment Role' => new PicklistEntryModel(
-                'Test Auto Enrollment Role',
-                'Auto Enrollment Role Label',
+                'Test Auto Enrollment Name' => new PicklistEntryModel(
+                'Test Auto Enrollment Name',
+                'Auto Enrollment Label',
                 false)
             };
         }
