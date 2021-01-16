@@ -16,3 +16,23 @@ overrides:
     - files: "**/aura/**/*.js"
       options:
           trailingComma: "none"
+    - files: "**/classes/**/*.cls"
+      options:
+          plugins:
+              - "./node_modules/prettier-plugin-apex"
+          parser: apex
+          apexInsertFinalNewline: true
+    - files: "**/triggers/*.cls"
+      options:
+          plugins:
+              - "./node_modules/prettier-plugin-apex"
+          parser: apex
+          apexInsertFinalNewline: true
+    - files: "*.apex"
+      options:
+          plugins:
+              - "./node_modules/prettier-plugin-apex"
+          parser: apex
+          apexAnonymous: true
+          apexInsertFinalNewline: true
+

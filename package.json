@@ -1,0 +1,10 @@
+{
+  "name": "EDA",
+  "repository": "git@github.com:SalesforceFoundation/EDA.git",
+  "author": "Salesforce.org",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "prettier-plugin-apex": "^1.7.0"
+  }
+}
