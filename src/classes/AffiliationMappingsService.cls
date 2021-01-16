@@ -73,8 +73,8 @@ public virtual with sharing class AffiliationMappingsService {
     public Set<Id> getDuplicateRecordTypeIdsFromList(
         List<AffiliationMappingsModel> affiliationMappingsModelList
     ) {
-        Set<String> nameSet = new Set<String>();
-        Set<String> duplicateSet = new Set<String>();
+        Set<Id> nameSet = new Set<Id>();
+        Set<Id> duplicateSet = new Set<Id>();
 
         for(AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelList) {
             if(nameSet.contains(affiliationMappingsModel.accountRecordTypeId)) {
