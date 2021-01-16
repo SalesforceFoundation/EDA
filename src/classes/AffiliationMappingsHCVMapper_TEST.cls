@@ -151,7 +151,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles all
-    * passed health checks
+    * failed health checks
     ***************************************************************************/
     @isTest
     private static void getHealthCheckGroupAllFail() {
@@ -239,20 +239,23 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModels,
+                affiliationMappingModels[0],
                 recordTypeModelsById
             );
         Test.stopTest();
 
         AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
-            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHCAfflMapAccRecordTypeTitle,
             Label.stgHealthCheckStatusPassed,
             1,
             1,
             0,
             1,
-            Label.stgHCAfflMapAccRecordTypeTitle,
+            String.format(
+                Label.stgHCAffiliationMappingSettingHeading,
+                new List<Object>{'Active RecordType Name'}    
+            ),
             'Pass',
             Label.stgHealthCheckStatusPassed,
             String.format(
@@ -298,20 +301,23 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModels,
+                affiliationMappingModels[0],
                 recordTypeModelsById
             );
         Test.stopTest();
 
         AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
-            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHCAfflMapAccRecordTypeTitle,
             Label.stgHealthCheckStatusFailed,
             0,
             1,
-            0,
             1,
-            Label.stgHCAfflMapAccRecordTypeTitle,
+            1,
+            String.format(
+                Label.stgHCAffiliationMappingSettingHeading,
+                new List<Object>{'Inactive RecordType Name'}    
+            ),
             'Fail',
             Label.stgHealthCheckStatusFailed,
             String.format(
@@ -340,7 +346,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         List<AffiliationMappingsModel> affiliationMappingModelsList = new List<AffiliationMappingsModel>{
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
-                'HH_Account', // will be converted to matching RT id value
+                'Non-Existent Record Type Name', // will be converted to matching RT id value
                 'Test Primary Field',
                 true,
                 'Test Status',
@@ -360,29 +366,32 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModelsList,
+                affiliationMappingModelsList[0],
                 recordTypeModelsById
             );
         Test.stopTest();
 
         AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
-            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHCAfflMapAccRecordTypeTitle,
             Label.stgHealthCheckStatusFailed,
             0,
             1,
-            0,
             1,
-            Label.stgHCAfflMapAccRecordTypeTitle,
+            1,
+            String.format(
+                Label.stgHCAffiliationMappingSettingHeading,
+                new List<Object>{'Non-Existent Record Type Name'}    
+            ),
             'Fail',
             Label.stgHealthCheckStatusFailed,
             String.format(
                 Label.stgHCRecordTypeNotFound, 
-                new List<Object>{(String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('HH_Account')?.getRecordTypeId()}
+                new List<Object>{'Non-Existent Record Type Name'}
             ),
             String.format(
                 Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
-                new List<Object>{(String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('HH_Account')?.getRecordTypeId()}
+                new List<Object>{'Non-Existent Record Type Name'}
             ),
             0
         ); 
@@ -402,7 +411,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         List<AffiliationMappingsModel> affiliationMappingModelsList = new List<AffiliationMappingsModel>{
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
-                'Not An Account Record Type ID', 
+                'ABCD12345000000000', 
                 'Test Primary Field',
                 true,
                 'Test Status',
@@ -422,32 +431,204 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModelsList,
+                affiliationMappingModelsList[0],
                 recordTypeModelsById
             );
         Test.stopTest();
 
         AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
-            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHCAfflMapAccRecordTypeTitle,
             Label.stgHealthCheckStatusFailed,
             0,
             1,
-            0,
             1,
-            Label.stgHCAfflMapAccRecordTypeTitle,
+            1,
+            String.format(
+                Label.stgHCAffiliationMappingSettingHeading,
+                new List<Object>{'ABCD12345000000000'}
+            ),
             'Fail',
             Label.stgHealthCheckStatusFailed,
             String.format(
                 Label.stgHCRecordTypeNotFound, 
-                new List<Object>{'Not An Account Record Type ID'} 
+                new List<Object>{'ABCD12345000000000'} 
             ),
             String.format(
                 Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
-                new List<Object>{'Not An Account Record Type ID'}
+                new List<Object>{'ABCD12345000000000'}
             ),
             0
         ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify setHealthCheckItemForAccountRTHealthCheck returns a 
+    * HealthCheckGroupVModel with a Passed status when an affiliation mapping contains a
+    * value that matches a Record Type in the org that is valid and active.
+    *****************************************************************************************/
+    private static void setHealthCheckItemForAccountRTHealthCheckValidAndActive() {
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                '000000000000000006',
+                'Test Primary Field',
+                true,
+                'Test Status',
+                'Test Role'
+            );
+
+        RecordTypeModel recordTypeModel = new RecordTypeModel(
+            '000000000000000006',
+            'Active RecordType Name',
+            'activeRTDevName',
+            true
+        );
+
+        AffiliationMappingsHealthCheckVMapper affiliationMappingsHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance(); 
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            affiliationMappingsHealthCheckVMapperInstance.setHealthCheckItemForAccountRTHealthCheck(
+                recordTypeModel,    
+                affiliationMappingsModel
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAccRecordTypeTitle,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1,
+            String.format(
+                Label.stgHCAffiliationMappingSettingHeading,
+                new List<Object>{'Active RecordType Name'}    
+            ),
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCRecordTypeValid, 
+                new List<Object>{'Active RecordType Name', 'activeRTDevName'}
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify setHealthCheckItemForAccountRTHealthCheck returns a 
+    * HealthCheckGroupVModel with a Failed status when an affiliation mapping contains a
+    * value that matches a Record Type in the org that is valid but inactive.
+    *****************************************************************************************/
+    private static void setHealthCheckItemForAccountRTHealthCheckInactive() {
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                '000000000000000007',
+                'Test Primary Field',
+                true,
+                'Test Status',
+                'Test Role'
+            );
+
+        RecordTypeModel recordTypeModel = new RecordTypeModel(
+            '000000000000000007',
+            'Inactive RecordType Name',
+            'inactiveRTDevName',
+            true
+        );
+
+        AffiliationMappingsHealthCheckVMapper affiliationMappingsHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance(); 
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            affiliationMappingsHealthCheckVMapperInstance.setHealthCheckItemForAccountRTHealthCheck(
+                recordTypeModel,    
+                affiliationMappingsModel
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAccRecordTypeTitle,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1,
+            String.format(
+                Label.stgHCAffiliationMappingSettingHeading,
+                new List<Object>{'Inactive RecordType Name'}    
+            ),
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCRecordTypeInactive, 
+                new List<Object>{'Inactive RecordType Name', 'inactiveRTDevName'}
+            ),
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeInactiveFix, 
+                new List<Object>{'Inactive RecordType Name', 'inactiveRTDevName'}
+            ),
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify setHealthCheckItemForAccountRTHealthCheck returns a 
+    * HealthCheckGroupVModel with a Failed status when an affiliation mapping contains a
+    * value that does not match a Record Type in the org.
+    *****************************************************************************************/
+    private static void setHealthCheckItemForAccountRTHealthCheckNull() {
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                '000000000000000007',
+                'Test Primary Field',
+                true,
+                'Test Status',
+                'Test Role'
+            );
+
+        RecordTypeModel recordTypeModel = null;
+
+        AffiliationMappingsHealthCheckVMapper affiliationMappingsHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance(); 
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            affiliationMappingsHealthCheckVMapperInstance.setHealthCheckItemForAccountRTHealthCheck(
+                recordTypeModel,    
+                affiliationMappingsModel
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAccRecordTypeTitle,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1,
+            String.format(
+                Label.stgHCAffiliationMappingSettingHeading,
+                new List<Object>{'000000000000000007'}    
+            ),
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCRecordTypeNotFound, 
+                new List<Object>{'000000000000000007'}
+            ),
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
+                new List<Object>{'000000000000000007'}
+            ),
+            0
+        );
     }
 
     /**************************************************************************************
@@ -553,13 +734,13 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     ***************************************************************************/
     private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
         private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
-            List<AffiliationMappingsModel> affiliationMappingModels, 
+            AffiliationMappingsModel affiliationMappingModel, 
             Map<Id,RecordTypeModel> recordTypeModelsById
         ) {
-            return this.mockCheck(affiliationMappingModels);
+            return this.mockCheck(affiliationMappingModel);
         }
         
-        private HealthCheckGroupVModel mockCheck(List<AffiliationMappingsModel> affiliationMappingModels) {
+        private HealthCheckGroupVModel mockCheck(AffiliationMappingsModel affiliationMappingModel) {
             HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
                 '',
                 '',
@@ -582,7 +763,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
             healthCheckGroupVModel.totalChecks += 1;
 
-            if(affiliationMappingModels != null) {
+            if(affiliationMappingModel != null) {
                 healthCheckGroupVModel.passedChecks += 1;
             }
 
@@ -628,7 +809,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     ***************************************************************************/
     private class STUB_AffiliationMappingsServiceUnfound extends AffiliationMappingsService {
         public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
-            return null;
+            return new List<AffiliationMappingsModel>{null};
         }
     }
 
