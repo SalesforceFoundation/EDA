@@ -15,7 +15,7 @@ Verify backfill settings error message when course connections is unchecked
     ...                     warning message banner is displayed in the backfill tab. Verifies the
     ...                     checkbox "I understand and am ready to run backfill" is not checked.
     ...                     Checks the button "Run Backfill" is not active.
-    [tags]                  unstable        W-041785        rbt:high
+    [tags]                  W-041785        rbt:high
     Update enable cc to default
     Verify enable course connections            false
     Select course connections subtab            Backfill
@@ -27,7 +27,7 @@ Verify backfill settings error message when course connections is unchecked
 Verify backfill field functionality when course connections is enabled
     [Documentation]         Checks enable course connection is enabled and then verifies the
     ...                     backfill field functionality
-    [tags]                  unstable        W-8448330        rbt:high
+    [tags]                  W-8448330        rbt:high
     Click action button on EDA settings page    Edit
     Set enable course connections
     Click action button on EDA settings page    Save
