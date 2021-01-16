@@ -103,8 +103,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
         RecordTypeService.instance = new STUB_RecordTypeService();
 
-        STUB_AffiliationMappingsHealthCheckVMapperSub AffiliationMappingsHealthCheckVMapperStub =
-            new STUB_AffiliationMappingsHealthCheckVMapperSub();
+        STUB_AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperStub =
+            new STUB_AffiliationMappingsHealthCheckVMapper();
         AffiliationMappingsHealthCheckVMapper.instance = AffiliationMappingsHealthCheckVMapperStub;  
 
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
@@ -156,10 +156,10 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     @isTest
     private static void getHealthCheckGroupAllFail() {
         AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceUnfound();
-        RecordTypeService.instance = new STUB_RecordTypeService();
+        RecordTypeService.instance = new STUB_RecordTypeServiceNull();
 
-        STUB_AffiliationMappingsHealthCheckVMapperSub AffiliationMappingsHealthCheckVMapperStub =
-            new STUB_AffiliationMappingsHealthCheckVMapperSub();
+        STUB_AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperStub =
+            new STUB_AffiliationMappingsHealthCheckVMapper();
 
         AffiliationMappingsHealthCheckVMapper.instance = AffiliationMappingsHealthCheckVMapperStub;  
 
@@ -252,10 +252,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             1,
             0,
             1,
-            String.format(
-                Label.stgHCAffiliationMappingSettingHeading,
-                new List<Object>{'Active RecordType Name'}    
-            ),
+            Label.stgHCAfflMapAccRecordTypeTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
             String.format(
@@ -314,10 +311,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             1,
             1,
             1,
-            String.format(
-                Label.stgHCAffiliationMappingSettingHeading,
-                new List<Object>{'Inactive RecordType Name'}    
-            ),
+            Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
             String.format(
@@ -379,10 +373,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             1,
             1,
             1,
-            String.format(
-                Label.stgHCAffiliationMappingSettingHeading,
-                new List<Object>{'Non-Existent Record Type Name'}    
-            ),
+            Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
             String.format(
@@ -444,10 +435,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             1,
             1,
             1,
-            String.format(
-                Label.stgHCAffiliationMappingSettingHeading,
-                new List<Object>{'ABCD12345000000000'}
-            ),
+            Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
             String.format(
@@ -726,6 +714,10 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         System.assertEquals(0, healthCheckItemVModel.healthCheckItemList.size());
     }
 
+    private static void getAffiliationMappingsHealthCheckResults() {
+
+    }
+
     /**************************************************************************************
     ********************************* HELPER METHODS **************************************
     **************************************************************************************/
@@ -827,48 +819,48 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     * AffiliationMappingsHealthCheckVMapper to control
     * getRelationshipLookupHealthCheckGroup
     ***************************************************************************/
-    // private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
-    //     private override HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
-    //         AffiliationMappingsModel affiliationMappingsModel,
-    //         Map<Id, RecordTypeModel> recordTypeModelsById
-    //     ) {
-    //         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
-    //             '',
-    //             '',
-    //             0,
-    //             0,
-    //             new List<String>(),
-    //             new List<HealthCheckItemVModel>()
-    //         );
+    private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
+        private override HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<Id, RecordTypeModel> recordTypeModelsById
+        ) {
+            HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
+                '',
+                '',
+                0,
+                0,
+                new List<String>(),
+                new List<HealthCheckItemVModel>()
+            );
 
-    //         RecordTypeModel recordTypeModel =
-    //             recordTypeModelsById.get(affiliationMappingsModel.accountRecordTypeId);
+            RecordTypeModel recordTypeModel =
+                recordTypeModelsById.get(affiliationMappingsModel.accountRecordTypeId);
     
-    //         HealthCheckItemVModel healthCheckItemVModel = 
-    //             this.getHealthCheckItemVModelForAffiliationMappingsModel(
-    //                 affiliationMappingsModel,
-    //                 recordTypeModel
-    //             );
+            HealthCheckItemVModel healthCheckItemVModel = 
+                this.getHealthCheckItemVModelForAffiliationMappingsModel(
+                    affiliationMappingsModel,
+                    recordTypeModel
+                );
 
-    //         healthCheckGroupVModel.totalChecks += 1;
+            healthCheckGroupVModel.totalChecks += 1;
 
-    //         if(recordTypeModel != null) {
-    //             healthCheckGroupVModel.passedChecks += 1;
-    //         }
+            if(recordTypeModel != null) {
+                healthCheckGroupVModel.passedChecks += 1;
+            }
 
-    //         if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
-    //             healthCheckItemVModel.status = 'Fail';
-    //             healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusFailed;
-    //             healthCheckGroupVModel.expandedRowsList.add(affiliationMappingsModel.name);
-    //         }
+            if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
+                healthCheckItemVModel.status = 'Fail';
+                healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusFailed;
+                healthCheckGroupVModel.expandedRowsList.add(affiliationMappingsModel.name);
+            }
     
-    //         healthCheckItemVModel.healthCheckItemList.sort();
+            healthCheckItemVModel.healthCheckItemList.sort();
     
-    //         healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
 
-    //         return healthCheckGroupVModel;
-    //     }
-    // }
+            return healthCheckGroupVModel;
+        }
+    }
 
     /***************************************************************************
     * @description Stub class to simulate the response from
@@ -955,6 +947,19 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private class STUB_AffiliationMappingsServiceUnfound extends AffiliationMappingsService {
         public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
             List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel>();
+
+            System.debug('creating unfound affiliation mapping list');
+            affiliationMappingsModelsList.add(
+                new AffiliationMappingsModel(
+                    'unfound name',
+                    'unfound accountRecordTypeId',
+                    'unfound primaryAffiliationField',
+                    true,
+                    'unfound autoProgramEnrollmentStatus',
+                    'unfound autoProgramEnrollmentRole'
+                )
+            );
+
             return affiliationMappingsModelsList;
         }
     }

@@ -73,6 +73,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
 
+        System.debug('affiliationMappingsModelsList: ' + affiliationMappingsModelsList);
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
             HealthCheckGroupVModel childAffiliationMappingsHealthCheckResults = this.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
@@ -86,9 +87,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             parentHealthCheckGroupVModel.healthCheckItemList.addAll(childAffiliationMappingsHealthCheckResults.healthCheckItemList);
         }
 
-        System.debug('exited for loop');
-        System.debug('parentHealthCheckGroupVModel.passedChecks: ' + parentHealthCheckGroupVModel.passedChecks);
-        System.debug('parentHealthCheckGroupVModel.totalChecks: ' + parentHealthCheckGroupVModel.totalChecks);
         parentHealthCheckGroupVModel.updateHealthCheckStatus();
         parentHealthCheckGroupVModel.healthCheckItemList.sort();
 
@@ -106,10 +104,13 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Auto-Enrollment Role
     * @return A HealthCheckGroupVModel
     **********************************************************************************/
+    @TestVisible
     private virtual HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
         AffiliationMappingsModel affiliationMappingsModel,
         Map<Id, RecordTypeModel> recordTypeModelsById
     ) {
+
+
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
             '',
             '',
@@ -119,9 +120,12 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             new List<HealthCheckItemVModel>()
         );
 
-        RecordTypeModel recordTypeModel =
-            recordTypeModelsById.get(affiliationMappingsModel.accountRecordTypeId);
-
+        RecordTypeModel recordTypeModel = 
+            this.locateRecordTypeService().getRecordTypeModelFromMap(
+                affiliationMappingsModel.accountRecordTypeId, 
+                recordTypeModelsById
+            );
+        
         HealthCheckItemVModel childHealthCheckItemVModel =
             this.getHealthCheckItemVModelForAffiliationMappingsModel(
                 affiliationMappingsModel,
@@ -206,7 +210,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         Map<Id,RecordTypeModel> recordTypeModelsById
     ) {
 
-        System.debug('in getValidRecordTypeHealthCheckGroupVModel');
         // Retrieve model for Account RT matching value specified in affiliation mapping
         RecordTypeModel accountRTModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
             affliliationMappingsModel.accountRecordTypeId, 
@@ -218,8 +221,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             affliliationMappingsModel
         );
 
-        System.debug('accountRecordTypeHCGroupModelWithHCItems total checks: ' + accountRecordTypeHCGroupModelWithHCItems.totalChecks);
-        System.debug('accountRecordTypeHCGroupModelWithHCItems passed checks: ' + accountRecordTypeHCGroupModelWithHCItems.passedChecks);
         if (accountRecordTypeHCGroupModelWithHCItems.status == System.Label.stgHealthCheckStatusFailed) {
             accountRecordTypeHCGroupModelWithHCItems.expandedRowsList.add(affliliationMappingsModel.name);
         }
@@ -239,8 +240,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         RecordTypeModel recordTypeModel,
         AffiliationMappingsModel affliliationMappingsModel
     ) {
-
-        System.debug('in setHealthCheckItemForAccountRTHealthCheck');
 
         // Initialize temporary HCGroupVModel with default settings
         HealthCheckGroupVModel tempHCGroupVModel = 
