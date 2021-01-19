@@ -72,11 +72,23 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
         Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = 
+            this.locateLookupFieldService().getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel =
+            this.locateLookupFieldService().getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
+        Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName = 
+            this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
+        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName = 
+            this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
 
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
             HealthCheckGroupVModel childAffiliationMappingsHealthCheckResults = this.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
-                accRTModelsById
+                accRTModelsById,
+                accountLookupsOnContactFieldModelsByName,
+                accountLookupsOnContactFieldModelsByLabel,
+                affilationRolePicklistEntryModelByName,
+                affilationStatusPicklistEntryModelByName
             );
 
             // Add results from child health check group results to parent
@@ -101,12 +113,23 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Contact Primary Affiliation Field Uniqueness
     * Auto-Enrollment Status
     * Auto-Enrollment Role
-    * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
-    * @param  recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
+    * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
+    * @param accountlookupFieldOnContactFieldModelByName A map of lookup fields to Account for the Contact object by devloper name.
+    * @param accountlookupFieldOnContactFieldModelByLabel
+    * @param affilationRolePicklistEntryModelByName
+    * @param affilationStatusPicklistEntryModelByName
     * @return A HealthCheckGroupVModel
     **********************************************************************************/
     @TestVisible
-    private virtual HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(AffiliationMappingsModel affiliationMappingsModel,Map<Id, RecordTypeModel> recordTypeModelsById) {
+    private virtual HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
+        AffiliationMappingsModel affiliationMappingsModel,
+        Map<Id, RecordTypeModel> recordTypeModelsById,
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel,
+        Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
+        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName
+    ) {
 
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
             '',
