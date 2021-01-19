@@ -246,7 +246,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
-            Label.stgHCAfflMapAccRecordTypeTitle,
+            Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusPassed,
             1,
             1,
@@ -305,11 +305,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
-            Label.stgHCAfflMapAccRecordTypeTitle,
+            Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusFailed,
             0,
             1,
-            1,
+            0,
             1,
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
@@ -367,11 +367,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
-            Label.stgHCAfflMapAccRecordTypeTitle,
+            Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusFailed,
             0,
             1,
-            1,
+            0,
             1,
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
@@ -429,11 +429,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         AffiliationMappingsHCVMapper_TEST.validateAssertions(
             healthCheckGroupVModelResult,
-            Label.stgHCAfflMapAccRecordTypeTitle,
+            Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusFailed,
             0,
             1,
-            1,
+            0,
             1,
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
@@ -779,7 +779,6 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
             List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel>();
 
-            System.debug('creating unfound affiliation mapping list');
             affiliationMappingsModelsList.add(
                 new AffiliationMappingsModel(
                     'unfound name',
