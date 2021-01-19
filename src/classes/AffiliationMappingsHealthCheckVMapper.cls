@@ -116,9 +116,9 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
     * @param recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
     * @param accountlookupFieldOnContactFieldModelByName A map of lookup fields to Account for the Contact object by devloper name.
-    * @param accountlookupFieldOnContactFieldModelByLabel
-    * @param affilationRolePicklistEntryModelByName
-    * @param affilationStatusPicklistEntryModelByName
+    * @param accountlookupFieldOnContactFieldModelByLabel A map of lookup fields to Account for the Contact object by field label.
+    * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name.
+    * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name.
     * @return A HealthCheckGroupVModel
     **********************************************************************************/
     @TestVisible
