@@ -72,6 +72,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
         Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
+        Set<String> duplicateAccountRecordTypeIds = this.locateAffiliationMappingsService().getDuplicateRecordTypeIdsFromList(affiliationMappingsModelsList);
 
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
             HealthCheckGroupVModel accountRecordTypeHCGroupVModel = 
