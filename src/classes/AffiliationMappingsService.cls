@@ -70,13 +70,11 @@ public virtual with sharing class AffiliationMappingsService {
     * retrieve ids from
     * @return The set of duplicate accountRecordTypeIds.
     ***************************************************************************/
-    public Set<String> getDuplicateRecordTypeIdsFromList(
-        List<AffiliationMappingsModel> affiliationMappingsModelList
-    ) {
+    public Set<String> getDuplicateAccountRecordTypeIdsFromList() {
         Set<String> nameSet = new Set<String>();
         Set<String> duplicateSet = new Set<String>();
 
-        for(AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelList) {
+        for(AffiliationMappingsModel affiliationMappingsModel : this.getAffiliationMappingsModels()) {
             if(nameSet.contains(affiliationMappingsModel.accountRecordTypeId)) {
                 duplicateSet.add(affiliationMappingsModel.accountRecordTypeId);
             } else {
