@@ -7,7 +7,9 @@ Library         cumulusci.robotframework.PageObjects
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
-Test Setup      Go to EDA settings tab          Relationships
+Test Setup      Run keywords
+...             Go to EDA settings tab          Relationships      AND
+...             Go to relationships sub tab     Settings
 
 *** Test Cases ***
 Verify relationship settings can retain values on save
