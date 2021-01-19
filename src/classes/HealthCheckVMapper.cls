@@ -91,13 +91,13 @@ public virtual with sharing class HealthCheckVMapper {
             List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
             List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
             
-            for (HealthCheckDefinitionModel healthChkDefModel : healthCheckDefinitionList) {
+            for (HealthCheckDefinitionModel healthCheckDefinitionModel : healthCheckDefinitionList) {
                 //Generate view model for current health check definition model
-                HealthCheckDefinitionVModel healthChkDefViewModel = new HealthCheckDefinitionVModel(healthChkDefModel.name,
-                                                                                                    healthChkDefModel.className,
-                                                                                                    healthChkDefModel.namespace);
+                HealthCheckDefinitionVModel healthCheckDefinitionVModel = new HealthCheckDefinitionVModel(healthCheckDefinitionModel.name,
+                                                                                                    healthCheckDefinitionModel.className,
+                                                                                                    healthCheckDefinitionModel.namespace);
 
-                healthCheckDefViewModelsList.add(healthChkDefViewModel);
+                healthCheckDefViewModelsList.add(healthCheckDefinitionVModel);
             }
 
             Integer numberOfRuns = healthCheckDefinitionList.size();

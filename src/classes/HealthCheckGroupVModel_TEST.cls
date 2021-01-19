@@ -42,18 +42,18 @@ public with sharing class HealthCheckGroupVModel_TEST {
         List<String> expandedRowsList = new List<String>{'aString', 'bString', 'cString'};
         List<HealthCheckItemVModel> healthCheckItemList = new List<HealthCheckItemVModel>();
         for (Integer i = 0; i<5; i++){
-            HealthCheckItemVModel hlthChkItemVMod = new HealthCheckItemVModel('TestKey' + i, 
+            HealthCheckItemVModel healthCheckItemVModel = new HealthCheckItemVModel('TestKey' + i, 
                                                                           'TestSetting' + i, 
                                                                           'TestStatus' + i, 
                                                                           'TestStatusLabel' + i,
                                                                           'TestDescription' + i, 
                                                                           'TextRecommendedFix' + i,
                                                                           new List<HealthCheckItemVModel>());
-            healthCheckItemList.add(hlthChkItemVMod);
+            healthCheckItemList.add(healthCheckItemVModel);
         }
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('TestLabel',
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel('TestLabel',
                                                                           'TestStatus', 
                                                                           5, 
                                                                           8,
@@ -61,12 +61,12 @@ public with sharing class HealthCheckGroupVModel_TEST {
                                                                           healthCheckItemList);
         Test.stopTest();
 
-        System.assertEquals('TestLabel', hlthChkGroupMod.label, 'HealthCheckGroupVModel label should be set to \'TestLabel\'..');
-        System.assertEquals('TestStatus', hlthChkGroupMod.status, 'HealthCheckGroupVModel status should be set to \'TestStatus\'.');
-        System.assertEquals(5, hlthChkGroupMod.passedChecks, 'HealthCheckGroupVModel passedChecks should be 5.');
-        System.assertEquals(8, hlthChkGroupMod.totalChecks, 'HealthCheckGroupVModel totalChecks should be 8.');
-        System.assertEquals(3, hlthChkGroupMod.expandedRowsList.size(), 'HealthCheckGroupVModel expandedRowsList should contain 3 strings.');
-        System.assertEquals(5, hlthChkGroupMod.healthCheckItemList.size(), 'HealthCheckGroupVModel healthCheckItemList should contain 5 healthCheckItem view models.');
+        System.assertEquals('TestLabel', healthCheckGroupVModel.label, 'HealthCheckGroupVModel label should be set to \'TestLabel\'..');
+        System.assertEquals('TestStatus', healthCheckGroupVModel.status, 'HealthCheckGroupVModel status should be set to \'TestStatus\'.');
+        System.assertEquals(5, healthCheckGroupVModel.passedChecks, 'HealthCheckGroupVModel passedChecks should be 5.');
+        System.assertEquals(8, healthCheckGroupVModel.totalChecks, 'HealthCheckGroupVModel totalChecks should be 8.');
+        System.assertEquals(3, healthCheckGroupVModel.expandedRowsList.size(), 'HealthCheckGroupVModel expandedRowsList should contain 3 strings.');
+        System.assertEquals(5, healthCheckGroupVModel.healthCheckItemList.size(), 'HealthCheckGroupVModel healthCheckItemList should contain 5 healthCheckItem view models.');
     }
 
     /*****************************************************************************************
@@ -76,74 +76,74 @@ public with sharing class HealthCheckGroupVModel_TEST {
     *****************************************************************************************/
     @isTest
     private static void sortByStatusThenLabelWithoutDuplicates(){
-        List<HealthCheckGroupVModel> hlthChkGroupModelsList = new List<HealthCheckGroupVModel>();
+        List<HealthCheckGroupVModel> healthCheckGroupVModelsList = new List<HealthCheckGroupVModel>();
 
 
-        HealthCheckGroupVModel hlthChkGroupMod1 = new HealthCheckGroupVModel('Zebra',
+        HealthCheckGroupVModel healthCheckGroupVModel1 = new HealthCheckGroupVModel('Zebra',
                                                                            'Fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
 
-        HealthCheckGroupVModel hlthChkGroupMod2 = new HealthCheckGroupVModel('zebra',
+        HealthCheckGroupVModel healthCheckGroupVModel2 = new HealthCheckGroupVModel('zebra',
                                                                            'pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupVModel hlthChkGroupMod3 = new HealthCheckGroupVModel('Baboon',
+        HealthCheckGroupVModel healthCheckGroupVModel3 = new HealthCheckGroupVModel('Baboon',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
        
-        HealthCheckGroupVModel hlthChkGroupMod4 = new HealthCheckGroupVModel('Giraffe',
+        HealthCheckGroupVModel healthCheckGroupVModel4 = new HealthCheckGroupVModel('Giraffe',
                                                                            'Fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupVModel hlthChkGroupMod5 = new HealthCheckGroupVModel('Lion',
+        HealthCheckGroupVModel healthCheckGroupVModel5 = new HealthCheckGroupVModel('Lion',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupVModel hlthChkGroupMod6 = new HealthCheckGroupVModel('Antelope',
+        HealthCheckGroupVModel healthCheckGroupVModel6 = new HealthCheckGroupVModel('Antelope',
                                                                            'Fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
 
-        hlthChkGroupModelsList.add(hlthChkGroupMod1);
-        hlthChkGroupModelsList.add(hlthChkGroupMod2);
-        hlthChkGroupModelsList.add(hlthChkGroupMod3);        
-        hlthChkGroupModelsList.add(hlthChkGroupMod4);
-        hlthChkGroupModelsList.add(hlthChkGroupMod5);
-        hlthChkGroupModelsList.add(hlthChkGroupMod6);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel1);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel2);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel3);        
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel4);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel5);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel6);
 
         Test.startTest();
-        hlthChkGroupModelsList.sort();
+        healthCheckGroupVModelsList.sort();
         Test.stopTest();
 
-        System.assertEquals(true, hlthChkGroupModelsList[0].label.equalsIgnoreCase('Antelope'));
-        System.assertEquals(true, hlthChkGroupModelsList[0].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkGroupModelsList[1].label.equalsIgnoreCase('Giraffe'));
-        System.assertEquals(true, hlthChkGroupModelsList[1].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkGroupModelsList[2].label.equalsIgnoreCase('Zebra'));
-        System.assertEquals(true, hlthChkGroupModelsList[2].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkGroupModelsList[3].label.equalsIgnoreCase('Baboon'));
-        System.assertEquals(true, hlthChkGroupModelsList[3].status.equalsIgnoreCase('Pass'));
-        System.assertEquals(true, hlthChkGroupModelsList[4].label.equalsIgnoreCase('Lion'));
-        System.assertEquals(true, hlthChkGroupModelsList[4].status.equalsIgnoreCase('Pass'));
-        System.assertEquals(true, hlthChkGroupModelsList[5].label.equalsIgnoreCase('Zebra'));
-        System.assertEquals(true, hlthChkGroupModelsList[5].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckGroupVModelsList[0].label.equalsIgnoreCase('Antelope'));
+        System.assertEquals(true, healthCheckGroupVModelsList[0].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckGroupVModelsList[1].label.equalsIgnoreCase('Giraffe'));
+        System.assertEquals(true, healthCheckGroupVModelsList[1].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckGroupVModelsList[2].label.equalsIgnoreCase('Zebra'));
+        System.assertEquals(true, healthCheckGroupVModelsList[2].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckGroupVModelsList[3].label.equalsIgnoreCase('Baboon'));
+        System.assertEquals(true, healthCheckGroupVModelsList[3].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckGroupVModelsList[4].label.equalsIgnoreCase('Lion'));
+        System.assertEquals(true, healthCheckGroupVModelsList[4].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckGroupVModelsList[5].label.equalsIgnoreCase('Zebra'));
+        System.assertEquals(true, healthCheckGroupVModelsList[5].status.equalsIgnoreCase('Pass'));
     }
 
     /*****************************************************************************************
@@ -153,74 +153,74 @@ public with sharing class HealthCheckGroupVModel_TEST {
     *****************************************************************************************/
     @isTest
     private static void sortByStatusThenLabelWithDuplicates(){
-        List<HealthCheckGroupVModel> hlthChkGroupModelsList = new List<HealthCheckGroupVModel>();
+        List<HealthCheckGroupVModel> healthCheckGroupVModelsList = new List<HealthCheckGroupVModel>();
 
 
-        HealthCheckGroupVModel hlthChkGroupMod1 = new HealthCheckGroupVModel('Zebra',
+        HealthCheckGroupVModel healthCheckGroupVModel1 = new HealthCheckGroupVModel('Zebra',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
 
-        HealthCheckGroupVModel hlthChkGroupMod2 = new HealthCheckGroupVModel('zebra',
+        HealthCheckGroupVModel healthCheckGroupVModel2 = new HealthCheckGroupVModel('zebra',
                                                                            'pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupVModel hlthChkGroupMod3 = new HealthCheckGroupVModel('Meerkat',
+        HealthCheckGroupVModel healthCheckGroupVModel3 = new HealthCheckGroupVModel('Meerkat',
                                                                            'Fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
        
-        HealthCheckGroupVModel hlthChkGroupMod4 = new HealthCheckGroupVModel('lion',
+        HealthCheckGroupVModel healthCheckGroupVModel4 = new HealthCheckGroupVModel('lion',
                                                                            'fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupVModel hlthChkGroupMod5 = new HealthCheckGroupVModel('Lion',
+        HealthCheckGroupVModel healthCheckGroupVModel5 = new HealthCheckGroupVModel('Lion',
                                                                            'fail', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
         
-        HealthCheckGroupVModel hlthChkGroupMod6 = new HealthCheckGroupVModel('Antelope',
+        HealthCheckGroupVModel healthCheckGroupVModel6 = new HealthCheckGroupVModel('Antelope',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
                                                                            new List<String>(), 
                                                                            new List<HealthCheckItemVModel>());
 
-        hlthChkGroupModelsList.add(hlthChkGroupMod1);
-        hlthChkGroupModelsList.add(hlthChkGroupMod2);
-        hlthChkGroupModelsList.add(hlthChkGroupMod3);        
-        hlthChkGroupModelsList.add(hlthChkGroupMod4);
-        hlthChkGroupModelsList.add(hlthChkGroupMod5);
-        hlthChkGroupModelsList.add(hlthChkGroupMod6);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel1);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel2);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel3);        
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel4);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel5);
+        healthCheckGroupVModelsList.add(healthCheckGroupVModel6);
 
         Test.startTest();
-        hlthChkGroupModelsList.sort();
+        healthCheckGroupVModelsList.sort();
         Test.stopTest();
 
-        System.assertEquals(true, hlthChkGroupModelsList[0].label.equalsIgnoreCase('Lion'));
-        System.assertEquals(true, hlthChkGroupModelsList[0].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkGroupModelsList[1].label.equalsIgnoreCase('Lion'));
-        System.assertEquals(true, hlthChkGroupModelsList[1].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkGroupModelsList[2].label.equalsIgnoreCase('Meerkat'));
-        System.assertEquals(true, hlthChkGroupModelsList[2].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkGroupModelsList[3].label.equalsIgnoreCase('Antelope'));
-        System.assertEquals(true, hlthChkGroupModelsList[3].status.equalsIgnoreCase('Pass'));
-        System.assertEquals(true, hlthChkGroupModelsList[4].label.equalsIgnoreCase('Zebra'));
-        System.assertEquals(true, hlthChkGroupModelsList[4].status.equalsIgnoreCase('Pass'));
-        System.assertEquals(true, hlthChkGroupModelsList[5].label.equalsIgnoreCase('Zebra'));
-        System.assertEquals(true, hlthChkGroupModelsList[5].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckGroupVModelsList[0].label.equalsIgnoreCase('Lion'));
+        System.assertEquals(true, healthCheckGroupVModelsList[0].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckGroupVModelsList[1].label.equalsIgnoreCase('Lion'));
+        System.assertEquals(true, healthCheckGroupVModelsList[1].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckGroupVModelsList[2].label.equalsIgnoreCase('Meerkat'));
+        System.assertEquals(true, healthCheckGroupVModelsList[2].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckGroupVModelsList[3].label.equalsIgnoreCase('Antelope'));
+        System.assertEquals(true, healthCheckGroupVModelsList[3].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckGroupVModelsList[4].label.equalsIgnoreCase('Zebra'));
+        System.assertEquals(true, healthCheckGroupVModelsList[4].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckGroupVModelsList[5].label.equalsIgnoreCase('Zebra'));
+        System.assertEquals(true, healthCheckGroupVModelsList[5].status.equalsIgnoreCase('Pass'));
     }
 
     /*****************************************************************************************
@@ -230,7 +230,7 @@ public with sharing class HealthCheckGroupVModel_TEST {
     *****************************************************************************************/
     private static void sortWithIncomparableObjectTypesRightFirstInList(){
         List<Object> objectsToSort = new List<Object>();
-        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('Antelope',
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel('Antelope',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
@@ -240,7 +240,7 @@ public with sharing class HealthCheckGroupVModel_TEST {
         Account testAccount = new Account(Name = 'TestAccount');
         Contact testContact = new Contact(LastName = 'Testerson');
 
-        objectsToSort.add(hlthChkGroupMod);
+        objectsToSort.add(healthCheckGroupVModel);
         objectsToSort.add(testContact);
         objectsToSort.add(testAccount);
 
@@ -260,7 +260,7 @@ public with sharing class HealthCheckGroupVModel_TEST {
     *****************************************************************************************/
     private static void sortWithIncomparableObjectTypesWrongFirstInList(){
         List<Object> objectsToSort = new List<Object>();
-        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('Antelope',
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel('Antelope',
                                                                            'Pass', 
                                                                            5, 
                                                                            8,
@@ -268,7 +268,7 @@ public with sharing class HealthCheckGroupVModel_TEST {
                                                                            new List<HealthCheckItemVModel>());
 
 
-        HealthCheckItemVModel hlthChkItemVMod1 = new HealthCheckItemVModel('TestKey1', 
+        HealthCheckItemVModel healthCheckItemVModel1 = new HealthCheckItemVModel('TestKey1', 
                                                                           'TestSetting', 
                                                                           'Fail', 
                                                                           'TestStatusLabel',
@@ -276,7 +276,7 @@ public with sharing class HealthCheckGroupVModel_TEST {
                                                                           'TextRecommendedFix',
                                                                           new List<HealthCheckItemVModel>());
 
-        HealthCheckItemVModel hlthChkItemVMod2 = new HealthCheckItemVModel('TestKey2', 
+        HealthCheckItemVModel healthCheckItemVModel2 = new HealthCheckItemVModel('TestKey2', 
                                                                           'TestSetting', 
                                                                           'Fail', 
                                                                           'TestStatusLabel',
@@ -286,9 +286,9 @@ public with sharing class HealthCheckGroupVModel_TEST {
         Account testAccount = new Account(Name = 'TestAccount');
         Contact testContact = new Contact(LastName = 'Testerson');
 
-        objectsToSort.add(hlthChkItemVMod1);
-        objectsToSort.add(hlthChkGroupMod);
-        objectsToSort.add(hlthChkItemVMod1);
+        objectsToSort.add(healthCheckItemVModel1);
+        objectsToSort.add(healthCheckGroupVModel);
+        objectsToSort.add(healthCheckItemVModel1);
         objectsToSort.add(testAccount);
         objectsToSort.add(testContact);
 
@@ -311,7 +311,7 @@ public with sharing class HealthCheckGroupVModel_TEST {
     private static void compareToIncompatibleObjectType(){
         Account acct = new Account(Name = 'Test Account');
 
-        HealthCheckGroupVModel hlthChkGroupMod = new HealthCheckGroupVModel('TestLabel',
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel('TestLabel',
                                                                           'TestStatus', 
                                                                           5, 
                                                                           8,
@@ -319,9 +319,45 @@ public with sharing class HealthCheckGroupVModel_TEST {
                                                                           new List<HealthCheckItemVModel>());
 
         Test.startTest();
-        Integer compareToResult = hlthChkGroupMod.compareTo(acct);
+        Integer compareToResult = healthCheckGroupVModel.compareTo(acct);
         Test.stopTest();
 
         System.assertEquals(0, compareToResult, 'Result comparing incompatible object types should be 0.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify updateHealthCheckStatus() returns Pass when all health checks executed pass.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void updateHealthCheckStatusPass(){
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel('TestLabel',
+                                                                          'TestStatus', 
+                                                                          5, 
+                                                                          5,
+                                                                          new List<String>{'TestString'}, 
+                                                                          new List<HealthCheckItemVModel>());
+        Test.startTest();
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckStatusPassed, healthCheckGroupVModel.status, 'Should return \'' + Label.stgHealthCheckStatusPassed + '\'.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify updateHealthCheckStatus() returns Fail when any health checks executed fail.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void updateHealthCheckStatusFail(){
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel('TestLabel',
+                                                                          'TestStatus', 
+                                                                          5, 
+                                                                          10,
+                                                                          new List<String>{'TestString'}, 
+                                                                          new List<HealthCheckItemVModel>());
+        Test.startTest();
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        Test.stopTest();
+
+        System.assertEquals(Label.stgHealthCheckStatusFailed, healthCheckGroupVModel.status, 'Should return \'' + Label.stgHealthCheckStatusFailed + '\'.');
     }
 }

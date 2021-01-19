@@ -41,19 +41,19 @@ public with sharing class HealthCheckVModel_TEST {
         List<HealthCheckDefinitionVModel> healthCheckDefinitionList = new List<HealthCheckDefinitionVModel>();
 
         for (Integer i=0; i<5; i++){
-            HealthCheckDefinitionVModel hlthChkDefVModl = new HealthCheckDefinitionVModel('Test ' + i, 'TestClass', 'TEST');
-            healthCheckDefinitionList.add(hlthChkDefVModl);
+            HealthCheckDefinitionVModel healthCheckDefinitionVModel = new HealthCheckDefinitionVModel('Test ' + i, 'TestClass', 'TEST');
+            healthCheckDefinitionList.add(healthCheckDefinitionVModel);
         }
 
         Test.startTest();
-        HealthCheckVModel healthCheckVModl = new HealthCheckVModel(Date.today().format(), healthCheckDefinitionList.size(), healthCheckDefinitionList);
+        HealthCheckVModel healthCheckVModel = new HealthCheckVModel(Date.today().format(), healthCheckDefinitionList.size(), healthCheckDefinitionList);
         Test.stopTest();
 
-        System.assertEquals(Date.today().format(), healthCheckVModl.lastRunDate, 'Last run date should be today.');
-        System.assertEquals(5, healthCheckVModl.numberOfHealthChecks, 'Number of health checks to run should be 5.');
+        System.assertEquals(Date.today().format(), healthCheckVModel.lastRunDate, 'Last run date should be today.');
+        System.assertEquals(5, healthCheckVModel.numberOfHealthChecks, 'Number of health checks to run should be 5.');
 
-        for (Integer i = 0; i < healthCheckVModl.healthCheckDefinitionList.size(); i++){
-            System.assertEquals('Test ' + i, healthCheckVModl.healthCheckDefinitionList[i].name, 'View model name should be \'Test ' + i + '\'.');
+        for (Integer i = 0; i < healthCheckVModel.healthCheckDefinitionList.size(); i++){
+            System.assertEquals('Test ' + i, healthCheckVModel.healthCheckDefinitionList[i].name, 'View model name should be \'Test ' + i + '\'.');
         }
     }
 

@@ -74,6 +74,13 @@ public virtual with sharing class HealthCheckDefinitionMapper {
 
         healthCheckDefinitionModelList.add(
             new HealthCheckDefinitionModel(
+                'AffiliationMappings', 
+                'EDAHealthCheckGroupAPIService', 
+                'hed'
+            ));
+        
+        healthCheckDefinitionModelList.add(
+            new HealthCheckDefinitionModel(
                 'ReciprocalRelationship', 
                 'EDAHealthCheckGroupAPIService', 
                 'hed'

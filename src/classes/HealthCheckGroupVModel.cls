@@ -53,6 +53,14 @@ public virtual with sharing class HealthCheckGroupVModel implements Comparable {
         this.expandedRowsList = expandedRowsList;
         this.healthCheckItemList = healthCheckItemList;
     }
+
+    /*********************************************************************************************************************
+    * @description Update the status of a HealthCheckGroupVModel based on the number of passing health checks to total checks. 
+    *********************************************************************************************************************/
+    public void updateHealthCheckStatus() {      
+        this.status = (this.passedChecks == this.totalChecks) ? 
+            System.Label.stgHealthCheckStatusPassed : System.Label.stgHealthCheckStatusFailed;
+    }
     
     /*****************************************************************************************
     * @description Implementation of CompareTo() that sorts by status (Fail above Pass), then in
@@ -67,13 +75,13 @@ public virtual with sharing class HealthCheckGroupVModel implements Comparable {
             return 0;
         }
 
-        HealthCheckGroupVModel hlthChkGroupModToCompareTo = (HealthCheckGroupVModel)compareTo;
-        Integer statusResult = this.status.toLowerCase().compareTo(hlthChkGroupModToCompareTo.status.toLowerCase());
+        HealthCheckGroupVModel healthCheckGroupVModelToCompareTo = (HealthCheckGroupVModel)compareTo;
+        Integer statusResult = this.status.toLowerCase().compareTo(healthCheckGroupVModelToCompareTo.status.toLowerCase());
         
         if (statusResult != 0){
             return statusResult;
         }
         
-        return this.label.toLowerCase().compareTo(hlthChkGroupModToCompareTo.label.toLowerCase());
+        return this.label.toLowerCase().compareTo(healthCheckGroupVModelToCompareTo.label.toLowerCase());
     }
 }

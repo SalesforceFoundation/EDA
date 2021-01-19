@@ -4,13 +4,13 @@
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this List of conditions and the following disclaimer.
+      notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this List of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
+      notice, this List of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
-    its contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
+      its contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -29,21 +29,14 @@
 * @date 2021
 * @group Health Check
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Model class for Account Model Settings
+* @description Generate a model serving as an abstraction of lookup field for Affiliation.
 */
-public with sharing class AccountModelSettingsModel {
+public with sharing class LookupFieldModel {
+    public String name;
+    public String label;
 
-    public String defaultAccountModelId;
-    public String administrativeAccountRecordTypeId;
-    public String householdAccountRecordTypeId;
-
-    public AccountModelSettingsModel(
-        String defaultAccountModelId, 
-        String administrativeAccountRecordTypeId, 
-        String householdAccountRecordTypeId
-    ) {
-        this.defaultAccountModelId = (String.isBlank(defaultAccountModelId)) ? '""' : defaultAccountModelId;
-        this.administrativeAccountRecordTypeId = (String.isBlank(administrativeAccountRecordTypeId)) ? '""' : administrativeAccountRecordTypeId;
-        this.householdAccountRecordTypeId = (String.isBlank(householdAccountRecordTypeId)) ? '""' : householdAccountRecordTypeId;
+    public LookupFieldModel(String name, String label) {
+        this.name = name;
+        this.label = label;
     }
 }

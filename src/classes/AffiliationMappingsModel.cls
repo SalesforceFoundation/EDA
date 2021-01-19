@@ -29,27 +29,34 @@
 * @date 2021
 * @group Health Check
 * @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Class to model the view of a Health Check Definition.
+* @description Model representing an abstraction of Affiliation Mappings in EDA Settings.
 */
-public with sharing class HealthCheckDefinitionVModel implements Comparable {
+public with sharing class AffiliationMappingsModel {
+    public String name;
+    public String accountRecordTypeId;
+    public String primaryAffiliationField;
+    public Boolean autoProgramEnrollment;
+    public String autoProgramEnrollmentStatus;
+    public String autoProgramEnrollmentRole;
 
-    @AuraEnabled public String name;
-    @AuraEnabled public String className;
-    @AuraEnabled public String namespace;
-
-    public HealthCheckDefinitionVModel(String name, String className, String namespace) {
+    public AffiliationMappingsModel(
+        String name,
+        String accountRecordTypeId, 
+        String primaryAffiliationField,
+        Boolean autoProgramEnrollment,
+        String autoProgramEnrollmentStatus,
+        String autoProgramEnrollmentRole
+    ) {
+        Id matchingRecordTypeId = 
+            Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
+        this.accountRecordTypeId = 
+            (matchingRecordTypeId == null) ?
+            accountRecordTypeId : matchingRecordTypeId;
+        
         this.name = name;
-        this.className = className;
-        this.namespace = namespace;
+        this.primaryAffiliationField = primaryAffiliationField;
+        this.autoProgramEnrollment = autoProgramEnrollment;
+        this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;
+        this.autoProgramEnrollmentRole = autoProgramEnrollmentRole;
     }
-
-    /****************************************************************************************************************************
-    * @description Implementation of compareTo() to sort HealthCheckDefinitionVModels by name.
-    * @param  objectToCompareTo A HealthCheckDefinitionVModel to be used for comparison
-    * @return 0 if names are equal, 1 if the current name is greater, -1 otherwise
-    ****************************************************************************************************************************/ 
-    public Integer compareTo(Object objectToCompareTo){
-        HealthCheckDefinitionVModel healthCheckDefinitionVModelToCompareTo = (HealthCheckDefinitionVModel)objectToCompareTo;
-        return this.name.toLowerCase().compareTo(healthCheckDefinitionVModelToCompareTo.name.toLowerCase());
-    } 
 }

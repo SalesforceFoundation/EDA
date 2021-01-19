@@ -48,6 +48,14 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>AffiliationMappingsHCVMapper_TEST</members>
+        <members>AffiliationMappingsHealthCheckVMapper</members>
+        <members>AffiliationMappingsMapper</members>
+        <members>AffiliationMappingsMapper_TEST</members>
+        <members>AffiliationMappingsModel</members>
+        <members>AffiliationMappingsModel_TEST</members>
+        <members>AffiliationMappingsService</members>
+        <members>AffiliationMappingsService_TEST</members>
         <members>BEH_CannotDelete_TDTM</members>
         <members>BEH_CannotDelete_TEST</members>
         <members>CASE_CannotDelete_TDTM</members>
@@ -138,6 +146,12 @@
         <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckVModel</members>
         <members>HealthCheckVModel_TEST</members>
+        <members>LookupFieldMapper</members>
+        <members>LookupFieldMapper_TEST</members>
+        <members>LookupFieldModel</members>
+        <members>LookupFieldModel_TEST</members>
+        <members>LookupFieldService</members>
+        <members>LookupFieldService_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
