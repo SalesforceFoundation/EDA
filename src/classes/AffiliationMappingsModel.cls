@@ -49,7 +49,6 @@ public with sharing class AffiliationMappingsModel {
     ) {
         Id matchingRecordTypeId = 
             Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
-
         this.accountRecordTypeId = 
             (matchingRecordTypeId == null) ?
             accountRecordTypeId : matchingRecordTypeId;

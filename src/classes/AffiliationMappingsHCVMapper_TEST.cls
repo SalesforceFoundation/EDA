@@ -194,9 +194,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'Number of total checks of returned health check should match expected custom label.'
         );
         System.assertEquals(
-            0,
+            1,
             healthCheckGroupVModel.expandedRowsList.size(),
-            'All health checks should fail, making expanded rows list size 0.'
+            'All health checks should fail, making expanded rows list size 1.'
         );
         System.assertEquals(
             1,
@@ -545,8 +545,137 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         System.assertEquals(0, healthCheckItemVModel.healthCheckItemList.size());
     }
 
-    private static void getAffiliationMappingsHealthCheckResults() {
+    /***************************************************************************
+    * @description Test method to verify that
+    * getAffiliationMappingsHealthCheckResults returns the expected failed health
+    * check
+    ***************************************************************************/
+    private static void getAffiliationMappingsHealthCheckResultsPass() {
 
+        STUB_AffiliationMappingsService affiliationMappingsServiceStub = 
+            new STUB_AffiliationMappingsService();
+
+        STUB_RecordTypeService recordTypeServiceStub = 
+            new STUB_RecordTypeService();
+
+        AffiliationMappingsHealthCheckVMapper.instance = 
+            new STUB_AffiliationMappingsHealthCheckVMapperSub();
+        
+        AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperInstance =
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+        
+        AffiliationMappingsModel affiliationMappingsModel =
+            affiliationMappingsServiceStub.getAffiliationMappingsModels()[0];
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = 
+            recordTypeServiceStub.getModelByIdMapForSObjectType(Account.SObjectType);
+        
+        Integer numberOfHealthChecks = 1; // TODO: Increment when adding health checks
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            affiliationMappingsHealthCheckVMapperInstance.getAffiliationMappingsHealthCheckResults(
+                affiliationMappingsModel,
+                recordTypeModelsById
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            '',
+            healthCheckGroupVModelResult.label,
+            'Label should equal expected value of blank'
+        );
+        System.assertEquals(
+            '',
+            healthCheckGroupVModelResult.status,
+            'Status should equal expected value of blank'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModelResult.passedChecks,
+            'Passed checks should equal expected value of ' + numberOfHealthChecks
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModelResult.totalChecks,
+            'Total checks should equal expected value of ' + numberOfHealthChecks
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModelResult.expandedRowsList.size(),
+            'Expanded rows list should have a size of 0'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModelResult.healthCheckItemList.size(),
+            'Health Check Item list should have a size of 1'
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that
+    * getAffiliationMappingsHealthCheckResults returns the expected failed health
+    * check
+    ***************************************************************************/
+    private static void getAffiliationMappingsHealthCheckResultsFail() {
+
+        STUB_AffiliationMappingsService affiliationMappingsServiceStub = 
+            new STUB_AffiliationMappingsService();
+
+        STUB_RecordTypeService recordTypeServiceStub = 
+            new STUB_RecordTypeService();
+
+        AffiliationMappingsHealthCheckVMapper.instance = 
+            new STUB_AffiliationMappingsHealthCheckVMapperSub();
+        
+        AffiliationMappingsHealthCheckVMapper affiliationMappingsHealthCheckVMapperInstance =
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+        
+        AffiliationMappingsModel affiliationMappingsModel =
+            affiliationMappingsHealthCheckVMapperInstance.locateAffiliationMappingsService().getAffiliationMappingsModels()[0];
+
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>();
+        
+        Integer numberOfHealthChecks = 1; // TODO: Increment when adding health checks
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            affiliationMappingsHealthCheckVMapperInstance.getAffiliationMappingsHealthCheckResults(
+                affiliationMappingsModel,
+                recordTypeModelsById
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            '',
+            healthCheckGroupVModelResult.label,
+            'Label should equal expected value of blank'
+        );
+        System.assertEquals(
+            '',
+            healthCheckGroupVModelResult.status,
+            'Status should equal expected value of blank'
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModelResult.passedChecks,
+            'Passed checks should equal expected value of 0'
+        );
+        System.assertEquals(
+            numberOfHealthChecks,
+            healthCheckGroupVModelResult.totalChecks,
+            'Total checks should equal expected value of ' + numberOfHealthChecks
+        );
+        System.assertEquals(
+            0,
+            healthCheckGroupVModelResult.expandedRowsList.size(),
+            'Expanded rows list should have a size of 0'
+        );
+        System.assertEquals(
+            1,
+            healthCheckGroupVModelResult.healthCheckItemList.size(),
+            'Health Check Item list should have a size of 1'
+        );
     }
 
     /**************************************************************************************
@@ -655,6 +784,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             AffiliationMappingsModel affiliationMappingsModel,
             Map<Id, RecordTypeModel> recordTypeModelsById
         ) {
+
             HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
                 '',
                 '',
@@ -664,8 +794,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<HealthCheckItemVModel>()
             );
 
-            RecordTypeModel recordTypeModel =
-                recordTypeModelsById.get(affiliationMappingsModel.accountRecordTypeId);
+            RecordTypeModel recordTypeModel = 
+                this.locateRecordTypeService().getRecordTypeModelFromMap(
+                    affiliationMappingsModel.accountRecordTypeId, 
+                    recordTypeModelsById
+                );
     
             HealthCheckItemVModel healthCheckItemVModel = 
                 this.getHealthCheckItemVModelForAffiliationMappingsModel(
@@ -887,6 +1020,17 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private class STUB_RecordTypeServiceNull extends RecordTypeService {
         public override RecordTypeModel getRecordTypeModelFromMap(String recordTypeId, Map<Id, RecordTypeModel> recordTypeModelById) { 
             return null;
+        }
+
+        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+            return new Map<Id, RecordTypeModel>{
+               '000000000000000009' => new RecordTypeModel(
+                                            '000000000000000009',
+                                            'random test acct record type',
+                                            'randomAcctRT',
+                                            true
+                                       )
+            };
         }
     }
 }

@@ -108,8 +108,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         AffiliationMappingsModel affiliationMappingsModel,
         Map<Id, RecordTypeModel> recordTypeModelsById
     ) {
-
-
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
             '',
             '',
@@ -124,7 +122,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 affiliationMappingsModel.accountRecordTypeId, 
                 recordTypeModelsById
             );
-        
+
         HealthCheckItemVModel childHealthCheckItemVModel =
             this.getHealthCheckItemVModelForAffiliationMappingsModel(
                 affiliationMappingsModel,
