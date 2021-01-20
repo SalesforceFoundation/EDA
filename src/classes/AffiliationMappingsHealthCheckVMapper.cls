@@ -111,7 +111,10 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     private virtual HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
         AffiliationMappingsModel affiliationMappingsModel,
         Map<Id, RecordTypeModel> recordTypeModelsById,
-        Set<String> duplicateAccountRecordTypeIds
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
+        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel,
+        Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
+        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName
     ) {
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
             '',
@@ -428,4 +431,24 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     private RecordTypeService locateRecordTypeService() {
         return RecordTypeService.getInstance();
     }
+
+
+    /*****************************************************************************
+    * @description Retrieve an instance of the LookupFieldService class.
+    * @return An instance of LookupFieldService.
+    *****************************************************************************/
+    @TestVisible
+    private LookupFieldService locateLookupFieldService() {
+        return LookupFieldService.getInstance();
+    }
+
+    /*****************************************************************************
+    * @description Retrieve an instance of the PicklistEntryService class.
+    * @return An instance of PicklistEntryService.
+    *****************************************************************************/
+    @TestVisible
+    private PicklistEntryService locatePicklistEntryService() {
+        return PicklistEntryService.getInstance();
+    }
+}
 }
