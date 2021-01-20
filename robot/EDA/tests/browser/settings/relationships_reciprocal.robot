@@ -40,7 +40,7 @@ Delete inserted data
 Verify reciprocal relationship settings can be added in both read and edit mode
     [Documentation]         Validates reciprocal settings can be added in read and edit mode. Also
     ...                     checks if those values are retained after save.
-    [tags]                    unstable        W-8214822     rbt:high
+    [tags]                    W-8214822     rbt:high
     Enter new reciprocal setting
     ...         Name=Name
     ...         Female=Female
@@ -97,7 +97,7 @@ Verify reciprocal relationship settings can be added in both read and edit mode
 Verify reciprocal relationship settings can be deleted
     [Documentation]         Validates reciprocal settings can be deleted. Also checks if those
     ...                     values are retained after save.
-    [tags]                    unstable        W-8245483     rbt:high
+    [tags]                    W-8245483     rbt:high
     Click action button on EDA settings page    Edit
     Click delete setting icon       Name=Name1
     Handle alert
@@ -110,7 +110,7 @@ Verify reciprocal relationship settings can be deleted
 Verify existing reciprocal setting can be edited and values retained on save
     [Documentation]         Validates reciprocal settings can be updated. Also checks if those
     ...                     values are retained after save.
-    [tags]                    unstable        W-8251460     rbt:high
+    [tags]                    W-8251460     rbt:high
     Click action button on EDA settings page    Edit
     Update existing reciprocal setting      column=Name1
     ...                                     Name=Name1
