@@ -782,7 +782,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
         private override HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
             AffiliationMappingsModel affiliationMappingsModel,
-            Map<Id, RecordTypeModel> recordTypeModelsById
+            Map<Id, RecordTypeModel> recordTypeModelsById,
+            Set<String> duplicateAccountRecordTypeIds
         ) {
 
             HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
