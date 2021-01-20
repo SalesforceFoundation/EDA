@@ -62,7 +62,10 @@ public virtual with sharing class LookupFieldService {
     * @param lookupToSObjectType The SObject type that the field model looks up to 
     * @return A Map<String, LookupFieldModel>
     ********************************************************************************************/
-    public Map<String, LookupFieldModel> getModelByNameMapForSObjectType(SObjectType sObjectType, SObjectType lookupToSObjectType) {
+    public virtual Map<String, LookupFieldModel> getModelByNameMapForSObjectType(
+        SObjectType sObjectType, 
+        SObjectType lookupToSObjectType
+    ) {
         return this.locateLookupFieldMapper().getModelByNameMapForSObjectType(sObjectType, lookupToSObjectType);
     }
 
