@@ -43,7 +43,7 @@ public with sharing class AffiliationMappingsModel_TEST {
         Test.startTest();
         AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
             'TestAfflMappingModel',
-            'HH_Account',
+            'Test Account Record Type Name',
             'Test Primary Affl Field',
             true,
             'Test Status',
@@ -51,10 +51,8 @@ public with sharing class AffiliationMappingsModel_TEST {
         );
         Test.stopTest();
 
-        String expectedRTString = (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('HH_Account').getRecordTypeId();
-
         System.assertEquals('TestAfflMappingModel', affiliationMappingsModel.name, 'Name should be set.');
-        System.assertEquals(expectedRTString, affiliationMappingsModel.accountRecordTypeId, 'Record Type Id for HH_Account should be set.');
+        System.assertEquals('Test Account Record Type Name', affiliationMappingsModel.accountRecordTypeFieldValue, 'Record Type name should be \'Test Account Record Type Name\'.');
         System.assertEquals('Test Primary Affl Field', affiliationMappingsModel.primaryAffiliationField, 'Primary Affiliation Field should be set.');
         System.assertEquals(true, affiliationMappingsModel.autoProgramEnrollment, 'Auto Enrollment should be true');
         System.assertEquals('Test Status', affiliationMappingsModel.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
@@ -63,26 +61,26 @@ public with sharing class AffiliationMappingsModel_TEST {
 
     /*****************************************************************************
     * @description Test to verify constructor with six arguments instantiates a 
-    * model with the appropriate data when an invalid record type developer name is specified.
+    * model with the appropriate data when blank values are specified.
     *****************************************************************************/
     @isTest 
-    private static void affiliationMappingsModelNullRecordTypeId(){
+    private static void affiliationMappingsModelNull(){
         Test.startTest();
         AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
-            'TestAfflMappingModel',
-            'Not a Valid Record Type Dev Name',
-            'Test Primary Affl Field',
+            '',
+            '',
+            '',
             true,
-            'Test Status',
-            'Test Role'
+            '',
+            ''
         );
         Test.stopTest();
 
-        System.assertEquals('TestAfflMappingModel', affiliationMappingsModel.name, 'Name should be set.');
-        System.assertEquals('Not a Valid Record Type Dev Name', affiliationMappingsModel.accountRecordTypeId, 'Record Type Id should be \'Not a Valid Record Type Dev Name\'.');
-        System.assertEquals('Test Primary Affl Field', affiliationMappingsModel.primaryAffiliationField, 'Primary Affiliation Field should be set.');
+        System.assertEquals('', affiliationMappingsModel.name, 'Name should be blank.');
+        System.assertEquals('""', affiliationMappingsModel.accountRecordTypeFieldValue, 'Record Type Id should be \'""\'.');
+        System.assertEquals('""', affiliationMappingsModel.primaryAffiliationField, 'Primary Affiliation Field should be \'""\'.');
         System.assertEquals(true, affiliationMappingsModel.autoProgramEnrollment, 'Auto Enrollment should be true');
-        System.assertEquals('Test Status', affiliationMappingsModel.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
-        System.assertEquals('Test Role', affiliationMappingsModel.autoProgramEnrollmentRole, 'Auto Enrollment Role should be set.');
+        System.assertEquals('""', affiliationMappingsModel.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be \'""\'.');
+        System.assertEquals('""', affiliationMappingsModel.autoProgramEnrollmentRole, 'Auto Enrollment Role should be \'""\'.');
     }
 }

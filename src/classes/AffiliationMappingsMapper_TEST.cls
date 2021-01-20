@@ -89,13 +89,13 @@ public with sharing class AffiliationMappingsMapper_TEST {
             if (affiliationMappingsModel.name == 'Invalid Affiliation Mapping'){
                 System.assertEquals(
                     'Invalid Mapping', 
-                    affiliationMappingsModel.accountRecordTypeId, 
+                    affiliationMappingsModel.accountRecordTypeFieldValue, 
                     'Affiliation Mapping Model account record type should match developer name listed in affiliation mapping when no matching record type exists in org.'
                 );
             } else {
                 System.assertEquals(
                     (String)Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(matchingPrimaryAffl.Account_Record_Type__c)?.getRecordTypeId(), 
-                    affiliationMappingsModel.accountRecordTypeId, 
+                    affiliationMappingsModel.accountRecordTypeFieldValue, 
                     'Affiliation Mapping Model account record type should match Id for record type matching specified developer name in affiliation mapping when one exists in org.'
                 );
             }

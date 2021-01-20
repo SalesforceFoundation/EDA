@@ -70,8 +70,15 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             new List<HealthCheckItemVModel>()
         );
 
-        Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
+
+        Map<Id, RecordTypeModel> accRecordTypeModelsById = 
+            this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = 
+            this.locateRecordTypeService().getRecordTypeModelByName(accRecordTypeModelsById);
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = 
+            this.locateRecordTypeService().getRecordTypeModelByLabel(accRecordTypeModelsById);
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = 
             this.locateLookupFieldService().getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel =
@@ -86,7 +93,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
             HealthCheckGroupVModel childAffiliationMappingsHealthCheckResults = this.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
-                accRTModelsById,
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel,
                 accountLookupsOnContactFieldModelsByName,
                 accountLookupsOnContactFieldModelsByLabel,
                 affilationRolePicklistEntryModelByName,
@@ -116,9 +124,9 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Auto-Enrollment Status
     * Auto-Enrollment Role
     * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
-    * @param recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
+    * @param recordTypeModelsByName A map of record type models by developer name representing all Account record types specified in the org.
+    * @param recordTypeModelsByLabel A map of record type models by label name representing all Account record types specified in the org.
     * @param accountlookupFieldOnContactFieldModelByName A map of lookup fields to Account for the Contact object by devloper name.
-    * @param accountlookupFieldOnContactFieldModelByLabel A map of lookup fields to Account for the Contact object by field label.
     * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name.
     * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name.
     * @return A HealthCheckGroupVModel
@@ -126,7 +134,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     @TestVisible
     private virtual HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
         AffiliationMappingsModel affiliationMappingsModel,
-        Map<Id, RecordTypeModel> recordTypeModelsById,
+        Map<String, RecordTypeModel> recordTypeModelsByName,
+        Map<String, RecordTypeModel> recordTypeModelsByLabel,
         Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
         Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel,
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
@@ -142,11 +151,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             new List<HealthCheckItemVModel>()
         );
 
-        RecordTypeModel recordTypeModel = 
-            this.locateRecordTypeService().getRecordTypeModelFromMap(
-                affiliationMappingsModel.accountRecordTypeId, 
-                recordTypeModelsById
-            );
+        RecordTypeModel recordTypeModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
+            affiliationMappingsModel.accountRecordTypeFieldValue,
+            recordTypeModelsByName,
+            recordTypeModelsByLabel
+        );
         
         HealthCheckItemVModel childHealthCheckItemVModel =
             this.getHealthCheckItemVModelForAffiliationMappingsModel(
@@ -161,7 +170,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         childHealthCheckGroupVModelList.add(
             this.getValidRecordTypeHealthCheckGroupVModel(
                 affiliationMappingsModel, 
-                recordTypeModelsById
+                recordTypeModelsByName,
+                recordTypeModelsByLabel
             )
         );
 
@@ -268,9 +278,28 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                                                                                  new List<String>(),
                                                                                  healthCheckItemsList);
 
+        if (affiliationMappingsModel.autoProgramEnrollment != true) {
+            return healthCheckGroupVModel;
+        }
+
         if (String.isBlank(affiliationMappingsModel.autoProgramEnrollmentStatus)) {
-            // TODO: Ask if Auto-Enrollment Status are required for affilation mappings, this
-            // line assumes they are optional
+            // Auto-Enrollment Status not specified
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                '05',
+                Label.stgHCAfflMapAutoEnrollRoleTitle,
+                'Fail',
+                Label.stgHealthCheckStatusFailed,
+                String.format(
+                    Label.stgHCAfflMapAutoEnrollStatusNotFound, 
+                    new List<Object>{affiliationMappingsModel.autoProgramEnrollmentStatus}
+                ),
+                Label.stgHCAfflMapAutoEnrollStatusNotFoundFix, 
+                new List<HealthCheckItemVModel>()
+            ));
+
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+
             return healthCheckGroupVModel;
         }
 
@@ -360,6 +389,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         AffiliationMappingsModel affiliationMappingsModel,
         Map<String, PicklistEntryModel> picklistEntryModelByName
     ) {
+
         List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
         String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
 
@@ -370,9 +400,28 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                                                                                  new List<String>(),
                                                                                  healthCheckItemsList);
 
+        if (affiliationMappingsModel.autoProgramEnrollment != true) {
+            return healthCheckGroupVModel;
+        }
+
         if (String.isBlank(affiliationMappingsModel.autoProgramEnrollmentRole)) {
-            // TODO: Ask if Auto-Enrollment Roles are required for affilation mappings, this
-            // line assumes they are optional
+            // Auto-Enrollment Role not specified
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                '05',
+                Label.stgHCAfflMapAutoEnrollRoleTitle,
+                'Fail',
+                Label.stgHealthCheckStatusFailed,
+                String.format(
+                    Label.stgHCAfflMapAutoEnrollRoleNotFound, 
+                    new List<Object>{affiliationMappingsModel.autoProgramEnrollmentRole}
+                ),
+                Label.stgHCAfflMapAutoEnrollRoleNotFoundFix, 
+                new List<HealthCheckItemVModel>()
+            ));
+
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+
             return healthCheckGroupVModel;
         }
 
@@ -513,7 +562,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapContactPrimaryFieldValid, 
                 new List<Object>{
                     affiliationMappingsModel.primaryAffiliationField, 
-                    affiliationMappingsModel.accountRecordTypeId
+                    affiliationMappingsModel.accountRecordTypeFieldValue
                 }
             ),
             Label.stgHealthCheckFixNotApplicable,
@@ -539,7 +588,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     @TestVisible
     private virtual HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
         AffiliationMappingsModel affiliationMappingsModel, 
-        Map<Id,RecordTypeModel> recordTypeModelsById
+        Map<String, RecordTypeModel> recordTypeModelsByName,
+        Map<String, RecordTypeModel> recordTypeModelsByLabel
     ) {
         List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
         String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
@@ -551,12 +601,13 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                                                                                  new List<String>(),
                                                                                  healthCheckItemsList);
 
-        RecordTypeModel accountRTModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
-            affiliationMappingsModel.accountRecordTypeId, 
-            recordTypeModelsById
+        RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
+            affiliationMappingsModel.accountRecordTypeFieldValue,
+            recordTypeModelsByName,
+            recordTypeModelsByLabel
         );
 
-        if (accountRTModel == null) {
+        if (accountRecordTypeModel == null) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                 '01',
                 Label.stgHCAfflMapAccRecordTypeTitle,
@@ -564,11 +615,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHealthCheckStatusFailed,
                 String.format(
                     Label.stgHCRecordTypeNotFound, 
-                    new List<Object>{affiliationMappingsModel.accountRecordTypeId}
+                    new List<Object>{affiliationMappingsModel.accountRecordTypeFieldValue}
                 ),
                 String.format(
                     Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
-                    new List<Object>{affiliationMappingsModel.accountRecordTypeId}
+                    new List<Object>{affiliationMappingsModel.accountRecordTypeFieldValue}
                 ),
                 new List<HealthCheckItemVModel>()
             ));
@@ -576,7 +627,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             healthCheckGroupVModel.totalChecks++;
         }
 
-        else if (accountRTModel.isActive == false) {
+        else if (accountRecordTypeModel.isActive == false) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                 '01',
                 Label.stgHCAfflMapAccRecordTypeTitle,
@@ -584,11 +635,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHealthCheckStatusFailed,
                 String.format(
                     Label.stgHCRecordTypeInactive, 
-                    new List<Object>{accountRTModel.name, accountRTModel.developerName}
+                    new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
                 ),
                 String.format(
                     Label.stgHCAfflMapAccRecordTypeInactiveFix, 
-                    new List<Object>{accountRTModel.name, accountRTModel.developerName}
+                    new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
                 ),
                 new List<HealthCheckItemVModel>()
             ));
@@ -604,7 +655,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHealthCheckStatusPassed,
                 String.format(
                     Label.stgHCRecordTypeValid, 
-                    new List<Object>{accountRTModel.name, accountRTModel.developerName}
+                    new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
                 ),
                 Label.stgHealthCheckFixNotApplicable,
                 new List<HealthCheckItemVModel>()
