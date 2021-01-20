@@ -77,7 +77,7 @@ public with sharing class LookupFieldMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(false, lookupFieldModelByNameResult.isEmpty(), 'Contact object should have fields that lookup to Account.');
-        System.assertEquals(true, lookupFieldModelByNameResult.containsKey('Primary_Household__c'), 'Contact object should have field model for \'Primary Household\' field name.');
+        System.assertEquals(true, lookupFieldModelByNameResult.containsKey(UTIL_Namespace.strTokenNSPrefix('Primary_Household__c')), 'Contact object should have field model for \'Primary Household\' field name.');
     }
 
     /**************************************************************************************************************************

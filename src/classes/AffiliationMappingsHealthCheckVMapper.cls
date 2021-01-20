@@ -57,8 +57,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     }
 
     /**********************************************************************************
-    * @description Retrieve the results for a for an AccountModel health check.
-    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
+    * @description Retrieve the results for a for an AffiliationMappings health check.
+    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Affiliations.
     **********************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
@@ -78,16 +78,19 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             this.locateLookupFieldService().getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName = 
             this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
+        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName = 
+            this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
 
-        List<HealthCheckGroupVModel> childAffiliationHCGroupVModelsList = new List<HealthCheckGroupVModel>();
-        
+        List<HealthCheckGroupVModel> childHealthCheckGroupVModelsList = new List<HealthCheckGroupVModel>();
+
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
             HealthCheckGroupVModel childAffiliationMappingsHealthCheckResults = this.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
                 accRTModelsById,
                 accountLookupsOnContactFieldModelsByName,
                 accountLookupsOnContactFieldModelsByLabel,
-                affilationRolePicklistEntryModelByName
+                affilationRolePicklistEntryModelByName,
+                affilationStatusPicklistEntryModelByName
             );
 
             // Add results from child health check group results to parent
@@ -112,6 +115,12 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Contact Primary Affiliation Field Uniqueness
     * Auto-Enrollment Status
     * Auto-Enrollment Role
+    * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
+    * @param accountlookupFieldOnContactFieldModelByName A map of lookup fields to Account for the Contact object by devloper name.
+    * @param accountlookupFieldOnContactFieldModelByLabel A map of lookup fields to Account for the Contact object by field label.
+    * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name.
+    * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name.
     * @return A HealthCheckGroupVModel
     **********************************************************************************/
     @TestVisible
@@ -120,7 +129,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         Map<Id, RecordTypeModel> recordTypeModelsById,
         Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
         Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel,
-        Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName
+        Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
+        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName
     ) {
 
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
@@ -137,7 +147,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 affiliationMappingsModel.accountRecordTypeId, 
                 recordTypeModelsById
             );
-        
+
         HealthCheckItemVModel childHealthCheckItemVModel =
             this.getHealthCheckItemVModelForAffiliationMappingsModel(
                 affiliationMappingsModel,
@@ -188,13 +198,48 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         }
 
         childHealthCheckItemVModel.healthCheckItemList.sort();
-
         parentHealthCheckGroupVModel.healthCheckItemList.add(childHealthCheckItemVModel);
 
         return parentHealthCheckGroupVModel;
     }
 
-    /**********************************************************************************
+    /***************************************************************************
+    * @description Retrieves a formatted HealthCheckItemVModel. 
+    * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param  recordTypeModel A record type model corresponding to the Account record type specified in the affiliation mapping.
+    * @return A formatted HealthCheckItemVModel.
+    ***************************************************************************/
+    @TestVisible
+    protected virtual HealthCheckItemVModel getHealthCheckItemVModelForAffiliationMappingsModel(
+        AffiliationMappingsModel affiliationMappingsModel,
+        RecordTypeModel recordTypeModel
+    ) {
+        String recordTypeModelName = affiliationMappingsModel.name;
+
+        if(recordTypeModel != null) {
+            recordTypeModelName = recordTypeModel.name;
+        }
+
+        List<String> listForSettingsLabel =
+            new List<String>{affiliationMappingsModel.name};
+        List<String> listForDescriptionLabel =
+            new List<String>{affiliationMappingsModel.name,recordTypeModelName};
+
+        return new HealthCheckItemVModel(
+            affiliationMappingsModel.name,
+            String.format(
+                Label.stgHCAffiliationMappingSettingHeading,
+                listForSettingsLabel
+            ),
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            '',
+            '',
+            new List<HealthCheckItemVModel>()
+        );
+    }
+
+   /**********************************************************************************
     * @description Retrieve a HealthCheckGroup view model reprenting whether enrollment
     * roles specified in affiliation mappings correspond to valid picklist field values
     * listed in the Role picklist field on Affiliation__c.
@@ -237,6 +282,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             ));
 
             healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
             return healthCheckGroupVModel;
         }
 
@@ -265,6 +311,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             ));
 
             healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
             return healthCheckGroupVModel;
         }
 
@@ -341,6 +388,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 ));
 
                 healthCheckGroupVModel.totalChecks++;
+                healthCheckGroupVModel.updateHealthCheckStatus();
+                
                 return healthCheckGroupVModel;
             }
         }
@@ -363,49 +412,18 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
         healthCheckGroupVModel.totalChecks++;
         healthCheckGroupVModel.passedChecks++;
-    
-
         healthCheckGroupVModel.updateHealthCheckStatus();
+
         return healthCheckGroupVModel;
-    }
-
-    /***************************************************************************
-    * @description Retrieves a formatted HealthCheckItemVModel. 
-    * @return A formatted HealthCheckItemVModel.
-    ***************************************************************************/
-    @TestVisible
-    protected virtual HealthCheckItemVModel getHealthCheckItemVModelForAffiliationMappingsModel(
-        AffiliationMappingsModel affiliationMappingsModel,
-        RecordTypeModel recordTypeModel
-    ){
-        String recordTypeModelName = affiliationMappingsModel.name;
-
-        if(recordTypeModel != null) {
-            recordTypeModelName = recordTypeModel.name;
-        }
-
-        List<String> listForSettingsLabel =
-            new List<String>{affiliationMappingsModel.name};
-        List<String> listForDescriptionLabel =
-            new List<String>{affiliationMappingsModel.name,recordTypeModelName};
-
-        return new HealthCheckItemVModel(
-            affiliationMappingsModel.name,
-            String.format(
-                Label.stgHCAffiliationMappingSettingHeading,
-                listForSettingsLabel
-            ),
-            'Pass',
-            Label.stgHealthCheckStatusPassed,
-            '',
-            '',
-            new List<HealthCheckItemVModel>()
-        );
     }
 
     /**********************************************************************************
     * @description Retrieves a HealthCheckGroup view model representing the health check
-    * results for all affiliation mappings in EDA Settings.
+    * results for Account Record Types specified.  Determines whether the Account 
+    * record type included in an affiliation mapping corresponds to a record 
+    * type for Account in the org that is active.
+    * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param  recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible
@@ -490,7 +508,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         healthCheckGroupVModel.updateHealthCheckStatus();
         return healthCheckGroupVModel;
     }
-
+    
     /*****************************************************************************
     * @description Retrieve an instance of the AffiliationMappingsService class.
     * @return An instance of AffiliationMappingsService.
@@ -517,7 +535,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     private LookupFieldService locateLookupFieldService() {
         return LookupFieldService.getInstance();
     }
-    
+
     /*****************************************************************************
     * @description Retrieve an instance of the PicklistEntryService class.
     * @return An instance of PicklistEntryService.
