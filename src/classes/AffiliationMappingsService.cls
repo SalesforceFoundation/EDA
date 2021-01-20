@@ -64,6 +64,27 @@ public virtual with sharing class AffiliationMappingsService {
         return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
     }
 
+    /***************************************************************************
+    * @description Retrieves a set of duplicate accountRecordTypeIds from a list of models
+    * @param affiliationMappingsModelList The affiliation mapping model list to
+    * retrieve ids from
+    * @return The set of duplicate accountRecordTypeIds.
+    ***************************************************************************/
+    public Set<String> getDuplicateAccountRecordTypeIdsFromList() {
+        Set<String> nameSet = new Set<String>();
+        Set<String> duplicateSet = new Set<String>();
+
+        for(AffiliationMappingsModel affiliationMappingsModel : this.getAffiliationMappingsModels()) {
+            if(nameSet.contains(affiliationMappingsModel.accountRecordTypeId)) {
+                duplicateSet.add(affiliationMappingsModel.accountRecordTypeId);
+            } else {
+                nameSet.add(affiliationMappingsModel.accountRecordTypeId);
+            }
+        }
+
+        return duplicateSet;
+    }
+
     /*****************************************************************************
     * @description Retrieves an instance of the AffiliationMappingsMapper.
     * @return The instance of AffiliationMappingsMapper.
