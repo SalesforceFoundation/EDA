@@ -97,8 +97,6 @@ private class RecordTypeService_TEST {
             RecordTypeModel recordTypeModel = RecordTypeService.getInstance(
                 ).getRecordTypeModelFromMap('000000000000000001', recordTypeModelById);
         Test.stopTest();
-
-
         
         System.assertEquals(null, recordTypeModel, 'A record type model should not be returned for a record type that does not exist.');
     }
@@ -139,7 +137,187 @@ private class RecordTypeService_TEST {
         System.assertEquals('Household', recordTypeModel.name, 'The record type model for a record type should have the specified name.');
         System.assertEquals('Household Account', recordTypeModel.developerName, 'The record type model for a record type should have the specified developer name.');
         System.assertEquals(true, recordTypeModelById.get('000000000000000000').isActive, 'The record type model for a record type should have the specified is active flag.');
+    }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that getRecordTypeModelFromMap returns a valid record type model when a match is found
+    * for a specified developer name.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getRecordTypeModelFromMapByName() {
+        Map<String, RecordTypeModel> recordTypeModelsByName = new Map<String, RecordTypeModel>{
+            'Record_Type_1' => new RecordTypeModel(
+                '000000000000000001', 
+                'Record Type 1', 
+                'Record_Type_1',
+                true
+            )
+        };
+
+        Map<String, RecordTypeModel> recordTypeModelsByLabel = new Map<String, RecordTypeModel>{
+            'Record Type Label' => new RecordTypeModel(
+                '000000000000000001', 
+                'Record Type Label', 
+                'Record_Type_Label',
+                false
+            )
+        };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        RecordTypeModel recordTypeModelResult = recordTypeServiceInstance.getRecordTypeModelFromMap(
+            'Record_Type_1',
+            recordTypeModelsByName,
+            recordTypeModelsByLabel
+        );
+        Test.stopTest();
+
+        System.assertEquals('000000000000000001', recordTypeModelResult.id, 'Record type model name should be \'000000000000000001\'.');
+        System.assertEquals('Record Type 1', recordTypeModelResult.name, 'Record type model name should be \'Record Type 1\'.');
+        System.assertEquals('Record_Type_1', recordTypeModelResult.developerName, 'Record type model name should be \'Record_Type_1\'.');
+        System.assertEquals(true, recordTypeModelResult.isActive, 'Record type model name should be \'true\'.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that getRecordTypeModelFromMap returns a valid record type model when a match is found
+    * for a specified label name.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getRecordTypeModelFromMapByLabel() {
+        Map<String, RecordTypeModel> recordTypeModelsByName = new Map<String, RecordTypeModel>{
+            'Record_Type_1' => new RecordTypeModel(
+                '000000000000000001', 
+                'Record Type 1', 
+                'Record_Type_1',
+                true
+            )
+        };
+
+        Map<String, RecordTypeModel> recordTypeModelsByLabel = new Map<String, RecordTypeModel>{
+            'Record Type Label' => new RecordTypeModel(
+                '123000000000000000', 
+                'Record Type Label', 
+                'Record_Type_Label',
+                false
+            )
+        };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        RecordTypeModel recordTypeModelResult = recordTypeServiceInstance.getRecordTypeModelFromMap(
+            'Record Type Label',
+            recordTypeModelsByName,
+            recordTypeModelsByLabel
+        );
+        Test.stopTest();
+
+        System.assertEquals('123000000000000000', recordTypeModelResult.id, 'Record type model name should be \'123000000000000000\'.');
+        System.assertEquals('Record Type Label', recordTypeModelResult.name, 'Record type model name should be \'Record Type Label\'.');
+        System.assertEquals('Record_Type_Label', recordTypeModelResult.developerName, 'Record type model name should be \'Record_Type_Label\'.');
+        System.assertEquals(false, recordTypeModelResult.isActive, 'Record type model name should be \'false\'.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that getRecordTypeModelFromMap returns a null record type model when no match is found
+    * for a specified developer or label name.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getRecordTypeModelFromMapNull() {
+        Map<String, RecordTypeModel> recordTypeModelsByName = new Map<String, RecordTypeModel>{
+            'Record_Type_1' => new RecordTypeModel(
+                '000000000000000001', 
+                'Record Type 1', 
+                'Record_Type_1',
+                true
+            )
+        };
+
+        Map<String, RecordTypeModel> recordTypeModelsByLabel = new Map<String, RecordTypeModel>{
+            'Record Type Label' => new RecordTypeModel(
+                '123000000000000000', 
+                'Record Type Label', 
+                'Record_Type_Label',
+                false
+            )
+        };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        RecordTypeModel recordTypeModelResult = recordTypeServiceInstance.getRecordTypeModelFromMap(
+            'Non Existent Record Type Name',
+            recordTypeModelsByName,
+            recordTypeModelsByLabel
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, recordTypeModelResult, 'Record type model should be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that getRecordTypeModelByLabelPositive returns a map of record type models by label.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getRecordTypeModelByLabelPositive() {
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
+            '000000000000000001' => new RecordTypeModel(
+                '000000000000000001', 
+                'Record Type 1', 
+                'Record_Type_1',
+                true
+            ),
+
+            '000000000000000002' => new RecordTypeModel(
+                '000000000000000002', 
+                'Record Type 2', 
+                'Record_Type_2',
+                false
+            )
+        };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        Map<String, RecordTypeModel> recordTypeModelsByLabelResult = 
+            recordTypeServiceInstance.getRecordTypeModelByLabel(recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(true, recordTypeModelsByLabelResult.keySet().contains('Record Type 1'), 'Record type should be mapped by label name.');
+        System.assertEquals(true, recordTypeModelsByLabelResult.keySet().contains('Record Type 2'), 'Record type should be mapped by label name.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that getRecordTypeModelByLabelPositive returns a map of record type models by name.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getRecordTypeModelByNamePositive() {
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
+            '000000000000000001' => new RecordTypeModel(
+                '000000000000000001', 
+                'Record Type 1', 
+                'Record_Type_1',
+                true
+            ),
+
+            '000000000000000002' => new RecordTypeModel(
+                '000000000000000002', 
+                'Record Type 2', 
+                'Record_Type_2',
+                false
+            )
+        };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        Map<String, RecordTypeModel> recordTypeModelsByNameResult = 
+            recordTypeServiceInstance.getRecordTypeModelByName(recordTypeModelsById);
+        Test.stopTest();
+
+        System.assertEquals(true, recordTypeModelsByNameResult.keySet().contains('Record_Type_1'), 'Record type should be mapped by developer name.');
+        System.assertEquals(true, recordTypeModelsByNameResult.keySet().contains('Record_Type_2'), 'Record type should be mapped by developer name.');
     }
 
     /**************************************************************************************************************************
