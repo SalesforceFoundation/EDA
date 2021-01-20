@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Class to represent the view model for a Health Check Item.
 */
 public virtual with sharing class HealthCheckItemVModel implements Comparable {
@@ -36,8 +36,8 @@ public virtual with sharing class HealthCheckItemVModel implements Comparable {
     @AuraEnabled public String setting { get; private set; }
     @AuraEnabled public String status;
     @AuraEnabled public String statusLabel;
-    @AuraEnabled public String description { get; private set; }
-    @AuraEnabled public String recommendedFix { get; private set; }
+    @AuraEnabled public String description;
+    @AuraEnabled public String recommendedFix;
     @AuraEnabled public List<HealthCheckItemVModel> healthCheckItemList { get; private set; }
     
     public HealthCheckItemVModel(String key, 
@@ -69,15 +69,13 @@ public virtual with sharing class HealthCheckItemVModel implements Comparable {
             return 0;
         }
 
-        HealthCheckItemVModel hlthChkItemModToCompareTo = (HealthCheckItemVModel)compareTo;
-        Integer statusResult = this.status.toLowerCase().compareTo(hlthChkItemModToCompareTo.status.toLowerCase());
+        HealthCheckItemVModel healthCheckItemVModelToCompareTo = (HealthCheckItemVModel)compareTo;
+        Integer statusResult = this.status.toLowerCase().compareTo(healthCheckItemVModelToCompareTo.status.toLowerCase());
         
         if (statusResult != 0){
             return statusResult;
         }
         
-        return this.setting.toLowerCase().compareTo(hlthChkItemModToCompareTo.setting.toLowerCase());
+        return this.setting.toLowerCase().compareTo(healthCheckItemVModelToCompareTo.setting.toLowerCase());
     }
-
-    
 }

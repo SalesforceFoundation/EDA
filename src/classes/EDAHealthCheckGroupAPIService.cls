@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description API service class for EDA HealthCheckGroup to retrieve HealthCheckGroup view models
 * corresponding to specified HealthCheckDefinition models.
 */
@@ -67,26 +67,49 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     }
 
     /******************************************************************************************
+    * @description Retrieves an instance of AffiliationMappingsHealthCheckVMapper. 
+    * @return An instance of AffiliationMappingsHealthCheckVMapper.
+    ******************************************************************************************/
+    @TestVisible 
+    private AffiliationMappingsHealthCheckVMapper locateAffiliationMappingsHealthCheckVMapper(){
+        return AffiliationMappingsHealthCheckVMapper.getInstance();
+    }
+
+    /******************************************************************************************
     * @description Retrieves a view model representing a health check group for a specified 
     * HealthCheckDefinition.
     * @param  name The name of a HealthCheckDefinition
     * @return A HealthCheckGroupVModel representing a specified HealthCheckDefinition; null if one
     * matching the name provided does not exist.
     ******************************************************************************************/
-    public HealthCheckGroupVModel getHealthCheckGroup(String name){
-        String caseInsensitiveName = name.toLowerCase();
+    public virtual HealthCheckGroupVModel getHealthCheckGroup(String name){
+        String lowercasedHCGroupName = name.toLowerCase();
 
         List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
         List<String> rowKeysList = new List<String>();
 
-        switch on caseInsensitiveName {
+        switch on lowercasedHCGroupName {
             when 'accountmodel' {
                 return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
-            }
-
+            } 
+            when 'affiliationmappings' {
+                return this.locateAffiliationMappingsHealthCheckVMapper().getHealthCheckGroup();
+            } 
+            when 'reciprocalrelationship' {
+                return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();
+            } 
             when else {
                 return null;                
             }
         }
+    }
+
+    /***************************************************************************
+    * @description Retrieves an instance of ReciprocalRelHealthCheckVMapper. 
+    * @return An instance of ReciprocalRelHealthCheckVMapper.
+    ***************************************************************************/
+    @TestVisible
+    private ReciprocalRelHealthCheckVMapper locateReciprocalRelHealthCheckVMapper(){
+        return ReciprocalRelHealthCheckVMapper.getInstance();
     }
 }

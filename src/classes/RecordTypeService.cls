@@ -49,7 +49,6 @@ public virtual with sharing class RecordTypeService {
     * @return The instance of RecordTypeService.
     ******************************************************************************/
     public static RecordTypeService getInstance() {
-
         if (instance == null) {
             instance = new RecordTypeService();
         }

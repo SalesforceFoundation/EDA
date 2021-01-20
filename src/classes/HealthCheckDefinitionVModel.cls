@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Class to model the view of a Health Check Definition.
 */
 public with sharing class HealthCheckDefinitionVModel implements Comparable {
@@ -49,7 +49,7 @@ public with sharing class HealthCheckDefinitionVModel implements Comparable {
     * @return 0 if names are equal, 1 if the current name is greater, -1 otherwise
     ****************************************************************************************************************************/ 
     public Integer compareTo(Object objectToCompareTo){
-        HealthCheckDefinitionVModel healthCheckDefToCompareTo = (HealthCheckDefinitionVModel)objectToCompareTo;
-        return this.name.toLowerCase().compareTo(healthCheckDefToCompareTo.name.toLowerCase());
+        HealthCheckDefinitionVModel healthCheckDefinitionVModelToCompareTo = (HealthCheckDefinitionVModel)objectToCompareTo;
+        return this.name.toLowerCase().compareTo(healthCheckDefinitionVModelToCompareTo.name.toLowerCase());
     } 
 }

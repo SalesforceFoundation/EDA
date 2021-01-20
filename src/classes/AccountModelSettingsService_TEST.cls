@@ -28,7 +28,7 @@
 * @author Salesforce.org
 * @date 2021
 * @group 
-* @group-content ../../ApexDocContent/
+* @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for FeatureParameterService class
 */
 @isTest
@@ -73,10 +73,10 @@ private class AccountModelSettingsService_TEST {
     private static void locateAccountModelSettingsMapper() {
 
         Test.startTest();
-            AccountModelSettingsMapper accModelSettingsMapper = AccountModelSettingsService.getInstance().locateAccountModelSettingsMapper();
+            AccountModelSettingsMapper accoungModelSettingsMapper = AccountModelSettingsService.getInstance().locateAccountModelSettingsMapper();
         Test.stopTest();
 
-        System.assertEquals(AccountModelSettingsMapper.getInstance(), accModelSettingsMapper, 'Should return the instance of AccountModelSettingsMapper');
+        System.assertEquals(AccountModelSettingsMapper.getInstance(), accoungModelSettingsMapper, 'Should return the instance of AccountModelSettingsMapper');
 
     }
     
@@ -89,12 +89,12 @@ private class AccountModelSettingsService_TEST {
         AccountModelSettingsMapper.instance = new STUB_AccountModelSettingsMapper();
 
         Test.startTest();
-            AccountModelSettingsModel accModelSettingsModel = AccountModelSettingsService.getInstance().getAccountModelSettingsModel();
+            AccountModelSettingsModel accountModelSettingsModel = AccountModelSettingsService.getInstance().getAccountModelSettingsModel();
         Test.stopTest();
 
-        System.assertEquals('01217000002Zs0pAAC', accModelSettingsModel.defaultAccountModelId, 'Retrieved model\'s defaultAccountModel should be same as Account Processor from settings');
-        System.assertEquals('01217000002Zs0pAAC', accModelSettingsModel.administrativeAccountRecordTypeId, 'Retrieved model\'s admin account record type should be same as Administrative Account Record Type from settings');
-        System.assertEquals('01217000002Zs0sAAC', accModelSettingsModel.householdAccountRecordTypeId, 'Retrieved model\'s HH account record type should be same as Household Account Record Type from settings');
+        System.assertEquals('01217000002Zs0pAAC', accountModelSettingsModel.defaultAccountModelId, 'Retrieved model\'s defaultAccountModel should be same as Account Processor from settings');
+        System.assertEquals('01217000002Zs0pAAC', accountModelSettingsModel.administrativeAccountRecordTypeId, 'Retrieved model\'s admin account record type should be same as Administrative Account Record Type from settings');
+        System.assertEquals('01217000002Zs0sAAC', accountModelSettingsModel.householdAccountRecordTypeId, 'Retrieved model\'s HH account record type should be same as Household Account Record Type from settings');
 
     }
 
@@ -108,9 +108,9 @@ private class AccountModelSettingsService_TEST {
     private class STUB_AccountModelSettingsMapper extends AccountModelSettingsMapper {
  
         public override AccountModelSettingsModel getAccountModelSettingsModel() {
-            AccountModelSettingsModel accModelSettingsModel = new AccountModelSettingsModel('01217000002Zs0pAAC', '01217000002Zs0pAAC', '01217000002Zs0sAAC');
+            AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('01217000002Zs0pAAC', '01217000002Zs0pAAC', '01217000002Zs0sAAC');
 
-            return accModelSettingsModel;
+            return accountModelSettingsModel;
         }
     }
 }

@@ -685,7 +685,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
@@ -777,6 +777,90 @@
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description when Health Check finds an inactive picklist value --></label>
+        <name>stgHCPicklistValueInactive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Health Check can&apos;t find the picklist value --></label>
+        <name>stgHCPicklistValueNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Settings Health Check component title --></label>
+        <name>stgHCPicklistValueValid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for a reciprocal setting in EDA Settings Health Check results --></label>
+        <name>stgHCReciprocalRelDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
+        <name>stgHCReciprocalRelFemaleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
+        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for the Female value in a reciprocal setting --></label>
+        <name>stgHCReciprocalRelFemaleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
+        <name>stgHCReciprocalRelMaleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
+        <name>stgHCReciprocalRelMaleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for the Male value in a reciprocal setting --></label>
+        <name>stgHCReciprocalRelMaleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
+        <name>stgHCReciprocalRelNameInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
+        <name>stgHCReciprocalRelNameNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Name isn&apos;t unique in reciprocal settings --></label>
+        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended Fix when Name isn&apos;t unique in reciprocal settings --></label>
+        <name>stgHCReciprocalRelNameNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for the Name value in a reciprocal setting --></label>
+        <name>stgHCReciprocalRelNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description when Name is unique in reciprocal settings --></label>
+        <name>stgHCReciprocalRelNameUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for unique Name values in reciprocal settings --></label>
+        <name>stgHCReciprocalRelNameUniqueTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
+        <name>stgHCReciprocalRelNeutralInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
+        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- A check for the Neutral value in a reciprocal setting --></label>
+        <name>stgHCReciprocalRelNeutralTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
+        <name>stgHCReciprocalRelSetting</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description when Health Check finds an inactive record type --></label>
         <name>stgHCRecordTypeInactive</name>
     </customLabels>
@@ -815,6 +899,10 @@
     <customLabels>
         <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
         <name>stgHealthCheckLoadingIndicator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reciprocal Relationships group title in EDA Settings Health Check results --></label>
+        <name>stgHealthCheckReciprocalRelTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>

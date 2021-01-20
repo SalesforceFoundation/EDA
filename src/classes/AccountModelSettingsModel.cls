@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Model class for Account Model Settings
 */
 public with sharing class AccountModelSettingsModel {
@@ -37,7 +37,11 @@ public with sharing class AccountModelSettingsModel {
     public String administrativeAccountRecordTypeId;
     public String householdAccountRecordTypeId;
 
-    public AccountModelSettingsModel(String defaultAccountModelId, String administrativeAccountRecordTypeId, String householdAccountRecordTypeId) {
+    public AccountModelSettingsModel(
+        String defaultAccountModelId, 
+        String administrativeAccountRecordTypeId, 
+        String householdAccountRecordTypeId
+    ) {
         this.defaultAccountModelId = (String.isBlank(defaultAccountModelId)) ? '""' : defaultAccountModelId;
         this.administrativeAccountRecordTypeId = (String.isBlank(administrativeAccountRecordTypeId)) ? '""' : administrativeAccountRecordTypeId;
         this.householdAccountRecordTypeId = (String.isBlank(householdAccountRecordTypeId)) ? '""' : householdAccountRecordTypeId;

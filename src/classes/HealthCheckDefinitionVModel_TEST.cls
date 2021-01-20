@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group
+* @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for HealthCheckDefinitionVModel.
 */
 @isTest 
@@ -54,31 +54,31 @@ public with sharing class HealthCheckDefinitionVModel_TEST {
     ****************************************************************************************************************************/
     @isTest 
     private static void sortNamesWithoutDuplicates(){
-        List<HealthCheckDefinitionVModel> healthCheckDefModelsList = new List<HealthCheckDefinitionVModel>();
-        HealthCheckDefinitionVModel healthCheckDefMod1 = new HealthCheckDefinitionVModel('test1', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod2 = new HealthCheckDefinitionVModel('pineapple', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod3 = new HealthCheckDefinitionVModel('Banana', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod4 = new HealthCheckDefinitionVModel('Test4', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod5 = new HealthCheckDefinitionVModel('Papaya', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod6 = new HealthCheckDefinitionVModel('Apple', 'TestClass', 'TEST');
+        List<HealthCheckDefinitionVModel> healthCheckDefinitionVModelsList = new List<HealthCheckDefinitionVModel>();
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel1 = new HealthCheckDefinitionVModel('test1', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel2 = new HealthCheckDefinitionVModel('pineapple', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel3 = new HealthCheckDefinitionVModel('Banana', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel4 = new HealthCheckDefinitionVModel('Test4', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel5 = new HealthCheckDefinitionVModel('Papaya', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel6 = new HealthCheckDefinitionVModel('Apple', 'TestClass', 'TEST');
         
-        healthCheckDefModelsList.add(healthCheckDefMod1);
-        healthCheckDefModelsList.add(healthCheckDefMod2);
-        healthCheckDefModelsList.add(healthCheckDefMod3);
-        healthCheckDefModelsList.add(healthCheckDefMod4);
-        healthCheckDefModelsList.add(healthCheckDefMod5);
-        healthCheckDefModelsList.add(healthCheckDefMod6);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel1);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel2);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel3);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel4);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel5);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel6);
     
         Test.startTest();
-        healthCheckDefModelsList.sort();
+        healthCheckDefinitionVModelsList.sort();
         Test.stopTest();
 
-        System.assertEquals('Apple', healthCheckDefModelsList[0].name, 'First name in sorted list should be \'Apple\'');
-        System.assertEquals('Banana', healthCheckDefModelsList[1].name, 'Second name in sorted list should be \'Banana\'');
-        System.assertEquals('Papaya', healthCheckDefModelsList[2].name, 'Third name in sorted list should be \'Papaya\'');
-        System.assertEquals('pineapple', healthCheckDefModelsList[3].name, 'Fourth name in sorted list should be \'pineapple\'');
-        System.assertEquals('test1', healthCheckDefModelsList[4].name, 'Fifth name in sorted list should be \'test1\'');
-        System.assertEquals('Test4', healthCheckDefModelsList[5].name, 'Sixth name in sorted list should be \'Test4\'');
+        System.assertEquals('Apple', healthCheckDefinitionVModelsList[0].name, 'First name in sorted list should be \'Apple\'');
+        System.assertEquals('Banana', healthCheckDefinitionVModelsList[1].name, 'Second name in sorted list should be \'Banana\'');
+        System.assertEquals('Papaya', healthCheckDefinitionVModelsList[2].name, 'Third name in sorted list should be \'Papaya\'');
+        System.assertEquals('pineapple', healthCheckDefinitionVModelsList[3].name, 'Fourth name in sorted list should be \'pineapple\'');
+        System.assertEquals('test1', healthCheckDefinitionVModelsList[4].name, 'Fifth name in sorted list should be \'test1\'');
+        System.assertEquals('Test4', healthCheckDefinitionVModelsList[5].name, 'Sixth name in sorted list should be \'Test4\'');
     }
 
     /****************************************************************************************************************************
@@ -87,30 +87,30 @@ public with sharing class HealthCheckDefinitionVModel_TEST {
     ****************************************************************************************************************************/
     @isTest 
     private static void sortNamesWithDuplicates(){
-        List<HealthCheckDefinitionVModel> healthCheckDefModelsList = new List<HealthCheckDefinitionVModel>();
-        HealthCheckDefinitionVModel healthCheckDefMod1 = new HealthCheckDefinitionVModel('Pineapple', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod2 = new HealthCheckDefinitionVModel('Pineapple', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod3 = new HealthCheckDefinitionVModel('Pineapple', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod4 = new HealthCheckDefinitionVModel('test4', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod5 = new HealthCheckDefinitionVModel('123Papaya', 'TestClass', 'TEST');
-        HealthCheckDefinitionVModel healthCheckDefMod6 = new HealthCheckDefinitionVModel('Apple Pie', 'TestClass', 'TEST');
+        List<HealthCheckDefinitionVModel> healthCheckDefinitionVModelsList = new List<HealthCheckDefinitionVModel>();
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel1 = new HealthCheckDefinitionVModel('Pineapple', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel2 = new HealthCheckDefinitionVModel('Pineapple', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel3 = new HealthCheckDefinitionVModel('Pineapple', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel4 = new HealthCheckDefinitionVModel('test4', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel5 = new HealthCheckDefinitionVModel('123Papaya', 'TestClass', 'TEST');
+        HealthCheckDefinitionVModel healthCheckDefinitionVModel6 = new HealthCheckDefinitionVModel('Apple Pie', 'TestClass', 'TEST');
         
-        healthCheckDefModelsList.add(healthCheckDefMod1);
-        healthCheckDefModelsList.add(healthCheckDefMod2);
-        healthCheckDefModelsList.add(healthCheckDefMod3);
-        healthCheckDefModelsList.add(healthCheckDefMod4);
-        healthCheckDefModelsList.add(healthCheckDefMod5);
-        healthCheckDefModelsList.add(healthCheckDefMod6);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel1);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel2);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel3);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel4);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel5);
+        healthCheckDefinitionVModelsList.add(healthCheckDefinitionVModel6);
     
         Test.startTest();
-        healthCheckDefModelsList.sort();
+        healthCheckDefinitionVModelsList.sort();
         Test.stopTest();
 
-        System.assertEquals('123Papaya', healthCheckDefModelsList[0].name, 'First name in sorted list should be \'123Papaya\'');
-        System.assertEquals('Apple Pie', healthCheckDefModelsList[1].name, 'Second name in sorted list should be \'Apple Pie\'');
-        System.assertEquals('Pineapple', healthCheckDefModelsList[2].name, 'Third name in sorted list should be \'Pineapple\'');
-        System.assertEquals('Pineapple', healthCheckDefModelsList[3].name, 'Fourth name in sorted list should be \'Pineapple\'');
-        System.assertEquals('Pineapple', healthCheckDefModelsList[4].name, 'Fifth name in sorted list should be \'Pineapple\'');
-        System.assertEquals('test4', healthCheckDefModelsList[5].name, 'Sixth name in sorted list should be \'test4\'');
+        System.assertEquals('123Papaya', healthCheckDefinitionVModelsList[0].name, 'First name in sorted list should be \'123Papaya\'');
+        System.assertEquals('Apple Pie', healthCheckDefinitionVModelsList[1].name, 'Second name in sorted list should be \'Apple Pie\'');
+        System.assertEquals('Pineapple', healthCheckDefinitionVModelsList[2].name, 'Third name in sorted list should be \'Pineapple\'');
+        System.assertEquals('Pineapple', healthCheckDefinitionVModelsList[3].name, 'Fourth name in sorted list should be \'Pineapple\'');
+        System.assertEquals('Pineapple', healthCheckDefinitionVModelsList[4].name, 'Fifth name in sorted list should be \'Pineapple\'');
+        System.assertEquals('test4', healthCheckDefinitionVModelsList[5].name, 'Sixth name in sorted list should be \'test4\'');
     }
 }

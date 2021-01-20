@@ -48,6 +48,14 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>AffiliationMappingsHCVMapper_TEST</members>
+        <members>AffiliationMappingsHealthCheckVMapper</members>
+        <members>AffiliationMappingsMapper</members>
+        <members>AffiliationMappingsMapper_TEST</members>
+        <members>AffiliationMappingsModel</members>
+        <members>AffiliationMappingsModel_TEST</members>
+        <members>AffiliationMappingsService</members>
+        <members>AffiliationMappingsService_TEST</members>
         <members>BEH_CannotDelete_TDTM</members>
         <members>BEH_CannotDelete_TEST</members>
         <members>CASE_CannotDelete_TDTM</members>
@@ -138,6 +146,12 @@
         <members>HealthCheckVMapper_TEST</members>
         <members>HealthCheckVModel</members>
         <members>HealthCheckVModel_TEST</members>
+        <members>LookupFieldMapper</members>
+        <members>LookupFieldMapper_TEST</members>
+        <members>LookupFieldModel</members>
+        <members>LookupFieldModel_TEST</members>
+        <members>LookupFieldService</members>
+        <members>LookupFieldService_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
@@ -162,17 +176,31 @@
         <members>PREQ_PreventPPlanParent_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
+        <members>PicklistEntryMapper</members>
+        <members>PicklistEntryMapper_TEST</members>
+        <members>PicklistEntryModel</members>
+        <members>PicklistEntryModel_TEST</members>
+        <members>PicklistEntryService</members>
+        <members>PicklistEntryService_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>ReciprocalRelHealthCheckVMapper</members>
+        <members>ReciprocalRelHealthCheckVMapper_TEST</members>
         <members>RecordTypeMapper</members>
         <members>RecordTypeMapper_TEST</members>
         <members>RecordTypeModel</members>
         <members>RecordTypeModel_TEST</members>
         <members>RecordTypeService</members>
         <members>RecordTypeService_TEST</members>
+        <members>RelationshipLookupMapper</members>
+        <members>RelationshipLookupMapper_TEST</members>
+        <members>RelationshipLookupModel</members>
+        <members>RelationshipLookupModel_TEST</members>
+        <members>RelationshipLookupSettingsService</members>
+        <members>RelationshipLookupSettingsService_TEST</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_Contact_PreferredEmail</members>
@@ -881,6 +909,27 @@
         <members>stgHCCourseConStudentInactiveFix</members>
         <members>stgHCCourseConStudentNotFoundFix</members>
         <members>stgHCCourseConnectionsTitle</members>
+        <members>stgHCPicklistValueInactive</members>
+        <members>stgHCPicklistValueNotFound</members>
+        <members>stgHCPicklistValueValid</members>
+        <members>stgHCReciprocalRelDescription</members>
+        <members>stgHCReciprocalRelFemaleInactiveFix</members>
+        <members>stgHCReciprocalRelFemaleNotFoundFix</members>
+        <members>stgHCReciprocalRelFemaleTitle</members>
+        <members>stgHCReciprocalRelMaleInactiveFix</members>
+        <members>stgHCReciprocalRelMaleNotFoundFix</members>
+        <members>stgHCReciprocalRelMaleTitle</members>
+        <members>stgHCReciprocalRelNameInactiveFix</members>
+        <members>stgHCReciprocalRelNameNotFoundFix</members>
+        <members>stgHCReciprocalRelNameNotUniqueDesc</members>
+        <members>stgHCReciprocalRelNameNotUniqueFix</members>
+        <members>stgHCReciprocalRelNameTitle</members>
+        <members>stgHCReciprocalRelNameUniqueDesc</members>
+        <members>stgHCReciprocalRelNameUniqueTitle</members>
+        <members>stgHCReciprocalRelNeutralInactiveFix</members>
+        <members>stgHCReciprocalRelNeutralNotFoundFix</members>
+        <members>stgHCReciprocalRelNeutralTitle</members>
+        <members>stgHCReciprocalRelSetting</members>
         <members>stgHCRecordTypeInactive</members>
         <members>stgHCRecordTypeNotFound</members>
         <members>stgHCRecordTypeValid</members>
@@ -891,6 +940,7 @@
         <members>stgHealthCheckFixNotApplicable</members>
         <members>stgHealthCheckLastRun</members>
         <members>stgHealthCheckLoadingIndicator</members>
+        <members>stgHealthCheckReciprocalRelTitle</members>
         <members>stgHealthCheckRecoFix</members>
         <members>stgHealthCheckResultsCollapse</members>
         <members>stgHealthCheckResultsDescription</members>

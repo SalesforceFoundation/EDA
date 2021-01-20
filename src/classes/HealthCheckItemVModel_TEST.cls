@@ -28,7 +28,7 @@
 * @author Salesforce.org
 * @date 2021
 * @group 
-* @group-content ../../ApexDocContent/
+* @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for HealthCheckItemVModel class.
 */
 @isTest 
@@ -40,25 +40,25 @@ public with sharing class HealthCheckItemVModel_TEST {
     @isTest 
     private static void constructorWithFiveParamsValid(){
 
-        List<HealthCheckItemVModel> sampleHCItemVModList = new List<HealthCheckItemVModel>();
+        List<HealthCheckItemVModel> sampleHCItemVModelList = new List<HealthCheckItemVModel>();
 
         Test.startTest();
-        HealthCheckItemVModel hlthChkItemVMod = new HealthCheckItemVModel('TestKey', 
+        HealthCheckItemVModel healthCheckItemVModel = new HealthCheckItemVModel('TestKey', 
                                                                           'TestSetting', 
                                                                           'TestStatus', 
                                                                           'TestStatusLabel',
                                                                           'TestDescription', 
                                                                           'TextRecommendedFix',
-                                                                          sampleHCItemVModList);
+                                                                          sampleHCItemVModelList);
         Test.stopTest();
 
-        System.assertEquals('TestKey', hlthChkItemVMod.key, 'HealthCheckItemVModel key should be set to \'TestKey\'');
-        System.assertEquals('TestSetting', hlthChkItemVMod.setting, 'HealthCheckItemVModel setting should be set to \'TestSetting\'');
-        System.assertEquals('TestStatus', hlthChkItemVMod.status, 'HealthCheckItemVModel status should be set to \'TestStatus\'');
-        System.assertEquals('TestStatusLabel', hlthChkItemVMod.statusLabel, 'HealthCheckItemVModel statuslabel should be set to \'TestStatusLabel\'');
-        System.assertEquals('TestDescription', hlthChkItemVMod.description, 'HealthCheckItemVModel description should be set to \'TestDescription\'');
-        System.assertEquals('TextRecommendedFix', hlthChkItemVMod.recommendedFix, 'HealthCheckItemVModel recommendedFix should be set to \'TextRecommendedFix\'');
-        System.assertEquals(sampleHCItemVModList, hlthChkItemVMod.healthCheckItemList, 'List of HealthCheckItemVModel should not change.');
+        System.assertEquals('TestKey', healthCheckItemVModel.key, 'HealthCheckItemVModel key should be set to \'TestKey\'');
+        System.assertEquals('TestSetting', healthCheckItemVModel.setting, 'HealthCheckItemVModel setting should be set to \'TestSetting\'');
+        System.assertEquals('TestStatus', healthCheckItemVModel.status, 'HealthCheckItemVModel status should be set to \'TestStatus\'');
+        System.assertEquals('TestStatusLabel', healthCheckItemVModel.statusLabel, 'HealthCheckItemVModel statuslabel should be set to \'TestStatusLabel\'');
+        System.assertEquals('TestDescription', healthCheckItemVModel.description, 'HealthCheckItemVModel description should be set to \'TestDescription\'');
+        System.assertEquals('TextRecommendedFix', healthCheckItemVModel.recommendedFix, 'HealthCheckItemVModel recommendedFix should be set to \'TextRecommendedFix\'');
+        System.assertEquals(sampleHCItemVModelList, healthCheckItemVModel.healthCheckItemList, 'List of HealthCheckItemVModel should not change.');
     }
 
     /*****************************************************************************************
@@ -68,10 +68,10 @@ public with sharing class HealthCheckItemVModel_TEST {
     *****************************************************************************************/
     @isTest
     private static void sortByStatusThenLabelWithoutDuplicates(){
-        List<HealthCheckItemVModel> hlthChkItemModelsList = new List<HealthCheckItemVModel>();
+        List<HealthCheckItemVModel> healthCheckItemVModelsList = new List<HealthCheckItemVModel>();
 
 
-        HealthCheckItemVModel hlthChkItemMod1 = new HealthCheckItemVModel('key-1',
+        HealthCheckItemVModel healthCheckItemVModel1 = new HealthCheckItemVModel('key-1',
                                                                            'Zebra',
                                                                            'Fail', 
                                                                            'Fail-Label', 
@@ -79,7 +79,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                            'Test Recommended fix', 
                                                                            new List<HealthCheckItemVModel>());
 
-        HealthCheckItemVModel hlthChkItemMod2 = new HealthCheckItemVModel('key-2',
+        HealthCheckItemVModel healthCheckItemVModel2 = new HealthCheckItemVModel('key-2',
                                                                             'Zebra',
                                                                             'pass', 
                                                                             'pass-Label', 
@@ -87,7 +87,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                             'Test Recommended fix', 
                                                                             new List<HealthCheckItemVModel>());
         
-        HealthCheckItemVModel hlthChkItemMod3 = new HealthCheckItemVModel('key-3',
+        HealthCheckItemVModel healthCheckItemVModel3 = new HealthCheckItemVModel('key-3',
                                                                             'Baboon',
                                                                             'Pass', 
                                                                             'Pass-Label', 
@@ -95,7 +95,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                             'Test Recommended fix', 
                                                                             new List<HealthCheckItemVModel>());
        
-        HealthCheckItemVModel hlthChkItemMod4 = new HealthCheckItemVModel('key-4',
+        HealthCheckItemVModel healthCheckItemVModel4 = new HealthCheckItemVModel('key-4',
                                                                             'Giraffe',
                                                                             'Fail', 
                                                                             'Fail-Label', 
@@ -103,7 +103,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                             'Test Recommended fix', 
                                                                             new List<HealthCheckItemVModel>());
         
-        HealthCheckItemVModel hlthChkItemMod5 = new HealthCheckItemVModel('key-5',
+        HealthCheckItemVModel healthCheckItemVModel5 = new HealthCheckItemVModel('key-5',
                                                                             'Lion',
                                                                             'Pass', 
                                                                             'Pass-Label', 
@@ -111,7 +111,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                             'Test Recommended fix', 
                                                                             new List<HealthCheckItemVModel>());
         
-        HealthCheckItemVModel hlthChkItemMod6 = new HealthCheckItemVModel('key-1',
+        HealthCheckItemVModel healthCheckItemVModel6 = new HealthCheckItemVModel('key-1',
                                                                             'Antelope',
                                                                             'Fail', 
                                                                             'Fail-Label', 
@@ -119,29 +119,29 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                             'Test Recommended fix', 
                                                                             new List<HealthCheckItemVModel>());
 
-        hlthChkItemModelsList.add(hlthChkItemMod1);
-        hlthChkItemModelsList.add(hlthChkItemMod2);
-        hlthChkItemModelsList.add(hlthChkItemMod3);        
-        hlthChkItemModelsList.add(hlthChkItemMod4);
-        hlthChkItemModelsList.add(hlthChkItemMod5);
-        hlthChkItemModelsList.add(hlthChkItemMod6);
+        healthCheckItemVModelsList.add(healthCheckItemVModel1);
+        healthCheckItemVModelsList.add(healthCheckItemVModel2);
+        healthCheckItemVModelsList.add(healthCheckItemVModel3);        
+        healthCheckItemVModelsList.add(healthCheckItemVModel4);
+        healthCheckItemVModelsList.add(healthCheckItemVModel5);
+        healthCheckItemVModelsList.add(healthCheckItemVModel6);
 
         Test.startTest();
-        hlthChkItemModelsList.sort();
+        healthCheckItemVModelsList.sort();
         Test.stopTest();
 
-        System.assertEquals(true, hlthChkItemModelsList[0].setting.equalsIgnoreCase('Antelope'));
-        System.assertEquals(true, hlthChkItemModelsList[0].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkItemModelsList[1].setting.equalsIgnoreCase('Giraffe'));
-        System.assertEquals(true, hlthChkItemModelsList[1].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkItemModelsList[2].setting.equalsIgnoreCase('Zebra'));
-        System.assertEquals(true, hlthChkItemModelsList[2].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkItemModelsList[3].setting.equalsIgnoreCase('Baboon'));
-        System.assertEquals(true, hlthChkItemModelsList[3].status.equalsIgnoreCase('Pass'));
-        System.assertEquals(true, hlthChkItemModelsList[4].setting.equalsIgnoreCase('Lion'));
-        System.assertEquals(true, hlthChkItemModelsList[4].status.equalsIgnoreCase('Pass'));
-        System.assertEquals(true, hlthChkItemModelsList[5].setting.equalsIgnoreCase('Zebra'));
-        System.assertEquals(true, hlthChkItemModelsList[5].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckItemVModelsList[0].setting.equalsIgnoreCase('Antelope'));
+        System.assertEquals(true, healthCheckItemVModelsList[0].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckItemVModelsList[1].setting.equalsIgnoreCase('Giraffe'));
+        System.assertEquals(true, healthCheckItemVModelsList[1].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckItemVModelsList[2].setting.equalsIgnoreCase('Zebra'));
+        System.assertEquals(true, healthCheckItemVModelsList[2].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckItemVModelsList[3].setting.equalsIgnoreCase('Baboon'));
+        System.assertEquals(true, healthCheckItemVModelsList[3].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckItemVModelsList[4].setting.equalsIgnoreCase('Lion'));
+        System.assertEquals(true, healthCheckItemVModelsList[4].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckItemVModelsList[5].setting.equalsIgnoreCase('Zebra'));
+        System.assertEquals(true, healthCheckItemVModelsList[5].status.equalsIgnoreCase('Pass'));
     }
 
     /*****************************************************************************************
@@ -151,10 +151,10 @@ public with sharing class HealthCheckItemVModel_TEST {
     *****************************************************************************************/
     @isTest
     private static void sortByStatusThenLabelWithDuplicates(){
-        List<HealthCheckItemVModel> hlthChkItemModelsList = new List<HealthCheckItemVModel>();
+        List<HealthCheckItemVModel> healthCheckItemVModelsList = new List<HealthCheckItemVModel>();
 
 
-        HealthCheckItemVModel hlthChkItemMod1 = new HealthCheckItemVModel('key-1',
+        HealthCheckItemVModel healthCheckItemVModel1 = new HealthCheckItemVModel('key-1',
                                                                           'Zebra',
                                                                           'Pass', 
                                                                           'Pass-label', 
@@ -164,7 +164,7 @@ public with sharing class HealthCheckItemVModel_TEST {
 
                                                                           
 
-        HealthCheckItemVModel hlthChkItemMod2 = new HealthCheckItemVModel('key-2',
+        HealthCheckItemVModel healthCheckItemVModel2 = new HealthCheckItemVModel('key-2',
                                                                           'zebra',
                                                                           'pass', 
                                                                           'pass-label', 
@@ -173,7 +173,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                           new List<HealthCheckItemVModel>());
 
 
-        HealthCheckItemVModel hlthChkItemMod3 = new HealthCheckItemVModel('key-3',
+        HealthCheckItemVModel healthCheckItemVModel3 = new HealthCheckItemVModel('key-3',
                                                                           'Meerkat',
                                                                           'Fail', 
                                                                           'Fail-label', 
@@ -182,7 +182,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                           new List<HealthCheckItemVModel>());
 
 
-        HealthCheckItemVModel hlthChkItemMod4 = new HealthCheckItemVModel('key-4',
+        HealthCheckItemVModel healthCheckItemVModel4 = new HealthCheckItemVModel('key-4',
                                                                           'lion',
                                                                           'fail', 
                                                                           'fail-label', 
@@ -191,7 +191,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                           new List<HealthCheckItemVModel>());
 
 
-        HealthCheckItemVModel hlthChkItemMod5 = new HealthCheckItemVModel('key-5',
+        HealthCheckItemVModel healthCheckItemVModel5 = new HealthCheckItemVModel('key-5',
                                                                           'Lion',
                                                                           'fail', 
                                                                           'fail-label', 
@@ -200,7 +200,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                           new List<HealthCheckItemVModel>());
 
 
-        HealthCheckItemVModel hlthChkItemMod6 = new HealthCheckItemVModel('key-6',
+        HealthCheckItemVModel healthCheckItemVModel6 = new HealthCheckItemVModel('key-6',
                                                                           'Antelope',
                                                                           'Pass', 
                                                                           'Pass-label', 
@@ -209,29 +209,29 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                           new List<HealthCheckItemVModel>());
 
 
-        hlthChkItemModelsList.add(hlthChkItemMod1);
-        hlthChkItemModelsList.add(hlthChkItemMod2);
-        hlthChkItemModelsList.add(hlthChkItemMod3);        
-        hlthChkItemModelsList.add(hlthChkItemMod4);
-        hlthChkItemModelsList.add(hlthChkItemMod5);
-        hlthChkItemModelsList.add(hlthChkItemMod6);
+        healthCheckItemVModelsList.add(healthCheckItemVModel1);
+        healthCheckItemVModelsList.add(healthCheckItemVModel2);
+        healthCheckItemVModelsList.add(healthCheckItemVModel3);        
+        healthCheckItemVModelsList.add(healthCheckItemVModel4);
+        healthCheckItemVModelsList.add(healthCheckItemVModel5);
+        healthCheckItemVModelsList.add(healthCheckItemVModel6);
 
         Test.startTest();
-        hlthChkItemModelsList.sort();
+        healthCheckItemVModelsList.sort();
         Test.stopTest();
 
-        System.assertEquals(true, hlthChkItemModelsList[0].setting.equalsIgnoreCase('Lion'));
-        System.assertEquals(true, hlthChkItemModelsList[0].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkItemModelsList[1].setting.equalsIgnoreCase('Lion'));
-        System.assertEquals(true, hlthChkItemModelsList[1].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkItemModelsList[2].setting.equalsIgnoreCase('Meerkat'));
-        System.assertEquals(true, hlthChkItemModelsList[2].status.equalsIgnoreCase('Fail'));
-        System.assertEquals(true, hlthChkItemModelsList[3].setting.equalsIgnoreCase('Antelope'));
-        System.assertEquals(true, hlthChkItemModelsList[3].status.equalsIgnoreCase('Pass'));
-        System.assertEquals(true, hlthChkItemModelsList[4].setting.equalsIgnoreCase('Zebra'));
-        System.assertEquals(true, hlthChkItemModelsList[4].status.equalsIgnoreCase('Pass'));
-        System.assertEquals(true, hlthChkItemModelsList[5].setting.equalsIgnoreCase('Zebra'));
-        System.assertEquals(true, hlthChkItemModelsList[5].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckItemVModelsList[0].setting.equalsIgnoreCase('Lion'));
+        System.assertEquals(true, healthCheckItemVModelsList[0].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckItemVModelsList[1].setting.equalsIgnoreCase('Lion'));
+        System.assertEquals(true, healthCheckItemVModelsList[1].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckItemVModelsList[2].setting.equalsIgnoreCase('Meerkat'));
+        System.assertEquals(true, healthCheckItemVModelsList[2].status.equalsIgnoreCase('Fail'));
+        System.assertEquals(true, healthCheckItemVModelsList[3].setting.equalsIgnoreCase('Antelope'));
+        System.assertEquals(true, healthCheckItemVModelsList[3].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckItemVModelsList[4].setting.equalsIgnoreCase('Zebra'));
+        System.assertEquals(true, healthCheckItemVModelsList[4].status.equalsIgnoreCase('Pass'));
+        System.assertEquals(true, healthCheckItemVModelsList[5].setting.equalsIgnoreCase('Zebra'));
+        System.assertEquals(true, healthCheckItemVModelsList[5].status.equalsIgnoreCase('Pass'));
     }
 
     /*****************************************************************************************
@@ -241,7 +241,7 @@ public with sharing class HealthCheckItemVModel_TEST {
     *****************************************************************************************/
     private static void sortWithIncomparableObjectTypesRightFirstInList(){
         List<Object> objectsToSort = new List<Object>();
-        HealthCheckItemVModel hlthChkItemMod = new HealthCheckItemVModel('key-1',
+        HealthCheckItemVModel healthCheckItemVModel = new HealthCheckItemVModel('key-1',
                                                                          'Antelope',
                                                                          'Pass', 
                                                                          'Pass-label', 
@@ -252,7 +252,7 @@ public with sharing class HealthCheckItemVModel_TEST {
         Account testAccount = new Account(Name = 'TestAccount');
         Contact testContact = new Contact(LastName = 'Testerson');
 
-        objectsToSort.add(hlthChkItemMod);
+        objectsToSort.add(healthCheckItemVModel);
         objectsToSort.add(testContact);
         objectsToSort.add(testAccount);
 
@@ -273,14 +273,14 @@ public with sharing class HealthCheckItemVModel_TEST {
     private static void sortWithIncomparableObjectTypesWrongFirstInList(){
         List<Object> objectsToSort = new List<Object>();
 
-        HealthCheckGroupVModel hlthChkGroupVMod = new HealthCheckGroupVModel('Zebra',
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel('Zebra',
                                                                              'Fail', 
                                                                              5, 
                                                                              8,
                                                                              new List<String>(), 
                                                                              new List<HealthCheckItemVModel>());
 
-        HealthCheckItemVModel hlthChkItemVMod1 = new HealthCheckItemVModel('TestKey1', 
+        HealthCheckItemVModel healthCheckItemVModel1 = new HealthCheckItemVModel('TestKey1', 
                                                                            'TestSetting', 
                                                                            'Fail', 
                                                                            'TestStatusLabel',
@@ -288,7 +288,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                            'TextRecommendedFix',
                                                                            new List<HealthCheckItemVModel>());
 
-        HealthCheckItemVModel hlthChkItemVMod2 = new HealthCheckItemVModel('TestKey2', 
+        HealthCheckItemVModel healthCheckItemVModel2 = new HealthCheckItemVModel('TestKey2', 
                                                                            'TestSetting', 
                                                                            'Fail', 
                                                                            'TestStatusLabel',
@@ -298,9 +298,9 @@ public with sharing class HealthCheckItemVModel_TEST {
         Account testAccount = new Account(Name = 'TestAccount');
         Contact testContact = new Contact(LastName = 'Testerson');
 
-        objectsToSort.add(hlthChkGroupVMod);
-        objectsToSort.add(hlthChkItemVMod1);
-        objectsToSort.add(hlthChkItemVMod2);
+        objectsToSort.add(healthCheckGroupVModel);
+        objectsToSort.add(healthCheckItemVModel1);
+        objectsToSort.add(healthCheckItemVModel2);
         objectsToSort.add(testAccount);
         objectsToSort.add(testContact);
 
@@ -323,7 +323,7 @@ public with sharing class HealthCheckItemVModel_TEST {
     private static void compareToIncompatibleObjectType(){
         Account acct = new Account(Name = 'Test Account');
 
-        HealthCheckItemVModel hlthChkItemVMod = new HealthCheckItemVModel('TestKey1', 
+        HealthCheckItemVModel healthCheckItemVModel = new HealthCheckItemVModel('TestKey1', 
                                                                            'TestSetting', 
                                                                            'Fail', 
                                                                            'TestStatusLabel',
@@ -332,7 +332,7 @@ public with sharing class HealthCheckItemVModel_TEST {
                                                                            new List<HealthCheckItemVModel>());
 
         Test.startTest();
-        Integer compareToResult = hlthChkItemVMod.compareTo(acct);
+        Integer compareToResult = healthCheckItemVModel.compareTo(acct);
         Test.stopTest();
 
         System.assertEquals(0, compareToResult, 'Result comparing incompatible object types should be 0.');

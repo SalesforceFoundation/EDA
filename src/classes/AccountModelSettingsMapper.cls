@@ -27,8 +27,8 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
+* @group Health Check
+* @group-content ../../ApexDocContent/HealthCheck.htm
 * @description Mapper class to return AccountModelSettings model
 */
 public virtual with sharing class AccountModelSettingsMapper {
@@ -49,7 +49,6 @@ public virtual with sharing class AccountModelSettingsMapper {
     * @return The instance of AccountModelSettingsMapper.
     ******************************************************************************/
     public static AccountModelSettingsMapper getInstance() {
-
         if (instance == null) {
             instance = new AccountModelSettingsMapper();
         }

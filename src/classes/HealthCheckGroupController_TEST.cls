@@ -28,7 +28,7 @@
 * @author Salesforce.org
 * @date 2021
 * @group 
-* @group-content ../../ApexDocContent/
+* @group-content ../../ApexDocContent/Tests.htm
 * @description Test class for HealthCheckGroupController.
 */
 @isTest 
@@ -39,10 +39,10 @@ public with sharing class HealthCheckGroupController_TEST {
     @isTest
     private static void locateHealthCheckGroupServiceValid() {
         Test.startTest();
-            HealthCheckGroupService healthChkGrouSrvInstance = HealthCheckGroupController.locateHealthCheckGroupService();
+            HealthCheckGroupService healthCheckGroupServiceInstance = HealthCheckGroupController.locateHealthCheckGroupService();
         Test.stopTest();
 
-        System.assertEquals(HealthCheckGroupService.getInstance(), healthChkGrouSrvInstance, 'Should return the instance of HealthCheckGroupService.');
+        System.assertEquals(HealthCheckGroupService.getInstance(), healthCheckGroupServiceInstance, 'Should return the instance of HealthCheckGroupService.');
     } 
 
     /****************************************************************************************************************************
@@ -53,15 +53,15 @@ public with sharing class HealthCheckGroupController_TEST {
         HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceMixedBag();
 
         Test.startTest();
-        HealthCheckGroupVModel hlthCheckGroupVMod = HealthCheckGroupController.getHealthCheckGroupViewModel('Mixed Bag', 'TestClassName', 'abc');
+        HealthCheckGroupVModel healthCheckGroupVModel = HealthCheckGroupController.getHealthCheckGroupViewModel('Mixed Bag', 'TestClassName', 'abc');
         Test.stopTest();
 
-        System.assertEquals('Mixed Bag', hlthCheckGroupVMod.label, 'Label should \'Mixed Bag\'.');
-        System.assertEquals('Fail', hlthCheckGroupVMod.status, 'Status should be \'Fail\'.');
-        System.assertEquals(5, hlthCheckGroupVMod.passedChecks, 'Should be 5 health check definitions.');
-        System.assertEquals(10, hlthCheckGroupVMod.totalChecks, 'Should be 5 health check definitions.');
-        System.assertEquals(true, hlthCheckGroupVMod.expandedRowsList.isEmpty(), 'expandedRowsList should be empty.');
-        System.assertEquals(true, hlthCheckGroupVMod.healthCheckItemList.isEmpty(), 'healthCheckItemList should be empty.');
+        System.assertEquals('Mixed Bag', healthCheckGroupVModel.label, 'Label should \'Mixed Bag\'.');
+        System.assertEquals('Fail', healthCheckGroupVModel.status, 'Status should be \'Fail\'.');
+        System.assertEquals(5, healthCheckGroupVModel.passedChecks, 'Should be 5 health check definitions.');
+        System.assertEquals(10, healthCheckGroupVModel.totalChecks, 'Should be 5 health check definitions.');
+        System.assertEquals(true, healthCheckGroupVModel.expandedRowsList.isEmpty(), 'expandedRowsList should be empty.');
+        System.assertEquals(true, healthCheckGroupVModel.healthCheckItemList.isEmpty(), 'healthCheckItemList should be empty.');
     }
 
     /****************************************************************************************************************************
@@ -73,7 +73,7 @@ public with sharing class HealthCheckGroupController_TEST {
 
         try{
             Test.startTest();
-            HealthCheckGroupVModel hlthCheckGroupVMod = HealthCheckGroupController.getHealthCheckGroupViewModel('Exception Bag', 'TestClassName', 'abc');
+            HealthCheckGroupVModel healthCheckGroupVModel = HealthCheckGroupController.getHealthCheckGroupViewModel('Exception Bag', 'TestClassName', 'abc');
             Test.stopTest();
         } catch (System.AuraHandledException ex){
             System.assertEquals('System.AuraHandledException', ex.getTypeName(), 'AuraHandledException should be thrown when exception occurs.');
