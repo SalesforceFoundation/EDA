@@ -550,6 +550,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     * getAffiliationMappingsHealthCheckResults returns the expected failed health
     * check
     ***************************************************************************/
+    @isTest
     private static void getAffiliationMappingsHealthCheckResultsPass() {
 
         STUB_AffiliationMappingsService affiliationMappingsServiceStub = 
@@ -617,7 +618,18 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     * getAffiliationMappingsHealthCheckResults returns the expected failed health
     * check
     ***************************************************************************/
+    @isTest
     private static void getAffiliationMappingsHealthCheckResultsFail() {
+
+        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
+
+        List<Affl_Mappings__c> affiliationMappingsList = new List<Affl_Mappings__c>();
+        affiliationMappingsList.add(
+            new Affl_Mappings__c(
+                Name = 'Test Account', 
+                Account_Record_Type__c = 'Test Record Type', 
+                Primary_Affl_Field__c = prefix + 'Test_Organization__c'));
+        insert affiliationMappingsList;
 
         STUB_AffiliationMappingsService affiliationMappingsServiceStub = 
             new STUB_AffiliationMappingsService();
@@ -631,7 +643,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper affiliationMappingsHealthCheckVMapperInstance =
             AffiliationMappingsHealthCheckVMapper.getInstance();
         
-        AffiliationMappingsModel affiliationMappingsModel =
+        AffiliationMappingsModel affiliationMappingsModel = 
             affiliationMappingsHealthCheckVMapperInstance.locateAffiliationMappingsService().getAffiliationMappingsModels()[0];
 
         Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>();
@@ -657,9 +669,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'Status should equal expected value of blank'
         );
         System.assertEquals(
-            0,
+            1,
             healthCheckGroupVModelResult.passedChecks,
-            'Passed checks should equal expected value of 0'
+            'Passed checks should equal expected value of 1 because getAffiliationMappingsHealthCheckResults is only executed for non-null mappings'
         );
         System.assertEquals(
             numberOfHealthChecks,
@@ -877,8 +889,6 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         }
     }
 
-    
-    
     /***************************************************************************
     * @description Stub class to simulate the response from
     * AffiliationMappingsService to return a predetermined set of models.

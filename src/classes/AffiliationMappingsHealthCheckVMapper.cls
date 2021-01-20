@@ -58,7 +58,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
     /**********************************************************************************
     * @description Retrieve the results for a for an AffiliationMappings health check.
-    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Account.
+    * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Affiliations.
     **********************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
@@ -103,6 +103,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Contact Primary Affiliation Field Uniqueness
     * Auto-Enrollment Status
     * Auto-Enrollment Role
+    * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param  recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
     * @return A HealthCheckGroupVModel
     **********************************************************************************/
     @TestVisible
@@ -175,13 +177,15 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
     /***************************************************************************
     * @description Retrieves a formatted HealthCheckItemVModel. 
+    * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param  recordTypeModel A record type model corresponding to the Account record type specified in the affiliation mapping.
     * @return A formatted HealthCheckItemVModel.
     ***************************************************************************/
     @TestVisible
     protected virtual HealthCheckItemVModel getHealthCheckItemVModelForAffiliationMappingsModel(
         AffiliationMappingsModel affiliationMappingsModel,
         RecordTypeModel recordTypeModel
-    ){
+    ) {
         String recordTypeModelName = affiliationMappingsModel.name;
 
         if(recordTypeModel != null) {
@@ -209,7 +213,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
     /**********************************************************************************
     * @description Retrieves a HealthCheckGroup view model representing the health check
-    * results for all affiliation mappings in EDA Settings.
+    * results for Account Record Types specified.  Determines whether the Account 
+    * record type included in an affiliation mapping corresponds to a record 
+    * type for Account in the org that is active.
+    * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param  recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible
