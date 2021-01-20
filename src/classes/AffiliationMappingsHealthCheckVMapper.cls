@@ -72,13 +72,23 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
         Map<Id, RecordTypeModel> accRTModelsById = this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType);
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
-        Set<String> duplicateAccountRecordTypeIds = this.locateAffiliationMappingsService().getDuplicateAccountRecordTypeIdsFromList();
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = 
+            this.locateLookupFieldService().getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel =
+            this.locateLookupFieldService().getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
+        Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName = 
+            this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
+        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName = 
+            this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
 
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
             HealthCheckGroupVModel childAffiliationMappingsHealthCheckResults = this.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
                 accRTModelsById,
-                duplicateAccountRecordTypeIds
+                accountLookupsOnContactFieldModelsByName,
+                accountLookupsOnContactFieldModelsByLabel,
+                affilationRolePicklistEntryModelByName,
+                affilationStatusPicklistEntryModelByName
             );
 
             // Add results from child health check group results to parent
@@ -103,8 +113,12 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Contact Primary Affiliation Field Uniqueness
     * Auto-Enrollment Status
     * Auto-Enrollment Role
-    * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
-    * @param  recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
+    * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
+    * @param accountlookupFieldOnContactFieldModelByName A map of lookup fields to Account for the Contact object by devloper name.
+    * @param accountlookupFieldOnContactFieldModelByLabel A map of lookup fields to Account for the Contact object by field label.
+    * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name.
+    * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name.
     * @return A HealthCheckGroupVModel
     **********************************************************************************/
     @TestVisible
@@ -116,6 +130,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
         Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName
     ) {
+
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
             '',
             '',
@@ -145,14 +160,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             this.getValidRecordTypeHealthCheckGroupVModel(
                 affiliationMappingsModel, 
                 recordTypeModelsById
-            )
-        );
-
-        childHealthCheckGroupVModelList.add(
-            this.getAccountRecordTypeUniquenessHealthCheckGroupVModel(
-                affiliationMappingsModel, 
-                recordTypeModelsById,
-                duplicateAccountRecordTypeIds    
             )
         );
 
@@ -301,114 +308,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             healthCheckGroupVModel.passedChecks++;
         }
         
-
-        healthCheckGroupVModel.updateHealthCheckStatus();
-        return healthCheckGroupVModel;
-    }
-
-    /**********************************************************************************
-    * @description Retrieves a HealthCheckGroup view model representing the health check
-    * results for all affiliation mappings in EDA Settings.
-    * @return A HealthCheckGroupVModel
-    **********************************************************************************/ 
-    @TestVisible
-    private virtual HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
-        AffiliationMappingsModel affiliationMappingsModel, 
-        Map<Id,RecordTypeModel> recordTypeModelsById,
-        Set<String> duplicateAccountRecordTypeIds
-    ) {
-        List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
-        String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
-        
-        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
-                                                                                 Label.stgHealthCheckStatusPassed,
-                                                                                 0,
-                                                                                 0,
-                                                                                 new List<String>(),
-                                                                                 healthCheckItemsList);
-
-        RecordTypeModel accountRTModel = this.locateRecordTypeService().getRecordTypeModelFromMap(
-            affiliationMappingsModel.accountRecordTypeId, 
-            recordTypeModelsById
-        );
-
-        if (accountRTModel == null) {
-            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
-                '02',
-                Label.stgHCAfflMapAccRecordTypeUniqueTitle,
-                'Fail',
-                Label.stgHealthCheckStatusFailed,
-                String.format(
-                    Label.stgHCRecordTypeNotFound, 
-                    new List<Object>{affiliationMappingsModel.accountRecordTypeId}
-                ),
-                String.format(
-                    Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
-                    new List<Object>{affiliationMappingsModel.accountRecordTypeId}
-                ),
-                new List<HealthCheckItemVModel>()
-            ));
-
-            healthCheckGroupVModel.totalChecks++;
-        }
-
-        else if (accountRTModel.isActive == false) {
-            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
-                '02',
-                Label.stgHCAfflMapAccRecordTypeUniqueTitle,
-                'Fail',
-                Label.stgHealthCheckStatusFailed,
-                String.format(
-                    Label.stgHCRecordTypeInactive, 
-                    new List<Object>{accountRTModel.name, accountRTModel.developerName}
-                ),
-                String.format(
-                    Label.stgHCAfflMapAccRecordTypeInactiveFix, 
-                    new List<Object>{accountRTModel.name, accountRTModel.developerName}
-                ),
-                new List<HealthCheckItemVModel>()
-            ));
-
-            healthCheckGroupVModel.totalChecks++;
-        }
-
-        else if (duplicateAccountRecordTypeIds.contains(affiliationMappingsModel.accountRecordTypeId)) {
-            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
-                '02',
-                Label.stgHCAfflMapAccRecordTypeUniqueTitle,
-                'Fail',
-                Label.stgHealthCheckStatusFailed,
-                String.format(
-                    Label.stgHCAfflMapAccRecordTypeNotUnique, 
-                    new List<Object>{accountRTModel.name, accountRTModel.developerName}
-                ),
-                String.format(
-                    Label.stgHCAfflMapAccRecordTypeUniqueFix, 
-                    new List<Object>{accountRTModel.name, accountRTModel.developerName}
-                ),
-                new List<HealthCheckItemVModel>()
-            ));
-
-            healthCheckGroupVModel.totalChecks++;
-        }
-        
-        else {
-            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
-                '02',
-                Label.stgHCAfflMapAccRecordTypeUniqueTitle,
-                'Pass',
-                Label.stgHealthCheckStatusPassed,
-                String.format(
-                    Label.stgHCAfflMapAccRecordTypeUnique, 
-                    new List<Object>{accountRTModel.name, accountRTModel.developerName}
-                ),
-                Label.stgHealthCheckFixNotApplicable,
-                new List<HealthCheckItemVModel>()
-            ));
-
-            healthCheckGroupVModel.totalChecks++;
-            healthCheckGroupVModel.passedChecks++;
-        }
 
         healthCheckGroupVModel.updateHealthCheckStatus();
         return healthCheckGroupVModel;
