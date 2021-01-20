@@ -282,11 +282,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             return healthCheckGroupVModel;
         }
 
-        if (String.isBlank(affiliationMappingsModel.autoProgramEnrollmentStatus)) {
+        if (affiliationMappingsModel.autoProgramEnrollmentStatus == '""') {
             // Auto-Enrollment Status not specified
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                 '05',
-                Label.stgHCAfflMapAutoEnrollRoleTitle,
+                Label.stgHCAfflMapAutoEnrollStatusTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
                 String.format(
@@ -404,7 +404,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             return healthCheckGroupVModel;
         }
 
-        if (String.isBlank(affiliationMappingsModel.autoProgramEnrollmentRole)) {
+        if (affiliationMappingsModel.autoProgramEnrollmentRole == '""') {
             // Auto-Enrollment Role not specified
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                 '05',
