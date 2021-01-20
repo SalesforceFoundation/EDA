@@ -182,8 +182,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                                 Label.stgHealthCheckStatusFailed,
                                                                                 String.format(Label.stgHCRecordTypeNotFound, 
                                                                                                 new List<Object>{courseConnectionSettingsModel.studentRecordTypeId}),
-                                                                                String.format(Label.stgHCCourseConStudentInactiveFix, 
-                                                                                                new List<Object>{courseConnectionSettingsModel.studentRecordTypeId}),
+                                                                                Label.stgHCCourseConStudentNotFoundFix,
                                                                                 new List<HealthCheckItemVModel>()));
             hlthChkGroupVMod.totalChecks++;
             return hlthChkGroupVMod;
@@ -246,8 +245,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                                 Label.stgHealthCheckStatusFailed,
                                                                                 String.format(Label.stgHCRecordTypeNotFound, 
                                                                                                 new List<Object>{courseConnectionSettingsModel.facultyRecordTypeId}),
-                                                                                String.format(Label.stgHCCourseConFacultyInactiveFix, 
-                                                                                                new List<Object>{courseConnectionSettingsModel.facultyRecordTypeId}),
+                                                                                Label.stgHCCourseConFacultyNotFoundFix,
                                                                                 new List<HealthCheckItemVModel>()));
             hlthChkGroupVMod.totalChecks++;
             return hlthChkGroupVMod;
