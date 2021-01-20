@@ -795,7 +795,10 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         private override HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
             AffiliationMappingsModel affiliationMappingsModel,
             Map<Id, RecordTypeModel> recordTypeModelsById,
-            Set<String> duplicateAccountRecordTypeIds
+            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
+            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel,
+            Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
+            Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName
         ) {
 
             HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(

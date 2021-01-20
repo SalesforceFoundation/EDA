@@ -432,7 +432,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         return RecordTypeService.getInstance();
     }
 
-
     /*****************************************************************************
     * @description Retrieve an instance of the LookupFieldService class.
     * @return An instance of LookupFieldService.
@@ -450,5 +449,4 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     private PicklistEntryService locatePicklistEntryService() {
         return PicklistEntryService.getInstance();
     }
-}
 }
