@@ -141,7 +141,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel('01',
                                                                       Label.stgEnableCourseConnectionsTitle,
                                                                       'Fail',
-                                                                      Label.stgHealthCheckStatusFailed,
+                                                                      Label.stgHealthCheckStatusWarning,
                                                                       Label.stgHCCourseConEnable,
                                                                       Label.stgHCCourseConEnableFix,
                                                                       new List<HealthCheckItemVModel>()));
@@ -246,7 +246,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                                 Label.stgHealthCheckStatusFailed,
                                                                                 String.format(Label.stgHCRecordTypeNotFound, 
                                                                                                 new List<Object>{courseConnectionSettingsModel.facultyRecordTypeId}),
-                                                                                String.format(Label.stgHCCourseConStudentInactiveFix, 
+                                                                                String.format(Label.stgHCCourseConFacultyInactiveFix, 
                                                                                                 new List<Object>{courseConnectionSettingsModel.facultyRecordTypeId}),
                                                                                 new List<HealthCheckItemVModel>()));
             hlthChkGroupVMod.totalChecks++;
@@ -260,7 +260,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                                 Label.stgHealthCheckStatusFailed,
                                                                                 String.format(Label.stgHCRecordTypeInactive, 
                                                                                                 new List<Object>{facultyRecTypeModel.name, facultyRecTypeModel.developerName}),
-                                                                                String.format(Label.stgHCCourseConStudentInactiveFix, 
+                                                                                String.format(Label.stgHCCourseConFacultyInactiveFix, 
                                                                                                 new List<Object>{facultyRecTypeModel.name, facultyRecTypeModel.developerName}),
                                                                                 new List<HealthCheckItemVModel>()));
             hlthChkGroupVMod.totalChecks++;

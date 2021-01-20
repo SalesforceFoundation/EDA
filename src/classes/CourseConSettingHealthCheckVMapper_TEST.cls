@@ -373,7 +373,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgEnableCourseConnectionsTitle,
                                                                                     'Fail',
-                                                                                    Label.stgHealthCheckStatusFailed,
+                                                                                    Label.stgHealthCheckStatusWarning,
                                                                                     Label.stgHCCourseConEnable,
                                                                                     Label.stgHCCourseConEnableFix,
                                                                                     hCGroupVMdl.healthCheckItemList); 
@@ -598,7 +598,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
-        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
+        String expectedFix = String.format(Label.stgHCCourseConFacultyInactiveFix, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
         
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
                                                                                    'Fail', 
@@ -642,7 +642,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
-        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
+        String expectedFix = String.format(Label.stgHCCourseConFacultyInactiveFix, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
                                                                                    'Fail', 
@@ -686,7 +686,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        hlthChkGroupVMod);
 
         String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{rtModel.name, rtModel.developerName});
-        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedFix = String.format(Label.stgHCCourseConFacultyInactiveFix, new List<Object>{rtModel.name, rtModel.developerName});
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
                                                                                    'Fail', 
