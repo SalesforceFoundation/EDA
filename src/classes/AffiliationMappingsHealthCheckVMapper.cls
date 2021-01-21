@@ -282,27 +282,6 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             return healthCheckGroupVModel;
         }
 
-        if (affiliationMappingsModel.autoProgramEnrollmentStatus == '""') {
-            // Auto-Enrollment Status not specified
-            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
-                '05',
-                Label.stgHCAfflMapAutoEnrollStatusTitle,
-                'Fail',
-                Label.stgHealthCheckStatusFailed,
-                String.format(
-                    Label.stgHCAfflMapAutoEnrollStatusNotFound, 
-                    new List<Object>{affiliationMappingsModel.autoProgramEnrollmentStatus}
-                ),
-                Label.stgHCAfflMapAutoEnrollStatusNotFoundFix, 
-                new List<HealthCheckItemVModel>()
-            ));
-
-            healthCheckGroupVModel.totalChecks++;
-            healthCheckGroupVModel.updateHealthCheckStatus();
-
-            return healthCheckGroupVModel;
-        }
-
         if (picklistEntryModelByName.keySet().contains(affiliationMappingsModel.autoProgramEnrollmentStatus) == false) {
             // invalid mapping 
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
