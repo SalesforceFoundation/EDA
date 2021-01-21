@@ -32,7 +32,7 @@
 * @description Generate a model serving as an abstraction of lookup field for Affiliation.
 */
 public with sharing class LookupFieldModel {
-    public String name;
+    public String name; //developer name
     public String label;
 
     public LookupFieldModel(String name, String label) {

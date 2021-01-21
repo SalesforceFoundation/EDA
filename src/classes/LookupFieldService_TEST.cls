@@ -209,6 +209,109 @@ public with sharing class LookupFieldService_TEST {
         System.assertEquals(null, lookupFieldModelResult, 'Should return null value.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that getLookupFieldModelFromNameAndLabelMaps returns a valid record type model when a match is found
+    * for a specified developer name.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getLookupFieldModelFromNameAndLabelMapsByName() {
+        Map<String, LookupFieldModel> lookupFieldModelsByName = new Map<String, LookupFieldModel>{
+            'Lookup_Field_1' => new LookupFieldModel(
+                'Lookup_Field_1',    
+                'Lookup Field 1'
+            )
+        };
+
+        Map<String, LookupFieldModel> lookupFieldModelsByLabel = new Map<String, LookupFieldModel>{
+            'Lookup Field' => new LookupFieldModel(
+                'Lookup_Field',
+                'Lookup Field'
+            )
+        };
+
+        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
+
+        Test.startTest();
+        LookupFieldModel lookupFieldModelResult = 
+            lookupFieldServiceInstance.getLookupFieldModelFromNameAndLabelMaps(
+                'Lookup_Field_1',
+                lookupFieldModelsByName,
+                lookupFieldModelsByLabel
+            );
+        Test.stopTest();
+
+        System.assertEquals('Lookup_Field_1', lookupFieldModelResult.name, 'Record type model name should be \'Lookup_Field_1\'.');
+        System.assertEquals('Lookup Field 1', lookupFieldModelResult.label, 'Record type model label should be \'Lookup Field 1\'.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that getLookupFieldModelFromNameAndLabelMaps returns a valid record type model when a match is found
+    * for a specified label name.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getLookupFieldModelFromNameAndLabelMapsByLabel() {
+        Map<String, LookupFieldModel> lookupFieldModelsByName = new Map<String, LookupFieldModel>{
+            'Lookup_Field_1' => new LookupFieldModel(
+                'Lookup_Field_1',    
+                'Lookup Field 1' 
+            )
+        };
+
+        Map<String, LookupFieldModel> lookupFieldModelsByLabel = new Map<String, LookupFieldModel>{
+            'Lookup Field' => new LookupFieldModel(
+                'Lookup_Field',
+                'Lookup Field'
+            )
+        };
+
+        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
+
+        Test.startTest();
+        LookupFieldModel lookupFieldModelResult = 
+            lookupFieldServiceInstance.getLookupFieldModelFromNameAndLabelMaps(
+                'Lookup Field',
+                lookupFieldModelsByName,
+                lookupFieldModelsByLabel
+            );
+        Test.stopTest();
+
+        System.assertEquals('Lookup_Field', lookupFieldModelResult.name, 'Lookup field model name should be \'Lookup_Field\'.');
+        System.assertEquals('Lookup Field', lookupFieldModelResult.label, 'Lookup field model label should be \'Lookup Field\'.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that getLookupFieldModelFromNameAndLabelMaps returns a null record type model when no match is found
+    * for a specified developer or label name.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getLookupFieldModelFromNameAndLabelMapsNull() {
+        Map<String, LookupFieldModel> lookupFieldModelsByName = new Map<String, LookupFieldModel>{
+            'Lookup_Field_1' => new LookupFieldModel(
+                'Lookup_Field_1', 
+                'Lookup Field 1'
+            )
+        };
+
+        Map<String, LookupFieldModel> lookupFieldModelsByLabel = new Map<String, LookupFieldModel>{
+            'Lookup Field' => new LookupFieldModel(
+                'Lookup_Field', 
+                'Lookup Field'
+            )
+        };
+
+        LookupFieldService lookupFieldServiceInstance = LookupFieldService.getInstance();
+
+        Test.startTest();
+        LookupFieldModel lookupFieldModelResult = 
+            lookupFieldServiceInstance.getLookupFieldModelFromNameAndLabelMaps(
+                'Non Existent Lookup Field Name',
+                lookupFieldModelsByName,
+                lookupFieldModelsByLabel
+            );
+        Test.stopTest();
+
+        System.assertEquals(null, lookupFieldModelResult, 'Lookup field model should be null.');
+    }
 
     /**************************************************************************************************************************
     ****************************************************** STUB CLASS *********************************************************

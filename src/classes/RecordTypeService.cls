@@ -89,7 +89,7 @@ public virtual with sharing class RecordTypeService {
     * @param recordTypeModelByLabel A map of record type models by label
     * @return A Record Type Model corresponding to the specified record type label or name
     ******************************************************************************/
-    public virtual RecordTypeModel getRecordTypeModelFromMap(
+    public virtual RecordTypeModel getRecordTypeModelFromNameAndLabelMaps(
         String recordTypeNameOrLabel, 
         Map<String, RecordTypeModel> recordTypeModelByName,
         Map<String, RecordTypeModel> recordTypeModelByLabel

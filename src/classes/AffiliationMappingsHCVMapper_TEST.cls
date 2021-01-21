@@ -255,21 +255,16 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<String,RecordTypeModel> recordTypeModelsByLabel = new Map<String, RecordTypeModel> {
-            'Active RecordType Label' => new RecordTypeModel(
-                '000000000000000006',
-                'Active RecordType Label',
-                'activeRTDevName',
-                true
-            )
-        };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
                 affiliationMappingsModelsList[0],
-                new Map<String, RecordTypeModel>(),
-                recordTypeModelsByLabel
+                new RecordTypeModel(
+                    '000000000000000006',
+                    'Active RecordType Label',
+                    'activeRTDevName',
+                    true
+                )
             );
         Test.stopTest();
 
@@ -319,21 +314,16 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<String,RecordTypeModel> recordTypeModelsByName = new Map<String, RecordTypeModel> {
-            'inactiveRTDevName' => new RecordTypeModel(
-                '000000000000000005',
-                'Inactive RecordType Label',
-                'inactiveRTDevName',
-                false
-            )
-        };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
                 affiliationMappingsModelsList[0],
-                recordTypeModelsByName,
-                new Map<String,RecordTypeModel>()
+                new RecordTypeModel(
+                    '000000000000000005',
+                    'Inactive RecordType Label',
+                    'inactiveRTDevName',
+                    false
+                )
             );
         Test.stopTest();
 
@@ -386,30 +376,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<String,RecordTypeModel> recordTypeModelsByName = new Map<String, RecordTypeModel>{
-            'TestRTDevName' => new RecordTypeModel(
-                '000000000000000005',
-                'Test RecordType Name',
-                'TestRTDevName',
-                true
-            )
-        };
-
-        Map<String,RecordTypeModel> recordTypeModelsByLabel = new Map<String, RecordTypeModel>{
-            'Test RecordType Name' => new RecordTypeModel(
-                '000000000000000005',
-                'Test RecordType Name',
-                'TestRTDevName',
-                true
-            )
-        };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
                 affiliationMappingModelsList[0],
-                recordTypeModelsByName,
-                recordTypeModelsByLabel
+                null
             );
         Test.stopTest();
 
@@ -464,37 +435,38 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
-            'Valid Contact Lookup Field Name' => new LookupFieldModel(
-                'Valid Contact Lookup Field Name',
-                'Valid Contact Lookup Field Label'
-            ),
+        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
+        //     'Valid Contact Lookup Field Name' => new LookupFieldModel(
+        //         'Valid Contact Lookup Field Name',
+        //         'Valid Contact Lookup Field Label'
+        //     ),
 
-            'Primary Field Name' => new LookupFieldModel(
-                'Primary Field Name',
-                'Primary Field Label'
-            )
-        };
+        //     'Primary Field Name' => new LookupFieldModel(
+        //         'Primary Field Name',
+        //         'Primary Field Label'
+        //     )
+        // };
 
-        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
-            'Valid Contact Lookup Field Label' => new LookupFieldModel(
-                'Valid Contact Lookup Field Name',
-                'Valid Contact Lookup Field Label'
-            ),
+        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
+        //     'Valid Contact Lookup Field Label' => new LookupFieldModel(
+        //         'Valid Contact Lookup Field Name',
+        //         'Valid Contact Lookup Field Label'
+        //     ),
 
-
-            'Primary Field Label' => new LookupFieldModel(
-                'Primary Field Name',
-                'Primary Field Label'
-            )
-        };
+        //     'Primary Field Label' => new LookupFieldModel(
+        //         'Primary Field Name',
+        //         'Primary Field Label'
+        //     )
+        // };
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
                 affiliationMappingsModelsList[0],
-                accountlookupFieldOnContactFieldModelByName,
-                accountlookupFieldOnContactFieldModelByLabel
+                new LookupFieldModel(
+                    'Valid Contact Lookup Field Name',
+                    'Valid Contact Lookup Field Label'
+                )
             );
         Test.stopTest();
 
@@ -548,37 +520,38 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
-            'Valid Contact Lookup Field Name' => new LookupFieldModel(
-                'Valid Contact Lookup Field Name',
-                'Valid Contact Lookup Field Label'
-            ),
+        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
+        //     'Valid Contact Lookup Field Name' => new LookupFieldModel(
+        //         'Valid Contact Lookup Field Name',
+        //         'Valid Contact Lookup Field Label'
+        //     ),
 
-            'Primary Field Name' => new LookupFieldModel(
-                'Primary Field Name',
-                'Primary Field Label'
-            )
-        };
+        //     'Primary Field Name' => new LookupFieldModel(
+        //         'Primary Field Name',
+        //         'Primary Field Label'
+        //     )
+        // };
 
-        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
-            'Valid Contact Lookup Field Label' => new LookupFieldModel(
-                'Valid Contact Lookup Field Name',
-                'Valid Contact Lookup Field Label'
-            ),
+        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
+        //     'Valid Contact Lookup Field Label' => new LookupFieldModel(
+        //         'Valid Contact Lookup Field Name',
+        //         'Valid Contact Lookup Field Label'
+        //     ),
 
-
-            'Primary Field Label' => new LookupFieldModel(
-                'Primary Field Name',
-                'Primary Field Label'
-            )
-        };
+        //     'Primary Field Label' => new LookupFieldModel(
+        //         'Primary Field Name',
+        //         'Primary Field Label'
+        //     )
+        // };
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
                 affiliationMappingsModelsList[0],
-                accountlookupFieldOnContactFieldModelByName,
-                accountlookupFieldOnContactFieldModelByLabel
+                new LookupFieldModel(
+                    'Valid Contact Lookup Field Name',
+                    'Valid Contact Lookup Field Label'
+                )
             );
         Test.stopTest();
 
@@ -631,36 +604,35 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
-            'Primary Field Name 1' => new LookupFieldModel(
-                'Primary Field Name 1',
-                'Primary Field Label 1'
-            ),
+        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
+        //     'Primary Field Name 1' => new LookupFieldModel(
+        //         'Primary Field Name 1',
+        //         'Primary Field Label 1'
+        //     ),
 
-            'Primary Field Name 2' => new LookupFieldModel(
-                'Primary Field Name 2',
-                'Primary Field Label 2'
-            )
-        };
+        //     'Primary Field Name 2' => new LookupFieldModel(
+        //         'Primary Field Name 2',
+        //         'Primary Field Label 2'
+        //     )
+        // };
 
-        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
-            'Primary Field Label 1' => new LookupFieldModel(
-                'Primary Field Name 1',
-                'Primary Field Label 1'
-            ),
+        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
+        //     'Primary Field Label 1' => new LookupFieldModel(
+        //         'Primary Field Name 1',
+        //         'Primary Field Label 1'
+        //     ),
 
-            'Primary Field Label 2' => new LookupFieldModel(
-                'Primary Field Name 2',
-                'Primary Field Label 2'
-            )
-        };
+        //     'Primary Field Label 2' => new LookupFieldModel(
+        //         'Primary Field Name 2',
+        //         'Primary Field Label 2'
+        //     )
+        // };
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
                 affiliationMappingsModelsList[0],
-                accountlookupFieldOnContactFieldModelByName,
-                accountlookupFieldOnContactFieldModelByLabel
+                null
             );
         Test.stopTest();
 
@@ -765,36 +737,35 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
-            'Primary Field Name 1' => new LookupFieldModel(
-                'Primary Field Name 1',
-                'Primary Field Label 1'
-            ),
+        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
+        //     'Primary Field Name 1' => new LookupFieldModel(
+        //         'Primary Field Name 1',
+        //         'Primary Field Label 1'
+        //     ),
 
-            'Primary Field Name 2' => new LookupFieldModel(
-                'Primary Field Name 2',
-                'Primary Field Label 2'
-            )
-        };
+        //     'Primary Field Name 2' => new LookupFieldModel(
+        //         'Primary Field Name 2',
+        //         'Primary Field Label 2'
+        //     )
+        // };
 
-        Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
-            'Primary Field Label 1' => new LookupFieldModel(
-                'Primary Field Name 1',
-                'Primary Field Label 1'
-            ),
+        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
+        //     'Primary Field Label 1' => new LookupFieldModel(
+        //         'Primary Field Name 1',
+        //         'Primary Field Label 1'
+        //     ),
 
-            'Primary Field Label 2' => new LookupFieldModel(
-                'Primary Field Name 2',
-                'Primary Field Label 2'
-            )
-        };
+        //     'Primary Field Label 2' => new LookupFieldModel(
+        //         'Primary Field Name 2',
+        //         'Primary Field Label 2'
+        //     )
+        // };
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
                 affiliationMappingsModelsList[0],
-                accountlookupFieldOnContactFieldModelByName,
-                accountlookupFieldOnContactFieldModelByLabel
+                null
             );
         Test.stopTest();
 
@@ -897,10 +868,16 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             affiliationMappingsHealthCheckVMapperInstance.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
-                new Map<String, RecordTypeModel>(),
-                new Map<String, RecordTypeModel>(),
-                new Map<String, LookupFieldModel>(),
-                new Map<String, LookupFieldModel>(),
+                new RecordTypeModel(
+                    '000000000000001234', 
+                    'Test Account Record Type',
+                    'Test_Account_Record_Type', 
+                    true
+                ),
+                new LookupFieldModel(
+                    'Test_Lookup_Field', 
+                    'Test Lookup Field'
+                ),
                 new Map<String, PicklistEntryModel>(),
                 new Map<String, PicklistEntryModel>()
             );
@@ -976,10 +953,16 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             affiliationMappingsHealthCheckVMapperInstance.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
-                new Map<String, RecordTypeModel>(),
-                new Map<String, RecordTypeModel>(),
-                new Map<String, LookupFieldModel>(),
-                new Map<String, LookupFieldModel>(),
+                new RecordTypeModel(
+                    '000000000000001234', 
+                    'Test Account Record Type',
+                    'Test_Account_Record_Type', 
+                    true
+                ),
+                new LookupFieldModel(
+                    'Test_Lookup_Field', 
+                    'Test Lookup Field'
+                ),
                 new Map<String, PicklistEntryModel>(),
                 new Map<String, PicklistEntryModel>()
             );
@@ -1787,8 +1770,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private class STUB_AffiliationMappingsHealthCheckVMapperPass extends AffiliationMappingsHealthCheckVMapper {
         private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel, 
-            Map<String,RecordTypeModel> recordTypeModelsByName,
-            Map<String,RecordTypeModel> recordTypeModelsByLabel
+            RecordTypeModel accountRecordTypeModel
         ) {
             return new HealthCheckGroupVModel(
                 'Account RT Health Check', 
@@ -1812,8 +1794,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
-            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
-            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel
+            LookupFieldModel accountlookupFieldOnContactFieldModelFromName
         ) {
             return new HealthCheckGroupVModel(
                 'Contact Primary Field Health Check', 
@@ -1892,8 +1873,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private class STUB_AffiliationMappingsHealthCheckVMapperFail extends AffiliationMappingsHealthCheckVMapper {
         private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel, 
-            Map<String,RecordTypeModel> recordTypeModelsByName,
-            Map<String,RecordTypeModel> recordTypeModelsByLabel
+            RecordTypeModel accountRecordTypeModel
         ) {
             return new HealthCheckGroupVModel(
                 'Account RT Health Check', 
@@ -1917,8 +1897,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
-            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
-            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel
+            LookupFieldModel accountlookupFieldOnContactFieldModelFromName
         ) {
             return new HealthCheckGroupVModel(
                 'Contact Primary Field Health Check', 
@@ -1997,8 +1976,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private class STUB_AffiliationMappingsHealthCheckVMapperSubFail extends AffiliationMappingsHealthCheckVMapper {
         private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingModel, 
-            Map<String, RecordTypeModel> recordTypeModelsByName,
-            Map<String, RecordTypeModel> recordTypeModelsByLabel
+            RecordTypeModel accountRecordTypeModel
         ) {
             return new HealthCheckGroupVModel(
                 'Failed Health Check 1', 
@@ -2012,8 +1990,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
-            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
-            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel
+            LookupFieldModel accountlookupFieldOnContactFieldModelFromName
         ) {
             return new HealthCheckGroupVModel(
                 'Failed Health Check 2', 
@@ -2062,16 +2039,14 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private class STUB_AffiliationMappingsHealthCheckVMapperSub extends AffiliationMappingsHealthCheckVMapper {
         private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel, 
-            Map<String, RecordTypeModel> recordTypeModelsByName,
-            Map<String, RecordTypeModel> recordTypeModelsByLabel
+            RecordTypeModel accountRecordTypeModel
         ) {
             return this.mockCheck(affiliationMappingsModel);
         }
 
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel, 
-            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName,
-            Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel
+            LookupFieldModel accountlookupFieldOnContactFieldModelFromName
         ) {
             return this.mockCheck(affiliationMappingsModel);
         }

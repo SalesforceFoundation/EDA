@@ -96,6 +96,27 @@ public virtual with sharing class LookupFieldService {
         return lookupFieldModelByName.get(fieldName);
     }
 
+    /******************************************************************************
+    * @description Retrieve a lookup field model for a specified lookup field name or label.
+    * @param LookupFieldNameOrLabel A string representing the name or label for a lookup field
+    * @param LookupFieldModelByName A map of lookup field models by name
+    * @param LookupFieldModelByLabel A map of lookup field models by label
+    * @return A lookup field Model corresponding to the specified lookup field label or name
+    ******************************************************************************/
+    public virtual LookupFieldModel getLookupFieldModelFromNameAndLabelMaps(
+        String lookupFieldNameOrLabel, 
+        Map<String, LookupFieldModel> lookupFieldModelByName,
+        Map<String, LookupFieldModel> lookupFieldModelByLabel
+    ) { 
+        LookupFieldModel lookupFieldModel = lookupFieldModelByName.get(lookupFieldNameOrLabel);
+
+        if (lookupFieldModel == null) {
+            lookupFieldModel = lookupFieldModelByLabel.get(lookupFieldNameOrLabel);
+        }
+
+        return lookupFieldModel;
+    }
+
     /********************************************************************************************
     * @description Retrieve a LookupField model corresponding to a specified field label.
     * @param  fieldLabel  An SObject field label
