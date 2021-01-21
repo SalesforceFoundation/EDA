@@ -61,14 +61,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * @return A HealthCheckGroupVModel representing a HealtCheckDescription for Affiliations.
     **********************************************************************************/ 
     public virtual HealthCheckGroupVModel getHealthCheckGroup() {
-        HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
-            Label.stgHealthCheckAffiliationMappings,
-            Label.stgHealthCheckStatusPassed,
-            0,
-            0,
-            new List<String>(),
-            new List<HealthCheckItemVModel>()
-        );
+        HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel();
+        parentHealthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
 
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService().getAffiliationMappingsModels();
 
@@ -152,15 +146,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
         Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName
     ) {
-
-        HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel(
-            '',
-            '',
-            0,
-            0,
-            new List<String>(),
-            new List<HealthCheckItemVModel>()
-        );
+        HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel();
             
         HealthCheckItemVModel childHealthCheckItemVModel =
             this.getHealthCheckItemVModelForAffiliationMappingsModel(
@@ -219,6 +205,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         }
 
         childHealthCheckItemVModel.healthCheckItemList.sort();
+        
+        parentHealthCheckGroupVModel.updateHealthCheckStatus();
         parentHealthCheckGroupVModel.healthCheckItemList.add(childHealthCheckItemVModel);
 
         return parentHealthCheckGroupVModel;
@@ -271,15 +259,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         AffiliationMappingsModel affiliationMappingsModel,
         Map<String, PicklistEntryModel> picklistEntryModelByName
     ) {
-        List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
-        String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
-
-        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
-                                                                                 Label.stgHealthCheckStatusPassed,
-                                                                                 0,
-                                                                                 0,
-                                                                                 new List<String>(),
-                                                                                 healthCheckItemsList);
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
+        healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
 
         if (affiliationMappingsModel.autoProgramEnrollment != true) {
             return healthCheckGroupVModel;
@@ -371,16 +352,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         AffiliationMappingsModel affiliationMappingsModel,
         Map<String, PicklistEntryModel> picklistEntryModelByName
     ) {
-
-        List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
-        String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
-
-        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
-                                                                                 Label.stgHealthCheckStatusPassed,
-                                                                                 0,
-                                                                                 0,
-                                                                                 new List<String>(),
-                                                                                 healthCheckItemsList);
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
+        healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
 
         if (affiliationMappingsModel.autoProgramEnrollment != true) {
             return healthCheckGroupVModel;
@@ -470,15 +443,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         AffiliationMappingsModel affiliationMappingsModel,
         LookupFieldModel accountlookupFieldOnContactFieldModelFromName
     ) {
-        List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
-        String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
-
-        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
-                                                                                 Label.stgHealthCheckStatusPassed,
-                                                                                 0,
-                                                                                 0,
-                                                                                 new List<String>(),
-                                                                                 healthCheckItemsList);
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
+        healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
 
         if (accountlookupFieldOnContactFieldModelFromName == null) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
@@ -540,15 +506,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         AffiliationMappingsModel affiliationMappingsModel, 
         RecordTypeModel accountRecordTypeModel
     ) {
-        List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
-        String healthCheckGroupLabel = Label.stgHealthCheckAffiliationMappings;
-
-        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(healthCheckGroupLabel,
-                                                                                 Label.stgHealthCheckStatusPassed,
-                                                                                 0,
-                                                                                 0,
-                                                                                 new List<String>(),
-                                                                                 healthCheckItemsList);
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
+        healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
 
         if (accountRecordTypeModel == null) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(

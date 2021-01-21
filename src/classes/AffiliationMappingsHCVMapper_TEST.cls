@@ -435,30 +435,6 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
-        //     'Valid Contact Lookup Field Name' => new LookupFieldModel(
-        //         'Valid Contact Lookup Field Name',
-        //         'Valid Contact Lookup Field Label'
-        //     ),
-
-        //     'Primary Field Name' => new LookupFieldModel(
-        //         'Primary Field Name',
-        //         'Primary Field Label'
-        //     )
-        // };
-
-        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
-        //     'Valid Contact Lookup Field Label' => new LookupFieldModel(
-        //         'Valid Contact Lookup Field Name',
-        //         'Valid Contact Lookup Field Label'
-        //     ),
-
-        //     'Primary Field Label' => new LookupFieldModel(
-        //         'Primary Field Name',
-        //         'Primary Field Label'
-        //     )
-        // };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
@@ -520,30 +496,6 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
-        //     'Valid Contact Lookup Field Name' => new LookupFieldModel(
-        //         'Valid Contact Lookup Field Name',
-        //         'Valid Contact Lookup Field Label'
-        //     ),
-
-        //     'Primary Field Name' => new LookupFieldModel(
-        //         'Primary Field Name',
-        //         'Primary Field Label'
-        //     )
-        // };
-
-        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
-        //     'Valid Contact Lookup Field Label' => new LookupFieldModel(
-        //         'Valid Contact Lookup Field Name',
-        //         'Valid Contact Lookup Field Label'
-        //     ),
-
-        //     'Primary Field Label' => new LookupFieldModel(
-        //         'Primary Field Name',
-        //         'Primary Field Label'
-        //     )
-        // };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
@@ -603,30 +555,6 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 'Test Role'
             )
         };
-
-        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
-        //     'Primary Field Name 1' => new LookupFieldModel(
-        //         'Primary Field Name 1',
-        //         'Primary Field Label 1'
-        //     ),
-
-        //     'Primary Field Name 2' => new LookupFieldModel(
-        //         'Primary Field Name 2',
-        //         'Primary Field Label 2'
-        //     )
-        // };
-
-        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
-        //     'Primary Field Label 1' => new LookupFieldModel(
-        //         'Primary Field Name 1',
-        //         'Primary Field Label 1'
-        //     ),
-
-        //     'Primary Field Label 2' => new LookupFieldModel(
-        //         'Primary Field Name 2',
-        //         'Primary Field Label 2'
-        //     )
-        // };
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
@@ -737,30 +665,6 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByName = new Map<String, LookupFieldModel> {
-        //     'Primary Field Name 1' => new LookupFieldModel(
-        //         'Primary Field Name 1',
-        //         'Primary Field Label 1'
-        //     ),
-
-        //     'Primary Field Name 2' => new LookupFieldModel(
-        //         'Primary Field Name 2',
-        //         'Primary Field Label 2'
-        //     )
-        // };
-
-        // Map<String, LookupFieldModel> accountlookupFieldOnContactFieldModelByLabel = new Map<String, LookupFieldModel> {
-        //     'Primary Field Label 1' => new LookupFieldModel(
-        //         'Primary Field Name 1',
-        //         'Primary Field Label 1'
-        //     ),
-
-        //     'Primary Field Label 2' => new LookupFieldModel(
-        //         'Primary Field Name 2',
-        //         'Primary Field Label 2'
-        //     )
-        // };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
@@ -842,7 +746,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
     /***************************************************************************
     * @description Test method to verify that
-    * getAffiliationMappingsHealthCheckResults returns the expected failed health
+    * getAffiliationMappingsHealthCheckResults returns the expected passing health
     * check
     ***************************************************************************/
     @isTest
@@ -889,9 +793,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'Label should equal expected value of blank'
         );
         System.assertEquals(
-            '',
+            Label.stgHealthCheckStatusPassed,
             healthCheckGroupVModelResult.status,
-            'Status should equal expected value of blank'
+            'Status should default to passed'
         );
         System.assertEquals(
             numberOfHealthChecks,
@@ -974,9 +878,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'Label should equal expected value of blank'
         );
         System.assertEquals(
-            '',
+            Label.stgHealthCheckStatusFailed,
             healthCheckGroupVModelResult.status,
-            'Status should equal expected value of blank'
+            'Status should equal failed'
         );
         System.assertEquals(
             0,
@@ -1980,7 +1884,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         ) {
             return new HealthCheckGroupVModel(
                 'Failed Health Check 1', 
-                'Fail', 
+                Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
                 new List<String>(), 
@@ -1994,7 +1898,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         ) {
             return new HealthCheckGroupVModel(
                 'Failed Health Check 2', 
-                'Fail', 
+                Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
                 new List<String>(), 
@@ -2008,7 +1912,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         ) {
             return new HealthCheckGroupVModel(
                 'Failed Health Check 3', 
-                'Fail', 
+                Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
                 new List<String>(), 
@@ -2022,7 +1926,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         ) {
             return new HealthCheckGroupVModel(
                 'Failed Health Check 4', 
-                'Fail', 
+                Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
                 new List<String>(), 
