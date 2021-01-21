@@ -140,13 +140,13 @@ public with sharing class AffiliationMappingsService_TEST {
         );
 
         System.assertEquals(
-            '', 
+            '""', 
             afflMappingsModelList[1].autoProgramEnrollmentStatus, 
             'Affiliation Model auto enrollment status should match primary affiliation.'
         );
 
         System.assertEquals(
-            '', 
+            '""', 
             afflMappingsModelList[1].autoProgramEnrollmentRole, 
             'Affiliation Model auto enrollment role should match primary affiliation.'
         );
