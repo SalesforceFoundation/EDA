@@ -33,6 +33,22 @@
 */
 @isTest 
 public with sharing class HealthCheckGroupVModel_TEST {
+    /*****************************************************************************************
+    * @description Test to verify empty constructor generates model as expected.
+    *****************************************************************************************/
+    @isTest 
+    private static void constructorWithNoParametersValid(){
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
+        Test.stopTest();
+
+        System.assertEquals('', healthCheckGroupVModel.label, 'HealthCheckGroupVModel label should be blank.');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, healthCheckGroupVModel.status, 'HealthCheckGroupVModel status should be set to \'' + Label.stgHealthCheckStatusPassed + ' \'.');
+        System.assertEquals(0, healthCheckGroupVModel.passedChecks, 'HealthCheckGroupVModel passedChecks should be 0.');
+        System.assertEquals(0, healthCheckGroupVModel.totalChecks, 'HealthCheckGroupVModel totalChecks should be 0.');
+        System.assertEquals(true, healthCheckGroupVModel.expandedRowsList.isEmpty(), 'HealthCheckGroupVModel expandedRowsList should be empty.');
+        System.assertEquals(true, healthCheckGroupVModel.healthCheckItemList.isEmpty(), 'HealthCheckGroupVModel healthCheckItemList should be empty.');
+    }
 
     /*****************************************************************************************
     * @description Test to verify constructor with 7 parameters generates model as expected.

@@ -87,7 +87,7 @@ public with sharing class AffiliationMappingsService_TEST {
 
         System.assertEquals(
             'Test_Academic_Program', 
-            afflMappingsModelList[0].accountRecordTypeId, 
+            afflMappingsModelList[0].accountRecordTypeFieldValue, 
             'Affiliation Model record type should match primary affiliation.'
         );
 
@@ -123,7 +123,7 @@ public with sharing class AffiliationMappingsService_TEST {
 
         System.assertEquals(
             'Test_HH_Account', 
-            afflMappingsModelList[1].accountRecordTypeId, 
+            afflMappingsModelList[1].accountRecordTypeFieldValue, 
             'Affiliation Model record type should match primary affiliation.'
         );
 
@@ -140,13 +140,13 @@ public with sharing class AffiliationMappingsService_TEST {
         );
 
         System.assertEquals(
-            '', 
+            '""', 
             afflMappingsModelList[1].autoProgramEnrollmentStatus, 
             'Affiliation Model auto enrollment status should match primary affiliation.'
         );
 
         System.assertEquals(
-            '', 
+            '""', 
             afflMappingsModelList[1].autoProgramEnrollmentRole, 
             'Affiliation Model auto enrollment role should match primary affiliation.'
         );

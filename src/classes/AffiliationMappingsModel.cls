@@ -33,7 +33,7 @@
 */
 public with sharing class AffiliationMappingsModel {
     public String name;
-    public String accountRecordTypeId;
+    public String accountRecordTypeFieldValue;
     public String primaryAffiliationField;
     public Boolean autoProgramEnrollment;
     public String autoProgramEnrollmentStatus;
@@ -41,22 +41,18 @@ public with sharing class AffiliationMappingsModel {
 
     public AffiliationMappingsModel(
         String name,
-        String accountRecordTypeId, 
+        String accountRecordTypeFieldValue,
         String primaryAffiliationField,
         Boolean autoProgramEnrollment,
         String autoProgramEnrollmentStatus,
         String autoProgramEnrollmentRole
     ) {
-        Id matchingRecordTypeId = 
-            Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(accountRecordTypeId)?.getRecordTypeId();
-        this.accountRecordTypeId = 
-            (matchingRecordTypeId == null) ?
-            accountRecordTypeId : matchingRecordTypeId;
-        
         this.name = name;
-        this.primaryAffiliationField = primaryAffiliationField;
         this.autoProgramEnrollment = autoProgramEnrollment;
-        this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;
-        this.autoProgramEnrollmentRole = autoProgramEnrollmentRole;
+
+        this.accountRecordTypeFieldValue = String.isBlank(accountRecordTypeFieldValue) ? '""' : accountRecordTypeFieldValue;        
+        this.primaryAffiliationField = String.isBlank(primaryAffiliationField) ? '""' : primaryAffiliationField;
+        this.autoProgramEnrollmentStatus = String.isBlank(autoProgramEnrollmentStatus) ? '""' : autoProgramEnrollmentStatus;
+        this.autoProgramEnrollmentRole =  String.isBlank(autoProgramEnrollmentRole) ? '""' : autoProgramEnrollmentRole;
     }
 }

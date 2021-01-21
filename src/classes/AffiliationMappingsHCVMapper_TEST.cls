@@ -94,6 +94,32 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         System.assertEquals(true, AffiliationMappingsServiceInstance != null, 'Instance of AffiliationMappingsService class should not be null.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test to verify locateLookupFieldService() returns an instance of the LookupFieldService class.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void locateLookupFieldServiceValid() {
+        Test.startTest();
+        LookupFieldService LookupFieldServiceInstance = AffiliationMappingsHealthCheckVMapper.getInstance().locateLookupFieldService();
+        Test.stopTest();
+
+        System.assertEquals(LookupFieldService.getInstance(), LookupFieldServiceInstance, 'Should return instance of LookupFieldService class.');
+        System.assertEquals(true, LookupFieldServiceInstance != null, 'Instance of LookupFieldService class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify locatePicklistEntryService() returns an instance of the PicklistEntryService class.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void locatePicklistEntryServiceValid() {
+        Test.startTest();
+        PicklistEntryService PicklistEntryServiceInstance = AffiliationMappingsHealthCheckVMapper.getInstance().locatePicklistEntryService();
+        Test.stopTest();
+
+        System.assertEquals(PicklistEntryService.getInstance(), PicklistEntryServiceInstance, 'Should return instance of PicklistEntryService class.');
+        System.assertEquals(true, PicklistEntryServiceInstance != null, 'Instance of PicklistEntryService class should not be null.');
+    }
+
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles all
     * passed health checks
@@ -102,15 +128,17 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     private static void getHealthCheckGroupAllPassed() {
         AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
         RecordTypeService.instance = new STUB_RecordTypeService();
+        LookupFieldService.instance = new STUB_LookupFieldService();
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceRole();
 
-        STUB_AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperStub =
-            new STUB_AffiliationMappingsHealthCheckVMapper();
+        STUB_AffiliationMappingsHealthCheckVMapperPass AffiliationMappingsHealthCheckVMapperStub =
+            new STUB_AffiliationMappingsHealthCheckVMapperPass();
         AffiliationMappingsHealthCheckVMapper.instance = AffiliationMappingsHealthCheckVMapperStub;  
 
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 1;
+        Integer numberOfHealthChecks = 4;
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -143,9 +171,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'No health checks should fail, making expanded rows list size 0.'
         );
         System.assertEquals(
-            1,
-            healthCheckGroupVModel.healthCheckItemList.size(),
-            'Number of health check items of returned health check should be 1.'
+            numberOfHealthChecks,
+            healthCheckGroupVModel.healthCheckItemList[0].healthCheckItemList.size(),
+            'Number of health check items of returned health check should match total number of health checks.'
         );
     }
 
@@ -158,15 +186,15 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceUnfound();
         RecordTypeService.instance = new STUB_RecordTypeServiceNull();
 
-        STUB_AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapperStub =
-            new STUB_AffiliationMappingsHealthCheckVMapper();
+        STUB_AffiliationMappingsHealthCheckVMapperFail AffiliationMappingsHealthCheckVMapperStub =
+            new STUB_AffiliationMappingsHealthCheckVMapperFail();
 
         AffiliationMappingsHealthCheckVMapper.instance = AffiliationMappingsHealthCheckVMapperStub;  
 
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 1;
+        Integer numberOfHealthChecks = 4;
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -199,9 +227,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'All health checks should fail, making expanded rows list size 1.'
         );
         System.assertEquals(
-            1,
-            healthCheckGroupVModel.healthCheckItemList.size(),
-            'Number of health check items of returned health check should be 1.'
+            numberOfHealthChecks,
+            healthCheckGroupVModel.healthCheckItemList[0].healthCheckItemList.size(),
+            'Number of health check items of returned health check should match total number of health checks.'
         );
     }
 
@@ -216,10 +244,10 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        List<AffiliationMappingsModel> affiliationMappingModels = new List<AffiliationMappingsModel>{
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
-                '000000000000000006',
+                'Active RecordType Label',
                 'Test Primary Field',
                 true,
                 'Test Status',
@@ -227,37 +255,37 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
-            '000000000000000006' => new RecordTypeModel(
-                '000000000000000006',
-                'Active RecordType Name',
-                'activeRTDevName',
-                true
-            )
-        };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModels[0],
-                recordTypeModelsById
+                affiliationMappingsModelsList[0],
+                new RecordTypeModel(
+                    '000000000000000006',
+                    'Active RecordType Label',
+                    'activeRTDevName',
+                    true
+                )
             );
         Test.stopTest();
 
-        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusPassed,
             1,
             1,
             0,
-            1,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
             String.format(
                 Label.stgHCRecordTypeValid, 
-                new List<Object>{'Active RecordType Name', 'activeRTDevName'}
+                new List<Object> {'Active RecordType Label', 'activeRTDevName'}
             ),
             Label.stgHealthCheckFixNotApplicable,
             0
@@ -275,10 +303,10 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        List<AffiliationMappingsModel> affiliationMappingModels = new List<AffiliationMappingsModel>{
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
-                '000000000000000005',
+                'inactiveRTDevName',
                 'Test Primary Field',
                 true,
                 'Test Status',
@@ -286,41 +314,41 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
-            '000000000000000005' => new RecordTypeModel(
-                '000000000000000005',
-                'Inactive RecordType Name',
-                'inactiveRTDevName',
-                false
-            )
-        };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModels[0],
-                recordTypeModelsById
+                affiliationMappingsModelsList[0],
+                new RecordTypeModel(
+                    '000000000000000005',
+                    'Inactive RecordType Label',
+                    'inactiveRTDevName',
+                    false
+                )
             );
         Test.stopTest();
 
-        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusFailed,
             0,
             1,
             0,
-            1,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
             String.format(
                 Label.stgHCRecordTypeInactive, 
-                new List<Object>{'Inactive RecordType Name', 'inactiveRTDevName'}
+                new List<Object> {'Inactive RecordType Label', 'inactiveRTDevName'}
             ),
             String.format(
                 Label.stgHCAfflMapAccRecordTypeInactiveFix, 
-                new List<Object>{'Inactive RecordType Name', 'inactiveRTDevName'}
+                new List<Object> {'Inactive RecordType Label', 'inactiveRTDevName'}
             ),
             0
         );  
@@ -328,70 +356,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
     /*****************************************************************************************
     * @description Test method to verify getValidRecordTypeHealthCheckGroupVModel returns a 
-    * HealthCheckGroupVModel with a Failed status when an affiliation mapping does not match
-    * an Account record type specified in the org.
-    *****************************************************************************************/
-    @isTest 
-    private static void getValidRecordTypeHealthCheckGroupVModelNullRT() {
-        RecordTypeService.instance = new STUB_RecordTypeServiceNull();
-        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
-            AffiliationMappingsHealthCheckVMapper.getInstance();
-
-        List<AffiliationMappingsModel> affiliationMappingModelsList = new List<AffiliationMappingsModel>{
-            new AffiliationMappingsModel(
-                'Test Affiliation Mapping',
-                'Non-Existent Record Type Name', // will be converted to matching RT id value
-                'Test Primary Field',
-                true,
-                'Test Status',
-                'Test Role'
-            )
-        };
-
-        Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
-            '000000000000000005' => new RecordTypeModel(
-                '000000000000000005',
-                'Inactive RecordType Name',
-                'inactiveRTDevName',
-                false
-            )
-        };
-
-        Test.startTest();
-        HealthCheckGroupVModel healthCheckGroupVModelResult = 
-            afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
-                affiliationMappingModelsList[0],
-                recordTypeModelsById
-            );
-        Test.stopTest();
-
-        AffiliationMappingsHCVMapper_TEST.validateAssertions(
-            healthCheckGroupVModelResult,
-            Label.stgHealthCheckAffiliationMappings,
-            Label.stgHealthCheckStatusFailed,
-            0,
-            1,
-            0,
-            1,
-            Label.stgHCAfflMapAccRecordTypeTitle,
-            'Fail',
-            Label.stgHealthCheckStatusFailed,
-            String.format(
-                Label.stgHCRecordTypeNotFound, 
-                new List<Object>{'Non-Existent Record Type Name'}
-            ),
-            String.format(
-                Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
-                new List<Object>{'Non-Existent Record Type Name'}
-            ),
-            0
-        ); 
-    }
-
-    /*****************************************************************************************
-    * @description Test method to verify getValidRecordTypeHealthCheckGroupVModel returns a 
     * HealthCheckGroupVModel with a Failed status when an affiliation mapping contains a
-    * value that is not a Record Type developer name.
+    * value that does not match a record type by name or label.
     *****************************************************************************************/
     @isTest 
     private static void getValidRecordTypeHealthCheckGroupVModelNonExistentRT() {
@@ -402,7 +368,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         List<AffiliationMappingsModel> affiliationMappingModelsList = new List<AffiliationMappingsModel>{
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
-                'ABCD12345000000000', 
+                'Non Existent Record Type Name', 
                 'Test Primary Field',
                 true,
                 'Test Status',
@@ -410,41 +376,216 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
-        Map<Id,RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
-            '000000000000000005' => new RecordTypeModel(
-                '000000000000000005',
-                'Inactive RecordType Name',
-                'inactiveRTDevName',
-                false
-            )
-        };
-
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidRecordTypeHealthCheckGroupVModel(
                 affiliationMappingModelsList[0],
-                recordTypeModelsById
+                null
             );
         Test.stopTest();
 
-        AffiliationMappingsHCVMapper_TEST.validateAssertions(
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
             Label.stgHealthCheckStatusFailed,
             0,
             1,
             0,
-            1,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
             String.format(
                 Label.stgHCRecordTypeNotFound, 
-                new List<Object>{'ABCD12345000000000'} 
+                new List<Object>{affiliationMappingModelsList[0].accountRecordTypeFieldValue} 
             ),
             String.format(
                 Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
-                new List<Object>{'ABCD12345000000000'}
+                new List<Object>{affiliationMappingModelsList[0].accountRecordTypeFieldValue}
+            ),
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Passed status when an Primary Affilition field specified
+    * in affiliation mappings matches the developer name of a field that corresponds to a  
+    * lookup to Account on Contact. 
+    *****************************************************************************************/
+    @isTest 
+    private static void getValidContactPrimaryFieldHealthCheckGroupVModelValidByName() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceDevNameMatch();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                'Valid Contact Lookup Field Name',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new LookupFieldModel(
+                    'Valid Contact Lookup Field Name',
+                    'Valid Contact Lookup Field Label'
+                )
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapContactPrimaryFieldTitle,  
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldValid, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].primaryAffiliationField, 
+                    affiliationMappingsModelsList[0].accountRecordTypeFieldValue}
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Passed status when an Primary Affilition field specified
+    * in affiliation mappings matches the label name of a field that corresponds to a  
+    * lookup to Account on Contact. 
+    *****************************************************************************************/
+    @isTest 
+    private static void getValidContactPrimaryFieldHealthCheckGroupVModelValidByLabel() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceLabelMatch();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                'Valid Contact Lookup Field Name',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new LookupFieldModel(
+                    'Valid Contact Lookup Field Name',
+                    'Valid Contact Lookup Field Label'
+                )
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapContactPrimaryFieldTitle,  
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldValid, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].primaryAffiliationField, 
+                    affiliationMappingsModelsList[0].accountRecordTypeFieldValue}
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when mapping specifies a 
+    * Primary Affl Field that does not match a field on Contact (by dev name or label name).
+    *****************************************************************************************/
+    @isTest 
+    private static void getValidContactPrimaryFieldHealthCheckGroupVModelNoContactFieldMatch() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                'Test Primary Field',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                null
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapContactPrimaryFieldTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldInvalid, 
+                new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
+            ),
+            String.format(
+                Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
+                new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
             ),
             0
         ); 
@@ -455,6 +596,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     * returns a HealthCheckItemVModel with the key set to affiliationMappingsModel.name when
     * there is no Account record type matching the RT specified in the affiliation mapping.
     *****************************************************************************************/
+    @isTest
     private static void getHealthCheckItemVModelForAffiliationMappingsModelValidRT() {
         AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
@@ -467,8 +609,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
             RecordTypeModel recordTypeModel = new RecordTypeModel(
                 '000000000000000007',
-                'Inactive RecordType Name',
-                'inactiveRTDevName',
+                'Active RecordType Name',
+                'ActiveRTDevName',
                 true
             );
 
@@ -491,13 +633,71 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             listForSettingsLabel
         );
         
-        System.assertEquals(recordTypeModel.name, healthCheckItemVModel.key);
-        System.assertEquals(healthCheckItemSetting, healthCheckItemVModel.setting);
-        System.assertEquals('Pass', healthCheckItemVModel.status);
-        System.assertEquals(Label.stgHealthCheckStatusPassed, healthCheckItemVModel.statusLabel);
-        System.assertEquals('', healthCheckItemVModel.description);
-        System.assertEquals('', healthCheckItemVModel.recommendedFix);
-        System.assertEquals(0, healthCheckItemVModel.healthCheckItemList.size());
+        System.assertEquals(affiliationMappingsModel.name, healthCheckItemVModel.key, 'Health check item key should be \'' + affiliationMappingsModel.name + '\'.');
+        System.assertEquals(healthCheckItemSetting, healthCheckItemVModel.setting, 'Health check item key should be \'' + healthCheckItemSetting + '\'.');
+        System.assertEquals('Pass', healthCheckItemVModel.status, 'Health check item key should be \'Pass\'.');
+        System.assertEquals(Label.stgHealthCheckStatusPassed, healthCheckItemVModel.statusLabel, 'Health check item key should be \'' + Label.stgHealthCheckStatusPassed + '\'.');
+        System.assertEquals('', healthCheckItemVModel.description, 'Health check item description should be blank.');
+        System.assertEquals('', healthCheckItemVModel.recommendedFix, 'Health check item recommended fix should be blank.');
+        System.assertEquals(0, healthCheckItemVModel.healthCheckItemList.size(), 'Health check item should not have any child health check items.');
+    }
+ 
+    /*****************************************************************************************
+    * @description Test method to verify getValidContactPrimaryFieldHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when mapping specifies a 
+    * Primary Affl Field is empty.
+    *****************************************************************************************/
+    @isTest 
+    private static void getValidContactPrimaryFieldHealthCheckGroupVModelNullField() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                null
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapContactPrimaryFieldTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldInvalid, 
+                new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
+            ),
+            String.format(
+                Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
+                new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
+            ),
+            0
+        );
     }
 
     /*****************************************************************************************
@@ -505,6 +705,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     * returns a HealthCheckItemVModel with the key set to affiliationMappingsModel.name when
     * there is no Account record type matching the RT specified in the affiliation mapping.
     *****************************************************************************************/
+    @isTest
     private static void getHealthCheckItemVModelForAffiliationMappingsModelNullRT() {
         AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
@@ -515,8 +716,6 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 'Test Role'
             );
 
-        RecordTypeModel recordTypeModel = null;
-
         AffiliationMappingsHealthCheckVMapper affiliationMappingsHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
@@ -524,7 +723,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         HealthCheckItemVModel healthCheckItemVModel = 
             affiliationMappingsHealthCheckVMapperInstance.getHealthCheckItemVModelForAffiliationMappingsModel( 
                 affiliationMappingsModel, 
-                recordTypeModel
+                null
             );
         Test.stopTest();
 
@@ -547,12 +746,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
     /***************************************************************************
     * @description Test method to verify that
-    * getAffiliationMappingsHealthCheckResults returns the expected failed health
+    * getAffiliationMappingsHealthCheckResults returns the expected passing health
     * check
     ***************************************************************************/
     @isTest
     private static void getAffiliationMappingsHealthCheckResultsPass() {
-
         STUB_AffiliationMappingsService affiliationMappingsServiceStub = 
             new STUB_AffiliationMappingsService();
 
@@ -568,16 +766,24 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel =
             affiliationMappingsServiceStub.getAffiliationMappingsModels()[0];
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = 
-            recordTypeServiceStub.getModelByIdMapForSObjectType(Account.SObjectType);
-        
-        Integer numberOfHealthChecks = 1; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 4; // TODO: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             affiliationMappingsHealthCheckVMapperInstance.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
-                recordTypeModelsById
+                new RecordTypeModel(
+                    '000000000000001234', 
+                    'Test Account Record Type',
+                    'Test_Account_Record_Type', 
+                    true
+                ),
+                new LookupFieldModel(
+                    'Test_Lookup_Field', 
+                    'Test Lookup Field'
+                ),
+                new Map<String, PicklistEntryModel>(),
+                new Map<String, PicklistEntryModel>()
             );
         Test.stopTest();
 
@@ -587,9 +793,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'Label should equal expected value of blank'
         );
         System.assertEquals(
-            '',
+            Label.stgHealthCheckStatusPassed,
             healthCheckGroupVModelResult.status,
-            'Status should equal expected value of blank'
+            'Status should default to passed'
         );
         System.assertEquals(
             numberOfHealthChecks,
@@ -620,15 +826,14 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     ***************************************************************************/
     @isTest
     private static void getAffiliationMappingsHealthCheckResultsFail() {
-
-        String prefix = UTIL_Namespace.StrTokenNSPrefix('');
-
         List<Affl_Mappings__c> affiliationMappingsList = new List<Affl_Mappings__c>();
         affiliationMappingsList.add(
             new Affl_Mappings__c(
                 Name = 'Test Account', 
                 Account_Record_Type__c = 'Test Record Type', 
-                Primary_Affl_Field__c = prefix + 'Test_Organization__c'));
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Test_Organization__c')
+            )
+        );
         insert affiliationMappingsList;
 
         STUB_AffiliationMappingsService affiliationMappingsServiceStub = 
@@ -638,23 +843,32 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             new STUB_RecordTypeService();
 
         AffiliationMappingsHealthCheckVMapper.instance = 
-            new STUB_AffiliationMappingsHealthCheckVMapperSub();
+            new STUB_AffiliationMappingsHealthCheckVMapperSubFail();
         
         AffiliationMappingsHealthCheckVMapper affiliationMappingsHealthCheckVMapperInstance =
             AffiliationMappingsHealthCheckVMapper.getInstance();
         
         AffiliationMappingsModel affiliationMappingsModel = 
             affiliationMappingsHealthCheckVMapperInstance.locateAffiliationMappingsService().getAffiliationMappingsModels()[0];
-
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>();
         
-        Integer numberOfHealthChecks = 1; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 4; // TODO: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             affiliationMappingsHealthCheckVMapperInstance.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
-                recordTypeModelsById
+                new RecordTypeModel(
+                    '000000000000001234', 
+                    'Test Account Record Type',
+                    'Test_Account_Record_Type', 
+                    true
+                ),
+                new LookupFieldModel(
+                    'Test_Lookup_Field', 
+                    'Test Lookup Field'
+                ),
+                new Map<String, PicklistEntryModel>(),
+                new Map<String, PicklistEntryModel>()
             );
         Test.stopTest();
 
@@ -664,14 +878,14 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'Label should equal expected value of blank'
         );
         System.assertEquals(
-            '',
+            Label.stgHealthCheckStatusFailed,
             healthCheckGroupVModelResult.status,
-            'Status should equal expected value of blank'
+            'Status should equal failed'
         );
         System.assertEquals(
-            1,
+            0,
             healthCheckGroupVModelResult.passedChecks,
-            'Passed checks should equal expected value of 1 because getAffiliationMappingsHealthCheckResults is only executed for non-null mappings'
+            'Passed checks should equal expected value of 0.'
         );
         System.assertEquals(
             numberOfHealthChecks,
@@ -679,9 +893,9 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             'Total checks should equal expected value of ' + numberOfHealthChecks
         );
         System.assertEquals(
-            0,
+            1,
             healthCheckGroupVModelResult.expandedRowsList.size(),
-            'Expanded rows list should have a size of 0'
+            'Expanded rows list should have a size of 1.'
         );
         System.assertEquals(
             1,
@@ -690,24 +904,677 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         );
     }
 
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingRoleHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Passed status when the Auto Enrollment Role is populated and
+    * corresponds to a value in the Role picklist field on Affiliation__c that is active.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingRoleHealthCheckGroupVModelValidAndActivePicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceValid();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Status',
+                'Test Auto Enrollment'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationRolePicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Role Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Role Name 2',
+                'Auto Enrollment Role Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingRoleHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                affiliationRolePicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollRoleTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollRoleValid, 
+                new List<Object> {
+                    affiliationRolePicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentRole).label, 
+                    affiliationRolePicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentRole).name
+                }
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        ); 
+    }
+    
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingRoleHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the Auto Enrollment Role is populated and
+    * corresponds to a value in the Role picklist field on Affiliation__c that is inactive.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingRoleHealthCheckGroupVModelValidAndInActivePicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceInactive();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Status',
+                'Test Auto Enrollment'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationRolePicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                false
+            ),
+
+            'Auto Enrollment Role Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Role Name 2',
+                'Auto Enrollment Role Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingRoleHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                affiliationRolePicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollRoleTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollRoleInactive, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].autoProgramEnrollmentRole, 
+                    affiliationRolePicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentRole).name
+                }
+            ),
+            String.format(
+                Label.stgHCAfflMapAutoEnrollRoleInactiveFix, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].autoProgramEnrollmentRole, 
+                    affiliationRolePicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentRole).name
+                }
+            ),
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingRoleHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the Auto Enrollment Role is populated and
+    * does not correspond to a value in the Role picklist field on Affiliation__c.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingRoleHealthCheckGroupVModelInvalidPicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Status',
+                'Invalid Auto Enrollment Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationRolePicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Role Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Role Name 2',
+                'Auto Enrollment Role Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingRoleHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                affiliationRolePicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollRoleTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollRoleNotFound, 
+                new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentRole}
+            ),
+            Label.stgHCAfflMapAutoEnrollRoleNotFoundFix,
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingRoleHealthCheckGroupVModel returns an
+    * empty HealthCheckGroupVModel with a Failed status when the Auto Enrollment Role is not 
+    * populated for an affiliation mapping.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingRoleHealthCheckGroupVModelBlankRole() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Status',
+                ''
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationRolePicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Role Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Role Name 2',
+                'Auto Enrollment Role Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingRoleHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                affiliationRolePicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollRoleTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollRoleNotFound, 
+                new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentRole}
+            ),
+            Label.stgHCAfflMapAutoEnrollRoleNotFoundFix,
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingRoleHealthCheckGroupVModel returns an
+    * empty HealthCheckGroupVModel with a Passed status when the Auto Enrollment feature is not
+    * enabled.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingRoleHealthCheckGroupVModelAutoEnrollDisabled() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingRoleHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new Map<String, PicklistEntryModel>()
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            0,
+            0,
+            0,
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Passed status when the Auto Enrollment Status is populated and
+    * corresponds to a value in the Status picklist field on Affiliation__c that is active.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelValidAndActivePicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceValid();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Auto Enrollment',
+                'Test Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Status Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Status Name 2',
+                'Auto Enrollment Status Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                affiliationStatusPicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollStatusTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusValid, 
+                new List<Object> {
+                affiliationStatusPicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).label, 
+                affiliationStatusPicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).name
+                }
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        ); 
+    }
+    
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the Auto Enrollment Status is populated and
+    * corresponds to a value in the Status picklist field on Affiliation__c that is inactive.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelValidAndInActivePicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceInactive();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Test Auto Enrollment',
+                'Test Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                false
+            ),
+
+            'Auto Enrollment Status Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Status Name 2',
+                'Auto Enrollment Status Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                affiliationStatusPicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollStatusTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusInactive, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].autoProgramEnrollmentStatus, 
+                    affiliationStatusPicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).name
+                }
+            ),
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusInactiveFix, 
+                new List<Object> {
+                    affiliationMappingsModelsList[0].autoProgramEnrollmentStatus, 
+                    affiliationStatusPicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).name
+                }
+            ),
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the Auto Enrollment Status is populated and
+    * does not correspond to a value in the Status picklist field on Affiliation__c.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelInvalidPicklistField() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                'Invalid Auto Enrollment Status',
+                'Test Enrollment Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Status Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Status Name 2',
+                'Auto Enrollment Status Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                affiliationStatusPicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollStatusTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusNotFound, 
+                new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentStatus}
+            ),
+            Label.stgHCAfflMapAutoEnrollStatusNotFoundFix,
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns an
+    * empty HealthCheckGroupVModel with a Failed status when the Auto Enrollment Status is not 
+    * populated for an affiliation mapping.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelBlankStatus() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceNull();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                true,
+                '',
+                'Test Role'
+            )
+        };
+
+        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelByName = new Map<String, PicklistEntryModel> {
+            'Test Auto Enrollment' => new PicklistEntryModel(
+                'Test Auto Enrollment',
+                'Auto Enrollment Label',
+                true
+            ),
+
+            'Auto Enrollment Status Name 2' => new PicklistEntryModel(
+                'Auto Enrollment Status Name 2',
+                'Auto Enrollment Status Label 2',
+                true
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                affiliationStatusPicklistEntryModelByName
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAutoEnrollStatusTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAutoEnrollStatusNotFound, 
+                new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentStatus}
+            ),
+            Label.stgHCAfflMapAutoEnrollStatusNotFoundFix,
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getActiveExistingStatusHealthCheckGroupVModel returns an
+    * empty HealthCheckGroupVModel with a Passed status when the Auto Enrollment feature is not
+    * enabled.
+    *****************************************************************************************/
+    @isTest 
+    private static void getActiveExistingStatusHealthCheckGroupVModelAutoEnrollDisabled() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                '',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getActiveExistingStatusHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new Map<String, PicklistEntryModel>()
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            0,
+            0,
+            0,
+            0
+        );
+    }
+
     /**************************************************************************************
     ********************************* HELPER METHODS **************************************
     **************************************************************************************/
 
-    private static void validateAssertions(
+    /**************************************************************************************
+    * @description Helper method to validate test assertions for HealthCheckGroup
+    **************************************************************************************/ 
+    private static void validateHCGroupAssertions(
         HealthCheckGroupVModel healthCheckGroupVModelResult,
         String expectedHealthCheckGroupLabel,
         String expectedHealthCheckGroupStatus,
         Integer expectedPassedChecksCount,
         Integer expectedTotalChecksCount,
         Integer expectedExpandedListSize,
-        Integer expectedHealthCheckItemsListSize,
-        String expectedHealthCheckItemSetting,
-        String expectedHealthCheckItemStatus,
-        String expectedHealthCheckItemStatusLabel,
-        String expectedHealthCheckItemDescription,
-        String expectedHealthCheckItemFix,
-        Integer expectedHealtCheckItemSublistSize
+        Integer expectedHealthCheckItemsListSize
     ) {
         System.assertEquals(
             expectedHealthCheckGroupLabel, 
@@ -744,7 +1611,20 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             healthCheckGroupVModelResult.healthCheckItemList.size(), 
             'HealthCheckItems list should have ' + expectedHealthCheckItemsListSize + ' elements.'
         );
+    }
 
+    /**************************************************************************************
+    * @description Helper method to validate test assertions for HealthCheckItem
+    **************************************************************************************/ 
+    private static void validateHCItemAssertions(
+        HealthCheckGroupVModel healthCheckGroupVModelResult,
+        String expectedHealthCheckItemSetting,
+        String expectedHealthCheckItemStatus,
+        String expectedHealthCheckItemStatusLabel,
+        String expectedHealthCheckItemDescription,
+        String expectedHealthCheckItemFix,
+        Integer expectedHealtCheckItemSublistSize
+    ) {
         System.assertEquals(
             expectedHealthCheckItemSetting, 
             healthCheckGroupVModelResult.healthCheckItemList[0].setting, 
@@ -788,67 +1668,305 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
     /***************************************************************************
     * @description Stub class to simulate the response from
-    * AffiliationMappingsHealthCheckVMapper to control
-    * getRelationshipLookupHealthCheckGroup
+    * AffiliationMappingsHealthCheckVMapper to return a passing result for
+    * getAffiliationMappingsHealthCheckResults
     ***************************************************************************/
-    private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
-        private override HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
-            AffiliationMappingsModel affiliationMappingsModel,
-            Map<Id, RecordTypeModel> recordTypeModelsById
+    private class STUB_AffiliationMappingsHealthCheckVMapperPass extends AffiliationMappingsHealthCheckVMapper {
+        private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            RecordTypeModel accountRecordTypeModel
         ) {
-
-            HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel(
-                '',
-                '',
-                0,
-                0,
-                new List<String>(),
-                new List<HealthCheckItemVModel>()
+            return new HealthCheckGroupVModel(
+                'Account RT Health Check', 
+                'Pass', 
+                1, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 1', 
+                        'test setting', 
+                        'Pass', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
             );
+        }
 
-            RecordTypeModel recordTypeModel = 
-                this.locateRecordTypeService().getRecordTypeModelFromMap(
-                    affiliationMappingsModel.accountRecordTypeId, 
-                    recordTypeModelsById
-                );
-    
-            HealthCheckItemVModel healthCheckItemVModel = 
-                this.getHealthCheckItemVModelForAffiliationMappingsModel(
-                    affiliationMappingsModel,
-                    recordTypeModel
-                );
+        private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            LookupFieldModel accountlookupFieldOnContactFieldModelFromName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Contact Primary Field Health Check', 
+                'Pass', 
+                1, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 2', 
+                        'test setting', 
+                        'Pass', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
 
-            healthCheckGroupVModel.totalChecks += 1;
+        private override HealthCheckGroupVModel getActiveExistingRoleHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Contact Primary Field Health Check', 
+                'Pass', 
+                1, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 3', 
+                        'test setting', 
+                        'Pass', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
 
-            if(recordTypeModel != null) {
-                healthCheckGroupVModel.passedChecks += 1;
-            }
+        private override HealthCheckGroupVModel getActiveExistingStatusHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Contact Primary Field Health Check', 
+                'Pass', 
+                1, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 4', 
+                        'test setting', 
+                        'Pass', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+    }
 
-            if(healthCheckGroupVModel.passedChecks < healthCheckGroupVModel.totalChecks) {
-                healthCheckItemVModel.status = 'Fail';
-                healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusFailed;
-                healthCheckGroupVModel.expandedRowsList.add(affiliationMappingsModel.name);
-            }
-    
-            healthCheckItemVModel.healthCheckItemList.sort();
-    
-            healthCheckGroupVModel.healthCheckItemList.add(healthCheckItemVModel);
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * AffiliationMappingsHealthCheckVMapper to return a failing result for
+    * getAffiliationMappingsHealthCheckResults
+    ***************************************************************************/
+    private class STUB_AffiliationMappingsHealthCheckVMapperFail extends AffiliationMappingsHealthCheckVMapper {
+        private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            RecordTypeModel accountRecordTypeModel
+        ) {
+            return new HealthCheckGroupVModel(
+                'Account RT Health Check', 
+                'Fail', 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 1', 
+                        'test setting', 
+                        'Fail', 
+                        Label.stgHealthCheckStatusFailed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
 
-            return healthCheckGroupVModel;
+        private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            LookupFieldModel accountlookupFieldOnContactFieldModelFromName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Contact Primary Field Health Check', 
+                'Fail', 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 2', 
+                        'test setting', 
+                        'Fail', 
+                        Label.stgHealthCheckStatusFailed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+
+        private override HealthCheckGroupVModel getActiveExistingRoleHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Auto Enrollment Role Health Check', 
+                'Fail', 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 3', 
+                        'test setting', 
+                        'Fail', 
+                        Label.stgHealthCheckStatusFailed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+
+        private override HealthCheckGroupVModel getActiveExistingStatusHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Auto Enrollment Status Health Check', 
+                'Fail', 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 3', 
+                        'test setting', 
+                        'Fail', 
+                        Label.stgHealthCheckStatusFailed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
         }
     }
 
     /***************************************************************************
     * @description Stub class to simulate the response from
     * AffiliationMappingsHealthCheckVMapper to control individual health check methods
-    * for success or failure
+    * for failure
+    ***************************************************************************/
+    private class STUB_AffiliationMappingsHealthCheckVMapperSubFail extends AffiliationMappingsHealthCheckVMapper {
+        private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingModel, 
+            RecordTypeModel accountRecordTypeModel
+        ) {
+            return new HealthCheckGroupVModel(
+                'Failed Health Check 1', 
+                Label.stgHealthCheckStatusFailed, 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>()
+            );
+        }
+
+        private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            LookupFieldModel accountlookupFieldOnContactFieldModelFromName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Failed Health Check 2', 
+                Label.stgHealthCheckStatusFailed, 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>()
+            );
+        }
+
+        private override HealthCheckGroupVModel getActiveExistingRoleHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Failed Health Check 3', 
+                Label.stgHealthCheckStatusFailed, 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>()
+            );
+        }
+
+        private override HealthCheckGroupVModel getActiveExistingStatusHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return new HealthCheckGroupVModel(
+                'Failed Health Check 4', 
+                Label.stgHealthCheckStatusFailed, 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>()
+            );
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * AffiliationMappingsHealthCheckVMapper to control individual health check methods
+    * for success
     ***************************************************************************/
     private class STUB_AffiliationMappingsHealthCheckVMapperSub extends AffiliationMappingsHealthCheckVMapper {
         private override HealthCheckGroupVModel getValidRecordTypeHealthCheckGroupVModel(
-            AffiliationMappingsModel affiliationMappingModel, 
-            Map<Id,RecordTypeModel> recordTypeModelsById
+            AffiliationMappingsModel affiliationMappingsModel, 
+            RecordTypeModel accountRecordTypeModel
         ) {
-            return this.mockCheck(affiliationMappingModel);
+            return this.mockCheck(affiliationMappingsModel);
+        }
+
+        private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            LookupFieldModel accountlookupFieldOnContactFieldModelFromName
+        ) {
+            return this.mockCheck(affiliationMappingsModel);
+        }
+
+        private override HealthCheckGroupVModel getActiveExistingRoleHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return this.mockCheck(affiliationMappingsModel);
+        }
+
+        private override HealthCheckGroupVModel getActiveExistingStatusHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel,
+            Map<String, PicklistEntryModel> picklistEntryModelByName
+        ) {
+            return this.mockCheck(affiliationMappingsModel);
         }
         
         private HealthCheckGroupVModel mockCheck(AffiliationMappingsModel affiliationMappingModel) {
@@ -888,6 +2006,34 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         }
     }
 
+    private class STUB_LookupFieldService extends LookupFieldService {
+        public override Map<String, LookupFieldModel> getModelByNameMapForSObjectType(
+            SObjectType sObjectType, 
+            SObjectType lookupToSObjectType
+        ) {
+            return new Map<String, LookupFieldModel>{
+                'Test_Field__c' => new LookupFieldModel(
+                    'Test_Field__c',
+                    'Test Field'
+                )
+            };
+        }
+    }
+
+    private class STUB_PicklistEntryServiceRole extends PickListEntryService {
+        public override Map<String,PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String, PicklistEntryModel>{
+                'Test_Role' => new PicklistEntryModel(
+                    'Test_Role',
+                    'Test Role', 
+                    true)
+            };
+        }
+    }
+
     /***************************************************************************
     * @description Stub class to simulate the response from
     * AffiliationMappingsService to return a predetermined set of models.
@@ -900,7 +2046,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             AffiliationMappingsModel AffiliationMappingsModel = 
                 new AffiliationMappingsModel(
                     'testName',
-                    '000000000000000001',
+                    'test account record type name',
                     'testPrimaryAfflField',
                     true,
                     'testStatus',
@@ -925,7 +2071,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             affiliationMappingsModelsList.add(
                 new AffiliationMappingsModel(
                     'unfound name',
-                    'unfound accountRecordTypeId',
+                    'unfound accountRecordTypeFieldValue',
                     'unfound primaryAffiliationField',
                     true,
                     'unfound autoProgramEnrollmentStatus',
@@ -1041,6 +2187,116 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                                             true
                                        )
             };
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * LookupFieldService to return a valid lookup field model for a Contact
+    * field that is a lookup to Account matching my field dev name.
+    ***************************************************************************/
+    private class STUB_LookupFieldServiceDevNameMatch extends LookupFieldService {
+        public override LookupFieldModel getLookupFieldModelFromNameMap(
+            String fieldName, 
+            Map<String, LookupFieldModel> lookupFieldModelByName
+        ){
+            return new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            );
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * LookupFieldService to return a valid lookup field model for a Contact
+    * field that is a lookup to Account matching my field label name.
+    ***************************************************************************/
+    private class STUB_LookupFieldServiceLabelMatch extends LookupFieldService {
+        public override LookupFieldModel getLookupFieldModelFromNameMap(
+            String fieldName, 
+            Map<String, LookupFieldModel> lookupFieldModelByName 
+        ){
+            return null;
+        }
+        
+        public override LookupFieldModel getLookupFieldModelFromLabelMap(
+            String fieldLabel, 
+            Map<String, LookupFieldModel> lookupFieldModelByLabel) 
+        {
+            return new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            );
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * LookupFieldService to return a null value.
+    ***************************************************************************/
+    private class STUB_LookupFieldServiceNull extends LookupFieldService {
+        public override LookupFieldModel getLookupFieldModelFromNameMap(
+            String fieldName, 
+            Map<String, LookupFieldModel> lookupFieldModelByName) 
+        {
+            return null;
+        }
+
+        public override LookupFieldModel getLookupFieldModelFromLabelMap(
+            String fieldLabel, 
+            Map<String, LookupFieldModel> lookupFieldModelByLabel) 
+        {
+            return null;
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from PicklistEntryService
+    * to return a PicklistEntryModel for a valid and active picklist value.
+    ***************************************************************************/
+    private class STUB_PicklistEntryServiceValid extends PicklistEntryService {
+        public override Map<String,PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String,PicklistEntryModel>{
+                'Test Auto Enrollment Name' => new PicklistEntryModel(
+                'Test Auto Enrollment Name',
+                'Auto Enrollment Label',
+                true)
+            };
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from PicklistEntryService
+    * to return a PicklistEntryModel for a valid, but inactive picklist value.
+    ***************************************************************************/
+    private class STUB_PicklistEntryServiceInactive extends PicklistEntryService {
+        public override Map<String,PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String,PicklistEntryModel>{
+                'Test Auto Enrollment Name' => new PicklistEntryModel(
+                'Test Auto Enrollment Name',
+                'Auto Enrollment Label',
+                false)
+            };
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from PicklistEntryService 
+    * to return a null value.
+    ***************************************************************************/
+    private class STUB_PicklistEntryServiceNull extends PicklistEntryService {
+        public override Map<String,PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return null;
         }
     }
 }
