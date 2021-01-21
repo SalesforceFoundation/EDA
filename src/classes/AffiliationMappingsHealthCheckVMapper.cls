@@ -92,7 +92,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 accountRecordTypeModelsByLabel
             );
 
-            LookupFieldModel accountlookupFieldOnContactFieldModelFromName = 
+            LookupFieldModel accountlookupFieldOnContactFieldModel = 
                 this.locateLookupFieldService().getLookupFieldModelFromNameAndLabelMaps(
                     affiliationMappingsModel.primaryAffiliationField, 
                     accountLookupsOnContactFieldModelsByName,
@@ -102,7 +102,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             HealthCheckGroupVModel childAffiliationMappingsHealthCheckResults = this.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
                 accountRecordTypeModel,
-                accountlookupFieldOnContactFieldModelFromName,
+                accountlookupFieldOnContactFieldModel,
                 affilationRolePicklistEntryModelByName,
                 affilationStatusPicklistEntryModelByName
             );
@@ -131,7 +131,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Auto-Enrollment Role
     * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
     * @param accountRecordTypeModel A model of the Account Record Type specified in an affiliation mapping in EDA Settings
-    * @param accountlookupFieldOnContactFieldModelFromName A model of the Account lookup field on Contact representing 
+    * @param accountlookupFieldOnContactFieldModel A model of the Account lookup field on Contact representing 
     * the primary affiliation field specied in an affiliation mapping in EDA Settings
     * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name
     * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name
@@ -141,7 +141,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     private virtual HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
         AffiliationMappingsModel affiliationMappingsModel,
         RecordTypeModel accountRecordTypeModel,
-        LookupFieldModel accountlookupFieldOnContactFieldModelFromName,
+        LookupFieldModel accountlookupFieldOnContactFieldModel,
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
         Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName
     ) {
@@ -168,7 +168,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         childHealthCheckGroupVModelList.add(
             this.getValidContactPrimaryFieldHealthCheckGroupVModel(
                 affiliationMappingsModel, 
-                accountlookupFieldOnContactFieldModelFromName
+                accountlookupFieldOnContactFieldModel
             )
         );
 
@@ -251,6 +251,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * @description Retrieve a HealthCheckGroup view model reprenting whether enrollment
     * statuses specified in affiliation mappings correspond to valid picklist field values
     * listed in the Status picklist field on Affiliation__c.
+    * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param picklistEntryModelByName A map of picklist values for Affiliation Status by devloper name
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible
@@ -344,6 +346,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * @description Retrieve a HealthCheckGroup view model reprenting whether enrollment
     * roles specified in affiliation mappings correspond to valid picklist field values
     * listed in the Role picklist field on Affiliation__c.
+    * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param picklistEntryModelByName A map of picklist values for Affiliation Role by devloper name
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible
@@ -435,17 +439,20 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * @description Retrieve a HealthCheckGroup view model reprenting whether primary
     * affiliation fields specified in affiliation mappings correspond to valid fields
     * on the Contact object that lookup to Account objects.
+    * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param accountlookupFieldOnContactFieldModel A model representing the lookup field corresponding to the 
+    * primary affiliation field specified for an affiliation mapping in EDA Settings
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible 
     private virtual HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
         AffiliationMappingsModel affiliationMappingsModel,
-        LookupFieldModel accountlookupFieldOnContactFieldModelFromName
+        LookupFieldModel accountlookupFieldOnContactFieldModel
     ) {
         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
         healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
 
-        if (accountlookupFieldOnContactFieldModelFromName == null) {
+        if (accountlookupFieldOnContactFieldModel == null) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                 '03',
                 Label.stgHCAfflMapContactPrimaryFieldTitle,
@@ -497,7 +504,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * record type included in an affiliation mapping corresponds to a record 
     * type for Account in the org that is active.
     * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
-    * @param  recordTypeModelsById A map of record type models by Id representing all Account record types specified in the org.
+    * @param  accountRecordTypeModel A model representing the Account record type specified for an affiliation mapping
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible
