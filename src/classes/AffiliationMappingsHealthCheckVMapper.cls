@@ -130,12 +130,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Auto-Enrollment Status
     * Auto-Enrollment Role
     * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
-    * @param recordTypeModelsByName A map of record type models by developer name representing all Account record types specified in the org.
-    * @param recordTypeModelsByLabel A map of record type models by label name representing all Account record types specified in the org.
-    * @param accountlookupFieldOnContactFieldModelByName A map of lookup fields to Account for the Contact object by devloper name.
-    * @param accountlookupFieldOnContactFieldModelByLabel A map of lookup fields to Account for the Contact object by label name.
-    * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name.
-    * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name.
+    * @param accountRecordTypeModel A model of the Account Record Type specified in an affiliation mapping in EDA Settings
+    * @param accountlookupFieldOnContactFieldModelFromName A model of the Account lookup field on Contact representing 
+    * the primary affiliation field specied in an affiliation mapping in EDA Settings
+    * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name
+    * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name
     * @return A HealthCheckGroupVModel
     **********************************************************************************/
     @TestVisible
@@ -205,7 +204,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         }
 
         childHealthCheckItemVModel.healthCheckItemList.sort();
-        
+
         parentHealthCheckGroupVModel.updateHealthCheckStatus();
         parentHealthCheckGroupVModel.healthCheckItemList.add(childHealthCheckItemVModel);
 
