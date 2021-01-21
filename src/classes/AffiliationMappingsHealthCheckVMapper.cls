@@ -486,29 +486,29 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             LookupFieldModel accountlookupFieldOnContactFieldModelFromLabel = this.locateLookupFieldService().getLookupFieldModelFromLabelMap(
                 affiliationMappingsModel.primaryAffiliationField,
                 accountlookupFieldOnContactFieldModelByLabel);
+        }
             
-            if (accountlookupFieldOnContactFieldModelFromLabel == null) {
-                healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
-                    '03',
-                    Label.stgHCAfflMapContactPrimaryFieldTitle,
-                    'Fail',
-                    Label.stgHealthCheckStatusFailed,
-                    String.format(
-                        Label.stgHCAfflMapContactPrimaryFieldInvalid, 
-                        new List<Object>{affiliationMappingsModel.primaryAffiliationField}
-                    ),
-                    String.format(
-                        Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
-                        new List<Object>{affiliationMappingsModel.primaryAffiliationField}
-                    ),
-                    new List<HealthCheckItemVModel>()
-                ));
+        if (accountlookupFieldOnContactFieldModelFromLabel == null) {
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                '03',
+                Label.stgHCAfflMapContactPrimaryFieldTitle,
+                'Fail',
+                Label.stgHealthCheckStatusFailed,
+                String.format(
+                    Label.stgHCAfflMapContactPrimaryFieldInvalid, 
+                    new List<Object>{affiliationMappingsModel.primaryAffiliationField}
+                ),
+                String.format(
+                    Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
+                    new List<Object>{affiliationMappingsModel.primaryAffiliationField}
+                ),
+                new List<HealthCheckItemVModel>()
+            ));
 
-                healthCheckGroupVModel.totalChecks++;
-                healthCheckGroupVModel.updateHealthCheckStatus();
-                
-                return healthCheckGroupVModel;
-            }
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            
+            return healthCheckGroupVModel;
         }
 
         healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
