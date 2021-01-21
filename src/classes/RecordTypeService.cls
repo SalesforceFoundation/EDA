@@ -86,7 +86,7 @@ public virtual with sharing class RecordTypeService {
     * @description Retrieve a record type model for a specified record type name or label.
     * @param recordTypeNameOrLabel A string representing the name or label for a record type
     * @param recordTypeModelByName A map of record type models by name
-    * @param recordTypeModelByName A map of record type models by label
+    * @param recordTypeModelByLabel A map of record type models by label
     * @return A Record Type Model corresponding to the specified record type label or name
     ******************************************************************************/
     public virtual RecordTypeModel getRecordTypeModelFromMap(
