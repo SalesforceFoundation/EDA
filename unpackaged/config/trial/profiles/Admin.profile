@@ -5,11 +5,6 @@
         <default>true</default>
         <visible>true</visible>
    </applicationVisibilities>
-   <applicationVisibilities>
-        <application>Platform</application>
-        <default>False</default>
-        <visible>False</visible>
-    </applicationVisibilities>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
@@ -169,6 +164,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Contact</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Settings_Health_Check</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <classAccesses>
