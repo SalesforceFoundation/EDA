@@ -5,6 +5,11 @@
         <default>true</default>
         <visible>true</visible>
    </applicationVisibilities>
+   <applicationVisibilities>
+        <application>Platform</application>
+        <default>False</default>
+        <visible>False</visible>
+    </applicationVisibilities>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
