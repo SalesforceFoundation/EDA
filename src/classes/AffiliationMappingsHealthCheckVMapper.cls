@@ -73,6 +73,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             this.locateRecordTypeService().getRecordTypeModelByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = 
             this.locateRecordTypeService().getRecordTypeModelByLabel(accRecordTypeModelsById);
+        Set<Id> duplicateAccountRecordTypeIds = 
+            this.getDuplicateAccountRecordTypeIds(affiliationMappingsModelsList, accountRecordTypeModelsByName, accountRecordTypeModelsByLabel);
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = 
             this.locateLookupFieldService().getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel =
@@ -104,7 +106,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 accountRecordTypeModel,
                 accountlookupFieldOnContactFieldModel,
                 affilationRolePicklistEntryModelByName,
-                affilationStatusPicklistEntryModelByName
+                affilationStatusPicklistEntryModelByName,
+                duplicateAccountRecordTypeIds
             );
 
             // Add results from child health check group results to parent
@@ -143,7 +146,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         RecordTypeModel accountRecordTypeModel,
         LookupFieldModel accountlookupFieldOnContactFieldModel,
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
-        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName
+        Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName,
+        Set<Id> duplicateAccountRecordTypeIds
     ) {
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel();
             
@@ -164,6 +168,15 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             )
         );
 
+        // add Account Record Type Uniqueness Health Check results
+        childHealthCheckGroupVModelList.add(
+            this.getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+                affiliationMappingsModel, 
+                accountRecordTypeModel,
+                duplicateAccountRecordTypeIds
+            )
+        );
+
         // add Contact Primary Affiliation Field Health Check results
         childHealthCheckGroupVModelList.add(
             this.getValidContactPrimaryFieldHealthCheckGroupVModel(
@@ -171,6 +184,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 accountlookupFieldOnContactFieldModel
             )
         );
+
+        // add Contact Primary Affiliation Field Uniqueness Health Check results
 
         // add Auto Enrollment Role Health Check results
         childHealthCheckGroupVModelList.add(
@@ -577,6 +592,110 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         healthCheckGroupVModel.updateHealthCheckStatus();
         return healthCheckGroupVModel;
     }
+
+    /**********************************************************************************
+    * @description Retrieves a HealthCheckGroup view model representing the health check
+    * results for Account Record Types specified.  Determines whether the Account 
+    * record type included in an affiliation mapping is unique.
+    * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
+    * @param  accountRecordTypeModel A model representing the Account record type specified for an affiliation mapping
+    * @param  duplicateAccountRecordTypeFieldValues A list of duplicate accountRecordTypeFieldValues retrieved from Affiliation Mappings
+    * @return A HealthCheckGroupVModel
+    **********************************************************************************/ 
+    @TestVisible
+    private virtual HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+        AffiliationMappingsModel affiliationMappingsModel, 
+        RecordTypeModel accountRecordTypeModel,
+        Set<Id> duplicateAccountRecordTypeIds
+    ) {
+        HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
+        healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
+
+        // check account record type first
+        if (accountRecordTypeModel == null) {
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                '02',
+                Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+                'Fail',
+                Label.stgHealthCheckStatusFailed,
+                String.format(
+                    Label.stgHCRecordTypeNotFound, 
+                    new List<Object>{affiliationMappingsModel.accountRecordTypeFieldValue}
+                ),
+                String.format(
+                    Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
+                    new List<Object>{affiliationMappingsModel.accountRecordTypeFieldValue}
+                ),
+                new List<HealthCheckItemVModel>()
+            ));
+
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
+        }
+
+        if (accountRecordTypeModel.isActive == false) {
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+                '02',
+                Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+                'Fail',
+                Label.stgHealthCheckStatusFailed,
+                String.format(
+                    Label.stgHCRecordTypeInactive, 
+                    new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
+                ),
+                String.format(
+                    Label.stgHCAfflMapAccRecordTypeInactiveFix, 
+                    new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
+                ),
+                new List<HealthCheckItemVModel>()
+            ));
+
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
+        }
+
+        if (duplicateAccountRecordTypeIds.contains(accountRecordTypeModel.Id)) {
+            healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+            '02',
+            Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeNotUnique, 
+                new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
+            ),
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeUniqueFix, 
+                new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
+            ),
+            new List<HealthCheckItemVModel>()
+            ));
+
+            healthCheckGroupVModel.totalChecks++;
+            healthCheckGroupVModel.updateHealthCheckStatus();
+            return healthCheckGroupVModel;
+        }
+            
+        healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
+            '02',
+            Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeUnique, 
+                new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            new List<HealthCheckItemVModel>()
+        ));
+
+        healthCheckGroupVModel.totalChecks++;
+        healthCheckGroupVModel.passedChecks++;        
+        healthCheckGroupVModel.updateHealthCheckStatus();
+        return healthCheckGroupVModel;
+    }
     
     /*****************************************************************************
     * @description Retrieve an instance of the AffiliationMappingsService class.
@@ -612,5 +731,43 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     @TestVisible
     private PicklistEntryService locatePicklistEntryService() {
         return PicklistEntryService.getInstance();
+    }
+
+    /**********************************************************************************
+    * @description Retrieves a set of duplicate account record type ids from Affiliation Mapping Models list
+    * @param  affiliationMappingsModelsList A list of models representing affiliation mappings in EDA Settings
+    * @param  accountRecordTypeModelsByName A map of account record type model by name
+    * @param  accountRecordTypeModelsByLabel A map of account record type model by label
+    * @return A set of duplicate account record type ids
+    **********************************************************************************/
+    @TestVisible
+    private Set<Id> getDuplicateAccountRecordTypeIds(
+        List<AffiliationMappingsModel> affiliationMappingsModelsList,
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName,
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel 
+    ) {
+        Set<Id> accountRecordTypeIds = new Set<Id>();
+        Set<Id> duplicateRecordTypeIds = new Set<Id>();
+
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
+            RecordTypeModel accountRecordTypeModel = 
+                this.locateRecordTypeService().getRecordTypeModelFromNameAndLabelMaps(
+                    affiliationMappingsModel.accountRecordTypeFieldValue, 
+                    accountRecordTypeModelsByName, 
+                    accountRecordTypeModelsByLabel
+                );
+            
+            if (accountRecordTypeModel == null) {
+                continue;
+            } else {
+                if (accountRecordTypeIds.contains(accountRecordTypeModel.Id)) {
+                    duplicateRecordTypeIds.add(accountRecordTypeModel.Id);
+                } else {
+                    accountRecordTypeIds.add(accountRecordTypeModel.Id);
+                }
+            }
+        }
+
+        return duplicateRecordTypeIds;
     }
 }

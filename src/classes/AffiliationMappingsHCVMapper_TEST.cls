@@ -138,7 +138,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 4;
+        Integer numberOfHealthChecks = 5; //TODO: Update when adding new Health Check
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -194,7 +194,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 4;
+        Integer numberOfHealthChecks = 5; //TODO: Update when adding new health checks
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -409,6 +409,280 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             ),
             0
         ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getAccountRecordTypeUniquenessHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Passed status when a valid and active account record type is unique
+    * in Affiliation Mappings
+    *****************************************************************************************/
+    @isTest 
+    private static void getAccountRecordTypeUniquenessHealthCheckGroupVModelValid() {
+        RecordTypeService.instance = new STUB_RecordTypeService();
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Active RecordType Label',
+                'Test Primary Field',
+                true,
+                'Test Status',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping2',
+                'Active RecordType Label2',
+                'Test Primary Field2',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new RecordTypeModel(
+                    '000000000000000006',
+                    'Active RecordType Label',
+                    'activeRTDevName',
+                    true
+                ),
+                new Set<Id>()
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeUnique, 
+                new List<Object> {'Active RecordType Label', 'activeRTDevName'}
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getAccountRecordTypeUniquenessHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the account record type does not exist
+    *****************************************************************************************/
+    @isTest 
+    private static void getAccountRecordTypeUniquenessHealthCheckGroupVModelRTNonExistent() {
+        RecordTypeService.instance = new STUB_RecordTypeServiceNull();
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel>{
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Non Existent Record Type Name', 
+                'Test Primary Field',
+                true,
+                'Test Status',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping2',
+                'Active RecordType Label2',
+                'Test Primary Field2',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                null,
+                new Set<Id>()
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCRecordTypeNotFound, 
+                new List<Object>{affiliationMappingsModelsList[0].accountRecordTypeFieldValue} 
+            ),
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
+                new List<Object>{affiliationMappingsModelsList[0].accountRecordTypeFieldValue}
+            ),
+            0
+        ); 
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getAccountRecordTypeUniquenessHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the account record type is inactive
+    *****************************************************************************************/
+    @isTest 
+    private static void getAccountRecordTypeUniquenessHealthCheckGroupVModelRTInactive() {
+        RecordTypeService.instance = new STUB_RecordTypeServiceInactive();
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'inactiveRTDevName',
+                'Test Primary Field',
+                true,
+                'Test Status',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping2',
+                'Active RecordType Label2',
+                'Test Primary Field2',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new RecordTypeModel(
+                    '000000000000000005',
+                    'Inactive RecordType Label',
+                    'inactiveRTDevName',
+                    false
+                ),
+                new Set<Id>()
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCRecordTypeInactive, 
+                new List<Object> {'Inactive RecordType Label', 'inactiveRTDevName'}
+            ),
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeInactiveFix, 
+                new List<Object> {'Inactive RecordType Label', 'inactiveRTDevName'}
+            ),
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getAccountRecordTypeUniquenessHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when a valid and active account record type is not unique
+    * in Affiliation Mappings
+    *****************************************************************************************/
+    @isTest 
+    private static void getAccountRecordTypeUniquenessHealthCheckGroupVModelValidDuplicate() {
+        RecordTypeService.instance = new STUB_RecordTypeService();
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Active RecordType Label',
+                'Test Primary Field',
+                true,
+                'Test Status',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping2',
+                'Active RecordType Label',
+                'Test Primary Field2',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new RecordTypeModel(
+                    '000000000000000006',
+                    'Active RecordType Label',
+                    'activeRTDevName',
+                    true
+                ),
+                new Set<Id>{'000000000000000006'}
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusFailed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapAccRecordTypeUniqueTitle,
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeNotUnique, 
+                new List<Object> {'Active RecordType Label', 'activeRTDevName'}
+            ),
+            String.format(
+                Label.stgHCAfflMapAccRecordTypeUniqueFix, 
+                new List<Object> {'Active RecordType Label', 'activeRTDevName'}
+            ),
+            0
+        );
     }
 
     /*****************************************************************************************
@@ -766,7 +1040,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel =
             affiliationMappingsServiceStub.getAffiliationMappingsModels()[0];
 
-        Integer numberOfHealthChecks = 4; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 5; // TODO: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
@@ -783,7 +1057,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                     'Test Lookup Field'
                 ),
                 new Map<String, PicklistEntryModel>(),
-                new Map<String, PicklistEntryModel>()
+                new Map<String, PicklistEntryModel>(),
+                new Set<Id>()
             );
         Test.stopTest();
 
@@ -851,7 +1126,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel = 
             affiliationMappingsHealthCheckVMapperInstance.locateAffiliationMappingsService().getAffiliationMappingsModels()[0];
         
-        Integer numberOfHealthChecks = 4; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 5; // TODO: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
@@ -868,7 +1143,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                     'Test Lookup Field'
                 ),
                 new Map<String, PicklistEntryModel>(),
-                new Map<String, PicklistEntryModel>()
+                new Map<String, PicklistEntryModel>(),
+                new Set<Id>()
             );
         Test.stopTest();
 
@@ -1560,6 +1836,216 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         );
     }
 
+    /*****************************************************************************************
+    * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
+    * set when there is duplicate record type model in Affiliation Mappings with the same Record Tyep Value
+    *****************************************************************************************/
+    @isTest 
+    private static void getDuplicateAccountRecordTypeIdsRecordTypeValueSameDuplicate() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Account Record Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping 2',
+                'Test Account Record Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+        RecordTypeModel accountRecordTypeModel = 
+            new RecordTypeModel(
+                '000000000000001234', 
+                'Test Account Record Type',
+                'Test_Account_Record_Type', 
+                true
+        );
+        RecordTypeModel accountRecordTypeModel2= 
+            new RecordTypeModel(
+                '000000000000005678', 
+                'Test Account Record Type 2',
+                'Test_Account_Record_Type2', 
+                true
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel> {
+            'Test_Account_Record_Type' => accountRecordTypeModel,
+            'Test_Account_Record_Type2' => accountRecordTypeModel2
+        };
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel> {
+            'Test Account Record Type' => accountRecordTypeModel,
+            'Test Account Record Type2' => accountRecordTypeModel2
+        };
+
+
+        Test.startTest();
+            Set<Id> duplicateAccountRecordTypeIds = afflMappingHealthCheckVMapperInstance.getDuplicateAccountRecordTypeIds(
+                affiliationMappingsModelsList, 
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel  
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            false, 
+            duplicateAccountRecordTypeIds.isEmpty(), 
+            'The set of duplicate account record type ids should not be empty.'
+        );
+
+        System.assertEquals(
+            true, 
+            duplicateAccountRecordTypeIds.contains('000000000000001234'), 
+            'The set of duplicate account record type ids contains 000000000000001234.'
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
+    * set when there is duplicate record type model in Affiliation Mappings with the mix Record Tyep Values
+    *****************************************************************************************/
+    @isTest 
+    private static void getDuplicateAccountRecordTypeIdsRecordTypeValueMixDuplicate() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Account Record Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping 2',
+                'Test_Account_Record_Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+        RecordTypeModel accountRecordTypeModel = 
+            new RecordTypeModel(
+                '000000000000001234', 
+                'Test Account Record Type',
+                'Test_Account_Record_Type', 
+                true
+        );
+        RecordTypeModel accountRecordTypeModel2= 
+            new RecordTypeModel(
+                '000000000000005678', 
+                'Test Account Record Type 2',
+                'Test_Account_Record_Type2', 
+                true
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel> {
+            'Test_Account_Record_Type' => accountRecordTypeModel,
+            'Test_Account_Record_Type2' => accountRecordTypeModel2
+        };
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel> {
+            'Test Account Record Type' => accountRecordTypeModel,
+            'Test Account Record Type2' => accountRecordTypeModel2
+        };
+
+
+        Test.startTest();
+            Set<Id> duplicateAccountRecordTypeIds = afflMappingHealthCheckVMapperInstance.getDuplicateAccountRecordTypeIds(
+                affiliationMappingsModelsList, 
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel  
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            false, 
+            duplicateAccountRecordTypeIds.isEmpty(), 
+            'The set of duplicate account record type ids should not be empty.'
+        );
+
+        System.assertEquals(
+            true, 
+            duplicateAccountRecordTypeIds.contains('000000000000001234'), 
+            'The set of duplicate account record type ids contains 000000000000001234.'
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
+    * empty set when there is no duplicate record type model in Affiliation Mappings
+    *****************************************************************************************/
+    @isTest 
+    private static void getDuplicateAccountRecordTypeIdsNoDuplicate() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Account Record Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping 2',
+                'Test Account Record Type 2', 
+                '',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+        RecordTypeModel accountRecordTypeModel = 
+            new RecordTypeModel(
+                '000000000000001234', 
+                'Test Account Record Type',
+                'Test_Account_Record_Type', 
+                true
+        );
+        RecordTypeModel accountRecordTypeModel2= 
+            new RecordTypeModel(
+                '000000000000005678', 
+                'Test Account Record Type 2',
+                'Test_Account_Record_Type2', 
+                true
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel> {
+            'Test_Account_Record_Type' => accountRecordTypeModel,
+            'Test_Account_Record_Type2' => accountRecordTypeModel2
+        };
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel> {
+            'Test Account Record Type' => accountRecordTypeModel,
+            'Test Account Record Type2' => accountRecordTypeModel2
+        };
+
+
+        Test.startTest();
+            Set<Id> duplicateAccountRecordTypeIds = afflMappingHealthCheckVMapperInstance.getDuplicateAccountRecordTypeIds(
+                affiliationMappingsModelsList, 
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel  
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            true, 
+            duplicateAccountRecordTypeIds.isEmpty(), 
+            'The set of duplicate account record type ids should be empty.'
+        );
+    }
+
     /**************************************************************************************
     ********************************* HELPER METHODS **************************************
     **************************************************************************************/
@@ -1696,6 +2182,31 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             );
         }
 
+        private override HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            RecordTypeModel accountRecordTypeModel,
+            Set<Id> duplicateAccountRecordTypeIds
+        ) {
+            return new HealthCheckGroupVModel(
+                'Account RT Uniqueness Health Check', 
+                'Pass', 
+                1, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 2', 
+                        'test setting', 
+                        'Pass', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
             LookupFieldModel accountlookupFieldOnContactFieldModelFromName
@@ -1708,7 +2219,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 2', 
+                        'test key 3', 
                         'test setting', 
                         'Pass', 
                         Label.stgHealthCheckStatusPassed,
@@ -1732,7 +2243,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 3', 
+                        'test key 5', 
                         'test setting', 
                         'Pass', 
                         Label.stgHealthCheckStatusPassed,
@@ -1756,7 +2267,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 4', 
+                        'test key 6', 
                         'test setting', 
                         'Pass', 
                         Label.stgHealthCheckStatusPassed,
@@ -1799,6 +2310,31 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             );
         }
 
+        private override HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            RecordTypeModel accountRecordTypeModel,
+            Set<Id> duplicateAccountRecordTypeIds
+        ) {
+            return new HealthCheckGroupVModel(
+                'Account RT Uniqueness Health Check', 
+                'Fail', 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 2', 
+                        'test setting', 
+                        'Fail', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
             LookupFieldModel accountlookupFieldOnContactFieldModelFromName
@@ -1811,7 +2347,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 2', 
+                        'test key 3', 
                         'test setting', 
                         'Fail', 
                         Label.stgHealthCheckStatusFailed,
@@ -1835,7 +2371,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 3', 
+                        'test key 5', 
                         'test setting', 
                         'Fail', 
                         Label.stgHealthCheckStatusFailed,
@@ -1859,7 +2395,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 3', 
+                        'test key 6', 
                         'test setting', 
                         'Fail', 
                         Label.stgHealthCheckStatusFailed,
@@ -1892,12 +2428,27 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             );
         }
 
+        private override HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingModel, 
+            RecordTypeModel accountRecordTypeModel,
+            Set<Id> duplicateAccountRecordTypeIds
+        ) {
+            return new HealthCheckGroupVModel(
+                'Failed Health Check 2', 
+                Label.stgHealthCheckStatusFailed, 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>()
+            );
+        }
+
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
             LookupFieldModel accountlookupFieldOnContactFieldModelFromName
         ) {
             return new HealthCheckGroupVModel(
-                'Failed Health Check 2', 
+                'Failed Health Check 3', 
                 Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
@@ -1911,7 +2462,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Map<String, PicklistEntryModel> picklistEntryModelByName
         ) {
             return new HealthCheckGroupVModel(
-                'Failed Health Check 3', 
+                'Failed Health Check 5', 
                 Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
@@ -1925,7 +2476,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Map<String, PicklistEntryModel> picklistEntryModelByName
         ) {
             return new HealthCheckGroupVModel(
-                'Failed Health Check 4', 
+                'Failed Health Check 6', 
                 Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
