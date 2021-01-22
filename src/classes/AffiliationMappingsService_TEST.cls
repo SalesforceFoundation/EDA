@@ -202,35 +202,4 @@ public with sharing class AffiliationMappingsService_TEST {
             return afflMappingsModelsList;
         }
     }
-
-    /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from AffiliationMappingsMapper to return a list of models representing Primary
-    * Affiliation Mappings with duplicate account record types.
-    **************************************************************************************************************************************/ 
-    private class STUB_DuplicateAccountRecordTypeAffiliationMappingsMapper extends AffiliationMappingsMapper {
-
-        public override List<AffiliationMappingsModel> getAffiliationMappingsModel() {
-            List<AffiliationMappingsModel> afflMappingsModelsList = new List<AffiliationMappingsModel>();
-
-            afflMappingsModelsList.add(new AffiliationMappingsModel(
-                'Test Academic Program',
-                'Test_Academic_Program',
-                'Test Primary Academic Program',
-                true,
-                'Test Current',
-                'Test Student'
-            ));
-
-            afflMappingsModelsList.add(new AffiliationMappingsModel(
-                'Test duplicate Academic Account',
-                'Test_Academic_Program',
-                'Test Primary Academic Program',
-                false,
-                '',
-                ''
-            ));
-
-            return afflMappingsModelsList;
-        }
-    }
 }
