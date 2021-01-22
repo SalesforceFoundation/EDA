@@ -152,6 +152,56 @@ public with sharing class AffiliationMappingsService_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getDuplicateAccountRecordTypeFieldValuesFromList method returns a empty set of duplicate accountRecordTypeFieldValues
+    * when there is no account record type value duplicates in affiliation mappings
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getDuplicateAccountRecordTypeIdsFromListNoAccountRecordTypeDuplicate(){
+        AffiliationMappingsMapper.instance = new STUB_AffiliationMappingsMapper();
+
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+
+        Test.startTest();
+            List<AffiliationMappingsModel> afflMappingsModelList = affiliationMappingsServiceInstance.getAffiliationMappingsModels();
+            Set<String> duplicateAccountRecordTypeFieldValues = affiliationMappingsServiceInstance.getDuplicateAccountRecordTypeFieldValuesFromList(afflMappingsModelList);       
+        Test.stopTest();
+
+        System.assertEquals(
+            true, 
+            duplicateAccountRecordTypeFieldValues.isEmpty(),
+            'Duplicate accountRecordTypeId does not exist in Affiliation Mappings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getDuplicateAccountRecordTypeFieldValuesFromList method returns a set of duplicate accountRecordTypeFieldValues
+    * when there are account record type value duplicates in affiliation mappings
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getDuplicateaccountRecordTypeFieldValuesFromListAccountRecordTypeDuplicates(){
+        AffiliationMappingsMapper.instance = new STUB_DuplicateAccountRecordTypeAffiliationMappingsMapper();
+
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+
+        Test.startTest();
+            List<AffiliationMappingsModel> afflMappingsModelList = affiliationMappingsServiceInstance.getAffiliationMappingsModels();
+            Set<String> duplicateAccountRecordTypeFieldValues = affiliationMappingsServiceInstance.getDuplicateAccountRecordTypeFieldValuesFromList(afflMappingsModelList);
+        Test.stopTest();
+
+        System.assertEquals(
+            false, 
+            duplicateAccountRecordTypeFieldValues.isEmpty(),
+            'Duplicate accountRecordTypeId does exist in Affiliation Mappings.'
+        );
+
+        System.assertEquals(
+            true, 
+            duplicateAccountRecordTypeFieldValues.contains('Test_Academic_Program'),
+            'Test_Academic_Program is in duplicateAccountRecordTypeIds.'
+        );
+    }
+
     /***********************************************************************************************************************************
     * @description Test method to verify that the locateAffiliationMappingsMapper method returns instance of AffiliationMappingsMapper
     ***********************************************************************************************************************************/
@@ -194,6 +244,37 @@ public with sharing class AffiliationMappingsService_TEST {
                 'Test Household Account',
                 'Test_HH_Account',
                 'Test Primary Household',
+                false,
+                '',
+                ''
+            ));
+
+            return afflMappingsModelsList;
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from AffiliationMappingsMapper to return a list of models representing Primary
+    * Affiliation Mappings with duplicate account record types.
+    **************************************************************************************************************************************/ 
+    private class STUB_DuplicateAccountRecordTypeAffiliationMappingsMapper extends AffiliationMappingsMapper {
+
+        public override List<AffiliationMappingsModel> getAffiliationMappingsModel() {
+            List<AffiliationMappingsModel> afflMappingsModelsList = new List<AffiliationMappingsModel>();
+
+            afflMappingsModelsList.add(new AffiliationMappingsModel(
+                'Test Academic Program',
+                'Test_Academic_Program',
+                'Test Primary Academic Program',
+                true,
+                'Test Current',
+                'Test Student'
+            ));
+
+            afflMappingsModelsList.add(new AffiliationMappingsModel(
+                'Test duplicate Academic Account',
+                'Test_Academic_Program',
+                'Test Primary Academic Program',
                 false,
                 '',
                 ''
