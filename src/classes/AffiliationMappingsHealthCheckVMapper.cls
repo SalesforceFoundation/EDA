@@ -770,4 +770,45 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
         return duplicateRecordTypeIds;
     }
+
+    /**********************************************************************************
+    * @description Retrieves a list of duplicate lookup field models in affiliation mappings
+    * @param  affiliationMappingsModelsList A list of models representing affiliation mappings in EDA Settings
+    * @param  accountLookupsOnContactFieldModelsByName A map of lookup field model by name
+    * @param  accountLookupsOnContactFieldModelsByLabel A map of lookup field model by label
+    * @return A list of duplicate lookup field models
+    **********************************************************************************/
+    @TestVisible
+    private List<LookupFieldModel> getDuplicateLookupFieldModels(
+        List<AffiliationMappingsModel> affiliationMappingsModelsList,
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName,
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel
+    ) {
+        List<LookupFieldModel> searchedLookupFieldModels = new List<LookupFieldModel>();
+        List<LookupFieldModel> duplicateLookupFieldModels = new List<LookupFieldModel>();
+
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
+            LookupFieldModel lookupFieldModel = 
+                this.locateLookupFieldService().getLookupFieldModelFromNameAndLabelMaps(
+                    affiliationMappingsModel.accountRecordTypeFieldValue, 
+                    accountLookupsOnContactFieldModelsByName, 
+                    accountLookupsOnContactFieldModelsByLabel
+                );
+            
+            if (lookupFieldModel == null) {
+                continue;
+            } else {
+                for (LookupFieldModel searchedLookupFieldModel : searchedLookupFieldModels) {
+                    if (searchedLookupFieldModel.name = lookupFieldModel.name
+                    && searchedLookupFieldModel.label = lookupFieldModel.label) {
+                        duplicateLookupFieldModels.add(LookupFieldModel); 
+                    } else {
+                        searchedLookupFieldModels.add(LookupFieldModel);
+                    }
+                }
+            }
+        }
+
+        return duplicateLookupFieldModels;
+    }
 }
