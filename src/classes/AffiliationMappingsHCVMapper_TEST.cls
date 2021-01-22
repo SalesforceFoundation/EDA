@@ -138,7 +138,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 4;
+        Integer numberOfHealthChecks = 5; //TODO: Update when adding new Health Check
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -194,7 +194,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 4;
+        Integer numberOfHealthChecks = 5; //TODO: Update when adding new health checks
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -1040,7 +1040,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel =
             affiliationMappingsServiceStub.getAffiliationMappingsModels()[0];
 
-        Integer numberOfHealthChecks = 4; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 5; // TODO: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
@@ -1126,7 +1126,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel = 
             affiliationMappingsHealthCheckVMapperInstance.locateAffiliationMappingsService().getAffiliationMappingsModels()[0];
         
-        Integer numberOfHealthChecks = 4; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 5; // TODO: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
@@ -1972,6 +1972,31 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             );
         }
 
+        private override HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            RecordTypeModel accountRecordTypeModel,
+            Set<String> duplicateAccountRecordTypeFieldValues
+        ) {
+            return new HealthCheckGroupVModel(
+                'Account RT Uniqueness Health Check', 
+                'Pass', 
+                1, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 2', 
+                        'test setting', 
+                        'Pass', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
             LookupFieldModel accountlookupFieldOnContactFieldModelFromName
@@ -1984,7 +2009,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 2', 
+                        'test key 3', 
                         'test setting', 
                         'Pass', 
                         Label.stgHealthCheckStatusPassed,
@@ -2008,7 +2033,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 3', 
+                        'test key 5', 
                         'test setting', 
                         'Pass', 
                         Label.stgHealthCheckStatusPassed,
@@ -2032,7 +2057,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 4', 
+                        'test key 6', 
                         'test setting', 
                         'Pass', 
                         Label.stgHealthCheckStatusPassed,
@@ -2075,6 +2100,31 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             );
         }
 
+        private override HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            RecordTypeModel accountRecordTypeModel,
+            Set<String> duplicateAccountRecordTypeFieldValues
+        ) {
+            return new HealthCheckGroupVModel(
+                'Account RT Uniqueness Health Check', 
+                'Fail', 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 2', 
+                        'test setting', 
+                        'Fail', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
             LookupFieldModel accountlookupFieldOnContactFieldModelFromName
@@ -2087,7 +2137,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 2', 
+                        'test key 3', 
                         'test setting', 
                         'Fail', 
                         Label.stgHealthCheckStatusFailed,
@@ -2111,7 +2161,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 3', 
+                        'test key 5', 
                         'test setting', 
                         'Fail', 
                         Label.stgHealthCheckStatusFailed,
@@ -2135,7 +2185,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 new List<String>(), 
                 new List<HealthCheckItemVModel>{
                     new HealthCheckItemVModel(
-                        'test key 3', 
+                        'test key 6', 
                         'test setting', 
                         'Fail', 
                         Label.stgHealthCheckStatusFailed,
@@ -2168,12 +2218,27 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             );
         }
 
+        private override HealthCheckGroupVModel getAccountRecordTypeUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingModel, 
+            RecordTypeModel accountRecordTypeModel,
+            Set<String> duplicateAccountRecordTypeFieldValues
+        ) {
+            return new HealthCheckGroupVModel(
+                'Failed Health Check 2', 
+                Label.stgHealthCheckStatusFailed, 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>()
+            );
+        }
+
         private override HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
             LookupFieldModel accountlookupFieldOnContactFieldModelFromName
         ) {
             return new HealthCheckGroupVModel(
-                'Failed Health Check 2', 
+                'Failed Health Check 3', 
                 Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
@@ -2187,7 +2252,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Map<String, PicklistEntryModel> picklistEntryModelByName
         ) {
             return new HealthCheckGroupVModel(
-                'Failed Health Check 3', 
+                'Failed Health Check 5', 
                 Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
@@ -2201,7 +2266,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Map<String, PicklistEntryModel> picklistEntryModelByName
         ) {
             return new HealthCheckGroupVModel(
-                'Failed Health Check 4', 
+                'Failed Health Check 6', 
                 Label.stgHealthCheckStatusFailed, 
                 0, 
                 1, 
