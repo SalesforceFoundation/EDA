@@ -1509,7 +1509,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>A check for unique Course Connection record type settings</shortDescription>
-        <value>Unique Default Faculty Record Type and Default Active Student Record Type Settings.</value>
+        <value>Unique Default Faculty Record Type and Default Active Student Record Type Settings</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesUniqueDesc</fullName>
