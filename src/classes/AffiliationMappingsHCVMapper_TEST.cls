@@ -1838,6 +1838,150 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
     /*****************************************************************************************
     * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
+    * set when there is duplicate record type model in Affiliation Mappings with the same Record Tyep Value
+    *****************************************************************************************/
+    @isTest 
+    private static void getDuplicateAccountRecordTypeIdsRecordTypeValueSameDuplicate() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Account Record Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping 2',
+                'Test Account Record Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+        RecordTypeModel accountRecordTypeModel = 
+            new RecordTypeModel(
+                '000000000000001234', 
+                'Test Account Record Type',
+                'Test_Account_Record_Type', 
+                true
+        );
+        RecordTypeModel accountRecordTypeModel2= 
+            new RecordTypeModel(
+                '000000000000005678', 
+                'Test Account Record Type 2',
+                'Test_Account_Record_Type2', 
+                true
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel> {
+            'Test_Account_Record_Type' => accountRecordTypeModel,
+            'Test_Account_Record_Type2' => accountRecordTypeModel2
+        };
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel> {
+            'Test Account Record Type' => accountRecordTypeModel,
+            'Test Account Record Type2' => accountRecordTypeModel2
+        };
+
+
+        Test.startTest();
+            Set<Id> duplicateAccountRecordTypeIds = afflMappingHealthCheckVMapperInstance.getDuplicateAccountRecordTypeIds(
+                affiliationMappingsModelsList, 
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel  
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            false, 
+            duplicateAccountRecordTypeIds.isEmpty(), 
+            'The set of duplicate account record type ids should not be empty.'
+        );
+
+        System.assertEquals(
+            true, 
+            duplicateAccountRecordTypeIds.contains('000000000000001234'), 
+            'The set of duplicate account record type ids contains 000000000000001234.'
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
+    * set when there is duplicate record type model in Affiliation Mappings with the mix Record Tyep Values
+    *****************************************************************************************/
+    @isTest 
+    private static void getDuplicateAccountRecordTypeIdsRecordTypeValueMixDuplicate() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Account Record Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping 2',
+                'Test_Account_Record_Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+        RecordTypeModel accountRecordTypeModel = 
+            new RecordTypeModel(
+                '000000000000001234', 
+                'Test Account Record Type',
+                'Test_Account_Record_Type', 
+                true
+        );
+        RecordTypeModel accountRecordTypeModel2= 
+            new RecordTypeModel(
+                '000000000000005678', 
+                'Test Account Record Type 2',
+                'Test_Account_Record_Type2', 
+                true
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel> {
+            'Test_Account_Record_Type' => accountRecordTypeModel,
+            'Test_Account_Record_Type2' => accountRecordTypeModel2
+        };
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel> {
+            'Test Account Record Type' => accountRecordTypeModel,
+            'Test Account Record Type2' => accountRecordTypeModel2
+        };
+
+
+        Test.startTest();
+            Set<Id> duplicateAccountRecordTypeIds = afflMappingHealthCheckVMapperInstance.getDuplicateAccountRecordTypeIds(
+                affiliationMappingsModelsList, 
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel  
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            false, 
+            duplicateAccountRecordTypeIds.isEmpty(), 
+            'The set of duplicate account record type ids should not be empty.'
+        );
+
+        System.assertEquals(
+            true, 
+            duplicateAccountRecordTypeIds.contains('000000000000001234'), 
+            'The set of duplicate account record type ids contains 000000000000001234.'
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
     * empty set when there is no duplicate record type model in Affiliation Mappings
     *****************************************************************************************/
     @isTest 
