@@ -4,7 +4,8 @@
         <lightning-spinner
             alternative-text={LabelReference.spinnerLoadingAltText}
             variant="brand"
-            size="medium">
+            size="medium"
+        >
         </lightning-spinner>
     </template>
     <ul>
@@ -14,8 +15,9 @@
                     is-display-group={displayHealthCheckGroup}
                     health-check-definition={hcdefinition}
                     onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}
-                    aria-label={hcdefinition.name}>
-                </c-health-check-group>    
+                    aria-label={hcdefinition.name}
+                >
+                </c-health-check-group>
             </li>
         </template>
     </ul>

@@ -23,15 +23,12 @@
                             class="slds-var-p-left_small"
                         ></lightning-icon>
                     </div>
-                    <div class="slds-col 
-                                slds-align-bottom 
-                                slds-var-p-left_small
-                                slds-text-body_large">
+                    <div
+                        class="slds-col slds-align-bottom slds-var-p-left_small slds-text-body_large"
+                    >
                         {healthCheckGroupName}
                     </div>
-                    <div class="slds-col 
-                                slds-align-bottom 
-                                slds-var-p-left_small">
+                    <div class="slds-col slds-align-bottom slds-var-p-left_small">
                         <div class="slds-text-body_small">{passedChecksDisplay}</div>
                     </div>
                 </div>
@@ -39,9 +36,7 @@
 
             <!-- Card Body -->
             <template if:true={isExpanded}>
-                <div class="slds-var-p-around_medium 
-                            lgc-bg"
-                     id={healthCheckResultsId}>
+                <div class="slds-var-p-around_medium lgc-bg" id={healthCheckResultsId}>
                     <lightning-tree-grid
                         columns={gridColumns}
                         data={healthCheckItemList}
