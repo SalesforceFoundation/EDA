@@ -138,7 +138,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 5; //TODO: Update when adding new Health Check
+        Integer numberOfHealthChecks = 6; //TODO: Update when adding new Health Check
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -194,7 +194,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 5; //TODO: Update when adding new health checks
+        Integer numberOfHealthChecks = 6; //TODO: Update when adding new health checks
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -1018,6 +1018,197 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         System.assertEquals(0, healthCheckItemVModel.healthCheckItemList.size());
     }
 
+    /*****************************************************************************************
+    * @description Test method to verify getContactPrimaryFieldUniquenessHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Passed status when a unique Primary Affilition field specified
+    * in affiliation mappings matches the developer name of a field that corresponds to a  
+    * lookup to Account on Contact. 
+    *****************************************************************************************/
+    @isTest 
+    private static void getContactPrimaryFieldUniquenessHealthCheckGroupVModelValid() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceDevNameMatch();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                'Valid Contact Lookup Field Name',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new LookupFieldModel(
+                    'Valid Contact Lookup Field Name',
+                    'Valid Contact Lookup Field Label'
+                ),
+                new Set<String>()
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            1,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapContPrimaryFieldUniqueTitle,  
+            'Pass',
+            Label.stgHealthCheckStatusPassed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldUnique, 
+                new List<Object> {
+                    'Valid Contact Lookup Field Label', 
+                    'Valid Contact Lookup Field Name'}
+            ),
+            Label.stgHealthCheckFixNotApplicable,
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getContactPrimaryFieldUniquenessHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when the primary contact field is not valid
+    *****************************************************************************************/
+    @isTest 
+    private static void getContactPrimaryFieldUniquenessHealthCheckGroupVModelFieldNotExist() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceDevNameMatch();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                'Valid Contact Lookup Field Name',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                null,
+                new Set<String>()
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapContPrimaryFieldUniqueTitle,  
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldInvalid, 
+                new List<Object> {
+                    'Valid Contact Lookup Field Label', 
+                    'Valid Contact Lookup Field Name'}
+            ),
+            String.format(
+                Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
+                new List<Object> {
+                    'Valid Contact Lookup Field Label', 
+                    'Valid Contact Lookup Field Name'}
+            ),
+            0
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getContactPrimaryFieldUniquenessHealthCheckGroupVModel returns a 
+    * HealthCheckGroupVModel with a Failed status when an account record type matched to multiple
+    * Primary Affilition fields specified in affiliation mappings matches the developer name
+    * of a field that corresponds to a lookup to Account on Contact. 
+    *****************************************************************************************/
+    @isTest 
+    private static void getContactPrimaryFieldUniquenessHealthCheckGroupVModelFieldDuplicate() {
+        LookupFieldService.instance = new STUB_LookupFieldServiceDevNameMatch();
+
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Record Type Name', 
+                'Valid Contact Lookup Field Name',
+                true,
+                'Test Status',
+                'Test Role'
+            )
+        };
+
+        Test.startTest();
+        HealthCheckGroupVModel healthCheckGroupVModelResult = 
+            afflMappingHealthCheckVMapperInstance.getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
+                affiliationMappingsModelsList[0],
+                new LookupFieldModel(
+                    'Valid Contact Lookup Field Name',
+                    'Valid Contact Lookup Field Label'
+                ),
+                new Set<String>{'Valid Contact Lookup Field NameValid Contact Lookup Field Label'}
+            );
+        Test.stopTest();
+
+        AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHealthCheckAffiliationMappings,
+            Label.stgHealthCheckStatusPassed,
+            0,
+            1,
+            0,
+            1
+        );
+
+        AffiliationMappingsHCVMapper_TEST.validateHCItemAssertions(
+            healthCheckGroupVModelResult,
+            Label.stgHCAfflMapContPrimaryFieldUniqueTitle,  
+            'Fail',
+            Label.stgHealthCheckStatusFailed,
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldNotUnique, 
+                new List<Object> {
+                    'Valid Contact Lookup Field Label', 
+                    'Valid Contact Lookup Field Name'}
+            ),
+            String.format(
+                Label.stgHCAfflMapContactPrimaryFieldUniqueFix, 
+                new List<Object> {
+                    'Valid Contact Lookup Field Label', 
+                    'Valid Contact Lookup Field Name'}
+            ),
+            0
+        );
+    }
+
     /***************************************************************************
     * @description Test method to verify that
     * getAffiliationMappingsHealthCheckResults returns the expected passing health
@@ -1040,7 +1231,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel =
             affiliationMappingsServiceStub.getAffiliationMappingsModels()[0];
 
-        Integer numberOfHealthChecks = 5; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 6; // TODO: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
@@ -1058,7 +1249,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 ),
                 new Map<String, PicklistEntryModel>(),
                 new Map<String, PicklistEntryModel>(),
-                new Set<Id>()
+                new Set<Id>(),
+                new Set<String>()
             );
         Test.stopTest();
 
@@ -1126,7 +1318,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel = 
             affiliationMappingsHealthCheckVMapperInstance.locateAffiliationMappingsService().getAffiliationMappingsModels()[0];
         
-        Integer numberOfHealthChecks = 5; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 6; // TODO: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
@@ -1144,7 +1336,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 ),
                 new Map<String, PicklistEntryModel>(),
                 new Map<String, PicklistEntryModel>(),
-                new Set<Id>()
+                new Set<Id>(),
+                new Set<String>()
             );
         Test.stopTest();
 
@@ -1838,7 +2031,73 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
     /*****************************************************************************************
     * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
-    * set when there is duplicate record type model in Affiliation Mappings with the same Record Tyep Value
+    * empty set when there is no duplicate record type model in Affiliation Mappings
+    *****************************************************************************************/
+    @isTest 
+    private static void getDuplicateAccountRecordTypeIdsNoDuplicate() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Account Record Type', 
+                '',
+                false,
+                '',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping 2',
+                'Test Account Record Type 2', 
+                '',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+        RecordTypeModel accountRecordTypeModel = 
+            new RecordTypeModel(
+                '000000000000001234', 
+                'Test Account Record Type',
+                'Test_Account_Record_Type', 
+                true
+        );
+        RecordTypeModel accountRecordTypeModel2= 
+            new RecordTypeModel(
+                '000000000000005678', 
+                'Test Account Record Type 2',
+                'Test_Account_Record_Type2', 
+                true
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel> {
+            'Test_Account_Record_Type' => accountRecordTypeModel,
+            'Test_Account_Record_Type2' => accountRecordTypeModel2
+        };
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel> {
+            'Test Account Record Type' => accountRecordTypeModel,
+            'Test Account Record Type2' => accountRecordTypeModel2
+        };
+
+
+        Test.startTest();
+            Set<Id> duplicateAccountRecordTypeIds = afflMappingHealthCheckVMapperInstance.getDuplicateAccountRecordTypeIds(
+                affiliationMappingsModelsList, 
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel  
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            true, 
+            duplicateAccountRecordTypeIds.isEmpty(), 
+            'The set of duplicate account record type ids should be empty.'
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getDuplicateAccountRecordTypeIds returns a
+    * set when there is duplicate record type model in Affiliation Mappings with the same Record Type Value
     *****************************************************************************************/
     @isTest 
     private static void getDuplicateAccountRecordTypeIdsRecordTypeValueSameDuplicate() {
@@ -1909,8 +2168,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     }
 
     /*****************************************************************************************
-    * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
-    * set when there is duplicate record type model in Affiliation Mappings with the mix Record Tyep Values
+    * @description Test method to verify getDuplicateAccountRecordTypeIds returns a
+    * set when there is duplicate record type model in Affiliation Mappings with the mix Record Type Values
     *****************************************************************************************/
     @isTest 
     private static void getDuplicateAccountRecordTypeIdsRecordTypeValueMixDuplicate() {
@@ -1981,11 +2240,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     }
 
     /*****************************************************************************************
-    * @description Test method to verify getDuplicateAccountRecordTypeIds returns an
-    * empty set when there is no duplicate record type model in Affiliation Mappings
+    * @description Test method to verify getDuplicateLookupFieldModelKeys returns an
+    * empty set when there is no duplicate Lookup Field Model in Affiliation Mappings
     *****************************************************************************************/
     @isTest 
-    private static void getDuplicateAccountRecordTypeIdsNoDuplicate() {
+    private static void getDuplicateLookupFieldModelKeysNoDuplicate() {
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
@@ -1993,7 +2252,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping',
                 'Test Account Record Type', 
-                '',
+                'Test Contact Primary Field',
                 false,
                 '',
                 'Test Role'
@@ -2001,48 +2260,180 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             new AffiliationMappingsModel(
                 'Test Affiliation Mapping 2',
                 'Test Account Record Type 2', 
-                '',
+                'Test Contact Primary Field 2',
                 false,
                 '',
                 'Test Role'
             )
         };
-        RecordTypeModel accountRecordTypeModel = 
-            new RecordTypeModel(
-                '000000000000001234', 
-                'Test Account Record Type',
-                'Test_Account_Record_Type', 
-                true
+        LookupFieldModel lookupFieldModel = 
+            new LookupFieldModel( 
+                'Test_Contact_Primary_Field',
+                'Test Contact Primary Field'
         );
-        RecordTypeModel accountRecordTypeModel2= 
-            new RecordTypeModel(
-                '000000000000005678', 
-                'Test Account Record Type 2',
-                'Test_Account_Record_Type2', 
-                true
+        LookupFieldModel lookupFieldModel2 = 
+            new LookupFieldModel( 
+                'Test_Contact_Primary_Field2',
+                'Test Contact Primary Field 2'
         );
-        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel> {
-            'Test_Account_Record_Type' => accountRecordTypeModel,
-            'Test_Account_Record_Type2' => accountRecordTypeModel2
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = new Map<String, LookupFieldModel> {
+            'Test_Contact_Primary_Field' => lookupFieldModel,
+            'Test_Contact_Primary_Field2' => lookupFieldModel2
         };
-        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel> {
-            'Test Account Record Type' => accountRecordTypeModel,
-            'Test Account Record Type2' => accountRecordTypeModel2
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = new Map<String, LookupFieldModel> {
+            'Test Contact Primary Field' => lookupFieldModel,
+            'Test Contact Primary Field 2' => lookupFieldModel2
         };
 
 
         Test.startTest();
-            Set<Id> duplicateAccountRecordTypeIds = afflMappingHealthCheckVMapperInstance.getDuplicateAccountRecordTypeIds(
+            Set<String> duplicateLookupFieldModelKeys = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelKeys(
                 affiliationMappingsModelsList, 
-                accountRecordTypeModelsByName,
-                accountRecordTypeModelsByLabel  
+                accountLookupsOnContactFieldModelsByName,
+                accountLookupsOnContactFieldModelsByLabel  
             );
         Test.stopTest();
 
         System.assertEquals(
             true, 
-            duplicateAccountRecordTypeIds.isEmpty(), 
-            'The set of duplicate account record type ids should be empty.'
+            duplicateLookupFieldModelKeys.isEmpty(), 
+            'The set of duplicate lookup field model keys should be empty.'
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getDuplicateLookupFieldModelKeys returns an
+    * set when there is duplicate Lookup Field Model in Affiliation Mappings with the same primary contact field value
+    *****************************************************************************************/
+    @isTest 
+    private static void getDuplicateLookupFieldModelKeysSameDuplicate() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Account Record Type', 
+                'Test Contact Primary Field',
+                false,
+                '',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping 2',
+                'Test Account Record Type 2', 
+                'Test Contact Primary Field',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+        LookupFieldModel lookupFieldModel = 
+            new LookupFieldModel( 
+                'Test_Contact_Primary_Field',
+                'Test Contact Primary Field'
+        );
+        LookupFieldModel lookupFieldModel2 = 
+            new LookupFieldModel( 
+                'Test_Contact_Primary_Field2',
+                'Test Contact Primary Field 2'
+        );
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = new Map<String, LookupFieldModel> {
+            'Test_Contact_Primary_Field' => lookupFieldModel,
+            'Test_Contact_Primary_Field2' => lookupFieldModel2
+        };
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = new Map<String, LookupFieldModel> {
+            'Test Contact Primary Field' => lookupFieldModel,
+            'Test Contact Primary Field 2' => lookupFieldModel2
+        };
+
+
+        Test.startTest();
+            Set<String> duplicateLookupFieldModelKeys = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelKeys(
+                affiliationMappingsModelsList, 
+                accountLookupsOnContactFieldModelsByName,
+                accountLookupsOnContactFieldModelsByLabel  
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            false, 
+            duplicateLookupFieldModelKeys.isEmpty(), 
+            'The set of duplicate lookup field model keys should not be empty.'
+        );
+
+        System.assertEquals(
+            true, 
+            duplicateLookupFieldModelKeys.contains('Test_Contact_Primary_FieldTest Contact Primary Field'), 
+            'The set of duplicate lookup field model keys should contain Test_Contact_Primary_FieldTest Contact Primary Field.'
+        );
+    }
+
+    /*****************************************************************************************
+    * @description Test method to verify getDuplicateLookupFieldModelKeys returns an
+    * set when there is duplicate Lookup Field Model in Affiliation Mappings with the mix primary contact field value
+    *****************************************************************************************/
+    @isTest 
+    private static void getDuplicateLookupFieldModelKeysMixDuplicate() {
+        AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
+            AffiliationMappingsHealthCheckVMapper.getInstance();
+
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = new List<AffiliationMappingsModel> {
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping',
+                'Test Account Record Type', 
+                'Test Contact Primary Field',
+                false,
+                '',
+                'Test Role'
+            ),
+            new AffiliationMappingsModel(
+                'Test Affiliation Mapping 2',
+                'Test Account Record Type 2', 
+                'Test_Contact_Primary_Field',
+                false,
+                '',
+                'Test Role'
+            )
+        };
+        LookupFieldModel lookupFieldModel = 
+            new LookupFieldModel( 
+                'Test_Contact_Primary_Field',
+                'Test Contact Primary Field'
+        );
+        LookupFieldModel lookupFieldModel2 = 
+            new LookupFieldModel( 
+                'Test_Contact_Primary_Field2',
+                'Test Contact Primary Field 2'
+        );
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = new Map<String, LookupFieldModel> {
+            'Test_Contact_Primary_Field' => lookupFieldModel,
+            'Test_Contact_Primary_Field2' => lookupFieldModel2
+        };
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = new Map<String, LookupFieldModel> {
+            'Test Contact Primary Field' => lookupFieldModel,
+            'Test Contact Primary Field 2' => lookupFieldModel2
+        };
+
+
+        Test.startTest();
+            Set<String> duplicateLookupFieldModelKeys = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelKeys(
+                affiliationMappingsModelsList, 
+                accountLookupsOnContactFieldModelsByName,
+                accountLookupsOnContactFieldModelsByLabel  
+            );
+        Test.stopTest();
+
+        System.assertEquals(
+            false, 
+            duplicateLookupFieldModelKeys.isEmpty(), 
+            'The set of duplicate lookup field model keys should not be empty.'
+        );
+
+        System.assertEquals(
+            true, 
+            duplicateLookupFieldModelKeys.contains('Test_Contact_Primary_FieldTest Contact Primary Field'), 
+            'The set of duplicate lookup field model keys should contain Test_Contact_Primary_FieldTest Contact Primary Field.'
         );
     }
 
@@ -2231,6 +2622,31 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             );
         }
 
+        private override HealthCheckGroupVModel getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            LookupFieldModel accountlookupFieldOnContactFieldModel,
+            Set<String> duplicateLookupFieldModelKeys
+        ) {
+            return new HealthCheckGroupVModel(
+                'Contact Primary Field Uniqueness Health Check', 
+                'Pass', 
+                1, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 4', 
+                        'test setting', 
+                        'Pass', 
+                        Label.stgHealthCheckStatusPassed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+
         private override HealthCheckGroupVModel getActiveExistingRoleHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
             Map<String, PicklistEntryModel> picklistEntryModelByName
@@ -2351,6 +2767,31 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                         'test setting', 
                         'Fail', 
                         Label.stgHealthCheckStatusFailed,
+                        'test description', 
+                        'test fix',
+                        new List<HealthCheckItemVModel>()
+                    ) 
+                }
+            );
+        }
+
+        private override HealthCheckGroupVModel getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingsModel, 
+            LookupFieldModel accountlookupFieldOnContactFieldModel,
+            Set<String> duplicateLookupFieldModelKeys
+        ) {
+            return new HealthCheckGroupVModel(
+                'Contact Primary Field Uniqueness Health Check', 
+                'Fail', 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>{
+                    new HealthCheckItemVModel(
+                        'test key 4', 
+                        'test setting', 
+                        'Fail', 
+                        Label.stgHealthCheckStatusPassed,
                         'test description', 
                         'test fix',
                         new List<HealthCheckItemVModel>()

@@ -48,6 +48,7 @@ public with sharing class LookupFieldModel_TEST {
         Test.stopTest();
 
         System.assertEquals('TestName', lookupFieldModel.name, 'Name should be set.');
-        System.assertEquals('Test Label', lookupFieldModel.label, 'Label should be set.');
+		System.assertEquals('Test Label', lookupFieldModel.label, 'Label should be set.');
+		System.assertEquals('TestNameTest Label', lookupFieldModel.key, 'Key should be set.');
     }
 }
