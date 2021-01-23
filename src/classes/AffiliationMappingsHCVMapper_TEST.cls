@@ -2894,6 +2894,21 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             );
         }
 
+        private override HealthCheckGroupVModel getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
+            AffiliationMappingsModel affiliationMappingModel, 
+            LookupFieldModel accountlookupFieldOnContactFieldModel,
+            Set<String> duplicateLookupFieldModelKeys
+        ) {
+            return new HealthCheckGroupVModel(
+                'Failed Health Check 4', 
+                Label.stgHealthCheckStatusFailed, 
+                0, 
+                1, 
+                new List<String>(), 
+                new List<HealthCheckItemVModel>()
+            );
+        }
+
         private override HealthCheckGroupVModel getActiveExistingRoleHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel,
             Map<String, PicklistEntryModel> picklistEntryModelByName
