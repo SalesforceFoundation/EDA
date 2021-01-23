@@ -1128,15 +1128,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHealthCheckStatusFailed,
             String.format(
                 Label.stgHCAfflMapContactPrimaryFieldInvalid, 
-                new List<Object> {
-                    'Valid Contact Lookup Field Label', 
-                    'Valid Contact Lookup Field Name'}
+                new List<Object> {affiliationMappingsModel.primaryAffiliationField}
             ),
             String.format(
                 Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
-                new List<Object> {
-                    'Valid Contact Lookup Field Label', 
-                    'Valid Contact Lookup Field Name'}
+                new List<Object> {affiliationMappingsModel.primaryAffiliationField}
             ),
             0
         );
@@ -2742,7 +2738,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                         'test key 2', 
                         'test setting', 
                         'Fail', 
-                        Label.stgHealthCheckStatusPassed,
+                        Label.stgHealthCheckStatusFailed,
                         'test description', 
                         'test fix',
                         new List<HealthCheckItemVModel>()
