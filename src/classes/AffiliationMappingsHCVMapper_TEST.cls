@@ -1128,11 +1128,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHealthCheckStatusFailed,
             String.format(
                 Label.stgHCAfflMapContactPrimaryFieldInvalid, 
-                new List<Object> {affiliationMappingsModel.primaryAffiliationField}
+                new List<Object> {'Valid Contact Lookup Field Name'}
             ),
             String.format(
                 Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
-                new List<Object> {affiliationMappingsModel.primaryAffiliationField}
+                new List<Object> {'Valid Contact Lookup Field Name'}
             ),
             0
         );
