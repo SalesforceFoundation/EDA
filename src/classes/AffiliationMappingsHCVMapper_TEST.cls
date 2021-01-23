@@ -1114,7 +1114,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
-            Label.stgHealthCheckStatusPassed,
+            Label.stgHealthCheckStatusFailed,
             0,
             1,
             0,
@@ -1181,7 +1181,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHCVMapper_TEST.validateHCGroupAssertions(
             healthCheckGroupVModelResult,
             Label.stgHealthCheckAffiliationMappings,
-            Label.stgHealthCheckStatusPassed,
+            Label.stgHealthCheckStatusFailed,
             0,
             1,
             0,
@@ -2791,7 +2791,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                         'test key 4', 
                         'test setting', 
                         'Fail', 
-                        Label.stgHealthCheckStatusPassed,
+                        Label.stgHealthCheckStatusFailed,
                         'test description', 
                         'test fix',
                         new List<HealthCheckItemVModel>()
