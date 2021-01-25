@@ -87,6 +87,12 @@ private class HealthCheckDefinitionMapper_TEST {
             'hed')
         );
 
+        expectedHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel(
+            'courseconnectionsettings', 
+            'EDAHealthCheckGroupAPIService', 
+            'hed')
+        );
+
         Test.startTest();
             List<HealthCheckDefinitionModel> healthCheckDefinitionModelList =
                 healthCheckDefinitionMapper.getHealthCheckDefinitionModels();

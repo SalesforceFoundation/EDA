@@ -93,6 +93,14 @@
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
+        <members>CourseConSettingHealthCheckVMapper</members>
+        <members>CourseConSettingHealthCheckVMapper_TEST</members>
+        <members>CourseConnectionSettingsMapper</members>
+        <members>CourseConnectionSettingsMapper_TEST</members>
+        <members>CourseConnectionSettingsModel</members>
+        <members>CourseConnectionSettingsModel_TEST</members>
+        <members>CourseConnectionSettingsService</members>
+        <members>CourseConnectionSettingsService_TEST</members>
         <members>EDAHealthCheckGroupAPIService</members>
         <members>EDAHealthCheckGroupAPIService_TEST</members>
         <members>ERR_AsyncErrors</members>

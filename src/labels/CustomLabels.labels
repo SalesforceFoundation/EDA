@@ -1469,7 +1469,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Course Connections isn&apos;t enabled</shortDescription>
-        <value>Enable Course Connections, which includes configuring Course Connection record types.</value>
+        <value>Enable Course Connections, which includes configuring Course Connection record types. For details, see Configure Course Connection in the EDA documentation.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyInactiveFix</fullName>
@@ -1501,7 +1501,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when student and faculty Course Connection record types are same</shortDescription>
-        <value>In EDA Settings, in the Settings subtab of the Course Connections tab, change either the Default Faculty Record Type or the Default Active Student Record Type so that each specifies a unique record type.</value>
+        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change either the Default Faculty Record Type or the Default Active Student Record Type so that each specifies a unique record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesUnique</fullName>
