@@ -138,7 +138,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 6; //TODO: Update when adding new Health Check
+        Integer numberOfHealthChecks = 6; //NOTE: Update when adding new Health Check
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -194,7 +194,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsHealthCheckVMapper AffiliationMappingsHealthCheckVMapper =
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
-        Integer numberOfHealthChecks = 6; //TODO: Update when adding new health checks
+        Integer numberOfHealthChecks = 6; //NOTE: Update when adding new health checks
 
         Test.startTest();
             HealthCheckGroupVModel healthCheckGroupVModel =
@@ -1227,7 +1227,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel =
             affiliationMappingsServiceStub.getAffiliationMappingsModels()[0];
 
-        Integer numberOfHealthChecks = 6; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 6; // NOTE: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
@@ -1314,7 +1314,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModel = 
             affiliationMappingsHealthCheckVMapperInstance.locateAffiliationMappingsService().getAffiliationMappingsModels()[0];
         
-        Integer numberOfHealthChecks = 6; // TODO: Increment when adding health checks
+        Integer numberOfHealthChecks = 6; // NOTE: Increment when adding health checks
 
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
