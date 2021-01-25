@@ -34,11 +34,9 @@
 public with sharing class LookupFieldModel {
     public String name; //developer name
     public String label;
-    public String key;
 
     public LookupFieldModel(String name, String label) {
         this.name = name;
         this.label = label;
-        this.key = name + label;
     }
 }

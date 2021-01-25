@@ -1170,7 +1170,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                     'Valid Contact Lookup Field Name',
                     'Valid Contact Lookup Field Label'
                 ),
-                new Set<String>{'Valid Contact Lookup Field NameValid Contact Lookup Field Label'}
+                new Set<String>{'Valid Contact Lookup Field Name'}
             );
         Test.stopTest();
 
@@ -2236,11 +2236,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
     }
 
     /*****************************************************************************************
-    * @description Test method to verify getDuplicateLookupFieldModelKeys returns an
+    * @description Test method to verify getDuplicateLookupFieldModelNames returns an
     * empty set when there is no duplicate Lookup Field Model in Affiliation Mappings
     *****************************************************************************************/
     @isTest 
-    private static void getDuplicateLookupFieldModelKeysNoDuplicate() {
+    private static void getDuplicateLookupFieldModelNamesNoDuplicate() {
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
@@ -2283,7 +2283,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
 
         Test.startTest();
-            Set<String> duplicateLookupFieldModelKeys = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelKeys(
+            Set<String> duplicateLookupFieldModelNames = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelNames(
                 affiliationMappingsModelsList, 
                 accountLookupsOnContactFieldModelsByName,
                 accountLookupsOnContactFieldModelsByLabel  
@@ -2292,17 +2292,17 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         System.assertEquals(
             true, 
-            duplicateLookupFieldModelKeys.isEmpty(), 
-            'The set of duplicate lookup field model keys should be empty.'
+            duplicateLookupFieldModelNames.isEmpty(), 
+            'The set of duplicate lookup field model names should be empty.'
         );
     }
 
     /*****************************************************************************************
-    * @description Test method to verify getDuplicateLookupFieldModelKeys returns an
+    * @description Test method to verify getDuplicateLookupFieldModelNames returns an
     * set when there is duplicate Lookup Field Model in Affiliation Mappings with the same primary contact field value
     *****************************************************************************************/
     @isTest 
-    private static void getDuplicateLookupFieldModelKeysSameDuplicate() {
+    private static void getDuplicateLookupFieldModelNamesSameDuplicate() {
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
@@ -2345,7 +2345,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
 
         Test.startTest();
-            Set<String> duplicateLookupFieldModelKeys = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelKeys(
+            Set<String> duplicateLookupFieldModelNames = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelNames(
                 affiliationMappingsModelsList, 
                 accountLookupsOnContactFieldModelsByName,
                 accountLookupsOnContactFieldModelsByLabel  
@@ -2354,23 +2354,23 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         System.assertEquals(
             false, 
-            duplicateLookupFieldModelKeys.isEmpty(), 
-            'The set of duplicate lookup field model keys should not be empty.'
+            duplicateLookupFieldModelNames.isEmpty(), 
+            'The set of duplicate lookup field model names should not be empty.'
         );
 
         System.assertEquals(
             true, 
-            duplicateLookupFieldModelKeys.contains('Test_Contact_Primary_FieldTest Contact Primary Field'), 
-            'The set of duplicate lookup field model keys should contain Test_Contact_Primary_FieldTest Contact Primary Field.'
+            duplicateLookupFieldModelNames.contains('Test_Contact_Primary_Field'), 
+            'The set of duplicate lookup field model names should contain Test_Contact_Primary_FieldTest Contact Primary Field.'
         );
     }
 
     /*****************************************************************************************
-    * @description Test method to verify getDuplicateLookupFieldModelKeys returns an
+    * @description Test method to verify getDuplicateLookupFieldModelNames returns an
     * set when there is duplicate Lookup Field Model in Affiliation Mappings with the mix primary contact field value
     *****************************************************************************************/
     @isTest 
-    private static void getDuplicateLookupFieldModelKeysMixDuplicate() {
+    private static void getDuplicateLookupFieldModelNamesMixDuplicate() {
         AffiliationMappingsHealthCheckVMapper afflMappingHealthCheckVMapperInstance = 
             AffiliationMappingsHealthCheckVMapper.getInstance();
 
@@ -2413,7 +2413,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
 
         Test.startTest();
-            Set<String> duplicateLookupFieldModelKeys = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelKeys(
+            Set<String> duplicateLookupFieldModelNames = afflMappingHealthCheckVMapperInstance.getDuplicateLookupFieldModelNames(
                 affiliationMappingsModelsList, 
                 accountLookupsOnContactFieldModelsByName,
                 accountLookupsOnContactFieldModelsByLabel  
@@ -2422,14 +2422,14 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
 
         System.assertEquals(
             false, 
-            duplicateLookupFieldModelKeys.isEmpty(), 
-            'The set of duplicate lookup field model keys should not be empty.'
+            duplicateLookupFieldModelNames.isEmpty(), 
+            'The set of duplicate lookup field model names should not be empty.'
         );
 
         System.assertEquals(
             true, 
-            duplicateLookupFieldModelKeys.contains('Test_Contact_Primary_FieldTest Contact Primary Field'), 
-            'The set of duplicate lookup field model keys should contain Test_Contact_Primary_FieldTest Contact Primary Field.'
+            duplicateLookupFieldModelNames.contains('Test_Contact_Primary_Field'), 
+            'The set of duplicate lookup field model names should contain Test_Contact_Primary_FieldTest Contact Primary Field.'
         );
     }
 
@@ -2621,7 +2621,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         private override HealthCheckGroupVModel getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel, 
             LookupFieldModel accountlookupFieldOnContactFieldModel,
-            Set<String> duplicateLookupFieldModelKeys
+            Set<String> duplicateLookupFieldModelNames
         ) {
             return new HealthCheckGroupVModel(
                 'Contact Primary Field Uniqueness Health Check', 
@@ -2774,7 +2774,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         private override HealthCheckGroupVModel getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingsModel, 
             LookupFieldModel accountlookupFieldOnContactFieldModel,
-            Set<String> duplicateLookupFieldModelKeys
+            Set<String> duplicateLookupFieldModelNames
         ) {
             return new HealthCheckGroupVModel(
                 'Contact Primary Field Uniqueness Health Check', 
@@ -2897,7 +2897,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         private override HealthCheckGroupVModel getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
             AffiliationMappingsModel affiliationMappingModel, 
             LookupFieldModel accountlookupFieldOnContactFieldModel,
-            Set<String> duplicateLookupFieldModelKeys
+            Set<String> duplicateLookupFieldModelNames
         ) {
             return new HealthCheckGroupVModel(
                 'Failed Health Check 4', 

@@ -79,8 +79,8 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             this.locateLookupFieldService().getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel =
             this.locateLookupFieldService().getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
-        Set<String> duplicateLookupFieldModelKeys = 
-            this.getDuplicateLookupFieldModelKeys(affiliationMappingsModelsList, accountLookupsOnContactFieldModelsByName, accountLookupsOnContactFieldModelsByLabel);
+        Set<String> duplicateLookupFieldModelNames = 
+            this.getduplicateLookupFieldModelNames(affiliationMappingsModelsList, accountLookupsOnContactFieldModelsByName, accountLookupsOnContactFieldModelsByLabel);
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName = 
             this.locatePicklistEntryService().getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
         Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName = 
@@ -110,7 +110,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 affilationRolePicklistEntryModelByName,
                 affilationStatusPicklistEntryModelByName,
                 duplicateAccountRecordTypeIds,
-                duplicateLookupFieldModelKeys
+                duplicateLookupFieldModelNames
             );
 
             // Add results from child health check group results to parent
@@ -142,7 +142,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name
     * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name
     * @param duplicateAccountRecordTypeIds A set of duplicate record type ids from affiliation mappings
-    * @param duplicateLookupFieldModelKeys A set of duplicate lookup field model keys from affiliation mappings
+    * @param duplicateLookupFieldModelNames A set of duplicate lookup field model names from affiliation mappings
     * @return A HealthCheckGroupVModel
     **********************************************************************************/
     @TestVisible
@@ -153,7 +153,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
         Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName,
         Set<Id> duplicateAccountRecordTypeIds,
-        Set<String> duplicateLookupFieldModelKeys
+        Set<String> duplicateLookupFieldModelNames
     ) {
         HealthCheckGroupVModel parentHealthCheckGroupVModel = new HealthCheckGroupVModel();
             
@@ -196,7 +196,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             this.getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
                 affiliationMappingsModel, 
                 accountlookupFieldOnContactFieldModel,
-                duplicateLookupFieldModelKeys
+                duplicateLookupFieldModelNames
             )
         );
 
@@ -716,14 +716,14 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Primary Field included in an affiliation mapping is unique.
     * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
     * @param  accountlookupFieldOnContactFieldModel A model representing the Account record type specified for an affiliation mapping
-    * @param  duplicateLookupFieldModelKeys A set of duplicate lookup field model keys from affiliation mappings
+    * @param  duplicateLookupFieldModelNames A set of duplicate lookup field model names from affiliation mappings
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible
     private virtual HealthCheckGroupVModel getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
         AffiliationMappingsModel affiliationMappingsModel, 
         LookupFieldModel accountlookupFieldOnContactFieldModel,
-        Set<String> duplicateLookupFieldModelKeys
+        Set<String> duplicateLookupFieldModelNames
     ) {
         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
         healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
@@ -751,7 +751,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             return healthCheckGroupVModel;
         }
 
-        if (duplicateLookupFieldModelKeys.contains(accountlookupFieldOnContactFieldModel.key)) {
+        if (duplicateLookupFieldModelNames.contains(accountlookupFieldOnContactFieldModel.name)) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
             '04',
             Label.stgHCAfflMapContPrimaryFieldUniqueTitle,
@@ -867,20 +867,20 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     }
 
     /**********************************************************************************
-    * @description Retrieves a set of duplicate lookup field model keys in affiliation mappings
+    * @description Retrieves a set of duplicate lookup field model names in affiliation mappings
     * @param  affiliationMappingsModelsList A list of models representing affiliation mappings in EDA Settings
     * @param  accountLookupsOnContactFieldModelsByName A map of lookup field model by name
     * @param  accountLookupsOnContactFieldModelsByLabel A map of lookup field model by label
-    * @return A set of duplicate lookup field model keys
+    * @return A set of duplicate lookup field model names
     **********************************************************************************/
     @TestVisible
-    private Set<String> getDuplicateLookupFieldModelKeys(
+    private Set<String> getDuplicateLookupFieldModelNames(
         List<AffiliationMappingsModel> affiliationMappingsModelsList,
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName,
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel
     ) {
-        Set<String> lookupFieldModelKeys = new Set<String>();
-        Set<String> duplicateLookupFieldModelKeys = new Set<String>();
+        Set<String> lookupFieldModelNames = new Set<String>();
+        Set<String> duplicateLookupFieldModelNames = new Set<String>();
 
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
             LookupFieldModel lookupFieldModel = 
@@ -893,14 +893,14 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             if (lookupFieldModel == null) {
                 continue;
             } else {
-                if (lookupFieldModelKeys.contains(lookupFieldModel.key)) {
-                    duplicateLookupFieldModelKeys.add(lookupFieldModel.key);
+                if (lookupFieldModelNames.contains(lookupFieldModel.name)) {
+                    duplicateLookupFieldModelNames.add(lookupFieldModel.name);
                 } else {
-                    lookupFieldModelKeys.add(lookupFieldModel.key);
+                    lookupFieldModelNames.add(lookupFieldModel.name);
                 }
             }
         }
 
-        return duplicateLookupFieldModelKeys;
+        return duplicateLookupFieldModelNames;
     }
 }
