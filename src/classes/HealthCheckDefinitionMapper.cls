@@ -86,6 +86,13 @@ public virtual with sharing class HealthCheckDefinitionMapper {
                 'hed'
             ));
 
+        healthCheckDefinitionModelList.add(
+            new HealthCheckDefinitionModel(
+                'courseconnectionsettings', 
+                'EDAHealthCheckGroupAPIService', 
+                'hed')
+            );
+
         return healthCheckDefinitionModelList;                                                                                                                             
     }
 }

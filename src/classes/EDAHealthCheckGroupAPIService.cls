@@ -58,6 +58,15 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     }
 
     /******************************************************************************************
+    * @description Retrieves an instance of CourseConSettingHealthCheckVMapper. 
+    * @return An instance of CourseConSettingHealthCheckVMapper.
+    ******************************************************************************************/
+    @TestVisible 
+    private CourseConSettingHealthCheckVMapper locateCourseConSettingHealthCheckVMapper(){
+        return CourseConSettingHealthCheckVMapper.getInstance();
+    }
+
+    /******************************************************************************************
     * @description Retrieves an instance of AccountModelHealthCheckVMapper. 
     * @return An instance of AccountModelHealthCheckVMapper.
     ******************************************************************************************/
@@ -89,6 +98,9 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         List<String> rowKeysList = new List<String>();
 
         switch on lowercasedHCGroupName {
+            when 'courseconnectionsettings' {
+                return this.locateCourseConSettingHealthCheckVMapper().getHealthCheckGroup();
+            }    
             when 'accountmodel' {
                 return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
             } 
