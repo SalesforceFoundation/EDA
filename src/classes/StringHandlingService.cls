@@ -70,7 +70,7 @@ public with sharing class StringHandlingService {
         String escapedSingleQuote = '\'\'';
 
         String stringWithEscapedSingleQuotes = 
-            stringToFormat.replace(unescapedSingleQuote,  escaptedSingleQuote);
+            stringToFormat.replace(unescapedSingleQuote, escapedSingleQuote);
 
         String stringWithEscapedQuotesAndParameters = 
             String.format(
