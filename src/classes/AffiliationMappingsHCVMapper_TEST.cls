@@ -120,6 +120,19 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         System.assertEquals(true, PicklistEntryServiceInstance != null, 'Instance of PicklistEntryService class should not be null.');
     }
 
+    /**************************************************************************************************************************
+    * @description Test to verify locateStringHandlingService() returns an instance of the StringHandlingService class.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void locateStringHandlingServiceValid() {
+        Test.startTest();
+        StringHandlingService StringHandlingServiceInstance = AffiliationMappingsHealthCheckVMapper.getInstance().locateStringHandlingService();
+        Test.stopTest();
+
+        System.assertEquals(StringHandlingService.getInstance(), StringHandlingServiceInstance, 'Should return instance of StringHandlingService class.');
+        System.assertEquals(true, StringHandlingServiceInstance != null, 'Instance of StringHandlingService class should not be null.');
+    }
+
     /***************************************************************************
     * @description Test method to verify that getHealthCheckGroup handles all
     * passed health checks
@@ -283,7 +296,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCRecordTypeValid, 
                 new List<Object> {'Active RecordType Label', 'activeRTDevName'}
             ),
@@ -342,11 +355,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCRecordTypeInactive, 
                 new List<Object> {'Inactive RecordType Label', 'inactiveRTDevName'}
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeInactiveFix, 
                 new List<Object> {'Inactive RecordType Label', 'inactiveRTDevName'}
             ),
@@ -399,11 +412,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAccRecordTypeTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCRecordTypeNotFound, 
                 new List<Object>{affiliationMappingModelsList[0].accountRecordTypeFieldValue} 
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
                 new List<Object>{affiliationMappingModelsList[0].accountRecordTypeFieldValue}
             ),
@@ -470,7 +483,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAccRecordTypeUniqueTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeUnique, 
                 new List<Object> {'Active RecordType Label', 'activeRTDevName'}
             ),
@@ -532,11 +545,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAccRecordTypeUniqueTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCRecordTypeNotFound, 
                 new List<Object>{affiliationMappingsModelsList[0].accountRecordTypeFieldValue} 
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
                 new List<Object>{affiliationMappingsModelsList[0].accountRecordTypeFieldValue}
             ),
@@ -602,11 +615,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAccRecordTypeUniqueTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCRecordTypeInactive, 
                 new List<Object> {'Inactive RecordType Label', 'inactiveRTDevName'}
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeInactiveFix, 
                 new List<Object> {'Inactive RecordType Label', 'inactiveRTDevName'}
             ),
@@ -673,11 +686,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAccRecordTypeUniqueTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeNotUnique, 
                 new List<Object> {'Active RecordType Label', 'activeRTDevName'}
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeUniqueFix, 
                 new List<Object> {'Active RecordType Label', 'activeRTDevName'}
             ),
@@ -735,7 +748,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapContactPrimaryFieldTitle,  
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldValid, 
                 new List<Object> {
                     affiliationMappingsModelsList[0].primaryAffiliationField, 
@@ -796,7 +809,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapContactPrimaryFieldTitle,  
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldValid, 
                 new List<Object> {
                     affiliationMappingsModelsList[0].primaryAffiliationField, 
@@ -853,11 +866,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapContactPrimaryFieldTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldInvalid, 
                 new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
                 new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
             ),
@@ -902,7 +915,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         List<String> listForSettingsLabel =
             new List<String>{affiliationMappingsModel.name};
         
-        String healthCheckItemSetting = String.format(
+        String healthCheckItemSetting = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
             Label.stgHCAffiliationMappingSettingHeading,
             listForSettingsLabel
         );
@@ -962,11 +975,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapContactPrimaryFieldTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldInvalid, 
                 new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
                 new List<Object> {affiliationMappingsModelsList[0].primaryAffiliationField}
             ),
@@ -1004,7 +1017,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         List<String> listForSettingsLabel =
             new List<String>{affiliationMappingsModel.name};
         
-        String healthCheckItemSetting = String.format(
+        String healthCheckItemSetting = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
             Label.stgHCAffiliationMappingSettingHeading,
             listForSettingsLabel
         );
@@ -1069,7 +1082,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapContPrimaryFieldUniqueTitle,  
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldUnique, 
                 new List<Object> {
                     'Valid Contact Lookup Field Label', 
@@ -1126,11 +1139,11 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapContPrimaryFieldUniqueTitle,  
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldInvalid, 
                 new List<Object> {'Valid Contact Lookup Field Name'}
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
                 new List<Object> {'Valid Contact Lookup Field Name'}
             ),
@@ -1189,13 +1202,13 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapContPrimaryFieldUniqueTitle,  
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldNotUnique, 
                 new List<Object> {
                     'Valid Contact Lookup Field Label', 
                     'Valid Contact Lookup Field Name'}
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldUniqueFix, 
                 new List<Object> {
                     'Valid Contact Lookup Field Label', 
@@ -1429,7 +1442,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAutoEnrollRoleTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollRoleValid, 
                 new List<Object> {
                     affiliationRolePicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentRole).label, 
@@ -1501,14 +1514,14 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAutoEnrollRoleTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollRoleInactive, 
                 new List<Object> {
                     affiliationMappingsModelsList[0].autoProgramEnrollmentRole, 
                     affiliationRolePicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentRole).name
                 }
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollRoleInactiveFix, 
                 new List<Object> {
                     affiliationMappingsModelsList[0].autoProgramEnrollmentRole, 
@@ -1579,7 +1592,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAutoEnrollRoleTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollRoleNotFound, 
                 new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentRole}
             ),
@@ -1648,7 +1661,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAutoEnrollRoleTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollRoleNotFound, 
                 new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentRole}
             ),
@@ -1757,7 +1770,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAutoEnrollStatusTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollStatusValid, 
                 new List<Object> {
                 affiliationStatusPicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).label, 
@@ -1829,14 +1842,14 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAutoEnrollStatusTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollStatusInactive, 
                 new List<Object> {
                     affiliationMappingsModelsList[0].autoProgramEnrollmentStatus, 
                     affiliationStatusPicklistEntryModelByName.get(affiliationMappingsModelsList[0].autoProgramEnrollmentStatus).name
                 }
             ),
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollStatusInactiveFix, 
                 new List<Object> {
                     affiliationMappingsModelsList[0].autoProgramEnrollmentStatus, 
@@ -1907,7 +1920,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAutoEnrollStatusTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollStatusNotFound, 
                 new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentStatus}
             ),
@@ -1976,7 +1989,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             Label.stgHCAfflMapAutoEnrollStatusTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollStatusNotFound, 
                 new List<Object> {affiliationMappingsModelsList[0].autoProgramEnrollmentStatus}
             ),

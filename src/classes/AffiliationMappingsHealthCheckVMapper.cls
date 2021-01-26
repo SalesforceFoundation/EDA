@@ -263,7 +263,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
 
         return new HealthCheckItemVModel(
             affiliationMappingsModel.name,
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAffiliationMappingSettingHeading,
                 listForSettingsLabel
             ),
@@ -302,7 +302,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAutoEnrollStatusTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAutoEnrollStatusNotFound, 
                     new List<Object>{affiliationMappingsModel.autoProgramEnrollmentStatus}
                 ),
@@ -323,14 +323,14 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAutoEnrollStatusTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAutoEnrollStatusInactive, 
                     new List<Object>{
                         affiliationMappingsModel.autoProgramEnrollmentStatus, 
                         picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentStatus).name
                     }
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAutoEnrollStatusInactiveFix, 
                     new List<Object>{
                         affiliationMappingsModel.autoProgramEnrollmentStatus, 
@@ -352,7 +352,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHCAfflMapAutoEnrollStatusTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollStatusValid, 
                 new List<Object>{
                     picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentStatus).label, 
@@ -397,7 +397,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAutoEnrollRoleTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAutoEnrollRoleNotFound, 
                     new List<Object>{affiliationMappingsModel.autoProgramEnrollmentRole}
                 ),
@@ -417,14 +417,14 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAutoEnrollRoleTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAutoEnrollRoleInactive, 
                     new List<Object>{
                         affiliationMappingsModel.autoProgramEnrollmentRole, 
                         picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentRole).name
                     }
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAutoEnrollRoleInactiveFix, 
                     new List<Object>{
                         affiliationMappingsModel.autoProgramEnrollmentRole, 
@@ -445,7 +445,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHCAfflMapAutoEnrollRoleTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAutoEnrollRoleValid, 
                 new List<Object>{
                     picklistEntryModelByName.get(affiliationMappingsModel.autoProgramEnrollmentRole).label, 
@@ -486,11 +486,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapContactPrimaryFieldTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapContactPrimaryFieldInvalid, 
                     new List<Object>{affiliationMappingsModel.primaryAffiliationField}
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
                     new List<Object>{affiliationMappingsModel.primaryAffiliationField}
                 ),
@@ -508,7 +508,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHCAfflMapContactPrimaryFieldTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldValid, 
                 new List<Object>{
                     affiliationMappingsModel.primaryAffiliationField, 
@@ -549,11 +549,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAccRecordTypeTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCRecordTypeNotFound, 
                     new List<Object>{affiliationMappingsModel.accountRecordTypeFieldValue}
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
                     new List<Object>{affiliationMappingsModel.accountRecordTypeFieldValue}
                 ),
@@ -569,11 +569,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAccRecordTypeTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCRecordTypeInactive, 
                     new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAccRecordTypeInactiveFix, 
                     new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
                 ),
@@ -589,7 +589,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAccRecordTypeTitle,
                 'Pass',
                 Label.stgHealthCheckStatusPassed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCRecordTypeValid, 
                     new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
                 ),
@@ -631,11 +631,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAccRecordTypeUniqueTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCRecordTypeNotFound, 
                     new List<Object>{affiliationMappingsModel.accountRecordTypeFieldValue}
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAccRecordTypeNotFoundFix, 
                     new List<Object>{affiliationMappingsModel.accountRecordTypeFieldValue}
                 ),
@@ -653,11 +653,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapAccRecordTypeUniqueTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCRecordTypeInactive, 
                     new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapAccRecordTypeInactiveFix, 
                     new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
                 ),
@@ -675,11 +675,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHCAfflMapAccRecordTypeUniqueTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeNotUnique, 
                 new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
             ),
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeUniqueFix, 
                 new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
             ),
@@ -696,7 +696,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHCAfflMapAccRecordTypeUniqueTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapAccRecordTypeUnique, 
                 new List<Object>{accountRecordTypeModel.name, accountRecordTypeModel.developerName}
             ),
@@ -735,11 +735,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapContPrimaryFieldUniqueTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapContactPrimaryFieldInvalid, 
                     new List<Object>{affiliationMappingsModel.primaryAffiliationField}
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCAfflMapContPrimaryFieldInvalidFix, 
                     new List<Object>{affiliationMappingsModel.primaryAffiliationField}
                 ),
@@ -757,11 +757,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHCAfflMapContPrimaryFieldUniqueTitle,
             'Fail',
             Label.stgHealthCheckStatusFailed,
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldNotUnique, 
                 new List<Object>{accountlookupFieldOnContactFieldModel.label, accountlookupFieldOnContactFieldModel.name}
             ),
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldUniqueFix, 
                 new List<Object>{accountlookupFieldOnContactFieldModel.label, accountlookupFieldOnContactFieldModel.name}
             ),
@@ -778,7 +778,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHCAfflMapContPrimaryFieldUniqueTitle,
             'Pass',
             Label.stgHealthCheckStatusPassed,
-            String.format(
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldUnique, 
                 new List<Object>{accountlookupFieldOnContactFieldModel.label, accountlookupFieldOnContactFieldModel.name}
             ),
@@ -826,6 +826,15 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     @TestVisible
     private PicklistEntryService locatePicklistEntryService() {
         return PicklistEntryService.getInstance();
+    }
+
+    /*****************************************************************************
+    * @description Retrieve an instance of the StringHandlingService class.
+    * @return An instance of StringHandlingService.
+    *****************************************************************************/
+    @TestVisible
+    private StringHandlingService locateStringHandlingService() {
+        return StringHandlingService.getInstance();
     }
 
     /**********************************************************************************

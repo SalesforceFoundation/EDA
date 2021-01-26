@@ -417,7 +417,10 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.studentRecordTypeId});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{courseConnModSettMod.studentRecordTypeId}
+        );
         String expectedFix = Label.stgHCCourseConStudentNotFoundFix;
         
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultStudentTypeTitle, 
@@ -461,7 +464,10 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.studentRecordTypeId});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{courseConnModSettMod.studentRecordTypeId}
+        );
         String expectedFix = Label.stgHCCourseConStudentNotFoundFix;
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultStudentTypeTitle, 
@@ -505,8 +511,14 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{rtModel.name, rtModel.developerName});
-        String expectedFix = String.format(Label.stgHCCourseConStudentInactiveFix, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeInactive, 
+            new List<Object>{rtModel.name, rtModel.developerName}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCCourseConStudentInactiveFix, 
+            new List<Object>{rtModel.name, rtModel.developerName}
+        );
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultStudentTypeTitle, 
                                                                                    'Fail', 
@@ -549,7 +561,10 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeValid, 
+            new List<Object>{rtModel.name, rtModel.developerName}
+        );
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultStudentTypeTitle, 
@@ -597,7 +612,10 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{courseConnModSettMod.facultyRecordTypeId}
+        );
         String expectedFix = Label.stgHCCourseConFacultyNotFoundFix;
         
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
@@ -641,7 +659,10 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{courseConnModSettMod.facultyRecordTypeId});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{courseConnModSettMod.facultyRecordTypeId}
+        );
         String expectedFix = Label.stgHCCourseConFacultyNotFoundFix;
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
@@ -685,8 +706,14 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{rtModel.name, rtModel.developerName});
-        String expectedFix = String.format(Label.stgHCCourseConFacultyInactiveFix, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeInactive, 
+            new List<Object>{rtModel.name, rtModel.developerName}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCCourseConFacultyInactiveFix, 
+            new List<Object>{rtModel.name, rtModel.developerName}
+        );
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
                                                                                    'Fail', 
@@ -729,7 +756,10 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{rtModel.name, rtModel.developerName});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeValid, 
+            new List<Object>{rtModel.name, rtModel.developerName}
+        );
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
 
         CourseConSettingHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgDefaultFacultyTypeTitle, 
@@ -879,6 +909,36 @@ private class CourseConSettingHealthCheckVMapper_TEST {
         System.assertEquals(
             expectedRecordTypeService,
             recTypeService,
+            'Instance of service class from view model mapper should match the singleton instance.'
+        );
+    }
+
+    /***************************************************************************
+    * @description Test method to verify that a
+    * StringHandlingService is retrieved by the locator method.
+    ***************************************************************************/
+    @isTest 
+    private static void locateStringHandlingService(){
+        StringHandlingService expectedStringHandlingService
+            = StringHandlingService.getInstance();
+
+        CourseConSettingHealthCheckVMapper courseConHealthCheckVMapper =
+            CourseConSettingHealthCheckVMapper.getInstance();
+
+        Test.startTest();
+            StringHandlingService stringHandlingService
+                = courseConHealthCheckVMapper.locateStringHandlingService();
+        Test.stopTest();
+
+        System.assertNotEquals(
+            null,
+            stringHandlingService,
+            'Instance of service class should not be null.'
+        );
+
+        System.assertEquals(
+            expectedStringHandlingService,
+            stringHandlingService,
             'Instance of service class from view model mapper should match the singleton instance.'
         );
     }

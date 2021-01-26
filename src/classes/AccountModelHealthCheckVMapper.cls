@@ -129,10 +129,14 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAccModelTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                String.format(Label.stgHCRecordTypeNotFound, 
-                                                                                                new List<Object>{accountModelSettingsModel.defaultAccountModelId}),
-                                                                                String.format(Label.stgHCAccountModelDefaultNotFoundFix, 
-                                                                                                new List<Object>{accountModelSettingsModel.defaultAccountModelId}),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCRecordTypeNotFound, 
+                                                                                    new List<Object>{accountModelSettingsModel.defaultAccountModelId}
+                                                                                ),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCAccountModelDefaultNotFoundFix, 
+                                                                                    new List<Object>{accountModelSettingsModel.defaultAccountModelId}
+                                                                                ),
                                                                                 new List<HealthCheckItemVModel>()));
             healthCheckGroupVModel.totalChecks++;
             healthCheckGroupVModel.updateHealthCheckStatus();
@@ -144,10 +148,14 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAccModelTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                String.format(Label.stgHCRecordTypeInactive, 
-                                                                                                new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}),
-                                                                                String.format(Label.stgHCAccountModelDefaultInactiveFix, 
-                                                                                                new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCRecordTypeInactive, 
+                                                                                    new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}
+                                                                                ),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCAccountModelDefaultInactiveFix, 
+                                                                                    new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}
+                                                                                ),
                                                                                 new List<HealthCheckItemVModel>()));
             healthCheckGroupVModel.totalChecks++;
             healthCheckGroupVModel.updateHealthCheckStatus();
@@ -158,8 +166,10 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                             Label.stgAccModelTitle,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
-                                                                            String.format(Label.stgHCRecordTypeValid, 
-                                                                                        new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}),
+                                                                            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                Label.stgHCRecordTypeValid, 
+                                                                                new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}
+                                                                            ),
                                                                             Label.stgHealthCheckFixNotApplicable,
                                                                             new List<HealthCheckItemVModel>()));
         healthCheckGroupVModel.totalChecks++;
@@ -197,10 +207,14 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAdminAccountRecordType,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                String.format(Label.stgHCRecordTypeNotFound, 
-                                                                                                new List<Object>{accountModelSettingsModel.administrativeAccountRecordTypeId}),
-                                                                                String.format(Label.stgHCAccountModelAdminNotFoundFix, 
-                                                                                                new List<Object>{accountModelSettingsModel.administrativeAccountRecordTypeId}),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCRecordTypeNotFound, 
+                                                                                    new List<Object>{accountModelSettingsModel.administrativeAccountRecordTypeId}
+                                                                                ),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCAccountModelAdminNotFoundFix, 
+                                                                                    new List<Object>{accountModelSettingsModel.administrativeAccountRecordTypeId}
+                                                                                ),
                                                                                 new List<HealthCheckItemVModel>()));
             healthCheckGroupVModel.totalChecks++;
             healthCheckGroupVModel.updateHealthCheckStatus();
@@ -212,10 +226,14 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAdminAccountRecordType,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                String.format(Label.stgHCRecordTypeInactive, 
-                                                                                                new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}),
-                                                                                String.format(Label.stgHCAccountModelAdminInactiveFix, 
-                                                                                                new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCRecordTypeInactive, 
+                                                                                    new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}
+                                                                                ),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCAccountModelAdminInactiveFix, 
+                                                                                    new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}
+                                                                                ),
                                                                                 new List<HealthCheckItemVModel>()));
             healthCheckGroupVModel.totalChecks++;
             healthCheckGroupVModel.updateHealthCheckStatus();
@@ -226,8 +244,10 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                             Label.stgAdminAccountRecordType,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
-                                                                            String.format(Label.stgHCRecordTypeValid, 
-                                                                                        new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}),
+                                                                            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                Label.stgHCRecordTypeValid, 
+                                                                                new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}
+                                                                            ),
                                                                             Label.stgHealthCheckFixNotApplicable,
                                                                             new List<HealthCheckItemVModel>()));
         healthCheckGroupVModel.totalChecks++;
@@ -264,10 +284,14 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAccountRecordTypeSupportsHHAddress,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                String.format(Label.stgHCRecordTypeNotFound, 
-                                                                                                new List<Object>{accountModelSettingsModel.householdAccountRecordTypeId}),
-                                                                                String.format(Label.stgHCAccountModelHHNotFoundFix, 
-                                                                                                new List<Object>{accountModelSettingsModel.householdAccountRecordTypeId}),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCRecordTypeNotFound, 
+                                                                                    new List<Object>{accountModelSettingsModel.householdAccountRecordTypeId}
+                                                                                ),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCAccountModelHHNotFoundFix, 
+                                                                                    new List<Object>{accountModelSettingsModel.householdAccountRecordTypeId}
+                                                                                ),
                                                                                 new List<HealthCheckItemVModel>()));
             healthCheckGroupVModel.totalChecks++;
             healthCheckGroupVModel.updateHealthCheckStatus();
@@ -279,10 +303,14 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAccountRecordTypeSupportsHHAddress,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                String.format(Label.stgHCRecordTypeInactive, 
-                                                                                                new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}),
-                                                                                String.format(Label.stgHCAccountModelHHInactiveFix, 
-                                                                                                new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCRecordTypeInactive, 
+                                                                                    new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}
+                                                                                ),
+                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                    Label.stgHCAccountModelHHInactiveFix, 
+                                                                                    new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}
+                                                                                ),
                                                                                 new List<HealthCheckItemVModel>()));
             healthCheckGroupVModel.totalChecks++;
             healthCheckGroupVModel.updateHealthCheckStatus();
@@ -293,8 +321,10 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                             Label.stgAccountRecordTypeSupportsHHAddress,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
-                                                                            String.format(Label.stgHCRecordTypeValid, 
-                                                                                        new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}),
+                                                                            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                Label.stgHCRecordTypeValid, 
+                                                                                new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}
+                                                                            ),
                                                                             Label.stgHealthCheckFixNotApplicable,
                                                                             new List<HealthCheckItemVModel>()));
         healthCheckGroupVModel.totalChecks++;
@@ -371,5 +401,14 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
     @TestVisible
     private RecordTypeService locateRecordTypeService() {
         return RecordTypeService.getInstance();
+    }
+
+    /*****************************************************************************
+    * @description Retrieve an instance of the StringHandlingService class.
+    * @return An instance of StringHandlingService.
+    *****************************************************************************/
+    @TestVisible
+    private StringHandlingService locateStringHandlingService() {
+        return StringHandlingService.getInstance();
     }
 }

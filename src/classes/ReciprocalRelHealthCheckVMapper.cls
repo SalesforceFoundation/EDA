@@ -361,11 +361,11 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
                 settingsLabel,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCPicklistValueNotFound,
                     modelNameListForFormat
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     notFoundFix,
                     modelNameListForFormat
                 ),
@@ -384,13 +384,13 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     
         if(picklistEntryModel.isActive == false) {
             healthCheckItemVModel.description =
-                String.format(
-                    Label.stgHCPicklistValueInactive,
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                    Label.stgHCPicklistValueInactive, 
                     picklistLabelAndNameForFormat
                 );
             healthCheckItemVModel.recommendedFix = 
-                String.format(
-                    inactiveFix,
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                    inactiveFix, 
                     picklistLabelAndNameForFormat
                 );
             return healthCheckGroupVModel;
@@ -398,7 +398,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     
         healthCheckItemVModel.status = 'Pass';
         healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusPassed;
-        healthCheckItemVModel.description = String.format(
+        healthCheckItemVModel.description = this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCPicklistValueValid,
                 picklistLabelAndNameForFormat
             );
@@ -451,11 +451,11 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
                 Label.stgHCReciprocalRelNameUniqueTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCReciprocalRelNameNotUniqueDesc,
                     modelNameListForFormat
                 ),
-                String.format(
+                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                     Label.stgHCReciprocalRelNameNotUniqueFix,
                     modelNameListForFormat
                 ),
@@ -471,7 +471,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     
         healthCheckItemVModel.status = 'Pass';
         healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusPassed;
-        healthCheckItemVModel.description = String.format(
+        healthCheckItemVModel.description = this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
                 Label.stgHCReciprocalRelNameUniqueDesc,
                 modelNameListForFormat
             );
@@ -504,7 +504,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
 
         return new HealthCheckItemVModel(
             relationshipLookupModel.name,
-            String.format(Label.stgHCReciprocalRelSetting,listForSettingsLabel),
+            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(Label.stgHCReciprocalRelSetting,listForSettingsLabel),
             'Pass',
             Label.stgHealthCheckStatusPassed,
             '',
@@ -529,5 +529,14 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     @TestVisible
     private RelationshipLookupSettingsService locateRelationshipLookupSettingsService(){
         return RelationshipLookupSettingsService.getInstance();
+    }
+
+    /***************************************************************************
+    * @description Retrieves an instance of StringHandlingService. 
+    * @return An instance of StringHandlingService.
+    ***************************************************************************/
+    @TestVisible
+    private StringHandlingService locateStringHandlingService(){
+        return StringHandlingService.getInstance();
     }
 }

@@ -92,6 +92,19 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Test to verify locateStringHandlingService() returns an instance of the StringHandlingService class.
+    **************************************************************************************************************************/ 
+    @isTest
+    private static void locateStringHandlingServiceValid(){
+        Test.startTest();
+        StringHandlingService stringHandlingServiceInstance = AccountModelHealthCheckVMapper.getInstance().locateStringHandlingService();
+        Test.stopTest();
+
+        System.assertEquals(StringHandlingService.getInstance(), stringHandlingServiceInstance, 'Should return instance of StringHandlingService class.');
+        System.assertEquals(true, stringHandlingServiceInstance != null, 'Instance of StringHandlingService class should not be null.');
+    }
+
+    /**************************************************************************************************************************
     * @description Test to verify combineAccountHealthCheckGroupViewModels() returns a combined HealthCheckGroupVModel comprised of
     * the combined properties of the group view models passed as arguments.
     **************************************************************************************************************************/ 
@@ -189,7 +202,10 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeValid, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
@@ -233,8 +249,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeInactive, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelDefaultInactiveFix, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
                                                                                 'Fail', 
@@ -276,8 +298,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID default acct'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'Not an ID default acct'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'Not an ID default acct'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelDefaultNotFoundFix, 
+            new List<Object>{'Not an ID default acct'}
+        );
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
                                                                                 'Fail', 
@@ -320,8 +348,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'000000000000000000'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'000000000000000000'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelDefaultNotFoundFix, 
+            new List<Object>{'000000000000000000'}
+        );
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
                                                                                 'Fail', 
@@ -364,7 +398,10 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeValid, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
@@ -408,8 +445,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
-        String expectedFix = String.format(Label.stgHCAccountModelAdminInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeInactive, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelAdminInactiveFix, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
                                                                                 'Fail', 
@@ -451,8 +494,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID admin acct'});
-        String expectedFix = String.format(Label.stgHCAccountModelAdminNotFoundFix, new List<Object>{'Not an ID admin acct'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'Not an ID admin acct'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelAdminNotFoundFix, 
+            new List<Object>{'Not an ID admin acct'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
                                                                                 'Fail', 
@@ -495,8 +544,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
-        String expectedFix = String.format(Label.stgHCAccountModelAdminNotFoundFix, new List<Object>{'000000000000000000'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'000000000000000000'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelAdminNotFoundFix, 
+            new List<Object>{'000000000000000000'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
                                                                                 'Fail', 
@@ -539,7 +594,10 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeValid, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
@@ -583,8 +641,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
-        String expectedFix = String.format(Label.stgHCAccountModelHHInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeInactive, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelHHInactiveFix, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
                                                                                 'Fail', 
@@ -626,8 +690,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID HH acct'});
-        String expectedFix = String.format(Label.stgHCAccountModelHHNotFoundFix, new List<Object>{'Not an ID HH acct'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'Not an ID HH acct'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelHHNotFoundFix, 
+            new List<Object>{'Not an ID HH acct'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
                                                                                 'Fail', 
@@ -670,8 +740,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
-        String expectedFix = String.format(Label.stgHCAccountModelHHNotFoundFix, new List<Object>{'000000000000000000'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'000000000000000000'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            Label.stgHCAccountModelHHNotFoundFix, 
+            new List<Object>{'000000000000000000'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
                                                                                 'Fail', 

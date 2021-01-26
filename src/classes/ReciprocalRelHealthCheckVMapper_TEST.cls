@@ -1368,6 +1368,36 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
     }
 
     /***************************************************************************
+    * @description Test method to verify that a
+    * StringHandlingService is retrieved by the locator method.
+    ***************************************************************************/
+    @isTest 
+    private static void locateStringHandlingService(){
+        StringHandlingService expectedStringHandlingService
+            = StringHandlingService.getInstance();
+
+        ReciprocalRelHealthCheckVMapper reciprocalRelHealthCheckVMapper =
+            ReciprocalRelHealthCheckVMapper.getInstance();
+
+        Test.startTest();
+            StringHandlingService StringHandlingService
+                = reciprocalRelHealthCheckVMapper.locateStringHandlingService();
+        Test.stopTest();
+
+        System.assertNotEquals(
+            null,
+            StringHandlingService,
+            'Instance of service class should not be null.'
+        );
+
+        System.assertEquals(
+            expectedStringHandlingService,
+            StringHandlingService,
+            'Instance of service class from view model mapper should match the singleton instance.'
+        );
+    }
+
+    /***************************************************************************
     *******************************TEST HELPERS*********************************
     ***************************************************************************/
 
@@ -1437,7 +1467,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'The Health Check Item\'s status label should match the specified label.'
         );
         System.assertEquals(
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 description,
                 labelAndNameForFormat
             ),
@@ -1445,7 +1475,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'The Health Check Item\'s description should match the specified label.'
         );
         System.assertEquals(
-            String.format(
+            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
                 recommendedFix,
                 labelAndNameForFormat
             ),
