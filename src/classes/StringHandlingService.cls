@@ -67,7 +67,7 @@ public with sharing class StringHandlingService {
         List<Object> stringParameterList
     ) {
         String unescapedSingleQuote = '\'';
-        String escaptedSingleQuote = '\'\'';
+        String escapedSingleQuote = '\'\'';
 
         String stringWithEscapedSingleQuotes = 
             stringToFormat.replace(unescapedSingleQuote,  escaptedSingleQuote);
