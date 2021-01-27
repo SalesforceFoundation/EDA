@@ -28,11 +28,11 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2019
-* @group Utilities
-* @description Utility for Sorting Contact
-*/
+ * @author Salesforce.org
+ * @date 2019
+ * @group Utilities
+ * @description Utility for Sorting Contact
+ */
 public class UTIL_SortContact implements Comparable {
     public String FirstName;
     public String LastName;
@@ -42,9 +42,9 @@ public class UTIL_SortContact implements Comparable {
     private static final Integer SORT_SAME = 0;
 
     /*******************************************************************************************************
-    * @description Constructor that sets the Contact's First and Last Name and the Contact record itself.
-    * @param c is the Contact record
-    */
+     * @description Constructor that sets the Contact's First and Last Name and the Contact record itself.
+     * @param c is the Contact record
+     */
     public UTIL_SortContact(Contact c) {
         FirstName = c.FirstName;
         LastName = c.LastName;
@@ -52,35 +52,34 @@ public class UTIL_SortContact implements Comparable {
     }
 
     /*******************************************************************************************************
-    * @description method that returns an Integer value based on LastName/FirstName comparison.
-    * @param compareTo is the object that is being passed for comparison.
-    * @return Integer
-    */
+     * @description method that returns an Integer value based on LastName/FirstName comparison.
+     * @param compareTo is the object that is being passed for comparison.
+     * @return Integer
+     */
     public Integer compareTo(Object compareTo) {
         return sortByLastNameFirstName(compareTo);
     }
 
     /*******************************************************************************************************
-    * @description sorts Contact by LastName and FirstName.
-    * @param compareTo is the object that is being passed for comparison.
-    * @return Integer
-    */
+     * @description sorts Contact by LastName and FirstName.
+     * @param compareTo is the object that is being passed for comparison.
+     * @return Integer
+     */
     private Integer sortByLastNameFirstName(Object compareTo) {
-        UTIL_SortContact contactToCompare = (UTIL_SortContact)compareTo;
+        UTIL_SortContact contactToCompare = (UTIL_SortContact) compareTo;
 
         if (this.LastName == contactToCompare.LastName) {
             return sortByFirstName(contactToCompare);
         } else {
             return sortByLastName(contactToCompare);
         }
-
     }
 
     /*******************************************************************************************************
-    * @description sorts Contact by FirstName.
-    * @param contactToCompare is the record that needs to be compared
-    * @return Integer
-    */
+     * @description sorts Contact by FirstName.
+     * @param contactToCompare is the record that needs to be compared
+     * @return Integer
+     */
     private Integer sortByFirstName(UTIL_SortContact contactToCompare) {
         if (this.FirstName == contactToCompare.FirstName) {
             return SORT_SAME;
@@ -92,10 +91,10 @@ public class UTIL_SortContact implements Comparable {
     }
 
     /*******************************************************************************************************
-    * @description sorts Contact by LastName.
-    * @param contactToCompare is the record that needs to be compared
-    * @return Integer
-    */
+     * @description sorts Contact by LastName.
+     * @param contactToCompare is the record that needs to be compared
+     * @return Integer
+     */
     private Integer sortByLastName(UTIL_SortContact contactToCompare) {
         if (this.LastName == contactToCompare.LastName) {
             return SORT_SAME;
@@ -105,4 +104,10 @@ public class UTIL_SortContact implements Comparable {
             return SORT_BEFORE;
         }
     }
+
+
+
+
+
+    
 }
