@@ -417,7 +417,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{courseConnModSettMod.studentRecordTypeId}
         );
@@ -464,7 +464,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{courseConnModSettMod.studentRecordTypeId}
         );
@@ -511,11 +511,11 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeInactive, 
             new List<Object>{rtModel.name, rtModel.developerName}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCCourseConStudentInactiveFix, 
             new List<Object>{rtModel.name, rtModel.developerName}
         );
@@ -561,7 +561,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeValid, 
             new List<Object>{rtModel.name, rtModel.developerName}
         );
@@ -612,7 +612,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{courseConnModSettMod.facultyRecordTypeId}
         );
@@ -659,7 +659,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{courseConnModSettMod.facultyRecordTypeId}
         );
@@ -706,11 +706,11 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeInactive, 
             new List<Object>{rtModel.name, rtModel.developerName}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCCourseConFacultyInactiveFix, 
             new List<Object>{rtModel.name, rtModel.developerName}
         );
@@ -756,7 +756,7 @@ private class CourseConSettingHealthCheckVMapper_TEST {
                                                                                        1,
                                                                                        hlthChkGroupVMod);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeValid, 
             new List<Object>{rtModel.name, rtModel.developerName}
         );

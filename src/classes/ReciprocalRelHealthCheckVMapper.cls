@@ -361,11 +361,11 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
                 settingsLabel,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                     Label.stgHCPicklistValueNotFound,
                     modelNameListForFormat
                 ),
-                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                     notFoundFix,
                     modelNameListForFormat
                 ),
@@ -384,12 +384,12 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     
         if(picklistEntryModel.isActive == false) {
             healthCheckItemVModel.description =
-                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                     Label.stgHCPicklistValueInactive, 
                     picklistLabelAndNameForFormat
                 );
             healthCheckItemVModel.recommendedFix = 
-                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                     inactiveFix, 
                     picklistLabelAndNameForFormat
                 );
@@ -398,7 +398,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     
         healthCheckItemVModel.status = 'Pass';
         healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusPassed;
-        healthCheckItemVModel.description = this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+        healthCheckItemVModel.description = this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                 Label.stgHCPicklistValueValid,
                 picklistLabelAndNameForFormat
             );
@@ -451,11 +451,11 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
                 Label.stgHCReciprocalRelNameUniqueTitle,
                 'Fail',
                 Label.stgHealthCheckStatusFailed,
-                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                     Label.stgHCReciprocalRelNameNotUniqueDesc,
                     modelNameListForFormat
                 ),
-                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                     Label.stgHCReciprocalRelNameNotUniqueFix,
                     modelNameListForFormat
                 ),
@@ -471,7 +471,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
     
         healthCheckItemVModel.status = 'Pass';
         healthCheckItemVModel.statusLabel = Label.stgHealthCheckStatusPassed;
-        healthCheckItemVModel.description = this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+        healthCheckItemVModel.description = this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                 Label.stgHCReciprocalRelNameUniqueDesc,
                 modelNameListForFormat
             );
@@ -504,7 +504,7 @@ public virtual with sharing class ReciprocalRelHealthCheckVMapper {
 
         return new HealthCheckItemVModel(
             relationshipLookupModel.name,
-            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(Label.stgHCReciprocalRelSetting,listForSettingsLabel),
+            this.locateStringHandlingService().formatStringWithApostrophesAndParameters(Label.stgHCReciprocalRelSetting,listForSettingsLabel),
             'Pass',
             Label.stgHealthCheckStatusPassed,
             '',

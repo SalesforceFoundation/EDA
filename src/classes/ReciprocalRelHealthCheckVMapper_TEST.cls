@@ -1467,7 +1467,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'The Health Check Item\'s status label should match the specified label.'
         );
         System.assertEquals(
-            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
                 description,
                 labelAndNameForFormat
             ),
@@ -1475,7 +1475,7 @@ private class ReciprocalRelHealthCheckVMapper_TEST {
             'The Health Check Item\'s description should match the specified label.'
         );
         System.assertEquals(
-            StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+            StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
                 recommendedFix,
                 labelAndNameForFormat
             ),

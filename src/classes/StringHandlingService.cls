@@ -56,13 +56,13 @@ public with sharing class StringHandlingService {
     }
 
     /**************************************************************************************************
-    * @description Prepends a single quotation (') character to escape existing single quotations 
-    * in a string and substitutes parameters with values provided.
-    * @param  stringToFormat A string with single quotes to escape and parameters to substitute
+    * @description Prepends an apostrophe (') character to escape existing apostrophes in a string and 
+    * substitutes parameters with values provided.
+    * @param  stringToFormat A string with apostrophes to escape and parameters to substitute
     * @param  stringParameterList A list of string parameters
-    * @return A formatted string with single quotes escaped and parameters populated.
+    * @return A formatted string with apostrophes escaped and parameters populated.
     **************************************************************************************************/
-    public String formatStringWithQuotationsAndParameters(
+    public String formatStringWithApostrophesAndParameters(
         String stringToFormat, 
         List<Object> stringParameterList
     ) {

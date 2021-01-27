@@ -129,11 +129,11 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAccModelTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeNotFound, 
                                                                                     new List<Object>{accountModelSettingsModel.defaultAccountModelId}
                                                                                 ),
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCAccountModelDefaultNotFoundFix, 
                                                                                     new List<Object>{accountModelSettingsModel.defaultAccountModelId}
                                                                                 ),
@@ -148,11 +148,11 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAccModelTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeInactive, 
                                                                                     new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}
                                                                                 ),
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCAccountModelDefaultInactiveFix, 
                                                                                     new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}
                                                                                 ),
@@ -166,7 +166,7 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                             Label.stgAccModelTitle,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
-                                                                            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                            this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                 Label.stgHCRecordTypeValid, 
                                                                                 new List<Object>{defaultAccountRTModel.name, defaultAccountRTModel.developerName}
                                                                             ),
@@ -207,11 +207,11 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAdminAccountRecordType,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeNotFound, 
                                                                                     new List<Object>{accountModelSettingsModel.administrativeAccountRecordTypeId}
                                                                                 ),
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCAccountModelAdminNotFoundFix, 
                                                                                     new List<Object>{accountModelSettingsModel.administrativeAccountRecordTypeId}
                                                                                 ),
@@ -226,11 +226,11 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAdminAccountRecordType,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeInactive, 
                                                                                     new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}
                                                                                 ),
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCAccountModelAdminInactiveFix, 
                                                                                     new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}
                                                                                 ),
@@ -244,7 +244,7 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                             Label.stgAdminAccountRecordType,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
-                                                                            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                            this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                 Label.stgHCRecordTypeValid, 
                                                                                 new List<Object>{adminAccountRTModel.name, adminAccountRTModel.developerName}
                                                                             ),
@@ -284,11 +284,11 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAccountRecordTypeSupportsHHAddress,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeNotFound, 
                                                                                     new List<Object>{accountModelSettingsModel.householdAccountRecordTypeId}
                                                                                 ),
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCAccountModelHHNotFoundFix, 
                                                                                     new List<Object>{accountModelSettingsModel.householdAccountRecordTypeId}
                                                                                 ),
@@ -303,11 +303,11 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                                 Label.stgAccountRecordTypeSupportsHHAddress,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeInactive, 
                                                                                     new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}
                                                                                 ),
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCAccountModelHHInactiveFix, 
                                                                                     new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}
                                                                                 ),
@@ -321,7 +321,7 @@ public virtual with sharing class AccountModelHealthCheckVMapper {
                                                                             Label.stgAccountRecordTypeSupportsHHAddress,
                                                                             'Pass',
                                                                             Label.stgHealthCheckStatusPassed,
-                                                                            this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                            this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                 Label.stgHCRecordTypeValid, 
                                                                                 new List<Object>{hhAccountRTModel.name, hhAccountRTModel.developerName}
                                                                             ),

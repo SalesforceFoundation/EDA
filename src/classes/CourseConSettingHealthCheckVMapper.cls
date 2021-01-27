@@ -180,7 +180,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                                 Label.stgDefaultStudentTypeTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeNotFound, 
                                                                                     new List<Object>{courseConnectionSettingsModel.studentRecordTypeId}
                                                                                 ),
@@ -195,11 +195,11 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                                 Label.stgDefaultStudentTypeTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeInactive, 
                                                                                     new List<Object>{studentRecTypeModel.name, studentRecTypeModel.developerName}
                                                                                 ),
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCCourseConStudentInactiveFix, 
                                                                                     new List<Object>{studentRecTypeModel.name, studentRecTypeModel.developerName}
                                                                                 ),
@@ -212,7 +212,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                           Label.stgDefaultStudentTypeTitle,
                                                                           'Pass',
                                                                           Label.stgHealthCheckStatusPassed,
-                                                                          this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                          this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                 Label.stgHCRecordTypeValid, 
                                                                                 new List<Object>{studentRecTypeModel.name, studentRecTypeModel.developerName}
                                                                             ),
@@ -251,7 +251,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                                 Label.stgDefaultFacultyTypeTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeNotFound, 
                                                                                     new List<Object>{courseConnectionSettingsModel.facultyRecordTypeId}
                                                                                 ),
@@ -266,11 +266,11 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                                 Label.stgDefaultFacultyTypeTitle,
                                                                                 'Fail',
                                                                                 Label.stgHealthCheckStatusFailed,
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCRecordTypeInactive, 
                                                                                     new List<Object>{facultyRecTypeModel.name, facultyRecTypeModel.developerName}
                                                                                 ),
-                                                                                this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                                this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                     Label.stgHCCourseConFacultyInactiveFix, 
                                                                                     new List<Object>{facultyRecTypeModel.name, facultyRecTypeModel.developerName}
                                                                                 ),
@@ -283,7 +283,7 @@ public virtual with sharing class CourseConSettingHealthCheckVMapper {
                                                                           Label.stgDefaultFacultyTypeTitle,
                                                                           'Pass',
                                                                           Label.stgHealthCheckStatusPassed,
-                                                                          this.locateStringHandlingService().formatStringWithQuotationsAndParameters(
+                                                                          this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                                                                                 Label.stgHCRecordTypeValid, 
                                                                                 new List<Object>{facultyRecTypeModel.name, facultyRecTypeModel.developerName}
                                                                             ),

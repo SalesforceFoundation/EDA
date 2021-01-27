@@ -66,17 +66,17 @@ public with sharing class StringHandlingService_TEST {
     }
 
     /**********************************************************************************************************
-    * @description Test method to verify that formatStringWithQuotationsAndParameters() returns a string with 
-    * single quotes escaped and parameters substituted when a string with parameters and single quotes is passed as a parameter.
+    * @description Test method to verify that formatStringWithApostrophesAndParameters() returns a string with 
+    * single Apostrophes escaped and parameters substituted when a string with parameters and single Apostrophes is passed as a parameter.
     **********************************************************************************************************/ 
     @isTest 
-    private static void formatStringWithQuotationsAndParametersWithQuotesAndParams() {
+    private static void formatStringWithApostrophesAndParametersWithApostrophesAndParams() {
         String testString = 'Checkin\' to make sure test string with parameters {0} and {1} isn\'t returnin\' an invalid result.';
         StringHandlingService stringHandlingServiceInstance = StringHandlingService.getInstance(); 
 
         Test.startTest();
         String formattedStringResult = 
-            stringHandlingServiceInstance.formatStringWithQuotationsAndParameters(
+            stringHandlingServiceInstance.formatStringWithApostrophesAndParameters(
                 testString, 
                 new List<Object>{'1', '2'}
             );
@@ -86,22 +86,22 @@ public with sharing class StringHandlingService_TEST {
         System.assertEquals(
             expectedString, 
             formattedStringResult, 
-            'Formatted string should substitute parameters and escape single quotes.'
+            'Formatted string should substitute parameters and escape single Apostrophes.'
         );
     }
 
     /**********************************************************************************************************
-    * @description Test method to verify that formatStringWithQuotationsAndParameters() returns a string with 
-    * single quotes escaped when a string single quotes but no parameters is passed as a parameter.
+    * @description Test method to verify that formatStringWithApostrophesAndParameters() returns a string with 
+    * single Apostrophes escaped when a string single Apostrophes but no parameters is passed as a parameter.
     **********************************************************************************************************/ 
     @isTest 
-    private static void formatStringWithQuotationsAndParametersWithQuotesNoParams() {
+    private static void formatStringWithApostrophesAndParametersWithApostrophesNoParams() {
         String testString = 'Checkin\' to make sure test string without parameters isn\'t returnin\' an invalid result.';
         StringHandlingService stringHandlingServiceInstance = StringHandlingService.getInstance(); 
 
         Test.startTest();
         String formattedStringResult = 
-            stringHandlingServiceInstance.formatStringWithQuotationsAndParameters(
+            stringHandlingServiceInstance.formatStringWithApostrophesAndParameters(
                 testString, 
                 new List<Object>()
             );
@@ -111,22 +111,22 @@ public with sharing class StringHandlingService_TEST {
         System.assertEquals(
             expectedString, 
             formattedStringResult, 
-            'Formatted string should escape single quotes.'
+            'Formatted string should escape single Apostrophes.'
         );
     }
 
     /**********************************************************************************************************
-    * @description Test method to verify that formatStringWithQuotationsAndParameters() returns a string with 
-    * parameters substituted when a string with parameters, but no single quotes is passed as a parameter.
+    * @description Test method to verify that formatStringWithApostrophesAndParameters() returns a string with 
+    * parameters substituted when a string with parameters, but no single Apostrophes is passed as a parameter.
     **********************************************************************************************************/ 
     @isTest 
-    private static void formatStringWithQuotationsAndParametersNoQuotesWithParams() {
+    private static void formatStringWithApostrophesAndParametersNoApostrophesWithParams() {
         String testString = 'Checking to make sure test string with parameters {0} and {1} returns a valid result.';
         StringHandlingService stringHandlingServiceInstance = StringHandlingService.getInstance(); 
 
         Test.startTest();
         String formattedStringResult = 
-            stringHandlingServiceInstance.formatStringWithQuotationsAndParameters(
+            stringHandlingServiceInstance.formatStringWithApostrophesAndParameters(
                 testString, 
                 new List<Object>{'1', '2'}
             );
@@ -141,17 +141,17 @@ public with sharing class StringHandlingService_TEST {
     }
 
     /**********************************************************************************************************
-    * @description Test method to verify that formatStringWithQuotationsAndParameters() returns the original 
-    * string with no modifications when a string with no parameters or single quotes is passed as a parameter.
+    * @description Test method to verify that formatStringWithApostrophesAndParameters() returns the original 
+    * string with no modifications when a string with no parameters or single Apostrophes is passed as a parameter.
     **********************************************************************************************************/ 
     @isTest 
-    private static void formatStringWithQuotationsAndParametersNoQuotesNoParams() {
+    private static void formatStringWithApostrophesAndParametersNoApostrophesNoParams() {
         String testString = 'Checking to make sure a plain test string returns a valid result.';
         StringHandlingService stringHandlingServiceInstance = StringHandlingService.getInstance(); 
 
         Test.startTest();
         String formattedStringResult = 
-            stringHandlingServiceInstance.formatStringWithQuotationsAndParameters(
+            stringHandlingServiceInstance.formatStringWithApostrophesAndParameters(
                 testString, 
                 new List<Object>()
             );

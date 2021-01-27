@@ -202,7 +202,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeValid, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
@@ -249,11 +249,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeInactive, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelDefaultInactiveFix, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
@@ -298,11 +298,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{'Not an ID default acct'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelDefaultNotFoundFix, 
             new List<Object>{'Not an ID default acct'}
         );
@@ -348,11 +348,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{'000000000000000000'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelDefaultNotFoundFix, 
             new List<Object>{'000000000000000000'}
         );
@@ -398,7 +398,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeValid, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
@@ -445,11 +445,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeInactive, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelAdminInactiveFix, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
@@ -494,11 +494,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{'Not an ID admin acct'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelAdminNotFoundFix, 
             new List<Object>{'Not an ID admin acct'}
         );
@@ -544,11 +544,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{'000000000000000000'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelAdminNotFoundFix, 
             new List<Object>{'000000000000000000'}
         );
@@ -594,7 +594,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeValid, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
@@ -641,11 +641,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeInactive, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelHHInactiveFix, 
             new List<Object>{'Test Record Name', 'testRecordDevName'}
         );
@@ -690,11 +690,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{'Not an ID HH acct'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelHHNotFoundFix, 
             new List<Object>{'Not an ID HH acct'}
         );
@@ -740,11 +740,11 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    healthCheckGroupVModel);
 
-        String expectedDescription = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCRecordTypeNotFound, 
             new List<Object>{'000000000000000000'}
         );
-        String expectedFix = StringHandlingService.getInstance().formatStringWithQuotationsAndParameters(
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
             Label.stgHCAccountModelHHNotFoundFix, 
             new List<Object>{'000000000000000000'}
         );
