@@ -1412,8 +1412,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when a mapping&apos;s Contact Primary Affiliation field isn''t valid</shortDescription>
-        <value>{0} isn''t a valid Contact field.</value>
+        <shortDescription>Description when a mapping&apos;s Contact Primary Affiliation field isn't valid</shortDescription>
+        <value>{0} isn't a valid Contact field.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContactPrimaryFieldNotUnique</fullName>
