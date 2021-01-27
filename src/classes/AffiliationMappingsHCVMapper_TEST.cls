@@ -900,7 +900,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.stopTest();
 
         List<String> listForSettingsLabel =
-            new List<String>{affiliationMappingsModel.name};
+            new List<String>{affiliationMappingsModel.accountRecordTypeFieldValue};
         
         String healthCheckItemSetting = String.format(
             Label.stgHCAffiliationMappingSettingHeading,
@@ -1002,7 +1002,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
         Test.stopTest();
 
         List<String> listForSettingsLabel =
-            new List<String>{affiliationMappingsModel.name};
+            new List<String>{affiliationMappingsModel.accountRecordTypeFieldValue};
         
         String healthCheckItemSetting = String.format(
             Label.stgHCAffiliationMappingSettingHeading,

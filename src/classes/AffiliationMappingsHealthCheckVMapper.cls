@@ -257,7 +257,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         }
 
         List<String> listForSettingsLabel =
-            new List<String>{affiliationMappingsModel.name};
+            new List<String>{affiliationMappingsModel.accountRecordTypeFieldValue};
         List<String> listForDescriptionLabel =
             new List<String>{affiliationMappingsModel.name,recordTypeModelName};
 
