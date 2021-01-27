@@ -26,11 +26,6 @@
         <visible>False</visible>
    </applicationVisibilities>
    <applicationVisibilities>
-        <application>standard__Content</application>
-        <default>False</default>
-        <visible>False</visible>
-   </applicationVisibilities>
-   <applicationVisibilities>
         <application>standard__Marketing</application>
         <default>False</default>
         <visible>False</visible>
