@@ -1,10 +1,21 @@
 {
-  "name": "EDA",
-  "repository": "git@github.com:SalesforceFoundation/EDA.git",
-  "author": "Salesforce.org",
-  "license": "MIT",
-  "devDependencies": {
-    "prettier": "2.2.1",
-    "prettier-plugin-apex": "^1.7.0"
-  }
+    "name": "EDA",
+    "repository": "git@github.com:SalesforceFoundation/EDA.git",
+    "author": "Salesforce.org",
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "2.2.1",
+        "prettier-plugin-apex": "^1.7.0"
+    },
+    "dependencies": {
+        "lint-staged": "^10.5.3"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
+    }
 }
