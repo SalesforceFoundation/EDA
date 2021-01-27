@@ -25,6 +25,7 @@
 
         component.set("v.picklistLabel", selectedPicklistLabel);
     }
+   
 
 
 });

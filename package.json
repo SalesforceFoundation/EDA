@@ -5,9 +5,7 @@
     "license": "MIT",
     "devDependencies": {
         "prettier": "2.2.1",
-        "prettier-plugin-apex": "^1.7.0"
-    },
-    "dependencies": {
+        "prettier-plugin-apex": "^1.7.0",
         "lint-staged": "^10.5.3"
     },
     "husky": {
