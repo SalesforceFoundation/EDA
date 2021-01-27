@@ -41,11 +41,6 @@
         <visible>False</visible>
    </applicationVisibilities>
    <applicationVisibilities>
-        <application>standard__LightningSalesConsole</application>
-        <default>False</default>
-        <visible>False</visible>
-   </applicationVisibilities>
-   <applicationVisibilities>
         <application>standard__Chatter</application>
         <default>False</default>
         <visible>False</visible>
