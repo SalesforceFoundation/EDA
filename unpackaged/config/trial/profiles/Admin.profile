@@ -60,11 +60,6 @@
         <default>False</default>
         <visible>False</visible>
    </applicationVisibilities>
-      <applicationVisibilities>
-        <application>standard__LightningService</application>
-        <default>False</default>
-        <visible>False</visible>
-   </applicationVisibilities>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
