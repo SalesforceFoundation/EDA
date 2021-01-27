@@ -104,10 +104,4 @@ public class UTIL_SortContact implements Comparable {
             return SORT_BEFORE;
         }
     }
-
-
-
-
-
-    
 }
