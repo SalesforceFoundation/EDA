@@ -31,11 +31,6 @@
         <visible>False</visible>
    </applicationVisibilities>
    <applicationVisibilities>
-        <application>Platform</application>
-        <default>False</default>
-        <visible>False</visible>
-   </applicationVisibilities>
-   <applicationVisibilities>
         <application>standard__LightningSales</application>
         <default>False</default>
         <visible>False</visible>
