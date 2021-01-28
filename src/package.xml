@@ -227,6 +227,8 @@
         <members>STG_Courses_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
+        <members>StringHandlingService</members>
+        <members>StringHandlingService_TEST</members>
         <members>TB_CannotDelete_TDTM</members>
         <members>TB_CannotDelete_TEST</members>
         <members>TB_StartEndTime_TDTM</members>
