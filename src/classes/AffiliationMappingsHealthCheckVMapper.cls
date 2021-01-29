@@ -512,7 +512,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapContactPrimaryFieldValid, 
                 new List<Object>{
                     affiliationMappingsModel.primaryAffiliationField, 
-                    affiliationMappingsModel.accountRecordTypeFieldValue
+                    accountlookupFieldOnContactFieldModel.name
                 }
             ),
             Label.stgHealthCheckFixNotApplicable,
