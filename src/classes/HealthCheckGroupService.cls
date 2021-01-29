@@ -48,7 +48,6 @@ public virtual with sharing class HealthCheckGroupService {
     * @return The instance of HealthCheckGroupService.
     ******************************************************************************/
     public static HealthCheckGroupService getInstance() {
-
         if (instance == null) {
             instance = new HealthCheckGroupService();
         }
@@ -65,10 +64,10 @@ public virtual with sharing class HealthCheckGroupService {
     * @return A HealthCheckGroupVModel representing the specified HealthCheckDefinitionModel.
     ********************************************************************************************/
     public virtual HealthCheckGroupVModel getHealthCheckGroup(String name, String className, String namespace){
-        HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface = 
+        HealthCheckGroupAPIServiceInterface healthCheckGroupServiceInterface = 
             this.locateHealthCheckGroupAPIService(className, namespace);
 
-        return hlthChkGroupServInterface.getHealthCheckGroup(name);
+        return healthCheckGroupServiceInterface.getHealthCheckGroup(name);
     }
 
     /********************************************************************************************
@@ -80,7 +79,7 @@ public virtual with sharing class HealthCheckGroupService {
     ********************************************************************************************/
     @TestVisible
     private virtual HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){
-        HealthCheckGroupAPIServiceInterface hlthChkGroupServInterface;
+        HealthCheckGroupAPIServiceInterface healthCheckGroupServiceInterface;
         String nonEDANamespace = namespace;
         
         if (namespace.equalsIgnoreCase('hed')){
@@ -89,14 +88,14 @@ public virtual with sharing class HealthCheckGroupService {
 
         try{
             Type healthCheckGroupType = Type.forName(nonEDANamespace, className);
-            hlthChkGroupServInterface = (HealthCheckGroupAPIServiceInterface)healthCheckGroupType.newInstance();
+            healthCheckGroupServiceInterface = (HealthCheckGroupAPIServiceInterface)healthCheckGroupType.newInstance();
         } catch (System.NullPointerException e){
             throw new HealthCheckNotFoundException(e.getMessage());
         } catch (System.TypeException e){
             throw new HealthCheckNotFoundException(e.getMessage());
         }
 
-        return hlthChkGroupServInterface.getInstance();
+        return healthCheckGroupServiceInterface.getInstance();
     }
 
     /********************************************************************************************

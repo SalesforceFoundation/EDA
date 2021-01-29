@@ -69,13 +69,13 @@ public virtual with sharing class HealthCheckItemVModel implements Comparable {
             return 0;
         }
 
-        HealthCheckItemVModel hlthChkItemModToCompareTo = (HealthCheckItemVModel)compareTo;
-        Integer statusResult = this.status.toLowerCase().compareTo(hlthChkItemModToCompareTo.status.toLowerCase());
+        HealthCheckItemVModel healthCheckItemVModelToCompareTo = (HealthCheckItemVModel)compareTo;
+        Integer statusResult = this.status.toLowerCase().compareTo(healthCheckItemVModelToCompareTo.status.toLowerCase());
         
         if (statusResult != 0){
             return statusResult;
         }
         
-        return this.setting.toLowerCase().compareTo(hlthChkItemModToCompareTo.setting.toLowerCase());
+        return this.setting.toLowerCase().compareTo(healthCheckItemVModelToCompareTo.setting.toLowerCase());
     }
 }

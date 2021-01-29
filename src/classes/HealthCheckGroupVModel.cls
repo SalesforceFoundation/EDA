@@ -33,13 +33,23 @@
 */
 public virtual with sharing class HealthCheckGroupVModel implements Comparable {
     
-    @AuraEnabled public String label { get; private set; }
+    @AuraEnabled public String label;
     @AuraEnabled public String status;
     @AuraEnabled public Integer passedChecks;
     @AuraEnabled public Integer totalChecks;
     @AuraEnabled public List<String> expandedRowsList { get; private set; }
     @AuraEnabled public List<HealthCheckItemVModel> healthCheckItemList { get; private set; }
 
+    public HealthCheckGroupVModel() {
+        this.label = '';
+        this.passedChecks = 0;
+        this.totalChecks = 0;
+        this.expandedRowsList = new List<String>();
+        this.healthCheckItemList = new List<HealthCheckItemVModel>();
+
+        this.updateHealthCheckStatus();
+    }
+    
     public HealthCheckGroupVModel(String label, 
                                  String status, 
                                  Integer passedChecks, 
@@ -52,6 +62,14 @@ public virtual with sharing class HealthCheckGroupVModel implements Comparable {
         this.totalChecks = totalChecks;
         this.expandedRowsList = expandedRowsList;
         this.healthCheckItemList = healthCheckItemList;
+    }
+
+    /*********************************************************************************************************************
+    * @description Update the status of a HealthCheckGroupVModel based on the number of passing health checks to total checks. 
+    *********************************************************************************************************************/
+    public void updateHealthCheckStatus() {      
+        this.status = (this.passedChecks == this.totalChecks) ? 
+            System.Label.stgHealthCheckStatusPassed : System.Label.stgHealthCheckStatusFailed;
     }
     
     /*****************************************************************************************
@@ -67,13 +85,13 @@ public virtual with sharing class HealthCheckGroupVModel implements Comparable {
             return 0;
         }
 
-        HealthCheckGroupVModel hlthChkGroupModToCompareTo = (HealthCheckGroupVModel)compareTo;
-        Integer statusResult = this.status.toLowerCase().compareTo(hlthChkGroupModToCompareTo.status.toLowerCase());
+        HealthCheckGroupVModel healthCheckGroupVModelToCompareTo = (HealthCheckGroupVModel)compareTo;
+        Integer statusResult = this.status.toLowerCase().compareTo(healthCheckGroupVModelToCompareTo.status.toLowerCase());
         
         if (statusResult != 0){
             return statusResult;
         }
         
-        return this.label.toLowerCase().compareTo(hlthChkGroupModToCompareTo.label.toLowerCase());
+        return this.label.toLowerCase().compareTo(healthCheckGroupVModelToCompareTo.label.toLowerCase());
     }
 }

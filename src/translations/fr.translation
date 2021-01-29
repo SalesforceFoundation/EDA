@@ -1215,7 +1215,7 @@
     <customLabels>
         <label>Exécutez ce processus de nettoyage de données après l&apos;activation initiale de l&apos;exigence Adresse e-mail préférée ou Téléphone préféré après une période de non application de l&apos;exigence.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
-    </customLabels>
+    </customLabels>   
     <customLabels>
         <label>Paramètres enregistrés avec succès.</label>
         <name>stgSaveSettings</name>

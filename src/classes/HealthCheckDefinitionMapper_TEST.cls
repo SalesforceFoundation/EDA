@@ -81,6 +81,13 @@ private class HealthCheckDefinitionMapper_TEST {
             'EDAHealthCheckGroupAPIService', 
             'hed')
         );
+        
+        expectedHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel(
+            'AffiliationMappings', 
+            'EDAHealthCheckGroupAPIService', 
+            'hed')
+        );
+
         expectedHealthCheckDefinitionModelList.add(new HealthCheckDefinitionModel(
             'ReciprocalRelationship', 
             'EDAHealthCheckGroupAPIService', 
@@ -134,4 +141,5 @@ private class HealthCheckDefinitionMapper_TEST {
         }
     }
 }
+
 

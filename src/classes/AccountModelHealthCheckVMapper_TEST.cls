@@ -92,27 +92,16 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test to verify updateHealthCheckStatus() returns Pass when all health checks executed pass.
+    * @description Test to verify locateStringHandlingService() returns an instance of the StringHandlingService class.
     **************************************************************************************************************************/ 
     @isTest
-    private static void updateHealthCheckStatusPass(){
+    private static void locateStringHandlingServiceValid(){
         Test.startTest();
-        String hcStatus = AccountModelHealthCheckVMapper.getInstance().updateHealthCheckStatus(5, 5);
+        StringHandlingService stringHandlingServiceInstance = AccountModelHealthCheckVMapper.getInstance().locateStringHandlingService();
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckStatusPassed, hcStatus, 'Should return \'' + Label.stgHealthCheckStatusPassed + '\'.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Test to verify updateHealthCheckStatus() returns Fail when any health checks executed fail.
-    **************************************************************************************************************************/ 
-    @isTest
-    private static void updateHealthCheckStatusFail(){
-        Test.startTest();
-        String hcStatus = AccountModelHealthCheckVMapper.getInstance().updateHealthCheckStatus(2, 5);
-        Test.stopTest();
-
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hcStatus, 'Should return \'' + Label.stgHealthCheckStatusFailed + '\'.');
+        System.assertEquals(StringHandlingService.getInstance(), stringHandlingServiceInstance, 'Should return instance of StringHandlingService class.');
+        System.assertEquals(true, stringHandlingServiceInstance != null, 'Instance of StringHandlingService class should not be null.');
     }
 
     /**************************************************************************************************************************
@@ -122,10 +111,10 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     @isTest 
     private static void combineAccountHealthCheckGroupViewModelsValid(){
 
-        List<HealthCheckGroupVModel> tstHlthChkGroupModelsList = new List<HealthCheckGroupVModel>();
-        List<HealthCheckItemVModel> group1HlthChkItemList = new List<HealthCheckItemVModel>();
+        List<HealthCheckGroupVModel> testHealthCheckGroupModelsList = new List<HealthCheckGroupVModel>();
+        List<HealthCheckItemVModel> group1HealthCheckItemList = new List<HealthCheckItemVModel>();
 
-        group1HlthChkItemList.add(new HealthCheckItemVModel('Key1',
+        group1HealthCheckItemList.add(new HealthCheckItemVModel('Key1',
                                                             'Setting-X',
                                                             'Pass',
                                                             'PassedLabel',
@@ -133,7 +122,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                             'RecommendedFix',
                                                             new List<HealthCheckItemVModel>()));
                                                             
-        group1HlthChkItemList.add(new HealthCheckItemVModel('Key2',
+        group1HealthCheckItemList.add(new HealthCheckItemVModel('Key2',
                                                             'Setting-B',
                                                             'Pass',
                                                             'PassedLabel',
@@ -141,7 +130,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                             'RecommendedFix',
                                                             new List<HealthCheckItemVModel>()));
 
-        group1HlthChkItemList.add(new HealthCheckItemVModel('Key3',
+        group1HealthCheckItemList.add(new HealthCheckItemVModel('Key3',
                                                             'Setting-Y',
                                                             'Fail',
                                                             'FailedLabel',
@@ -150,14 +139,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                             new List<HealthCheckItemVModel>()));
 
 
-        tstHlthChkGroupModelsList.add(new HealthCheckGroupVModel('SubGroup1',
+        testHealthCheckGroupModelsList.add(new HealthCheckGroupVModel('SubGroup1',
                                                                  'Fail',
                                                                  2,
                                                                  3,
                                                                  new List<String>(),
-                                                                 group1HlthChkItemList));
+                                                                 group1HealthCheckItemList));
 
-        tstHlthChkGroupModelsList.add(new HealthCheckGroupVModel('SubGroup2',
+        testHealthCheckGroupModelsList.add(new HealthCheckGroupVModel('SubGroup2',
                                                                  'Pass',
                                                                  1,
                                                                  1,
@@ -166,18 +155,18 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
 
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = AccountModelHealthCheckVMapper.getInstance().combineAccountHealthCheckGroupViewModels(tstHlthChkGroupModelsList);
+        HealthCheckGroupVModel healthCheckGroupVModel = AccountModelHealthCheckVMapper.getInstance().combineAccountHealthCheckGroupViewModels(testHealthCheckGroupModelsList);
         Test.stopTest();
 
-        System.assertEquals(Label.stgHealthCheckAccountModel, hlthChkGroupVMod.label, 'Group label should be \'' + Label.stgHealthCheckAccountModel + '\'');
-        System.assertEquals(Label.stgHealthCheckStatusFailed, hlthChkGroupVMod.status, 'Group status should be \'' + Label.stgHealthCheckStatusFailed + '\'');
-        System.assertEquals(3, hlthChkGroupVMod.passedChecks, 'Group passed checks should be \'' + hlthChkGroupVMod.passedChecks + '\'');
-        System.assertEquals(4, hlthChkGroupVMod.totalChecks, 'Group total checks should be \'' + hlthChkGroupVMod.totalChecks + '\'');
-        System.assertEquals(3, hlthChkGroupVMod.healthCheckItemList.size(), 'Group HealthCheckItems list should have \'' + hlthChkGroupVMod.healthCheckItemList.size() + '\' items');
+        System.assertEquals(Label.stgHealthCheckAccountModel, healthCheckGroupVModel.label, 'Group label should be \'' + Label.stgHealthCheckAccountModel + '\'');
+        System.assertEquals(Label.stgHealthCheckStatusFailed, healthCheckGroupVModel.status, 'Group status should be \'' + Label.stgHealthCheckStatusFailed + '\'');
+        System.assertEquals(3, healthCheckGroupVModel.passedChecks, 'Group passed checks should be \'' + healthCheckGroupVModel.passedChecks + '\'');
+        System.assertEquals(4, healthCheckGroupVModel.totalChecks, 'Group total checks should be \'' + healthCheckGroupVModel.totalChecks + '\'');
+        System.assertEquals(3, healthCheckGroupVModel.healthCheckItemList.size(), 'Group HealthCheckItems list should have \'' + healthCheckGroupVModel.healthCheckItemList.size() + '\' items');
 
-        System.assertEquals('Setting-Y', hlthChkGroupVMod.healthCheckItemList[0].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
-        System.assertEquals('Setting-B', hlthChkGroupVMod.healthCheckItemList[1].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
-        System.assertEquals('Setting-X', hlthChkGroupVMod.healthCheckItemList[2].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+        System.assertEquals('Setting-Y', healthCheckGroupVModel.healthCheckItemList[0].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+        System.assertEquals('Setting-B', healthCheckGroupVModel.healthCheckItemList[1].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
+        System.assertEquals('Setting-X', healthCheckGroupVModel.healthCheckItemList[2].setting, 'HealthCheckItemList should be sorted alphabetically by Setting, with Failed items prioritized.');
     }
 
     /**************************************************************************************************************************
@@ -189,39 +178,42 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getDefaultAccountModelHealthCheckItemsIdMatchFoundToRTValidAndActive(){
         RecordTypeService.instance = new STUB_RecordTypeServiceValidAndActiveDefaultModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000001',
                                                                                 '000000000000000002',
                                                                                 '000000000000000003');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000001',
-                                                      'Test Record Name',
-                                                      'testRecordDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000001',
+                                                              'Test Record Name',
+                                                              'testRecordDevName',
+                                                              true);
                           
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
-                                                                              Label.stgHealthCheckStatusPassed,
-                                                                              1,
-                                                                              1,
-                                                                              0,
-                                                                              1,
-                                                                              hlthChkGroupVMod);
+                                                                                   Label.stgHealthCheckStatusPassed,
+                                                                                   1,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeValid, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
-                                                                           'Pass', 
-                                                                           Label.stgHealthCheckStatusPassed, 
-                                                                           expectedDescription, 
-                                                                           expectedFix, 
-                                                                           hlthChkGroupVMod.healthCheckItemList);
+                                                                                'Pass', 
+                                                                                Label.stgHealthCheckStatusPassed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -233,39 +225,45 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getDefaultAccountModelHealthCheckItemsIdMatchFoundToRTValidAndInactive(){
         RecordTypeService.instance = new STUB_RecordTypeServiceValidAndInactiveDefaultModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
-                                                                                '000000000000000002',
-                                                                                '000000000000000003');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000001',
+                                                                                            '000000000000000002',
+                                                                                            '000000000000000003');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000001',
-                                                      'Test Record Name',
-                                                      'testRecordDevName',
-                                                      false);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000001',
+                                                              'Test Record Name',
+                                                              'testRecordDevName',
+                                                              false);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
-                                                                              Label.stgHealthCheckStatusFailed,
-                                                                              0,
-                                                                              1,
-                                                                              0,
-                                                                              1,
-                                                                              hlthChkGroupVMod);
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeInactive, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelDefaultInactiveFix, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
                                                                                 'Fail', 
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -276,39 +274,45 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getDefaultAccountModelHealthCheckItemsInvalidDefaultId(){
         RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('Not an ID default acct',
-                                                                                'Not an ID admin acct',
-                                                                                'Not an Id HH acct');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('Not an ID default acct',
+                                                                                            'Not an ID admin acct',
+                                                                                            'Not an Id HH acct');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000111',
-                                                      'Account Name',
-                                                      'accountDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000111',
+                                                              'Account Name',
+                                                              'accountDevName',
+                                                              true);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
-                                                                              Label.stgHealthCheckStatusFailed,
-                                                                              0,
-                                                                              1,
-                                                                              0,
-                                                                              1,
-                                                                              hlthChkGroupVMod);
+                                                                                   Label.stgHealthCheckStatusFailed,
+                                                                                   0,
+                                                                                   1,
+                                                                                   0,
+                                                                                   1,
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID default acct'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'Not an ID default acct'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'Not an ID default acct'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelDefaultNotFoundFix, 
+            new List<Object>{'Not an ID default acct'}
+        );
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
-                                                                           'Fail', 
-                                                                           Label.stgHealthCheckStatusFailed, 
-                                                                           expectedDescription, 
-                                                                           expectedFix, 
-                                                                           hlthChkGroupVMod.healthCheckItemList);
+                                                                                'Fail', 
+                                                                                Label.stgHealthCheckStatusFailed, 
+                                                                                expectedDescription, 
+                                                                                expectedFix, 
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -320,20 +324,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getDefaultAccountModelHealthCheckItemsValidIdNoMatchingRT(){
         RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000000',
-                                                                                '000000000000000000',
-                                                                                '000000000000000000');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000000',
+                                                                                            '000000000000000000',
+                                                                                            '000000000000000000');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000123',
-                                                      'Different Account Name',
-                                                      'differentAccountDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000123',
+                                                              'Different Account Name',
+                                                              'differentAccountDevName',
+                                                              true);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getDefaultAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -342,17 +346,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
-        String expectedFix = String.format(Label.stgHCAccountModelDefaultNotFoundFix, new List<Object>{'000000000000000000'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'000000000000000000'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelDefaultNotFoundFix, 
+            new List<Object>{'000000000000000000'}
+        );
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccModelTitle, 
                                                                                 'Fail', 
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -364,20 +374,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getAdministrativeAccountModelHealthCheckItemsIdMatchFoundToRTValidAndActive(){
         RecordTypeService.instance = new STUB_RecordTypeServiceValidAndActiveDefaultModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
-                                                                                '000000000000000002',
-                                                                                '000000000000000003');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000001',
+                                                                                            '000000000000000002',
+                                                                                            '000000000000000003');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
-                                                      'Test Record Name',
-                                                      'testRecordDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000002',
+                                                              'Test Record Name',
+                                                              'testRecordDevName',
+                                                              true);
                           
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -386,9 +396,12 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeValid, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
@@ -396,7 +409,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                 Label.stgHealthCheckStatusPassed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -408,20 +421,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getAdministrativeAccountModelHealthCheckItemsIdMatchFoundToRTValidAndInactive(){
         RecordTypeService.instance = new STUB_RecordTypeServiceValidAndInactiveDefaultModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
-                                                                                '000000000000000002',
-                                                                                '000000000000000003');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000001',
+                                                                                            '000000000000000002',
+                                                                                            '000000000000000003');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000002',
-                                                      'Test Record Name',
-                                                      'testRecordDevName',
-                                                      false);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000002',
+                                                              'Test Record Name',
+                                                              'testRecordDevName',
+                                                              false);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -430,17 +443,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
-        String expectedFix = String.format(Label.stgHCAccountModelAdminInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeInactive, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelAdminInactiveFix, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
                                                                                 'Fail', 
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -451,20 +470,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getAdministrativeAccountModelHealthCheckItemsInvalidDefaultId(){
         RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('Not an ID default acct',
-                                                                                'Not an ID admin acct',
-                                                                                'Not an Id HH acct');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('Not an ID default acct',
+                                                                                            'Not an ID admin acct',
+                                                                                            'Not an Id HH acct');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000111',
-                                                      'Account Name',
-                                                      'accountDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000111',
+                                                              'Account Name',
+                                                              'accountDevName',
+                                                              true);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -473,17 +492,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID admin acct'});
-        String expectedFix = String.format(Label.stgHCAccountModelAdminNotFoundFix, new List<Object>{'Not an ID admin acct'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'Not an ID admin acct'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelAdminNotFoundFix, 
+            new List<Object>{'Not an ID admin acct'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
                                                                                 'Fail', 
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -495,20 +520,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getAdministrativeAccountModelHealthCheckItemsValidIdNoMatchingRT(){
         RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000000',
-                                                                                '000000000000000000',
-                                                                                '000000000000000000');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000000',
+                                                                                            '000000000000000000',
+                                                                                            '000000000000000000');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000123',
-                                                      'Different Account Name',
-                                                      'differentAccountDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000123',
+                                                              'Different Account Name',
+                                                              'differentAccountDevName',
+                                                              true);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getAdministrativeAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -517,17 +542,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
-        String expectedFix = String.format(Label.stgHCAccountModelAdminNotFoundFix, new List<Object>{'000000000000000000'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'000000000000000000'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelAdminNotFoundFix, 
+            new List<Object>{'000000000000000000'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAdminAccountRecordType, 
                                                                                 'Fail', 
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -539,20 +570,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getHouseholdAccountModelHealthCheckItemsIdMatchFoundToRTValidAndActive(){
         RecordTypeService.instance = new STUB_RecordTypeServiceValidAndActiveDefaultModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
-                                                                                '000000000000000002',
-                                                                                '000000000000000003');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000001',
+                                                                                            '000000000000000002',
+                                                                                            '000000000000000003');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000003',
-                                                      'Test Record Name',
-                                                      'testRecordDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000003',
+                                                              'Test Record Name',
+                                                              'testRecordDevName',
+                                                              true);
                           
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -561,9 +592,12 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeValid, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeValid, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
@@ -571,7 +605,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                 Label.stgHealthCheckStatusPassed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -583,20 +617,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getHouseholdAccountModelHealthCheckItemsIdMatchFoundToRTValidAndInactive(){
         RecordTypeService.instance = new STUB_RecordTypeServiceValidAndInactiveDefaultModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
-                                                                                '000000000000000002',
-                                                                                '000000000000000003');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000001',
+                                                                                            '000000000000000002',
+                                                                                            '000000000000000003');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000003',
-                                                      'Test HH Record Name',
-                                                      'testHHRecordDevName',
-                                                      false);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000003',
+                                                              'Test HH Record Name',
+                                                              'testHHRecordDevName',
+                                                              false);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -605,17 +639,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeInactive, new List<Object>{'Test Record Name', 'testRecordDevName'});
-        String expectedFix = String.format(Label.stgHCAccountModelHHInactiveFix, new List<Object>{'Test Record Name', 'testRecordDevName'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeInactive, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelHHInactiveFix, 
+            new List<Object>{'Test Record Name', 'testRecordDevName'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
                                                                                 'Fail', 
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -626,20 +666,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getHouseholdAccountModelHealthCheckItemsInvalidDefaultId(){
         RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('Not an ID default acct',
-                                                                                'Not an ID admin acct',
-                                                                                'Not an ID HH acct');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('Not an ID default acct',
+                                                                                            'Not an ID admin acct',
+                                                                                            'Not an ID HH acct');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000111',
-                                                      'Account Name',
-                                                      'accountDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000111',
+                                                              'Account Name',
+                                                              'accountDevName',
+                                                              true);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -648,17 +688,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'Not an ID HH acct'});
-        String expectedFix = String.format(Label.stgHCAccountModelHHNotFoundFix, new List<Object>{'Not an ID HH acct'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'Not an ID HH acct'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelHHNotFoundFix, 
+            new List<Object>{'Not an ID HH acct'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
                                                                                 'Fail', 
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -670,20 +716,20 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     private static void getHouseholdAccountModelHealthCheckItemsValidIdNoMatchingRT(){
         RecordTypeService.instance = new STUB_RecordTypeServiceNullModel();
 
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000000',
-                                                                                '000000000000000000',
-                                                                                '000000000000000000');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000000',
+                                                                                            '000000000000000000',
+                                                                                            '000000000000000000');
 
-        RecordTypeModel rtModel = new RecordTypeModel('000000000000000123',
-                                                      'Different Account Name',
-                                                      'differentAccountDevName',
-                                                      true);
+        RecordTypeModel recordTypeModel = new RecordTypeModel('000000000000000123',
+                                                              'Different Account Name',
+                                                              'differentAccountDevName',
+                                                              true);
 
-        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{rtModel.id => rtModel};
+        Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{recordTypeModel.id => recordTypeModel};
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accModSettMod, recordTypeModelsById);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getHouseholdAccountModelHealthCheckItems(accountModelSettingsModel, recordTypeModelsById);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -692,17 +738,23 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
-        String expectedDescription = String.format(Label.stgHCRecordTypeNotFound, new List<Object>{'000000000000000000'});
-        String expectedFix = String.format(Label.stgHCAccountModelHHNotFoundFix, new List<Object>{'000000000000000000'});
+        String expectedDescription = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCRecordTypeNotFound, 
+            new List<Object>{'000000000000000000'}
+        );
+        String expectedFix = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(
+            Label.stgHCAccountModelHHNotFoundFix, 
+            new List<Object>{'000000000000000000'}
+        );
         
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckItemListAssertions(Label.stgAccountRecordTypeSupportsHHAddress, 
                                                                                 'Fail', 
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -861,13 +913,13 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     * passed when Admin and HH account record types are not the same.
     **************************************************************************************************************************/ 
     private static void getHouseholdAccountModelHealthCheckItemsUnique(){
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000001',
                                                                                 '000000000000000002',
                                                                                 '000000000000000003');
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getAccountRecordTypeUniquenessHealthCheckItems(accModSettMod);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getAccountRecordTypeUniquenessHealthCheckItems(accountModelSettingsModel);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -876,7 +928,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
         String expectedDescription = Label.stgHCAccountRecordTypesUnique;
         String expectedFix = Label.stgHealthCheckFixNotApplicable;
@@ -886,7 +938,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                 Label.stgHealthCheckStatusPassed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -894,13 +946,13 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
     * failed when Admin and HH account record types are the same.
     **************************************************************************************************************************/ 
     private static void getHouseholdAccountModelHealthCheckItemsNotUnique(){
-        AccountModelSettingsModel accModSettMod = new AccountModelSettingsModel('000000000000000001',
-                                                                                '000000000000000005',
-                                                                                '000000000000000005');
+        AccountModelSettingsModel accountModelSettingsModel = new AccountModelSettingsModel('000000000000000001',
+                                                                                            '000000000000000005',
+                                                                                            '000000000000000005');
 
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod = 
-            AccountModelHealthCheckVMapper.getInstance().getAccountRecordTypeUniquenessHealthCheckItems(accModSettMod);
+        HealthCheckGroupVModel healthCheckGroupVModel = 
+            AccountModelHealthCheckVMapper.getInstance().getAccountRecordTypeUniquenessHealthCheckItems(accountModelSettingsModel);
         Test.stopTest();
 
         AccountModelHealthCheckVMapper_TEST.verifyHealthCheckGroupVModelAssertions(Label.stgHealthCheckAccountModel,
@@ -909,7 +961,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                    1,
                                                                                    0,
                                                                                    1,
-                                                                                   hlthChkGroupVMod);
+                                                                                   healthCheckGroupVModel);
 
         String expectedDescription = Label.stgHCAccountRecordTypesNotUnique;
         String expectedFix = Label.stgHCAccountRecordTypesNotUniqueFix;
@@ -919,7 +971,7 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                                 Label.stgHealthCheckStatusFailed, 
                                                                                 expectedDescription, 
                                                                                 expectedFix, 
-                                                                                hlthChkGroupVMod.healthCheckItemList);
+                                                                                healthCheckGroupVModel.healthCheckItemList);
     }
 
     /**************************************************************************************************************************
@@ -1069,14 +1121,14 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                                Integer expectedTotalCheckCount, 
                                                                Integer expectedExpandedRowSize, 
                                                                Integer expectedHealthCheckItemListSize,
-                                                               HealthCheckGroupVModel hlthCheckGroupResult){
+                                                               HealthCheckGroupVModel healthCheckGroupResult){
 
-        System.assertEquals(expectedLabel, hlthCheckGroupResult.label, 'Should have \'' + expectedLabel + '\' label.');
-        System.assertEquals(expectedStatus, hlthCheckGroupResult.status, 'Should have status of \'' + expectedStatus + '\'.');
-        System.assertEquals(expectedPassedCheckCount, hlthCheckGroupResult.passedChecks, 'Should have ' + expectedPassedCheckCount + ' passed checks.');
-        System.assertEquals(expectedTotalCheckCount, hlthCheckGroupResult.totalChecks, 'Should have ' + expectedTotalCheckCount + ' check.');
-        System.assertEquals(expectedExpandedRowSize, hlthCheckGroupResult.expandedRowsList.size(), 'Should have ' + expectedExpandedRowSize + ' expanded rows.');
-        System.assertEquals(expectedHealthCheckItemListSize, hlthCheckGroupResult.healthCheckItemList.size(), 'Should have ' + expectedHealthCheckItemListSize + ' health check item.');
+        System.assertEquals(expectedLabel, healthCheckGroupResult.label, 'Should have \'' + expectedLabel + '\' label.');
+        System.assertEquals(expectedStatus, healthCheckGroupResult.status, 'Should have status of \'' + expectedStatus + '\'.');
+        System.assertEquals(expectedPassedCheckCount, healthCheckGroupResult.passedChecks, 'Should have ' + expectedPassedCheckCount + ' passed checks.');
+        System.assertEquals(expectedTotalCheckCount, healthCheckGroupResult.totalChecks, 'Should have ' + expectedTotalCheckCount + ' check.');
+        System.assertEquals(expectedExpandedRowSize, healthCheckGroupResult.expandedRowsList.size(), 'Should have ' + expectedExpandedRowSize + ' expanded rows.');
+        System.assertEquals(expectedHealthCheckItemListSize, healthCheckGroupResult.healthCheckItemList.size(), 'Should have ' + expectedHealthCheckItemListSize + ' health check item.');
     }
 
     /**************************************************************************************************************************
@@ -1089,12 +1141,12 @@ public with sharing class AccountModelHealthCheckVMapper_TEST {
                                                             String expectedFix,
                                                             List<HealthCheckItemVModel> healthCheckItemList){
 
-        for (HealthCheckItemVModel hlthChkItmVMod : healthCheckItemList){
-            System.assertEquals(expectedSetting, hlthChkItmVMod.setting, 'Health Check Item setting should be \'' + expectedSetting + '\'.');
-            System.assertEquals(expectedStatus, hlthChkItmVMod.status, 'Health Check Item status should be \'' + expectedStatus + '\'.');
-            System.assertEquals(expectedStatusLabel, hlthChkItmVMod.statusLabel, 'Health Check Item status label should be \'' + expectedStatusLabel + '\'.');
-            System.assertEquals(expectedDescription, hlthChkItmVMod.description, 'Health Check Item description should be correctly set.');
-            System.assertEquals(expectedFix, hlthChkItmVMod.recommendedFix, 'Health Check Item recommended fix should be correctly set.');
+        for (HealthCheckItemVModel healthCheckItemVModel : healthCheckItemList){
+            System.assertEquals(expectedSetting, healthCheckItemVModel.setting, 'Health Check Item setting should be \'' + expectedSetting + '\'.');
+            System.assertEquals(expectedStatus, healthCheckItemVModel.status, 'Health Check Item status should be \'' + expectedStatus + '\'.');
+            System.assertEquals(expectedStatusLabel, healthCheckItemVModel.statusLabel, 'Health Check Item status label should be \'' + expectedStatusLabel + '\'.');
+            System.assertEquals(expectedDescription, healthCheckItemVModel.description, 'Health Check Item description should be correctly set.');
+            System.assertEquals(expectedFix, healthCheckItemVModel.recommendedFix, 'Health Check Item recommended fix should be correctly set.');
         }        
     }
 }

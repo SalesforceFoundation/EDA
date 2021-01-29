@@ -49,7 +49,6 @@ public virtual with sharing class AccountModelSettingsMapper {
     * @return The instance of AccountModelSettingsMapper.
     ******************************************************************************/
     public static AccountModelSettingsMapper getInstance() {
-
         if (instance == null) {
             instance = new AccountModelSettingsMapper();
         }

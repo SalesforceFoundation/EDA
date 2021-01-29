@@ -71,12 +71,12 @@ public with sharing class HealthCheckGroupService_TEST {
     @isTest 
     private static void getHealthCheckGroupValidReciprocal(){
         ReciprocalRelHealthCheckVMapper.instance = new STUB_ReciprocalRelHealthCheckVMapper();
-        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceValidModel();
+        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
         HealthCheckGroupService healthCheckGroupService =
             HealthCheckGroupService.getInstance();
 
         Test.startTest();
-            HealthCheckGroupVModel hlthChkGroupVMod =
+            HealthCheckGroupVModel healthCheckGroupVModel =
                 healthCheckGroupService.getHealthCheckGroup(
                     'reciprocalrelationship',
                     'EDAHealthCheckGroupAPIService',
@@ -84,12 +84,12 @@ public with sharing class HealthCheckGroupService_TEST {
                 );
         Test.stopTest();
 
-        System.assertEquals('Mocked', hlthChkGroupVMod.label, 'Label for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
-        System.assertEquals('Pass', hlthChkGroupVMod.status, 'Status for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
-        System.assertEquals(2, hlthChkGroupVMod.passedChecks, 'Passed Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
-        System.assertEquals(2, hlthChkGroupVMod.totalChecks, 'Total Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
-        System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Expanded rows list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
-        System.assertEquals(2, hlthChkGroupVMod.healthCheckItemList.size(), 'Health Check items list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+        System.assertEquals('Mocked', healthCheckGroupVModel.label, 'Label for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+        System.assertEquals('Pass', healthCheckGroupVModel.status, 'Status for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+        System.assertEquals(2, healthCheckGroupVModel.passedChecks, 'Passed Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+        System.assertEquals(2, healthCheckGroupVModel.totalChecks, 'Total Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+        System.assertEquals(true, healthCheckGroupVModel.expandedRowsList.isEmpty(), 'Expanded rows list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+        System.assertEquals(2, healthCheckGroupVModel.healthCheckItemList.size(), 'Health Check items list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
     }
 
     /**************************************************************************************************************************
@@ -100,7 +100,7 @@ public with sharing class HealthCheckGroupService_TEST {
     private static void getHealthCheckGroupValidCourseConn(){
 
         CourseConSettingHealthCheckVMapper.instance = new STUB_CourseConSettingHealthCheckVMapper();
-        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceValidModel();
+        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
 
         Test.startTest();
             HealthCheckGroupVModel hlthChkGroupVMod = 
@@ -120,13 +120,67 @@ public with sharing class HealthCheckGroupService_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Test method to verify that the getHealthCheckGroup method returns a HealthCheckGroup view model when provided
+    * with valid HealthCheckDefinitionModel data.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getHealthCheckGroupValidAccountModel(){
+
+        AccountModelHealthCheckVMapper.instance = new STUB_AccountModelHealthCheckVMapper();
+        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
+
+        Test.startTest();
+            HealthCheckGroupVModel hlthChkGroupVMod = 
+                HealthCheckGroupService.getInstance(
+                ).getHealthCheckGroup(
+                    'accountmodel', 
+                    'EDAHealthCheckGroupAPIService',
+                    'hed'
+                );
+        Test.stopTest();
+            System.assertEquals('Mocked', hlthChkGroupVMod.label, 'Label for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals('Pass', hlthChkGroupVMod.status, 'Status for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals(2, hlthChkGroupVMod.passedChecks, 'Passed Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals(2, hlthChkGroupVMod.totalChecks, 'Total Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Expanded rows list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals(2, hlthChkGroupVMod.healthCheckItemList.size(), 'Health Check items list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getHealthCheckGroup method returns a HealthCheckGroup view model when provided
+    * with valid HealthCheckDefinitionModel data.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void getHealthCheckGroupValidAffiliationMappings(){
+
+        AffiliationMappingsHealthCheckVMapper.instance = new STUB_AffiliationMappingsHealthCheckVMapper();
+        HealthCheckGroupService.instance = new STUB_HealthCheckGroupServiceEDAHealthCheckAPI();
+
+        Test.startTest();
+            HealthCheckGroupVModel hlthChkGroupVMod = 
+                HealthCheckGroupService.getInstance(
+                ).getHealthCheckGroup(
+                    'affiliationmappings', 
+                    'EDAHealthCheckGroupAPIService',
+                    'hed'
+                );
+        Test.stopTest();
+            System.assertEquals('Mocked', hlthChkGroupVMod.label, 'Label for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals('Pass', hlthChkGroupVMod.status, 'Status for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals(2, hlthChkGroupVMod.passedChecks, 'Passed Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals(2, hlthChkGroupVMod.totalChecks, 'Total Checks for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals(true, hlthChkGroupVMod.expandedRowsList.isEmpty(), 'Expanded rows list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+            System.assertEquals(2, hlthChkGroupVMod.healthCheckItemList.size(), 'Health Check items list for returned HC Group view model should match valud in EDAHealthCheckGroupAPIService.');
+    }
+
+    /**************************************************************************************************************************
     * @description Test method to verify that the getHealthCheckGroup method returns a null HealthCheckGroup view model when 
     * provided with invalid HealthCheckDefinitionModel data.
     ***************************************************************************************************************************/
     @isTest 
     private static void getHealthCheckGroupInValid(){
         Test.startTest();
-        HealthCheckGroupVModel hlthChkGroupVMod =
+        HealthCheckGroupVModel healthCheckGroupVModel =
             HealthCheckGroupService.getInstance(
             ).getHealthCheckGroup(
                 'Non-existent Health Check Group',
@@ -135,7 +189,7 @@ public with sharing class HealthCheckGroupService_TEST {
             );
         Test.stopTest();
 
-        System.assertEquals(true, hlthChkGroupVMod == null, 'Health Check Group view model should be null.');
+        System.assertEquals(true, healthCheckGroupVModel == null, 'Health Check Group view model should be null.');
     }
 
     /**************************************************************************************************************************
@@ -146,11 +200,11 @@ public with sharing class HealthCheckGroupService_TEST {
     @isTest 
     private static void locateHealthCheckGroupAPIServiceValid(){
         Test.startTest();
-        HealthCheckGroupAPIServiceInterface hlthChkGroupAPISrvInterface = 
+        HealthCheckGroupAPIServiceInterface healthCheckGroupAPIServiceInterface = 
             HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('EDAHealthCheckGroupAPIService', 'hed');
         Test.stopTest();
 
-        System.assertEquals(EDAHealthCheckGroupAPIService.getInstance(), hlthChkGroupAPISrvInterface.getInstance(), 
+        System.assertEquals(EDAHealthCheckGroupAPIService.getInstance(), healthCheckGroupAPIServiceInterface.getInstance(), 
                 'HealthCheckGroupAPIServiceInterface should be instance of EDAHealthCheckGroupAPIService.');
     }
 
@@ -162,7 +216,7 @@ public with sharing class HealthCheckGroupService_TEST {
     private static void locateHealthCheckGroupAPIServiceInValidClassName(){
         try{
             Test.startTest();
-            HealthCheckGroupAPIServiceInterface hlthChkGroupAPISrvInterface = 
+            HealthCheckGroupAPIServiceInterface healthCheckGroupAPIServiceInterface = 
             HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('Not a Valid Service Name', 'abc');
             Test.stopTest();
         } catch (System.NullPointerException e){
@@ -180,7 +234,7 @@ public with sharing class HealthCheckGroupService_TEST {
     private static void locateHealthCheckGroupAPIServiceValidClassNameNotImplementingInterface(){
         try{
             Test.startTest();
-            HealthCheckGroupAPIServiceInterface hlthChkGroupAPISrvInterface = 
+            HealthCheckGroupAPIServiceInterface healthCheckGroupAPIServiceInterface = 
             HealthCheckGroupService.getInstance().locateHealthCheckGroupAPIService('HealthCheckVMapper', '');
             Test.stopTest();
         } catch (System.TypeException e){
@@ -195,9 +249,9 @@ public with sharing class HealthCheckGroupService_TEST {
     **************************************************************************************************************************/
     
     /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from HealthCheckGroupService to return a valid HealthCheckGroupVModel.
+    * @description Stub class to simulate the response from HealthCheckGroupService to return instance of EDAHealthCheckGroupAPIService.
     **************************************************************************************************************************************/ 
-    private class STUB_HealthCheckGroupServiceValidModel extends HealthCheckGroupService {
+    private class STUB_HealthCheckGroupServiceEDAHealthCheckAPI extends HealthCheckGroupService {
         @TestVisible 
         private override HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(
             String className,
@@ -214,10 +268,10 @@ public with sharing class HealthCheckGroupService_TEST {
     private class STUB_ReciprocalRelHealthCheckVMapper extends ReciprocalRelHealthCheckVMapper {
 
         public override HealthCheckGroupVModel getHealthCheckGroup(){
-            List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
+            List<HealthCheckItemVModel> healthCheckItemsList = new List<HealthCheckItemVModel>();
             List<String> rowKeysList = new List<String>();
     
-            HealthCheckItemVModel hlthChkItemMod1 = 
+            HealthCheckItemVModel healthCheckItemModel1 = 
                 new HealthCheckItemVModel(
                     '01', 
                     'Passed Setting 1', 
@@ -228,7 +282,7 @@ public with sharing class HealthCheckGroupService_TEST {
                     new List<HealthCheckItemVModel>()
                 );
                                                                                 
-            HealthCheckItemVModel hlthChkItemMod2 = 
+            HealthCheckItemVModel healthCheckItemModel2 = 
                 new HealthCheckItemVModel(
                     '02',
                     'Passed Setting 2',
@@ -239,6 +293,98 @@ public with sharing class HealthCheckGroupService_TEST {
                     new List<HealthCheckItemVModel>()
                 );
             
+            healthCheckItemsList.add(healthCheckItemModel1);
+            healthCheckItemsList.add(healthCheckItemModel2);
+
+            return new HealthCheckGroupVModel(
+                'Mocked',
+                'Pass',
+                2,
+                2,
+                rowKeysList,
+                healthCheckItemsList
+            );
+        }
+    }
+
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * EDAHealthCheckGroupAPIService to control for a static response
+    ***************************************************************************/
+    private class STUB_CourseConSettingHealthCheckVMapper extends CourseConSettingHealthCheckVMapper {
+
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
+            List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
+            List<String> rowKeysList = new List<String>();
+
+            HealthCheckItemVModel hlthChkItemMod1 = 
+                new HealthCheckItemVModel(
+                    '01', 
+                    'Passed Setting 1', 
+                    'Pass', 
+                    Label.stgHealthCheckStatusPassed, 
+                    'Mocked description 1', 
+                    'Mocked recommended fix 1',
+                    new List<HealthCheckItemVModel>()
+                );
+
+            HealthCheckItemVModel hlthChkItemMod2 = 
+                new HealthCheckItemVModel(
+                    '02',
+                    'Passed Setting 2',
+                    'Pass',
+                    Label.stgHealthCheckStatusPassed,
+                    'Mocked description 2',
+                    'Mocked recommended fix 2',
+                    new List<HealthCheckItemVModel>()
+                );
+
+            hlthChkItemsList.add(hlthChkItemMod1);
+            hlthChkItemsList.add(hlthChkItemMod2);
+
+            return new HealthCheckGroupVModel(
+                'Mocked',
+                'Pass',
+                2,
+                2,
+                rowKeysList,
+                hlthChkItemsList
+            );
+        }
+    }
+    
+    /***************************************************************************
+    * @description Stub class to simulate the response from
+    * EDAHealthCheckGroupAPIService to control for a static response
+    ***************************************************************************/
+    private class STUB_AccountModelHealthCheckVMapper extends AccountModelHealthCheckVMapper {
+
+        public override HealthCheckGroupVModel getHealthCheckGroup(){
+            List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
+            List<String> rowKeysList = new List<String>();
+
+            HealthCheckItemVModel hlthChkItemMod1 = 
+                new HealthCheckItemVModel(
+                    '01', 
+                    'Passed Setting 1', 
+                    'Pass', 
+                    Label.stgHealthCheckStatusPassed, 
+                    'Mocked description 1', 
+                    'Mocked recommended fix 1',
+                    new List<HealthCheckItemVModel>()
+                );
+
+            HealthCheckItemVModel hlthChkItemMod2 = 
+                new HealthCheckItemVModel(
+                    '02',
+                    'Passed Setting 2',
+                    'Pass',
+                    Label.stgHealthCheckStatusPassed,
+                    'Mocked description 2',
+                    'Mocked recommended fix 2',
+                    new List<HealthCheckItemVModel>()
+                );
+
             hlthChkItemsList.add(hlthChkItemMod1);
             hlthChkItemsList.add(hlthChkItemMod2);
 
@@ -257,7 +403,7 @@ public with sharing class HealthCheckGroupService_TEST {
     * @description Stub class to simulate the response from
     * EDAHealthCheckGroupAPIService to control for a static response
     ***************************************************************************/
-    private class STUB_CourseConSettingHealthCheckVMapper extends CourseConSettingHealthCheckVMapper {
+    private class STUB_AffiliationMappingsHealthCheckVMapper extends AffiliationMappingsHealthCheckVMapper {
 
         public override HealthCheckGroupVModel getHealthCheckGroup(){
             List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();

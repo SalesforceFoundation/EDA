@@ -76,6 +76,15 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     }
 
     /******************************************************************************************
+    * @description Retrieves an instance of AffiliationMappingsHealthCheckVMapper. 
+    * @return An instance of AffiliationMappingsHealthCheckVMapper.
+    ******************************************************************************************/
+    @TestVisible 
+    private AffiliationMappingsHealthCheckVMapper locateAffiliationMappingsHealthCheckVMapper(){
+        return AffiliationMappingsHealthCheckVMapper.getInstance();
+    }
+
+    /******************************************************************************************
     * @description Retrieves a view model representing a health check group for a specified 
     * HealthCheckDefinition.
     * @param  name The name of a HealthCheckDefinition
@@ -83,21 +92,24 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     * matching the name provided does not exist.
     ******************************************************************************************/
     public virtual HealthCheckGroupVModel getHealthCheckGroup(String name){
-        String caseInsensitiveName = name.toLowerCase();
+        String lowercasedHCGroupName = name.toLowerCase();
 
         List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
         List<String> rowKeysList = new List<String>();
 
-        switch on caseInsensitiveName {
+        switch on lowercasedHCGroupName {
             when 'courseconnectionsettings' {
                 return this.locateCourseConSettingHealthCheckVMapper().getHealthCheckGroup();
             }    
             when 'accountmodel' {
                 return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
-            }
+            } 
+            when 'affiliationmappings' {
+                return this.locateAffiliationMappingsHealthCheckVMapper().getHealthCheckGroup();
+            } 
             when 'reciprocalrelationship' {
                 return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();
-            }
+            } 
             when else {
                 return null;                
             }
