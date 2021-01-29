@@ -174,7 +174,7 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields> 
+    </fields>
     <fields>
         <fullName>Class_Percentile__c</fullName>
         <description>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</description>

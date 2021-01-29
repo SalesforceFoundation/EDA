@@ -140,8 +140,8 @@
     <fields>
         <fullName>Owned_by_Namespace__c</fullName>
         <description>The namespace of the package or Org that will control this Trigger handler.</description>
-        <inlineHelpText>The namespace of the package or Org that controls this Trigger Handler.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>The namespace of the package or Org that controls this Trigger Handler.</inlineHelpText>
         <label>Owned by Namespace</label>
         <length>15</length>
         <required>false</required>
@@ -203,9 +203,9 @@
     <fields>
         <fullName>User_Managed__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</description>
+        <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don&apos;t want us to overwrite.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don't want us to overwrite.</inlineHelpText>
+        <inlineHelpText>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don&apos;t want us to overwrite.</inlineHelpText>
         <label>User Managed</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

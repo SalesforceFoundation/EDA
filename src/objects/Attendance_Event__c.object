@@ -160,9 +160,9 @@
     </fields>
     <fields>
         <fullName>Reason_Description__c</fullName>
-        <description>More details about the student's absence or tardiness.</description>
+        <description>More details about the student&apos;s absence or tardiness.</description>
         <externalId>false</externalId>
-        <inlineHelpText>More details about the student's absence or tardiness.</inlineHelpText>
+        <inlineHelpText>More details about the student&apos;s absence or tardiness.</inlineHelpText>
         <label>Reason Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>

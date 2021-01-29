@@ -83,7 +83,7 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment's Affiliation. If both conditions aren&apos;t true, then this Affiliation field is left blank.</description>
+        <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment&apos;s Affiliation. If both conditions aren&apos;t true, then this Affiliation field is left blank.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</inlineHelpText>
         <label>Affiliation</label>
@@ -124,8 +124,8 @@
     </fields>
     <fields>
         <fullName>Credits_Attempted__c</fullName>
-        <externalId>false</externalId>
         <description>The number of credits the student is trying to earn through this Course Offering.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The number of credits the student is trying to earn through this Course Offering.</inlineHelpText>
         <label>Credits Attempted</label>
         <precision>6</precision>
@@ -137,8 +137,8 @@
     </fields>
     <fields>
         <fullName>Credits_Earned__c</fullName>
-        <externalId>false</externalId>
         <description>The number of credits the student earned by completing this Course Offering.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The number of credits the student earned by completing this Course Offering.</inlineHelpText>
         <label>Credits Earned</label>
         <precision>6</precision>
@@ -150,8 +150,8 @@
     </fields>
     <fields>
         <fullName>Grade__c</fullName>
-        <externalId>false</externalId>
         <description>The numeric grade the student earned in this Course Offering.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The numeric grade the student earned in this Course Offering.</inlineHelpText>
         <label>Grade</label>
         <precision>6</precision>
@@ -174,7 +174,7 @@
     <fields>
         <fullName>Program_Enrollment__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student's academic major.</description>
+        <description>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</description>
         <externalId>false</externalId>
         <inlineHelpText>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</inlineHelpText>
         <label>Program Enrollment ID</label>

@@ -232,8 +232,8 @@
     <fields>
         <fullName>Initial_Creation_Date__c</fullName>
         <description>The date the application was initially created by the applicant.</description>
-        <inlineHelpText>The date the application was initially created by the applicant.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>The date the application was initially created by the applicant.</inlineHelpText>
         <label>Initial Creation Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

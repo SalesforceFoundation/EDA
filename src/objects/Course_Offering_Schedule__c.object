@@ -98,8 +98,8 @@
         <fullName>Friday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Fridays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Fridays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Fridays. You can select multiple days.</inlineHelpText>
         <label>Friday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -109,8 +109,8 @@
         <fullName>Monday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Mondays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Mondays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Mondays. You can select multiple days.</inlineHelpText>
         <label>Monday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -120,8 +120,8 @@
         <fullName>Saturday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</inlineHelpText>
         <label>Saturday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -142,8 +142,8 @@
         <fullName>Sunday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Sundays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Sundays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Sundays. You can select multiple days.</inlineHelpText>
         <label>Sunday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -153,8 +153,8 @@
         <fullName>Thursday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</inlineHelpText>
         <label>Thursday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -179,8 +179,8 @@
         <fullName>Tuesday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</inlineHelpText>
         <label>Tuesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -190,8 +190,8 @@
         <fullName>Wednesday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</inlineHelpText>
         <label>Wednesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

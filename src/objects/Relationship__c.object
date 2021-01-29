@@ -121,8 +121,8 @@
     <fields>
         <fullName>RelatedContact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
         <description>Select the person related to the Contact.</description>
+        <externalId>false</externalId>
         <inlineHelpText>Select the person related to the Contact.</inlineHelpText>
         <label>Related Contact</label>
         <referenceTo>Contact</referenceTo>
@@ -136,12 +136,12 @@
     <fields>
         <fullName>Relationship_Explanation__c</fullName>
         <description>Text formula that constructs a sentence explaining the relationship between the two Contacts</description>
-        <inlineHelpText>A sentence that clarifies who&apos;s who in the Relationship. For example, &quot;&apos;s &quot; Joe Ada is Sara Cordova's employer.&quot;&apos;s &quot; This field is read-only.</inlineHelpText>
         <externalId>false</externalId>
         <formula>TEXT(RelatedContact__r.Salutation) + &quot; &quot; + RelatedContact__r.FirstName + &quot; &quot; + RelatedContact__r.LastName
 + &quot;  &quot;  +  $Label.Relationship_Explanation_Connector + &quot; &quot; +
 TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quot; + Contact__r.LastName + &quot;&apos;s &quot; + TEXT(Type__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>A sentence that clarifies who&apos;s who in the Relationship. For example, &quot;&apos;s &quot; Joe Ada is Sara Cordova&apos;s employer.&quot;&apos;s &quot; This field is read-only.</inlineHelpText>
         <label>Relationship Explanation</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -153,8 +153,8 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <fullName>SYSTEM_SystemCreated__c</fullName>
         <defaultValue>false</defaultValue>
         <description>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</description>
-        <inlineHelpText>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship.</inlineHelpText>
         <label>_SYSTEM: SystemCreated</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

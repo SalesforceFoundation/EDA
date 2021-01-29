@@ -155,9 +155,9 @@
     </fields>
     <fields>
         <fullName>Sequence__c</fullName>
-        <description>This requirement's place in the Program Plan, for example, "1" indicates the first semester. Use this field to indicate the overall progression for the entire Program Plan, or to sort the order of sub-requirements within a single parent Plan Requirement.</description>
+        <description>This requirement&apos;s place in the Program Plan, for example, &quot;1&quot; indicates the first semester. Use this field to indicate the overall progression for the entire Program Plan, or to sort the order of sub-requirements within a single parent Plan Requirement.</description>
         <externalId>false</externalId>
-        <inlineHelpText>This requirement's place in the Program Plan, for example, "1" indicates the first semester. Use this field to indicate the overall progression for the entire Program Plan, or to sort the order of sub-requirements within a single parent Plan Requirement.</inlineHelpText>
+        <inlineHelpText>This requirement&apos;s place in the Program Plan, for example, &quot;1&quot; indicates the first semester. Use this field to indicate the overall progression for the entire Program Plan, or to sort the order of sub-requirements within a single parent Plan Requirement.</inlineHelpText>
         <label>Sequence</label>
         <precision>2</precision>
         <required>false</required>

@@ -83,10 +83,10 @@
     </fields>
     <fields>
         <fullName>Affiliation_Type__c</fullName>
-        <externalId>false</externalId>
         <description>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</description>
-        <inlineHelpText>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</inlineHelpText>
+        <externalId>false</externalId>
         <formula>Account__r.RecordType.Name</formula>
+        <inlineHelpText>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</inlineHelpText>
         <label>Affiliation Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -111,8 +111,8 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <externalId>false</externalId>
         <description>Details of how the person and organization are affiliated.</description>
+        <externalId>false</externalId>
         <inlineHelpText>Details of how the person and organization are affiliated.</inlineHelpText>
         <label>Description</label>
         <length>32000</length>
@@ -123,8 +123,8 @@
     </fields>
     <fields>
         <fullName>EndDate__c</fullName>
-        <externalId>false</externalId>
         <description>The date this Affiliation ended or will end.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date this Affiliation ended or will end.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
@@ -145,8 +145,8 @@
     </fields>
     <fields>
         <fullName>Role__c</fullName>
-        <externalId>false</externalId>
         <description>The role this person has with the organization.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The role this person has with the organization.</inlineHelpText>
         <label>Role</label>
         <required>false</required>
@@ -186,8 +186,8 @@
     </fields>
     <fields>
         <fullName>StartDate__c</fullName>
-        <externalId>false</externalId>
         <description>The date this person became affiliated with this organization.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date this person became affiliated with this organization.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
@@ -197,8 +197,8 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <externalId>false</externalId>
         <description>Indicates whether this is a current or former Affiliation.</description>
+        <externalId>false</externalId>
         <inlineHelpText>Indicates whether this is a current or former Affiliation.</inlineHelpText>
         <label>Status</label>
         <required>false</required>

@@ -56,7 +56,7 @@
         <label>HEDA Program Enrollment Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>A student Contact's enrollment in an academic program offered by a Department or School (the degree-granting Account type for the educational institution).</description>
+    <description>A student Contact&apos;s enrollment in an academic program offered by a Department or School (the degree-granting Account type for the educational institution).</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -81,8 +81,8 @@
     </fields>
     <fields>
         <fullName>Admission_Date__c</fullName>
-        <externalId>false</externalId>
         <description>The date the student was admitted to the Program.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date the student was admitted to the Program.</inlineHelpText>
         <label>Admission Date</label>
         <required>false</required>
@@ -92,9 +92,9 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. </description>
+        <description>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program.</description>
         <externalId>false</externalId>
-        <inlineHelpText>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. </inlineHelpText>
+        <inlineHelpText>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program.</inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
@@ -105,8 +105,8 @@
     </fields>
     <fields>
         <fullName>Application_Submitted_Date__c</fullName>
-        <externalId>false</externalId>
         <description>The date the student applied for admission to the Program.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date the student applied for admission to the Program.</inlineHelpText>
         <label>Application Submitted Date</label>
         <required>false</required>
@@ -115,8 +115,8 @@
     </fields>
     <fields>
         <fullName>Class_Standing__c</fullName>
-        <externalId>false</externalId>
         <description>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</inlineHelpText>
         <label>Class Standing</label>
         <required>false</required>
@@ -164,8 +164,8 @@
     </fields>
     <fields>
         <fullName>Credits_Attempted__c</fullName>
-        <externalId>false</externalId>
         <description>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</inlineHelpText>
         <label>Credits Attempted</label>
         <precision>6</precision>
@@ -177,8 +177,8 @@
     </fields>
     <fields>
         <fullName>Credits_Earned__c</fullName>
-        <externalId>false</externalId>
         <description>The number of credits the student has successfully completed to date.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The number of credits the student has successfully completed to date.</inlineHelpText>
         <label>Credits Earned</label>
         <precision>6</precision>
@@ -192,16 +192,16 @@
         <fullName>Eligible_to_Enroll__c</fullName>
         <defaultValue>false</defaultValue>
         <description>When selected, indicates the student has met program requirements and is eligible to enroll.</description>
-        <inlineHelpText>When selected, indicates the student has met program requirements and is eligible to enroll.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>When selected, indicates the student has met program requirements and is eligible to enroll.</inlineHelpText>
         <label>Eligible to Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>End_Date__c</fullName>
-        <externalId>false</externalId>
         <description>The date the student is scheduled to complete the Program.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date the student is scheduled to complete the Program.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
@@ -210,8 +210,8 @@
     </fields>
     <fields>
         <fullName>Enrollment_Status__c</fullName>
-        <externalId>false</externalId>
         <description>The student&apos;s enrollment status, for example, full-time or half-time.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The student&apos;s enrollment status, for example, full-time or half-time.</inlineHelpText>
         <label>Enrollment Status</label>
         <required>false</required>
@@ -240,8 +240,8 @@
     </fields>
     <fields>
         <fullName>GPA__c</fullName>
-        <externalId>false</externalId>
         <description>The student&apos;s current grade point average.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The student&apos;s current grade point average.</inlineHelpText>
         <label>GPA</label>
         <precision>4</precision>
@@ -254,8 +254,8 @@
     <fields>
         <fullName>Graduation_Year__c</fullName>
         <description>The year the student is expected to graduate from this Program.</description>
-        <inlineHelpText>The year the student is expected to graduate from this Program.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>The year the student is expected to graduate from this Program.</inlineHelpText>
         <label>Class Year</label>
         <length>250</length>
         <required>false</required>
@@ -279,8 +279,8 @@
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
-        <externalId>false</externalId>
         <description>The date the student started, or is expected to start, this Program.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date the student started, or is expected to start, this Program.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
