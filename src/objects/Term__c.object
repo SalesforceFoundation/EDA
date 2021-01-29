@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,13 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,7 +75,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -37,11 +103,41 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -60,14 +156,16 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Account__c</fullName>
-        <externalId>false</externalId>
         <description>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
@@ -81,8 +179,8 @@
     </fields>
     <fields>
         <fullName>End_Date__c</fullName>
-        <externalId>false</externalId>
         <description>The date this Term ends.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date this Term ends.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
@@ -92,8 +190,8 @@
     <fields>
         <fullName>Grading_Period_Sequence__c</fullName>
         <description>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</description>
-        <inlineHelpText>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</inlineHelpText>
         <label>Grading Period Sequence</label>
         <precision>18</precision>
         <required>false</required>
@@ -105,8 +203,8 @@
     <fields>
         <fullName>Instructional_Days__c</fullName>
         <description>The total number of instructional days in this Term.</description>
-        <inlineHelpText>The total number of instructional days in this Term.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>The total number of instructional days in this Term.</inlineHelpText>
         <label>Instructional Days</label>
         <precision>16</precision>
         <required>false</required>
@@ -119,8 +217,8 @@
         <fullName>Parent_Term__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</description>
-        <inlineHelpText>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</inlineHelpText>
         <label>Parent Term</label>
         <referenceTo>Term__c</referenceTo>
         <relationshipLabel>Terms</relationshipLabel>
@@ -131,8 +229,8 @@
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
-        <externalId>false</externalId>
         <description>The date this Term starts.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date this Term starts.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
@@ -142,8 +240,8 @@
     <fields>
         <fullName>Type__c</fullName>
         <description>The type of Term, for example, Semester, Quarter, or School Year.</description>
-        <inlineHelpText>The type of Term, for example, Semester, Quarter, or School Year.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>The type of Term, for example, Semester, Quarter, or School Year.</inlineHelpText>
         <label>Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -187,4 +285,5 @@
     <pluralLabel>Terms</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

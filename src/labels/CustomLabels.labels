@@ -1364,7 +1364,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when Health Check can't find a mapping's Auto-Enrollment Status</shortDescription>
+        <shortDescription>Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status</shortDescription>
         <value>We can’t find the {0} picklist value.</value>
     </labels>
     <labels>
@@ -1412,8 +1412,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description when a mapping&apos;s Contact Primary Affiliation field isn't valid</shortDescription>
-        <value>{0} isn't a valid Contact field.</value>
+        <shortDescription>Description when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid</shortDescription>
+        <value>{0} isn&apos;t a valid Contact field.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContactPrimaryFieldNotUnique</fullName>

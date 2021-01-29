@@ -21,7 +21,6 @@
         <relationshipLabel><!-- Behavior Involvements --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- A description of a person&apos;s involvement in a behavior event. --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>

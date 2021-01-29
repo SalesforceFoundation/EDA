@@ -1,75 +1,71 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Percentile__c</name>
-    <help>Le rang centile de ce score.</help>
-    <label>Centile</label>
-  </fields>
-  <fields>
-    <name>Score__c</name>
-    <help>La valeur numérique du score reçu.</help>
-    <label>Score</label>
-  </fields>
-  <fields>
-    <name>Subject_Area__c</name>
-    <help>La matière ou catégorie de ce score au test.</help>
-    <label>Matière</label>
-    <picklistValues>
-      <masterLabel>Language</masterLabel>
-      <translation>Langue</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mathematics</masterLabel>
-      <translation>Mathématique</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Reading</masterLabel>
-      <translation>Lecture</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Science</masterLabel>
-      <translation>Sciences</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Writing</masterLabel>
-      <translation>Écriture</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Overall</masterLabel>
-      <translation>Général</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Test_Type__c</name>
-    <help>Affiche le nom du type de test, à partir de l'enregistrement Test associé, par exemple SAT ou GRE.</help>
-    <label>Type de test</label>
-  </fields>
-  <fields>
-    <name>Test__c</name>
-    <help>Le test pour lequel ce score est enregistré.</help>
-    <relationshipLabel>Scores au test</relationshipLabel>
-    <label>Test</label>
-  </fields>
-  <layouts>
-    <layout>EDA Test Score Layout</layout>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom du score au test</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom du score au test</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Score au test</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Scores au test</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Score au test</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Scores au test</value>
+    </caseValues>
+    <fields>
+        <help>Le rang centile de ce score.</help>
+        <label>Centile</label>
+        <name>Percentile__c</name>
+    </fields>
+    <fields>
+        <help>La valeur numérique du score reçu.</help>
+        <label>Score</label>
+        <name>Score__c</name>
+    </fields>
+    <fields>
+        <help>La matière ou catégorie de ce score au test.</help>
+        <label>Matière</label>
+        <name>Subject_Area__c</name>
+        <picklistValues>
+            <masterLabel>Language</masterLabel>
+            <translation>Langue</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mathematics</masterLabel>
+            <translation>Mathématique</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overall</masterLabel>
+            <translation>Général</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reading</masterLabel>
+            <translation>Lecture</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science</masterLabel>
+            <translation>Sciences</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Writing</masterLabel>
+            <translation>Écriture</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Affiche le nom du type de test, à partir de l&apos;enregistrement Test associé, par exemple SAT ou GRE.</help>
+        <label>Type de test</label>
+        <name>Test_Type__c</name>
+    </fields>
+    <fields>
+        <help>Le test pour lequel ce score est enregistré.</help>
+        <label>Test</label>
+        <name>Test__c</name>
+        <relationshipLabel>Scores au test</relationshipLabel>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Test Score Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du score au test</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

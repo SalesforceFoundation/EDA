@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,13 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,7 +75,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -37,11 +103,41 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -60,15 +156,17 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Account__c</fullName>
+        <description>The department (Account record) that offers this Course.</description>
         <externalId>false</externalId>
         <inlineHelpText>The department (Account record) that offers this Course.</inlineHelpText>
-        <description>The department (Account record) that offers this Course.</description>
         <label>Department</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Courses</relationshipLabel>
@@ -81,9 +179,9 @@
     </fields>
     <fields>
         <fullName>Course_ID__c</fullName>
+        <description>The Course alphanumeric ID., for example, English 101.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Course alphanumeric ID., for example, English 101.</inlineHelpText>
-        <description>The Course alphanumeric ID., for example, English 101.</description>
         <label>Course ID</label>
         <length>255</length>
         <required>false</required>
@@ -104,9 +202,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <description>This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses.</description>
         <externalId>false</externalId>
         <inlineHelpText>This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses.</inlineHelpText>
-        <description>This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses.</description>
         <label>Description</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -115,8 +213,8 @@
     <fields>
         <fullName>Extended_Description__c</fullName>
         <description>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</description>
-        <inlineHelpText>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</inlineHelpText>
         <label>Extended Description</label>
         <length>131072</length>
         <trackTrending>false</trackTrending>
@@ -136,4 +234,5 @@
     <pluralLabel>Courses</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

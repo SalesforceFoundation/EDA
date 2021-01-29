@@ -1,60 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Category__c</name>
-    <help>Geeft het vereistetype voor een plan aan, bijvoorbeeld optioneel of vereist.</help>
-    <label>Categorie</label>
-    <picklistValues>
-      <masterLabel>Required</masterLabel>
-      <translation>Verplicht</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Optional</masterLabel>
-      <translation>Optioneel</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Course__c</name>
-    <help>De cursus die aan deze planvereiste is gekoppeld. Laat leeg voor een bovenliggende planvereiste met geneste planvereisten.</help>
-    <relationshipLabel>Planvereisten</relationshipLabel>
-    <label>Cursus</label>
-  </fields>
-  <fields>
-    <name>Credits__c</name>
-    <help>Het aantal credits dat een student ontvangt voor het voldoen aan deze vereiste.</help>
-    <label>Credits</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Beschrijving</label>
-  </fields>
-  <fields>
-    <name>Plan_Requirement__c</name>
-    <help>Als de planvereiste een van meerdere vereisten of meerdere niveaus van vereisten is, moet de bovenliggende planvereiste worden gespecificeerd. Gebruik dit veld om een lijst met optionele cursussen te groeperen die aan een algemene vereiste voldoen.</help>
-    <relationshipLabel>Planvereisten</relationshipLabel>
-    <label>Bovenliggende planvereiste</label>
-  </fields>
-  <fields>
-    <name>Program_Plan__c</name>
-    <help>Het programmaplan waarvoor deze vereiste geldt. Als u planvereisten groepeert onder een bovenliggende planvereiste, kunt u het beste alleen de planvereiste op het bovenste niveau aan een programmaplan koppelen.</help>
-    <relationshipLabel>Planvereisten</relationshipLabel>
-    <label>Programmaplan</label>
-  </fields>
-  <fields>
-    <name>Sequence__c</name>
-    <help>De plek van deze vereiste in het programmaplan. '1' geeft bijv. het eerste semester aan. Gebruik dit veld om de algehele progressie voor het hele programmaplan aan te geven of om de volgorde van subvereisten in één bovenliggende planvereiste te sorteren.</help>
-    <label>Volgorde</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Plan Requirement Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Naam van planvereiste</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Naam van planvereiste</label>
-  </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Plan Requirement --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Plan Requirement --></value>
+    </caseValues>
+    <fields>
+        <help>Geeft het vereistetype voor een plan aan, bijvoorbeeld optioneel of vereist.</help>
+        <label>Categorie</label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Optional</masterLabel>
+            <translation>Optioneel</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation>Verplicht</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>De cursus die aan deze planvereiste is gekoppeld. Laat leeg voor een bovenliggende planvereiste met geneste planvereisten.</help>
+        <label>Cursus</label>
+        <name>Course__c</name>
+        <relationshipLabel>Planvereisten</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Het aantal credits dat een student ontvangt voor het voldoen aan deze vereiste.</help>
+        <label>Credits</label>
+        <name>Credits__c</name>
+    </fields>
+    <fields>
+        <label>Beschrijving</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>Als de planvereiste een van meerdere vereisten of meerdere niveaus van vereisten is, moet de bovenliggende planvereiste worden gespecificeerd. Gebruik dit veld om een lijst met optionele cursussen te groeperen die aan een algemene vereiste voldoen.</help>
+        <label>Bovenliggende planvereiste</label>
+        <name>Plan_Requirement__c</name>
+        <relationshipLabel>Planvereisten</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Het programmaplan waarvoor deze vereiste geldt. Als u planvereisten groepeert onder een bovenliggende planvereiste, kunt u het beste alleen de planvereiste op het bovenste niveau aan een programmaplan koppelen.</help>
+        <label>Programmaplan</label>
+        <name>Program_Plan__c</name>
+        <relationshipLabel>Planvereisten</relationshipLabel>
+    </fields>
+    <fields>
+        <help>De plek van deze vereiste in het programmaplan. &apos;1&apos; geeft bijv. het eerste semester aan. Gebruik dit veld om de algehele progressie voor het hele programmaplan aan te geven of om de volgorde van subvereisten in één bovenliggende planvereiste te sorteren.</help>
+        <label>Volgorde</label>
+        <name>Sequence__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>HEDA Plan Requirement Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Naam van planvereiste</nameFieldLabel>
 </CustomObjectTranslation>

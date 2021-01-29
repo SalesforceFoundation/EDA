@@ -1,118 +1,114 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Behavior_Involvement__c</name>
-    <help>Der Datensatz "Beteiligung am Vorfall" für diese Vorfallreaktion.</help>
-    <relationshipLabel>Vorfallreaktion</relationshipLabel>
-    <label>Beteiligung am Vorfall</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>Der Empfänger dieser Vorfallreaktion (schreibgeschützt).</help>
-    <label>Kontakt</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Beschreibung</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>Das Datum, ab dem die Reaktion nicht mehr in Kraft ist.</help>
-    <label>Enddatum</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>Das Datum, an dem die Reaktion in Kraft tritt.</help>
-    <label>Startdatum</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <label>Status</label>
-    <picklistValues>
-      <masterLabel>Completed</masterLabel>
-      <translation>Abgeschlossen</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>In Progress</masterLabel>
-      <translation>In Bearbeitung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Postponed</masterLabel>
-      <translation>Verschoben</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Sonstiges</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Type__c</name>
-    <help>Die Reaktion auf den Verhaltensvorfall, z. B. "Akademische Bewährung", "Verweis" oder "Sonstiges".</help>
-    <label>Typ</label>
-    <picklistValues>
-      <masterLabel>Academic Probation</masterLabel>
-      <translation>Akademische Bewährung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Expulsion</masterLabel>
-      <translation>Verweis</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Sonstiges</translation>
-    </picklistValues>
-  </fields>
-  <layouts>
-    <layout>EDA Behavior Response Layout</layout>
-    <sections>
-      <label>Benutzerdefinierte Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Name der Vorfallreaktion</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Name der Vorfallreaktion</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <value>Vorfallreaktion</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Accusative</caseType>
-    <value>Vorfallreaktion</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Dative</caseType>
-    <value>Vorfallreaktion</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <value>Vorfallreaktion</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <value>Vorfallreaktionen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Accusative</caseType>
-    <value>Vorfallreaktionen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Dative</caseType>
-    <value>Vorfallreaktionen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <value>Vorfallreaktionen</value>
-  </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Vorfallreaktion</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Vorfallreaktionen</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Vorfallreaktion</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Vorfallreaktionen</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Vorfallreaktion</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Vorfallreaktionen</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Vorfallreaktion</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Vorfallreaktionen</value>
+    </caseValues>
+    <fields>
+        <help>Der Datensatz &quot;Beteiligung am Vorfall&quot; für diese Vorfallreaktion.</help>
+        <label>Beteiligung am Vorfall</label>
+        <name>Behavior_Involvement__c</name>
+        <relationshipLabel>Vorfallreaktion</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Der Empfänger dieser Vorfallreaktion (schreibgeschützt).</help>
+        <label>Kontakt</label>
+        <name>Contact__c</name>
+    </fields>
+    <fields>
+        <label>Beschreibung</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>Das Datum, ab dem die Reaktion nicht mehr in Kraft ist.</help>
+        <label>Enddatum</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>Das Datum, an dem die Reaktion in Kraft tritt.</help>
+        <label>Startdatum</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label>Status</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation>Abgeschlossen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation>In Bearbeitung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Sonstiges</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Postponed</masterLabel>
+            <translation>Verschoben</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Die Reaktion auf den Verhaltensvorfall, z. B. &quot;Akademische Bewährung&quot;, &quot;Verweis&quot; oder &quot;Sonstiges&quot;.</help>
+        <label>Typ</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Academic Probation</masterLabel>
+            <translation>Akademische Bewährung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expulsion</masterLabel>
+            <translation>Verweis</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Sonstiges</translation>
+        </picklistValues>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>EDA Behavior Response Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Name der Vorfallreaktion</nameFieldLabel>
 </CustomObjectTranslation>

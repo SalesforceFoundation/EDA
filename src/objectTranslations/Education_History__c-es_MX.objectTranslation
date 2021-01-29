@@ -1,268 +1,264 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <relationshipLabel>Historial educativo</relationshipLabel>
-    <label>Cuenta de institución educativa</label>
-  </fields>
-  <fields>
-    <name>Class_Percentile__c</name>
-    <help>La clasificación de percentil del estudiante para su clase. Por ejemplo, un estudiante con una clasificación en los principales del 10% tiene un valor del 90%.</help>
-    <label>Percentil de clase</label>
-  </fields>
-  <fields>
-    <name>Class_Rank_Scale__c</name>
-    <help>Realiza un seguimiento del modo de determinar el percentil de la clase. Por ejemplo, usando exacta, decil, quintil o cuartil.</help>
-    <label>Escala de clasificación de clase</label>
-    <picklistValues>
-      <masterLabel>Exact</masterLabel>
-      <translation>Exacta</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Decile</masterLabel>
-      <translation>Decil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Quintile</masterLabel>
-      <translation>Quintil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Quartile</masterLabel>
-      <translation>Cuartil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>None</masterLabel>
-      <translation>Ninguno</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Class_Rank_Type__c</name>
-    <help>Realiza un seguimiento del modo de determinar la clasificación de la clase. Por ejemplo, usando una escala ponderada o sin ponderar.</help>
-    <label>Tipo de clasificación de clase</label>
-    <picklistValues>
-      <masterLabel>Unweighted</masterLabel>
-      <translation>Sin ponderar</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Weighted</masterLabel>
-      <translation>Ponderado</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Class_Rank__c</name>
-    <help>La clasificación académica del estudiante en relación con su clase de graduación. Por ejemplo, un estudiante con una clasificación 5ta en la clase de 200, tiene un valor de 5.</help>
-    <label>Clasificación de clase</label>
-  </fields>
-  <fields>
-    <name>Class_Size__c</name>
-    <help>El número de estudiantes que estuvieron en la clase del contacto.</help>
-    <label>Tamaño de clase</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>El contacto relacionado con estos datos históricos.</help>
-    <relationshipLabel>Historial educativo</relationshipLabel>
-    <label>Contacto</label>
-  </fields>
-  <fields>
-    <name>Degree_Earned__c</name>
-    <help>Si se aplica, el nivel del título que obtuvo el contacto en esta institución educativa.</help>
-    <label>Título obtenido</label>
-    <picklistValues>
-      <masterLabel>GED</masterLabel>
-      <translation>Bachillerato</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>High School Diploma</masterLabel>
-      <translation>Diploma de escuela secundaria</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AA</masterLabel>
-      <translation>AA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AS</masterLabel>
-      <translation>AS</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>BA</masterLabel>
-      <translation>BA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>BS</masterLabel>
-      <translation>BS</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MA</masterLabel>
-      <translation>MA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MBA</masterLabel>
-      <translation>MBA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MS</masterLabel>
-      <translation>MS</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>JD</masterLabel>
-      <translation>JD</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MD</masterLabel>
-      <translation>MD</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>PhD</masterLabel>
-      <translation>PhD</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Otro</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Details__c</name>
-    <help>Detalles adicionales sobre el historial educativo de este estudiante.</help>
-    <label>Detalles</label>
-  </fields>
-  <fields>
-    <name>Education_History_JSON__c</name>
-    <label>JSON de historial educativo</label>
-  </fields>
-  <fields>
-    <name>Educational_Institution_Name__c</name>
-    <label>Nombre de institución educativa</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>La fecha en la que el contacto abandonó esta institución educativa.</help>
-    <label>Fecha de finalización</label>
-  </fields>
-  <fields>
-    <name>GPA_Scale_Reporting__c</name>
-    <help>La media del punto de calificación más alta posible en esta institución educativa.</help>
-    <label>Reporte de escala promedio</label>
-    <picklistValues>
-      <masterLabel>4</masterLabel>
-      <translation>4</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>5</masterLabel>
-      <translation>5</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>6</masterLabel>
-      <translation>6</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>7</masterLabel>
-      <translation>7</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>8</masterLabel>
-      <translation>8</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>9</masterLabel>
-      <translation>9</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>10</masterLabel>
-      <translation>10</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>11</masterLabel>
-      <translation>11</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>12</masterLabel>
-      <translation>12</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>13</masterLabel>
-      <translation>13</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>14</masterLabel>
-      <translation>14</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>15</masterLabel>
-      <translation>15</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>16</masterLabel>
-      <translation>16</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>17</masterLabel>
-      <translation>17</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>18</masterLabel>
-      <translation>18</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>19</masterLabel>
-      <translation>19</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>20</masterLabel>
-      <translation>20</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>100</masterLabel>
-      <translation>100</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA_Scale_Type__c</name>
-    <help>Realiza un seguimiento del modo de determinar el promedio. Por ejemplo, usando una escala ponderada o sin ponderar.</help>
-    <label>Tipo de escala promedio</label>
-    <picklistValues>
-      <masterLabel>Unweighted</masterLabel>
-      <translation>Sin ponderar</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Weighted</masterLabel>
-      <translation>Ponderado</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA__c</name>
-    <help>El promedio académico final del contacto.</help>
-    <label>Promedio</label>
-  </fields>
-  <fields>
-    <name>Graduation_Date__c</name>
-    <help>Si se aplica, la fecha en la que el contacto se graduó en esta institución educativa.</help>
-    <label>Fecha de graduación</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>La fecha en la que el contacto empezó en esta institución educativa.</help>
-    <label>Fecha de inicio</label>
-  </fields>
-  <layouts>
-    <layout>EDA Education History Layout</layout>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nombre de historial educativo</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nombre de historial educativo</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Historial educativo</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Historiales educativos</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Historial educativo</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Historiales educativos</value>
+    </caseValues>
+    <fields>
+        <label>Cuenta de institución educativa</label>
+        <name>Account__c</name>
+        <relationshipLabel>Historial educativo</relationshipLabel>
+    </fields>
+    <fields>
+        <help>La clasificación de percentil del estudiante para su clase. Por ejemplo, un estudiante con una clasificación en los principales del 10% tiene un valor del 90%.</help>
+        <label>Percentil de clase</label>
+        <name>Class_Percentile__c</name>
+    </fields>
+    <fields>
+        <help>Realiza un seguimiento del modo de determinar el percentil de la clase. Por ejemplo, usando exacta, decil, quintil o cuartil.</help>
+        <label>Escala de clasificación de clase</label>
+        <name>Class_Rank_Scale__c</name>
+        <picklistValues>
+            <masterLabel>Decile</masterLabel>
+            <translation>Decil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exact</masterLabel>
+            <translation>Exacta</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation>Ninguno</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quartile</masterLabel>
+            <translation>Cuartil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quintile</masterLabel>
+            <translation>Quintil</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Realiza un seguimiento del modo de determinar la clasificación de la clase. Por ejemplo, usando una escala ponderada o sin ponderar.</help>
+        <label>Tipo de clasificación de clase</label>
+        <name>Class_Rank_Type__c</name>
+        <picklistValues>
+            <masterLabel>Unweighted</masterLabel>
+            <translation>Sin ponderar</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weighted</masterLabel>
+            <translation>Ponderado</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>La clasificación académica del estudiante en relación con su clase de graduación. Por ejemplo, un estudiante con una clasificación 5ta en la clase de 200, tiene un valor de 5.</help>
+        <label>Clasificación de clase</label>
+        <name>Class_Rank__c</name>
+    </fields>
+    <fields>
+        <help>El número de estudiantes que estuvieron en la clase del contacto.</help>
+        <label>Tamaño de clase</label>
+        <name>Class_Size__c</name>
+    </fields>
+    <fields>
+        <help>El contacto relacionado con estos datos históricos.</help>
+        <label>Contacto</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Historial educativo</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Si se aplica, el nivel del título que obtuvo el contacto en esta institución educativa.</help>
+        <label>Título obtenido</label>
+        <name>Degree_Earned__c</name>
+        <picklistValues>
+            <masterLabel>AA</masterLabel>
+            <translation>AA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AS</masterLabel>
+            <translation>AS</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BA</masterLabel>
+            <translation>BA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BS</masterLabel>
+            <translation>BS</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GED</masterLabel>
+            <translation>Bachillerato</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High School Diploma</masterLabel>
+            <translation>Diploma de escuela secundaria</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JD</masterLabel>
+            <translation>JD</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation>MA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBA</masterLabel>
+            <translation>MBA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation>MD</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation>MS</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Otro</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PhD</masterLabel>
+            <translation>PhD</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Detalles adicionales sobre el historial educativo de este estudiante.</help>
+        <label>Detalles</label>
+        <name>Details__c</name>
+    </fields>
+    <fields>
+        <label>JSON de historial educativo</label>
+        <name>Education_History_JSON__c</name>
+    </fields>
+    <fields>
+        <label>Nombre de institución educativa</label>
+        <name>Educational_Institution_Name__c</name>
+    </fields>
+    <fields>
+        <help>La fecha en la que el contacto abandonó esta institución educativa.</help>
+        <label>Fecha de finalización</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>La media del punto de calificación más alta posible en esta institución educativa.</help>
+        <label>Reporte de escala promedio</label>
+        <name>GPA_Scale_Reporting__c</name>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation>10</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100</masterLabel>
+            <translation>100</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation>11</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation>12</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13</masterLabel>
+            <translation>13</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14</masterLabel>
+            <translation>14</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation>15</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16</masterLabel>
+            <translation>16</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17</masterLabel>
+            <translation>17</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18</masterLabel>
+            <translation>18</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19</masterLabel>
+            <translation>19</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation>20</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation>4</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation>5</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation>6</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation>7</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation>8</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation>9</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Realiza un seguimiento del modo de determinar el promedio. Por ejemplo, usando una escala ponderada o sin ponderar.</help>
+        <label>Tipo de escala promedio</label>
+        <name>GPA_Scale_Type__c</name>
+        <picklistValues>
+            <masterLabel>Unweighted</masterLabel>
+            <translation>Sin ponderar</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weighted</masterLabel>
+            <translation>Ponderado</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>El promedio académico final del contacto.</help>
+        <label>Promedio</label>
+        <name>GPA__c</name>
+    </fields>
+    <fields>
+        <help>Si se aplica, la fecha en la que el contacto se graduó en esta institución educativa.</help>
+        <label>Fecha de graduación</label>
+        <name>Graduation_Date__c</name>
+    </fields>
+    <fields>
+        <help>La fecha en la que el contacto empezó en esta institución educativa.</help>
+        <label>Fecha de inicio</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Education History Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de historial educativo</nameFieldLabel>
 </CustomObjectTranslation>

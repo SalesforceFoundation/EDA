@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account_Record_Type__c</name>
-    <help>The label of the Account record type that's being mapped.</help>
-    <label>Account Record Type</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Role__c</name>
-    <help>The role to set on the Program Enrolment record that's automatically created if Auto Program Enrolment is selected.</help>
-    <label>Auto Enrolment Role</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Status__c</name>
-    <help>The status to set on the Program Enrolment record that's automatically created if Auto Program Enrolment is selected.</help>
-    <label>Auto Enrolment Status</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment__c</name>
-    <help>If selected, a Program Enrolment record is auto created when a user creates an Affiliation record with an Account of this record type.</help>
-    <label>Auto Enrolment</label>
-  </fields>
-  <fields>
-    <name>Primary_Affl_Field__c</name>
-    <help>The label of the Contact field that holds the value of the primary Account for this record type.</help>
-    <label>Primary Affl Field</label>
-  </fields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <fields>
+        <help>The label of the Account record type that&apos;s being mapped.</help>
+        <label>Account Record Type</label>
+        <name>Account_Record_Type__c</name>
+    </fields>
+    <fields>
+        <help>The role to set on the Program Enrolment record that&apos;s automatically created if Auto Program Enrolment is selected.</help>
+        <label>Auto Enrolment Role</label>
+        <name>Auto_Program_Enrollment_Role__c</name>
+    </fields>
+    <fields>
+        <help>The status to set on the Program Enrolment record that&apos;s automatically created if Auto Program Enrolment is selected.</help>
+        <label>Auto Enrolment Status</label>
+        <name>Auto_Program_Enrollment_Status__c</name>
+    </fields>
+    <fields>
+        <help>If selected, a Program Enrolment record is auto created when a user creates an Affiliation record with an Account of this record type.</help>
+        <label>Auto Enrolment</label>
+        <name>Auto_Program_Enrollment__c</name>
+    </fields>
+    <fields>
+        <help>The label of the Contact field that holds the value of the primary Account for this record type.</help>
+        <label>Primary Affl Field</label>
+        <name>Primary_Affl_Field__c</name>
+    </fields>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

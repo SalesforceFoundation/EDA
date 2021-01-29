@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,13 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,7 +75,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -37,11 +103,41 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -62,10 +158,12 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -83,7 +181,7 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment's Affiliation. If both conditions aren&apos;t true, then this Affiliation field is left blank.</description>
+        <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment&apos;s Affiliation. If both conditions aren&apos;t true, then this Affiliation field is left blank.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</inlineHelpText>
         <label>Affiliation</label>
@@ -124,8 +222,8 @@
     </fields>
     <fields>
         <fullName>Credits_Attempted__c</fullName>
-        <externalId>false</externalId>
         <description>The number of credits the student is trying to earn through this Course Offering.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The number of credits the student is trying to earn through this Course Offering.</inlineHelpText>
         <label>Credits Attempted</label>
         <precision>6</precision>
@@ -137,8 +235,8 @@
     </fields>
     <fields>
         <fullName>Credits_Earned__c</fullName>
-        <externalId>false</externalId>
         <description>The number of credits the student earned by completing this Course Offering.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The number of credits the student earned by completing this Course Offering.</inlineHelpText>
         <label>Credits Earned</label>
         <precision>6</precision>
@@ -150,8 +248,8 @@
     </fields>
     <fields>
         <fullName>Grade__c</fullName>
-        <externalId>false</externalId>
         <description>The numeric grade the student earned in this Course Offering.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The numeric grade the student earned in this Course Offering.</inlineHelpText>
         <label>Grade</label>
         <precision>6</precision>
@@ -174,7 +272,7 @@
     <fields>
         <fullName>Program_Enrollment__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student's academic major.</description>
+        <description>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</description>
         <externalId>false</externalId>
         <inlineHelpText>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</inlineHelpText>
         <label>Program Enrollment ID</label>
@@ -222,6 +320,58 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Course Connections</pluralLabel>
+    <recordTypes>
+        <fullName>Default</fullName>
+        <active>true</active>
+        <description>A Default Record Type for use in testing. This Record Type should only be enabled and visible for System Administrators.</description>
+        <label>Default</label>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Current</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Former</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Faculty</fullName>
+        <active>true</active>
+        <description>A Faculty Course Connection</description>
+        <label>Faculty</label>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Current</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Former</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Student</fullName>
+        <active>true</active>
+        <description>A Student Course Connection</description>
+        <label>Student</label>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Current</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Former</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

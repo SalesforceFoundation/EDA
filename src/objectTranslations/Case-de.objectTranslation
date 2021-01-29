@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Category__c</name>
-    <help>Der Typ des nachverfolgten Falls.</help>
-    <label>Kategorie</label>
-    <picklistValues>
-      <masterLabel>School Code of Conduct</masterLabel>
-      <translation>Verhaltenskodex der Bildungseinrichtung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>School Violation</masterLabel>
-      <translation>Verstoß gegen Regeln der Bildungseinrichtung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>State Offense</masterLabel>
-      <translation>Gesetzesverstoß</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Sonstiges</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Location__c</name>
-    <help>Der Ort des Falls.</help>
-    <label>Ort</label>
-    <picklistValues>
-      <masterLabel>Off Campus</masterLabel>
-      <translation>Außerhalb der Bildungseinrichtung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>On Campus</masterLabel>
-      <translation>Innerhalb der Bildungseinrichtung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Sonstiges</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Occurrence_Date__c</name>
-    <help>Datum und Uhrzeit des Vorfalls, der den Fall ausgelöst hat.</help>
-    <label>Datum des Auftretens</label>
-  </fields>
-  <layouts>
-    <layout>EDA Incident Layout</layout>
-    <sections>
-      <label>Felder</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Benutzerdefinierte Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
+    <fields>
+        <help>Der Typ des nachverfolgten Falls.</help>
+        <label>Kategorie</label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Sonstiges</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Code of Conduct</masterLabel>
+            <translation>Verhaltenskodex der Bildungseinrichtung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Violation</masterLabel>
+            <translation>Verstoß gegen Regeln der Bildungseinrichtung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>State Offense</masterLabel>
+            <translation>Gesetzesverstoß</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Der Ort des Falls.</help>
+        <label>Ort</label>
+        <name>Location__c</name>
+        <picklistValues>
+            <masterLabel>Off Campus</masterLabel>
+            <translation>Außerhalb der Bildungseinrichtung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Campus</masterLabel>
+            <translation>Innerhalb der Bildungseinrichtung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Sonstiges</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Datum und Uhrzeit des Vorfalls, der den Fall ausgelöst hat.</help>
+        <label>Datum des Auftretens</label>
+        <name>Occurrence_Date__c</name>
+    </fields>
+    <layouts>
+        <layout>EDA Incident Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Felder</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
 </CustomObjectTranslation>

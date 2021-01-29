@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,13 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,7 +75,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -37,11 +103,41 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -62,10 +158,12 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -83,10 +181,10 @@
     </fields>
     <fields>
         <fullName>Affiliation_Type__c</fullName>
-        <externalId>false</externalId>
         <description>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</description>
-        <inlineHelpText>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</inlineHelpText>
+        <externalId>false</externalId>
         <formula>Account__r.RecordType.Name</formula>
+        <inlineHelpText>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</inlineHelpText>
         <label>Affiliation Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -111,8 +209,8 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <externalId>false</externalId>
         <description>Details of how the person and organization are affiliated.</description>
+        <externalId>false</externalId>
         <inlineHelpText>Details of how the person and organization are affiliated.</inlineHelpText>
         <label>Description</label>
         <length>32000</length>
@@ -123,8 +221,8 @@
     </fields>
     <fields>
         <fullName>EndDate__c</fullName>
-        <externalId>false</externalId>
         <description>The date this Affiliation ended or will end.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date this Affiliation ended or will end.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
@@ -145,8 +243,8 @@
     </fields>
     <fields>
         <fullName>Role__c</fullName>
-        <externalId>false</externalId>
         <description>The role this person has with the organization.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The role this person has with the organization.</inlineHelpText>
         <label>Role</label>
         <required>false</required>
@@ -186,8 +284,8 @@
     </fields>
     <fields>
         <fullName>StartDate__c</fullName>
-        <externalId>false</externalId>
         <description>The date this person became affiliated with this organization.</description>
+        <externalId>false</externalId>
         <inlineHelpText>The date this person became affiliated with this organization.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
@@ -197,8 +295,8 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <externalId>false</externalId>
         <description>Indicates whether this is a current or former Affiliation.</description>
+        <externalId>false</externalId>
         <inlineHelpText>Indicates whether this is a current or former Affiliation.</inlineHelpText>
         <label>Status</label>
         <required>false</required>
@@ -236,4 +334,5 @@
     <pluralLabel>Affiliations</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

@@ -617,11 +617,11 @@
         <name>stgHCAccountRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label><!-- Description for an Affiliation mapping in Settings Health Check results --></label>
         <name>stgHCAffiliationMappingSettingDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label><!-- Row heading for an Affiliation mapping in Settings Health Check results --></label>
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
@@ -685,7 +685,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <label><!-- Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
@@ -773,7 +773,7 @@
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <label><!-- Course Connections group title in Settings Health Check results --></label>
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -785,11 +785,11 @@
         <name>stgHCPicklistValueNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label><!-- Description when Health Check finds a picklist value valid --></label>
         <name>stgHCPicklistValueValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label><!-- Description for a reciprocal setting in Settings Health Check results --></label>
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
@@ -857,7 +857,7 @@
         <name>stgHCReciprocalRelNeutralTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label><!-- Row heading for a reciprocal setting in Settings Health Check results --></label>
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
     <customLabels>
@@ -873,19 +873,19 @@
         <name>stgHCRecordTypeValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <label><!-- Account Model group title in Settings Health Check results --></label>
         <name>stgHealthCheckAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+        <label><!-- Affiliation Mappings group title in Settings Health Check results --></label>
         <name>stgHealthCheckAffiliationMappings</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component description --></label>
+        <label><!-- Settings Health Check component description --></label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t show the last run date --></label>
+        <label><!-- Error when Settings Health Check can&apos;t show the last run date --></label>
         <name>stgHealthCheckErrorLastRunDate</name>
     </customLabels>
     <customLabels>
@@ -893,31 +893,31 @@
         <name>stgHealthCheckFixNotApplicable</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check last run date --></label>
+        <label><!-- Settings Health Check last run date --></label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <label><!-- Text indicating that a Settings Health Check component is loading --></label>
         <name>stgHealthCheckLoadingIndicator</name>
     </customLabels>
     <customLabels>
-        <label><!-- Reciprocal Relationships group title in EDA Settings Health Check results --></label>
+        <label><!-- Reciprocal Relationships group title in Settings Health Check results --></label>
         <name>stgHealthCheckReciprocalRelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
+        <label><!-- Recommended Fix column header in Settings Health Check results --></label>
         <name>stgHealthCheckRecoFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
+        <label><!-- Alt text for the icon to collapse Settings Health Check results --></label>
         <name>stgHealthCheckResultsCollapse</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <label><!-- Description column header in Settings Health Check results --></label>
         <name>stgHealthCheckResultsDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to expand EDA Settings Health Check results --></label>
+        <label><!-- Alt text for the icon to expand Settings Health Check results --></label>
         <name>stgHealthCheckResultsExpand</name>
     </customLabels>
     <customLabels>
@@ -925,39 +925,39 @@
         <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
+        <label><!-- Error when Settings Health Check can&apos;t be run --></label>
         <name>stgHealthCheckRunError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Setting column header in EDA Settings Health Check results --></label>
+        <label><!-- Setting column header in Settings Health Check results --></label>
         <name>stgHealthCheckSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status column header in EDA Settings Health Check results --></label>
+        <label><!-- Status column header in Settings Health Check results --></label>
         <name>stgHealthCheckStatus</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
+        <label><!-- Status text in Settings Health Check results when a check failed --></label>
         <name>stgHealthCheckStatusFailed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
+        <label><!-- Status text in Settings Health Check results when a check passed --></label>
         <name>stgHealthCheckStatusPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <label><!-- Status text in Settings Health Check results when a check prompts a warning --></label>
         <name>stgHealthCheckStatusWarning</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label><!-- Settings Health Check component title --></label>
         <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
+        <label><!-- Text in Settings Health Check results when all checks within a group passed --></label>
         <name>stgHealthChecksAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results shows group&apos;s passed and total checks --></label>
+        <label><!-- Text in Settings Health Check results shows group&apos;s passed and total checks --></label>
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
@@ -1358,4 +1358,65 @@
         <label>EDA 設定</label>
         <name>HEDA_Settings</name>
     </customTabs>
+    <customTabs>
+        <label><!-- Settings Health Check --></label>
+        <name>Settings_Health_Check</name>
+    </customTabs>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- Screen Flows --></description>
+        <label><!-- Screen Flows --></label>
+        <name>screen_flows_prebuilt_crt</name>
+        <sections>
+            <label><!-- Flow Interview Log Entries --></label>
+            <name>Flow Interview Log Entries</name>
+        </sections>
+        <sections>
+            <label><!-- Flow Interview Logs --></label>
+            <name>Flow Interview Logs</name>
+        </sections>
+    </reportTypes>
 </Translations>

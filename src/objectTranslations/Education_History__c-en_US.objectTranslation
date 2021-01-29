@@ -14,10 +14,12 @@
         <relationshipLabel><!-- Education History --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value. --></help>
         <label><!-- Class Percentile --></label>
         <name>Class_Percentile__c</name>
     </fields>
     <fields>
+        <help><!-- Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile. --></help>
         <label><!-- Class Rank Scale --></label>
         <name>Class_Rank_Scale__c</name>
         <picklistValues>
@@ -42,6 +44,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Tracks how the Class Rank was determined. For example, using a weighted or unweighted scale. --></help>
         <label><!-- Class Rank Type --></label>
         <name>Class_Rank_Type__c</name>
         <picklistValues>
@@ -54,19 +57,23 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- The student&apos;s academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5. --></help>
         <label><!-- Class Rank --></label>
         <name>Class_Rank__c</name>
     </fields>
     <fields>
+        <help><!-- The number of students that were in the Contact&apos;s class. --></help>
         <label><!-- Class Size --></label>
         <name>Class_Size__c</name>
     </fields>
     <fields>
+        <help><!-- The Contact related to this historical data. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Education History --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- If applicable, the level of the degree the Contact earned at this Educational Institution. --></help>
         <label><!-- Degree Earned --></label>
         <name>Degree_Earned__c</name>
         <picklistValues>
@@ -123,6 +130,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Additional details about this student&apos;s educational history. --></help>
         <label><!-- Details --></label>
         <name>Details__c</name>
     </fields>
@@ -140,6 +148,7 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
+        <help><!-- The highest possible grade point average at this Educational Institution. --></help>
         <label><!-- GPA Scale Reporting --></label>
         <name>GPA_Scale_Reporting__c</name>
         <picklistValues>
@@ -216,6 +225,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Tracks how the GPA was determined. For example, using a weighted or unweighted scale. --></help>
         <label><!-- GPA Scale Type --></label>
         <name>GPA_Scale_Type__c</name>
         <picklistValues>
@@ -228,6 +238,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- The Contact&apos;s final grade point average. --></help>
         <label><!-- GPA --></label>
         <name>GPA__c</name>
     </fields>

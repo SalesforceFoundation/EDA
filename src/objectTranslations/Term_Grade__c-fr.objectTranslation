@@ -1,116 +1,112 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>L’étudiant pour qui la note est enregistrée. Lorsqu’il est laissé vide, le champ Contact est rempli automatiquement à partir de la connexion de cours valide lors de l’enregistrement.</help>
-    <relationshipLabel>Notes de la période</relationshipLabel>
-    <label>Contact</label>
-  </fields>
-  <fields>
-    <name>Course_Connection__c</name>
-    <help>Le cours dans lequel l’étudiant a reçu cette note. Les champs Contact et Offre de cours sur les notes à la classe doivent correspondre aux champs Contact et Offre de cours sur l’enregistrement de la connexion de cours.</help>
-    <relationshipLabel>Notes de la période</relationshipLabel>
-    <label>Connexion au cours</label>
-  </fields>
-  <fields>
-    <name>Course_Offering__c</name>
-    <help>L’offre de cours associée à la note enregistrée. Lorsqu’il est laissé vide, le champ Offre de cours est rempli automatiquement à partir de la connexion de cours valide lors de l’enregistrement.</help>
-    <relationshipLabel>Notes de la période</relationshipLabel>
-    <label>Offre de cours</label>
-  </fields>
-  <fields>
-    <name>Credits_Attempted__c</name>
-    <help>Le nombre de crédits disponibles pour ce cours pendant cette période.</help>
-    <label>Crédits tentés</label>
-  </fields>
-  <fields>
-    <name>Credits_Earned__c</name>
-    <help>Le nombre de crédits que l'étudiant a obtenus pour ce cours pendant cette période.</help>
-    <label>Crédits obtenus</label>
-  </fields>
-  <fields>
-    <name>Letter_Grade__c</name>
-    <help>Si votre école utilise des lettres pour désigner les notes, saisissez la lettre que l'étudiant a obtenue, par exemple A, B, C, etc.</help>
-    <label>Note en lettre</label>
-  </fields>
-  <fields>
-    <name>Numerical_Grade__c</name>
-    <help>Si votre école utilise des chiffres pour désigner les notes, saisissez la note numérique que l'étudiant a obtenue.</help>
-    <label>Note numérique</label>
-  </fields>
-  <fields>
-    <name>Percent_Grade__c</name>
-    <help>Si votre école utilise des pourcentages pour désigner les notes, saisissez le pourcentage que l'étudiant a obtenu.</help>
-    <label>Note en pourcentage</label>
-  </fields>
-  <fields>
-    <name>Result__c</name>
-    <help>Le résultat de l'étudiant pendant cette période de notation.</help>
-    <label>Résultat</label>
-    <picklistValues>
-      <masterLabel>Audit</masterLabel>
-      <translation>Audit</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Dropped</masterLabel>
-      <translation>Abandon</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Fail</masterLabel>
-      <translation>Échec</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Pass</masterLabel>
-      <translation>Réussite</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Term_Grade_Type__c</name>
-    <help>Le type de période de notation à laquelle cette note correspond, par exemple Note intermédiaire, Note finale, Note à l'examen, Période de notation.</help>
-    <label>Type de note à la classe</label>
-    <picklistValues>
-      <masterLabel>Exam Grade</masterLabel>
-      <translation>Note à l'examen</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Final Grade</masterLabel>
-      <translation>Note finale</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grading Period</masterLabel>
-      <translation>Période de notation</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mid-Term Grade</masterLabel>
-      <translation>Note intermédiaire</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Term__c</name>
-    <help>Indique la période pendant laquelle l'étudiant a obtenu cette note.</help>
-    <relationshipLabel>Notes de la période</relationshipLabel>
-    <label>Période scolaire</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Term Grade Layout</layout>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom de la note à la classe</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom de la note à la classe</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Note de la période</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Notes de la période</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Note de la période</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Notes de la période</value>
+    </caseValues>
+    <fields>
+        <help>L’étudiant pour qui la note est enregistrée. Lorsqu’il est laissé vide, le champ Contact est rempli automatiquement à partir de la connexion de cours valide lors de l’enregistrement.</help>
+        <label>Contact</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Notes de la période</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Le cours dans lequel l’étudiant a reçu cette note. Les champs Contact et Offre de cours sur les notes à la classe doivent correspondre aux champs Contact et Offre de cours sur l’enregistrement de la connexion de cours.</help>
+        <label>Connexion au cours</label>
+        <name>Course_Connection__c</name>
+        <relationshipLabel>Notes de la période</relationshipLabel>
+    </fields>
+    <fields>
+        <help>L’offre de cours associée à la note enregistrée. Lorsqu’il est laissé vide, le champ Offre de cours est rempli automatiquement à partir de la connexion de cours valide lors de l’enregistrement.</help>
+        <label>Offre de cours</label>
+        <name>Course_Offering__c</name>
+        <relationshipLabel>Notes de la période</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Le nombre de crédits disponibles pour ce cours pendant cette période.</help>
+        <label>Crédits tentés</label>
+        <name>Credits_Attempted__c</name>
+    </fields>
+    <fields>
+        <help>Le nombre de crédits que l&apos;étudiant a obtenus pour ce cours pendant cette période.</help>
+        <label>Crédits obtenus</label>
+        <name>Credits_Earned__c</name>
+    </fields>
+    <fields>
+        <help>Si votre école utilise des lettres pour désigner les notes, saisissez la lettre que l&apos;étudiant a obtenue, par exemple A, B, C, etc.</help>
+        <label>Note en lettre</label>
+        <name>Letter_Grade__c</name>
+    </fields>
+    <fields>
+        <help>Si votre école utilise des chiffres pour désigner les notes, saisissez la note numérique que l&apos;étudiant a obtenue.</help>
+        <label>Note numérique</label>
+        <name>Numerical_Grade__c</name>
+    </fields>
+    <fields>
+        <help>Si votre école utilise des pourcentages pour désigner les notes, saisissez le pourcentage que l&apos;étudiant a obtenu.</help>
+        <label>Note en pourcentage</label>
+        <name>Percent_Grade__c</name>
+    </fields>
+    <fields>
+        <help>Le résultat de l&apos;étudiant pendant cette période de notation.</help>
+        <label>Résultat</label>
+        <name>Result__c</name>
+        <picklistValues>
+            <masterLabel>Audit</masterLabel>
+            <translation>Audit</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dropped</masterLabel>
+            <translation>Abandon</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation>Échec</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation>Réussite</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Le type de période de notation à laquelle cette note correspond, par exemple Note intermédiaire, Note finale, Note à l&apos;examen, Période de notation.</help>
+        <label>Type de note à la classe</label>
+        <name>Term_Grade_Type__c</name>
+        <picklistValues>
+            <masterLabel>Exam Grade</masterLabel>
+            <translation>Note à l&apos;examen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Grade</masterLabel>
+            <translation>Note finale</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grading Period</masterLabel>
+            <translation>Période de notation</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid-Term Grade</masterLabel>
+            <translation>Note intermédiaire</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Indique la période pendant laquelle l&apos;étudiant a obtenu cette note.</help>
+        <label>Période scolaire</label>
+        <name>Term__c</name>
+        <relationshipLabel>Notes de la période</relationshipLabel>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la note à la classe</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

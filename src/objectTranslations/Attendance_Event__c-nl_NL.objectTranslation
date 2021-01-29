@@ -1,104 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Arrival_Time__c</name>
-    <help>De tijd waarop een te late student aankwam.</help>
-    <label>Aankomsttijd</label>
-  </fields>
-  <fields>
-    <name>Attendance_Type__c</name>
-    <help>Geef aan of de student een hele dag of voor één lesperiode te laat of afwezig was.</help>
-    <label>Aanwezigheidstype</label>
-    <picklistValues>
-      <masterLabel>Class Absence</masterLabel>
-      <translation>Afwezig voor les</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Class Tardy</masterLabel>
-      <translation>Te laat voor les</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Day Absence</masterLabel>
-      <translation>Dag afwezig</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Day Tardy</masterLabel>
-      <translation>Dag te laat</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>De student die te laat of afwezig is.</help>
-    <relationshipLabel>Aanwezigheidsevents</relationshipLabel>
-    <label>Contactpersoon</label>
-  </fields>
-  <fields>
-    <name>Course_Connection__c</name>
-    <help>De les en de periode waarvoor de student te laat of afwezig was.</help>
-    <relationshipLabel>Aanwezigheidsevents</relationshipLabel>
-    <label>Cursusverbinding</label>
-  </fields>
-  <fields>
-    <name>Course_Name__c</name>
-    <help>De naam van de cursus waarvoor de student te laat of afwezig was (alleen-lezen).</help>
-    <label>Cursusnaam</label>
-  </fields>
-  <fields>
-    <name>Date__c</name>
-    <help>De datum dat de student te laat of afwezig was.</help>
-    <label>Datum</label>
-  </fields>
-  <fields>
-    <name>End_Time__c</name>
-    <help>Voor een afwezig dagdeel met toestemming, de tijd dat de student terugkeerde.</help>
-    <label>Eindtijd</label>
-  </fields>
-  <fields>
-    <name>Reason_Description__c</name>
-    <help>Meer informatie over de afwezigheid of het telaatkomen van de student.</help>
-    <label>Beschrijving van de reden</label>
-  </fields>
-  <fields>
-    <name>Reason__c</name>
-    <help>Selecteer een optie die de reden dat de student afwezig of te laat was het dichtst benadert. Gebruik het veld Beschrijving van de reden om meer informatie in te voeren.</help>
-    <label>Reden</label>
-    <picklistValues>
-      <masterLabel>Family</masterLabel>
-      <translation>Familie</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Medical</masterLabel>
-      <translation>Medisch</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Overig</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Religious</masterLabel>
-      <translation>Religieus</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Start_Time__c</name>
-    <help>Voor een afwezig dagdeel met toestemming, de tijd dat de student de school verliet.</help>
-    <label>Begintijd</label>
-  </fields>
-  <fields>
-    <name>Unexcused__c</name>
-    <help>Geeft aan dat een student zonder toestemming te laat of afwezig was.</help>
-    <label>Geen toestemming</label>
-  </fields>
-  <layouts>
-    <layout>EDA Attendance Event Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Naam van aanwezigheidsevent</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Naam van aanwezigheidsevent</label>
-  </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Attendance Event --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Attendance Event --></value>
+    </caseValues>
+    <fields>
+        <help>De tijd waarop een te late student aankwam.</help>
+        <label>Aankomsttijd</label>
+        <name>Arrival_Time__c</name>
+    </fields>
+    <fields>
+        <help>Geef aan of de student een hele dag of voor één lesperiode te laat of afwezig was.</help>
+        <label>Aanwezigheidstype</label>
+        <name>Attendance_Type__c</name>
+        <picklistValues>
+            <masterLabel>Class Absence</masterLabel>
+            <translation>Afwezig voor les</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class Tardy</masterLabel>
+            <translation>Te laat voor les</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Day Absence</masterLabel>
+            <translation>Dag afwezig</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Day Tardy</masterLabel>
+            <translation>Dag te laat</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>De student die te laat of afwezig is.</help>
+        <label>Contactpersoon</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Aanwezigheidsevents</relationshipLabel>
+    </fields>
+    <fields>
+        <help>De les en de periode waarvoor de student te laat of afwezig was.</help>
+        <label>Cursusverbinding</label>
+        <name>Course_Connection__c</name>
+        <relationshipLabel>Aanwezigheidsevents</relationshipLabel>
+    </fields>
+    <fields>
+        <help>De naam van de cursus waarvoor de student te laat of afwezig was (alleen-lezen).</help>
+        <label>Cursusnaam</label>
+        <name>Course_Name__c</name>
+    </fields>
+    <fields>
+        <help>De datum dat de student te laat of afwezig was.</help>
+        <label>Datum</label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <help>Voor een afwezig dagdeel met toestemming, de tijd dat de student terugkeerde.</help>
+        <label>Eindtijd</label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <help>Meer informatie over de afwezigheid of het telaatkomen van de student.</help>
+        <label>Beschrijving van de reden</label>
+        <name>Reason_Description__c</name>
+    </fields>
+    <fields>
+        <help>Selecteer een optie die de reden dat de student afwezig of te laat was het dichtst benadert. Gebruik het veld Beschrijving van de reden om meer informatie in te voeren.</help>
+        <label>Reden</label>
+        <name>Reason__c</name>
+        <picklistValues>
+            <masterLabel>Family</masterLabel>
+            <translation>Familie</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medical</masterLabel>
+            <translation>Medisch</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Overig</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Religious</masterLabel>
+            <translation>Religieus</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Voor een afwezig dagdeel met toestemming, de tijd dat de student de school verliet.</help>
+        <label>Begintijd</label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <help>Geeft aan dat een student zonder toestemming te laat of afwezig was.</help>
+        <label>Geen toestemming</label>
+        <name>Unexcused__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Naam van aanwezigheidsevent</nameFieldLabel>
 </CustomObjectTranslation>

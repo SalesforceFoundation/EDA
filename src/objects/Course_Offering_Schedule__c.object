@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,7 +89,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -37,7 +117,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>true</allowInChatterGroups>
@@ -53,6 +153,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -98,8 +199,8 @@
         <fullName>Friday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Fridays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Fridays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Fridays. You can select multiple days.</inlineHelpText>
         <label>Friday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -109,8 +210,8 @@
         <fullName>Monday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Mondays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Mondays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Mondays. You can select multiple days.</inlineHelpText>
         <label>Monday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -120,8 +221,8 @@
         <fullName>Saturday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Saturdays. You can select multiple days.</inlineHelpText>
         <label>Saturday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -142,8 +243,8 @@
         <fullName>Sunday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Sundays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Sundays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Sundays. You can select multiple days.</inlineHelpText>
         <label>Sunday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -153,8 +254,8 @@
         <fullName>Thursday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Thursdays. You can select multiple days.</inlineHelpText>
         <label>Thursday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -179,8 +280,8 @@
         <fullName>Tuesday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</inlineHelpText>
         <label>Tuesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -190,8 +291,8 @@
         <fullName>Wednesday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</description>
-        <inlineHelpText>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>Select to indicate this Course Offering is on Wednesdays. You can select multiple days.</inlineHelpText>
         <label>Wednesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

@@ -1,259 +1,265 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <relationshipLabel>Historial educatiu</relationshipLabel>
-    <label>Compte d'institució educativa</label>
-  </fields>
-  <fields>
-    <name>Class_Percentile__c</name>
-    <help>La classificació de percentil de l'estudiant per a la seva classe. Per exemple, un estudiant que és troba entre el 10% superior té un valor del 90%.</help>
-    <label>Percentil de classe</label>
-  </fields>
-  <fields>
-    <name>Class_Rank_Scale__c</name>
-    <help>Fa un seguiment de com s'ha determinat el percentil de classe. Per exemple, fent servir el decil exacte, el quintil o el quartil.</help>
-    <label>Escala de classificació de classe</label>
-    <picklistValues>
-      <masterLabel>Exact</masterLabel>
-      <translation>Exacte</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Decile</masterLabel>
-      <translation>Decil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Quintile</masterLabel>
-      <translation>Quintil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Quartile</masterLabel>
-      <translation>Quartil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>None</masterLabel>
-      <translation>Cap</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Class_Rank_Type__c</name>
-    <help>Fa un seguiment de com s'ha determinat la classificació de classe. Per exemple, fent servir el decil exacte, el quintil o el quartil.</help>
-    <label>Tipus de classificació de classe</label>
-    <picklistValues>
-      <masterLabel>Unweighted</masterLabel>
-      <translation>Sense ponderar</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Weighted</masterLabel>
-      <translation>Ponderat</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Class_Rank__c</name>
-    <help>La classificació acadèmica de l'estudiant en relació amb la seva promoció. Per exemple, un estudiant que ocupa el 5è lloc de la classe de 200 té un valor de 5.</help>
-    <label>Classificació de classe</label>
-  </fields>
-  <fields>
-    <name>Class_Size__c</name>
-    <help>El nombre d'alumnes que estaven a la classe del contacte.</help>
-    <label>Mida de la classe</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>El contacte relacionat amb aquestes dades històriques.</help>
-    <relationshipLabel>Historial educatiu</relationshipLabel>
-    <label>Contacte</label>
-  </fields>
-  <fields>
-    <name>Degree_Earned__c</name>
-    <help>Si escau, el nivell del títol obtingut pel contacte en aquesta institució educativa.</help>
-    <label>Titulació obtinguda</label>
-    <picklistValues>
-      <masterLabel>GED</masterLabel>
-      <translation>GED</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>High School Diploma</masterLabel>
-      <translation>Diploma d'escola secundària</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AA</masterLabel>
-      <translation>Grau d'associat</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AS</masterLabel>
-      <translation>AS</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>BA</masterLabel>
-      <translation>BA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>BS</masterLabel>
-      <translation>BS</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MA</masterLabel>
-      <translation>MA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MBA</masterLabel>
-      <translation>MBA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MS</masterLabel>
-      <translation>Màster en ciències</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>JD</masterLabel>
-      <translation>Doctorat en Dret</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MD</masterLabel>
-      <translation>Doctorat en Medicina</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>PhD</masterLabel>
-      <translation>Doctorat</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Altres</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Details__c</name>
-    <help>Detalls addicionals sobre l'historial educatiu d’aquest estudiant.</help>
-    <label>Detalls</label>
-  </fields>
-  <fields>
-    <name>Education_History_JSON__c</name>
-    <label>JSON d'Historial educatiu</label>
-  </fields>
-  <fields>
-    <name>Educational_Institution_Name__c</name>
-    <label>Nom de la institució educativa</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>La data en què el contacte va abandonar aquesta institució educativa.</help>
-    <label>Data de finalització</label>
-  </fields>
-  <fields>
-    <name>GPA_Scale_Reporting__c</name>
-    <help>La mitjana més alta possible en aquesta institució educativa.</help>
-    <label>Informes d’escala de qualificació escolar</label>
-    <picklistValues>
-      <masterLabel>4</masterLabel>
-      <translation>4</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>5</masterLabel>
-      <translation>5</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>6</masterLabel>
-      <translation>6</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>7</masterLabel>
-      <translation>7</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>8</masterLabel>
-      <translation>8</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>9</masterLabel>
-      <translation>9</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>10</masterLabel>
-      <translation>10</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>11</masterLabel>
-      <translation>11</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>12</masterLabel>
-      <translation>12</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>13</masterLabel>
-      <translation>13</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>14</masterLabel>
-      <translation>14</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>15</masterLabel>
-      <translation>15</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>16</masterLabel>
-      <translation>16</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>17</masterLabel>
-      <translation>17</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>18</masterLabel>
-      <translation>18</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>19</masterLabel>
-      <translation>19</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>20</masterLabel>
-      <translation>20</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>100</masterLabel>
-      <translation>100</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA_Scale_Type__c</name>
-    <help>Fa un seguiment de com s'ha determinat la qualificació escolar (GPA). Per exemple, fent servir el decil exacte, el quintil o el quartil.</help>
-    <label>Tipus d’escala de qualificació escolar</label>
-    <picklistValues>
-      <masterLabel>Unweighted</masterLabel>
-      <translation>Sense ponderar</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Weighted</masterLabel>
-      <translation>Ponderat</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA__c</name>
-    <help>La mitjana de la nota final del contacte.</help>
-    <label>GPA</label>
-  </fields>
-  <fields>
-    <name>Graduation_Date__c</name>
-    <help>Si escau, la data en què es va graduar el contacte en aquesta institució educativa.</help>
-    <label>Data de graduació</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>La data en què el contacte va començar en aquesta institució educativa.</help>
-    <label>Data d'inici</label>
-  </fields>
-  <layouts>
-    <layout>EDA Education History Layout</layout>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom d'Historial educatiu</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom d'Historial educatiu</label>
-  </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Education History --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Education History --></value>
+    </caseValues>
+    <fields>
+        <label>Compte d&apos;institució educativa</label>
+        <name>Account__c</name>
+        <relationshipLabel>Historial educatiu</relationshipLabel>
+    </fields>
+    <fields>
+        <help>La classificació de percentil de l&apos;estudiant per a la seva classe. Per exemple, un estudiant que és troba entre el 10% superior té un valor del 90%.</help>
+        <label>Percentil de classe</label>
+        <name>Class_Percentile__c</name>
+    </fields>
+    <fields>
+        <help>Fa un seguiment de com s&apos;ha determinat el percentil de classe. Per exemple, fent servir el decil exacte, el quintil o el quartil.</help>
+        <label>Escala de classificació de classe</label>
+        <name>Class_Rank_Scale__c</name>
+        <picklistValues>
+            <masterLabel>Decile</masterLabel>
+            <translation>Decil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exact</masterLabel>
+            <translation>Exacte</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation>Cap</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quartile</masterLabel>
+            <translation>Quartil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quintile</masterLabel>
+            <translation>Quintil</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Fa un seguiment de com s&apos;ha determinat la classificació de classe. Per exemple, fent servir el decil exacte, el quintil o el quartil.</help>
+        <label>Tipus de classificació de classe</label>
+        <name>Class_Rank_Type__c</name>
+        <picklistValues>
+            <masterLabel>Unweighted</masterLabel>
+            <translation>Sense ponderar</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weighted</masterLabel>
+            <translation>Ponderat</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>La classificació acadèmica de l&apos;estudiant en relació amb la seva promoció. Per exemple, un estudiant que ocupa el 5è lloc de la classe de 200 té un valor de 5.</help>
+        <label>Classificació de classe</label>
+        <name>Class_Rank__c</name>
+    </fields>
+    <fields>
+        <help>El nombre d&apos;alumnes que estaven a la classe del contacte.</help>
+        <label>Mida de la classe</label>
+        <name>Class_Size__c</name>
+    </fields>
+    <fields>
+        <help>El contacte relacionat amb aquestes dades històriques.</help>
+        <label>Contacte</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Historial educatiu</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Si escau, el nivell del títol obtingut pel contacte en aquesta institució educativa.</help>
+        <label>Titulació obtinguda</label>
+        <name>Degree_Earned__c</name>
+        <picklistValues>
+            <masterLabel>AA</masterLabel>
+            <translation>Grau d&apos;associat</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AS</masterLabel>
+            <translation>AS</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BA</masterLabel>
+            <translation>BA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BS</masterLabel>
+            <translation>BS</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GED</masterLabel>
+            <translation>GED</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High School Diploma</masterLabel>
+            <translation>Diploma d&apos;escola secundària</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JD</masterLabel>
+            <translation>Doctorat en Dret</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation>MA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBA</masterLabel>
+            <translation>MBA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation>Doctorat en Medicina</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation>Màster en ciències</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Altres</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PhD</masterLabel>
+            <translation>Doctorat</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Detalls addicionals sobre l&apos;historial educatiu d’aquest estudiant.</help>
+        <label>Detalls</label>
+        <name>Details__c</name>
+    </fields>
+    <fields>
+        <label>JSON d&apos;Historial educatiu</label>
+        <name>Education_History_JSON__c</name>
+    </fields>
+    <fields>
+        <label>Nom de la institució educativa</label>
+        <name>Educational_Institution_Name__c</name>
+    </fields>
+    <fields>
+        <help>La data en què el contacte va abandonar aquesta institució educativa.</help>
+        <label>Data de finalització</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>La mitjana més alta possible en aquesta institució educativa.</help>
+        <label>Informes d’escala de qualificació escolar</label>
+        <name>GPA_Scale_Reporting__c</name>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation>10</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100</masterLabel>
+            <translation>100</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation>11</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation>12</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13</masterLabel>
+            <translation>13</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14</masterLabel>
+            <translation>14</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation>15</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16</masterLabel>
+            <translation>16</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17</masterLabel>
+            <translation>17</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18</masterLabel>
+            <translation>18</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19</masterLabel>
+            <translation>19</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation>20</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation>4</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation>5</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation>6</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation>7</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation>8</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation>9</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Fa un seguiment de com s&apos;ha determinat la qualificació escolar (GPA). Per exemple, fent servir el decil exacte, el quintil o el quartil.</help>
+        <label>Tipus d’escala de qualificació escolar</label>
+        <name>GPA_Scale_Type__c</name>
+        <picklistValues>
+            <masterLabel>Unweighted</masterLabel>
+            <translation>Sense ponderar</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weighted</masterLabel>
+            <translation>Ponderat</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>La mitjana de la nota final del contacte.</help>
+        <label>GPA</label>
+        <name>GPA__c</name>
+    </fields>
+    <fields>
+        <help>Si escau, la data en què es va graduar el contacte en aquesta institució educativa.</help>
+        <label>Data de graduació</label>
+        <name>Graduation_Date__c</name>
+    </fields>
+    <fields>
+        <help>La data en què el contacte va començar en aquesta institució educativa.</help>
+        <label>Data d&apos;inici</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Education History Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom d&apos;Historial educatiu</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

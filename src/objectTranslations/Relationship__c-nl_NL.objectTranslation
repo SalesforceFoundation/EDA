@@ -1,239 +1,244 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>Selecteer de persoon voor wie u de relatierecord wilt maken.</help>
-    <relationshipLabel>Relaties</relationshipLabel>
-    <label>Contactpersoon</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Aanvullende informatie over de relatie tussen deze twee personen.</help>
-    <label>Beschrijving</label>
-  </fields>
-  <fields>
-    <name>Emergency_Contact__c</name>
-    <help>Geeft aan dat de gerelateerde contactpersoon een contactpersoon in geval van nood is.</help>
-    <label>Contactpersoon in noodgeval</label>
-  </fields>
-  <fields>
-    <name>ReciprocalRelationship__c</name>
-    <help>Opzoekopdracht naar de gerelateerde wederzijdserelatierecord. Dit veld wordt automatisch ingevuld. Als u het veld handmatig bijwerkt, kan dat fouten veroorzaken.</help>
-    <relationshipLabel>Relaties</relationshipLabel>
-    <label>Wederzijdse relatie</label>
-  </fields>
-  <fields>
-    <name>RelatedContact__c</name>
-    <help>Selecteer de persoon die gerelateerd is aan de contactpersoon.</help>
-    <relationshipLabel>Lijst Verborgen relaties</relationshipLabel>
-    <label>Gerelateerde contactpersoon</label>
-  </fields>
-  <fields>
-    <name>Relationship_Explanation__c</name>
-    <help>Een zin die uitlegt geeft over de rollen binnen de relatie. Bijvoorbeeld: "'s " Joe Ada is de werkgever van Sara Cordova."'s " Dit veld is alleen-lezen.</help>
-    <label>Uitleg over relatie</label>
-  </fields>
-  <fields>
-    <name>SYSTEM_SystemCreated__c</name>
-    <help>Systeemveld dat aangeeft of de relatie automatisch is gemaakt als de wederzijdse relatie van een andere relatie.</help>
-    <label>_SYSTEM: SystemCreated</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <help>Status van de relatie, bijvoorbeeld huidig of voormalig.</help>
-    <label>Status</label>
-    <picklistValues>
-      <masterLabel>Current</masterLabel>
-      <translation>Huidig</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Former</masterLabel>
-      <translation>Voormalig</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Type__c</name>
-    <help>Beschrijft wat voor connectie de gerelateerde contactpersoon met de contactpersoon heeft, bijvoorbeeld vriend, collega, tante, enz.</help>
-    <label>Type</label>
-    <picklistValues>
-      <masterLabel>Father</masterLabel>
-      <translation>Vader</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepfather</masterLabel>
-      <translation>Stiefvader</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mother</masterLabel>
-      <translation>Moeder</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepmother</masterLabel>
-      <translation>Stiefmoeder</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Parent</masterLabel>
-      <translation>Ouder</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepparent</masterLabel>
-      <translation>Stiefouder</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Parent</masterLabel>
-      <translation>Pleegouder</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Daughter</masterLabel>
-      <translation>Dochter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepdaughter</masterLabel>
-      <translation>Stiefdochter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Daughter</masterLabel>
-      <translation>Pleegdochter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Son</masterLabel>
-      <translation>Zoon</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepson</masterLabel>
-      <translation>Stiefzoon</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Son</masterLabel>
-      <translation>Pleegzoon</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Child</masterLabel>
-      <translation>Kind</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepchild</masterLabel>
-      <translation>Stiefkind</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Child</masterLabel>
-      <translation>Pleegkind</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Husband</masterLabel>
-      <translation>Echtgenoot</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Wife</masterLabel>
-      <translation>Echtgenote</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Partner</masterLabel>
-      <translation>Partner</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Aunt</masterLabel>
-      <translation>Tante</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Uncle</masterLabel>
-      <translation>Oom</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Parent&apos;s Sibling</masterLabel>
-      <translation><!-- Parent&apos;s Sibling --></translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Niece</masterLabel>
-      <translation><!-- Niece --></translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Nephew</masterLabel>
-      <translation><!-- Nephew --></translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Sibling&apos;s Child</masterLabel>
-      <translation><!-- Sibling&apos;s Child --></translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Cousin</masterLabel>
-      <translation>Neef/Nicht</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandmother</masterLabel>
-      <translation>Grootmoeder</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandfather</masterLabel>
-      <translation>Grootvader</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandparent</masterLabel>
-      <translation>Grootouder</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandson</masterLabel>
-      <translation>Kleinzoon</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Granddaughter</masterLabel>
-      <translation>Kleindochter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandchild</masterLabel>
-      <translation>Kleinkind</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Guardian</masterLabel>
-      <translation>Voogd</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Dependent</masterLabel>
-      <translation>Afhankelijke</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Employer</masterLabel>
-      <translation>Werkgever</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Employee</masterLabel>
-      <translation>Werknemer</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Friend</masterLabel>
-      <translation>Vriend</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Family</masterLabel>
-      <translation>Familie</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Coworker</masterLabel>
-      <translation>Collega</translation>
-    </picklistValues>
-  </fields>
-  <validationRules>
-    <errorMessage>In plaats van de contactpersonen in deze relatie te wijzigen, dient u deze record te verwijderen of, indien van toepassing, een einddatum toe te voegen en de status bij te werken naar Voormalig. Maak dan een nieuwe relatierecord tussen de nieuwe contactpersonen.</errorMessage>
-    <name>Contact_Do_Not_Change</name>
-  </validationRules>
-  <validationRules>
-    <errorMessage>In plaats van de contactpersonen in deze relatie te wijzigen, dient u deze record te verwijderen of, indien van toepassing, een einddatum toe te voegen en de status bij te werken naar Voormalig. Maak dan een nieuwe relatierecord tussen de nieuwe contactpersonen.</errorMessage>
-    <name>Related_Contact_Do_Not_Change</name>
-  </validationRules>
-  <layouts>
-    <layout>HEDA Relationship Layout</layout>
-    <sections>
-      <label>Relatiegegevens</label>
-      <section>Relationship Information</section>
-    </sections>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Relatiesleutel</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Relatiesleutel</label>
-  </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Relationship --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Relationship --></value>
+    </caseValues>
+    <fields>
+        <help>Selecteer de persoon voor wie u de relatierecord wilt maken.</help>
+        <label>Contactpersoon</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Relaties</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Aanvullende informatie over de relatie tussen deze twee personen.</help>
+        <label>Beschrijving</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>Geeft aan dat de gerelateerde contactpersoon een contactpersoon in geval van nood is.</help>
+        <label>Contactpersoon in noodgeval</label>
+        <name>Emergency_Contact__c</name>
+    </fields>
+    <fields>
+        <help>Opzoekopdracht naar de gerelateerde wederzijdserelatierecord. Dit veld wordt automatisch ingevuld. Als u het veld handmatig bijwerkt, kan dat fouten veroorzaken.</help>
+        <label>Wederzijdse relatie</label>
+        <name>ReciprocalRelationship__c</name>
+        <relationshipLabel>Relaties</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Selecteer de persoon die gerelateerd is aan de contactpersoon.</help>
+        <label>Gerelateerde contactpersoon</label>
+        <name>RelatedContact__c</name>
+        <relationshipLabel>Lijst Verborgen relaties</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Een zin die uitlegt geeft over de rollen binnen de relatie. Bijvoorbeeld: &quot;&apos;s &quot; Joe Ada is de werkgever van Sara Cordova.&quot;&apos;s &quot; Dit veld is alleen-lezen.</help>
+        <label>Uitleg over relatie</label>
+        <name>Relationship_Explanation__c</name>
+    </fields>
+    <fields>
+        <help>Systeemveld dat aangeeft of de relatie automatisch is gemaakt als de wederzijdse relatie van een andere relatie.</help>
+        <label>_SYSTEM: SystemCreated</label>
+        <name>SYSTEM_SystemCreated__c</name>
+    </fields>
+    <fields>
+        <help>Status van de relatie, bijvoorbeeld huidig of voormalig.</help>
+        <label>Status</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Huidig</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation>Voormalig</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Beschrijft wat voor connectie de gerelateerde contactpersoon met de contactpersoon heeft, bijvoorbeeld vriend, collega, tante, enz.</help>
+        <label>Type</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Aunt</masterLabel>
+            <translation>Tante</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Child</masterLabel>
+            <translation>Kind</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cousin</masterLabel>
+            <translation>Neef/Nicht</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coworker</masterLabel>
+            <translation>Collega</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Daughter</masterLabel>
+            <translation>Dochter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dependent</masterLabel>
+            <translation>Afhankelijke</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee</masterLabel>
+            <translation>Werknemer</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employer</masterLabel>
+            <translation>Werkgever</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Family</masterLabel>
+            <translation>Familie</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Father</masterLabel>
+            <translation>Vader</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Child</masterLabel>
+            <translation>Pleegkind</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Daughter</masterLabel>
+            <translation>Pleegdochter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Parent</masterLabel>
+            <translation>Pleegouder</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Son</masterLabel>
+            <translation>Pleegzoon</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Friend</masterLabel>
+            <translation>Vriend</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandchild</masterLabel>
+            <translation>Kleinkind</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Granddaughter</masterLabel>
+            <translation>Kleindochter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandfather</masterLabel>
+            <translation>Grootvader</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandmother</masterLabel>
+            <translation>Grootmoeder</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandparent</masterLabel>
+            <translation>Grootouder</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandson</masterLabel>
+            <translation>Kleinzoon</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guardian</masterLabel>
+            <translation>Voogd</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Husband</masterLabel>
+            <translation>Echtgenoot</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mother</masterLabel>
+            <translation>Moeder</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nephew</masterLabel>
+            <translation><!-- Nephew --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Niece</masterLabel>
+            <translation><!-- Niece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent</masterLabel>
+            <translation>Ouder</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent&apos;s Sibling</masterLabel>
+            <translation><!-- Parent&apos;s Sibling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation>Partner</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sibling&apos;s Child</masterLabel>
+            <translation><!-- Sibling&apos;s Child --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Son</masterLabel>
+            <translation>Zoon</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepchild</masterLabel>
+            <translation>Stiefkind</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepdaughter</masterLabel>
+            <translation>Stiefdochter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepfather</masterLabel>
+            <translation>Stiefvader</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepmother</masterLabel>
+            <translation>Stiefmoeder</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepparent</masterLabel>
+            <translation>Stiefouder</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepson</masterLabel>
+            <translation>Stiefzoon</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uncle</masterLabel>
+            <translation>Oom</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wife</masterLabel>
+            <translation>Echtgenote</translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Relatiegegevens</label>
+            <section>Relationship Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Relatiesleutel</nameFieldLabel>
+    <validationRules>
+        <errorMessage>In plaats van de contactpersonen in deze relatie te wijzigen, dient u deze record te verwijderen of, indien van toepassing, een einddatum toe te voegen en de status bij te werken naar Voormalig. Maak dan een nieuwe relatierecord tussen de nieuwe contactpersonen.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>In plaats van de contactpersonen in deze relatie te wijzigen, dient u deze record te verwijderen of, indien van toepassing, een einddatum toe te voegen en de status bij te werken naar Voormalig. Maak dan een nieuwe relatierecord tussen de nieuwe contactpersonen.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
 </CustomObjectTranslation>

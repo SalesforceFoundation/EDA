@@ -343,5 +343,3 @@ public with sharing class LookupFieldService_TEST {
         }
     }
 }
-
-

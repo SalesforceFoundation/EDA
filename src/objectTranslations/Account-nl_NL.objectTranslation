@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Billing_County__c</name>
-    <label>Facturatiedistrict</label>
-  </fields>
-  <fields>
-    <name>Current_Address__c</name>
-    <help>Opzoeking van de huidige adresrecord voor dit account. Het veld Facturatieadres wordt ingevuld met de adresvelden uit de huidige adresrecord.</help>
-    <relationshipLabel>Accounts (huidig adres)</relationshipLabel>
-    <label>Huidig adres</label>
-  </fields>
-  <fields>
-    <name>Primary_Contact__c</name>
-    <help>De hoofdcontactpersoon voor een huishouden- of administratief account.</help>
-    <relationshipLabel>Account</relationshipLabel>
-    <label>Primaire contactpersoon</label>
-  </fields>
-  <fields>
-    <name>School_Code__c</name>
-    <help>Een unieke ID voor een onderwijsinstelling, die voldoet aan standaarden die in uw regio worden erkend.</help>
-    <label>Schoolcode</label>
-  </fields>
-  <fields>
-    <name>Shipping_County__c</name>
-    <label>Verzenddistrict</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Organization Layout</layout>
-    <sections>
-      <label>Velden</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Adres</label>
-      <section>Address</section>
-    </sections>
-    <sections>
-      <label>Beschrijving</label>
-      <section>Description</section>
-    </sections>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <layouts>
-    <layout>HEDA Household Layout</layout>
-    <sections>
-      <label>Velden</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Adres</label>
-      <section>Address</section>
-    </sections>
-    <sections>
-      <label>Beschrijving</label>
-      <section>Description</section>
-    </sections>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
+    <fields>
+        <label>Facturatiedistrict</label>
+        <name>Billing_County__c</name>
+    </fields>
+    <fields>
+        <help>Opzoeking van de huidige adresrecord voor dit account. Het veld Facturatieadres wordt ingevuld met de adresvelden uit de huidige adresrecord.</help>
+        <label>Huidig adres</label>
+        <name>Current_Address__c</name>
+        <relationshipLabel>Accounts (huidig adres)</relationshipLabel>
+    </fields>
+    <fields>
+        <help>De hoofdcontactpersoon voor een huishouden- of administratief account.</help>
+        <label>Primaire contactpersoon</label>
+        <name>Primary_Contact__c</name>
+        <relationshipLabel>Account</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Een unieke ID voor een onderwijsinstelling, die voldoet aan standaarden die in uw regio worden erkend.</help>
+        <label>Schoolcode</label>
+        <name>School_Code__c</name>
+    </fields>
+    <fields>
+        <label>Verzenddistrict</label>
+        <name>Shipping_County__c</name>
+    </fields>
+    <layouts>
+        <layout>HEDA Household Layout</layout>
+        <sections>
+            <label>Adres</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Beschrijving</label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Velden</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HEDA Organization Layout</layout>
+        <sections>
+            <label>Adres</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Beschrijving</label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Velden</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
 </CustomObjectTranslation>

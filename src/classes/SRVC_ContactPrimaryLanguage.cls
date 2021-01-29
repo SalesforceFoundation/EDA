@@ -229,5 +229,3 @@ public virtual with sharing class SRVC_ContactPrimaryLanguage {
         } 
     }
 }
-
-

@@ -141,5 +141,3 @@ private class HealthCheckDefinitionMapper_TEST {
         }
     }
 }
-
-

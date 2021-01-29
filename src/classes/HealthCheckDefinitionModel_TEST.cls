@@ -47,4 +47,3 @@ private class HealthCheckDefinitionModel_TEST {
         System.assertEquals('hed', healthCheckDefinitionModel.namespace);
     }
 }
-

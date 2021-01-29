@@ -1,255 +1,251 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Agency__c</name>
-    <help>Die Agentur, die den Berechtigungsnachweis ausgestellt oder zertifiziert hat.</help>
-    <relationshipLabel>Attribute</relationshipLabel>
-    <label>Agentur</label>
-  </fields>
-  <fields>
-    <name>Attribute_Type__c</name>
-    <help>Die Art des Berechtigungsnachweises oder Attributs des Schülers/Studenten.</help>
-    <label>Attributart</label>
-    <picklistValues>
-      <masterLabel>Certification</masterLabel>
-      <translation>Zertifizierung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Endorsement</masterLabel>
-      <translation>Bestätigung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Licensure</masterLabel>
-      <translation>Zulassung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Accommodation</masterLabel>
-      <translation>Beherbergung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Asylee</masterLabel>
-      <translation>Asylant</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Economically Disadvantaged</masterLabel>
-      <translation>Wirtschaftlich benachteiligt</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>English Learners</masterLabel>
-      <translation>Englischlernende</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Family Consideration</masterLabel>
-      <translation>Rücksichtnahme auf die Familie</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Care</masterLabel>
-      <translation>Pflegeunterbringung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Free Lunch</masterLabel>
-      <translation>Kostenloses Mittagessen</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Homeless</masterLabel>
-      <translation>Obdachlos</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Immigrant</masterLabel>
-      <translation>Immigrant</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>International Student</masterLabel>
-      <translation>Ausländischer Student</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Sonstiges</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Parent in Military</masterLabel>
-      <translation>Elternteil beim Militär</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Pregnant</masterLabel>
-      <translation>Schwanger</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Reduced Price Lunch</masterLabel>
-      <translation>Ermäßigtes Mittagessen</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Refugee</masterLabel>
-      <translation>Geflüchteter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Section 504 Handicapped</masterLabel>
-      <translation>Behindert gemäß Rehabilitation Act, Abschnitt 504</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>Die Person, für die dieses Attribut gilt.</help>
-    <relationshipLabel>Attribute</relationshipLabel>
-    <label>Kontakt</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Weitere Einzelheiten zum Berechtigungsnachweis oder Attributs des Schülers/Studenten.</help>
-    <label>Beschreibung</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>Das Datum, an dem der Berechtigungsnachweis oder das Attribut abläuft oder verlängert werden muss.</help>
-    <label>Enddatum</label>
-  </fields>
-  <fields>
-    <name>Expired__c</name>
-    <help>Gibt an, ob das Attribut abgelaufen ist. Wird automatisch ausgewählt, wenn das Enddatum des Attributs in der Vergangenheit liegt.</help>
-    <label>Abgelaufen</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>Das Ausstellungsdatum des Berechtigungsnachweises oder Attributs.</help>
-    <label>Startdatum</label>
-  </fields>
-  <fields>
-    <name>Subject_Area__c</name>
-    <help>Der Inhalt oder das Fachgebiet, für den oder das ein Berechtigungsnachweis bestimmt ist.</help>
-    <label>Fachrichtung</label>
-    <picklistValues>
-      <masterLabel>Biology</masterLabel>
-      <translation>Biologie</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Career and Technical Education</masterLabel>
-      <translation>Berufsausbildung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Economics</masterLabel>
-      <translation>Wirtschaft</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>English Language Arts</masterLabel>
-      <translation>Englische Sprache und Literatur</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Fine and Performing Arts</masterLabel>
-      <translation>Bildende und darstellende Künste</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foreign Language</masterLabel>
-      <translation>Fremdsprachen</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>History</masterLabel>
-      <translation>Geschichte</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Life and Physical Sciences</masterLabel>
-      <translation>Bio- und Naturwissenschaften</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mathematics</masterLabel>
-      <translation>Mathematik</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Sonstiges</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Physical, Health, and Safety Education</masterLabel>
-      <translation>Sport, Gesundheit und Sicherheitserziehung</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Physics</masterLabel>
-      <translation>Physik</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Psychology</masterLabel>
-      <translation>Psychologie</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Science</masterLabel>
-      <translation>Naturwissenschaften</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Social Studies</masterLabel>
-      <translation>Sozialkunde</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Sociology</masterLabel>
-      <translation>Soziologie</translation>
-    </picklistValues>
-  </fields>
-  <recordTypes>
-    <name>Credential</name>
-    <label>Berechtigungsnachweis</label>
-    <description>Ermöglicht Bildungseinrichtungen die Nachverfolgung von Lizenzen, Zertifizierungen oder Bestätigungen, die von Mitarbeitern oder Schülern/Studenten erworben wurden.</description>
-  </recordTypes>
-  <recordTypes>
-    <name>Student_Characteristic</name>
-    <label>Teilnehmereigenschaft</label>
-    <description>Ermöglicht Bildungseinrichtungen die Nachverfolgung wichtiger Eigenschaften von Schülern/Studenten, die sich auf deren (Aus-) Bildung auswirken können.</description>
-  </recordTypes>
-  <layouts>
-    <layout>EDA Student Characteristic Layout</layout>
-    <sections>
-      <label>Benutzerdefinierte Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <layouts>
-    <layout>EDA Credential Layout</layout>
-    <sections>
-      <label>Benutzerdefinierte Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Attributname</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Attributname</label>
-  </standardFields>
-  <gender>Neuter</gender>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <value>Attribut</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Accusative</caseType>
-    <value>Attribut</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Dative</caseType>
-    <value>Attribut</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <value>Attributs</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <value>Attribute</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Accusative</caseType>
-    <value>Attributen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Dative</caseType>
-    <value>Attributen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <value>Attribute</value>
-  </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Attribut</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Attribute</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Attribut</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Attributen</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Attributs</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Attribute</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Attribut</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Attributen</value>
+    </caseValues>
+    <fields>
+        <help>Die Agentur, die den Berechtigungsnachweis ausgestellt oder zertifiziert hat.</help>
+        <label>Agentur</label>
+        <name>Agency__c</name>
+        <relationshipLabel>Attribute</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Die Art des Berechtigungsnachweises oder Attributs des Schülers/Studenten.</help>
+        <label>Attributart</label>
+        <name>Attribute_Type__c</name>
+        <picklistValues>
+            <masterLabel>Accommodation</masterLabel>
+            <translation>Beherbergung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asylee</masterLabel>
+            <translation>Asylant</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Certification</masterLabel>
+            <translation>Zertifizierung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Economically Disadvantaged</masterLabel>
+            <translation>Wirtschaftlich benachteiligt</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Endorsement</masterLabel>
+            <translation>Bestätigung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English Learners</masterLabel>
+            <translation>Englischlernende</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Family Consideration</masterLabel>
+            <translation>Rücksichtnahme auf die Familie</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Care</masterLabel>
+            <translation>Pflegeunterbringung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Lunch</masterLabel>
+            <translation>Kostenloses Mittagessen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homeless</masterLabel>
+            <translation>Obdachlos</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Immigrant</masterLabel>
+            <translation>Immigrant</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International Student</masterLabel>
+            <translation>Ausländischer Student</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Licensure</masterLabel>
+            <translation>Zulassung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Sonstiges</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent in Military</masterLabel>
+            <translation>Elternteil beim Militär</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pregnant</masterLabel>
+            <translation>Schwanger</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reduced Price Lunch</masterLabel>
+            <translation>Ermäßigtes Mittagessen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refugee</masterLabel>
+            <translation>Geflüchteter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Section 504 Handicapped</masterLabel>
+            <translation>Behindert gemäß Rehabilitation Act, Abschnitt 504</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Die Person, für die dieses Attribut gilt.</help>
+        <label>Kontakt</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Attribute</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Weitere Einzelheiten zum Berechtigungsnachweis oder Attributs des Schülers/Studenten.</help>
+        <label>Beschreibung</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>Das Datum, an dem der Berechtigungsnachweis oder das Attribut abläuft oder verlängert werden muss.</help>
+        <label>Enddatum</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>Gibt an, ob das Attribut abgelaufen ist. Wird automatisch ausgewählt, wenn das Enddatum des Attributs in der Vergangenheit liegt.</help>
+        <label>Abgelaufen</label>
+        <name>Expired__c</name>
+    </fields>
+    <fields>
+        <help>Das Ausstellungsdatum des Berechtigungsnachweises oder Attributs.</help>
+        <label>Startdatum</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <help>Der Inhalt oder das Fachgebiet, für den oder das ein Berechtigungsnachweis bestimmt ist.</help>
+        <label>Fachrichtung</label>
+        <name>Subject_Area__c</name>
+        <picklistValues>
+            <masterLabel>Biology</masterLabel>
+            <translation>Biologie</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Career and Technical Education</masterLabel>
+            <translation>Berufsausbildung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Economics</masterLabel>
+            <translation>Wirtschaft</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English Language Arts</masterLabel>
+            <translation>Englische Sprache und Literatur</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine and Performing Arts</masterLabel>
+            <translation>Bildende und darstellende Künste</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foreign Language</masterLabel>
+            <translation>Fremdsprachen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>History</masterLabel>
+            <translation>Geschichte</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Life and Physical Sciences</masterLabel>
+            <translation>Bio- und Naturwissenschaften</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mathematics</masterLabel>
+            <translation>Mathematik</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Sonstiges</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Physical, Health, and Safety Education</masterLabel>
+            <translation>Sport, Gesundheit und Sicherheitserziehung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Physics</masterLabel>
+            <translation>Physik</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Psychology</masterLabel>
+            <translation>Psychologie</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science</masterLabel>
+            <translation>Naturwissenschaften</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Studies</masterLabel>
+            <translation>Sozialkunde</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sociology</masterLabel>
+            <translation>Soziologie</translation>
+        </picklistValues>
+    </fields>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Attributname</nameFieldLabel>
+    <recordTypes>
+        <description>Ermöglicht Bildungseinrichtungen die Nachverfolgung von Lizenzen, Zertifizierungen oder Bestätigungen, die von Mitarbeitern oder Schülern/Studenten erworben wurden.</description>
+        <label>Berechtigungsnachweis</label>
+        <name>Credential</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Ermöglicht Bildungseinrichtungen die Nachverfolgung wichtiger Eigenschaften von Schülern/Studenten, die sich auf deren (Aus-) Bildung auswirken können.</description>
+        <label>Teilnehmereigenschaft</label>
+        <name>Student_Characteristic</name>
+    </recordTypes>
 </CustomObjectTranslation>

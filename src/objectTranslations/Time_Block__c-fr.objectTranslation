@@ -1,41 +1,37 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Educational_Institution__c</name>
-    <help>L'établissement d'enseignement associé à ce bloc de temps, par exemple, une école dans une localité.</help>
-    <relationshipLabel>Blocs de temps</relationshipLabel>
-    <label>Établissement d'enseignement</label>
-  </fields>
-  <fields>
-    <name>End_Time__c</name>
-    <help>L'heure du jour à laquelle le bloc de temps se termine.</help>
-    <label>Heure de fin</label>
-  </fields>
-  <fields>
-    <name>Start_Time__c</name>
-    <help>L'heure du jour à laquelle le bloc de temps commence.</help>
-    <label>Heure de début</label>
-  </fields>
-  <layouts>
-    <layout>EDA Time Block Layout</layout>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom du bloc de temps</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom du bloc de temps</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Bloc de temps</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Blocs de temps</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Bloc de temps</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Blocs de temps</value>
+    </caseValues>
+    <fields>
+        <help>L&apos;établissement d&apos;enseignement associé à ce bloc de temps, par exemple, une école dans une localité.</help>
+        <label>Établissement d&apos;enseignement</label>
+        <name>Educational_Institution__c</name>
+        <relationshipLabel>Blocs de temps</relationshipLabel>
+    </fields>
+    <fields>
+        <help>L&apos;heure du jour à laquelle le bloc de temps se termine.</help>
+        <label>Heure de fin</label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <help>L&apos;heure du jour à laquelle le bloc de temps commence.</help>
+        <label>Heure de début</label>
+        <name>Start_Time__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Time Block Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du bloc de temps</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -9,22 +9,22 @@
         <value>Relationship Auto-Create</value>
     </caseValues>
     <fields>
-        <help><!-- Eligible Campaign types for this Campaign Member auto-create. (Will be blank for Contact auto-create) --></help>
+        <help><!-- For Auto-Create Relationships based on Campaign Members, the list of Campaign types the automation applies to. This field will be blank for Auto-Create Relationships based on Contacts. --></help>
         <label><!-- Campaign Types --></label>
         <name>Campaign_Types__c</name>
     </fields>
     <fields>
-        <help><!-- The field insert or update that triggers the creation of this Relationship --></help>
+        <help><!-- The label of the lookup field that triggers the creation of this Relationship when the field value is updated. --></help>
         <label><!-- Field --></label>
         <name>Field__c</name>
     </fields>
     <fields>
-        <help><!-- The object this Auto-Relationship is associated with --></help>
+        <help><!-- The API name of the object (either Contact or CampaignMember) that the custom lookup field is on. --></help>
         <label><!-- Object --></label>
         <name>Object__c</name>
     </fields>
     <fields>
-        <help><!-- The Relationship type to be created between the base object and the lookup object.  The lookup object will receive the reciprocal Relationship, if one is available. --></help>
+        <help><!-- The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object. --></help>
         <label><!-- Relationship Type --></label>
         <name>Relationship_Type__c</name>
     </fields>

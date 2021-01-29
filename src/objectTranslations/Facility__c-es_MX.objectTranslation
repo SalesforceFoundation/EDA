@@ -1,87 +1,88 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>La organización responsable de estas instalaciones; por ejemplo, un Departamento de universidad.</help>
-    <relationshipLabel>Instalaciones</relationshipLabel>
-    <label>Cuenta</label>
-  </fields>
-  <fields>
-    <name>Capacity__c</name>
-    <help>El número máximo de ocupantes que puede albergar la instalación.</help>
-    <label>Capacidad</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Una descripción de esta instalación.</help>
-    <label>Descripción</label>
-  </fields>
-  <fields>
-    <name>Facility_Type__c</name>
-    <help>Seleccione el tipo de instalaciones, como por ejemplo, un laboratorio de computadoras, centro de salud, sala de conferencias, etc.</help>
-    <label>Tipo de instalación</label>
-    <picklistValues>
-      <masterLabel>Building</masterLabel>
-      <translation>Edificio</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Cafeteria/Food Hall</masterLabel>
-      <translation>Cafetería/Comedor</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Classroom</masterLabel>
-      <translation>Aula</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Computer Lab</masterLabel>
-      <translation>Laboratorio de computadoras</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Gymnasium</masterLabel>
-      <translation>Gimnasio</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Health Center</masterLabel>
-      <translation>Centro sanitario</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Laboratory</masterLabel>
-      <translation>Laboratorio</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Lecture Hall</masterLabel>
-      <translation>Sala de lectura</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Library</masterLabel>
-      <translation>Biblioteca</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Parent_Facility__c</name>
-    <help>Opcionalmente indica las instalaciones de las que forma parte. Por ejemplo, si estas instalaciones son un aula, las instalaciones principales serían el edificio en el que se encuentra el aula.</help>
-    <relationshipLabel>Instalaciones</relationshipLabel>
-    <label>Instalación principal</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Facility Layout</layout>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nombre de instalación</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nombre de instalación</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Instalación</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Instalaciones</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Instalación</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Instalaciones</value>
+    </caseValues>
+    <fields>
+        <help>La organización responsable de estas instalaciones; por ejemplo, un Departamento de universidad.</help>
+        <label>Cuenta</label>
+        <name>Account__c</name>
+        <relationshipLabel>Instalaciones</relationshipLabel>
+    </fields>
+    <fields>
+        <help>El número máximo de ocupantes que puede albergar la instalación.</help>
+        <label>Capacidad</label>
+        <name>Capacity__c</name>
+    </fields>
+    <fields>
+        <help>Una descripción de esta instalación.</help>
+        <label>Descripción</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>Nombre que combina Nombre principal (Torre Libertad) y Nombre de instalación (Sala 400), p ej. Torre Libertad-Sala 400. So no hay Instalación principal, se usa Cuenta. Si tampoco hay Cuenta, Nombre de instalación y Nombre de visualización son los mismos.</help>
+        <label>Nombre de visualización</label>
+        <name>Display_Name__c</name>
+    </fields>
+    <fields>
+        <help>Seleccione el tipo de instalaciones, como por ejemplo, un laboratorio de computadoras, centro de salud, sala de conferencias, etc.</help>
+        <label>Tipo de instalación</label>
+        <name>Facility_Type__c</name>
+        <picklistValues>
+            <masterLabel>Building</masterLabel>
+            <translation>Edificio</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafeteria/Food Hall</masterLabel>
+            <translation>Cafetería/Comedor</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Classroom</masterLabel>
+            <translation>Aula</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Computer Lab</masterLabel>
+            <translation>Laboratorio de computadoras</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gymnasium</masterLabel>
+            <translation>Gimnasio</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Center</masterLabel>
+            <translation>Centro sanitario</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laboratory</masterLabel>
+            <translation>Laboratorio</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lecture Hall</masterLabel>
+            <translation>Sala de lectura</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Library</masterLabel>
+            <translation>Biblioteca</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Opcionalmente indica las instalaciones de las que forma parte. Por ejemplo, si estas instalaciones son un aula, las instalaciones principales serían el edificio en el que se encuentra el aula.</help>
+        <label>Instalación principal</label>
+        <name>Parent_Facility__c</name>
+        <relationshipLabel>Instalaciones</relationshipLabel>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Facility Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de instalación</nameFieldLabel>
 </CustomObjectTranslation>

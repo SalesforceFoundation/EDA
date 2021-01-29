@@ -1,74 +1,70 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Percentile__c</name>
-    <help>La calificación de percentil para este puntuaje.</help>
-    <label>Percentil</label>
-  </fields>
-  <fields>
-    <name>Score__c</name>
-    <help>El valor numérico del puntuaje recibido.</help>
-    <label>Puntuaje</label>
-  </fields>
-  <fields>
-    <name>Subject_Area__c</name>
-    <help>La materia o categoría para el puntuaje de esta prueba.</help>
-    <label>Área temática</label>
-    <picklistValues>
-      <masterLabel>Language</masterLabel>
-      <translation>Idioma</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mathematics</masterLabel>
-      <translation>Matemáticas</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Reading</masterLabel>
-      <translation>Lectura</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Science</masterLabel>
-      <translation>Ciencia</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Writing</masterLabel>
-      <translation>Escritura</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Overall</masterLabel>
-      <translation>General</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Test_Type__c</name>
-    <help>Muestra el nombre del Tipo de prueba desde el registro Prueba asociado. Por ejemplo, SAT o GRE.</help>
-    <label>Tipo de prueba</label>
-  </fields>
-  <fields>
-    <name>Test__c</name>
-    <help>La prueba para la que se está registrando este puntuaje.</help>
-    <relationshipLabel>Puntuajes de prueba</relationshipLabel>
-    <label>Prueba</label>
-  </fields>
-  <layouts>
-    <layout>EDA Test Score Layout</layout>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nombre de puntuaje de prueba</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nombre de puntuaje de prueba</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Puntuación de prueba</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Puntuaciones de pruebas</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Puntuación de prueba</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Puntuaciones de pruebas</value>
+    </caseValues>
+    <fields>
+        <help>La calificación de percentil para este puntuaje.</help>
+        <label>Percentil</label>
+        <name>Percentile__c</name>
+    </fields>
+    <fields>
+        <help>El valor numérico del puntuaje recibido.</help>
+        <label>Puntuaje</label>
+        <name>Score__c</name>
+    </fields>
+    <fields>
+        <help>La materia o categoría para el puntuaje de esta prueba.</help>
+        <label>Área temática</label>
+        <name>Subject_Area__c</name>
+        <picklistValues>
+            <masterLabel>Language</masterLabel>
+            <translation>Idioma</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mathematics</masterLabel>
+            <translation>Matemáticas</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overall</masterLabel>
+            <translation>General</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reading</masterLabel>
+            <translation>Lectura</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science</masterLabel>
+            <translation>Ciencia</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Writing</masterLabel>
+            <translation>Escritura</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Muestra el nombre del Tipo de prueba desde el registro Prueba asociado. Por ejemplo, SAT o GRE.</help>
+        <label>Tipo de prueba</label>
+        <name>Test_Type__c</name>
+    </fields>
+    <fields>
+        <help>La prueba para la que se está registrando este puntuaje.</help>
+        <label>Prueba</label>
+        <name>Test__c</name>
+        <relationshipLabel>Puntuajes de prueba</relationshipLabel>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>EDA Test Score Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de puntuaje de prueba</nameFieldLabel>
 </CustomObjectTranslation>

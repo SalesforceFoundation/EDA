@@ -9,7 +9,7 @@
         <value>Facilities</value>
     </caseValues>
     <fields>
-        <help><!-- The organization that is responsible for the Facility. --></help>
+        <help><!-- The organization responsible for this Facility, for example, a University Department. --></help>
         <label><!-- Account --></label>
         <name>Account__c</name>
         <relationshipLabel><!-- Facilities --></relationshipLabel>
@@ -25,7 +25,12 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- The type of Facility. --></help>
+        <help><!-- A name that combines Parent Name (Thurgood Marshall Tower) and Facility Name (Room 400), for example, Thurgood Marshall Tower - Room 400. If no Parent Facility, Account value is used. If also no Account, Facility Name and Display Name are the same. --></help>
+        <label><!-- Display Name --></label>
+        <name>Display_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the type of Facility this is, for example, a computer lab, health center, lecture hall, etc. --></help>
         <label><!-- Facility Type --></label>
         <name>Facility_Type__c</name>
         <picklistValues>
@@ -66,7 +71,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom. --></help>
+        <help><!-- Optionally indicates the Facility that this one is a part of. For example, if this Facility is a classroom, the Parent Facility would be the building this classroom is in. --></help>
         <label><!-- Parent Facility --></label>
         <name>Parent_Facility__c</name>
         <relationshipLabel><!-- Facilities --></relationshipLabel>

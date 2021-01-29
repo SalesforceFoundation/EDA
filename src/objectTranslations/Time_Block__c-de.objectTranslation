@@ -1,72 +1,68 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Educational_Institution__c</name>
-    <help>Die mit diesem Zeitblock verknüpfte Bildungseinrichtung. Beispiel: eine Schule innerhalb eines Bezirks.</help>
-    <relationshipLabel>Zeitblöcke</relationshipLabel>
-    <label>Bildungseinrichtung</label>
-  </fields>
-  <fields>
-    <name>End_Time__c</name>
-    <help>Tageszeit, zu der der Zeitblock endet.</help>
-    <label>Endzeit</label>
-  </fields>
-  <fields>
-    <name>Start_Time__c</name>
-    <help>Tageszeit, zu der der Zeitblock beginnt.</help>
-    <label>Startzeit</label>
-  </fields>
-  <layouts>
-    <layout>EDA Time Block Layout</layout>
-    <sections>
-      <label>Benutzerdefinierte Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Name des Zeitblocks</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Name des Zeitblocks</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <value>Zeitblock</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Accusative</caseType>
-    <value>Zeitblock</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Dative</caseType>
-    <value>Zeitblock</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <value>Zeitblocks</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <value>Zeitblöcke</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Accusative</caseType>
-    <value>Zeitblöcken</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Dative</caseType>
-    <value>Zeitblöcken</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <value>Zeitblöcke</value>
-  </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Zeitblock</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Zeitblöcke</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Zeitblock</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Zeitblöcken</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Zeitblocks</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Zeitblöcke</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Zeitblock</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Zeitblöcken</value>
+    </caseValues>
+    <fields>
+        <help>Die mit diesem Zeitblock verknüpfte Bildungseinrichtung. Beispiel: eine Schule innerhalb eines Bezirks.</help>
+        <label>Bildungseinrichtung</label>
+        <name>Educational_Institution__c</name>
+        <relationshipLabel>Zeitblöcke</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Tageszeit, zu der der Zeitblock endet.</help>
+        <label>Endzeit</label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <help>Tageszeit, zu der der Zeitblock beginnt.</help>
+        <label>Startzeit</label>
+        <name>Start_Time__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Time Block Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Name des Zeitblocks</nameFieldLabel>
 </CustomObjectTranslation>

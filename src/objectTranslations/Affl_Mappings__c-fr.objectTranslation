@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account_Record_Type__c</name>
-    <help>L'étiquette du type d'enregistrement Compte qui est mappé.</help>
-    <label>Type d'enregistrement de compte</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Role__c</name>
-    <help>Le rôle à définir dans l'enregistrement Inscription au programme qui est automatiquement créé si Inscription automatique au programme est sélectionnée.</help>
-    <label>Rôle d'inscription automatique</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Status__c</name>
-    <help>Le statut à définir dans l'enregistrement Inscription au programme qui est automatiquement créé si Inscription automatique au programme est sélectionnée.</help>
-    <label>Statut d'inscription automatique</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment__c</name>
-    <help>Si cette option est sélectionnée, un enregistrement Inscription au programme est automatiquement créé lorsqu'un utilisateur crée un enregistrement Affiliation avec un compte de ce type d'enregistrement.</help>
-    <label>Inscription automatique</label>
-  </fields>
-  <fields>
-    <name>Primary_Affl_Field__c</name>
-    <help>L'étiquette du champ Contact qui contient la valeur du compte principal de ce type d'enregistrement.</help>
-    <label>Champ d'affiliation principal</label>
-  </fields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <fields>
+        <help>L&apos;étiquette du type d&apos;enregistrement Compte qui est mappé.</help>
+        <label>Type d&apos;enregistrement de compte</label>
+        <name>Account_Record_Type__c</name>
+    </fields>
+    <fields>
+        <help>Le rôle à définir dans l&apos;enregistrement Inscription au programme qui est automatiquement créé si Inscription automatique au programme est sélectionnée.</help>
+        <label>Rôle d&apos;inscription automatique</label>
+        <name>Auto_Program_Enrollment_Role__c</name>
+    </fields>
+    <fields>
+        <help>Le statut à définir dans l&apos;enregistrement Inscription au programme qui est automatiquement créé si Inscription automatique au programme est sélectionnée.</help>
+        <label>Statut d&apos;inscription automatique</label>
+        <name>Auto_Program_Enrollment_Status__c</name>
+    </fields>
+    <fields>
+        <help>Si cette option est sélectionnée, un enregistrement Inscription au programme est automatiquement créé lorsqu&apos;un utilisateur crée un enregistrement Affiliation avec un compte de ce type d&apos;enregistrement.</help>
+        <label>Inscription automatique</label>
+        <name>Auto_Program_Enrollment__c</name>
+    </fields>
+    <fields>
+        <help>L&apos;étiquette du champ Contact qui contient la valeur du compte principal de ce type d&apos;enregistrement.</help>
+        <label>Champ d&apos;affiliation principal</label>
+        <name>Primary_Affl_Field__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

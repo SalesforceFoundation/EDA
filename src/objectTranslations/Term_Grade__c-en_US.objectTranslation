@@ -27,27 +27,27 @@
         <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The number of credits attempted for this course and grading period. --></help>
+        <help><!-- The number of credits available this Term for this Course. --></help>
         <label><!-- Credits Attempted --></label>
         <name>Credits_Attempted__c</name>
     </fields>
     <fields>
-        <help><!-- The number of credits earned for this course and grading period. --></help>
+        <help><!-- The number of credits the student earned this term for this course. --></help>
         <label><!-- Credits Earned --></label>
         <name>Credits_Earned__c</name>
     </fields>
     <fields>
-        <help><!-- The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value. --></help>
+        <help><!-- If your school uses letter grades, enter the letter grade the student earned, for example, A, B, C, etc. --></help>
         <label><!-- Letter Grade --></label>
         <name>Letter_Grade__c</name>
     </fields>
     <fields>
-        <help><!-- The numerical grade the student earned for this course, which can be based on any non-percentage number. --></help>
+        <help><!-- If your school uses numeric grades, enter the numeric grade the student earned. --></help>
         <label><!-- Numerical Grade --></label>
         <name>Numerical_Grade__c</name>
     </fields>
     <fields>
-        <help><!-- The percentage grade the student earned for this course. --></help>
+        <help><!-- If your school grades on a percentage basis, enter the percentage grade the student earned. --></help>
         <label><!-- Percent Grade --></label>
         <name>Percent_Grade__c</name>
     </fields>
@@ -73,7 +73,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The type of term or grading period for which this grade is being recorded. --></help>
+        <help><!-- The type of grading period that this grade is for, for example, Mid-Term Grade, Final Grade, Exam Grade, Grading Period. --></help>
         <label><!-- Term Grade Type --></label>
         <name>Term_Grade_Type__c</name>
         <picklistValues>
@@ -94,7 +94,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The term or grading period for which this grade is being recorded. --></help>
+        <help><!-- Indicates in which Term the student earned this grade. --></help>
         <label><!-- Term --></label>
         <name>Term__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>

@@ -16,16 +16,15 @@
         <length>80</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Current_Address__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup to the current Address record for this Account. The Account's Billing Address field is populated with the address fields from the current Address record.</description>
+        <description>Lookup to the current Address record for this Account. The Account&apos;s Billing Address field is populated with the address fields from the current Address record.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Lookup to the current Address record for this Account. The Account's Billing Address field is populated with the address fields from the current Address record.</inlineHelpText>
+        <inlineHelpText>Lookup to the current Address record for this Account. The Account&apos;s Billing Address field is populated with the address fields from the current Address record.</inlineHelpText>
         <label>Current Address</label>
         <referenceTo>Address__c</referenceTo>
         <relationshipLabel>Accounts (Current Address)</relationshipLabel>
@@ -50,6 +49,7 @@
     </fields>
     <fields>
         <fullName>School_Code__c</fullName>
+        <caseSensitive>false</caseSensitive>
         <description>A code that uniquely identifies an educational institution using standards recognized in your region.</description>
         <externalId>true</externalId>
         <inlineHelpText>A code that uniquely identifies an educational institution using standards recognized in your region.</inlineHelpText>
@@ -57,7 +57,6 @@
         <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
@@ -69,7 +68,6 @@
         <length>80</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>

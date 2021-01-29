@@ -1,23 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Active__c</name>
-    <help>Gibt an, ob wechselseitiges Nachschlagen aktiv ist.</help>
-    <label>Aktiv</label>
-  </fields>
-  <fields>
-    <name>Female__c</name>
-    <help>Der Wert, der für die Einstellung "Wechselseitig" verwendet wird, wenn als Geschlecht oder Anrede des Kontakts weiblich angegeben ist.</help>
-    <label>Weiblich</label>
-  </fields>
-  <fields>
-    <name>Male__c</name>
-    <help>Der Wert, der für die Einstellung "Wechselseitig" verwendet wird, wenn als Geschlecht oder Anrede des Kontakts männlich angegeben ist.</help>
-    <label>Männlich</label>
-  </fields>
-  <fields>
-    <name>Neutral__c</name>
-    <help>Der Wert, der verwendet wird, wenn als Geschlecht oder Anrede des Kontakts kein Geschlecht angegeben ist.</help>
-    <label>Neutral</label>
-  </fields>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <fields>
+        <help>Gibt an, ob wechselseitiges Nachschlagen aktiv ist.</help>
+        <label>Aktiv</label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help>Der Wert, der für die Einstellung &quot;Wechselseitig&quot; verwendet wird, wenn als Geschlecht oder Anrede des Kontakts weiblich angegeben ist.</help>
+        <label>Weiblich</label>
+        <name>Female__c</name>
+    </fields>
+    <fields>
+        <help>Der Wert, der für die Einstellung &quot;Wechselseitig&quot; verwendet wird, wenn als Geschlecht oder Anrede des Kontakts männlich angegeben ist.</help>
+        <label>Männlich</label>
+        <name>Male__c</name>
+    </fields>
+    <fields>
+        <help>Der Wert, der verwendet wird, wenn als Geschlecht oder Anrede des Kontakts kein Geschlecht angegeben ist.</help>
+        <label>Neutral</label>
+        <name>Neutral__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
 </CustomObjectTranslation>

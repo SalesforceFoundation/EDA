@@ -9,26 +9,29 @@
         <value>Program Enrollments</value>
     </caseValues>
     <fields>
-        <help><!-- The program the student is enrolled in. --></help>
+        <help><!-- The Program the student is enrolled in. --></help>
         <label><!-- Program --></label>
         <name>Account__c</name>
         <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The date the student was admitted to the Program. --></help>
         <label><!-- Admission Date --></label>
         <name>Admission_Date__c</name>
     </fields>
     <fields>
-        <help><!-- The Contact-Account relationship this academic information is related to. --></help>
+        <help><!-- This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program. --></help>
         <label><!-- Affiliation --></label>
         <name>Affiliation__c</name>
         <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The date the student applied for admission to the Program. --></help>
         <label><!-- Application Submitted Date --></label>
         <name>Application_Submitted_Date__c</name>
     </fields>
     <fields>
+        <help><!-- The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior. --></help>
         <label><!-- Class Standing --></label>
         <name>Class_Standing__c</name>
         <picklistValues>
@@ -49,28 +52,33 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The parent Contact. --></help>
+        <help><!-- The student enrolled in this Program. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received. --></help>
         <label><!-- Credits Attempted --></label>
         <name>Credits_Attempted__c</name>
     </fields>
     <fields>
+        <help><!-- The number of credits the student has successfully completed to date. --></help>
         <label><!-- Credits Earned --></label>
         <name>Credits_Earned__c</name>
     </fields>
     <fields>
+        <help><!-- When selected, indicates the student has met program requirements and is eligible to enroll. --></help>
         <label><!-- Eligible to Enroll --></label>
         <name>Eligible_to_Enroll__c</name>
     </fields>
     <fields>
+        <help><!-- The date the student is scheduled to complete the Program. --></help>
         <label><!-- End Date --></label>
         <name>End_Date__c</name>
     </fields>
     <fields>
+        <help><!-- The student&apos;s enrollment status, for example, full-time or half-time. --></help>
         <label><!-- Enrollment Status --></label>
         <name>Enrollment_Status__c</name>
         <picklistValues>
@@ -87,20 +95,23 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- The student&apos;s current grade point average. --></help>
         <label><!-- GPA --></label>
         <name>GPA__c</name>
     </fields>
     <fields>
+        <help><!-- The year the student is expected to graduate from this Program. --></help>
         <label><!-- Class Year --></label>
         <name>Graduation_Year__c</name>
     </fields>
     <fields>
-        <help><!-- Click to select a Program Plan that a student should follow for this Program Enrollment. --></help>
+        <help><!-- The Program Plan that contains all of the program requirements in effect for this student. --></help>
         <label><!-- Program Plan --></label>
         <name>Program_Plan__c</name>
         <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The date the student started, or is expected to start, this Program. --></help>
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>

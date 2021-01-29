@@ -1,78 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>De organisatie die verantwoordelijk is voor deze faciliteit, bijvoorbeeld een universitaire afdeling.</help>
-    <relationshipLabel>Faciliteiten</relationshipLabel>
-    <label>Account</label>
-  </fields>
-  <fields>
-    <name>Capacity__c</name>
-    <help>Het maximumaantal personen dat er in de faciliteit past.</help>
-    <label>Capaciteit</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Een beschrijving van deze faciliteit.</help>
-    <label>Beschrijving</label>
-  </fields>
-  <fields>
-    <name>Facility_Type__c</name>
-    <help>Selecteer welk type faciliteit dit is, bijvoorbeeld een computerruimte, gezondheidscentrum, collegezaal, enz.</help>
-    <label>Faciliteitstype</label>
-    <picklistValues>
-      <masterLabel>Building</masterLabel>
-      <translation>Gebouw</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Cafeteria/Food Hall</masterLabel>
-      <translation>Kantine/Mensa</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Classroom</masterLabel>
-      <translation>Klaslokaal</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Computer Lab</masterLabel>
-      <translation>Computerruimte</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Gymnasium</masterLabel>
-      <translation>Sportzaal</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Health Center</masterLabel>
-      <translation>Gezondheidscentrum</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Laboratory</masterLabel>
-      <translation>Laboratorium</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Lecture Hall</masterLabel>
-      <translation>Collegezaal</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Library</masterLabel>
-      <translation>Bibliotheek</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Parent_Facility__c</name>
-    <help>Geeft optioneel de faciliteit aan waar deze faciliteit deel van uitmaakt. Als deze faciliteit bijvoorbeeld een klaslokaal is, is de bovenliggende faciliteit het gebouw waarin het klaslokaal zich bevindt.</help>
-    <relationshipLabel>Faciliteiten</relationshipLabel>
-    <label>Bovenliggende faciliteit</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Facility Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Naam van faciliteit</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Naam van faciliteit</label>
-  </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Facility --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Facility --></value>
+    </caseValues>
+    <fields>
+        <help>De organisatie die verantwoordelijk is voor deze faciliteit, bijvoorbeeld een universitaire afdeling.</help>
+        <label>Account</label>
+        <name>Account__c</name>
+        <relationshipLabel>Faciliteiten</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Het maximumaantal personen dat er in de faciliteit past.</help>
+        <label>Capaciteit</label>
+        <name>Capacity__c</name>
+    </fields>
+    <fields>
+        <help>Een beschrijving van deze faciliteit.</help>
+        <label>Beschrijving</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- A name that combines Parent Name (Thurgood Marshall Tower) and Facility Name (Room 400), for example, Thurgood Marshall Tower - Room 400. If no Parent Facility, Account value is used. If also no Account, Facility Name and Display Name are the same. --></help>
+        <label><!-- Display Name --></label>
+        <name>Display_Name__c</name>
+    </fields>
+    <fields>
+        <help>Selecteer welk type faciliteit dit is, bijvoorbeeld een computerruimte, gezondheidscentrum, collegezaal, enz.</help>
+        <label>Faciliteitstype</label>
+        <name>Facility_Type__c</name>
+        <picklistValues>
+            <masterLabel>Building</masterLabel>
+            <translation>Gebouw</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafeteria/Food Hall</masterLabel>
+            <translation>Kantine/Mensa</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Classroom</masterLabel>
+            <translation>Klaslokaal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Computer Lab</masterLabel>
+            <translation>Computerruimte</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gymnasium</masterLabel>
+            <translation>Sportzaal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Center</masterLabel>
+            <translation>Gezondheidscentrum</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laboratory</masterLabel>
+            <translation>Laboratorium</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lecture Hall</masterLabel>
+            <translation>Collegezaal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Library</masterLabel>
+            <translation>Bibliotheek</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Geeft optioneel de faciliteit aan waar deze faciliteit deel van uitmaakt. Als deze faciliteit bijvoorbeeld een klaslokaal is, is de bovenliggende faciliteit het gebouw waarin het klaslokaal zich bevindt.</help>
+        <label>Bovenliggende faciliteit</label>
+        <name>Parent_Facility__c</name>
+        <relationshipLabel>Faciliteiten</relationshipLabel>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>HEDA Facility Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Naam van faciliteit</nameFieldLabel>
 </CustomObjectTranslation>

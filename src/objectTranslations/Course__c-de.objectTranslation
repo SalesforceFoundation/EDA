@@ -1,81 +1,77 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>Der Fachbereich (Accountdatensatz), der diesen Kurs anbietet.</help>
-    <relationshipLabel>Kurse</relationshipLabel>
-    <label>Fachbereich</label>
-  </fields>
-  <fields>
-    <name>Course_ID__c</name>
-    <help>Die alphanumerische ID des Kurses, z. B. Englisch 101.</help>
-    <label>Kurs-ID</label>
-  </fields>
-  <fields>
-    <name>Credit_Hours__c</name>
-    <label>Semesterwochenstunden</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Dieses Feld wurde durch das Feld "Erweiterte Beschreibung" ersetzt, das längere Beschreibungen ermöglicht. Ihr Administrator kann unter "EDA-Einstellungen | Kurse migrieren" Text aus dem Feld "Beschreibung" in das Feld "Erweiterte Beschreibung" migrieren.</help>
-    <label>Beschreibung</label>
-  </fields>
-  <fields>
-    <name>Extended_Description__c</name>
-    <help>Geben Sie in diesem Feld eine Beschreibung des Kurses mit maximal 131.000 Zeichen ein. Dieses Feld ersetzt das Feld "Beschreibung".</help>
-    <label>Erweiterte Beschreibung</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Course Layout</layout>
-    <sections>
-      <label>Benutzerdefinierte Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Kursname</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Kursname</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <value>Kurs</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Accusative</caseType>
-    <value>Kurs</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Dative</caseType>
-    <value>Kurs</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <value>Kurses</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <value>Kurse</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Accusative</caseType>
-    <value>Kursene</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Dative</caseType>
-    <value>Kursen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <value>Kurse</value>
-  </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Kurs</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Kurse</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Kurs</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Kursene</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Kurses</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Kurse</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Kurs</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Kursen</value>
+    </caseValues>
+    <fields>
+        <help>Der Fachbereich (Accountdatensatz), der diesen Kurs anbietet.</help>
+        <label>Fachbereich</label>
+        <name>Account__c</name>
+        <relationshipLabel>Kurse</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Die alphanumerische ID des Kurses, z. B. Englisch 101.</help>
+        <label>Kurs-ID</label>
+        <name>Course_ID__c</name>
+    </fields>
+    <fields>
+        <label>Semesterwochenstunden</label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <help>Dieses Feld wurde durch das Feld &quot;Erweiterte Beschreibung&quot; ersetzt, das längere Beschreibungen ermöglicht. Ihr Administrator kann unter &quot;EDA-Einstellungen | Kurse migrieren&quot; Text aus dem Feld &quot;Beschreibung&quot; in das Feld &quot;Erweiterte Beschreibung&quot; migrieren.</help>
+        <label>Beschreibung</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>Geben Sie in diesem Feld eine Beschreibung des Kurses mit maximal 131.000 Zeichen ein. Dieses Feld ersetzt das Feld &quot;Beschreibung&quot;.</help>
+        <label>Erweiterte Beschreibung</label>
+        <name>Extended_Description__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Course Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Kursname</nameFieldLabel>
 </CustomObjectTranslation>

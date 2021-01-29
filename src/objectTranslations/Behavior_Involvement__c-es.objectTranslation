@@ -1,65 +1,61 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Case__c</name>
-    <help>El caso que representa el evento del que se está informando.</help>
-    <relationshipLabel>Implicaciones de comportamiento</relationshipLabel>
-    <label>Caso</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>El contacto estudiantil o del profesorado que estuvo involucrado directamente en el evento.</help>
-    <relationshipLabel>Implicaciones de comportamiento</relationshipLabel>
-    <label>Contacto</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Descripción</label>
-  </fields>
-  <fields>
-    <name>Role__c</name>
-    <help>La función que jugó esta persona en el evento.</help>
-    <label>Función</label>
-    <picklistValues>
-      <masterLabel>Perpetrator</masterLabel>
-      <translation>Autor material</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Reporter</masterLabel>
-      <translation>Denunciante</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Victim</masterLabel>
-      <translation>Víctima</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Witness</masterLabel>
-      <translation>Testigo</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Otro</translation>
-    </picklistValues>
-  </fields>
-  <layouts>
-    <layout>EDA Behavior Involvement Layout</layout>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nombre de implicación de comportamiento</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nombre de implicación de comportamiento</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Implicación de comportamiento</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Implicaciones de comportamiento</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Implicación de comportamiento</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Implicaciones de comportamiento</value>
+    </caseValues>
+    <fields>
+        <help>El caso que representa el evento del que se está informando.</help>
+        <label>Caso</label>
+        <name>Case__c</name>
+        <relationshipLabel>Implicaciones de comportamiento</relationshipLabel>
+    </fields>
+    <fields>
+        <help>El contacto estudiantil o del profesorado que estuvo involucrado directamente en el evento.</help>
+        <label>Contacto</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Implicaciones de comportamiento</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Descripción</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>La función que jugó esta persona en el evento.</help>
+        <label>Función</label>
+        <name>Role__c</name>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Otro</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Perpetrator</masterLabel>
+            <translation>Autor material</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reporter</masterLabel>
+            <translation>Denunciante</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Victim</masterLabel>
+            <translation>Víctima</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Witness</masterLabel>
+            <translation>Testigo</translation>
+        </picklistValues>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>EDA Behavior Involvement Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de implicación de comportamiento</nameFieldLabel>
 </CustomObjectTranslation>

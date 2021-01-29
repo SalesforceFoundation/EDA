@@ -1,40 +1,36 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Educational_Institution__c</name>
-    <help>The Educational Institution associated with this Time Block. For example, a school within a district.</help>
-    <relationshipLabel>Time Blocks</relationshipLabel>
-    <label>Educational Institution</label>
-  </fields>
-  <fields>
-    <name>End_Time__c</name>
-    <help>The time of day the Time Block ends.</help>
-    <label>End Time</label>
-  </fields>
-  <fields>
-    <name>Start_Time__c</name>
-    <help>The time of day the Time Block starts.</help>
-    <label>Start Time</label>
-  </fields>
-  <layouts>
-    <layout>EDA Time Block Layout</layout>
-    <sections>
-      <label>Custom Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Time Block Name</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Time Block Name</label>
-  </standardFields>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Time Block</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Time Blocks</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Time Block</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Time Blocks</value>
+    </caseValues>
+    <fields>
+        <help>The Educational Institution associated with this Time Block. For example, a school within a district.</help>
+        <label>Educational Institution</label>
+        <name>Educational_Institution__c</name>
+        <relationshipLabel>Time Blocks</relationshipLabel>
+    </fields>
+    <fields>
+        <help>The time of day the Time Block ends.</help>
+        <label>End Time</label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <help>The time of day the Time Block starts.</help>
+        <label>Start Time</label>
+        <name>Start_Time__c</name>
+    </fields>
+    <layouts>
+        <layout>EDA Time Block Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Time Block Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

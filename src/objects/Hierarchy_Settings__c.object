@@ -37,8 +37,8 @@
     </fields>
     <fields>
         <fullName>Admin_Account_Naming_Format__c</fullName>
-        <externalId>false</externalId>
         <description>Stores the default format for Admin Account names.</description>
+        <externalId>false</externalId>
         <inlineHelpText>Stores the default format for Admin Account names.</inlineHelpText>
         <label>Admin Account Naming Format</label>
         <length>255</length>
@@ -49,8 +49,8 @@
     </fields>
     <fields>
         <fullName>Admin_Other_Name_Setting__c</fullName>
-        <externalId>false</externalId>
         <description>Stores other info about Admin Account naming format.</description>
+        <externalId>false</externalId>
         <inlineHelpText>Stores other info about Admin Account naming format.</inlineHelpText>
         <label>Admin Other Name Setting</label>
         <length>255</length>
@@ -183,8 +183,8 @@
     <fields>
         <fullName>Async_Error_Check_Last_Run__c</fullName>
         <description>The most recent execution date of the Async Job error logger.</description>
-        <inlineHelpText>The most recent execution date of the Async Job error logger.</inlineHelpText>
         <externalId>false</externalId>
+        <inlineHelpText>The most recent execution date of the Async Job error logger.</inlineHelpText>
         <label>Async Error Check Last Run</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -340,8 +340,8 @@
     </fields>
     <fields>
         <fullName>Household_Other_Name_Setting__c</fullName>
-        <externalId>false</externalId>
         <description>Stores other information about the Household Account naming format.</description>
+        <externalId>false</externalId>
         <inlineHelpText>Stores other information about the Household Account naming format.</inlineHelpText>
         <label>Household Other Name Setting</label>
         <length>255</length>
@@ -417,15 +417,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Prevent_Course_Deletion__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Reserved for future use.</description>
-        <externalId>false</externalId>
-        <label>Prevent Course Deletion</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Prevent_Course_Connection_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
@@ -435,11 +426,11 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Prevent_Facility_Deletion__c</fullName>
+        <fullName>Prevent_Course_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <label>Prevent Facility Deletion</label>
+        <label>Prevent Course Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -449,6 +440,15 @@
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
         <label>Prevent Course Offering Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Facility_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Facility Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

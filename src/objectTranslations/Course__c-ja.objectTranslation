@@ -1,44 +1,40 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>この科目を提供する部門 (取引先レコード)。</help>
-    <relationshipLabel>科目</relationshipLabel>
-    <label>部門</label>
-  </fields>
-  <fields>
-    <name>Course_ID__c</name>
-    <help>科目の英数字 ID (English 101 など)。</help>
-    <label>科目 ID</label>
-  </fields>
-  <fields>
-    <name>Credit_Hours__c</name>
-    <label>単位時間数</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>この項目は、より長い説明に対応する [拡張説明] 項目で置き換えられました。システム管理者は、[EDA 設定] | [科目] で、[説明] から [拡張説明] 項目にテキストを移行できます。</help>
-    <label>説明</label>
-  </fields>
-  <fields>
-    <name>Extended_Description__c</name>
-    <help>この項目を使用して、最大 131,000 文字で科目を説明します。この項目は [説明] 項目を置き換えます。</help>
-    <label>拡張説明</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Course Layout</layout>
-    <sections>
-      <label>カスタムリンク</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>科目名</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>科目名</label>
-  </standardFields>
-  <caseValues>
-    <plural>false</plural>
-    <value>コース</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>コース</value>
+    </caseValues>
+    <fields>
+        <help>この科目を提供する部門 (取引先レコード)。</help>
+        <label>部門</label>
+        <name>Account__c</name>
+        <relationshipLabel>科目</relationshipLabel>
+    </fields>
+    <fields>
+        <help>科目の英数字 ID (English 101 など)。</help>
+        <label>科目 ID</label>
+        <name>Course_ID__c</name>
+    </fields>
+    <fields>
+        <label>単位時間数</label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <help>この項目は、より長い説明に対応する [拡張説明] 項目で置き換えられました。システム管理者は、[EDA 設定] | [科目] で、[説明] から [拡張説明] 項目にテキストを移行できます。</help>
+        <label>説明</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>この項目を使用して、最大 131,000 文字で科目を説明します。この項目は [説明] 項目を置き換えます。</help>
+        <label>拡張説明</label>
+        <name>Extended_Description__c</name>
+    </fields>
+    <layouts>
+        <layout>HEDA Course Layout</layout>
+        <sections>
+            <label>カスタムリンク</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>科目名</nameFieldLabel>
 </CustomObjectTranslation>

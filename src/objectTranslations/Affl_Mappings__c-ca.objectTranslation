@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account_Record_Type__c</name>
-    <help>L'etiqueta del tipus de registre del compte que s'està assignant.</help>
-    <label>Tipus de registre del compte</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Role__c</name>
-    <help>La funció que cal establir al registre d'inscripció al programa que es crea automàticament si se selecciona Inscripció automàtica al programa.</help>
-    <label>Funció d'inscripció automàtica</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Status__c</name>
-    <help>L'estat que cal establir al registre d'inscripció al programa que es crea automàticament si se selecciona Inscripció automàtica al programa.</help>
-    <label>Estat d'inscripció automàtica</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment__c</name>
-    <help>Si se selecciona, es crea automàticament un registre d'inscripció al programa quan un usuari creï un registre d’afiliació amb un compte d’aquest tipus de registre.</help>
-    <label>Inscripció automàtica</label>
-  </fields>
-  <fields>
-    <name>Primary_Affl_Field__c</name>
-    <help>L'etiqueta del camp de contacte que conté el valor del compte principal per a aquest tipus de registre.</help>
-    <label>Camp d'afiliació primària</label>
-  </fields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <fields>
+        <help>L&apos;etiqueta del tipus de registre del compte que s&apos;està assignant.</help>
+        <label>Tipus de registre del compte</label>
+        <name>Account_Record_Type__c</name>
+    </fields>
+    <fields>
+        <help>La funció que cal establir al registre d&apos;inscripció al programa que es crea automàticament si se selecciona Inscripció automàtica al programa.</help>
+        <label>Funció d&apos;inscripció automàtica</label>
+        <name>Auto_Program_Enrollment_Role__c</name>
+    </fields>
+    <fields>
+        <help>L&apos;estat que cal establir al registre d&apos;inscripció al programa que es crea automàticament si se selecciona Inscripció automàtica al programa.</help>
+        <label>Estat d&apos;inscripció automàtica</label>
+        <name>Auto_Program_Enrollment_Status__c</name>
+    </fields>
+    <fields>
+        <help>Si se selecciona, es crea automàticament un registre d&apos;inscripció al programa quan un usuari creï un registre d’afiliació amb un compte d’aquest tipus de registre.</help>
+        <label>Inscripció automàtica</label>
+        <name>Auto_Program_Enrollment__c</name>
+    </fields>
+    <fields>
+        <help>L&apos;etiqueta del camp de contacte que conté el valor del compte principal per a aquest tipus de registre.</help>
+        <label>Camp d&apos;afiliació primària</label>
+        <name>Primary_Affl_Field__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>
