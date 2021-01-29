@@ -174,7 +174,7 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
+    </fields> 
     <fields>
         <fullName>Class_Percentile__c</fullName>
         <description>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</description>
@@ -390,6 +390,7 @@
         <fullName>Education_History_JSON__c</fullName>
         <description>A system field that stores a large JSON structure used for integrations. Do not modify this field.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Education History JSON</label>
         <length>131072</length>
         <trackTrending>false</trackTrending>
@@ -592,6 +593,7 @@
         <displayFormat>EH-{0000}</displayFormat>
         <label>Education History Name</label>
         <type>AutoNumber</type>
+        <startingNumber>0001</startingNumber>
     </nameField>
     <pluralLabel>Education History</pluralLabel>
     <searchLayouts>

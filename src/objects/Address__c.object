@@ -5,27 +5,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>CancelEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -33,27 +13,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -61,13 +21,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Small</formFactor>
+        <actionName>Follow</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -75,27 +29,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -103,41 +37,11 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -157,16 +61,14 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Address_Type__c</fullName>
-        <description>Select what kind of address this is, for example, Home, Work, Vacation Residence, or Other.</description>
         <externalId>false</externalId>
+        <description>Select what kind of address this is, for example, Home, Work, Vacation Residence, or Other.</description>
         <inlineHelpText>Select what kind of address this is, for example, Home, Work, Vacation Residence, or Other.</inlineHelpText>
         <label>Address Type</label>
         <required>false</required>
@@ -212,8 +114,9 @@
     </fields>
     <fields>
         <fullName>Formula_MailingAddress__c</fullName>
-        <description>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</description>
         <externalId>false</externalId>
+        <description>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</description>
+         <inlineHelpText>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</inlineHelpText>
         <formula>MailingStreet__c &amp;
 BR() &amp; 
 IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
@@ -221,7 +124,6 @@ IF(ISBLANK(MailingCity__c), &quot;&quot;, MailingCity__c &amp; &quot;, &quot;) &
 MailingState__c &amp; &quot; &quot; &amp; 
 MailingPostalCode__c 
 &amp; IF(ISBLANK(MailingCountry__c), &quot;&quot;, BR() &amp; MailingCountry__c)</formula>
-        <inlineHelpText>The full mailing address, including Mailing Street 2 and Mailing Country values, if not blank (read-only).</inlineHelpText>
         <label>Mailing Address</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -230,8 +132,9 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Formula_MailingStreetAddress__c</fullName>
-        <description>The full mailing address, including mailing street 2 and country values, if not blank (read-only.)</description>
         <externalId>false</externalId>
+        <description>The full mailing address, including mailing street 2 and country values, if not blank (read-only.)</description>
+        <inlineHelpText>The full mailing address, including mailing street 2 and country values, if not blank (read-only.)</inlineHelpText>
         <formula>MailingStreet__c &amp;
 BR() &amp; 
 IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
@@ -239,7 +142,6 @@ IF(ISBLANK(MailingCity__c), &quot;&quot;, MailingCity__c &amp; &quot;, &quot;) &
 MailingState__c &amp; &quot; &quot; &amp; 
 MailingPostalCode__c 
 &amp; IF(ISBLANK(MailingCountry__c), &quot;&quot;, BR() &amp; MailingCountry__c)</formula>
-        <inlineHelpText>The full mailing address, including mailing street 2 and country values, if not blank (read-only.)</inlineHelpText>
         <label>Mailing Street Address</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -261,9 +163,9 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Latest_End_Date__c</fullName>
-        <description>The most recent ending date that this Address was used. Generally used with Latest Start Date to track a date range for an Address that&apos;s no longer in use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The most recent ending date that this Address was used. Generally used with Latest Start Date to track a date range for an Address that&apos;s no longer in use.</inlineHelpText>
+        <description>The most recent ending date that this Address was used. Generally used with Latest Start Date to track a date range for an Address that's no longer in use.</description>
+        <inlineHelpText>The most recent ending date that this Address was used. Generally used with Latest Start Date to track a date range for an Address that's no longer in use.</inlineHelpText>
         <label>Latest End Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -272,9 +174,9 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Latest_Start_Date__c</fullName>
-        <description>The most recent starting date that this Address was used. Generally used with Latest End Date to track a date range for an Address that&apos;s no longer in use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The most recent starting date that this Address was used. Generally used with Latest End Date to track a date range for an Address that&apos;s no longer in use.</inlineHelpText>
+        <description>The most recent starting date that this Address was used. Generally used with Latest End Date to track a date range for an Address that's no longer in use.</description>
+        <inlineHelpText>The most recent starting date that this Address was used. Generally used with Latest End Date to track a date range for an Address that's no longer in use.</inlineHelpText>
         <label>Latest Start Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -339,8 +241,8 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>MailingStreet2__c</fullName>
-        <description>Additional street address detail for this Address, such as Suite or Apt.</description>
         <externalId>false</externalId>
+        <description>Additional street address detail for this Address, such as Suite or Apt.</description>
         <inlineHelpText>Additional street address detail for this Address, such as Suite or Apt.</inlineHelpText>
         <label>Mailing Street2</label>
         <required>false</required>
@@ -391,8 +293,8 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Seasonal_End_Day__c</fullName>
-        <description>The day of the month when this Address no longer replaces the Default Address.</description>
         <externalId>false</externalId>
+        <description>The day of the month when this Address no longer replaces the Default Address.</description>
         <inlineHelpText>The day of the month when this Address no longer replaces the Default Address.</inlineHelpText>
         <label>Seasonal End Day</label>
         <required>false</required>
@@ -562,8 +464,8 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Seasonal_End_Month__c</fullName>
-        <description>The month of the year when this Address no longer replaces the Default Address.</description>
         <externalId>false</externalId>
+        <description>The month of the year when this Address no longer replaces the Default Address.</description>
         <inlineHelpText>The month of the year when this Address no longer replaces the Default Address.</inlineHelpText>
         <label>Seasonal End Month</label>
         <required>false</required>
@@ -652,8 +554,8 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Seasonal_Start_Day__c</fullName>
-        <description>The day of the month when this Address replaces the Default Address.</description>
         <externalId>false</externalId>
+        <description>The day of the month when this Address replaces the Default Address.</description>
         <inlineHelpText>The day of the month when this Address replaces the Default Address.</inlineHelpText>
         <label>Seasonal Start Day</label>
         <required>false</required>
@@ -823,8 +725,8 @@ MailingPostalCode__c
     </fields>
     <fields>
         <fullName>Seasonal_Start_Month__c</fullName>
-        <description>The month of the year when this Address replaces the Default Address.</description>
         <externalId>false</externalId>
+        <description>The month of the year when this Address replaces the Default Address.</description>
         <inlineHelpText>The month of the year when this Address replaces the Default Address.</inlineHelpText>
         <label>Seasonal Start Month</label>
         <required>false</required>
@@ -937,5 +839,4 @@ MailingPostalCode__c
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
-    <visibility>Public</visibility>
 </CustomObject>

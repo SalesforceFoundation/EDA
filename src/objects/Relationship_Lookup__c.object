@@ -40,9 +40,9 @@
     </fields>
     <fields>
         <fullName>Neutral__c</fullName>
-        <description>The value used if the Contact&apos;s Gender and Saluation fields don&apos;t indicate gender.</description>
+        <description>The value used if the Contact&apos;s Gender and Saluation fields don't indicate gender.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The value used if the Contact&apos;s Gender and Saluation fields don&apos;t indicate gender.</inlineHelpText>
+        <inlineHelpText>The value used if the Contact&apos;s Gender and Saluation fields don't indicate gender.</inlineHelpText>
         <label>Neutral</label>
         <length>255</length>
         <required>false</required>

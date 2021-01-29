@@ -4,9 +4,9 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Account_Record_Type__c</fullName>
-        <description>The label of the Account record type that&apos;s being mapped.</description>
+        <description>The label of the Account record type that's being mapped.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The label of the Account record type that&apos;s being mapped.</inlineHelpText>
+        <inlineHelpText>The label of the Account record type that's being mapped.</inlineHelpText>
         <label>Account Record Type</label>
         <length>255</length>
         <required>false</required>
@@ -16,9 +16,9 @@
     </fields>
     <fields>
         <fullName>Auto_Program_Enrollment_Role__c</fullName>
-        <description>The role to set on the Program Enrollment record that&apos;s automatically created if Auto Program Enrollment is selected.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The role to set on the Program Enrollment record that&apos;s automatically created if Auto Program Enrollment is selected.</inlineHelpText>
+        <description>The role to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</description>
+        <inlineHelpText>The role to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</inlineHelpText>
         <label>Auto Enrollment Role</label>
         <length>255</length>
         <required>false</required>
@@ -28,9 +28,9 @@
     </fields>
     <fields>
         <fullName>Auto_Program_Enrollment_Status__c</fullName>
-        <description>The status to set on the Program Enrollment record that&apos;s automatically created if Auto Program Enrollment is selected.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The status to set on the Program Enrollment record that&apos;s automatically created if Auto Program Enrollment is selected.</inlineHelpText>
+        <description>The status to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</description>
+        <inlineHelpText>The status to set on the Program Enrollment record that's automatically created if Auto Program Enrollment is selected.</inlineHelpText>
         <label>Auto Enrollment Status</label>
         <length>255</length>
         <required>false</required>

@@ -5,27 +5,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>CancelEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -33,27 +13,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -61,27 +21,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -89,27 +29,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>SaveEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -117,27 +37,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -162,11 +62,10 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Capacity__c</fullName>
-        <description>The maximum number of students for this Course Offering.</description>
         <externalId>false</externalId>
+        <description>The maximum number of students for this Course Offering.</description>
         <inlineHelpText>The maximum number of students for this Course Offering.</inlineHelpText>
         <label>Capacity</label>
         <precision>18</precision>
@@ -178,8 +77,8 @@
     </fields>
     <fields>
         <fullName>Course__c</fullName>
-        <description>Lookup to the Course record that this Course Offering is associated with.</description>
         <externalId>false</externalId>
+        <description>Lookup to the Course record that this Course Offering is associated with.</description>
         <label>Course</label>
         <referenceTo>Course__c</referenceTo>
         <relationshipLabel>Course Offerings</relationshipLabel>
@@ -192,8 +91,8 @@
     </fields>
     <fields>
         <fullName>End_Date__c</fullName>
-        <description>The date of the last session for this Course Offering.</description>
         <externalId>false</externalId>
+        <description>The date of the last session for this Course Offering.</description>
         <inlineHelpText>The date of the last session for this Course Offering.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
@@ -217,8 +116,8 @@
     <fields>
         <fullName>Faculty__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup to the lead instructor for this Course Offering.</description>
         <externalId>false</externalId>
+        <description>Lookup to the lead instructor for this Course Offering.</description>
         <inlineHelpText>Lookup to the lead instructor for this Course Offering.</inlineHelpText>
         <label>Primary Faculty</label>
         <referenceTo>Contact</referenceTo>
@@ -230,8 +129,8 @@
     </fields>
     <fields>
         <fullName>Section_ID__c</fullName>
-        <description>The Section ID for this Course Offering. Section ID is typically used when a Course offers multiple sections during a single Term.</description>
         <externalId>false</externalId>
+        <description>The Section ID for this Course Offering. Section ID is typically used when a Course offers multiple sections during a single Term.</description>
         <inlineHelpText>The Section ID for this Course Offering. Section ID is typically used when a Course offers multiple sections during a single Term.</inlineHelpText>
         <label>Section ID</label>
         <length>255</length>
@@ -242,8 +141,8 @@
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
-        <description>The date of the first session for this Course Offering.</description>
         <externalId>false</externalId>
+        <description>The date of the first session for this Course Offering.</description>
         <inlineHelpText>The date of the first session for this Course Offering.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
@@ -252,8 +151,8 @@
     </fields>
     <fields>
         <fullName>Term__c</fullName>
-        <description>Lookup to the Term record that represents when this Course Offering takes place.</description>
         <externalId>false</externalId>
+        <description>Lookup to the Term record that represents when this Course Offering takes place.</description>
         <label>Term</label>
         <referenceTo>Term__c</referenceTo>
         <relationshipLabel>Course Offerings</relationshipLabel>
@@ -267,8 +166,8 @@
     <fields>
         <fullName>Time_Block__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup to the Time Block record that represents the start and end times for this Course Offering.</description>
         <externalId>false</externalId>
+        <description>Lookup to the Time Block record that represents the start and end times for this Course Offering.</description>
         <label>Time Block</label>
         <referenceTo>Time_Block__c</referenceTo>
         <relationshipLabel>Course Offerings</relationshipLabel>
