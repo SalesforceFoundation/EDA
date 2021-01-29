@@ -95,6 +95,14 @@
         <members>CON_PrimaryAffls_TEST</members>
         <members>CON_PrimaryLanguage_TDTM</members>
         <members>CON_PrimaryLanguage_TEST</members>
+        <members>ContactRelationshipsModel</members>
+        <members>ContactRelationshipsModel_TEST</members>
+        <members>ContactRelAutoCreateMappingModel</members>
+        <members>ContactRelAutoCreateMappingModel_TEST</members>
+        <members>ContactRelAutoCreateService</members>
+        <members>ContactRelAutoCreateService_TEST</members>
+        <members>ContactsRelationshipsModel</members>
+        <members>ContactsRelationshipsModel_TEST</members>
         <members>COS_StartEndTime_TDTM</members>
         <members>COS_StartEndTime_TEST</members>
         <members>COUR_CannotDelete_TDTM</members>
@@ -164,14 +172,6 @@
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
         <members>MAPR_PrimaryAffiliations_TEST</members>
-        <members>RelAutoCreateSettingsMapper</members>
-        <members>RelAutoCreateSettingsMapper_TEST</members>
-        <members>ContactRelAutoCreateMappingModel_TEST</members>
-        <members>ContactRelAutoCreateMappingModel</members>
-        <members>ContactRelationshipsModel</members>
-        <members>ContactRelationshipsModel_TEST</members>
-        <members>ContactsRelationshipsModel</members>
-        <members>ContactsRelationshipsModel_TEST</members>
         <members>MODL_PreferredEmailField</members>
         <members>MODL_PreferredEmailField_TEST</members>
         <members>MODL_PreferredEmailSettings</members>
@@ -218,10 +218,10 @@
         <members>RelationshipLookupModel_TEST</members>
         <members>RelationshipLookupSettingsService</members>
         <members>RelationshipLookupSettingsService_TEST</members>
+        <members>RelAutoCreateSettingsMapper</members>
+        <members>RelAutoCreateSettingsMapper_TEST</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
-        <members>ContactRelAutoCreateService</members>
-        <members>ContactRelAutoCreateService_TEST</members>
         <members>SRVC_Contact_PreferredEmail</members>
         <members>SRVC_Contact_PreferredEmail_TEST</members>
         <members>SRVC_Contact_PreventDeletion</members>
