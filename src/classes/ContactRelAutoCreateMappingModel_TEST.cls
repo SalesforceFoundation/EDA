@@ -35,10 +35,10 @@
 * @description Test class for MODL_ContactRelationships. 
 */
 @isTest
-private with sharing class MODL_ConRelationshipAutoCreateMappi_TEST {
+private with sharing class ContactRelAutoCreateMappingModel_TEST {
 
     /**************************************************************************************************************************
-    * @description Tests the constructor for MODL_ConRelationshipAutoCreateMapping
+    * @description Tests the constructor for ContactRelAutoCreateMappingModel
     **************************************************************************************************************************/
     @isTest 
     private static void constructor() {
@@ -46,7 +46,7 @@ private with sharing class MODL_ConRelationshipAutoCreateMappi_TEST {
         String relationshipType = 'testType';
         String settingsContactValue = 'testSettingsContactValue';
 
-        MODL_ConRelationshipAutoCreateMapping model = new MODL_ConRelationshipAutoCreateMapping(
+        ContactRelAutoCreateMappingModel model = new ContactRelAutoCreateMappingModel(
             contactField, relationshipType, settingsContactValue
         );
 

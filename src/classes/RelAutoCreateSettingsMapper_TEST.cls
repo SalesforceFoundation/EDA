@@ -91,7 +91,7 @@ private with sharing class RelAutoCreateSettingsMapper_TEST {
         insert relAutoCreateList;
 
         Test.startTest();
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
         Test.stopTest();
 
         System.assertEquals(5, conRelAutoCreateMappingList.size(), 'There should be 5 Relationship Auto Create Mapping models for Contact.');
@@ -130,10 +130,10 @@ private with sharing class RelAutoCreateSettingsMapper_TEST {
 
         insert relAutoCreateList;
 
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
 
         Test.startTest();
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList2 = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingList2 = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
         Test.stopTest();
 
         System.assertEquals(conRelAutoCreateMappingList, conRelAutoCreateMappingList2, 'The relationship autocreate mapping models should be cached.');
@@ -182,10 +182,10 @@ private with sharing class RelAutoCreateSettingsMapper_TEST {
         }
 
         Test.startTest();
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingsList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingsList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
         Test.stopTest();
 
-        System.assertEquals(10, conRelAutoCreateMappingsList.size(), 'There should be 10 MODL_ConRelationshipAutoCreateMapping returned.');
+        System.assertEquals(10, conRelAutoCreateMappingsList.size(), 'There should be 10 ContactRelAutoCreateMappingModel returned.');
     }
 
     /***************************************************************************************************************************
@@ -197,10 +197,10 @@ private with sharing class RelAutoCreateSettingsMapper_TEST {
         List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
 
         Test.startTest();
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingsList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingsList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
         Test.stopTest();
 
-        System.assertEquals(true, conRelAutoCreateMappingsList.isEmpty(), 'There should be no MODL_ConRelationshipAutoCreateMapping returned.');
+        System.assertEquals(true, conRelAutoCreateMappingsList.isEmpty(), 'There should be no ContactRelAutoCreateMappingModel returned.');
     }
 
     /***************************************************************************************************************************
@@ -231,7 +231,7 @@ private with sharing class RelAutoCreateSettingsMapper_TEST {
 
         Test.startTest();
         for (Relationship_Auto_Create__c relAutoCreate : relAutoCreateList){
-            MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMapping = RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(relAutoCreate);
+            ContactRelAutoCreateMappingModel conRelAutoCreateMapping = RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(relAutoCreate);
             if (conRelAutoCreateMapping.relationshipType.contains('ContactTester')){
                 System.assertEquals(true, conRelAutoCreateMapping.contactFieldApiName.contains('ReportsToId'));
                 System.assertEquals(true, conRelAutoCreateMapping.contactFieldLabel.contains('Reports To ID'));
@@ -266,7 +266,7 @@ private with sharing class RelAutoCreateSettingsMapper_TEST {
     *************************************************************************************************************/ 
     private class STUB_NoRelAutoCreateMappingModel extends RelAutoCreateSettingsMapper {
         @TestVisible
-        public override MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
+        public override ContactRelAutoCreateMappingModel getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
             return null;
         }
     }
