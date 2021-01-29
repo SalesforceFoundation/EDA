@@ -22,8 +22,32 @@ sources:
         release: latest
 
 tasks:
+    add_relationship_type_values:
+        description: "Adds Parent's Sibling, Niece, Nephew, and Sibling's Child as picklist values to the Relationship__c.Type__c field."
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        group: "EDA: Metadata"
+        ui_options:
+            add_relationship_type_values:
+                name: Add Relationship Type Picklist Values
+
+        options:
+            picklists: hed__Relationship__c.hed__Type__c
+            entries:
+                - fullName: "Parent's Sibling"
+                  label: "Parent's Sibling"
+                  add_before: "Cousin"
+                - fullName: "Niece"
+                  label: "Niece"
+                  add_before: "Cousin"
+                - fullName: "Nephew"
+                  label: "Nephew"
+                  add_before: "Cousin"
+                - fullName: "Sibling's Child"
+                  label: "Sibling's Child"
+                  add_before: "Cousin"
+
     add_citizenship_status_values:
-        group: 'EDA: Trial'
+        group: "EDA: Trial"
         description: Adds additional picklist values to hed__Citizenship_Status__c on Contact
         class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
         options:
@@ -31,8 +55,8 @@ tasks:
             entries:
                 - fullName: "Temporary Resident"
                   label: "Temporary Resident"
-                  add_before: "Other (Non-U.S.)"    
-        
+                  add_before: "Other (Non-U.S.)"
+
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -47,7 +71,7 @@ tasks:
             path: unpackaged/config/dev_delete
 
     deploy_einstein_templates:
-        group: 'EDA: Einstein Templates'
+        group: "EDA: Einstein Templates"
         description: Deploys Einstein Analytics Templates
         class_path: cumulusci.tasks.salesforce.Deploy
         ui_options:
@@ -58,7 +82,7 @@ tasks:
             unmanaged: False
 
     deploy_encryption_permset:
-        group: 'Shield Platform Encryption'
+        group: "Shield Platform Encryption"
         description: Deploys "Manage Encryption Keys" permission set.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -104,11 +128,29 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test_packaged/relationship_autocreate
             unmanaged: True
+
+    deploy_unpackaged_test_metadata:
+        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
+        group: 'EDA: Unpackaged Tests'
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_unpackaged
+            unmanaged: True
             
+    deploy_unpackaged_test_metadata:
+        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
+        group: 'EDA: Unpackaged Tests'
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_unpackaged
+            unmanaged: True
+
     deploy_trial_config:
         description: Deploys metadata and configuration for TSOs.
         class_path: cumulusci.tasks.salesforce.Deploy
-        group: 'EDA: Trial'
+        group: "EDA: Trial"
         ui_options:
             name: Deploy Trial Metadata
         options:
@@ -116,14 +158,14 @@ tasks:
             path: unpackaged/config/trial
 
     assign_encryption_permset:
-        group: 'Shield Platform Encryption'
+        group: "Shield Platform Encryption"
         description: Assigns the Encryption permission set to the current user for Shield Platform Encryption testing.
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
-            command: 'force:user:permset:assign -n Encryption'
+            command: "force:user:permset:assign -n Encryption"
 
     create_tenant_secret:
-        group: 'Shield Platform Encryption'
+        group: "Shield Platform Encryption"
         description: Creates a new tenant secret for Shield Platform Encryption testing.
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
@@ -144,6 +186,9 @@ tasks:
     execute_automatic_household_naming:
         description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_automatic_household_naming:
+                name: Enable EDA's Automatic Household Naming Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
@@ -153,6 +198,9 @@ tasks:
     execute_enable_course_connections:
         description: Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_enable_course_connections:
+                name: Enable EDA's Course Connection Settings
         options:
             path: scripts/setup.cls
             apex: configCourseConnections();
@@ -160,6 +208,9 @@ tasks:
     execute_preferred_phone_selection:
         description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_preferred_phone_selection:
+                name: Enable EDA's Preferred Phone Selection Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
@@ -169,6 +220,9 @@ tasks:
     execute_enable_record_type_validation:
         description: Runs anonymous apex to enable record type validation for EDA settings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_enable_record_type_validation:
+                name: Enable EDA's RecordType Validation Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
@@ -178,6 +232,9 @@ tasks:
     execute_send_error_notifications:
         description: Runs anonymous apex to enable Error Notifications.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        ui_options:
+            execute_send_error_notifications:
+                name: Enable EDA's Error Notifications Settings
         options:
             apex: >
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
@@ -198,8 +255,12 @@ tasks:
             path: scripts/setup.cls
             apex: qaSetup();
 
+    github_release_notes:
+        options:
+            trial_info: "`TBD`"
+
     has_einstein_licenses:
-        group: 'EDA: Einstein Templates'
+        group: "EDA: Einstein Templates"
         description: Queries the target org for the existence of required permsets and returns true if found.
         class_path: tasks.check_einstein.CheckPermSetLicenses
         options:
@@ -289,18 +350,20 @@ flows:
                 task: execute_install_apex
             4:
                 task: deploy_dev_config
-            # 5:
-            #     task: deploy_unpackaged_primary_affiliations_config
-            # 6:    
-            #     task: execute_primary_affiliation_mapping_apex
-            # 7:
-            #     task: deploy_unpackaged_relationship_autocreate_config
-            # 8: 
-            #     # execute tests in unmanaged package
-            #     task: run_tests 
-            #     options: 
-            #         test_name_match: '%MTST'
-                    
+            5:
+                task: deploy_primary_affiliations_config
+            6:
+                task: execute_primary_affiliation_mapping_apex
+            7:
+                task: deploy_unpackaged_test_metadata
+            8: 
+                # execute tests in unmanaged package
+                task: run_tests 
+                options: 
+                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
+            9:
+                flow: eda_settings_unmanaged
+
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
         steps:
@@ -316,6 +379,8 @@ flows:
                 task: execute_install_apex
             4:
                 task: deploy_dev_config
+            5:
+                flow: eda_settings
 
     config_managed:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -355,6 +420,8 @@ flows:
                 task: execute_qa_apex
             6:
                 task: deploy_qa_config
+            7:
+                flow: eda_settings_unmanaged
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
@@ -366,6 +433,8 @@ flows:
                 options:
                     unmanaged: False
             4:
+                flow: eda_settings
+            5:
                 flow: preferred_email_testing
 
     deploy_unmanaged:
@@ -384,6 +453,60 @@ flows:
                     update_admin_profile:
                         namespaced_org: True
 
+    eda_picklists:
+        description: Inspects metadata, adds appropriate picklist values using MetadataETL Framework.
+        steps:
+            1:
+                task: add_relationship_type_values
+
+    eda_settings:
+        description: Enables various settings in a managed context on the EDA Settings tab.
+        steps:
+            1:
+                task: execute_enable_record_type_validation
+                options:
+                    namespaced: True
+            2:
+                task: execute_preferred_phone_selection
+                options:
+                    namespaced: True
+            3:
+                task: execute_send_error_notifications
+                options:
+                    namespaced: True
+            4:
+                task: execute_automatic_household_naming
+                options:
+                    namespaced: True
+            5:
+                task: execute_enable_course_connections
+                options:
+                    namespaced: True
+
+    eda_settings_unmanaged:
+        description: Enables various settings in an unmanaged context on the EDA Settings tab.
+        steps:
+            1:
+                task: execute_enable_record_type_validation
+                options:
+                    namespaced: False
+            2:
+                task: execute_preferred_phone_selection
+                options:
+                    namespaced: False
+            3:
+                task: execute_send_error_notifications
+                options:
+                    namespaced: False
+            4:
+                task: execute_automatic_household_naming
+                options:
+                    namespaced: False
+            5:
+                task: execute_enable_course_connections
+                options:
+                    namespaced: False
+
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
         steps:
@@ -399,6 +522,10 @@ flows:
                     include_beta: True
             5:
                 task: install_managed_beta
+            6:
+                flow: eda_settings
+            7:
+                flow: eda_picklists
 
     net_new_org:
         description: Simulates an EDA installation for a new customer. Installs the latest beta and dependencies.
@@ -411,6 +538,10 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
+            4:
+                flow: eda_settings
+            5:
+                flow: eda_picklists
 
     run_packaged_tests:
         description: Deploys and configures metadata required to execute unmanaged tests, then executes unit tests.
@@ -437,7 +568,7 @@ flows:
 
     trial_org:
         description: Deploy trial configuration to an org.
-        group: 'EDA: Trial'
+        group: "EDA: Trial"
         steps:
             1:
                 flow: dependencies
@@ -452,46 +583,26 @@ flows:
                 options:
                     managed: True
                     namespaced: True
-            5: 
-                task: execute_enable_record_type_validation
-                options:
-                    managed: True
-                    namespaced: True
-            6: 
-                task: execute_preferred_phone_selection
-                options:
-                    managed: True
-                    namespaced: True
-            7: 
-                task: execute_send_error_notifications
-                options:
-                    managed: True
-                    namespaced: True
-            8: 
-                task: execute_automatic_household_naming
-                options:
-                    managed: True
-                    namespaced: True
-            9:
-                task: execute_enable_course_connections
-                options:
-                    managed: True
-                    namespaced: True
-            10:
+            5:
                 task: deploy_trial_config
                 options:
                     unmanaged: False
+                    namespaced_org: True
+            6:
+                flow: eda_settings
+            7:
+                flow: eda_picklists
 
     preferred_email_testing:
-        description: Deploys Preferred Email configuration and runs apex tests. 
+        description: Deploys Preferred Email configuration and runs apex tests.
         steps:
-            1: 
+            1:
                 task: deploy_preferred_email_config
 
             2:
                 task: run_tests
-                options: 
-                    test_name_match: '%_MTST'
+                options:
+                    test_name_match: "%_MTST"
                     managed: False
 
     regression_org:

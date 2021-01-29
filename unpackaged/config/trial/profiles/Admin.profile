@@ -5,53 +5,48 @@
         <default>true</default>
         <visible>true</visible>
    </applicationVisibilities>
-   <applicationVisibilities>
-        <application>Platform</application>
-        <default>False</default>
-        <visible>False</visible>
-    </applicationVisibilities>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
-        <recordType>Account.%%%NAMESPACED_ORG%%%Academic_Program</recordType>
+        <recordType>Account.Academic_Program</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
-        <recordType>Account.%%%NAMESPACED_ORG%%%Administrative</recordType>
+        <recordType>Account.Administrative</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
-        <recordType>Account.%%%NAMESPACED_ORG%%%Business_Organization</recordType>
+        <recordType>Account.Business_Organization</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
-        <recordType>Account.%%%NAMESPACED_ORG%%%Educational_Institution</recordType>
+        <recordType>Account.Educational_Institution</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Household Layout</layout>
-        <recordType>Account.%%%NAMESPACED_ORG%%%HH_Account</recordType>
+        <recordType>Account.HH_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
-        <recordType>Account.%%%NAMESPACED_ORG%%%Sports_Organization</recordType>
+        <recordType>Account.Sports_Organization</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
-        <recordType>Account.%%%NAMESPACED_ORG%%%University_Department</recordType>
+        <recordType>Account.University_Department</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
         <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Credential</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
-        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Student_Characteristic</recordType>
+        <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACED_ORG%%%EDA Student Characteristic Layout</layout>
+        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACED_ORG%%%Student_Characteristic</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Case-%%%NAMESPACE%%%EDA Incident Layout</layout>
-        <recordType>Case.%%%NAMESPACED_ORG%%%Incident</recordType>
+        <recordType>Case.Incident</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-%%%NAMESPACE%%%HEDA Contact Layout</layout>
@@ -61,15 +56,15 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
-        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACED_ORG%%%Default</recordType>
+        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Default</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
-        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACED_ORG%%%Faculty</recordType>
+        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Faculty</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
-        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACED_ORG%%%Student</recordType>
+        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Student</recordType>
     </layoutAssignments>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Address__c</tab>
@@ -169,6 +164,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Contact</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Settings_Health_Check</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <classAccesses>
