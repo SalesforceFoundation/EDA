@@ -1,0 +1,52 @@
+<template>
+    <template if:true={isDisplayGroup}>
+        <lightning-card>
+            <!-- Card Header -->
+            <h3 slot="title">
+                <div class="slds-grid">
+                    <div class="slds-col">
+                        <lightning-button-icon
+                            icon-name={collapsableIcon}
+                            variant="bare"
+                            onclick={toggleExpanded}
+                            alternative-text={collapsableIconAltText}
+                            aria-controls={healthCheckResultsId}
+                            aria-expanded={isExpanded}
+                            aria-live="polite"
+                        ></lightning-button-icon>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-icon
+                            icon-name={statusIcon}
+                            size="small"
+                            variant={statusIconVariant}
+                            class="slds-var-p-left_small"
+                        ></lightning-icon>
+                    </div>
+                    <div
+                        class="slds-col slds-align-bottom slds-var-p-left_small slds-text-body_large"
+                    >
+                        {healthCheckGroupName}
+                    </div>
+                    <div class="slds-col slds-align-bottom slds-var-p-left_small">
+                        <div class="slds-text-body_small">{passedChecksDisplay}</div>
+                    </div>
+                </div>
+            </h3>
+
+            <!-- Card Body -->
+            <template if:true={isExpanded}>
+                <div class="slds-var-p-around_medium lgc-bg" id={healthCheckResultsId}>
+                    <lightning-tree-grid
+                        columns={gridColumns}
+                        data={healthCheckItemList}
+                        expanded-rows={expandedRowsList}
+                        hide-checkbox-column="true"
+                        key-field="key"
+                        ondataload={handleDataLoad}
+                    ></lightning-tree-grid>
+                </div>
+            </template>
+        </lightning-card>
+    </template>
+</template>
