@@ -35,14 +35,14 @@
 * @description Model class used to represent details of the Relationship Auto Create mappings 
 * set for the Contact object in EDA Settings.
 */
-public with sharing class MODL_ConRelationshipAutoCreateMapping {
+public with sharing class ContactRelAutoCreateMappingModel {
 
     public String contactFieldApiName { get; private set; }
     public String contactFieldLabel { get; private set; }
     public String relationshipType { get; private set; }
     public String settingsContactFieldValue { get; private set; }
      
-    public MODL_ConRelationshipAutoCreateMapping(Schema.DescribeFieldResult contactField, String relationshipType, String relAutoCreateMappingValue) {
+    public ContactRelAutoCreateMappingModel(Schema.DescribeFieldResult contactField, String relationshipType, String relAutoCreateMappingValue) {
         contactFieldApiName = contactField.getName();
         contactFieldLabel = contactField.getLabel();
         this.relationshipType = relationshipType;

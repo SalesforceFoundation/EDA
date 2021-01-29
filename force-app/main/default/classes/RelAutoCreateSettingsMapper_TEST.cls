@@ -91,7 +91,11 @@ private with sharing class MAPR_RELAutoCreateSettings_TEST {
         insert relAutoCreateList;
 
         Test.startTest();
+<<<<<<< HEAD:force-app/main/default/classes/RelAutoCreateSettingsMapper_TEST.cls
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings();
+=======
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
+>>>>>>> renamed MODL_ConRelationshipAutoCreateMapping to ContactRelAutoCreateMappingModel:src/classes/RelAutoCreateSettingsMapper_TEST.cls
         Test.stopTest();
 
         System.assertEquals(5, conRelAutoCreateMappingList.size(), 'There should be 5 Relationship Auto Create Mapping models for Contact.');
@@ -130,10 +134,17 @@ private with sharing class MAPR_RELAutoCreateSettings_TEST {
 
         insert relAutoCreateList;
 
+<<<<<<< HEAD:force-app/main/default/classes/RelAutoCreateSettingsMapper_TEST.cls
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings();
 
         Test.startTest();
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList2 = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromSettings();
+=======
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
+
+        Test.startTest();
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingList2 = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromSettings();
+>>>>>>> renamed MODL_ConRelationshipAutoCreateMapping to ContactRelAutoCreateMappingModel:src/classes/RelAutoCreateSettingsMapper_TEST.cls
         Test.stopTest();
 
         System.assertEquals(conRelAutoCreateMappingList, conRelAutoCreateMappingList2, 'The relationship autocreate mapping models should be cached.');
@@ -182,10 +193,14 @@ private with sharing class MAPR_RELAutoCreateSettings_TEST {
         }
 
         Test.startTest();
+<<<<<<< HEAD:force-app/main/default/classes/RelAutoCreateSettingsMapper_TEST.cls
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingsList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
+=======
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingsList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
+>>>>>>> renamed MODL_ConRelationshipAutoCreateMapping to ContactRelAutoCreateMappingModel:src/classes/RelAutoCreateSettingsMapper_TEST.cls
         Test.stopTest();
 
-        System.assertEquals(10, conRelAutoCreateMappingsList.size(), 'There should be 10 MODL_ConRelationshipAutoCreateMapping returned.');
+        System.assertEquals(10, conRelAutoCreateMappingsList.size(), 'There should be 10 ContactRelAutoCreateMappingModel returned.');
     }
 
     /***************************************************************************************************************************
@@ -197,10 +212,14 @@ private with sharing class MAPR_RELAutoCreateSettings_TEST {
         List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
 
         Test.startTest();
+<<<<<<< HEAD:force-app/main/default/classes/RelAutoCreateSettingsMapper_TEST.cls
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingsList = MAPR_RELAutoCreateSettings.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
+=======
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMappingsList = RelAutoCreateSettingsMapper.getInstance().getContactMappingModelsFromMappings(relAutoCreateList);
+>>>>>>> renamed MODL_ConRelationshipAutoCreateMapping to ContactRelAutoCreateMappingModel:src/classes/RelAutoCreateSettingsMapper_TEST.cls
         Test.stopTest();
 
-        System.assertEquals(true, conRelAutoCreateMappingsList.isEmpty(), 'There should be no MODL_ConRelationshipAutoCreateMapping returned.');
+        System.assertEquals(true, conRelAutoCreateMappingsList.isEmpty(), 'There should be no ContactRelAutoCreateMappingModel returned.');
     }
 
     /***************************************************************************************************************************
@@ -231,7 +250,11 @@ private with sharing class MAPR_RELAutoCreateSettings_TEST {
 
         Test.startTest();
         for (Relationship_Auto_Create__c relAutoCreate : relAutoCreateList){
+<<<<<<< HEAD:force-app/main/default/classes/RelAutoCreateSettingsMapper_TEST.cls
             MODL_ConRelationshipAutoCreateMapping conRelAutoCreateMapping = MAPR_RELAutoCreateSettings.getInstance().getModelFromMapping(relAutoCreate);
+=======
+            ContactRelAutoCreateMappingModel conRelAutoCreateMapping = RelAutoCreateSettingsMapper.getInstance().getModelFromMapping(relAutoCreate);
+>>>>>>> renamed MODL_ConRelationshipAutoCreateMapping to ContactRelAutoCreateMappingModel:src/classes/RelAutoCreateSettingsMapper_TEST.cls
             if (conRelAutoCreateMapping.relationshipType.contains('ContactTester')){
                 System.assertEquals(true, conRelAutoCreateMapping.contactFieldApiName.contains('ReportsToId'));
                 System.assertEquals(true, conRelAutoCreateMapping.contactFieldLabel.contains('Reports To ID'));
@@ -266,7 +289,7 @@ private with sharing class MAPR_RELAutoCreateSettings_TEST {
     *************************************************************************************************************/ 
     private class STUB_NoRelAutoCreateMappingModel extends MAPR_RELAutoCreateSettings {
         @TestVisible
-        public override MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
+        public override ContactRelAutoCreateMappingModel getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
             return null;
         }
     }
