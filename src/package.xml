@@ -220,8 +220,8 @@
         <members>RelationshipLookupSettingsService_TEST</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
-        <members>SRVC_ContactRelationshipAutoCreate</members>
-        <members>SRVC_ContactRelationshipAutoCreate_TEST</members>
+        <members>ContactRelAutoCreateService</members>
+        <members>ContactRelAutoCreateService_TEST</members>
         <members>SRVC_Contact_PreferredEmail</members>
         <members>SRVC_Contact_PreferredEmail_TEST</members>
         <members>SRVC_Contact_PreventDeletion</members>

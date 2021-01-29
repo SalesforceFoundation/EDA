@@ -834,13 +834,13 @@ private with sharing class REL_Relationships_Con_TEST {
 
     /************************************************************************************************************
     * @description Test method to verify that the locateRelationshipAutoCreateService returns an instance of the
-    * SRVC_ContactRelationshipAutoCreate service class.
+    * ContactRelAutoCreateService service class.
     *************************************************************************************************************/ 
     @isTest 
     private static void getInstanceOfRelationshipAutoCreateService(){
         Test.startTest();
         REL_Relationships_Con_TDTM relConTdtm = new REL_Relationships_Con_TDTM();
-        SRVC_ContactRelationshipAutoCreate srvcConRelAutoCreateInstance = relConTdtm.locateRelationshipAutoCreateService();
+        ContactRelAutoCreateService srvcConRelAutoCreateInstance = relConTdtm.locateRelationshipAutoCreateService();
         Test.stopTest();
         
         System.assertEquals(true, srvcConRelAutoCreateInstance != null, 'Instance of service class should be retrieved.');

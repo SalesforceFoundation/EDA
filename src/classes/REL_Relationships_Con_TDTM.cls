@@ -206,12 +206,12 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Retrieves an instance of the SRVC_ContactRelationshipAutoCreate service class.
-    * @return An instance of SRVC_ContactRelationshipAutoCreate.
+    * @description Retrieves an instance of the ContactRelAutoCreateService service class.
+    * @return An instance of ContactRelAutoCreateService.
     *******************************************************************************************************/ 
     @TestVisible
-    private SRVC_ContactRelationshipAutoCreate locateRelationshipAutoCreateService(){
-        return SRVC_ContactRelationshipAutoCreate.getInstance();
+    private ContactRelAutoCreateService locateRelationshipAutoCreateService(){
+        return ContactRelAutoCreateService.getInstance();
     }
 
     /*******************************************************************************************************
