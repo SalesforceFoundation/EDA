@@ -193,16 +193,16 @@
             <translation>29</translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation>3</translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>30</masterLabel>
             <translation>30</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>31</masterLabel>
             <translation>31</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>3</masterLabel>
-            <translation>3</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>4</masterLabel>
@@ -238,6 +238,18 @@
             <translation>1</translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation>10</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation>11</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation>12</translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>2</masterLabel>
             <translation>2</translation>
         </picklistValues>
@@ -269,18 +281,6 @@
             <masterLabel>9</masterLabel>
             <translation>9</translation>
         </picklistValues>
-        <picklistValues>
-            <masterLabel>10</masterLabel>
-            <translation>10</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>11</masterLabel>
-            <translation>11</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>12</masterLabel>
-            <translation>12</translation>
-        </picklistValues>
     </fields>
     <fields>
         <help>The year that this Address no longer replaces the Default Address.</help>
@@ -294,6 +294,7 @@
         <picklistValues>
             <masterLabel>1</masterLabel>
             <translation>1</translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>10</masterLabel>
             <translation>10</translation>
@@ -334,38 +335,9 @@
             <masterLabel>19</masterLabel>
             <translation>19</translation>
         </picklistValues>
-                </picklistValues>
         <picklistValues>
             <masterLabel>2</masterLabel>
             <translation>2</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>3</masterLabel>
-            <translation>3</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>4</masterLabel>
-            <translation>4</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>5</masterLabel>
-            <translation>5</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>6</masterLabel>
-            <translation>6</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>7</masterLabel>
-            <translation>7</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>8</masterLabel>
-            <translation>8</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>9</masterLabel>
-            <translation>9</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>20</masterLabel>
@@ -408,12 +380,40 @@
             <translation>29</translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation>3</translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>30</masterLabel>
             <translation>30</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>31</masterLabel>
             <translation>31</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation>4</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation>5</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation>6</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation>7</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation>8</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation>9</translation>
         </picklistValues>
     </fields>
     <fields>

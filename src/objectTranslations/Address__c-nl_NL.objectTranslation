@@ -474,6 +474,7 @@
         <label>Beginjaar seizoen</label>
         <name>Seasonal_Start_Year__c</name>
     </fields>
+    <gender><!-- Neuter --></gender>
     <layouts>
         <layout>HEDA Address Layout</layout>
         <sections>

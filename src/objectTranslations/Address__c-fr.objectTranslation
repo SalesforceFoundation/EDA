@@ -474,6 +474,7 @@
         <label>Année de début de saison</label>
         <name>Seasonal_Start_Year__c</name>
     </fields>
+    <gender>Feminine</gender>
     <layouts>
         <layout>HEDA Address Layout</layout>
         <sections>
