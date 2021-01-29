@@ -32,7 +32,7 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/Relationships
-* @description Test class for MODL_ContactRelationships. 
+* @description Test class for ContactRelationshipsModel. 
 */
 @isTest
 private with sharing class ContactRelAutoCreateMappingModel_TEST {

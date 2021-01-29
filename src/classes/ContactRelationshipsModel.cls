@@ -34,12 +34,12 @@
 * @group-content ../../ApexDocContent/
 * @description Model class for REL_Relationships_Con_TDTM. 
 */
-public with sharing class MODL_ContactRelationships {
+public with sharing class ContactRelationshipsModel {
     public Id contactId { get; private set; }
     public Map<Id, Map<String, Relationship__c>> relationshipByTypeByRelatedContactId { get; private set; }
     public List<Relationship__c> relationshipList { get; private set; } 
 
-    public MODL_ContactRelationships(Id contactId) {
+    public ContactRelationshipsModel(Id contactId) {
         this.contactId = contactId;
         relationshipByTypeByRelatedContactId = new Map<Id, Map<String, Relationship__c>>();
         relationshipList = new List<Relationship__c>();

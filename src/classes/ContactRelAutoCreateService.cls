@@ -69,7 +69,7 @@ public virtual with sharing class ContactRelAutoCreateService {
         MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
 
         for (Contact con : contactsList){
-            MODL_ContactRelationships conRelationshipsModel = this.getRelationshipsToCreateForContact(con, contactRelationShipAutoCreateMapModelsList);
+            ContactRelationshipsModel conRelationshipsModel = this.getRelationshipsToCreateForContact(con, contactRelationShipAutoCreateMapModelsList);
 
             if (conRelationshipsModel != null){
                 contactsRelationshipsModel.addContactRelationshipsModel(conRelationshipsModel);
@@ -83,11 +83,11 @@ public virtual with sharing class ContactRelAutoCreateService {
     * @description Retrieves a model representing the Relationship records to be created for a single Contact record.
     * @param  contact The Contact record to be used to create the ContactRelationships model.
     * @param  contactRelationShipAutoCreateMapModelsList A List of ContactRelAutoCreateMappingModel representing Relationship Auto Create mappings for Contact.
-    * @return A MODL_ContactRelationships model representing the Relationships associated with the specified Contact record. 
+    * @return A ContactRelationshipsModel model representing the Relationships associated with the specified Contact record. 
     **************************************************************************************************************************/ 
     @TestVisible
-    protected virtual MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
-        MODL_ContactRelationships conRelationshipsModel = new MODL_ContactRelationships(contact.Id); 
+    protected virtual ContactRelationshipsModel getRelationshipsToCreateForContact(Contact contact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
+        ContactRelationshipsModel conRelationshipsModel = new ContactRelationshipsModel(contact.Id); 
         Id contactFieldValue; 
         
         for (ContactRelAutoCreateMappingModel conRelAutoCreateMap : contactRelationShipAutoCreateMapModelsList){
@@ -115,10 +115,10 @@ public virtual with sharing class ContactRelAutoCreateService {
     * @param  newContact The Contact record in its updated state.
     * @param  oldContact The Contact record in its state prior to update.
     * @param  contactRelationShipAutoCreateMapModelsList List of Relationships Auto Create mappings for Contact.
-    * @return A MODL_ContactRelationships object representing the relationships records to be created for the specified Contact.
+    * @return A ContactRelationshipsModel object representing the relationships records to be created for the specified Contact.
     **************************************************************************************************************************/
-    public virtual MODL_ContactRelationships getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
-        MODL_ContactRelationships contactRelationshipsModel = new MODL_ContactRelationships(newContact.Id);
+    public virtual ContactRelationshipsModel getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
+        ContactRelationshipsModel contactRelationshipsModel = new ContactRelationshipsModel(newContact.Id);
 
         for (ContactRelAutoCreateMappingModel conRelAutoCreateMappingMdl : contactRelationShipAutoCreateMapModelsList){
             Object newContactFieldValue = newContact.get(conRelAutoCreateMappingMdl.contactFieldApiName);

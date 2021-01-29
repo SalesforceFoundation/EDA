@@ -161,7 +161,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
 
         Test.startTest();
-        MODL_ContactRelationships conRelationshipsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContact(con, conRelAutoCreateMappingList);
+        ContactRelationshipsModel conRelationshipsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContact(con, conRelAutoCreateMappingList);
         Test.stopTest();
 
         System.assertEquals(con.Id, conRelationshipsModel.contactId, 'Model should be associated with current contact record.');
@@ -171,7 +171,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getRelationshipsToCreateForContactsTrue() returns an empty MODL_ContactRelationships
+    * @description Test method to verify that the getRelationshipsToCreateForContactsTrue() returns an empty ContactRelationshipsModel
     * model for a Contact record without Relationship Auto Create mappings. 
     ***************************************************************************************************************************/
     @isTest 
@@ -188,7 +188,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that getRelationshipsToCreateForUpdatedContact() returns a populated 
-    * MODL_ContactRelationships model when a mapped Relationship Auto Create field on a Contact record is updated to a non null value.
+    * ContactRelationshipsModel model when a mapped Relationship Auto Create field on a Contact record is updated to a non null value.
     **************************************************************************************************************************/ 
     @isTest 
     private static void getRelationshipsToCreateForUpdatedContactWithNotNullChangeTrue(){
@@ -226,7 +226,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
 
         Test.startTest();
-        MODL_ContactRelationships conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, conRelAutoCreateMappingList);
+        ContactRelationshipsModel conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, conRelAutoCreateMappingList);
         Test.stopTest();
 
         System.assertEquals(newCon.Id, conRelsModel.contactId, 'Contact associated with model should be current contact.');
@@ -236,7 +236,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that getRelationshipsToCreateForUpdatedContact() returns an empty 
-    * MODL_ContactRelationships model when a mapped Relationship Auto Create field on a Contact record is updated to null.
+    * ContactRelationshipsModel model when a mapped Relationship Auto Create field on a Contact record is updated to null.
     **************************************************************************************************************************/ 
     @isTest 
     private static void getRelationshipsToCreateForUpdatedContactWithNullChangeTrue(){
@@ -273,7 +273,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
 
         Test.startTest();
-        MODL_ContactRelationships conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<ContactRelAutoCreateMappingModel>());
+        ContactRelationshipsModel conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<ContactRelAutoCreateMappingModel>());
         Test.stopTest();
 
         System.assertEquals(newCon.Id, conRelsModel.contactId, 'Contact associated with model should be current contact.');
@@ -283,7 +283,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that getRelationshipsToCreateForUpdatedContact() returns an empty 
-    * MODL_ContactRelationships model for an updated Contact record without a change in a mapped Relationship Auto Create field.
+    * ContactRelationshipsModel model for an updated Contact record without a change in a mapped Relationship Auto Create field.
     **************************************************************************************************************************/ 
     @isTest 
     private static void getRelationshipsToCreateForUpdatedContactWithoutChangeTrue(){
@@ -322,7 +322,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
 
         Test.startTest();
-        MODL_ContactRelationships conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<ContactRelAutoCreateMappingModel>());
+        ContactRelationshipsModel conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<ContactRelAutoCreateMappingModel>());
         Test.stopTest();
 
         System.assertEquals(newCon.Id, conRelsModel.contactId, 'Contact associated with model should be current contact.');
@@ -332,7 +332,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that getRelationshipsToCreateForUpdatedContact() returns an empty
-    * MODL_ContactRelationships model for an updated Contact record without Relationship Auto Create mappings.
+    * ContactRelationshipsModel model for an updated Contact record without Relationship Auto Create mappings.
     **************************************************************************************************************************/ 
     @isTest 
     private static void getRelationshipsToCreateForUpdatedContactFalse(){
@@ -349,7 +349,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
                                      ReportsToId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType));
 
         Test.startTest();
-        MODL_ContactRelationships conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<ContactRelAutoCreateMappingModel>());
+        ContactRelationshipsModel conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<ContactRelAutoCreateMappingModel>());
         Test.stopTest();
 
         System.assertEquals(newCon.Id, conRelsModel.contactId, 'Contact associated with model should be current contact.');
@@ -366,7 +366,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = true));
 
         MODL_ContactsRelationships contactRelationshipsModel = new MODL_ContactsRelationships();
-        List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
+        List<ContactRelationshipsModel> conRelsModelsList = new List<ContactRelationshipsModel>();
 
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
         for (Contact con : contactsList){
@@ -375,7 +375,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
             con.Id = conFakeId;
 
-            MODL_ContactRelationships conRelModel = new MODL_ContactRelationships(con.Id);
+            ContactRelationshipsModel conRelModel = new ContactRelationshipsModel(con.Id);
 
             Relationship__c motherRel1 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
                                                           Contact__c = conRelModel.contactId,
@@ -402,7 +402,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
             conRelsModelsList.add(conRelModel);
         }
 
-        for (MODL_ContactRelationships conRelsModel : conRelsModelsList){
+        for (ContactRelationshipsModel conRelsModel : conRelsModelsList){
             contactRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
         }
         
@@ -421,7 +421,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
 
         MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
-        List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
+        List<ContactRelationshipsModel> conRelsModelsList = new List<ContactRelationshipsModel>();
         List<Relationship__c> relationshipsList = new List<Relationship__c>();
         List<Relationship__c> duplicateRelationshipsList = new List<Relationship__c>();
 
@@ -453,7 +453,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
 
         for (Relationship__c rel : duplicateRelationshipsList){
-            MODL_ContactRelationships contactRelationshipsModel = new MODL_ContactRelationships(rel.Contact__c);
+            ContactRelationshipsModel contactRelationshipsModel = new ContactRelationshipsModel(rel.Contact__c);
             contactRelationshipsModel.addRelationship(rel);
             conRelsModelsList.add(contactRelationshipsModel);
 
@@ -494,7 +494,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
         testCon.Id = conFakeId;
 
-        MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(testCon.Id);
+        ContactRelationshipsModel conRelsModel = new ContactRelationshipsModel(testCon.Id);
 
         Relationship__c relToCompare = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
                                                            Contact__c = conRelsModel.contactId,
@@ -538,7 +538,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
         testCon.Id = conFakeId;
 
-        MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(testCon.Id);
+        ContactRelationshipsModel conRelsModel = new ContactRelationshipsModel(testCon.Id);
 
         Relationship__c motherRel1 = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
                                                         Contact__c = conRelsModel.contactId,
@@ -577,15 +577,15 @@ private with sharing class ContactRelAutoCreateService_TEST {
             
             MODL_ContactsRelationships contactsRelsModel = new MODL_ContactsRelationships();
             
-            List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();            
+            List<ContactRelationshipsModel> conRelsModelsList = new List<ContactRelationshipsModel>();            
             Map<Id, Map<String, Relationship__c>> relationshipByTypeByRelatedContactId = new Map<Id, Map<String, Relationship__c>>();
             
             for (Contact con : contactsList){
-                MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(con.Id);
+                ContactRelationshipsModel conRelsModel = new ContactRelationshipsModel(con.Id);
                 conRelsModelsList.add(conRelsModel);
             }
 
-            for (MODL_ContactRelationships contactRelationshipsModel : conRelsModelsList){ // create 3 relationships per contact 
+            for (ContactRelationshipsModel contactRelationshipsModel : conRelsModelsList){ // create 3 relationships per contact 
 
                 Relationship__c wifeRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
                                                              Contact__c = contactRelationshipsModel.contactId,
@@ -617,9 +617,9 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
         
         @TestVisible
-        public override MODL_ContactRelationships getRelationshipsToCreateForContact(Contact currentCon, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){            
+        public override ContactRelationshipsModel getRelationshipsToCreateForContact(Contact currentCon, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){            
 
-            MODL_ContactRelationships conRelationshipsModel = new MODL_ContactRelationships(currentCon.Id);
+            ContactRelationshipsModel conRelationshipsModel = new ContactRelationshipsModel(currentCon.Id);
 
             Relationship__c wifeRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
                                                           Contact__c = conRelationshipsModel.contactId,
@@ -647,8 +647,8 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
 
         @TestVisible 
-        public override MODL_ContactRelationships getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
-            MODL_ContactRelationships conRelationshipsModel = new MODL_ContactRelationships(newContact.Id);
+        public override ContactRelationshipsModel getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
+            ContactRelationshipsModel conRelationshipsModel = new ContactRelationshipsModel(newContact.Id);
 
             Relationship__c wifeRel = new Relationship__c(Id = UTIL_UnitTestData_TEST.getFakeId(Relationship__c.SObjectType),
                                                           Contact__c = conRelationshipsModel.contactId,
@@ -688,13 +688,13 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
 
         @TestVisible
-        public override MODL_ContactRelationships getRelationshipsToCreateForContact(Contact contact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
+        public override ContactRelationshipsModel getRelationshipsToCreateForContact(Contact contact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
             return null;
         }
 
         @TestVisible 
-        public override MODL_ContactRelationships getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
-            return new MODL_ContactRelationships(newContact.Id);
+        public override ContactRelationshipsModel getRelationshipsToCreateForUpdatedContact(Contact newContact, Contact oldContact, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
+            return new ContactRelationshipsModel(newContact.Id);
         }
 
         @TestVisible

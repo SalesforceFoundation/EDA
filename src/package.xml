@@ -168,8 +168,8 @@
         <members>RelAutoCreateSettingsMapper_TEST</members>
         <members>ContactRelAutoCreateMappingModel_TEST</members>
         <members>ContactRelAutoCreateMappingModel</members>
-        <members>MODL_ContactRelationships</members>
-        <members>MODL_ContactRelationships_TEST</members>
+        <members>ContactRelationshipsModel</members>
+        <members>ContactRelationshipsModel_TEST</members>
         <members>MODL_ContactsRelationships</members>
         <members>MODL_ContactsRelationships_TEST</members>
         <members>MODL_PreferredEmailField</members>

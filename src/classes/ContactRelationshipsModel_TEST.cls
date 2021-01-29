@@ -32,19 +32,19 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/Relationships
-* @description Test class for MODL_ContactRelationships. 
+* @description Test class for ContactRelationshipsModel. 
 */
 @isTest
-private with sharing class MODL_ContactRelationships_TEST {
+private with sharing class ContactRelationshipsModel_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that addRelationship() appends additional Relationship records to an existing list of 
     * records for a Contact Relationships model.
     **************************************************************************************************************************/
     @isTest 
     private static void addRelationshipWithExisting(){
-        List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> conRelsModelsList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
 
-        for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+        for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
             for (Integer i = 0; i < 2; i++){
                 Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
                 Relationship__c rel = UTIL_UnitTestData_TEST.getRelationship(conRelsMod.contactId, relatedConFakeId, 'Brother');
@@ -53,7 +53,7 @@ private with sharing class MODL_ContactRelationships_TEST {
         }
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+        for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
             for (Integer i = 0; i < 5; i++){
                 Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
                 Relationship__c rel = UTIL_UnitTestData_TEST.getRelationship(conRelsMod.contactId, relatedConFakeId, 'Aunt');
@@ -72,10 +72,10 @@ private with sharing class MODL_ContactRelationships_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void addRelationshipWithoutExisting(){
-        List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> conRelsModelsList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+        for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
 
             for (Integer i = 0; i < 5; i++){
                 Id relatedConFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
@@ -94,9 +94,9 @@ private with sharing class MODL_ContactRelationships_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getRelatedContactIdSetTrue(){
-        List<MODL_ContactRelationships> contactRelationshipsModelList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> contactRelationshipsModelList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
 
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             List<Id> relatedContactIdsList;
 
             for (Integer i = 0; i < 5; i++){
@@ -107,7 +107,7 @@ private with sharing class MODL_ContactRelationships_TEST {
         }
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             System.assertEquals(5, conRelsMod.getRelatedContactIdSet().size(), 'There should be 5 related Contact Ids associated with the current Contact Relationships model.');
         }
         Test.stopTest();
@@ -119,10 +119,10 @@ private with sharing class MODL_ContactRelationships_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getRelatedContactIdSetFalse(){
-        List<MODL_ContactRelationships> contactRelationshipsModelList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> contactRelationshipsModelList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             System.assertEquals(true, conRelsMod.getRelatedContactIdSet().isEmpty(), 'There should be no related Contact Ids associated with the current Contact Relationships model.');
         }
         Test.stopTest();
@@ -134,10 +134,10 @@ private with sharing class MODL_ContactRelationships_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipTrue(){
-        List<MODL_ContactRelationships> contactRelationshipsModelList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> contactRelationshipsModelList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
         Map<Id, List<Id>> relatedContactIdsListByContactId = new Map<Id, List<Id>>();
 
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             List<Id> relatedContactIdsList;
 
             for (Integer i = 0; i < 5; i++){
@@ -157,7 +157,7 @@ private with sharing class MODL_ContactRelationships_TEST {
         }
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             List<Id> relatedContactIdsList = relatedContactIdsListByContactId.get(conRelsMod.contactId);
             for (Id relConId : relatedContactIdsList){
                 System.assertEquals(true, conRelsMod.getRelationship(relConId, 'Cousin') != null, 'There should be relationships of type \'Cousin\' associated with the current related Contact.');
@@ -173,10 +173,10 @@ private with sharing class MODL_ContactRelationships_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipFalse(){
-        List<MODL_ContactRelationships> contactRelationshipsModelList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> contactRelationshipsModelList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
         Map<Id, List<Id>> relatedContactIdsListByContactId = new Map<Id, List<Id>>();
 
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             List<Id> relatedContactIdsList;
 
             for (Integer i = 0; i < 5; i++){
@@ -197,7 +197,7 @@ private with sharing class MODL_ContactRelationships_TEST {
         }
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             List<Id> relatedContactIdsList = relatedContactIdsListByContactId.get(conRelsMod.contactId);
             for (Id relConId : relatedContactIdsList){
                 System.assertEquals(true, conRelsMod.getRelationship(relConId, 'Cousin') == null, 'There should be no relationships of type \'Cousin\' associated with the current related Contact.');
@@ -212,10 +212,10 @@ private with sharing class MODL_ContactRelationships_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipNull(){
-        List<MODL_ContactRelationships> contactRelationshipsModelList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> contactRelationshipsModelList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
         Map<Id, List<Id>> relatedContactIdsListByContactId = new Map<Id, List<Id>>();
 
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             List<Id> relatedContactIdsList;
 
             for (Integer i = 0; i < 5; i++){
@@ -235,7 +235,7 @@ private with sharing class MODL_ContactRelationships_TEST {
         }
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             System.assertEquals(null, conRelsMod.getRelationship(UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType), 'Cousin'), 'There should be no relationships of any type associated with the current related Contact.');
         }
         Test.stopTest();
@@ -247,9 +247,9 @@ private with sharing class MODL_ContactRelationships_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void isEmptyFalse(){
-        List<MODL_ContactRelationships> contactRelationshipsModelList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> contactRelationshipsModelList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
 
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             for (Integer i = 0; i < 5; i++){
                 Relationship__c rel = UTIL_UnitTestData_TEST.getRelationship(conRelsMod.contactId, UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType), 'Cousin');
                 conRelsMod.addRelationship(rel);
@@ -257,7 +257,7 @@ private with sharing class MODL_ContactRelationships_TEST {
         }
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             System.assertEquals(false, conRelsMod.isEmpty(), 'There should be relationships associated with the current Contact Relationships model.');
         }
         Test.stopTest();
@@ -269,10 +269,10 @@ private with sharing class MODL_ContactRelationships_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void isEmptyTrue(){
-        List<MODL_ContactRelationships> contactRelationshipsModelList = MODL_ContactRelationships_TEST.getContactRelationshipsModelList(5);
+        List<ContactRelationshipsModel> contactRelationshipsModelList = ContactRelationshipsModel_TEST.getContactRelationshipsModelList(5);
 
         Test.startTest();
-        for (MODL_ContactRelationships conRelsMod : contactRelationshipsModelList){
+        for (ContactRelationshipsModel conRelsMod : contactRelationshipsModelList){
             System.assertEquals(true, conRelsMod.isEmpty(), 'There should be no relationships associated with the current Contact Relationships model.');
         }
         Test.stopTest();
@@ -281,17 +281,17 @@ private with sharing class MODL_ContactRelationships_TEST {
     /**************************************************************************************************************************
     * @description Helper method to generate a list of Contact Relationships models.
     * @param contactsCount The number of Contacts to associate with Contact Relationships models.
-    * @return A list of MODL_ContactRelationships.
+    * @return A list of ContactRelationshipsModel.
     **************************************************************************************************************************/ 
-    private static List<MODL_ContactRelationships> getContactRelationshipsModelList(Integer contactsCount){
-        List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
+    private static List<ContactRelationshipsModel> getContactRelationshipsModelList(Integer contactsCount){
+        List<ContactRelationshipsModel> conRelsModelsList = new List<ContactRelationshipsModel>();
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(contactsCount);
         
         for (Contact con : contactsList){
             Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
             con.Id = conFakeId;
 
-            MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(conFakeId);
+            ContactRelationshipsModel conRelsModel = new ContactRelationshipsModel(conFakeId);
             conRelsModelsList.add(conRelsModel);
         }
 
