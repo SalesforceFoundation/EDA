@@ -3580,11 +3580,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Programa acadèmic primari</label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel>Estudiants</relationshipLabel>
-    </fields>
-    <fields>
         <help>Indiqueu quin tipus d’adreça és l’adreça postal, per exemple, de la feina, de casa o una altra.</help>
         <label>Tipus d&apos;adreça primari</label>
         <name>Primary_Address_Type__c</name>
@@ -3606,16 +3601,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Departament primari</label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel>Membres del departament</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Institució educativa primària</label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel>Membres de la institució</relationshipLabel>
-    </fields>
-    <fields>
         <help>Cerqueu la llar primària (registre del compte) amb què està associat aquest contacte.</help>
         <label>Llar primària</label>
         <name>Primary_Household__c</name>
@@ -3632,11 +3617,6 @@
         <label>Organització empresarial primària</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contactes (Organització primària)</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Organització esportiva primària</label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel>Membres de l&apos;organització</relationshipLabel>
     </fields>
     <fields>
         <help>Seleccioneu les races que utilitza aquesta persona per descriure&apos;s.</help>

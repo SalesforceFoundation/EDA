@@ -3580,11 +3580,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Primäres Studienprogramm</label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel>Schüler/Studenten</relationshipLabel>
-    </fields>
-    <fields>
         <help>Gibt an, um welche Art von Adresse es sich bei der Postanschrift handelt, z. B. (geschäftlich, privat oder sonstiges).</help>
         <label>Primärer Adresstyp</label>
         <name>Primary_Address_Type__c</name>
@@ -3606,16 +3601,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Primärer Fachbereich</label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel>Mitglieder des Fachbereichs</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Primäre Bildungseinrichtung</label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel>Mitglieder der Bildungseinrichtung</relationshipLabel>
-    </fields>
-    <fields>
         <help>Verweis auf den Haupthaushalt (Accountdatensatz), zu dem dieser Account gehört.</help>
         <label>Primärer Haushalt</label>
         <name>Primary_Household__c</name>
@@ -3632,11 +3617,6 @@
         <label>Primäre Geschäftsorganisation</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Kontakte (Primäre Organisation)</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Primäre Sportorganisation</label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel>Mitglieder der Organisation</relationshipLabel>
     </fields>
     <fields>
         <help>Wählen Sie die Rasse(n) aus, mit der/denen diese Person sich selbst beschreibt.</help>

@@ -3580,11 +3580,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Programme académique principal</label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel>Étudiants</relationshipLabel>
-    </fields>
-    <fields>
         <help>Indique le type de l&apos;adresse postale, par exemple professionnelle, domicile ou autre.</help>
         <label>Type d&apos;adresse principal</label>
         <name>Primary_Address_Type__c</name>
@@ -3606,16 +3601,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Service principal</label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel>Membres du service</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Établissement d&apos;enseignement principal</label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel>Membres de l&apos;établissement</relationshipLabel>
-    </fields>
-    <fields>
         <help>Référence le foyer principal (enregistrement Compte) auquel ce contact est associé.</help>
         <label>Foyer principal</label>
         <name>Primary_Household__c</name>
@@ -3632,11 +3617,6 @@
         <label>Organisation professionnelle principale</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contacts (organisation principale)</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Organisme sportif principal</label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel>Membres de l&apos;organisation</relationshipLabel>
     </fields>
     <fields>
         <help>Sélectionnez la ou les origines que cette personne utilise pour se décrire.</help>

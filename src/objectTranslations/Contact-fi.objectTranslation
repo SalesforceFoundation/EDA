@@ -3580,11 +3580,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Ensisijainen akateeminen ohjelma</label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel>Opiskelijat</relationshipLabel>
-    </fields>
-    <fields>
         <help>Ilmoita, mikä osoite postiosoite on, esimerkiksi työ, koti tai jokin muu.</help>
         <label>Ensisijainen osoitetyyppi</label>
         <name>Primary_Address_Type__c</name>
@@ -3606,16 +3601,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Ensisijainen osasto</label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel>Osaston jäsenet</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Ensisijainen oppilaitos</label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel>Oppilaitoksen jäsenet</relationshipLabel>
-    </fields>
-    <fields>
         <help>Haku pääkotitalouteen (tilitietue), johon tämä yhteyshenkilö liittyy.</help>
         <label>Ensisijainen kotitalous</label>
         <name>Primary_Household__c</name>
@@ -3632,11 +3617,6 @@
         <label>Ensisijainen yritysorganisaatio</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Yhteyshenkilöt (ensisijainen organisaatio)</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Ensisijainen urheilujärjestö</label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel>Järjestön jäsenet</relationshipLabel>
     </fields>
     <fields>
         <help>Valitse rotu/rodut, joita tämä henkilö käyttää kuvaamaan itseään.</help>

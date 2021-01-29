@@ -3580,11 +3580,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>主アカデミックプログラム</label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel>学生</relationshipLabel>
-    </fields>
-    <fields>
         <help>[住所(郵送先)] の住所の種類を示します (勤務先、自宅、その他など)。</help>
         <label>連絡先</label>
         <name>Primary_Address_Type__c</name>
@@ -3606,16 +3601,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>主部門</label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel>部門メンバー</relationshipLabel>
-    </fields>
-    <fields>
-        <label>主教育機関</label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel>機関メンバー</relationshipLabel>
-    </fields>
-    <fields>
         <help>この取引先責任者が関連付けられている主要な世帯 (取引先レコード) への参照。</help>
         <label>主世帯</label>
         <name>Primary_Household__c</name>
@@ -3632,11 +3617,6 @@
         <label>主ビジネス団体</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>取引先責任者 (主団体)</relationshipLabel>
-    </fields>
-    <fields>
-        <label>主スポーツ団体</label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel>団体メンバー</relationshipLabel>
     </fields>
     <fields>
         <help>この個人が自身を説明するために使用する人種を選択します。</help>

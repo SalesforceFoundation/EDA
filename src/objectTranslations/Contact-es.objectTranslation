@@ -3580,11 +3580,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Programa académico principal</label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel>Estudiantes</relationshipLabel>
-    </fields>
-    <fields>
         <help>Indica el tipo de dirección de la Dirección postal, como por ejemplo, laboral, doméstica u otra.</help>
         <label>Tipo de dirección de correo</label>
         <name>Primary_Address_Type__c</name>
@@ -3606,16 +3601,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Departamento principal</label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel>Miembros de departamento</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Institución educativa principal</label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel>Miembros de la institución</relationshipLabel>
-    </fields>
-    <fields>
         <help>Consulta de la cuenta doméstica principal (registro Cuenta) con la que está asociado este contacto.</help>
         <label>Domicilio principal</label>
         <name>Primary_Household__c</name>
@@ -3632,11 +3617,6 @@
         <label>Organización comercial principal</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contactos (Organización principal)</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Organización deportiva principal</label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel>Miembros de la organización</relationshipLabel>
     </fields>
     <fields>
         <help>Seleccione la raza(s) que esta persona utiliza para describirse a sí misma.</help>

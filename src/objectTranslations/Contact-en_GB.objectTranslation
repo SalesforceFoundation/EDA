@@ -3580,11 +3580,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Primary Academic Program</label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel>Students</relationshipLabel>
-    </fields>
-    <fields>
         <help>Indicate what kind of address the Mailing Address is, for example, Work, Home, or Other.</help>
         <label>Primary Address Type</label>
         <name>Primary_Address_Type__c</name>
@@ -3606,16 +3601,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Primary Department</label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel>Department Members</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Primary Educational Institution</label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel>Institution Members</relationshipLabel>
-    </fields>
-    <fields>
         <help>Lookup to the main Household (Account record) this Contact is associated with.</help>
         <label>Primary Household</label>
         <name>Primary_Household__c</name>
@@ -3632,11 +3617,6 @@
         <label>Primary Business Organisation</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contacts (Primary Organisation)</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Primary Sports Organisation</label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel>Organisation Members</relationshipLabel>
     </fields>
     <fields>
         <help>Select the race(s) this person uses to describe themself.</help>
