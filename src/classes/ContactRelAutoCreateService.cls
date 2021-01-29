@@ -63,10 +63,10 @@ public virtual with sharing class ContactRelAutoCreateService {
     * @description Retrieves a model representing the Relationship records to be created for a list of Contact records.
     * @param contactsList A list of Contact records from which to retrieve associated Relationship records.
     * @param contactRelationShipAutoCreateMapModelsList A List of ContactRelAutoCreateMappingModel representing Relationship Auto Create mappings for Contact.
-    * @return A MODL_ContactsRelationships model representing the Relationships associated with a list of Contacts. 
+    * @return A ContactsRelationshipsModel model representing the Relationships associated with a list of Contacts. 
     **************************************************************************************************************************/ 
-    public virtual MODL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
-        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+    public virtual ContactsRelationshipsModel getRelationshipsToCreateForContacts(List<Contact> contactsList, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
+        ContactsRelationshipsModel contactsRelationshipsModel = new ContactsRelationshipsModel();
 
         for (Contact con : contactsList){
             ContactRelationshipsModel conRelationshipsModel = this.getRelationshipsToCreateForContact(con, contactRelationShipAutoCreateMapModelsList);
@@ -139,10 +139,10 @@ public virtual with sharing class ContactRelAutoCreateService {
 
     /**************************************************************************************************************************
     * @description Retrieves the Relationship records to insert from a specified ContactsRelationships model.
-    * @param contactRelationshipsModel The MODL_ContactsRelationships model from which to retrieve Relationship records to insert.
+    * @param contactRelationshipsModel The ContactsRelationshipsModel model from which to retrieve Relationship records to insert.
     * @return A list of Relationship records to be inserted.
     **************************************************************************************************************************/
-    public virtual List<Relationship__c> getRelationshipsToInsertFromModel(MODL_ContactsRelationships contactsRelationshipsModel){
+    public virtual List<Relationship__c> getRelationshipsToInsertFromModel(ContactsRelationshipsModel contactsRelationshipsModel){
         if (UTIL_CustomSettingsFacade.getSettings().Allow_AutoCreated_Duplicates__c == true){
             return contactsRelationshipsModel.relationshipList;
         }
@@ -175,7 +175,7 @@ public virtual with sharing class ContactRelAutoCreateService {
     * @return True if a duplicate Relationship record is found, False otherwise.
     **************************************************************************************************************************/ 
     @TestVisible
-    private Relationship__c getDuplicateRelationship(Relationship__c relationship, MODL_ContactsRelationships contactsRelationshipsModel){
+    private Relationship__c getDuplicateRelationship(Relationship__c relationship, ContactsRelationshipsModel contactsRelationshipsModel){
         return contactsRelationshipsModel.getRelationship(relationship);
     }
 }

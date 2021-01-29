@@ -178,7 +178,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         List<Contact> newContactsList = (List<Contact>)newList;
         List<ContactRelAutoCreateMappingModel> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMapper().getContactMappingModelsFromSettings();     
 
-        MODL_ContactsRelationships contactsRelationshipsMdl = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForContacts(newContactsList, contactRelAutoCreateModelsList);
+        ContactsRelationshipsModel contactsRelationshipsMdl = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForContacts(newContactsList, contactRelAutoCreateModelsList);
 
         if (contactsRelationshipsMdl != null){
             List<Relationship__c> contactRelationshipsToCreate = contactsRelationshipsMdl.relationshipList;

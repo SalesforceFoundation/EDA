@@ -35,13 +35,13 @@
 * @description Model class for REL_Relationships_Con_TDTM; used to represent the Relationships associated with
 * a list of Contact records.
 */
-public with sharing class MODL_ContactsRelationships {
+public with sharing class ContactsRelationshipsModel {
     public Set<Id> contactIdsSet { get; private set; }
     public Set<Id> relatedContactIdSet { get; private set; }
     public Map<Id, ContactRelationshipsModel> contactRelationshipsModelsByContactId { get; private set; }
     public List<Relationship__c> relationshipList { get; private set; }
 
-    public MODL_ContactsRelationships(){
+    public ContactsRelationshipsModel(){
         contactIdsSet = new Set<Id>();
         relatedContactIdSet = new Set<Id>();
         contactRelationshipsModelsByContactId = new Map<Id, ContactRelationshipsModel>();

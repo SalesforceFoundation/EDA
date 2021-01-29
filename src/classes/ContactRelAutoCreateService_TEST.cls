@@ -64,7 +64,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getRelationshipsToCreateForContactsTrue() returns a populated 
-    * MODL_ContactsRelationships model for a list of Contact records with Relationship Auto Create mappings. 
+    * ContactsRelationshipsModel model for a list of Contact records with Relationship Auto Create mappings. 
     ***************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToCreateForContactsTrue(){
@@ -97,7 +97,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
         
         Test.startTest();
-        MODL_ContactsRelationships consRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContacts(contactsList, conRelAutoCreateMappingList);
+        ContactsRelationshipsModel consRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContacts(contactsList, conRelAutoCreateMappingList);
         Test.stopTest();
     
         System.assertEquals(5, consRelsModel.contactIdsSet.size(), 'There should be 5 contacts with relationships to create.');
@@ -107,7 +107,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getRelationshipsToCreateForContactsTrue() returns an empty MODL_ContactsRelationships
+    * @description Test method to verify that the getRelationshipsToCreateForContactsTrue() returns an empty ContactsRelationshipsModel
     * model for a list of Contact records without Relationship Auto Create mappings. 
     ***************************************************************************************************************************/
     @isTest 
@@ -120,7 +120,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
 
         Test.startTest();
-        MODL_ContactsRelationships consRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContacts(contactsList, new List<ContactRelAutoCreateMappingModel>());
+        ContactsRelationshipsModel consRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContacts(contactsList, new List<ContactRelAutoCreateMappingModel>());
         Test.stopTest();
 
         System.assertEquals(true, consRelsModel.contactIdsSet.isEmpty(), 'There should be no contacts with relationships to create.');
@@ -359,13 +359,13 @@ private with sharing class ContactRelAutoCreateService_TEST {
     
     /**************************************************************************************************************************
     * @description Test method to verify that getRelationshipsToInsertFromModel returns a list of relationships with duplicates 
-    * when a MODL_ContactsRelationships model is associated with relationships and duplicates are allowed.
+    * when a ContactsRelationshipsModel model is associated with relationships and duplicates are allowed.
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToInsertFromModelTrueAllowDuplicatesTrue(){
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = true));
 
-        MODL_ContactsRelationships contactRelationshipsModel = new MODL_ContactsRelationships();
+        ContactsRelationshipsModel contactRelationshipsModel = new ContactsRelationshipsModel();
         List<ContactRelationshipsModel> conRelsModelsList = new List<ContactRelationshipsModel>();
 
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
@@ -414,13 +414,13 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that getRelationshipsToInsertFromModel returns a list of unique relationships when a
-    * MODL_ContactsRelationships model is associated with relationships and duplicates are not allowed.
+    * ContactsRelationshipsModel model is associated with relationships and duplicates are not allowed.
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToInsertFromModelTrueAllowDuplicatesFalse(){
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Allow_AutoCreated_Duplicates__c = false));
 
-        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+        ContactsRelationshipsModel contactsRelationshipsModel = new ContactsRelationshipsModel();
         List<ContactRelationshipsModel> conRelsModelsList = new List<ContactRelationshipsModel>();
         List<Relationship__c> relationshipsList = new List<Relationship__c>();
         List<Relationship__c> duplicateRelationshipsList = new List<Relationship__c>();
@@ -469,14 +469,14 @@ private with sharing class ContactRelAutoCreateService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that getRelationshipsToInsertFromModel returns an empty list when an empty
-    * MODL_ContactsRelationships model is specified.
+    * ContactsRelationshipsModel model is specified.
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToInsertFromModelFalse(){
         ContactRelAutoCreateService.instance = new STUB_WithoutRelationshipsToCreate();
 
         Test.startTest();
-        System.assertEquals(true, ContactRelAutoCreateService.getInstance().getRelationshipsToInsertFromModel(new MODL_ContactsRelationships()).isEmpty(), 'There should be no Relationship records to insert.');
+        System.assertEquals(true, ContactRelAutoCreateService.getInstance().getRelationshipsToInsertFromModel(new ContactsRelationshipsModel()).isEmpty(), 'There should be no Relationship records to insert.');
         Test.stopTest();
     }
 
@@ -486,7 +486,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getDuplicateRelationshipFalse(){
-        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+        ContactsRelationshipsModel contactsRelationshipsModel = new ContactsRelationshipsModel();
         Contact testCon = UTIL_UnitTestData_TEST.getContact();
 
         Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
@@ -530,7 +530,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getDuplicateRelationshipTrue(){
-        MODL_ContactsRelationships contactsRelationshipsModel = new MODL_ContactsRelationships();
+        ContactsRelationshipsModel contactsRelationshipsModel = new ContactsRelationshipsModel();
         Contact testCon = UTIL_UnitTestData_TEST.getContact();
 
         Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
@@ -573,9 +573,9 @@ private with sharing class ContactRelAutoCreateService_TEST {
     *************************************************************************************************************/ 
     private class STUB_WithRelationshipsToCreate extends ContactRelAutoCreateService {
         @TestVisible
-        public override MODL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
+        public override ContactsRelationshipsModel getRelationshipsToCreateForContacts(List<Contact> contactsList, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
             
-            MODL_ContactsRelationships contactsRelsModel = new MODL_ContactsRelationships();
+            ContactsRelationshipsModel contactsRelsModel = new ContactsRelationshipsModel();
             
             List<ContactRelationshipsModel> conRelsModelsList = new List<ContactRelationshipsModel>();            
             Map<Id, Map<String, Relationship__c>> relationshipByTypeByRelatedContactId = new Map<Id, Map<String, Relationship__c>>();
@@ -683,8 +683,8 @@ private with sharing class ContactRelAutoCreateService_TEST {
     private class STUB_WithoutRelationshipsToCreate extends ContactRelAutoCreateService {
 
         @TestVisible
-        public override MODL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
-            return new MODL_ContactsRelationships();
+        public override ContactsRelationshipsModel getRelationshipsToCreateForContacts(List<Contact> contactsList, List<ContactRelAutoCreateMappingModel> contactRelationShipAutoCreateMapModelsList){
+            return new ContactsRelationshipsModel();
         }
 
         @TestVisible
@@ -698,7 +698,7 @@ private with sharing class ContactRelAutoCreateService_TEST {
         }
 
         @TestVisible
-        public override List<Relationship__c> getRelationshipsToInsertFromModel(MODL_ContactsRelationships contactsRelationshipsModel){
+        public override List<Relationship__c> getRelationshipsToInsertFromModel(ContactsRelationshipsModel contactsRelationshipsModel){
             return new List<Relationship__c>();
         }
     }
