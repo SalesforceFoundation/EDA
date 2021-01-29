@@ -35,28 +35,28 @@
 * @description Service class for REL_Relationships_Con_TDTM.  Handles functionality
 * associated with Auto-creation of relationships.
 */
-public virtual with sharing class SRVC_ContactRelationshipAutoCreate {
+public virtual with sharing class ContactRelAutoCreateService {
     /**************************************************************************************************************************
     * @description Instance for Singleton Pattern.
     **************************************************************************************************************************/
     @TestVisible
-    private static SRVC_ContactRelationshipAutoCreate instance;
+    private static ContactRelAutoCreateService instance;
 
     /**************************************************************************************************************************
     * @description Empty constructor is not public for Singleton Pattern.
     **************************************************************************************************************************/
-    protected SRVC_ContactRelationshipAutoCreate() {}
+    protected ContactRelAutoCreateService() {}
 
     /**************************************************************************************************************************
     * @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_ContactRelationshipAutoCreate.
+    * @return The instance of ContactRelAutoCreateService.
     **************************************************************************************************************************/
-    public static SRVC_ContactRelationshipAutoCreate getInstance() {
-        if (SRVC_ContactRelationshipAutoCreate.instance == null) {
-            SRVC_ContactRelationshipAutoCreate.instance = new SRVC_ContactRelationshipAutoCreate();
+    public static ContactRelAutoCreateService getInstance() {
+        if (ContactRelAutoCreateService.instance == null) {
+            ContactRelAutoCreateService.instance = new ContactRelAutoCreateService();
         }
 
-        return SRVC_ContactRelationshipAutoCreate.instance;
+        return ContactRelAutoCreateService.instance;
     }
 
     /**************************************************************************************************************************

@@ -32,32 +32,32 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Test class for SRVC_ContactRelationshipAutoCreate
+* @description Test class for ContactRelAutoCreateService
 */
 @isTest 
-private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
+private with sharing class ContactRelAutoCreateService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
-    * SRVC_ContactRelationshipAutoCreate class when one does not already exist.
+    * ContactRelAutoCreateService class when one does not already exist.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
-        SRVC_ContactRelationshipAutoCreate srvcConRelAutoCreate = SRVC_ContactRelationshipAutoCreate.getInstance();
-        System.assertEquals(SRVC_ContactRelationshipAutoCreate.instance, srvcConRelAutoCreate, 'Instance of service class returned should match static instance variable.');
+        ContactRelAutoCreateService srvcConRelAutoCreate = ContactRelAutoCreateService.getInstance();
+        System.assertEquals(ContactRelAutoCreateService.instance, srvcConRelAutoCreate, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(true, srvcConRelAutoCreate != null, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance() returns the existing instance of the 
-    * SRVC_ContactRelationshipAutoCreate class when one already exists.
+    * ContactRelAutoCreateService class when one already exists.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-        SRVC_ContactRelationshipAutoCreate srvcConRelAutoCreateInstance1 = SRVC_ContactRelationshipAutoCreate.getInstance();
-        SRVC_ContactRelationshipAutoCreate srvcConRelAutoCreateInstance2 = SRVC_ContactRelationshipAutoCreate.getInstance();
+        ContactRelAutoCreateService srvcConRelAutoCreateInstance1 = ContactRelAutoCreateService.getInstance();
+        ContactRelAutoCreateService srvcConRelAutoCreateInstance2 = ContactRelAutoCreateService.getInstance();
  
-        System.assertEquals(SRVC_ContactRelationshipAutoCreate.instance, srvcConRelAutoCreateInstance1, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(ContactRelAutoCreateService.instance, srvcConRelAutoCreateInstance1, 'Instance of service class returned should match static instance variable.');
         System.assertEquals(srvcConRelAutoCreateInstance1, srvcConRelAutoCreateInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
         System.assertEquals(true, srvcConRelAutoCreateInstance1 != null, 'Instance of service class should not be null.');
     }
@@ -68,7 +68,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToCreateForContactsTrue(){
-        SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithRelationshipsToCreate();
+        ContactRelAutoCreateService.instance = new STUB_WithRelationshipsToCreate();
 
         List<Relationship_Auto_Create__c> conRelAutoCreateList = new List<Relationship_Auto_Create__c>();
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = new List<MODL_ConRelationshipAutoCreateMapping>();
@@ -97,7 +97,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         }
         
         Test.startTest();
-        MODL_ContactsRelationships consRelsModel = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToCreateForContacts(contactsList, conRelAutoCreateMappingList);
+        MODL_ContactsRelationships consRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContacts(contactsList, conRelAutoCreateMappingList);
         Test.stopTest();
     
         System.assertEquals(5, consRelsModel.contactIdsSet.size(), 'There should be 5 contacts with relationships to create.');
@@ -112,7 +112,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToCreateForContactsFalse(){
-        SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithoutRelationshipsToCreate();
+        ContactRelAutoCreateService.instance = new STUB_WithoutRelationshipsToCreate();
 
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
         for (Contact con : contactsList){
@@ -120,7 +120,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         }
 
         Test.startTest();
-        MODL_ContactsRelationships consRelsModel = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToCreateForContacts(contactsList, new List<MODL_ConRelationshipAutoCreateMapping>());
+        MODL_ContactsRelationships consRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContacts(contactsList, new List<MODL_ConRelationshipAutoCreateMapping>());
         Test.stopTest();
 
         System.assertEquals(true, consRelsModel.contactIdsSet.isEmpty(), 'There should be no contacts with relationships to create.');
@@ -135,7 +135,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToCreateForContactTrue(){
-        SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithRelationshipsToCreate();
+        ContactRelAutoCreateService.instance = new STUB_WithRelationshipsToCreate();
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = new List<MODL_ConRelationshipAutoCreateMapping>();
         List<Relationship_Auto_Create__c> conRelAutoCreateList = new List<Relationship_Auto_Create__c>();
 
@@ -161,7 +161,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         }
 
         Test.startTest();
-        MODL_ContactRelationships conRelationshipsModel = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToCreateForContact(con, conRelAutoCreateMappingList);
+        MODL_ContactRelationships conRelationshipsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContact(con, conRelAutoCreateMappingList);
         Test.stopTest();
 
         System.assertEquals(con.Id, conRelationshipsModel.contactId, 'Model should be associated with current contact record.');
@@ -176,13 +176,13 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToCreateForContactFalse(){
-        SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithoutRelationshipsToCreate();
+        ContactRelAutoCreateService.instance = new STUB_WithoutRelationshipsToCreate();
 
         Contact con = new Contact(Id = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType),
                                   LastName = 'Testerson');
 
         Test.startTest();
-        System.assertEquals(null, SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToCreateForContact(con, new List<MODL_ConRelationshipAutoCreateMapping>()), 'ContactRelationshipsModel should be null.');
+        System.assertEquals(null, ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForContact(con, new List<MODL_ConRelationshipAutoCreateMapping>()), 'ContactRelationshipsModel should be null.');
         Test.stopTest();
     }
 
@@ -192,7 +192,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     **************************************************************************************************************************/ 
     @isTest 
     private static void getRelationshipsToCreateForUpdatedContactWithNotNullChangeTrue(){
-        SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithRelationshipsToCreate();
+        ContactRelAutoCreateService.instance = new STUB_WithRelationshipsToCreate();
 
         List<Relationship_Auto_Create__c> conRelAutoCreateList = new List<Relationship_Auto_Create__c>();
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = new List<MODL_ConRelationshipAutoCreateMapping>();
@@ -226,7 +226,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         }
 
         Test.startTest();
-        MODL_ContactRelationships conRelsModel = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, conRelAutoCreateMappingList);
+        MODL_ContactRelationships conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, conRelAutoCreateMappingList);
         Test.stopTest();
 
         System.assertEquals(newCon.Id, conRelsModel.contactId, 'Contact associated with model should be current contact.');
@@ -240,7 +240,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     **************************************************************************************************************************/ 
     @isTest 
     private static void getRelationshipsToCreateForUpdatedContactWithNullChangeTrue(){
-        //SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithRelationshipsToCreate();
+        //ContactRelAutoCreateService.instance = new STUB_WithRelationshipsToCreate();
 
         List<Relationship_Auto_Create__c> conRelAutoCreateList = new List<Relationship_Auto_Create__c>();
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = new List<MODL_ConRelationshipAutoCreateMapping>();
@@ -273,7 +273,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         }
 
         Test.startTest();
-        MODL_ContactRelationships conRelsModel = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<MODL_ConRelationshipAutoCreateMapping>());
+        MODL_ContactRelationships conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<MODL_ConRelationshipAutoCreateMapping>());
         Test.stopTest();
 
         System.assertEquals(newCon.Id, conRelsModel.contactId, 'Contact associated with model should be current contact.');
@@ -287,7 +287,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     **************************************************************************************************************************/ 
     @isTest 
     private static void getRelationshipsToCreateForUpdatedContactWithoutChangeTrue(){
-        SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithoutRelationshipsToCreate();
+        ContactRelAutoCreateService.instance = new STUB_WithoutRelationshipsToCreate();
 
         List<Relationship_Auto_Create__c> conRelAutoCreateList = new List<Relationship_Auto_Create__c>();
         List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMappingList = new List<MODL_ConRelationshipAutoCreateMapping>();
@@ -322,7 +322,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         }
 
         Test.startTest();
-        MODL_ContactRelationships conRelsModel = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<MODL_ConRelationshipAutoCreateMapping>());
+        MODL_ContactRelationships conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<MODL_ConRelationshipAutoCreateMapping>());
         Test.stopTest();
 
         System.assertEquals(newCon.Id, conRelsModel.contactId, 'Contact associated with model should be current contact.');
@@ -336,7 +336,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     **************************************************************************************************************************/ 
     @isTest 
     private static void getRelationshipsToCreateForUpdatedContactFalse(){
-        SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithoutRelationshipsToCreate();
+        ContactRelAutoCreateService.instance = new STUB_WithoutRelationshipsToCreate();
 
         Id fakeConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
 
@@ -349,7 +349,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
                                      ReportsToId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType));
 
         Test.startTest();
-        MODL_ContactRelationships conRelsModel = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<MODL_ConRelationshipAutoCreateMapping>());
+        MODL_ContactRelationships conRelsModel = ContactRelAutoCreateService.getInstance().getRelationshipsToCreateForUpdatedContact(newCon, oldCon, new List<MODL_ConRelationshipAutoCreateMapping>());
         Test.stopTest();
 
         System.assertEquals(newCon.Id, conRelsModel.contactId, 'Contact associated with model should be current contact.');
@@ -407,7 +407,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         }
         
         Test.startTest();
-        List<Relationship__c> relationshipsList = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(contactRelationshipsModel);
+        List<Relationship__c> relationshipsList = ContactRelAutoCreateService.getInstance().getRelationshipsToInsertFromModel(contactRelationshipsModel);
         System.assertEquals(15, relationshipsList.size(), 'Each contact relationships model should be associated with 3 duplicate relationships.'); 
         Test.stopTest();
     }
@@ -461,7 +461,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         }
         
         Test.startTest();
-        List<Relationship__c> relationshipsResultsList = SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(contactsRelationshipsModel);
+        List<Relationship__c> relationshipsResultsList = ContactRelAutoCreateService.getInstance().getRelationshipsToInsertFromModel(contactsRelationshipsModel);
         Test.stopTest();
 
         System.assertEquals(0, relationshipsResultsList.size(), 'Duplicate relationships for each contact relationships model should be removed.'); 
@@ -473,10 +473,10 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getRelationshipsToInsertFromModelFalse(){
-        SRVC_ContactRelationshipAutoCreate.instance = new STUB_WithoutRelationshipsToCreate();
+        ContactRelAutoCreateService.instance = new STUB_WithoutRelationshipsToCreate();
 
         Test.startTest();
-        System.assertEquals(true, SRVC_ContactRelationshipAutoCreate.getInstance().getRelationshipsToInsertFromModel(new MODL_ContactsRelationships()).isEmpty(), 'There should be no Relationship records to insert.');
+        System.assertEquals(true, ContactRelAutoCreateService.getInstance().getRelationshipsToInsertFromModel(new MODL_ContactsRelationships()).isEmpty(), 'There should be no Relationship records to insert.');
         Test.stopTest();
     }
 
@@ -520,7 +520,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
         
         Test.startTest();
-        System.assertEquals(null, SRVC_ContactRelationshipAutoCreate.getInstance().getDuplicateRelationship(relToCompare, contactsRelationshipsModel), 'There should be no duplicate Relationship record in Contacts Relationships model.');
+        System.assertEquals(null, ContactRelAutoCreateService.getInstance().getDuplicateRelationship(relToCompare, contactsRelationshipsModel), 'There should be no duplicate Relationship record in Contacts Relationships model.');
         Test.stopTest();
     }
 
@@ -558,7 +558,7 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
         contactsRelationshipsModel.addContactRelationshipsModel(conRelsModel);   
         
         Test.startTest();
-        System.assertEquals(true, SRVC_ContactRelationshipAutoCreate.getInstance().getDuplicateRelationship(motherRel1, contactsRelationshipsModel) != null, 'There should be a duplicate Relationship record for the Contacts Relationships model.');
+        System.assertEquals(true, ContactRelAutoCreateService.getInstance().getDuplicateRelationship(motherRel1, contactsRelationshipsModel) != null, 'There should be a duplicate Relationship record for the Contacts Relationships model.');
         Test.stopTest();
     }
 
@@ -569,9 +569,9 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
 
     /************************************************************************************************************
     * @description Stub class to simulate positive responses from getRelationshipsToCreateForContacts and 
-    * getRelationshipsToCreateForContact methods in SRVC_ContactRelationshipAutoCreate.
+    * getRelationshipsToCreateForContact methods in ContactRelAutoCreateService.
     *************************************************************************************************************/ 
-    private class STUB_WithRelationshipsToCreate extends SRVC_ContactRelationshipAutoCreate {
+    private class STUB_WithRelationshipsToCreate extends ContactRelAutoCreateService {
         @TestVisible
         public override MODL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
             
@@ -678,9 +678,9 @@ private with sharing class SRVC_ContactRelationshipAutoCreate_TEST {
 
     /************************************************************************************************************
     * @description Stub class to simulate negative responses from getRelationshipsToCreateForContacts and 
-    * getRelationshipsToCreateForContact methods in SRVC_ContactRelationshipAutoCreate.
+    * getRelationshipsToCreateForContact methods in ContactRelAutoCreateService.
     *************************************************************************************************************/ 
-    private class STUB_WithoutRelationshipsToCreate extends SRVC_ContactRelationshipAutoCreate {
+    private class STUB_WithoutRelationshipsToCreate extends ContactRelAutoCreateService {
 
         @TestVisible
         public override MODL_ContactsRelationships getRelationshipsToCreateForContacts(List<Contact> contactsList, List<MODL_ConRelationshipAutoCreateMapping> contactRelationShipAutoCreateMapModelsList){
