@@ -177,10 +177,8 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
 
         List<Contact> newContactsList = (List<Contact>)newList;
         List<MODL_ConRelationshipAutocreateMapping> contactRelAutoCreateModelsList = this.locateRelationshipAutoCreateMapper().getContactMappingModelsFromSettings();     
-        System.debug('MK DEBUG: contactRelAutoCreateModelsList: ' + contactRelAutoCreateModelsList);
 
         MODL_ContactsRelationships contactsRelationshipsMdl = this.locateRelationshipAutoCreateService().getRelationshipsToCreateForContacts(newContactsList, contactRelAutoCreateModelsList);
-        System.debug('MK DEBUG: contactsRelationshipsMdl: ' + contactsRelationshipsMdl);
 
         if (contactsRelationshipsMdl != null){
             List<Relationship__c> contactRelationshipsToCreate = contactsRelationshipsMdl.relationshipList;
@@ -199,12 +197,12 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Retrieves an instance of the MAPR_RELAutoCreateSettings mapper class.
-    * @return An instance of MAPR_RELAutoCreateSettings.
+    * @description Retrieves an instance of the RelAutoCreateSettingsMapper mapper class.
+    * @return An instance of RelAutoCreateSettingsMapper.
     *******************************************************************************************************/ 
     @TestVisible
-    private MAPR_RELAutoCreateSettings locateRelationshipAutoCreateMapper(){
-        return MAPR_RELAutoCreateSettings.getInstance();
+    private RelAutoCreateSettingsMapper locateRelationshipAutoCreateMapper(){
+        return RelAutoCreateSettingsMapper.getInstance();
     }
 
     /*******************************************************************************************************
