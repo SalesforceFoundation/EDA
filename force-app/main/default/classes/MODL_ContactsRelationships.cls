@@ -38,23 +38,23 @@
 public with sharing class MODL_ContactsRelationships {
     public Set<Id> contactIdsSet { get; private set; }
     public Set<Id> relatedContactIdSet { get; private set; }
-    public Map<Id, MODL_ContactRelationships> contactRelationshipsModelsByContactId { get; private set; }
+    public Map<Id, ContactRelationshipsModel> contactRelationshipsModelsByContactId { get; private set; }
     public List<Relationship__c> relationshipList { get; private set; }
 
     public MODL_ContactsRelationships(){
         contactIdsSet = new Set<Id>();
         relatedContactIdSet = new Set<Id>();
-        contactRelationshipsModelsByContactId = new Map<Id, MODL_ContactRelationships>();
+        contactRelationshipsModelsByContactId = new Map<Id, ContactRelationshipsModel>();
         relationshipList = new List<Relationship__c>();
     }
     
     /**************************************************************************************************************************
-    * @description Adds a MODL_ContactRelationships model to the existing contactRelationshipsModelsByContactId
+    * @description Adds a ContactRelationshipsModel model to the existing contactRelationshipsModelsByContactId
     * map and adds the associated ContactId and RelatedContactId to the existing lists contactIdsSet and 
     * relatedContactIdSet respectively.
-    * @param conRelationshipsModel A MODL_ContactRelationships model to be added to the existing variables.
+    * @param conRelationshipsModel A ContactRelationshipsModel model to be added to the existing variables.
     **************************************************************************************************************************/ 
-    public void addContactRelationshipsModel(MODL_ContactRelationships conRelationshipsModel){
+    public void addContactRelationshipsModel(ContactRelationshipsModel conRelationshipsModel){
         contactRelationshipsModelsByContactId.put(conRelationshipsModel.contactId, conRelationshipsModel);
         contactIdsSet.add(conRelationshipsModel.contactId);
         relatedContactIdSet.addAll(conRelationshipsModel.getRelatedContactIdSet());
@@ -84,7 +84,7 @@ public with sharing class MODL_ContactsRelationships {
     * @return The matching Relationship record from the Contacts Relationships model.
     ************************************************************************************************************/ 
     public Relationship__c getRelationship(Relationship__c relationshipToRetrieve){
-        MODL_ContactRelationships contactRelationshipsModel =
+        ContactRelationshipsModel contactRelationshipsModel =
             contactRelationshipsModelsByContactId.get(relationshipToRetrieve.Contact__c);
     
         if (contactRelationshipsModel == null){

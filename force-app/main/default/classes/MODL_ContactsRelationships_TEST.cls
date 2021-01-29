@@ -51,9 +51,9 @@ private with sharing class MODL_ContactsRelationships_TEST {
 
         Test.startTest();
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
-            List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
+            List<ContactRelationshipsModel> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
 
-            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
                 for (Integer i = 0; i < 5; i++){
                     Id fakeRelConId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
                     Relationship__c rel = UTIL_UnitTestData_TEST.getRelationship(conRelsMod.contactId, fakeRelConId, 'Cousin');
@@ -61,7 +61,7 @@ private with sharing class MODL_ContactsRelationships_TEST {
                 }
             }
 
-            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
                 consRelsMod.addContactRelationshipsModel(conRelsMod);
             }
         }
@@ -91,9 +91,9 @@ private with sharing class MODL_ContactsRelationships_TEST {
 
         Test.startTest();
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
-            List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
+            List<ContactRelationshipsModel> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
 
-            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
                 consRelsMod.addContactRelationshipsModel(conRelsMod);
             }
         }
@@ -114,7 +114,7 @@ private with sharing class MODL_ContactsRelationships_TEST {
     @isTest 
     private static void hasRelationshipTrue(){
         List<MODL_ContactsRelationships> contactsRelationshipsModelsList = new List<MODL_ContactsRelationships>();
-        Map<MODL_ContactRelationships, List<Relationship__c>> relationshipsToFindByContactRelsModel = new Map<MODL_ContactRelationships, List<Relationship__c>>();
+        Map<ContactRelationshipsModel, List<Relationship__c>> relationshipsToFindByContactRelsModel = new Map<ContactRelationshipsModel, List<Relationship__c>>();
 
         for (Integer i = 0; i < 5; i++){
             MODL_ContactsRelationships consRelsModel = new MODL_ContactsRelationships();
@@ -122,10 +122,10 @@ private with sharing class MODL_ContactsRelationships_TEST {
         }
 
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
-            List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
+            List<ContactRelationshipsModel> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
             conRelsModelsList = MODL_ContactsRelationships_TEST.addRelationshipsToContactRelationshipsModels(conRelsModelsList, 3);
 
-            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
                 List<Relationship__c> relationshipsToFind = relationshipsToFindByContactRelsModel.get(conRelsMod);
                 if (relationshipsToFind == null){
                     relationshipsToFind = new List<Relationship__c>();
@@ -141,7 +141,7 @@ private with sharing class MODL_ContactsRelationships_TEST {
         Test.startTest();
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
             for (Id conId : consRelsMod.contactIdsSet){
-                MODL_ContactRelationships conRelsMod = consRelsMod.contactRelationshipsModelsByContactId.get(conId);
+                ContactRelationshipsModel conRelsMod = consRelsMod.contactRelationshipsModelsByContactId.get(conId);
                 for (Relationship__c relToFind : relationshipsToFindByContactRelsModel.get(conRelsMod)){
                     System.assertEquals(true, consRelsMod.hasRelationship(relToFind), 'There should be matching Relationships in relationships associated with current Contacts Relationships model.');
                 }
@@ -165,10 +165,10 @@ private with sharing class MODL_ContactsRelationships_TEST {
         }
 
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
-            List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
+            List<ContactRelationshipsModel> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
             conRelsModelsList = MODL_ContactsRelationships_TEST.addRelationshipsToContactRelationshipsModels(conRelsModelsList, 5);
 
-            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
                 Relationship__c relToFind = UTIL_UnitTestData_TEST.getRelationship(conRelsMod.contactId, UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType), 'Cousin');
                 relationshipsToFind.add(relToFind);
                 consRelsMod.addContactRelationshipsModel(conRelsMod);
@@ -193,7 +193,7 @@ private with sharing class MODL_ContactsRelationships_TEST {
     @isTest 
     private static void getRelationship(){
         List<MODL_ContactsRelationships> contactsRelationshipsModelsList = new List<MODL_ContactsRelationships>();
-        Map<MODL_ContactRelationships, List<Relationship__c>> relationshipsToFindByContactRelsModel = new Map<MODL_ContactRelationships, List<Relationship__c>>();
+        Map<ContactRelationshipsModel, List<Relationship__c>> relationshipsToFindByContactRelsModel = new Map<ContactRelationshipsModel, List<Relationship__c>>();
 
         for (Integer i = 0; i < 5; i++){
             MODL_ContactsRelationships consRelsModel = new MODL_ContactsRelationships();
@@ -201,10 +201,10 @@ private with sharing class MODL_ContactsRelationships_TEST {
         }
 
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
-            List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
+            List<ContactRelationshipsModel> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
             conRelsModelsList = MODL_ContactsRelationships_TEST.addRelationshipsToContactRelationshipsModels(conRelsModelsList, 3);
 
-            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
                 List<Relationship__c> relationshipsToFind = relationshipsToFindByContactRelsModel.get(conRelsMod);
                 if (relationshipsToFind == null){
                     relationshipsToFind = new List<Relationship__c>();
@@ -220,7 +220,7 @@ private with sharing class MODL_ContactsRelationships_TEST {
         Test.startTest();
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
             for (Id conId : consRelsMod.contactIdsSet){
-                MODL_ContactRelationships conRelsMod = consRelsMod.contactRelationshipsModelsByContactId.get(conId);
+                ContactRelationshipsModel conRelsMod = consRelsMod.contactRelationshipsModelsByContactId.get(conId);
                 for (Relationship__c relToFind : relationshipsToFindByContactRelsModel.get(conRelsMod)){
                     System.assertNotEquals(null, consRelsMod.getRelationship(relToFind), 'There should be matching Relationships in relationships associated with current Contacts Relationships model.');
                 }
@@ -249,10 +249,10 @@ private with sharing class MODL_ContactsRelationships_TEST {
         }
 
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
-            List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
+            List<ContactRelationshipsModel> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
             conRelsModelsList = MODL_ContactsRelationships_TEST.addRelationshipsToContactRelationshipsModels(conRelsModelsList, 3);
 
-            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
                 consRelsMod.addContactRelationshipsModel(conRelsMod);
             }
         }
@@ -300,9 +300,9 @@ private with sharing class MODL_ContactsRelationships_TEST {
         }
 
         for (MODL_ContactsRelationships consRelsMod : contactsRelationshipsModelsList){
-            List<MODL_ContactRelationships> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
+            List<ContactRelationshipsModel> conRelsModelsList = MODL_ContactsRelationships_TEST.getContactRelationshipsModelList(5);
 
-            for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+            for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
                 consRelsMod.addContactRelationshipsModel(conRelsMod);
             }
         }
@@ -317,12 +317,12 @@ private with sharing class MODL_ContactsRelationships_TEST {
     /**************************************************************************************************************************
     * @description Helper method to create and associate a specified number of Relationship records to a each model in a list of
     * Contact Relationships models.
-    * @param conRelsModelsList The List of MODL_ContactRelationships models to associate with the specified number of new Relationships.
+    * @param conRelsModelsList The List of ContactRelationshipsModel models to associate with the specified number of new Relationships.
     * @param relationshipCount The number of Relationship records to generate for each model.
-    * @return A list of MODL_ContactRelationships, each associated with the specified number of new Relationship records.
+    * @return A list of ContactRelationshipsModel, each associated with the specified number of new Relationship records.
     **************************************************************************************************************************/
-    private static List<MODL_ContactRelationships> addRelationshipsToContactRelationshipsModels(List<MODL_ContactRelationships> conRelsModelsList, Integer relationshipCount){
-        for (MODL_ContactRelationships conRelsMod : conRelsModelsList){
+    private static List<ContactRelationshipsModel> addRelationshipsToContactRelationshipsModels(List<ContactRelationshipsModel> conRelsModelsList, Integer relationshipCount){
+        for (ContactRelationshipsModel conRelsMod : conRelsModelsList){
 
             for (Integer i = 0; i < relationshipCount; i++){
                 Relationship__c rel = UTIL_UnitTestData_TEST.getRelationship(conRelsMod.contactId, UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType), 'Cousin');
@@ -337,17 +337,17 @@ private with sharing class MODL_ContactsRelationships_TEST {
     /**************************************************************************************************************************
     * @description Helper method to generate a list of Contact Relationships models.
     * @param contactsCount The number of Contacts to associate with Contact Relationships models.
-    * @return A list of MODL_ContactRelationships.
+    * @return A list of ContactRelationshipsModel.
     **************************************************************************************************************************/ 
-    private static List<MODL_ContactRelationships> getContactRelationshipsModelList(Integer contactsCount){
-        List<MODL_ContactRelationships> conRelsModelsList = new List<MODL_ContactRelationships>();
+    private static List<ContactRelationshipsModel> getContactRelationshipsModelList(Integer contactsCount){
+        List<ContactRelationshipsModel> conRelsModelsList = new List<ContactRelationshipsModel>();
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(contactsCount);
         
         for (Contact con : contactsList){
             Id conFakeId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
             con.Id = conFakeId;
 
-            MODL_ContactRelationships conRelsModel = new MODL_ContactRelationships(conFakeId);
+            ContactRelationshipsModel conRelsModel = new ContactRelationshipsModel(conFakeId);
             conRelsModelsList.add(conRelsModel);
         }
 
