@@ -3585,12 +3585,6 @@
         <relationshipLabel>Estudiants</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Lookup to the Account record with &apos;An Active Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Active Account --></label>
-        <name>Primary_Active_Account__c</name>
-        <relationshipLabel><!-- Active Accounts --></relationshipLabel>
-    </fields>
-    <fields>
         <help>Indiqueu quin tipus d’adreça és l’adreça postal, per exemple, de la feina, de casa o una altra.</help>
         <label>Tipus d&apos;adreça primari</label>
         <name>Primary_Address_Type__c</name>
@@ -3626,12 +3620,6 @@
         <label>Llar primària</label>
         <name>Primary_Household__c</name>
         <relationshipLabel>Contactes (llar primària)</relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Lookup to the Account record with &apos;An Inactive Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Inactive Account --></label>
-        <name>Primary_Inactive_Account__c</name>
-        <relationshipLabel><!-- Inactive Accounts --></relationshipLabel>
     </fields>
     <fields>
         <help>L’idioma que el contacte prefereix utilitzar.</help>

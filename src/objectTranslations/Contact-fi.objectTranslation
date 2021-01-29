@@ -3585,12 +3585,6 @@
         <relationshipLabel>Opiskelijat</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Lookup to the Account record with &apos;An Active Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Active Account --></label>
-        <name>Primary_Active_Account__c</name>
-        <relationshipLabel><!-- Active Accounts --></relationshipLabel>
-    </fields>
-    <fields>
         <help>Ilmoita, mikä osoite postiosoite on, esimerkiksi työ, koti tai jokin muu.</help>
         <label>Ensisijainen osoitetyyppi</label>
         <name>Primary_Address_Type__c</name>
@@ -3626,12 +3620,6 @@
         <label>Ensisijainen kotitalous</label>
         <name>Primary_Household__c</name>
         <relationshipLabel>Yhteyshenkilöt (ensisijainen kotitalous)</relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Lookup to the Account record with &apos;An Inactive Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Inactive Account --></label>
-        <name>Primary_Inactive_Account__c</name>
-        <relationshipLabel><!-- Inactive Accounts --></relationshipLabel>
     </fields>
     <fields>
         <help>Kieli, jota yhteyshenkilö haluaa käyttää.</help>

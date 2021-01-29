@@ -3585,12 +3585,6 @@
         <relationshipLabel>Studenten</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Lookup to the Account record with &apos;An Active Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Active Account --></label>
-        <name>Primary_Active_Account__c</name>
-        <relationshipLabel><!-- Active Accounts --></relationshipLabel>
-    </fields>
-    <fields>
         <help>Geef aan wat voor adres het postadres is, bijvoorbeeld werk, thuis of overig.</help>
         <label>Type primair adres</label>
         <name>Primary_Address_Type__c</name>
@@ -3626,12 +3620,6 @@
         <label>Primair huishouden</label>
         <name>Primary_Household__c</name>
         <relationshipLabel>Contactpersonen (primair huishouden)</relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Lookup to the Account record with &apos;An Inactive Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Inactive Account --></label>
-        <name>Primary_Inactive_Account__c</name>
-        <relationshipLabel><!-- Inactive Accounts --></relationshipLabel>
     </fields>
     <fields>
         <help>De taal die de contactpersoon bij voorkeur gebruikt.</help>

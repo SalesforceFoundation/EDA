@@ -3585,12 +3585,6 @@
         <relationshipLabel>学生</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Lookup to the Account record with &apos;An Active Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Active Account --></label>
-        <name>Primary_Active_Account__c</name>
-        <relationshipLabel><!-- Active Accounts --></relationshipLabel>
-    </fields>
-    <fields>
         <help>[住所(郵送先)] の住所の種類を示します (勤務先、自宅、その他など)。</help>
         <label>連絡先</label>
         <name>Primary_Address_Type__c</name>
@@ -3626,12 +3620,6 @@
         <label>主世帯</label>
         <name>Primary_Household__c</name>
         <relationshipLabel>取引先責任者 (主世帯)</relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Lookup to the Account record with &apos;An Inactive Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Inactive Account --></label>
-        <name>Primary_Inactive_Account__c</name>
-        <relationshipLabel><!-- Inactive Accounts --></relationshipLabel>
     </fields>
     <fields>
         <help>取引先責任者が使用する言語。</help>

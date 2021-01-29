@@ -3585,12 +3585,6 @@
         <relationshipLabel>Schüler/Studenten</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Lookup to the Account record with &apos;An Active Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Active Account --></label>
-        <name>Primary_Active_Account__c</name>
-        <relationshipLabel><!-- Active Accounts --></relationshipLabel>
-    </fields>
-    <fields>
         <help>Gibt an, um welche Art von Adresse es sich bei der Postanschrift handelt, z. B. (geschäftlich, privat oder sonstiges).</help>
         <label>Primärer Adresstyp</label>
         <name>Primary_Address_Type__c</name>
@@ -3626,12 +3620,6 @@
         <label>Primärer Haushalt</label>
         <name>Primary_Household__c</name>
         <relationshipLabel>Kontakte (Primärer Haushalt)</relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Lookup to the Account record with &apos;An Inactive Record Type&apos; record type for unmanaged primary affiliation testing. --></help>
-        <label><!-- Primary Inactive Account --></label>
-        <name>Primary_Inactive_Account__c</name>
-        <relationshipLabel><!-- Inactive Accounts --></relationshipLabel>
     </fields>
     <fields>
         <help>Die Sprache, die der Kontakt bevorzugt.</help>
