@@ -57,11 +57,6 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- A name that combines Parent Name (Thurgood Marshall Tower) and Facility Name (Room 400), for example, Thurgood Marshall Tower - Room 400. If no Parent Facility, Account value is used. If also no Account, Facility Name and Display Name are the same. --></help>
-        <label><!-- Display Name --></label>
-        <name>Display_Name__c</name>
-    </fields>
-    <fields>
         <help>Wählen Sie die Art der Räumlichkeit aus, z. B. Computerlabor, Gesundheitszentrum, Hörsaal usw.</help>
         <label>Typ der Räumlichkeit</label>
         <name>Facility_Type__c</name>

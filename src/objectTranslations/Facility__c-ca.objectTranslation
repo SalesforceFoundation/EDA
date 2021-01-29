@@ -25,11 +25,6 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help>Combina el nom principal (Thurgood Bldg) amb el de la instal·lació (Sala 400), p.  ex., Thurgood Bldg: Sala 400. Si no hi ha instal·lació principal, es posa el valor del compte. Si no hi ha compte, el nom d&apos;instal·lació i de visualització són iguals.</help>
-        <label>Nom de visualització</label>
-        <name>Display_Name__c</name>
-    </fields>
-    <fields>
         <help>Seleccioneu el tipus d&apos;instal·lació, per exemple, un laboratori d’informàtica, centre de salut, aula, etc.</help>
         <label>Tipus d&apos;instal·lació</label>
         <name>Facility_Type__c</name>

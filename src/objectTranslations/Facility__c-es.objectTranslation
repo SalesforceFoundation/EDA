@@ -25,11 +25,6 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help>Nombre que combina Nombre principal (Torre Libertad) y Nombre de instalación (Sala 400), p ej. Torre Libertad-Sala 400. So no hay Instalación principal, se usa Cuenta. Si tampoco hay Cuenta, Nombre de instalación y Nombre de visualización son los mismos.</help>
-        <label>Nombre de visualización</label>
-        <name>Display_Name__c</name>
-    </fields>
-    <fields>
         <help>Seleccione el tipo de instalaciones, como por ejemplo, un laboratorio de informática, centro de salud, sala de conferencias, etc.</help>
         <label>Tipo de instalación</label>
         <name>Facility_Type__c</name>

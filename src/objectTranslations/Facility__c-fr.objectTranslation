@@ -25,11 +25,6 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help>Nom combinant le nom du parent et le nom de l’établis., par ex. Thurgood Marshall Tower - Salle 400. S’il n’y a pas d’établis. parent, la valeur Compte est utilisée. S’il n’y a pas de compte, le nom de l&apos;établis. et le nom complet sont identiques.</help>
-        <label>Nom complet</label>
-        <name>Display_Name__c</name>
-    </fields>
-    <fields>
         <help>Sélectionnez le type de structure, par exemple une salle informatique, un centre de soins, un amphithéâtre, etc.</help>
         <label>Type de structure</label>
         <name>Facility_Type__c</name>
