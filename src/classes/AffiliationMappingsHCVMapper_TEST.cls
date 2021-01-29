@@ -722,14 +722,17 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
+        LookupFieldModel expectedLookupFieldModel = 
+            new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            );
+
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
                 affiliationMappingsModelsList[0],
-                new LookupFieldModel(
-                    'Valid Contact Lookup Field Name',
-                    'Valid Contact Lookup Field Label'
-                )
+                expectedLookupFieldModel
             );
         Test.stopTest();
 
@@ -752,7 +755,8 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 Label.stgHCAfflMapContactPrimaryFieldValid, 
                 new List<Object> {
                     affiliationMappingsModelsList[0].primaryAffiliationField, 
-                    affiliationMappingsModelsList[0].accountRecordTypeFieldValue}
+                    expectedLookupFieldModel.name
+                }
             ),
             Label.stgHealthCheckFixNotApplicable,
             0
@@ -783,14 +787,17 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
             )
         };
 
+        LookupFieldModel expectedLookupFieldModel = 
+            new LookupFieldModel(
+                'Valid Contact Lookup Field Name',
+                'Valid Contact Lookup Field Label'
+            );
+
         Test.startTest();
         HealthCheckGroupVModel healthCheckGroupVModelResult = 
             afflMappingHealthCheckVMapperInstance.getValidContactPrimaryFieldHealthCheckGroupVModel(
                 affiliationMappingsModelsList[0],
-                new LookupFieldModel(
-                    'Valid Contact Lookup Field Name',
-                    'Valid Contact Lookup Field Label'
-                )
+                expectedLookupFieldModel
             );
         Test.stopTest();
 
@@ -813,7 +820,7 @@ public with sharing class AffiliationMappingsHCVMapper_TEST {
                 Label.stgHCAfflMapContactPrimaryFieldValid, 
                 new List<Object> {
                     affiliationMappingsModelsList[0].primaryAffiliationField, 
-                    affiliationMappingsModelsList[0].accountRecordTypeFieldValue}
+                    expectedLookupFieldModel.name}
             ),
             Label.stgHealthCheckFixNotApplicable,
             0

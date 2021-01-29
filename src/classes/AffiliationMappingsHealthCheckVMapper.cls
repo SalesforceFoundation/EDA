@@ -96,7 +96,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 accountRecordTypeModelsByLabel
             );
 
-            LookupFieldModel accountlookupFieldOnContactFieldModel = 
+            LookupFieldModel accountLookupFieldOnContactFieldModel = 
                 this.locateLookupFieldService().getLookupFieldModelFromNameAndLabelMaps(
                     affiliationMappingsModel.primaryAffiliationField, 
                     accountLookupsOnContactFieldModelsByName,
@@ -106,7 +106,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             HealthCheckGroupVModel childAffiliationMappingsHealthCheckResults = this.getAffiliationMappingsHealthCheckResults(
                 affiliationMappingsModel,
                 accountRecordTypeModel,
-                accountlookupFieldOnContactFieldModel,
+                accountLookupFieldOnContactFieldModel,
                 affilationRolePicklistEntryModelByName,
                 affilationStatusPicklistEntryModelByName,
                 duplicateAccountRecordTypeIds,
@@ -137,7 +137,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * Auto-Enrollment Role
     * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
     * @param accountRecordTypeModel A model of the Account Record Type specified in an affiliation mapping in EDA Settings
-    * @param accountlookupFieldOnContactFieldModel A model of the Account lookup field on Contact representing 
+    * @param accountLookupFieldOnContactFieldModel A model of the Account lookup field on Contact representing 
     * the primary affiliation field specied in an affiliation mapping in EDA Settings
     * @param affilationRolePicklistEntryModelByName A map of picklist values for Affiliation Role by devloper name
     * @param affilationStatusPicklistEntryModelByName A map of picklist values for Affiliation Status by devloper name
@@ -149,7 +149,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     private virtual HealthCheckGroupVModel getAffiliationMappingsHealthCheckResults(
         AffiliationMappingsModel affiliationMappingsModel,
         RecordTypeModel accountRecordTypeModel,
-        LookupFieldModel accountlookupFieldOnContactFieldModel,
+        LookupFieldModel accountLookupFieldOnContactFieldModel,
         Map<String, PicklistEntryModel> affilationRolePicklistEntryModelByName,
         Map<String, PicklistEntryModel> affilationStatusPicklistEntryModelByName,
         Set<Id> duplicateAccountRecordTypeIds,
@@ -187,7 +187,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         childHealthCheckGroupVModelList.add(
             this.getValidContactPrimaryFieldHealthCheckGroupVModel(
                 affiliationMappingsModel, 
-                accountlookupFieldOnContactFieldModel
+                accountLookupFieldOnContactFieldModel
             )
         );
 
@@ -195,7 +195,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         childHealthCheckGroupVModelList.add(
             this.getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
                 affiliationMappingsModel, 
-                accountlookupFieldOnContactFieldModel,
+                accountLookupFieldOnContactFieldModel,
                 duplicateLookupFieldModelNames
             )
         );
@@ -468,19 +468,19 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * affiliation fields specified in affiliation mappings correspond to valid fields
     * on the Contact object that lookup to Account objects.
     * @param affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
-    * @param accountlookupFieldOnContactFieldModel A model representing the lookup field corresponding to the 
+    * @param accountLookupFieldOnContactFieldModel A model representing the lookup field corresponding to the 
     * primary affiliation field specified for an affiliation mapping in EDA Settings
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible 
     private virtual HealthCheckGroupVModel getValidContactPrimaryFieldHealthCheckGroupVModel(
         AffiliationMappingsModel affiliationMappingsModel,
-        LookupFieldModel accountlookupFieldOnContactFieldModel
+        LookupFieldModel accountLookupFieldOnContactFieldModel
     ) {
         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
         healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
 
-        if (accountlookupFieldOnContactFieldModel == null) {
+        if (accountLookupFieldOnContactFieldModel == null) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                 '03',
                 Label.stgHCAfflMapContactPrimaryFieldTitle,
@@ -512,7 +512,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
                 Label.stgHCAfflMapContactPrimaryFieldValid, 
                 new List<Object>{
                     affiliationMappingsModel.primaryAffiliationField, 
-                    affiliationMappingsModel.accountRecordTypeFieldValue
+                    accountLookupFieldOnContactFieldModel.name
                 }
             ),
             Label.stgHealthCheckFixNotApplicable,
@@ -715,21 +715,21 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
     * results for Account Record Types specified.  Determines whether the Contact 
     * Primary Field included in an affiliation mapping is unique.
     * @param  affiliationMappingsModel A model representing an affiliation mapping in EDA Settings
-    * @param  accountlookupFieldOnContactFieldModel A model representing the Account record type specified for an affiliation mapping
+    * @param  accountLookupFieldOnContactFieldModel A model representing the Account record type specified for an affiliation mapping
     * @param  duplicateLookupFieldModelNames A set of duplicate lookup field model names from affiliation mappings
     * @return A HealthCheckGroupVModel
     **********************************************************************************/ 
     @TestVisible
     private virtual HealthCheckGroupVModel getContactPrimaryFieldUniquenessHealthCheckGroupVModel(
         AffiliationMappingsModel affiliationMappingsModel, 
-        LookupFieldModel accountlookupFieldOnContactFieldModel,
+        LookupFieldModel accountLookupFieldOnContactFieldModel,
         Set<String> duplicateLookupFieldModelNames
     ) {
         HealthCheckGroupVModel healthCheckGroupVModel = new HealthCheckGroupVModel();
         healthCheckGroupVModel.label = Label.stgHealthCheckAffiliationMappings;
 
         // check lookup field first
-        if (accountlookupFieldOnContactFieldModel == null) {
+        if (accountLookupFieldOnContactFieldModel == null) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
                 '04',
                 Label.stgHCAfflMapContPrimaryFieldUniqueTitle,
@@ -751,7 +751,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             return healthCheckGroupVModel;
         }
 
-        if (duplicateLookupFieldModelNames.contains(accountlookupFieldOnContactFieldModel.name)) {
+        if (duplicateLookupFieldModelNames.contains(accountLookupFieldOnContactFieldModel.name)) {
             healthCheckGroupVModel.healthCheckItemList.add(new HealthCheckItemVModel(
             '04',
             Label.stgHCAfflMapContPrimaryFieldUniqueTitle,
@@ -759,11 +759,11 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHealthCheckStatusFailed,
             this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldNotUnique, 
-                new List<Object>{accountlookupFieldOnContactFieldModel.label, accountlookupFieldOnContactFieldModel.name}
+                new List<Object>{accountLookupFieldOnContactFieldModel.label, accountLookupFieldOnContactFieldModel.name}
             ),
             this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldUniqueFix, 
-                new List<Object>{accountlookupFieldOnContactFieldModel.label, accountlookupFieldOnContactFieldModel.name}
+                new List<Object>{accountLookupFieldOnContactFieldModel.label, accountLookupFieldOnContactFieldModel.name}
             ),
             new List<HealthCheckItemVModel>()
             ));
@@ -780,7 +780,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
             Label.stgHealthCheckStatusPassed,
             this.locateStringHandlingService().formatStringWithApostrophesAndParameters(
                 Label.stgHCAfflMapContactPrimaryFieldUnique, 
-                new List<Object>{accountlookupFieldOnContactFieldModel.label, accountlookupFieldOnContactFieldModel.name}
+                new List<Object>{accountLookupFieldOnContactFieldModel.label, accountLookupFieldOnContactFieldModel.name}
             ),
             Label.stgHealthCheckFixNotApplicable,
             new List<HealthCheckItemVModel>()
