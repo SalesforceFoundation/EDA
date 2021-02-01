@@ -96,10 +96,10 @@ public with sharing class LookupFieldService_TEST {
 
         Test.startTest();
         Map<String, LookupFieldModel> lookupFieldModelByNameResults = 
-            lookupFieldServiceInstance.getModelByNameMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
+            lookupFieldServiceInstance.getModelByNameMapForSObjectType(Trigger_Handler__c.SObjectType, Error__c.SObjectType);
         Test.stopTest();
 
-        System.assertEquals(0, lookupFieldModelByNameResults.values().size(), 'Should no mappings to AssetDowntimePeriod lookup fields.');
+        System.assertEquals(0, lookupFieldModelByNameResults.values().size(), 'Trigger Handler should have no mappings to Error__c lookup fields.');
     }
 
     /**************************************************************************************************************************
