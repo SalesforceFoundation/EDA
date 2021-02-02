@@ -1152,6 +1152,10 @@
       <translation>Yhdysvaltain pakolainen tai turvapaikanhakija</translation>
     </picklistValues>
     <picklistValues>
+      <masterLabel>Temporary Resident</masterLabel>
+      <translation>Väliaikainen asukas</translation>
+    </picklistValues>
+    <picklistValues>
       <masterLabel>Other (Non-U.S.)</masterLabel>
       <translation>Muu (ei-yhdysvaltalainen)</translation>
     </picklistValues>
@@ -3481,11 +3485,11 @@
     <label>Sukupuoli</label>
     <picklistValues>
       <masterLabel>Female</masterLabel>
-      <translation>Nainen</translation>
+      <translation>Female</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Male</masterLabel>
-      <translation>Mies</translation>
+      <translation>Male</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Decline to State</masterLabel>

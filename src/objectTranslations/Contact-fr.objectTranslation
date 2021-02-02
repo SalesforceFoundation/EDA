@@ -1152,6 +1152,10 @@
       <translation>Réfugié ou asilé aux USA</translation>
     </picklistValues>
     <picklistValues>
+      <masterLabel>Temporary Resident</masterLabel>
+      <translation>Résident temporaire</translation>
+    </picklistValues>
+    <picklistValues>
       <masterLabel>Other (Non-U.S.)</masterLabel>
       <translation>Autre (non USA)</translation>
     </picklistValues>
@@ -3481,11 +3485,11 @@
     <label>Sexe</label>
     <picklistValues>
       <masterLabel>Female</masterLabel>
-      <translation>Féminin</translation>
+      <translation>Female</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Male</masterLabel>
-      <translation>Masculin</translation>
+      <translation>Male</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Decline to State</masterLabel>

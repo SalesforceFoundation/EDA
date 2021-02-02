@@ -1152,6 +1152,10 @@
       <translation>米国難民または亡命希望者</translation>
     </picklistValues>
     <picklistValues>
+      <masterLabel>Temporary Resident</masterLabel>
+      <translation>一時滞在者</translation>
+    </picklistValues>
+    <picklistValues>
       <masterLabel>Other (Non-U.S.)</masterLabel>
       <translation>その他 (米国以外)</translation>
     </picklistValues>
@@ -3481,11 +3485,11 @@
     <label>性別</label>
     <picklistValues>
       <masterLabel>Female</masterLabel>
-      <translation>女性</translation>
+      <translation>Female</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Male</masterLabel>
-      <translation>男性</translation>
+      <translation>Male</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Decline to State</masterLabel>
@@ -3568,11 +3572,11 @@
     </picklistValues>
     <picklistValues>
       <masterLabel>Work Email</masterLabel>
-      <translation>勤務先メール</translation>
+      <translation>勤務先のメール</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Alternate Email</masterLabel>
-      <translation>その他メール</translation>
+      <translation>その他のメール</translation>
     </picklistValues>
   </fields>
   <fields>
@@ -3708,8 +3712,8 @@
   </fields>
   <fields>
     <name>WorkEmail__c</name>
-    <help>この個人の勤務先メール。</help>
-    <label>勤務先メール</label>
+    <help>この個人の勤務先のメール。</help>
+    <label>勤務先のメール</label>
   </fields>
   <fields>
     <name>WorkPhone__c</name>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Campaign_Types__c</name>
@@ -20,4 +20,13 @@
     <help>El tipo Relación (el referente, familia, etc.) que se creará entre el objeto base definido en el campo Objeto, y el objeto de consulta.</help>
     <label>Tipo de relación</label>
   </fields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Creación automática de relación</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Creación automática de relaciones</value>
+  </caseValues>
 </CustomObjectTranslation>

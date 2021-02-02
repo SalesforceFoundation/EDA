@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Account_Processor__c</name>
@@ -263,4 +263,45 @@
     <help>Falls ausgewählt, kann in "Plananforderungen" ein Programmplan oder eine übergeordnete Plananforderung, aber nicht beides angegeben werden. Wird beides angegeben, hindert eine Fehlermeldung das Speichern, bis nur eine der Optionen gewählt wird.</help>
     <label>Programmplan für geschachtelte PA prüfen</label>
   </fields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Hierarchie-Einstellung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Hierarchie-Einstellung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Hierarchie-Einstellung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Hierarchie-Einstellung</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Hierarchie-Einstellungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Hierarchie-Einstellungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Hierarchie-Einstellungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Hierarchie-Einstellungen</value>
+  </caseValues>
 </CustomObjectTranslation>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Account_Record_Type__c</name>
@@ -25,4 +25,8 @@
     <help>このレコードタイプの主取引先の値を保持する取引先責任者項目の表示ラベル。</help>
     <label>主所属項目</label>
   </fields>
+  <caseValues>
+    <plural>false</plural>
+    <value>所属対応付け</value>
+  </caseValues>
 </CustomObjectTranslation>

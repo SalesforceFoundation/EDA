@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Campaign_Types__c</name>
@@ -20,4 +20,8 @@
     <help>[オブジェクト] 項目で定義されたベースオブジェクトと参照オブジェクト間で作成されるリレーション種別 (参照元、家族など)。</help>
     <label>リレーション種別</label>
   </fields>
+  <caseValues>
+    <plural>false</plural>
+    <value>リレーションの自動作成</value>
+  </caseValues>
 </CustomObjectTranslation>
