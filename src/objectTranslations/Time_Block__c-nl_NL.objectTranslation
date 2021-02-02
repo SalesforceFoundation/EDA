@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Time Block --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Time Block --></value>
-    </caseValues>
-    <fields>
-        <help>De onderwijsinstelling die aan dit tijdblok is gekoppeld. Bijvoorbeeld een school binnen een district.</help>
-        <label>Onderwijsinstelling</label>
-        <name>Educational_Institution__c</name>
-        <relationshipLabel>Tijdblokken</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De tijd van de dag waarop het tijdblok eindigt.</help>
-        <label>Eindtijd</label>
-        <name>End_Time__c</name>
-    </fields>
-    <fields>
-        <help>De tijd van de dag waarop het tijdblok begint.</help>
-        <label>Begintijd</label>
-        <name>Start_Time__c</name>
-    </fields>
-    <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>EDA Time Block Layout</layout>
-        <sections>
-            <label>Aangepaste koppelingen</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Naam van tijdblok</nameFieldLabel>
+  <fields>
+    <name>Educational_Institution__c</name>
+    <help>De onderwijsinstelling die aan dit tijdblok is gekoppeld. Bijvoorbeeld een school binnen een district.</help>
+    <relationshipLabel>Tijdblokken</relationshipLabel>
+    <label>Onderwijsinstelling</label>
+  </fields>
+  <fields>
+    <name>End_Time__c</name>
+    <help>De tijd van de dag waarop het tijdblok eindigt.</help>
+    <label>Eindtijd</label>
+  </fields>
+  <fields>
+    <name>Start_Time__c</name>
+    <help>De tijd van de dag waarop het tijdblok begint.</help>
+    <label>Begintijd</label>
+  </fields>
+  <layouts>
+    <layout>EDA Time Block Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Naam van tijdblok</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Naam van tijdblok</label>
+  </standardFields>
 </CustomObjectTranslation>

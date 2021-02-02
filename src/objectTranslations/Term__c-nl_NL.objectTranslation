@@ -1,73 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Term --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Term --></value>
-    </caseValues>
-    <fields>
-        <help>Het academische programma, de afdeling of de hele onderwijsinstelling waarop de termijn van toepassing is. Selecteer het account dat uw onderwijsinstelling vertegenwoordigt als de termijnen hetzelfde zijn voor alle programma&apos;s en afdelingen van uw school.</help>
-        <label>Account</label>
-        <name>Account__c</name>
-        <relationshipLabel>Termijnen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De datum waarop deze termijn eindigt.</help>
-        <label>Einddatum</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Geeft aan welke termijn dit is. Voer bijvoorbeeld &apos;1&apos; in voor het eerste kwartaal of semester, &apos;2&apos; voor het tweede kwartaal of semester, enz.</help>
-        <label>Volgorde van beoordelingsperioden</label>
-        <name>Grading_Period_Sequence__c</name>
-    </fields>
-    <fields>
-        <help>Het totale aantal instructiedagen in deze termijn.</help>
-        <label>Instructiedagen</label>
-        <name>Instructional_Days__c</name>
-    </fields>
-    <fields>
-        <help>Selecteer optioneel de termijn waar deze termijn deel van uitmaakt. Als deze termijn bijvoorbeeld Herfstkwartaal 2020 is, zou de bovenliggende termijn Schooljaar 2020/2021 kunnen zijn.</help>
-        <label>Bovenliggende termijn</label>
-        <name>Parent_Term__c</name>
-        <relationshipLabel>Termijnen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De datum waarop deze termijn begint.</help>
-        <label>Begindatum</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <help>Het type termijn, bijvoorbeeld semester, kwartaal of schooljaar.</help>
-        <label>Type</label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Part of Term</masterLabel>
-            <translation>Deel van termijn</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Quarter</masterLabel>
-            <translation>Kwartaal</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School Year</masterLabel>
-            <translation>Schooljaar</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Semester</masterLabel>
-            <translation>Semester</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>HEDA Term Layout</layout>
-        <sections>
-            <label>Aangepaste koppelingen</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Termijnnaam</nameFieldLabel>
+  <fields>
+    <name>Account__c</name>
+    <help>Het academische programma, de afdeling of de hele onderwijsinstelling waarop de termijn van toepassing is. Selecteer het account dat uw onderwijsinstelling vertegenwoordigt als de termijnen hetzelfde zijn voor alle programma's en afdelingen van uw school.</help>
+    <relationshipLabel>Termijnen</relationshipLabel>
+    <label>Account</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>De datum waarop deze termijn eindigt.</help>
+    <label>Einddatum</label>
+  </fields>
+  <fields>
+    <name>Grading_Period_Sequence__c</name>
+    <help>Geeft aan welke termijn dit is. Voer bijvoorbeeld '1' in voor het eerste kwartaal of semester, '2' voor het tweede kwartaal of semester, enz.</help>
+    <label>Volgorde van beoordelingsperioden</label>
+  </fields>
+  <fields>
+    <name>Instructional_Days__c</name>
+    <help>Het totale aantal instructiedagen in deze termijn.</help>
+    <label>Instructiedagen</label>
+  </fields>
+  <fields>
+    <name>Parent_Term__c</name>
+    <help>Selecteer optioneel de termijn waar deze termijn deel van uitmaakt. Als deze termijn bijvoorbeeld Herfstkwartaal 2020 is, zou de bovenliggende termijn Schooljaar 2020/2021 kunnen zijn.</help>
+    <relationshipLabel>Termijnen</relationshipLabel>
+    <label>Bovenliggende termijn</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>De datum waarop deze termijn begint.</help>
+    <label>Begindatum</label>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <help>Het type termijn, bijvoorbeeld semester, kwartaal of schooljaar.</help>
+    <label>Type</label>
+    <picklistValues>
+      <masterLabel>Quarter</masterLabel>
+      <translation>Kwartaal</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Semester</masterLabel>
+      <translation>Semester</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>School Year</masterLabel>
+      <translation>Schooljaar</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Part of Term</masterLabel>
+      <translation>Deel van termijn</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Termijnnaam</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Termijnnaam</label>
+  </standardFields>
 </CustomObjectTranslation>

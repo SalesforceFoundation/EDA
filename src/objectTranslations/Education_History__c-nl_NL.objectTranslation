@@ -1,264 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Education History --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Education History --></value>
-    </caseValues>
-    <fields>
-        <label>Onderwijsinstellingsaccount</label>
-        <name>Account__c</name>
-        <relationshipLabel>Onderwijsgeschiedenis</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De percentielrangschikking van de student voor zijn/haar klas. Een student die deel uitmaakt van de bovenste 10% heeft bijvoorbeeld een waarde van 90%.</help>
-        <label>Klaspercentiel</label>
-        <name>Class_Percentile__c</name>
-    </fields>
-    <fields>
-        <help>Houdt bij hoe het klaspercentiel is bepaald, bijvoorbeeld exact of aan de hand van deciel, kwintiel of kwartiel.</help>
-        <label>Schaal voor klaspositie</label>
-        <name>Class_Rank_Scale__c</name>
-        <picklistValues>
-            <masterLabel>Decile</masterLabel>
-            <translation>Deciel</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Exact</masterLabel>
-            <translation>Exact</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>None</masterLabel>
-            <translation>Geen</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Quartile</masterLabel>
-            <translation>Kwartiel</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Quintile</masterLabel>
-            <translation>Kwintiel</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Houdt bij hoe de klaspositie is bepaald, bijvoorbeeld met een gewogen of een ongewogen schaal.</help>
-        <label>Type klaspositie</label>
-        <name>Class_Rank_Type__c</name>
-        <picklistValues>
-            <masterLabel>Unweighted</masterLabel>
-            <translation>Ongewogen</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Weighted</masterLabel>
-            <translation>Gewogen</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>De academische positie van de student ten opzichte van de andere studenten uit hetzelfde leerjaar. Een student die 5e staat in een leerjaar met 200 medestudenten heeft bijvoorbeeld de waarde 5.</help>
-        <label>Klaspositie</label>
-        <name>Class_Rank__c</name>
-    </fields>
-    <fields>
-        <help>Het aantal studenten in de klas van de contactpersoon.</help>
-        <label>Klasgrootte</label>
-        <name>Class_Size__c</name>
-    </fields>
-    <fields>
-        <help>De contactpersoon die aan deze historische gegevens is gerelateerd.</help>
-        <label>Contactpersoon</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Onderwijsgeschiedenis</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Indien van toepassing, het niveau van het diploma dat de contactpersoon bij deze onderwijsinstelling heeft behaald.</help>
-        <label>Behaald diploma</label>
-        <name>Degree_Earned__c</name>
-        <picklistValues>
-            <masterLabel>AA</masterLabel>
-            <translation>AA</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AS</masterLabel>
-            <translation>AS</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BA</masterLabel>
-            <translation>BA</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BS</masterLabel>
-            <translation>BS</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GED</masterLabel>
-            <translation>GED</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>High School Diploma</masterLabel>
-            <translation>Middelbareschooldiploma</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>JD</masterLabel>
-            <translation>JD</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MA</masterLabel>
-            <translation>MA</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MBA</masterLabel>
-            <translation>MBA</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MD</masterLabel>
-            <translation>MD</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>MS</masterLabel>
-            <translation>MS</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Overig</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>PhD</masterLabel>
-            <translation>PhD</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Aanvullende gegevens over de onderwijsgeschiedenis van deze student.</help>
-        <label>Details</label>
-        <name>Details__c</name>
-    </fields>
-    <fields>
-        <label>Onderwijsgeschiedenis-JSON</label>
-        <name>Education_History_JSON__c</name>
-    </fields>
-    <fields>
-        <label>Naam van de onderwijsinstelling</label>
-        <name>Educational_Institution_Name__c</name>
-    </fields>
-    <fields>
-        <help>De datum dat de contactpersoon deze onderwijsinstelling heeft verlaten.</help>
-        <label>Einddatum</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>De hoogst haalbare gemiddelde eindscore bij deze onderwijsinstelling.</help>
-        <label>Schaalrapportage gemiddelde eindscore</label>
-        <name>GPA_Scale_Reporting__c</name>
-        <picklistValues>
-            <masterLabel>10</masterLabel>
-            <translation>10</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>100</masterLabel>
-            <translation>100</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>11</masterLabel>
-            <translation>11</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>12</masterLabel>
-            <translation>12</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>13</masterLabel>
-            <translation>13</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>14</masterLabel>
-            <translation>14</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>15</masterLabel>
-            <translation>15</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>16</masterLabel>
-            <translation>16</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>17</masterLabel>
-            <translation>17</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>18</masterLabel>
-            <translation>18</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>19</masterLabel>
-            <translation>19</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>20</masterLabel>
-            <translation>20</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>4</masterLabel>
-            <translation>4</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>5</masterLabel>
-            <translation>5</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>6</masterLabel>
-            <translation>6</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>7</masterLabel>
-            <translation>7</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>8</masterLabel>
-            <translation>8</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>9</masterLabel>
-            <translation>9</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Houdt bij hoe de gemiddelde eindscore is bepaald, bijvoorbeeld met een gewogen of een ongewogen schaal.</help>
-        <label>Schaaltype gemiddelde eindscore</label>
-        <name>GPA_Scale_Type__c</name>
-        <picklistValues>
-            <masterLabel>Unweighted</masterLabel>
-            <translation>Ongewogen</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Weighted</masterLabel>
-            <translation>Gewogen</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>De uiteindelijke gemiddelde eindscore van de contactpersoon.</help>
-        <label>Gemiddelde eindscore</label>
-        <name>GPA__c</name>
-    </fields>
-    <fields>
-        <help>Indien van toepassing, de datum dat de contactpersoon bij deze onderwijsinstelling is afgestudeerd.</help>
-        <label>Afstudeerdatum</label>
-        <name>Graduation_Date__c</name>
-    </fields>
-    <fields>
-        <help>De datum dat de contactpersoon bij deze onderwijsinstelling is begonnen.</help>
-        <label>Begindatum</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>EDA Education History Layout</layout>
-        <sections>
-            <label>Aangepaste koppelingen</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Naam van onderwijsgeschiedenis</nameFieldLabel>
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>Onderwijsgeschiedenis</relationshipLabel>
+    <label>Onderwijsinstellingsaccount</label>
+  </fields>
+  <fields>
+    <name>Class_Percentile__c</name>
+    <help>De percentielrangschikking van de student voor zijn/haar klas. Een student die deel uitmaakt van de bovenste 10% heeft bijvoorbeeld een waarde van 90%.</help>
+    <label>Klaspercentiel</label>
+  </fields>
+  <fields>
+    <name>Class_Rank_Scale__c</name>
+    <help>Houdt bij hoe het klaspercentiel is bepaald, bijvoorbeeld exact of aan de hand van deciel, kwintiel of kwartiel.</help>
+    <label>Schaal voor klaspositie</label>
+    <picklistValues>
+      <masterLabel>Exact</masterLabel>
+      <translation>Exact</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Decile</masterLabel>
+      <translation>Deciel</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Quintile</masterLabel>
+      <translation>Kwintiel</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Quartile</masterLabel>
+      <translation>Kwartiel</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>None</masterLabel>
+      <translation>Geen</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Class_Rank_Type__c</name>
+    <help>Houdt bij hoe de klaspositie is bepaald, bijvoorbeeld met een gewogen of een ongewogen schaal.</help>
+    <label>Type klaspositie</label>
+    <picklistValues>
+      <masterLabel>Unweighted</masterLabel>
+      <translation>Ongewogen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Weighted</masterLabel>
+      <translation>Gewogen</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Class_Rank__c</name>
+    <help>De academische positie van de student ten opzichte van de andere studenten uit hetzelfde leerjaar. Een student die 5e staat in een leerjaar met 200 medestudenten heeft bijvoorbeeld de waarde 5.</help>
+    <label>Klaspositie</label>
+  </fields>
+  <fields>
+    <name>Class_Size__c</name>
+    <help>Het aantal studenten in de klas van de contactpersoon.</help>
+    <label>Klasgrootte</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>De contactpersoon die aan deze historische gegevens is gerelateerd.</help>
+    <relationshipLabel>Onderwijsgeschiedenis</relationshipLabel>
+    <label>Contactpersoon</label>
+  </fields>
+  <fields>
+    <name>Degree_Earned__c</name>
+    <help>Indien van toepassing, het niveau van het diploma dat de contactpersoon bij deze onderwijsinstelling heeft behaald.</help>
+    <label>Behaald diploma</label>
+    <picklistValues>
+      <masterLabel>GED</masterLabel>
+      <translation>GED</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>High School Diploma</masterLabel>
+      <translation>Middelbareschooldiploma</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AA</masterLabel>
+      <translation>AA</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AS</masterLabel>
+      <translation>AS</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BA</masterLabel>
+      <translation>BA</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BS</masterLabel>
+      <translation>BS</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>MA</masterLabel>
+      <translation>MA</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>MBA</masterLabel>
+      <translation>MBA</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>MS</masterLabel>
+      <translation>MS</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>JD</masterLabel>
+      <translation>JD</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>MD</masterLabel>
+      <translation>MD</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>PhD</masterLabel>
+      <translation>PhD</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Overig</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Details__c</name>
+    <help>Aanvullende gegevens over de onderwijsgeschiedenis van deze student.</help>
+    <label>Details</label>
+  </fields>
+  <fields>
+    <name>Education_History_JSON__c</name>
+    <label>Onderwijsgeschiedenis-JSON</label>
+  </fields>
+  <fields>
+    <name>Educational_Institution_Name__c</name>
+    <label>Naam van de onderwijsinstelling</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>De datum dat de contactpersoon deze onderwijsinstelling heeft verlaten.</help>
+    <label>Einddatum</label>
+  </fields>
+  <fields>
+    <name>GPA_Scale_Reporting__c</name>
+    <help>De hoogst haalbare gemiddelde eindscore bij deze onderwijsinstelling.</help>
+    <label>Schaalrapportage gemiddelde eindscore</label>
+    <picklistValues>
+      <masterLabel>4</masterLabel>
+      <translation>4</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>5</masterLabel>
+      <translation>5</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>6</masterLabel>
+      <translation>6</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>7</masterLabel>
+      <translation>7</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>8</masterLabel>
+      <translation>8</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>9</masterLabel>
+      <translation>9</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>10</masterLabel>
+      <translation>10</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>11</masterLabel>
+      <translation>11</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>12</masterLabel>
+      <translation>12</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>13</masterLabel>
+      <translation>13</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>14</masterLabel>
+      <translation>14</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>15</masterLabel>
+      <translation>15</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>16</masterLabel>
+      <translation>16</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>17</masterLabel>
+      <translation>17</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>18</masterLabel>
+      <translation>18</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>19</masterLabel>
+      <translation>19</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>20</masterLabel>
+      <translation>20</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>100</masterLabel>
+      <translation>100</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>GPA_Scale_Type__c</name>
+    <help>Houdt bij hoe de gemiddelde eindscore is bepaald, bijvoorbeeld met een gewogen of een ongewogen schaal.</help>
+    <label>Schaaltype gemiddelde eindscore</label>
+    <picklistValues>
+      <masterLabel>Unweighted</masterLabel>
+      <translation>Ongewogen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Weighted</masterLabel>
+      <translation>Gewogen</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>GPA__c</name>
+    <help>De uiteindelijke gemiddelde eindscore van de contactpersoon.</help>
+    <label>Gemiddelde eindscore</label>
+  </fields>
+  <fields>
+    <name>Graduation_Date__c</name>
+    <help>Indien van toepassing, de datum dat de contactpersoon bij deze onderwijsinstelling is afgestudeerd.</help>
+    <label>Afstudeerdatum</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>De datum dat de contactpersoon bij deze onderwijsinstelling is begonnen.</help>
+    <label>Begindatum</label>
+  </fields>
+  <layouts>
+    <layout>EDA Education History Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Naam van onderwijsgeschiedenis</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Naam van onderwijsgeschiedenis</label>
+  </standardFields>
 </CustomObjectTranslation>

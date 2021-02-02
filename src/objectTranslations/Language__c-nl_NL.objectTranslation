@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Language --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Language --></value>
-    </caseValues>
-    <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>HEDA Language Layout</layout>
-        <sections>
-            <label>Aangepaste koppelingen</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Taalnaam</nameFieldLabel>
+  <layouts>
+    <layout>HEDA Language Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Taalnaam</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Taalnaam</label>
+  </standardFields>
 </CustomObjectTranslation>

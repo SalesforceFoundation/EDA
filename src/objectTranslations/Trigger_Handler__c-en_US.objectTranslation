@@ -9,47 +9,46 @@
         <value>Trigger Handlers</value>
     </caseValues>
     <fields>
-        <help><!-- Indicates whether this Trigger Handler is in use. --></help>
+        <help><!-- Indicates that this module is active --></help>
         <label><!-- Active --></label>
         <name>Active__c</name>
     </fields>
     <fields>
-        <help><!-- Indicates whether this class should run asynchronously in this transaction, for any of its After events. --></help>
+        <help><!-- Indicates that this module should be run asynchronously in this transaction --></help>
         <label><!-- Asynchronous --></label>
         <name>Asynchronous__c</name>
     </fields>
     <fields>
-        <help><!-- The name of the class to run. --></help>
+        <help><!-- Name of the class to be run --></help>
         <label><!-- Class --></label>
         <name>Class__c</name>
     </fields>
     <fields>
-        <help><!-- The name of the field used for filtering. --></help>
+        <help><!-- Name of the field used for filtering. --></help>
         <label><!-- Filter Field --></label>
         <name>Filter_Field__c</name>
     </fields>
     <fields>
-        <help><!-- The value of the field used for filtering. --></help>
+        <help><!-- Value of the field used for filtering. --></help>
         <label><!-- Filter Value --></label>
         <name>Filter_Value__c</name>
     </fields>
     <fields>
-        <help><!-- The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account. --></help>
+        <help><!-- Order in which this module should be run, helps maintain dependencies in the modules and data. --></help>
         <label><!-- Load Order --></label>
         <name>Load_Order__c</name>
     </fields>
     <fields>
-        <help><!-- The name of the object the class should act on, for example, Account, Contact, Opportunity. --></help>
+        <help><!-- Name of the object this handler should be run for --></help>
         <label><!-- Object --></label>
         <name>Object__c</name>
     </fields>
     <fields>
-        <help><!-- The namespace of the package or Org that controls this Trigger Handler. --></help>
         <label><!-- Owned by Namespace --></label>
         <name>Owned_by_Namespace__c</name>
     </fields>
     <fields>
-        <help><!-- The context in which this class should run, for example, before a record is inserted, after a record is deleted, etc. --></help>
+        <help><!-- Trigger Action in which this module should fire --></help>
         <label><!-- Trigger Action --></label>
         <name>Trigger_Action__c</name>
         <picklistValues>
@@ -82,7 +81,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don&apos;t want us to overwrite. --></help>
+        <help><!-- Check it if you intent to manage the record yourself. Be aware that updates to the package won&apos;t update the record. --></help>
         <label><!-- User Managed --></label>
         <name>User_Managed__c</name>
     </fields>

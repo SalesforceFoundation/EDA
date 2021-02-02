@@ -9,49 +9,44 @@
         <value>Course Offering Schedules</value>
     </caseValues>
     <fields>
-        <help><!-- The Course Offering this schedule is for. --></help>
+        <help><!-- The Course Offering to which this record belongs. --></help>
         <label><!-- Course Offering --></label>
         <name>Course_Offering__c</name>
         <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The time of day the Course Offering ends. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank. --></help>
+        <help><!-- The time of day the Course Offering ends. --></help>
         <label><!-- End Time --></label>
         <name>End_Time__c</name>
     </fields>
     <fields>
-        <help><!-- The location of the scheduled Course Offering. --></help>
+        <help><!-- The Facility associated with the Course Offering for the specified time and day of week. --></help>
         <label><!-- Facility --></label>
         <name>Facility__c</name>
         <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Select to indicate this Course Offering is on Fridays. You can select multiple days. --></help>
         <label><!-- Friday --></label>
         <name>Friday__c</name>
     </fields>
     <fields>
-        <help><!-- Select to indicate this Course Offering is on Mondays. You can select multiple days. --></help>
         <label><!-- Monday --></label>
         <name>Monday__c</name>
     </fields>
     <fields>
-        <help><!-- Select to indicate this Course Offering is on Saturdays. You can select multiple days. --></help>
         <label><!-- Saturday --></label>
         <name>Saturday__c</name>
     </fields>
     <fields>
-        <help><!-- The time of day the Course Offering starts. If you&apos;ve entered a Time Block for this Course Offering, you can leave this field blank. --></help>
+        <help><!-- The time of day the Course Offering starts. --></help>
         <label><!-- Start Time --></label>
         <name>Start_Time__c</name>
     </fields>
     <fields>
-        <help><!-- Select to indicate this Course Offering is on Sundays. You can select multiple days. --></help>
         <label><!-- Sunday --></label>
         <name>Sunday__c</name>
     </fields>
     <fields>
-        <help><!-- Select to indicate this Course Offering is on Thursdays. You can select multiple days. --></help>
         <label><!-- Thursday --></label>
         <name>Thursday__c</name>
     </fields>
@@ -62,12 +57,10 @@
         <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Select to indicate this Course Offering is on Tuesdays. You can select multiple days. --></help>
         <label><!-- Tuesday --></label>
         <name>Tuesday__c</name>
     </fields>
     <fields>
-        <help><!-- Select to indicate this Course Offering is on Wednesdays. You can select multiple days. --></help>
         <label><!-- Wednesday --></label>
         <name>Wednesday__c</name>
     </fields>

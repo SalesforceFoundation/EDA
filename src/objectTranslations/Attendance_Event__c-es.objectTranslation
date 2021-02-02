@@ -1,109 +1,113 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Evento de asistencia</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Eventos de asistencia</value>
-    </caseValues>
-    <fields>
-        <help>La hora en la que llegó un estudiante impuntual.</help>
-        <label>Hora de llegada</label>
-        <name>Arrival_Time__c</name>
-    </fields>
-    <fields>
-        <help>Indica si esta impuntualidad o ausencia fue para una clase o durante el día.</help>
-        <label>Tipo de asistencia</label>
-        <name>Attendance_Type__c</name>
-        <picklistValues>
-            <masterLabel>Class Absence</masterLabel>
-            <translation>Ausencia de clase</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Class Tardy</masterLabel>
-            <translation>Retraso de clase</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Day Absence</masterLabel>
-            <translation>Ausencia de día</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Day Tardy</masterLabel>
-            <translation>Retraso de día</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>El estudiante que es impuntual o ausente.</help>
-        <label>Contacto</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Eventos de asistencia</relationshipLabel>
-    </fields>
-    <fields>
-        <help>La clase y el periodo en el que el estudiante fue impuntual o estuvo ausente.</help>
-        <label>Enlace de cursos</label>
-        <name>Course_Connection__c</name>
-        <relationshipLabel>Eventos de asistencia</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El nombre del curso en el que el estudiante fue impuntual o estuvo ausente (solo lectura).</help>
-        <label>Nombre del curso</label>
-        <name>Course_Name__c</name>
-    </fields>
-    <fields>
-        <help>La fecha en la que se produjo la impuntualidad o la ausencia.</help>
-        <label>Fecha</label>
-        <name>Date__c</name>
-    </fields>
-    <fields>
-        <help>Para una ausencia justificada parcial, la hora a la que se presentó el estudiante.</help>
-        <label>Hora de finalización</label>
-        <name>End_Time__c</name>
-    </fields>
-    <fields>
-        <help>Más detalles sobre la ausencia o la impuntualidad del estudiante.</help>
-        <label>Descripción de motivo</label>
-        <name>Reason_Description__c</name>
-    </fields>
-    <fields>
-        <help>Seleccione una opción que se ajuste con más precisión al motivo por el que el estudiante fue impuntual o estuvo ausente. Utilice el campo Descripción de motivo para introducir más detalles.</help>
-        <label>Motivo</label>
-        <name>Reason__c</name>
-        <picklistValues>
-            <masterLabel>Family</masterLabel>
-            <translation>Familiar</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Medical</masterLabel>
-            <translation>Médico</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Otro</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Religious</masterLabel>
-            <translation>Religioso</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Para una ausencia justificada parcial, la hora a la que el estudiante abandonó la institución educativa.</help>
-        <label>Hora de inicio</label>
-        <name>Start_Time__c</name>
-    </fields>
-    <fields>
-        <help>Indica un retraso o ausencia no justificados.</help>
-        <label>No justificada</label>
-        <name>Unexcused__c</name>
-    </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>EDA Attendance Event Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de evento de asistencia</nameFieldLabel>
+  <fields>
+    <name>Arrival_Time__c</name>
+    <help>La hora en la que llegó un estudiante impuntual.</help>
+    <label>Hora de llegada</label>
+  </fields>
+  <fields>
+    <name>Attendance_Type__c</name>
+    <help>Indica si esta impuntualidad o ausencia fue para una clase o durante el día.</help>
+    <label>Tipo de asistencia</label>
+    <picklistValues>
+      <masterLabel>Class Absence</masterLabel>
+      <translation>Ausencia de clase</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Class Tardy</masterLabel>
+      <translation>Retraso de clase</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Day Absence</masterLabel>
+      <translation>Ausencia de día</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Day Tardy</masterLabel>
+      <translation>Retraso de día</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>El estudiante que es impuntual o ausente.</help>
+    <relationshipLabel>Eventos de asistencia</relationshipLabel>
+    <label>Contacto</label>
+  </fields>
+  <fields>
+    <name>Course_Connection__c</name>
+    <help>La clase y el periodo en el que el estudiante fue impuntual o estuvo ausente.</help>
+    <relationshipLabel>Eventos de asistencia</relationshipLabel>
+    <label>Enlace de cursos</label>
+  </fields>
+  <fields>
+    <name>Course_Name__c</name>
+    <help>El nombre del curso en el que el estudiante fue impuntual o estuvo ausente (solo lectura).</help>
+    <label>Nombre del curso</label>
+  </fields>
+  <fields>
+    <name>Date__c</name>
+    <help>La fecha en la que se produjo la impuntualidad o la ausencia.</help>
+    <label>Fecha</label>
+  </fields>
+  <fields>
+    <name>End_Time__c</name>
+    <help>Para una ausencia justificada parcial, la hora a la que se presentó el estudiante.</help>
+    <label>Hora de finalización</label>
+  </fields>
+  <fields>
+    <name>Reason_Description__c</name>
+    <help>Más detalles sobre la ausencia o la impuntualidad del estudiante.</help>
+    <label>Descripción de motivo</label>
+  </fields>
+  <fields>
+    <name>Reason__c</name>
+    <help>Seleccione una opción que se ajuste con más precisión al motivo por el que el estudiante fue impuntual o estuvo ausente. Utilice el campo Descripción de motivo para introducir más detalles.</help>
+    <label>Motivo</label>
+    <picklistValues>
+      <masterLabel>Family</masterLabel>
+      <translation>Familiar</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Medical</masterLabel>
+      <translation>Médico</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Otro</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Religious</masterLabel>
+      <translation>Religioso</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Start_Time__c</name>
+    <help>Para una ausencia justificada parcial, la hora a la que el estudiante abandonó la institución educativa.</help>
+    <label>Hora de inicio</label>
+  </fields>
+  <fields>
+    <name>Unexcused__c</name>
+    <help>Indica un retraso o ausencia no justificados.</help>
+    <label>No justificada</label>
+  </fields>
+  <layouts>
+    <layout>EDA Attendance Event Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nombre de evento de asistencia</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nombre de evento de asistencia</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Evento de asistencia</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Eventos de asistencia</value>
+  </caseValues>
 </CustomObjectTranslation>

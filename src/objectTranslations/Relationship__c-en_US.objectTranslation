@@ -9,45 +9,44 @@
         <value>Relationships</value>
     </caseValues>
     <fields>
-        <help><!-- Select the person you want to create the Relationship record for. --></help>
+        <help><!-- Related Contact is this Contact&apos;s ______. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Relationships --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Additional information about how these two people are related. --></help>
+        <help><!-- Additional information about this Relationship --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- Indicates the Related Contact is an emergency contact. --></help>
+        <help><!-- Is this an emergency contact. --></help>
         <label><!-- Emergency Contact --></label>
         <name>Emergency_Contact__c</name>
     </fields>
     <fields>
-        <help><!-- Lookup to the related Reciprocal Relationship record. This field is automatically populated. Manually updating this field could result in errors. --></help>
+        <help><!-- System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship. --></help>
         <label><!-- Reciprocal Relationship --></label>
         <name>ReciprocalRelationship__c</name>
         <relationshipLabel><!-- Relationships --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Select the person related to the Contact. --></help>
         <label><!-- Related Contact --></label>
         <name>RelatedContact__c</name>
         <relationshipLabel><!-- Hidden Relationships List --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- A sentence that clarifies who&apos;s who in the Relationship. For example, &quot;&apos;s &quot; Joe Ada is Sara Cordova&apos;s employer.&quot;&apos;s &quot; This field is read-only. --></help>
+        <help><!-- Text formula that constructs a sentence explaining the relationship between the two Contacts --></help>
         <label><!-- Relationship Explanation --></label>
         <name>Relationship_Explanation__c</name>
     </fields>
     <fields>
-        <help><!-- System field that indicates if this Relationship was created automatically as the Reciprocal to another Relationship. --></help>
+        <help><!-- System field that indicates if this Relationship was created automatically as the reciprocal to another Relationships. --></help>
         <label><!-- _SYSTEM: SystemCreated --></label>
         <name>SYSTEM_SystemCreated__c</name>
     </fields>
     <fields>
-        <help><!-- Status of the Relationship, for example, Current or Former. --></help>
+        <help><!-- Status of the Relationship. --></help>
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
@@ -60,7 +59,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- Describes how the Related Contact is connected to the Contact, for example, friend, coworker, aunt, etc. --></help>
+        <help><!-- Field that describes how the Related Contact is connected to the Contact. --></help>
         <label><!-- Type --></label>
         <name>Type__c</name>
         <picklistValues>
@@ -160,28 +159,12 @@
             <translation><!-- Mother --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Nephew</masterLabel>
-            <translation><!-- Nephew --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Niece</masterLabel>
-            <translation><!-- Niece --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Parent</masterLabel>
             <translation><!-- Parent --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Parent&apos;s Sibling</masterLabel>
-            <translation><!-- Parent&apos;s Sibling --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Partner</masterLabel>
             <translation><!-- Partner --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sibling&apos;s Child</masterLabel>
-            <translation><!-- Sibling&apos;s Child --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Son</masterLabel>
@@ -216,6 +199,22 @@
             <translation><!-- Uncle --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Parent&apos;s Sibling</masterLabel>
+            <translation><!-- Parent&apos;s Sibling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Niece</masterLabel>
+            <translation><!-- Niece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nephew</masterLabel>
+            <translation><!-- Nephew --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sibling&apos;s Child</masterLabel>
+            <translation><!-- Sibling&apos;s Child --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Wife</masterLabel>
             <translation><!-- Wife --></translation>
         </picklistValues>
@@ -233,11 +232,11 @@
     </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
-        <errorMessage><!-- Instead of changing the Contacts in this Relationship, either delete this record, or if appropriate, add an end date and update the status to Former. Then create a new Relationship record between the new Contacts. --></errorMessage>
+        <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one. --></errorMessage>
         <name>Contact_Do_Not_Change</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Instead of changing the Contacts in this Relationship, either delete this record, or if appropriate, add an end date and update the status to Former. Then create a new Relationship record between the new Contacts. --></errorMessage>
+        <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one. --></errorMessage>
         <name>Related_Contact_Do_Not_Change</name>
     </validationRules>
 </CustomObjectTranslation>

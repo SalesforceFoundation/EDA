@@ -9,27 +9,25 @@
         <value>Affl Mappings</value>
     </caseValues>
     <fields>
-        <help><!-- The label of the Account record type that&apos;s being mapped. --></help>
+        <help><!-- The Account Record Type label. --></help>
         <label><!-- Account Record Type --></label>
         <name>Account_Record_Type__c</name>
     </fields>
     <fields>
-        <help><!-- The role to set on the Program Enrollment record that&apos;s automatically created if Auto Program Enrollment is selected. --></help>
         <label><!-- Auto Enrollment Role --></label>
         <name>Auto_Program_Enrollment_Role__c</name>
     </fields>
     <fields>
-        <help><!-- The status to set on the Program Enrollment record that&apos;s automatically created if Auto Program Enrollment is selected. --></help>
         <label><!-- Auto Enrollment Status --></label>
         <name>Auto_Program_Enrollment_Status__c</name>
     </fields>
     <fields>
-        <help><!-- If selected, a Program Enrollment record is auto created when a user creates an Affiliation record with an Account of this record type. --></help>
+        <help><!-- If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type. --></help>
         <label><!-- Auto Enrollment --></label>
         <name>Auto_Program_Enrollment__c</name>
     </fields>
     <fields>
-        <help><!-- The label of the Contact field that holds the value of the primary Account for this record type. --></help>
+        <help><!-- The label of the lookup field or the API name of the lookup field in Contact that points to the primary Account of the specified Record Type. --></help>
         <label><!-- Primary Affl Field --></label>
         <name>Primary_Affl_Field__c</name>
     </fields>

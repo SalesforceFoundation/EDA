@@ -9,7 +9,7 @@
         <value>Course Connections</value>
     </caseValues>
     <fields>
-        <help><!-- The Academic Program that the student or faculty member is associated with. --></help>
+        <help><!-- The Academic Program that the Contact is associated with. --></help>
         <label><!-- Contact&apos;s Academic Program --></label>
         <name>Account__c</name>
         <relationshipLabel><!-- Course Connections --></relationshipLabel>
@@ -21,45 +21,42 @@
         <relationshipLabel><!-- Course Connection --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The student or faculty member participating in this Course Offering. --></help>
+        <help><!-- The Contact connected to the Course Offering, for example a student or faculty member. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Course Connections --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The Course Offering the student or faculty member is involved with. --></help>
+        <help><!-- Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term. --></help>
         <label><!-- Course Offering ID --></label>
         <name>Course_Offering__c</name>
         <relationshipLabel><!-- Course Connection --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The number of credits the student is trying to earn through this Course Offering. --></help>
         <label><!-- Credits Attempted --></label>
         <name>Credits_Attempted__c</name>
     </fields>
     <fields>
-        <help><!-- The number of credits the student earned by completing this Course Offering. --></help>
         <label><!-- Credits Earned --></label>
         <name>Credits_Earned__c</name>
     </fields>
     <fields>
-        <help><!-- The numeric grade the student earned in this Course Offering. --></help>
         <label><!-- Grade --></label>
         <name>Grade__c</name>
     </fields>
     <fields>
-        <help><!-- For faculty members, indicates they are the primary faculty (for example, lead instructor) for the Course Offering. --></help>
+        <help><!-- Represents a Primary Course Connection. --></help>
         <label><!-- Primary --></label>
         <name>Primary__c</name>
     </fields>
     <fields>
-        <help><!-- For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major. --></help>
+        <help><!-- The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program. --></help>
         <label><!-- Program Enrollment ID --></label>
         <name>Program_Enrollment__c</name>
         <relationshipLabel><!-- Course Connections --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Indicates whether this is a current or former Course Connection. --></help>
+        <help><!-- Represents the Status of the Course Connection. --></help>
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
@@ -78,20 +75,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <recordTypes>
-        <description><!-- A Default Record Type for use in testing. This Record Type should only be enabled and visible for System Administrators. --></description>
-        <label><!-- Default --></label>
-        <name>Default</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- A Faculty Course Connection --></description>
-        <label><!-- Faculty --></label>
-        <name>Faculty</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- A Student Course Connection --></description>
-        <label><!-- Student --></label>
-        <name>Student</name>
-    </recordTypes>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

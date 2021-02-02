@@ -9,13 +9,11 @@
         <value>Courses</value>
     </caseValues>
     <fields>
-        <help><!-- The department (Account record) that offers this Course. --></help>
         <label><!-- Department --></label>
         <name>Account__c</name>
         <relationshipLabel><!-- Courses --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The Course alphanumeric ID., for example, English 101. --></help>
         <label><!-- Course ID --></label>
         <name>Course_ID__c</name>
     </fields>
@@ -24,12 +22,10 @@
         <name>Credit_Hours__c</name>
     </fields>
     <fields>
-        <help><!-- This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses. --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field. --></help>
         <label><!-- Extended Description --></label>
         <name>Extended_Description__c</name>
     </fields>

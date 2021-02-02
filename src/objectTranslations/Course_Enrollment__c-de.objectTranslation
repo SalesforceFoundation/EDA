@@ -1,130 +1,119 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>false</plural>
-        <value>Kursverbindung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value>Kursverbindungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>false</plural>
-        <value>Kursverbindung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>true</plural>
-        <value>Kursverbindungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>false</plural>
-        <value>Kursverbindung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value>Kursverbindungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>false</plural>
-        <value>Kursverbindung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>true</plural>
-        <value>Kursverbindungen</value>
-    </caseValues>
-    <fields>
-        <help>Das Studienprogramm, zu dem der Schülers/Student oder das Lehrpersonalmitglied gehört.</help>
-        <label>Studienprogramm des Kontakts</label>
-        <name>Account__c</name>
-        <relationshipLabel>Kursverbindungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Das Studienprogramm, das zu dieser Kursverbindung gehört. Stellt eine Kontakt-Account-Zugehörigkeit dar.</help>
-        <label>Zugehörigkeit</label>
-        <name>Affiliation__c</name>
-        <relationshipLabel>Kursverbindung</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Der Schüler/Student oder das Lehrpersonalmitglied, der/das sich an diesem Kursangebot beteiligt.</help>
-        <label>Kontakt</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Kursverbindungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Das Kursangebot, an dem der Schüler/Student oder das Lehrpersonalmitglied beteiligt ist.</help>
-        <label>Kursangebots-ID</label>
-        <name>Course_Offering__c</name>
-        <relationshipLabel>Kursverbindung</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Die Anzahl der Leistungspunkte, die der Schüler/Student durch dieses Kursangebot erzielen möchte.</help>
-        <label>Angestrebte Leistungspunkte</label>
-        <name>Credits_Attempted__c</name>
-    </fields>
-    <fields>
-        <help>Die Anzahl der Leistungspunkte, die der Schüler/Student durch Absolvieren dieses Kursangebots erzielt hat.</help>
-        <label>Erzielte Leistungspunkte</label>
-        <name>Credits_Earned__c</name>
-    </fields>
-    <fields>
-        <help>Die numerische Note, die der Schüler/Student in diesem Kursangebot erreicht hat.</help>
-        <label>Note</label>
-        <name>Grade__c</name>
-    </fields>
-    <fields>
-        <help>Gibt bei Mitgliedern des Lehrpersonals an, dass sie die Hauptlehrkraft (z. B. leitender Dozent) für das Kursangebot sind.</help>
-        <label>Primär</label>
-        <name>Primary__c</name>
-    </fields>
-    <fields>
-        <help>Für Schüler/Studenten ihre primäre Programmregistrierung. Im Hochschulbereich entspricht dies normalerweise dem akademischen Hauptfach eines Studenten.</help>
-        <label>Programmregistrierungs-ID</label>
-        <name>Program_Enrollment__c</name>
-        <relationshipLabel>Kursverbindungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Gibt an, ob es sich um eine aktuelle oder ehemalige Kursverbindung handelt.</help>
-        <label>Status</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation>Aktuell</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Former</masterLabel>
-            <translation>Ehemalig</translation>
-        </picklistValues>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Benutzerdefinierte Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Kursverbindungs-ID</nameFieldLabel>
-    <recordTypes>
-        <description>Ein Standard-Datensatztyp für den Einsatz beim Tests. Dieser Datensatztyp darf nur für Systemadministratoren aktiviert und sichtbar sein.</description>
-        <label>Standard</label>
-        <name>Default</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Eine Kursverbindung für Lehrpersonal</description>
-        <label>Lehrpersonal</label>
-        <name>Faculty</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Eine Kursverbindung für Schüler/Studenten</description>
-        <label>Schüler/Student</label>
-        <name>Student</name>
-    </recordTypes>
+  <fields>
+    <name>Account__c</name>
+    <help>Das Studienprogramm, zu dem der Schülers/Student oder das Lehrpersonalmitglied gehört.</help>
+    <relationshipLabel>Kursverbindungen</relationshipLabel>
+    <label>Studienprogramm des Kontakts</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <help>Das Studienprogramm, das zu dieser Kursverbindung gehört. Stellt eine Kontakt-Account-Zugehörigkeit dar.</help>
+    <relationshipLabel>Kursverbindung</relationshipLabel>
+    <label>Zugehörigkeit</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>Der Schüler/Student oder das Lehrpersonalmitglied, der/das sich an diesem Kursangebot beteiligt.</help>
+    <relationshipLabel>Kursverbindungen</relationshipLabel>
+    <label>Kontakt</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>Das Kursangebot, an dem der Schüler/Student oder das Lehrpersonalmitglied beteiligt ist.</help>
+    <relationshipLabel>Kursverbindung</relationshipLabel>
+    <label>Kursangebots-ID</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>Die Anzahl der Leistungspunkte, die der Schüler/Student durch dieses Kursangebot erzielen möchte.</help>
+    <label>Angestrebte Leistungspunkte</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>Die Anzahl der Leistungspunkte, die der Schüler/Student durch Absolvieren dieses Kursangebots erzielt hat.</help>
+    <label>Erzielte Leistungspunkte</label>
+  </fields>
+  <fields>
+    <name>Grade__c</name>
+    <help>Die numerische Note, die der Schüler/Student in diesem Kursangebot erreicht hat.</help>
+    <label>Note</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Gibt bei Mitgliedern des Lehrpersonals an, dass sie die Hauptlehrkraft (z. B. leitender Dozent) für das Kursangebot sind.</help>
+    <label>Primär</label>
+  </fields>
+  <fields>
+    <name>Program_Enrollment__c</name>
+    <help>Für Schüler/Studenten ihre primäre Programmregistrierung. Im Hochschulbereich entspricht dies normalerweise dem akademischen Hauptfach eines Studenten.</help>
+    <relationshipLabel>Kursverbindungen</relationshipLabel>
+    <label>Programmregistrierungs-ID</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Gibt an, ob es sich um eine aktuelle oder ehemalige Kursverbindung handelt.</help>
+    <label>Status</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Aktuell</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Ehemalig</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Enrollment Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Kursverbindungs-ID</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Kursverbindungs-ID</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Kursverbindung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Kursverbindung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Kursverbindung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Kursverbindung</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Kursverbindungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Kursverbindungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Kursverbindungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Kursverbindungen</value>
+  </caseValues>
 </CustomObjectTranslation>

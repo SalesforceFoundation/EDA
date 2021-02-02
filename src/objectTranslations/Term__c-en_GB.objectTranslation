@@ -1,73 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Term</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Terms</value>
-    </caseValues>
-    <fields>
-        <help>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</help>
-        <label>Account</label>
-        <name>Account__c</name>
-        <relationshipLabel>Terms</relationshipLabel>
-    </fields>
-    <fields>
-        <help>The date this Term ends.</help>
-        <label>End Date</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Indicates which Term this is. For example, enter &quot;1&quot; for the first quarter or semester, &quot;2&quot; for the second quarter or semester, etc.</help>
-        <label>Grading Period Sequence</label>
-        <name>Grading_Period_Sequence__c</name>
-    </fields>
-    <fields>
-        <help>The total number of instructional days in this Term.</help>
-        <label>Instructional Days</label>
-        <name>Instructional_Days__c</name>
-    </fields>
-    <fields>
-        <help>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</help>
-        <label>Parent Term</label>
-        <name>Parent_Term__c</name>
-        <relationshipLabel>Terms</relationshipLabel>
-    </fields>
-    <fields>
-        <help>The date this Term starts.</help>
-        <label>Start Date</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <help>The type of Term, for example, Semester, Quarter, or School Year.</help>
-        <label>Type</label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Part of Term</masterLabel>
-            <translation>Part of Term</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Quarter</masterLabel>
-            <translation>Quarter</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School Year</masterLabel>
-            <translation>School Year</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Semester</masterLabel>
-            <translation>Semester</translation>
-        </picklistValues>
-    </fields>
-    <layouts>
-        <layout>HEDA Term Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Term Name</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
+  <fields>
+    <name>Account__c</name>
+    <help>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</help>
+    <relationshipLabel>Terms</relationshipLabel>
+    <label>Account</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>The date this Term ends.</help>
+    <label>End Date</label>
+  </fields>
+  <fields>
+    <name>Grading_Period_Sequence__c</name>
+    <help>Indicates which Term this is. For example, enter "1" for the first quarter or semester, "2" for the second quarter or semester, etc.</help>
+    <label>Grading Period Sequence</label>
+  </fields>
+  <fields>
+    <name>Instructional_Days__c</name>
+    <help>The total number of instructional days in this Term.</help>
+    <label>Instructional Days</label>
+  </fields>
+  <fields>
+    <name>Parent_Term__c</name>
+    <help>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</help>
+    <relationshipLabel>Terms</relationshipLabel>
+    <label>Parent Term</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>The date this Term starts.</help>
+    <label>Start Date</label>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <help>The type of Term, for example, Semester, Quarter, or School Year.</help>
+    <label>Type</label>
+    <picklistValues>
+      <masterLabel>Quarter</masterLabel>
+      <translation>Quarter</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Semester</masterLabel>
+      <translation>Semester</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>School Year</masterLabel>
+      <translation>School Year</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Part of Term</masterLabel>
+      <translation>Part of Term</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Layout</layout>
+    <sections>
+      <label>Custom Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Term Name</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Term Name</label>
+  </standardFields>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Term</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Terms</value>
+  </caseValues>
 </CustomObjectTranslation>

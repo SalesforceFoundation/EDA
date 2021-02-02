@@ -1,134 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Application --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Application --></value>
-    </caseValues>
-    <fields>
-        <help>De datum waarop de student besluit om zich al dan niet in te schrijven.</help>
-        <label>Beslissingsdatum aanvrager</label>
-        <name>Applicant_Decision_Date__c</name>
-    </fields>
-    <fields>
-        <help>De contactpersoon die zich aanmeldt bij de instelling of het programma.</help>
-        <label>Aanvrager</label>
-        <name>Applicant__c</name>
-        <relationshipLabel>Aanvragen (Aanvrager)</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De datum en tijd waarop de aanvraag is ingediend.</help>
-        <label>Datum van aanvraag</label>
-        <name>Application_Date__c</name>
-    </fields>
-    <fields>
-        <help>De datum waarop de instelling besluit de aanvrager al dan niet te accepteren.</help>
-        <label>Beslissingsdatum aanvraag</label>
-        <name>Application_Decision_Date__c</name>
-    </fields>
-    <fields>
-        <label>Aanvraag-JSON</label>
-        <name>Application_JSON__c</name>
-    </fields>
-    <fields>
-        <help>De status van het aanvraagproces.</help>
-        <label>Status van aanvraag</label>
-        <name>Application_Status__c</name>
-        <picklistValues>
-            <masterLabel>Accepted Offer</masterLabel>
-            <translation>Aanbod geaccepteerd</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Admit</masterLabel>
-            <translation>Toelaten</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Admit with Conditions</masterLabel>
-            <translation>Toelaten onder voorwaarden</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Declined Offer</masterLabel>
-            <translation>Aanbod geweigerd</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Deferred Offer</masterLabel>
-            <translation>Aanbod opgeschort</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Deny</masterLabel>
-            <translation>Weigeren</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Review</masterLabel>
-            <translation>In afwachting van beoordeling</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Incomplete</masterLabel>
-            <translation>Onvolledig</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Received</masterLabel>
-            <translation>Ontvangen</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Submitted</masterLabel>
-            <translation>Ingediend</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Waitlist</masterLabel>
-            <translation>Op de wachtlijst</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Het type programma of traject waarvoor de aanvrager zich aanmeldt.</help>
-        <label>Aanvraagtype</label>
-        <name>Application_Type__c</name>
-        <picklistValues>
-            <masterLabel>Graduate</masterLabel>
-            <translation>Gegradueerd</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Transfer</masterLabel>
-            <translation>Overstap</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Undergraduate</masterLabel>
-            <translation>Niet-gegradueerd</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Het academisch programma of de major waarvoor de aanvrager zich aanmeldt.</help>
-        <label>Aanmelding voor</label>
-        <name>Applying_To__c</name>
-        <relationshipLabel>Aanvragen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De datum waarop de aanvrager de aanvraag aanvankelijk heeft gedaan.</help>
-        <label>Oorspronkelijke maakdatum</label>
-        <name>Initial_Creation_Date__c</name>
-    </fields>
-    <fields>
-        <help>De contactpersoon die de aanvraag voorbereidt. Dit kan bijvoorbeeld een voogd zijn of een persoon die iemand met speciale behoeften assisteert.</help>
-        <label>Voorbereider</label>
-        <name>Preparer__c</name>
-        <relationshipLabel>Aanvragen (Voorbereider)</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De termijn waarvoor de aanvrager zich wil inschrijven.</help>
-        <label>Termijn</label>
-        <name>Term__c</name>
-        <relationshipLabel>Aanvragen</relationshipLabel>
-    </fields>
-    <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>EDA Application Layout</layout>
-        <sections>
-            <label>Aangepaste koppelingen</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Naam van aanvraag</nameFieldLabel>
+  <fields>
+    <name>Applicant_Decision_Date__c</name>
+    <help>De datum waarop de student besluit om zich al dan niet in te schrijven.</help>
+    <label>Beslissingsdatum aanvrager</label>
+  </fields>
+  <fields>
+    <name>Applicant__c</name>
+    <help>De contactpersoon die zich aanmeldt bij de instelling of het programma.</help>
+    <relationshipLabel>Aanvragen (Aanvrager)</relationshipLabel>
+    <label>Aanvrager</label>
+  </fields>
+  <fields>
+    <name>Application_Date__c</name>
+    <help>De datum en tijd waarop de aanvraag is ingediend.</help>
+    <label>Datum van aanvraag</label>
+  </fields>
+  <fields>
+    <name>Application_Decision_Date__c</name>
+    <help>De datum waarop de instelling besluit de aanvrager al dan niet te accepteren.</help>
+    <label>Beslissingsdatum aanvraag</label>
+  </fields>
+  <fields>
+    <name>Application_JSON__c</name>
+    <label>Aanvraag-JSON</label>
+  </fields>
+  <fields>
+    <name>Application_Status__c</name>
+    <help>De status van het aanvraagproces.</help>
+    <label>Status van aanvraag</label>
+    <picklistValues>
+      <masterLabel>Submitted</masterLabel>
+      <translation>Ingediend</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Incomplete</masterLabel>
+      <translation>Onvolledig</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Received</masterLabel>
+      <translation>Ontvangen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>In Review</masterLabel>
+      <translation>In afwachting van beoordeling</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Waitlist</masterLabel>
+      <translation>Op de wachtlijst</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Admit</masterLabel>
+      <translation>Toelaten</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Admit with Conditions</masterLabel>
+      <translation>Toelaten onder voorwaarden</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Deny</masterLabel>
+      <translation>Weigeren</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Deferred Offer</masterLabel>
+      <translation>Aanbod opgeschort</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Accepted Offer</masterLabel>
+      <translation>Aanbod geaccepteerd</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Declined Offer</masterLabel>
+      <translation>Aanbod geweigerd</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Application_Type__c</name>
+    <help>Het type programma of traject waarvoor de aanvrager zich aanmeldt.</help>
+    <label>Aanvraagtype</label>
+    <picklistValues>
+      <masterLabel>Graduate</masterLabel>
+      <translation>Gegradueerd</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Transfer</masterLabel>
+      <translation>Overstap</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Undergraduate</masterLabel>
+      <translation>Niet-gegradueerd</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Applying_To__c</name>
+    <help>Het academisch programma of de major waarvoor de aanvrager zich aanmeldt.</help>
+    <relationshipLabel>Aanvragen</relationshipLabel>
+    <label>Aanmelding voor</label>
+  </fields>
+  <fields>
+    <name>Initial_Creation_Date__c</name>
+    <help>De datum waarop de aanvrager de aanvraag aanvankelijk heeft gedaan.</help>
+    <label>Oorspronkelijke maakdatum</label>
+  </fields>
+  <fields>
+    <name>Preparer__c</name>
+    <help>De contactpersoon die de aanvraag voorbereidt. Dit kan bijvoorbeeld een voogd zijn of een persoon die iemand met speciale behoeften assisteert.</help>
+    <relationshipLabel>Aanvragen (Voorbereider)</relationshipLabel>
+    <label>Voorbereider</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <help>De termijn waarvoor de aanvrager zich wil inschrijven.</help>
+    <relationshipLabel>Aanvragen</relationshipLabel>
+    <label>Termijn</label>
+  </fields>
+  <layouts>
+    <layout>EDA Application Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Naam van aanvraag</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Naam van aanvraag</label>
+  </standardFields>
 </CustomObjectTranslation>

@@ -1,99 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Course Connection --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Course Connection --></value>
-    </caseValues>
-    <fields>
-        <help>El programa acadèmic al qual s’associa l’estudiant o membre del professorat.</help>
-        <label>Programa acadèmic del contacte</label>
-        <name>Account__c</name>
-        <relationshipLabel>Connexions del curs</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El programa acadèmic associat a aquesta connexió del curs. Representa una afiliació de compte de contacte.</help>
-        <label>Afiliació</label>
-        <name>Affiliation__c</name>
-        <relationshipLabel>Connexió del curs</relationshipLabel>
-    </fields>
-    <fields>
-        <help>L&apos;estudiant o membre del professorat que participa en aquesta oferta de curs.</help>
-        <label>Contacte</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Connexions del curs</relationshipLabel>
-    </fields>
-    <fields>
-        <help>L&apos;oferta de curs al qual s’associa l’estudiant o membre del professorat.</help>
-        <label>ID d&apos;oferta del curs</label>
-        <name>Course_Offering__c</name>
-        <relationshipLabel>Connexió del curs</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El nombre de crèdits que intenta obtenir l&apos;alumne mitjançant aquesta oferta de curs.</help>
-        <label>Crèdits als quals s&apos;ha assistit</label>
-        <name>Credits_Attempted__c</name>
-    </fields>
-    <fields>
-        <help>El nombre de crèdits que ha obtingut l&apos;alumne en completar aquesta oferta de curs.</help>
-        <label>Crèdits obtinguts</label>
-        <name>Credits_Earned__c</name>
-    </fields>
-    <fields>
-        <help>La nota numèrica que ha obtingut l&apos;alumne en aquesta oferta de curs.</help>
-        <label>Nota</label>
-        <name>Grade__c</name>
-    </fields>
-    <fields>
-        <help>Per als membres del professorat, indica que són el professor principal (per exemple, l&apos;instructor principal) de l&apos;oferta del curs.</help>
-        <label>Primari</label>
-        <name>Primary__c</name>
-    </fields>
-    <fields>
-        <help>Per als estudiants, la seva inscripció principal al programa. En l&apos;educació superior, normalment representa la formació acadèmica d&apos;un alumne.</help>
-        <label>ID d&apos;inscripció del programa</label>
-        <name>Program_Enrollment__c</name>
-        <relationshipLabel>Connexions del curs</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Indica si es tracta d&apos;una connexió de curs actual o anterior.</help>
-        <label>Estat</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation>Actual</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Former</masterLabel>
-            <translation>Antic</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID de connexió del curs</nameFieldLabel>
-    <recordTypes>
-        <description>Un tipus de registre predeterminat per al seu ús en proves. Aquest tipus de registre només ha de ser habilitat i visible per als administradors del sistema.</description>
-        <label>Predeterminat</label>
-        <name>Default</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Connexió a un curs de facultat</description>
-        <label>Facultat</label>
-        <name>Faculty</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Connexió a un curs d&apos;estudiant</description>
-        <label>Estudiant</label>
-        <name>Student</name>
-    </recordTypes>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Account__c</name>
+    <help>El programa acadèmic al qual s’associa l’estudiant o membre del professorat.</help>
+    <relationshipLabel>Connexions del curs</relationshipLabel>
+    <label>Programa acadèmic del contacte</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <help>El programa acadèmic associat a aquesta connexió del curs. Representa una afiliació de compte de contacte.</help>
+    <relationshipLabel>Connexió del curs</relationshipLabel>
+    <label>Afiliació</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>L'estudiant o membre del professorat que participa en aquesta oferta de curs.</help>
+    <relationshipLabel>Connexions del curs</relationshipLabel>
+    <label>Contacte</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>L'oferta de curs al qual s’associa l’estudiant o membre del professorat.</help>
+    <relationshipLabel>Connexió del curs</relationshipLabel>
+    <label>ID d'oferta del curs</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>El nombre de crèdits que intenta obtenir l'alumne mitjançant aquesta oferta de curs.</help>
+    <label>Crèdits als quals s'ha assistit</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>El nombre de crèdits que ha obtingut l'alumne en completar aquesta oferta de curs.</help>
+    <label>Crèdits obtinguts</label>
+  </fields>
+  <fields>
+    <name>Grade__c</name>
+    <help>La nota numèrica que ha obtingut l'alumne en aquesta oferta de curs.</help>
+    <label>Nota</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Per als membres del professorat, indica que són el professor principal (per exemple, l'instructor principal) de l'oferta del curs.</help>
+    <label>Primari</label>
+  </fields>
+  <fields>
+    <name>Program_Enrollment__c</name>
+    <help>Per als estudiants, la seva inscripció principal al programa. En l'educació superior, normalment representa la formació acadèmica d'un alumne.</help>
+    <relationshipLabel>Connexions del curs</relationshipLabel>
+    <label>ID d'inscripció del programa</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Indica si es tracta d'una connexió de curs actual o anterior.</help>
+    <label>Estat</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Actual</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Antic</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Enrollment Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>ID de connexió del curs</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>ID de connexió del curs</label>
+  </standardFields>
 </CustomObjectTranslation>

@@ -9,39 +9,33 @@
         <value>Affiliations</value>
     </caseValues>
     <fields>
-        <help><!-- The organization this person is affiliated with. --></help>
         <label><!-- Organization --></label>
         <name>Account__c</name>
         <relationshipLabel><!-- Affiliated Contacts --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only). --></help>
         <label><!-- Affiliation Type --></label>
         <name>Affiliation_Type__c</name>
     </fields>
     <fields>
-        <help><!-- The person affiliated with this organization. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Affiliated Accounts --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Details of how the person and organization are affiliated. --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- The date this Affiliation ended or will end. --></help>
         <label><!-- End Date --></label>
         <name>EndDate__c</name>
     </fields>
     <fields>
-        <help><!-- Indicates whether this is the main Affiliation for this person. If selected, the organization name is stored in the relevant Primary Affiliation field on the Contact record. --></help>
+        <help><!-- If checked, the Affiliation&apos;s Organization will be stored on the Contact record. --></help>
         <label><!-- Primary --></label>
         <name>Primary__c</name>
     </fields>
     <fields>
-        <help><!-- The role this person has with the organization. --></help>
         <label><!-- Role --></label>
         <name>Role__c</name>
         <picklistValues>
@@ -66,12 +60,10 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The date this person became affiliated with this organization. --></help>
         <label><!-- Start Date --></label>
         <name>StartDate__c</name>
     </fields>
     <fields>
-        <help><!-- Indicates whether this is a current or former Affiliation. --></help>
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>

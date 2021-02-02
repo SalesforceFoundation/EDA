@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Affl Mappings --></value>
-    </caseValues>
-    <fields>
-        <help>マッピングされている取引先レコードタイプの表示ラベル。</help>
-        <label>取引先レコードタイプ</label>
-        <name>Account_Record_Type__c</name>
-    </fields>
-    <fields>
-        <help>[自動プログラム登録] が選択されている場合に自動的に作成されるプログラム登録レコードに設定する役割。</help>
-        <label>自動登録の役割</label>
-        <name>Auto_Program_Enrollment_Role__c</name>
-    </fields>
-    <fields>
-        <help>[自動プログラム登録] が選択されている場合に自動的に作成されるプログラム登録レコードに設定する状況。</help>
-        <label>自動登録の状況</label>
-        <name>Auto_Program_Enrollment_Status__c</name>
-    </fields>
-    <fields>
-        <help>選択した場合、ユーザがこのレコードタイプの取引先を使用して所属レコードを作成したときにプログラム登録レコードが自動的に作成されます。</help>
-        <label>自動登録</label>
-        <name>Auto_Program_Enrollment__c</name>
-    </fields>
-    <fields>
-        <help>このレコードタイプの主取引先の値を保持する取引先責任者項目の表示ラベル。</help>
-        <label>主所属項目</label>
-        <name>Primary_Affl_Field__c</name>
-    </fields>
+  <fields>
+    <name>Account_Record_Type__c</name>
+    <help>マッピングされている取引先レコードタイプの表示ラベル。</help>
+    <label>取引先レコードタイプ</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment_Role__c</name>
+    <help>[自動プログラム登録] が選択されている場合に自動的に作成されるプログラム登録レコードに設定する役割。</help>
+    <label>自動登録の役割</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment_Status__c</name>
+    <help>[自動プログラム登録] が選択されている場合に自動的に作成されるプログラム登録レコードに設定する状況。</help>
+    <label>自動登録の状況</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment__c</name>
+    <help>選択した場合、ユーザがこのレコードタイプの取引先を使用して所属レコードを作成したときにプログラム登録レコードが自動的に作成されます。</help>
+    <label>自動登録</label>
+  </fields>
+  <fields>
+    <name>Primary_Affl_Field__c</name>
+    <help>このレコードタイプの主取引先の値を保持する取引先責任者項目の表示ラベル。</help>
+    <label>主所属項目</label>
+  </fields>
 </CustomObjectTranslation>

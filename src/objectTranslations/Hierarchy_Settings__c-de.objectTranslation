@@ -1,307 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>false</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>false</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>true</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>false</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>false</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>true</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <fields>
-        <help>ID des standardmäßigen Datensatztyps für &quot;Account&quot;. Wenn Sie z. B. &quot;Verwaltung&quot; (das empfohlene Accountmodell) angeben, geben Sie für das Objekt &quot;Account&quot; die ID des Datensatztyps &quot;Verwaltung&quot; ein.</help>
-        <label>Accountprozessor</label>
-        <name>Account_Processor__c</name>
-    </fields>
-    <fields>
-        <help>Die Datensatztypen von Accounts, bei denen mehrere Adressen aktiviert werden sollten.</help>
-        <label>Accounts mit mehreren Adressen</label>
-        <name>Accounts_Addresses_Enabled__c</name>
-    </fields>
-    <fields>
-        <help>Die Datensatztypen von Accounts, die automatisch gelöscht werden, wenn alle zugehörigen Kontakte gelöscht wurden.</help>
-        <label>Zu löschende Accounts</label>
-        <name>Accounts_to_Delete__c</name>
-    </fields>
-    <fields>
-        <help>Speichert das Standardformat für Namen von Verwaltungs-Accounts.</help>
-        <label>Verwaltungs-Account – Benennungsformat</label>
-        <name>Admin_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help>Speichert andere Informationen zum Benennungsformat für Verwaltungs-Accounts.</help>
-        <label>Verwaltung – Andere Namenseinstellungen</label>
-        <name>Admin_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help>Der Account-Datensatztyp, der für Verwaltungs-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Verwaltung-Accounts aus.</help>
-        <label>Datensatztyp für Verwaltungs-Accounts</label>
-        <name>Administrative_Account_Record_Type__c</name>
-    </fields>
-    <fields>
-        <help>Der Namespace des verwalteten Gift Entry Manager-Pakets.</help>
-        <label>GEM-Namespace</label>
-        <name>Advancement_Namespace__c</name>
-    </fields>
-    <fields>
-        <help>Falls aktiviert, Fehler, wenn Benutzer ein primäres Feld für Kontakt mit Account füllen, dessen Datensatztyp nicht den EDA-Einstellungen entspricht. Der Datensatz &quot;Zugehörigkeit&quot; wird nicht erstellt, die Primärfelder für Kontakt werden nicht korrigiert.</help>
-        <label>Zugehörigkeits-Datensatztyp erzwungen</label>
-        <name>Affiliation_Record_Type_Enforced__c</name>
-    </fields>
-    <fields>
-        <help>Gibt an, ob das Enddatum der mit einer Programmregistrierung erstellten Zugehörigkeit festgelegt werden soll. Falls aktiviert, Enddatum auf das der Programmregistrierung festlegen. Falls deaktiviert, das Enddatum der Zugehörigkeit nicht angeben.</help>
-        <label>Enddatum Zugehör. aus ProgReg kopieren</label>
-        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Gibt an, ob das Startdatum der mit einer Programmregistrierung erstellten Zugehörigkeit festgelegt werden soll. Falls aktiviert, Startdatum auf das der Programmregistrierung festlegen. Falls deaktiviert, das Startdatum der Zugehörigkeit nicht angeben.</help>
-        <label>Startdatum Zugehör. aus ProgReg kopieren</label>
-        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
-    </fields>
-    <fields>
-        <help>Wenn die zugehörige Einstellung, Zugehör. bei Löschen von ProgReg löschen, deaktiviert ist, gibt diese Einstellung den Wert an, der für den Status der Zugehörigkeit festzulegen ist, wenn die zugehörige Programmregistrierung gelöscht wird.</help>
-        <label>Status Zugehör. bei Lösch. von ProgReg</label>
-        <name>Affl_ProgEnroll_Del_Status__c</name>
-    </fields>
-    <fields>
-        <help>Gibt an, ob die Zugehörigkeit gelöscht werden soll, wenn die zugehörige Programmregistrierung gelöscht wird. Falls aktiviert, Zugehörigkeit löschen. Falls deaktiviert, Status der Zugehörigkeit auf &quot;Status Zugehör. bei Lösch. von ProgReg&quot; festlegen.</help>
-        <label>Zugehör. bei Löschen von ProgReg löschen</label>
-        <name>Affl_ProgEnroll_Del__c</name>
-    </fields>
-    <fields>
-        <help>Wenn die zugehörige Einstellung, Rolle Zugeh. bei Erstel. v. ProgReg fes., aktiviert ist, gibt diese Einstellung den Wert an, der für die Rolle der Zugehörigkeit festzulegen ist, die bei einer Programmregistrierung erstellt wird.</help>
-        <label>Rolle Zugehör. bei Erstellen von ProgReg</label>
-        <name>Affl_ProgEnroll_Role_Map__c</name>
-    </fields>
-    <fields>
-        <help>Gibt an, ob eine Rolle für mit einer Programmregistrierung erstellten Zugehörigkeit angegeben werden soll. Falls aktiviert, Rolle der Zugehörigkeit auf Wert von &quot;Rolle Zugehör. bei Erstellen von ProgReg&quot; festlegen. Falls deaktiviert, keine Rolle angeben.</help>
-        <label>Rolle Zugeh. bei Erstel. v. ProgReg fes.</label>
-        <name>Affl_ProgEnroll_Set_Role__c</name>
-    </fields>
-    <fields>
-        <help>Der Wert, der für den Status eines Zugehörigkeitsdatensatzes festgelegt wurde, der bei einer Programmregistrierung automatisch erstellt wird.</help>
-        <label>Status Zugehö. bei Erstellen von ProgReg</label>
-        <name>Affl_ProgEnroll_Status_Map__c</name>
-    </fields>
-    <fields>
-        <help>Automat. erstellte Beziehungen werden dedupt, um duplizierte Beziehungsdatens. zwischen Kontak. zu vermeiden. &quot;Autom. erst. dopp. Beziehungen zulassen&quot; wählen, um Verhalten zu deakt. und mehrere Bezieh. desselben Typs zwischen zwei Kontakten zuzulassen.</help>
-        <label>Autom. erst. dopp. Beziehungen zulassen</label>
-        <name>Allow_AutoCreated_Duplicates__c</name>
-    </fields>
-    <fields>
-        <help>Die letzte Ausführung der asynchronen Auftragsfehlerprotokollierung.</help>
-        <label>Ltz. Ausführung der asynchr. Fehlerprüf.</label>
-        <name>Async_Error_Check_Last_Run__c</name>
-    </fields>
-    <fields>
-        <help>Falls aktiviert, wird &quot;Haushalt-Name&quot; automatisch basierend auf den Formateinstellungen für den Haushalt-Namen festgelegt.</help>
-        <label>Automatische Benennung von Haushalten</label>
-        <name>Automatic_Household_Naming__c</name>
-    </fields>
-    <fields>
-        <help>Aktiviert die Funktionalität für mehrere Adressen für Kontakte.</help>
-        <label>Unterst. Adressenverwalt. für Kontakte.</label>
-        <name>Contacts_Addresses_Enabled__c</name>
-    </fields>
-    <fields>
-        <help>Der Wert &quot;Fließende Beherrschung&quot; wird automatisch für neu erstellte Datensätze für die Kontaktsprache festgelegt, wenn Benutzer das Nachschlagefeld &quot;Primäre Sprache&quot; für einen Kontakt festlegen.</help>
-        <label>Standardkontakt – Sprachkompetenz</label>
-        <name>Default_Contact_Language_Fluency__c</name>
-    </fields>
-    <fields>
-        <help>Falls ausgewählt, wird das benutzerdefinierte Fehlerbehandlungs-Framework deaktiviert.</help>
-        <label>Fehlerbehandlung deaktivieren</label>
-        <name>Disable_Error_Handling__c</name>
-    </fields>
-    <fields>
-        <help>Auswählen, um die Erzwingung des Felds &quot;Bevorzugte E-Mail-Adresse&quot; für Kontakte zu deaktivieren.</help>
-        <label>Erzw. v. Bevorzugte E-Mail-Adresse deak.</label>
-        <name>Disable_Preferred_Email_Enforcement__c</name>
-    </fields>
-    <fields>
-        <help>Auswählen, um die Erzwingung des Felds &quot;Bevorzugte Telefonnummer&quot; für Kontakte zu deaktivieren.</help>
-        <label>Erzw. v. Bevorzugte Telefonnummer deak.</label>
-        <name>Disable_Preferred_Phone_Enforcement__c</name>
-    </fields>
-    <fields>
-        <help>Falls aktiviert, können Benutzer den Kontakttyp (Lehrpersonal oder Student) beim Erstellen eines Kursverbindungs-Datensatzes wählen. Hierfür müssen standardmäßige Kontakt-Datensatztypen für aktive Studenten und Lehrkräfte festgelegt werden.</help>
-        <label>Kursverbindungen aktivieren</label>
-        <name>Enable_Course_Connections__c</name>
-    </fields>
-    <fields>
-        <help>Auswählen, um das Debuggen von Anweisungen im Code verwalteter Pakete zu ermöglichen.</help>
-        <label>Debuggen aktivieren</label>
-        <name>Enable_Debug__c</name>
-    </fields>
-    <fields>
-        <help>Synchronisiert das Feld &quot;Bevorzugte Telefonnummer&quot; mit dem Standardfeld &quot;Telefon&quot; des Kontakts und überprüft, ob der Wert in &quot;Bevorzugte Telefonnummer&quot; vorhanden ist und entsprechend eingestellt ist.</help>
-        <label>Sync. von neuer bevorzugter Telnr akt.</label>
-        <name>Enable_New_Preferred_Phone_Sync__c</name>
-    </fields>
-    <fields>
-        <help>Falls ausgewählt, werden Benachrichtigungen für durch Pakete generierte Fehler gesendet.</help>
-        <label>Fehlerbenachrichtigungen</label>
-        <name>Error_Notifications_On__c</name>
-    </fields>
-    <fields>
-        <help>Speichert den Benutzertyp, an den Fehlerbenachrichtigungen gesendet werden sollen.</help>
-        <label>Empfänger von Fehlerbenachrichtigungen</label>
-        <name>Error_Notifications_To__c</name>
-    </fields>
-    <fields>
-        <help>Der standardmäßige Kontakt-Datensatztyp für Lehrpersonal beim Erstellen eines Kursverbindungs-Datensatzes.</help>
-        <label>Lehrpersonal-Datensatztyp</label>
-        <name>Faculty_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Speichert das Benennungsformat des Haushalt-Accounts.</help>
-        <label>Haushalt-Account – Benennungsformat</label>
-        <name>Household_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help>Der Account-Datensatztyp, der für Haushalt-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Haushalt-Accounts aus.</help>
-        <label>Haushalt-Adressen Account-Datensatztyp</label>
-        <name>Household_Addresses_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Speichert andere Informationen zum Benennungsformat für Haushalt-Accounts.</help>
-        <label>Haushalt – Andere Namenseinstellungen</label>
-        <name>Household_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help>Wählen Sie eine gewünschte bevorzugte Telefonnummer aus, wenn der Batchauftrag zur Datenbereinigung ausgeführt wird.</help>
-        <label>Bevorzugte Telefonnummer auswählen</label>
-        <name>Preferred_Phone_Selection__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Account verhindern</label>
-        <name>Prevent_Account_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Adresse verhindern</label>
-        <name>Prevent_Address_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Zugehörigkeit verhindern</label>
-        <name>Prevent_Affiliation_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Lösch. v. Beteilig. am Vorfall verhind.</label>
-        <name>Prevent_Behavior_Involvement_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Fall verhindern</label>
-        <name>Prevent_Case_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Kontakt verhindern</label>
-        <name>Prevent_Contact_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Kursverbindung verhindern</label>
-        <name>Prevent_Course_Connection_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Kurs verhindern</label>
-        <name>Prevent_Course_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Kursangebot verhindern</label>
-        <name>Prevent_Course_Offering_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Räumlichkeit verhindern</label>
-        <name>Prevent_Facility_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Plananforderung verhindern</label>
-        <name>Prevent_Plan_Requirement_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Programmregistr. verhindern</label>
-        <name>Prevent_Program_Enrollment_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Programmplan verhindern</label>
-        <name>Prevent_Program_Plan_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Zeitabschnitt verhindern</label>
-        <name>Prevent_Term_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Test verhindern</label>
-        <name>Prevent_Test_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Löschen von Zeitblock verhindern</label>
-        <name>Prevent_Time_Block_Deletion__c</name>
-    </fields>
-    <fields>
-        <help>Legt die Methode zur Generierung der wechselseitigen Beziehung fest. Entweder Listeneinstellung zum Verwenden benutzerdefinierter Einstellungen nach Geschlecht oder Wertumkehr, die ggf. den Typ umkehrt (&quot;Elternteil-Kind&quot; zu &quot;Kind-Elternteil&quot;).</help>
-        <label>Wechselseitige Methode</label>
-        <name>Reciprocal_Method__c</name>
-    </fields>
-    <fields>
-        <help>Dieses Feld wird derzeit nicht verwendet.</help>
-        <label>Kennung Beziehungsnamensfeld</label>
-        <name>Relationship_Name_Field_Id__c</name>
-    </fields>
-    <fields>
-        <help>Dieses Feld wird derzeit nicht verwendet.</help>
-        <label>Kennung d. Felds mit Kenn. d. Bez.namens</label>
-        <name>Relationship_Name_Id_Field_Id__c</name>
-    </fields>
-    <fields>
-        <help>Falls aktiviert, werden Änderungen an Adressfeldern für &quot;Kontakt&quot; oder &quot;Account&quot; als Aktualisierung der bestehenden Adresse behandelt (kein neues Adressobj. wird erstellt). Änderungen bei Leerz. und Groß-/Kleinschr. werden als Aktualisierungen behandelt.</help>
-        <label>Einfache Adressänd. als Aktualisierung</label>
-        <name>Simple_Address_Change_Treated_as_Update__c</name>
-    </fields>
-    <fields>
-        <help>Aktivieren Sie diese Option, um Fehler zu speichern.</help>
-        <label>Fehler speichern</label>
-        <name>Store_Errors_On__c</name>
-    </fields>
-    <fields>
-        <label>Student-Datensatztyp</label>
-        <name>Student_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Falls ausgewählt, kann in &quot;Plananforderungen&quot; ein Programmplan oder eine übergeordnete Plananforderung, aber nicht beides angegeben werden. Wird beides angegeben, hindert eine Fehlermeldung das Speichern, bis nur eine der Optionen gewählt wird.</help>
-        <label>Programmplan für geschachtelte PA prüfen</label>
-        <name>Validate_Program_Plan_for_Nested_PR__c</name>
-    </fields>
-    <gender><!-- Neuter --></gender>
+  <fields>
+    <name>Account_Processor__c</name>
+    <help>ID des standardmäßigen Datensatztyps für "Account". Wenn Sie z. B. "Verwaltung" (das empfohlene Accountmodell) angeben, geben Sie für das Objekt "Account" die ID des Datensatztyps "Verwaltung" ein.</help>
+    <label>Accountprozessor</label>
+  </fields>
+  <fields>
+    <name>Accounts_Addresses_Enabled__c</name>
+    <help>Die Datensatztypen von Accounts, bei denen mehrere Adressen aktiviert werden sollten.</help>
+    <label>Accounts mit mehreren Adressen</label>
+  </fields>
+  <fields>
+    <name>Accounts_to_Delete__c</name>
+    <help>Die Datensatztypen von Accounts, die automatisch gelöscht werden, wenn alle zugehörigen Kontakte gelöscht wurden.</help>
+    <label>Zu löschende Accounts</label>
+  </fields>
+  <fields>
+    <name>Admin_Account_Naming_Format__c</name>
+    <help>Speichert das Standardformat für Namen von Verwaltungs-Accounts.</help>
+    <label>Verwaltungs-Account – Benennungsformat</label>
+  </fields>
+  <fields>
+    <name>Admin_Other_Name_Setting__c</name>
+    <help>Speichert andere Informationen zum Benennungsformat für Verwaltungs-Accounts.</help>
+    <label>Verwaltung – Andere Namenseinstellungen</label>
+  </fields>
+  <fields>
+    <name>Administrative_Account_Record_Type__c</name>
+    <help>Der Account-Datensatztyp, der für Verwaltungs-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Verwaltung-Accounts aus.</help>
+    <label>Datensatztyp für Verwaltungs-Accounts</label>
+  </fields>
+  <fields>
+    <name>Advancement_Namespace__c</name>
+    <help>Der Namespace des verwalteten Gift Entry Manager-Pakets.</help>
+    <label>GEM-Namespace</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Record_Type_Enforced__c</name>
+    <help>Falls aktiviert, Fehler, wenn Benutzer ein primäres Feld für Kontakt mit Account füllen, dessen Datensatztyp nicht den EDA-Einstellungen entspricht. Der Datensatz "Zugehörigkeit" wird nicht erstellt, die Primärfelder für Kontakt werden nicht korrigiert.</help>
+    <label>Zugehörigkeits-Datensatztyp erzwungen</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+    <help>Gibt an, ob das Enddatum der mit einer Programmregistrierung erstellten Zugehörigkeit festgelegt werden soll. Falls aktiviert, Enddatum auf das der Programmregistrierung festlegen. Falls deaktiviert, das Enddatum der Zugehörigkeit nicht angeben.</help>
+    <label>Enddatum Zugehör. aus ProgReg kopieren</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
+    <help>Gibt an, ob das Startdatum der mit einer Programmregistrierung erstellten Zugehörigkeit festgelegt werden soll. Falls aktiviert, Startdatum auf das der Programmregistrierung festlegen. Falls deaktiviert, das Startdatum der Zugehörigkeit nicht angeben.</help>
+    <label>Startdatum Zugehör. aus ProgReg kopieren</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Del_Status__c</name>
+    <help>Wenn die zugehörige Einstellung, Zugehör. bei Löschen von ProgReg löschen, deaktiviert ist, gibt diese Einstellung den Wert an, der für den Status der Zugehörigkeit festzulegen ist, wenn die zugehörige Programmregistrierung gelöscht wird.</help>
+    <label>Status Zugehör. bei Lösch. von ProgReg</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Del__c</name>
+    <help>Gibt an, ob die Zugehörigkeit gelöscht werden soll, wenn die zugehörige Programmregistrierung gelöscht wird. Falls aktiviert, Zugehörigkeit löschen. Falls deaktiviert, Status der Zugehörigkeit auf "Status Zugehör. bei Lösch. von ProgReg" festlegen.</help>
+    <label>Zugehör. bei Löschen von ProgReg löschen</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
+    <help>Wenn die zugehörige Einstellung, Rolle Zugeh. bei Erstel. v. ProgReg fes., aktiviert ist, gibt diese Einstellung den Wert an, der für die Rolle der Zugehörigkeit festzulegen ist, die bei einer Programmregistrierung erstellt wird.</help>
+    <label>Rolle Zugehör. bei Erstellen von ProgReg</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
+    <help>Gibt an, ob eine Rolle für mit einer Programmregistrierung erstellten Zugehörigkeit angegeben werden soll. Falls aktiviert, Rolle der Zugehörigkeit auf Wert von "Rolle Zugehör. bei Erstellen von ProgReg" festlegen. Falls deaktiviert, keine Rolle angeben.</help>
+    <label>Rolle Zugeh. bei Erstel. v. ProgReg fes.</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Status_Map__c</name>
+    <help>Der Wert, der für den Status eines Zugehörigkeitsdatensatzes festgelegt wurde, der bei einer Programmregistrierung automatisch erstellt wird.</help>
+    <label>Status Zugehö. bei Erstellen von ProgReg</label>
+  </fields>
+  <fields>
+    <name>Allow_AutoCreated_Duplicates__c</name>
+    <help>Automat. erstellte Beziehungen werden dedupt, um duplizierte Beziehungsdatens. zwischen Kontak. zu vermeiden. "Autom. erst. dopp. Beziehungen zulassen" wählen, um Verhalten zu deakt. und mehrere Bezieh. desselben Typs zwischen zwei Kontakten zuzulassen.</help>
+    <label>Autom. erst. dopp. Beziehungen zulassen</label>
+  </fields>
+  <fields>
+    <name>Async_Error_Check_Last_Run__c</name>
+    <help>Die letzte Ausführung der asynchronen Auftragsfehlerprotokollierung.</help>
+    <label>Ltz. Ausführung der asynchr. Fehlerprüf.</label>
+  </fields>
+  <fields>
+    <name>Automatic_Household_Naming__c</name>
+    <help>Falls aktiviert, wird "Haushalt-Name" automatisch basierend auf den Formateinstellungen für den Haushalt-Namen festgelegt.</help>
+    <label>Automatische Benennung von Haushalten</label>
+  </fields>
+  <fields>
+    <name>Contacts_Addresses_Enabled__c</name>
+    <help>Aktiviert die Funktionalität für mehrere Adressen für Kontakte.</help>
+    <label>Unterst. Adressenverwalt. für Kontakte.</label>
+  </fields>
+  <fields>
+    <name>Default_Contact_Language_Fluency__c</name>
+    <help>Der Wert "Fließende Beherrschung" wird automatisch für neu erstellte Datensätze für die Kontaktsprache festgelegt, wenn Benutzer das Nachschlagefeld "Primäre Sprache" für einen Kontakt festlegen.</help>
+    <label>Standardkontakt – Sprachkompetenz</label>
+  </fields>
+  <fields>
+    <name>Disable_Error_Handling__c</name>
+    <help>Falls ausgewählt, wird das benutzerdefinierte Fehlerbehandlungs-Framework deaktiviert.</help>
+    <label>Fehlerbehandlung deaktivieren</label>
+  </fields>
+  <fields>
+    <name>Disable_Preferred_Email_Enforcement__c</name>
+    <help>Auswählen, um die Erzwingung des Felds "Bevorzugte E-Mail-Adresse" für Kontakte zu deaktivieren.</help>
+    <label>Erzw. v. Bevorzugte E-Mail-Adresse deak.</label>
+  </fields>
+  <fields>
+    <name>Disable_Preferred_Phone_Enforcement__c</name>
+    <help>Auswählen, um die Erzwingung des Felds "Bevorzugte Telefonnummer" für Kontakte zu deaktivieren.</help>
+    <label>Erzw. v. Bevorzugte Telefonnummer deak.</label>
+  </fields>
+  <fields>
+    <name>Enable_Course_Connections__c</name>
+    <help>Falls aktiviert, können Benutzer den Kontakttyp (Lehrpersonal oder Student) beim Erstellen eines Kursverbindungs-Datensatzes wählen. Hierfür müssen standardmäßige Kontakt-Datensatztypen für aktive Studenten und Lehrkräfte festgelegt werden.</help>
+    <label>Kursverbindungen aktivieren</label>
+  </fields>
+  <fields>
+    <name>Enable_Debug__c</name>
+    <help>Auswählen, um das Debuggen von Anweisungen im Code verwalteter Pakete zu ermöglichen.</help>
+    <label>Debuggen aktivieren</label>
+  </fields>
+  <fields>
+    <name>Enable_New_Preferred_Phone_Sync__c</name>
+    <help>Synchronisiert das Feld "Bevorzugte Telefonnummer" mit dem Standardfeld "Telefon" des Kontakts und überprüft, ob der Wert in "Bevorzugte Telefonnummer" vorhanden ist und entsprechend eingestellt ist.</help>
+    <label>Sync. von neuer bevorzugter Telnr akt.</label>
+  </fields>
+  <fields>
+    <name>Error_Notifications_On__c</name>
+    <help>Falls ausgewählt, werden Benachrichtigungen für durch Pakete generierte Fehler gesendet.</help>
+    <label>Fehlerbenachrichtigungen</label>
+  </fields>
+  <fields>
+    <name>Error_Notifications_To__c</name>
+    <help>Speichert den Benutzertyp, an den Fehlerbenachrichtigungen gesendet werden sollen.</help>
+    <label>Empfänger von Fehlerbenachrichtigungen</label>
+  </fields>
+  <fields>
+    <name>Faculty_RecType__c</name>
+    <help>Der standardmäßige Kontakt-Datensatztyp für Lehrpersonal beim Erstellen eines Kursverbindungs-Datensatzes.</help>
+    <label>Lehrpersonal-Datensatztyp</label>
+  </fields>
+  <fields>
+    <name>Household_Account_Naming_Format__c</name>
+    <help>Speichert das Benennungsformat des Haushalt-Accounts.</help>
+    <label>Haushalt-Account – Benennungsformat</label>
+  </fields>
+  <fields>
+    <name>Household_Addresses_RecType__c</name>
+    <help>Der Account-Datensatztyp, der für Haushalt-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Haushalt-Accounts aus.</help>
+    <label>Haushalt-Adressen Account-Datensatztyp</label>
+  </fields>
+  <fields>
+    <name>Household_Other_Name_Setting__c</name>
+    <help>Speichert andere Informationen zum Benennungsformat für Haushalt-Accounts.</help>
+    <label>Haushalt – Andere Namenseinstellungen</label>
+  </fields>
+  <fields>
+    <name>Preferred_Phone_Selection__c</name>
+    <help>Wählen Sie eine gewünschte bevorzugte Telefonnummer aus, wenn der Batchauftrag zur Datenbereinigung ausgeführt wird.</help>
+    <label>Bevorzugte Telefonnummer auswählen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Account_Deletion__c</name>
+    <label>Löschen von Account verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Address_Deletion__c</name>
+    <label>Löschen von Adresse verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Affiliation_Deletion__c</name>
+    <label>Löschen von Zugehörigkeit verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Behavior_Involvement_Deletion__c</name>
+    <label>Lösch. v. Beteilig. am Vorfall verhind.</label>
+  </fields>
+  <fields>
+    <name>Prevent_Case_Deletion__c</name>
+    <label>Löschen von Fall verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Contact_Deletion__c</name>
+    <label>Löschen von Kontakt verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Course_Deletion__c</name>
+    <label>Löschen von Kurs verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Course_Connection_Deletion__c</name>
+    <label>Löschen von Kursverbindung verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Facility_Deletion__c</name>
+    <label>Löschen von Räumlichkeit verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Course_Offering_Deletion__c</name>
+    <label>Löschen von Kursangebot verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Plan_Requirement_Deletion__c</name>
+    <label>Löschen von Plananforderung verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Program_Enrollment_Deletion__c</name>
+    <label>Löschen von Programmregistr. verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Program_Plan_Deletion__c</name>
+    <label>Löschen von Programmplan verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Term_Deletion__c</name>
+    <label>Löschen von Zeitabschnitt verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Test_Deletion__c</name>
+    <label>Löschen von Test verhindern</label>
+  </fields>
+  <fields>
+    <name>Prevent_Time_Block_Deletion__c</name>
+    <label>Löschen von Zeitblock verhindern</label>
+  </fields>
+  <fields>
+    <name>Reciprocal_Method__c</name>
+    <help>Legt die Methode zur Generierung der wechselseitigen Beziehung fest. Entweder Listeneinstellung zum Verwenden benutzerdefinierter Einstellungen nach Geschlecht oder Wertumkehr, die ggf. den Typ umkehrt ("Elternteil-Kind" zu "Kind-Elternteil").</help>
+    <label>Wechselseitige Methode</label>
+  </fields>
+  <fields>
+    <name>Relationship_Name_Field_Id__c</name>
+    <help>Dieses Feld wird derzeit nicht verwendet.</help>
+    <label>Kennung Beziehungsnamensfeld</label>
+  </fields>
+  <fields>
+    <name>Relationship_Name_Id_Field_Id__c</name>
+    <help>Dieses Feld wird derzeit nicht verwendet.</help>
+    <label>Kennung d. Felds mit Kenn. d. Bez.namens</label>
+  </fields>
+  <fields>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
+    <help>Falls aktiviert, werden Änderungen an Adressfeldern für "Kontakt" oder "Account" als Aktualisierung der bestehenden Adresse behandelt (kein neues Adressobj. wird erstellt). Änderungen bei Leerz. und Groß-/Kleinschr. werden als Aktualisierungen behandelt.</help>
+    <label>Einfache Adressänd. als Aktualisierung</label>
+  </fields>
+  <fields>
+    <name>Store_Errors_On__c</name>
+    <help>Aktivieren Sie diese Option, um Fehler zu speichern.</help>
+    <label>Fehler speichern</label>
+  </fields>
+  <fields>
+    <name>Student_RecType__c</name>
+    <label>Student-Datensatztyp</label>
+  </fields>
+  <fields>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
+    <help>Falls ausgewählt, kann in "Plananforderungen" ein Programmplan oder eine übergeordnete Plananforderung, aber nicht beides angegeben werden. Wird beides angegeben, hindert eine Fehlermeldung das Speichern, bis nur eine der Optionen gewählt wird.</help>
+    <label>Programmplan für geschachtelte PA prüfen</label>
+  </fields>
 </CustomObjectTranslation>

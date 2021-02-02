@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Relationship Lookup --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Relationship Lookup --></value>
-    </caseValues>
-    <fields>
-        <help>Geeft aan of deze wederzijdse opzoekopdracht actief is.</help>
-        <label>Actief</label>
-        <name>Active__c</name>
-    </fields>
-    <fields>
-        <help>De waarde die voor de wederzijdse instelling wordt gebruikt als het veld Geslacht/gender of Aanhef van de contactpersoon het geslacht vrouw aangeeft.</help>
-        <label>Vrouw</label>
-        <name>Female__c</name>
-    </fields>
-    <fields>
-        <help>De waarde die voor de wederzijdse instelling wordt gebruikt als het veld Geslacht/gender of Aanhef van de contactpersoon het geslacht man aangeeft.</help>
-        <label>Man</label>
-        <name>Male__c</name>
-    </fields>
-    <fields>
-        <help>De waarde die wordt gebruikt als de velden Geslacht/gender en Aanhef geen geslacht aangeven.</help>
-        <label>Neutraal</label>
-        <name>Neutral__c</name>
-    </fields>
-    <gender><!-- Neuter --></gender>
+  <fields>
+    <name>Active__c</name>
+    <help>Geeft aan of deze wederzijdse opzoekopdracht actief is.</help>
+    <label>Actief</label>
+  </fields>
+  <fields>
+    <name>Female__c</name>
+    <help>De waarde die voor de wederzijdse instelling wordt gebruikt als het veld Geslacht/gender of Aanhef van de contactpersoon het geslacht vrouw aangeeft.</help>
+    <label>Vrouw</label>
+  </fields>
+  <fields>
+    <name>Male__c</name>
+    <help>De waarde die voor de wederzijdse instelling wordt gebruikt als het veld Geslacht/gender of Aanhef van de contactpersoon het geslacht man aangeeft.</help>
+    <label>Man</label>
+  </fields>
+  <fields>
+    <name>Neutral__c</name>
+    <help>De waarde die wordt gebruikt als de velden Geslacht/gender en Aanhef geen geslacht aangeven.</help>
+    <label>Neutraal</label>
+  </fields>
 </CustomObjectTranslation>

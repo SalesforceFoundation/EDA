@@ -1,98 +1,87 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Enlace de curso</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Enlaces de curso</value>
-    </caseValues>
-    <fields>
-        <help>El Programa académico con el que el estudiante o miembro de institución está asociado.</help>
-        <label>Programa académico del contacto</label>
-        <name>Account__c</name>
-        <relationshipLabel>Enlaces de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El Programa académico asociado con este enlace de curso. Representa una afiliación de Contacto-Cuenta.</help>
-        <label>Afiliación</label>
-        <name>Affiliation__c</name>
-        <relationshipLabel>Enlace de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El estudiante o miembro de institución que participa en esta Oferta de curso.</help>
-        <label>Contacto</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Enlaces de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>La Oferta de curso con la que el estudiante o miembro de institución está involucrado.</help>
-        <label>Id. de Oferta de curso</label>
-        <name>Course_Offering__c</name>
-        <relationshipLabel>Enlace de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El número de créditos que el estudiante está intentando obtener con esta Oferta de curso.</help>
-        <label>Créditos intentados</label>
-        <name>Credits_Attempted__c</name>
-    </fields>
-    <fields>
-        <help>El número de créditos que el estudiante obtuvo completando esta Oferta de curso.</help>
-        <label>Créditos obtenidos</label>
-        <name>Credits_Earned__c</name>
-    </fields>
-    <fields>
-        <help>El grado numérico que el estudiante obtuvo en esta Oferta de curso.</help>
-        <label>Grado</label>
-        <name>Grade__c</name>
-    </fields>
-    <fields>
-        <help>Para miembros de institución, indica si es la facultad principal (por ejemplo, instructor jefe) para la Oferta de curso.</help>
-        <label>Principal</label>
-        <name>Primary__c</name>
-    </fields>
-    <fields>
-        <help>Para estudiantes, su Inscripción de programa principal. En educación superior, normalmente representa la especialidad académica de un estudiante.</help>
-        <label>Id. de inscripción del programa</label>
-        <name>Program_Enrollment__c</name>
-        <relationshipLabel>Enlaces de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Indica si esta es un Enlace de cursos vigente o pasado.</help>
-        <label>Estado</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation>Current</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Former</masterLabel>
-            <translation>Antiguo</translation>
-        </picklistValues>
-    </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Id. de Enlace de cursos</nameFieldLabel>
-    <recordTypes>
-        <description>Un tipo de registro predeterminado para el uso en pruebas. Este tipo de registro solo se debe activar y ser visible para administradores del sistema.</description>
-        <label>Predeterminado</label>
-        <name>Default</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Enlace de curso de una facultad</description>
-        <label>Facultad</label>
-        <name>Faculty</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Enlace de curso de un estudiante</description>
-        <label>Estudiante</label>
-        <name>Student</name>
-    </recordTypes>
+  <fields>
+    <name>Account__c</name>
+    <help>El Programa académico con el que el estudiante o miembro de institución está asociado.</help>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
+    <label>Programa académico del contacto</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <help>El Programa académico asociado con este enlace de curso. Representa una afiliación de Contacto-Cuenta.</help>
+    <relationshipLabel>Enlace de cursos</relationshipLabel>
+    <label>Afiliación</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>El estudiante o miembro de institución que participa en esta Oferta de curso.</help>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
+    <label>Contacto</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>La Oferta de curso con la que el estudiante o miembro de institución está involucrado.</help>
+    <relationshipLabel>Enlace de cursos</relationshipLabel>
+    <label>Id. de Oferta de curso</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>El número de créditos que el estudiante está intentando obtener con esta Oferta de curso.</help>
+    <label>Créditos intentados</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>El número de créditos que el estudiante obtuvo completando esta Oferta de curso.</help>
+    <label>Créditos obtenidos</label>
+  </fields>
+  <fields>
+    <name>Grade__c</name>
+    <help>El grado numérico que el estudiante obtuvo en esta Oferta de curso.</help>
+    <label>Grado</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Para miembros de institución, indica si es la facultad principal (por ejemplo, instructor jefe) para la Oferta de curso.</help>
+    <label>Principal</label>
+  </fields>
+  <fields>
+    <name>Program_Enrollment__c</name>
+    <help>Para estudiantes, su Inscripción de programa principal. En educación superior, normalmente representa la especialidad académica de un estudiante.</help>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
+    <label>Id. de inscripción del programa</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Indica si esta es un Enlace de cursos vigente o pasado.</help>
+    <label>Estado</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Current</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Antiguo</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Enrollment Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Id. de Enlace de cursos</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Id. de Enlace de cursos</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Enlace de curso</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Enlaces de curso</value>
+  </caseValues>
 </CustomObjectTranslation>

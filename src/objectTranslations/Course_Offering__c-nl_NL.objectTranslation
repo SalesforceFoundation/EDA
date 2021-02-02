@@ -1,67 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Course Offering --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Course Offering --></value>
-    </caseValues>
-    <fields>
-        <help>Het maximumaantal studenten voor dit cursusaanbod.</help>
-        <label>Capaciteit</label>
-        <name>Capacity__c</name>
-    </fields>
-    <fields>
-        <label>Cursus</label>
-        <name>Course__c</name>
-        <relationshipLabel>Cursusaanbod</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De datum van de laatste sessie van dit cursusaanbod.</help>
-        <label>Einddatum</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>De faciliteit waar dit cursusaanbod plaatsvindt.</help>
-        <label>Faciliteit</label>
-        <name>Facility__c</name>
-        <relationshipLabel>Cursusaanbod</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Opzoekopdracht naar de hoofdinstructeur voor dit cursusaanbod.</help>
-        <label>Primair staflid</label>
-        <name>Faculty__c</name>
-        <relationshipLabel>Cursusaanbod</relationshipLabel>
-    </fields>
-    <fields>
-        <help>De sectie-ID van dit cursusaanbod. Een sectie-ID wordt doorgaans gebruikt als er voor een cursus tijdens één termijn meerdere secties worden aangeboden.</help>
-        <label>Sectie-ID</label>
-        <name>Section_ID__c</name>
-    </fields>
-    <fields>
-        <help>De datum van de eerste sessie van dit cursusaanbod.</help>
-        <label>Begindatum</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <label>Termijn</label>
-        <name>Term__c</name>
-        <relationshipLabel>Cursusaanbod</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Tijdblok</label>
-        <name>Time_Block__c</name>
-        <relationshipLabel>Cursusaanbod</relationshipLabel>
-    </fields>
-    <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>HEDA Course Offering Layout</layout>
-        <sections>
-            <label>Aangepaste koppelingen</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Cursusaanbod-ID</nameFieldLabel>
+  <fields>
+    <name>Capacity__c</name>
+    <help>Het maximumaantal studenten voor dit cursusaanbod.</help>
+    <label>Capaciteit</label>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <relationshipLabel>Cursusaanbod</relationshipLabel>
+    <label>Cursus</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>De datum van de laatste sessie van dit cursusaanbod.</help>
+    <label>Einddatum</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>De faciliteit waar dit cursusaanbod plaatsvindt.</help>
+    <relationshipLabel>Cursusaanbod</relationshipLabel>
+    <label>Faciliteit</label>
+  </fields>
+  <fields>
+    <name>Faculty__c</name>
+    <help>Opzoekopdracht naar de hoofdinstructeur voor dit cursusaanbod.</help>
+    <relationshipLabel>Cursusaanbod</relationshipLabel>
+    <label>Primair staflid</label>
+  </fields>
+  <fields>
+    <name>Section_ID__c</name>
+    <help>De sectie-ID van dit cursusaanbod. Een sectie-ID wordt doorgaans gebruikt als er voor een cursus tijdens één termijn meerdere secties worden aangeboden.</help>
+    <label>Sectie-ID</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>De datum van de eerste sessie van dit cursusaanbod.</help>
+    <label>Begindatum</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <relationshipLabel>Cursusaanbod</relationshipLabel>
+    <label>Termijn</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <relationshipLabel>Cursusaanbod</relationshipLabel>
+    <label>Tijdblok</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Offering Layout</layout>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Cursusaanbod-ID</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Cursusaanbod-ID</label>
+  </standardFields>
 </CustomObjectTranslation>

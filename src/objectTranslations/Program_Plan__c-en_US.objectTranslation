@@ -9,12 +9,13 @@
         <value>Program Plans</value>
     </caseValues>
     <fields>
-        <help><!-- The Academic Program this Program Plan is for, for example, BA in Philosophy. --></help>
+        <help><!-- Click to search for an Account (often an Academic Program) to associate with the Program Plan. --></help>
         <label><!-- Account --></label>
         <name>Account__c</name>
         <relationshipLabel><!-- Program Plans --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- Describe the Program Plan. --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>
@@ -24,17 +25,17 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
-        <help><!-- Indicates this is the Program Plan currently in effect for the selected Academic Program. --></help>
+        <help><!-- Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrollment --></help>
         <label><!-- Is Primary --></label>
         <name>Is_Primary__c</name>
     </fields>
     <fields>
-        <help><!-- The date this Program Plan went into effect. --></help>
+        <help><!-- The date the Program Plan went into effect. --></help>
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>
     <fields>
-        <help><!-- Select &quot;Current&quot; if this Program Plan has students enrolled in it, or is eligible for students to enroll. Otherwise, select &quot;Archived.&quot; --></help>
+        <help><!-- The status of the program plan. --></help>
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
@@ -47,12 +48,12 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The total number of credits a student needs to complete to satisfy this Program Plan. --></help>
+        <help><!-- Specify the total number of credits a student must complete to satisfy this program plan. --></help>
         <label><!-- Total Required Credits --></label>
         <name>Total_Required_Credits__c</name>
     </fields>
     <fields>
-        <help><!-- The version of the Program Plan, for example, Spring 2020. --></help>
+        <help><!-- The version of the Program Plan. For example, “Spring 2019.” --></help>
         <label><!-- Version --></label>
         <name>Version__c</name>
     </fields>

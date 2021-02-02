@@ -1,97 +1,101 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>false</plural>
-        <value>Plananforderung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value>Plananforderungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>false</plural>
-        <value>Plananforderung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>true</plural>
-        <value>Plananforderungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>false</plural>
-        <value>Plananforderung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value>Plananforderungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>false</plural>
-        <value>Plananforderung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>true</plural>
-        <value>Plananforderungen</value>
-    </caseValues>
-    <fields>
-        <help>Gibt die Art der Plananforderung an, z. B. optional oder erforderlich.</help>
-        <label>Kategorie</label>
-        <name>Category__c</name>
-        <picklistValues>
-            <masterLabel>Optional</masterLabel>
-            <translation>Optional</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Required</masterLabel>
-            <translation>Erforderlich</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Der zu dieser Plananforderung gehörige Kurs. Lassen Sie das Feld für eine übergeordnete Plananforderung mit geschachtelten Plananforderungen leer.</help>
-        <label>Kurs</label>
-        <name>Course__c</name>
-        <relationshipLabel>Plananforderungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Die Anzahl der Leistungspunkte, die ein Student für die Erfüllung dieser Anforderung erhält.</help>
-        <label>Leistungspunkte</label>
-        <name>Credits__c</name>
-    </fields>
-    <fields>
-        <label>Beschreibung</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help>Gibt die übergeordnete Plananforderung an, wenn die Plananforderung eine von mehreren Anforderungen oder Anforderungsebenen ist. Gruppieren Sie mithilfe dieses Felds eine Liste optionaler Kurse, die eine allgemeine Anforderung erfüllen.</help>
-        <label>Übergeordnete Plananforderung</label>
-        <name>Plan_Requirement__c</name>
-        <relationshipLabel>Plananforderungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Der Programmplan, für den diese Anforderung gilt. Wenn Sie Plananforderungen unter einer übergeordneten Plananforderung zusammenfassen, ist die bewährte Methode, nur die Plananforderung der obersten Ebene mit einem Programmplan zu verknüpfen.</help>
-        <label>Programmplan</label>
-        <name>Program_Plan__c</name>
-        <relationshipLabel>Plananforderungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Rang dieser Anforderung im Programmplan. &quot;1&quot; gibt z. B. das erste Semester an. Geben Sie hiermit den Gesamtfortschritt für den gesamten Programmplan an oder sortieren Sie die Reihenfolge der Unteranforderungen in einer übergeordneten Plananforderung.</help>
-        <label>Sequenz</label>
-        <name>Sequence__c</name>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Plan Requirement Layout</layout>
-        <sections>
-            <label>Benutzerdefinierte Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Name der Plananforderung</nameFieldLabel>
+  <fields>
+    <name>Category__c</name>
+    <help>Gibt die Art der Plananforderung an, z. B. optional oder erforderlich.</help>
+    <label>Kategorie</label>
+    <picklistValues>
+      <masterLabel>Required</masterLabel>
+      <translation>Erforderlich</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Optional</masterLabel>
+      <translation>Optional</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <help>Der zu dieser Plananforderung gehörige Kurs. Lassen Sie das Feld für eine übergeordnete Plananforderung mit geschachtelten Plananforderungen leer.</help>
+    <relationshipLabel>Plananforderungen</relationshipLabel>
+    <label>Kurs</label>
+  </fields>
+  <fields>
+    <name>Credits__c</name>
+    <help>Die Anzahl der Leistungspunkte, die ein Student für die Erfüllung dieser Anforderung erhält.</help>
+    <label>Leistungspunkte</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>Beschreibung</label>
+  </fields>
+  <fields>
+    <name>Plan_Requirement__c</name>
+    <help>Gibt die übergeordnete Plananforderung an, wenn die Plananforderung eine von mehreren Anforderungen oder Anforderungsebenen ist. Gruppieren Sie mithilfe dieses Felds eine Liste optionaler Kurse, die eine allgemeine Anforderung erfüllen.</help>
+    <relationshipLabel>Plananforderungen</relationshipLabel>
+    <label>Übergeordnete Plananforderung</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>Der Programmplan, für den diese Anforderung gilt. Wenn Sie Plananforderungen unter einer übergeordneten Plananforderung zusammenfassen, ist die bewährte Methode, nur die Plananforderung der obersten Ebene mit einem Programmplan zu verknüpfen.</help>
+    <relationshipLabel>Plananforderungen</relationshipLabel>
+    <label>Programmplan</label>
+  </fields>
+  <fields>
+    <name>Sequence__c</name>
+    <help>Rang dieser Anforderung im Programmplan. "1" gibt z. B. das erste Semester an. Geben Sie hiermit den Gesamtfortschritt für den gesamten Programmplan an oder sortieren Sie die Reihenfolge der Unteranforderungen in einer übergeordneten Plananforderung.</help>
+    <label>Sequenz</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Plan Requirement Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Name der Plananforderung</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Name der Plananforderung</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Plananforderung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Plananforderung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Plananforderung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Plananforderung</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Plananforderungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Plananforderungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Plananforderungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Plananforderungen</value>
+  </caseValues>
 </CustomObjectTranslation>

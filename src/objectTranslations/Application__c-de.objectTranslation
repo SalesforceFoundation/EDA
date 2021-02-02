@@ -1,166 +1,170 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>false</plural>
-        <value>Bewerbung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value>Bewerbungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>false</plural>
-        <value>Bewerbung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>true</plural>
-        <value>Bewerbungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>false</plural>
-        <value>Bewerbung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value>Bewerbungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>false</plural>
-        <value>Bewerbung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>true</plural>
-        <value>Bewerbungen</value>
-    </caseValues>
-    <fields>
-        <help>Das Datum, an dem der Student entscheidet, ob er sich registriert.</help>
-        <label>Entscheidungsdatum des Bewerbers</label>
-        <name>Applicant_Decision_Date__c</name>
-    </fields>
-    <fields>
-        <help>Der Kontakt, der sich bei der Einrichtung oder dem Programm bewirbt.</help>
-        <label>Bewerber</label>
-        <name>Applicant__c</name>
-        <relationshipLabel>Bewerbungen (Bewerber)</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Datum und Uhrzeit der Einreichung der Bewerbung.</help>
-        <label>Bewerbungsdatum</label>
-        <name>Application_Date__c</name>
-    </fields>
-    <fields>
-        <help>Das Datum, an dem die Einrichtung entscheidet, ob sie den Bewerber aufnimmt.</help>
-        <label>Entscheidungsdatum für Bewerbung</label>
-        <name>Application_Decision_Date__c</name>
-    </fields>
-    <fields>
-        <label>JSON-Code der Bewerbung</label>
-        <name>Application_JSON__c</name>
-    </fields>
-    <fields>
-        <help>Der Status des Bewerbungsprozesses.</help>
-        <label>Bewerbungsstatus</label>
-        <name>Application_Status__c</name>
-        <picklistValues>
-            <masterLabel>Accepted Offer</masterLabel>
-            <translation>Angenommenes Angebot</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Admit</masterLabel>
-            <translation>Zulassen</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Admit with Conditions</masterLabel>
-            <translation>Unter Bedingungen zulassen</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Declined Offer</masterLabel>
-            <translation>Abgelehntes Angebot</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Deferred Offer</masterLabel>
-            <translation>Zurückgestelltes Angebot</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Deny</masterLabel>
-            <translation>Ablehnen</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Review</masterLabel>
-            <translation>Wird geprüft</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Incomplete</masterLabel>
-            <translation>Unvollständig</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Received</masterLabel>
-            <translation>Empfangen</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Submitted</masterLabel>
-            <translation>Eingereicht</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Waitlist</masterLabel>
-            <translation>Warteliste</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Der Typ des Programms oder Studiengangs, für das/den sich der Bewerber bewirbt.</help>
-        <label>Bewerbungstyp</label>
-        <name>Application_Type__c</name>
-        <picklistValues>
-            <masterLabel>Graduate</masterLabel>
-            <translation>Hochschulabsolvent</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Transfer</masterLabel>
-            <translation>Austausch</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Undergraduate</masterLabel>
-            <translation>Student vor dem ersten akademischem Grad</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Das Studienprogramm oder der Studiengang, für das/den sich der Bewerber bewirbt.</help>
-        <label>Bewerbung für</label>
-        <name>Applying_To__c</name>
-        <relationshipLabel>Bewerbungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Das Datum, an dem die Bewerbung ursprünglich vom Bewerber erstellt wurde.</help>
-        <label>Ursprüngliches Erstellungsdatum</label>
-        <name>Initial_Creation_Date__c</name>
-    </fields>
-    <fields>
-        <help>Die Kontaktperson, die die Bewerbung vorbereitet, beispielsweise ein Vormund oder eine Person, die jemandem mit besonderen Bedürfnissen hilft.</help>
-        <label>Vorbereiter</label>
-        <name>Preparer__c</name>
-        <relationshipLabel>Bewerbungen (Vorbereiter)</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Der Zeitabschnitt, für den sich der Bewerber registrieren möchte.</help>
-        <label>Zeitabschnitt</label>
-        <name>Term__c</name>
-        <relationshipLabel>Bewerbungen</relationshipLabel>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>EDA Application Layout</layout>
-        <sections>
-            <label>Benutzerdefinierte Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Name der Bewerbung</nameFieldLabel>
+  <fields>
+    <name>Applicant_Decision_Date__c</name>
+    <help>Das Datum, an dem der Student entscheidet, ob er sich registriert.</help>
+    <label>Entscheidungsdatum des Bewerbers</label>
+  </fields>
+  <fields>
+    <name>Applicant__c</name>
+    <help>Der Kontakt, der sich bei der Einrichtung oder dem Programm bewirbt.</help>
+    <relationshipLabel>Bewerbungen (Bewerber)</relationshipLabel>
+    <label>Bewerber</label>
+  </fields>
+  <fields>
+    <name>Application_Date__c</name>
+    <help>Datum und Uhrzeit der Einreichung der Bewerbung.</help>
+    <label>Bewerbungsdatum</label>
+  </fields>
+  <fields>
+    <name>Application_Decision_Date__c</name>
+    <help>Das Datum, an dem die Einrichtung entscheidet, ob sie den Bewerber aufnimmt.</help>
+    <label>Entscheidungsdatum für Bewerbung</label>
+  </fields>
+  <fields>
+    <name>Application_JSON__c</name>
+    <label>JSON-Code der Bewerbung</label>
+  </fields>
+  <fields>
+    <name>Application_Status__c</name>
+    <help>Der Status des Bewerbungsprozesses.</help>
+    <label>Bewerbungsstatus</label>
+    <picklistValues>
+      <masterLabel>Submitted</masterLabel>
+      <translation>Eingereicht</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Incomplete</masterLabel>
+      <translation>Unvollständig</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Received</masterLabel>
+      <translation>Empfangen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>In Review</masterLabel>
+      <translation>Wird geprüft</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Waitlist</masterLabel>
+      <translation>Warteliste</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Admit</masterLabel>
+      <translation>Zulassen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Admit with Conditions</masterLabel>
+      <translation>Unter Bedingungen zulassen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Deny</masterLabel>
+      <translation>Ablehnen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Deferred Offer</masterLabel>
+      <translation>Zurückgestelltes Angebot</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Accepted Offer</masterLabel>
+      <translation>Angenommenes Angebot</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Declined Offer</masterLabel>
+      <translation>Abgelehntes Angebot</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Application_Type__c</name>
+    <help>Der Typ des Programms oder Studiengangs, für das/den sich der Bewerber bewirbt.</help>
+    <label>Bewerbungstyp</label>
+    <picklistValues>
+      <masterLabel>Graduate</masterLabel>
+      <translation>Hochschulabsolvent</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Transfer</masterLabel>
+      <translation>Austausch</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Undergraduate</masterLabel>
+      <translation>Student vor dem ersten akademischem Grad</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Applying_To__c</name>
+    <help>Das Studienprogramm oder der Studiengang, für das/den sich der Bewerber bewirbt.</help>
+    <relationshipLabel>Bewerbungen</relationshipLabel>
+    <label>Bewerbung für</label>
+  </fields>
+  <fields>
+    <name>Initial_Creation_Date__c</name>
+    <help>Das Datum, an dem die Bewerbung ursprünglich vom Bewerber erstellt wurde.</help>
+    <label>Ursprüngliches Erstellungsdatum</label>
+  </fields>
+  <fields>
+    <name>Preparer__c</name>
+    <help>Die Kontaktperson, die die Bewerbung vorbereitet, beispielsweise ein Vormund oder eine Person, die jemandem mit besonderen Bedürfnissen hilft.</help>
+    <relationshipLabel>Bewerbungen (Vorbereiter)</relationshipLabel>
+    <label>Vorbereiter</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <help>Der Zeitabschnitt, für den sich der Bewerber registrieren möchte.</help>
+    <relationshipLabel>Bewerbungen</relationshipLabel>
+    <label>Zeitabschnitt</label>
+  </fields>
+  <layouts>
+    <layout>EDA Application Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Name der Bewerbung</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Name der Bewerbung</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Bewerbung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Bewerbung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Bewerbung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Bewerbung</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Bewerbungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Bewerbungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Bewerbungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Bewerbungen</value>
+  </caseValues>
 </CustomObjectTranslation>

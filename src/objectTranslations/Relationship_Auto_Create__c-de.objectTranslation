@@ -1,64 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>false</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>false</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>true</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>false</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>false</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>true</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <fields>
-        <help>Für basierend auf Kampagnenmitgliedern automatisch erstellte Beziehungen die Liste der Kampagnentypen, für die die Automatisierung gilt. Für auf Kontakten basierende automatisch erstellte Beziehungen ist dieses Feld leer.</help>
-        <label>Kampagnentypen</label>
-        <name>Campaign_Types__c</name>
-    </fields>
-    <fields>
-        <help>Die Bezeichnung des Nachschlagefelds, das die Erstellung dieser Beziehung auslöst, wenn der Feldwert aktualisiert wird.</help>
-        <label>Feld</label>
-        <name>Field__c</name>
-    </fields>
-    <fields>
-        <help>Der API-Name des Objekts (entweder Contact oder CampaignMember), in dem sich das benutzerdefinierte Nachschlagefeld befindet.</help>
-        <label>Objekt</label>
-        <name>Object__c</name>
-    </fields>
-    <fields>
-        <help>Der Beziehungstyp (Referrer, Familie usw.), die zwischen dem im Feld &quot;Objekt&quot; definierten Basisobjekt und dem Nachschlageobjekt erstellt werden soll.</help>
-        <label>Beziehungstyp</label>
-        <name>Relationship_Type__c</name>
-    </fields>
-    <gender><!-- Neuter --></gender>
+  <fields>
+    <name>Campaign_Types__c</name>
+    <help>Für basierend auf Kampagnenmitgliedern automatisch erstellte Beziehungen die Liste der Kampagnentypen, für die die Automatisierung gilt. Für auf Kontakten basierende automatisch erstellte Beziehungen ist dieses Feld leer.</help>
+    <label>Kampagnentypen</label>
+  </fields>
+  <fields>
+    <name>Field__c</name>
+    <help>Die Bezeichnung des Nachschlagefelds, das die Erstellung dieser Beziehung auslöst, wenn der Feldwert aktualisiert wird.</help>
+    <label>Feld</label>
+  </fields>
+  <fields>
+    <name>Object__c</name>
+    <help>Der API-Name des Objekts (entweder Contact oder CampaignMember), in dem sich das benutzerdefinierte Nachschlagefeld befindet.</help>
+    <label>Objekt</label>
+  </fields>
+  <fields>
+    <name>Relationship_Type__c</name>
+    <help>Der Beziehungstyp (Referrer, Familie usw.), die zwischen dem im Feld "Objekt" definierten Basisobjekt und dem Nachschlageobjekt erstellt werden soll.</help>
+    <label>Beziehungstyp</label>
+  </fields>
 </CustomObjectTranslation>

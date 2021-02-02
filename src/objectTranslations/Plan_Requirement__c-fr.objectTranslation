@@ -1,66 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Exigence du plan</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Exigences du plan</value>
-    </caseValues>
-    <fields>
-        <help>Indique le type d&apos;exigence du plan, par exemple facultatif ou obligatoire.</help>
-        <label>Catégorie</label>
-        <name>Category__c</name>
-        <picklistValues>
-            <masterLabel>Optional</masterLabel>
-            <translation>Facultatif</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Required</masterLabel>
-            <translation>Obligatoire</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Le cours associé à cette exigence de plan. Laissez vide pour une exigence de plan parente avec des exigences de plan imbriquées.</help>
-        <label>Cours</label>
-        <name>Course__c</name>
-        <relationshipLabel>Exigences du plan</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Le nombre de crédits qu&apos;un étudiant reçoit lorsqu&apos;il satisfait à cette exigence.</help>
-        <label>Crédits</label>
-        <name>Credits__c</name>
-    </fields>
-    <fields>
-        <label>Description</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help>Si l&apos;exigence du plan fait partie d&apos;exigences multiples ou de niveaux d&apos;exigence multiples, spécifiez l&apos;exigence de plan parente. Utilisez ce champ pour regrouper une liste de cours facultatifs qui répondent à une exigence globale.</help>
-        <label>Exigence du plan parente</label>
-        <name>Plan_Requirement__c</name>
-        <relationshipLabel>Exigences du plan</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Le Plan de programme auquel cette exigence correspond. Si vous regroupez des exigences de plan sous une exigence de plan parente, la meilleure pratique consiste à lier uniquement l&apos;exigence du plan de niveau supérieur à un plan de programme.</help>
-        <label>Plan du programme</label>
-        <name>Program_Plan__c</name>
-        <relationshipLabel>Exigences du plan</relationshipLabel>
-    </fields>
-    <fields>
-        <help>La position de cette exigence dans le plan. Par exemple, 1 désigne le premier trimestre. Utilisez ce champ pour montrer la progression générale du plan complet ou pour organiser des exigences secondaires dans une exigence de plan parente unique.</help>
-        <label>Séquence</label>
-        <name>Sequence__c</name>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Plan Requirement Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l&apos;exigence du plan</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
+  <fields>
+    <name>Category__c</name>
+    <help>Indique le type d'exigence du plan, par exemple facultatif ou obligatoire.</help>
+    <label>Catégorie</label>
+    <picklistValues>
+      <masterLabel>Required</masterLabel>
+      <translation>Obligatoire</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Optional</masterLabel>
+      <translation>Facultatif</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <help>Le cours associé à cette exigence de plan. Laissez vide pour une exigence de plan parente avec des exigences de plan imbriquées.</help>
+    <relationshipLabel>Exigences du plan</relationshipLabel>
+    <label>Cours</label>
+  </fields>
+  <fields>
+    <name>Credits__c</name>
+    <help>Le nombre de crédits qu'un étudiant reçoit lorsqu'il satisfait à cette exigence.</help>
+    <label>Crédits</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>Description</label>
+  </fields>
+  <fields>
+    <name>Plan_Requirement__c</name>
+    <help>Si l'exigence du plan fait partie d'exigences multiples ou de niveaux d'exigence multiples, spécifiez l'exigence de plan parente. Utilisez ce champ pour regrouper une liste de cours facultatifs qui répondent à une exigence globale.</help>
+    <relationshipLabel>Exigences du plan</relationshipLabel>
+    <label>Exigence du plan parente</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>Le Plan de programme auquel cette exigence correspond. Si vous regroupez des exigences de plan sous une exigence de plan parente, la meilleure pratique consiste à lier uniquement l'exigence du plan de niveau supérieur à un plan de programme.</help>
+    <relationshipLabel>Exigences du plan</relationshipLabel>
+    <label>Plan du programme</label>
+  </fields>
+  <fields>
+    <name>Sequence__c</name>
+    <help>La position de cette exigence dans le plan. Par exemple, 1 désigne le premier trimestre. Utilisez ce champ pour montrer la progression générale du plan complet ou pour organiser des exigences secondaires dans une exigence de plan parente unique.</help>
+    <label>Séquence</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Plan Requirement Layout</layout>
+    <sections>
+      <label>Liens personnalisés</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de l'exigence du plan</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de l'exigence du plan</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <startsWith>Vowel</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Exigence du plan</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Exigences du plan</value>
+  </caseValues>
 </CustomObjectTranslation>

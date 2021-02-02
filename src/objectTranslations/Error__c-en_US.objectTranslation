@@ -14,7 +14,7 @@
         <name>Context_Type__c</name>
     </fields>
     <fields>
-        <help><!-- Date &amp; time the error occurred. --></help>
+        <help><!-- Date &amp; time the error occurred --></help>
         <label><!-- Datetime --></label>
         <name>Datetime__c</name>
     </fields>
@@ -24,17 +24,17 @@
         <name>Email_Sent__c</name>
     </fields>
     <fields>
-        <help><!-- Type of error that occurred. --></help>
+        <help><!-- Type of error that occurred --></help>
         <label><!-- Error Type --></label>
         <name>Error_Type__c</name>
     </fields>
     <fields>
-        <help><!-- Full text of the error message. --></help>
+        <help><!-- Full text of the error message --></help>
         <label><!-- Full Message --></label>
         <name>Full_Message__c</name>
     </fields>
     <fields>
-        <help><!-- The object on which the error occurred, if known. --></help>
+        <help><!-- Type of object on which the error occurred, if known. --></help>
         <label><!-- Object Type --></label>
         <name>Object_Type__c</name>
     </fields>

@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fields>
-        <help>Het casetype dat wordt gevolgd.</help>
-        <label>Categorie</label>
-        <name>Category__c</name>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Overig</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School Code of Conduct</masterLabel>
-            <translation>Gedragscode van de school</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School Violation</masterLabel>
-            <translation>Schending van schoolbeleid</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>State Offense</masterLabel>
-            <translation>Staatsovertreding</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>De locatie waar de case plaatsvond.</help>
-        <label>Locatie</label>
-        <name>Location__c</name>
-        <picklistValues>
-            <masterLabel>Off Campus</masterLabel>
-            <translation>Buiten de campus</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>On Campus</masterLabel>
-            <translation>Op de campus</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Overig</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>De datum en tijd waarop het gedragsevent dat de case triggerde plaatsvond.</help>
-        <label>Gebeurtenisdatum</label>
-        <name>Occurrence_Date__c</name>
-    </fields>
-    <layouts>
-        <layout>EDA Incident Layout</layout>
-        <sections>
-            <label>Aangepaste koppelingen</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Velden</label>
-            <section>Fields</section>
-        </sections>
-    </layouts>
+  <fields>
+    <name>Category__c</name>
+    <help>Het casetype dat wordt gevolgd.</help>
+    <label>Categorie</label>
+    <picklistValues>
+      <masterLabel>School Code of Conduct</masterLabel>
+      <translation>Gedragscode van de school</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>School Violation</masterLabel>
+      <translation>Schending van schoolbeleid</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>State Offense</masterLabel>
+      <translation>Staatsovertreding</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Overig</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Location__c</name>
+    <help>De locatie waar de case plaatsvond.</help>
+    <label>Locatie</label>
+    <picklistValues>
+      <masterLabel>Off Campus</masterLabel>
+      <translation>Buiten de campus</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>On Campus</masterLabel>
+      <translation>Op de campus</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Overig</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Occurrence_Date__c</name>
+    <help>De datum en tijd waarop het gedragsevent dat de case triggerde plaatsvond.</help>
+    <label>Gebeurtenisdatum</label>
+  </fields>
+  <layouts>
+    <layout>EDA Incident Layout</layout>
+    <sections>
+      <label>Velden</label>
+      <section>Fields</section>
+    </sections>
+    <sections>
+      <label>Aangepaste koppelingen</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
 </CustomObjectTranslation>

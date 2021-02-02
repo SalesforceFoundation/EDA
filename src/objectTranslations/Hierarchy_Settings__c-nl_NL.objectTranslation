@@ -1,275 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <fields>
-        <help>ID van het standaard recordtype voor een account. Als u bijvoorbeeld Administratief opgeeft (het aanbevolen accountmodel), voert u de ID van het administratieve recordtype in voor het accountobject.</help>
-        <label>Accountverwerker</label>
-        <name>Account_Processor__c</name>
-    </fields>
-    <fields>
-        <help>De recordtypen voor accounts waarbij meerdere adressen moeten zijn ingeschakeld.</help>
-        <label>Accounts met meerdere adressen</label>
-        <name>Accounts_Addresses_Enabled__c</name>
-    </fields>
-    <fields>
-        <help>De recordtypen voor accounts die automatisch moeten worden verwijderd als alle gekoppelde contactpersonen zijn verwijderd.</help>
-        <label>Te verwijderen accounts</label>
-        <name>Accounts_to_Delete__c</name>
-    </fields>
-    <fields>
-        <help>Slaat de standaardindeling voor administratieve accountnamen op.</help>
-        <label>Naamindeling administratief account</label>
-        <name>Admin_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help>Slaat overige informatie op over de naamindeling voor een administratief account.</help>
-        <label>Overige administratieve naaminstelling</label>
-        <name>Admin_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help>Het accountrecordtype dat voor administratieve accounts wordt gebruikt. Deze instelling is van invloed op het beheer van adresrecords en de naamindeling van administratieve accounts.</help>
-        <label>Recordtype administratief account</label>
-        <name>Administrative_Account_Record_Type__c</name>
-    </fields>
-    <fields>
-        <help>De naamruimte van het door de giftinvoermanager beheerde pakket.</help>
-        <label>GEM-naamruimte</label>
-        <name>Advancement_Namespace__c</name>
-    </fields>
-    <fields>
-        <help>Na inschakeling ontstaat een fout als het in een primair contactpersoonveld opgegeven account een ander recordtype heeft dan in de EDA-instellingen. De affiliatierecord wordt niet gemaakt en primaire contactpersoonvelden worden niet gecorrigeerd.</help>
-        <label>Affiliatierecordtype afgedwongen</label>
-        <name>Affiliation_Record_Type_Enforced__c</name>
-    </fields>
-    <fields>
-        <help>Geeft aan of de einddatum van de affiliatie die bij programma-inschrijving is gemaakt moet worden ingesteld. Indien ingeschakeld, stelt u de einddatum van de programma-inschrijving in. Indien uitgeschakeld, geeft u de einddatum van de affiliatie niet op.</help>
-        <label>Einddatum affil. kopiëren van pr.inschr.</label>
-        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Geeft aan of de begindatum van de affiliatie die bij programma-inschrijving is gemaakt moet worden ingesteld. Indien ingeschakeld, stelt u de begindatum van de programma-inschrijving in. Indien uitgeschakeld, geeft u geen begindatum op voor de affiliatie.</help>
-        <label>Begindat. affil. kopiëren van pr.inschr.</label>
-        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
-    </fields>
-    <fields>
-        <help>Als de gerelateerde instelling &apos;Affil. verwijderen bij verw. pr.inschr.&apos; is uitgeschakeld, bepaalt deze instelling de waarde die moet worden ingesteld voor de status van de affiliatie wanneer de gerelateerde programma-inschrijving wordt verwijderd.</help>
-        <label>Affil.status bij verw. pr.inschr.</label>
-        <name>Affl_ProgEnroll_Del_Status__c</name>
-    </fields>
-    <fields>
-        <help>Bepaalt of een affiliatie moet worden verwijderd bij het verwijderen van de gerelateerde programma-inschrijving. Indien ingeschakeld, stelt u de status van de affiliatie in op de waarde uit de gerelateerde instelling, &apos;Affil.status bij verw. pr.inschr.&apos;.</help>
-        <label>Affil. verwijderen bij verw. pr.inschr.</label>
-        <name>Affl_ProgEnroll_Del__c</name>
-    </fields>
-    <fields>
-        <help>Als de gerelateerde instelling &apos;Affil.rol instellen bij maken pr.inschr.&apos; is ingeschakeld, bepaalt deze instelling de waarde die moet worden ingesteld voor de rol van de affiliatie die met een programma-inschrijving is gemaakt.</help>
-        <label>Affil.rol bij maken prog.inschr.</label>
-        <name>Affl_ProgEnroll_Role_Map__c</name>
-    </fields>
-    <fields>
-        <help>Bepaalt of een rol moet worden opgegeven voor de bij programma-inschrijving gemaakte affiliatie. Indien ingeschakeld, stelt u de affiliatierol in op de waarde uit de instelling &apos;Affil.rol bij maken prog.inschr.&apos;. Indien uitgeschakeld, geeft u geen rol op.</help>
-        <label>Affil.rol instellen bij maken pr.inschr.</label>
-        <name>Affl_ProgEnroll_Set_Role__c</name>
-    </fields>
-    <fields>
-        <help>De waarde die wordt ingesteld voor de status van een affiliatierecord die automatisch wordt gemaakt bij een programma-inschrijving.</help>
-        <label>Affil.status bij maken prog.inschr.</label>
-        <name>Affl_ProgEnroll_Status_Map__c</name>
-    </fields>
-    <fields>
-        <help>Automatisch gemaakte relaties worden gededupliceerd om relatierecordduplicatie tussen contactpersonen te voorkomen. Selecteer &apos;Autom. gem. duplicaatrelaties toestaan&apos; om dit uit te schakelen en meerdere zelfde relaties tussen contactpersonen toe te staan.</help>
-        <label>Autom. gem. duplicaatrelaties toestaan</label>
-        <name>Allow_AutoCreated_Duplicates__c</name>
-    </fields>
-    <fields>
-        <help>De meest recente uitvoeringsdatum van het foutenlogboek voor asynchrone taken.</help>
-        <label>Laatste uitvoering async. foutencontrole</label>
-        <name>Async_Error_Check_Last_Run__c</name>
-    </fields>
-    <fields>
-        <help>Als dit is ingesteld, wordt de naam van een huishouden automatisch ingesteld op basis van de instellingen voor de indeling van namen van huishoudens.</help>
-        <label>Automatische naamgeving huishouden</label>
-        <name>Automatic_Household_Naming__c</name>
-    </fields>
-    <fields>
-        <help>Schakelt de functionaliteit voor meerdere adressen in voor contactpersonen.</help>
-        <label>Adresbeheerondersteuning contactpersonen</label>
-        <name>Contacts_Addresses_Enabled__c</name>
-    </fields>
-    <fields>
-        <help>De beheersingswaarde die automatisch wordt ingesteld voor nieuw gemaakte records voor de taal van een contactpersoon wanneer gebruikers het opzoekveld Primaire taal instellen voor een contactpersoon.</help>
-        <label>Standaardbeheersing taal contactpersoon</label>
-        <name>Default_Contact_Language_Fluency__c</name>
-    </fields>
-    <fields>
-        <help>Indien geselecteerd, wordt het aangepaste raamwerk voor foutafhandeling uitgeschakeld.</help>
-        <label>Foutafhandeling uitschakelen</label>
-        <name>Disable_Error_Handling__c</name>
-    </fields>
-    <fields>
-        <help>Selecteer dit om het afdwingen van het veld Voorkeurs-e-mail voor contactpersonen uit te schakelen.</help>
-        <label>Afdwinging voorkeurs-e-mail uitschakelen</label>
-        <name>Disable_Preferred_Email_Enforcement__c</name>
-    </fields>
-    <fields>
-        <help>Selecteer dit om het afdwingen van het veld Voorkeurstelefoonnummer voor contactpersonen uit te schakelen.</help>
-        <label>Afdwinging voorkeurstel.nr uitschakelen</label>
-        <name>Disable_Preferred_Phone_Enforcement__c</name>
-    </fields>
-    <fields>
-        <help>Indien ingeschakeld, kunnen gebruikers het contactpersoontype (staflid of student) kiezen als ze een cursusverbindingsrecord maken. Deze functie vereist dat standaard contactpersoonrecordtypen worden ingesteld voor actieve studenten en stafleden.</help>
-        <label>Cursusverbindingen inschakelen</label>
-        <name>Enable_Course_Connections__c</name>
-    </fields>
-    <fields>
-        <help>Selecteer dit om debug-instructies in beheerde pakketcode in te schakelen.</help>
-        <label>Debug inschakelen</label>
-        <name>Enable_Debug__c</name>
-    </fields>
-    <fields>
-        <help>Synchroniseert het veld Voorkeurstelefoonnummer naar het standaard telefoonnummerveld van de contactpersoon en valideert dat de waarde in Voorkeurstelefoonnummer bestaat.</help>
-        <label>Sync. nieuw voorkeurstel.nr inschakelen</label>
-        <name>Enable_New_Preferred_Phone_Sync__c</name>
-    </fields>
-    <fields>
-        <help>Als dit is geselecteerd, worden meldingen gepost voor door pakketten gegenereerde fouten.</help>
-        <label>Foutmeldingen</label>
-        <name>Error_Notifications_On__c</name>
-    </fields>
-    <fields>
-        <help>Slaat het type gebruiker op dat foutmeldingen moet ontvangen.</help>
-        <label>Ontvangers foutmeldingen</label>
-        <name>Error_Notifications_To__c</name>
-    </fields>
-    <fields>
-        <help>Het standaard contactpersoonrecordtype voor stafleden wanneer een cursusverbindingsrecord wordt gemaakt.</help>
-        <label>Recordtype voor staflid</label>
-        <name>Faculty_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Slaat de naamindeling voor huishoudenaccounts op.</help>
-        <label>Naamindeling huishoudenaccount</label>
-        <name>Household_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help>Het accountrecordtype dat voor huishoudenaccounts wordt gebruikt. Deze instelling is van invloed op het beheer van adresrecords en de naamindeling van huishoudenaccounts.</help>
-        <label>Acc.recordtype huishoudenadressen</label>
-        <name>Household_Addresses_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Slaat overige informatie op over de naamindeling voor een huishoudenaccount.</help>
-        <label>Overige huishoudennaaminstelling</label>
-        <name>Household_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help>Selecteer een gewenst voorkeurstelefoonnummer wanneer de batchtaak voor gegevensopschoning wordt uitgevoerd.</help>
-        <label>Selectie voorkeurstelefoonnummer</label>
-        <name>Preferred_Phone_Selection__c</name>
-    </fields>
-    <fields>
-        <label>Accountverwijdering voorkomen</label>
-        <name>Prevent_Account_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Adresverwijdering voorkomen</label>
-        <name>Prevent_Address_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Affiliatieverwijdering voorkomen</label>
-        <name>Prevent_Affiliation_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Verw. gedragsbetrokkenheid voorkomen</label>
-        <name>Prevent_Behavior_Involvement_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Caseverwijdering voorkomen</label>
-        <name>Prevent_Case_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Verwijdering contactpersoon voorkomen</label>
-        <name>Prevent_Contact_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Verwijdering cursusverbinding voorkomen</label>
-        <name>Prevent_Course_Connection_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Cursusverwijdering voorkomen</label>
-        <name>Prevent_Course_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Verwijdering cursusaanbod voorkomen</label>
-        <name>Prevent_Course_Offering_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Faciliteitsverwijdering voorkomen</label>
-        <name>Prevent_Facility_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Verwijdering planvereiste voorkomen</label>
-        <name>Prevent_Plan_Requirement_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Verw. programma-inschrijving voorkomen</label>
-        <name>Prevent_Program_Enrollment_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Verwijdering programmaplan voorkomen</label>
-        <name>Prevent_Program_Plan_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Termijnverwijdering voorkomen</label>
-        <name>Prevent_Term_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Toetsverwijdering voorkomen</label>
-        <name>Prevent_Test_Deletion__c</name>
-    </fields>
-    <fields>
-        <label>Verwijdering tijdblok voorkomen</label>
-        <name>Prevent_Time_Block_Deletion__c</name>
-    </fields>
-    <fields>
-        <help>Bepaalt de methode voor het generen van de wederzijdse relatie. Gebruik Instellingen lijst om aangepaste instellingen op geslacht/gender te gebruiken. Gebruik Waarde-inversie om het type om te keren, indien van toepassing (&quot;Ouder-Kind&quot; naar &quot;Kind-Ouder&quot;)</help>
-        <label>Wederzijdse methode</label>
-        <name>Reciprocal_Method__c</name>
-    </fields>
-    <fields>
-        <help>Dit veld wordt momenteel niet gebruikt.</help>
-        <label>ID van veld Naam van relatie</label>
-        <name>Relationship_Name_Field_Id__c</name>
-    </fields>
-    <fields>
-        <help>Dit veld wordt momenteel niet gebruikt.</help>
-        <label>ID van veld ID van naam van relatie</label>
-        <name>Relationship_Name_Id_Field_Id__c</name>
-    </fields>
-    <fields>
-        <help>Indien ingeschakeld, worden wijzigingen van enkele adresvelden voor een contactpersoon of account gezien als updates van het bestaande adres (zo wordt er geen nieuw adresobject gemaakt). Wijzigingen van spaties en hoofdletters worden als updates gezien.</help>
-        <label>Simpele adreswijziging gezien als update</label>
-        <name>Simple_Address_Change_Treated_as_Update__c</name>
-    </fields>
-    <fields>
-        <help>Schakel deze functie in om fouten te bewaren.</help>
-        <label>Fouten bewaren</label>
-        <name>Store_Errors_On__c</name>
-    </fields>
-    <fields>
-        <label>Recordtype voor student</label>
-        <name>Student_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Als dit is geselecteerd, kunnen planvereisten een programmaplan of een bovenliggende planvereiste specificeren, maar niet beide. Als u toch beide opgeeft, ziet u een foutbericht en kunt u pas opslaan als er slechts één is geselecteerd.</help>
-        <label>Pr.plan vr geneste pr.vereiste valideren</label>
-        <name>Validate_Program_Plan_for_Nested_PR__c</name>
-    </fields>
-    <gender><!-- Neuter --></gender>
+  <fields>
+    <name>Account_Processor__c</name>
+    <help>ID van het standaard recordtype voor een account. Als u bijvoorbeeld Administratief opgeeft (het aanbevolen accountmodel), voert u de ID van het administratieve recordtype in voor het accountobject.</help>
+    <label>Accountverwerker</label>
+  </fields>
+  <fields>
+    <name>Accounts_Addresses_Enabled__c</name>
+    <help>De recordtypen voor accounts waarbij meerdere adressen moeten zijn ingeschakeld.</help>
+    <label>Accounts met meerdere adressen</label>
+  </fields>
+  <fields>
+    <name>Accounts_to_Delete__c</name>
+    <help>De recordtypen voor accounts die automatisch moeten worden verwijderd als alle gekoppelde contactpersonen zijn verwijderd.</help>
+    <label>Te verwijderen accounts</label>
+  </fields>
+  <fields>
+    <name>Admin_Account_Naming_Format__c</name>
+    <help>Slaat de standaardindeling voor administratieve accountnamen op.</help>
+    <label>Naamindeling administratief account</label>
+  </fields>
+  <fields>
+    <name>Admin_Other_Name_Setting__c</name>
+    <help>Slaat overige informatie op over de naamindeling voor een administratief account.</help>
+    <label>Overige administratieve naaminstelling</label>
+  </fields>
+  <fields>
+    <name>Administrative_Account_Record_Type__c</name>
+    <help>Het accountrecordtype dat voor administratieve accounts wordt gebruikt. Deze instelling is van invloed op het beheer van adresrecords en de naamindeling van administratieve accounts.</help>
+    <label>Recordtype administratief account</label>
+  </fields>
+  <fields>
+    <name>Advancement_Namespace__c</name>
+    <help>De naamruimte van het door de giftinvoermanager beheerde pakket.</help>
+    <label>GEM-naamruimte</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Record_Type_Enforced__c</name>
+    <help>Na inschakeling ontstaat een fout als het in een primair contactpersoonveld opgegeven account een ander recordtype heeft dan in de EDA-instellingen. De affiliatierecord wordt niet gemaakt en primaire contactpersoonvelden worden niet gecorrigeerd.</help>
+    <label>Affiliatierecordtype afgedwongen</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+    <help>Geeft aan of de einddatum van de affiliatie die bij programma-inschrijving is gemaakt moet worden ingesteld. Indien ingeschakeld, stelt u de einddatum van de programma-inschrijving in. Indien uitgeschakeld, geeft u de einddatum van de affiliatie niet op.</help>
+    <label>Einddatum affil. kopiëren van pr.inschr.</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
+    <help>Geeft aan of de begindatum van de affiliatie die bij programma-inschrijving is gemaakt moet worden ingesteld. Indien ingeschakeld, stelt u de begindatum van de programma-inschrijving in. Indien uitgeschakeld, geeft u geen begindatum op voor de affiliatie.</help>
+    <label>Begindat. affil. kopiëren van pr.inschr.</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Del_Status__c</name>
+    <help>Als de gerelateerde instelling 'Affil. verwijderen bij verw. pr.inschr.' is uitgeschakeld, bepaalt deze instelling de waarde die moet worden ingesteld voor de status van de affiliatie wanneer de gerelateerde programma-inschrijving wordt verwijderd.</help>
+    <label>Affil.status bij verw. pr.inschr.</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Del__c</name>
+    <help>Bepaalt of een affiliatie moet worden verwijderd bij het verwijderen van de gerelateerde programma-inschrijving. Indien ingeschakeld, stelt u de status van de affiliatie in op de waarde uit de gerelateerde instelling, 'Affil.status bij verw. pr.inschr.'.</help>
+    <label>Affil. verwijderen bij verw. pr.inschr.</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
+    <help>Als de gerelateerde instelling 'Affil.rol instellen bij maken pr.inschr.' is ingeschakeld, bepaalt deze instelling de waarde die moet worden ingesteld voor de rol van de affiliatie die met een programma-inschrijving is gemaakt.</help>
+    <label>Affil.rol bij maken prog.inschr.</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
+    <help>Bepaalt of een rol moet worden opgegeven voor de bij programma-inschrijving gemaakte affiliatie. Indien ingeschakeld, stelt u de affiliatierol in op de waarde uit de instelling 'Affil.rol bij maken prog.inschr.'. Indien uitgeschakeld, geeft u geen rol op.</help>
+    <label>Affil.rol instellen bij maken pr.inschr.</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Status_Map__c</name>
+    <help>De waarde die wordt ingesteld voor de status van een affiliatierecord die automatisch wordt gemaakt bij een programma-inschrijving.</help>
+    <label>Affil.status bij maken prog.inschr.</label>
+  </fields>
+  <fields>
+    <name>Allow_AutoCreated_Duplicates__c</name>
+    <help>Automatisch gemaakte relaties worden gededupliceerd om relatierecordduplicatie tussen contactpersonen te voorkomen. Selecteer 'Autom. gem. duplicaatrelaties toestaan' om dit uit te schakelen en meerdere zelfde relaties tussen contactpersonen toe te staan.</help>
+    <label>Autom. gem. duplicaatrelaties toestaan</label>
+  </fields>
+  <fields>
+    <name>Async_Error_Check_Last_Run__c</name>
+    <help>De meest recente uitvoeringsdatum van het foutenlogboek voor asynchrone taken.</help>
+    <label>Laatste uitvoering async. foutencontrole</label>
+  </fields>
+  <fields>
+    <name>Automatic_Household_Naming__c</name>
+    <help>Als dit is ingesteld, wordt de naam van een huishouden automatisch ingesteld op basis van de instellingen voor de indeling van namen van huishoudens.</help>
+    <label>Automatische naamgeving huishouden</label>
+  </fields>
+  <fields>
+    <name>Contacts_Addresses_Enabled__c</name>
+    <help>Schakelt de functionaliteit voor meerdere adressen in voor contactpersonen.</help>
+    <label>Adresbeheerondersteuning contactpersonen</label>
+  </fields>
+  <fields>
+    <name>Default_Contact_Language_Fluency__c</name>
+    <help>De beheersingswaarde die automatisch wordt ingesteld voor nieuw gemaakte records voor de taal van een contactpersoon wanneer gebruikers het opzoekveld Primaire taal instellen voor een contactpersoon.</help>
+    <label>Standaardbeheersing taal contactpersoon</label>
+  </fields>
+  <fields>
+    <name>Disable_Error_Handling__c</name>
+    <help>Indien geselecteerd, wordt het aangepaste raamwerk voor foutafhandeling uitgeschakeld.</help>
+    <label>Foutafhandeling uitschakelen</label>
+  </fields>
+  <fields>
+    <name>Disable_Preferred_Email_Enforcement__c</name>
+    <help>Selecteer dit om het afdwingen van het veld Voorkeurs-e-mail voor contactpersonen uit te schakelen.</help>
+    <label>Afdwinging voorkeurs-e-mail uitschakelen</label>
+  </fields>
+  <fields>
+    <name>Disable_Preferred_Phone_Enforcement__c</name>
+    <help>Selecteer dit om het afdwingen van het veld Voorkeurstelefoonnummer voor contactpersonen uit te schakelen.</help>
+    <label>Afdwinging voorkeurstel.nr uitschakelen</label>
+  </fields>
+  <fields>
+    <name>Enable_Course_Connections__c</name>
+    <help>Indien ingeschakeld, kunnen gebruikers het contactpersoontype (staflid of student) kiezen als ze een cursusverbindingsrecord maken. Deze functie vereist dat standaard contactpersoonrecordtypen worden ingesteld voor actieve studenten en stafleden.</help>
+    <label>Cursusverbindingen inschakelen</label>
+  </fields>
+  <fields>
+    <name>Enable_Debug__c</name>
+    <help>Selecteer dit om debug-instructies in beheerde pakketcode in te schakelen.</help>
+    <label>Debug inschakelen</label>
+  </fields>
+  <fields>
+    <name>Enable_New_Preferred_Phone_Sync__c</name>
+    <help>Synchroniseert het veld Voorkeurstelefoonnummer naar het standaard telefoonnummerveld van de contactpersoon en valideert dat de waarde in Voorkeurstelefoonnummer bestaat.</help>
+    <label>Sync. nieuw voorkeurstel.nr inschakelen</label>
+  </fields>
+  <fields>
+    <name>Error_Notifications_On__c</name>
+    <help>Als dit is geselecteerd, worden meldingen gepost voor door pakketten gegenereerde fouten.</help>
+    <label>Foutmeldingen</label>
+  </fields>
+  <fields>
+    <name>Error_Notifications_To__c</name>
+    <help>Slaat het type gebruiker op dat foutmeldingen moet ontvangen.</help>
+    <label>Ontvangers foutmeldingen</label>
+  </fields>
+  <fields>
+    <name>Faculty_RecType__c</name>
+    <help>Het standaard contactpersoonrecordtype voor stafleden wanneer een cursusverbindingsrecord wordt gemaakt.</help>
+    <label>Recordtype voor staflid</label>
+  </fields>
+  <fields>
+    <name>Household_Account_Naming_Format__c</name>
+    <help>Slaat de naamindeling voor huishoudenaccounts op.</help>
+    <label>Naamindeling huishoudenaccount</label>
+  </fields>
+  <fields>
+    <name>Household_Addresses_RecType__c</name>
+    <help>Het accountrecordtype dat voor huishoudenaccounts wordt gebruikt. Deze instelling is van invloed op het beheer van adresrecords en de naamindeling van huishoudenaccounts.</help>
+    <label>Acc.recordtype huishoudenadressen</label>
+  </fields>
+  <fields>
+    <name>Household_Other_Name_Setting__c</name>
+    <help>Slaat overige informatie op over de naamindeling voor een huishoudenaccount.</help>
+    <label>Overige huishoudennaaminstelling</label>
+  </fields>
+  <fields>
+    <name>Preferred_Phone_Selection__c</name>
+    <help>Selecteer een gewenst voorkeurstelefoonnummer wanneer de batchtaak voor gegevensopschoning wordt uitgevoerd.</help>
+    <label>Selectie voorkeurstelefoonnummer</label>
+  </fields>
+  <fields>
+    <name>Prevent_Account_Deletion__c</name>
+    <label>Accountverwijdering voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Address_Deletion__c</name>
+    <label>Adresverwijdering voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Affiliation_Deletion__c</name>
+    <label>Affiliatieverwijdering voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Behavior_Involvement_Deletion__c</name>
+    <label>Verw. gedragsbetrokkenheid voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Case_Deletion__c</name>
+    <label>Caseverwijdering voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Contact_Deletion__c</name>
+    <label>Verwijdering contactpersoon voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Course_Deletion__c</name>
+    <label>Cursusverwijdering voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Course_Connection_Deletion__c</name>
+    <label>Verwijdering cursusverbinding voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Facility_Deletion__c</name>
+    <label>Faciliteitsverwijdering voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Course_Offering_Deletion__c</name>
+    <label>Verwijdering cursusaanbod voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Plan_Requirement_Deletion__c</name>
+    <label>Verwijdering planvereiste voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Program_Enrollment_Deletion__c</name>
+    <label>Verw. programma-inschrijving voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Program_Plan_Deletion__c</name>
+    <label>Verwijdering programmaplan voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Term_Deletion__c</name>
+    <label>Termijnverwijdering voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Test_Deletion__c</name>
+    <label>Toetsverwijdering voorkomen</label>
+  </fields>
+  <fields>
+    <name>Prevent_Time_Block_Deletion__c</name>
+    <label>Verwijdering tijdblok voorkomen</label>
+  </fields>
+  <fields>
+    <name>Reciprocal_Method__c</name>
+    <help>Bepaalt de methode voor het generen van de wederzijdse relatie. Gebruik Instellingen lijst om aangepaste instellingen op geslacht/gender te gebruiken. Gebruik Waarde-inversie om het type om te keren, indien van toepassing ("Ouder-Kind" naar "Kind-Ouder")</help>
+    <label>Wederzijdse methode</label>
+  </fields>
+  <fields>
+    <name>Relationship_Name_Field_Id__c</name>
+    <help>Dit veld wordt momenteel niet gebruikt.</help>
+    <label>ID van veld Naam van relatie</label>
+  </fields>
+  <fields>
+    <name>Relationship_Name_Id_Field_Id__c</name>
+    <help>Dit veld wordt momenteel niet gebruikt.</help>
+    <label>ID van veld ID van naam van relatie</label>
+  </fields>
+  <fields>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
+    <help>Indien ingeschakeld, worden wijzigingen van enkele adresvelden voor een contactpersoon of account gezien als updates van het bestaande adres (zo wordt er geen nieuw adresobject gemaakt). Wijzigingen van spaties en hoofdletters worden als updates gezien.</help>
+    <label>Simpele adreswijziging gezien als update</label>
+  </fields>
+  <fields>
+    <name>Store_Errors_On__c</name>
+    <help>Schakel deze functie in om fouten te bewaren.</help>
+    <label>Fouten bewaren</label>
+  </fields>
+  <fields>
+    <name>Student_RecType__c</name>
+    <label>Recordtype voor student</label>
+  </fields>
+  <fields>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
+    <help>Als dit is geselecteerd, kunnen planvereisten een programmaplan of een bovenliggende planvereiste specificeren, maar niet beide. Als u toch beide opgeeft, ziet u een foutbericht en kunt u pas opslaan als er slechts één is geselecteerd.</help>
+    <label>Pr.plan vr geneste pr.vereiste valideren</label>
+  </fields>
 </CustomObjectTranslation>

@@ -1,131 +1,135 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>false</plural>
-        <value>Zugehörigkeit</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value>Zugehörigkeiten</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>false</plural>
-        <value>Zugehörigkeit</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>true</plural>
-        <value>Zugehörigkeiten</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>false</plural>
-        <value>Zugehörigkeit</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value>Zugehörigkeiten</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>false</plural>
-        <value>Zugehörigkeit</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>true</plural>
-        <value>Zugehörigkeiten</value>
-    </caseValues>
-    <fields>
-        <help>Die Organisation, zu der die Person gehört.</help>
-        <label>Organisation</label>
-        <name>Account__c</name>
-        <relationshipLabel>Zugehörige Kontakte</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Datensatztyp des zugehörigen Accounts, z. B. Hochschulfachbereich oder Sportorganisation (schreibgeschützt).</help>
-        <label>Typ der Zugehörigkeit</label>
-        <name>Affiliation_Type__c</name>
-    </fields>
-    <fields>
-        <help>Die zu dieser Organisation gehörige Person.</help>
-        <label>Kontakt</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Zugehörige Accounts</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Details zur Zugehörigkeit zwischen der Person und Organisation.</help>
-        <label>Beschreibung</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help>Das Datum, an dem diese Zugehörigkeit endete bzw. enden wird.</help>
-        <label>Enddatum</label>
-        <name>EndDate__c</name>
-    </fields>
-    <fields>
-        <help>Gibt an, ob dies die primäre Zugehörigkeit dieser Person darstellt. Falls ausgewählt, wird der Organisationsname im Kontaktdatensatz im entsprechenden Feld &quot;Primäre Zugehörigkeit&quot; gespeichert.</help>
-        <label>Primär</label>
-        <name>Primary__c</name>
-    </fields>
-    <fields>
-        <help>Die Rolle dieser Person in der Organisation.</help>
-        <label>Rolle</label>
-        <name>Role__c</name>
-        <picklistValues>
-            <masterLabel>Applicant</masterLabel>
-            <translation>Bewerber</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Employee</masterLabel>
-            <translation>Mitarbeiter</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Faculty</masterLabel>
-            <translation>Lehrpersonal</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Prospect</masterLabel>
-            <translation>Interessent</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Student</masterLabel>
-            <translation>Schüler/Student</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Das Datum, an dem die Zugehörigkeit dieser Person zu dieser Organisation begann.</help>
-        <label>Startdatum</label>
-        <name>StartDate__c</name>
-    </fields>
-    <fields>
-        <help>Gibt an, ob es sich um eine aktuelle oder ehemalige Zugehörigkeit handelt.</help>
-        <label>Status</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation>Aktuell</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Former</masterLabel>
-            <translation>Ehemalig</translation>
-        </picklistValues>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Affiliation Layout</layout>
-        <sections>
-            <label>Zugehörigkeitsinformationen</label>
-            <section>Affiliation Information</section>
-        </sections>
-        <sections>
-            <label>Benutzerdefinierte Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Zugehörigkeitsschlüssel</nameFieldLabel>
+  <fields>
+    <name>Account__c</name>
+    <help>Die Organisation, zu der die Person gehört.</help>
+    <relationshipLabel>Zugehörige Kontakte</relationshipLabel>
+    <label>Organisation</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Type__c</name>
+    <help>Datensatztyp des zugehörigen Accounts, z. B. Hochschulfachbereich oder Sportorganisation (schreibgeschützt).</help>
+    <label>Typ der Zugehörigkeit</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>Die zu dieser Organisation gehörige Person.</help>
+    <relationshipLabel>Zugehörige Accounts</relationshipLabel>
+    <label>Kontakt</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Details zur Zugehörigkeit zwischen der Person und Organisation.</help>
+    <label>Beschreibung</label>
+  </fields>
+  <fields>
+    <name>EndDate__c</name>
+    <help>Das Datum, an dem diese Zugehörigkeit endete bzw. enden wird.</help>
+    <label>Enddatum</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Gibt an, ob dies die primäre Zugehörigkeit dieser Person darstellt. Falls ausgewählt, wird der Organisationsname im Kontaktdatensatz im entsprechenden Feld "Primäre Zugehörigkeit" gespeichert.</help>
+    <label>Primär</label>
+  </fields>
+  <fields>
+    <name>Role__c</name>
+    <help>Die Rolle dieser Person in der Organisation.</help>
+    <label>Rolle</label>
+    <picklistValues>
+      <masterLabel>Student</masterLabel>
+      <translation>Schüler/Student</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Prospect</masterLabel>
+      <translation>Interessent</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Applicant</masterLabel>
+      <translation>Bewerber</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faculty</masterLabel>
+      <translation>Lehrpersonal</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employee</masterLabel>
+      <translation>Mitarbeiter</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>StartDate__c</name>
+    <help>Das Datum, an dem die Zugehörigkeit dieser Person zu dieser Organisation begann.</help>
+    <label>Startdatum</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Gibt an, ob es sich um eine aktuelle oder ehemalige Zugehörigkeit handelt.</help>
+    <label>Status</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Aktuell</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Ehemalig</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Affiliation Layout</layout>
+    <sections>
+      <label>Zugehörigkeitsinformationen</label>
+      <section>Affiliation Information</section>
+    </sections>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Zugehörigkeitsschlüssel</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Zugehörigkeitsschlüssel</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Zugehörigkeit</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Zugehörigkeit</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Zugehörigkeit</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Zugehörigkeit</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Zugehörigkeiten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Zugehörigkeiten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Zugehörigkeiten</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Zugehörigkeiten</value>
+  </caseValues>
 </CustomObjectTranslation>

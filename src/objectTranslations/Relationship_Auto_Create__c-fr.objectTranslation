@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Relationship Auto-Create --></value>
-    </caseValues>
-    <fields>
-        <help>Pour des relations automatiquement créées basées sur les membres de campagne, la liste des types de campagne auxquels l&apos;automatisation s&apos;applique. Ce champ est vide pour des relations automatiquement créées basées sur des contacts.</help>
-        <label>Types de campagne</label>
-        <name>Campaign_Types__c</name>
-    </fields>
-    <fields>
-        <help>L&apos;étiquette du champ de référence qui déclenche la création de cette relation lorsque la valeur de champ est mise à jour.</help>
-        <label>Champ</label>
-        <name>Field__c</name>
-    </fields>
-    <fields>
-        <help>Le nom d&apos;API de l&apos;objet (Contact ou CampaignMember) dans lequel le champ de référence se situe.</help>
-        <label>Objet</label>
-        <name>Object__c</name>
-    </fields>
-    <fields>
-        <help>Le type de relation (référent, famille, etc.) à créer entre l&apos;objet de base défini dans le champ Objet et l&apos;objet de référence.</help>
-        <label>Type de relation</label>
-        <name>Relationship_Type__c</name>
-    </fields>
-    <gender><!-- Masculine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Campaign_Types__c</name>
+    <help>Pour des relations automatiquement créées basées sur les membres de campagne, la liste des types de campagne auxquels l'automatisation s'applique. Ce champ est vide pour des relations automatiquement créées basées sur des contacts.</help>
+    <label>Types de campagne</label>
+  </fields>
+  <fields>
+    <name>Field__c</name>
+    <help>L'étiquette du champ de référence qui déclenche la création de cette relation lorsque la valeur de champ est mise à jour.</help>
+    <label>Champ</label>
+  </fields>
+  <fields>
+    <name>Object__c</name>
+    <help>Le nom d'API de l'objet (Contact ou CampaignMember) dans lequel le champ de référence se situe.</help>
+    <label>Objet</label>
+  </fields>
+  <fields>
+    <name>Relationship_Type__c</name>
+    <help>Le type de relation (référent, famille, etc.) à créer entre l'objet de base défini dans le champ Objet et l'objet de référence.</help>
+    <label>Type de relation</label>
+  </fields>
 </CustomObjectTranslation>

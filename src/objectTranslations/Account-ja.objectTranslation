@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fields>
-        <label>学区(請求先)</label>
-        <name>Billing_County__c</name>
-    </fields>
-    <fields>
-        <help>この取引先の現在の住所レコードへの参照。取引先の [住所(請求先)] 項目には、現在の住所レコードから住所項目が入力されます。</help>
-        <label>現在の住所</label>
-        <name>Current_Address__c</name>
-        <relationshipLabel>取引先 (現在の住所)</relationshipLabel>
-    </fields>
-    <fields>
-        <help>世帯取引先または管理取引先の主要な取引先責任者。</help>
-        <label>主取引先責任者</label>
-        <name>Primary_Contact__c</name>
-        <relationshipLabel>取引先</relationshipLabel>
-    </fields>
-    <fields>
-        <help>地域で認識されている基準を使用して教育機関を一意に識別するコード。</help>
-        <label>学校コード</label>
-        <name>School_Code__c</name>
-    </fields>
-    <fields>
-        <label>学区(納入先)</label>
-        <name>Shipping_County__c</name>
-    </fields>
-    <layouts>
-        <layout>HEDA Household Layout</layout>
-        <sections>
-            <label>住所</label>
-            <section>Address</section>
-        </sections>
-        <sections>
-            <label>カスタムリンク</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>説明</label>
-            <section>Description</section>
-        </sections>
-        <sections>
-            <label>項目</label>
-            <section>Fields</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>HEDA Organization Layout</layout>
-        <sections>
-            <label>住所</label>
-            <section>Address</section>
-        </sections>
-        <sections>
-            <label>カスタムリンク</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>説明</label>
-            <section>Description</section>
-        </sections>
-        <sections>
-            <label>項目</label>
-            <section>Fields</section>
-        </sections>
-    </layouts>
+  <fields>
+    <name>Billing_County__c</name>
+    <label>学区(請求先)</label>
+  </fields>
+  <fields>
+    <name>Current_Address__c</name>
+    <help>この取引先の現在の住所レコードへの参照。取引先の [住所(請求先)] 項目には、現在の住所レコードから住所項目が入力されます。</help>
+    <relationshipLabel>取引先 (現在の住所)</relationshipLabel>
+    <label>現在の住所</label>
+  </fields>
+  <fields>
+    <name>Primary_Contact__c</name>
+    <help>世帯取引先または管理取引先の主要な取引先責任者。</help>
+    <relationshipLabel>取引先</relationshipLabel>
+    <label>主取引先責任者</label>
+  </fields>
+  <fields>
+    <name>School_Code__c</name>
+    <help>地域で認識されている基準を使用して教育機関を一意に識別するコード。</help>
+    <label>学校コード</label>
+  </fields>
+  <fields>
+    <name>Shipping_County__c</name>
+    <label>学区(納入先)</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Organization Layout</layout>
+    <sections>
+      <label>項目</label>
+      <section>Fields</section>
+    </sections>
+    <sections>
+      <label>住所</label>
+      <section>Address</section>
+    </sections>
+    <sections>
+      <label>説明</label>
+      <section>Description</section>
+    </sections>
+    <sections>
+      <label>カスタムリンク</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <layouts>
+    <layout>HEDA Household Layout</layout>
+    <sections>
+      <label>項目</label>
+      <section>Fields</section>
+    </sections>
+    <sections>
+      <label>住所</label>
+      <section>Address</section>
+    </sections>
+    <sections>
+      <label>説明</label>
+      <section>Description</section>
+    </sections>
+    <sections>
+      <label>カスタムリンク</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
 </CustomObjectTranslation>

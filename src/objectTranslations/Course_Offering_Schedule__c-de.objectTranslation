@@ -1,119 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>false</plural>
-        <value>Zeitplan des Kursangebots</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value>Zeitpläne des Kursangebots</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>false</plural>
-        <value>Zeitplan des Kursangebots</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>true</plural>
-        <value>Zeitplänen des Kursangebots</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>false</plural>
-        <value>Zeitplans des Kursangebots</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value>Zeitpläne des Kursangebots</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>false</plural>
-        <value>Zeitplans des Kursangebots</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>true</plural>
-        <value>Zeitplänen des Kursangebots</value>
-    </caseValues>
-    <fields>
-        <help>Das Kursangebot, für das dieser Zeitplan gilt.</help>
-        <label>Kursangebot</label>
-        <name>Course_Offering__c</name>
-        <relationshipLabel>Zeitpläne für Kursangebot</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Die Tageszeit, zu der das Kursangebot endet. Wenn Sie einen Zeitblock für dieses Kursangebot eingegeben haben, können Sie dieses Feld leer lassen.</help>
-        <label>Endzeit</label>
-        <name>End_Time__c</name>
-    </fields>
-    <fields>
-        <help>Der Ort des geplanten Kursangebots.</help>
-        <label>Räumlichkeit</label>
-        <name>Facility__c</name>
-        <relationshipLabel>Zeitpläne für Kursangebot</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Auswählen, um anzugeben, dass dieses Kursangebot freitags stattfindet. Sie können mehrere Tage auswählen.</help>
-        <label>Freitag</label>
-        <name>Friday__c</name>
-    </fields>
-    <fields>
-        <help>Auswählen, um anzugeben, dass dieses Kursangebot montags stattfindet. Sie können mehrere Tage auswählen.</help>
-        <label>Montag</label>
-        <name>Monday__c</name>
-    </fields>
-    <fields>
-        <help>Auswählen, um anzugeben, dass dieses Kursangebot samstags stattfindet. Sie können mehrere Tage auswählen.</help>
-        <label>Samstag</label>
-        <name>Saturday__c</name>
-    </fields>
-    <fields>
-        <help>Die Tageszeit, zu der dieses Kursangebot beginnt. Wenn Sie einen Zeitblock für dieses Kursangebot eingegeben haben, können Sie dieses Feld leer lassen.</help>
-        <label>Startzeit</label>
-        <name>Start_Time__c</name>
-    </fields>
-    <fields>
-        <help>Auswählen, um anzugeben, dass dieses Kursangebot sonntags stattfindet. Sie können mehrere Tage auswählen.</help>
-        <label>Sonntag</label>
-        <name>Sunday__c</name>
-    </fields>
-    <fields>
-        <help>Auswählen, um anzugeben, dass dieses Kursangebot donnerstags stattfindet. Sie können mehrere Tage auswählen.</help>
-        <label>Donnerstag</label>
-        <name>Thursday__c</name>
-    </fields>
-    <fields>
-        <help>Der Zeitblock, in dem dieses Kursangebot abgehalten wird.</help>
-        <label>Zeitblock</label>
-        <name>Time_Block__c</name>
-        <relationshipLabel>Zeitpläne für Kursangebot</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Auswählen, um anzugeben, dass dieses Kursangebot dienstags stattfindet. Sie können mehrere Tage auswählen.</help>
-        <label>Dienstag</label>
-        <name>Tuesday__c</name>
-    </fields>
-    <fields>
-        <help>Auswählen, um anzugeben, dass dieses Kursangebot mittwochs stattfindet. Sie können mehrere Tage auswählen.</help>
-        <label>Mittwoch</label>
-        <name>Wednesday__c</name>
-    </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>EDA Course Offering Schedule Layout</layout>
-        <sections>
-            <label>Benutzerdefinierte Links</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Wochentage</label>
-            <section>Days of Week</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Name des Zeitplans des Kursangebots</nameFieldLabel>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>Das Kursangebot, für das dieser Zeitplan gilt.</help>
+    <relationshipLabel>Zeitpläne für Kursangebot</relationshipLabel>
+    <label>Kursangebot</label>
+  </fields>
+  <fields>
+    <name>End_Time__c</name>
+    <help>Die Tageszeit, zu der das Kursangebot endet. Wenn Sie einen Zeitblock für dieses Kursangebot eingegeben haben, können Sie dieses Feld leer lassen.</help>
+    <label>Endzeit</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>Der Ort des geplanten Kursangebots.</help>
+    <relationshipLabel>Zeitpläne für Kursangebot</relationshipLabel>
+    <label>Räumlichkeit</label>
+  </fields>
+  <fields>
+    <name>Friday__c</name>
+    <help>Auswählen, um anzugeben, dass dieses Kursangebot freitags stattfindet. Sie können mehrere Tage auswählen.</help>
+    <label>Freitag</label>
+  </fields>
+  <fields>
+    <name>Monday__c</name>
+    <help>Auswählen, um anzugeben, dass dieses Kursangebot montags stattfindet. Sie können mehrere Tage auswählen.</help>
+    <label>Montag</label>
+  </fields>
+  <fields>
+    <name>Saturday__c</name>
+    <help>Auswählen, um anzugeben, dass dieses Kursangebot samstags stattfindet. Sie können mehrere Tage auswählen.</help>
+    <label>Samstag</label>
+  </fields>
+  <fields>
+    <name>Start_Time__c</name>
+    <help>Die Tageszeit, zu der dieses Kursangebot beginnt. Wenn Sie einen Zeitblock für dieses Kursangebot eingegeben haben, können Sie dieses Feld leer lassen.</help>
+    <label>Startzeit</label>
+  </fields>
+  <fields>
+    <name>Sunday__c</name>
+    <help>Auswählen, um anzugeben, dass dieses Kursangebot sonntags stattfindet. Sie können mehrere Tage auswählen.</help>
+    <label>Sonntag</label>
+  </fields>
+  <fields>
+    <name>Thursday__c</name>
+    <help>Auswählen, um anzugeben, dass dieses Kursangebot donnerstags stattfindet. Sie können mehrere Tage auswählen.</help>
+    <label>Donnerstag</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <help>Der Zeitblock, in dem dieses Kursangebot abgehalten wird.</help>
+    <relationshipLabel>Zeitpläne für Kursangebot</relationshipLabel>
+    <label>Zeitblock</label>
+  </fields>
+  <fields>
+    <name>Tuesday__c</name>
+    <help>Auswählen, um anzugeben, dass dieses Kursangebot dienstags stattfindet. Sie können mehrere Tage auswählen.</help>
+    <label>Dienstag</label>
+  </fields>
+  <fields>
+    <name>Wednesday__c</name>
+    <help>Auswählen, um anzugeben, dass dieses Kursangebot mittwochs stattfindet. Sie können mehrere Tage auswählen.</help>
+    <label>Mittwoch</label>
+  </fields>
+  <layouts>
+    <layout>EDA Course Offering Schedule Layout</layout>
+    <sections>
+      <label>Wochentage</label>
+      <section>Days of Week</section>
+    </sections>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Name des Zeitplans des Kursangebots</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Name des Zeitplans des Kursangebots</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Zeitplan des Kursangebots</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Zeitplan des Kursangebots</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Zeitplans des Kursangebots</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Zeitplans des Kursangebots</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Zeitpläne des Kursangebots</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Zeitplänen des Kursangebots</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Zeitplänen des Kursangebots</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Zeitpläne des Kursangebots</value>
+  </caseValues>
 </CustomObjectTranslation>

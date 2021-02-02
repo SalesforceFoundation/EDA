@@ -1,67 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Oferta de curso</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Ofertas de curso</value>
-    </caseValues>
-    <fields>
-        <help>El número máximo de estudiantes para esta Oferta de curso.</help>
-        <label>Capacidad</label>
-        <name>Capacity__c</name>
-    </fields>
-    <fields>
-        <label>Curso</label>
-        <name>Course__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>La fecha de la última sesión para esta Oferta de curso.</help>
-        <label>Fecha de Finalización</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Las instalaciones donde tendrá lugar esta Oferta de curso.</help>
-        <label>Instalación</label>
-        <name>Facility__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Consulta del instructor principal para esta Oferta de curso.</help>
-        <label>Facultad principal</label>
-        <name>Faculty__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El Id. de sección para esta Oferta de curso. El Id. de sección se utiliza normalmente cuando un curso ofrece múltiples secciones durante un único plazo.</help>
-        <label>Id. de Sección</label>
-        <name>Section_ID__c</name>
-    </fields>
-    <fields>
-        <help>La fecha de la primera sesión para esta Oferta de curso.</help>
-        <label>Fecha de Inicio</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <label>Plazo</label>
-        <name>Term__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Bloque de tiempo</label>
-        <name>Time_Block__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Course Offering Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Id. de Oferta de curso</nameFieldLabel>
+  <fields>
+    <name>Capacity__c</name>
+    <help>El número máximo de estudiantes para esta Oferta de curso.</help>
+    <label>Capacidad</label>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Curso</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>La fecha de la última sesión para esta Oferta de curso.</help>
+    <label>Fecha de Finalización</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>Las instalaciones donde tendrá lugar esta Oferta de curso.</help>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Instalación</label>
+  </fields>
+  <fields>
+    <name>Faculty__c</name>
+    <help>Consulta del instructor principal para esta Oferta de curso.</help>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Facultad principal</label>
+  </fields>
+  <fields>
+    <name>Section_ID__c</name>
+    <help>El Id. de sección para esta Oferta de curso. El Id. de sección se utiliza normalmente cuando un curso ofrece múltiples secciones durante un único plazo.</help>
+    <label>Id. de Sección</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>La fecha de la primera sesión para esta Oferta de curso.</help>
+    <label>Fecha de Inicio</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Plazo</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Bloque de tiempo</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Offering Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Id. de Oferta de curso</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Id. de Oferta de curso</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Oferta de curso</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Ofertas de curso</value>
+  </caseValues>
 </CustomObjectTranslation>

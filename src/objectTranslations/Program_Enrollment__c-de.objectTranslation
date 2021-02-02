@@ -1,159 +1,163 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>false</plural>
-        <value>Programmregistrierung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value>Programmregistrierungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>false</plural>
-        <value>Programmregistrierung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Accusative</caseType>
-        <plural>true</plural>
-        <value>Programmregistrierungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>false</plural>
-        <value>Programmregistrierung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value>Programmregistrierungen</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>false</plural>
-        <value>Programmregistrierung</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Dative</caseType>
-        <plural>true</plural>
-        <value>Programmregistrierungen</value>
-    </caseValues>
-    <fields>
-        <help>Das Programm, bei dem der Student registriert ist.</help>
-        <label>Programm</label>
-        <name>Account__c</name>
-        <relationshipLabel>Programmregistrierungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Das Datum, an dem der Student zum Programm zugelassen wurde.</help>
-        <label>Zulassungsdatum</label>
-        <name>Admission_Date__c</name>
-    </fields>
-    <fields>
-        <help>Dieses Feld wird automatisch mit dem Zugehörigkeitsdatensatz aufgefüllt, der die Registrierung des Studenten bei diesem Programm darstellt.</help>
-        <label>Zugehörigkeit</label>
-        <name>Affiliation__c</name>
-        <relationshipLabel>Programmregistrierungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Das Datum, an dem der Student die Zulassung zum Programm beantragt hat.</help>
-        <label>Datum der Bewerbungseinreichung</label>
-        <name>Application_Submitted_Date__c</name>
-    </fields>
-    <fields>
-        <help>Die Stufe des Studenten in einem Programm, z. B. Student im ersten, zweiten, dritten oder vierten Jahr.</help>
-        <label>Einstufung</label>
-        <name>Class_Standing__c</name>
-        <picklistValues>
-            <masterLabel>Freshman</masterLabel>
-            <translation>Student im ersten Jahr</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Junior</masterLabel>
-            <translation>Student im dritten Jahr</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Senior</masterLabel>
-            <translation>Student im vierten Jahr</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sophomore</masterLabel>
-            <translation>Student im zweiten Jahr</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Der bei diesem Programm registrierte Student.</help>
-        <label>Kontakt</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Programmregistrierungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Die Anzahl der Leistungspunkte, die der Student bisher zu erreichen versucht hat. Dazu gehören laufende und nicht erfolgreich absolvierte Kurse, für die es keine Leistungspunkte gab.</help>
-        <label>Angestrebte Leistungspunkte</label>
-        <name>Credits_Attempted__c</name>
-    </fields>
-    <fields>
-        <help>Die Anzahl der Leistungspunkte, die der Student bisher erzielt hat.</help>
-        <label>Erzielte Leistungspunkte</label>
-        <name>Credits_Earned__c</name>
-    </fields>
-    <fields>
-        <help>Gibt, falls ausgewählt, an, dass der Student die Programmanforderungen erfüllt und zur Registrierung berechtigt ist.</help>
-        <label>Zur Registrierung berechtigt</label>
-        <name>Eligible_to_Enroll__c</name>
-    </fields>
-    <fields>
-        <help>Das Datum, an dem der Student das Programm voraussichtlich abschließen wird.</help>
-        <label>Enddatum</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Die Registrierungsstatus des Studenten, z. B. volle oder halbe Zeit.</help>
-        <label>Registrierungsstatus</label>
-        <name>Enrollment_Status__c</name>
-        <picklistValues>
-            <masterLabel>Full-time</masterLabel>
-            <translation>Volle Zeit</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Half-time</masterLabel>
-            <translation>Halbe Zeit</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Less than half-time</masterLabel>
-            <translation>Weniger als halbe Zeit</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Der aktuelle Notendurchschnitt des Studenten.</help>
-        <label>Notendurchschnitt</label>
-        <name>GPA__c</name>
-    </fields>
-    <fields>
-        <help>Das Jahr, in dem der Student dieses Programm voraussichtlich abschließen wird.</help>
-        <label>Abschlussjahr</label>
-        <name>Graduation_Year__c</name>
-    </fields>
-    <fields>
-        <help>Der Programmplan, der alle für diesen Studenten geltenden Programmanforderungen enthält.</help>
-        <label>Programmplan</label>
-        <name>Program_Plan__c</name>
-        <relationshipLabel>Programmregistrierungen</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Das Datum, an dem der Student dieses Programm begonnen hat oder voraussichtlich beginnen wird.</help>
-        <label>Startdatum</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Program Enrollment Layout</layout>
-        <sections>
-            <label>Benutzerdefinierte Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Programmregistrierungs-ID</nameFieldLabel>
+  <fields>
+    <name>Account__c</name>
+    <help>Das Programm, bei dem der Student registriert ist.</help>
+    <relationshipLabel>Programmregistrierungen</relationshipLabel>
+    <label>Programm</label>
+  </fields>
+  <fields>
+    <name>Admission_Date__c</name>
+    <help>Das Datum, an dem der Student zum Programm zugelassen wurde.</help>
+    <label>Zulassungsdatum</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <help>Dieses Feld wird automatisch mit dem Zugehörigkeitsdatensatz aufgefüllt, der die Registrierung des Studenten bei diesem Programm darstellt.</help>
+    <relationshipLabel>Programmregistrierungen</relationshipLabel>
+    <label>Zugehörigkeit</label>
+  </fields>
+  <fields>
+    <name>Application_Submitted_Date__c</name>
+    <help>Das Datum, an dem der Student die Zulassung zum Programm beantragt hat.</help>
+    <label>Datum der Bewerbungseinreichung</label>
+  </fields>
+  <fields>
+    <name>Class_Standing__c</name>
+    <help>Die Stufe des Studenten in einem Programm, z. B. Student im ersten, zweiten, dritten oder vierten Jahr.</help>
+    <label>Einstufung</label>
+    <picklistValues>
+      <masterLabel>Freshman</masterLabel>
+      <translation>Student im ersten Jahr</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sophomore</masterLabel>
+      <translation>Student im zweiten Jahr</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Junior</masterLabel>
+      <translation>Student im dritten Jahr</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Senior</masterLabel>
+      <translation>Student im vierten Jahr</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>Der bei diesem Programm registrierte Student.</help>
+    <relationshipLabel>Programmregistrierungen</relationshipLabel>
+    <label>Kontakt</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>Die Anzahl der Leistungspunkte, die der Student bisher zu erreichen versucht hat. Dazu gehören laufende und nicht erfolgreich absolvierte Kurse, für die es keine Leistungspunkte gab.</help>
+    <label>Angestrebte Leistungspunkte</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>Die Anzahl der Leistungspunkte, die der Student bisher erzielt hat.</help>
+    <label>Erzielte Leistungspunkte</label>
+  </fields>
+  <fields>
+    <name>Eligible_to_Enroll__c</name>
+    <help>Gibt, falls ausgewählt, an, dass der Student die Programmanforderungen erfüllt und zur Registrierung berechtigt ist.</help>
+    <label>Zur Registrierung berechtigt</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>Das Datum, an dem der Student das Programm voraussichtlich abschließen wird.</help>
+    <label>Enddatum</label>
+  </fields>
+  <fields>
+    <name>Enrollment_Status__c</name>
+    <help>Die Registrierungsstatus des Studenten, z. B. volle oder halbe Zeit.</help>
+    <label>Registrierungsstatus</label>
+    <picklistValues>
+      <masterLabel>Full-time</masterLabel>
+      <translation>Volle Zeit</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Half-time</masterLabel>
+      <translation>Halbe Zeit</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Less than half-time</masterLabel>
+      <translation>Weniger als halbe Zeit</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>GPA__c</name>
+    <help>Der aktuelle Notendurchschnitt des Studenten.</help>
+    <label>Notendurchschnitt</label>
+  </fields>
+  <fields>
+    <name>Graduation_Year__c</name>
+    <help>Das Jahr, in dem der Student dieses Programm voraussichtlich abschließen wird.</help>
+    <label>Abschlussjahr</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>Der Programmplan, der alle für diesen Studenten geltenden Programmanforderungen enthält.</help>
+    <relationshipLabel>Programmregistrierungen</relationshipLabel>
+    <label>Programmplan</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>Das Datum, an dem der Student dieses Programm begonnen hat oder voraussichtlich beginnen wird.</help>
+    <label>Startdatum</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Program Enrollment Layout</layout>
+    <sections>
+      <label>Benutzerdefinierte Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Programmregistrierungs-ID</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Programmregistrierungs-ID</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>Programmregistrierung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Accusative</caseType>
+    <value>Programmregistrierung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Dative</caseType>
+    <value>Programmregistrierung</value>
+  </caseValues>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Genitive</caseType>
+    <value>Programmregistrierung</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>Programmregistrierungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Accusative</caseType>
+    <value>Programmregistrierungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Dative</caseType>
+    <value>Programmregistrierungen</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Genitive</caseType>
+    <value>Programmregistrierungen</value>
+  </caseValues>
 </CustomObjectTranslation>

@@ -9,7 +9,6 @@
         <value>Course Offerings</value>
     </caseValues>
     <fields>
-        <help><!-- The maximum number of students for this Course Offering. --></help>
         <label><!-- Capacity --></label>
         <name>Capacity__c</name>
     </fields>
@@ -19,29 +18,25 @@
         <relationshipLabel><!-- Course Offerings --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The date of the last session for this Course Offering. --></help>
         <label><!-- End Date --></label>
         <name>End_Date__c</name>
     </fields>
     <fields>
-        <help><!-- The Facility where this Course Offering will take place. --></help>
+        <help><!-- The Facility associated with the Course Offering. --></help>
         <label><!-- Facility --></label>
         <name>Facility__c</name>
         <relationshipLabel><!-- Course Offerings --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Lookup to the lead instructor for this Course Offering. --></help>
         <label><!-- Primary Faculty --></label>
         <name>Faculty__c</name>
         <relationshipLabel><!-- Course Offerings --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The Section ID for this Course Offering. Section ID is typically used when a Course offers multiple sections during a single Term. --></help>
         <label><!-- Section ID --></label>
         <name>Section_ID__c</name>
     </fields>
     <fields>
-        <help><!-- The date of the first session for this Course Offering. --></help>
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>
