@@ -1,122 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>El programa al qual està inscrit l'estudiant.</help>
-    <relationshipLabel>Inscripcions del programa</relationshipLabel>
-    <label>Programa</label>
-  </fields>
-  <fields>
-    <name>Admission_Date__c</name>
-    <help>La data d’admissió de l’alumne al programa.</help>
-    <label>Data d'admissió</label>
-  </fields>
-  <fields>
-    <name>Affiliation__c</name>
-    <help>Aquest camp s'omple automàticament amb el registre d'afiliació que representa la inscripció de l'alumne en aquest programa.</help>
-    <relationshipLabel>Inscripcions del programa</relationshipLabel>
-    <label>Afiliació</label>
-  </fields>
-  <fields>
-    <name>Application_Submitted_Date__c</name>
-    <help>La data en què l’alumne va sol·licitar l’admissió al programa.</help>
-    <label>Data de presentació de la sol·licitud</label>
-  </fields>
-  <fields>
-    <name>Class_Standing__c</name>
-    <help>El nivell de l'alumne en un programa, per exemple, estudiant de primer any, de segon any, de penúltim any o d'últim any.</help>
-    <label>Classe de peu</label>
-    <picklistValues>
-      <masterLabel>Freshman</masterLabel>
-      <translation>Estudiant de primer any</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Sophomore</masterLabel>
-      <translation>Estudiant de segon any</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Junior</masterLabel>
-      <translation>Estudiant de penúltim any</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Senior</masterLabel>
-      <translation>Estudiant d'últim any</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>L’alumne matriculat en aquest programa.</help>
-    <relationshipLabel>Inscripcions del programa</relationshipLabel>
-    <label>Contacte</label>
-  </fields>
-  <fields>
-    <name>Credits_Attempted__c</name>
-    <help>El nombre de crèdits que l'alumne ha intentat completar fins ara. Això inclou crèdits en curs i cursos suspensos pels quals no ha rebut cap crèdit.</help>
-    <label>Crèdits als quals s'ha assistit</label>
-  </fields>
-  <fields>
-    <name>Credits_Earned__c</name>
-    <help>El nombre de crèdits que l'alumne ha completat amb èxit fins ara.</help>
-    <label>Crèdits obtinguts</label>
-  </fields>
-  <fields>
-    <name>Eligible_to_Enroll__c</name>
-    <help>Quan se selecciona, indica que l'alumne ha complert els requisits del programa i és apte per inscriure's.</help>
-    <label>Elegible per inscriure's</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>La data en què està programat que l’alumne completi el programa.</help>
-    <label>Data de finalització</label>
-  </fields>
-  <fields>
-    <name>Enrollment_Status__c</name>
-    <help>L'estat de matrícula de l'alumne, per exemple, a temps complet o mitja jornada.</help>
-    <label>Estat d'inscripció</label>
-    <picklistValues>
-      <masterLabel>Full-time</masterLabel>
-      <translation>A temps complet</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Half-time</masterLabel>
-      <translation>A mitja jornada</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Less than half-time</masterLabel>
-      <translation>Menys de mitja jornada</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA__c</name>
-    <help>La mitjana de nota actual de l’alumne.</help>
-    <label>GPA</label>
-  </fields>
-  <fields>
-    <name>Graduation_Year__c</name>
-    <help>L'any que s'espera que l'alumne es graduï d'aquest programa.</help>
-    <label>Any de classe</label>
-  </fields>
-  <fields>
-    <name>Program_Plan__c</name>
-    <help>El pla del programa que conté tots els requisits del programa vigents per a aquest alumne.</help>
-    <relationshipLabel>Inscripcions del programa</relationshipLabel>
-    <label>Pla del programa</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>La data en què l'alumne va iniciar o s'espera que iniciï el programa.</help>
-    <label>Data d'inici</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Program Enrollment Layout</layout>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>ID d'inscripció del programa</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>ID d'inscripció del programa</label>
-  </standardFields>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&apos;inscripció del programa</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>ID d&apos;inscripció del programa</label>
+    </standardFields>
+    <fields>
+        <name>Account__c</name>
+        <help>El programa al qual està inscrit l&apos;estudiant.</help>
+        <relationshipLabel>Inscripcions del programa</relationshipLabel>
+        <label>Programa</label>
+    </fields>
+    <fields>
+        <name>Admission_Date__c</name>
+        <help>La data d’admissió de l’alumne al programa.</help>
+        <label>Data d&apos;admissió</label>
+    </fields>
+    <fields>
+        <name>Affiliation__c</name>
+        <help>Aquest camp s&apos;omple automàticament amb el registre d&apos;afiliació que representa la inscripció de l&apos;alumne en aquest programa.</help>
+        <relationshipLabel>Inscripcions del programa</relationshipLabel>
+        <label>Afiliació</label>
+    </fields>
+    <fields>
+        <name>Application_Submitted_Date__c</name>
+        <help>La data en què l’alumne va sol·licitar l’admissió al programa.</help>
+        <label>Data de presentació de la sol·licitud</label>
+    </fields>
+    <fields>
+        <name>Class_Standing__c</name>
+        <help>El nivell de l&apos;alumne en un programa, per exemple, estudiant de primer any, de segon any, de penúltim any o d&apos;últim any.</help>
+        <label>Classe de peu</label>
+        <picklistValues>
+            <masterLabel>Freshman</masterLabel>
+            <translation>Estudiant de primer any</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sophomore</masterLabel>
+            <translation>Estudiant de segon any</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior</masterLabel>
+            <translation>Estudiant de penúltim any</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior</masterLabel>
+            <translation>Estudiant d&apos;últim any</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Contact__c</name>
+        <help>L’alumne matriculat en aquest programa.</help>
+        <relationshipLabel>Inscripcions del programa</relationshipLabel>
+        <label>Contacte</label>
+    </fields>
+    <fields>
+        <name>Credits_Attempted__c</name>
+        <help>El nombre de crèdits que l&apos;alumne ha intentat completar fins ara. Això inclou crèdits en curs i cursos suspensos pels quals no ha rebut cap crèdit.</help>
+        <label>Crèdits als quals s&apos;ha assistit</label>
+    </fields>
+    <fields>
+        <name>Credits_Earned__c</name>
+        <help>El nombre de crèdits que l&apos;alumne ha completat amb èxit fins ara.</help>
+        <label>Crèdits obtinguts</label>
+    </fields>
+    <fields>
+        <name>Eligible_to_Enroll__c</name>
+        <help>Quan se selecciona, indica que l&apos;alumne ha complert els requisits del programa i és apte per inscriure&apos;s.</help>
+        <label>Elegible per inscriure&apos;s</label>
+    </fields>
+    <fields>
+        <name>End_Date__c</name>
+        <help>La data en què està programat que l’alumne completi el programa.</help>
+        <label>Data de finalització</label>
+    </fields>
+    <fields>
+        <name>Enrollment_Status__c</name>
+        <help>L&apos;estat de matrícula de l&apos;alumne, per exemple, a temps complet o mitja jornada.</help>
+        <label>Estat d&apos;inscripció</label>
+        <picklistValues>
+            <masterLabel>Full-time</masterLabel>
+            <translation>A temps complet</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Half-time</masterLabel>
+            <translation>A mitja jornada</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Less than half-time</masterLabel>
+            <translation>Menys de mitja jornada</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>GPA__c</name>
+        <help>La mitjana de nota actual de l’alumne.</help>
+        <label>GPA</label>
+    </fields>
+    <fields>
+        <name>Graduation_Year__c</name>
+        <help>L&apos;any que s&apos;espera que l&apos;alumne es graduï d&apos;aquest programa.</help>
+        <label>Any de classe</label>
+    </fields>
+    <fields>
+        <name>Program_Plan__c</name>
+        <help>El pla del programa que conté tots els requisits del programa vigents per a aquest alumne.</help>
+        <relationshipLabel>Inscripcions del programa</relationshipLabel>
+        <label>Pla del programa</label>
+    </fields>
+    <fields>
+        <name>Start_Date__c</name>
+        <help>La data en què l&apos;alumne va iniciar o s&apos;espera que iniciï el programa.</help>
+        <label>Data d&apos;inici</label>
+    </fields>
 </CustomObjectTranslation>

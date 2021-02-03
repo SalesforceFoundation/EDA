@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Terms</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Term Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <label><!-- Account --></label>
         <name>Account__c</name>
@@ -54,12 +62,4 @@
             <translation><!-- Semester --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>HEDA Term Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Addresses</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Address Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
     <fields>
         <label><!-- Address Type --></label>
         <name>Address_Type__c</name>
@@ -470,12 +478,4 @@
         <label><!-- Seasonal Start Year --></label>
         <name>Seasonal_Start_Year__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Address Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

@@ -1,280 +1,280 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>Wählen Sie die Person aus, für die Sie den Beziehungsdatensatz anlegen möchten.</help>
-    <relationshipLabel>Beziehungen</relationshipLabel>
-    <label>Kontakt</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Zusätzliche Informationen zur Beziehung dieser beiden Personen.</help>
-    <label>Beschreibung</label>
-  </fields>
-  <fields>
-    <name>Emergency_Contact__c</name>
-    <help>Gibt an, dass der zugehörige Kontakt ein Notfallkontakt ist.</help>
-    <label>Notfallkontakt</label>
-  </fields>
-  <fields>
-    <name>ReciprocalRelationship__c</name>
-    <help>Verweis auf den zugehörigen Datensatz "Wechselseitige Beziehung". Dieses Feld wird automatisch aufgefüllt. Manuelles Aktualisieren dieses Felds kann zu Fehlern führen.</help>
-    <relationshipLabel>Beziehungen</relationshipLabel>
-    <label>Wechselseitige Beziehung</label>
-  </fields>
-  <fields>
-    <name>RelatedContact__c</name>
-    <help>Wählen Sie die Person, die in Beziehung zum Kontakt steht.</help>
-    <relationshipLabel>Liste der ausgeblendeten Beziehungen</relationshipLabel>
-    <label>Zugehöriger Kontakt</label>
-  </fields>
-  <fields>
-    <name>Relationship_Explanation__c</name>
-    <help>Ein Satz, der die Beteiligten an der Beziehung klarstellt. Beispiel: "'s " Josef Schmitz ist Sabine Müllers Arbeitgeber."'s " Dieses Feld ist schreibgeschützt.</help>
-    <label>Erklärung der Beziehung</label>
-  </fields>
-  <fields>
-    <name>SYSTEM_SystemCreated__c</name>
-    <help>Systemfeld, das angibt, ob diese Beziehung automatisch als Gegenstück zu einer anderen Beziehung erstellt wurde.</help>
-    <label>_SYSTEM: SystemCreated</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <help>Status der Beziehung. Beispiel: Aktuell oder Ehemalig.</help>
-    <label>Status</label>
-    <picklistValues>
-      <masterLabel>Current</masterLabel>
-      <translation>Aktuell</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Former</masterLabel>
-      <translation>Ehemalig</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Type__c</name>
-    <help>Beschreibt, wie der zugehörige Kontakt mit dem Kontakt verbunden ist, z. B. Freund, Kollege, Tante usw.</help>
-    <label>Typ</label>
-    <picklistValues>
-      <masterLabel>Father</masterLabel>
-      <translation>Vater</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepfather</masterLabel>
-      <translation>Stiefvater</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mother</masterLabel>
-      <translation>Mutter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepmother</masterLabel>
-      <translation>Stiefmutter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Parent</masterLabel>
-      <translation>Elternteil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepparent</masterLabel>
-      <translation>Stiefelternteil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Parent</masterLabel>
-      <translation>Pflegeelternteil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Daughter</masterLabel>
-      <translation>Tochter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepdaughter</masterLabel>
-      <translation>Stieftochter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Daughter</masterLabel>
-      <translation>Pflegetochter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Son</masterLabel>
-      <translation>Sohn</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepson</masterLabel>
-      <translation>Stiefsohn</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Son</masterLabel>
-      <translation>Pflegesohn</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Child</masterLabel>
-      <translation>Kind</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepchild</masterLabel>
-      <translation>Stiefkind</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Child</masterLabel>
-      <translation>Pflegekind</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Husband</masterLabel>
-      <translation>Ehemann</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Wife</masterLabel>
-      <translation>Ehefrau</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Partner</masterLabel>
-      <translation>Partner</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Aunt</masterLabel>
-      <translation>Tante</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Uncle</masterLabel>
-      <translation>Onkel</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Parent's Sibling</masterLabel>
-      <translation>Geschwister des Elternteils</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Niece</masterLabel>
-      <translation>Nichte</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Nephew</masterLabel>
-      <translation>Neffe</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Sibling's Child</masterLabel>
-      <translation>Kind des Geschwisters</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Cousin</masterLabel>
-      <translation>Cousin</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandmother</masterLabel>
-      <translation>Großmutter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandfather</masterLabel>
-      <translation>Großvater</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandparent</masterLabel>
-      <translation>Großelternteil</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandson</masterLabel>
-      <translation>Enkelsohn</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Granddaughter</masterLabel>
-      <translation>Enkeltochter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandchild</masterLabel>
-      <translation>Enkel</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Guardian</masterLabel>
-      <translation>Vormund</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Dependent</masterLabel>
-      <translation>Unterhaltsberechtigter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Employer</masterLabel>
-      <translation>Arbeitgeber</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Employee</masterLabel>
-      <translation>Mitarbeiter</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Friend</masterLabel>
-      <translation>Freund</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Family</masterLabel>
-      <translation>Familie</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Coworker</masterLabel>
-      <translation>Kollege</translation>
-    </picklistValues>
-  </fields>
-  <validationRules>
-    <errorMessage>Anstatt die Kontakte in dieser Beziehung zu ändern, löschen Sie entweder diesen Datensatz, oder fügen Sie ggf. ein Enddatum hinzu und ändern Sie den Status in "Ehemalig". Erstellen Sie anschließend einen neuen Beziehungsdatensatz zwischen den neuen Kontakten.</errorMessage>
-    <name>Contact_Do_Not_Change</name>
-  </validationRules>
-  <validationRules>
-    <errorMessage>Anstatt die Kontakte in dieser Beziehung zu ändern, löschen Sie entweder diesen Datensatz, oder fügen Sie ggf. ein Enddatum hinzu und ändern Sie den Status in "Ehemalig". Erstellen Sie anschließend einen neuen Beziehungsdatensatz zwischen den neuen Kontakten.</errorMessage>
-    <name>Related_Contact_Do_Not_Change</name>
-  </validationRules>
-  <layouts>
-    <layout>HEDA Relationship Layout</layout>
-    <sections>
-      <label>Beziehungsinformationen</label>
-      <section>Relationship Information</section>
-    </sections>
-    <sections>
-      <label>Benutzerdefinierte Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Beziehungsschlüssel</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Beziehungsschlüssel</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <value>Beziehung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Accusative</caseType>
-    <value>Beziehung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Dative</caseType>
-    <value>Beziehung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <value>Beziehung</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <value>Beziehungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Accusative</caseType>
-    <value>Beziehungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Dative</caseType>
-    <value>Beziehungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <value>Beziehungen</value>
-  </caseValues>
+    <validationRules>
+        <errorMessage>Anstatt die Kontakte in dieser Beziehung zu ändern, löschen Sie entweder diesen Datensatz, oder fügen Sie ggf. ein Enddatum hinzu und ändern Sie den Status in &quot;Ehemalig&quot;. Erstellen Sie anschließend einen neuen Beziehungsdatensatz zwischen den neuen Kontakten.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Anstatt die Kontakte in dieser Beziehung zu ändern, löschen Sie entweder diesen Datensatz, oder fügen Sie ggf. ein Enddatum hinzu und ändern Sie den Status in &quot;Ehemalig&quot;. Erstellen Sie anschließend einen neuen Beziehungsdatensatz zwischen den neuen Kontakten.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Beziehungsinformationen</label>
+            <section>Relationship Information</section>
+        </sections>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Beziehungsschlüssel</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Beziehungsschlüssel</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <value>Beziehung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Accusative</caseType>
+        <value>Beziehung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Dative</caseType>
+        <value>Beziehung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <value>Beziehung</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <value>Beziehungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Accusative</caseType>
+        <value>Beziehungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Dative</caseType>
+        <value>Beziehungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <value>Beziehungen</value>
+    </caseValues>
+    <fields>
+        <name>Contact__c</name>
+        <help>Wählen Sie die Person aus, für die Sie den Beziehungsdatensatz anlegen möchten.</help>
+        <relationshipLabel>Beziehungen</relationshipLabel>
+        <label>Kontakt</label>
+    </fields>
+    <fields>
+        <name>Description__c</name>
+        <help>Zusätzliche Informationen zur Beziehung dieser beiden Personen.</help>
+        <label>Beschreibung</label>
+    </fields>
+    <fields>
+        <name>Emergency_Contact__c</name>
+        <help>Gibt an, dass der zugehörige Kontakt ein Notfallkontakt ist.</help>
+        <label>Notfallkontakt</label>
+    </fields>
+    <fields>
+        <name>ReciprocalRelationship__c</name>
+        <help>Verweis auf den zugehörigen Datensatz &quot;Wechselseitige Beziehung&quot;. Dieses Feld wird automatisch aufgefüllt. Manuelles Aktualisieren dieses Felds kann zu Fehlern führen.</help>
+        <relationshipLabel>Beziehungen</relationshipLabel>
+        <label>Wechselseitige Beziehung</label>
+    </fields>
+    <fields>
+        <name>RelatedContact__c</name>
+        <help>Wählen Sie die Person, die in Beziehung zum Kontakt steht.</help>
+        <relationshipLabel>Liste der ausgeblendeten Beziehungen</relationshipLabel>
+        <label>Zugehöriger Kontakt</label>
+    </fields>
+    <fields>
+        <name>Relationship_Explanation__c</name>
+        <help>Ein Satz, der die Beteiligten an der Beziehung klarstellt. Beispiel: &quot;&apos;s &quot; Josef Schmitz ist Sabine Müllers Arbeitgeber.&quot;&apos;s &quot; Dieses Feld ist schreibgeschützt.</help>
+        <label>Erklärung der Beziehung</label>
+    </fields>
+    <fields>
+        <name>SYSTEM_SystemCreated__c</name>
+        <help>Systemfeld, das angibt, ob diese Beziehung automatisch als Gegenstück zu einer anderen Beziehung erstellt wurde.</help>
+        <label>_SYSTEM: SystemCreated</label>
+    </fields>
+    <fields>
+        <name>Status__c</name>
+        <help>Status der Beziehung. Beispiel: Aktuell oder Ehemalig.</help>
+        <label>Status</label>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Aktuell</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation>Ehemalig</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Type__c</name>
+        <help>Beschreibt, wie der zugehörige Kontakt mit dem Kontakt verbunden ist, z. B. Freund, Kollege, Tante usw.</help>
+        <label>Typ</label>
+        <picklistValues>
+            <masterLabel>Father</masterLabel>
+            <translation>Vater</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepfather</masterLabel>
+            <translation>Stiefvater</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mother</masterLabel>
+            <translation>Mutter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepmother</masterLabel>
+            <translation>Stiefmutter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent</masterLabel>
+            <translation>Elternteil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepparent</masterLabel>
+            <translation>Stiefelternteil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Parent</masterLabel>
+            <translation>Pflegeelternteil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Daughter</masterLabel>
+            <translation>Tochter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepdaughter</masterLabel>
+            <translation>Stieftochter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Daughter</masterLabel>
+            <translation>Pflegetochter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Son</masterLabel>
+            <translation>Sohn</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepson</masterLabel>
+            <translation>Stiefsohn</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Son</masterLabel>
+            <translation>Pflegesohn</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Child</masterLabel>
+            <translation>Kind</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepchild</masterLabel>
+            <translation>Stiefkind</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Child</masterLabel>
+            <translation>Pflegekind</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Husband</masterLabel>
+            <translation>Ehemann</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wife</masterLabel>
+            <translation>Ehefrau</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation>Partner</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aunt</masterLabel>
+            <translation>Tante</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uncle</masterLabel>
+            <translation>Onkel</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent&apos;s Sibling</masterLabel>
+            <translation>Geschwister des Elternteils</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Niece</masterLabel>
+            <translation>Nichte</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nephew</masterLabel>
+            <translation>Neffe</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sibling&apos;s Child</masterLabel>
+            <translation>Kind des Geschwisters</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cousin</masterLabel>
+            <translation>Cousin</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandmother</masterLabel>
+            <translation>Großmutter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandfather</masterLabel>
+            <translation>Großvater</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandparent</masterLabel>
+            <translation>Großelternteil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandson</masterLabel>
+            <translation>Enkelsohn</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Granddaughter</masterLabel>
+            <translation>Enkeltochter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandchild</masterLabel>
+            <translation>Enkel</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guardian</masterLabel>
+            <translation>Vormund</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dependent</masterLabel>
+            <translation>Unterhaltsberechtigter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employer</masterLabel>
+            <translation>Arbeitgeber</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee</masterLabel>
+            <translation>Mitarbeiter</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Friend</masterLabel>
+            <translation>Freund</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Family</masterLabel>
+            <translation>Familie</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coworker</masterLabel>
+            <translation>Kollege</translation>
+        </picklistValues>
+    </fields>
 </CustomObjectTranslation>

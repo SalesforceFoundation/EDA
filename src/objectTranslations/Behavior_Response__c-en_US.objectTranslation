@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Behavior Responses</value>
     </caseValues>
+    <layouts>
+        <layout>EDA Behavior Response Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- The system-generated number associated with this event. Format: BI-{0000}. --></help>
         <label><!-- Behavior Involvement --></label>
@@ -72,12 +80,4 @@
             <translation><!-- Other --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>EDA Behavior Response Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
