@@ -323,6 +323,15 @@ flows:
             2:
                 task: uninstall_packaged
 
+    config_2gp:
+        steps:
+            1:
+                task: deploy_post
+            2:
+                task: update_admin_profile
+            3:
+                task: execute_install_apex
+
     config_apextest:
         # description: Configure an org to run apex tests after package metadata is deployed.
         steps:
