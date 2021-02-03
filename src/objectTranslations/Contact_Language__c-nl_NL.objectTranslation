@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>De persoon die deze taal spreekt.</help>
-    <relationshipLabel>Talen van contactpersoon</relationshipLabel>
-    <label>Contactpersoon</label>
-  </fields>
-  <fields>
-    <name>Fluency__c</name>
-    <help>De beheersing van deze taal door deze persoon.</help>
-    <label>Beheersing</label>
-    <picklistValues>
-      <masterLabel>Fluent</masterLabel>
-      <translation>Vloeiend</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Intermediate</masterLabel>
-      <translation>Gevorderd</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Beginner</masterLabel>
-      <translation>Beginner</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Language_Details__c</name>
-    <label>Taaldetails</label>
-  </fields>
-  <fields>
-    <name>Language__c</name>
-    <help>Een taal die deze persoon spreekt.</help>
-    <relationshipLabel>Talen van contactpersoon</relationshipLabel>
-    <label>Taal</label>
-  </fields>
-  <fields>
-    <name>Primary_Language__c</name>
-    <help>Geeft aan dat dit de voorkeurstaal is voor deze persoon.</help>
-    <label>Primaire taal</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Contact Language Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Naam van contactpersoontaal</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Naam van contactpersoontaal</label>
-  </standardFields>
+    <layouts>
+        <layout>HEDA Contact Language Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Naam van contactpersoontaal</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Naam van contactpersoontaal</label>
+    </standardFields>
+    <fields>
+        <name>Contact__c</name>
+        <help>De persoon die deze taal spreekt.</help>
+        <relationshipLabel>Talen van contactpersoon</relationshipLabel>
+        <label>Contactpersoon</label>
+    </fields>
+    <fields>
+        <name>Fluency__c</name>
+        <help>De beheersing van deze taal door deze persoon.</help>
+        <label>Beheersing</label>
+        <picklistValues>
+            <masterLabel>Fluent</masterLabel>
+            <translation>Vloeiend</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intermediate</masterLabel>
+            <translation>Gevorderd</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Beginner</masterLabel>
+            <translation>Beginner</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Language_Details__c</name>
+        <label>Taaldetails</label>
+    </fields>
+    <fields>
+        <name>Language__c</name>
+        <help>Een taal die deze persoon spreekt.</help>
+        <relationshipLabel>Talen van contactpersoon</relationshipLabel>
+        <label>Taal</label>
+    </fields>
+    <fields>
+        <name>Primary_Language__c</name>
+        <help>Geeft aan dat dit de voorkeurstaal is voor deze persoon.</help>
+        <label>Primaire taal</label>
+    </fields>
 </CustomObjectTranslation>

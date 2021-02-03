@@ -1,69 +1,69 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account_Record_Type__c</name>
-    <help>Die Bezeichnung des Account-Datensatztyps, der zugeordnet wird.</help>
-    <label>Account-Datensatztyp</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Role__c</name>
-    <help>Die Rolle, die für den Programmregistrierungs-Datensatz festgelegt und automatisch erstellt wird, wenn "Automatische Programmregistrierung" ausgewählt wird.</help>
-    <label>Rolle "Automatische Registrierung"</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Status__c</name>
-    <help>Der Status, der für den Programmregistrierungs-Datensatz festgelegt und automatisch erstellt wird, wenn "Automatische Programmregistrierung" ausgewählt wird.</help>
-    <label>Status "Automatische Registrierung"</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment__c</name>
-    <help>Falls ausgewählt, wird ein Programmregistrierungs-Datensatz automatisch erstellt, wenn ein Benutzer einen Zugehörigkeitsdatensatz mit einem Account dieses Datensatztyps erstellt.</help>
-    <label>Automatische Registrierung</label>
-  </fields>
-  <fields>
-    <name>Primary_Affl_Field__c</name>
-    <help>Die Bezeichnung des Felds "Kontakt", das den Wert des primären Accounts für diesen Datensatztyp enthält.</help>
-    <label>Feld "Primäre Zugehörigkeit"</label>
-  </fields>
-  <gender>Feminine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <value>Zugehörigkeitszuordnung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Accusative</caseType>
-    <value>Zugehörigkeitszuordnung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Dative</caseType>
-    <value>Zugehörigkeitszuordnung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <value>Zugehörigkeitszuordnung</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <value>Zugehörigkeitszuordnungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Accusative</caseType>
-    <value>Zugehörigkeitszuordnungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Dative</caseType>
-    <value>Zugehörigkeitszuordnungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <value>Zugehörigkeitszuordnungen</value>
-  </caseValues>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <value>Zugehörigkeitszuordnung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Accusative</caseType>
+        <value>Zugehörigkeitszuordnung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Dative</caseType>
+        <value>Zugehörigkeitszuordnung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <value>Zugehörigkeitszuordnung</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <value>Zugehörigkeitszuordnungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Accusative</caseType>
+        <value>Zugehörigkeitszuordnungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Dative</caseType>
+        <value>Zugehörigkeitszuordnungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <value>Zugehörigkeitszuordnungen</value>
+    </caseValues>
+    <fields>
+        <name>Account_Record_Type__c</name>
+        <help>Die Bezeichnung des Account-Datensatztyps, der zugeordnet wird.</help>
+        <label>Account-Datensatztyp</label>
+    </fields>
+    <fields>
+        <name>Auto_Program_Enrollment_Role__c</name>
+        <help>Die Rolle, die für den Programmregistrierungs-Datensatz festgelegt und automatisch erstellt wird, wenn &quot;Automatische Programmregistrierung&quot; ausgewählt wird.</help>
+        <label>Rolle &quot;Automatische Registrierung&quot;</label>
+    </fields>
+    <fields>
+        <name>Auto_Program_Enrollment_Status__c</name>
+        <help>Der Status, der für den Programmregistrierungs-Datensatz festgelegt und automatisch erstellt wird, wenn &quot;Automatische Programmregistrierung&quot; ausgewählt wird.</help>
+        <label>Status &quot;Automatische Registrierung&quot;</label>
+    </fields>
+    <fields>
+        <name>Auto_Program_Enrollment__c</name>
+        <help>Falls ausgewählt, wird ein Programmregistrierungs-Datensatz automatisch erstellt, wenn ein Benutzer einen Zugehörigkeitsdatensatz mit einem Account dieses Datensatztyps erstellt.</help>
+        <label>Automatische Registrierung</label>
+    </fields>
+    <fields>
+        <name>Primary_Affl_Field__c</name>
+        <help>Die Bezeichnung des Felds &quot;Kontakt&quot;, das den Wert des primären Accounts für diesen Datensatztyp enthält.</help>
+        <label>Feld &quot;Primäre Zugehörigkeit&quot;</label>
+    </fields>
 </CustomObjectTranslation>

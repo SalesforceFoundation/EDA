@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Case__c</name>
-    <help>De case die het event vertegenwoordigt dat wordt gerapporteerd.</help>
-    <relationshipLabel>Gedragsbetrokkenheid</relationshipLabel>
-    <label>Case</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>De contactpersoon (student of staflid) die rechtstreeks betrokken was bij het event.</help>
-    <relationshipLabel>Gedragsbetrokkenheid</relationshipLabel>
-    <label>Contactpersoon</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Beschrijving</label>
-  </fields>
-  <fields>
-    <name>Role__c</name>
-    <help>De rol die deze persoon bij het event speelde.</help>
-    <label>Rol</label>
-    <picklistValues>
-      <masterLabel>Perpetrator</masterLabel>
-      <translation>Dader</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Reporter</masterLabel>
-      <translation>Rapporteur</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Victim</masterLabel>
-      <translation>Slachtoffer</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Witness</masterLabel>
-      <translation>Getuige</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Overig</translation>
-    </picklistValues>
-  </fields>
-  <layouts>
-    <layout>EDA Behavior Involvement Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Naam van gedragsbetrokkenheid</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Naam van gedragsbetrokkenheid</label>
-  </standardFields>
+    <layouts>
+        <layout>EDA Behavior Involvement Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Naam van gedragsbetrokkenheid</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Naam van gedragsbetrokkenheid</label>
+    </standardFields>
+    <fields>
+        <name>Case__c</name>
+        <help>De case die het event vertegenwoordigt dat wordt gerapporteerd.</help>
+        <relationshipLabel>Gedragsbetrokkenheid</relationshipLabel>
+        <label>Case</label>
+    </fields>
+    <fields>
+        <name>Contact__c</name>
+        <help>De contactpersoon (student of staflid) die rechtstreeks betrokken was bij het event.</help>
+        <relationshipLabel>Gedragsbetrokkenheid</relationshipLabel>
+        <label>Contactpersoon</label>
+    </fields>
+    <fields>
+        <name>Description__c</name>
+        <label>Beschrijving</label>
+    </fields>
+    <fields>
+        <name>Role__c</name>
+        <help>De rol die deze persoon bij het event speelde.</help>
+        <label>Rol</label>
+        <picklistValues>
+            <masterLabel>Perpetrator</masterLabel>
+            <translation>Dader</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reporter</masterLabel>
+            <translation>Rapporteur</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Victim</masterLabel>
+            <translation>Slachtoffer</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Witness</masterLabel>
+            <translation>Getuige</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Overig</translation>
+        </picklistValues>
+    </fields>
 </CustomObjectTranslation>

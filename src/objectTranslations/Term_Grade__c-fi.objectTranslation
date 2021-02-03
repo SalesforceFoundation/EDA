@@ -1,502 +1,502 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>Opiskelija, jolle arvosana kirjataan. Kun jätetään tyhjäksi, yhteyshenkilö täytetään automaattisesti voimassa olevasta kurssiyhteydestä tallennuksen yhteydessä.</help>
-    <relationshipLabel>Jakson arvosanat</relationshipLabel>
-    <label>Yhteyshenkilö</label>
-  </fields>
-  <fields>
-    <name>Course_Connection__c</name>
-    <help>Luokka, josta opiskelija sai tämän arvosanan. Yhteyshenkilön ja kurssitarjonnan on oltava yhtäpitäviä kurssin yhteystietueessa olevan yhteyshenkilön ja kurssitarjonnan kanssa.</help>
-    <relationshipLabel>Jakson arvosanat</relationshipLabel>
-    <label>Kurssiyhteys</label>
-  </fields>
-  <fields>
-    <name>Course_Offering__c</name>
-    <help>Kirjattavaan arvosanaan liittyvä kurssitarjonta. Jos kenttä jätetään tyhjäksi, kurssitarjonta täytetään automaattisesti kelvollisesta kurssiyhteydestä tallennuksen yhteydessä.</help>
-    <relationshipLabel>Jakson arvosanat</relationshipLabel>
-    <label>Kurssitarjonta</label>
-  </fields>
-  <fields>
-    <name>Credits_Attempted__c</name>
-    <help>Kurssilla tällä jaksolla käytettävissä olevien opintopisteiden lukumäärä.</help>
-    <label>Opintopistetavoite</label>
-  </fields>
-  <fields>
-    <name>Credits_Earned__c</name>
-    <help>Opintopisteiden lukumäärä, jonka opiskelija ansaitsi kurssilta tällä jaksolla.</help>
-    <label>Ansaitut opintopisteet</label>
-  </fields>
-  <fields>
-    <name>Letter_Grade__c</name>
-    <help>Jos koulusi käyttää kirjainarvosanoja, kirjoita opiskelijan ansaitsema kirjainarvosana, esimerkiksi A, B, C jne.</help>
-    <label>Kirjainarvosana</label>
-  </fields>
-  <fields>
-    <name>Numerical_Grade__c</name>
-    <help>Jos koulusi käyttää numeroarvosanoja, kirjoita opiskelijan ansaitsema numeroarvosana.</help>
-    <label>Numeroarvosana</label>
-  </fields>
-  <fields>
-    <name>Percent_Grade__c</name>
-    <help>Jos koulusi arvioi prosenttiarvosanoja, kirjoita prosenttiarvosana, jonka opiskelija ansaitsi.</help>
-    <label>Prosenttiarvosana</label>
-  </fields>
-  <fields>
-    <name>Result__c</name>
-    <help>Tulos opiskelijan tämän arvostelujakson suorituksesta.</help>
-    <label>Tulos</label>
-    <picklistValues>
-      <masterLabel>Audit</masterLabel>
-      <translation>Tarkastettu</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Dropped</masterLabel>
-      <translation>Hylätty</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Fail</masterLabel>
-      <translation>Epäonnistui</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Pass</masterLabel>
-      <translation>Läpäisi</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Term_Grade_Type__c</name>
-    <help>Tämän arvosanan arvostelujakson tyyppi, esimerkiksi jakson väliarvosana, lopullinen arvosana, tenttiarvosana tai arvostelujakso.</help>
-    <label>Jakson arvosanan tyyppi</label>
-    <picklistValues>
-      <masterLabel>Exam Grade</masterLabel>
-      <translation>Tenttiarvosana</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Final Grade</masterLabel>
-      <translation>Lopullinen arvosana</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grading Period</masterLabel>
-      <translation>Arvostelujakso</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mid-Term Grade</masterLabel>
-      <translation>Jakson väliarvosana</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Term__c</name>
-    <help>Ilmaisee, millä jaksolla opiskelija ansaitsi tämän arvosanan.</help>
-    <relationshipLabel>Jakson arvosanat</relationshipLabel>
-    <label>Jakso</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Term Grade Layout</layout>
-    <sections>
-      <label>Mukautetut linkit</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Jakson arvosanan nimi</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Jakson arvosanan nimi</label>
-  </standardFields>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosana</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanat</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanani</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanan</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanojen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanojeni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanojesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanassa</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanassani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanassasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoissa</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanoissani</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanoissasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanasta</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanastani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanastasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoista</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanoistani</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanoistasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanaan</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanaani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanaasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoihin</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanoihini</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanoihisi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanalla</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanallani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanallasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoilla</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanoillani</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanoillasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanalta</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanaltani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanaltasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoilta</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanoiltani</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanoiltasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanalle</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanalleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanallesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoille</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanoilleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanoillesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanana</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosananani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosananasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoina</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanoinasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanoinasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanaksi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanakseni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanaksesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoiksi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanoikseni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanoiksesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanaa</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanaani</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanaasi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>None</possessive>
-    <value>Jakson arvosanoja</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>First</possessive>
-    <value>Jakson arvosanojani</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>Second</possessive>
-    <value>Jakson arvosanojasi</value>
-  </caseValues>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Mukautetut linkit</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Jakson arvosanan nimi</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Jakson arvosanan nimi</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosana</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanat</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanan</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanojen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanojeni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanojesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanassa</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanassani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanassasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoissa</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanoissani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanoissasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanasta</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanastani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanastasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoista</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanoistani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanoistasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanaan</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanaani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanaasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoihin</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanoihini</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanoihisi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanalla</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanallani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanallasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoilla</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanoillani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanoillasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanalta</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanaltani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanaltasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoilta</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanoiltani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanoiltasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanalle</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanalleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanallesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoille</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanoilleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanoillesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanana</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosananani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosananasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoina</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanoinasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanoinasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanaksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanakseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanaksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoiksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanoikseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanoiksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanaa</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanaani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanaasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Jakson arvosanoja</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Jakson arvosanojani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Jakson arvosanojasi</value>
+    </caseValues>
+    <fields>
+        <name>Contact__c</name>
+        <help>Opiskelija, jolle arvosana kirjataan. Kun jätetään tyhjäksi, yhteyshenkilö täytetään automaattisesti voimassa olevasta kurssiyhteydestä tallennuksen yhteydessä.</help>
+        <relationshipLabel>Jakson arvosanat</relationshipLabel>
+        <label>Yhteyshenkilö</label>
+    </fields>
+    <fields>
+        <name>Course_Connection__c</name>
+        <help>Luokka, josta opiskelija sai tämän arvosanan. Yhteyshenkilön ja kurssitarjonnan on oltava yhtäpitäviä kurssin yhteystietueessa olevan yhteyshenkilön ja kurssitarjonnan kanssa.</help>
+        <relationshipLabel>Jakson arvosanat</relationshipLabel>
+        <label>Kurssiyhteys</label>
+    </fields>
+    <fields>
+        <name>Course_Offering__c</name>
+        <help>Kirjattavaan arvosanaan liittyvä kurssitarjonta. Jos kenttä jätetään tyhjäksi, kurssitarjonta täytetään automaattisesti kelvollisesta kurssiyhteydestä tallennuksen yhteydessä.</help>
+        <relationshipLabel>Jakson arvosanat</relationshipLabel>
+        <label>Kurssitarjonta</label>
+    </fields>
+    <fields>
+        <name>Credits_Attempted__c</name>
+        <help>Kurssilla tällä jaksolla käytettävissä olevien opintopisteiden lukumäärä.</help>
+        <label>Opintopistetavoite</label>
+    </fields>
+    <fields>
+        <name>Credits_Earned__c</name>
+        <help>Opintopisteiden lukumäärä, jonka opiskelija ansaitsi kurssilta tällä jaksolla.</help>
+        <label>Ansaitut opintopisteet</label>
+    </fields>
+    <fields>
+        <name>Letter_Grade__c</name>
+        <help>Jos koulusi käyttää kirjainarvosanoja, kirjoita opiskelijan ansaitsema kirjainarvosana, esimerkiksi A, B, C jne.</help>
+        <label>Kirjainarvosana</label>
+    </fields>
+    <fields>
+        <name>Numerical_Grade__c</name>
+        <help>Jos koulusi käyttää numeroarvosanoja, kirjoita opiskelijan ansaitsema numeroarvosana.</help>
+        <label>Numeroarvosana</label>
+    </fields>
+    <fields>
+        <name>Percent_Grade__c</name>
+        <help>Jos koulusi arvioi prosenttiarvosanoja, kirjoita prosenttiarvosana, jonka opiskelija ansaitsi.</help>
+        <label>Prosenttiarvosana</label>
+    </fields>
+    <fields>
+        <name>Result__c</name>
+        <help>Tulos opiskelijan tämän arvostelujakson suorituksesta.</help>
+        <label>Tulos</label>
+        <picklistValues>
+            <masterLabel>Audit</masterLabel>
+            <translation>Tarkastettu</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dropped</masterLabel>
+            <translation>Hylätty</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation>Epäonnistui</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation>Läpäisi</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Term_Grade_Type__c</name>
+        <help>Tämän arvosanan arvostelujakson tyyppi, esimerkiksi jakson väliarvosana, lopullinen arvosana, tenttiarvosana tai arvostelujakso.</help>
+        <label>Jakson arvosanan tyyppi</label>
+        <picklistValues>
+            <masterLabel>Exam Grade</masterLabel>
+            <translation>Tenttiarvosana</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Grade</masterLabel>
+            <translation>Lopullinen arvosana</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grading Period</masterLabel>
+            <translation>Arvostelujakso</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid-Term Grade</masterLabel>
+            <translation>Jakson väliarvosana</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Term__c</name>
+        <help>Ilmaisee, millä jaksolla opiskelija ansaitsi tämän arvosanan.</help>
+        <relationshipLabel>Jakson arvosanat</relationshipLabel>
+        <label>Jakso</label>
+    </fields>
 </CustomObjectTranslation>

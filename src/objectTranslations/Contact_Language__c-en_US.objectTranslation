@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Contact Languages</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Contact Language Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- The person who speaks this language. --></help>
         <label><!-- Contact --></label>
@@ -46,12 +54,4 @@
         <label><!-- Primary Language --></label>
         <name>Primary_Language__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Contact Language Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

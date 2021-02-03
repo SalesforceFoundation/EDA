@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Time Blocks</value>
     </caseValues>
+    <layouts>
+        <layout>EDA Time Block Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- The Educational Institution associated with this Time Block. For example, a school within a district. --></help>
         <label><!-- Educational Institution --></label>
@@ -24,12 +32,4 @@
         <label><!-- Start Time --></label>
         <name>Start_Time__c</name>
     </fields>
-    <layouts>
-        <layout>EDA Time Block Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -1,494 +1,494 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Active__c</name>
-    <help>Ilmaisee, onko tämä käynnistimen käsittelijä käytössä.</help>
-    <label>Aktiivinen</label>
-  </fields>
-  <fields>
-    <name>Asynchronous__c</name>
-    <help>Osoittaa, pitäisikö tämän luokan toimia asynkronisesti tässä tapahtumassa johonkin sen jälkitapahtumaan.</help>
-    <label>Asynkroninen</label>
-  </fields>
-  <fields>
-    <name>Class__c</name>
-    <help>Suoritettavan luokan nimi.</help>
-    <label>Luokka</label>
-  </fields>
-  <fields>
-    <name>Filter_Field__c</name>
-    <help>Suodattamiseen käytetyn kentän nimi.</help>
-    <label>Suodatinkenttä</label>
-  </fields>
-  <fields>
-    <name>Filter_Value__c</name>
-    <help>Suodattamiseen käytetyn kentän arvo.</help>
-    <label>Suodatinarvo</label>
-  </fields>
-  <fields>
-    <name>Load_Order__c</name>
-    <help>Järjestys, jossa tämän luokan tulisi suorittaa. Järjestys on suhteessa muihin saman objektin käynnistäjiin samalla käynnistystoiminnolla, esimerkiksi kaikki tilin ”ennen lisäystä” -käynnistäjät.</help>
-    <label>Latausjärjestys</label>
-  </fields>
-  <fields>
-    <name>Object__c</name>
-    <help>Sen objektin nimi, johon luokan tulisi reagoida, esimerkiksi tili, yhteystieto, mahdollisuus.</help>
-    <label>Objekti</label>
-  </fields>
-  <fields>
-    <name>Owned_by_Namespace__c</name>
-    <help>Tätä käynnistimen käsittelijää ohjaavan paketin tai organisaation nimitila.</help>
-    <label>Omistajana nimitila</label>
-  </fields>
-  <fields>
-    <name>Trigger_Action__c</name>
-    <help>Konteksti, jossa tämän luokan tulisi suorittaa, esimerkiksi ennen tietueen lisäämistä, tietueen poistamisen jälkeen jne.</help>
-    <label>Käynnistystoiminto</label>
-    <picklistValues>
-      <masterLabel>BeforeInsert</masterLabel>
-      <translation>BeforeInsert</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>BeforeUpdate</masterLabel>
-      <translation>BeforeUpdate</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>BeforeDelete</masterLabel>
-      <translation>BeforeDelete</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AfterInsert</masterLabel>
-      <translation>AfterInsert</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AfterUpdate</masterLabel>
-      <translation>AfterUpdate</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AfterDelete</masterLabel>
-      <translation>AfterDelete</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AfterUndelete</masterLabel>
-      <translation>AfterUndelete</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>User_Managed__c</name>
-    <help>Kun tämä valitaan, emme enää työnnä päivityksiä tähän käynnistimen käsittelijään. Valitse tämä vaihtoehto, jos olet tehnyt muutoksia, joita et halua meidän korvaavan.</help>
-    <label>Käyttäjien hallitsema</label>
-  </fields>
-  <fields>
-    <name>Usernames_to_Exclude__c</name>
-    <help>Puolipisteillä erotettu luettelo Salesforcen käyttäjätunnuksista, joita tämä käynnistin EI käytä. Jätä tyhjäksi suoritettavaksi kaikille käyttäjille.</help>
-    <label>Poisjätettävät käyttätunnukset</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Trigger Handler Layout</layout>
-    <sections>
-      <label>Mukautetut linkit</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Käynnistimen käsittelijän nimi</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Käynnistimen käsittelijän nimi</label>
-  </standardFields>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijät</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijän</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöiden</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöideni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöidesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijässä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijässäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijässäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöissä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöissäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöissäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijästä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijästäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijästäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöistä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöistäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöistäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijään</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijääni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijääsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöihin</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöihini</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöihisi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijällä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijälläni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijälläsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöillä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöilläni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöilläsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijältä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijältäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijältäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöiltä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöiltäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöiltäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijälle</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijälleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijällesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöille</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöilleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöillesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijänä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijänäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijänäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöinä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöinäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöinäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijäksi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijäkseni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijäksesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöiksi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöikseni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöiksesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijää</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijääni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijääsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>None</possessive>
-    <value>Käynnistimen käsittelijöitä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>First</possessive>
-    <value>Käynnistimen käsittelijöitäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>Second</possessive>
-    <value>Käynnistimen käsittelijöitäsi</value>
-  </caseValues>
+    <layouts>
+        <layout>HEDA Trigger Handler Layout</layout>
+        <sections>
+            <label>Mukautetut linkit</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Käynnistimen käsittelijän nimi</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Käynnistimen käsittelijän nimi</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijät</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijän</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöiden</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöideni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöidesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijässä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijässäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijässäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöissä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöissäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöissäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijästä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijästäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijästäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöistä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöistäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöistäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijään</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijääni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijääsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöihin</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöihini</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöihisi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijällä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijälläni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijälläsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöillä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöilläni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöilläsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijältä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijältäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijältäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöiltä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöiltäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöiltäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijälle</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijälleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijällesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöille</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöilleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöillesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijänä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijänäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijänäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöinä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöinäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöinäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijäksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijäkseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijäksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöiksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöikseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöiksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijää</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijääni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijääsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Käynnistimen käsittelijöitä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Käynnistimen käsittelijöitäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Käynnistimen käsittelijöitäsi</value>
+    </caseValues>
+    <fields>
+        <name>Active__c</name>
+        <help>Ilmaisee, onko tämä käynnistimen käsittelijä käytössä.</help>
+        <label>Aktiivinen</label>
+    </fields>
+    <fields>
+        <name>Asynchronous__c</name>
+        <help>Osoittaa, pitäisikö tämän luokan toimia asynkronisesti tässä tapahtumassa johonkin sen jälkitapahtumaan.</help>
+        <label>Asynkroninen</label>
+    </fields>
+    <fields>
+        <name>Class__c</name>
+        <help>Suoritettavan luokan nimi.</help>
+        <label>Luokka</label>
+    </fields>
+    <fields>
+        <name>Filter_Field__c</name>
+        <help>Suodattamiseen käytetyn kentän nimi.</help>
+        <label>Suodatinkenttä</label>
+    </fields>
+    <fields>
+        <name>Filter_Value__c</name>
+        <help>Suodattamiseen käytetyn kentän arvo.</help>
+        <label>Suodatinarvo</label>
+    </fields>
+    <fields>
+        <name>Load_Order__c</name>
+        <help>Järjestys, jossa tämän luokan tulisi suorittaa. Järjestys on suhteessa muihin saman objektin käynnistäjiin samalla käynnistystoiminnolla, esimerkiksi kaikki tilin ”ennen lisäystä” -käynnistäjät.</help>
+        <label>Latausjärjestys</label>
+    </fields>
+    <fields>
+        <name>Object__c</name>
+        <help>Sen objektin nimi, johon luokan tulisi reagoida, esimerkiksi tili, yhteystieto, mahdollisuus.</help>
+        <label>Objekti</label>
+    </fields>
+    <fields>
+        <name>Owned_by_Namespace__c</name>
+        <help>Tätä käynnistimen käsittelijää ohjaavan paketin tai organisaation nimitila.</help>
+        <label>Omistajana nimitila</label>
+    </fields>
+    <fields>
+        <name>Trigger_Action__c</name>
+        <help>Konteksti, jossa tämän luokan tulisi suorittaa, esimerkiksi ennen tietueen lisäämistä, tietueen poistamisen jälkeen jne.</help>
+        <label>Käynnistystoiminto</label>
+        <picklistValues>
+            <masterLabel>BeforeInsert</masterLabel>
+            <translation>BeforeInsert</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BeforeUpdate</masterLabel>
+            <translation>BeforeUpdate</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BeforeDelete</masterLabel>
+            <translation>BeforeDelete</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AfterInsert</masterLabel>
+            <translation>AfterInsert</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AfterUpdate</masterLabel>
+            <translation>AfterUpdate</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AfterDelete</masterLabel>
+            <translation>AfterDelete</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AfterUndelete</masterLabel>
+            <translation>AfterUndelete</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>User_Managed__c</name>
+        <help>Kun tämä valitaan, emme enää työnnä päivityksiä tähän käynnistimen käsittelijään. Valitse tämä vaihtoehto, jos olet tehnyt muutoksia, joita et halua meidän korvaavan.</help>
+        <label>Käyttäjien hallitsema</label>
+    </fields>
+    <fields>
+        <name>Usernames_to_Exclude__c</name>
+        <help>Puolipisteillä erotettu luettelo Salesforcen käyttäjätunnuksista, joita tämä käynnistin EI käytä. Jätä tyhjäksi suoritettavaksi kaikille käyttäjille.</help>
+        <label>Poisjätettävät käyttätunnukset</label>
+    </fields>
 </CustomObjectTranslation>

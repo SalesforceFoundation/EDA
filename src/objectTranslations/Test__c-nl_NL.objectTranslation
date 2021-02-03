@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>De student die de toets heeft afgelegd.</help>
-    <relationshipLabel>Toetsen</relationshipLabel>
-    <label>Contactpersoon</label>
-  </fields>
-  <fields>
-    <name>Date_Received__c</name>
-    <help>De datum waarop de toetsuitslag aan het systeem is toegevoegd, ofwel door handmatig uploaden ofwel direct vanuit een officiële bron.</help>
-    <label>Ontvangstdatum</label>
-  </fields>
-  <fields>
-    <name>Source__c</name>
-    <help>Geeft aan of deze toets is gerapporteerd door de aanvrager of door een officiële bron.</help>
-    <label>Bron</label>
-    <picklistValues>
-      <masterLabel>Self Reported</masterLabel>
-      <translation>Zelf gerapporteerd</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Official</masterLabel>
-      <translation>Officieel</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Test_Date__c</name>
-    <help>De datum waarop de toets volgens de aanvrager of de officiële bron is gestart.</help>
-    <label>Toetsdatum</label>
-  </fields>
-  <fields>
-    <name>Test_Type__c</name>
-    <help>De formele naam voor de afgelegde toets.</help>
-    <label>Toetstype</label>
-    <picklistValues>
-      <masterLabel>SAT</masterLabel>
-      <translation>SAT</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>ACT</masterLabel>
-      <translation>ACT</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>GRE</masterLabel>
-      <translation>GRE</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>GMAT</masterLabel>
-      <translation>GMAT</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>TOEFL</masterLabel>
-      <translation>TOEFL</translation>
-    </picklistValues>
-  </fields>
-  <layouts>
-    <layout>EDA Test Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Naam van toets</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Naam van toets</label>
-  </standardFields>
+    <layouts>
+        <layout>EDA Test Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Naam van toets</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Naam van toets</label>
+    </standardFields>
+    <fields>
+        <name>Contact__c</name>
+        <help>De student die de toets heeft afgelegd.</help>
+        <relationshipLabel>Toetsen</relationshipLabel>
+        <label>Contactpersoon</label>
+    </fields>
+    <fields>
+        <name>Date_Received__c</name>
+        <help>De datum waarop de toetsuitslag aan het systeem is toegevoegd, ofwel door handmatig uploaden ofwel direct vanuit een officiële bron.</help>
+        <label>Ontvangstdatum</label>
+    </fields>
+    <fields>
+        <name>Source__c</name>
+        <help>Geeft aan of deze toets is gerapporteerd door de aanvrager of door een officiële bron.</help>
+        <label>Bron</label>
+        <picklistValues>
+            <masterLabel>Self Reported</masterLabel>
+            <translation>Zelf gerapporteerd</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Official</masterLabel>
+            <translation>Officieel</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Test_Date__c</name>
+        <help>De datum waarop de toets volgens de aanvrager of de officiële bron is gestart.</help>
+        <label>Toetsdatum</label>
+    </fields>
+    <fields>
+        <name>Test_Type__c</name>
+        <help>De formele naam voor de afgelegde toets.</help>
+        <label>Toetstype</label>
+        <picklistValues>
+            <masterLabel>SAT</masterLabel>
+            <translation>SAT</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACT</masterLabel>
+            <translation>ACT</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GRE</masterLabel>
+            <translation>GRE</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GMAT</masterLabel>
+            <translation>GMAT</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOEFL</masterLabel>
+            <translation>TOEFL</translation>
+        </picklistValues>
+    </fields>
 </CustomObjectTranslation>

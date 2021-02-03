@@ -1,72 +1,72 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>この学期が適用されるアカデミックプログラム、部門、または教育機関全体。学期が学校のすべてのプログラムおよび部門で一貫している場合は、教育機関を表す取引先責任者を選択します。</help>
-    <relationshipLabel>学期</relationshipLabel>
-    <label>取引先</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>この学期が終了する日付。</help>
-    <label>終了日</label>
-  </fields>
-  <fields>
-    <name>Grading_Period_Sequence__c</name>
-    <help>これがどの学期であるかを示します。たとえば、第 1 クォーターまたはセメスターでは「１」、第 2 クォーターまたはセメスターでは「2」を入力します。</help>
-    <label>評価期間シーケンス</label>
-  </fields>
-  <fields>
-    <name>Instructional_Days__c</name>
-    <help>この学期の授業日の合計数。</help>
-    <label>授業日数</label>
-  </fields>
-  <fields>
-    <name>Parent_Term__c</name>
-    <help>必要に応じて、この学期が含まれる学期を選択します。たとえば、この学期が 2020 年秋クォーターの場合、親学期は 2020/2021 学年度になります。</help>
-    <relationshipLabel>学期</relationshipLabel>
-    <label>親学期</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>この学期が開始する日付。</help>
-    <label>開始日</label>
-  </fields>
-  <fields>
-    <name>Type__c</name>
-    <help>学期の種別 (セメスター、クォーター、学年度など)、</help>
-    <label>種別</label>
-    <picklistValues>
-      <masterLabel>Quarter</masterLabel>
-      <translation>クォーター</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Semester</masterLabel>
-      <translation>セメスター</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>School Year</masterLabel>
-      <translation>学年度</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Part of Term</masterLabel>
-      <translation>学期のパート</translation>
-    </picklistValues>
-  </fields>
-  <layouts>
-    <layout>HEDA Term Layout</layout>
-    <sections>
-      <label>カスタムリンク</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>学期名</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>学期名</label>
-  </standardFields>
-  <caseValues>
-    <plural>false</plural>
-    <value>学期</value>
-  </caseValues>
+    <layouts>
+        <layout>HEDA Term Layout</layout>
+        <sections>
+            <label>カスタムリンク</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>学期名</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>学期名</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value>学期</value>
+    </caseValues>
+    <fields>
+        <name>Account__c</name>
+        <help>この学期が適用されるアカデミックプログラム、部門、または教育機関全体。学期が学校のすべてのプログラムおよび部門で一貫している場合は、教育機関を表す取引先責任者を選択します。</help>
+        <relationshipLabel>学期</relationshipLabel>
+        <label>取引先</label>
+    </fields>
+    <fields>
+        <name>End_Date__c</name>
+        <help>この学期が終了する日付。</help>
+        <label>終了日</label>
+    </fields>
+    <fields>
+        <name>Grading_Period_Sequence__c</name>
+        <help>これがどの学期であるかを示します。たとえば、第 1 クォーターまたはセメスターでは「１」、第 2 クォーターまたはセメスターでは「2」を入力します。</help>
+        <label>評価期間シーケンス</label>
+    </fields>
+    <fields>
+        <name>Instructional_Days__c</name>
+        <help>この学期の授業日の合計数。</help>
+        <label>授業日数</label>
+    </fields>
+    <fields>
+        <name>Parent_Term__c</name>
+        <help>必要に応じて、この学期が含まれる学期を選択します。たとえば、この学期が 2020 年秋クォーターの場合、親学期は 2020/2021 学年度になります。</help>
+        <relationshipLabel>学期</relationshipLabel>
+        <label>親学期</label>
+    </fields>
+    <fields>
+        <name>Start_Date__c</name>
+        <help>この学期が開始する日付。</help>
+        <label>開始日</label>
+    </fields>
+    <fields>
+        <name>Type__c</name>
+        <help>学期の種別 (セメスター、クォーター、学年度など)、</help>
+        <label>種別</label>
+        <picklistValues>
+            <masterLabel>Quarter</masterLabel>
+            <translation>クォーター</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semester</masterLabel>
+            <translation>セメスター</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Year</masterLabel>
+            <translation>学年度</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Part of Term</masterLabel>
+            <translation>学期のパート</translation>
+        </picklistValues>
+    </fields>
 </CustomObjectTranslation>
