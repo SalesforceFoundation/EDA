@@ -164,16 +164,11 @@ tasks:
             command: 'force:data:record:create -s TenantSecret -v "Description=Testing"'
 
     execute_install_apex:
-        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs most of the install script methods from STG_InstallScript class
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
-            apex: >
-                UTIL_CustomSettingsFacade.getSettingsForNewInstalls();
-                STG_InstallScript.insertMappings();
-                STG_InstallScript.insertRelationshipLookups();
-                TDTM_Global_API.setTdtmConfig(TDTM_Global_API.getDefaultTdtmConfig(), 'hed');
-                STG_InstallScript.enablePreferredPhoneSync();
-                STG_InstallScript.enablePreventDeletionHierarchyCustomSettings(NULL);
+            path: scripts/setup.cls
+            apex: executeInstallApex();
 
     execute_automatic_household_naming:
         description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
@@ -498,6 +493,17 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: False
+
+    qa_org_2gp:
+        steps:
+            2:
+                flow: config_2gp
+            3:
+                task: None
+            4:
+                flow: config_qa
+            5:
+                task: snapshot_changes
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
