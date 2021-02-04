@@ -331,6 +331,14 @@ flows:
                 task: update_admin_profile
             3:
                 task: execute_install_apex
+            4:
+                task: deploy_dev_config
+            5:
+                task: execute_qa_apex
+            6:
+                task: deploy_qa_config
+            7:
+                flow: eda_settings_unmanaged
 
     config_apextest:
         # description: Configure an org to run apex tests after package metadata is deployed.
@@ -507,12 +515,6 @@ flows:
         steps:
             2:
                 flow: config_2gp
-            3:
-                task: None
-            4:
-                flow: config_qa
-            5:
-                task: snapshot_changes
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
