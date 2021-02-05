@@ -65,6 +65,7 @@ tasks:
             path: unpackaged/config/dev
 
     delete_dev_config:
+        group: "EDA: Dev Config"
         description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
