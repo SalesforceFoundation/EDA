@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Result__c</name>
+    <help>El resultado del rendimiento del estudiante para este periodo de evaluación.</help>
+    <label>Resultado</label>
+    <picklistValues>
+        <masterLabel>Audit</masterLabel>
+        <translation>Auditoría</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dropped</masterLabel>
+        <translation>Eliminado</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fail</masterLabel>
+        <translation>Fracaso</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pass</masterLabel>
+        <translation>Aprobado</translation>
+    </picklistValues>
+</CustomFieldTranslation>

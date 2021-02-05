@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>La clase en la que el estudiante recibió esta evaluación. Contacto y Oferta de curso en Evaluación de periodo debe coincidir con Contacto y Oferta de curso en el registro Conexión de curso</help>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    <label>Enlace de cursos</label>
+</CustomFieldTranslation>

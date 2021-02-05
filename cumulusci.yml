@@ -10,6 +10,7 @@ project:
         prefix_release: rel/
         repo_url: https://github.com/SalesforceFoundation/EDA
         default_branch: main
+    source_format: sfdx
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm

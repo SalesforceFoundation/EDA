@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>SYSTEM_SystemCreated__c</name>
+    <help>このリレーションが別のリレーションの相互関係として自動的に作成されたかどうかを示すシステム項目。</help>
+    <label>_SYSTEM: SystemCreated</label>
+</CustomFieldTranslation>

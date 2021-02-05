@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Extended_Description__c</name>
+    <help>この項目を使用して、最大 131,000 文字で科目を説明します。この項目は [説明] 項目を置き換えます。</help>
+    <label>拡張説明</label>
+</CustomFieldTranslation>

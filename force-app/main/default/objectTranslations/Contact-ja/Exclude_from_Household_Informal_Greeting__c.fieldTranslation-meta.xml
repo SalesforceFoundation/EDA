@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Exclude_from_Household_Informal_Greeting__c</name>
+    <help>現在、この項目は製品機能に結び付けられていません。</help>
+    <label>世帯の非公式の挨拶から除外</label>
+</CustomFieldTranslation>

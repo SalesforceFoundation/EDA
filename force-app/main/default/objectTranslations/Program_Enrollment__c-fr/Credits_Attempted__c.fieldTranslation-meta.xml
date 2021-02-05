@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Credits_Attempted__c</name>
+    <help>Le nombre de crédits que l&apos;étudiant a essayé de valider à ce jour. Cette valeur comprend les crédits en cours et les cours échoués pour lesquelles aucun crédit n&apos;a été accordé.</help>
+    <label>Crédits tentés</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Percentile__c</name>
+    <help>Opiskelijan prosenttipistesijoitus luokassa. Esimerkiksi 10 prosentin parhaan joukkoon sijoittuvalla opiskelijalla on 90 prosentin arvo.</help>
+    <label>Prosenttipiste luokassa</label>
+</CustomFieldTranslation>

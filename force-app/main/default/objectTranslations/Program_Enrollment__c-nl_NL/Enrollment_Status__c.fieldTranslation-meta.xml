@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Enrollment_Status__c</name>
+    <help>De inschrijvingsstatus van de student, bijvoorbeeld voltijds of deeltijds.</help>
+    <label>Inschrijvingsstatus</label>
+    <picklistValues>
+        <masterLabel>Full-time</masterLabel>
+        <translation>Voltijds</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Half-time</masterLabel>
+        <translation>Deeltijds</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Less than half-time</masterLabel>
+        <translation>Minder dan deeltijds</translation>
+    </picklistValues>
+</CustomFieldTranslation>

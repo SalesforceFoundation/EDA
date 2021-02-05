@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Standing__c</name>
+    <help>Opiskelijan taso ohjelmassa, esimerkiksi fuksi, toisen vuoden opiskelija, juniori tai vanhempi.</help>
+    <label>Sijoitus luokassa</label>
+    <picklistValues>
+        <masterLabel>Freshman</masterLabel>
+        <translation>Fuksi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sophomore</masterLabel>
+        <translation>Toisen vuoden opiskelija</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Junior</masterLabel>
+        <translation>Juniori</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Senior</masterLabel>
+        <translation>Vanhempi</translation>
+    </picklistValues>
+</CustomFieldTranslation>

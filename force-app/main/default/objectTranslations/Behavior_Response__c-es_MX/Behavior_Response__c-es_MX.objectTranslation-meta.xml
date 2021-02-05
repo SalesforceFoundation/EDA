@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Behavior Response Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de respuesta de comportamiento</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nombre de respuesta de comportamiento</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Respuesta de comportamiento</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Respuestas de comportamiento</value>
+    </caseValues>
+</CustomObjectTranslation>

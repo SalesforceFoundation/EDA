@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Category__c</name>
+    <help>Indique le type d&apos;exigence du plan, par exemple facultatif ou obligatoire.</help>
+    <label>Catégorie</label>
+    <picklistValues>
+        <masterLabel>Required</masterLabel>
+        <translation>Obligatoire</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optional</masterLabel>
+        <translation>Facultatif</translation>
+    </picklistValues>
+</CustomFieldTranslation>

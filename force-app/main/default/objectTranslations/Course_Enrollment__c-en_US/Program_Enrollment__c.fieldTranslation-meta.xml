@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program. --></help>
+    <label><!-- Program Enrollment ID --></label>
+    <name>Program_Enrollment__c</name>
+    <relationshipLabel><!-- Course Connections --></relationshipLabel>
+</CustomFieldTranslation>

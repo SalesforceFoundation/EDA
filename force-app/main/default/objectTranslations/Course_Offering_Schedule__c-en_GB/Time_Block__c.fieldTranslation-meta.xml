@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Time_Block__c</name>
+    <help>The Time Block in which this Course Offering is being held.</help>
+    <relationshipLabel>Course Offering Schedules</relationshipLabel>
+    <label>Time Block</label>
+</CustomFieldTranslation>

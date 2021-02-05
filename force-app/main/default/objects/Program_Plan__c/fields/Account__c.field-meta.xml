@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Academic Program this Program Plan is for, for example, BA in Philosophy.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Academic Program this Program Plan is for, for example, BA in Philosophy.</inlineHelpText>
+    <label>Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Program Plans</relationshipLabel>
+    <relationshipName>Program_Plans</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

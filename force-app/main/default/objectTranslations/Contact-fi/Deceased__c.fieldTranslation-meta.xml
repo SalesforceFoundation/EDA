@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Deceased__c</name>
+    <help>Osoittaa, että henkilö on kuollut. Asetus ottaa käyttöön myös Älä ota yhteyttä-, Älä soita-, Sähköpostin käytöstäpoisto- ja Faksin käytöstäpoisto -kentät. Jos yhteyshenkilö ei ole ainoa kotitalouden jäsen, hänen nimensä poistetaan kotitalouden nimestä.</help>
+    <label>Kuollut</label>
+</CustomFieldTranslation>

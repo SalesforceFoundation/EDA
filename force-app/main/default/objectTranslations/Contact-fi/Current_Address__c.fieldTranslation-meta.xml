@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Current_Address__c</name>
+    <help>Hae tämän yhteyshenkilön nykyinen osoitetietue. Yhteyshenkilön postitusosoite-kenttä on täytetään automaattisesti nykyisen osoitetietueen osoitekentistä.</help>
+    <relationshipLabel>Yhteyshenkilöt (nykyinen osoite)</relationshipLabel>
+    <label>Nykyinen osoite</label>
+</CustomFieldTranslation>

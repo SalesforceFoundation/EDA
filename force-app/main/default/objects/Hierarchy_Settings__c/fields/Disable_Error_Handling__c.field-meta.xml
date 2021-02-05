@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disable_Error_Handling__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If selected, the custom error handling framework is disabled.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If selected, the custom error handling framework is disabled.</inlineHelpText>
+    <label>Disable Error Handling</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

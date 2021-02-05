@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Subject_Area__c</name>
+    <help>Thema oder Kategorie dieses Testergebnisses.</help>
+    <label>Fachrichtung</label>
+    <picklistValues>
+        <masterLabel>Language</masterLabel>
+        <translation>Sprache</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mathematics</masterLabel>
+        <translation>Mathematik</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reading</masterLabel>
+        <translation>Lesen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Science</masterLabel>
+        <translation>Naturwissenschaften</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Writing</masterLabel>
+        <translation>Schreiben</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Overall</masterLabel>
+        <translation>Gesamt</translation>
+    </picklistValues>
+</CustomFieldTranslation>

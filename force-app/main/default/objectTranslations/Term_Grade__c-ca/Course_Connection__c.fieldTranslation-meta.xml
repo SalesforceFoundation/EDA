@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>La classe en què l&apos;estudiant ha rebut aquesta qualificació. El contacte i l’oferta curs de la qualificació del període ha de coincidir amb el contacte i l’oferta de curs del registre de connexió del curs.</help>
+    <relationshipLabel>Qualificacions del període</relationshipLabel>
+    <label>Connexió del curs</label>
+</CustomFieldTranslation>

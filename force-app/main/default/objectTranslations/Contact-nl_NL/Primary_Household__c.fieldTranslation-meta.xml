@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Household__c</name>
+    <help>Opzoeking van het hoofdhuishouden (accountrecord) waaraan deze contactpersoon is gekoppeld.</help>
+    <relationshipLabel>Contactpersonen (primair huishouden)</relationshipLabel>
+    <label>Primair huishouden</label>
+</CustomFieldTranslation>

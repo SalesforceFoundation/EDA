@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Affl_Field__c</name>
+    <help>Het label van het contactpersoonveld dat de waarde bevat van de primaire account voor dit recordtype.</help>
+    <label>Primair affiliatieveld</label>
+</CustomFieldTranslation>

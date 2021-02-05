@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Application_Status__c</name>
+    <help>De status van het aanvraagproces.</help>
+    <label>Status van aanvraag</label>
+    <picklistValues>
+        <masterLabel>Submitted</masterLabel>
+        <translation>Ingediend</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incomplete</masterLabel>
+        <translation>Onvolledig</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Received</masterLabel>
+        <translation>Ontvangen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Review</masterLabel>
+        <translation>In afwachting van beoordeling</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Waitlist</masterLabel>
+        <translation>Op de wachtlijst</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Admit</masterLabel>
+        <translation>Toelaten</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Admit with Conditions</masterLabel>
+        <translation>Toelaten onder voorwaarden</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deny</masterLabel>
+        <translation>Weigeren</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deferred Offer</masterLabel>
+        <translation>Aanbod opgeschort</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accepted Offer</masterLabel>
+        <translation>Aanbod geaccepteerd</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Declined Offer</masterLabel>
+        <translation>Aanbod geweigerd</translation>
+    </picklistValues>
+</CustomFieldTranslation>

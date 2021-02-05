@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Test Score Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Test Score Name</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Test Score Name</label>
+    </standardFields>
+    <startsWith>Consonant</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Test Score</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Test Scores</value>
+    </caseValues>
+</CustomObjectTranslation>

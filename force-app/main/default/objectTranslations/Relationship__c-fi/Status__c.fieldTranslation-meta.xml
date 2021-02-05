@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>Suhteen tila, esimerkiksi nykyinen tai entinen.</help>
+    <label>Tila</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Nykyinen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Former</masterLabel>
+        <translation>Entinen</translation>
+    </picklistValues>
+</CustomFieldTranslation>

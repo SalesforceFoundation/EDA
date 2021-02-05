@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Load_Order__c</fullName>
+    <description>The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The order in which this class should run. The order is in relation to other triggers on the same object with the same Trigger Actions, for example, all “before insert” triggers on Account.</inlineHelpText>
+    <label>Load Order</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

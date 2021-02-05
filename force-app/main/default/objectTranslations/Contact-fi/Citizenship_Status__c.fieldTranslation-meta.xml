@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Citizenship_Status__c</name>
+    <help>Yhteyshenkilön kansalaisuuden tila.</help>
+    <label>Kansalaisuuden tila</label>
+    <picklistValues>
+        <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+        <translation>Yhdysvaltain kansalainen tai Yhdysvaltain asukas</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Dual Citizen</masterLabel>
+        <translation>Yhdysvaltain kaksoiskansalainen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Permanent Resident</masterLabel>
+        <translation>Yhdysvaltain pysyvä asukas</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Refugee or Asylee</masterLabel>
+        <translation>Yhdysvaltain pakolainen tai turvapaikanhakija</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other (Non-U.S.)</masterLabel>
+        <translation>Muu (ei-yhdysvaltalainen)</translation>
+    </picklistValues>
+</CustomFieldTranslation>

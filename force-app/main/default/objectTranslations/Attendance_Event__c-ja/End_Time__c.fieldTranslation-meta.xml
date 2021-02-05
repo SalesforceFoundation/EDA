@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>End_Time__c</name>
+    <help>半日の届出欠席の場合は、学生が戻った時刻。</help>
+    <label>終了時刻</label>
+</CustomFieldTranslation>

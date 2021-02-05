@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Test__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Test for which this score is being recorded.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Test for which this score is being recorded.</inlineHelpText>
+    <label>Test</label>
+    <referenceTo>Test__c</referenceTo>
+    <relationshipLabel>Test Scores</relationshipLabel>
+    <relationshipName>Test_Scores</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

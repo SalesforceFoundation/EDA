@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The value used if the Contact&apos;s gender field matches the values in the Female Custom Label or the Contact&apos;s Salutation indicates gender. --></help>
+    <label><!-- Female --></label>
+    <name>Female__c</name>
+</CustomFieldTranslation>

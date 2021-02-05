@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Object__c</name>
+    <help>Le nom d&apos;API de l&apos;objet (Contact ou CampaignMember) dans lequel le champ de référence se situe.</help>
+    <label>Objet</label>
+</CustomFieldTranslation>

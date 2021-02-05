@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Degree_Earned__c</name>
+    <help>Si applicable, le niveau du diplôme que le contact a obtenu dans cet établissement d&apos;enseignement.</help>
+    <label>Diplôme obtenu</label>
+    <picklistValues>
+        <masterLabel>GED</masterLabel>
+        <translation>GED</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High School Diploma</masterLabel>
+        <translation>Diplôme d&apos;études supérieures</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AA</masterLabel>
+        <translation>DEUG, BTS, DUT</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AS</masterLabel>
+        <translation>DEUG scientifique</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BA</masterLabel>
+        <translation>Licence littéraire</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BS</masterLabel>
+        <translation>Licence scientifique</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MA</masterLabel>
+        <translation>Master littéraire</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MBA</masterLabel>
+        <translation>Master en droit des affaires et management (MBA)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MS</masterLabel>
+        <translation>Master scientifique</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JD</masterLabel>
+        <translation>Doctorat en droit</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MD</masterLabel>
+        <translation>Doctorat en médecine</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PhD</masterLabel>
+        <translation>Doctorat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Autre</translation>
+    </picklistValues>
+</CustomFieldTranslation>

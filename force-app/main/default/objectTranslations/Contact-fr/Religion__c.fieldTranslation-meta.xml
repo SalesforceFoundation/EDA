@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Religion__c</name>
+    <help>La religion pratiquée par cette personne.</help>
+    <label>Religion</label>
+    <picklistValues>
+        <masterLabel>Atheist</masterLabel>
+        <translation>Athée</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Buddhist</masterLabel>
+        <translation>Bouddhiste</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Christian</masterLabel>
+        <translation>Chrétien</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hindu</masterLabel>
+        <translation>Hindou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jewish</masterLabel>
+        <translation>Juif</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Muslim</masterLabel>
+        <translation>Musulman</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Autre</translation>
+    </picklistValues>
+</CustomFieldTranslation>

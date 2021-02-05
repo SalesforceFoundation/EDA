@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tuesday__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select to indicate this Course Offering is on Tuesdays. You can select multiple days.</inlineHelpText>
+    <label>Tuesday</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

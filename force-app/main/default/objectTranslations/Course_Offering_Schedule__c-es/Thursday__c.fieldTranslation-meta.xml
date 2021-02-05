@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Thursday__c</name>
+    <help>Seleccione para indicar que esta Oferta de curso es los jueves. Puede seleccionar varios días.</help>
+    <label>Jueves</label>
+</CustomFieldTranslation>

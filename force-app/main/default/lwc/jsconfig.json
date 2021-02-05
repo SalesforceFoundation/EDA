@@ -1,7 +1,24 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true
-
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/healthCheck": [
+                "healthCheck/healthCheck.js"
+            ],
+            "c/healthCheckDisplay": [
+                "healthCheckDisplay/healthCheckDisplay.js"
+            ],
+            "c/healthCheckGroup": [
+                "healthCheckGroup/healthCheckGroup.js"
+            ],
+            "c/healthCheckHighlightsPanel": [
+                "healthCheckHighlightsPanel/healthCheckHighlightsPanel.js"
+            ],
+            "c/healthCheckRun": [
+                "healthCheckRun/healthCheckRun.js"
+            ]
+        }
     },
     "include": [
         "**/*",

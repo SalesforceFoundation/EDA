@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Usernames_to_Exclude__c</name>
+    <help>このトリガの対象にしない Salesforce ユーザ名のセミコロン区切りリスト。すべてのユーザを対象にする場合は、空白のままにします。</help>
+    <label>除外するユーザ名</label>
+</CustomFieldTranslation>

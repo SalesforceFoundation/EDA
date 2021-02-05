@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_Not_Contact__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates this person does not want your organization to call or email. Use this field to filter out Contacts in email and phone lists.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates this person does not want your organization to call or email. Use this field to filter out Contacts in email and phone lists.</inlineHelpText>
+    <label>Do Not Contact</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

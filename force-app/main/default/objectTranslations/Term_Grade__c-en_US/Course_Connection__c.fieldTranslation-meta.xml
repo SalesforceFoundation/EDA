@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The class in which the student received this grade. The Contact and Course Offering on Term Grade must match the Contact and Course Offering on the Course Connection record. --></help>
+    <label><!-- Course Connection --></label>
+    <name>Course_Connection__c</name>
+    <relationshipLabel><!-- Term Grades --></relationshipLabel>
+</CustomFieldTranslation>

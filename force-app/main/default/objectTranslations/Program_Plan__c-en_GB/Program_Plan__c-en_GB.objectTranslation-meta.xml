@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Program Plan Name</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Program Plan Name</label>
+    </standardFields>
+    <startsWith>Consonant</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Program Plan</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Program Plans</value>
+    </caseValues>
+</CustomObjectTranslation>

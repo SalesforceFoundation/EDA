@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Is_Primary__c</name>
+    <help>Indique si ce plan de programme est en cours pour le programme académique sélectionné.</help>
+    <label>Principal</label>
+</CustomFieldTranslation>

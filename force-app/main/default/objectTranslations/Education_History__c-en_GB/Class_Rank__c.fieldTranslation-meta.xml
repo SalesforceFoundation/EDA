@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank__c</name>
+    <help>The student&apos;s academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5.</help>
+    <label>Class Rank</label>
+</CustomFieldTranslation>

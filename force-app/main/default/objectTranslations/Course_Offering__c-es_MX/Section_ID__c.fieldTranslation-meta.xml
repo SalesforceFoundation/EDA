@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Section_ID__c</name>
+    <help>El Id. de sección para esta Oferta de curso. El Id. de sección se utiliza normalmente cuando un curso ofrece múltiples secciones durante un único plazo.</help>
+    <label>Id. de Sección</label>
+</CustomFieldTranslation>

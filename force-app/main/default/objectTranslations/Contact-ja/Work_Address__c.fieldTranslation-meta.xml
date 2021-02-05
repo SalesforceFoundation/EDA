@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Work_Address__c</name>
+    <help>[連絡先] として [勤務先] を選択した場合、[勤務先住所] には [住所(郵送先)] の値が入力されます。[勤務先] が [連絡先(その他)] の場合、[勤務先住所] には [住所(その他)] の値が入力されます。この項目は参照のみです。</help>
+    <label>勤務先住所</label>
+</CustomFieldTranslation>

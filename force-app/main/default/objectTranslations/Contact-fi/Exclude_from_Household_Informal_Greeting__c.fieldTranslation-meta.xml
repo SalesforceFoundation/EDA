@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Exclude_from_Household_Informal_Greeting__c</name>
+    <help>Tämä kenttä ei ole tällä hetkellä sidottu tuotteen toimintoihin.</help>
+    <label>Ei kotitalouden epäviral. tervehdystä</label>
+</CustomFieldTranslation>

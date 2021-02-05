@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Usernames_to_Exclude__c</name>
+    <help>Een door puntkomma&apos;s gescheiden lijst met Salesforce-gebruikersnamen waarvoor deze trigger NIET zal worden uitgevoerd. Laat dit leeg om te laten uitvoeren voor alle gebruikers.</help>
+    <label>Uit te sluiten gebruikersnamen</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Monday__c</name>
+    <help>Sélectionnez pour indiquer que cette offre de cours est dispensée les lundis. Vous pouvez sélectionner plusieurs jours.</help>
+    <label>Lundi</label>
+</CustomFieldTranslation>

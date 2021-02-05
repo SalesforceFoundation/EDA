@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>リレーションの状況 (現在、以前など)。</help>
+    <label>状況</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>現在</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Former</masterLabel>
+        <translation>以前</translation>
+    </picklistValues>
+</CustomFieldTranslation>

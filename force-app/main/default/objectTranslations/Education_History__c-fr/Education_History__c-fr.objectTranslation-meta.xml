@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Education History Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du parcours de formation</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nom du parcours de formation</label>
+    </standardFields>
+    <gender>Masculine</gender>
+    <startsWith>Consonant</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Parcours de formation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Parcours de formation</value>
+    </caseValues>
+</CustomObjectTranslation>

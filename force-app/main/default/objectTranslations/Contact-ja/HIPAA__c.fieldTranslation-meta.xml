@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>HIPAA__c</name>
+    <help>この個人のレコードが Health Insurance Portability and Accountability Act (医療保険の携行性と責任に関する法律) の基準を順守するかどうかを示します。</help>
+    <label>HIPAA</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Work_Address__c</name>
+    <help>If you&apos;ve set &quot;Work&quot; as the Primary Address type, the Work Address is populated with the Mailing Address values. If &quot;Work&quot; is the Secondary Address type, the Work Address is populated with the &quot;Other Address&quot; values. This field is read-only.</help>
+    <label>Work Address</label>
+</CustomFieldTranslation>

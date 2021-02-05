@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Percentile__c</name>
+    <help>クラスでの学生のパーセンタイル順位。たとえば、学生の順位が上位 10% に入っている場合、その学生の値は 90% になります。</help>
+    <label>クラスパーセンタイル順位</label>
+</CustomFieldTranslation>

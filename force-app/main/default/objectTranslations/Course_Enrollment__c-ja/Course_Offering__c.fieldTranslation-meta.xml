@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Offering__c</name>
+    <help>学生または教職員メンバーが関与している開講科目。</help>
+    <relationshipLabel>履修科目</relationshipLabel>
+    <label>開講科目 ID</label>
+</CustomFieldTranslation>

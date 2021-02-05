@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Applying_To__c</name>
+    <help>Das Studienprogramm oder der Studiengang, für das/den sich der Bewerber bewirbt.</help>
+    <relationshipLabel>Bewerbungen</relationshipLabel>
+    <label>Bewerbung für</label>
+</CustomFieldTranslation>

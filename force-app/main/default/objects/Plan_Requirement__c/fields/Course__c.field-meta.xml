@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Course associated with this Plan Requirement. Leave blank for a parent Plan Requirement with nested Plan Requirements.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Course associated with this Plan Requirement. Leave blank for a parent Plan Requirement with nested Plan Requirements.</inlineHelpText>
+    <label>Course</label>
+    <referenceTo>Course__c</referenceTo>
+    <relationshipLabel>Plan Requirements</relationshipLabel>
+    <relationshipName>Plan_Requirements</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

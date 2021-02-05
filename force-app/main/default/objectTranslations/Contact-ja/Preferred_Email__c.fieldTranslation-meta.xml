@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Preferred_Email__c</name>
+    <help>この取引先責任者が希望するメール連絡先 (大学、勤務先、その他)。</help>
+    <label>メール連絡先</label>
+    <picklistValues>
+        <masterLabel>University Email</masterLabel>
+        <translation>大学のメール</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Work Email</masterLabel>
+        <translation>勤務先メール</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alternate Email</masterLabel>
+        <translation>その他メール</translation>
+    </picklistValues>
+</CustomFieldTranslation>

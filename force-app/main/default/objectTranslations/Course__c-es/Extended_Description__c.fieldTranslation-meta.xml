@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Extended_Description__c</name>
+    <help>Utilice este campo para describir el curso, con un máximo de 131.000 caracteres. Este campo sustituye el campo Descripción.</help>
+    <label>Descripción ampliada</label>
+</CustomFieldTranslation>

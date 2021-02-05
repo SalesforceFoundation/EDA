@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Initial_Creation_Date__c</name>
+    <help>出願者が出願を最初に作成した日付。</help>
+    <label>初期作成日</label>
+</CustomFieldTranslation>

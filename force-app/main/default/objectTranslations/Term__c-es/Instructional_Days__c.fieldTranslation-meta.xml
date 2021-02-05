@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Instructional_Days__c</name>
+    <help>El número total de días lectivos en este plazo.</help>
+    <label>Jornadas didácticas</label>
+</CustomFieldTranslation>

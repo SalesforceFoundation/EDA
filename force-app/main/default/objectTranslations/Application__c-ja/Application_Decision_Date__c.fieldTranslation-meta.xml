@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Application_Decision_Date__c</name>
+    <help>機関が出願者を受入れるかどうかを決定した日付。</help>
+    <label>出願決定日</label>
+</CustomFieldTranslation>

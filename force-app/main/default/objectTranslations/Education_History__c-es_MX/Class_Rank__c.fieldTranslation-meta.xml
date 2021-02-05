@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank__c</name>
+    <help>La clasificación académica del estudiante en relación con su clase de graduación. Por ejemplo, un estudiante con una clasificación 5ta en la clase de 200, tiene un valor de 5.</help>
+    <label>Clasificación de clase</label>
+</CustomFieldTranslation>

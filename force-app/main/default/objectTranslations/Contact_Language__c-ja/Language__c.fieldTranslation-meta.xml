@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Language__c</name>
+    <help>この個人が話す言語。</help>
+    <relationshipLabel>取引先責任者の言語</relationshipLabel>
+    <label>言語</label>
+</CustomFieldTranslation>

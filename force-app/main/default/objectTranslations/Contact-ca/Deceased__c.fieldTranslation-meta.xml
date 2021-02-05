@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Deceased__c</name>
+    <help>Indica que aquesta persona ha mort. Quan se selecciona, també habilita No contactar, No trucar, Desactivar correu electrònic i Desactivar fax. Si el contacte no és l&apos;únic membre de la llar, el nom del contacte s&apos;elimina de la denominació domèstica.</help>
+    <label>Difunt</label>
+</CustomFieldTranslation>

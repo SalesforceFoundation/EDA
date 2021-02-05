@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Plan__c</name>
+    <help>El Plan del programa que contiene todos los requisitos del programa en vigor para este estudiante.</help>
+    <relationshipLabel>Inscripciones de programa</relationshipLabel>
+    <label>Plan del programa</label>
+</CustomFieldTranslation>

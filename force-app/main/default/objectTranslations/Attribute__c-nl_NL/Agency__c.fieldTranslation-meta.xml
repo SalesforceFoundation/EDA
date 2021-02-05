@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Agency__c</name>
+    <help>Het bureau dat de identificatiegegevens heeft verstrekt of gecertificeerd.</help>
+    <relationshipLabel>Kenmerken</relationshipLabel>
+    <label>Bureau</label>
+</CustomFieldTranslation>

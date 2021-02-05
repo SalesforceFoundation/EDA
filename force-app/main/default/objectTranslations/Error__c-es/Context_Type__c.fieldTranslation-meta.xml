@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Context_Type__c</name>
+    <help>Contexto en el que se generó el error, si se conoce.</help>
+    <label>Tipo de contexto</label>
+</CustomFieldTranslation>

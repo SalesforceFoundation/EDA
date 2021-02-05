@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Contact__c</name>
+    <help>Der Student, für den die Note aufgezeichnet wird. Bleibt das Feld leer, wird &quot;Kontakt&quot; beim Speichern automatisch anhand der gültigen Kursverbindung aufgefüllt.</help>
+    <relationshipLabel>Zeitabschnittsbezogene Noten</relationshipLabel>
+    <label>Kontakt</label>
+</CustomFieldTranslation>

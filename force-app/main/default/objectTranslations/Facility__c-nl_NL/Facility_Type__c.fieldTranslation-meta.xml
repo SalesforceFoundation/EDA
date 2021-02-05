@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Facility_Type__c</name>
+    <help>Selecteer welk type faciliteit dit is, bijvoorbeeld een computerruimte, gezondheidscentrum, collegezaal, enz.</help>
+    <label>Faciliteitstype</label>
+    <picklistValues>
+        <masterLabel>Building</masterLabel>
+        <translation>Gebouw</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cafeteria/Food Hall</masterLabel>
+        <translation>Kantine/Mensa</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Classroom</masterLabel>
+        <translation>Klaslokaal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Computer Lab</masterLabel>
+        <translation>Computerruimte</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gymnasium</masterLabel>
+        <translation>Sportzaal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Health Center</masterLabel>
+        <translation>Gezondheidscentrum</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Laboratory</masterLabel>
+        <translation>Laboratorium</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lecture Hall</masterLabel>
+        <translation>Collegezaal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Library</masterLabel>
+        <translation>Bibliotheek</translation>
+    </picklistValues>
+</CustomFieldTranslation>

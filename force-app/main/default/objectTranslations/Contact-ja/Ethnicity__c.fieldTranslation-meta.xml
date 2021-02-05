@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Ethnicity__c</name>
+    <help>この個人をヒスパニックまたはラテン系として識別するかどうかを示します。</help>
+    <label>民族</label>
+    <picklistValues>
+        <masterLabel>Hispanic or Latino</masterLabel>
+        <translation>ヒスパニックまたはラテン系</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Hispanic or Latino</masterLabel>
+        <translation>ヒスパニックまたはラテン系ではない</translation>
+    </picklistValues>
+</CustomFieldTranslation>

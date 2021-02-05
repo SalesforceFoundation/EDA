@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Case__c</name>
+    <help>報告されているイベントを表すケース。</help>
+    <relationshipLabel>行動関与</relationshipLabel>
+    <label>ケース</label>
+</CustomFieldTranslation>

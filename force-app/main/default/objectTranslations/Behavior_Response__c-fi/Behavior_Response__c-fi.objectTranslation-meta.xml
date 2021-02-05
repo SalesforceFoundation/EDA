@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Behavior Response Layout</layout>
+        <sections>
+            <label>Mukautetut linkit</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Käytösreaktion nimi</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Käytösreaktion nimi</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seuraus</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seuraukseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seuraukset</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seuraukseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksen</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seuraukseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurausten</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurausteni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seuraustesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksessa</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksessani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksessasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksissa</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksissani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksissasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksesta</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksestani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksestasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksista</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksistani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksistasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seuraukseen</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seuraukseeni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seuraukseesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksiin</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksiini</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksiisi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksella</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksellani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksellasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksilla</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksillani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksillasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seuraukselta</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seuraukseltani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seuraukseltasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksilta</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksiltani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksiltasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seuraukselle</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seuraukselleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksellesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksille</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksilleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksillesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksena</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksenani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksenasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksina</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksinani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksinasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seuraukseksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksekseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seuraukseksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksiksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksikseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksiksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurausta</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seuraustani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seuraustasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Riitatilanteen seurauksia</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Riitatilanteen seurauksiani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Riitatilanteen seurauksiasi</value>
+    </caseValues>
+</CustomObjectTranslation>

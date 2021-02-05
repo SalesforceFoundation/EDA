@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Credits_Attempted__c</name>
+    <help>Het aantal credits dat de student tot nu toe heeft geprobeerd te behalen. Dit omvat credits die nog in uitvoering zijn en cursussen waarvoor de student is gezakt en geen credits heeft gekregen.</help>
+    <label>Theoretische credits</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Description__c</name>
+    <help>この項目は、より長い説明に対応する [拡張説明] 項目で置き換えられました。システム管理者は、[EDA 設定] | [科目] で、[説明] から [拡張説明] 項目にテキストを移行できます。</help>
+    <label>説明</label>
+</CustomFieldTranslation>

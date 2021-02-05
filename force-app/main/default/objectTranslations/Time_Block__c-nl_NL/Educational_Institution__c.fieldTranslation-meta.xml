@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Educational_Institution__c</name>
+    <help>De onderwijsinstelling die aan dit tijdblok is gekoppeld. Bijvoorbeeld een school binnen een district.</help>
+    <relationshipLabel>Tijdblokken</relationshipLabel>
+    <label>Onderwijsinstelling</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Deceased__c</name>
+    <help>Indicates this person is deceased. When selected, also enables Do Not Contact, Do Not Call, Email Opt Out, and Fax Opt Out. If the Contact is not the only member of the Household, the Contact name is removed from the Household name.</help>
+    <label>Deceased</label>
+</CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enable_Debug__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Select to enable debug statements in managed package code.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select to enable debug statements in managed package code.</inlineHelpText>
+    <label>Enable Debug</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

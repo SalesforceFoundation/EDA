@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Offering__c</name>
+    <help>Kirjattavaan arvosanaan liittyvä kurssitarjonta. Jos kenttä jätetään tyhjäksi, kurssitarjonta täytetään automaattisesti kelvollisesta kurssiyhteydestä tallennuksen yhteydessä.</help>
+    <relationshipLabel>Jakson arvosanat</relationshipLabel>
+    <label>Kurssitarjonta</label>
+</CustomFieldTranslation>

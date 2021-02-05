@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save.</inlineHelpText>
+    <label>Contact</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Term Grades</relationshipLabel>
+    <relationshipName>Term_Grades</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Role__c</name>
+    <help>La función que tiene esta persona con la organización.</help>
+    <label>Función</label>
+    <picklistValues>
+        <masterLabel>Student</masterLabel>
+        <translation>Estudiante</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prospect</masterLabel>
+        <translation>Posibilidad</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Applicant</masterLabel>
+        <translation>Solicitante</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Faculty</masterLabel>
+        <translation>Facultad</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Employee</masterLabel>
+        <translation>Empleador</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Ethnicity__c</name>
+    <help>Geeft aan of deze persoon zichzelf ziet als Spaans of Latino.</help>
+    <label>Etniciteit</label>
+    <picklistValues>
+        <masterLabel>Hispanic or Latino</masterLabel>
+        <translation>Spaans of Latino</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Hispanic or Latino</masterLabel>
+        <translation>Niet Spaans of Latino</translation>
+    </picklistValues>
+</CustomFieldTranslation>

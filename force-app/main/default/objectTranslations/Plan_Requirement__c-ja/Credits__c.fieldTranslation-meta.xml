@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Credits__c</name>
+    <help>この要件を満たしたことに対して学生が受け取る単位数。</help>
+    <label>単位数</label>
+</CustomFieldTranslation>

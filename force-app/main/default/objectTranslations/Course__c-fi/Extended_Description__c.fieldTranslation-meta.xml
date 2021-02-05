@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Extended_Description__c</name>
+    <help>Käytä tätä kenttää kuvaamaan kurssia enintään 131 000 merkillä. Tämä kenttä korvaa Kuvaus-kentän.</help>
+    <label>Laajennettu kuvaus</label>
+</CustomFieldTranslation>
