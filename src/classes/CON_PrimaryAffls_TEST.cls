@@ -823,14 +823,13 @@ private with sharing class CON_PrimaryAffls_TEST {
             con.Primary_Organization__c = businessAccount1.Id;
         }
 
-        Test.startTest();
         try {
+            Test.startTest();
             insert testContactsList;
+            Test.stopTest();
         } catch (System.DmlException err){
             System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
         }
-        
-        Test.stopTest();
     }
 
     /*************************************************************************************************************
