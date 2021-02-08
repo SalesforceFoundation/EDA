@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Accommodation</masterLabel>
+        <translation>Beherbergung</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Asylee</masterLabel>
+        <translation>Asylant</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Economically Disadvantaged</masterLabel>
+        <translation>Wirtschaftlich benachteiligt</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>English Learners</masterLabel>
+        <translation>Englischlernende</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Family Consideration</masterLabel>
+        <translation>Rücksichtnahme auf die Familie</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Foster Care</masterLabel>
+        <translation>Pflegeunterbringung</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Free Lunch</masterLabel>
+        <translation>Kostenloses Mittagessen</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Homeless</masterLabel>
+        <translation>Obdachlos</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Immigrant</masterLabel>
+        <translation>Immigrant</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>International Student</masterLabel>
+        <translation>Ausländischer Student</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Weitere</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Parent in Military</masterLabel>
+        <translation>Elternteil beim Militär</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pregnant</masterLabel>
+        <translation>Schwanger</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Reduced Price Lunch</masterLabel>
+        <translation>Ermäßigtes Mittagessen</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Refugee</masterLabel>
+        <translation>Geflüchteter</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Section 504 Handicapped</masterLabel>
+        <translation>Behindert gemäß Rehabilitation Act, Abschnitt 504</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

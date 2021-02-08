@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Account_Processor__c</name>
@@ -263,4 +263,14 @@
     <help>Si cette option est activée, les exigences du plan peuvent spécifier un plan de programme ou une exigence de plan parent, mais pas les deux. Si vous spécifiez les deux, un message d’erreur empêche l'enregistrement jusqu'à ce qu'un seul soit sélectionné.</help>
     <label>Valider plan prog. pour EP imbriquée</label>
   </fields>
+  <gender>Masculine</gender>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Paramètre de la hiérarchie</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Paramètres de la hiérarchie</value>
+  </caseValues>
 </CustomObjectTranslation>

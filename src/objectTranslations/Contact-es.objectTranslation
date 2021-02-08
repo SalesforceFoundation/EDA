@@ -1152,6 +1152,10 @@
       <translation>Refugiado o asilado en Estados Unidos</translation>
     </picklistValues>
     <picklistValues>
+      <masterLabel>Temporary Resident</masterLabel>
+      <translation>Residente temporal</translation>
+    </picklistValues>
+    <picklistValues>
       <masterLabel>Other (Non-U.S.)</masterLabel>
       <translation>Otro (no de Estado Unidos)</translation>
     </picklistValues>
@@ -2293,7 +2297,7 @@
   </fields>
   <fields>
     <name>Deceased__c</name>
-    <help>Indica que esta persona está fallecida. Cuando se selecciona, también activa No contactar, No llamar, Anulación de suscripción de correo electrónico y Anulación de suscripción de fax. Si el contacto no es el único miembro doméstico, el nombre del contacto se elimina del nombre doméstico.</help>
+    <help>Indica que esta persona está fallecida. También activa No contactar, No llamar, Anulación de suscripción de correo electrónico y Anulación de suscripción de fax. Si no es el único miembro doméstico, el nombre se elimina del nombre doméstico.</help>
     <label>Fallecido</label>
   </fields>
   <fields>
@@ -3481,11 +3485,11 @@
     <label>Género</label>
     <picklistValues>
       <masterLabel>Female</masterLabel>
-      <translation>Femenino</translation>
+      <translation>Female</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Male</masterLabel>
-      <translation>Masculino</translation>
+      <translation>Male</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Decline to State</masterLabel>
@@ -3718,12 +3722,12 @@
   </fields>
   <fields>
     <name>Work_Address__c</name>
-    <help>Si estableció "Laboral" como el tipo de Dirección principal, la Dirección laboral se rellena con valores de Dirección postal. Si "Laboral" es el tipo de Dirección secundaria, la dirección laboral se rellena con valores de "Otra dirección". Este campo es de solo lectura.</help>
+    <help>Si estableció "Laboral" como Dirección principal, la Dirección laboral se rellena con valores de Dirección postal. Si "Laboral" es Dirección secundaria, la dirección laboral se rellena con valores de "Otra dirección". Este campo es de solo lectura.</help>
     <label>Dirección laboral</label>
   </fields>
   <fields>
     <name>is_Address_Override__c</name>
-    <help>Cuando se selecciona, la dirección de este contacto no se sincronizará con la dirección predeterminada o de temporada doméstica. Utilice esto para mantener una dirección postal separada para este contacto en particular. (Solo se aplica a contactos domésticos).</help>
+    <help>La dirección de este contacto no se sincronizará con la dirección predeterminada o de temporada doméstica. Utilice esto para mantener una dirección postal separada para este contacto en particular. (Solo se aplica a contactos domésticos).</help>
     <label>No actualizar automáticamente</label>
   </fields>
   <layouts>

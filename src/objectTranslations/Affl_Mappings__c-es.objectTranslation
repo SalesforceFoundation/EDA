@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Account_Record_Type__c</name>
@@ -25,4 +25,13 @@
     <help>La etiqueta del campo Contacto que alberga el valor de la cuenta principal para este tipo de registro.</help>
     <label>Campo de afiliación principal</label>
   </fields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Asignación de afiliación</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Asignaciones de afiliaciones</value>
+  </caseValues>
 </CustomObjectTranslation>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>School Code of Conduct</masterLabel>
+        <translation>Código de conducta de centro de enseñanza</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>School Violation</masterLabel>
+        <translation>Infracción de centro de enseñanza</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>State Offense</masterLabel>
+        <translation>Infracción estatal</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Otro</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

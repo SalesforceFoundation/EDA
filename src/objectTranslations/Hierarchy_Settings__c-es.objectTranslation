@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Account_Processor__c</name>
@@ -263,4 +263,13 @@
     <help>Cuando se selecciona, Requisitos de plan puede especificar un Plan de programa o un Requisito de plan principal, pero no ambos. Si especifica un Plan de programa y un Requisito de plan principal un error evita que guarde hasta que se seleccione solo uno.</help>
     <label>Validar plan programa para RP anidados</label>
   </fields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Configuración de jerarquía</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Configuraciones de jerarquías</value>
+  </caseValues>
 </CustomObjectTranslation>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Accommodation</masterLabel>
+        <translation>Allotjament</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Asylee</masterLabel>
+        <translation>Asilat</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Economically Disadvantaged</masterLabel>
+        <translation>Desfavorit econòmicament</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>English Learners</masterLabel>
+        <translation>Estudiants d'anglès</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Family Consideration</masterLabel>
+        <translation>Consideració familiar</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Foster Care</masterLabel>
+        <translation>Acollida temporal</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Free Lunch</masterLabel>
+        <translation>Dinar gratuït</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Homeless</masterLabel>
+        <translation>Sense llar</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Immigrant</masterLabel>
+        <translation>Immigrant</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>International Student</masterLabel>
+        <translation>Estudiant internacional</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Altres</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Parent in Military</masterLabel>
+        <translation>Pare o mare militar</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pregnant</masterLabel>
+        <translation>Embarassada</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Reduced Price Lunch</masterLabel>
+        <translation>Preu de dinar reduït</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Refugee</masterLabel>
+        <translation>Refugiat</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Section 504 Handicapped</masterLabel>
+        <translation>Minusvàlid de secció 504</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

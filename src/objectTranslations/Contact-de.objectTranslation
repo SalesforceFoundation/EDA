@@ -1152,6 +1152,10 @@
       <translation>Geflüchteter oder Asylant in den USA</translation>
     </picklistValues>
     <picklistValues>
+      <masterLabel>Temporary Resident</masterLabel>
+      <translation>Vorübergehend wohnhaft</translation>
+    </picklistValues>
+    <picklistValues>
       <masterLabel>Other (Non-U.S.)</masterLabel>
       <translation>Sonstiges (nicht auf die USA bezogen)</translation>
     </picklistValues>
@@ -3481,11 +3485,11 @@
     <label>Geschlecht</label>
     <picklistValues>
       <masterLabel>Female</masterLabel>
-      <translation>Weiblich</translation>
+      <translation>Female</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Male</masterLabel>
-      <translation>Männlich</translation>
+      <translation>Male</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Decline to State</masterLabel>

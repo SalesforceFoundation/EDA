@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Accommodation</masterLabel>
+        <translation>Majoitus</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Asylee</masterLabel>
+        <translation>Turvapaikanhakija</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Economically Disadvantaged</masterLabel>
+        <translation>Taloudellisesti epäedullisessa asemassa</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>English Learners</masterLabel>
+        <translation>Englanninkielen oppijat</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Family Consideration</masterLabel>
+        <translation>Perhesyyt</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Foster Care</masterLabel>
+        <translation>Sijaishoito</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Free Lunch</masterLabel>
+        <translation>Ilmainen lounas</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Homeless</masterLabel>
+        <translation>Koditon</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Immigrant</masterLabel>
+        <translation>Maahanmuuttaja</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>International Student</masterLabel>
+        <translation>Kansainvälinen opiskelija</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Muu</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Parent in Military</masterLabel>
+        <translation>Vanhempi sotilaspalveluksessa</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pregnant</masterLabel>
+        <translation>Raskaana</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Reduced Price Lunch</masterLabel>
+        <translation>Lounas alennettuun hintaan</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Refugee</masterLabel>
+        <translation>Pakolainen</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Section 504 Handicapped</masterLabel>
+        <translation>504-osan vammaiset</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

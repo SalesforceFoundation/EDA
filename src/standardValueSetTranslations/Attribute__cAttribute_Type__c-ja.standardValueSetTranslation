@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Accommodation</masterLabel>
+        <translation>宿泊施設</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Asylee</masterLabel>
+        <translation>亡命希望者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Economically Disadvantaged</masterLabel>
+        <translation>経済的に恵まれない人</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>English Learners</masterLabel>
+        <translation>英語学習者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Family Consideration</masterLabel>
+        <translation>家族の考慮事項</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Foster Care</masterLabel>
+        <translation>里親</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Free Lunch</masterLabel>
+        <translation>無料昼食</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Homeless</masterLabel>
+        <translation>ホームレス</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Immigrant</masterLabel>
+        <translation>移民</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>International Student</masterLabel>
+        <translation>留学生</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>その他</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Parent in Military</masterLabel>
+        <translation>親が軍に所属</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pregnant</masterLabel>
+        <translation>妊婦</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Reduced Price Lunch</masterLabel>
+        <translation>割引昼食</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Refugee</masterLabel>
+        <translation>難民</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Section 504 Handicapped</masterLabel>
+        <translation>第 504 条障害者</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

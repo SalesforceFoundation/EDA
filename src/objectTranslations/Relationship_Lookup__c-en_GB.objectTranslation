@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Active__c</name>
@@ -20,4 +20,9 @@
     <help>The value used if the Contact's Gender and Salutation fields don't indicate gender.</help>
     <label>Neutral</label>
   </fields>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Relationship Lookup</value>
+  </caseValues>
 </CustomObjectTranslation>

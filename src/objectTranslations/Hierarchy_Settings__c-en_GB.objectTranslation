@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Account_Processor__c</name>
@@ -263,4 +263,9 @@
     <help>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message prevents saving until only one is selected.</help>
     <label>Validate Program Plan for Nested PR</label>
   </fields>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Hierarchy Settings</value>
+  </caseValues>
 </CustomObjectTranslation>

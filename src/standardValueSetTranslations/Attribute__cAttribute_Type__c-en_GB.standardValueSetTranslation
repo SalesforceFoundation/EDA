@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Accommodation</masterLabel>
+        <translation>Accommodation</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Asylee</masterLabel>
+        <translation>Asylee</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Economically Disadvantaged</masterLabel>
+        <translation>Economically Disadvantaged</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>English Learners</masterLabel>
+        <translation>English Learners</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Family Consideration</masterLabel>
+        <translation>Family Consideration</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Foster Care</masterLabel>
+        <translation>Foster Care</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Free Lunch</masterLabel>
+        <translation>Free Lunch</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Homeless</masterLabel>
+        <translation>Homeless</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Immigrant</masterLabel>
+        <translation>Immigrant</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>International Student</masterLabel>
+        <translation>International Student</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Other</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Parent in Military</masterLabel>
+        <translation>Parent in Military</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pregnant</masterLabel>
+        <translation>Pregnant</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Reduced Price Lunch</masterLabel>
+        <translation>Reduced Price Lunch</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Refugee</masterLabel>
+        <translation>Refugee</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Section 504 Handicapped</masterLabel>
+        <translation>Section 504 Handicapped</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

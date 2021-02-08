@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Off Campus</masterLabel>
+        <translation>学外</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>On Campus</masterLabel>
+        <translation>学内</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>その他</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

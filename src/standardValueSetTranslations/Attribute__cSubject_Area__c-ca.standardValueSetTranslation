@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Biology</masterLabel>
+        <translation>Biologia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Career and Technical Education</masterLabel>
+        <translation>Educació tècnica i professional</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Economics</masterLabel>
+        <translation>Economia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>English Language Arts</masterLabel>
+        <translation>Filologia anglesa</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Fine and Performing Arts</masterLabel>
+        <translation>Belles arts i arts escèniques</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Foreign Language</masterLabel>
+        <translation>Llengua estrangera</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>History</masterLabel>
+        <translation>Història</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Life and Physical Sciences</masterLabel>
+        <translation>Ciències socials i naturals</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Mathematics</masterLabel>
+        <translation>Matemàtiques</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Altres</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Physical%2C Health%2C and Safety Education</masterLabel>
+        <translation>Educació física%2C, sanitària%2C i de seguretat</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Physics</masterLabel>
+        <translation>Física</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Psychology</masterLabel>
+        <translation>Psicologia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Science</masterLabel>
+        <translation>Ciències</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Social Studies</masterLabel>
+        <translation>Ciències socials</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Sociology</masterLabel>
+        <translation>Sociologia</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>
