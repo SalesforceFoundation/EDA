@@ -355,7 +355,6 @@ public with sharing class UTIL_Describe_TEST {
     // Test for getPicklistEntriesApiToLabelMap
     @isTest
     private static void getPicklistEntriesApiToLabelMap() {
-
         Test.startTest();
             Map<String, String> picklistEntriesApiToLabel = Util_Describe.getPicklistEntriesApiToLabelMap('Account','Type');
         Test.stopTest();
@@ -369,9 +368,7 @@ public with sharing class UTIL_Describe_TEST {
     */ 
     @isTest 
     private static void isLookupToAccountTrue(){
-
-        SObject conObj = new Contact(LastName = 'testCon');
-        Schema.DescribeFieldResult acctFieldDesc = conObj.getSObjectType().getDescribe().fields.getMap().get('AccountId').getDescribe();
+        Schema.DescribeFieldResult acctFieldDesc = UTIL_Describe_API.getFieldDescribe('Contact', 'AccountId');  
         
         Test.startTest();
         Boolean isLookupResult = UTIL_Describe.isLookupFieldTo(acctFieldDesc, Account.SObjectType);
@@ -386,9 +383,8 @@ public with sharing class UTIL_Describe_TEST {
     */ 
     @isTest 
     private static void isLookupToAccountFalse(){
-        SObject conObj = new Contact(LastName = 'testCon');
-        Schema.DescribeFieldResult reportsToFieldDesc = conObj.getSObjectType().getDescribe().fields.getMap().get('ReportsToId').getDescribe();
-        
+        Schema.DescribeFieldResult reportsToFieldDesc = UTIL_Describe_API.getFieldDescribe('Contact', 'ReportsToId');  
+
         Test.startTest();
         Boolean isLookupResult = UTIL_Describe.isLookupFieldTo(reportsToFieldDesc, Account.SObjectType);
         Test.stopTest();
@@ -401,9 +397,8 @@ public with sharing class UTIL_Describe_TEST {
     */ 
     @isTest 
     private static void isLookupToWithNonLookupField(){
-        SObject conObj = new Contact(LastName = 'testCon');
-        Schema.DescribeFieldResult firstNameFieldDesc = conObj.getSObjectType().getDescribe().fields.getMap().get('FirstName').getDescribe();
-        
+        Schema.DescribeFieldResult firstNameFieldDesc = UTIL_Describe_API.getFieldDescribe('Contact', 'FirstName');  
+
         Test.startTest();
         Boolean isLookupResult = UTIL_Describe.isLookupFieldTo(firstNameFieldDesc, Account.SObjectType);
         Test.stopTest();
