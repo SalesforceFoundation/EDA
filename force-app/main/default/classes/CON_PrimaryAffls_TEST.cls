@@ -836,8 +836,13 @@ private with sharing class CON_PrimaryAffls_TEST {
             Test.startTest();
             insert testContactsList;
             Test.stopTest();
+            System.assert(false, 'DML action should result in an error.');
         } catch (System.DmlException err){
-            System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+            System.assertEquals(
+                true, 
+                err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 
+                'Invalid Record Type mapping should throw an error when validation is enabled.'
+            );
         }
     }
 
@@ -966,15 +971,19 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
 
     /*************************************************************************************************************
-    * @description Test case to verify that inserting a Contact with primary affiliation field populated with record type
-    * validation disabled, a valid Contact field mapping to a non-lookup field and invalid Record Type mapping does not 
-    * throw an error when the mapped field is not populated.
+    * @description Test case to verify that inserting a Contact where the mapped primary affiliation field is not 
+    * populated, with record type validation is disabled, a valid Contact field mapped to a non-lookup field, and an 
+    * invalid Record Type mapping does not throw an error and does not create an affiliation record.
     **************************************************************************************************************/
     @isTest 
     private static void insertContactAfflInvalidRTAndInvalidFieldMappingFieldNotPopulatedNoError(){
         List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
 
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
+        UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Affiliation_Record_Type_Enforced__c = false
+            )
+        );
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(
@@ -997,11 +1006,17 @@ private with sharing class CON_PrimaryAffls_TEST {
         insert testContactsList;       
         Test.stopTest();
 
-        List<Contact> testContactResultsList = [SELECT Id, Primary_Organization__c
+        List<Contact> testContactResultsList = [SELECT Id, Primary_Organization__c,
+                                                    (SELECT Id FROM Contact.Affl_Accounts__r)
                                                 FROM Contact 
                                                 WHERE Id IN :testContactsList];
 
-        System.assertEquals(100, testContactResultsList.size());
+        System.assertEquals(100, testContactResultsList.size(), 'Contact records should be created.');
+
+        for (Contact contact : testContactResultsList) {
+            System.assertEquals(true, String.isBlank(contact.Primary_Organization__c), 'Primary Organization field should be blank.');
+            System.assertEquals(0, contact.Affl_Accounts__r.size(), 'No related affiliation records should be created.');
+        }
     }
 
     /*************************************************************************************************************
@@ -1036,11 +1051,17 @@ private with sharing class CON_PrimaryAffls_TEST {
             insert testContactsList;
         Test.stopTest();
 
-        List<Contact> testContactResultsList = [SELECT Id, Primary_Organization__c
+        List<Contact> testContactResultsList = [SELECT Id, Primary_Organization__c,
+                                                    (SELECT Id FROM Contact.Affl_Accounts__r)
                                                 FROM Contact 
                                                 WHERE Id IN :testContactsList];
 
         System.assertEquals(100, testContactResultsList.size());
+
+        for (Contact contact : testContactResultsList) {
+            System.assertEquals(true, String.isBlank(contact.Primary_Organization__c), 'Primary Organization field should be blank.');
+            System.assertEquals(0, contact.Affl_Accounts__r.size(), 'No related affiliation records should be created.');
+        }
     }
 
     /*************************************************************************************************************
@@ -1612,13 +1633,15 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
 
-        Test.startTest();
         try{
+            Test.startTest();
             insert contactsToBeInserted;
+            Test.stopTest();
+
+            System.assert(false, 'DML action should result in an error.');
         } catch (System.DmlException ex){
             System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidContactFieldInAffiliationMapping error should be thrown.');
         }
-        Test.stopTest();
     }
 
     /****************************************************************************************************************
@@ -1660,13 +1683,16 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getInvalidRecordTypeInAffiliationMappingMessage('Business_Organization_Invalid');
 
-        Test.startTest();
         try{
+            Test.startTest();
             insert contactsToBeInserted;
+            Test.stopTest();
+
+            System.assert(false, 'DML action should result in an error.');
+
         } catch (System.DmlException ex){
             System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidRecordTypeInAffiliationMapping error should be thrown.');
         }        
-        Test.stopTest();
     }
 
     /****************************************************************************************************************
@@ -1708,13 +1734,16 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
 
-        Test.startTest();
         try{
+            Test.startTest();
             insert contactsToBeInserted;
+            Test.stopTest();
+
+            System.assert(false, 'DML action should result in an error.');
+
         } catch (System.DmlException ex){
             System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidContactFieldInAffiliationMapping error should be thrown.');
         }        
-        Test.stopTest();
     }
 
     /****************************************************************************************************************
@@ -1811,9 +1840,13 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
 
-        Test.startTest();
         try{
+            Test.startTest();
             update contactsToBeInserted;
+            Test.stopTest();
+
+            System.assert(false, 'DML action should result in an error.');
+
         } catch (System.DmlException ex){
             System.assertEquals(
                 true, 
@@ -1821,7 +1854,6 @@ private with sharing class CON_PrimaryAffls_TEST {
                 'An invalidContactFieldInAffiliationMapping error should be thrown.'
             );
         }
-        Test.stopTest();
     }
 
     /****************************************************************************************************************
@@ -1868,9 +1900,13 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getInvalidRecordTypeInAffiliationMappingMessage('Business_Organization_Invalid');
 
-        Test.startTest();
         try{
+            Test.startTest();
             update contactsToBeInserted;
+            Test.stopTest();
+
+            System.assert(false, 'DML action should result in an error.');
+
         } catch (System.DmlException ex){
             System.assertEquals(
                 true, 
@@ -1878,7 +1914,6 @@ private with sharing class CON_PrimaryAffls_TEST {
                 'An invalidRecordTypeInAffiliationMapping error should be thrown.'
             );
         }        
-        Test.stopTest();
     }
 
     /****************************************************************************************************************
@@ -1925,9 +1960,13 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
 
-        Test.startTest();
         try{
+            Test.startTest();
             update contactsToBeInserted;
+            Test.stopTest();
+
+            System.assert(false, 'DML action should result in an error.');
+
         } catch (System.DmlException ex){
             System.assertEquals(
                 true, 
@@ -1935,7 +1974,6 @@ private with sharing class CON_PrimaryAffls_TEST {
                 'An invalidContactFieldInAffiliationMapping error should be thrown.'
             );
         }        
-        Test.stopTest();
     }
 
     /****************************************************************************************************************
