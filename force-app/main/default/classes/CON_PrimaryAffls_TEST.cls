@@ -807,12 +807,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -845,12 +854,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Gender__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Gender__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Test.startTest();
@@ -874,19 +892,32 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'FirstName'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('FirstName')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Test.startTest();
         try {
             insert testContactsList;
         } catch (System.DmlException err){
-            System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+            System.assertEquals(
+                true, 
+                err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 
+                'Invalid Record Type mapping should throw an error when validation is enabled.'
+            );
         }
         
         Test.stopTest();
@@ -903,19 +934,32 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'FirstName'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('FirstName')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Test.startTest();
         try {
             insert testContactsList;
         } catch (System.DmlException err){
-            System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+            System.assertEquals(
+                true, 
+                err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0])), 
+                'Invalid Record Type mapping should throw an error when validation is enabled.'
+            );
         }
         
         Test.stopTest();
@@ -932,12 +976,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Gender__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Gender__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Test.startTest();
@@ -962,12 +1015,21 @@ private with sharing class CON_PrimaryAffls_TEST {
        
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Gender__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Gender__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Test.startTest();
@@ -992,12 +1054,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1012,7 +1083,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         try {
             update testContactsList;
         } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+            System.assertEquals(
+                CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
+                err.getMessage(), 
+                'Invalid Record Type mapping should throw an error when validation is enabled.'
+            );
         }
         
         Test.stopTest();
@@ -1029,12 +1104,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Gender__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Gender__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1050,7 +1134,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         try {
             update testContactsList;
         } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+            System.assertEquals(
+                CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), 
+                err.getMessage(), 
+                'Invalid Record Type mapping should throw an error when validation is enabled.'
+            );
         }
         
         Test.stopTest();
@@ -1068,12 +1156,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Gender__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Gender__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         for (Contact con : testContactsList){
@@ -1084,7 +1181,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         try {
             update testContactsList;
         } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+            System.assertEquals(
+                CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
+                err.getMessage(), 
+                'Invalid Record Type mapping should throw an error when validation is enabled.'
+            );
         }
         
         Test.stopTest();
@@ -1105,12 +1206,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'FirstName'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('FirstName')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1146,12 +1256,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1187,12 +1306,21 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Not a Valid RecordType', Primary_Affl_Field__c = prefix + 'Gender__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Not a Valid RecordType', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Gender__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         for (Contact con : testContactsList){
@@ -1203,7 +1331,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         try {
             update testContactsList;
         } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), err.getMessage(), 'Invalid Record Type mapping should throw an error when validation is enabled.');
+            System.assertEquals(
+                CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), 
+                err.getMessage(), 
+                'Invalid Record Type mapping should throw an error when validation is enabled.'
+            );
         }
         Test.stopTest();
     }
@@ -1220,12 +1352,19 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
 
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(new Affl_Mappings__c(
+            Name = 'Business Organization',
+            Account_Record_Type__c = 'Business_Organization',
+            Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(new Affl_Mappings__c(
+            Name = 'Household Account',
+            Account_Record_Type__c = 'HH_Account',
+            Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Account businessAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
@@ -1254,12 +1393,21 @@ private with sharing class CON_PrimaryAffls_TEST {
     @isTest
     private static void createAffiliationsOnBulkContactInsert() {
        // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization',
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account',
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1280,7 +1428,15 @@ private with sharing class CON_PrimaryAffls_TEST {
         Map<Id, Contact> ContactsById = new Map<Id, Contact>(contactsToBeInserted);
 
         //Ensure Primary Business Organization affiliations are created for each Contact
-        List<Contact> updatedContactList = [SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r) FROM Contact WHERE Id IN: ContactsById.keySet()];
+        List<Contact> updatedContactList = [
+            SELECT Id, Primary_Organization__c, (
+                SELECT Account__c, Contact__c, Primary__c 
+                FROM Affl_Accounts__r
+            ) 
+            FROM Contact 
+            WHERE Id IN: ContactsById.keySet()
+        ];
+
         System.assertEquals(100, updatedContactList.size());
         for (Contact eachUpdatedContact: updatedContactList) {
             System.assertEquals(1, eachUpdatedContact.Affl_Accounts__r.size());
@@ -1298,12 +1454,21 @@ private with sharing class CON_PrimaryAffls_TEST {
     @isTest
     private static void createAffiliationsOnBulkContactupdate() {
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization',
+                Account_Record_Type__c = 'Business_Organization',
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account',
+                Account_Record_Type__c = 'HH_Account',
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1331,7 +1496,15 @@ private with sharing class CON_PrimaryAffls_TEST {
         Map<Id, Contact> ContactsById = new Map<Id, Contact>(contactToBeUpdatedList);
 
         //Ensure Primary Business Organization affiliations are created for each Contact
-        List<Contact> updatedContactList = [SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r) FROM Contact WHERE Id IN: ContactsById.keySet()];
+        List<Contact> updatedContactList = [
+            SELECT Id, Primary_Organization__c, (
+                SELECT Account__c, Contact__c, Primary__c 
+                FROM Affl_Accounts__r
+            ) 
+            FROM Contact 
+            WHERE Id IN: ContactsById.keySet()
+        ];
+
         System.assertEquals(100, updatedContactList.size());
         for (Contact eachUpdatedContact: updatedContactList) {
             System.assertEquals(1, eachUpdatedContact.Affl_Accounts__r.size());
@@ -1353,12 +1526,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c' +'test'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization',
+                Account_Record_Type__c = 'Business_Organization',
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c' +'test')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account',
+                Account_Record_Type__c = 'HH_Account',
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1384,7 +1566,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         System.assertEquals(100, conList.size(), 'Five Contacts should be created.');
 
         for (Contact con : conList){
-            System.assertEquals(true, con.Affl_Accounts__r.isEmpty(), 'Enabling record type validation with invalid mapping should prevent creation of affiliation records.');
+            System.assertEquals(
+                true, 
+                con.Affl_Accounts__r.isEmpty(), 
+                'Enabling record type validation with invalid mapping should prevent creation of affiliation records.'
+            );
         }
     }
 
@@ -1397,12 +1583,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'ReportsToId'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization',
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account',
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
@@ -1436,12 +1631,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization_Invalid', Primary_Affl_Field__c = prefix + 'ReportsToId'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization',
+                Account_Record_Type__c = 'Business_Organization_Invalid',
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account',
+                Account_Record_Type__c = 'HH_Account',
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
@@ -1475,12 +1679,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization_Invalid', Primary_Affl_Field__c = prefix + 'ReportsToId'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization_Invalid', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
@@ -1514,12 +1727,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization_Invalid', Primary_Affl_Field__c = prefix + 'ReportsToId'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization_Invalid', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         List<Contact> contactsToBeInserted = new List<Contact>();
@@ -1555,12 +1777,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'ReportsToId'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
@@ -1584,7 +1815,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         try{
             update contactsToBeInserted;
         } catch (System.DmlException ex){
-            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidContactFieldInAffiliationMapping error should be thrown.');
+            System.assertEquals(
+                true, 
+                ex.getMessage().contains(errorMessageText), 
+                'An invalidContactFieldInAffiliationMapping error should be thrown.'
+            );
         }
         Test.stopTest();
     }
@@ -1599,12 +1834,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization_Invalid', Primary_Affl_Field__c = prefix + 'ReportsToId'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization_Invalid', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
@@ -1628,7 +1872,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         try{
             update contactsToBeInserted;
         } catch (System.DmlException ex){
-            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidRecordTypeInAffiliationMapping error should be thrown.');
+            System.assertEquals(
+                true, 
+                ex.getMessage().contains(errorMessageText), 
+                'An invalidRecordTypeInAffiliationMapping error should be thrown.'
+            );
         }        
         Test.stopTest();
     }
@@ -1643,12 +1891,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization_Invalid', Primary_Affl_Field__c = prefix + 'ReportsToId'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization_Invalid', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
@@ -1672,7 +1929,11 @@ private with sharing class CON_PrimaryAffls_TEST {
         try{
             update contactsToBeInserted;
         } catch (System.DmlException ex){
-            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidContactFieldInAffiliationMapping error should be thrown.');
+            System.assertEquals(
+                true, 
+                ex.getMessage().contains(errorMessageText), 
+                'An invalidContactFieldInAffiliationMapping error should be thrown.'
+            );
         }        
         Test.stopTest();
     }
@@ -1687,12 +1948,21 @@ private with sharing class CON_PrimaryAffls_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));       
         
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization_Invalid', Primary_Affl_Field__c = prefix + 'ReportsToId'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization_Invalid', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         Contact reportToContact = UTIL_UnitTestData_TEST.getUniqueContact(contactCount+5);
@@ -1731,12 +2001,21 @@ private with sharing class CON_PrimaryAffls_TEST {
     @isTest
     private static void createAffiliationsOnBulkContactInsertWithWrongMappingsWithValidationOff() {
        // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c' +'test'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c' +'test')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1768,12 +2047,21 @@ private with sharing class CON_PrimaryAffls_TEST {
     @isTest
     private static void createAffiliationsOnBulkContactupdates() {
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
@@ -1818,12 +2106,21 @@ private with sharing class CON_PrimaryAffls_TEST {
     @isTest
     private static void makeAffiliationNonPrimaryByClearingField() {
         // insert mappings
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business_Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c =  prefix + 'Primary_Household__c'));
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization', 
+                Account_Record_Type__c = 'Business_Organization', 
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account', 
+                Account_Record_Type__c = 'HH_Account', 
+                Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
         insert mappings;
 
         // insert business account
