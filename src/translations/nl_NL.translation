@@ -46,7 +46,7 @@
     </customLabels>
     <customLabels>
         <name>Female</name>
-        <label>Vrouw</label>
+        <label>Female</label>
     </customLabels>
     <customLabels>
         <name>InvalidFilter</name>
@@ -54,7 +54,7 @@
     </customLabels>
     <customLabels>
         <name>Male</name>
-        <label>Man</label>
+        <label>Male</label>
     </customLabels>
     <customLabels>
         <name>MultipleCourseConnection</name>
