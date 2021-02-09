@@ -570,7 +570,7 @@
     </customLabels>
     <customLabels>
         <name>stgFluent</name>
-        <label>Fließend</label>
+        <label>Fluent</label>
     </customLabels>
     <customLabels>
         <name>stgHCAccountModelAdminInactiveFix</name>
