@@ -3485,7 +3485,7 @@
     <label>Sukupuoli</label>
     <picklistValues>
       <masterLabel>Female</masterLabel>
-      <translation>Female</translation>
+      <translation>Nainen</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Male</masterLabel>
