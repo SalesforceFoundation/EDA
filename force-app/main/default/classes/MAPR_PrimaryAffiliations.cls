@@ -81,7 +81,6 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     *********************************************************************************************************************/
     @testVisible
     private List<MODL_PrimaryAfflMapper> getModelsFromMappings(List<Affl_Mappings__c> afflMappingsList) {
-
        List<MODL_PrimaryAfflMapper> affiliationModelsList = new List<MODL_PrimaryAfflMapper>();
 
        // Sets to ensure duplicate mappings won't have models added to the list to return
@@ -115,7 +114,6 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     *****************************************************************************************************/
     @testVisible
     private MODL_PrimaryAfflMapper getModelFromMapping(Affl_Mappings__c afflMapping) {
-
         Boolean isValid = true;
         String invalidErrorMessage = '';
 
