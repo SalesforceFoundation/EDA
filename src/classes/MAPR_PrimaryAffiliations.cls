@@ -166,7 +166,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
                     afflMapping.Account_Record_Type__c
                 };
     
-                invalidErrorMessage = String.format(label.invalidRecordTypeInAffiliationMapping, params);
+                invalidErrorMessage = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidRecordTypeInAffiliationMapping, params);
             }
 
             MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(
