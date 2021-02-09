@@ -3485,7 +3485,7 @@
     <label>Sexe</label>
     <picklistValues>
       <masterLabel>Female</masterLabel>
-      <translation>Female</translation>
+      <translation>Dona</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Male</masterLabel>
