@@ -101,8 +101,8 @@
         <categories>Affiliations</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error when an Affl Mapping doesn’t have a valid Contact Primary Affl Field</shortDescription>
-        <value>In this Affiliation Mapping, {0} isn’t a valid Account lookup field for Contact. Change the Affiliation Mapping that currently has {1} set to {0} to use an API name for the Account lookup field on Contact instead.</value>
+        <shortDescription>Error when a Contact's Primary Affiliation field isn't an Account lookup field</shortDescription>
+        <value>We can't save this record because of an error with the Contact field {1}. It must be an Account lookup field. Ask your admin to check Affiliation Mappings in EDA Settings, and make sure that the value for {0} currently set to {1} is set to the API name of an Account lookup field on the Contact object.</value>
     </labels>
     <labels>
         <fullName>InvalidFilter</fullName>

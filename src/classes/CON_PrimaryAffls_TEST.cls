@@ -780,7 +780,7 @@ private with sharing class CON_PrimaryAffls_TEST {
             affiliationMapping.Primary_Affl_Field__c
         };
 
-        return String.format(label.invalidContactFieldInAffiliationMapping, params);
+        return StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidContactFieldInAffiliationMapping, params);
     }
 
     /**************************************************************************************************************************************
@@ -1072,9 +1072,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest 
     private static void updateContactAfflInvalidRecordTypeError(){
-        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
-        insert testContactsList;
-
         Hierarchy_Settings__c hs = UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
@@ -1100,6 +1097,9 @@ private with sharing class CON_PrimaryAffls_TEST {
         // insert business account
         Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert businessAccount1;
+
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+        insert testContactsList;
 
         for (Contact con : testContactsList){
             con.Primary_Organization__c = businessAccount1.Id;

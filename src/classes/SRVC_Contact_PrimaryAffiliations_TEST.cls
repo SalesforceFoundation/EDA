@@ -1226,6 +1226,6 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             'Gender__c'
         };
 
-        return String.format(label.invalidContactFieldInAffiliationMapping, params);
+        return StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidContactFieldInAffiliationMapping, params);
     }
 }
