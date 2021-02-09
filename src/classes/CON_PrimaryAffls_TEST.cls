@@ -916,19 +916,6 @@ private with sharing class CON_PrimaryAffls_TEST {
         );
         insert mappings;
 
-        // Test.startTest();
-        // try {
-        //     insert testContactsList;
-        // } catch (System.DmlException err){
-        //     System.assertEquals(
-        //         true, 
-        //         err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 
-        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
-        //     );
-        // }
-        
-        // Test.stopTest();
-
         String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]);
 
         Test.startTest();
@@ -970,19 +957,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             )
         );
         insert mappings;
-
-        // Test.startTest();
-        // try {
-        //     insert testContactsList;
-        // } catch (System.DmlException err){
-        //     System.assertEquals(
-        //         true, 
-        //         err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0])), 
-        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
-        //     );
-        // }
-        
-        // Test.stopTest();
 
         String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]);
 
@@ -1101,7 +1075,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
         insert testContactsList;
 
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+        Hierarchy_Settings__c hs = UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(
@@ -1120,6 +1094,9 @@ private with sharing class CON_PrimaryAffls_TEST {
         );
         insert mappings;
 
+        for (Affl_Mappings__c affMap : mappings) {
+        }
+
         // insert business account
         Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert businessAccount1;
@@ -1128,23 +1105,10 @@ private with sharing class CON_PrimaryAffls_TEST {
             con.Primary_Organization__c = businessAccount1.Id;
         }
 
-        // Test.startTest();
-        // try {
-        //     update testContactsList;
-        // } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-        //     System.assertEquals(
-        //         CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
-        //         err.getMessage(), 
-        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
-        //     );
-        // }
-        
-        // Test.stopTest();
-
         String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]);
 
         Test.startTest();
-        Database.SaveResult[] saveResultsList = Database.insert(testContactsList, false); 
+        Database.SaveResult[] saveResultsList = Database.update(testContactsList, false); 
         Test.stopTest();
 
         for (Database.SaveResult saveResult : saveResultsList) {
@@ -1161,9 +1125,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest 
     private static void updateContactAfflInvalidFieldMappingError(){
-        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
-        insert testContactsList;
-
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
@@ -1187,23 +1148,13 @@ private with sharing class CON_PrimaryAffls_TEST {
         Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert businessAccount1;
 
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+        insert testContactsList;
+
         for (Contact con : testContactsList){
             con.Primary_Organization__c = businessAccount1.Id;
             con.Gender__c = 'Decline to State';
         }
-
-        // Test.startTest();
-        // try {
-        //     update testContactsList;
-        // } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-        //     System.assertEquals(
-        //         CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), 
-        //         err.getMessage(), 
-        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
-        //     );
-        // }
-        
-        // Test.stopTest();
 
         String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]);
 
@@ -1212,7 +1163,6 @@ private with sharing class CON_PrimaryAffls_TEST {
         Test.stopTest();
 
         for (Database.SaveResult saveResult : saveResultsList) {
-            System.debug('error count: ' + saveResult.getErrors().size());
             System.assertEquals(
                 errorMessageText, 
                 saveResult.getErrors()[0].getMessage(),
@@ -1227,9 +1177,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest 
     private static void updateContactAfflInvalidRTAndInvalidFieldMappingFieldPopulatedInvalidRecordTypeError(){
-        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
-        insert testContactsList;
-
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
@@ -1249,22 +1196,12 @@ private with sharing class CON_PrimaryAffls_TEST {
         );
         insert mappings;
 
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+        insert testContactsList;
+
         for (Contact con : testContactsList){
             con.Gender__c = 'Decline to State';
         }
-
-        // Test.startTest();
-        // try {
-        //     update testContactsList;
-        // } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-        //     System.assertEquals(
-        //         CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
-        //         err.getMessage(), 
-        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
-        //     );
-        // }
-        
-        // Test.stopTest();
 
         String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]);
 
@@ -1390,9 +1327,6 @@ private with sharing class CON_PrimaryAffls_TEST {
     **************************************************************************************************************/
     @isTest 
     private static void updateContactAfflInvalidRTAndInValidFieldMappingFieldNotPopulatedNoValidationPositive(){
-        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
-        insert testContactsList;
-
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
@@ -1412,21 +1346,12 @@ private with sharing class CON_PrimaryAffls_TEST {
         );
         insert mappings;
 
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+        insert testContactsList;
+
         for (Contact con : testContactsList){
             con.Gender__c = 'Decline to State';
         }
-
-        // Test.startTest();
-        // try {
-        //     update testContactsList;
-        // } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-        //     System.assertEquals(
-        //         CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), 
-        //         err.getMessage(), 
-        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
-        //     );
-        // }
-        // Test.stopTest();
 
         String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]);
 
