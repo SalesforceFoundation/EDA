@@ -1,0 +1,496 @@
+Insert Error__c:
+  sf_object: Error__c
+  fields:
+  - Context_Type__c
+  - Datetime__c
+  - Email_Sent__c
+  - Error_Type__c
+  - Full_Message__c
+  - Object_Type__c
+  - Posted_in_Chatter__c
+  - Record_URL__c
+  - Stack_Trace__c
+Insert Language__c:
+  sf_object: Language__c
+  fields:
+  - Name
+Insert Trigger_Handler__c:
+  sf_object: Trigger_Handler__c
+  fields:
+  - Active__c
+  - Asynchronous__c
+  - Class__c
+  - Filter_Field__c
+  - Filter_Value__c
+  - Load_Order__c
+  - Name
+  - Object__c
+  - Owned_by_Namespace__c
+  - Trigger_Action__c
+  - User_Managed__c
+  - Usernames_to_Exclude__c
+Insert Account:
+  sf_object: Account
+  fields:
+  - Billing_County__c
+  - Name
+  - RecordTypeId
+  - School_Code__c
+  - Shipping_County__c
+  lookups:
+    ParentId:
+      table: Account
+      after: Insert Account
+    Current_Address__c:
+      table: Address__c
+      after: Insert Address__c
+    Primary_Contact__c:
+      table: Contact
+      after: Insert Contact
+Insert Course__c:
+  sf_object: Course__c
+  fields:
+  - Course_ID__c
+  - Credit_Hours__c
+  - Description__c
+  - Extended_Description__c
+  - Name
+  lookups:
+    Account__c:
+      table: Account
+Insert Facility__c:
+  sf_object: Facility__c
+  fields:
+  - Capacity__c
+  - Description__c
+  - Facility_Type__c
+  - Name
+  lookups:
+    Account__c:
+      table: Account
+    Parent_Facility__c:
+      table: Facility__c
+      after: Insert Facility__c
+Insert Program_Plan__c:
+  sf_object: Program_Plan__c
+  fields:
+  - Description__c
+  - End_Date__c
+  - Is_Primary__c
+  - Name
+  - Start_Date__c
+  - Status__c
+  - Total_Required_Credits__c
+  - Version__c
+  lookups:
+    Account__c:
+      table: Account
+Insert Term__c:
+  sf_object: Term__c
+  fields:
+  - End_Date__c
+  - Grading_Period_Sequence__c
+  - Instructional_Days__c
+  - Name
+  - Start_Date__c
+  - Type__c
+  lookups:
+    Account__c:
+      table: Account
+    Parent_Term__c:
+      table: Term__c
+      after: Insert Term__c
+Insert Time_Block__c:
+  sf_object: Time_Block__c
+  fields:
+  - End_Time__c
+  - Name
+  - Start_Time__c
+  lookups:
+    Educational_Institution__c:
+      table: Account
+Insert Plan_Requirement__c:
+  sf_object: Plan_Requirement__c
+  fields:
+  - Category__c
+  - Credits__c
+  - Description__c
+  - Name
+  - Sequence__c
+  lookups:
+    Course__c:
+      table: Course__c
+    Plan_Requirement__c:
+      table: Plan_Requirement__c
+      after: Insert Plan_Requirement__c
+    Program_Plan__c:
+      table: Program_Plan__c
+Insert Case:
+  sf_object: Case
+  fields:
+  - Category__c
+  - IsEscalated
+  - IsSelfServiceClosed
+  - IsStopped
+  - IsVisibleInSelfService
+  - Location__c
+  - Occurrence_Date__c
+  - RecordTypeId
+  lookups:
+    AccountId:
+      table: Account
+    ContactId:
+      table: Contact
+      after: Insert Contact
+    ParentId:
+      table: Case
+      after: Insert Case
+Insert Contact:
+  sf_object: Contact
+  fields:
+  - AlternateEmail__c
+  - CanAllowPortalSelfReg
+  - Chosen_Full_Name__c
+  - Citizenship_Status__c
+  - Citizenship__c
+  - Contact_JSON__c
+  - Country_of_Origin__c
+  - Date_Deceased__c
+  - Deceased__c
+  - DoNotCall
+  - Do_Not_Contact__c
+  - Dual_Citizenship__c
+  - Ethnicity__c
+  - Exclude_from_Household_Formal_Greeting__c
+  - Exclude_from_Household_Informal_Greeting__c
+  - Exclude_from_Household_Name__c
+  - FERPA__c
+  - Financial_Aid_Applicant__c
+  - FirstName
+  - Former_First_Name__c
+  - Former_Last_Name__c
+  - Former_Middle_Name__c
+  - Gender__c
+  - HIPAA_Detail__c
+  - HIPAA__c
+  - HasOptedOutOfEmail
+  - HasOptedOutOfFax
+  - LastName
+  - Mailing_County__c
+  - Military_Background__c
+  - Military_Service__c
+  - Naming_Exclusions__c
+  - Other_County__c
+  - PreferredPhone__c
+  - Preferred_Email__c
+  - Primary_Address_Type__c
+  - Race__c
+  - Religion__c
+  - Secondary_Address_Type__c
+  - Social_Security_Number__c
+  - UniversityEmail__c
+  - WorkEmail__c
+  - WorkPhone__c
+  - is_Address_Override__c
+  lookups:
+    AccountId:
+      table: Account
+    Primary_Academic_Program__c:
+      table: Account
+    Primary_Department__c:
+      table: Account
+    Primary_Educational_Institution__c:
+      table: Account
+    Primary_Sports_Organization__c:
+      table: Account
+    ReportsToId:
+      table: Contact
+      after: Insert Contact
+    Current_Address__c:
+      table: Address__c
+      after: Insert Address__c
+    Primary_Household__c:
+      table: Account
+    Primary_Language__c:
+      table: Language__c
+    Primary_Organization__c:
+      table: Account
+Insert Address__c:
+  sf_object: Address__c
+  fields:
+  - Address_Type__c
+  - Default_Address__c
+  - Latest_End_Date__c
+  - Latest_Start_Date__c
+  - MailingCity__c
+  - MailingCountry__c
+  - MailingCounty__c
+  - MailingPostalCode__c
+  - MailingState__c
+  - MailingStreet2__c
+  - MailingStreet__c
+  - Seasonal_End_Day__c
+  - Seasonal_End_Month__c
+  - Seasonal_End_Year__c
+  - Seasonal_Start_Day__c
+  - Seasonal_Start_Month__c
+  - Seasonal_Start_Year__c
+  lookups:
+    Parent_Account__c:
+      table: Account
+    Parent_Contact__c:
+      table: Contact
+Insert Affiliation__c:
+  sf_object: Affiliation__c
+  fields:
+  - Description__c
+  - EndDate__c
+  - Primary__c
+  - Role__c
+  - StartDate__c
+  - Status__c
+  lookups:
+    Account__c:
+      table: Account
+    Contact__c:
+      table: Contact
+Insert Application__c:
+  sf_object: Application__c
+  fields:
+  - Applicant_Decision_Date__c
+  - Application_Date__c
+  - Application_Decision_Date__c
+  - Application_JSON__c
+  - Application_Status__c
+  - Application_Type__c
+  - Initial_Creation_Date__c
+  lookups:
+    Applicant__c:
+      table: Contact
+    Applying_To__c:
+      table: Account
+    Preparer__c:
+      table: Contact
+    Term__c:
+      table: Term__c
+Insert Attribute__c:
+  sf_object: Attribute__c
+  fields:
+  - Attribute_Type__c
+  - Description__c
+  - End_Date__c
+  - Name
+  - RecordTypeId
+  - Start_Date__c
+  - Subject_Area__c
+  lookups:
+    Agency__c:
+      table: Account
+    Contact__c:
+      table: Contact
+Insert Behavior_Involvement__c:
+  sf_object: Behavior_Involvement__c
+  fields:
+  - Description__c
+  - Role__c
+  lookups:
+    Case__c:
+      table: Case
+    Contact__c:
+      table: Contact
+Insert Contact_Language__c:
+  sf_object: Contact_Language__c
+  fields:
+  - Fluency__c
+  - Language_Details__c
+  - Primary_Language__c
+  lookups:
+    Contact__c:
+      table: Contact
+    Language__c:
+      table: Language__c
+Insert Course_Offering__c:
+  sf_object: Course_Offering__c
+  fields:
+  - Capacity__c
+  - End_Date__c
+  - Name
+  - Section_ID__c
+  - Start_Date__c
+  lookups:
+    Course__c:
+      table: Course__c
+    Facility__c:
+      table: Facility__c
+    Faculty__c:
+      table: Contact
+    Term__c:
+      table: Term__c
+    Time_Block__c:
+      table: Time_Block__c
+Insert Education_History__c:
+  sf_object: Education_History__c
+  fields:
+  - Class_Percentile__c
+  - Class_Rank_Scale__c
+  - Class_Rank_Type__c
+  - Class_Rank__c
+  - Class_Size__c
+  - Degree_Earned__c
+  - Details__c
+  - Education_History_JSON__c
+  - Educational_Institution_Name__c
+  - End_Date__c
+  - GPA_Scale_Reporting__c
+  - GPA_Scale_Type__c
+  - GPA__c
+  - Graduation_Date__c
+  - Start_Date__c
+  lookups:
+    Account__c:
+      table: Account
+    Contact__c:
+      table: Contact
+Insert Relationship__c:
+  sf_object: Relationship__c
+  fields:
+  - Description__c
+  - Emergency_Contact__c
+  - SYSTEM_SystemCreated__c
+  - Status__c
+  - Type__c
+  lookups:
+    Contact__c:
+      table: Contact
+    ReciprocalRelationship__c:
+      table: Relationship__c
+      after: Insert Relationship__c
+    RelatedContact__c:
+      table: Contact
+Insert Test__c:
+  sf_object: Test__c
+  fields:
+  - Date_Received__c
+  - Source__c
+  - Test_Date__c
+  - Test_Type__c
+  lookups:
+    Contact__c:
+      table: Contact
+Insert Behavior_Response__c:
+  sf_object: Behavior_Response__c
+  fields:
+  - Description__c
+  - End_Date__c
+  - Start_Date__c
+  - Status__c
+  - Type__c
+  lookups:
+    Behavior_Involvement__c:
+      table: Behavior_Involvement__c
+Insert Course_Offering_Schedule__c:
+  sf_object: Course_Offering_Schedule__c
+  fields:
+  - End_Time__c
+  - Friday__c
+  - Monday__c
+  - Saturday__c
+  - Start_Time__c
+  - Sunday__c
+  - Thursday__c
+  - Tuesday__c
+  - Wednesday__c
+  lookups:
+    Course_Offering__c:
+      table: Course_Offering__c
+    Facility__c:
+      table: Facility__c
+    Time_Block__c:
+      table: Time_Block__c
+Insert Program_Enrollment__c:
+  sf_object: Program_Enrollment__c
+  fields:
+  - Admission_Date__c
+  - Application_Submitted_Date__c
+  - Class_Standing__c
+  - Credits_Attempted__c
+  - Credits_Earned__c
+  - Eligible_to_Enroll__c
+  - End_Date__c
+  - Enrollment_Status__c
+  - GPA__c
+  - Graduation_Year__c
+  - Start_Date__c
+  lookups:
+    Account__c:
+      table: Account
+    Affiliation__c:
+      table: Affiliation__c
+    Contact__c:
+      table: Contact
+    Program_Plan__c:
+      table: Program_Plan__c
+Insert Test_Score__c:
+  sf_object: Test_Score__c
+  fields:
+  - Percentile__c
+  - Score__c
+  - Subject_Area__c
+  lookups:
+    Test__c:
+      table: Test__c
+Insert Course_Enrollment__c:
+  sf_object: Course_Enrollment__c
+  fields:
+  - Credits_Attempted__c
+  - Credits_Earned__c
+  - Grade__c
+  - Primary__c
+  - RecordTypeId
+  - Status__c
+  lookups:
+    Account__c:
+      table: Account
+    Affiliation__c:
+      table: Affiliation__c
+    Contact__c:
+      table: Contact
+    Course_Offering__c:
+      table: Course_Offering__c
+    Program_Enrollment__c:
+      table: Program_Enrollment__c
+Insert Attendance_Event__c:
+  sf_object: Attendance_Event__c
+  fields:
+  - Arrival_Time__c
+  - Attendance_Type__c
+  - Date__c
+  - End_Time__c
+  - Reason_Description__c
+  - Reason__c
+  - Start_Time__c
+  - Unexcused__c
+  lookups:
+    Contact__c:
+      table: Contact
+    Course_Connection__c:
+      table: Course_Enrollment__c
+Insert Term_Grade__c:
+  sf_object: Term_Grade__c
+  fields:
+  - Credits_Attempted__c
+  - Credits_Earned__c
+  - Letter_Grade__c
+  - Numerical_Grade__c
+  - Percent_Grade__c
+  - Result__c
+  - Term_Grade_Type__c
+  lookups:
+    Contact__c:
+      table: Contact
+    Course_Connection__c:
+      table: Course_Enrollment__c
+    Course_Offering__c:
+      table: Course_Offering__c
+    Term__c:
+      table: Term__c
