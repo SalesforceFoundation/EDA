@@ -794,7 +794,7 @@ private with sharing class CON_PrimaryAffls_TEST {
             affiliationMapping.Account_Record_Type__c
         };
 
-        return String.format(Label.invalidRecordTypeInAffiliationMapping, params);
+        return StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(Label.invalidRecordTypeInAffiliationMapping, params);
     }
 
     /*************************************************************************************************************
@@ -2201,7 +2201,7 @@ private with sharing class CON_PrimaryAffls_TEST {
             invalidRTName
         };
 
-        return String.format(label.invalidRecordTypeInAffiliationMapping, params);
+        return StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidRecordTypeInAffiliationMapping, params);
     }
 
     /**************************************************************************************************************
@@ -2217,6 +2217,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             invalidContactFieldName
         };
 
-        return String.format(label.invalidContactFieldInAffiliationMapping, params);
+        return StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidContactFieldInAffiliationMapping, params);
     }
 }
